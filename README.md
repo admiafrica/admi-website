@@ -106,13 +106,14 @@ Here's a basic overview of the folder structure:
 ├── /public            # Static assets (images, fonts, etc.)
 ├── /src
 │   ├── /components    # Reusable React components
-│   ├── /pages
-│   ├── /landing-pages
+│   ├── /layouts       # Page layout components
+│   ├── /pages         # Website Related pages
+│   ├── /campaigns     # Campaign Related Pages
 │   ├── /routes        # Handle Routes
 │   ├── /styles        # CSS or Sass files
-│   ├── /hooks
+│   ├── /hooks         # Custom hooks
 │   ├── /utils         # Utility functions
-│   └── main.tsx      # Main React entry point
+│   └── main.tsx       # Main React entry point
 ├── .gitignore         # Git ignore file
 ├── package.json       # npm or yarn dependencies and scripts
 ├── vite.config.js     # Vite configuration
