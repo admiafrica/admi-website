@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "node ./server.js",
-    "build": "remix vite:build && npm run postbuild",
+    "build": "remix vite:build",
     "postbuild": "chmod +x postbuild.sh && ./postbuild.sh",
     "lint": "eslint --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint .",
     "start": "cross-env NODE_ENV=production node ./server.js",
