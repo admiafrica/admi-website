@@ -1,9 +1,5 @@
-import React, { useEffect } from 'react';
-import {
-  createBrowserRouter,
-  Navigate,
-  RouterProvider,
-} from 'react-router-dom';
+import React from 'react';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { ROUTES } from '../utils';
 import RootPage from '../pages';
 import { HomePage } from '../pages/HomePage';
