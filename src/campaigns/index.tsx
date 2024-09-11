@@ -1,6 +1,6 @@
 import { Text } from '@mantine/core';
 import { CampaignLayout } from '../layouts/CampaignLayout';
-import { useParams } from 'react-router-dom';
+import { useParams } from '@remix-run/react';
 
 export function CampaignsPage() {
   const params = useParams();

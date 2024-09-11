@@ -30,4 +30,6 @@ yarn.lock
 .env.production
 
 # Build outputs
+.amplify-hosting/
+build
 *.tsbuildinfo

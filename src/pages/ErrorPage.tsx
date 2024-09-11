@@ -1,4 +1,4 @@
-import { useNavigate, useRouteError } from 'react-router-dom';
+import { useNavigate, useRouteError } from '@remix-run/react';
 
 type RouteError = {
   statusText?: string;
