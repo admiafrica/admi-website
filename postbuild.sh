@@ -13,5 +13,5 @@ cp -r public ./.amplify-hosting/static
 
 cp deploy-manifest.json ./.amplify-hosting/deploy-manifest.json
 cp package.json ./.amplify-hosting/compute/default/package.json
-cp .env ./.amplify-hosting/compute/default/.env
+cp server.js ./.amplify-hosting/compute/default/server.js
 echo "NODE_ENV=production" >>./.amplify-hosting/compute/default/.env

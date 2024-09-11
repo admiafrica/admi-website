@@ -32,7 +32,7 @@
     {
       "name": "default",
       "runtime": "nodejs20.x",
-      "entrypoint": "server/index.js"
+      "entrypoint": "server.js"
     }
   ]
 }
