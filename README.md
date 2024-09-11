@@ -2,7 +2,9 @@
 
 ## **Project Overview**
 
-This project is built using **Vite** as the build tool, **Remix** for server-side rendering and routing, and **React** for building the user interface. This README file provides instructions on how to set up and run the project locally for development.
+This project is built using Nextjs for server-side rendering and routing, and **React** for building the user interface.
+
+This README file provides instructions on how to set up and run the project locally for development.
 
 ## **Table of Contents**
 
@@ -116,8 +118,14 @@ Here's a basic overview of the folder structure:
 │   └── main.tsx       # Main React entry point
 ├── .gitignore         # Git ignore file
 ├── package.json       # npm or yarn dependencies and scripts
-├── vite.config.js     # Vite configuration
+├── next.config.mjs    # Nextjs configuration
 └── README.md          # Project documentation (this file)
 ```
+
+---
+
+## **License**
+
+Update License
 
 ---

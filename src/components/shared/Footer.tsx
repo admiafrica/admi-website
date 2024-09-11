@@ -1,4 +1,4 @@
-import { Group, Text, Anchor, Stack, Title, Image } from '@mantine/core';
+import { Group, Text, Anchor, Stack, Title } from '@mantine/core';
 import {
   IconBrandTwitter,
   IconBrandFacebook,
@@ -6,6 +6,7 @@ import {
 } from '@tabler/icons-react';
 
 import LogoIcon from '../../assets/logo.svg';
+import Image from 'next/image';
 
 export default function CustomFooter() {
   return (
@@ -19,7 +20,7 @@ export default function CustomFooter() {
         <Text>Phone: (+254) 706 349 696, (+254) 711 486 581</Text>
         <Text>Hours: Mon-Fri 8:00am - 5:00pm / Sat: 8:00am to 2:00pm</Text>
 
-        <Image w={140} src={LogoIcon} />
+        <Image width={140} src={LogoIcon} alt="logo"/>
       </Stack>
 
       {/* Quick Links and Social Media */}
