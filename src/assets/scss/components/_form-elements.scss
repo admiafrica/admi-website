@@ -73,7 +73,6 @@
   margin-top: rem(2);
 }
 
-.iti__tel-input,
 .form-field {
   display: block;
   width: 100%;
@@ -88,8 +87,9 @@
     border-color: #77869d;
   }
 
-  &:active, &:focus, &:focus-within {
+  &:active, &:focus, &:focus-within, &:focus-visible {
     border-color: $primary-color;
+    outline: none;
   }
 
   &.error {
@@ -120,13 +120,57 @@
   }
 }
 
+.phone-field {
+  display: block;
+  width: 100% !important;
+  border: 1px solid $field-border !important;
+  padding: rem(12);
+  border-radius: rem(8) !important;
+  -webkit-appearance: none;
+  height: rem(44) !important;
+  background-color: #fff;
 
-.error {
-  .iti__tel-input {
-    border-color: $error;
+  &:hover {
+    border-color: #77869d !important;
+  }
+
+  &:active, &:focus, &:focus-within, &:focus-visible {
+    border-color: $primary-color !important;
+    outline: none;
+  }
+
+  &.error {
+    border-color: $error !important;
   }
 }
 
+.phone-field-dropdown {
+  border: 1px solid $field-border !important;
+  border-radius: rem(8 0 0 8) !important;
+
+  &:hover {
+    border-color: #77869d !important;
+  }
+
+  &:active, &:focus, &:focus-within, &:focus-visible {
+    border-color: $primary-color !important;
+    outline: none;
+  }
+
+  &.error {
+    border-color: $error !important;
+  }
+}
+
+.phone-field-search {
+  padding-right: 10px !important;
+
+  input {
+    width: 100%;
+    margin-left: 0 !important;
+  }
+
+}
 
 .inline-fields {
   display: flex;
@@ -222,33 +266,6 @@
 
     &::after {
       color: $error;
-    }
-  }
-}
-
-
-.iti {
-  display: block;
-  width: 100%;
-
-  &__country-list {
-    font-size: rem(12);
-  }
-
-  &__selected-dial-code {
-    font-size: rem(15);
-  }
-
-  &-mobile {
-    .iti--container {
-      inset: 0 !important;
-    }
-  }
-
-  &--separate-dial-code {
-    .iti__selected-flag {
-      background-color: transparent !important;
-      border-right: 1px solid $field-border;
     }
   }
 }

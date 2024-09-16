@@ -1,22 +1,22 @@
-import React, { useRef, useState } from 'react';
+import styles from '@/assets/css/main.module.css';
+import React, { useState } from 'react';
 import { Button, Modal } from '@mantine/core';
-import IntlTelInput from 'intl-tel-input/reactWithUtils';
-import 'intl-tel-input/build/css/intlTelInput.css';
+import PhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/lib/style.css';
 import logo from '@/assets/logo.svg';
-import successIcon from '../../assets/images/success-icon.svg';
+import successIcon from '@/assets/images/success-icon.svg';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function CampaignLeadForm() {
   const [email, setEmail] = useState('');
   const [fname, setFname] = useState('');
   const [lname, setLname] = useState('');
-  const [phone, setPhone] = useState<string | null>(null);
+  const [phone, setPhone] = useState('');
   const [courseName, setCourseName] = useState('');
-  const [isValid, setIsValid] = useState<boolean | null>(null);
   const [errors, setErrors] = useState({});
   const [opened, setOpened] = useState(false);
   const [loading, setLoading] = useState(false);
-  const phoneInputRef = useRef(null);
 
   const validateForm = () => {
     const newErrors = {};
@@ -32,9 +32,8 @@ export default function CampaignLeadForm() {
     // Validate last name
     if (!lname) newErrors.lname = 'Last name is required';
 
-    if (!isValid) {
-      newErrors.phone = 'Enter a valid phone number';
-    }
+    // Validate phone number
+    if (!phone) newErrors.phone = 'Phone number is required';
 
     // Validate course selection
     if (!courseName) newErrors.courseName = 'Please select a course';
@@ -62,14 +61,6 @@ export default function CampaignLeadForm() {
         setLname('');
         setPhone('');
         setCourseName('');
-
-        if (phoneInputRef.current) {
-          const phoneInputElem = phoneInputRef.current?.querySelector('.iti__tel-input');
-          if (phoneInputElem) {
-            phoneInputElem.value = '';
-          }
-        }
-
         setLoading(false);
       }, 1000);
     }
@@ -78,89 +69,84 @@ export default function CampaignLeadForm() {
 
   return (
     <div>
-      <form id="lead_form" className="lead-form" onSubmit={handleSubmit}>
-        <div className="lead-form__content">
-          <h2 className="section-title section-title--small">Enquiry Form</h2>
+      <form id="lead_form" className={`${styles['lead-form']}`} onSubmit={handleSubmit}>
+        <div className={`${styles['lead-form__content']}`}>
+          <h2 className={`${styles['"section-title']} ${styles['section-title--small']}`}>Enquiry Form</h2>
           <p>Please tell us the course you are interested in.</p>
 
-          <div className="form-group">
-            <label className="field-label" htmlFor="email">
-              Email <span className="required-asterisk">*</span>
+          <div className={`${styles['form-group']}`}>
+            <label className={`${styles['field-label']}`} htmlFor="email">
+              Email <span className={`${styles['required-asterisk']}`}>*</span>
             </label>
             <input
               type="text"
-              className={`form-field ${errors.email ? 'error' : ''}`}
+              className={`${styles['form-field']} ${errors.email ? styles['error'] : ''}`}
               id="email"
               name="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Enter your email"
             />
-            <span className="field-error">{errors.email}</span>
+            <span className={`${styles['field-error']}`}>{errors.email}</span>
           </div>
 
-          <div className="form-group">
-            <label className="field-label" htmlFor="fname">
-              First Name <span className="required-asterisk">*</span>
+          <div className={`${styles['form-group']}`}>
+            <label className={`${styles['field-label']}`} htmlFor="fname">
+              First Name <span className={`${styles['required-asterisk']}`}>*</span>
             </label>
             <input
               type="text"
-              className={`form-field ${errors.fname ? 'error' : ''}`}
+              className={`${styles['form-field']} ${errors.fname ? styles['error'] : ''}`}
               id="fname"
               name="fname"
               value={fname}
               onChange={(e) => setFname(e.target.value)}
               placeholder="Enter your first name"
             />
-            <span className="field-error">{errors.fname}</span>
+            <span className={`${styles['field-error']}`}>{errors.fname}</span>
           </div>
 
-          <div className="form-group">
-            <label className="field-label" htmlFor="lname">
-              Last Name <span className="required-asterisk">*</span>
+          <div className={`${styles['form-group']}`}>
+            <label className={`${styles['field-label']}`} htmlFor="lname">
+              Last Name <span className={`${styles['required-asterisk']}`}>*</span>
             </label>
             <input
               type="text"
-              className={`form-field ${errors.lname ? 'error' : ''}`}
+              className={`${styles['form-field']} ${errors.lname ? styles['error'] : ''}`}
               id="lname"
               name="lname"
               value={lname}
               onChange={(e) => setLname(e.target.value)}
               placeholder="Enter your last name"
             />
-            <span className="field-error">{errors.lname}</span>
+            <span className={`${styles['field-error']}`}>{errors.lname}</span>
           </div>
 
-          <div className="form-group">
-            <label className="field-label" htmlFor="phone">
-              Phone number <span className="required-asterisk">*</span>
+          <div className={`${styles['form-group']}`}>
+            <label className={`${styles['field-label']}`} htmlFor="phone">
+              Phone number <span className={`${styles['required-asterisk']}`}>*</span>
             </label>
 
-            <div ref={phoneInputRef} className={`intl-tel-input-wrapper ${errors.phone ? 'error' : ''}`}>
-              <IntlTelInput
-                onChangeNumber={setPhone}
-                onChangeValidity={setIsValid}
-                initOptions={{
-                  initialCountry: 'auto',
-                  geoIpLookup: callback => {
-                    fetch('https://ipapi.co/json')
-                      .then(res => res.json())
-                      .then(data => callback(data.country_code))
-                      .catch(() => callback('ke'));
-                  },
-                  strictMode: true,
-                  separateDialCode: true,
-                }}
-              />
-            </div>
-            <span className="field-error">{errors.phone}</span>
+            <PhoneInput
+              country={'ke'}
+              enableSearch={true}
+              disableSearchIcon={true}
+              countryCodeEditable={false}
+              inputClass={`${styles['phone-field']} ${errors.phone ? styles['error'] : ''}`}
+              buttonClass={`${styles['phone-field-dropdown']} ${errors.phone ? styles['error'] : ''}`}
+              searchClass={`${styles['phone-field-search']}`}
+              value={phone}
+              onChange={setPhone}
+            />
+
+            <span className={`${styles['field-error']}`}>{errors.phone}</span>
           </div>
 
-          <div className="form-group">
-            <label className="field-label" htmlFor="course_name">
-              I am interested in this course <span className="required-asterisk">*</span>
+          <div className={`${styles['form-group']}`}>
+            <label className={`${styles['field-label']}`} htmlFor="course_name">
+              I am interested in this course <span className={`${styles['required-asterisk']}`}>*</span>
             </label>
-            <div className={`styled-select ${errors.courseName ? 'error' : ''}`}>
+            <div className={`${styles['styled-select']} ${errors.courseName ? styles['error'] : null}`}>
               <select
                 id="course_name"
                 name="course_name"
@@ -177,14 +163,19 @@ export default function CampaignLeadForm() {
                 <option value="5">Film and Television Production Diploma</option>
               </select>
             </div>
-            <span className="field-error">{errors.courseName}</span>
+            <span className={`${styles['field-error']}`}>{errors.courseName}</span>
           </div>
 
-          <Button type="submit" id="lead_form_btn" loading={loading} className="btn btn-primary btn-xs-block">Get a call
-            back</Button>
+          <Button
+            type="submit"
+            id="lead_form_btn"
+            loading={loading}
+            className={`${styles['btn']} ${styles['btn-primary']} ${styles['btn-xs-block']}`}
+          >Get a call back
+          </Button>
 
-          <div className="mt-4">
-          <span className="text-red text-size-14">
+          <div className={`${styles['mt-4']}`}>
+          <span className={`${styles['text-red']} ${styles['text-size-14']}`}>
             <strong>Hurry, September 2024 Intake Ongoing!</strong>
           </span>
           </div>
@@ -192,17 +183,16 @@ export default function CampaignLeadForm() {
       </form>
 
       <Modal opened={opened} onClose={() => setOpened(false)} centered>
-        <div className="thank-you-card">
-          <div className="thank-you-card--icon">
-            <img fetchPriority="high" src={successIcon} width="100" height="100"
-                 alt="Success" />
+        <div className={`${styles['thank-you-card']}`}>
+          <div className={`${styles['thank-you-card--icon']}`}>
+            <Image fetchPriority="high" src={successIcon} alt="Success" width={100} height={100} />
           </div>
-          <h1 className="section-title section-title--small">Thank you!</h1>
+          <h1 className={`${styles['section-title']} ${styles['section-title--small']}`}>Thank you!</h1>
           <p>Thank you for your enquiry. Our team will reach out with more information about our courses.</p>
-          <a href="https://admi.africa/" className="btn btn-primary">Back to our website</a>
+          <a href="https://admi.africa/" className={`${styles['btn']} ${styles['btn-primary']}`}>Back to our website</a>
 
-          <a href="https://admi.africa" className="site-logo">
-            <Image src={logo} alt={'ADMI'} width={90} height={90} fetchPriority={high}></Image>
+          <a href="https://admi.africa" className={`${styles['site-logo']}`}>
+            <Image src={logo} alt={'ADMI'} width={90} height={90} fetchPriority="high"></Image>
           </a>
         </div>
       </Modal>

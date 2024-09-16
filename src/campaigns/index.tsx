@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { CampaignLayout } from '@/layouts/CampaignLayout';
 import { CampaignBanner } from '@/components/campaign';
+import { CampaignLeadForm } from '@/components/campaign';
 import courseImage from '@/assets/images/course-banner.webp';
 import styles from '@/assets/css/main.module.css';
 
@@ -55,7 +56,7 @@ export function CampaignsPage() {
         <div className={`${styles['wrapper']}`}>
           <div className={`${styles['layout-grid']} ${styles['layout-grid--two-col']}`}>
             <div></div>
-            {/*<CampaignLeadForm></CampaignLeadForm>*/}
+            <CampaignLeadForm></CampaignLeadForm>
           </div>
         </div>
       </section>
