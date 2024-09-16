@@ -71,7 +71,7 @@ export default function CampaignLeadForm() {
     <div>
       <form id="lead_form" className={`${styles['lead-form']}`} onSubmit={handleSubmit}>
         <div className={`${styles['lead-form__content']}`}>
-          <h2 className={`${styles['"section-title']} ${styles['section-title--small']}`}>Enquiry Form</h2>
+          <h2 className={`${styles['section-title']} ${styles['section-title--small']}`}>Enquiry Form</h2>
           <p>Please tell us the course you are interested in.</p>
 
           <div className={`${styles['form-group']}`}>
