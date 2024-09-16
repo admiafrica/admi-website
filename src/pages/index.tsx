@@ -1,17 +1,9 @@
-import { Outlet } from 'react-router-dom';
+import { MainLayout } from "../layouts/MainLayout";
 
-import { MantineProvider } from '@mantine/core';
-import { Notifications } from '@mantine/notifications';
-
-import '@mantine/core/styles.css';
-
-const RootPage = () => {
+export default function Home() {
   return (
-    <MantineProvider>
-      <Notifications />
-      <Outlet />
-    </MantineProvider>
+    <MainLayout>
+      <div></div>
+    </MainLayout>
   );
-};
-
-export default RootPage;
+}
