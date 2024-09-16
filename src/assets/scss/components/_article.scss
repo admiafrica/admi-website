@@ -1,0 +1,203 @@
+.article {
+  a {
+    color: $primary-color;
+    text-decoration: none;
+
+    &:hover {
+      color: #000;
+    }
+  }
+
+  h2 {
+    font-size: rem(20);
+    font-weight: 600;
+    color: #232323;
+    margin-bottom: 0.5em;
+  }
+
+  h3 {
+    font-size: rem(16);
+    font-weight: 600;
+    color: #232323;
+    margin-bottom: 0.5em;
+  }
+
+  ol, ul {
+    margin-bottom: rem(20);
+  }
+
+  ul, ol {
+    ul, ol {
+      margin-top: 1rem;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  sup {
+    vertical-align: super;
+    font-size: smaller;
+  }
+
+  sub {
+    vertical-align: sub;
+    font-size: smaller;
+  }
+
+  figure, .article-video-banner {
+    display: block;
+    margin-bottom: rem(32);
+    aspect-ratio: 3/1;
+    position: relative;
+    overflow: hidden;
+
+    img {
+      height: 100%;
+      object-fit: cover;
+      -webkit-transition: opacity 1s, -webkit-transform 1s;
+      transition: opacity 1s, transform 1s;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+    }
+  }
+
+  blockquote {
+    font-size: rem(18);
+    margin: rem(30) auto;
+    font-style: italic;
+    color: #555555;
+    padding: 1.2em 30px 1.2em 70px;
+    border-left: 8px solid $red;
+    line-height: 1.6;
+    position: relative;
+    background: #EDEDED;
+
+    &::before {
+      font-family: "Arial Black", sans-serif;
+      font-style: normal;
+      content: "\201C";
+      color: $red;
+      font-size: 4em;
+      position: absolute;
+      left: 10px;
+      top: -10px;
+    }
+
+    span {
+      display: block;
+      font-style: italic;
+      font-weight: 500;
+      color: #000;
+      margin-top: 1em;
+    }
+  }
+
+  table {
+    margin-bottom: rem(30);
+    table-layout: fixed;
+    width: 100%;
+
+    th, td {
+      padding: rem(14);
+      border: 1px solid #efefef;
+    }
+
+    th {
+      background-color: $red;
+      color: #fff;
+      font-weight: 500;
+    }
+
+    td {
+      font-size: rem(14);
+    }
+  }
+
+}
+
+@include mappy-query(lm) {
+  .article {
+    .article-video-banner {
+      &::after {
+        font-size: rem(40);
+        width: rem(60);
+        height: rem(60);
+      }
+    }
+  }
+}
+
+@include mappy-query(sm) {
+  .article {
+    .article-video-banner {
+      &::after {
+        font-size: rem(30);
+        width: rem(50);
+        height: rem(50);
+      }
+    }
+
+    table {
+      thead {
+        border: none;
+        clip: rect(0 0 0 0);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+      }
+
+      tr {
+        display: block;
+        margin-bottom: 1rem;
+        border-bottom: 3px solid #ccc;
+      }
+
+      td {
+
+        border-bottom: 0 none;
+        display: block;
+        font-size: .8em;
+
+        &::before {
+          content: attr(data-label);
+          display: block;
+          font-weight: 600;
+          color: $red;
+        }
+
+        &:last-child {
+          border-bottom: 1px solid #efefef;
+        }
+      }
+    }
+  }
+}
+
+@include mappy-query(xs) {
+  .article {
+    .article-video-banner {
+      &::after {
+        font-size: rem(20);
+        width: rem(40);
+        height: rem(40);
+      }
+    }
+
+    blockquote {
+      font-size: 1rem;
+      padding-left: 50px;
+      padding-right: 16px;
+      border-width: 4px;
+      margin-block: rem(20);
+
+      &::before {
+        font-size: 3.5em;
+      }
+    }
+  }
+}

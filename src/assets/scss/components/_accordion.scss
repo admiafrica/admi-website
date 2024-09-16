@@ -1,0 +1,89 @@
+.accordion {
+  display: flex;
+  flex-direction: column;
+  gap: rem(16);
+
+  details {
+    background-color: #FFFEF2;
+    border-radius: rem(8);
+    outline: none;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+
+    summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: rem(20);
+      padding: rem(12 16);
+      cursor: pointer;
+      list-style: none;
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+
+      &::marker,
+      &::-webkit-details-marker {
+        display: none;
+        content: "";
+      }
+
+      &::after {
+        content: "⯆";
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: rem(40);
+        font-size: rem(14);
+        color: $black;
+        transition: transform .2s;
+      }
+
+      &:hover {
+        &::after,
+        .details__title {
+          color: $red;
+        }
+      }
+    }
+
+    .details__title {
+      color: $black;
+      font-size: rem(18);
+      font-weight: 500;
+    }
+
+    &[open] {
+
+      summary {
+        &::after {
+          transform: rotate(-180deg);
+        }
+      }
+
+      .details__title {
+        //color: $craydel-dark-orange;
+      }
+    }
+
+    .details__content {
+      padding-inline: rem(16);
+      padding-bottom: 1rem;
+
+      ul, ol {
+        margin-bottom: rem(20);
+      }
+    }
+  }
+}
+
+@include mappy-query(xm) {
+  .accordion {
+    details {
+      .details__title {
+        font-size: rem(17);
+      }
+    }
+  }
+}

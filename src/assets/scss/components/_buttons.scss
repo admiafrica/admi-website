@@ -1,0 +1,251 @@
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: rem(6);
+  height: rem(45);
+  position: relative;
+  background-color: inherit;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 1rem;
+  text-align: center;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border: 1px solid transparent;
+  padding: rem(6 20);
+  line-height: 1.2;
+  border-radius: rem(8);
+  cursor: pointer;
+  transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+
+  i {
+    font-size: rem(24);
+  }
+
+  &-primary {
+    background-color: $red !important;
+    color: #fff !important;
+
+    &:hover, &:focus {
+      background-color: darken($red, 5%) !important;
+      color: #fff !important;
+    }
+  }
+
+  &-rounded {
+    border-radius: rem(25);
+  }
+
+  &-small {
+    height: rem(37);
+    font-size: rem(14);
+    font-weight: 500;
+    padding-inline: rem(14);
+
+    i {
+      font-size: rem(20);
+    }
+  }
+
+  &-x-small {
+    height: rem(28);
+    font-size: rem(12);
+    font-weight: 500;
+    border-radius: rem(8);
+    padding-inline: rem(12);
+
+    i {
+      font-size: rem(18);
+    }
+  }
+
+  &-block {
+    display: flex;
+    width: 100%;
+  }
+
+  &[disabled] {
+    pointer-events: none;
+    background-color: #dfdfde;
+    color: #b0b0af;
+  }
+
+  &--favourited {
+    i {
+      color: #f44336;
+
+      &::before {
+        content: "\e911";
+      }
+    }
+  }
+
+  &--loading {
+    background-color: rgba(#000, 0.12);
+    color: rgba(#fff, 0);
+    pointer-events: none;
+    transition: none;
+
+    &:hover {
+      background-color: rgba(#000, 0.12);
+    }
+
+    &::after {
+      content: "";
+      display: block;
+      position: absolute;
+      z-index: 1;
+      margin: auto;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 2px solid rgba(#000, 0.3);
+      border-left-color: transparent;
+      animation: rotate 1.2s linear infinite;
+    }
+  }
+
+  &-min-width {
+    min-width: rem(230);
+  }
+}
+
+.buttons-group {
+  display: flex;
+  align-items: center;
+  gap: rem(8);
+  flex-wrap: wrap;
+}
+
+.sticky-btn--desktop-hidden {
+  display: none !important;
+}
+
+#btn-back-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  transition: opacity .5s, visibility .5s;
+  opacity: 0;
+  visibility: hidden;
+  padding: 0;
+  z-index: 1000;
+
+  &.btn-back-to-top--show {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.btn-icon-round {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: rem(40);
+  height: rem(40);
+  border: 0 none;
+  margin: 0;
+  border-radius: 50%;
+  font-size: rem(20);
+  list-style: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.btn-floating {
+  display: inline-flex !important;
+  gap: rem(6);
+  position: fixed;
+  top: 24px;
+  right: 20px;
+  z-index: 1;
+  height: rem(45);
+  padding-inline: rem(20);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+@include mappy-query(xm) {
+  .btn-floating {
+    display: none !important;
+  }
+  .lead-form-cta {
+    display: none;
+  }
+
+  .sticky-btn {
+    display: block !important;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    z-index: 50;
+    width: 100%;
+    background-color: #fff;
+    padding-block: 1rem !important;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    box-shadow: 3px 4px 60px rgba(0, 0, 0, 0.27);
+    transform: translateY(80px);
+    transition: all 0.25s ease 0s, transform 0.25s ease 0s;
+
+    &--no-footer {
+      position: sticky;
+    }
+
+    .section-title {
+      display: none;
+    }
+
+    .btn {
+      width: 100%;
+      border-radius: rem(8);
+      background-color: $red;
+      color: #fff;
+
+      &:hover {
+        background-color: darken($red, 10%);
+        color: #fff;
+      }
+    }
+
+
+    &.is-visible {
+      transform: translateY(0);
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+  }
+
+  #btn-back-to-top {
+    width: rem(30);
+    height: rem(30);
+    bottom: 10px;
+    right: 10px;
+  }
+}
+
+@include mappy-query(xs) {
+  .btn {
+    &-xs-block {
+      display: flex;
+      width: 100%;
+    }
+  }
+
+  #btn-back-to-top {
+    display: none;
+  }
+
+  .btn-floating {
+    right: 10px;
+    height: rem(30);
+  }
+}
