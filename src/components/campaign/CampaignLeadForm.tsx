@@ -1,12 +1,11 @@
 import styles from '@/assets/css/main.module.css';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, Modal } from '@mantine/core';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
 import logo from '@/assets/logo.svg';
 import successIcon from '@/assets/images/success-icon.svg';
 import Image from 'next/image';
-import Link from 'next/link';
 
 export default function CampaignLeadForm() {
   const [email, setEmail] = useState('');
@@ -17,6 +16,22 @@ export default function CampaignLeadForm() {
   const [errors, setErrors] = useState({});
   const [opened, setOpened] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [countryCode, setCountryCode] = useState('ke');
+
+  // Auto-detect the country based on IP when the component mounts
+  useEffect(() => {
+    const detectCountry = async () => {
+      try {
+        const response = await fetch('https://ipapi.co/json/');
+        const data = await response.json();
+        setCountryCode(data.country.toLowerCase()); // Set the detected country code
+      } catch (error) {
+        console.error('Error detecting country:', error);
+      }
+    };
+
+    detectCountry();
+  }, []);
 
   const validateForm = () => {
     const newErrors = {};
@@ -33,7 +48,7 @@ export default function CampaignLeadForm() {
     if (!lname) newErrors.lname = 'Last name is required';
 
     // Validate phone number
-    if (!phone) newErrors.phone = 'Phone number is required';
+    if (!phone || phone.length <= 4) newErrors.phone = 'Phone number is required';
 
     // Validate course selection
     if (!courseName) newErrors.courseName = 'Please select a course';
@@ -59,7 +74,8 @@ export default function CampaignLeadForm() {
         setEmail('');
         setFname('');
         setLname('');
-        setPhone('');
+        setPhone(countryCode);
+        setCountryCode(countryCode);
         setCourseName('');
         setLoading(false);
       }, 1000);
@@ -128,7 +144,7 @@ export default function CampaignLeadForm() {
             </label>
 
             <PhoneInput
-              country={'ke'}
+              country={countryCode}
               enableSearch={true}
               disableSearchIcon={true}
               countryCodeEditable={false}

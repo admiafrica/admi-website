@@ -1,7 +1,13 @@
 import { useEffect, useState } from 'react';
 import { CampaignLayout } from '@/layouts/CampaignLayout';
-import { CampaignBanner } from '@/components/campaign';
-import { CampaignLeadForm } from '@/components/campaign';
+import {
+  CampaignBanner,
+  CampaignHighlights,
+  CampaignLeadForm,
+  CampaignReasons,
+  CampaignTestimonials,
+  CampaignFaqs
+} from '@/components/campaign';
 import courseImage from '@/assets/images/course-banner.webp';
 import styles from '@/assets/css/main.module.css';
 
@@ -27,6 +33,22 @@ export function CampaignsPage() {
 
     fetchImageData();
   }, []);
+
+  // Dummy data for FAQs
+  const faqsData = [
+    {
+      title: 'What does the Certificate in Entertainment Business cover?',
+      description: 'This course covers a wide range of topics including event planning, entertainment marketing, and business management strategies.',
+    },
+    {
+      title: 'How long is the course?',
+      description: 'The course duration is 6 months, with flexible learning options including online and part-time classes.',
+    },
+    {
+      title: 'What are the admission requirements?',
+      description: 'The admission requirements include a high school diploma and a passion for the entertainment industry.',
+    },
+  ];
 
   return (
     <CampaignLayout>
@@ -79,9 +101,38 @@ export function CampaignsPage() {
 
       <section id="why_this_course" className={`${styles['section-wrapper']}`}>
         <div className={`${styles['wrapper']}`}>
-          <h2 className={`${styles['section-title']} ${styles['section-title--small']}`}>Why you should take this course</h2>
+          <h2 className={`${styles['section-title']} ${styles['section-title--small']}`}>Why you should take this
+            course</h2>
 
+          <CampaignReasons reasons={[]}></CampaignReasons>
+          <CampaignHighlights fee={'50000'} hours={'1200'} prospectus={'#'}></CampaignHighlights>
+        </div>
+      </section>
 
+      <section id="testimonials" className={`${styles['section-wrapper']} ${styles['bg-light-red']}`}>
+        <div className={`${styles['wrapper']}`}>
+          <h2 className={`${styles['section-title']} ${styles['section-title--small']}`}>Testimonials</h2>
+          <p className={`${styles['summary-text']}`}>Watch to learn about this course - Hear why people choose ADMI for
+            Creative Education</p>
+          <CampaignTestimonials
+            video={'https://www.youtube.com/embed/HyxBygOmAgA'}
+            description={'<p>"Welcome to ADMI\'s Certificate in Entertainment Business program. As a course leader with years of\n' +
+              '            experience in the entertainment industry, I\'m excited to guide you on this journey. Our goal is to help you\n' +
+              '            develop the business acumen and strategic thinking needed to succeed in the entertainment world. In this\n' +
+              '            program, you\'ll learn not just the theoretical aspects of the entertainment business, but also practical\n' +
+              '            skills that you can apply immediately. You\'ll develop your analytical and creative abilities while mastering\n' +
+              '            the technical aspects needed to thrive in this dynamic field. I look forward to seeing you transform into a\n' +
+              '            skilled entertainment business professional ready to make an impact in the industry."</p>'}
+            author={'Barrack Bukusi'}
+          ></CampaignTestimonials>
+        </div>
+      </section>
+
+      <section id="faqs" className={`${styles['section-wrapper']}`}>
+        <div className={`${styles['wrapper']}`}>
+          <h2 className={`${styles['section-title']} ${styles['section-title--small']}`}>Frequently Asked Questions</h2>
+
+          <CampaignFaqs faqs={faqsData}></CampaignFaqs>
         </div>
       </section>
 

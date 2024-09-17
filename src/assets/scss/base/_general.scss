@@ -98,7 +98,7 @@
 
 .summary-text {
   font-size: rem(18);
-  margin-bottom: 3rem;
+  margin-bottom: 3rem !important;
 }
 
 .section-wrapper {
@@ -204,7 +204,7 @@
 
 @include mappy-query(xm) {
   .summary-text {
-    margin-bottom: 2rem;
+    margin-bottom: 2rem !important;
   }
 
   .hide-tablet {
