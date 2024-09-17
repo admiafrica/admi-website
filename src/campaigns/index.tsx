@@ -10,16 +10,20 @@ import {
 } from '@/components/campaign';
 import courseImage from '@/assets/images/course-banner.webp';
 import styles from '@/assets/css/main.module.css';
+import { Skeleton } from '@mantine/core';
 
 export function CampaignsPage() {
   const [bannerSrc, setBannerSrc] = useState(courseImage);
   const [bannerAlt, setBannerAlt] = useState('Course image');
   const [isLeadFormVisible, setIsLeadFormVisible] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     // Simulate fetching data from an API
     const fetchImageData = async () => {
       try {
+        setLoading(true);
+
         // Fetch image data from API (replace with actual API)
         const response = await fetch('https://example.com/api/image');
         const data = await response.json();
@@ -27,8 +31,11 @@ export function CampaignsPage() {
         // Set image src and alt from the API response
         setBannerSrc(data.course_image);
         setBannerAlt(data.course_name);
+
+        setLoading(false);
       } catch (error) {
         console.error('Error fetching image data:', error);
+        setLoading(false);
       }
     };
 
@@ -78,12 +85,18 @@ export function CampaignsPage() {
 
   return (
     <CampaignLayout>
-      <CampaignBanner src={bannerSrc as string} alt={bannerAlt}></CampaignBanner>
+      <Skeleton visible={loading}>
+        <CampaignBanner src={bannerSrc as string} alt={bannerAlt}></CampaignBanner>
+      </Skeleton>
 
       <section id="course" className={`${styles['section-wrapper']} ${styles['pb-0']}`}>
         <div className={`${styles['wrapper']}`}>
           <div className={`${styles['layout-grid']} ${styles['layout-grid--two-col']}`}>
-            <h1 className={`${styles['section-title']}`}>Entertainment Business Certificate</h1>
+            {loading ? (
+              <Skeleton height={39} radius="md" className={`${styles['mb-4']}`} />
+            ) : (
+              <h1 className={`${styles['section-title']}`}>Entertainment Business Certificate</h1>
+            )}
           </div>
           <div></div>
         </div>
@@ -156,7 +169,8 @@ export function CampaignsPage() {
 
       <section id="faqs" className={`${styles['section-wrapper']}`}>
         <div className={`${styles['wrapper']}`}>
-          <h2 className={`${styles['section-title']} ${styles['section-title--small']} ${styles['mb-5']}`}>Frequently Asked Questions</h2>
+          <h2 className={`${styles['section-title']} ${styles['section-title--small']} ${styles['mb-5']}`}>Frequently
+            Asked Questions</h2>
           <CampaignFaqs faqs={faqsData}></CampaignFaqs>
         </div>
       </section>
