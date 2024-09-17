@@ -17,9 +17,7 @@ export default function CampaignFaqs({ faqs }: FaqsProps) {
           <summary>
             <h3 className={`${styles['details__title']}`}>{faq.title}</h3>
           </summary>
-          <div className={`${styles['details__content']} ${styles['article']}`}>
-            {faq.description}
-          </div>
+          <div className={`${styles['details__content']} ${styles['article']}`} dangerouslySetInnerHTML={{ __html: faq.description }} />
         </details>
       ))}
     </div>

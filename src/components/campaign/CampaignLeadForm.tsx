@@ -1,5 +1,5 @@
 import styles from '@/assets/css/main.module.css';
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Button, Modal } from '@mantine/core';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
@@ -7,7 +7,7 @@ import logo from '@/assets/logo.svg';
 import successIcon from '@/assets/images/success-icon.svg';
 import Image from 'next/image';
 
-export default function CampaignLeadForm() {
+export default function CampaignLeadForm({ onVisibilityChange }) {
   const [email, setEmail] = useState('');
   const [fname, setFname] = useState('');
   const [lname, setLname] = useState('');
@@ -17,9 +17,26 @@ export default function CampaignLeadForm() {
   const [opened, setOpened] = useState(false);
   const [loading, setLoading] = useState(false);
   const [countryCode, setCountryCode] = useState('ke');
+  const leadFormBtnRef = useRef(null);
 
   // Auto-detect the country based on IP when the component mounts
   useEffect(() => {
+    const leadFormBtn = leadFormBtnRef.current;
+
+    const handler = (entries) => {
+      // Notify the parent component of visibility status
+      if (!entries[0].isIntersecting) {
+        onVisibilityChange(false);
+      } else {
+        onVisibilityChange(true);
+      }
+    };
+
+    const observer = new window.IntersectionObserver(handler);
+    if (leadFormBtn) {
+      observer.observe(leadFormBtn);
+    }
+
     const detectCountry = async () => {
       try {
         const response = await fetch('https://ipapi.co/json/');
@@ -31,7 +48,13 @@ export default function CampaignLeadForm() {
     };
 
     detectCountry();
-  }, []);
+
+    return () => {
+      if (leadFormBtn) {
+        observer.unobserve(leadFormBtn);
+      }
+    };
+  }, [onVisibilityChange]);
 
   const validateForm = () => {
     const newErrors = {};
@@ -186,6 +209,7 @@ export default function CampaignLeadForm() {
             type="submit"
             id="lead_form_btn"
             loading={loading}
+            ref={leadFormBtnRef}
             className={`${styles['btn']} ${styles['btn-primary']} ${styles['btn-xs-block']}`}
           >Get a call back
           </Button>

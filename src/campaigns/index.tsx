@@ -2,11 +2,11 @@ import { useEffect, useState } from 'react';
 import { CampaignLayout } from '@/layouts/CampaignLayout';
 import {
   CampaignBanner,
+  CampaignFaqs,
   CampaignHighlights,
   CampaignLeadForm,
   CampaignReasons,
   CampaignTestimonials,
-  CampaignFaqs
 } from '@/components/campaign';
 import courseImage from '@/assets/images/course-banner.webp';
 import styles from '@/assets/css/main.module.css';
@@ -14,6 +14,7 @@ import styles from '@/assets/css/main.module.css';
 export function CampaignsPage() {
   const [bannerSrc, setBannerSrc] = useState(courseImage);
   const [bannerAlt, setBannerAlt] = useState('Course image');
+  const [isLeadFormVisible, setIsLeadFormVisible] = useState(false);
 
   useEffect(() => {
     // Simulate fetching data from an API
@@ -50,6 +51,31 @@ export function CampaignsPage() {
     },
   ];
 
+  // Dummy data for Reasons
+  const reasonsData = [
+    {
+      image: 'https://ddasf3j8zb8ok.cloudfront.net/admi/images/entertainment.svg',
+      title: 'Master the Business of Entertainment',
+      description: 'Gain a comprehensive understanding of the entertainment industry\'s structure, key sectors, and major\n' +
+        '            players. This course provides you with the essential business and management skills needed to thrive in the\n' +
+        '            fast-paced world of entertainment, particularly in emerging markets.',
+    },
+    {
+      image: 'https://ddasf3j8zb8ok.cloudfront.net/admi/images/knowledge.svg',
+      title: 'Stay Ahead with Cutting-Edge Knowledge',
+      description: 'Learn the latest trends in digital media and emerging technologies, such as online streaming, social media,\n' +
+        '            virtual reality, and augmented reality. Equip yourself with the tools to navigate and leverage these\n' +
+        '            advancements, ensuring you remain at the forefront of the entertainment industry.',
+    },
+    {
+      image: 'https://ddasf3j8zb8ok.cloudfront.net/admi/images/impact.svg',
+      title: 'Real world Application for Immediate Impact',
+      description: 'Apply your theoretical knowledge to real-world scenarios through case studies and practical assignments.\n' +
+        '            This hands-on approach prepares you to tackle the unique challenges of the entertainment business, from\n' +
+        '            talent management to audience engagement, ensuring you\'re industry-ready upon graduation.',
+    },
+  ];
+
   return (
     <CampaignLayout>
       <CampaignBanner src={bannerSrc as string} alt={bannerAlt}></CampaignBanner>
@@ -78,7 +104,7 @@ export function CampaignsPage() {
         <div className={`${styles['wrapper']}`}>
           <div className={`${styles['layout-grid']} ${styles['layout-grid--two-col']}`}>
             <div></div>
-            <CampaignLeadForm></CampaignLeadForm>
+            <CampaignLeadForm onVisibilityChange={setIsLeadFormVisible}></CampaignLeadForm>
           </div>
         </div>
       </section>
@@ -104,7 +130,7 @@ export function CampaignsPage() {
           <h2 className={`${styles['section-title']} ${styles['section-title--small']}`}>Why you should take this
             course</h2>
 
-          <CampaignReasons reasons={[]}></CampaignReasons>
+          <CampaignReasons reasons={reasonsData}></CampaignReasons>
           <CampaignHighlights fee={'50000'} hours={'1200'} prospectus={'#'}></CampaignHighlights>
         </div>
       </section>
@@ -130,9 +156,16 @@ export function CampaignsPage() {
 
       <section id="faqs" className={`${styles['section-wrapper']}`}>
         <div className={`${styles['wrapper']}`}>
-          <h2 className={`${styles['section-title']} ${styles['section-title--small']}`}>Frequently Asked Questions</h2>
-
+          <h2 className={`${styles['section-title']} ${styles['section-title--small']} ${styles['mb-5']}`}>Frequently Asked Questions</h2>
           <CampaignFaqs faqs={faqsData}></CampaignFaqs>
+        </div>
+      </section>
+
+      <section
+        className={`${styles['section-wrapper']} ${styles['lead-form-cta']} ${styles['sticky-btn']} ${styles['sticky-btn--no-footer']} ${styles['sticky-btn--desktop-hidden']} ${isLeadFormVisible ? '' : styles['is-visible']}`}>
+        <div className={`${styles['wrapper']} ${styles['text-center']}`}>
+          <a href="#lead_form" className={`${styles['btn']} ${styles['btn-primary']} ${styles['btn-min-width']}`}>Get a
+            call back</a>
         </div>
       </section>
 
