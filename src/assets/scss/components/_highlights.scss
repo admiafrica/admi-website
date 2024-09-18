@@ -18,9 +18,25 @@
     text-align: center;
     @include trans-all;
 
+    &:nth-child(3n+1) {
+      background-color:  #9cccc1;
+    }
+
+    &:nth-child(3n+2) {
+      background-color: #7bc4ee;
+    }
+
+    &:nth-child(3n+3) {
+      background-color: #f1a248;
+    }
+
+    &--title {
+      color: #a01713;
+    }
+
     &--has-link {
       &:hover {
-        background-color: darken(#FAEEEE, 5%);
+        background-color: #ff8300;
       }
     }
   }

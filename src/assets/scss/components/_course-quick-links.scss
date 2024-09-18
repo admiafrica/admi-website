@@ -18,6 +18,11 @@
       color: #fff;
     }
   }
+
+  .quick-links-skeleton {
+    height: rem(40);
+    width: rem(158);
+  }
 }
 
 @include mappy-query(xm) {
@@ -58,6 +63,11 @@
     a {
       padding: rem(4 10);
       font-size: rem(12);
+    }
+
+    .quick-links-skeleton {
+      height: rem(28);
+      width: rem(123);
     }
   }
 }
