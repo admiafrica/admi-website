@@ -11,6 +11,8 @@ import {
 import courseImage from '@/assets/images/course-banner.webp';
 import styles from '@/assets/css/main.module.css';
 import { useRouter } from 'next/router';
+import { Skeleton } from '@mantine/core';
+
 export function CampaignsPage() {
   const [bannerSrc, setBannerSrc] = useState(courseImage);
   const [bannerAlt, setBannerAlt] = useState('Course image');
@@ -19,20 +21,19 @@ export function CampaignsPage() {
   console.log('country' +  JSON.stringify(router.query.country))
   console.log('category' +  JSON.stringify(router.query.category))
   console.log('campaign' +  JSON.stringify(router.query.campaign))
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     // Simulate fetching data from an API
     const fetchImageData = async () => {
       try {
         // Fetch image data from API (replace with actual API)
-
-        const response = await fetch('https://randomuser.me/api/?results=5');
+        const response = await fetch('https://example.com/api/image');
         const data = await response.json();
 
-
         // Set image src and alt from the API response
-        setBannerSrc(data.results[0].picture.thumbnail);
-        setBannerAlt(data.results[0].name.first);
+        setBannerSrc(data.course_image);
+        setBannerAlt(data.course_name);
       } catch (error) {
         console.error('Error fetching image data:', error);
       }
