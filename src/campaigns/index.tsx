@@ -15,27 +15,42 @@ import { Skeleton } from '@mantine/core';
 
 export function CampaignsPage() {
   const [bannerSrc, setBannerSrc] = useState(courseImage);
-  const [bannerAlt, setBannerAlt] = useState('Course image');
+  const [courseName, setCourseName] = useState('');
+  const [courseOverview, setCourseOverview] = useState('');
   const [isLeadFormVisible, setIsLeadFormVisible] = useState(false);
   const router = useRouter();
-  console.log('country' + JSON.stringify(router.query.country));
-  console.log('category' + JSON.stringify(router.query.category));
-  console.log('campaign' + JSON.stringify(router.query.campaign));
   const [loading, setLoading] = useState(true);
+  const country = router.query.country;
+  const category = router.query.category;
+  const campaign = router.query.campaign;
 
   useEffect(() => {
-    // Simulate fetching data from an API
-    const fetchImageData = async () => {
+    const fetchCourseData = async () => {
       try {
         setLoading(true);
+        const base_url = 'https://cdn.contentful.com/spaces/';
+        const space_id = 'qtu3mga6n6gc/environments/';
+        const environment_id = 'master/entries/';
+        const entry_id = '22n0b5LPWgEhjLmvvNoTTu';
+        const access_token = 'FVloClhmfLd5KMZPmkoEoLsgEqod5LB-MBjSh-1afrc';
 
         // Fetch image data from API (replace with actual API)
-        const response = await fetch('https://example.com/api/image');
+        const response = await fetch(base_url + space_id + environment_id + entry_id, {
+          headers: {
+            Authorization: `Bearer ${access_token}`,
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+
         const data = await response.json();
 
-        // Set image src and alt from the API response
-        setBannerSrc(data.course_image);
-        setBannerAlt(data.course_name);
+        console.log(data.fields);
+
+        // setBannerSrc(data.fields.course_image);
+        setCourseName(data.fields.name);
 
         setLoading(false);
       } catch (error) {
@@ -44,7 +59,7 @@ export function CampaignsPage() {
       }
     };
 
-    fetchImageData();
+    fetchCourseData();
   }, []);
 
   // Dummy data for FAQs
@@ -91,7 +106,7 @@ export function CampaignsPage() {
   return (
     <CampaignLayout>
       <Skeleton visible={loading}>
-        <CampaignBanner src={bannerSrc as string} alt={bannerAlt}></CampaignBanner>
+        <CampaignBanner src={bannerSrc as string} alt={courseName}></CampaignBanner>
       </Skeleton>
 
       <section id="course" className={`${styles['section-wrapper']} ${styles['pb-0']}`}>
@@ -100,7 +115,7 @@ export function CampaignsPage() {
             {loading ? (
               <Skeleton height={39} radius="md" className={`${styles['mb-4']}`} />
             ) : (
-              <h1 className={`${styles['section-title']}`}>Entertainment Business Certificate</h1>
+              <h1 className={`${styles['section-title']}`}>{courseName}</h1>
             )}
           </div>
           <div></div>

@@ -10,14 +10,14 @@
 
   h2 {
     font-size: rem(20);
-    font-weight: 600;
+    font-weight: bold;
     color: #232323;
     margin-bottom: 0.5em;
   }
 
   h3 {
     font-size: rem(16);
-    font-weight: 600;
+    font-weight: bold;
     color: #232323;
     margin-bottom: 0.5em;
   }
@@ -88,7 +88,7 @@
     span {
       display: block;
       font-style: italic;
-      font-weight: 500;
+      font-weight: bold;
       color: #000;
       margin-top: 1em;
     }
@@ -107,7 +107,7 @@
     th {
       background-color: $red;
       color: #fff;
-      font-weight: 500;
+      font-weight: bold;
     }
 
     td {
@@ -166,7 +166,7 @@
         &::before {
           content: attr(data-label);
           display: block;
-          font-weight: 600;
+          font-weight: bold;
           color: $red;
         }
 

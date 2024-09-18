@@ -51,11 +51,10 @@
     .details__title {
       color: $black;
       font-size: rem(18);
-      font-weight: 500;
+      font-weight: bold;
     }
 
     &[open] {
-
       summary {
         &::after {
           transform: rotate(-180deg);

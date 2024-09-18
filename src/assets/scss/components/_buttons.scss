@@ -7,7 +7,7 @@
   position: relative;
   background-color: inherit;
   font-family: inherit;
-  font-weight: 600;
+  font-weight: bold;
   font-size: 1rem;
   text-align: center;
   -webkit-user-select: none;
@@ -39,29 +39,6 @@
     border-radius: rem(25);
   }
 
-  &-small {
-    height: rem(37);
-    font-size: rem(14);
-    font-weight: 500;
-    padding-inline: rem(14);
-
-    i {
-      font-size: rem(20);
-    }
-  }
-
-  &-x-small {
-    height: rem(28);
-    font-size: rem(12);
-    font-weight: 500;
-    border-radius: rem(8);
-    padding-inline: rem(12);
-
-    i {
-      font-size: rem(18);
-    }
-  }
-
   &-block {
     display: flex;
     width: 100%;
@@ -71,16 +48,6 @@
     pointer-events: none;
     background-color: #dfdfde;
     color: #b0b0af;
-  }
-
-  &--favourited {
-    i {
-      color: #f44336;
-
-      &::before {
-        content: "\e911";
-      }
-    }
   }
 
   &--loading {
@@ -168,7 +135,7 @@
   height: rem(45);
   padding-inline: rem(20);
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: bold;
 }
 
 @include mappy-query(xm) {
@@ -214,7 +181,6 @@
         color: #fff;
       }
     }
-
 
     &.is-visible {
       transform: translateY(0);
