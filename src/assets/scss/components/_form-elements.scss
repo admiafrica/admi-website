@@ -1,0 +1,281 @@
+.form-group {
+  margin-bottom: rem(4);
+  position: relative;
+
+  input, select, textarea {
+    font-family: $primary-font;
+    font-size: rem(15);
+  }
+
+  select {
+    color: #000;
+  }
+
+  input[type="password"] {
+    font: large Verdana, sans-serif;
+    letter-spacing: 1px;
+  }
+
+  textarea.form-field {
+    height: rem(140) !important;
+    resize: none;
+  }
+
+  select, textarea {
+    &::-webkit-scrollbar {
+      width: 5px;
+
+      &-track {
+        background: lighten(#ccc, 12%);
+        border-radius: 20px;
+        width: 3px;
+      }
+
+      &-thumb {
+        background: #a5b7c6;
+        border-radius: 20px;
+        width: 3px;
+
+        &:hover {
+          background: darken(#a5b7c6, 12%);
+        }
+      }
+    }
+  }
+
+}
+
+.field-label {
+  display: block;
+  color: $field-label;
+  font-weight: bold;
+  font-size: rem(14);
+  margin-bottom: em(6);
+}
+
+.required-asterisk {
+  font-weight: normal;
+  color: $error;
+}
+
+.field-error {
+  display: block;
+  color: $error;
+  font-size: rem(10);
+  margin-top: 2px;
+  min-height: 1rem;
+}
+
+.field-hint {
+  display: block;
+  color: $primary-color;
+  font-size: rem(12);
+  margin-top: rem(2);
+}
+
+.form-field {
+  display: block;
+  width: 100%;
+  border: 1px solid $field-border;
+  padding: rem(12);
+  border-radius: rem(8);
+  -webkit-appearance: none;
+  height: rem(44);
+  background-color: #fff;
+
+  &:hover {
+    border-color: #77869d;
+  }
+
+  &:active, &:focus, &:focus-within, &:focus-visible {
+    border-color: $primary-color;
+    outline: none;
+  }
+
+  &.error {
+    border-color: $error;
+  }
+
+  &:disabled, &[readonly] {
+    background-color: #e9ecef;
+    opacity: 1;
+    border-color: #e1e3e4;
+    cursor: not-allowed;
+  }
+
+  &::-webkit-input-placeholder {
+    opacity: 0.5;
+  }
+
+  &::-moz-placeholder {
+    opacity: 0.5;
+  }
+
+  &:-moz-placeholder {
+    opacity: 0.5;
+  }
+
+  &:-ms-input-placeholder {
+    opacity: 0.5;
+  }
+}
+
+.phone-field {
+  display: block;
+  width: 100% !important;
+  border: 1px solid $field-border !important;
+  padding: rem(12);
+  border-radius: rem(8) !important;
+  -webkit-appearance: none;
+  height: rem(44) !important;
+  background-color: #fff;
+
+  &:hover {
+    border-color: #77869d !important;
+  }
+
+  &:active, &:focus, &:focus-within, &:focus-visible {
+    border-color: $primary-color !important;
+    outline: none;
+  }
+
+  &.error {
+    border-color: $error !important;
+  }
+}
+
+.phone-field-dropdown {
+  border: 1px solid $field-border !important;
+  border-radius: rem(8 0 0 8) !important;
+
+  &:hover {
+    border-color: #77869d !important;
+  }
+
+  &:active, &:focus, &:focus-within, &:focus-visible {
+    border-color: $primary-color !important;
+    outline: none;
+  }
+
+  &.error {
+    border-color: $error !important;
+  }
+}
+
+.phone-field-search {
+  padding-right: 10px !important;
+
+  input {
+    width: 100%;
+    margin-left: 0 !important;
+  }
+
+}
+
+.inline-fields {
+  display: flex;
+  gap: rem(10);
+  flex-wrap: wrap;
+
+  .form-group,
+  .form-field {
+    flex: 1;
+  }
+
+  .styled-select {
+    flex: 1;
+  }
+}
+
+.error-msg {
+  color: $error;
+  margin-top: 8px;
+  display: block;
+  font-size: rem(12);
+}
+
+.styled-select {
+  width: 100%;
+  flex-grow: 1;
+  overflow: hidden;
+  height: rem(44);
+  border: 1px solid $field-border;
+  border-radius: rem(8);
+  background-color: #fff;
+  position: relative;
+
+  &:hover {
+    border-color: #77869d;
+  }
+
+  &:active, &:focus, &:focus-within {
+    border-color: $primary-color;
+
+    &::after {
+      color: $primary-color;
+    }
+  }
+
+  &::after {
+    content: "⯆";
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    pointer-events: none;
+    top: 0;
+    right: 0;
+    color: rgba(0, 0, 0, .54);
+    height: 100%;
+    width: 40px;
+    font-size: rem(14);
+  }
+
+  select {
+    background: 0 0;
+    width: 100%;
+    padding: rem(5 30 5 12);
+    border: 0;
+    height: 100%;
+    margin: 0;
+    font-size: rem(15);
+    line-height: inherit;
+    -moz-appearance: window;
+    -webkit-appearance: none;
+    outline: none;
+    cursor: pointer;
+    outline: 0;
+    background: transparent;
+
+    &:required:invalid {
+      color: gray;
+    }
+
+    &:-moz-focusring {
+      color: transparent;
+      text-shadow: 0 0 0 #000;
+    }
+
+    option {
+      color: $black;
+    }
+  }
+
+  &.error {
+    border-color: $error;
+
+    &::after {
+      color: $error;
+    }
+  }
+}
+
+
+@include mappy-query(sm) {
+  .inline-fields {
+    &.wide-sm {
+      flex-direction: column;
+      gap: 0;
+    }
+  }
+}

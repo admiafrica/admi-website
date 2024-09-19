@@ -1,0 +1,51 @@
+.course-summary {
+  position: relative;
+
+  .lead-form {
+    margin-top: rem(-600);
+    position: relative;
+
+    &.no-course {
+      margin-top: rem(-740);
+      margin-bottom: rem(30);
+    }
+  }
+}
+
+@include mappy-query(lm) {
+  .course-summary {
+    .lead-form {
+      margin-top: rem(-530);
+
+      &.no-course {
+        margin-top: rem(-510);
+      }
+    }
+  }
+}
+
+@include mappy-query(md) {
+  .course-summary {
+    .lead-form {
+      margin-top: rem(-614);
+      z-index: 55;
+
+      &.no-course {
+        margin-top: rem(-480);
+      }
+    }
+  }
+}
+
+@include mappy-query(xm) {
+  .course-summary {
+    .lead-form {
+      margin-top: 0;
+      z-index: 0;
+
+      &.no-course {
+        margin-top: 0;
+      }
+    }
+  }
+}

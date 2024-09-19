@@ -1,0 +1,73 @@
+.course-quick-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+
+  a {
+    display: block;
+    padding: 8px 15px;
+    font-size: 15px;
+    color: $black;
+    border-radius: 50px;
+    border: 1px solid $red;
+
+    &:hover {
+      background-color: $red;
+      color: #fff;
+    }
+  }
+
+  .quick-links-skeleton {
+    height: rem(40);
+    width: rem(158);
+  }
+}
+
+@include mappy-query(xm) {
+  .course-quick-links {
+    width: 100%;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    margin-bottom: 0;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    a {
+      white-space: nowrap;
+      padding: rem(6 10);
+      font-size: rem(15);
+    }
+
+    &-section {
+      padding-block: 1rem !important;
+      background-color: #fff;
+      position: sticky;
+      top: 0;
+      z-index: 60;
+      box-shadow: 0 4px 4px -4px rgba(0, 0, 0, 0.2);
+      width: 100vw;
+    }
+  }
+}
+
+@include mappy-query(sm) {
+  .course-quick-links {
+    gap: rem(6);
+
+    a {
+      padding: rem(4 10);
+      font-size: rem(12);
+    }
+
+    .quick-links-skeleton {
+      height: rem(28);
+      width: rem(123);
+    }
+  }
+}

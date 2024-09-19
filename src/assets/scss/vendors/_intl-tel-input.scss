@@ -1,0 +1,14 @@
+.iti__search-input {
+  padding: rem(8);
+}
+
+.iti__selected-dial-code {
+  position: relative;
+  top: 1px;
+}
+
+@include mappy-query(xs) {
+  .iti__selected-dial-code {
+    top: auto;
+  }
+}

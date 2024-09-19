@@ -1,0 +1,72 @@
+.reasons-to-study-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(rem(340), 1fr));
+  gap: rem(32);
+  margin-top: rem(32);
+}
+
+.reason-to-study {
+  &__block {
+    display: flex;
+    flex-direction: column;
+    gap: rem(12);
+    align-items: center;
+    background-color: #F1F1F1;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    padding: rem(20 14);
+    position: relative;
+    text-align: center;
+
+    &:nth-child(3n+1) {
+      background-color: #ff8300;
+    }
+
+    &:nth-child(3n+2) {
+      background-color: #e6e000;
+    }
+
+    &:nth-child(3n+3) {
+      background-color: #65bfae;
+    }
+  }
+
+  &__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: rem(115);
+    height: rem(115);
+    margin-block: 1rem;
+  }
+
+  &__title {
+    font-weight: bold !important;
+    font-size: 18px;
+    text-align: center;
+  }
+
+  p {
+    font-size: rem(14);
+  }
+}
+
+
+@include mappy-query(lm) {
+  .reason-to-study__icon {
+    width: rem(90);
+    height: rem(90);
+  }
+}
+
+@include mappy-query(md) {
+  .reasons-to-study-grid {
+    grid-template-columns: repeat(auto-fit, minmax(rem(240), 1fr));
+  }
+}
+
+@include mappy-query(xm) {
+  .reasons-to-study-grid {
+    grid-template-columns: 1fr;
+  }
+}

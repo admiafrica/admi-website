@@ -1,0 +1,28 @@
+.layout-grid {
+  display: grid;
+  gap: rem(96);
+
+  &--two-col {
+    grid-template-columns: 1fr 40%;
+  }
+}
+
+@include mappy-query(xl) {
+  .layout-grid {
+    gap: rem(48);
+  }
+}
+
+@include mappy-query(lm) {
+  .layout-grid {
+    gap: rem(32);
+  }
+}
+
+@include mappy-query(xm) {
+  .layout-grid {
+    &--two-col {
+      grid-template-columns: 1fr;
+    }
+  }
+}
