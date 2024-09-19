@@ -21,46 +21,76 @@ export function CampaignsPage() {
   const [isLeadFormVisible, setIsLeadFormVisible] = useState(false);
   const router = useRouter();
   const [loading, setLoading] = useState(true);
-  const country = router.query.country;
-  const category = router.query.category;
+  // const country = router.query.country;
+  // const category = router.query.category;
   const campaign = router.query.campaign;
+
+  // useEffect(() => {
+  //   const fetchCourseData = async () => {
+  //     try {
+  //       console.log(router.query.campaign);
+  //       setLoading(true);
+  //       const api_url = process.env.NEXT_PUBLIC_ADMI_SERVICES_API;
+  //
+  //       const response = await fetch(
+  //         `${api_url}/${campaign}`
+  //       );
+  //
+  //       const data = await response.json();
+  //
+  //       console.log('RESPONSE');
+  //       console.log(data);
+  //
+  //       // if (!response.ok) {
+  //       //   throw new Error('Network response was not ok');
+  //       // }
+  //
+  //
+  //       // setBannerSrc(data.fields.course_image);
+  //       setCourseName(data.fields.name);
+  //
+  //       setLoading(false);
+  //     } catch (error) {
+  //       console.error(error);
+  //       setLoading(false);
+  //       // setStatus(0);
+  //     }
+  //   };
+  //
+  //   fetchCourseData();
+  // }, []);
 
   useEffect(() => {
     const fetchCourseData = async () => {
+      if (!campaign) return; // Don't fetch data if campaign is undefined
+
       try {
         setLoading(true);
-        const space_id = process.env.CONTENTFUL_SPACE_ID;
-        const access_token = process.env.CONTENTFUL_ACCESS_TOKEN;
-        const base_url = 'https://cdn.contentful.com/spaces/';
-        const environment_id = '/environments/master/entries/';
-        const entry_id = '22n0b5LPWgEhjLmvvNoTTu';
+        const api_url = process.env.NEXT_PUBLIC_ADMI_SERVICES_API;
 
-        const response = await fetch(base_url + space_id + environment_id + entry_id, {
-          headers: {
-            Authorization: `Bearer ${access_token}`,
-          },
-        });
-
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-
+        const response = await fetch(`${api_url}/${campaign}`);
         const data = await response.json();
-        console.log(data.fields);
 
-        // setBannerSrc(data.fields.course_image);
-        setCourseName(data.fields.name);
+        console.log('RESPONSE:', data);
+
+        if (response.ok) {
+          setCourseName(data.fields.name);
+          setBannerSrc(data.fields.course_image || 'Default Image');
+        } else {
+          throw new Error('Failed to fetch data');
+        }
 
         setLoading(false);
       } catch (error) {
         console.error(error);
         setLoading(false);
-        // setStatus(0);
       }
     };
 
-    fetchCourseData();
-  }, []);
+    if (router.isReady) {
+      fetchCourseData(); // Call only when router is ready and campaign is defined
+    }
+  }, [router.isReady, campaign]);
 
   const testimonialData = {
     author: 'Barrack Bukusi',
