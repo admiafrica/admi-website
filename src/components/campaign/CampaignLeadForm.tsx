@@ -1,5 +1,5 @@
 import styles from '@/assets/css/main.module.css';
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Button, Modal } from '@mantine/core';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
@@ -7,11 +7,12 @@ import logo from '@/assets/logo.svg';
 import successIcon from '@/assets/images/success-icon.svg';
 import Image from 'next/image';
 
-export default function CampaignLeadForm({ onVisibilityChange }) {
+export default function CampaignLeadForm({ onVisibilityChange, status }) {
   const [email, setEmail] = useState('');
   const [fname, setFname] = useState('');
   const [lname, setLname] = useState('');
   const [phone, setPhone] = useState('');
+  const [courseName, setCourseName] = useState('');
   const [errors, setErrors] = useState({});
   const [opened, setOpened] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -72,6 +73,9 @@ export default function CampaignLeadForm({ onVisibilityChange }) {
     // Validate phone number
     if (!phone || phone.length <= 4) newErrors.phone = 'Phone number is required';
 
+    // Validate course selection
+    if (status === 0 && !courseName) newErrors.courseName = 'Please select a course';
+
     return newErrors;
   };
 
@@ -95,17 +99,23 @@ export default function CampaignLeadForm({ onVisibilityChange }) {
         setLname('');
         setPhone(countryCode);
         setCountryCode(countryCode);
+        setCourseName('');
         setLoading(false);
       }, 1000);
     }
   };
 
+
   return (
     <div>
-      <form id="lead_form" className={`${styles['lead-form']}`} onSubmit={handleSubmit}>
+      <form id="lead_form" className={`${styles['lead-form']} ${status === 1 ? '' : styles['no-course']}`} onSubmit={handleSubmit}>
         <div className={`${styles['lead-form__content']}`}>
           <h2 className={`${styles['section-title']} ${styles['section-title--small']}`}>Enquiry Form</h2>
-          <p>Fill in your details and our team will get in touch with you.</p>
+          {status === 0 ? (
+            <p>Please tell us the course you are interested in.</p>
+          ) : (
+            <p>Fill in your details and our team will get in touch with you.</p>
+          )}
 
           <div className={`${styles['form-group']}`}>
             <label className={`${styles['field-label']}`} htmlFor="email">
@@ -175,6 +185,32 @@ export default function CampaignLeadForm({ onVisibilityChange }) {
             <span className={`${styles['field-error']}`}>{errors.phone}</span>
           </div>
 
+          {status === 0 && (
+            <div className={`${styles['form-group']}`}>
+              <label className={`${styles['field-label']}`} htmlFor="course_name">
+                I am interested in this course <span className={`${styles['required-asterisk']}`}>*</span>
+              </label>
+              <div className={`${styles['styled-select']} ${errors.courseName ? styles['error'] : null}`}>
+                <select
+                  id="course_name"
+                  name="course_name"
+                  value={courseName}
+                  onChange={(e) => setCourseName(e.target.value)}
+                >
+                  <option disabled="disabled" value="">
+                    Select
+                  </option>
+                  <option value="1">Graphic Design Diploma</option>
+                  <option value="2">Graphic Design Certificate</option>
+                  <option value="3">Sound Engineering Diploma</option>
+                  <option value="4">Music Production & Sound Engineering Certificate</option>
+                  <option value="5">Film and Television Production Diploma</option>
+                </select>
+              </div>
+              <span className={`${styles['field-error']}`}>{errors.courseName}</span>
+            </div>
+          )}
+
           <Button
             type="submit"
             id="lead_form_btn"
@@ -184,11 +220,13 @@ export default function CampaignLeadForm({ onVisibilityChange }) {
           >Get a call back
           </Button>
 
-          <div className={`${styles['mt-4']}`}>
-          <span className={`${styles['text-red']} ${styles['text-size-14']}`}>
-            <strong>Hurry, September 2024 Intake Ongoing!</strong>
-          </span>
-          </div>
+          {status === 1 && (
+            <div className={`${styles['mt-4']}`}>
+              <span className={`${styles['text-red']} ${styles['text-size-14']}`}>
+                <strong>Hurry, September 2024 Intake Ongoing!</strong>
+              </span>
+            </div>
+          )}
         </div>
       </form>
 
