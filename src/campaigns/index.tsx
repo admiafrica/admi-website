@@ -15,7 +15,7 @@ import { Skeleton } from '@mantine/core';
 
 export function CampaignsPage() {
   const [bannerSrc, setBannerSrc] = useState(courseImage);
-  const [courseName, setCourseName] = useState('');
+  const [courseName, setCourseName] = useState('Course Name');
   const [courseOverview, setCourseOverview] = useState('');
   const [isLeadFormVisible, setIsLeadFormVisible] = useState(false);
   const router = useRouter();
@@ -28,11 +28,11 @@ export function CampaignsPage() {
     const fetchCourseData = async () => {
       try {
         setLoading(true);
+        const space_id = process.env.CONTENTFUL_SPACE_ID;
+        const access_token = process.env.CONTENTFUL_ACCESS_TOKEN;
         const base_url = 'https://cdn.contentful.com/spaces/';
-        const space_id = 'qtu3mga6n6gc/environments/';
-        const environment_id = 'master/entries/';
+        const environment_id = '/environments/master/entries/';
         const entry_id = '22n0b5LPWgEhjLmvvNoTTu';
-        const access_token = 'FVloClhmfLd5KMZPmkoEoLsgEqod5LB-MBjSh-1afrc';
 
         // Fetch image data from API (replace with actual API)
         const response = await fetch(base_url + space_id + environment_id + entry_id, {
@@ -46,7 +46,6 @@ export function CampaignsPage() {
         }
 
         const data = await response.json();
-
         console.log(data.fields);
 
         // setBannerSrc(data.fields.course_image);
