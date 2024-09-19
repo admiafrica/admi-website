@@ -1,17 +1,13 @@
 import styles from '@/assets/css/main.module.css';
 
-type TestimonialsProps = {
-  video: string;
-  description: string;
-  author: string;
-};
+export default function CampaignTestimonials({ testimonial }) {
+  const { author, description, video_url} = testimonial
 
-export default function CampaignTestimonials({ video, description, author }: TestimonialsProps) {
   return (
     <div className={`${styles['layout-grid']} ${styles['layout-grid--two-col']}`}>
       <div className={`${styles['video-wrapper']}`}>
         <iframe
-          src={video}
+          src={video_url}
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope;"
           allowFullScreen="allowfullscreen" frameBorder="0" height="315" loading="lazy" title={author}
           width="560">

@@ -55,12 +55,24 @@ export function CampaignsPage() {
       } catch (error) {
         console.error(error);
         setLoading(false);
-        setStatus(0);
+        // setStatus(0);
       }
     };
 
     fetchCourseData();
   }, []);
+
+  const testimonialData = {
+    author: 'Barrack Bukusi',
+    description: '<p>"Welcome to ADMI\'s Certificate in Entertainment Business program. As a course leader with years of\n' +
+      '            experience in the entertainment industry, I\'m excited to guide you on this journey. Our goal is to help you\n' +
+      '            develop the business acumen and strategic thinking needed to succeed in the entertainment world. In this\n' +
+      '            program, you\'ll learn not just the theoretical aspects of the entertainment business, but also practical\n' +
+      '            skills that you can apply immediately. You\'ll develop your analytical and creative abilities while mastering\n' +
+      '            the technical aspects needed to thrive in this dynamic field. I look forward to seeing you transform into a\n' +
+      '            skilled entertainment business professional ready to make an impact in the industry."</p>',
+    video_url: 'https://www.youtube.com/embed/HyxBygOmAgA',
+  };
 
   // Dummy data for FAQs
   const faqsData = [
@@ -247,19 +259,8 @@ export function CampaignsPage() {
               <div>
                 <h2 className={`${styles['section-title']} ${styles['section-title--small']}`}>Testimonials</h2>
                 <p className={`${styles['summary-text']}`}>Watch to learn about this course - Hear why people choose
-                  ADMI
-                  for Creative Education</p>
-                <CampaignTestimonials
-                  video={'https://www.youtube.com/embed/HyxBygOmAgA'}
-                  description={'<p>"Welcome to ADMI\'s Certificate in Entertainment Business program. As a course leader with years of\n' +
-                    '            experience in the entertainment industry, I\'m excited to guide you on this journey. Our goal is to help you\n' +
-                    '            develop the business acumen and strategic thinking needed to succeed in the entertainment world. In this\n' +
-                    '            program, you\'ll learn not just the theoretical aspects of the entertainment business, but also practical\n' +
-                    '            skills that you can apply immediately. You\'ll develop your analytical and creative abilities while mastering\n' +
-                    '            the technical aspects needed to thrive in this dynamic field. I look forward to seeing you transform into a\n' +
-                    '            skilled entertainment business professional ready to make an impact in the industry."</p>'}
-                  author={'Barrack Bukusi'}
-                ></CampaignTestimonials>
+                  ADMI for Creative Education</p>
+                <CampaignTestimonials testimonial={testimonialData}></CampaignTestimonials>
               </div>
             )}
           </div>
