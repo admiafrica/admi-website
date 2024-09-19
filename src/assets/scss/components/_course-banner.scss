@@ -51,9 +51,15 @@
   }
 }
 
-@include mappy-query(md) {
+@include mappy-query(lm) {
   .course-banner {
     min-height: rem(400);
+  }
+}
+
+@include mappy-query(md) {
+  .course-banner {
+    min-height: rem(500);
   }
 }
 

@@ -12,7 +12,6 @@ export default function CampaignLeadForm({ onVisibilityChange }) {
   const [fname, setFname] = useState('');
   const [lname, setLname] = useState('');
   const [phone, setPhone] = useState('');
-  const [courseName, setCourseName] = useState('');
   const [errors, setErrors] = useState({});
   const [opened, setOpened] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -73,9 +72,6 @@ export default function CampaignLeadForm({ onVisibilityChange }) {
     // Validate phone number
     if (!phone || phone.length <= 4) newErrors.phone = 'Phone number is required';
 
-    // Validate course selection
-    if (!courseName) newErrors.courseName = 'Please select a course';
-
     return newErrors;
   };
 
@@ -99,19 +95,17 @@ export default function CampaignLeadForm({ onVisibilityChange }) {
         setLname('');
         setPhone(countryCode);
         setCountryCode(countryCode);
-        setCourseName('');
         setLoading(false);
       }, 1000);
     }
   };
-
 
   return (
     <div>
       <form id="lead_form" className={`${styles['lead-form']}`} onSubmit={handleSubmit}>
         <div className={`${styles['lead-form__content']}`}>
           <h2 className={`${styles['section-title']} ${styles['section-title--small']}`}>Enquiry Form</h2>
-          <p>Please tell us the course you are interested in.</p>
+          <p>Fill in your details and our team will get in touch with you.</p>
 
           <div className={`${styles['form-group']}`}>
             <label className={`${styles['field-label']}`} htmlFor="email">
@@ -179,30 +173,6 @@ export default function CampaignLeadForm({ onVisibilityChange }) {
             />
 
             <span className={`${styles['field-error']}`}>{errors.phone}</span>
-          </div>
-
-          <div className={`${styles['form-group']}`}>
-            <label className={`${styles['field-label']}`} htmlFor="course_name">
-              I am interested in this course <span className={`${styles['required-asterisk']}`}>*</span>
-            </label>
-            <div className={`${styles['styled-select']} ${errors.courseName ? styles['error'] : null}`}>
-              <select
-                id="course_name"
-                name="course_name"
-                value={courseName}
-                onChange={(e) => setCourseName(e.target.value)}
-              >
-                <option disabled="disabled" value="">
-                  Select
-                </option>
-                <option value="1">Graphic Design Diploma</option>
-                <option value="2">Graphic Design Certificate</option>
-                <option value="3">Sound Engineering Diploma</option>
-                <option value="4">Music Production & Sound Engineering Certificate</option>
-                <option value="5">Film and Television Production Diploma</option>
-              </select>
-            </div>
-            <span className={`${styles['field-error']}`}>{errors.courseName}</span>
           </div>
 
           <Button
