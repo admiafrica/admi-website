@@ -15,110 +15,67 @@ import { Skeleton } from '@mantine/core';
 
 export function CampaignsPage() {
   const [status, setStatus] = useState(1);
-  const [bannerSrc, setBannerSrc] = useState(courseImage);
+  const [courseBanner, setCourseBanner] = useState();
   const [courseName, setCourseName] = useState('Course Name');
   const [courseOverview, setCourseOverview] = useState('');
+  const [courseUsps, setCourseUsps] = useState([]);
+  const [courseFee, setCourseFee] = useState('');
+  const [courseHours, setCourseHours] = useState('');
+  const [courseProspectus, setCourseProspectus] = useState('');
+  const [courseTestimonials, setCourseTestimonials] = useState([]);
+  const [courseFaqs, setCourseFaqs] = useState([]);
   const [isLeadFormVisible, setIsLeadFormVisible] = useState(false);
   const router = useRouter();
   const [loading, setLoading] = useState(true);
-  const country = router.query.country;
-  const category = router.query.category;
   const campaign = router.query.campaign;
 
   useEffect(() => {
     const fetchCourseData = async () => {
+      if (!campaign) {
+        setCourseBanner(courseImage);
+        return;
+      }
+
       try {
         setLoading(true);
-        const space_id = process.env.CONTENTFUL_SPACE_ID;
-        const access_token = process.env.CONTENTFUL_ACCESS_TOKEN;
-        const base_url = 'https://cdn.contentful.com/spaces/';
-        const environment_id = '/environments/master/entries/';
-        const entry_id = '22n0b5LPWgEhjLmvvNoTTu';
+        const api_url = process.env.NEXT_PUBLIC_ADMI_SERVICES_API;
 
-        const response = await fetch(base_url + space_id + environment_id + entry_id, {
-          headers: {
-            Authorization: `Bearer ${access_token}`,
-          },
-        });
-
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-
+        const response = await fetch(`${api_url}/${campaign}`);
         const data = await response.json();
-        console.log(data.fields);
 
-        // setBannerSrc(data.fields.course_image);
-        setCourseName(data.fields.name);
+        if (data.status === true) {
+          setStatus(1);
+          setCourseBanner(data.data.banner);
+          setCourseName(data.data.title);
+          setCourseOverview(data.data.description);
+          setCourseUsps(data.data.usps);
+          setCourseFee(data.data.tuitionFee);
+          setCourseHours(data.data.creditHours);
+          setCourseProspectus(data.data.prospectus);
+          setCourseTestimonials(data.data.testimonials);
+          setCourseFaqs(data.data.faqs);
+        } else {
+          setStatus(0);
+          throw new Error('Failed to fetch data');
+        }
 
         setLoading(false);
       } catch (error) {
         console.error(error);
         setLoading(false);
-        // setStatus(0);
+        setStatus(0);
       }
     };
 
-    fetchCourseData();
-  }, []);
-
-  const testimonialData = {
-    author: 'Barrack Bukusi',
-    description: '<p>"Welcome to ADMI\'s Certificate in Entertainment Business program. As a course leader with years of\n' +
-      '            experience in the entertainment industry, I\'m excited to guide you on this journey. Our goal is to help you\n' +
-      '            develop the business acumen and strategic thinking needed to succeed in the entertainment world. In this\n' +
-      '            program, you\'ll learn not just the theoretical aspects of the entertainment business, but also practical\n' +
-      '            skills that you can apply immediately. You\'ll develop your analytical and creative abilities while mastering\n' +
-      '            the technical aspects needed to thrive in this dynamic field. I look forward to seeing you transform into a\n' +
-      '            skilled entertainment business professional ready to make an impact in the industry."</p>',
-    video_url: 'https://www.youtube.com/embed/HyxBygOmAgA',
-  };
-
-  // Dummy data for FAQs
-  const faqsData = [
-    {
-      title: 'What does the Certificate in Entertainment Business cover?',
-      description: 'This course covers a wide range of topics including event planning, entertainment marketing, and business management strategies.',
-    },
-    {
-      title: 'How long is the course?',
-      description: 'The course duration is 6 months, with flexible learning options including online and part-time classes.',
-    },
-    {
-      title: 'What are the admission requirements?',
-      description: 'The admission requirements include a high school diploma and a passion for the entertainment industry.',
-    },
-  ];
-
-  // Dummy data for Reasons
-  const reasonsData = [
-    {
-      image: 'https://ddasf3j8zb8ok.cloudfront.net/admi/images/entertainment.svg',
-      title: 'Master the Business of Entertainment',
-      description: 'Gain a comprehensive understanding of the entertainment industry\'s structure, key sectors, and major\n' +
-        '            players. This course provides you with the essential business and management skills needed to thrive in the\n' +
-        '            fast-paced world of entertainment, particularly in emerging markets.',
-    },
-    {
-      image: 'https://ddasf3j8zb8ok.cloudfront.net/admi/images/knowledge.svg',
-      title: 'Stay Ahead with Cutting-Edge Knowledge',
-      description: 'Learn the latest trends in digital media and emerging technologies, such as online streaming, social media,\n' +
-        '            virtual reality, and augmented reality. Equip yourself with the tools to navigate and leverage these\n' +
-        '            advancements, ensuring you remain at the forefront of the entertainment industry.',
-    },
-    {
-      image: 'https://ddasf3j8zb8ok.cloudfront.net/admi/images/impact.svg',
-      title: 'Real world Application for Immediate Impact',
-      description: 'Apply your theoretical knowledge to real-world scenarios through case studies and practical assignments.\n' +
-        '            This hands-on approach prepares you to tackle the unique challenges of the entertainment business, from\n' +
-        '            talent management to audience engagement, ensuring you\'re industry-ready upon graduation.',
-    },
-  ];
+    if (router.isReady) {
+      fetchCourseData();
+    }
+  }, [router.isReady, campaign, status]);
 
   return (
     <CampaignLayout>
       <Skeleton visible={loading}>
-        <CampaignBanner status={status} src={bannerSrc as string} alt={courseName}></CampaignBanner>
+        <CampaignBanner status={status} src={courseBanner as string} alt={courseName}></CampaignBanner>
       </Skeleton>
 
       {status === 1 && (
@@ -158,7 +115,6 @@ export function CampaignsPage() {
         </section>
       )}
 
-
       <section className={`${styles['course-summary']}`}>
         <div className={`${styles['wrapper']}`}>
           <div className={`${styles['layout-grid']} ${styles['layout-grid--two-col']}`}>
@@ -181,21 +137,7 @@ export function CampaignsPage() {
             ) : (
               <div>
                 <h2 className={`${styles['section-title']} ${styles['section-title--small']}`}>About this Course</h2>
-                <div className={`${styles['article']}`}>
-                  <p>The Entertainment Business Certificate course at Africa Digital Media Institute aims to equip
-                    students
-                    with essential business and management skills directly applicable to the entertainment industry in
-                    emerging markets. Through comprehensive modules, students will gain a deep understanding of
-                    entertainment
-                    business principles, preparing them for careers as managers, entrepreneurs and industry leaders.
-                    You'll learn about various aspects of the industry, from business fundamentals to specific
-                    entertainment
-                    sector
-                    knowledge, preparing you for a successful career in the entertainment world. The curriculum is
-                    structured
-                    to cover both theoretical concepts and practical applications.<br />
-                    COURSE DURATION: The course will run for 12 Weeks.</p>
-                </div>
+                <div className={`${styles['article']}`} dangerouslySetInnerHTML={{ __html: courseOverview }}></div>
               </div>
             )}
 
@@ -224,8 +166,9 @@ export function CampaignsPage() {
               <div>
                 <h2 className={`${styles['section-title']} ${styles['section-title--small']}`}>Why you should take this
                   course</h2>
-                <CampaignReasons reasons={reasonsData}></CampaignReasons>
-                <CampaignHighlights fee={'50000'} hours={'1200'} prospectus={'#'}></CampaignHighlights>
+                <CampaignReasons reasons={courseUsps}></CampaignReasons>
+                <CampaignHighlights fee={courseFee} hours={courseHours}
+                                    prospectus={courseProspectus}></CampaignHighlights>
               </div>
             )}
           </div>
@@ -260,7 +203,7 @@ export function CampaignsPage() {
                 <h2 className={`${styles['section-title']} ${styles['section-title--small']}`}>Testimonials</h2>
                 <p className={`${styles['summary-text']}`}>Watch to learn about this course - Hear why people choose
                   ADMI for Creative Education</p>
-                <CampaignTestimonials testimonial={testimonialData}></CampaignTestimonials>
+                <CampaignTestimonials testimonials={courseTestimonials}></CampaignTestimonials>
               </div>
             )}
           </div>
@@ -284,7 +227,7 @@ export function CampaignsPage() {
                 <h2
                   className={`${styles['section-title']} ${styles['section-title--small']} ${styles['mb-5']}`}>Frequently
                   Asked Questions</h2>
-                <CampaignFaqs faqs={faqsData}></CampaignFaqs>
+                <CampaignFaqs faqs={courseFaqs}></CampaignFaqs>
               </div>
             )}
           </div>
@@ -300,7 +243,6 @@ export function CampaignsPage() {
           </div>
         </section>
       )}
-
     </CampaignLayout>
   );
 }
