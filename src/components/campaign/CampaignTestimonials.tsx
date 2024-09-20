@@ -1,8 +1,7 @@
 import styles from '@/assets/css/main.module.css';
-import { Carousel } from '@mantine/carousel';
 
 export default function CampaignTestimonials({ testimonials }) {
-  const { video_url } = testimonials[0];
+  const { author, video_url, description } = testimonials[0];
 
   return (
     <div className={`${styles['layout-grid']} ${styles['layout-grid--two-col']}`}>
@@ -16,16 +15,8 @@ export default function CampaignTestimonials({ testimonials }) {
       </div>
 
       <div className={`${styles['testimonials']}`}>
-        <Carousel slideSize="70%" align="start" withControls={false} withIndicators slideGap="md">
-          {testimonials.map((testimonial, index) => (
-            <Carousel.Slide key={index}>
-              <div className={`${styles['article']}`} dangerouslySetInnerHTML={{ __html: testimonial.description }} />
-              <span className={`${styles['text-600']} ${styles['d-block']} ${styles['mt-6']}`}>
-                {testimonial.author}
-              </span>
-            </Carousel.Slide>
-          ))}
-        </Carousel>
+        <div className={`${styles['article']}`} dangerouslySetInnerHTML={{ __html: description }} />
+        <span className={`${styles['text-600']} ${styles['d-block']} ${styles['mt-6']}`}>{author}</span>
       </div>
     </div>
   );
