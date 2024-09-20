@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { CampaignLayout } from '@/layouts/CampaignLayout';
-import courseImage from '@/assets/images/default-banner.webp';
+import courseImage from '@/assets/images/course-banner.webp';
 import {
   CampaignBanner,
   CampaignFaqs,
