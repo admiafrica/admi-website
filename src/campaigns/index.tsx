@@ -23,6 +23,7 @@ export function CampaignsPage() {
   const [courseHours, setCourseHours] = useState('');
   const [courseProspectus, setCourseProspectus] = useState('');
   const [courseTestimonials, setCourseTestimonials] = useState([]);
+  const [courseFaqs, setCourseFaqs] = useState([]);
   const [isLeadFormVisible, setIsLeadFormVisible] = useState(false);
   const router = useRouter();
   const [loading, setLoading] = useState(true);
@@ -39,8 +40,6 @@ export function CampaignsPage() {
         const response = await fetch(`${api_url}/${campaign}`);
         const data = await response.json();
 
-        console.log('RESPONSE:', data);
-
         if (data.status === true) {
           setStatus(1);
           setCourseBanner(data.data.banner);
@@ -51,6 +50,7 @@ export function CampaignsPage() {
           setCourseHours(data.data.creditHours)
           setCourseProspectus(data.data.prospectus)
           setCourseTestimonials(data.data.testimonials)
+          setCourseFaqs(data.data.faqs)
         } else {
           setStatus(0);
           throw new Error('Failed to fetch data');
@@ -68,22 +68,6 @@ export function CampaignsPage() {
       fetchCourseData();
     }
   }, [router.isReady, campaign, status]);
-
-  // Dummy data for FAQs
-  const faqsData = [
-    {
-      title: 'What does the Certificate in Entertainment Business cover?',
-      description: 'This course covers a wide range of topics including event planning, entertainment marketing, and business management strategies.',
-    },
-    {
-      title: 'How long is the course?',
-      description: 'The course duration is 6 months, with flexible learning options including online and part-time classes.',
-    },
-    {
-      title: 'What are the admission requirements?',
-      description: 'The admission requirements include a high school diploma and a passion for the entertainment industry.',
-    },
-  ];
 
   return (
     <CampaignLayout>
@@ -127,7 +111,6 @@ export function CampaignsPage() {
           </div>
         </section>
       )}
-
 
       <section className={`${styles['course-summary']}`}>
         <div className={`${styles['wrapper']}`}>
@@ -216,7 +199,7 @@ export function CampaignsPage() {
                 <h2 className={`${styles['section-title']} ${styles['section-title--small']}`}>Testimonials</h2>
                 <p className={`${styles['summary-text']}`}>Watch to learn about this course - Hear why people choose
                   ADMI for Creative Education</p>
-                <CampaignTestimonials testimonial={courseTestimonials}></CampaignTestimonials>
+                <CampaignTestimonials testimonials={courseTestimonials}></CampaignTestimonials>
               </div>
             )}
           </div>
@@ -240,7 +223,7 @@ export function CampaignsPage() {
                 <h2
                   className={`${styles['section-title']} ${styles['section-title--small']} ${styles['mb-5']}`}>Frequently
                   Asked Questions</h2>
-                <CampaignFaqs faqs={faqsData}></CampaignFaqs>
+                <CampaignFaqs faqs={courseFaqs}></CampaignFaqs>
               </div>
             )}
           </div>
@@ -256,7 +239,6 @@ export function CampaignsPage() {
           </div>
         </section>
       )}
-
     </CampaignLayout>
   );
 }

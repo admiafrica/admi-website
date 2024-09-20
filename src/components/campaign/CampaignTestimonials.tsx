@@ -1,8 +1,8 @@
 import styles from '@/assets/css/main.module.css';
 import { Carousel } from '@mantine/carousel';
 
-export default function CampaignTestimonials({ testimonial }) {
-  const { author, description, video_url } = testimonial[0];
+export default function CampaignTestimonials({ testimonials }) {
+  const { video_url } = testimonials[0];
 
   return (
     <div className={`${styles['layout-grid']} ${styles['layout-grid--two-col']}`}>
@@ -10,17 +10,21 @@ export default function CampaignTestimonials({ testimonial }) {
         <iframe
           src={video_url}
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope;"
-          allowFullScreen="allowfullscreen" frameBorder="0" height="315" loading="lazy" title={author}
+          allowFullScreen="allowfullscreen" frameBorder="0" height="315" loading="lazy" title="Testimonial video"
           width="560">
         </iframe>
       </div>
 
-      <div>
-        <Carousel>
-          <Carousel.Slide>
-            <div className={`${styles['article']}`} dangerouslySetInnerHTML={{ __html: description }} />
-            <span className={`${styles['text-600']} ${styles['d-block']} ${styles['mt-6']}`}>{author}</span>
-          </Carousel.Slide>
+      <div className={`${styles['testimonials']}`}>
+        <Carousel slideSize="70%" align="start" withControls={false} withIndicators slideGap="md">
+          {testimonials.map((testimonial, index) => (
+            <Carousel.Slide key={index}>
+              <div className={`${styles['article']}`} dangerouslySetInnerHTML={{ __html: testimonial.description }} />
+              <span className={`${styles['text-600']} ${styles['d-block']} ${styles['mt-6']}`}>
+                {testimonial.author}
+              </span>
+            </Carousel.Slide>
+          ))}
         </Carousel>
       </div>
     </div>
