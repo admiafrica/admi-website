@@ -6,7 +6,7 @@ export default function CampaignHeader() {
     <header className={styles['header']}>
       <div className={styles['wrapper']}>
         <a href="https://admi.africa" className={styles['site-logo']}>
-          <Image priority={true} width={90} height={90} src={logo} alt="logo"/>
+          <Image width={90} height={90} src={logo.src} alt="logo"/>
         </a>
 
         <a href="#lead_form" className={`${styles['btn']} ${styles['btn-primary']} ${styles['btn-floating']} ${styles['pulse']}`}>Get a call back</a>

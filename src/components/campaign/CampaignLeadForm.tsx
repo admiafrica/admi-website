@@ -7,7 +7,7 @@ import logo from '@/assets/logo.svg';
 import successIcon from '@/assets/images/success-icon.svg';
 import Image from 'next/image';
 
-export default function CampaignLeadForm({ onVisibilityChange, status }) {
+export default function CampaignLeadForm({ onVisibilityChange, status, footerText }) {
   const [email, setEmail] = useState('');
   const [fname, setFname] = useState('');
   const [lname, setLname] = useState('');
@@ -220,10 +220,10 @@ export default function CampaignLeadForm({ onVisibilityChange, status }) {
           >Get a call back
           </Button>
 
-          {status === 1 && (
+          {status === 1 && footerText && (
             <div className={`${styles['mt-4']}`}>
               <span className={`${styles['text-red']} ${styles['text-size-14']}`}>
-                <strong>Hurry, September 2024 Intake Ongoing!</strong>
+                <strong>{footerText}</strong>
               </span>
             </div>
           )}
@@ -233,14 +233,14 @@ export default function CampaignLeadForm({ onVisibilityChange, status }) {
       <Modal opened={opened} onClose={() => setOpened(false)} centered>
         <div className={`${styles['thank-you-card']}`}>
           <div className={`${styles['thank-you-card--icon']}`}>
-            <Image fetchPriority="high" src={successIcon} alt="Success" width={100} height={100} />
+            <Image fetchPriority="high" src={successIcon.src} alt="Success" width={100} height={100} />
           </div>
           <h1 className={`${styles['section-title']} ${styles['section-title--small']}`}>Thank you!</h1>
           <p>Thank you for your enquiry. Our team will reach out with more information about our courses.</p>
           <a href="https://admi.africa/" className={`${styles['btn']} ${styles['btn-primary']}`}>Back to our website</a>
 
           <a href="https://admi.africa" className={`${styles['site-logo']}`}>
-            <Image src={logo} alt={'ADMI'} width={90} height={90} fetchPriority="high"></Image>
+            <Image src={logo.src} alt={'ADMI'} width={90} height={90}></Image>
           </a>
         </div>
       </Modal>

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { CampaignLayout } from '@/layouts/CampaignLayout';
+import courseImage from '@/assets/images/default-banner.webp';
 import {
   CampaignBanner,
   CampaignFaqs,
@@ -8,14 +9,13 @@ import {
   CampaignReasons,
   CampaignTestimonials,
 } from '@/components/campaign';
-import courseImage from '@/assets/images/course-banner.webp';
 import styles from '@/assets/css/main.module.css';
 import { useRouter } from 'next/router';
 import { Skeleton } from '@mantine/core';
 
 export function CampaignsPage() {
   const [status, setStatus] = useState(1);
-  const [courseBanner, setCourseBanner] = useState();
+  const [courseBanner, setCourseBanner] = useState(null);
   const [courseName, setCourseName] = useState('Course Name');
   const [courseOverview, setCourseOverview] = useState('');
   const [courseUsps, setCourseUsps] = useState([]);
@@ -25,16 +25,14 @@ export function CampaignsPage() {
   const [courseTestimonials, setCourseTestimonials] = useState([]);
   const [courseFaqs, setCourseFaqs] = useState([]);
   const [isLeadFormVisible, setIsLeadFormVisible] = useState(false);
+  const [leadFormFooterText, setLeadFormFooterText] = useState('');
   const router = useRouter();
   const [loading, setLoading] = useState(true);
   const campaign = router.query.campaign;
 
   useEffect(() => {
     const fetchCourseData = async () => {
-      if (!campaign) {
-        setCourseBanner(courseImage);
-        return;
-      }
+      if (!campaign) return;
 
       try {
         setLoading(true);
@@ -54,16 +52,20 @@ export function CampaignsPage() {
           setCourseProspectus(data.data.prospectus);
           setCourseTestimonials(data.data.testimonials);
           setCourseFaqs(data.data.faqs);
+          setLeadFormFooterText(data.data.lead_form_footer_text)
         } else {
           setStatus(0);
+          setCourseBanner(courseImage.src);
           throw new Error('Failed to fetch data');
         }
 
         setLoading(false);
       } catch (error) {
         console.error(error);
-        setLoading(false);
         setStatus(0);
+        setCourseBanner(courseImage.src);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -74,8 +76,14 @@ export function CampaignsPage() {
 
   return (
     <CampaignLayout>
-      <Skeleton visible={loading}>
-        <CampaignBanner status={status} src={courseBanner as string} alt={courseName}></CampaignBanner>
+      <Skeleton visible={loading} className={`${styles['course-banner']}`}>
+        {!loading && (
+          <CampaignBanner
+            status={status}
+            src={courseBanner}
+            alt={courseName}
+          />
+        )}
       </Skeleton>
 
       {status === 1 && (
@@ -119,12 +127,12 @@ export function CampaignsPage() {
         <div className={`${styles['wrapper']}`}>
           <div className={`${styles['layout-grid']} ${styles['layout-grid--two-col']}`}>
             <div></div>
-            <CampaignLeadForm onVisibilityChange={setIsLeadFormVisible} status={status}></CampaignLeadForm>
+            <CampaignLeadForm onVisibilityChange={setIsLeadFormVisible} status={status} footerText={leadFormFooterText}></CampaignLeadForm>
           </div>
         </div>
       </section>
 
-      {status === 1 && (
+      {status === 1 && courseOverview && (
         <section id="overview" className={`${styles['section-wrapper']} ${styles['pb-0']}`}>
           <div className={`${styles['wrapper']}`}>
             {loading ? (
@@ -145,7 +153,7 @@ export function CampaignsPage() {
         </section>
       )}
 
-      {status === 1 && (
+      {status === 1 && courseUsps && (
         <section id="why_this_course" className={`${styles['section-wrapper']}`}>
           <div className={`${styles['wrapper']}`}>
             {loading ? (
@@ -175,7 +183,7 @@ export function CampaignsPage() {
         </section>
       )}
 
-      {status === 1 && (
+      {status === 1 && courseTestimonials && (
         <section id="testimonials" className={`${styles['section-wrapper']} ${styles['bg-light-red']}`}>
           <div className={`${styles['wrapper']}`}>
             {loading ? (
@@ -210,7 +218,7 @@ export function CampaignsPage() {
         </section>
       )}
 
-      {status === 1 && (
+      {status === 1 && courseFaqs && (
         <section id="faqs" className={`${styles['section-wrapper']}`}>
           <div className={`${styles['wrapper']}`}>
             {loading ? (
