@@ -153,7 +153,7 @@ export function CampaignsPage() {
         </section>
       )}
 
-      {status === 1 && courseUsps && (
+      {status === 1 && courseUsps && courseUsps.length > 0 && (
         <section id="why_this_course" className={`${styles['section-wrapper']}`}>
           <div className={`${styles['wrapper']}`}>
             {loading ? (
@@ -183,7 +183,7 @@ export function CampaignsPage() {
         </section>
       )}
 
-      {status === 1 && courseTestimonials && (
+      {status === 1 && courseTestimonials && courseTestimonials.length > 0 && (
         <section id="testimonials" className={`${styles['section-wrapper']} ${styles['bg-light-red']}`}>
           <div className={`${styles['wrapper']}`}>
             {loading ? (
@@ -218,7 +218,7 @@ export function CampaignsPage() {
         </section>
       )}
 
-      {status === 1 && courseFaqs && (
+      {status === 1 && courseFaqs && courseFaqs.length > 0 && (
         <section id="faqs" className={`${styles['section-wrapper']}`}>
           <div className={`${styles['wrapper']}`}>
             {loading ? (
