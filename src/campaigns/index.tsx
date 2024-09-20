@@ -14,8 +14,8 @@ import { useRouter } from 'next/router';
 import { Skeleton } from '@mantine/core';
 
 export function CampaignsPage() {
-  const [status, setStatus] = useState(0);
-  const [courseBanner, setCourseBanner] = useState(courseImage);
+  const [status, setStatus] = useState(1);
+  const [courseBanner, setCourseBanner] = useState();
   const [courseName, setCourseName] = useState('Course Name');
   const [courseOverview, setCourseOverview] = useState('');
   const [courseUsps, setCourseUsps] = useState([]);
@@ -31,7 +31,10 @@ export function CampaignsPage() {
 
   useEffect(() => {
     const fetchCourseData = async () => {
-      if (!campaign) return;
+      if (!campaign) {
+        setCourseBanner(courseImage);
+        return;
+      }
 
       try {
         setLoading(true);
@@ -44,13 +47,13 @@ export function CampaignsPage() {
           setStatus(1);
           setCourseBanner(data.data.banner);
           setCourseName(data.data.title);
-          setCourseOverview(data.data.description)
-          setCourseUsps(data.data.usps)
-          setCourseFee(data.data.tuitionFee)
-          setCourseHours(data.data.creditHours)
-          setCourseProspectus(data.data.prospectus)
-          setCourseTestimonials(data.data.testimonials)
-          setCourseFaqs(data.data.faqs)
+          setCourseOverview(data.data.description);
+          setCourseUsps(data.data.usps);
+          setCourseFee(data.data.tuitionFee);
+          setCourseHours(data.data.creditHours);
+          setCourseProspectus(data.data.prospectus);
+          setCourseTestimonials(data.data.testimonials);
+          setCourseFaqs(data.data.faqs);
         } else {
           setStatus(0);
           throw new Error('Failed to fetch data');
@@ -164,7 +167,8 @@ export function CampaignsPage() {
                 <h2 className={`${styles['section-title']} ${styles['section-title--small']}`}>Why you should take this
                   course</h2>
                 <CampaignReasons reasons={courseUsps}></CampaignReasons>
-                <CampaignHighlights fee={courseFee} hours={courseHours} prospectus={courseProspectus}></CampaignHighlights>
+                <CampaignHighlights fee={courseFee} hours={courseHours}
+                                    prospectus={courseProspectus}></CampaignHighlights>
               </div>
             )}
           </div>
