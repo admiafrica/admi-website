@@ -17,7 +17,7 @@ import { Skeleton } from '@mantine/core';
 export function CampaignsPage() {
   const [status, setStatus] = useState(1);
   const [courseBanner, setCourseBanner] = useState(null);
-  const [courseName, setCourseName] = useState('Course Name');
+  const [courseName, setCourseName] = useState('');
   const [courseOverview, setCourseOverview] = useState('');
   const [courseUsps, setCourseUsps] = useState([]);
   const [courseFee, setCourseFee] = useState('');
@@ -27,6 +27,7 @@ export function CampaignsPage() {
   const [courseFaqs, setCourseFaqs] = useState([]);
   const [isLeadFormVisible, setIsLeadFormVisible] = useState(false);
   const [leadFormFooterText, setLeadFormFooterText] = useState('');
+  const [courseIntake, setCourseIntake] = useState('');
   const router = useRouter();
   const [loading, setLoading] = useState(true);
   const campaign = router.query.campaign;
@@ -38,7 +39,7 @@ export function CampaignsPage() {
         setLoading(true);
         const response = await api.get(`/${campaign}`);
         if (response.data.status === true) {
-          let data = response.data.data
+          const data = response.data.data;
           setStatus(1);
           setCourseBanner(data.banner);
           setCourseName(data.title);
@@ -49,7 +50,8 @@ export function CampaignsPage() {
           setCourseProspectus(data.prospectus);
           setCourseTestimonials(data.testimonials);
           setCourseFaqs(data.faqs);
-          setLeadFormFooterText(data.lead_form_footer_text)
+          setLeadFormFooterText(data.lead_form_footer_text);
+          setCourseIntake(data.intake);
         } else {
           setStatus(0);
           setCourseBanner(courseImage.src);
@@ -124,7 +126,13 @@ export function CampaignsPage() {
         <div className={`${styles['wrapper']}`}>
           <div className={`${styles['layout-grid']} ${styles['layout-grid--two-col']}`}>
             <div></div>
-            <CampaignLeadForm onVisibilityChange={setIsLeadFormVisible} status={status} footerText={leadFormFooterText}></CampaignLeadForm>
+            <CampaignLeadForm
+              onVisibilityChange={setIsLeadFormVisible}
+              status={status}
+              footerText={leadFormFooterText}
+              course={courseName}
+              intake={courseIntake}
+            ></CampaignLeadForm>
           </div>
         </div>
       </section>

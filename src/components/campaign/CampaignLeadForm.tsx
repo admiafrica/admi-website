@@ -1,13 +1,13 @@
 import styles from '@/assets/css/main.module.css';
 import React, { useEffect, useRef, useState } from 'react';
-import { Button, Modal } from '@mantine/core';
+import { Alert, Button, Modal } from '@mantine/core';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
 import logo from '@/assets/logo.svg';
 import successIcon from '@/assets/images/success-icon.svg';
 import Image from 'next/image';
 
-export default function CampaignLeadForm({ onVisibilityChange, status, footerText }) {
+export default function CampaignLeadForm({ onVisibilityChange, status, footerText, course, intake }) {
   const [email, setEmail] = useState('');
   const [fname, setFname] = useState('');
   const [lname, setLname] = useState('');
@@ -17,6 +17,9 @@ export default function CampaignLeadForm({ onVisibilityChange, status, footerTex
   const [opened, setOpened] = useState(false);
   const [loading, setLoading] = useState(false);
   const [countryCode, setCountryCode] = useState('ke');
+  const [showAlert, setAlertVisibility] = useState(false);
+  const [alertText, setAlertText] = useState('');
+  const leadFormRef = useRef(null);
   const leadFormBtnRef = useRef(null);
 
   // Auto-detect the country based on IP when the component mounts
@@ -91,13 +94,16 @@ export default function CampaignLeadForm({ onVisibilityChange, status, footerTex
       setLoading(false);
     } else {
       setErrors({});
+
       const formData = {
-        'student_email' :email,
-        'student_first_name' :fname,
-        'student_last_name' :lname,
-        'student_phone_number' :phone,
-        'course_interested_in' :fname,
+        'student_email': email,
+        'student_first_name': fname,
+        'student_last_name': lname,
+        'student_phone_number': phone,
+        'course_interested_in': course || courseName,
+        ...(intake ? { 'intake': intake } : {}),
       };
+
       const response = await fetch('https://admi.craydel.online/api/leads/add', {
         method: 'POST',
         headers: {
@@ -107,11 +113,17 @@ export default function CampaignLeadForm({ onVisibilityChange, status, footerTex
       });
 
       if (!response.ok) {
+        if (leadFormRef.current) {
+          leadFormRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+        setAlertVisibility(true);
+        setAlertText('An error occurred while submitting. Please try again later.');
+        setLoading(false);
         throw new Error('Network response was not ok');
-      }
-      //Submit form
-      setTimeout(() => {
+      } else{
         setOpened(true);
+        setAlertVisibility(false);
+        setAlertText('');
         setEmail('');
         setFname('');
         setLname('');
@@ -119,20 +131,31 @@ export default function CampaignLeadForm({ onVisibilityChange, status, footerTex
         setCountryCode(countryCode);
         setCourseName('');
         setLoading(false);
-      }, 1000);
+      }
     }
   };
 
 
   return (
     <div>
-      <form id="lead_form" className={`${styles['lead-form']} ${status === 1 ? '' : styles['no-course']}`} onSubmit={handleSubmit}>
+      <form
+        ref={leadFormRef}
+        id="lead_form"
+        className={`${styles['lead-form']} ${status === 1 ? '' : styles['no-course']}`}
+        onSubmit={handleSubmit}
+      >
         <div className={`${styles['lead-form__content']}`}>
           <h2 className={`${styles['section-title']} ${styles['section-title--small']}`}>Enquiry Form</h2>
           {status === 0 ? (
             <p>Please tell us the course you are interested in.</p>
           ) : (
             <p>Fill in your details and our team will get in touch with you.</p>
+          )}
+
+          {showAlert && (
+            <Alert variant="light" color="red" title="Error" className="mb-4">
+              {alertText}
+            </Alert>
           )}
 
           <div className={`${styles['form-group']}`}>
@@ -218,11 +241,13 @@ export default function CampaignLeadForm({ onVisibilityChange, status, footerTex
                   <option disabled="disabled" value="">
                     Select
                   </option>
-                  <option value="1">Graphic Design Diploma</option>
-                  <option value="2">Graphic Design Certificate</option>
-                  <option value="3">Sound Engineering Diploma</option>
-                  <option value="4">Music Production & Sound Engineering Certificate</option>
-                  <option value="5">Film and Television Production Diploma</option>
+                  <option value="Graphic Design Diploma">Graphic Design Diploma</option>
+                  <option value="Graphic Design Certificate">Graphic Design Certificate</option>
+                  <option value="Sound Engineering Diploma">Sound Engineering Diploma</option>
+                  <option value="Music Production & Sound Engineering Certificate">Music Production & Sound Engineering
+                    Certificate
+                  </option>
+                  <option value="Film and Television Production Diploma">Film and Television Production Diploma</option>
                 </select>
               </div>
               <span className={`${styles['field-error']}`}>{errors.courseName}</span>
