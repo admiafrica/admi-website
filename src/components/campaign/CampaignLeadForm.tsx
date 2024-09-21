@@ -79,18 +79,36 @@ export default function CampaignLeadForm({ onVisibilityChange, status, footerTex
     return newErrors;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     setLoading(true);
     const formErrors = validateForm();
+
 
     if (Object.keys(formErrors).length > 0) {
       setErrors(formErrors);
       setLoading(false);
     } else {
       setErrors({});
+      const formData = {
+        'student_email' :email,
+        'student_first_name' :fname,
+        'student_last_name' :lname,
+        'student_phone_number' :phone,
+        'course_interested_in' :fname,
+      };
+      const response = await fetch('https://admi.craydel.online/api/leads/add', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
 
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
       //Submit form
       setTimeout(() => {
         setOpened(true);

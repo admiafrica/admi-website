@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { CampaignLayout } from '@/layouts/CampaignLayout';
+import api from '@/utils/axiosClient';
 import courseImage from '@/assets/images/course-banner.webp';
 import {
   CampaignBanner,
@@ -33,26 +34,22 @@ export function CampaignsPage() {
   useEffect(() => {
     const fetchCourseData = async () => {
       if (!campaign) return;
-
       try {
         setLoading(true);
-        const api_url = process.env.NEXT_PUBLIC_ADMI_SERVICES_API;
-
-        const response = await fetch(`${api_url}/${campaign}`);
-        const data = await response.json();
-
-        if (data.status === true) {
+        const response = await api.get(`/${campaign}`);
+        if (response.data.status === true) {
+          let data = response.data.data
           setStatus(1);
-          setCourseBanner(data.data.banner);
-          setCourseName(data.data.title);
-          setCourseOverview(data.data.description);
-          setCourseUsps(data.data.usps);
-          setCourseFee(data.data.tuitionFee);
-          setCourseHours(data.data.creditHours);
-          setCourseProspectus(data.data.prospectus);
-          setCourseTestimonials(data.data.testimonials);
-          setCourseFaqs(data.data.faqs);
-          setLeadFormFooterText(data.data.lead_form_footer_text)
+          setCourseBanner(data.banner);
+          setCourseName(data.title);
+          setCourseOverview(data.description);
+          setCourseUsps(data.usps);
+          setCourseFee(data.tuitionFee);
+          setCourseHours(data.creditHours);
+          setCourseProspectus(data.prospectus);
+          setCourseTestimonials(data.testimonials);
+          setCourseFaqs(data.faqs);
+          setLeadFormFooterText(data.lead_form_footer_text)
         } else {
           setStatus(0);
           setCourseBanner(courseImage.src);
