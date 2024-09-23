@@ -114,29 +114,29 @@ export default function CampaignLeadForm({ onVisibilityChange, status, footerTex
         'course_interested_in': course || courseName,
         ...(intake ? { 'intake': intake } : {}),
       };
-       addLead(formData)
-          .then(data => {
-              setOpened(true);
-              setAlertVisibility(false);
-              setAlertText('');
-              setEmail('');
-              setFname('');
-              setLname('');
-              setPhone(countryCode);
-              setCountryCode(countryCode);
-              setCourseName('');
-              setLoading(false);
-            console.log('Lead added successfully:', data);
-          })
-          .catch(error => {
-              if (leadFormRef.current) {
-                leadFormRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
-              }
-              setAlertVisibility(true);
-              setAlertText('An error occurred while submitting. Please try again later.');
-              setLoading(false);
-              throw new Error(error);
-          });
+      addLead(formData)
+        .then(data => {
+          setOpened(true);
+          setAlertVisibility(false);
+          setAlertText('');
+          setEmail('');
+          setFname('');
+          setLname('');
+          setPhone(countryCode);
+          setCountryCode(countryCode);
+          setCourseName('');
+          setLoading(false);
+          console.log('Lead added successfully:', data);
+        })
+        .catch(error => {
+          if (leadFormRef.current) {
+            leadFormRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+          setAlertVisibility(true);
+          setAlertText('An error occurred while submitting. Please try again later.');
+          setLoading(false);
+          throw new Error(error);
+        });
     }
   };
 
@@ -246,13 +246,26 @@ export default function CampaignLeadForm({ onVisibilityChange, status, footerTex
                   <option disabled="disabled" value="">
                     Select
                   </option>
-                  <option value="Graphic Design Diploma">Graphic Design Diploma</option>
-                  <option value="Graphic Design Certificate">Graphic Design Certificate</option>
-                  <option value="Sound Engineering Diploma">Sound Engineering Diploma</option>
-                  <option value="Music Production & Sound Engineering Certificate">Music Production & Sound Engineering
-                    Certificate
-                  </option>
-                  <option value="Film and Television Production Diploma">Film and Television Production Diploma</option>
+                  <optgroup label="Foundation Courses">
+                    <option value="Photography Foundation Course">Photography</option>
+                    <option value="Multimedia Foundation Course">Multimedia</option>
+                    <option value="Music & Sound Production Foundation Course">Music & Sound Production</option>
+                  </optgroup>
+                  <optgroup label="Professional Courses">
+                    <option value="Graphic Design (I, II, III) Professional Course">Graphic Design (I, II, III)</option>
+                    <option value="Digital Marketing (I, II, III) Professional Course">Digital Marketing (I, II, III)
+                    </option>
+                    <option value="Videography Professional Course">Videography</option>
+                  </optgroup>
+                  <optgroup label="Diploma Courses">
+                    <option value="Film & Television Production Diploma">Film & Television Production</option>
+                    <option value="Graphic Design Diploma">Graphic Design</option>
+                    <option value="Animation & Motion Graphics Diploma">Animation & Motion Graphics</option>
+                    <option value="Music Production Diploma">Music Production</option>
+                    <option value="Sound Engineering Diploma">Sound Engineering</option>
+                    <option value="2D Animation Diploma">2D Animation</option>
+                    <option value="Video Game Design & Development Diploma">Video Game Design & Development</option>
+                  </optgroup>
                 </select>
               </div>
               <span className={`${styles['field-error']}`}>{errors.courseName}</span>
