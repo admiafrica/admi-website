@@ -1,7 +1,7 @@
 import styles from '@/assets/css/main.module.css';
 
-export default function CampaignTestimonials({ testimonial }) {
-  const { author, description, video_url} = testimonial
+export default function CampaignTestimonials({ testimonials }) {
+  const { author, video_url, description } = testimonials[0];
 
   return (
     <div className={`${styles['layout-grid']} ${styles['layout-grid--two-col']}`}>
@@ -9,14 +9,14 @@ export default function CampaignTestimonials({ testimonial }) {
         <iframe
           src={video_url}
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope;"
-          allowFullScreen="allowfullscreen" frameBorder="0" height="315" loading="lazy" title={author}
+          allowFullScreen="allowfullscreen" frameBorder="0" height="315" loading="lazy" title="Testimonial video"
           width="560">
         </iframe>
       </div>
 
-      <div className={`${styles['article']}`}>
-        <div dangerouslySetInnerHTML={{ __html: description }} />
-        <span className={`${styles['text-600']}`}>{author}</span>
+      <div className={`${styles['testimonials']}`}>
+        <div className={`${styles['article']}`} dangerouslySetInnerHTML={{ __html: description }} />
+        <span className={`${styles['text-600']} ${styles['d-block']} ${styles['mt-6']}`}>{author}</span>
       </div>
     </div>
   );

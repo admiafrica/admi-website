@@ -18,6 +18,7 @@
     "@mantine/modals": "^7.12.2",
     "@mantine/notifications": "^7.12.2",
     "@tabler/icons-react": "^3.16.0",
+    "axios": "^1.7.7",
     "dayjs": "^1.11.13",
     "embla-carousel-react": "^8.2.1",
     "intl-tel-input": "^24.5.0",

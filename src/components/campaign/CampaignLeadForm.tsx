@@ -1,13 +1,14 @@
 import styles from '@/assets/css/main.module.css';
 import React, { useEffect, useRef, useState } from 'react';
-import { Button, Modal } from '@mantine/core';
+import { Alert, Button, Modal } from '@mantine/core';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
 import logo from '@/assets/logo.svg';
 import successIcon from '@/assets/images/success-icon.svg';
 import Image from 'next/image';
+import apiClient from '@/utils/axiosClient';
 
-export default function CampaignLeadForm({ onVisibilityChange, status }) {
+export default function CampaignLeadForm({ onVisibilityChange, status, footerText, course, intake }) {
   const [email, setEmail] = useState('');
   const [fname, setFname] = useState('');
   const [lname, setLname] = useState('');
@@ -17,6 +18,9 @@ export default function CampaignLeadForm({ onVisibilityChange, status }) {
   const [opened, setOpened] = useState(false);
   const [loading, setLoading] = useState(false);
   const [countryCode, setCountryCode] = useState('ke');
+  const [showAlert, setAlertVisibility] = useState(false);
+  const [alertText, setAlertText] = useState('');
+  const leadFormRef = useRef(null);
   const leadFormBtnRef = useRef(null);
 
   // Auto-detect the country based on IP when the component mounts
@@ -56,6 +60,16 @@ export default function CampaignLeadForm({ onVisibilityChange, status }) {
     };
   }, [onVisibilityChange]);
 
+  const addLead = async (formData) => {
+    try {
+      const response = await apiClient.post('/api/leads/add', formData);
+      return response.data; // Return the response data
+    } catch (error) {
+      console.error('Error adding lead:', error);
+      throw error; // Rethrow the error for further handling if necessary
+    }
+  };
+
   const validateForm = () => {
     const newErrors = {};
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -79,11 +93,12 @@ export default function CampaignLeadForm({ onVisibilityChange, status }) {
     return newErrors;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     setLoading(true);
     const formErrors = validateForm();
+
 
     if (Object.keys(formErrors).length > 0) {
       setErrors(formErrors);
@@ -91,30 +106,61 @@ export default function CampaignLeadForm({ onVisibilityChange, status }) {
     } else {
       setErrors({});
 
-      //Submit form
-      setTimeout(() => {
-        setOpened(true);
-        setEmail('');
-        setFname('');
-        setLname('');
-        setPhone(countryCode);
-        setCountryCode(countryCode);
-        setCourseName('');
-        setLoading(false);
-      }, 1000);
+      const formData = {
+        'student_email': email,
+        'student_first_name': fname,
+        'student_last_name': lname,
+        'student_phone_number': phone,
+        'course_interested_in': course || courseName,
+        ...(intake ? { 'intake': intake } : {}),
+      };
+      addLead(formData)
+        .then(data => {
+          setOpened(true);
+          setAlertVisibility(false);
+          setAlertText('');
+          setEmail('');
+          setFname('');
+          setLname('');
+          setPhone(countryCode);
+          setCountryCode(countryCode);
+          setCourseName('');
+          setLoading(false);
+          console.log('Lead added successfully:', data);
+        })
+        .catch(error => {
+          if (leadFormRef.current) {
+            leadFormRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+          setAlertVisibility(true);
+          setAlertText('An error occurred while submitting. Please try again later.');
+          setLoading(false);
+          throw new Error(error);
+        });
     }
   };
 
 
   return (
     <div>
-      <form id="lead_form" className={`${styles['lead-form']} ${status === 1 ? '' : styles['no-course']}`} onSubmit={handleSubmit}>
+      <form
+        ref={leadFormRef}
+        id="lead_form"
+        className={`${styles['lead-form']} ${status === 1 ? '' : styles['no-course']}`}
+        onSubmit={handleSubmit}
+      >
         <div className={`${styles['lead-form__content']}`}>
           <h2 className={`${styles['section-title']} ${styles['section-title--small']}`}>Enquiry Form</h2>
           {status === 0 ? (
             <p>Please tell us the course you are interested in.</p>
           ) : (
             <p>Fill in your details and our team will get in touch with you.</p>
+          )}
+
+          {showAlert && (
+            <Alert variant="light" color="red" title="Error" className="mb-4">
+              {alertText}
+            </Alert>
           )}
 
           <div className={`${styles['form-group']}`}>
@@ -200,11 +246,26 @@ export default function CampaignLeadForm({ onVisibilityChange, status }) {
                   <option disabled="disabled" value="">
                     Select
                   </option>
-                  <option value="1">Graphic Design Diploma</option>
-                  <option value="2">Graphic Design Certificate</option>
-                  <option value="3">Sound Engineering Diploma</option>
-                  <option value="4">Music Production & Sound Engineering Certificate</option>
-                  <option value="5">Film and Television Production Diploma</option>
+                  <optgroup label="Foundation Courses">
+                    <option value="Photography Foundation Course">Photography</option>
+                    <option value="Multimedia Foundation Course">Multimedia</option>
+                    <option value="Music & Sound Production Foundation Course">Music & Sound Production</option>
+                  </optgroup>
+                  <optgroup label="Professional Courses">
+                    <option value="Graphic Design (I, II, III) Professional Course">Graphic Design (I, II, III)</option>
+                    <option value="Digital Marketing (I, II, III) Professional Course">Digital Marketing (I, II, III)
+                    </option>
+                    <option value="Videography Professional Course">Videography</option>
+                  </optgroup>
+                  <optgroup label="Diploma Courses">
+                    <option value="Film & Television Production Diploma">Film & Television Production</option>
+                    <option value="Graphic Design Diploma">Graphic Design</option>
+                    <option value="Animation & Motion Graphics Diploma">Animation & Motion Graphics</option>
+                    <option value="Music Production Diploma">Music Production</option>
+                    <option value="Sound Engineering Diploma">Sound Engineering</option>
+                    <option value="2D Animation Diploma">2D Animation</option>
+                    <option value="Video Game Design & Development Diploma">Video Game Design & Development</option>
+                  </optgroup>
                 </select>
               </div>
               <span className={`${styles['field-error']}`}>{errors.courseName}</span>
@@ -220,10 +281,10 @@ export default function CampaignLeadForm({ onVisibilityChange, status }) {
           >Get a call back
           </Button>
 
-          {status === 1 && (
+          {status === 1 && footerText && (
             <div className={`${styles['mt-4']}`}>
               <span className={`${styles['text-red']} ${styles['text-size-14']}`}>
-                <strong>Hurry, September 2024 Intake Ongoing!</strong>
+                <strong>{footerText}</strong>
               </span>
             </div>
           )}
@@ -233,14 +294,14 @@ export default function CampaignLeadForm({ onVisibilityChange, status }) {
       <Modal opened={opened} onClose={() => setOpened(false)} centered>
         <div className={`${styles['thank-you-card']}`}>
           <div className={`${styles['thank-you-card--icon']}`}>
-            <Image fetchPriority="high" src={successIcon} alt="Success" width={100} height={100} />
+            <Image fetchPriority="high" src={successIcon.src} alt="Success" width={100} height={100} />
           </div>
           <h1 className={`${styles['section-title']} ${styles['section-title--small']}`}>Thank you!</h1>
           <p>Thank you for your enquiry. Our team will reach out with more information about our courses.</p>
           <a href="https://admi.africa/" className={`${styles['btn']} ${styles['btn-primary']}`}>Back to our website</a>
 
           <a href="https://admi.africa" className={`${styles['site-logo']}`}>
-            <Image src={logo} alt={'ADMI'} width={90} height={90} fetchPriority="high"></Image>
+            <Image src={logo.src} alt={'ADMI'} width={90} height={90}></Image>
           </a>
         </div>
       </Modal>
