@@ -6,6 +6,7 @@ import 'react-phone-input-2/lib/style.css';
 import logo from '@/assets/logo.svg';
 import successIcon from '@/assets/images/success-icon.svg';
 import Image from 'next/image';
+import apiClient from '@/utils/axiosClient';
 
 export default function CampaignLeadForm({ onVisibilityChange, status, footerText, course, intake }) {
   const [email, setEmail] = useState('');
@@ -59,6 +60,16 @@ export default function CampaignLeadForm({ onVisibilityChange, status, footerTex
     };
   }, [onVisibilityChange]);
 
+  const addLead = async (formData) => {
+    try {
+      const response = await apiClient.post('/api/leads/add', formData);
+      return response.data; // Return the response data
+    } catch (error) {
+      console.error('Error adding lead:', error);
+      throw error; // Rethrow the error for further handling if necessary
+    }
+  };
+
   const validateForm = () => {
     const newErrors = {};
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -103,35 +114,29 @@ export default function CampaignLeadForm({ onVisibilityChange, status, footerTex
         'course_interested_in': course || courseName,
         ...(intake ? { 'intake': intake } : {}),
       };
-
-      const response = await fetch('https://admi.craydel.online/api/leads/add', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-
-      if (!response.ok) {
-        if (leadFormRef.current) {
-          leadFormRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-        setAlertVisibility(true);
-        setAlertText('An error occurred while submitting. Please try again later.');
-        setLoading(false);
-        throw new Error('Network response was not ok');
-      } else{
-        setOpened(true);
-        setAlertVisibility(false);
-        setAlertText('');
-        setEmail('');
-        setFname('');
-        setLname('');
-        setPhone(countryCode);
-        setCountryCode(countryCode);
-        setCourseName('');
-        setLoading(false);
-      }
+       addLead(formData)
+          .then(data => {
+              setOpened(true);
+              setAlertVisibility(false);
+              setAlertText('');
+              setEmail('');
+              setFname('');
+              setLname('');
+              setPhone(countryCode);
+              setCountryCode(countryCode);
+              setCourseName('');
+              setLoading(false);
+            console.log('Lead added successfully:', data);
+          })
+          .catch(error => {
+              if (leadFormRef.current) {
+                leadFormRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }
+              setAlertVisibility(true);
+              setAlertText('An error occurred while submitting. Please try again later.');
+              setLoading(false);
+              throw new Error(error);
+          });
     }
   };
 

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { CampaignLayout } from '@/layouts/CampaignLayout';
-import api from '@/utils/axiosClient';
+import apiClient from '@/utils/axiosClient';
 import courseImage from '@/assets/images/course-banner.webp';
 import {
   CampaignBanner,
@@ -37,7 +37,7 @@ export function CampaignsPage() {
       if (!campaign) return;
       try {
         setLoading(true);
-        const response = await api.get(`/${campaign}`);
+        const response = await apiClient.get(`/api/campaigns/${campaign}`);
         if (response.data.status === true) {
           const data = response.data.data;
           setStatus(1);
