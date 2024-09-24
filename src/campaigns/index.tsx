@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { CampaignLayout } from '@/layouts/CampaignLayout';
 import apiClient from '@/utils/axiosClient';
+import { StaticImageData } from 'next/image';
 import courseImage from '@/assets/images/course-banner.webp';
 import {
   CampaignBanner,
@@ -16,7 +17,7 @@ import { Skeleton } from '@mantine/core';
 
 export function CampaignsPage() {
   const [status, setStatus] = useState(1);
-  const [courseBanner, setCourseBanner] = useState(null);
+  const [courseBanner, setCourseBanner] = useState<string | StaticImageData>(courseImage); // Initialize with a default image
   const [courseName, setCourseName] = useState('');
   const [courseOverview, setCourseOverview] = useState('');
   const [courseUsps, setCourseUsps] = useState([]);
@@ -39,19 +40,19 @@ export function CampaignsPage() {
         setLoading(true);
         const response = await apiClient.get(`/api/campaigns/${campaign}`);
         if (response.data.status === true) {
-          const data = response.data.data;
-          setStatus(1);
-          setCourseBanner(data.banner);
-          setCourseName(data.title);
-          setCourseOverview(data.description);
-          setCourseUsps(data.usps);
-          setCourseFee(data.tuitionFee);
-          setCourseHours(data.creditHours);
-          setCourseProspectus(data.prospectus);
-          setCourseTestimonials(data.testimonials);
-          setCourseFaqs(data.faqs);
-          setLeadFormFooterText(data.lead_form_footer_text);
-          setCourseIntake(data.intake);
+          const data = response.data.data
+            setStatus(1);
+            setCourseBanner(data.banner ? data.banner : courseImage.src);
+            setCourseName(data.title);
+            setCourseOverview(data.description);
+            setCourseUsps(data.usps);
+            setCourseFee(data.tuitionFee);
+            setCourseHours(data.creditHours);
+            setCourseProspectus(data.prospectus);
+            setCourseTestimonials(data.testimonials);
+            setCourseFaqs(data.faqs);
+            setLeadFormFooterText(data.lead_form_footer_text);
+            setCourseIntake(data.intake);
         } else {
           setStatus(0);
           setCourseBanner(courseImage.src);
@@ -60,7 +61,6 @@ export function CampaignsPage() {
 
         setLoading(false);
       } catch (error) {
-        console.error(error);
         setStatus(0);
         setCourseBanner(courseImage.src);
       } finally {
@@ -78,9 +78,9 @@ export function CampaignsPage() {
       <Skeleton visible={loading} className={`${styles['course-banner']}`}>
         {!loading && (
           <CampaignBanner
-            status={status}
-            src={courseBanner}
-            alt={courseName}
+              status={status}
+              src={courseBanner} // courseBanner should never be null now
+              alt={courseName}
           />
         )}
       </Skeleton>

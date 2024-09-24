@@ -8,26 +8,50 @@ import successIcon from '@/assets/images/success-icon.svg';
 import Image from 'next/image';
 import apiClient from '@/utils/axiosClient';
 
-export default function CampaignLeadForm({ onVisibilityChange, status, footerText, course, intake }) {
+
+type CampaignLeadFormProps = {
+  onVisibilityChange: (visible: boolean) => void;
+  status: number;
+  footerText: string;
+  course: string;
+  intake: string;
+};
+interface FormData {
+  student_email: string;
+  student_first_name: string;
+  student_last_name: string;
+  student_phone_number: string;
+  course_interested_in: string;
+  intake?: string; // Optional
+}
+interface FormErrors {
+  email?: string;
+  fname?: string;
+  lname?: string;
+  phone?: string;
+  courseName?: string;
+}
+
+export default function CampaignLeadForm({ onVisibilityChange, status, footerText, course, intake }: CampaignLeadFormProps) {
   const [email, setEmail] = useState('');
   const [fname, setFname] = useState('');
   const [lname, setLname] = useState('');
   const [phone, setPhone] = useState('');
   const [courseName, setCourseName] = useState('');
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState<FormErrors>({});
   const [opened, setOpened] = useState(false);
   const [loading, setLoading] = useState(false);
   const [countryCode, setCountryCode] = useState('ke');
   const [showAlert, setAlertVisibility] = useState(false);
   const [alertText, setAlertText] = useState('');
-  const leadFormRef = useRef(null);
+  const leadFormRef = useRef<HTMLFormElement | null>(null);
   const leadFormBtnRef = useRef(null);
 
   // Auto-detect the country based on IP when the component mounts
   useEffect(() => {
     const leadFormBtn = leadFormBtnRef.current;
 
-    const handler = (entries) => {
+    const handler: IntersectionObserverCallback = (entries) => {
       // Notify the parent component of visibility status
       if (!entries[0].isIntersecting) {
         onVisibilityChange(false);
@@ -60,7 +84,7 @@ export default function CampaignLeadForm({ onVisibilityChange, status, footerTex
     };
   }, [onVisibilityChange]);
 
-  const addLead = async (formData) => {
+  const addLead = async (formData: FormData) => {
     try {
       const response = await apiClient.post('/api/leads/add', formData);
       return response.data; // Return the response data
@@ -71,7 +95,7 @@ export default function CampaignLeadForm({ onVisibilityChange, status, footerTex
   };
 
   const validateForm = () => {
-    const newErrors = {};
+    const newErrors: FormErrors = {};
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     // Validate email
@@ -93,7 +117,7 @@ export default function CampaignLeadForm({ onVisibilityChange, status, footerTex
     return newErrors;
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     setLoading(true);
@@ -106,37 +130,35 @@ export default function CampaignLeadForm({ onVisibilityChange, status, footerTex
     } else {
       setErrors({});
 
-      const formData = {
-        'student_email': email,
-        'student_first_name': fname,
-        'student_last_name': lname,
-        'student_phone_number': phone,
-        'course_interested_in': course || courseName,
-        ...(intake ? { 'intake': intake } : {}),
+      const formData: FormData = {
+        student_email: email,
+        student_first_name: fname,
+        student_last_name: lname,
+        student_phone_number: phone,
+        course_interested_in: course || courseName,
+        ...(intake ? { intake } : {}),
       };
-      addLead(formData)
-        .then(data => {
-          setOpened(true);
-          setAlertVisibility(false);
-          setAlertText('');
-          setEmail('');
-          setFname('');
-          setLname('');
-          setPhone(countryCode);
-          setCountryCode(countryCode);
-          setCourseName('');
-          setLoading(false);
-          console.log('Lead added successfully:', data);
-        })
-        .catch(error => {
-          if (leadFormRef.current) {
-            leadFormRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }
-          setAlertVisibility(true);
-          setAlertText('An error occurred while submitting. Please try again later.');
-          setLoading(false);
-          throw new Error(error);
-        });
+      try {
+        const data = await addLead(formData);
+        setOpened(true);
+        setAlertVisibility(false);
+        setAlertText('');
+        setEmail('');
+        setFname('');
+        setLname('');
+        setPhone(countryCode);
+        setCountryCode(countryCode);
+        setCourseName('');
+        setLoading(false);
+        console.log('Lead added successfully:', data);
+      } catch (error) {
+        if (leadFormRef.current) {
+          leadFormRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+        setAlertVisibility(true);
+        setAlertText('An error occurred while submitting. Please try again later.');
+        setLoading(false);
+      }
     }
   };
 
@@ -217,15 +239,15 @@ export default function CampaignLeadForm({ onVisibilityChange, status, footerTex
             </label>
 
             <PhoneInput
-              country={countryCode}
-              enableSearch={true}
-              disableSearchIcon={true}
-              countryCodeEditable={false}
-              inputClass={`${styles['phone-field']} ${errors.phone ? styles['error'] : ''}`}
-              buttonClass={`${styles['phone-field-dropdown']} ${errors.phone ? styles['error'] : ''}`}
-              searchClass={`${styles['phone-field-search']}`}
-              value={phone}
-              onChange={setPhone}
+                country={countryCode}
+                enableSearch={true}
+                disableSearchIcon={true}
+                countryCodeEditable={false}
+                inputClass={`${styles['phone-field']} ${errors.phone ? styles['error'] : ''}`}
+                buttonClass={`${styles['phone-field-dropdown']} ${errors.phone ? styles['error'] : ''}`}
+                searchClass={`${styles['phone-field-search']}`}
+                value={phone}
+                onChange={setPhone}
             />
 
             <span className={`${styles['field-error']}`}>{errors.phone}</span>
@@ -238,12 +260,14 @@ export default function CampaignLeadForm({ onVisibilityChange, status, footerTex
               </label>
               <div className={`${styles['styled-select']} ${errors.courseName ? styles['error'] : null}`}>
                 <select
-                  id="course_name"
-                  name="course_name"
-                  value={courseName}
-                  onChange={(e) => setCourseName(e.target.value)}
+                    id="course_name"
+                    name="course_name"
+                    value={courseName}
+                    onChange={(e) => setCourseName(e.target.value)}
+
                 >
-                  <option disabled="disabled" value="">
+
+                  <option disabled value="">
                     Select
                   </option>
                   <optgroup label="Foundation Courses">
