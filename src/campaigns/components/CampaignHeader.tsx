@@ -1,5 +1,5 @@
 import { Group, Text } from "@mantine/core";
-import logo from "@/assets/images/logo_admi.svg";
+import logo from "@/assets/logo-main.svg";
 import Image from "next/image";
 
 export default function CampaignHeader() {
