@@ -1,0 +1,58 @@
+.lead-form {
+  background-color: #fff;
+  border-radius: rem(10);
+  border: 1px solid #B8B8B8;
+  box-shadow: 4px 4px 4px 0 rgba(0, 0, 0, 0.25);
+  align-self: start;
+
+  &__header {
+    padding: rem(18 24);
+    background-color: #fff;
+    border-radius: rem(10 10 0 0);
+    position: relative;
+
+    p {
+      margin-bottom: 0;
+      font-size: rem(15);
+    }
+  }
+
+  &__content {
+    padding: rem(24);
+
+    p {
+      text-wrap: pretty;
+    }
+  }
+}
+
+@include mappy-query(lg) {
+  .lead-form {
+    &__header,
+    &__content {
+      padding: rem(16);
+    }
+  }
+}
+
+@include mappy-query(xm) {
+  .lead-form {
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+
+    &__content {
+      padding: rem(24);
+    }
+  }
+}
+
+@include mappy-query(xs) {
+  .lead-form {
+    &__header {
+      padding: rem(18);
+    }
+
+    &__content {
+      padding: rem(18);
+    }
+  }
+}

@@ -1,0 +1,15 @@
+.header {
+  font-family: $primary-font;
+  font-size: $base-font-size;
+  line-height: 1.5;
+  background-color: #fff;
+  position: relative;
+  z-index: 200;
+}
+
+.site-logo {
+  display: flex;
+  align-items: center;
+  width: rem(90);
+  height: rem(90);
+}

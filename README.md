@@ -57,6 +57,12 @@ If you don't have Node.js installed, you can download it from [nodejs.org](https
    yarn install
    ```
 
+4. **Create the `.env` variables file from the template and update accordingly:**
+
+   ```bash
+   cp .env.template .env
+   ```
+
 ---
 
 ## **Running the Development Server**
