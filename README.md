@@ -117,7 +117,6 @@ Here's a basic overview of the folder structure:
 │   ├── /layouts       # Page layout components
 │   ├── /pages         # Website Related pages
 │   ├── /campaigns     # Campaign Related Pages
-│   ├── /routes        # Handle Routes
 │   ├── /styles        # CSS or Sass files
 │   ├── /hooks         # Custom hooks
 │   ├── /utils         # Utility functions

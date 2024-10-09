@@ -1,18 +1,16 @@
 import { Group, Button, Text, Menu } from "@mantine/core";
 import Link from "next/link";
+import logo from "@/assets/logo-main.svg";
+import Image from "next/image";
+import { useMediaQuery } from "@mantine/hooks";
+import { IconMenu } from "@tabler/icons-react";
 
 export default function CampaignHeader() {
-  return (
-    <Group style={headerContentStyle}>
-      {/* TODO: replace with logo asset */}
-      <Link href="/" style={{ textDecoration: "none" }}>
-        <Text size="xl" fw={700} c="black">
-          ADMI
-        </Text>
-      </Link>
+  const isMobile = useMediaQuery("(max-width: 767px)");
 
-      {/* Centered Menu */}
-      <Group style={menuStyle}>
+  const getMenuWideScreen = () => {
+    return (
+      <Group className="mx-auto">
         <Menu trigger="hover" openDelay={100} closeDelay={400}>
           <Menu.Target>
             <Text style={menuItemStyle}>Home</Text>
@@ -49,28 +47,55 @@ export default function CampaignHeader() {
           </Menu.Target>
         </Menu>
       </Group>
+    );
+  };
 
+  const getMenuMobile = () => {
+    return (
+      <Group>
+        <Menu trigger="hover" openDelay={100} closeDelay={400}>
+          <Menu.Target>
+            <IconMenu />
+          </Menu.Target>
+
+          <Menu.Dropdown style={menuDrawer}>
+            <Menu.Item style={menuItemStyle}>Home</Menu.Item>
+            <Menu.Item style={menuItemStyle}>Courses</Menu.Item>
+            <Menu.Item style={menuItemStyle}>Student Support</Menu.Item>
+            <Menu.Item style={menuItemStyle}>Resources</Menu.Item>
+            <Menu.Item style={menuItemStyle}>News</Menu.Item>
+            <Menu.Item style={menuItemStyle}>Events</Menu.Item>
+            <Menu.Item style={menuItemStyle}>About</Menu.Item>
+          </Menu.Dropdown>
+        </Menu>
+      </Group>
+    );
+  };
+
+  return (
+    <Group className="w-full px-4">
+      <Group className="grow flex flex-row-reverse md:flex-row">
+        <Link href="/" style={{ textDecoration: "none" }}>
+          <Image src={logo} width={80} alt="Africa Digital Media Institute" />
+        </Link>
+        {isMobile ? getMenuMobile() : getMenuWideScreen()}
+      </Group>
       {/* Enquire Button */}
-      <Button variant="outline" size="md">
+      <Button variant="primary" size="lg" color="admi-orange">
         Enquire
       </Button>
     </Group>
   );
 }
 
-const headerContentStyle: React.CSSProperties = {
-  flex: 1,
-  padding: "0 20px",
-  justifyContent: "center",
-  display: "flex",
-};
-
-const menuStyle: React.CSSProperties = {
-  flex: 1,
-  justifyContent: "center",
-  display: "flex",
+const menuDrawer: React.CSSProperties = {
+  marginTop: 20,
+  width: "90%",
 };
 
 const menuItemStyle: React.CSSProperties = {
   cursor: "pointer",
+  fontWeight: "bold",
+  fontSize: 18,
+  color: "#BA2E36",
 };
