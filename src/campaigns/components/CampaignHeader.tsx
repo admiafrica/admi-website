@@ -1,19 +1,18 @@
-import { Group, Text } from '@mantine/core';
+import { Group, Text } from "@mantine/core";
+import logo from "@/assets/images/logo_admi.svg";
+import Image from "next/image";
 
 export default function CampaignHeader() {
   return (
     <Group style={headerContentStyle}>
-      {/* TODO: replace with logo asset */}
-      <Text size="xl" fw={700} c="black">
-        ADMI
-      </Text>
+      <Image src={logo} width={80} alt="Africa Digital Media Institute" />
     </Group>
   );
 }
 
 const headerContentStyle: React.CSSProperties = {
   flex: 1,
-  padding: '0 20px',
-  justifyContent: 'center',
-  display: 'flex',
+  padding: "0 20px",
+  justifyContent: "center",
+  display: "flex",
 };

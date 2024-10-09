@@ -1,17 +1,15 @@
 import { Group, Button, Text, Menu } from "@mantine/core";
 import Link from "next/link";
+import logo from "@/assets/images/logo_admi.svg";
+import Image from "next/image";
+import { useMediaQuery } from "@mantine/hooks";
+import { IconMenu } from "@tabler/icons-react";
 
 export default function CampaignHeader() {
-  return (
-    <Group style={headerContentStyle}>
-      {/* TODO: replace with logo asset */}
-      <Link href="/" style={{ textDecoration: "none" }}>
-        <Text size="xl" fw={700} c="black">
-          ADMI
-        </Text>
-      </Link>
+  const isMobile = useMediaQuery("(max-width: 767px)");
 
-      {/* Centered Menu */}
+  const getMenuWideScreen = () => {
+    return (
       <Group style={menuStyle}>
         <Menu trigger="hover" openDelay={100} closeDelay={400}>
           <Menu.Target>
@@ -49,9 +47,26 @@ export default function CampaignHeader() {
           </Menu.Target>
         </Menu>
       </Group>
+    );
+  };
+
+  return (
+    <Group style={isMobile ? headerContentMobileStyle : headerContentStyle}>
+      <Link href="/" style={{ textDecoration: "none" }}>
+        <Image src={logo} width={80} alt="Africa Digital Media Institute" />
+      </Link>
+
+      {/* Centered Menu */}
+      {isMobile ? (
+        <div className="flex grow content-end">
+          <IconMenu />
+        </div>
+      ) : (
+        getMenuWideScreen()
+      )}
 
       {/* Enquire Button */}
-      <Button variant="outline" size="md">
+      <Button variant="primary" size="lg" color="admi-orange">
         Enquire
       </Button>
     </Group>
@@ -65,6 +80,13 @@ const headerContentStyle: React.CSSProperties = {
   display: "flex",
 };
 
+const headerContentMobileStyle: React.CSSProperties = {
+  flex: 1,
+  padding: "0 20px",
+  justifyContent: "initial",
+  display: "flex",
+};
+
 const menuStyle: React.CSSProperties = {
   flex: 1,
   justifyContent: "center",
@@ -73,4 +95,6 @@ const menuStyle: React.CSSProperties = {
 
 const menuItemStyle: React.CSSProperties = {
   cursor: "pointer",
+  fontWeight: "bold",
+  fontSize: 18,
 };

@@ -10,7 +10,7 @@ import Image from 'next/image';
 
 export default function CustomFooter() {
   return (
-    <Group className='w-full max-w-screen-xl mx-auto'>
+    <Group className='w-full max-w-screen-xl mx-auto flex-col md:flex-row'>
       <Stack style={sectionStyle} gap={4} h="100%">
         <Title order={3}>Get in Touch</Title>
         <Text p={0}>Caxton House, 3rd Floor 25, Kenyatta Avenue.</Text>

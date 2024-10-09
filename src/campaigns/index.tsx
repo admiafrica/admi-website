@@ -12,7 +12,7 @@ export function CampaignsPage() {
         <strong>Category:</strong> {query.category}
       </Text>
       <Text size="lg" my="md" maw={600} mx="auto">
-        <strong>Campaign name:</strong> {query.campaign}
+        <strong>Campaign:</strong> {query.campaign}
       </Text>
     </CampaignLayout>
   );

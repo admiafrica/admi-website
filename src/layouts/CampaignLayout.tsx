@@ -4,7 +4,7 @@ import { AppShell, rem } from "@mantine/core";
 import { useHeadroom } from "@mantine/hooks";
 
 import { CampaignHeader } from "@/campaigns/components";
-import { CraydelCampaignHeader } from "@/campaigns/craydel/components";
+import { CampaignHeader as CraydelCampaignHeader } from "@/campaigns/craydel/components";
 import { Footer } from "@/components/shared";
 
 import styles from "@/assets/css/main.module.css";
@@ -29,7 +29,7 @@ export function CampaignLayout({ children, client }: LayoutProps) {
         <main className={styles["campaign-main"]}>{children}</main>
       ) : (
         <AppShell
-          header={{ height: 60, collapsed: !pinned, offset: false }}
+          header={{ height: 81, collapsed: !pinned, offset: false }}
           padding="md"
         >
           <AppShell.Header style={headerStyle}>
@@ -53,12 +53,12 @@ const headerStyle: React.CSSProperties = {
   alignItems: "center",
   justifyContent: "space-between",
   padding: "0 20px",
-  backgroundColor: "#f8f9fa",
+  backgroundColor: "white",
   borderBottom: "1px solid #dee2e6",
 };
 
 const footerStyle: React.CSSProperties = {
-  backgroundColor: "#f8f9fa",
+  backgroundColor: "white",
   display: "flex",
   justifyContent: "space-between",
   padding: "20px",
