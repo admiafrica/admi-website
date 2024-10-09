@@ -1,4 +1,4 @@
-import { Group, Text } from "@mantine/core";
+import { Group } from "@mantine/core";
 import logo from "@/assets/logo-main.svg";
 import Image from "next/image";
 
