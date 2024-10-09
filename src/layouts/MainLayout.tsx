@@ -11,7 +11,7 @@ export function MainLayout({ children }: LayoutProps) {
 
   return (
     <AppShell
-      header={{ height: 60, collapsed: !pinned, offset: false }}
+      header={{ height: 81, collapsed: !pinned, offset: false }}
       padding="md"
     >
       <AppShell.Header style={headerStyle}>
@@ -33,12 +33,12 @@ const headerStyle: React.CSSProperties = {
   alignItems: 'center',
   justifyContent: 'space-between',
   padding: '0 20px',
-  backgroundColor: '#f8f9fa',
+  backgroundColor: 'white',
   borderBottom: '1px solid #dee2e6',
 };
 
 const footerStyle: React.CSSProperties = {
-  backgroundColor: '#f8f9fa',
+  backgroundColor: 'white',
   display: 'flex',
   justifyContent: 'space-between',
   padding: '20px',

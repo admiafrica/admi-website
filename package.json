@@ -11,6 +11,7 @@
   "dependencies": {
     "@fontsource/inter": "^5.0.21",
     "@mantine/carousel": "^7.12.2",
+    "@mantine/colors-generator": "^7.13.2",
     "@mantine/core": "^7.12.2",
     "@mantine/dates": "^7.12.2",
     "@mantine/form": "^7.12.2",
@@ -19,6 +20,7 @@
     "@mantine/notifications": "^7.12.2",
     "@tabler/icons-react": "^3.16.0",
     "axios": "^1.7.7",
+    "chroma-js": "^3.1.1",
     "dayjs": "^1.11.13",
     "embla-carousel-react": "^8.2.1",
     "intl-tel-input": "^24.5.0",
