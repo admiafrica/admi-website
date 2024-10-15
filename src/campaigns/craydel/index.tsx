@@ -48,7 +48,7 @@ export function CampaignsPage() {
             setCourseUsps(data.usps);
             setCourseFee(data.tuitionFee);
             setCourseHours(data.creditHours);
-            setCourseProspectus(data.prospectus);
+            setCourseProspectus(data.duration);
             setCourseTestimonials(data.testimonials);
             setCourseFaqs(data.faqs);
             setLeadFormFooterText(data.lead_form_footer_text);
