@@ -1,11 +1,8 @@
 import styles from '@/assets/css/main.module.css';
 import React, { useEffect, useRef, useState } from 'react';
-import { Alert, Button, Modal } from '@mantine/core';
+import { Alert, Button } from '@mantine/core';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
-import logo from '@/assets/logo.svg';
-import successIcon from '@/assets/images/success-icon.svg';
-import Image from 'next/image';
 import apiClient from '@/utils/axiosClient';
 
 
@@ -39,7 +36,6 @@ export default function CampaignLeadForm({ onVisibilityChange, status, footerTex
   const [phone, setPhone] = useState('');
   const [courseName, setCourseName] = useState('');
   const [errors, setErrors] = useState<FormErrors>({});
-  const [opened, setOpened] = useState(false);
   const [loading, setLoading] = useState(false);
   const [countryCode, setCountryCode] = useState('ke');
   const [showAlert, setAlertVisibility] = useState(false);
@@ -139,8 +135,7 @@ export default function CampaignLeadForm({ onVisibilityChange, status, footerTex
         ...(intake ? { intake } : {}),
       };
       try {
-        const data = await addLead(formData);
-        setOpened(true);
+        await addLead(formData);
         setAlertVisibility(false);
         setAlertText('');
         setEmail('');
@@ -150,7 +145,7 @@ export default function CampaignLeadForm({ onVisibilityChange, status, footerTex
         setCountryCode(countryCode);
         setCourseName('');
         setLoading(false);
-        console.log('Lead added successfully:', data);
+        window.location.href = '/craydel/thank-you';
       } catch (error) {
         if (leadFormRef.current) {
           leadFormRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -314,21 +309,6 @@ export default function CampaignLeadForm({ onVisibilityChange, status, footerTex
           )}
         </div>
       </form>
-
-      <Modal opened={opened} onClose={() => setOpened(false)} centered>
-        <div className={`${styles['thank-you-card']}`}>
-          <div className={`${styles['thank-you-card--icon']}`}>
-            <Image fetchPriority="high" src={successIcon.src} alt="Success" width={100} height={100} />
-          </div>
-          <h1 className={`${styles['section-title']} ${styles['section-title--small']}`}>Thank you!</h1>
-          <p>Thank you for your enquiry. Our team will reach out with more information about our courses.</p>
-          <a href="https://admi.africa/" className={`${styles['btn']} ${styles['btn-primary']}`}>Back to our website</a>
-
-          <a href="https://admi.africa" className={`${styles['site-logo']}`}>
-            <Image src={logo.src} alt={'ADMI'} width={90} height={90}></Image>
-          </a>
-        </div>
-      </Modal>
     </div>
   );
 }
