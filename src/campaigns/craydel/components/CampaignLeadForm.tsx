@@ -135,7 +135,7 @@ export default function CampaignLeadForm({ onVisibilityChange, status, footerTex
         ...(intake ? { intake } : {}),
       };
       try {
-        const data = await addLead(formData);
+        await addLead(formData);
         setAlertVisibility(false);
         setAlertText('');
         setEmail('');
@@ -145,7 +145,6 @@ export default function CampaignLeadForm({ onVisibilityChange, status, footerTex
         setCountryCode(countryCode);
         setCourseName('');
         setLoading(false);
-        console.log('Lead added successfully:', data);
         window.location.href = '/craydel/thank-you';
       } catch (error) {
         if (leadFormRef.current) {
