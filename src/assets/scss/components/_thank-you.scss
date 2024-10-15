@@ -1,3 +1,9 @@
+.thank-you-section {
+  display: grid;
+  place-content: center;
+  height: 100dvh;
+}
+
 .thank-you-card {
   display: flex;
   flex-direction: column;
