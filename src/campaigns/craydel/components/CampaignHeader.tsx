@@ -6,7 +6,7 @@ export default function CampaignHeader() {
   return (
       <>
           <Head>
-              {process.env.NODE_ENV === 'production' && (
+              {process.env.BUILD_ENV === 'production' && (
                   <script
                       dangerouslySetInnerHTML={{
                           __html: `
@@ -21,7 +21,7 @@ export default function CampaignHeader() {
               )}
           </Head>
 
-          {process.env.NODE_ENV === 'production' && (
+          {process.env.BUILD_ENV === 'production' && (
               <noscript>
                   <iframe
                       src="https://www.googletagmanager.com/ns.html?id=GTM-NQLRWC7Q"
