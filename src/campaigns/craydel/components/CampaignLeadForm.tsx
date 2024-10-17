@@ -20,12 +20,11 @@ interface FormData {
   student_phone_number: string;
   course_interested_in: string;
   intake?: string; // Optional
-  utm_source?: string;  // UTM source
-  utm_medium?: string;  // UTM medium
-  utm_campaign?: string;  // UTM campaign
-  utm_content?: string;  // UTM content
-  utm_id?: string;  // UTM content
-  utm_term?: string;  // UTM content
+  campaign_id?: string; // New field for campaign ID
+  campaign_name?: string; // New field for campaign name
+  campaign_asset_name?: string; // New field for campaign asset name
+  lead_source?: string; // New field for lead source
+  lead_medium?: string; // New field for lead medium
 }
 interface FormErrors {
   email?: string;
@@ -96,12 +95,11 @@ export default function CampaignLeadForm({ onVisibilityChange, status, footerTex
 
     if (utm_source || utm_medium || utm_campaign || utm_content ||utm_id ||utm_term) {
       const newUtmParams = {
-        utm_source,
-        utm_medium,
-        utm_campaign,
-        utm_content,
-        utm_id,  // UTM content
-        utm_term
+        campaign_id: utm_id || '',
+        campaign_name: utm_campaign || '',
+        campaign_asset_name: utm_content || '',
+        lead_source: utm_source || '',
+        lead_medium: utm_medium || ''
       };
       setUtmParams(newUtmParams);
       localStorage.setItem('utm_params', JSON.stringify(newUtmParams));
