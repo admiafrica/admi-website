@@ -4,7 +4,7 @@ import { Alert, Button } from '@mantine/core';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
 import apiClient from '@/utils/axiosClient';
-
+import { useRouter } from 'next/router';
 
 type CampaignLeadFormProps = {
   onVisibilityChange: (visible: boolean) => void;
@@ -20,6 +20,11 @@ interface FormData {
   student_phone_number: string;
   course_interested_in: string;
   intake?: string; // Optional
+  campaign_id?: string; // New field for campaign ID
+  campaign_name?: string; // New field for campaign name
+  campaign_asset_name?: string; // New field for campaign asset name
+  lead_source?: string; // New field for lead source
+  lead_medium?: string; // New field for lead medium
 }
 interface FormErrors {
   email?: string;
@@ -40,8 +45,10 @@ export default function CampaignLeadForm({ onVisibilityChange, status, footerTex
   const [countryCode, setCountryCode] = useState('ke');
   const [showAlert, setAlertVisibility] = useState(false);
   const [alertText, setAlertText] = useState('');
+  const [utmParams, setUtmParams] = useState({}); // Initialize UTM params state
   const leadFormRef = useRef<HTMLFormElement | null>(null);
   const leadFormBtnRef = useRef(null);
+  const router = useRouter();
 
   // Auto-detect the country based on IP when the component mounts
   useEffect(() => {
@@ -79,6 +86,27 @@ export default function CampaignLeadForm({ onVisibilityChange, status, footerTex
       }
     };
   }, [onVisibilityChange]);
+
+
+  // Capture UTM parameters
+  useEffect(() => {
+    const { utm_source, utm_medium, utm_campaign, utm_content,utm_id,utm_term } = router.query;
+    const storedUtmParams = localStorage.getItem('utm_params');
+
+    if (utm_source || utm_medium || utm_campaign || utm_content ||utm_id ||utm_term) {
+      const newUtmParams = {
+        campaign_id: utm_id || '',
+        campaign_name: utm_campaign || '',
+        campaign_asset_name: utm_content || '',
+        lead_source: utm_source || '',
+        lead_medium: utm_medium || ''
+      };
+      setUtmParams(newUtmParams);
+      localStorage.setItem('utm_params', JSON.stringify(newUtmParams));
+    } else if (storedUtmParams) {
+      setUtmParams(JSON.parse(storedUtmParams));
+    }
+  }, [router.query]);
 
   const addLead = async (formData: FormData) => {
     try {
@@ -133,6 +161,7 @@ export default function CampaignLeadForm({ onVisibilityChange, status, footerTex
         student_phone_number: phone,
         course_interested_in: course || courseName,
         ...(intake ? { intake } : {}),
+        ...utmParams, // Include the UTM parameters
       };
       try {
         await addLead(formData);
