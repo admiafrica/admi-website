@@ -6,7 +6,7 @@ import { useHeadroom } from "@mantine/hooks";
 import { CampaignHeader } from "@/campaigns/components";
 import { CampaignHeader as CraydelCampaignHeader } from "@/campaigns/craydel/components";
 import { Footer } from "@/components/shared";
-
+import Script from 'next/script';
 import styles from "@/assets/css/main.module.css";
 
 type LayoutProps = {
@@ -16,31 +16,31 @@ type LayoutProps = {
 
 export function CampaignLayout({ children, client }: LayoutProps) {
   const pinned = useHeadroom({ fixedAt: 120 });
-
+  const gtmId = process.env.NEXT_PUBLIC_GTM_ID; // Get GTM ID from environment variable
   return (
     <>
       <Head>
         <title>Africa Digital Media Institute (ADMI)</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
-        {/* Google Tag Manager Script */}
-        {process.env.BUILD_ENV === 'production' && (
-            <script
-                dangerouslySetInnerHTML={{
-                  __html: `
-                (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-                j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-                'https://www.googletagmanager.com/gtm.js?id=' + '${process.env.NEXT_PUBLIC_GTM_ID}' + dl;
-                f.parentNode.insertBefore(j,f);
-                })(window,document,'script','dataLayer','${process.env.NEXT_PUBLIC_GTM_ID}');
-              `,
-                }}
-            />
-        )}
       </Head>
-      {/* Google Tag Manager Noscript */}
-      {process.env.BUILD_ENV === 'production' && (
+      {/* Google Tag Manager script */}
+      <Script
+          id="google-tag-manager"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id=' + '${process.env.NEXT_PUBLIC_GTM_ID}' + dl;
+            f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','${process.env.NEXT_PUBLIC_GTM_ID}');
+          `,
+          }}
+      />
+      {/* Noscript Google Tag Manager */}
+      {process.env.NEXT_PUBLIC_GTM_ID && (
           <noscript>
             <iframe
                 src={`https://www.googletagmanager.com/ns.html?id=${process.env.NEXT_PUBLIC_GTM_ID}`}
