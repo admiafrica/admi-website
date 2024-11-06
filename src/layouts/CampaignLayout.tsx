@@ -16,7 +16,6 @@ type LayoutProps = {
 
 export function CampaignLayout({ children, client }: LayoutProps) {
   const pinned = useHeadroom({ fixedAt: 120 });
-  const gtmId = process.env.NEXT_PUBLIC_GTM_ID; // Get GTM ID from environment variable
   return (
     <>
       <Head>
