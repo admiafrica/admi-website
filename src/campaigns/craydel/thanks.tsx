@@ -10,7 +10,7 @@ import styles from '@/assets/css/main.module.css';
 export function ThankYouPage() {
     return (
         <>
-            <GoogleAnalyticsTag anayticsId={process.env.NEXT_PUBLIC_GTM_ID as string}/>
+            <GoogleAnalyticsTag analyticsId={process.env.NEXT_PUBLIC_GTM_ID as string}/>
             <EmptyLayout client="craydel">
                 <section className={`${styles['section-wrapper']} ${styles['thank-you-section']}`}>
                     <div className={`${styles['wrapper']}`}>
