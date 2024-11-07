@@ -4,32 +4,31 @@ import Image from 'next/image';
 import successIcon from '@/assets/images/success-icon.svg';
 import logo from '@/assets/logo.svg';
 import React from 'react';
-import Head from "next/head";
-
+import Script from "next/script"; // Import Script from Next.js
 export function ThankYouPage() {
-    const gtmId = process.env.NEXT_PUBLIC_GTM_ID; // Fetch the GTM ID from .env
     return (
         <>
-            <Head>
-                {process.env.BUILD_ENV === 'production' && gtmId && (
-                    <script
-                        dangerouslySetInnerHTML={{
-                            __html: `
-                (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-                j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-                'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-                })(window,document,'script','dataLayer','${gtmId}');
-              `
-                        }}
-                    />
-                )}
-            </Head>
 
-            {process.env.BUILD_ENV === 'production' && gtmId && (
+            {/* Google Tag Manager script */}
+            <Script
+                id="google-tag-manager"
+                strategy="afterInteractive"
+                dangerouslySetInnerHTML={{
+                    __html: `
+            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id=' + '${process.env.NEXT_PUBLIC_GTM_ID}' + dl;
+            f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','${process.env.NEXT_PUBLIC_GTM_ID}');
+          `,
+                }}
+            />
+            {/* Noscript Google Tag Manager */}
+            {process.env.NEXT_PUBLIC_GTM_ID && (
                 <noscript>
                     <iframe
-                        src={`https://www.googletagmanager.com/ns.html?id=${gtmId}`}
+                        src={`https://www.googletagmanager.com/ns.html?id=${process.env.NEXT_PUBLIC_GTM_ID}`}
                         height="0"
                         width="0"
                         style={{ display: 'none', visibility: 'hidden' }}
