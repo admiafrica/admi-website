@@ -14,6 +14,7 @@ import {
 import styles from '@/assets/css/main.module.css';
 import { useRouter } from 'next/router';
 import { Skeleton } from '@mantine/core';
+import { GoogleAnalyticsTag } from '@/components/shared';
 
 export function CampaignsPage() {
   const [status, setStatus] = useState(1);
@@ -75,6 +76,7 @@ export function CampaignsPage() {
 
   return (
     <CampaignLayout client='craydel'>
+      <GoogleAnalyticsTag analyticsId={process.env.NEXT_PUBLIC_CRAYDEL_GTM_ID as string}/>
       <Skeleton visible={loading} className={`${styles['course-banner']}`}>
         {!loading && (
           <CampaignBanner

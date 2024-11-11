@@ -6,7 +6,6 @@ import { useHeadroom } from "@mantine/hooks";
 import { CampaignHeader } from "@/campaigns/components";
 import { CampaignHeader as CraydelCampaignHeader } from "@/campaigns/craydel/components";
 import { Footer } from "@/components/shared";
-
 import styles from "@/assets/css/main.module.css";
 
 type LayoutProps = {
@@ -16,7 +15,6 @@ type LayoutProps = {
 
 export function CampaignLayout({ children, client }: LayoutProps) {
   const pinned = useHeadroom({ fixedAt: 120 });
-
   return (
     <>
       <Head>
