@@ -75,8 +75,8 @@ export function CampaignsPage() {
   }, [router.isReady, campaign, status]);
 
   return (
-    <CampaignLayout client='craydel'>
-      <GoogleAnalyticsTag analyticsId={process.env.NEXT_PUBLIC_CRAYDEL_GTM_ID as string}/>
+    <CampaignLayout client='admi'>
+      <GoogleAnalyticsTag analyticsId={process.env.NEXT_PUBLIC_ADMI_GTM_ID as string}/>
       <Skeleton visible={loading} className={`${styles['course-banner']}`}>
         {!loading && (
           <CampaignBanner
