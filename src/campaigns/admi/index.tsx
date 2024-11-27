@@ -126,27 +126,12 @@ export function CampaignsPage() {
                 <a href="#faqs">FAQs</a>
               </div>
             )}
-            <a
-              href={getCourseFormUrl(courseName)}
-              className={`${styles["btn"]} ${styles["btn-primary"]} ${styles["pulse"]}`}
-            >
-              Get a call back
-            </a>
           </div>
         </section>
       )}
 
       <section className={`${styles['course-summary']}`}>
         <div className={`${styles['wrapper']}`}>
-          {/* <div className={`${styles['layout-grid']} ${styles['layout-grid--two-col']}`}>
-            <CampaignLeadForm
-              onVisibilityChange={setIsLeadFormVisible}
-              status={status}
-              footerText={leadFormFooterText}
-              course={courseName}
-              intake={courseIntake}
-            ></CampaignLeadForm>
-          </div> */}
         </div>
       </section>
 

@@ -24,8 +24,7 @@ export function CampaignLayout({ children, client }: LayoutProps) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       {client === "craydel" && <CraydelCampaignHeader />}
-      {client === "admi" && <ADMICampaignHeader />}
-      {client === "craydel" || client === "admi" ? (
+      {client === "craydel" ? (
         <main className={styles["campaign-main"]}>{children}</main>
       ) : (
         <AppShell
@@ -33,7 +32,7 @@ export function CampaignLayout({ children, client }: LayoutProps) {
           padding="md"
         >
           <AppShell.Header style={headerStyle}>
-            <CampaignHeader />
+          {client === "admi" ? <ADMICampaignHeader />: <CampaignHeader />}
           </AppShell.Header>
 
           <AppShell.Main pt={`calc(${rem(60)} + var(--mantine-spacing-md))`}>
