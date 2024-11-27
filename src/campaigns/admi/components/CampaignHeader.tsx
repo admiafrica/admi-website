@@ -45,9 +45,9 @@ const headerContentStyle: React.CSSProperties = {
 };
 
 const ctaBtnStyle: React.CSSProperties = {
-  top: 16,
+  top: 14,
   width: 200,
-  height:52,
+  height: 54,
   padding: 8,
   fontSize: "1.2em",
 };
