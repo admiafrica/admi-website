@@ -3,7 +3,7 @@ import { Group } from "@mantine/core";
 import logo from "@/assets/logo-main.svg";
 import { getCourseFormUrl } from "@/utils";
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 const getSelectedCourse = () => {
   if (typeof window !== "undefined") {
@@ -13,20 +13,13 @@ const getSelectedCourse = () => {
 };
 
 export default function CampaignHeader() {
-  const [activeCourse, setActiveCourse] = useState<string>(getSelectedCourse);
-
-  useEffect(() => {
-    const storedCourseName = localStorage.getItem("selectedCourse");
-    if (storedCourseName && storedCourseName !== activeCourse) {
-      setActiveCourse(storedCourseName);
-    }
-  }, [activeCourse]);
+  const selectedCourse = getSelectedCourse();
 
   return (
     <Group style={headerContentStyle}>
       <Image src={logo} width={80} alt="Africa Digital Media Institute" />
       <a
-        href={getCourseFormUrl(activeCourse)}
+        href={selectedCourse ? getCourseFormUrl(selectedCourse) : "#"}
         className={`${styles["btn"]} ${styles["btn-primary"]} ${styles["btn-floating"]} ${styles["pulse"]}`}
         style={ctaBtnStyle}
       >
