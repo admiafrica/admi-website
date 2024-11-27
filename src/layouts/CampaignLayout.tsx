@@ -5,6 +5,7 @@ import { useHeadroom } from "@mantine/hooks";
 
 import { CampaignHeader } from "@/campaigns/components";
 import { CampaignHeader as CraydelCampaignHeader } from "@/campaigns/craydel/components";
+import { CampaignHeader as ADMICampaignHeader } from "@/campaigns/admi/components";
 import { Footer } from "@/components/shared";
 import styles from "@/assets/css/main.module.css";
 
@@ -23,7 +24,8 @@ export function CampaignLayout({ children, client }: LayoutProps) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       {client === "craydel" && <CraydelCampaignHeader />}
-      {client === "craydel" ? (
+      {client === "admi" && <ADMICampaignHeader />}
+      {client === "craydel" || client === "admi" ? (
         <main className={styles["campaign-main"]}>{children}</main>
       ) : (
         <AppShell
