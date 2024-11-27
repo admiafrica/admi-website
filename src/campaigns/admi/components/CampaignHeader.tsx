@@ -1,31 +1,33 @@
 import styles from "@/assets/css/main.module.css";
-import { Group } from "@mantine/core";
+import { Affix, Group } from "@mantine/core";
 import logo from "@/assets/logo-main.svg";
 import { getCourseFormUrl } from "@/utils";
 import Image from "next/image";
 import React from "react";
+import { CampaignHeaderLayout } from "@/campaigns/components";
 
-const getSelectedCourse = () => {
-  if (typeof window !== "undefined") {
-    return localStorage.getItem("selectedCourse") || "";
-  }
-  return "";
+type Props = {
+  courseName: string;
 };
 
-export default function CampaignHeader() {
-  const selectedCourse = getSelectedCourse();
-
+export default function CampaignHeader({ courseName }: Props) {
+  console.log("COURSE NAME", courseName);
   return (
-    <Group style={headerContentStyle}>
-      <Image src={logo} width={80} alt="Africa Digital Media Institute" />
-      <a
-        href={selectedCourse ? getCourseFormUrl(selectedCourse) : "#"}
-        className={`${styles["btn"]} ${styles["btn-primary"]} ${styles["btn-floating"]} ${styles["pulse"]}`}
-        style={ctaBtnStyle}
-      >
-        Get a call back
-      </a>
-    </Group>
+    <CampaignHeaderLayout>
+      <Group style={headerContentStyle}>
+        <Image src={logo} width={80} alt="Africa Digital Media Institute" />
+
+        <Affix position={{ right: 10 }}>
+          <a
+            href={getCourseFormUrl(courseName)}
+            className={`${styles["btn"]} ${styles["btn-primary"]} ${styles["btn-floating"]} ${styles["pulse"]}`}
+            style={ctaBtnStyle}
+          >
+            Get a call back
+          </a>
+        </Affix>
+      </Group>
+    </CampaignHeaderLayout>
   );
 }
 

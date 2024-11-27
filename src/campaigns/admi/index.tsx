@@ -6,6 +6,7 @@ import courseImage from '@/assets/images/course-banner.webp';
 import {
   CampaignBanner,
   CampaignFaqs,
+  CampaignHeader,
   CampaignHighlights,
   CampaignReasons,
   CampaignTestimonials,
@@ -74,14 +75,9 @@ export function CampaignsPage() {
     }
   }, [router.isReady, campaign, status]);
 
-  useEffect(() => {
-    if(courseName){
-      localStorage.setItem('selectedCourse', courseName)
-    }
-  }, [courseName]);
-
   return (
     <CampaignLayout client='admi'>
+      {!loading && courseName && <CampaignHeader courseName={courseName} />}
       <GoogleAnalyticsTag analyticsId={process.env.NEXT_PUBLIC_ADMI_GTM_ID as string}/>
       <Skeleton visible={loading} className={`${styles['course-banner']}`}>
         {!loading && (
