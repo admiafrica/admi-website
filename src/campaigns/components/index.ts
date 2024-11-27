@@ -1,1 +1,1 @@
-export { default as CampaignHeader } from "./CampaignHeader";
+export { default as CampaignHeaderLayout } from "./CampaignHeaderLayout";
