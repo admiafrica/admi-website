@@ -1,27 +1,48 @@
-import styles from '@/assets/css/main.module.css';
-import logo from '@/assets/logo.svg';
-import Image from 'next/image';
+import styles from "@/assets/css/main.module.css";
+import { Affix, Group } from "@mantine/core";
+import logo from "@/assets/logo-main.svg";
+import { getCourseFormUrl } from "@/utils";
+import Image from "next/image";
 import React from "react";
-export default function CampaignHeader() {
-  return (
-      <>
-                    <header className={styles['header']}>
-              <div className={styles['wrapper']}>
-                  <a href="https://admi.africa" className={styles['site-logo']}>
-                      <Image
-                          width={90}
-                          height={90}
-                          src={logo.src}
-                          alt="logo"
-                          priority={true}
-                      />
-                  </a>
+import { CampaignHeaderLayout } from "@/campaigns/components";
 
-                  <a href="#lead_form" className={`${styles['btn']} ${styles['btn-primary']} ${styles['btn-floating']} ${styles['pulse']}`}>
-                      Get a call back
-                  </a>
-              </div>
-          </header>
-      </>
+type Props = {
+  courseName: string;
+};
+
+export default function CampaignHeader({ courseName }: Props) {
+  console.log("COURSE NAME", courseName);
+  return (
+    <CampaignHeaderLayout>
+      <Group style={headerContentStyle}>
+        <Image src={logo} width={80} alt="Africa Digital Media Institute" />
+
+        <Affix position={{ right: 10 }}>
+          <a
+            href={getCourseFormUrl(courseName)}
+            className={`${styles["btn"]} ${styles["btn-primary"]} ${styles["btn-floating"]} ${styles["pulse"]}`}
+            style={ctaBtnStyle}
+          >
+            Get a call back
+          </a>
+        </Affix>
+      </Group>
+    </CampaignHeaderLayout>
   );
 }
+
+const headerContentStyle: React.CSSProperties = {
+  flex: 1,
+  padding: "0 15px",
+  display: "flex",
+  maxWidth: 1280,
+  margin: "auto",
+};
+
+const ctaBtnStyle: React.CSSProperties = {
+  top: 14,
+  width: 200,
+  height: 54,
+  padding: 8,
+  fontSize: "1.2em",
+};

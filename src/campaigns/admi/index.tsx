@@ -6,8 +6,8 @@ import courseImage from '@/assets/images/course-banner.webp';
 import {
   CampaignBanner,
   CampaignFaqs,
+  CampaignHeader,
   CampaignHighlights,
-  CampaignLeadForm,
   CampaignReasons,
   CampaignTestimonials,
 } from './components';
@@ -15,6 +15,7 @@ import styles from '@/assets/css/main.module.css';
 import { useRouter } from 'next/router';
 import { Skeleton } from '@mantine/core';
 import { GoogleAnalyticsTag } from '@/components/shared';
+import { getCourseFormUrl } from '@/utils';
 
 export function CampaignsPage() {
   const [status, setStatus] = useState(1);
@@ -27,9 +28,9 @@ export function CampaignsPage() {
   const [courseProspectus, setCourseProspectus] = useState('');
   const [courseTestimonials, setCourseTestimonials] = useState([]);
   const [courseFaqs, setCourseFaqs] = useState([]);
-  const [isLeadFormVisible, setIsLeadFormVisible] = useState(false);
-  const [leadFormFooterText, setLeadFormFooterText] = useState('');
-  const [courseIntake, setCourseIntake] = useState('');
+  const [isLeadFormVisible] = useState(false);
+  const [, setLeadFormFooterText] = useState('');
+  const [, setCourseIntake] = useState('');
   const router = useRouter();
   const [loading, setLoading] = useState(true);
   const campaign = router.query.campaign;
@@ -76,6 +77,7 @@ export function CampaignsPage() {
 
   return (
     <CampaignLayout client='admi'>
+      {!loading && courseName && <CampaignHeader courseName={courseName} />}
       <GoogleAnalyticsTag analyticsId={process.env.NEXT_PUBLIC_ADMI_GTM_ID as string}/>
       <Skeleton visible={loading} className={`${styles['course-banner']}`}>
         {!loading && (
@@ -126,16 +128,6 @@ export function CampaignsPage() {
 
       <section className={`${styles['course-summary']}`}>
         <div className={`${styles['wrapper']}`}>
-          <div className={`${styles['layout-grid']} ${styles['layout-grid--two-col']}`}>
-            <div></div>
-            <CampaignLeadForm
-              onVisibilityChange={setIsLeadFormVisible}
-              status={status}
-              footerText={leadFormFooterText}
-              course={courseName}
-              intake={courseIntake}
-            ></CampaignLeadForm>
-          </div>
         </div>
       </section>
 
@@ -253,7 +245,7 @@ export function CampaignsPage() {
         <section
           className={`${styles['section-wrapper']} ${styles['lead-form-cta']} ${styles['sticky-btn']} ${styles['sticky-btn--no-footer']} ${styles['sticky-btn--desktop-hidden']} ${isLeadFormVisible ? '' : styles['is-visible']}`}>
           <div className={`${styles['wrapper']} ${styles['text-center']}`}>
-            <a href="#lead_form" className={`${styles['btn']} ${styles['btn-primary']} ${styles['btn-min-width']}`}>
+            <a href={getCourseFormUrl(courseName)} className={`${styles['btn']} ${styles['btn-primary']} ${styles['btn-min-width']}`}>
               Get a call back</a>
           </div>
         </section>

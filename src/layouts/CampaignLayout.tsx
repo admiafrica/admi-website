@@ -3,7 +3,6 @@ import Head from "next/head";
 import { AppShell, rem } from "@mantine/core";
 import { useHeadroom } from "@mantine/hooks";
 
-import { CampaignHeader } from "@/campaigns/components";
 import { CampaignHeader as CraydelCampaignHeader } from "@/campaigns/craydel/components";
 import { Footer } from "@/components/shared";
 import styles from "@/assets/css/main.module.css";
@@ -30,10 +29,6 @@ export function CampaignLayout({ children, client }: LayoutProps) {
           header={{ height: 81, collapsed: !pinned, offset: false }}
           padding="md"
         >
-          <AppShell.Header style={headerStyle}>
-            <CampaignHeader />
-          </AppShell.Header>
-
           <AppShell.Main pt={`calc(${rem(60)} + var(--mantine-spacing-md))`}>
             {children}
           </AppShell.Main>
@@ -45,15 +40,6 @@ export function CampaignLayout({ children, client }: LayoutProps) {
     </>
   );
 }
-
-const headerStyle: React.CSSProperties = {
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "space-between",
-  padding: "0 20px",
-  backgroundColor: "white",
-  borderBottom: "1px solid #dee2e6",
-};
 
 const footerStyle: React.CSSProperties = {
   backgroundColor: "white",
