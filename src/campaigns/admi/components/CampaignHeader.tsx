@@ -16,7 +16,6 @@ export default function CampaignHeader() {
   const [activeCourse, setActiveCourse] = useState<string>(getSelectedCourse);
 
   useEffect(() => {
-    // Keep syncing the value in case localStorage changes
     const storedCourseName = localStorage.getItem("selectedCourse");
     if (storedCourseName && storedCourseName !== activeCourse) {
       setActiveCourse(storedCourseName);
