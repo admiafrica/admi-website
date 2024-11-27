@@ -2,6 +2,7 @@ import styles from "@/assets/css/main.module.css";
 import React, { useEffect, useRef, useState } from "react";
 import "react-phone-input-2/lib/style.css";
 import { useRouter } from "next/router";
+import { getCourseFormUrl } from "@/utils";
 
 type CampaignLeadFormProps = {
   onVisibilityChange: (visible: boolean) => void;
@@ -76,7 +77,7 @@ export default function CampaignLeadForm({
         <div className={`${styles["lead-form__content"]}`}>
           <iframe
             className="airtable-embed"
-            src={`https://airtable.com/embed/app0kRJindIHzHTM2/pagmXFb9WKJbimfFa/form?prefill_Course=${courseName}&hide_Course=true`}
+            src={courseName?getCourseFormUrl(courseName): '#'}
             frameBorder={0}
             width="100%"
             height="533"

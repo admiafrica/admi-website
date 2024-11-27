@@ -5,6 +5,7 @@ import { useHeadroom } from "@mantine/hooks";
 
 import { CampaignHeader } from "@/campaigns/components";
 import { CampaignHeader as CraydelCampaignHeader } from "@/campaigns/craydel/components";
+import { CampaignHeader as ADMICampaignHeader } from "@/campaigns/admi/components";
 import { Footer } from "@/components/shared";
 import styles from "@/assets/css/main.module.css";
 
@@ -31,7 +32,7 @@ export function CampaignLayout({ children, client }: LayoutProps) {
           padding="md"
         >
           <AppShell.Header style={headerStyle}>
-            <CampaignHeader />
+          {client === "admi" ? <ADMICampaignHeader />: <CampaignHeader />}
           </AppShell.Header>
 
           <AppShell.Main pt={`calc(${rem(60)} + var(--mantine-spacing-md))`}>
