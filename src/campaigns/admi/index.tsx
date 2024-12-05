@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
-import { CampaignLayout } from '@/layouts/CampaignLayout';
-import apiClient from '@/utils/axiosClient';
 import { StaticImageData } from 'next/image';
+import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
+
+import { CampaignLayout } from '@/layouts/CampaignLayout';
 import courseImage from '@/assets/images/course-banner.webp';
 import {
   CampaignBanner,
@@ -28,6 +29,7 @@ export function CampaignsPage() {
   const [courseProspectus, setCourseProspectus] = useState('');
   const [courseTestimonials, setCourseTestimonials] = useState([]);
   const [courseFaqs, setCourseFaqs] = useState([]);
+  const [courseAssets, setCourseAssets] = useState([]);
   const [isLeadFormVisible] = useState(false);
   const [, setLeadFormFooterText] = useState('');
   const [, setCourseIntake] = useState('');
@@ -40,21 +42,24 @@ export function CampaignsPage() {
       if (!campaign) return;
       try {
         setLoading(true);
-        const response = await apiClient.get(`/api/campaigns/${campaign}`);
-        if (response.data.status === true) {
-          const data = response.data.data
+        const response = await fetch(`/api/courses?slug=${campaign}`);
+        const data = await response.json()
+        console.log('CONTENTFUL RESULT ---->', data)
+
+        if (data) {
             setStatus(1);
-            setCourseBanner(data.banner ? data.banner : courseImage.src);
-            setCourseName(data.title);
-            setCourseOverview(data.description);
-            setCourseUsps(data.usps);
-            setCourseFee(data.tuitionFee);
-            setCourseHours(data.creditHours);
-            setCourseProspectus(data.duration);
-            setCourseTestimonials(data.testimonials);
-            setCourseFaqs(data.faqs);
-            setLeadFormFooterText(data.lead_form_footer_text);
-            setCourseIntake(data.intake);
+            setCourseBanner(`https:${data.fields.banner.fields.file.url}`);
+            setCourseName(data.fields.name);
+            setCourseOverview(data.fields.description);
+            setCourseUsps(data.fields.usp);
+            setCourseFee(data.fields.tuitionFee);
+            setCourseHours(data.fields.creditHours);
+            setCourseProspectus(data.fields.courseDuration);
+            setCourseTestimonials(data.fields.testimonials);
+            setCourseFaqs(data.fields.faqs);
+            setCourseAssets(data.assets)
+            setLeadFormFooterText(data.fields.lead_form_footer_text);
+            setCourseIntake(data.fields.intake);
         } else {
           setStatus(0);
           setCourseBanner(courseImage.src);
@@ -144,7 +149,7 @@ export function CampaignsPage() {
             ) : (
               <div>
                 <h2 className={`${styles['section-title']} ${styles['section-title--small']}`}>About this Course</h2>
-                <div className={`${styles['article']}`} dangerouslySetInnerHTML={{ __html: courseOverview }}></div>
+                <div className={`${styles['article']}`} dangerouslySetInnerHTML={{ __html: documentToHtmlString(courseOverview) }}></div>
               </div>
             )}
 
@@ -173,7 +178,7 @@ export function CampaignsPage() {
               <div>
                 <h2 className={`${styles['section-title']} ${styles['section-title--small']}`}>Why you should take this
                   course</h2>
-                <CampaignReasons reasons={courseUsps}></CampaignReasons>
+                <CampaignReasons assets={courseAssets} reasons={courseUsps}></CampaignReasons>
                 <CampaignHighlights fee={courseFee} hours={courseHours}
                                     prospectus={courseProspectus}></CampaignHighlights>
               </div>

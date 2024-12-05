@@ -1,11 +1,8 @@
 import styles from '@/assets/css/main.module.css';
-interface Testimonial {
-    author: string;
-    video_url: string;
-    description: string;
-}
+import { IContentfulEntry } from '@/types';
+
 type CampaignTestimonialsProps = {
-    testimonials: Testimonial[];
+    testimonials: IContentfulEntry[];
 };
 export default function CampaignTestimonials({ testimonials }: CampaignTestimonialsProps) {
     // Ensure there's at least one testimonial
@@ -13,7 +10,7 @@ export default function CampaignTestimonials({ testimonials }: CampaignTestimoni
         return <p>No testimonials available.</p>;
     }
 
-    const { author, video_url, description } = testimonials[0];
+    const { author, video_url, description } = testimonials[0].fields;
 
     return (
         <div className={`${styles['layout-grid']} ${styles['layout-grid--two-col']}`}>
@@ -22,7 +19,6 @@ export default function CampaignTestimonials({ testimonials }: CampaignTestimoni
                     src={video_url}
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope;"
                     allowFullScreen
-                    frameBorder="0"
                     height="315"
                     loading="lazy"
                     title="Testimonial video"
