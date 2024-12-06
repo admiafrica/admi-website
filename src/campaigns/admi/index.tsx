@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { StaticImageData } from 'next/image';
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
+import { Document as ContentfulDocument } from '@contentful/rich-text-types';
 
 import { CampaignLayout } from '@/layouts/CampaignLayout';
 import courseImage from '@/assets/images/course-banner.webp';
@@ -22,7 +23,7 @@ export function CampaignsPage() {
   const [status, setStatus] = useState(1);
   const [courseBanner, setCourseBanner] = useState<string | StaticImageData>(courseImage); // Initialize with a default image
   const [courseName, setCourseName] = useState('');
-  const [courseOverview, setCourseOverview] = useState('');
+  const [courseOverview, setCourseOverview] = useState<ContentfulDocument>();
   const [courseUsps, setCourseUsps] = useState([]);
   const [courseFee, setCourseFee] = useState('');
   const [courseHours, setCourseHours] = useState('');
@@ -44,7 +45,6 @@ export function CampaignsPage() {
         setLoading(true);
         const response = await fetch(`/api/courses?slug=${campaign}`);
         const data = await response.json()
-        console.log('CONTENTFUL RESULT ---->', data)
 
         if (data) {
             setStatus(1);

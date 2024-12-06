@@ -11,7 +11,6 @@ type Props = {
 };
 
 export default function CampaignHeader({ courseName }: Props) {
-  console.log("COURSE NAME", courseName);
   return (
     <CampaignHeaderLayout>
       <Group style={headerContentStyle}>

@@ -31,7 +31,7 @@ export default async function handler(
 
       // Helper function to resolve references
       const resolveReferences = (fields: Record<string, IContentfulEntry>) => {
-        const resolveField = (field) => {
+        const resolveField: any = (field: any) => {
           if (Array.isArray(field)) {
             return field.map((item) => resolveField(item));
           }
