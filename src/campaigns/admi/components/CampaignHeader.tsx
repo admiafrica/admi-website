@@ -6,12 +6,7 @@ import Image from "next/image";
 import React from "react";
 import { CampaignHeaderLayout } from "@/campaigns/components";
 
-type Props = {
-  courseName: string;
-};
-
-export default function CampaignHeader({ courseName }: Props) {
-  console.log("COURSE NAME", courseName);
+export default function CampaignHeader() {
   return (
     <CampaignHeaderLayout>
       <Group style={headerContentStyle}>
@@ -19,7 +14,7 @@ export default function CampaignHeader({ courseName }: Props) {
 
         <Affix position={{ right: 10 }}>
           <a
-            href={getCourseFormUrl(courseName)}
+            href={getCourseFormUrl()}
             className={`${styles["btn"]} ${styles["btn-primary"]} ${styles["btn-floating"]} ${styles["pulse"]}`}
             style={ctaBtnStyle}
           >
