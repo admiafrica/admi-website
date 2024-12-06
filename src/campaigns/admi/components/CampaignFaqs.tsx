@@ -1,12 +1,8 @@
 import styles from '@/assets/css/main.module.css';
-
-type Faq = {
-  title: string;
-  description: string;
-}
+import { IContentfulEntry } from '@/types';
 
 type FaqsProps = {
-  faqs: Faq[];
+  faqs: IContentfulEntry[];
 };
 
 export default function CampaignFaqs({ faqs }: FaqsProps) {
@@ -15,9 +11,9 @@ export default function CampaignFaqs({ faqs }: FaqsProps) {
       {faqs.map((faq, index) => (
         <details key={index} open={index === 0}>
           <summary>
-            <h3 className={`${styles['details__title']}`}>{faq.title}</h3>
+            <h3 className={`${styles['details__title']}`}>{faq.fields.title as string}</h3>
           </summary>
-          <div className={`${styles['details__content']} ${styles['article']}`} dangerouslySetInnerHTML={{ __html: faq.description }} />
+          <div className={`${styles['details__content']} ${styles['article']}`} dangerouslySetInnerHTML={{ __html: faq.fields.description as string }} />
         </details>
       ))}
     </div>
