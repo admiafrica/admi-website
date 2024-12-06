@@ -77,7 +77,7 @@ export default function CampaignLeadForm({
         <div className={`${styles["lead-form__content"]}`}>
           <iframe
             className="airtable-embed"
-            src={courseName?getCourseFormUrl(courseName): '#'}
+            src={courseName?getCourseFormUrl(): '#'}
             frameBorder={0}
             width="100%"
             height="533"

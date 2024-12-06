@@ -18,7 +18,7 @@ export default function CampaignHeader({ courseName }: Props) {
 
         <Affix position={{ right: 10 }}>
           <a
-            href={getCourseFormUrl(courseName)}
+            href={getCourseFormUrl()}
             className={`${styles["btn"]} ${styles["btn-primary"]} ${styles["btn-floating"]} ${styles["pulse"]}`}
             style={ctaBtnStyle}
           >

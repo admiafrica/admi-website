@@ -250,7 +250,7 @@ export function CampaignsPage() {
         <section
           className={`${styles['section-wrapper']} ${styles['lead-form-cta']} ${styles['sticky-btn']} ${styles['sticky-btn--no-footer']} ${styles['sticky-btn--desktop-hidden']} ${isLeadFormVisible ? '' : styles['is-visible']}`}>
           <div className={`${styles['wrapper']} ${styles['text-center']}`}>
-            <a href={getCourseFormUrl(courseName)} className={`${styles['btn']} ${styles['btn-primary']} ${styles['btn-min-width']}`}>
+            <a href={getCourseFormUrl()} className={`${styles['btn']} ${styles['btn-primary']} ${styles['btn-min-width']}`}>
               Get a call back</a>
           </div>
         </section>

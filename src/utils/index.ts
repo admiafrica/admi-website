@@ -2,9 +2,8 @@ import { IContentfulEntry } from "@/types";
 
 export * from "./constants";
 
-export const getCourseFormUrl = (courseName: string) => {
-  const encodedCourseName = encodeURIComponent(courseName);
-  return `https://airtable.com/app0kRJindIHzHTM2/pagmXFb9WKJbimfFa/form?prefill_Course=${encodedCourseName}&hide_Course=true`;
+export const getCourseFormUrl = () => {
+  return `https://airtable.com/app0kRJindIHzHTM2/pagmXFb9WKJbimfFa/form`;
 };
 
 export const getAssetDetails = (
