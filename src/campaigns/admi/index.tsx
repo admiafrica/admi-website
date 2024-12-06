@@ -82,7 +82,7 @@ export function CampaignsPage() {
 
   return (
     <CampaignLayout client='admi'>
-      {!loading && courseName && <CampaignHeader courseName={courseName} />}
+      <CampaignHeader />
       <GoogleAnalyticsTag analyticsId={process.env.NEXT_PUBLIC_ADMI_GTM_ID as string}/>
       <Skeleton visible={loading} className={`${styles['course-banner']}`}>
         {!loading && (

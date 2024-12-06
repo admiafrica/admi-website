@@ -6,11 +6,7 @@ import Image from "next/image";
 import React from "react";
 import { CampaignHeaderLayout } from "@/campaigns/components";
 
-type Props = {
-  courseName: string;
-};
-
-export default function CampaignHeader({ courseName }: Props) {
+export default function CampaignHeader() {
   return (
     <CampaignHeaderLayout>
       <Group style={headerContentStyle}>
