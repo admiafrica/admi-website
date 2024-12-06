@@ -1,5 +1,6 @@
 import styles from '@/assets/css/main.module.css';
 import { IContentfulEntry } from '@/types';
+import { processVideoUrl } from '@/utils';
 
 type CampaignTestimonialsProps = {
     testimonials: IContentfulEntry[];
@@ -11,12 +12,13 @@ export default function CampaignTestimonials({ testimonials }: CampaignTestimoni
     }
 
     const { author, video_url, description } = testimonials[0].fields;
+    const processedVideoUrl = processVideoUrl(video_url);
 
     return (
         <div className={`${styles['layout-grid']} ${styles['layout-grid--two-col']}`}>
             <div className={`${styles['video-wrapper']}`}>
                 <iframe
-                    src={video_url}
+                    src={processedVideoUrl}
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope;"
                     allowFullScreen
                     height="315"

@@ -64,7 +64,8 @@ export default async function handler(
       const resolvedMainItem = {
         ...mainItem,
         fields: resolveReferences(mainItem.fields),
-        assets: assets,
+        assets,
+        entries
       };
 
       res.status(200).json(resolvedMainItem);
