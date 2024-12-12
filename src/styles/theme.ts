@@ -4,8 +4,9 @@ import { generateColors } from "@mantine/colors-generator";
 
 export const defaultTheme = createTheme({
   colors: {
-    "admi-orange": generateColors("#BA2E36"),
-    "admi-shamrok": generateColors("#08F6CF")
+    "admiOrange": generateColors("#BA2E36"),
+    "admiShamrok": generateColors("#08F6CF"),
+    "admiRed": generateColors('#F60834')
   },
-  primaryColor: "admi-orange",
+  primaryColor: "admiOrange",
 });
