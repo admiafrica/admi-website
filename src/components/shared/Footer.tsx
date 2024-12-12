@@ -1,12 +1,4 @@
-import {
-  Group,
-  Text,
-  Anchor,
-  Stack,
-  Title,
-  Card,
-  Button,
-} from "@mantine/core";
+import { Group, Text, Anchor, Stack, Title, Card, Button } from "@mantine/core";
 import {
   IconBrandTwitter,
   IconBrandFacebook,
@@ -15,6 +7,13 @@ import {
 } from "@tabler/icons-react";
 
 import LogoIcon from "../../assets/logo.svg";
+import MailIcon from "../../assets/images/mail.svg";
+import CallIcon from "../../assets/images/call.svg";
+import LogoWhiteIcon from "../../assets/images/logo-light.svg";
+import YouTubeIcon from "../../assets/images/youtube.svg";
+import WhatsAppIcon from "../../assets/images/whatsapp.svg";
+import InstagramIcon from "../../assets/images/instagram.svg";
+import StopWatchIcon from "../../assets/images/stop-watch.svg";
 import Image from "next/image";
 
 export default function CustomFooter() {
@@ -66,13 +65,16 @@ export default function CustomFooter() {
             <Text>P. O. Box 35447 - 00100</Text>
             <Text>Nairobi, Kenya.</Text>
 
-            <Text pt={20}>
-              <b>Email:</b> info@admi.ac.ke
+            <Text mt={20}>
+              <Image width={24} src={MailIcon} alt="email" /> <b>Email:</b>{" "}
+              info@admi.ac.ke
             </Text>
             <Text>
+              <Image width={24} height={24} src={CallIcon} alt="phone" />
               <b>Phone:</b> (+254) 706 349 696, (+254) 711 486 581
             </Text>
             <Text>
+              <Image width={24} src={StopWatchIcon} alt="hours active" />{" "}
               <b>Hours:</b> Mon-Fri 8:00am - 5:00pm / Sat: 8:00am to 2:00pm
             </Text>
           </Stack>
@@ -100,7 +102,7 @@ export default function CustomFooter() {
           </Stack>
 
           {/* Student Corner */}
-          <Stack gap={4} h="100%">
+          <Stack gap={4} className="h-full">
             <Title order={3} style={footerTitleStyle}>
               Student Portal
             </Title>
@@ -114,15 +116,15 @@ export default function CustomFooter() {
               Alumni Network
             </Anchor>
 
-            <Group>
+            <Group className="self-end">
               <Anchor href="#" c="white" target="_blank">
-                <IconBrandTwitter size={20} />
+                <Image width={48} src={InstagramIcon} alt="logo" />
               </Anchor>
               <Anchor href="#" c="white" target="_blank">
-                <IconBrandFacebook size={20} />
+                <Image width={48} src={WhatsAppIcon} alt="logo" />
               </Anchor>
               <Anchor href="#" c="white" target="_blank">
-                <IconBrandLinkedin size={20} />
+                <Image width={48} src={YouTubeIcon} alt="logo" />
               </Anchor>
             </Group>
           </Stack>
@@ -140,7 +142,7 @@ export default function CustomFooter() {
           <div className="grow text-admiShamrok md:pl-4">
             <Text>Privacy Policy | Terms & Conditions</Text>
           </div>
-          <Image width={70} src={LogoIcon} alt="logo" />
+          <Image width={95} src={LogoWhiteIcon} alt="logo" />
         </Group>
       </div>
       <div className="w-full h-[0.75rem] flex">
