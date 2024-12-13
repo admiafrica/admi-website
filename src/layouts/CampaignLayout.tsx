@@ -32,11 +32,18 @@ export function CampaignLayout({ children, client }: LayoutProps) {
           <AppShell.Main pt={`calc(${rem(60)} + var(--mantine-spacing-md))`}>
             {children}
           </AppShell.Main>
-          <AppShell.Footer pos="relative">
-          <Footer/>
+          <AppShell.Footer style={footerStyle} pos="relative">
+            <Footer />
           </AppShell.Footer>
         </AppShell>
       )}
     </>
   );
 }
+
+const footerStyle: React.CSSProperties = {
+  backgroundColor: "white",
+  display: "flex",
+  justifyContent: "space-between",
+  padding: "20px",
+};
