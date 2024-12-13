@@ -1,25 +1,33 @@
-import Image from "next/image";
-import { Group, Text, Anchor, Stack, Title, Card, Button } from "@mantine/core";
+import Image from 'next/image';
+import {
+  Group,
+  Text,
+  Anchor,
+  Stack,
+  Title,
+  Card,
+  Button,
+  Divider,
+} from '@mantine/core';
 
-import { IconCopyright } from "@tabler/icons-react";
-import MailIcon from "@/assets/images/mail.svg";
-import CallIcon from "@/assets/images/call.svg";
-import LogoWhiteIcon from "@/assets/images/logo-light.svg";
-import YouTubeIcon from "@/assets/images/youtube.svg";
-import WhatsAppIcon from "@/assets/images/whatsapp.svg";
-import InstagramIcon from "@/assets/images/instagram.svg";
-import StopWatchIcon from "@/assets/images/stop-watch.svg";
+import { IconCopyright } from '@tabler/icons-react';
+import MailIcon from '@/assets/images/mail.svg';
+import CallIcon from '@/assets/images/call.svg';
+import LogoWhiteIcon from '@/assets/images/logo-light.svg';
+import YouTubeIcon from '@/assets/images/youtube.svg';
+import WhatsAppIcon from '@/assets/images/whatsapp.svg';
+import InstagramIcon from '@/assets/images/instagram.svg';
+import StopWatchIcon from '@/assets/images/stop-watch.svg';
 
 export default function Footer() {
   return (
     <div className="relative w-full p-0">
       <Card
-        className="w-1/2 absolute top-[4rem] left-1/2 transform -translate-x-1/2 bg-white shadow-lg z-10"
-        withBorder
-        bg={"admiShamrok"}
+        className="absolute left-1/2 top-[4rem] z-10 h-[7.125rem] w-[92vw] -translate-x-1/2 transform justify-center bg-white shadow-lg md:w-[60rem]"
+        bg={'admiShamrok'}
       >
-        <div className="w-full flex flex-col md:flex-row">
-          <div className="md:w-3/4">
+        <div className="flex w-full flex-col md:flex-row">
+          <div className="md:w-[70%]">
             <div className="mb-4">
               <Text size="25px" fw={900}>
                 Ready to Get Started?
@@ -32,83 +40,95 @@ export default function Footer() {
               </Text>
             </div>
           </div>
-          <div className="md:w-1/4 h-full">
-            <Button
-              size="md"
-              className="md:w-[14.375rem] h-[3rem]"
-              bg={"admiRed"}
-            >
+          <div className="h-full md:w-[30%]">
+            <Button size="lg" h={'3rem'} bg={'admiRed'}>
               Enroll Today with ADMI
             </Button>
           </div>
         </div>
       </Card>
-      <div className="px-4 md:px-12 w-full pt-36 pb-8 bg-[#002A23]">
+      <div className="w-full bg-[#002A23] pb-8 pt-36">
         <Group
-          className="w-full max-w-screen-xl mx-auto flex-col md:flex-row text-white"
+          className="mx-auto w-full max-w-screen-xl flex-col text-white md:flex-row"
           align="top"
         >
-          <Stack className="grow" gap={4} h="100%">
-            <Title order={3} style={footerTitleStyle}>
-              Get in Touch
-            </Title>
-            <Text p={0}>Caxton House, 3rd Floor</Text>
-            <Text>25, Kenyatta Avenue.</Text>
-            <Text>P. O. Box 35447 - 00100</Text>
-            <Text>Nairobi, Kenya.</Text>
+          <Stack className="grow" h="100%">
+            <Stack className="px-4">
+              <Title order={3} style={footerTitleStyle}>
+                Get in Touch
+              </Title>
+              <Text p={0}>Caxton House, 3rd Floor</Text>
+              <Text>25, Kenyatta Avenue.</Text>
+              <Text>P. O. Box 35447 - 00100</Text>
+              <Text>Nairobi, Kenya.</Text>
+            </Stack>
+            <Group gap={4} mt="4em" className="px-4">
+              <Image width={24} height={24} src={MailIcon} alt="email" />
+              <Text fw="bold" ml={10}>
+                Email:
+              </Text>
+              <Text>info@admi.ac.ke</Text>
+            </Group>
 
-            <Text mt={20}>
-              <Image width={24} src={MailIcon} alt="email" /> <b>Email:</b>{" "}
-              info@admi.ac.ke
-            </Text>
-            <Text>
+            <Group gap={4} className="px-4">
               <Image width={24} height={24} src={CallIcon} alt="phone" />
-              <b>Phone:</b> (+254) 706 349 696, (+254) 711 486 581
-            </Text>
-            <Text>
-              <Image width={24} src={StopWatchIcon} alt="hours active" />{" "}
-              <b>Hours:</b> Mon-Fri 8:00am - 5:00pm / Sat: 8:00am to 2:00pm
-            </Text>
+              <Text fw="bold" ml={10}>
+                Phone:
+              </Text>
+              <Text>(+254) 706 349 696,</Text>
+              <Text>(+254) 711 486 581</Text>
+            </Group>
+
+            <Group gap={4} className="px-4">
+              <Image width={24} src={StopWatchIcon} alt="hours active" />
+              <Text fw="bold" ml={10}>
+                Hours:
+              </Text>
+              <Text>Mon-Fri 8:00am - 5:00pm /</Text>
+              <Text>Sat: 8:00am to 2:00pm</Text>
+            </Group>
           </Stack>
 
           {/* Quick Links and Social Media */}
-          <Stack className="grow" gap={4}>
+          <Stack className="grow">
             <Title order={3} style={footerTitleStyle}>
               Quick Links
             </Title>
-            <Anchor href="#" c="white">
+            <Anchor href="#" c="white" fw={600}>
               Contact Us
             </Anchor>
-            <Anchor href="#" c="white">
+            <Anchor href="#" c="white" fw={600}>
               Academic Team
             </Anchor>
-            <Anchor href="#" c="white">
+            <Anchor href="#" c="white" fw={600}>
               Fellowship
             </Anchor>
-            <Anchor href="#" c="white">
+            <Anchor href="#" c="white" fw={600}>
               Work with Us
             </Anchor>
-            <Anchor href="#" c="white">
+            <Anchor href="#" c="white" fw={600}>
               Accreditation
             </Anchor>
           </Stack>
 
           {/* Student Corner */}
-          <Stack gap={4} className="h-full">
-            <Title order={3} style={footerTitleStyle}>
-              Student Portal
-            </Title>
-            <Anchor href="#" c="white">
-              Accomodation
-            </Anchor>
-            <Anchor href="#" c="white">
-              Academic Pathways
-            </Anchor>
-            <Anchor href="#" c="white">
-              Alumni Network
-            </Anchor>
+          <Stack gap={4} className="mr-4 h-full">
+            <Stack>
+              <Title order={3} style={footerTitleStyle}>
+                Student Portal
+              </Title>
+              <Anchor href="#" c="white" fw={600}>
+                Accomodation
+              </Anchor>
+              <Anchor href="#" c="white" fw={600}>
+                Academic Pathways
+              </Anchor>
+              <Anchor href="#" c="white" fw={600}>
+                Alumni Network
+              </Anchor>
+            </Stack>
 
-            <Group className="self-end">
+            <Group>
               <Anchor href="#" c="white" target="_blank">
                 <Image width={48} src={InstagramIcon} alt="logo" />
               </Anchor>
@@ -121,8 +141,9 @@ export default function Footer() {
             </Group>
           </Stack>
         </Group>
+        <Divider mt="lg" mb="md" size={0.5} />
         <Group
-          className="w-full max-w-screen-xl mx-auto flex-col md:flex-row pt-8 md:pt-auto"
+          className="md:pt-auto mx-auto w-full max-w-screen-xl flex-col px-4 pt-8 md:flex-row"
           gap={2}
         >
           <IconCopyright className="text-white" />
@@ -137,7 +158,7 @@ export default function Footer() {
           <Image width={95} src={LogoWhiteIcon} alt="logo" />
         </Group>
       </div>
-      <div className="w-full h-[0.75rem] flex">
+      <div className="flex h-[0.75rem] w-full">
         <div className="w-1/4 bg-[#E6F608]" />
         <div className="w-1/4 bg-[#F60834]" />
         <div className="w-1/4 bg-[#08F6CF]" />
@@ -148,5 +169,5 @@ export default function Footer() {
 }
 
 const footerTitleStyle: React.CSSProperties = {
-  color: "#08F6CF",
+  color: '#08F6CF',
 };

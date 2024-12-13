@@ -1,13 +1,13 @@
-import { Group, Button, Text, Menu } from "@mantine/core";
-import Link from "next/link";
-import Image from "next/image";
-import { useMediaQuery } from "@mantine/hooks";
-import { IconMenu } from "@tabler/icons-react";
+import { Group, Button, Text, Menu } from '@mantine/core';
+import Link from 'next/link';
+import Image from 'next/image';
+import { useMediaQuery } from '@mantine/hooks';
+import { IconMenu } from '@tabler/icons-react';
 
-import logo from "@/assets/images/logo-light.svg";
+import logo from '@/assets/images/logo-light.svg';
 
 export default function CampaignHeader() {
-  const isMobile = useMediaQuery("(max-width: 767px)");
+  const isMobile = useMediaQuery('(max-width: 767px)');
 
   const getMenuWideScreen = () => {
     return (
@@ -75,8 +75,8 @@ export default function CampaignHeader() {
 
   return (
     <Group className="w-full px-4">
-      <Group className="grow flex flex-row-reverse md:flex-row">
-        <Link href="/" style={{ textDecoration: "none" }}>
+      <Group className="flex grow flex-row-reverse md:flex-row">
+        <Link href="/" style={{ textDecoration: 'none' }}>
           <Image src={logo} width={80} alt="Africa Digital Media Institute" />
         </Link>
         {isMobile ? getMenuMobile() : getMenuWideScreen()}
@@ -91,12 +91,12 @@ export default function CampaignHeader() {
 
 const menuDrawer: React.CSSProperties = {
   marginTop: 20,
-  width: "90%",
+  width: '90%',
 };
 
 const menuItemStyle: React.CSSProperties = {
-  cursor: "pointer",
-  fontWeight: "bold",
+  cursor: 'pointer',
+  fontWeight: 'bold',
   fontSize: 18,
-  color: "#BA2E36",
+  color: '#BA2E36',
 };
