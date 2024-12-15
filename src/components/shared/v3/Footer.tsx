@@ -1,14 +1,7 @@
 import Image from 'next/image';
-import {
-  Group,
-  Text,
-  Anchor,
-  Stack,
-  Title,
-  Card,
-  Button,
-  Divider,
-} from '@mantine/core';
+import { Group, Text, Anchor, Stack, Card, Divider, Flex } from '@mantine/core';
+
+import { Button } from '@/components/ui';
 
 import { IconCopyright } from '@tabler/icons-react';
 import MailIcon from '@/assets/images/mail.svg';
@@ -21,29 +14,33 @@ import StopWatchIcon from '@/assets/images/stop-watch.svg';
 
 export default function Footer() {
   return (
-    <div className="relative w-full p-0">
+    <div className="font-proxima relative w-full p-0">
+      {/* Floating Card */}
       <Card
-        className="absolute left-1/2 top-[4rem] z-10 h-[7.125rem] w-[92vw] -translate-x-1/2 transform justify-center bg-white shadow-lg md:w-[60rem]"
+        className="absolute left-1/2 top-[3.75rem] z-10 h-fit w-[92vw] -translate-x-1/2 transform justify-center shadow-lg md:h-[7.125rem] md:w-[60rem]"
         bg={'admiShamrok'}
+        radius={6}
       >
-        <div className="flex w-full flex-col md:flex-row">
+        <div className="flex w-full flex-col p-2 md:flex-row md:p-4">
           <div className="md:w-[70%]">
-            <div className="mb-4">
+            <div className="font-nexa mb-4 text-center md:text-left">
               <Text size="25px" fw={900}>
                 Ready to Get Started?
               </Text>
             </div>
-            <div>
-              <Text size="16px" fw={500}>
+            <div className="text-center md:text-left">
+              <Text size="16px" fw={600}>
                 Immerse yourself in a curriculum crafted to cultivate your
                 unique artistic style.
               </Text>
             </div>
           </div>
-          <div className="h-full md:w-[30%]">
-            <Button size="lg" h={'3rem'} bg={'admiRed'}>
-              Enroll Today with ADMI
-            </Button>
+          <div className="md:py-auto mx-auto py-4 md:w-[30%]">
+            <Button
+              size="lg"
+              backgroundColor="admiRed"
+              label="Enroll Today with ADMI"
+            />
           </div>
         </div>
       </Card>
@@ -54,15 +51,17 @@ export default function Footer() {
         >
           <Stack className="grow" h="100%">
             <Stack className="px-4">
-              <Title order={3} style={footerTitleStyle}>
-                Get in Touch
-              </Title>
+              <div className="font-nexa text-admiShamrok">
+                <Text size={'1.4em'} fw={600}>
+                  Get in Touch
+                </Text>
+              </div>
               <Text p={0}>Caxton House, 3rd Floor</Text>
               <Text>25, Kenyatta Avenue.</Text>
               <Text>P. O. Box 35447 - 00100</Text>
               <Text>Nairobi, Kenya.</Text>
             </Stack>
-            <Group gap={4} mt="4em" className="px-4">
+            <Group gap={4} className="mt-[1em] px-4">
               <Image width={24} height={24} src={MailIcon} alt="email" />
               <Text fw="bold" ml={10}>
                 Email:
@@ -90,10 +89,12 @@ export default function Footer() {
           </Stack>
 
           {/* Quick Links and Social Media */}
-          <Stack className="grow">
-            <Title order={3} style={footerTitleStyle}>
-              Quick Links
-            </Title>
+          <Stack className="grow pl-4">
+            <div className="font-nexa text-admiShamrok">
+              <Text size={'1.4em'} fw={600}>
+                Quick Links
+              </Text>
+            </div>
             <Anchor href="#" c="white" fw={600}>
               Contact Us
             </Anchor>
@@ -112,11 +113,13 @@ export default function Footer() {
           </Stack>
 
           {/* Student Corner */}
-          <Stack gap={4} className="mr-4 h-full">
+          <div className="mr-4 flex flex-col">
             <Stack>
-              <Title order={3} style={footerTitleStyle}>
-                Student Portal
-              </Title>
+              <div className="font-nexa text-admiShamrok">
+                <Text size={'1.4em'} fw={600}>
+                  Student Portal
+                </Text>
+              </div>
               <Anchor href="#" c="white" fw={600}>
                 Accomodation
               </Anchor>
@@ -127,7 +130,7 @@ export default function Footer() {
                 Alumni Network
               </Anchor>
             </Stack>
-
+            <div className='grow'> </div>
             <Group>
               <Anchor href="#" c="white" target="_blank">
                 <Image width={48} src={InstagramIcon} alt="logo" />
@@ -139,9 +142,11 @@ export default function Footer() {
                 <Image width={48} src={YouTubeIcon} alt="logo" />
               </Anchor>
             </Group>
-          </Stack>
+          </div>
         </Group>
+
         <Divider mt="lg" mb="md" size={0.5} />
+
         <Group
           className="md:pt-auto mx-auto w-full max-w-screen-xl flex-col px-4 pt-8 md:flex-row"
           gap={2}
@@ -158,6 +163,7 @@ export default function Footer() {
           <Image width={95} src={LogoWhiteIcon} alt="logo" />
         </Group>
       </div>
+
       <div className="flex h-[0.75rem] w-full">
         <div className="w-1/4 bg-[#E6F608]" />
         <div className="w-1/4 bg-[#F60834]" />
@@ -167,7 +173,3 @@ export default function Footer() {
     </div>
   );
 }
-
-const footerTitleStyle: React.CSSProperties = {
-  color: '#08F6CF',
-};

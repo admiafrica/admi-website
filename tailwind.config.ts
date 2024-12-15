@@ -15,6 +15,10 @@ const config: Config = {
         admiShamrok: "#08F6CF",
         admiRed:"#F60834"
       },
+      fontFamily:{
+        nexa: ["var(--font-nexa)"],
+        proxima: ["var(--font-proxima)"],
+      }
     },
   },
   corePlugins: {

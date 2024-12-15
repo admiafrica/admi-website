@@ -1,12 +1,52 @@
-import { createTheme } from "@mantine/core";
+import localFont from 'next/font/local';
 
-import { generateColors } from "@mantine/colors-generator";
+import { createTheme } from '@mantine/core';
+
+import { generateColors } from '@mantine/colors-generator';
+
+// Import your fonts
+export const nexaFont = localFont({
+  src: [
+    {
+      path: '../assets/fonts/Nexa-ExtraLight.ttf',
+      weight: '100',
+      style: 'light',
+    },
+    {
+      path: '../assets/fonts/Nexa-Heavy.ttf',
+      weight: '900',
+      style: 'bold',
+    },
+  ],
+  variable: '--font-nexa',
+});
+
+export const proximaNovaFont = localFont({
+  src: [
+    {
+      path: '../assets/fonts/ProximaNova-Regular.otf',
+      weight: '500',
+      style: 'regular',
+    },
+    {
+      path: '../assets/fonts/ProximaNova-Semibold.otf',
+      weight: '800',
+      style: 'bold',
+    },
+    {
+      path: '../assets/fonts/ProximaNova-Thin.otf',
+      weight: '100',
+      style: 'semibold',
+    },
+  ],
+  variable: '--font-proxima',
+});
 
 export const defaultTheme = createTheme({
   colors: {
-    "admiOrange": generateColors("#BA2E36"),
-    "admiShamrok": generateColors("#08F6CF"),
-    "admiRed": generateColors('#F60834')
+    admiOrange: generateColors('#BA2E36'),
+    admiShamrok: generateColors('#08F6CF'),
+    admiRed: generateColors('#F60834'),
   },
-  primaryColor: "admiOrange",
+  primaryColor: 'admiOrange',
 });
