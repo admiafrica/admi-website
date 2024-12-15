@@ -15,9 +15,35 @@ import LinkedInIcon from '@/assets/icons/linkedin.svg';
 import MailIcon from '@/assets/icons/mail.svg';
 import CallIcon from '@/assets/icons/call.svg';
 import StopWatchIcon from '@/assets/icons/stop-watch.svg';
+import { SOCIAL_LINKS } from '@/utils';
 
 export default function Footer() {
   const isMobile = useMediaQuery('(max-width: 30em)');
+
+  const SocialIcons = () => {
+    return (
+      <Group justify="center" mt={32}>
+        <Anchor href={SOCIAL_LINKS.TIKTOK} c="white" target="_blank">
+          <Image width={32} src={TikTokIcon} alt={SOCIAL_LINKS.TIKTOK} />
+        </Anchor>
+        <Anchor href={SOCIAL_LINKS.YOUTUBE} c="white" target="_blank">
+          <Image width={36} src={YouTubeIcon} alt={SOCIAL_LINKS.YOUTUBE} />
+        </Anchor>
+        <Anchor href={SOCIAL_LINKS.LINKEDIN} c="white" target="_blank">
+          <Image width={32} src={LinkedInIcon} alt={SOCIAL_LINKS.LINKEDIN} />
+        </Anchor>
+        <Anchor href={SOCIAL_LINKS.INSTAGRAM} c="white" target="_blank">
+          <Image width={44} src={InstagramIcon} alt={SOCIAL_LINKS.INSTAGRAM} />
+        </Anchor>
+        <Anchor href={SOCIAL_LINKS.X} c="white" target="_blank">
+          <Image width={32} height={32} src={XIcon} alt={SOCIAL_LINKS.X} />
+        </Anchor>
+        <Anchor href={SOCIAL_LINKS.FACEBOOK} c="white" target="_blank">
+          <Image width={32} src={FacebookIcon} alt={SOCIAL_LINKS.FACEBOOK} />
+        </Anchor>
+      </Group>
+    );
+  };
 
   return (
     <div className="font-proxima relative w-full p-0">
@@ -27,8 +53,8 @@ export default function Footer() {
         bg={'admiShamrok'}
         radius={6}
       >
-        <div className="flex w-full flex-col my-auto p-2 md:flex-row md:p-4">
-          <div className="md:w-[70%] pt-3">
+        <div className="my-auto flex w-full flex-col p-2 md:flex-row md:p-4">
+          <div className="pt-3 md:w-[70%]">
             <div className="font-nexa mb-4 text-center md:text-left">
               <Text size="25px" fw={900}>
                 Ready to Get Started?
@@ -140,64 +166,10 @@ export default function Footer() {
               </Stack>
             </div>
             <div className="grow"> </div>
-            <Group display={isMobile ? 'none' : ''}>
-              <Anchor href="#" c="white" target="_blank">
-                <Image width={32} height={32} src={TikTokIcon} alt="titktok" />
-              </Anchor>
-              <Anchor href="#" c="white" target="_blank">
-                <Image width={36} height={36} src={YouTubeIcon} alt="youtube" />
-              </Anchor>
-              <Anchor href="#" c="white" target="_blank">
-                <Image
-                  width={32}
-                  height={32}
-                  src={LinkedInIcon}
-                  alt="linkedin"
-                />
-              </Anchor>
-              <Anchor href="#" c="white" target="_blank">
-                <Image
-                  width={36}
-                  height={36}
-                  src={InstagramIcon}
-                  alt="instagram"
-                />
-              </Anchor>
-              <Anchor href="#" c="white" target="_blank">
-                <Image width={32} height={32} src={XIcon} alt="x" />
-              </Anchor>
-              <Anchor href="#" c="white" target="_blank">
-                <Image
-                  width={32}
-                  height={32}
-                  src={FacebookIcon}
-                  alt="facebook"
-                />
-              </Anchor>
-            </Group>
+            {!isMobile && <SocialIcons />}
           </div>
         </Group>
-
-        <Group justify="center" mt={32} display={isMobile ? '' : 'none'}>
-          <Anchor href="#" c="white" target="_blank">
-            <Image width={32} height={32} src={TikTokIcon} alt="titktok" />
-          </Anchor>
-          <Anchor href="#" c="white" target="_blank">
-            <Image width={36} height={36} src={YouTubeIcon} alt="youtube" />
-          </Anchor>
-          <Anchor href="#" c="white" target="_blank">
-            <Image width={32} height={32} src={LinkedInIcon} alt="linkedin" />
-          </Anchor>
-          <Anchor href="#" c="white" target="_blank">
-            <Image width={36} height={36} src={InstagramIcon} alt="instagram" />
-          </Anchor>
-          <Anchor href="#" c="white" target="_blank">
-            <Image width={32} height={32} src={XIcon} alt="x" />
-          </Anchor>
-          <Anchor href="#" c="white" target="_blank">
-            <Image width={32} height={32} src={FacebookIcon} alt="facebook" />
-          </Anchor>
-        </Group>
+        {isMobile && <SocialIcons />}
 
         <Divider mt={48} size={0.5} />
 
