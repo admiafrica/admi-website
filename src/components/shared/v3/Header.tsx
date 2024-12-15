@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { useMediaQuery } from '@mantine/hooks';
 import { IconMenu } from '@tabler/icons-react';
 
-import logo from '@/assets/images/logo-light.svg';
+import logo from '@/assets/logo-light.svg';
 
 export default function CampaignHeader() {
   const isMobile = useMediaQuery('(max-width: 767px)');

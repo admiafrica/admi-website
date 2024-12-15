@@ -1,18 +1,24 @@
 import Image from 'next/image';
-import { Group, Text, Anchor, Stack, Card, Divider, Flex } from '@mantine/core';
+import { Group, Text, Anchor, Stack, Card, Divider } from '@mantine/core';
+import { useMediaQuery } from '@mantine/hooks';
 
 import { Button } from '@/components/ui';
 
 import { IconCopyright } from '@tabler/icons-react';
-import MailIcon from '@/assets/images/mail.svg';
-import CallIcon from '@/assets/images/call.svg';
-import LogoWhiteIcon from '@/assets/images/logo-light.svg';
-import YouTubeIcon from '@/assets/images/youtube.svg';
-import WhatsAppIcon from '@/assets/images/whatsapp.svg';
-import InstagramIcon from '@/assets/images/instagram.svg';
-import StopWatchIcon from '@/assets/images/stop-watch.svg';
+import LogoWhiteIcon from '@/assets/logo-light.svg';
+import YouTubeIcon from '@/assets/icons/youtube.svg';
+import InstagramIcon from '@/assets/icons/instagram.svg';
+import FacebookIcon from '@/assets/icons/facebook.svg';
+import TikTokIcon from '@/assets/icons/tiktok.svg';
+import XIcon from '@/assets/icons/x.svg';
+import LinkedInIcon from '@/assets/icons/linkedin.svg';
+import MailIcon from '@/assets/icons/mail.svg';
+import CallIcon from '@/assets/icons/call.svg';
+import StopWatchIcon from '@/assets/icons/stop-watch.svg';
 
 export default function Footer() {
+  const isMobile = useMediaQuery('(max-width: 30em)');
+
   return (
     <div className="font-proxima relative w-full p-0">
       {/* Floating Card */}
@@ -21,8 +27,8 @@ export default function Footer() {
         bg={'admiShamrok'}
         radius={6}
       >
-        <div className="flex w-full flex-col p-2 md:flex-row md:p-4">
-          <div className="md:w-[70%]">
+        <div className="flex w-full flex-col my-auto p-2 md:flex-row md:p-4">
+          <div className="md:w-[70%] pt-3">
             <div className="font-nexa mb-4 text-center md:text-left">
               <Text size="25px" fw={900}>
                 Ready to Get Started?
@@ -114,38 +120,86 @@ export default function Footer() {
 
           {/* Student Corner */}
           <div className="mr-4 flex flex-col">
-            <Stack>
-              <div className="font-nexa text-admiShamrok">
-                <Text size={'1.4em'} fw={600}>
-                  Student Portal
-                </Text>
-              </div>
-              <Anchor href="#" c="white" fw={600}>
-                Accomodation
-              </Anchor>
-              <Anchor href="#" c="white" fw={600}>
-                Academic Pathways
-              </Anchor>
-              <Anchor href="#" c="white" fw={600}>
-                Alumni Network
-              </Anchor>
-            </Stack>
-            <div className='grow'> </div>
-            <Group>
+            <div className="flex w-full">
+              <div className="grow"></div>
+              <Stack>
+                <div className="font-nexa text-admiShamrok">
+                  <Text size={'1.4em'} fw={600}>
+                    Student Portal
+                  </Text>
+                </div>
+                <Anchor href="#" c="white" fw={600}>
+                  Accomodation
+                </Anchor>
+                <Anchor href="#" c="white" fw={600}>
+                  Academic Pathways
+                </Anchor>
+                <Anchor href="#" c="white" fw={600}>
+                  Alumni Network
+                </Anchor>
+              </Stack>
+            </div>
+            <div className="grow"> </div>
+            <Group display={isMobile ? 'none' : ''}>
               <Anchor href="#" c="white" target="_blank">
-                <Image width={48} src={InstagramIcon} alt="logo" />
+                <Image width={32} height={32} src={TikTokIcon} alt="titktok" />
               </Anchor>
               <Anchor href="#" c="white" target="_blank">
-                <Image width={48} src={WhatsAppIcon} alt="logo" />
+                <Image width={36} height={36} src={YouTubeIcon} alt="youtube" />
               </Anchor>
               <Anchor href="#" c="white" target="_blank">
-                <Image width={48} src={YouTubeIcon} alt="logo" />
+                <Image
+                  width={32}
+                  height={32}
+                  src={LinkedInIcon}
+                  alt="linkedin"
+                />
+              </Anchor>
+              <Anchor href="#" c="white" target="_blank">
+                <Image
+                  width={36}
+                  height={36}
+                  src={InstagramIcon}
+                  alt="instagram"
+                />
+              </Anchor>
+              <Anchor href="#" c="white" target="_blank">
+                <Image width={32} height={32} src={XIcon} alt="x" />
+              </Anchor>
+              <Anchor href="#" c="white" target="_blank">
+                <Image
+                  width={32}
+                  height={32}
+                  src={FacebookIcon}
+                  alt="facebook"
+                />
               </Anchor>
             </Group>
           </div>
         </Group>
 
-        <Divider mt="lg" mb="md" size={0.5} />
+        <Group justify="center" mt={32} display={isMobile ? '' : 'none'}>
+          <Anchor href="#" c="white" target="_blank">
+            <Image width={32} height={32} src={TikTokIcon} alt="titktok" />
+          </Anchor>
+          <Anchor href="#" c="white" target="_blank">
+            <Image width={36} height={36} src={YouTubeIcon} alt="youtube" />
+          </Anchor>
+          <Anchor href="#" c="white" target="_blank">
+            <Image width={32} height={32} src={LinkedInIcon} alt="linkedin" />
+          </Anchor>
+          <Anchor href="#" c="white" target="_blank">
+            <Image width={36} height={36} src={InstagramIcon} alt="instagram" />
+          </Anchor>
+          <Anchor href="#" c="white" target="_blank">
+            <Image width={32} height={32} src={XIcon} alt="x" />
+          </Anchor>
+          <Anchor href="#" c="white" target="_blank">
+            <Image width={32} height={32} src={FacebookIcon} alt="facebook" />
+          </Anchor>
+        </Group>
+
+        <Divider mt={48} size={0.5} />
 
         <Group
           className="md:pt-auto mx-auto w-full max-w-screen-xl flex-col px-4 pt-8 md:flex-row"
