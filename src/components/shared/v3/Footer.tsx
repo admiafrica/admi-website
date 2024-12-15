@@ -1,3 +1,4 @@
+import React from 'react';
 import Image from 'next/image';
 import { Group, Text, Anchor, Stack, Card, Divider } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
@@ -17,33 +18,36 @@ import CallIcon from '@/assets/icons/call.svg';
 import StopWatchIcon from '@/assets/icons/stop-watch.svg';
 import { SOCIAL_LINKS } from '@/utils';
 
-export default function Footer() {
-  const isMobile = useMediaQuery('(max-width: 30em)');
+const SocialIcons = React.memo(() => {
+  return (
+    <Group justify="center" mt={32} h={48}>
+      <Anchor href={SOCIAL_LINKS.TIKTOK} c="white" target="_blank">
+        <Image width={32} src={TikTokIcon} alt={SOCIAL_LINKS.TIKTOK} />
+      </Anchor>
+      <Anchor href={SOCIAL_LINKS.YOUTUBE} c="white" target="_blank">
+        <Image width={36} src={YouTubeIcon} alt={SOCIAL_LINKS.YOUTUBE} />
+      </Anchor>
+      <Anchor href={SOCIAL_LINKS.LINKEDIN} c="white" target="_blank">
+        <Image width={32} src={LinkedInIcon} alt={SOCIAL_LINKS.LINKEDIN} />
+      </Anchor>
+      <Anchor href={SOCIAL_LINKS.INSTAGRAM} c="white" target="_blank">
+        <Image width={44} src={InstagramIcon} alt={SOCIAL_LINKS.INSTAGRAM} />
+      </Anchor>
+      <Anchor href={SOCIAL_LINKS.X} c="white" target="_blank">
+        <Image width={32} height={32} src={XIcon} alt={SOCIAL_LINKS.X} />
+      </Anchor>
+      <Anchor href={SOCIAL_LINKS.FACEBOOK} c="white" target="_blank">
+        <Image width={32} src={FacebookIcon} alt={SOCIAL_LINKS.FACEBOOK} />
+      </Anchor>
+    </Group>
+  );
+});
 
-  const SocialIcons = () => {
-    return (
-      <Group justify="center" mt={32}>
-        <Anchor href={SOCIAL_LINKS.TIKTOK} c="white" target="_blank">
-          <Image width={32} src={TikTokIcon} alt={SOCIAL_LINKS.TIKTOK} />
-        </Anchor>
-        <Anchor href={SOCIAL_LINKS.YOUTUBE} c="white" target="_blank">
-          <Image width={36} src={YouTubeIcon} alt={SOCIAL_LINKS.YOUTUBE} />
-        </Anchor>
-        <Anchor href={SOCIAL_LINKS.LINKEDIN} c="white" target="_blank">
-          <Image width={32} src={LinkedInIcon} alt={SOCIAL_LINKS.LINKEDIN} />
-        </Anchor>
-        <Anchor href={SOCIAL_LINKS.INSTAGRAM} c="white" target="_blank">
-          <Image width={44} src={InstagramIcon} alt={SOCIAL_LINKS.INSTAGRAM} />
-        </Anchor>
-        <Anchor href={SOCIAL_LINKS.X} c="white" target="_blank">
-          <Image width={32} height={32} src={XIcon} alt={SOCIAL_LINKS.X} />
-        </Anchor>
-        <Anchor href={SOCIAL_LINKS.FACEBOOK} c="white" target="_blank">
-          <Image width={32} src={FacebookIcon} alt={SOCIAL_LINKS.FACEBOOK} />
-        </Anchor>
-      </Group>
-    );
-  };
+// Assign a display name
+SocialIcons.displayName = 'SocialIcons';
+
+export default function Footer() {
+  const isMobile = useMediaQuery('(max-width: 480px)');
 
   return (
     <div className="font-proxima relative w-full p-0">
@@ -88,12 +92,16 @@ export default function Footer() {
                   Get in Touch
                 </Text>
               </div>
-              <Text p={0}>Caxton House, 3rd Floor</Text>
-              <Text>25, Kenyatta Avenue.</Text>
-              <Text>P. O. Box 35447 - 00100</Text>
-              <Text>Nairobi, Kenya.</Text>
+              <div className="flex flex-row md:flex-col">
+                <Text p={0}>Caxton House, 3rd Floor</Text>
+                <Text>25, Kenyatta Avenue.</Text>
+              </div>
+              <div className="flex flex-row md:flex-col">
+                <Text>P. O. Box 35447 - 00100</Text>
+                <Text>Nairobi, Kenya.</Text>
+              </div>
             </Stack>
-            <Group gap={4} className="mt-[1em] px-4">
+            <Group gap={4} className="px-4 md:mt-[1em]">
               <Image width={24} height={24} src={MailIcon} alt="email" />
               <Text fw="bold" ml={10}>
                 Email:
@@ -107,7 +115,9 @@ export default function Footer() {
                 Phone:
               </Text>
               <Text>(+254) 706 349 696,</Text>
-              <Text>(+254) 711 486 581</Text>
+              <div className="ml-[5.8em]">
+                <Text>(+254) 711 486 581</Text>
+              </div>
             </Group>
 
             <Group gap={4} className="px-4">
@@ -116,7 +126,9 @@ export default function Footer() {
                 Hours:
               </Text>
               <Text>Mon-Fri 8:00am - 5:00pm /</Text>
-              <Text>Sat: 8:00am to 2:00pm</Text>
+              <div className="ml-[5.6em]">
+                <Text>Sat: 8:00am to 2:00pm</Text>
+              </div>
             </Group>
           </Stack>
 
