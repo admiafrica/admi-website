@@ -115,7 +115,7 @@ export default function Footer() {
                 Phone:
               </Text>
               <Text>(+254) 706 349 696,</Text>
-              <div className="ml-[5.8em]">
+              <div className="ml-[5.8em] sm:ml-1">
                 <Text>(+254) 711 486 581</Text>
               </div>
             </Group>
@@ -126,7 +126,7 @@ export default function Footer() {
                 Hours:
               </Text>
               <Text>Mon-Fri 8:00am - 5:00pm /</Text>
-              <div className="ml-[5.6em]">
+              <div className="ml-[5.6em] sm:ml-1">
                 <Text>Sat: 8:00am to 2:00pm</Text>
               </div>
             </Group>
