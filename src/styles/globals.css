@@ -29,6 +29,12 @@ body {
   border-radius: 8px 0 0 8px !important;
 }
 
+@layer base {
+  a {
+    @apply no-underline;
+  }
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
