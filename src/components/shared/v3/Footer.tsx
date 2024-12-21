@@ -50,7 +50,7 @@ export default function Footer() {
   const isMobile = useMediaQuery('(max-width: 480px)');
 
   return (
-    <div className="font-proxima relative w-full p-0">
+    <div className="relative w-full p-0 font-proxima">
       {/* Floating Card */}
       <Card
         className="absolute left-1/2 top-[3.75rem] z-10 h-fit w-[92vw] -translate-x-1/2 transform justify-center shadow-lg md:h-[7.125rem] md:w-[60rem]"
@@ -59,7 +59,7 @@ export default function Footer() {
       >
         <div className="my-auto flex w-full flex-col p-2 md:flex-row md:p-4">
           <div className="pt-3 md:w-[70%]">
-            <div className="font-nexa mb-4 text-center md:text-left">
+            <div className="mb-4 text-center font-nexa md:text-left">
               <Text size="25px" fw={900}>
                 Ready to Get Started?
               </Text>
@@ -101,7 +101,7 @@ export default function Footer() {
                 <Text>Nairobi, Kenya.</Text>
               </div>
             </Stack>
-            <Group gap={4} className="px-4 md:mt-[1em]">
+            <Group gap={4} className="px-4 md:mt-[8em]">
               <Image width={24} height={24} src={MailIcon} alt="email" />
               <Text fw="bold" ml={10}>
                 Email:
@@ -183,8 +183,8 @@ export default function Footer() {
         </Group>
         {isMobile && <SocialIcons />}
 
-        <Divider mt={48} size={0.5} />
-
+        <Divider mt={48} size={0.5} opacity="20%" />
+Í
         <Group
           className="md:pt-auto mx-auto w-full max-w-screen-xl flex-col px-4 pt-8 md:flex-row"
           gap={2}

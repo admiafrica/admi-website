@@ -6,7 +6,7 @@ import { IconMenu } from '@tabler/icons-react';
 
 import logo from '@/assets/logo-light.svg';
 
-export default function CampaignHeader() {
+export default function NavBar() {
   const isMobile = useMediaQuery('(max-width: 767px)');
 
   const getMenuWideScreen = () => {
