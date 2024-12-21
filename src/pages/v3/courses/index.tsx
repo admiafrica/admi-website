@@ -1,4 +1,4 @@
-import { MainLayout } from "@/layouts/MainLayout";
+import { MainLayout } from "@/layouts/v3/MainLayout";
 
 export default function CoursesRoute() {
   return (

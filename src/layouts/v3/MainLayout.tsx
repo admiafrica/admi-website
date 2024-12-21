@@ -1,7 +1,9 @@
+import '@mantine/carousel/styles.css';
+
 import { AppShell, rem } from '@mantine/core';
 import { useHeadroom } from '@mantine/hooks';
 
-import { Footer } from '@/components/shared/v3';
+import { Footer, NavBar } from '@/components/shared/v3';
 import { nexaFont, proximaNovaFont } from '@/styles/theme';
 
 type LayoutProps = {
@@ -18,13 +20,13 @@ export function MainLayout({ children }: LayoutProps) {
         padding="md"
       >
         <AppShell.Header style={headerStyle}>
-          {/* <Header /> */}
+          <NavBar />
         </AppShell.Header>
 
-        <AppShell.Main pt={`calc(${rem(60)} + var(--mantine-spacing-md))`}>
+        <AppShell.Main pt={`calc(${rem(60)} + var(--mantine-spacing-md))`} p={0}>
           {children}
         </AppShell.Main>
-        <AppShell.Footer pos="relative">
+        <AppShell.Footer pos="relative" withBorder={false}>
           <Footer />
         </AppShell.Footer>
       </AppShell>
