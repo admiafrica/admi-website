@@ -4,7 +4,7 @@ import { CollapsibleContent } from '../shared/v3';
 
 export default function CourseMentors() {
   return (
-    <div className="w-full max-w-screen-2xl mx-auto">
+    <div className="w-full max-w-screen-2xl mx-auto px-4">
       <div className="font-nexa">
         <Text size="2em" fw={900}>
           Course Leader & Mentor

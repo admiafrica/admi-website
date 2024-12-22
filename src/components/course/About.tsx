@@ -4,7 +4,7 @@ import { IconCheck, IconExclamationCircle } from '@tabler/icons-react';
 
 export default function CourseAbout() {
   return (
-    <div className="w-full pt-32 max-w-screen-2xl mx-auto">
+    <div className="w-full pt-32 max-w-screen-2xl mx-auto px-4">
       <div className="flex w-full">
         <div className="flex w-1/2 flex-col">
           <div className="font-nexa text-admiRed">

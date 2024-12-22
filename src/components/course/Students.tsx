@@ -5,10 +5,10 @@ import { IconUser } from '@tabler/icons-react';
 // 5
 export default function CourseStudents() {
   return (
-    <div className="w-full max-w-screen-2xl mx-auto">
+    <div className="w-full max-w-screen-2xl mx-auto px-4">
       <div className="font-nexa">
         <Text size="2em" fw={900}>
-          Student Portflio & Alumni Stories
+          Student Portfolio & Alumni Stories
         </Text>
       </div>
 

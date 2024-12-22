@@ -74,7 +74,7 @@ export default function NavBar() {
   };
 
   return (
-    <Group className="w-full px-4 max-w-screen-2xl mx-auto">
+    <Group className="mx-auto w-full max-w-screen-2xl px-4">
       <Group className="flex grow flex-row-reverse font-nexa md:flex-row">
         <Link href="/" style={{ textDecoration: 'none' }}>
           <Image src={logo} width={80} alt="Africa Digital Media Institute" />
@@ -95,5 +95,4 @@ const menuItemStyle: React.CSSProperties = {
   cursor: 'pointer',
   fontWeight: 'bold',
   fontSize: 18,
-  // color: '#BA2E36',
 };

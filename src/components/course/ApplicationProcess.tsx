@@ -6,7 +6,7 @@ import { CollapsibleContent } from '../shared/v3';
 // 3
 export default function CourseApplicationProcess() {
   return (
-    <div className="w-full max-w-screen-2xl mx-auto">
+    <div className="mx-auto w-full max-w-screen-2xl px-4">
       <div className="font-nexa">
         <Text size="2em" fw={900}>
           Application Process

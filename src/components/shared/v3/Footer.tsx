@@ -50,7 +50,7 @@ export default function Footer() {
   const isMobile = useMediaQuery('(max-width: 480px)');
 
   return (
-    <div className="relative w-full p-0 font-proxima">
+    <div className="relative w-full font-proxima">
       {/* Floating Card */}
       <Card
         className="absolute left-1/2 top-[3.75rem] z-10 h-fit w-[92vw] -translate-x-1/2 transform justify-center shadow-lg md:h-[7.125rem] md:w-[60rem]"
@@ -58,7 +58,7 @@ export default function Footer() {
         radius={6}
       >
         <div className="my-auto flex w-full flex-col p-2 md:flex-row md:p-4">
-          <div className="pt-3 md:w-[70%]">
+          <div className="pt-3 md:w-[64%]">
             <div className="mb-4 text-center font-nexa md:text-left">
               <Text size="25px" fw={900}>
                 Ready to Get Started?
@@ -73,7 +73,7 @@ export default function Footer() {
           </div>
           <div className="md:py-auto mx-auto py-4 md:w-[30%]">
             <Button
-              size="lg"
+              size="xl"
               backgroundColor="admiRed"
               label="Enroll Today with ADMI"
             />
@@ -82,7 +82,7 @@ export default function Footer() {
       </Card>
       <div className="w-full bg-[#002A23] pb-8 pt-36">
         <Group
-          className="mx-auto w-full max-w-screen-xl flex-col text-white md:flex-row"
+          className="mx-auto w-full max-w-screen-2xl flex-col text-white md:flex-row"
           align="top"
         >
           <Stack className="grow" h="100%">
@@ -182,9 +182,7 @@ export default function Footer() {
           </div>
         </Group>
         {isMobile && <SocialIcons />}
-
-        <Divider mt={48} size={0.5} opacity="20%" />
-Í
+        <Divider mt={48} size={0.5} opacity="20%" />Í
         <Group
           className="md:pt-auto mx-auto w-full max-w-screen-xl flex-col px-4 pt-8 md:flex-row"
           gap={2}
