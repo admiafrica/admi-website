@@ -18,7 +18,7 @@ export default function CourseHero() {
         radius={6}
       >
         <div className="my-auto flex w-full flex-col p-2 md:flex-row md:p-4">
-          <div className="pt-3 grow">
+          <div className="grow pt-3">
             <div className="flex grow">
               <div className="flex">
                 <Image width={24} height={24} src={IconTimer} alt="email" />
@@ -78,7 +78,10 @@ export default function CourseHero() {
             </Text>
           </div>
           <div className="mt-8 font-proxima">
-            <Text size="1em">Unleash your creativity</Text>
+            <Text size="1.2em" fw={600}>
+              Unleash your creativity and bring your imagination to life with
+              ADMI's Animation and Motion Graphics Diploma.
+            </Text>
           </div>
         </div>
         <div className="w-1/2"></div>
