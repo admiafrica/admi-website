@@ -1,12 +1,10 @@
-import { Card, Image, Text, Badge, Button, Group } from '@mantine/core';
-import { IconCheck, IconExclamationCircle, IconKey } from '@tabler/icons-react';
+import { Text } from '@mantine/core';
 import { CollapsibleContent } from '../shared/v3';
-// import { Text } from '@mantine/core';
 
 // 3
 export default function CourseFAQs() {
   return (
-    <div className="mx-auto w-full max-w-screen-2xl px-4">
+    <div className="mx-auto w-full max-w-screen-xl px-4">
       <div className="font-nexa">
         <Text size="2em" fw={900}>
           Frequently Asked Questions
@@ -14,12 +12,22 @@ export default function CourseFAQs() {
       </div>
 
       <CollapsibleContent
-        title="Is Prior Animation Experience needed?"
+        title="Is prior animation experience needed?"
         content={<Text>Content here</Text>}
       />
 
       <CollapsibleContent
-        title="Application Process - International Students"
+        title="What software is used on the course?"
+        content={<Text>Content here</Text>}
+      />
+
+      <CollapsibleContent
+        title="How are the assesments conducted?"
+        content={<Text>Content here</Text>}
+      />
+
+      <CollapsibleContent
+        title="Are there opportuities for industry exposure?"
         content={<Text>Content here</Text>}
       />
     </div>

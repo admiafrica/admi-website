@@ -6,38 +6,38 @@ import { useMediaQuery } from '@mantine/hooks';
 import { Button } from '@/components/ui';
 
 import { IconCopyright } from '@tabler/icons-react';
-import LogoWhiteIcon from '@/assets/logo-light.svg';
-import YouTubeIcon from '@/assets/icons/youtube.svg';
-import InstagramIcon from '@/assets/icons/instagram.svg';
-import FacebookIcon from '@/assets/icons/facebook.svg';
-import TikTokIcon from '@/assets/icons/tiktok.svg';
-import XIcon from '@/assets/icons/x.svg';
-import LinkedInIcon from '@/assets/icons/linkedin.svg';
-import MailIcon from '@/assets/icons/mail.svg';
-import CallIcon from '@/assets/icons/call.svg';
-import StopWatchIcon from '@/assets/icons/stop-watch.svg';
+import IconLogoWhite from '@/assets/logo-light.svg';
+import IconYouTube from '@/assets/icons/youtube.svg';
+import IconInstagram from '@/assets/icons/instagram.svg';
+import IconFacebook from '@/assets/icons/facebook.svg';
+import IconTikTok from '@/assets/icons/tiktok.svg';
+import IconX from '@/assets/icons/x.svg';
+import IconLinkedIn from '@/assets/icons/linkedin.svg';
+import IconMail from '@/assets/icons/mail.svg';
+import IconCall from '@/assets/icons/call.svg';
+import IconStopWatch from '@/assets/icons/stop-watch.svg';
 import { SOCIAL_LINKS } from '@/utils';
 
 const SocialIcons = React.memo(() => {
   return (
     <Group justify="center" mt={32} h={48}>
       <Anchor href={SOCIAL_LINKS.TIKTOK} c="white" target="_blank">
-        <Image width={32} src={TikTokIcon} alt={SOCIAL_LINKS.TIKTOK} />
+        <Image width={32} src={IconTikTok} alt={SOCIAL_LINKS.TIKTOK} />
       </Anchor>
       <Anchor href={SOCIAL_LINKS.YOUTUBE} c="white" target="_blank">
-        <Image width={36} src={YouTubeIcon} alt={SOCIAL_LINKS.YOUTUBE} />
+        <Image width={36} src={IconYouTube} alt={SOCIAL_LINKS.YOUTUBE} />
       </Anchor>
       <Anchor href={SOCIAL_LINKS.LINKEDIN} c="white" target="_blank">
-        <Image width={32} src={LinkedInIcon} alt={SOCIAL_LINKS.LINKEDIN} />
+        <Image width={32} src={IconLinkedIn} alt={SOCIAL_LINKS.LINKEDIN} />
       </Anchor>
       <Anchor href={SOCIAL_LINKS.INSTAGRAM} c="white" target="_blank">
-        <Image width={44} src={InstagramIcon} alt={SOCIAL_LINKS.INSTAGRAM} />
+        <Image width={44} src={IconInstagram} alt={SOCIAL_LINKS.INSTAGRAM} />
       </Anchor>
       <Anchor href={SOCIAL_LINKS.X} c="white" target="_blank">
-        <Image width={32} height={32} src={XIcon} alt={SOCIAL_LINKS.X} />
+        <Image width={32} height={32} src={IconX} alt={SOCIAL_LINKS.X} />
       </Anchor>
       <Anchor href={SOCIAL_LINKS.FACEBOOK} c="white" target="_blank">
-        <Image width={32} src={FacebookIcon} alt={SOCIAL_LINKS.FACEBOOK} />
+        <Image width={32} src={IconFacebook} alt={SOCIAL_LINKS.FACEBOOK} />
       </Anchor>
     </Group>
   );
@@ -102,7 +102,7 @@ export default function Footer() {
               </div>
             </Stack>
             <Group gap={4} className="px-4 md:mt-[8em]">
-              <Image width={24} height={24} src={MailIcon} alt="email" />
+              <Image width={24} height={24} src={IconMail} alt="email" />
               <Text fw="bold" ml={10}>
                 Email:
               </Text>
@@ -110,7 +110,7 @@ export default function Footer() {
             </Group>
 
             <Group gap={4} className="px-4">
-              <Image width={24} height={24} src={CallIcon} alt="phone" />
+              <Image width={24} height={24} src={IconCall} alt="phone" />
               <Text fw="bold" ml={10}>
                 Phone:
               </Text>
@@ -121,7 +121,7 @@ export default function Footer() {
             </Group>
 
             <Group gap={4} className="px-4">
-              <Image width={24} src={StopWatchIcon} alt="hours active" />
+              <Image width={24} src={IconStopWatch} alt="hours active" />
               <Text fw="bold" ml={10}>
                 Hours:
               </Text>
@@ -196,7 +196,7 @@ export default function Footer() {
           <div className="grow text-admiShamrok md:pl-4">
             <Text>Privacy Policy | Terms & Conditions</Text>
           </div>
-          <Image width={95} src={LogoWhiteIcon} alt="logo" />
+          <Image width={95} src={IconLogoWhite} alt="logo" />
         </Group>
       </div>
 

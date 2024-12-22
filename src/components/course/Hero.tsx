@@ -1,5 +1,11 @@
-import { Badge, Card, Text } from '@mantine/core';
+import Image from 'next/image';
+import { Badge, Card, Group, Text } from '@mantine/core';
 import { Button } from '../ui';
+
+import IconTrophy from '@/assets/icons/trophy.svg';
+import IconTimer from '@/assets/icons/timer.svg';
+import IconHourGlass from '@/assets/icons/hour-glass.svg';
+import IconAward from '@/assets/icons/award-level.svg';
 
 // 1.
 export default function CourseHero() {
@@ -12,47 +18,63 @@ export default function CourseHero() {
         radius={6}
       >
         <div className="my-auto flex w-full flex-col p-2 md:flex-row md:p-4">
-          <div className="pt-3 md:w-[70%]">
+          <div className="pt-3 grow">
             <div className="flex grow">
-              <div>
+              <div className="flex">
+                <Image width={24} height={24} src={IconTimer} alt="email" />
                 <div className="px-4 text-center md:text-left">
                   <Text size="16px" fw={100}>
                     Duration
                   </Text>
                   <Text size="16px" fw={600}>
-                    Duration
+                    1 Term
                   </Text>
                 </div>
               </div>
-              <div className="px-4 text-center md:text-left">
-                <Text size="16px" fw={100}>
-                  Credit Hours
-                </Text>
-                <Text size="16px" fw={600}>
-                  Credit Hours
-                </Text>
+              <div className="flex">
+                <Image width={24} height={24} src={IconHourGlass} alt="email" />
+                <div className="px-4 text-center md:text-left">
+                  <Text size="16px" fw={100}>
+                    Credit Hours
+                  </Text>
+                  <Text size="16px" fw={600}>
+                    Hrs 1200
+                  </Text>
+                </div>
               </div>
-              <div className="px-4 text-center md:text-left">
-                <Text size="16px" fw={100}>
-                  Award Level
-                </Text>
-                <Text size="16px" fw={600}>
-                  Award Level
-                </Text>
+              <div className="flex">
+                <Image width={24} height={24} src={IconAward} alt="email" />
+                <div className="px-4 text-center md:text-left">
+                  <Text size="16px" fw={100}>
+                    Award Level
+                  </Text>
+                  <Text size="16px" fw={600}>
+                    Diploma Certificate
+                  </Text>
+                </div>
               </div>
             </div>
           </div>
-          <div className="md:py-auto mx-auto py-4 md:w-[30%]">
+          <div className="md:py-auto mx-auto py-4">
             <Button size="xl" backgroundColor="admiRed" label="Get in Touch" />
           </div>
         </div>
       </Card>
       <div className="mx-auto w-full max-w-screen-2xl">
         <div className="w-1/2 pt-32">
-          <Badge>Diploma Courses</Badge>
+          <Badge h={36} bg={'black'}>
+            <Group m={8}>
+              <Image width={24} height={24} src={IconTrophy} alt="email" />
+              <div className="font-nexa">
+                <Text size="sm" fw={900}>
+                  Diploma Courses
+                </Text>
+              </div>
+            </Group>
+          </Badge>
           <div className="font-nexa">
             <Text size="60px" fw={900}>
-              Animation & Motion Graphics
+              Animation & Motion Graphics Diploma
             </Text>
           </div>
           <div className="mt-8 font-proxima">

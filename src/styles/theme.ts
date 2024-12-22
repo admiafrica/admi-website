@@ -47,6 +47,8 @@ export const defaultTheme = createTheme({
     admiOrange: generateColors('#BA2E36'),
     admiShamrok: generateColors('#08F6CF'),
     admiRed: generateColors('#F60834'),
+    admiOrangeLight: generateColors('#F76335'),
+    admiOrangeDark: generateColors('#BD2D00'),
   },
   primaryColor: 'admiOrange',
 });
