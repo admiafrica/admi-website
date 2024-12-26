@@ -53,12 +53,12 @@ export default function Footer() {
     <div className="relative w-full font-proxima">
       {/* Floating Card */}
       <Card
-        className="absolute left-1/2 top-[3.75rem] z-10 h-fit w-[92vw] -translate-x-1/2 transform justify-center shadow-lg md:h-[7.125rem] md:w-[60rem]"
+        className="absolute left-1/2 top-[3.75rem] z-10 h-fit w-[92vw] -translate-x-1/2 transform justify-center shadow-lg md:h-[7.125rem] md:w-[78rem]"
         bg={'admiShamrok'}
         radius={6}
       >
         <div className="my-auto flex w-full flex-col p-2 md:flex-row md:p-4">
-          <div className="pt-3 md:w-[64%]">
+          <div className="pt-3 grow">
             <div className="mb-4 text-center font-nexa md:text-left">
               <Text size="25px" fw={900}>
                 Ready to Get Started?
@@ -71,7 +71,7 @@ export default function Footer() {
               </Text>
             </div>
           </div>
-          <div className="md:py-auto mx-auto py-4 md:w-[30%]">
+          <div className="md:py-auto mx-auto py-4">
             <Button
               size="xl"
               backgroundColor="admiRed"
@@ -184,7 +184,7 @@ export default function Footer() {
         {isMobile && <SocialIcons />}
         <Divider mt={48} size={0.5} opacity="20%" />Í
         <Group
-          className="md:pt-auto mx-auto w-full max-w-screen-xl flex-col px-4 pt-8 md:flex-row"
+          className="md:pt-auto mx-auto w-full max-w-screen-2xl flex-col px-4 pt-8 md:flex-row"
           gap={2}
         >
           <IconCopyright className="text-white" />

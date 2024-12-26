@@ -10,45 +10,45 @@ import IconAward from '@/assets/icons/award-level.svg';
 // 1.
 export default function CourseHero() {
   return (
-    <div className="relative h-[60vh] w-full bg-gray-300 px-4">
+    <div className="relative md:h-[60vh] w-full bg-gray-300 px-4">
       {/* Floating Card */}
       <Card
-        className="absolute left-1/2 top-[35rem] z-10 h-fit w-[92vw] -translate-x-1/2 transform justify-center shadow-lg md:h-[7.125rem] md:w-[60rem]"
+        className="absolute left-1/2 top-[35rem] z-10 h-fit w-[92vw] -translate-x-1/2 transform justify-center shadow-lg md:h-[7.125rem] md:w-[85vw]"
         bg={'admiShamrok'}
         radius={6}
       >
         <div className="my-auto flex w-full flex-col p-2 md:flex-row md:p-4">
-          <div className="grow pt-3">
-            <div className="flex grow">
-              <div className="flex">
-                <Image width={24} height={24} src={IconTimer} alt="email" />
+          <div className="my-auto grow">
+            <div className="flex">
+              <div className="flex sm:w-1/4">
+                <Image width={32} height={32} src={IconTimer} alt="email" />
                 <div className="px-4 text-center md:text-left">
-                  <Text size="16px" fw={100}>
+                  <Text size="16px" fw={100} pb={8}>
                     Duration
                   </Text>
-                  <Text size="16px" fw={600}>
+                  <Text size="16px" fw={900}>
                     1 Term
                   </Text>
                 </div>
               </div>
-              <div className="flex">
-                <Image width={24} height={24} src={IconHourGlass} alt="email" />
+              <div className="flex sm:w-1/4">
+                <Image width={32} height={32} src={IconHourGlass} alt="email" />
                 <div className="px-4 text-center md:text-left">
-                  <Text size="16px" fw={100}>
+                  <Text size="16px" fw={100} pb={8}>
                     Credit Hours
                   </Text>
-                  <Text size="16px" fw={600}>
+                  <Text size="16px" fw={900}>
                     Hrs 1200
                   </Text>
                 </div>
               </div>
               <div className="flex">
-                <Image width={24} height={24} src={IconAward} alt="email" />
+                <Image width={32} height={32} src={IconAward} alt="email" />
                 <div className="px-4 text-center md:text-left">
-                  <Text size="16px" fw={100}>
+                  <Text size="16px" fw={100} pb={8}>
                     Award Level
                   </Text>
-                  <Text size="16px" fw={600}>
+                  <Text size="16px" fw={900}>
                     Diploma Certificate
                   </Text>
                 </div>
@@ -61,7 +61,7 @@ export default function CourseHero() {
         </div>
       </Card>
       <div className="mx-auto w-full max-w-screen-2xl">
-        <div className="w-1/2 pt-32">
+        <div className="w-1/2 md:pt-32">
           <Badge h={36} bg={'black'}>
             <Group m={8}>
               <Image width={24} height={24} src={IconTrophy} alt="email" />

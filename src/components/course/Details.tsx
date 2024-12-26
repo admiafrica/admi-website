@@ -76,45 +76,45 @@ export default function CourseDetails() {
         radius={6}
       >
         <div className="my-auto flex w-full flex-col p-2 text-white md:flex-row md:p-4">
-          <div className="w-full flex pt-3">
-            <div className="mb-4 text-center font-nexa md:text-left">
-              <Text size="25px" fw={900} c={'admiShamrok'}>
+          <div className="w-full flex pt-3 my-auto">
+            <div className="mb-4 text-center font-nexa md:text-left mr-8">
+              <Text size="25px" fw={900} c={'admiShamrok'} pb={8}>
                 Earn your course
               </Text>
               <Text size="25px" fw={900}>
                 certificate today
               </Text>
             </div>
-            <div className="flex grow">
-              <div className="flex">
-                <Image width={24} height={24} src={IconTimer} alt="email" />
+            <div className="flex grow my-auto">
+              <div className="flex w-1/5">
+                <Image width={32} height={32} src={IconTimer} alt="email" />
                 <div className="px-4 text-center md:text-left">
-                  <Text size="16px" fw={100}>
+                  <Text size="16px" fw={100} pb={8}>
                     Duration
                   </Text>
-                  <Text size="16px" fw={600}>
+                  <Text size="16px" fw={900}>
                     1 Term
                   </Text>
                 </div>
               </div>
-              <div className="flex">
-                <Image width={24} height={24} src={IconHourglass} alt="email" />
+              <div className="flex w-1/5">
+                <Image width={32} height={32} src={IconHourglass} alt="email" />
                 <div className="px-4 text-center md:text-left">
-                  <Text size="16px" fw={100}>
+                  <Text size="16px" fw={100} pb={8}>
                     Credit Hours
                   </Text>
-                  <Text size="16px" fw={600}>
+                  <Text size="16px" fw={900}>
                     Hrs 1200
                   </Text>
                 </div>
               </div>
-              <div className="flex">
-                <Image width={24} height={24} src={IconCurrency} alt="email" />
+              <div className="flex w-1/5">
+                <Image width={32} height={32} src={IconCurrency} alt="email" />
                 <div className="px-4 text-center md:text-left">
-                  <Text size="16px" fw={100}>
+                  <Text size="16px" fw={100} pb={8}>
                     Tuition Fees
                   </Text>
-                  <Text size="16px" fw={600}>
+                  <Text size="16px" fw={900}>
                     KES 145,000
                   </Text>
                 </div>

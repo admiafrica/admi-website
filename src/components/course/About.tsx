@@ -4,7 +4,7 @@ import { IconCheck, IconExclamationCircle } from '@tabler/icons-react';
 
 export default function CourseAbout() {
   return (
-    <div className="w-full pt-32 max-w-screen-2xl mx-auto px-4">
+    <div className="mx-auto w-full max-w-screen-2xl px-4 pt-32">
       <div className="flex w-full">
         <div className="flex w-1/2 flex-col">
           <div className="font-nexa text-admiRed">
@@ -36,7 +36,13 @@ export default function CourseAbout() {
           </div>
         </div>
         <div className="flex w-1/2 flex-col">
-          <Card shadow="sm" padding="lg" radius="md" withBorder className='w-[64%] mx-auto'>
+          <Card
+            shadow="sm"
+            padding="lg"
+            radius="md"
+            withBorder
+            className="mx-auto w-[64%]"
+          >
             <Card.Section>
               <Image
                 src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png"
@@ -47,22 +53,30 @@ export default function CourseAbout() {
 
             <Group mt="md" mb="xs">
               <IconCheck size={20} className="text-admiRed" />
-              <Text fw={400}>High School:KCSE C-</Text>
+              <Text fw={400} w={'80%'}>
+                High School:KCSE C-
+              </Text>
             </Group>
 
             <Group mt="md" mb="xs">
               <IconCheck size={20} className="text-admiRed" />
-              <Text fw={400}>Basic computer proficiancy is required</Text>
+              <Text fw={400} w={'80%'}>
+                Basic computer proficiancy is required
+              </Text>
             </Group>
 
             <Group mt="md" mb="xs">
               <IconCheck size={20} className="text-admiRed" />
-              <Text fw={400}>Full time - 4 semesters + 1 semster internship intakes</Text>
+              <Text fw={400} w={'80%'}>
+                Full time - 4 semesters + 1 semster internship intakes
+              </Text>
             </Group>
             <Card.Section>
               <Group px={20} py={16} bg={'admiOrangeLight'}>
                 <IconExclamationCircle size={20} className="text-white" />
-                <Text fw={400} c={'white'}>Norway Fjord Adventures</Text>
+                <Text fw={400} c={'white'}>
+                  Norway Fjord Adventures
+                </Text>
               </Group>
             </Card.Section>
           </Card>
