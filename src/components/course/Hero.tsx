@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { Badge, Card, Group, Text } from '@mantine/core';
+import { Badge, Card, Group, NumberFormatter, Text } from '@mantine/core';
 import { Button } from '../ui';
 
 import IconTrophy from '@/assets/icons/trophy.svg';
@@ -7,10 +7,38 @@ import IconTimer from '@/assets/icons/timer.svg';
 import IconHourGlass from '@/assets/icons/hour-glass.svg';
 import IconAward from '@/assets/icons/award-level.svg';
 
-// 1.
-export default function CourseHero() {
+type Props = {
+  name: string;
+  banner: any;
+  duration: string;
+  creditHours: number;
+};
+
+export default function CourseHero(props: Props) {
+  // Extract the last word and the remaining name
+  const words = props.name.trim().split(' ');
+  const lastWord = words.pop(); // Removes and returns the last word
+  const remainingName = words.join(' ');
+
   return (
-    <div className="relative md:h-[60vh] w-full bg-gray-300 px-4">
+    <div className="relative w-full px-4 md:h-[60vh]">
+      {/* Background Image */}
+      <Image
+        src={`https:${props.banner.fields.file.url}`}
+        alt="Course Banner"
+        fill
+        className="absolute inset-0 z-0"
+        style={{ objectFit: 'cover' }}
+      />
+
+      {/* Radial Gradient Overlay */}
+      <div
+        className="z-5 absolute inset-0"
+        style={{
+          background: `radial-gradient(circle, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 80%)`,
+        }}
+      ></div>
+
       {/* Floating Card */}
       <Card
         className="absolute left-1/2 top-[35rem] z-10 h-fit w-[92vw] -translate-x-1/2 transform justify-center shadow-lg md:h-[7.125rem] md:w-[85vw]"
@@ -27,7 +55,7 @@ export default function CourseHero() {
                     Duration
                   </Text>
                   <Text size="16px" fw={900}>
-                    1 Term
+                    {props.duration}
                   </Text>
                 </div>
               </div>
@@ -38,7 +66,7 @@ export default function CourseHero() {
                     Credit Hours
                   </Text>
                   <Text size="16px" fw={900}>
-                    Hrs 1200
+                    <NumberFormatter prefix="Hrs " value={props.creditHours} thousandSeparator />
                   </Text>
                 </div>
               </div>
@@ -49,7 +77,7 @@ export default function CourseHero() {
                     Award Level
                   </Text>
                   <Text size="16px" fw={900}>
-                    Diploma Certificate
+                    {lastWord}
                   </Text>
                 </div>
               </div>
@@ -60,27 +88,29 @@ export default function CourseHero() {
           </div>
         </div>
       </Card>
-      <div className="mx-auto w-full max-w-screen-2xl">
+
+      {/* Content Section */}
+      <div className="relative z-10 mx-auto w-full max-w-screen-2xl text-white">
         <div className="w-1/2 md:pt-32">
           <Badge h={36} bg={'black'}>
             <Group m={8}>
               <Image width={24} height={24} src={IconTrophy} alt="email" />
               <div className="font-nexa">
                 <Text size="sm" fw={900}>
-                  Diploma Courses
+                  {lastWord} Courses
                 </Text>
               </div>
             </Group>
           </Badge>
           <div className="font-nexa">
             <Text size="60px" fw={900}>
-              Animation & Motion Graphics Diploma
+              {remainingName} <span className="text-[#F1FE38]">{lastWord}</span>
             </Text>
           </div>
           <div className="mt-8 font-proxima">
             <Text size="1.2em" fw={600}>
-              Unleash your creativity and bring your imagination to life with
-              ADMI's Animation and Motion Graphics Diploma.
+              Unleash your creativity and bring your imagination to life with ADMI's Animation and Motion Graphics
+              Diploma.
             </Text>
           </div>
         </div>

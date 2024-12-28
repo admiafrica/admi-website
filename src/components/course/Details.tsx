@@ -1,8 +1,10 @@
 // 3
 import Image from 'next/image';
-import { Card, Text, Group } from '@mantine/core';
+import { Card, Text, Group, NumberFormatter, Divider } from '@mantine/core';
+
 import { CollapsibleContent } from '../shared/v3';
 import { Button } from '../ui';
+import { getAssetDetails } from '@/utils';
 
 import IconCheckbox from '@/assets/icons/checkbox.svg';
 import IconBook from '@/assets/icons/book.svg';
@@ -11,7 +13,15 @@ import IconHourglass from '@/assets/icons/hour-glass-white.svg';
 import IconTimer from '@/assets/icons/timer-white.svg';
 import IconCurrency from '@/assets/icons/group-6.svg';
 
-export default function CourseDetails() {
+type Props = {
+  duration: string;
+  creditHours: number;
+  tuitionFee: number;
+  usp: any[];
+  assets: any[];
+};
+
+export default function CourseDetails(props: Props) {
   return (
     <div className="mx-auto w-full max-w-screen-2xl px-4">
       <div className="text-center font-nexa">
@@ -20,38 +30,24 @@ export default function CourseDetails() {
         </Text>
       </div>
       <div className="flex flex-row">
-        <Card shadow="md" className="w-1/4">
-          <Group>
-            {/* <IconKey /> */}
-            <div className="font-nexa">
-              <Text fw={900}>Title here</Text>
+        {props.usp.map((item) => (
+          <Card shadow="md" className="mx-auto w-1/4" key={item.sys.id}>
+            <div className="flex">
+              <Image
+                src={`https:${getAssetDetails(props.assets, item.fields.courseUspImage.sys.id)?.fields.file.url}`}
+                alt={item.fields.courseUspImage.sys.id}
+                width={32}
+                height={32}
+              />
+              <div className="pl-4 font-nexa">
+                <Text fw={900}>{item.fields.courseUspText}</Text>
+              </div>
             </div>
-          </Group>
-          <div>
-            <Text>Description here</Text>
-          </div>
-        </Card>
-        <Card shadow="md" className="w-1/4">
-          <Group>
-            {/* <IconKey /> */}
-            <Text>Title here</Text>
-          </Group>
-          <Text>Description here</Text>
-        </Card>
-        <Card shadow="md" className="w-1/4">
-          <Group>
-            {/* <IconKey /> */}
-            <Text>Title here</Text>
-          </Group>
-          <Text>Description here</Text>
-        </Card>
-        <Card shadow="md" className="w-1/4">
-          <Group>
-            {/* <IconKey /> */}
-            <Text>Title here</Text>
-          </Group>
-          <Text>Description here</Text>
-        </Card>
+            <div className="font-proxima">
+              <Text>{item.fields.courseUspDescription}</Text>
+            </div>
+          </Card>
+        ))}
       </div>
 
       <CollapsibleContent
@@ -76,8 +72,8 @@ export default function CourseDetails() {
         radius={6}
       >
         <div className="my-auto flex w-full flex-col p-2 text-white md:flex-row md:p-4">
-          <div className="w-full flex pt-3 my-auto">
-            <div className="mb-4 text-center font-nexa md:text-left mr-8">
+          <div className="my-auto flex w-full pt-3">
+            <div className="mb-4 mr-8 text-center font-nexa md:text-left">
               <Text size="25px" fw={900} c={'admiShamrok'} pb={8}>
                 Earn your course
               </Text>
@@ -85,37 +81,39 @@ export default function CourseDetails() {
                 certificate today
               </Text>
             </div>
-            <div className="flex grow my-auto">
-              <div className="flex w-1/5">
+            <div className="my-auto flex grow">
+              <div className="flex">
                 <Image width={32} height={32} src={IconTimer} alt="email" />
                 <div className="px-4 text-center md:text-left">
                   <Text size="16px" fw={100} pb={8}>
                     Duration
                   </Text>
                   <Text size="16px" fw={900}>
-                    1 Term
+                    {props.duration}
                   </Text>
                 </div>
               </div>
-              <div className="flex w-1/5">
+              <Divider orientation="vertical" size={1} opacity="30%" mx={8} />
+              <div className="flex">
                 <Image width={32} height={32} src={IconHourglass} alt="email" />
                 <div className="px-4 text-center md:text-left">
                   <Text size="16px" fw={100} pb={8}>
                     Credit Hours
                   </Text>
                   <Text size="16px" fw={900}>
-                    Hrs 1200
+                    <NumberFormatter prefix="Hrs " value={props.creditHours} thousandSeparator />
                   </Text>
                 </div>
               </div>
-              <div className="flex w-1/5">
+              <Divider orientation="vertical" size={1} opacity="30%" mx={8} />
+              <div className="flex">
                 <Image width={32} height={32} src={IconCurrency} alt="email" />
                 <div className="px-4 text-center md:text-left">
                   <Text size="16px" fw={100} pb={8}>
                     Tuition Fees
                   </Text>
                   <Text size="16px" fw={900}>
-                    KES 145,000
+                    <NumberFormatter prefix="KES " value={props.tuitionFee} thousandSeparator />
                   </Text>
                 </div>
               </div>

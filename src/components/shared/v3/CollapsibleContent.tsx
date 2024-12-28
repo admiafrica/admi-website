@@ -14,12 +14,7 @@ type Props = {
   icon?: React.ReactNode;
 };
 
-export default function CollapsibleContent({
-  icon,
-  title,
-  subTitle,
-  content,
-}: Props) {
+export default function CollapsibleContent({ icon, title, subTitle, content }: Props) {
   const [opened, { toggle }] = useDisclosure(false);
 
   return (
@@ -40,26 +35,15 @@ export default function CollapsibleContent({
             )}
           </div>
           {opened ? (
-            <Image
-              width={12}
-              height={12}
-              src={IconArrowDown}
-              alt="arrow-down"
-              className="mt-1"
-            />
+            <Image width={12} height={12} src={IconArrowDown} alt="arrow-down" className="mt-1" />
           ) : (
-            <Image
-              width={12}
-              height={12}
-              src={IconArrowLeft}
-              alt="arrow-left"
-            />
+            <Image width={12} height={12} src={IconArrowLeft} alt="arrow-left" />
           )}
         </Group>
       </Group>
 
       <Collapse in={opened}>
-        <div className="w-full font-proxima">{content}</div>
+        <div className="w-full bg-[#FEFFF5] p-4 font-proxima">{content}</div>
       </Collapse>
     </Card>
   );

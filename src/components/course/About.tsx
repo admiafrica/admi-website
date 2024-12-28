@@ -1,8 +1,13 @@
 // 2
 import { Card, Image, Text, Group } from '@mantine/core';
+import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
+import { Document as ContentfulDocument } from '@contentful/rich-text-types';
 import { IconCheck, IconExclamationCircle } from '@tabler/icons-react';
 
-export default function CourseAbout() {
+type Props = {
+  description: any;
+};
+export default function CourseAbout(props: Props) {
   return (
     <div className="mx-auto w-full max-w-screen-2xl px-4 pt-32">
       <div className="flex w-full">
@@ -12,28 +17,12 @@ export default function CourseAbout() {
               About this course
             </Text>
           </div>
-          <div className="font-proxima">
-            <Text size="lg" fw={600}>
-              This comprehensive program is designed to equip you with the
-              skills, knowledge, and industry connections needed to thrive in
-              the dynamic world of digital animation. From 2D and 3D animation
-              to motion graphics and visual effects, you'll master every aspect
-              of the animation process.
-            </Text>
-          </div>
-          <div className="mt-8 font-proxima">
-            <Text size="lg">
-              Throughout this diploma, you'll work with industry-standard
-              software and equipment, learning from experienced professionals
-              who are active in the field. You'll develop your unique artistic
-              style while gaining proficiency in cutting-edge animation
-              techniques. Whether your goal is to create captivating animated
-              films, design eye-catching motion graphics for advertising, or
-              craft immersive visual experiences for games and interactive
-              media, this course will provide you with the tools and expertise
-              to bring your creative vision to life. 
-            </Text>
-          </div>
+          <div
+            className="mt-8 font-proxima text-lg"
+            dangerouslySetInnerHTML={{
+              __html: documentToHtmlString(props.description),
+            }}
+          ></div>
         </div>
         <div className="flex w-1/2 flex-col">
           <Card

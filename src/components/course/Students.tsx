@@ -1,10 +1,11 @@
-import { Card, Group, Image, Rating, Text } from '@mantine/core';
+// 5
+import { Avatar, Card, Group, Image, Rating, Text } from '@mantine/core';
 import { Carousel } from '@mantine/carousel';
 
-import { IconUser } from '@tabler/icons-react';
-
-// 5
-export default function CourseStudents() {
+type Props = {
+  testimonials: any[];
+};
+export default function CourseStudents(props: Props) {
   return (
     <Group bg={'#BD2D00'} py={32}>
       <div className="mx-auto w-full max-w-screen-2xl px-4">
@@ -36,88 +37,8 @@ export default function CourseStudents() {
                 </Card.Section>
                 <Card.Section>
                   <Group py={8} bg={'#871F00'} c={'white'}>
-                    <IconUser />
+                    <Avatar src="image.png" variant="transparent" />
                     <div className="flex flex-col">
-                      <Text fw={500}>Norway Fjord Adventures</Text>
-                      <Text fw={500}>Norway Fjord Adventures</Text>
-                    </div>
-                  </Group>
-                </Card.Section>
-              </Card>
-            </Carousel.Slide>
-            <Carousel.Slide>
-              <Card className="w-[30em]">
-                <Card.Section>
-                  <Image
-                    src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png"
-                    height={200}
-                    alt="Norway"
-                  />
-                </Card.Section>
-                <Card.Section>
-                  <Group py={8} bg={'#871F00'} c={'white'}>
-                    <IconUser />
-                    <div className="flex grow flex-col">
-                      <Text fw={500}>Norway Fjord Adventures</Text>
-                      <Text fw={500}>Norway Fjord Adventures</Text>
-                    </div>
-                  </Group>
-                </Card.Section>
-              </Card>
-            </Carousel.Slide>
-            <Carousel.Slide>
-              <Card className="w-[30em]">
-                <Card.Section>
-                  <Image
-                    src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png"
-                    height={200}
-                    alt="Norway"
-                  />
-                </Card.Section>
-                <Card.Section>
-                  <Group py={8} bg={'#871F00'} c={'white'}>
-                    <IconUser />
-                    <div className="flex grow flex-col">
-                      <Text fw={500}>Norway Fjord Adventures</Text>
-                      <Text fw={500}>Norway Fjord Adventures</Text>
-                    </div>
-                  </Group>
-                </Card.Section>
-              </Card>
-            </Carousel.Slide>
-            <Carousel.Slide>
-              <Card className="w-[30em]">
-                <Card.Section>
-                  <Image
-                    src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png"
-                    height={200}
-                    alt="Norway"
-                  />
-                </Card.Section>
-                <Card.Section>
-                  <Group py={8} bg={'#871F00'} c={'white'}>
-                    <IconUser />
-                    <div className="flex grow flex-col">
-                      <Text fw={500}>Norway Fjord Adventures</Text>
-                      <Text fw={500}>Norway Fjord Adventures</Text>
-                    </div>
-                  </Group>
-                </Card.Section>
-              </Card>
-            </Carousel.Slide>
-            <Carousel.Slide>
-              <Card className="w-[30em]">
-                <Card.Section>
-                  <Image
-                    src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png"
-                    height={200}
-                    alt="Norway"
-                  />
-                </Card.Section>
-                <Card.Section>
-                  <Group py={8} bg={'#871F00'} c={'white'}>
-                    <IconUser />
-                    <div className="flex grow flex-col">
                       <Text fw={500}>Norway Fjord Adventures</Text>
                       <Text fw={500}>Norway Fjord Adventures</Text>
                     </div>
@@ -135,67 +56,30 @@ export default function CourseStudents() {
           </Text>
         </div>
 
-        <div className="flex h-fit w-full">
-          <Card className="mx-auto w-1/4">
-            <Rating value={5} fractions={2} readOnly />
-            <Card.Section>
-              <div className="flex grow flex-col">
-                <Text fw={500}>Norway Fjord Adventures</Text>
+        <div className="flex h-fit w-full justify-start">
+          {props.testimonials.map((testimonial, index) => (
+            <Card className="mr-4 w-1/4" key={`testimonial-${index}`}>
+              <Rating value={5} fractions={2} color="admiRed" readOnly />
+              <Card.Section>
+                <div className="flex flex-col">
+                  <Text fw={500} px={16} pt={8}>
+                    {testimonial.fields.description}
+                  </Text>
+                </div>
+              </Card.Section>
+              <div className="mt-8 flex">
+                <Avatar src="image.png" variant="transparent" />
+                <div className="flex flex-col">
+                  <div className="font-nexa">
+                    <Text fw={900}>{testimonial.fields.author}</Text>
+                  </div>
+                  {/* <div className="font-proxima">
+                    <Text fw={500}>Norway Fjord Adventures</Text>
+                  </div> */}
+                </div>
               </div>
-            </Card.Section>
-            <Group mt={8}>
-              <IconUser />
-              <div className="flex grow flex-col">
-                <Text fw={500}>Norway Fjord Adventures</Text>
-                <Text fw={500}>Norway Fjord Adventures</Text>
-              </div>
-            </Group>
-          </Card>
-          <Card className="mx-auto w-1/4">
-            <Rating value={5} fractions={2} readOnly />
-            <Card.Section>
-              <div className="flex grow flex-col">
-                <Text fw={500}>Norway Fjord Adventures</Text>
-              </div>
-            </Card.Section>
-            <Group mt={8}>
-              <IconUser />
-              <div className="flex grow flex-col">
-                <Text fw={500}>Norway Fjord Adventures</Text>
-                <Text fw={500}>Norway Fjord Adventures</Text>
-              </div>
-            </Group>
-          </Card>
-          <Card className="mx-auto w-1/4">
-            <Rating value={5} fractions={2} readOnly />
-            <Card.Section>
-              <div className="flex grow flex-col">
-                <Text fw={500}>Norway Fjord Adventures</Text>
-              </div>
-            </Card.Section>
-            <Group mt={8}>
-              <IconUser />
-              <div className="flex grow flex-col">
-                <Text fw={500}>Norway Fjord Adventures</Text>
-                <Text fw={500}>Norway Fjord Adventures</Text>
-              </div>
-            </Group>
-          </Card>
-          <Card className="mx-auto w-1/4">
-            <Rating value={5} fractions={2} readOnly />
-            <Card.Section>
-              <div className="flex grow flex-col">
-                <Text fw={500}>Norway Fjord Adventures</Text>
-              </div>
-            </Card.Section>
-            <Group mt={8}>
-              <IconUser />
-              <div className="flex grow flex-col">
-                <Text fw={500}>Norway Fjord Adventures</Text>
-                <Text fw={500}>Norway Fjord Adventures</Text>
-              </div>
-            </Group>
-          </Card>
+            </Card>
+          ))}
         </div>
       </div>
     </Group>

@@ -1,8 +1,11 @@
+// 3
 import { Text } from '@mantine/core';
 import { CollapsibleContent } from '../shared/v3';
 
-// 3
-export default function CourseFAQs() {
+type Props = {
+  faqs: any[];
+};
+export default function CourseFAQs({ faqs }: Props) {
   return (
     <div className="mx-auto w-full max-w-screen-xl px-4">
       <div className="font-nexa">
@@ -10,26 +13,20 @@ export default function CourseFAQs() {
           Frequently Asked Questions
         </Text>
       </div>
-
-      <CollapsibleContent
-        title="Is prior animation experience needed?"
-        content={<Text>Content here</Text>}
-      />
-
-      <CollapsibleContent
-        title="What software is used on the course?"
-        content={<Text>Content here</Text>}
-      />
-
-      <CollapsibleContent
-        title="How are the assesments conducted?"
-        content={<Text>Content here</Text>}
-      />
-
-      <CollapsibleContent
-        title="Are there opportuities for industry exposure?"
-        content={<Text>Content here</Text>}
-      />
+      {faqs &&
+        faqs.map((faq, index) => (
+          <CollapsibleContent
+            key={`faq-${index}`}
+            title={faq.fields.title}
+            content={
+              <div className="font-proxima">
+                <Text size="1.1em" fw={500}>
+                  {faq.fields.description}
+                </Text>
+              </div>
+            }
+          />
+        ))}
     </div>
   );
 }

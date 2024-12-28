@@ -182,7 +182,7 @@ export default function Footer() {
           </div>
         </Group>
         {isMobile && <SocialIcons />}
-        <Divider mt={48} size={0.5} opacity="20%" />Í
+        <Divider mt={48} size={0.5} opacity="20%" />
         <Group
           className="md:pt-auto mx-auto w-full max-w-screen-2xl flex-col px-4 pt-8 md:flex-row"
           gap={2}
