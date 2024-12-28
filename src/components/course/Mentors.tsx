@@ -1,5 +1,5 @@
 // 4
-import { Group, Text } from '@mantine/core';
+import { Avatar, Group, Text } from '@mantine/core';
 import { CollapsibleContent } from '../shared/v3';
 
 export default function CourseMentors() {
@@ -12,14 +12,16 @@ export default function CourseMentors() {
           </Text>
 
           <CollapsibleContent
+            icon={<Avatar />}
             title="Benjamin Waithaka"
-            subTitle="Animation and Motion Graphics"
+            subTitle="Course Mentor"
             content={<Text>Content here</Text>}
           />
 
           <CollapsibleContent
+            icon={<Avatar />}
             title="Eddy Mwazige"
-            subTitle="Co-Founder and Lead Animator ant Dung Beetle Studios"
+            subTitle="Course Mentor"
             content={<Text>Content here</Text>}
           />
         </div>

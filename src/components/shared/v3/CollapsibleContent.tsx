@@ -18,7 +18,7 @@ export default function CollapsibleContent({ icon, title, subTitle, content }: P
   const [opened, { toggle }] = useDisclosure(false);
 
   return (
-    <Card shadow="md" className="my-8 w-full" mx="auto">
+    <Card shadow="md" className="mt-8 w-full" mx="auto">
       <Group justify="center" mb={5}>
         <Group onClick={toggle} className="w-full cursor-pointer">
           {icon && icon}

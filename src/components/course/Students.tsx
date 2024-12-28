@@ -9,7 +9,7 @@ export default function CourseStudents(props: Props) {
   return (
     <Group bg={'#BD2D00'} py={32}>
       <div className="mx-auto w-full max-w-screen-2xl px-4">
-        <div className="font-nexa text-white">
+        <div className="mb-8 font-nexa text-white">
           <Text size="2em" fw={900}>
             Student Portfolio & Alumni Stories
           </Text>
@@ -39,8 +39,92 @@ export default function CourseStudents(props: Props) {
                   <Group py={8} bg={'#871F00'} c={'white'}>
                     <Avatar src="image.png" variant="transparent" />
                     <div className="flex flex-col">
-                      <Text fw={500}>Norway Fjord Adventures</Text>
-                      <Text fw={500}>Norway Fjord Adventures</Text>
+                      <Text fw={500}>Emmanuel Chege</Text>
+                      <Text fw={500}>Course Name</Text>
+                    </div>
+                  </Group>
+                </Card.Section>
+              </Card>
+            </Carousel.Slide>
+            <Carousel.Slide>
+              <Card>
+                <Card.Section>
+                  <Image
+                    src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png"
+                    height={200}
+                    alt="Norway"
+                  />
+                </Card.Section>
+                <Card.Section>
+                  <Group py={8} bg={'#871F00'} c={'white'}>
+                    <Avatar src="image.png" variant="transparent" />
+                    <div className="flex flex-col">
+                      <Text fw={500}>Emmanuel Chege</Text>
+                      <Text fw={500}>Course Name</Text>
+                    </div>
+                  </Group>
+                </Card.Section>
+              </Card>
+            </Carousel.Slide>
+            <Carousel.Slide>
+              <Card>
+                <Card.Section>
+                  <Image
+                    src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png"
+                    height={200}
+                    alt="Norway"
+                  />
+                </Card.Section>
+                <Card.Section>
+                  <Group py={8} bg={'#871F00'} c={'white'}>
+                    <Avatar src="image.png" variant="transparent" />
+                    <div className="flex flex-col">
+                      <Text fw={500}>Emmanuel Chege</Text>
+                      <Text fw={500}>Course Name</Text>
+                    </div>
+                  </Group>
+                </Card.Section>
+              </Card>
+            </Carousel.Slide>
+            <Carousel.Slide>
+              <Card>
+                <Card.Section>
+                  <Image
+                    src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png"
+                    height={200}
+                    alt="Norway"
+                  />
+                </Card.Section>
+                <Card.Section>
+                  <Group py={8} bg={'#871F00'} c={'white'}>
+                    <Avatar src="image.png" variant="transparent" />
+                    <div className="flex flex-col">
+                      <Text fw={500}>Emmanuel Chege</Text>
+                      <Text fw={500}>Course Name</Text>
+                    </div>
+                  </Group>
+                </Card.Section>
+              </Card>
+            </Carousel.Slide>
+            <Carousel.Slide>
+              <Card>
+                <Card.Section>
+                  <Image
+                    src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png"
+                    height={200}
+                    alt="Norway"
+                  />
+                </Card.Section>
+                <Card.Section>
+                  <Group py={8} bg={'#871F00'} c={'white'}>
+                    <Avatar src="image.png" variant="transparent" />
+                    <div className="flex flex-col">
+                      <div className="font-nexa">
+                        <Text fw={900}>Emmanuel Chege</Text>
+                      </div>
+                      <div className="font-proxima">
+                        <Text fw={500}>Course Name</Text>
+                      </div>
                     </div>
                   </Group>
                 </Card.Section>
@@ -50,7 +134,7 @@ export default function CourseStudents(props: Props) {
         </div>
 
         {/* Testimonials */}
-        <div className="font-nexa text-white">
+        <div className="mb-8 font-nexa text-white">
           <Text size="2em" fw={900}>
             Student Reviews & Testimonials
           </Text>

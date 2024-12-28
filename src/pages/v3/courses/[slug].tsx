@@ -51,8 +51,8 @@ export default function CourseDetailPage() {
       />
       <CourseAbout description={course.description} />
       <CourseDetails
-        usp={course.usp}
-        assets={courseAssets}
+        usp={course.usp || []}
+        assets={courseAssets || []}
         duration={course.courseDuration}
         creditHours={course.creditHours}
         tuitionFee={course.tuitionFee}
@@ -60,7 +60,7 @@ export default function CourseDetailPage() {
       <CourseMentors />
       <CourseStudents testimonials={course.testimonials || []} />
       <CourseApplicationProcess />
-      <CourseFAQs faqs={course.faqs} />
+      <CourseFAQs faqs={course.faqs || []} />
     </MainLayout>
   );
 }
