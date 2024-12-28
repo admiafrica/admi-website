@@ -1,7 +1,6 @@
 // 2
 import { Card, Image, Text, Group } from '@mantine/core';
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
-import { Document as ContentfulDocument } from '@contentful/rich-text-types';
 import { IconCheck, IconExclamationCircle } from '@tabler/icons-react';
 
 type Props = {

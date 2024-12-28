@@ -16,7 +16,7 @@ export default function CourseDetailPage() {
   const router = useRouter();
   const [course, setCourse] = useState<any>();
   const [courseAssets, setCourseAssets] = useState<any>();
-  const [courseEntries, setCourseEntries] = useState<any>();
+  const [, setCourseEntries] = useState<any>();
 
   const slug = router.query.slug;
 

@@ -1,7 +1,6 @@
 import React from 'react';
-import { Button, Group, Text, Collapse, Box, Card } from '@mantine/core';
+import { Group, Text, Collapse, Card } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import { IconCaretDown, IconCaretLeft } from '@tabler/icons-react';
 
 import IconArrowLeft from '@/assets/icons/arrow-left.svg';
 import IconArrowDown from '@/assets/icons/arrow-down.svg';

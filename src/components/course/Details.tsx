@@ -1,6 +1,6 @@
 // 3
 import Image from 'next/image';
-import { Card, Text, Group, NumberFormatter, Divider } from '@mantine/core';
+import { Card, Text, NumberFormatter, Divider } from '@mantine/core';
 
 import { CollapsibleContent } from '../shared/v3';
 import { Button } from '../ui';

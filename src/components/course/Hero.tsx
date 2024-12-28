@@ -96,8 +96,8 @@ export default function CourseHero(props: Props) {
             h={36}
             mb={8}
             style={{
-              backgroundColor: 'rgba(255, 255, 255, 0.23)', // Adjust the color and opacity
-              backdropFilter: 'blur(4px)', // Optional: adds a blur effect
+              backgroundColor: `rgba(255, 255, 255, 0.07)`, // Adjust the color and opacity
+              backdropFilter: `blur(4px)`, // Optional: adds a blur effect
             }}
           >
             <Group m={8}>
@@ -117,7 +117,7 @@ export default function CourseHero(props: Props) {
           </div>
           <div className="mt-8 font-proxima">
             <Text size="1.2em" fw={600}>
-              Unleash your creativity and bring your imagination to life with ADMI's Animation and Motion Graphics
+              Unleash your creativity and bring your imagination to life with ADMI&apos;s Animation and Motion Graphics
               Diploma.
             </Text>
           </div>
