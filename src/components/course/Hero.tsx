@@ -92,7 +92,14 @@ export default function CourseHero(props: Props) {
       {/* Content Section */}
       <div className="relative z-10 mx-auto w-full max-w-screen-2xl text-white">
         <div className="w-1/2 md:pt-32">
-          <Badge h={36} bg={'black'}>
+          <Badge
+            h={36}
+            mb={8}
+            style={{
+              backgroundColor: 'rgba(255, 255, 255, 0.23)', // Adjust the color and opacity
+              backdropFilter: 'blur(4px)', // Optional: adds a blur effect
+            }}
+          >
             <Group m={8}>
               <Image width={24} height={24} src={IconTrophy} alt="email" />
               <div className="font-nexa">
@@ -102,6 +109,7 @@ export default function CourseHero(props: Props) {
               </div>
             </Group>
           </Badge>
+
           <div className="font-nexa">
             <Text size="60px" fw={900}>
               {remainingName} <span className="text-[#F1FE38]">{lastWord}</span>
