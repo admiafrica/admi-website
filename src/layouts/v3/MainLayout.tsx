@@ -12,15 +12,13 @@ type LayoutProps = {
 
 export function MainLayout({ children }: LayoutProps) {
   const pinned = useHeadroom({ fixedAt: 120 });
+  const mode = 'dark';
 
   return (
     <div className={`${proximaNovaFont.variable} ${nexaFont.variable}`}>
-      <AppShell
-        header={{ height: 81, collapsed: !pinned, offset: false }}
-        padding="md"
-      >
-        <AppShell.Header style={headerStyle}>
-          <NavBar />
+      <AppShell header={{ height: 81, collapsed: !pinned, offset: false }} padding="md">
+        <AppShell.Header style={headerStyle} bg={mode == 'dark' ? 'black' : 'white'}>
+          <NavBar mode={mode} />
         </AppShell.Header>
 
         <AppShell.Main pt={`calc(${rem(60)} + var(--mantine-spacing-md))`} p={0}>
@@ -39,6 +37,6 @@ const headerStyle: React.CSSProperties = {
   alignItems: 'center',
   justifyContent: 'space-between',
   padding: '0 20px',
-  backgroundColor: 'white',
-  borderBottom: '1px solid #dee2e6',
+  margin: 0,
+  borderBottom:'none'
 };

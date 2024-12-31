@@ -4,14 +4,18 @@ import Image from 'next/image';
 import { useMediaQuery } from '@mantine/hooks';
 import { IconMenu } from '@tabler/icons-react';
 
-import logo from '@/assets/logo-dark.svg';
+import IconLogoLight from '@/assets/logo-light.svg';
 
-export default function NavBar() {
+type Props = {
+  mode: string;
+};
+
+export default function NavBar({ mode }: Props) {
   const isMobile = useMediaQuery('(max-width: 767px)');
 
-  const getMenuWideScreen = () => {
+  const getMenuWideScreen = (mode: string) => {
     return (
-      <Group>
+      <Group c={mode == 'dark' ? 'white' : 'black'} gap={'xl'}>
         <Menu trigger="hover" openDelay={100} closeDelay={400}>
           <Menu.Target>
             <Text style={menuItemStyle}>Home</Text>
@@ -51,9 +55,9 @@ export default function NavBar() {
     );
   };
 
-  const getMenuMobile = () => {
+  const getMenuMobile = (mode: string) => {
     return (
-      <Group>
+      <Group c={mode == 'dark' ? 'white' : 'black'}>
         <Menu trigger="hover" openDelay={100} closeDelay={400}>
           <Menu.Target>
             <IconMenu />
@@ -74,13 +78,13 @@ export default function NavBar() {
   };
 
   return (
-    <Group className="mx-auto w-full max-w-screen-2xl px-4">
+    <Group className={`mx-auto w-full max-w-screen-2xl px-4`}>
       <Group className="flex grow flex-row-reverse font-nexa md:flex-row">
-        <Link href="/" style={{ textDecoration: 'none' }}>
-          <Image src={logo} width={80} alt="Africa Digital Media Institute" />
+        <Link href="/" style={{ textDecoration: 'none', margin:'auto'}}>
+          {mode == 'dark' && <Image src={IconLogoLight} width={80} height={60} alt="Africa Digital Media Institute" />}
         </Link>
         <div className="grow"></div>
-        {isMobile ? getMenuMobile() : getMenuWideScreen()}
+        {isMobile ? getMenuMobile(mode) : getMenuWideScreen(mode)}
       </Group>
     </Group>
   );
