@@ -30,22 +30,26 @@ export default function CourseDetails(props: Props) {
             Why you should take this course
           </Text>
         </div>
-        <div className="flex flex-row">
+        <div className="flex flex-row justify-between">
           {props.usp.map((item) => (
-            <Card shadow="md" className="mx-auto w-1/4" key={item.sys.id}>
-              <div className="flex">
+            <Card shadow="md" className="w-1/4" key={item.sys.id}>
+              <div className="flex px-4 pt-4">
                 <Image
                   src={`https:${getAssetDetails(props.assets, item.fields.courseUspImage.sys.id)?.fields.file.url}`}
                   alt={item.fields.courseUspImage.sys.id}
                   width={32}
                   height={32}
                 />
-                <div className="pl-4 font-nexa">
-                  <Text size="1.2em" fw={900}>{item.fields.courseUspText}</Text>
+                <div className="min-h-[3em] pl-4 font-nexa">
+                  <Text size="1.2em" fw={900}>
+                    {item.fields.courseUspText}
+                  </Text>
                 </div>
               </div>
-              <div className="font-proxima pt-4">
-                <Text size="1.1em">{item.fields.courseUspDescription}</Text>
+              <div className="px-4 py-4 font-proxima text-gray-500">
+                <Text size="1.1em" fw={600}>
+                  {item.fields.courseUspDescription}
+                </Text>
               </div>
             </Card>
           ))}
@@ -68,7 +72,7 @@ export default function CourseDetails(props: Props) {
         />
 
         <Card
-          className="mx-auto h-fit w-[92vw] justify-center shadow-lg md:h-[7.125rem] md:w-full mt-16"
+          className="mx-auto mt-16 h-fit w-[92vw] justify-center shadow-lg md:h-[7.125rem] md:w-full"
           bg={'black'}
           radius={6}
         >

@@ -1,10 +1,10 @@
 import React from 'react';
+import Image from 'next/image';
 import { Group, Text, Collapse, Card } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 
 import IconArrowLeft from '@/assets/icons/arrow-left.svg';
 import IconArrowDown from '@/assets/icons/arrow-down.svg';
-import Image from 'next/image';
 
 type Props = {
   title: string;
