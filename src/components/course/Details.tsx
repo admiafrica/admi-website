@@ -40,7 +40,7 @@ export default function CourseDetails(props: Props) {
       </div>
 
       <div className="z-20 mx-auto w-full max-w-screen-2xl px-4">
-        <div className="mb-8 pt-24 text-center font-nexa">
+        <div className="mb-8 pt-16 text-center font-nexa">
           <Text size="1.78em" fw={900}>
             Why you should take this course
           </Text>
