@@ -15,7 +15,7 @@ export default function CourseStudents(props: Props) {
     <Group bg={'#BD2D00'}>
       <div className="mx-auto w-full max-w-screen-2xl px-4">
         {showPortfolios && (
-          <div className="mb-8 font-nexa text-white mt-16">
+          <div className="mb-8 mt-16 font-nexa text-white">
             <Text size="2em" fw={900}>
               Student Portfolio & Alumni Stories
             </Text>
@@ -36,7 +36,7 @@ export default function CourseStudents(props: Props) {
             >
               {props.portfolios &&
                 props.portfolios.map((portfolio) => (
-                  <Carousel.Slide>
+                  <Carousel.Slide key={portfolio.author}>
                     <Card>
                       <Card.Section>
                         <Image
@@ -68,7 +68,7 @@ export default function CourseStudents(props: Props) {
         {/* Testimonials */}
         {showTestimonials && (
           <div className="mb-8 font-nexa text-white">
-            <div className="flex items-center mt-16">
+            <div className="mt-16 flex items-center">
               <Text size="2em" fw={900}>
                 Student Reviews & Testimonials
               </Text>
@@ -86,7 +86,7 @@ export default function CourseStudents(props: Props) {
         {showTestimonials && (
           <div className="flex h-fit w-full justify-start">
             {props.testimonials.map((testimonial, index) => (
-              <Card className="mr-4 w-1/4 mb-16" key={`testimonial-${index}`}>
+              <Card className="mb-16 mr-4 w-1/4" key={`testimonial-${index}`}>
                 <Rating value={testimonial.review} fractions={2} color="admiRed" readOnly />
                 <Card.Section>
                   <div className="flex flex-col">

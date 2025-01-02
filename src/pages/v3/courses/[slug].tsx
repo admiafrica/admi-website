@@ -26,7 +26,6 @@ export default function CourseDetailPage() {
     try {
       const response = await fetch(`/api/courses?slug=${slug}`);
       const data = await response.json();
-      console.log('COURSE DATA', data);
 
       setCourse(data.fields);
       setCourseAssets(data.assets);
