@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 
 import { MainLayout } from '@/layouts/v3/MainLayout';
 import {
@@ -20,26 +20,44 @@ export default function CourseDetailPage() {
 
   const slug = router.query.slug;
 
-  useEffect(() => {
-    const fetchCourse = async () => {
-      try {
-        const response = await fetch(`/api/courses?slug=${slug}`);
-        const data = await response.json();
-        console.log('COURSE DATA', data);
-        setCourse(data.fields);
-        setCourseAssets(data.assets);
-        setCourseEntries(data.entries);
-      } catch (error) {
-        console.log('Error', error);
-      }
-    };
+  const fetchCourse = useCallback(async () => {
+    if (!slug) return;
 
-    if (slug) {
-      fetchCourse();
+    try {
+      const response = await fetch(`/api/courses?slug=${slug}`);
+      const data = await response.json();
+      console.log('COURSE DATA', data);
+
+      setCourse(data.fields);
+      setCourseAssets(data.assets);
+      setCourseEntries(data.entries);
+    } catch (error) {
+      console.log('Error fetching course:', error);
     }
   }, [slug]);
 
-  if (!course) return;
+  useEffect(() => {
+    fetchCourse();
+  }, [fetchCourse]);
+
+  if (!course) return null;
+
+  const mentorsSample = [
+    { name: 'John Doe', title: 'Mentor', description: ' About mentor here' },
+    { name: 'Jane Doe', title: 'Mentor', description: ' About mentor here' },
+  ];
+
+  const portfoliosSample = [
+    { author: 'Emmanuel Chege', course: 'Animation and Motion Graphics Diploma' },
+    { author: 'Anab Samatar', course: 'Animation and Motion Graphics Diploma' },
+    { author: 'Donelle Wahome', course: 'Animation and Motion Graphics Diploma' },
+  ];
+
+  const testimonialsSample = [
+    { author: 'John Doe', title: 'Alumni', description: 'testimonial', review: 5 },
+    { author: 'Jane Doe', title: 'Student', description: 'testimonial', review: 5 },
+    { author: 'Jane Doe', title: 'Student', description: 'testimonial', review: 4 },
+  ];
 
   return (
     <MainLayout>
@@ -57,8 +75,11 @@ export default function CourseDetailPage() {
         creditHours={course.creditHours}
         tuitionFee={course.tuitionFee}
       />
-      <CourseMentors />
-      <CourseStudents testimonials={course.testimonials || []} />
+      <CourseMentors mentors={mentorsSample} />
+      <CourseStudents
+        portfolios={course.portfolios || portfoliosSample}
+        testimonials={course.testimonials || testimonialsSample}
+      />
       <CourseApplicationProcess />
       <CourseFAQs faqs={course.faqs || []} />
     </MainLayout>

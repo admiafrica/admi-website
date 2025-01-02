@@ -25,8 +25,10 @@ export default function CourseHero(props: Props) {
       {/* Background Image */}
       <Image
         src={`https:${props.banner.fields.file.url}`}
+        placeholder="empty"
         alt="Course Banner"
         fill
+        priority
         className="absolute inset-0 z-0"
         style={{ objectFit: 'cover' }}
       />
