@@ -182,7 +182,7 @@ export default function Footer() {
               2024 All Rights Reserved. <b>ADMI Africa</b>
             </Text>
           </div>
-          <div className="grow text-admiShamrok md:pl-4">
+          <div className="grow text-admiShamrok md:pl-4 cursor-pointer">
             <Text>Privacy Policy | Terms & Conditions</Text>
           </div>
           <Image width={95} src={IconLogoWhite} alt="logo" />

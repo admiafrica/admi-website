@@ -1,4 +1,3 @@
-// 4
 import { Avatar, Group, Text } from '@mantine/core';
 import { CollapsibleContent } from '../shared/v3';
 

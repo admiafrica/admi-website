@@ -1,4 +1,3 @@
-// 3
 import { Text } from '@mantine/core';
 import { CollapsibleContent } from '../shared/v3';
 

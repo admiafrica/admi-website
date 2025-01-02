@@ -1,4 +1,3 @@
-// 5
 import { Avatar, Card, Group, Image, Rating, Text } from '@mantine/core';
 import { Carousel } from '@mantine/carousel';
 

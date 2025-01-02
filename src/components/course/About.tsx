@@ -1,4 +1,3 @@
-// 2
 import { Card, Image, Text, Group } from '@mantine/core';
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import { IconCheck, IconExclamationCircle } from '@tabler/icons-react';
