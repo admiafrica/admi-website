@@ -1,9 +1,10 @@
-import { MainLayout } from "@/layouts/v3/MainLayout";
+import { Footer } from '@/components/shared/v3';
+import { MainLayout } from '@/layouts/v3/MainLayout';
 
 export default function CoursesRoute() {
   return (
     <MainLayout>
-      <p className="p-8 hidden">Courses Page</p>
+      <div></div>
     </MainLayout>
   );
 }

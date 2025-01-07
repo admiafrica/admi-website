@@ -59,7 +59,7 @@ export default function CourseDetailPage() {
   ];
 
   return (
-    <MainLayout>
+    <MainLayout minimizeFooter>
       <CourseHero
         name={course.name}
         banner={course.banner}

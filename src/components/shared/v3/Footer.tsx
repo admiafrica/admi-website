@@ -179,7 +179,7 @@ export default function Footer() {
           <IconCopyright className="text-white" />
           <div className="text-white">
             <Text>
-              2024 All Rights Reserved. <b>ADMI Africa</b>
+              2025 All Rights Reserved. <b>ADMI Africa</b>
             </Text>
           </div>
           <div className="grow text-admiShamrok md:pl-4 cursor-pointer">

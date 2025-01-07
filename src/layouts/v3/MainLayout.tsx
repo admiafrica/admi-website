@@ -3,14 +3,15 @@ import '@mantine/carousel/styles.css';
 import { AppShell, rem } from '@mantine/core';
 import { useHeadroom } from '@mantine/hooks';
 
-import { Footer, NavBar } from '@/components/shared/v3';
+import { Footer, FooterMini, NavBar } from '@/components/shared/v3';
 import { nexaFont, proximaNovaFont } from '@/styles/theme';
 
 type LayoutProps = {
   children: React.ReactNode;
+  minimizeFooter?: boolean;
 };
 
-export function MainLayout({ children }: LayoutProps) {
+export function MainLayout({ children, minimizeFooter = false }: LayoutProps) {
   const pinned = useHeadroom({ fixedAt: 120 });
   const mode = 'dark';
 
@@ -25,7 +26,7 @@ export function MainLayout({ children }: LayoutProps) {
           {children}
         </AppShell.Main>
         <AppShell.Footer pos="relative" withBorder={false}>
-          <Footer />
+          {minimizeFooter ? <FooterMini /> : <Footer />}
         </AppShell.Footer>
       </AppShell>
     </div>
@@ -38,5 +39,5 @@ const headerStyle: React.CSSProperties = {
   justifyContent: 'space-between',
   padding: '0 20px',
   margin: 0,
-  borderBottom:'none'
+  borderBottom: 'none',
 };

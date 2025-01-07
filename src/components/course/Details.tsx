@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { Card, Text, NumberFormatter, Divider } from '@mantine/core';
 
 import { CollapsibleContent } from '../shared/v3';
-import { Button } from '../ui';
+import { Button, Title } from '../ui';
 import { getAssetDetails } from '@/utils';
 
 import IconCheckbox from '@/assets/icons/checkbox.svg';
@@ -40,10 +40,8 @@ export default function CourseDetails(props: Props) {
       </div>
 
       <div className="z-20 mx-auto w-full max-w-screen-2xl px-4">
-        <div className="mb-8 pt-16 text-center font-nexa">
-          <Text size="1.78em" fw={900}>
-            Why you should take this course
-          </Text>
+        <div className="mx-auto mb-8 w-fit pt-16 text-center font-nexa">
+          <Title label="Why you should take this course" color="black" />
         </div>
         <div className="relative z-20 flex flex-row justify-between">
           {props.usp.map((item) => (
@@ -93,8 +91,8 @@ export default function CourseDetails(props: Props) {
             radius={6}
           >
             <div className="my-auto flex w-full flex-col p-2 text-white md:flex-row md:p-4">
-              <div className="my-auto flex w-full pt-3">
-                <div className="mb-4 mr-8 text-center font-nexa md:text-left">
+              <div className="my-auto flex flex-col items-center md:flex-row w-full pt-3">
+                <div className="mb-4 mr-8 text-center  w-full font-nexa md:text-left">
                   <Text size="25px" fw={900} c={'admiShamrok'} pb={8}>
                     Earn your course
                   </Text>
@@ -102,7 +100,7 @@ export default function CourseDetails(props: Props) {
                     certificate today
                   </Text>
                 </div>
-                <div className="my-auto flex grow">
+                <div className="my-auto flex grow flex-col md:flex-row">
                   <div className="flex">
                     <Image width={32} height={32} src={IconTimer} alt="email" />
                     <div className="px-4 text-center md:text-left">

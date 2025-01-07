@@ -21,7 +21,7 @@ export default function CourseHero(props: Props) {
   const remainingName = words.join(' ');
 
   return (
-    <div className="relative w-full px-4 md:h-[60vh]">
+    <div className="relative w-full px-4 h-fit md:h-[60vh]">
       {/* Background Image */}
       <Image
         src={`https:${props.banner.fields.file.url}`}
@@ -49,7 +49,7 @@ export default function CourseHero(props: Props) {
       >
         <div className="my-auto flex w-full flex-col p-2 md:flex-row md:p-4">
           <div className="my-auto grow">
-            <div className="flex">
+            <div className="flex flex-col md:flex-row">
               <div className="flex sm:w-1/4">
                 <Image width={32} height={32} src={IconTimer} alt="email" />
                 <div className="px-4 text-center md:text-left">
@@ -93,7 +93,7 @@ export default function CourseHero(props: Props) {
 
       {/* Content Section */}
       <div className="relative z-10 mx-auto w-full max-w-screen-2xl text-white">
-        <div className="w-1/2 md:pt-32">
+        <div className="md:w-1/2 md:pt-32">
           <Badge
             h={36}
             mb={8}
