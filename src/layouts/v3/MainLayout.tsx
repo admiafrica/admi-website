@@ -8,10 +8,11 @@ import { nexaFont, proximaNovaFont } from '@/styles/theme';
 
 type LayoutProps = {
   children: React.ReactNode;
+  minimizeHeader?: boolean;
   minimizeFooter?: boolean;
 };
 
-export function MainLayout({ children, minimizeFooter = false }: LayoutProps) {
+export function MainLayout({ children, minimizeFooter = false, minimizeHeader = false }: LayoutProps) {
   const pinned = useHeadroom({ fixedAt: 120 });
   const mode = 'dark';
 
@@ -19,7 +20,7 @@ export function MainLayout({ children, minimizeFooter = false }: LayoutProps) {
     <div className={`${proximaNovaFont.variable} ${nexaFont.variable}`}>
       <AppShell header={{ height: 81, collapsed: !pinned, offset: false }} padding="md">
         <AppShell.Header style={headerStyle} bg={mode == 'dark' ? 'black' : 'white'}>
-          <NavBar mode={mode} />
+          <NavBar mode={mode} isMinimal={minimizeHeader} />
         </AppShell.Header>
 
         <AppShell.Main pt={`calc(${rem(60)} + var(--mantine-spacing-md))`} p={0}>

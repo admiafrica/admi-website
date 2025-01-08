@@ -24,9 +24,9 @@ export default function CourseDetailPage() {
     if (!slug) return;
 
     try {
-      const response = await fetch(`/api/courses-v3?slug=${slug}`);
+      const response = await fetch(`/api/v3/course-details?slug=${slug}`);
       const data = await response.json();
-      console.log('COURSE DATA', data);
+      console.log('COURSE', data);
 
       setCourse(data.fields);
       setCourseAssets(data.assets);
@@ -55,10 +55,10 @@ export default function CourseDetailPage() {
   ];
 
   return (
-    <MainLayout minimizeFooter>
+    <MainLayout minimizeFooter minimizeHeader>
       <CourseHero
         name={course.name}
-        banner={course.coverImage}
+        coverImage={course.coverImage}
         programType={course.programType}
         awardLevel={course.awardLevel}
         creditHours={course.creditHours}

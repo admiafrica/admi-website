@@ -1,15 +1,15 @@
 import Image from 'next/image';
-import { Badge, Card, Group, NumberFormatter, Text } from '@mantine/core';
+import { Badge, Card, Group, Text } from '@mantine/core';
 import { Button } from '../ui';
 
 import IconAward from '@/assets/icons/Award';
 import IconTimer from '@/assets/icons/timer.svg';
-import IconHourGlass from '@/assets/icons/hour-glass.svg';
-// import IconAward from '@/assets/icons/award-level.svg';
+import IconHourGlass from '@/assets/icons/hourglass-start.svg';
+import IconAvatar from '@/assets/icons/avatar.svg';
 
 type Props = {
   name: string;
-  banner: any;
+  coverImage: any;
   programType: any;
   creditHours: number;
   awardLevel: string;
@@ -25,7 +25,7 @@ export default function CourseHero(props: Props) {
     <div className="relative h-fit w-full px-4 md:h-[60vh]">
       {/* Background Image */}
       <Image
-        src={`https:${props.banner.fields.file.url}`}
+        src={`https:${props.coverImage.fields.file.url}`}
         placeholder="empty"
         alt="Course Banner"
         fill
@@ -44,7 +44,7 @@ export default function CourseHero(props: Props) {
 
       {/* Floating Card */}
       <Card
-        className="absolute left-1/2 top-[35rem] z-10 h-fit w-[92vw] -translate-x-1/2 transform justify-center shadow-lg md:h-[7.125rem] md:w-[85vw]"
+        className="absolute left-[31%] top-[35rem] z-10 h-fit w-[92vw] -translate-x-1/2 transform shadow-lg md:h-[7.125rem] md:w-[48vw]"
         bg={'admiShamrok'}
         radius={6}
       >
@@ -52,7 +52,7 @@ export default function CourseHero(props: Props) {
           <div className="my-auto grow">
             <div className="flex flex-col md:flex-row">
               <div className="flex sm:w-1/4">
-                <Image width={32} height={32} src={IconTimer} alt="email" />
+                <Image width={32} height={32} src={IconTimer} alt="duration" />
                 <div className="px-4 text-center md:text-left">
                   <Text size="16px" fw={100} pb={8}>
                     Duration
@@ -63,7 +63,7 @@ export default function CourseHero(props: Props) {
                 </div>
               </div>
               <div className="flex sm:w-1/4">
-                <Image width={32} height={32} src={IconTimer} alt="email" />
+                <Image width={32} height={32} src={IconHourGlass} alt="term length" />
                 <div className="px-4 text-center md:text-left">
                   <Text size="16px" fw={100} pb={8}>
                     Term Length
@@ -74,7 +74,7 @@ export default function CourseHero(props: Props) {
                 </div>
               </div>
               <div className="flex sm:w-1/4">
-                <Image width={32} height={32} src={IconHourGlass} alt="email" />
+                <Image width={32} height={32} src={IconAvatar} alt="email" />
                 <div className="px-4 text-center md:text-left">
                   <Text size="16px" fw={100} pb={8}>
                     Delivery Mode
@@ -97,9 +97,9 @@ export default function CourseHero(props: Props) {
               </div>
             </div>
           </div>
-          <div className="md:py-auto mx-auto py-4">
+          {/* <div className="md:py-auto mx-auto py-4">
             <Button size="xl" backgroundColor="admiRed" label="Get in Touch" />
-          </div>
+          </div> */}
         </div>
       </Card>
 

@@ -4,7 +4,6 @@ import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 
 import { CollapsibleContent } from '../shared/v3';
 import { Button, Title } from '../ui';
-import { getAssetDetails } from '@/utils';
 
 import IconCheckbox from '@/assets/icons/checkbox.svg';
 import IconBook from '@/assets/icons/book.svg';
@@ -43,8 +42,8 @@ export default function CourseDetails(props: Props) {
         </div>
       </div>
 
-      <div className="z-20 mx-auto w-full max-w-screen-2xl px-4">
-        <div className="mx-auto mb-8 w-fit pt-16 text-center font-nexa">
+      <div className="relative z-20 mx-auto w-full max-w-screen-2xl px-4">
+        <div className="z-20 mx-auto mb-8 w-fit pt-16 text-center font-nexa">
           <Title label="Why you should take this course" color="black" />
         </div>
         <div className="relative z-20 flex flex-row justify-between">
@@ -118,12 +117,12 @@ export default function CourseDetails(props: Props) {
           >
             <div className="my-auto flex w-full flex-col p-2 text-white md:flex-row md:p-4">
               <div className="my-auto flex w-full flex-col items-center pt-3 md:flex-row">
-                <div className="mb-4 mr-8 w-full text-center font-nexa md:text-left w-fit">
+                <div className="mb-4 mr-8 w-fit text-center font-nexa md:text-left">
                   <Text size="25px" fw={900} c={'admiShamrok'} pb={8}>
                     Earn your course
                   </Text>
                   <Text size="25px" fw={900}>
-                    certificate today
+                    {props.programType.fields.name.toLowerCase()} today
                   </Text>
                 </div>
                 <div className="my-auto flex grow flex-col md:flex-row">

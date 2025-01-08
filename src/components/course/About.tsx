@@ -22,7 +22,7 @@ export default function CourseAbout(props: Props) {
               }}
             ></div>
           </div>
-          <div className="flex w-1/2 flex-col">
+          <div className="absolute left-[80%] top-[24rem] z-10 h-fit w-[48em] -translate-x-1/2 transform">
             <Card padding="lg" radius="md" className="mx-auto mt-24 w-[64%]" bg={'#F5FFFD'}>
               <EnquiryForm />
             </Card>

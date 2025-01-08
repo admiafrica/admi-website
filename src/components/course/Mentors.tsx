@@ -2,6 +2,7 @@ import { Avatar, Group, Text } from '@mantine/core';
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import { CollapsibleContent } from '../shared/v3';
 import { getAssetDetails } from '@/utils';
+import Image from 'next/image';
 
 type Props = {
   mentors: any[];
@@ -23,10 +24,19 @@ export default function CourseMentors(props: Props) {
 
           {props.mentors.map((mentor) => (
             <CollapsibleContent
+              isProfile
               key={mentor.fields.name}
-              icon={<Avatar src={`https:${getAssetDetails(props.assets, mentor.fields.image.sys.id)?.fields.file.url}`}/>}
+              icon={
+                <Image
+                  height={98}
+                  width={98}
+                  src={`https:${getAssetDetails(props.assets, mentor.fields.image.sys.id)?.fields.file.url}`}
+                  alt={mentor.fields.name}
+                />
+              }
               title={mentor.fields.name}
               subTitle={mentor.fields.jobTitle}
+              profileLink={mentor.fields.socialMediaLink}
               content={
                 <div
                   className="z-20 font-proxima text-lg font-semibold"

@@ -5,12 +5,14 @@ import { useMediaQuery } from '@mantine/hooks';
 import { IconMenu } from '@tabler/icons-react';
 
 import IconLogoLight from '@/assets/logo-light.svg';
+import { Button } from '@/components/ui';
 
 type Props = {
   mode: string;
+  isMinimal?: boolean;
 };
 
-export default function NavBar({ mode }: Props) {
+export default function NavBar({ mode, isMinimal = false }: Props) {
   const isMobile = useMediaQuery('(max-width: 767px)');
 
   const getMenuWideScreen = (mode: string) => {
@@ -77,10 +79,28 @@ export default function NavBar({ mode }: Props) {
     );
   };
 
+  if (isMinimal) {
+    return (
+      <Group className={`mx-auto w-full max-w-screen-2xl px-4`}>
+        <div className="flex grow flex-row-reverse font-nexa md:flex-row">
+          <Link href="/" style={{ textDecoration: 'none', margin: 'auto' }}>
+            {mode == 'dark' && (
+              <Image src={IconLogoLight} width={80} height={60} alt="Africa Digital Media Institute" />
+            )}
+          </Link>
+          <div className="grow"></div>
+          <div className="my-auto">
+            <Button size="lg" backgroundColor="admiRed" label="Get In Touch" />
+          </div>
+        </div>
+      </Group>
+    );
+  }
+
   return (
     <Group className={`mx-auto w-full max-w-screen-2xl px-4`}>
       <Group className="flex grow flex-row-reverse font-nexa md:flex-row">
-        <Link href="/" style={{ textDecoration: 'none', margin:'auto'}}>
+        <Link href="/" style={{ textDecoration: 'none', margin: 'auto' }}>
           {mode == 'dark' && <Image src={IconLogoLight} width={80} height={60} alt="Africa Digital Media Institute" />}
         </Link>
         <div className="grow"></div>
