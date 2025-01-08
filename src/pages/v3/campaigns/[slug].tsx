@@ -42,20 +42,8 @@ export default function CourseDetailPage() {
 
   if (!course) return null;
 
-  const portfoliosSample = [
-    { author: 'Emmanuel Chege', course: 'Animation and Motion Graphics Diploma' },
-    { author: 'Anab Samatar', course: 'Animation and Motion Graphics Diploma' },
-    { author: 'Donelle Wahome', course: 'Animation and Motion Graphics Diploma' },
-  ];
-
-  const testimonialsSample = [
-    { author: 'John Doe', title: 'Alumni', description: 'testimonial', review: 5 },
-    { author: 'Jane Doe', title: 'Student', description: 'testimonial', review: 5 },
-    { author: 'Jane Doe', title: 'Student', description: 'testimonial', review: 4 },
-  ];
-
   return (
-    <MainLayout>
+    <MainLayout minimizeFooter minimizeHeader>
       <CourseHero
         name={course.name}
         coverImage={course.coverImage}
@@ -75,11 +63,6 @@ export default function CourseDetailPage() {
         learningOutcomes={course.learningOutcomes}
       />
       <CourseMentors mentors={course.courseLeadersMentors} assets={courseAssets || []} />
-      <CourseStudents
-        portfolios={course.portfolios || portfoliosSample}
-        testimonials={course.testimonials || testimonialsSample}
-        totalHistoricalEnrollment={course.totalHistoricalEnrollment}
-      />
       <CourseApplicationProcess processes={course.applicationProcesses} />
       <CourseFAQs faqs={course.faqs || []} />
     </MainLayout>

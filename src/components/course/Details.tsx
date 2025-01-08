@@ -14,6 +14,7 @@ import IconCurrency from '@/assets/icons/group-6.svg';
 
 import IconBackgroundImageA from '@/assets/icons/ellipse-yellow-cut.svg';
 import IconBackgroundImageB from '@/assets/icons/ellipse-orange.svg';
+import { getAssetDetails } from '@/utils';
 
 type Props = {
   programType: any;
@@ -50,12 +51,12 @@ export default function CourseDetails(props: Props) {
           {props.benefits.map((benefit) => (
             <Card shadow="md" className="w-1/4" key={benefit.sys.id}>
               <div className="flex px-4 pt-4">
-                {/* <Image
-                  src={`https:${getAssetDetails(props.assets, benefit.fields.courseUspImage.sys.id)?.fields.file.url}`}
-                  alt={benefit.fields.courseUspImage.sys.id}
+                <Image
+                  src={`https:${getAssetDetails(props.assets, benefit.fields.icon.sys.id)?.fields.file.url}`}
+                  alt={benefit.fields.icon.sys.id}
                   width={32}
                   height={32}
-                /> */}
+                />
                 <div className="min-h-[3em] pl-4 font-nexa">
                   <Text size="1.2em" fw={900}>
                     {benefit.fields.title}
@@ -63,7 +64,7 @@ export default function CourseDetails(props: Props) {
                 </div>
               </div>
               <div
-                className="px-4 py-4 font-proxima text-gray-500"
+                className="px-4 py-2 font-proxima text-gray-500"
                 dangerouslySetInnerHTML={{
                   __html: documentToHtmlString(benefit.fields.text),
                 }}
@@ -74,7 +75,7 @@ export default function CourseDetails(props: Props) {
 
         <div className="relative z-20">
           <CollapsibleContent
-            title="Course Overview"
+            title="Course Description"
             content={
               <div
                 className="z-20 font-proxima text-lg"
@@ -126,19 +127,8 @@ export default function CourseDetails(props: Props) {
                   </Text>
                 </div>
                 <div className="my-auto flex grow flex-col md:flex-row">
-                  <div className="flex grow">
-                    <Image width={32} height={32} src={IconTimer} alt="email" />
-                    <div className="px-4 text-center md:text-left">
-                      <Text size="16px" fw={100} pb={8}>
-                        Duration
-                      </Text>
-                      <Text size="16px" fw={900}>
-                        {props.programType.fields.duration}
-                      </Text>
-                    </div>
-                  </div>
                   <Divider orientation="vertical" size={1} opacity="30%" mx={8} />
-                  <div className="flex grow">
+                  <div className="flex w-1/3 justify-center">
                     <Image width={32} height={32} src={IconHourglass} alt="email" />
                     <div className="px-4 text-center md:text-left">
                       <Text size="16px" fw={100} pb={8}>
@@ -150,7 +140,7 @@ export default function CourseDetails(props: Props) {
                     </div>
                   </div>
                   <Divider orientation="vertical" size={1} opacity="30%" mx={8} />
-                  <div className="flex w-1/3">
+                  <div className="flex w-1/3 justify-center">
                     <Image width={32} height={32} src={IconCurrency} alt="email" />
                     <div className="px-4 text-center md:text-left">
                       <Text size="16px" fw={100} pb={8}>

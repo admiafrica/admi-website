@@ -22,7 +22,7 @@ export default function CourseHero(props: Props) {
   const remainingName = words.join(' ');
 
   return (
-    <div className="relative h-fit w-full px-4 md:h-[60vh]">
+    <div className="relative h-fit w-full px-4 md:h-[45vh]">
       {/* Background Image */}
       <Image
         src={`https:${props.coverImage.fields.file.url}`}
@@ -44,14 +44,14 @@ export default function CourseHero(props: Props) {
 
       {/* Floating Card */}
       <Card
-        className="absolute left-[31%] top-[35rem] z-10 h-fit w-[92vw] -translate-x-1/2 transform shadow-lg md:h-[7.125rem] md:w-[48vw]"
+        className="absolute left-1/2 top-[26rem] z-10 h-fit w-[92vw] -translate-x-1/2 transform justify-center shadow-lg md:h-[7.125rem] md:w-[85vw]"
         bg={'admiShamrok'}
         radius={6}
       >
         <div className="my-auto flex w-full flex-col p-2 md:flex-row md:p-4">
           <div className="my-auto grow">
             <div className="flex flex-col md:flex-row">
-              <div className="flex sm:w-1/4">
+              <div className="mr-8 flex">
                 <Image width={32} height={32} src={IconTimer} alt="duration" />
                 <div className="px-4 text-center md:text-left">
                   <Text size="16px" fw={100} pb={8}>
@@ -62,8 +62,8 @@ export default function CourseHero(props: Props) {
                   </Text>
                 </div>
               </div>
-              <div className="flex sm:w-1/4">
-                <Image width={32} height={32} src={IconHourGlass} alt="term length" />
+              <div className="mr-8 flex">
+                <Image width={40} src={IconHourGlass} alt="term length" />
                 <div className="px-4 text-center md:text-left">
                   <Text size="16px" fw={100} pb={8}>
                     Term Length
@@ -73,8 +73,8 @@ export default function CourseHero(props: Props) {
                   </Text>
                 </div>
               </div>
-              <div className="flex sm:w-1/4">
-                <Image width={32} height={32} src={IconAvatar} alt="email" />
+              <div className="mr-8 flex">
+                <Image width={40} src={IconAvatar} alt="email" />
                 <div className="px-4 text-center md:text-left">
                   <Text size="16px" fw={100} pb={8}>
                     Delivery Mode
@@ -97,15 +97,15 @@ export default function CourseHero(props: Props) {
               </div>
             </div>
           </div>
-          {/* <div className="md:py-auto mx-auto py-4">
+          <div className="md:py-auto mx-auto py-4">
             <Button size="xl" backgroundColor="admiRed" label="Get in Touch" />
-          </div> */}
+          </div>
         </div>
       </Card>
 
       {/* Content Section */}
       <div className="relative z-10 mx-auto w-full max-w-screen-2xl text-white">
-        <div className="md:w-1/2 md:pt-32">
+        <div className="md:w-1/2 md:pt-24">
           <Badge
             h={36}
             mb={8}
@@ -118,21 +118,16 @@ export default function CourseHero(props: Props) {
               <IconAward color="white" width={24} height={24} />
               <div className="font-nexa">
                 <Text size="sm" fw={900}>
-                  {lastWord} Courses
+                  {props.programType.fields.name}
                 </Text>
               </div>
             </Group>
           </Badge>
 
           <div className="font-nexa">
+            <br></br>
             <Text size="60px" fw={900}>
               {remainingName} <span className="text-[#F1FE38]">{lastWord}</span>
-            </Text>
-          </div>
-          <div className="mt-8 font-proxima">
-            <Text size="1.2em" fw={600}>
-              Unleash your creativity and bring your imagination to life with ADMI&apos;s Animation and Motion Graphics
-              Diploma.
             </Text>
           </div>
         </div>

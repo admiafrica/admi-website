@@ -16,16 +16,17 @@ export default function CourseAbout(props: Props) {
               <Title label="About this course" />
             </div>
             <div
-              className="mt-6 font-nexa text-lg"
+              className="mt-1 font-nexa text-lg"
               dangerouslySetInnerHTML={{
                 __html: documentToHtmlString(props.description),
               }}
             ></div>
           </div>
           <div className="absolute left-[80%] top-[24rem] z-10 h-fit w-[48em] -translate-x-1/2 transform">
-            <Card padding="lg" radius="md" className="mx-auto mt-24 w-[64%]" bg={'#F5FFFD'}>
+            {/* <Card padding="lg" radius="md" className="mx-auto mt-24 w-[64%]" bg={'#F5FFFD'}>
               <EnquiryForm />
-            </Card>
+            </Card> */}
+
           </div>
         </div>
       </div>

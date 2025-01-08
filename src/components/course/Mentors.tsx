@@ -39,7 +39,7 @@ export default function CourseMentors(props: Props) {
               profileLink={mentor.fields.socialMediaLink}
               content={
                 <div
-                  className="z-20 font-proxima text-lg font-semibold"
+                  className="z-20 font-proxima text-lg px-4"
                   dangerouslySetInnerHTML={{
                     __html: documentToHtmlString(mentor.fields.bio),
                   }}

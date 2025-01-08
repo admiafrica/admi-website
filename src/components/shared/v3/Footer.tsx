@@ -50,31 +50,33 @@ export default function Footer() {
   const isMobile = useMediaQuery('(max-width: 480px)');
 
   return (
-    <div className="relative w-full font-proxima bg-[#FFF7F5]">
+    <div className="relative w-full bg-[#FFF7F5] font-proxima">
       {/* Floating Card */}
-      <Card
-        className="absolute left-1/2 top-[3.75rem] z-10 h-fit -translate-x-1/2 transform justify-center shadow-lg md:h-[7.125rem] md:w-[78rem]"
-        bg={'admiShamrok'}
-        radius={6}
-      >
-        <div className="my-auto flex w-full flex-col p-2 md:flex-row md:p-4">
-          <div className="grow pt-3">
-            <div className="mb-4 text-center font-nexa md:text-left">
-              <Text size="25px" fw={900}>
-                Ready to Get Started?
-              </Text>
+      <div className="w-full px-4">
+        <Card
+          className="absolute left-1/2 top-[3.75rem] z-10 h-fit w-full max-w-screen-xl -translate-x-1/2 transform justify-center shadow-lg md:h-[7.125rem]"
+          bg={'admiShamrok'}
+          radius={6}
+        >
+          <div className="my-auto flex w-full flex-col p-2 md:flex-row md:p-4">
+            <div className="grow pt-3">
+              <div className="mb-4 text-center font-nexa md:text-left">
+                <Text size="25px" fw={900}>
+                  Ready to Get Started?
+                </Text>
+              </div>
+              <div className="text-center md:text-left">
+                <Text size="1.1em" fw={600}>
+                  Immerse yourself in a curriculum crafted to cultivate your unique artistic style.
+                </Text>
+              </div>
             </div>
-            <div className="text-center md:text-left">
-              <Text size="16px" fw={600}>
-                Immerse yourself in a curriculum crafted to cultivate your unique artistic style.
-              </Text>
+            <div className="md:py-auto mx-auto py-4">
+              <Button size="xl" backgroundColor="admiRed" label="Enroll Today with ADMI" />
             </div>
           </div>
-          <div className="md:py-auto mx-auto py-4">
-            <Button size="xl" backgroundColor="admiRed" label="Enroll Today with ADMI" />
-          </div>
-        </div>
-      </Card>
+        </Card>
+      </div>
       <div className="w-full bg-[#002A23] pb-8 pt-36">
         <Group className="mx-auto w-full max-w-screen-2xl flex-col text-white md:flex-row" align="top">
           <Stack className="grow" h="100%">
@@ -182,7 +184,7 @@ export default function Footer() {
               2025 All Rights Reserved. <b>ADMI Africa</b>
             </Text>
           </div>
-          <div className="grow text-admiShamrok md:pl-4 cursor-pointer">
+          <div className="grow cursor-pointer text-admiShamrok md:pl-4">
             <Text>Privacy Policy | Terms & Conditions</Text>
           </div>
           <Image width={95} src={IconLogoWhite} alt="logo" />
