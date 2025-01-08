@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { Text } from '@mantine/core';
+import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import { CollapsibleContent } from '../shared/v3';
 
 import IconBgImageYellow from '@/assets/icons/ellipse-yellow.svg';
@@ -23,8 +24,8 @@ export default function CourseFAQs({ faqs }: Props) {
           <Image src={IconBgImageRed} alt={'background image'} />
         </div>
       </div>
-      <div className="mx-auto min-h-[40em] w-full max-w-screen-xl px-4 z-20 relative">
-        <div className="pt-16 font-nexa z-20">
+      <div className="relative z-20 mx-auto min-h-[40em] w-full max-w-screen-xl px-4">
+        <div className="z-20 pt-16 font-nexa">
           <Text size="2em" fw={900}>
             Frequently Asked Questions
           </Text>
@@ -33,13 +34,14 @@ export default function CourseFAQs({ faqs }: Props) {
           faqs.map((faq, index) => (
             <CollapsibleContent
               key={`faq-${index}`}
-              title={faq.fields.title}
+              title={faq.fields.question}
               content={
-                <div className="font-proxima z-20">
-                  <Text size="1.1em" fw={500}>
-                    {faq.fields.description}
-                  </Text>
-                </div>
+                <div
+                  className="z-20 font-proxima text-lg"
+                  dangerouslySetInnerHTML={{
+                    __html: documentToHtmlString(faq.fields.answer),
+                  }}
+                ></div>
               }
             />
           ))}

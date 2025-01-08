@@ -24,8 +24,9 @@ export default function CourseDetailPage() {
     if (!slug) return;
 
     try {
-      const response = await fetch(`/api/courses?slug=${slug}`);
+      const response = await fetch(`/api/courses-v3?slug=${slug}`);
       const data = await response.json();
+      console.log('COURSE DATA', data);
 
       setCourse(data.fields);
       setCourseAssets(data.assets);
@@ -40,11 +41,6 @@ export default function CourseDetailPage() {
   }, [fetchCourse]);
 
   if (!course) return null;
-
-  const mentorsSample = [
-    { name: 'John Doe', title: 'Mentor', description: ' About mentor here' },
-    { name: 'Jane Doe', title: 'Mentor', description: ' About mentor here' },
-  ];
 
   const portfoliosSample = [
     { author: 'Emmanuel Chege', course: 'Animation and Motion Graphics Diploma' },
@@ -62,24 +58,28 @@ export default function CourseDetailPage() {
     <MainLayout minimizeFooter>
       <CourseHero
         name={course.name}
-        banner={course.banner}
-        duration={course.courseDuration}
+        banner={course.coverImage}
+        programType={course.programType}
+        awardLevel={course.awardLevel}
         creditHours={course.creditHours}
       />
       <CourseAbout description={course.description} />
       <CourseDetails
-        usp={course.usp || []}
+        benefits={course.courseBenefits || []}
         assets={courseAssets || []}
         duration={course.courseDuration}
         creditHours={course.creditHours}
         tuitionFee={course.tuitionFee}
+        courseDescription={course.description}
+        careerOptions={course.careerOptions}
+        learningOutcomes={course.learningOutcomes}
       />
-      <CourseMentors mentors={mentorsSample} />
+      <CourseMentors mentors={course.courseLeadersMentors} assets={courseAssets || []} />
       <CourseStudents
         portfolios={course.portfolios || portfoliosSample}
         testimonials={course.testimonials || testimonialsSample}
       />
-      <CourseApplicationProcess />
+      <CourseApplicationProcess processes={course.applicationProcesses} />
       <CourseFAQs faqs={course.faqs || []} />
     </MainLayout>
   );

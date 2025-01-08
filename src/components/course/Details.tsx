@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { Card, Text, NumberFormatter, Divider } from '@mantine/core';
+import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 
 import { CollapsibleContent } from '../shared/v3';
 import { Button, Title } from '../ui';
@@ -19,8 +20,11 @@ type Props = {
   duration: string;
   creditHours: number;
   tuitionFee: number;
-  usp: any[];
+  benefits: any[];
   assets: any[];
+  careerOptions: any;
+  learningOutcomes: any;
+  courseDescription: any;
 };
 
 export default function CourseDetails(props: Props) {
@@ -44,26 +48,27 @@ export default function CourseDetails(props: Props) {
           <Title label="Why you should take this course" color="black" />
         </div>
         <div className="relative z-20 flex flex-row justify-between">
-          {props.usp.map((item) => (
-            <Card shadow="md" className="w-1/4" key={item.sys.id}>
+          {props.benefits.map((benefit) => (
+            <Card shadow="md" className="w-1/4" key={benefit.sys.id}>
               <div className="flex px-4 pt-4">
-                <Image
-                  src={`https:${getAssetDetails(props.assets, item.fields.courseUspImage.sys.id)?.fields.file.url}`}
-                  alt={item.fields.courseUspImage.sys.id}
+                {/* <Image
+                  src={`https:${getAssetDetails(props.assets, benefit.fields.courseUspImage.sys.id)?.fields.file.url}`}
+                  alt={benefit.fields.courseUspImage.sys.id}
                   width={32}
                   height={32}
-                />
+                /> */}
                 <div className="min-h-[3em] pl-4 font-nexa">
                   <Text size="1.2em" fw={900}>
-                    {item.fields.courseUspText}
+                    {benefit.fields.title}
                   </Text>
                 </div>
               </div>
-              <div className="px-4 py-4 font-proxima text-gray-500">
-                <Text size="1.1em" fw={600}>
-                  {item.fields.courseUspDescription}
-                </Text>
-              </div>
+              <div
+                className="px-4 py-4 font-proxima text-gray-500"
+                dangerouslySetInnerHTML={{
+                  __html: documentToHtmlString(benefit.fields.text),
+                }}
+              ></div>
             </Card>
           ))}
         </div>
@@ -71,17 +76,38 @@ export default function CourseDetails(props: Props) {
         <div className="relative z-20">
           <CollapsibleContent
             title="Course Overview"
-            content={<Text>Content here</Text>}
+            content={
+              <div
+                className="z-20 font-proxima text-lg"
+                dangerouslySetInnerHTML={{
+                  __html: documentToHtmlString(props.courseDescription),
+                }}
+              ></div>
+            }
             icon={<Image width={24} height={24} src={IconCheckbox} alt="email" />}
           />
           <CollapsibleContent
             title="Learning Outcomes"
-            content={<Text>Content here</Text>}
+            content={
+              <div
+                className="z-20 font-proxima text-lg"
+                dangerouslySetInnerHTML={{
+                  __html: documentToHtmlString(props.learningOutcomes),
+                }}
+              ></div>
+            }
             icon={<Image width={24} height={24} src={IconBook} alt="email" />}
           />
           <CollapsibleContent
             title="Career Options"
-            content={<Text>Content here</Text>}
+            content={
+              <div
+                className="z-20 font-proxima text-lg"
+                dangerouslySetInnerHTML={{
+                  __html: documentToHtmlString(props.careerOptions),
+                }}
+              ></div>
+            }
             icon={<Image width={24} height={24} src={IconHatBlack} alt="email" />}
           />
 
@@ -91,8 +117,8 @@ export default function CourseDetails(props: Props) {
             radius={6}
           >
             <div className="my-auto flex w-full flex-col p-2 text-white md:flex-row md:p-4">
-              <div className="my-auto flex flex-col items-center md:flex-row w-full pt-3">
-                <div className="mb-4 mr-8 text-center  w-full font-nexa md:text-left">
+              <div className="my-auto flex w-full flex-col items-center pt-3 md:flex-row">
+                <div className="mb-4 mr-8 w-full text-center font-nexa md:text-left">
                   <Text size="25px" fw={900} c={'admiShamrok'} pb={8}>
                     Earn your course
                   </Text>

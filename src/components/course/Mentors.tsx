@@ -1,8 +1,11 @@
 import { Avatar, Group, Text } from '@mantine/core';
+import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import { CollapsibleContent } from '../shared/v3';
+import { getAssetDetails } from '@/utils';
 
 type Props = {
   mentors: any[];
+  assets: any[];
 };
 
 export default function CourseMentors(props: Props) {
@@ -18,16 +21,22 @@ export default function CourseMentors(props: Props) {
             Course Leader & Mentor
           </Text>
 
-          {props.mentors &&
-            props.mentors.map((mentor) => (
-              <CollapsibleContent
-                key={mentor.name}
-                icon={<Avatar />}
-                title={mentor.name}
-                subTitle={mentor.title}
-                content={<Text size="1.1em">{mentor.description}</Text>}
-              />
-            ))}
+          {props.mentors.map((mentor) => (
+            <CollapsibleContent
+              key={mentor.fields.name}
+              icon={<Avatar src={`https:${getAssetDetails(props.assets, mentor.fields.image.sys.id)?.fields.file.url}`}/>}
+              title={mentor.fields.name}
+              subTitle={mentor.fields.jobTitle}
+              content={
+                <div
+                  className="z-20 font-proxima text-lg font-semibold"
+                  dangerouslySetInnerHTML={{
+                    __html: documentToHtmlString(mentor.fields.bio),
+                  }}
+                ></div>
+              }
+            />
+          ))}
         </div>
       </div>
     </Group>

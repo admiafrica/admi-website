@@ -2,16 +2,17 @@ import Image from 'next/image';
 import { Badge, Card, Group, NumberFormatter, Text } from '@mantine/core';
 import { Button } from '../ui';
 
-import IconTrophy from '@/assets/icons/trophy.svg';
+import IconAward from '@/assets/icons/Award';
 import IconTimer from '@/assets/icons/timer.svg';
 import IconHourGlass from '@/assets/icons/hour-glass.svg';
-import IconAward from '@/assets/icons/award-level.svg';
+// import IconAward from '@/assets/icons/award-level.svg';
 
 type Props = {
   name: string;
   banner: any;
-  duration: string;
+  programType: any;
   creditHours: number;
+  awardLevel: string;
 };
 
 export default function CourseHero(props: Props) {
@@ -21,7 +22,7 @@ export default function CourseHero(props: Props) {
   const remainingName = words.join(' ');
 
   return (
-    <div className="relative w-full px-4 h-fit md:h-[60vh]">
+    <div className="relative h-fit w-full px-4 md:h-[60vh]">
       {/* Background Image */}
       <Image
         src={`https:${props.banner.fields.file.url}`}
@@ -57,7 +58,18 @@ export default function CourseHero(props: Props) {
                     Duration
                   </Text>
                   <Text size="16px" fw={900}>
-                    {props.duration}
+                    {props.programType.fields.duration}
+                  </Text>
+                </div>
+              </div>
+              <div className="flex sm:w-1/4">
+                <Image width={32} height={32} src={IconTimer} alt="email" />
+                <div className="px-4 text-center md:text-left">
+                  <Text size="16px" fw={100} pb={8}>
+                    Term Length
+                  </Text>
+                  <Text size="16px" fw={900}>
+                    {props.programType.fields.termLength}
                   </Text>
                 </div>
               </div>
@@ -65,21 +77,21 @@ export default function CourseHero(props: Props) {
                 <Image width={32} height={32} src={IconHourGlass} alt="email" />
                 <div className="px-4 text-center md:text-left">
                   <Text size="16px" fw={100} pb={8}>
-                    Credit Hours
+                    Delivery Mode
                   </Text>
                   <Text size="16px" fw={900}>
-                    <NumberFormatter prefix="Hrs " value={props.creditHours} thousandSeparator />
+                    {props.programType.fields.deliveryMode}
                   </Text>
                 </div>
               </div>
               <div className="flex">
-                <Image width={32} height={32} src={IconAward} alt="email" />
+                <IconAward />
                 <div className="px-4 text-center md:text-left">
                   <Text size="16px" fw={100} pb={8}>
                     Award Level
                   </Text>
                   <Text size="16px" fw={900}>
-                    {lastWord}
+                    {props.awardLevel}
                   </Text>
                 </div>
               </div>
@@ -103,7 +115,7 @@ export default function CourseHero(props: Props) {
             }}
           >
             <Group m={8}>
-              <Image width={24} height={24} src={IconTrophy} alt="email" />
+              <IconAward color="white" width={24} height={24} />
               <div className="font-nexa">
                 <Text size="sm" fw={900}>
                   {lastWord} Courses
