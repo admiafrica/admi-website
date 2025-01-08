@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { Card, Text, NumberFormatter, Divider } from '@mantine/core';
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 
+import { getAssetDetails } from '@/utils';
 import { CollapsibleContent } from '../shared/v3';
 import { Button, Title } from '../ui';
 
@@ -9,12 +10,9 @@ import IconCheckbox from '@/assets/icons/checkbox.svg';
 import IconBook from '@/assets/icons/book.svg';
 import IconHatBlack from '@/assets/icons/hat-black.svg';
 import IconHourglass from '@/assets/icons/hour-glass-white.svg';
-import IconTimer from '@/assets/icons/timer-white.svg';
 import IconCurrency from '@/assets/icons/group-6.svg';
-
 import IconBackgroundImageA from '@/assets/icons/ellipse-yellow-cut.svg';
 import IconBackgroundImageB from '@/assets/icons/ellipse-orange.svg';
-import { getAssetDetails } from '@/utils';
 
 type Props = {
   programType: any;

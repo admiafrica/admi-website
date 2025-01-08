@@ -1,16 +1,23 @@
-import { Avatar, Card, Group, Image, Rating, Text } from '@mantine/core';
+import { Avatar, Card, Group, Rating, Text } from '@mantine/core';
 import { Carousel } from '@mantine/carousel';
+
+import { getAssetDetails } from '@/utils';
+
 import { IconChecks } from '@tabler/icons-react';
+
+import classes from '@/styles/Indicator.module.css';
+import Image from 'next/image';
 
 type Props = {
   portfolios: any[];
+  assets: any[];
   testimonials: any[];
   totalHistoricalEnrollment: number;
 };
 
 export default function CourseStudents(props: Props) {
-  const showPortfolios = props.portfolios.length > 1;
-  const showTestimonials = props.testimonials.length > 1;
+  const showPortfolios = props.portfolios.length >= 1;
+  const showTestimonials = props.testimonials.length >= 1;
 
   return (
     <Group bg={'#BD2D00'}>
@@ -34,34 +41,51 @@ export default function CourseStudents(props: Props) {
               align="start"
               slidesToScroll={1}
               height={'20em'}
+              classNames={classes}
             >
-              {props.portfolios &&
-                props.portfolios.map((portfolio) => (
-                  <Carousel.Slide key={portfolio.author}>
-                    <Card>
-                      <Card.Section>
-                        <Image
-                          src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png"
-                          height={200}
-                          alt="Norway"
+              {props.portfolios.map((portfolio) => (
+                <Carousel.Slide key={portfolio.fields.studentName}>
+                  <Card>
+                    <Card.Section>
+                      <Carousel
+                        slideSize={{ base: '100%' }}
+                        slideGap={{ base: 0, sm: 'md' }}
+                        loop
+                        height={240}
+                        align="start"
+                        slidesToScroll={1}
+                      >
+                        {portfolio.fields.assets.map((portfolioAsset: any) => (
+                          <Carousel.Slide key={portfolioAsset.sys.id}>
+                            <Image
+                              src={`https:${getAssetDetails(props.assets, portfolioAsset.sys.id)?.fields.file.url}`}
+                              fill
+                              alt="#"
+                            />
+                          </Carousel.Slide>
+                        ))}
+                      </Carousel>
+                    </Card.Section>
+                    <Card.Section>
+                      <Group py={8} bg={'#871F00'} c={'white'}>
+                        <Avatar
+                          src={`https:${getAssetDetails(props.assets, portfolio.fields.profilePicture.sys.id)?.fields.file.url}`}
+                          variant="transparent"
+                          ml={16}
                         />
-                      </Card.Section>
-                      <Card.Section>
-                        <Group py={8} bg={'#871F00'} c={'white'}>
-                          <Avatar src="image.png" variant="transparent" ml={16} />
-                          <div className="flex grow flex-col">
-                            <div className="font-nexa">
-                              <Text fw={900}>{portfolio.author}</Text>
-                            </div>
-                            <div className="font-proxima">
-                              <Text fw={300}>{portfolio.course}</Text>
-                            </div>
+                        <div className="flex grow flex-col">
+                          <div className="font-nexa">
+                            <Text fw={900}>{portfolio.fields.studentName}</Text>
                           </div>
-                        </Group>
-                      </Card.Section>
-                    </Card>
-                  </Carousel.Slide>
-                ))}
+                          <div className="font-proxima">
+                            <Text fw={300}>{portfolio.course}</Text>
+                          </div>
+                        </div>
+                      </Group>
+                    </Card.Section>
+                  </Card>
+                </Carousel.Slide>
+              ))}
             </Carousel>
           </div>
         )}
