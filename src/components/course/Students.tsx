@@ -5,6 +5,7 @@ import { IconChecks } from '@tabler/icons-react';
 type Props = {
   portfolios: any[];
   testimonials: any[];
+  totalHistoricalEnrollment: number;
 };
 
 export default function CourseStudents(props: Props) {
@@ -76,7 +77,7 @@ export default function CourseStudents(props: Props) {
               <div className="flex font-proxima">
                 <IconChecks />
                 <Text size="1.1em" fw={500} ml={8}>
-                  over 500+ students have taken this course
+                  over {props.totalHistoricalEnrollment}+ students have taken this course
                 </Text>
               </div>
             </div>

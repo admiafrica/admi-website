@@ -67,9 +67,9 @@ export default function CourseDetailPage() {
       <CourseDetails
         benefits={course.courseBenefits || []}
         assets={courseAssets || []}
-        duration={course.courseDuration}
+        programType={course.programType}
         creditHours={course.creditHours}
-        tuitionFee={course.tuitionFee}
+        tuitionFees={course.tuitionFees}
         courseDescription={course.description}
         careerOptions={course.careerOptions}
         learningOutcomes={course.learningOutcomes}
@@ -78,6 +78,7 @@ export default function CourseDetailPage() {
       <CourseStudents
         portfolios={course.portfolios || portfoliosSample}
         testimonials={course.testimonials || testimonialsSample}
+        totalHistoricalEnrollment={course.totalHistoricalEnrollment}
       />
       <CourseApplicationProcess processes={course.applicationProcesses} />
       <CourseFAQs faqs={course.faqs || []} />

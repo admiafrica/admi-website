@@ -1,6 +1,8 @@
 import { Group, Select, Text, TextInput } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { Button, Title } from '../ui';
+import { IconAsterisk } from '@tabler/icons-react';
+import Link from 'next/link';
 
 export default function EnquiryForm() {
   const form = useForm({
@@ -23,13 +25,17 @@ export default function EnquiryForm() {
       <div className="font-nexa">
         <Title label="Enquiry Form" color="black" />
       </div>
-      <div className="font-proxima mb-8">
+      <div className="mb-8 font-proxima">
         <Text fw={600}>Kindly provide the details below</Text>
       </div>
       <form onSubmit={form.onSubmit((values) => console.log(values))}>
         <Select
-          withAsterisk
-          label={<Title label="Select Course" color="black" size="1.4em" />}
+          label={
+            <div className="flex">
+              <Title label="Select Course" color="black" size="1.4em" />
+              <IconAsterisk size={8} className="mt-1.5 text-admiRed" />
+            </div>
+          }
           placeholder="Select a course you're interested in"
           searchable
           nothingFoundMessage="No options"
@@ -40,36 +46,61 @@ export default function EnquiryForm() {
           ]}
           {...form.getInputProps('course')}
         />
-        <div className="font-proxima my-4">
+        <div className="my-4 font-proxima">
           <Text size="1.1em">
             Curious about our courses and the benefits they offer? Explore the details and discover what you could gain
-            by visiting our <span className="font-bold text-admiShamrok brightness-90">Courses page</span>
+            by visiting our{' '}
+            <span>
+              <Link href="/v3/courses">
+                <span className="font-bold text-admiShamrok brightness-90">Courses page</span>
+              </Link>
+            </span>
           </Text>
         </div>
         <TextInput
-          withAsterisk
-          label={<Title label="Email" color="black" size="1.4em" />}
+          my={16}
+          label={
+            <div className="flex">
+              <Title label="Email Address" color="black" size="1.4em" />
+              <IconAsterisk size={8} className="mt-1.5 text-admiRed" />
+            </div>
+          }
           placeholder="your@email.com"
           key={form.key('email')}
           {...form.getInputProps('email')}
         />
         <TextInput
-          withAsterisk
-          label={<Title label="First Name" color="black" size="1.4em" />}
+          my={16}
+          label={
+            <div className="flex">
+              <Title label="First Name" color="black" size="1.4em" />
+              <IconAsterisk size={8} className="mt-1.5 text-admiRed" />
+            </div>
+          }
           placeholder="Enter first name"
           key={form.key('firstName')}
           {...form.getInputProps('firstName')}
         />
         <TextInput
-          withAsterisk
-          label={<Title label="Last Name" color="black" size="1.4em" />}
+          my={16}
+          label={
+            <div className="flex">
+              <Title label="Last Name" color="black" size="1.4em" />
+              <IconAsterisk size={8} className="mt-1.5 text-admiRed" />
+            </div>
+          }
           placeholder="Enter last name"
           key={form.key('lastName')}
           {...form.getInputProps('lastName')}
         />
         <TextInput
-          withAsterisk
-          label={<Title label="Phone Number" color="black" size="1.4em" />}
+          my={16}
+          label={
+            <div className="flex">
+              <Title label="Phone Number" color="black" size="1.4em" />
+              <IconAsterisk size={8} className="mt-1.5 text-admiRed" />
+            </div>
+          }
           placeholder="Enter phone number"
           key={form.key('phoneNumber')}
           {...form.getInputProps('phoneNumber')}

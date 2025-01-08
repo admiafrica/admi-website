@@ -17,9 +17,9 @@ import IconBackgroundImageA from '@/assets/icons/ellipse-yellow-cut.svg';
 import IconBackgroundImageB from '@/assets/icons/ellipse-orange.svg';
 
 type Props = {
-  duration: string;
+  programType: any;
   creditHours: number;
-  tuitionFee: number;
+  tuitionFees: number;
   benefits: any[];
   assets: any[];
   careerOptions: any;
@@ -118,7 +118,7 @@ export default function CourseDetails(props: Props) {
           >
             <div className="my-auto flex w-full flex-col p-2 text-white md:flex-row md:p-4">
               <div className="my-auto flex w-full flex-col items-center pt-3 md:flex-row">
-                <div className="mb-4 mr-8 w-full text-center font-nexa md:text-left">
+                <div className="mb-4 mr-8 w-full text-center font-nexa md:text-left w-fit">
                   <Text size="25px" fw={900} c={'admiShamrok'} pb={8}>
                     Earn your course
                   </Text>
@@ -127,19 +127,19 @@ export default function CourseDetails(props: Props) {
                   </Text>
                 </div>
                 <div className="my-auto flex grow flex-col md:flex-row">
-                  <div className="flex">
+                  <div className="flex grow">
                     <Image width={32} height={32} src={IconTimer} alt="email" />
                     <div className="px-4 text-center md:text-left">
                       <Text size="16px" fw={100} pb={8}>
                         Duration
                       </Text>
                       <Text size="16px" fw={900}>
-                        {props.duration}
+                        {props.programType.fields.duration}
                       </Text>
                     </div>
                   </div>
                   <Divider orientation="vertical" size={1} opacity="30%" mx={8} />
-                  <div className="flex">
+                  <div className="flex grow">
                     <Image width={32} height={32} src={IconHourglass} alt="email" />
                     <div className="px-4 text-center md:text-left">
                       <Text size="16px" fw={100} pb={8}>
@@ -151,14 +151,14 @@ export default function CourseDetails(props: Props) {
                     </div>
                   </div>
                   <Divider orientation="vertical" size={1} opacity="30%" mx={8} />
-                  <div className="flex">
+                  <div className="flex w-1/3">
                     <Image width={32} height={32} src={IconCurrency} alt="email" />
                     <div className="px-4 text-center md:text-left">
                       <Text size="16px" fw={100} pb={8}>
                         Tuition Fees
                       </Text>
                       <Text size="16px" fw={900}>
-                        <NumberFormatter prefix="KES " value={props.tuitionFee} thousandSeparator />
+                        {props.tuitionFees}
                       </Text>
                     </div>
                   </div>
