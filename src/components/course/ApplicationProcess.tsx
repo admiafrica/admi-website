@@ -8,7 +8,7 @@ type Props = {
 
 export default function CourseApplicationProcess({ processes }: Props) {
   return (
-    <div className="w-full pb-24">
+    <div className="relative z-20 w-full pb-24">
       <div className="mx-auto w-full max-w-screen-xl px-4">
         <div className="mt-16 font-nexa">
           <Text size="2em" fw={900}>
