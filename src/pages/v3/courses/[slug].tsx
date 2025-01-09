@@ -51,7 +51,7 @@ export default function CourseDetailPage() {
         awardLevel={course.awardLevel}
         creditHours={course.creditHours}
       />
-      <CourseAbout description={course.description} />
+      <CourseAbout description={course.aboutTheCourse} intakes={course.intakes}/>
       <CourseDetails
         benefits={course.courseBenefits || []}
         assets={courseAssets || []}
@@ -66,7 +66,7 @@ export default function CourseDetailPage() {
       <CourseStudents
         portfolios={course.studentPortfolio || []}
         assets={courseAssets}
-        testimonials={course.testimonials || []}
+        testimonials={course.studentReviews || []}
         totalHistoricalEnrollment={course.totalHistoricalEnrollment}
       />
       <CourseApplicationProcess processes={course.applicationProcesses} />

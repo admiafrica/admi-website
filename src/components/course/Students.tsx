@@ -1,5 +1,6 @@
 import { Avatar, Card, Group, Rating, Text } from '@mantine/core';
 import { Carousel } from '@mantine/carousel';
+import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 
 import { getAssetDetails } from '@/utils';
 
@@ -112,22 +113,26 @@ export default function CourseStudents(props: Props) {
           <div className="flex h-fit w-full justify-start">
             {props.testimonials.map((testimonial, index) => (
               <Card className="mb-16 mr-4 w-1/4" key={`testimonial-${index}`}>
-                <Rating value={testimonial.review} fractions={2} color="admiRed" readOnly />
+                <Rating value={5} fractions={2} color="admiRed" readOnly />
                 <Card.Section>
-                  <div className="flex flex-col">
-                    <Text fw={500} px={16} pt={8}>
-                      {testimonial.description}
-                    </Text>
-                  </div>
+                  <div
+                    className="mt-1 px-4 font-proxima text-gray-600"
+                    dangerouslySetInnerHTML={{
+                      __html: documentToHtmlString(testimonial.fields.description),
+                    }}
+                  ></div>
                 </Card.Section>
                 <div className="mt-8 flex">
-                  <Avatar src="image.png" variant="transparent" />
+                  <Avatar
+                    src={`https:${getAssetDetails(props.assets, testimonial.fields.authorImage.sys.id)?.fields.file.url}`}
+                    variant="transparent"
+                  />
                   <div className="flex flex-col">
                     <div className="font-nexa">
-                      <Text fw={900}>{testimonial.author}</Text>
+                      <Text fw={900}>{testimonial.fields.authorName}</Text>
                     </div>
                     <div className="font-proxima">
-                      <Text fw={500}>{testimonial.title}</Text>
+                      <Text fw={500}>{testimonial.fields.authorRole}</Text>
                     </div>
                   </div>
                 </div>

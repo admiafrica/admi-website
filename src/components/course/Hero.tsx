@@ -1,10 +1,11 @@
 import Image from 'next/image';
-import { Badge, Card, Group, Text } from '@mantine/core';
+import { Badge, Card, Group, NumberFormatter, Text } from '@mantine/core';
 import { Button } from '../ui';
 
 import IconAward from '@/assets/icons/Award';
 import IconTimer from '@/assets/icons/timer.svg';
 import IconHourGlass from '@/assets/icons/hourglass-start.svg';
+import IconHourGlassBlack from '@/assets/icons/hourglass.svg';
 import IconAvatar from '@/assets/icons/avatar.svg';
 
 type Props = {
@@ -13,12 +14,13 @@ type Props = {
   programType: any;
   creditHours: number;
   awardLevel: string;
+  isCampaign?: boolean;
 };
 
 export default function CourseHero(props: Props) {
-  // Extract the last word and the remaining name
   const words = props.name.trim().split(' ');
-  const lastWord = words.pop(); // Removes and returns the last word
+  // Remove last word
+  words.pop();
   const remainingName = words.join(' ');
 
   return (
@@ -43,71 +45,126 @@ export default function CourseHero(props: Props) {
       ></div>
 
       {/* Floating Card */}
-      <div className="w-full px-1">
-        <Card
-          className="absolute left-1/2 top-[40em] z-10 h-fit w-full max-w-screen-2xl -translate-x-1/2 transform justify-center shadow-lg sm:top-[26em] md:h-[7.125rem]"
-          bg={'admiShamrok'}
-          radius={6}
-        >
-          <div className="my-auto flex w-full flex-col p-2 md:flex-row md:p-4">
-            <div className="my-auto grow">
-              <div className="flex flex-col md:flex-row">
-                <div className="mr-8 flex">
-                  <Image width={32} src={IconTimer} alt="duration" />
-                  <div className="px-4 text-center md:text-left">
-                    <Text size="16px" fw={100} pb={8}>
-                      Duration
-                    </Text>
-                    <Text size="16px" fw={900}>
-                      {props.programType.fields.duration}
-                    </Text>
+      <div className={props.isCampaign ? 'w-fit px-1' : 'w-full px-1'}>
+        {props.isCampaign ? (
+          <Card
+            className="absolute left-[70%] top-[40em] z-10 h-fit w-full max-w-screen-2xl -translate-x-1/2 transform shadow-lg sm:top-[26em] md:h-[7.125rem]"
+            bg={'admiShamrok'}
+            radius={6}
+          >
+            <div className="my-auto flex w-full flex-col p-2 md:flex-row md:p-4">
+              <div className="my-auto grow">
+                <div className="flex flex-col md:flex-row">
+                  <div className="mr-8 flex">
+                    <Image width={32} src={IconTimer} alt="duration" />
+                    <div className="px-4 text-center md:text-left">
+                      <Text size="16px" fw={100} pb={8}>
+                        Duration
+                      </Text>
+                      <Text size="16px" fw={900}>
+                        {props.programType.fields.duration}
+                      </Text>
+                    </div>
                   </div>
-                </div>
-                <div className="mr-8 flex">
-                  <Image width={40} src={IconHourGlass} alt="term length" />
-                  <div className="px-4 text-center md:text-left">
-                    <Text size="16px" fw={100} pb={8}>
-                      Term Length
-                    </Text>
-                    <Text size="16px" fw={900}>
-                      {props.programType.fields.termLength}
-                    </Text>
+                  <div className="mr-8 flex">
+                    <Image width={32} src={IconHourGlassBlack} alt="term length" />
+                    <div className="px-4 text-center md:text-left">
+                      <Text size="16px" fw={100} pb={8}>
+                        Credit Hours
+                      </Text>
+                      <Text size="16px" fw={900}>
+                        <NumberFormatter value={props.creditHours} thousandSeparator />
+                      </Text>
+                    </div>
                   </div>
-                </div>
-                <div className="mr-8 flex">
-                  <Image width={40} src={IconAvatar} alt="email" />
-                  <div className="px-4 text-center md:text-left">
-                    <Text size="16px" fw={100} pb={8}>
-                      Delivery Mode
-                    </Text>
-                    <Text size="16px" fw={900}>
-                      {props.programType.fields.deliveryMode}
-                    </Text>
-                  </div>
-                </div>
-                <div className="flex">
-                  <IconAward />
-                  <div className="px-4 text-center md:text-left">
-                    <Text size="16px" fw={100} pb={8}>
-                      Award Level
-                    </Text>
-                    <Text size="16px" fw={900}>
-                      {props.awardLevel}
-                    </Text>
+                  <div className="flex">
+                    <IconAward />
+                    <div className="px-4 text-center md:text-left">
+                      <Text size="16px" fw={100} pb={8}>
+                        Award Level
+                      </Text>
+                      <Text size="16px" fw={900}>
+                        {props.awardLevel}
+                      </Text>
+                    </div>
                   </div>
                 </div>
               </div>
+              {!props.isCampaign && (
+                <div className="md:py-auto mx-auto py-4">
+                  <Button size="xl" backgroundColor="admiRed" label="Get in Touch" />
+                </div>
+              )}
             </div>
-            <div className="md:py-auto mx-auto py-4">
-              <Button size="xl" backgroundColor="admiRed" label="Get in Touch" />
+          </Card>
+        ) : (
+          <Card
+            className="absolute left-1/2 top-[40em] z-10 h-fit w-full max-w-screen-2xl -translate-x-1/2 transform justify-center shadow-lg sm:top-[26em] md:h-[7.125rem]"
+            bg={'admiShamrok'}
+            radius={6}
+          >
+            <div className="my-auto flex w-full flex-col p-2 md:flex-row md:p-4">
+              <div className="my-auto grow">
+                <div className="flex flex-col md:flex-row">
+                  <div className="mr-8 flex">
+                    <Image width={32} src={IconTimer} alt="duration" />
+                    <div className="px-4 text-center md:text-left">
+                      <Text size="16px" fw={100} pb={8}>
+                        Duration
+                      </Text>
+                      <Text size="16px" fw={900}>
+                        {props.programType.fields.duration}
+                      </Text>
+                    </div>
+                  </div>
+                  <div className="mr-8 flex">
+                    <Image width={40} src={IconHourGlass} alt="term length" />
+                    <div className="px-4 text-center md:text-left">
+                      <Text size="16px" fw={100} pb={8}>
+                        Term Length
+                      </Text>
+                      <Text size="16px" fw={900}>
+                        {props.programType.fields.termLength}
+                      </Text>
+                    </div>
+                  </div>
+                  <div className="mr-8 flex">
+                    <Image width={40} src={IconAvatar} alt="email" />
+                    <div className="px-4 text-center md:text-left">
+                      <Text size="16px" fw={100} pb={8}>
+                        Delivery Mode
+                      </Text>
+                      <Text size="16px" fw={900}>
+                        {props.programType.fields.deliveryMode}
+                      </Text>
+                    </div>
+                  </div>
+                  <div className="flex">
+                    <IconAward />
+                    <div className="px-4 text-center md:text-left">
+                      <Text size="16px" fw={100} pb={8}>
+                        Award Level
+                      </Text>
+                      <Text size="16px" fw={900}>
+                        {props.awardLevel}
+                      </Text>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {!props.isCampaign && (
+                <div className="md:py-auto mx-auto py-4">
+                  <Button size="xl" backgroundColor="admiRed" label="Get in Touch" />
+                </div>
+              )}
             </div>
-          </div>
-        </Card>
+          </Card>
+        )}
       </div>
 
       {/* Content Section */}
       <div className="relative z-10 mx-auto w-full max-w-screen-2xl text-white">
-        <div className="md:w-1/2 md:pt-24">
+        <div className="md:w-1/2">
           <Badge
             h={36}
             mb={8}
@@ -127,9 +184,13 @@ export default function CourseHero(props: Props) {
           </Badge>
 
           <div className="font-nexa">
-            <br></br>
             <Text size="60px" fw={900}>
-              {remainingName} <span className="text-[#F1FE38]">{props.programType.fields.name}</span>
+              {remainingName}
+            </Text>
+          </div>
+          <div className="font-nexa text-[#F1FE38]">
+            <Text size="60px" fw={900}>
+              {props.programType.fields.name}
             </Text>
           </div>
         </div>

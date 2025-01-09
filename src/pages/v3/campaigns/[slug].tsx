@@ -50,8 +50,9 @@ export default function CourseDetailPage() {
         programType={course.programType}
         awardLevel={course.awardLevel}
         creditHours={course.creditHours}
+        isCampaign
       />
-      <CourseAbout description={course.description} />
+      <CourseAbout description={course.description} isCampaign intakes="" />
       <CourseDetails
         benefits={course.courseBenefits || []}
         assets={courseAssets || []}
@@ -62,7 +63,6 @@ export default function CourseDetailPage() {
         careerOptions={course.careerOptions}
         learningOutcomes={course.learningOutcomes}
       />
-      <CourseMentors mentors={course.courseLeadersMentors} assets={courseAssets || []} />
       <CourseApplicationProcess processes={course.applicationProcesses} />
       <CourseFAQs faqs={course.faqs || []} />
     </MainLayout>

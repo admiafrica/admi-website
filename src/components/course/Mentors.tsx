@@ -35,7 +35,7 @@ export default function CourseMentors(props: Props) {
                 />
               }
               title={mentor.fields.name}
-              subTitle={mentor.fields.jobTitle}
+              subTitle={mentor.fields.professionalTitle}
               profileLink={mentor.fields.socialMediaLink}
               content={
                 <div
