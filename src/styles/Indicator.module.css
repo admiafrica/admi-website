@@ -1,7 +1,8 @@
 .indicator {
   width: 12px;
-  height: 4px;
+  height: 6px;
   transition: width 250ms ease;
+  background: none;
 
   &[data-active] {
     width: 60px;

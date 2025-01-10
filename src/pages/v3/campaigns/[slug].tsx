@@ -2,15 +2,7 @@ import { useRouter } from 'next/router';
 import { useState, useCallback, useEffect } from 'react';
 
 import { MainLayout } from '@/layouts/v3/MainLayout';
-import {
-  CourseAbout,
-  CourseApplicationProcess,
-  CourseDetails,
-  CourseFAQs,
-  CourseHero,
-  CourseMentors,
-  CourseStudents,
-} from '@/components/course';
+import { CourseHero, CourseAbout, CourseDetails, CourseApplicationProcess, CourseFAQs } from '@/components/course';
 
 export default function CourseDetailPage() {
   const router = useRouter();
@@ -52,7 +44,7 @@ export default function CourseDetailPage() {
         creditHours={course.creditHours}
         isCampaign
       />
-      <CourseAbout description={course.description} isCampaign intakes="" />
+      <CourseAbout description={course.aboutTheCourse} isCampaign intakes="" />
       <CourseDetails
         benefits={course.courseBenefits || []}
         assets={courseAssets || []}

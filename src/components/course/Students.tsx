@@ -4,7 +4,7 @@ import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 
 import { getAssetDetails } from '@/utils';
 
-import { IconChecks } from '@tabler/icons-react';
+import { IconArrowLeft, IconArrowRight, IconChecks } from '@tabler/icons-react';
 
 import classes from '@/styles/Indicator.module.css';
 import Image from 'next/image';
@@ -41,8 +41,10 @@ export default function CourseStudents(props: Props) {
               loop
               align="start"
               slidesToScroll={1}
-              height={'20em'}
+              height={'24em'}
               classNames={classes}
+              previousControlIcon={<IconArrowLeft />}
+              nextControlIcon={<IconArrowRight />}
             >
               {props.portfolios.map((portfolio) => (
                 <Carousel.Slide key={portfolio.fields.studentName}>
@@ -52,9 +54,11 @@ export default function CourseStudents(props: Props) {
                         slideSize={{ base: '100%' }}
                         slideGap={{ base: 0, sm: 'md' }}
                         loop
-                        height={240}
+                        height={270}
                         align="start"
                         slidesToScroll={1}
+                        previousControlIcon={<IconArrowLeft />}
+                        nextControlIcon={<IconArrowRight />}
                       >
                         {portfolio.fields.assets.map((portfolioAsset: any) => (
                           <Carousel.Slide key={portfolioAsset.sys.id}>
@@ -68,10 +72,11 @@ export default function CourseStudents(props: Props) {
                       </Carousel>
                     </Card.Section>
                     <Card.Section>
-                      <Group py={8} bg={'#871F00'} c={'white'}>
+                      <Group py={16} bg={'#871F00'} c={'white'}>
                         <Avatar
                           src={`https:${getAssetDetails(props.assets, portfolio.fields.profilePicture.sys.id)?.fields.file.url}`}
                           variant="transparent"
+                          size={48}
                           ml={16}
                         />
                         <div className="flex grow flex-col">
@@ -79,7 +84,7 @@ export default function CourseStudents(props: Props) {
                             <Text fw={900}>{portfolio.fields.studentName}</Text>
                           </div>
                           <div className="font-proxima">
-                            <Text fw={300}>{portfolio.course}</Text>
+                            <Text fw={300}>{portfolio.fields.professionalTitle}</Text>
                           </div>
                         </div>
                       </Group>
@@ -112,22 +117,22 @@ export default function CourseStudents(props: Props) {
         {showTestimonials && (
           <div className="flex h-fit w-full justify-start">
             {props.testimonials.map((testimonial, index) => (
-              <Card className="mb-16 mr-4 w-1/4" key={`testimonial-${index}`}>
-                <Rating value={5} fractions={2} color="admiRed" readOnly />
+              <Card className="mb-16 mr-4 h-fit w-1/4" key={`testimonial-${index}`}>
+                <Rating value={5} fractions={2} color="admiRed" readOnly className="pl-2" />
                 <Card.Section>
                   <div
-                    className="mt-1 px-4 font-proxima text-gray-600"
+                    className="mt-1 px-6 font-proxima text-gray-600"
                     dangerouslySetInnerHTML={{
                       __html: documentToHtmlString(testimonial.fields.description),
                     }}
                   ></div>
                 </Card.Section>
-                <div className="mt-8 flex">
+                <div className="mt-8 flex px-2">
                   <Avatar
                     src={`https:${getAssetDetails(props.assets, testimonial.fields.authorImage.sys.id)?.fields.file.url}`}
                     variant="transparent"
                   />
-                  <div className="flex flex-col">
+                  <div className="flex flex-col px-4">
                     <div className="font-nexa">
                       <Text fw={900}>{testimonial.fields.authorName}</Text>
                     </div>
