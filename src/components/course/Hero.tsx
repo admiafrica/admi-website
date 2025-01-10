@@ -20,7 +20,7 @@ type Props = {
 export default function CourseHero(props: Props) {
   const words = props.name.trim().split(' ');
   // Remove last word
-  words.pop();
+  const lastWord = words.pop();
   const remainingName = words.join(' ');
 
   return (
@@ -48,7 +48,7 @@ export default function CourseHero(props: Props) {
       <div className={props.isCampaign ? 'w-fit px-1' : 'w-full px-1'}>
         {props.isCampaign ? (
           <Card
-            className="absolute left-[70%] top-[40em] z-10 h-fit w-full max-w-screen-2xl -translate-x-1/2 transform shadow-lg sm:top-[26em] md:h-[7.125rem]"
+            className="absolute left-[70%] top-[Ź0em] z-10 h-fit w-full max-w-screen-2xl -translate-x-1/2 transform shadow-lg sm:top-[26em] md:h-[7.125rem]"
             bg={'admiShamrok'}
             radius={6}
           >
@@ -190,7 +190,7 @@ export default function CourseHero(props: Props) {
           </div>
           <div className="font-nexa text-[#F1FE38]">
             <Text size="60px" fw={900}>
-              {props.programType.fields.name}
+              {lastWord}
             </Text>
           </div>
         </div>

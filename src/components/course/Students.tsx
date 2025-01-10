@@ -39,6 +39,7 @@ export default function CourseStudents(props: Props) {
               slideSize={{ base: '100%', sm: '50%', md: '33.333333%' }}
               slideGap={{ base: 0, sm: 'md' }}
               loop
+              px={64}
               align="start"
               slidesToScroll={1}
               height={'24em'}
