@@ -21,7 +21,7 @@ export default function EnquiryForm() {
   });
 
   return (
-    <div>
+    <div className="w-full">
       <div className="font-nexa">
         <Title label="Enquiry Form" color="black" />
       </div>
@@ -31,19 +31,16 @@ export default function EnquiryForm() {
       <form onSubmit={form.onSubmit((values) => console.log(values))}>
         <Select
           label={
-            <div className="flex">
+            <div className="flex pl-2">
               <Title label="Select Course" color="black" size="1.4em" />
               <IconAsterisk size={8} className="mt-1.5 text-admiRed" />
             </div>
           }
+          className="border-1 rounded-lg border-solid border-gray-200 py-2"
           placeholder="Select a course you're interested in"
           searchable
           nothingFoundMessage="No options"
-          data={[
-            { value: 'react', label: 'React' },
-            { value: 'angular', label: 'Angular' },
-            { value: 'vue', label: 'Vue' },
-          ]}
+          data={[]}
           {...form.getInputProps('course')}
         />
         <div className="my-4 font-proxima">
@@ -59,8 +56,9 @@ export default function EnquiryForm() {
         </div>
         <TextInput
           my={16}
+          className="border-1 rounded-lg border-solid border-gray-200 py-2"
           label={
-            <div className="flex">
+            <div className="flex pl-2">
               <Title label="Email Address" color="black" size="1.4em" />
               <IconAsterisk size={8} className="mt-1.5 text-admiRed" />
             </div>
@@ -71,8 +69,9 @@ export default function EnquiryForm() {
         />
         <TextInput
           my={16}
+          className="border-1 rounded-lg border-solid border-gray-200 py-2"
           label={
-            <div className="flex">
+            <div className="flex pl-2">
               <Title label="First Name" color="black" size="1.4em" />
               <IconAsterisk size={8} className="mt-1.5 text-admiRed" />
             </div>
@@ -83,8 +82,9 @@ export default function EnquiryForm() {
         />
         <TextInput
           my={16}
+          className="border-1 rounded-lg border-solid border-gray-200 py-2"
           label={
-            <div className="flex">
+            <div className="flex pl-2">
               <Title label="Last Name" color="black" size="1.4em" />
               <IconAsterisk size={8} className="mt-1.5 text-admiRed" />
             </div>
@@ -95,8 +95,9 @@ export default function EnquiryForm() {
         />
         <TextInput
           my={16}
+          className="border-1 rounded-lg border-solid border-gray-200 py-2"
           label={
-            <div className="flex">
+            <div className="flex pl-2">
               <Title label="Phone Number" color="black" size="1.4em" />
               <IconAsterisk size={8} className="mt-1.5 text-admiRed" />
             </div>
@@ -113,3 +114,8 @@ export default function EnquiryForm() {
     </div>
   );
 }
+
+const inputStyles: React.CSSProperties = {
+  border: 'none',
+  background: 'transparent',
+};

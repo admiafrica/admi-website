@@ -45,9 +45,9 @@ export default function CourseDetails(props: Props) {
         <div className="z-20 mx-auto mb-8 w-fit pt-16 text-center font-nexa">
           <Title label="Why you should take this course" color="black" />
         </div>
-        <div className="relative z-20 flex flex-row justify-between">
+        <div className="relative z-20 flex flex-col justify-between sm:flex-row">
           {props.benefits.map((benefit) => (
-            <Card shadow="md" className="w-1/4" key={benefit.sys.id}>
+            <Card shadow="md" className="mb-8 sm:mb-auto sm:w-1/4" key={benefit.sys.id}>
               <div className="flex px-4 pt-4">
                 <Image
                   src={`https:${getAssetDetails(props.assets, benefit.fields.icon.sys.id)?.fields.file.url}`}
