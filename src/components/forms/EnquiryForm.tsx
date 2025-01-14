@@ -20,6 +20,10 @@ export default function EnquiryForm() {
     },
   });
 
+  const handleSubmit = () => {
+    console.log('VALUES', form.values);
+  };
+
   return (
     <div className="w-full">
       <div className="font-nexa">
@@ -108,14 +112,9 @@ export default function EnquiryForm() {
         />
 
         <Group justify="flex-end" mt="4em" className="w-full">
-          <Button size="lg" backgroundColor="admiRed" label="Submit" />
+          <Button size="lg" backgroundColor="admiRed" label="Submit" onClick={() => handleSubmit()} />
         </Group>
       </form>
     </div>
   );
 }
-
-const inputStyles: React.CSSProperties = {
-  border: 'none',
-  background: 'transparent',
-};

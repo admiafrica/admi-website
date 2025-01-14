@@ -11,12 +11,12 @@ type Props = {
 };
 export default function CourseAbout({ description, isCampaign = false, intakes }: Props) {
   return (
-    <div className="w-full pb-24">
+    <div className="w-full pb-24 pt-48 sm:pt-0">
       <div className="mx-auto w-full max-w-screen-2xl px-4 pt-32 2xl:px-0">
         <div className="flex w-full flex-col sm:flex-row">
           {isCampaign && (
             <>
-              <div className="flex w-1/2 flex-col">
+              <div className="flex flex-col sm:w-1/2">
                 <div className="font-nexa text-admiRed">
                   <Title label="About this course" />
                 </div>
@@ -27,7 +27,7 @@ export default function CourseAbout({ description, isCampaign = false, intakes }
                   }}
                 ></div>
               </div>
-              <div className="absolute left-[80%] top-[24rem] z-10 h-fit w-full -translate-x-1/2 transform sm:w-[48em]">
+              <div className="top-[24rem] z-10 h-fit w-full transform sm:absolute sm:left-[80%] sm:w-[48em] sm:-translate-x-1/2">
                 <Card padding="lg" radius="md" className="mx-auto mt-8 w-full sm:w-[64%]" bg={'#F5FFFD'}>
                   <EnquiryForm />
                 </Card>
@@ -48,7 +48,7 @@ export default function CourseAbout({ description, isCampaign = false, intakes }
                 ></div>
               </div>
               <div className="z-10 my-0 flex h-fit w-full justify-end pt-20">
-                <Card shadow="sm" padding="lg" radius="md" withBorder className="w-[60%]">
+                <Card shadow="sm" padding="lg" radius="md" withBorder className="sm:w-[60%]">
                   <Card.Section>
                     <Image
                       src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png"

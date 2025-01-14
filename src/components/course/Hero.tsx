@@ -24,7 +24,7 @@ export default function CourseHero(props: Props) {
   const remainingName = words.join(' ');
 
   return (
-    <div className="relative h-fit w-full px-4 md:h-[45vh]">
+    <div className="relative h-[64vh] w-full px-4 sm:h-[45vh]">
       {/* Background Image */}
       <Image
         src={`https:${props.coverImage.fields.file.url}`}
@@ -45,19 +45,19 @@ export default function CourseHero(props: Props) {
       ></div>
 
       {/* Floating Card */}
-      <div className={props.isCampaign ? 'w-fit px-1' : 'w-full px-1'}>
+      <div className={props.isCampaign ? 'w-full px-1 sm:w-fit' : 'w-full px-1'}>
         {props.isCampaign ? (
           <Card
-            className="absolute left-[70%] top-[Ź0em] z-10 h-fit w-full max-w-screen-2xl -translate-x-1/2 transform shadow-lg sm:top-[26em] md:h-[7.125rem]"
+            className="top-[36em] z-10 h-fit w-full max-w-screen-2xl transform shadow-lg sm:absolute sm:left-[70%] sm:top-[26em] sm:-translate-x-1/2 md:h-[7.125rem]"
             bg={'admiShamrok'}
             radius={6}
           >
             <div className="my-auto flex w-full flex-col p-2 md:flex-row md:p-4">
               <div className="my-auto grow">
                 <div className="flex flex-col md:flex-row">
-                  <div className="mr-8 flex">
+                  <div className="my-2 mr-8 flex sm:my-auto">
                     <Image width={32} src={IconTimer} alt="duration" />
-                    <div className="px-4 text-center md:text-left">
+                    <div className="w-full px-4 text-left md:text-left">
                       <Text size="16px" fw={100} pb={8}>
                         Duration
                       </Text>
@@ -66,9 +66,9 @@ export default function CourseHero(props: Props) {
                       </Text>
                     </div>
                   </div>
-                  <div className="mr-8 flex">
+                  <div className="my-2 mr-8 flex sm:my-auto">
                     <Image width={32} src={IconHourGlassBlack} alt="term length" />
-                    <div className="px-4 text-center md:text-left">
+                    <div className="px-4 text-left md:text-left">
                       <Text size="16px" fw={100} pb={8}>
                         Credit Hours
                       </Text>
@@ -77,9 +77,9 @@ export default function CourseHero(props: Props) {
                       </Text>
                     </div>
                   </div>
-                  <div className="flex">
+                  <div className="my-2 flex sm:my-auto">
                     <IconAward />
-                    <div className="px-4 text-center md:text-left">
+                    <div className="px-4 text-left md:text-left">
                       <Text size="16px" fw={100} pb={8}>
                         Award Level
                       </Text>
@@ -99,7 +99,7 @@ export default function CourseHero(props: Props) {
           </Card>
         ) : (
           <Card
-            className="absolute left-1/2 top-[40em] z-10 h-fit w-full max-w-screen-2xl -translate-x-1/2 transform justify-center shadow-lg sm:top-[26em] md:h-[7.125rem]"
+            className="absolute left-1/2 top-[35em] z-10 h-fit w-full max-w-screen-2xl -translate-x-1/2 transform justify-center shadow-lg sm:top-[26em] sm:top-[40em] md:h-[7.125rem]"
             bg={'admiShamrok'}
             radius={6}
           >
@@ -108,7 +108,7 @@ export default function CourseHero(props: Props) {
                 <div className="flex flex-col md:flex-row">
                   <div className="mr-8 flex">
                     <Image width={32} src={IconTimer} alt="duration" />
-                    <div className="px-4 text-center md:text-left">
+                    <div className="px-4 text-left">
                       <Text size="16px" fw={100} pb={8}>
                         Duration
                       </Text>
@@ -119,7 +119,7 @@ export default function CourseHero(props: Props) {
                   </div>
                   <div className="mr-8 flex">
                     <Image width={40} src={IconHourGlass} alt="term length" />
-                    <div className="px-4 text-center md:text-left">
+                    <div className="px-4 text-left">
                       <Text size="16px" fw={100} pb={8}>
                         Term Length
                       </Text>
@@ -130,7 +130,7 @@ export default function CourseHero(props: Props) {
                   </div>
                   <div className="mr-8 flex">
                     <Image width={40} src={IconAvatar} alt="email" />
-                    <div className="px-4 text-center md:text-left">
+                    <div className="px-4 text-left">
                       <Text size="16px" fw={100} pb={8}>
                         Delivery Mode
                       </Text>
@@ -141,7 +141,7 @@ export default function CourseHero(props: Props) {
                   </div>
                   <div className="flex">
                     <IconAward />
-                    <div className="px-4 text-center md:text-left">
+                    <div className="px-4 text-left">
                       <Text size="16px" fw={100} pb={8}>
                         Award Level
                       </Text>
@@ -163,7 +163,9 @@ export default function CourseHero(props: Props) {
       </div>
 
       {/* Content Section */}
-      <div className="relative z-10 mx-auto w-full max-w-screen-2xl text-white">
+      <div
+        className={`relative z-10 mx-auto w-full max-w-screen-2xl text-white ${props.isCampaign ? '' : 'mt-[-8em] sm:mt-0'}`}
+      >
         <div className="md:w-1/2">
           <Badge
             h={36}
@@ -194,7 +196,6 @@ export default function CourseHero(props: Props) {
             </Text>
           </div>
         </div>
-        <div className="w-1/2"></div>
       </div>
     </div>
   );

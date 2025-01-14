@@ -126,9 +126,9 @@ export default function CourseDetails(props: Props) {
                 </div>
                 <div className="my-auto flex grow flex-col md:flex-row">
                   <Divider orientation="vertical" size={1} opacity="30%" mx={8} />
-                  <div className="flex w-1/3 justify-center">
+                  <div className="flex sm:w-1/3 sm:justify-center">
                     <Image width={32} height={32} src={IconHourglass} alt="email" />
-                    <div className="px-4 text-center md:text-left">
+                    <div className="px-4 text-left md:text-left">
                       <Text size="16px" fw={100} pb={8}>
                         Credit Hours
                       </Text>
@@ -138,9 +138,9 @@ export default function CourseDetails(props: Props) {
                     </div>
                   </div>
                   <Divider orientation="vertical" size={1} opacity="30%" mx={8} />
-                  <div className="flex w-1/3 justify-center">
+                  <div className="flex sm:w-1/3 sm:justify-center">
                     <Image width={32} height={32} src={IconCurrency} alt="email" />
-                    <div className="px-4 text-center md:text-left">
+                    <div className="px-4 text-left md:text-left">
                       <Text size="16px" fw={100} pb={8}>
                         Tuition Fees
                       </Text>

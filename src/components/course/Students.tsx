@@ -20,6 +20,7 @@ type Props = {
 
 export default function CourseStudents(props: Props) {
   const autoplay = useRef(Autoplay({ delay: 6000 }));
+  const portfolioAutoplay = useRef(Autoplay({ delay: 8000 }));
 
   const showPortfolios = props.portfolios.length >= 1;
   const showTestimonials = props.testimonials.length >= 1;
@@ -44,7 +45,7 @@ export default function CourseStudents(props: Props) {
               withControls={enableCarousel}
               withIndicators={enableCarousel}
               loop={enableCarousel}
-              plugins={enableCarousel ? [autoplay.current]: []}
+              plugins={enableCarousel ? [autoplay.current] : []}
               onMouseEnter={autoplay.current.stop}
               onMouseLeave={autoplay.current.reset}
               slideSize={{ base: '100%', sm: '50%', md: '33.333333%' }}
@@ -58,8 +59,6 @@ export default function CourseStudents(props: Props) {
               nextControlIcon={<IconArrowRight />}
             >
               {props.portfolios.map((portfolio) => {
-                const portfolioAutoplay = useRef(Autoplay({ delay: 8000 }));
-
                 return (
                   <Carousel.Slide key={portfolio.fields.studentName}>
                     <Card>
