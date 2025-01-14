@@ -2,15 +2,7 @@ import { useRouter } from 'next/router';
 import { useState, useCallback, useEffect } from 'react';
 
 import { MainLayout } from '@/layouts/v3/MainLayout';
-import {
-  CourseAbout,
-  CourseApplicationProcess,
-  CourseDetails,
-  CourseFAQs,
-  CourseHero,
-  CourseMentors,
-  CourseStudents,
-} from '@/components/course';
+import { CourseHero, CourseAbout, CourseDetails, CourseApplicationProcess, CourseFAQs } from '@/components/course';
 
 export default function CourseDetailPage() {
   const router = useRouter();
@@ -43,15 +35,16 @@ export default function CourseDetailPage() {
   if (!course) return null;
 
   return (
-    <MainLayout>
+    <MainLayout minimizeFooter minimizeHeader>
       <CourseHero
         name={course.name}
         coverImage={course.coverImage}
         programType={course.programType}
         awardLevel={course.awardLevel}
         creditHours={course.creditHours}
+        isCampaign
       />
-      <CourseAbout description={course.aboutTheCourse} intakes={course.intakes}/>
+      <CourseAbout description={course.aboutTheCourse} isCampaign intakes="" />
       <CourseDetails
         benefits={course.courseBenefits || []}
         assets={courseAssets || []}
@@ -61,13 +54,6 @@ export default function CourseDetailPage() {
         courseDescription={course.description}
         careerOptions={course.careerOptions}
         learningOutcomes={course.learningOutcomes}
-      />
-      <CourseMentors mentors={course.courseLeadersMentors} assets={courseAssets || []} />
-      <CourseStudents
-        portfolios={course.studentPortfolio || []}
-        assets={courseAssets}
-        testimonials={course.studentReviews || []}
-        totalHistoricalEnrollment={course.totalHistoricalEnrollment}
       />
       <CourseApplicationProcess processes={course.applicationProcesses} />
       <CourseFAQs faqs={course.faqs || []} />

@@ -1,17 +1,23 @@
-import { Group, Button, Text, Menu } from '@mantine/core';
+import { Group, Text, Menu } from '@mantine/core';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useMediaQuery } from '@mantine/hooks';
 import { IconMenu } from '@tabler/icons-react';
 
-import logo from '@/assets/logo-light.svg';
+import IconLogoLight from '@/assets/logo-light.svg';
+import { Button } from '@/components/ui';
 
-export default function CampaignHeader() {
+type Props = {
+  mode: string;
+  isMinimal?: boolean;
+};
+
+export default function NavBar({ mode, isMinimal = false }: Props) {
   const isMobile = useMediaQuery('(max-width: 767px)');
 
-  const getMenuWideScreen = () => {
+  const getMenuWideScreen = (mode: string) => {
     return (
-      <Group className="mx-auto">
+      <Group c={mode == 'dark' ? 'white' : 'black'} gap={'xl'}>
         <Menu trigger="hover" openDelay={100} closeDelay={400}>
           <Menu.Target>
             <Text style={menuItemStyle}>Home</Text>
@@ -26,34 +32,34 @@ export default function CampaignHeader() {
 
         <Menu trigger="hover" openDelay={100} closeDelay={400}>
           <Menu.Target>
+            <Text style={menuItemStyle}>Student Support</Text>
+          </Menu.Target>
+        </Menu>
+
+        <Menu trigger="hover" openDelay={100} closeDelay={400}>
+          <Menu.Target>
             <Text style={menuItemStyle}>Resources</Text>
           </Menu.Target>
         </Menu>
 
         <Menu trigger="hover" openDelay={100} closeDelay={400}>
           <Menu.Target>
-            <Text style={menuItemStyle}>News</Text>
+            <Text style={menuItemStyle}>News & Events</Text>
           </Menu.Target>
         </Menu>
 
         <Menu trigger="hover" openDelay={100} closeDelay={400}>
           <Menu.Target>
-            <Text style={menuItemStyle}>Events</Text>
-          </Menu.Target>
-        </Menu>
-
-        <Menu trigger="hover" openDelay={100} closeDelay={400}>
-          <Menu.Target>
-            <Text style={menuItemStyle}>About</Text>
+            <Text style={menuItemStyle}>About ADMI</Text>
           </Menu.Target>
         </Menu>
       </Group>
     );
   };
 
-  const getMenuMobile = () => {
+  const getMenuMobile = (mode: string) => {
     return (
-      <Group>
+      <Group c={mode == 'dark' ? 'white' : 'black'}>
         <Menu trigger="hover" openDelay={100} closeDelay={400}>
           <Menu.Target>
             <IconMenu />
@@ -73,18 +79,31 @@ export default function CampaignHeader() {
     );
   };
 
-  return (
-    <Group className="w-full px-4">
-      <Group className="flex grow flex-row-reverse md:flex-row">
-        <Link href="/" style={{ textDecoration: 'none' }}>
-          <Image src={logo} width={80} alt="Africa Digital Media Institute" />
-        </Link>
-        {isMobile ? getMenuMobile() : getMenuWideScreen()}
+  if (isMinimal) {
+    return (
+      <Group className={`mx-auto w-full max-w-screen-2xl px-4`}>
+        <div className="flex grow font-nexa sm:flex-row-reverse md:flex-row">
+          <Link href="/" style={{ textDecoration: 'none' }} className="my-auto">
+            {mode == 'dark' && <Image src={IconLogoLight} width={80} alt="Africa Digital Media Institute" />}
+          </Link>
+          <div className="grow"></div>
+          <div className="my-auto">
+            <Button size="lg" backgroundColor="admiRed" label="Get In Touch" />
+          </div>
+        </div>
       </Group>
-      {/* Enquire Button */}
-      <Button variant="primary" size="lg" color="admi-orange">
-        Enquire
-      </Button>
+    );
+  }
+
+  return (
+    <Group className={`mx-auto w-full max-w-screen-2xl px-4`}>
+      <Group className="flex grow flex-row-reverse font-nexa md:flex-row">
+        <Link href="/" style={{ textDecoration: 'none', margin: 'auto' }}>
+          {mode == 'dark' && <Image src={IconLogoLight} width={80} height={60} alt="Africa Digital Media Institute" />}
+        </Link>
+        <div className="grow"></div>
+        {isMobile ? getMenuMobile(mode) : getMenuWideScreen(mode)}
+      </Group>
     </Group>
   );
 }
@@ -98,5 +117,4 @@ const menuItemStyle: React.CSSProperties = {
   cursor: 'pointer',
   fontWeight: 'bold',
   fontSize: 18,
-  color: '#BA2E36',
 };

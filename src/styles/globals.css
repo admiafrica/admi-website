@@ -40,3 +40,8 @@ body {
     text-wrap: balance;
   }
 }
+
+.mantine-Input-input {
+  border: none !important;
+  background: transparent !important;
+}

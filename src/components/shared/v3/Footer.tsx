@@ -6,38 +6,38 @@ import { useMediaQuery } from '@mantine/hooks';
 import { Button } from '@/components/ui';
 
 import { IconCopyright } from '@tabler/icons-react';
-import LogoWhiteIcon from '@/assets/logo-light.svg';
-import YouTubeIcon from '@/assets/icons/youtube.svg';
-import InstagramIcon from '@/assets/icons/instagram.svg';
-import FacebookIcon from '@/assets/icons/facebook.svg';
-import TikTokIcon from '@/assets/icons/tiktok.svg';
-import XIcon from '@/assets/icons/x.svg';
-import LinkedInIcon from '@/assets/icons/linkedin.svg';
-import MailIcon from '@/assets/icons/mail.svg';
-import CallIcon from '@/assets/icons/call.svg';
-import StopWatchIcon from '@/assets/icons/stop-watch.svg';
+import IconLogoWhite from '@/assets/logo-light.svg';
+import IconYouTube from '@/assets/icons/youtube.svg';
+import IconInstagram from '@/assets/icons/instagram.svg';
+import IconFacebook from '@/assets/icons/facebook.svg';
+import IconTikTok from '@/assets/icons/tiktok.svg';
+import IconX from '@/assets/icons/x.svg';
+import IconLinkedIn from '@/assets/icons/linkedin.svg';
+import IconMail from '@/assets/icons/mail.svg';
+import IconCall from '@/assets/icons/call.svg';
+import IconStopWatch from '@/assets/icons/stop-watch.svg';
 import { SOCIAL_LINKS } from '@/utils';
 
 const SocialIcons = React.memo(() => {
   return (
     <Group justify="center" mt={32} h={48}>
       <Anchor href={SOCIAL_LINKS.TIKTOK} c="white" target="_blank">
-        <Image width={32} src={TikTokIcon} alt={SOCIAL_LINKS.TIKTOK} />
+        <Image width={32} src={IconTikTok} alt={SOCIAL_LINKS.TIKTOK} />
       </Anchor>
       <Anchor href={SOCIAL_LINKS.YOUTUBE} c="white" target="_blank">
-        <Image width={36} src={YouTubeIcon} alt={SOCIAL_LINKS.YOUTUBE} />
+        <Image width={36} src={IconYouTube} alt={SOCIAL_LINKS.YOUTUBE} />
       </Anchor>
       <Anchor href={SOCIAL_LINKS.LINKEDIN} c="white" target="_blank">
-        <Image width={32} src={LinkedInIcon} alt={SOCIAL_LINKS.LINKEDIN} />
+        <Image width={32} src={IconLinkedIn} alt={SOCIAL_LINKS.LINKEDIN} />
       </Anchor>
       <Anchor href={SOCIAL_LINKS.INSTAGRAM} c="white" target="_blank">
-        <Image width={44} src={InstagramIcon} alt={SOCIAL_LINKS.INSTAGRAM} />
+        <Image width={44} src={IconInstagram} alt={SOCIAL_LINKS.INSTAGRAM} />
       </Anchor>
       <Anchor href={SOCIAL_LINKS.X} c="white" target="_blank">
-        <Image width={32} height={32} src={XIcon} alt={SOCIAL_LINKS.X} />
+        <Image width={32} height={32} src={IconX} alt={SOCIAL_LINKS.X} />
       </Anchor>
       <Anchor href={SOCIAL_LINKS.FACEBOOK} c="white" target="_blank">
-        <Image width={32} src={FacebookIcon} alt={SOCIAL_LINKS.FACEBOOK} />
+        <Image width={32} src={IconFacebook} alt={SOCIAL_LINKS.FACEBOOK} />
       </Anchor>
     </Group>
   );
@@ -50,41 +50,35 @@ export default function Footer() {
   const isMobile = useMediaQuery('(max-width: 480px)');
 
   return (
-    <div className="font-proxima relative w-full p-0">
+    <div className="relative w-full bg-[#FFF7F5] font-proxima">
       {/* Floating Card */}
-      <Card
-        className="absolute left-1/2 top-[3.75rem] z-10 h-fit w-[92vw] -translate-x-1/2 transform justify-center shadow-lg md:h-[7.125rem] md:w-[60rem]"
-        bg={'admiShamrok'}
-        radius={6}
-      >
-        <div className="my-auto flex w-full flex-col p-2 md:flex-row md:p-4">
-          <div className="pt-3 md:w-[70%]">
-            <div className="font-nexa mb-4 text-center md:text-left">
-              <Text size="25px" fw={900}>
-                Ready to Get Started?
-              </Text>
-            </div>
-            <div className="text-center md:text-left">
-              <Text size="16px" fw={600}>
-                Immerse yourself in a curriculum crafted to cultivate your
-                unique artistic style.
-              </Text>
-            </div>
-          </div>
-          <div className="md:py-auto mx-auto py-4 md:w-[30%]">
-            <Button
-              size="lg"
-              backgroundColor="admiRed"
-              label="Enroll Today with ADMI"
-            />
-          </div>
-        </div>
-      </Card>
-      <div className="w-full bg-[#002A23] pb-8 pt-36">
-        <Group
-          className="mx-auto w-full max-w-screen-xl flex-col text-white md:flex-row"
-          align="top"
+      <div className="w-full px-4">
+        <Card
+          className="absolute left-1/2 top-[3.75rem] z-10 h-fit w-full max-w-screen-xl -translate-x-1/2 transform justify-center shadow-lg md:h-[7.125rem]"
+          bg={'admiShamrok'}
+          radius={6}
         >
+          <div className="my-auto flex w-full flex-col p-2 md:flex-row md:p-4">
+            <div className="grow pt-3">
+              <div className="mb-4 text-center font-nexa md:text-left">
+                <Text size="25px" fw={900}>
+                  Ready to Get Started?
+                </Text>
+              </div>
+              <div className="text-center md:text-left">
+                <Text size="1.1em" fw={600}>
+                  Immerse yourself in a curriculum crafted to cultivate your unique artistic style.
+                </Text>
+              </div>
+            </div>
+            <div className="md:py-auto mx-auto py-4">
+              <Button size="xl" backgroundColor="admiRed" label="Enroll Today with ADMI" />
+            </div>
+          </div>
+        </Card>
+      </div>
+      <div className="w-full bg-[#002A23] pb-8 pt-36">
+        <Group className="mx-auto w-full max-w-screen-2xl flex-col text-white md:flex-row" align="top">
           <Stack className="grow" h="100%">
             <Stack className="px-4">
               <div className="font-nexa text-admiShamrok">
@@ -101,8 +95,8 @@ export default function Footer() {
                 <Text>Nairobi, Kenya.</Text>
               </div>
             </Stack>
-            <Group gap={4} className="px-4 md:mt-[1em]">
-              <Image width={24} height={24} src={MailIcon} alt="email" />
+            <Group gap={4} className="px-4 md:mt-[8em]">
+              <Image width={24} height={24} src={IconMail} alt="email" />
               <Text fw="bold" ml={10}>
                 Email:
               </Text>
@@ -110,7 +104,7 @@ export default function Footer() {
             </Group>
 
             <Group gap={4} className="px-4">
-              <Image width={24} height={24} src={CallIcon} alt="phone" />
+              <Image width={24} height={24} src={IconCall} alt="phone" />
               <Text fw="bold" ml={10}>
                 Phone:
               </Text>
@@ -121,7 +115,7 @@ export default function Footer() {
             </Group>
 
             <Group gap={4} className="px-4">
-              <Image width={24} src={StopWatchIcon} alt="hours active" />
+              <Image width={24} src={IconStopWatch} alt="hours active" />
               <Text fw="bold" ml={10}>
                 Hours:
               </Text>
@@ -182,23 +176,18 @@ export default function Footer() {
           </div>
         </Group>
         {isMobile && <SocialIcons />}
-
-        <Divider mt={48} size={0.5} />
-
-        <Group
-          className="md:pt-auto mx-auto w-full max-w-screen-xl flex-col px-4 pt-8 md:flex-row"
-          gap={2}
-        >
+        <Divider mt={48} size={0.5} opacity="20%" />
+        <Group className="md:pt-auto mx-auto w-full max-w-screen-2xl flex-col px-4 pt-8 md:flex-row" gap={2}>
           <IconCopyright className="text-white" />
           <div className="text-white">
             <Text>
-              2024 All Rights Reserved. <b>ADMI Africa</b>
+              2025 All Rights Reserved. <b>ADMI Africa</b>
             </Text>
           </div>
-          <div className="grow text-admiShamrok md:pl-4">
+          <div className="grow cursor-pointer text-admiShamrok md:pl-4">
             <Text>Privacy Policy | Terms & Conditions</Text>
           </div>
-          <Image width={95} src={LogoWhiteIcon} alt="logo" />
+          <Image width={95} src={IconLogoWhite} alt="logo" />
         </Group>
       </div>
 

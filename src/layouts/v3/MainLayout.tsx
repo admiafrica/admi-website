@@ -1,31 +1,33 @@
+import '@mantine/carousel/styles.css';
+
 import { AppShell, rem } from '@mantine/core';
 import { useHeadroom } from '@mantine/hooks';
 
-import { Footer } from '@/components/shared/v3';
+import { Footer, FooterMini, NavBar } from '@/components/shared/v3';
 import { nexaFont, proximaNovaFont } from '@/styles/theme';
 
 type LayoutProps = {
   children: React.ReactNode;
+  minimizeHeader?: boolean;
+  minimizeFooter?: boolean;
 };
 
-export function MainLayout({ children }: LayoutProps) {
+export function MainLayout({ children, minimizeFooter = false, minimizeHeader = false }: LayoutProps) {
   const pinned = useHeadroom({ fixedAt: 120 });
+  const mode = 'dark';
 
   return (
     <div className={`${proximaNovaFont.variable} ${nexaFont.variable}`}>
-      <AppShell
-        header={{ height: 81, collapsed: !pinned, offset: false }}
-        padding="md"
-      >
-        <AppShell.Header style={headerStyle}>
-          {/* <Header /> */}
+      <AppShell header={{ height: 81, collapsed: !pinned, offset: false }} padding="md">
+        <AppShell.Header style={headerStyle} bg={mode == 'dark' ? 'black' : 'white'}>
+          <NavBar mode={mode} isMinimal={minimizeHeader} />
         </AppShell.Header>
 
-        <AppShell.Main pt={`calc(${rem(60)} + var(--mantine-spacing-md))`}>
+        <AppShell.Main pt={`calc(${rem(60)} + var(--mantine-spacing-md))`} p={0}>
           {children}
         </AppShell.Main>
-        <AppShell.Footer pos="relative">
-          <Footer />
+        <AppShell.Footer pos="relative" withBorder={false}>
+          {minimizeFooter ? <FooterMini /> : <Footer />}
         </AppShell.Footer>
       </AppShell>
     </div>
@@ -37,6 +39,6 @@ const headerStyle: React.CSSProperties = {
   alignItems: 'center',
   justifyContent: 'space-between',
   padding: '0 20px',
-  backgroundColor: 'white',
-  borderBottom: '1px solid #dee2e6',
+  margin: 0,
+  borderBottom: 'none',
 };
