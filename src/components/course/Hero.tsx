@@ -99,7 +99,7 @@ export default function CourseHero(props: Props) {
           </Card>
         ) : (
           <Card
-            className="absolute left-1/2 top-[35em] z-10 h-fit w-full max-w-screen-2xl -translate-x-1/2 transform justify-center shadow-lg sm:top-[26em] sm:top-[40em] md:h-[7.125rem]"
+            className="absolute left-1/2 top-[35em] z-10 h-fit w-full max-w-screen-2xl -translate-x-1/2 transform justify-center shadow-lg sm:top-[26em] md:h-[7.125rem]"
             bg={'admiShamrok'}
             radius={6}
           >
@@ -118,7 +118,7 @@ export default function CourseHero(props: Props) {
                     </div>
                   </div>
                   <div className="mr-8 flex">
-                    <Image width={40} src={IconHourGlass} alt="term length" />
+                    <Image width={40} src={IconHourGlass} alt="term length"/>
                     <div className="px-4 text-left">
                       <Text size="16px" fw={100} pb={8}>
                         Term Length
