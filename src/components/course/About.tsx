@@ -27,7 +27,7 @@ export default function CourseAbout({ description, isCampaign = false, intakes }
                   }}
                 ></div>
               </div>
-              <div className="top-[24rem] z-10 h-fit w-full transform sm:absolute sm:left-[80%] sm:w-[48em] sm:-translate-x-1/2">
+              <div className="top-[36vh] z-10 h-fit w-full transform sm:absolute sm:left-[80%] sm:w-[48em] sm:-translate-x-1/2">
                 <Card padding="lg" radius="md" className="mx-auto mt-8 w-full sm:w-[64%]" bg={'#F5FFFD'}>
                   <EnquiryForm />
                 </Card>
