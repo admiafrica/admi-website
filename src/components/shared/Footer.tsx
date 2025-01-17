@@ -1,17 +1,23 @@
+import Image from 'next/image';
 import { Group, Text, Anchor, Stack, Title } from '@mantine/core';
+import { useMediaQuery } from '@mantine/hooks';
 import {
-  IconBrandTwitter,
   IconBrandFacebook,
   IconBrandLinkedin,
+  IconBrandInstagram,
+  IconBrandTiktok,
+  IconBrandYoutube,
+  IconBrandX,
 } from '@tabler/icons-react';
-
+import { SOCIAL_LINKS } from '@/utils';
 import LogoIcon from '../../assets/logo.svg';
-import Image from 'next/image';
 
 export default function CustomFooter() {
+  const isMobile = useMediaQuery('(max-width: 480px)');
+
   return (
-    <Group className='w-full max-w-screen-xl mx-auto flex-col md:flex-row'>
-      <Stack style={sectionStyle} gap={4} h="100%">
+    <Group className="mx-auto w-full max-w-screen-xl flex-col md:flex-row">
+      <Stack style={sectionStyle} gap={4} h={isMobile ? 'fit-content' : '100%'}>
         <Title order={3}>Get in Touch</Title>
         <Text p={0}>Caxton House, 3rd Floor 25, Kenyatta Avenue.</Text>
         <Text>P. O. Box 35447 - 00100 Nairobi, Kenya.</Text>
@@ -20,39 +26,73 @@ export default function CustomFooter() {
         <Text>Phone: (+254) 706 349 696, (+254) 711 486 581</Text>
         <Text>Hours: Mon-Fri 8:00am - 5:00pm / Sat: 8:00am to 2:00pm</Text>
 
-        <Image width={140} src={LogoIcon} alt="logo"/>
+        <Image width={isMobile ? 80 : 140} src={LogoIcon} alt="logo" />
       </Stack>
 
       {/* Quick Links and Social Media */}
-      <Stack style={sectionStyle} gap={4} h="100%">
+      <Stack style={sectionStyle} gap={4} h={isMobile ? 'fit-content' : '100%'}>
         <Title order={3}>Quick Links</Title>
-        <Anchor href="#">Contact Us</Anchor>
+        <Anchor href="https://admi.africa/contact-us" fw={'bold'}>
+          Contact Us
+        </Anchor>
+        <Anchor href="https://admi.africa/about/academic-team" fw={'bold'}>
+          Academic Team
+        </Anchor>
+        <Anchor href="https://admi.africa/fellowship" fw={'bold'}>
+          Fellowship
+        </Anchor>
+        <Anchor href="https://admi.africa/work-with-us" fw={'bold'}>
+          Work with Us
+        </Anchor>
+        <Anchor href="https://admi.africa/accreditation" fw={'bold'}>
+          Accreditation
+        </Anchor>
+        <Anchor href="https://admi.africa/privacy-policy" fw={'bold'}>
+          Privacy Policy
+        </Anchor>
 
-        <Group>
-          <Anchor href="#" target="_blank">
-            <IconBrandTwitter size={20} />
+        <Group mt={isMobile ? '1em' : '4em'}>
+          <Anchor href={SOCIAL_LINKS.INSTAGRAM} target="_blank" c={'dark'}>
+            <IconBrandInstagram size={36} />
           </Anchor>
-          <Anchor href="#" target="_blank">
-            <IconBrandFacebook size={20} />
+          <Anchor href={SOCIAL_LINKS.LINKEDIN} target="_blank" c={'dark'}>
+            <IconBrandLinkedin size={36} />
           </Anchor>
-          <Anchor href="#" target="_blank">
-            <IconBrandLinkedin size={20} />
+          <Anchor href={SOCIAL_LINKS.FACEBOOK} target="_blank" c={'dark'}>
+            <IconBrandFacebook size={36} />
+          </Anchor>
+          <Anchor href={SOCIAL_LINKS.TIKTOK} target="_blank" c={'dark'}>
+            <IconBrandTiktok size={36} />
+          </Anchor>
+          <Anchor href={SOCIAL_LINKS.YOUTUBE} target="_blank" c={'dark'}>
+            <IconBrandYoutube size={36} />
+          </Anchor>
+          <Anchor href={SOCIAL_LINKS.X} target="_blank" c={'dark'}>
+            <IconBrandX size={36} />
           </Anchor>
         </Group>
       </Stack>
 
       {/* Student Corner */}
-      <Stack style={sectionStyle} gap={4} h="100%">
+      <Stack style={sectionStyle} gap={4} h={isMobile ? 'fit-content' : '100%'}>
         <Title order={3}>Student Corner</Title>
-        <Anchor href="#">Student Portal</Anchor>
-        <Anchor href="#">Accomodation</Anchor>
-        <Anchor href="#">Academic Pathways</Anchor>
+        <Anchor href="https://admi.africa/student-portal" fw={'bold'}>
+          Student Portal
+        </Anchor>
+        <Anchor href="https://admi.africa/accommodation" fw={'bold'}>
+          Accomodation
+        </Anchor>
+        <Anchor href="https://admi.africa/academic-pathways" fw={'bold'}>
+          Academic Pathways
+        </Anchor>
+        <Anchor href="https://admi.africa/alumni-network" fw={'bold'}>
+          Alumni Network
+        </Anchor>
       </Stack>
     </Group>
   );
 }
 
 const sectionStyle: React.CSSProperties = {
-  flex: 1,
   padding: '0 20px',
 };
