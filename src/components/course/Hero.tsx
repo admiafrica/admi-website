@@ -24,7 +24,7 @@ export default function CourseHero(props: Props) {
   const remainingName = words.join(' ');
 
   return (
-    <div className="relative h-[64vh] w-full px-4 sm:h-[45vh]">
+    <div className="relative h-[64vh] w-full px-4 sm:h-[50vh]">
       {/* Background Image */}
       <Image
         src={`https:${props.coverImage.fields.file.url}`}
@@ -48,7 +48,7 @@ export default function CourseHero(props: Props) {
       <div className={props.isCampaign ? 'w-full px-1 sm:w-fit' : 'w-full px-1'}>
         {props.isCampaign ? (
           <Card
-            className="top-[36em] z-10 h-fit w-full max-w-screen-2xl transform shadow-lg sm:absolute sm:left-[70%] sm:top-[26em] sm:-translate-x-1/2 md:h-[7.125rem]"
+            className="top-[66vh] z-10 h-fit w-full max-w-screen-2xl transform shadow-lg sm:absolute sm:left-[70%] sm:top-[45vh] sm:-translate-x-1/2 md:h-[7.125rem]"
             bg={'admiShamrok'}
             radius={6}
           >
@@ -99,7 +99,7 @@ export default function CourseHero(props: Props) {
           </Card>
         ) : (
           <Card
-            className="absolute left-1/2 top-[35em] z-10 h-fit w-full max-w-screen-2xl -translate-x-1/2 transform justify-center shadow-lg sm:top-[26em] md:h-[7.125rem]"
+            className="absolute left-1/2 top-[66vh] z-10 h-fit w-full max-w-screen-2xl -translate-x-1/2 transform justify-center shadow-lg sm:top-[45vh] md:h-[7.125rem]"
             bg={'admiShamrok'}
             radius={6}
           >
