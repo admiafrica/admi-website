@@ -69,7 +69,7 @@ export default function CourseDetailPage() {
         testimonials={course.studentReviews || []}
         totalHistoricalEnrollment={course.totalHistoricalEnrollment}
       />
-      <CourseApplicationProcess processes={course.applicationProcesses} />
+      <CourseApplicationProcess processes={course.applicationProcesses || []} />
       <CourseFAQs faqs={course.faqs || []} />
     </MainLayout>
   );

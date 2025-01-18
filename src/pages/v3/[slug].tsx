@@ -49,13 +49,13 @@ export default function CourseDetailPage() {
         benefits={course.courseBenefits || []}
         assets={courseAssets || []}
         programType={course.programType}
-        creditHours={course.creditHours as number}
-        tuitionFees={course.tuitionFees as number}
+        creditHours={course.creditHours}
+        tuitionFees={course.tuitionFees}
         courseDescription={course.description}
         careerOptions={course.careerOptions}
         learningOutcomes={course.learningOutcomes}
       />
-      <CourseApplicationProcess processes={course.applicationProcesses} />
+      <CourseApplicationProcess processes={course.applicationProcesses || []} />
       <CourseFAQs faqs={course.faqs || []} />
     </MainLayout>
   );

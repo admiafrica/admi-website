@@ -10,6 +10,8 @@ type Props = {
   faqs: any[];
 };
 export default function CourseFAQs({ faqs }: Props) {
+  if (faqs.length < 1) return null;
+
   return (
     <div className="relative w-full bg-[#FFF7F5]">
       {/* BACKGROUND IMAGES */}
