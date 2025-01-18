@@ -17,6 +17,7 @@ import IconMail from '@/assets/icons/mail.svg';
 import IconCall from '@/assets/icons/call.svg';
 import IconStopWatch from '@/assets/icons/stop-watch.svg';
 import { SOCIAL_LINKS } from '@/utils';
+import { CourseEnrollCard } from '@/components/cards';
 
 const SocialIcons = React.memo(() => {
   return (
@@ -52,30 +53,10 @@ export default function Footer() {
   return (
     <div className="relative w-full bg-[#FFF7F5] font-proxima">
       {/* Floating Card */}
-      <div className="w-full px-4">
-        <Card
-          className="absolute left-1/2 top-[3.75rem] z-10 h-fit w-full max-w-screen-xl -translate-x-1/2 transform justify-center shadow-lg md:h-[7.125rem]"
-          bg={'admiShamrok'}
-          radius={6}
-        >
-          <div className="my-auto flex w-full flex-col p-2 md:flex-row md:p-4">
-            <div className="grow pt-3">
-              <div className="mb-4 text-center font-nexa md:text-left">
-                <Text size="25px" fw={900}>
-                  Ready to Get Started?
-                </Text>
-              </div>
-              <div className="text-center md:text-left">
-                <Text size="1.1em" fw={600}>
-                  Immerse yourself in a curriculum crafted to cultivate your unique artistic style.
-                </Text>
-              </div>
-            </div>
-            <div className="md:py-auto mx-auto py-4">
-              <Button size="xl" backgroundColor="admiRed" label="Enroll Today with ADMI" />
-            </div>
-          </div>
-        </Card>
+      <div className="mt-48 w-full">
+        <div className="absolute left-1/2 top-[-6vh] z-10 h-fit w-full max-w-screen-xl -translate-x-1/2 transform justify-center px-4 md:h-[7.125rem]">
+          <CourseEnrollCard />
+        </div>
       </div>
       <div className="w-full bg-[#002A23] pb-8 pt-36">
         <Group className="mx-auto w-full max-w-screen-2xl flex-col text-white md:flex-row" align="top">
