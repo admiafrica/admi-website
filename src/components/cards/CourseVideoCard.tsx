@@ -1,35 +1,35 @@
-import { Card, Group, Text, Image } from '@mantine/core';
+import React from 'react';
+import { Card, Text } from '@mantine/core';
 import { IconCheck, IconExclamationCircle } from '@tabler/icons-react';
+
+import { VideoPlayer } from '../ui';
 
 type Props = {
   intakes: string;
+  courseVideo: any;
+  educationalLevel: string;
+  venue?: string;
 };
 
 export default function CourseVideoCard(props: Props) {
   return (
-    <Card shadow="sm" padding="lg" radius="md" withBorder className="max-w-[430px] sm:w-full">
+    <Card shadow="sm" padding="lg" radius="md" withBorder className="max-w-[600px] sm:w-full">
       <Card.Section>
-        <Image
-          src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png"
-          height={200}
-          alt="Norway"
-        />
+        <VideoPlayer videoUrl={props.courseVideo.fields.file.url} />
       </Card.Section>
-
       <Card.Section className="px-6">
-        <Group mt="md" mb="xs">
+        <div className="flex py-4">
           <IconCheck size={24} className="text-admiRed" />
           <div className="font-proxima">
-            <Text>Norway Fjord Adventures</Text>
+            <Text pl={16}>Intakes: {props.intakes}</Text>
           </div>
-        </Group>
+        </div>
       </Card.Section>
-
       <Card.Section className="bg-[#F76335] px-6 py-4 text-white">
         <div className="flex">
           <IconExclamationCircle size={24} />
           <div className="font-proxima">
-            <Text pl={16}>{props.intakes}</Text>
+            <Text pl={16}>Venue: {props.venue || 'Caxton House, Nairobi'}</Text>
           </div>
         </div>
       </Card.Section>

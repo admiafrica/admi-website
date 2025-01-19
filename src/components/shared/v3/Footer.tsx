@@ -1,9 +1,10 @@
 import React from 'react';
 import Image from 'next/image';
-import { Group, Text, Anchor, Stack, Card, Divider } from '@mantine/core';
+import { Group, Text, Anchor, Stack, Divider } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 
-import { Button } from '@/components/ui';
+import { CourseEnrollCard } from '@/components/cards';
+import { SOCIAL_LINKS } from '@/utils';
 
 import { IconCopyright } from '@tabler/icons-react';
 import IconLogoWhite from '@/assets/logo-light.svg';
@@ -16,8 +17,6 @@ import IconLinkedIn from '@/assets/icons/linkedin.svg';
 import IconMail from '@/assets/icons/mail.svg';
 import IconCall from '@/assets/icons/call.svg';
 import IconStopWatch from '@/assets/icons/stop-watch.svg';
-import { SOCIAL_LINKS } from '@/utils';
-import { CourseEnrollCard } from '@/components/cards';
 
 const SocialIcons = React.memo(() => {
   return (
@@ -47,14 +46,18 @@ const SocialIcons = React.memo(() => {
 // Assign a display name
 SocialIcons.displayName = 'SocialIcons';
 
-export default function Footer() {
+type Props = {
+  bgColor?: string;
+};
+
+export default function Footer({ bgColor }: Props) {
   const isMobile = useMediaQuery('(max-width: 480px)');
 
   return (
-    <div className="relative w-full bg-[#FFF7F5] font-proxima">
+    <div className={`relative w-full ${bgColor ? `bg-[${bgColor}]` : 'bg-[#FFF7F5]'} font-proxima`}>
       {/* Floating Card */}
-      <div className="mt-48 w-full">
-        <div className="absolute left-1/2 top-[-6vh] z-10 h-fit w-full max-w-screen-xl -translate-x-1/2 transform justify-center px-4 md:h-[7.125rem]">
+      <div className="w-full pt-48 sm:pt-36">
+        <div className="absolute left-1/2 top-[6vh] z-10 h-fit w-full max-w-screen-xl -translate-x-1/2 transform justify-center px-4 sm:top-[8vh] md:h-[7.125rem]">
           <CourseEnrollCard />
         </div>
       </div>

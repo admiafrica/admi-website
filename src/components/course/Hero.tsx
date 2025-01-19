@@ -1,13 +1,8 @@
 import Image from 'next/image';
-import { Badge, Card, Group, NumberFormatter, Text } from '@mantine/core';
-import { Button } from '../ui';
+import { Badge, Group, Text } from '@mantine/core';
+import { CourseSummaryCard } from '../cards';
 
 import IconAward from '@/assets/icons/Award';
-import IconTimer from '@/assets/icons/timer.svg';
-import IconHourGlass from '@/assets/icons/hourglass-start.svg';
-import IconHourGlassBlack from '@/assets/icons/hourglass.svg';
-import IconAvatar from '@/assets/icons/avatar.svg';
-import { CourseSummaryCard } from '../cards';
 
 type Props = {
   name: string;
@@ -67,9 +62,7 @@ export default function CourseHero(props: Props) {
       </div>
 
       {/* Content Section */}
-      <div
-        className="relative z-10 mx-auto w-full max-w-screen-2xl text-white pt-[15vh]"
-      >
+      <div className="relative z-10 mx-auto w-full max-w-screen-2xl pt-[15vh] text-white">
         <div className="md:w-1/2">
           <Badge
             h={36}

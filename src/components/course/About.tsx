@@ -6,15 +6,17 @@ import { CourseVideoCard } from '../cards';
 
 type Props = {
   description: any;
-  isCampaign?: boolean;
   intakes: string;
+  courseVideo: any;
+  educationalLevel: string;
+  isCampaign?: boolean;
 };
-export default function CourseAbout({ description, isCampaign = false, intakes }: Props) {
+export default function CourseAbout( props: Props) {
   return (
     <div className="w-full pb-24 pt-48 sm:pt-0">
       <div className="mx-auto w-full max-w-screen-2xl px-4 pt-32 2xl:px-0">
         <div className="flex w-full flex-col sm:flex-row">
-          {isCampaign && (
+          {props.isCampaign && (
             <>
               <div className="flex flex-col sm:w-1/2">
                 <div className="font-nexa text-admiRed">
@@ -23,7 +25,7 @@ export default function CourseAbout({ description, isCampaign = false, intakes }
                 <div
                   className="mt-1 font-nexa text-lg"
                   dangerouslySetInnerHTML={{
-                    __html: documentToHtmlString(description),
+                    __html: documentToHtmlString(props.description),
                   }}
                 ></div>
               </div>
@@ -34,7 +36,7 @@ export default function CourseAbout({ description, isCampaign = false, intakes }
               </div>
             </>
           )}
-          {!isCampaign && (
+          {!props.isCampaign && (
             <>
               <div className="flex flex-col sm:w-1/2">
                 <div className="font-nexa text-admiRed">
@@ -43,12 +45,12 @@ export default function CourseAbout({ description, isCampaign = false, intakes }
                 <div
                   className="mt-1 font-nexa text-lg"
                   dangerouslySetInnerHTML={{
-                    __html: documentToHtmlString(description),
+                    __html: documentToHtmlString(props.description),
                   }}
                 ></div>
               </div>
               <div className="z-10 my-0 flex h-fit justify-end pt-20 sm:w-1/2">
-                <CourseVideoCard intakes={intakes} />
+                <CourseVideoCard intakes={props.intakes} courseVideo={props.courseVideo} educationalLevel={props.educationalLevel}/>
               </div>
             </>
           )}

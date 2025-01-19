@@ -18,7 +18,7 @@ export default function CoursesPage() {
   }, [fetchCourses]);
 
   return (
-    <MainLayout>
+    <MainLayout footerBgColor="white">
       <div></div>
     </MainLayout>
   );
