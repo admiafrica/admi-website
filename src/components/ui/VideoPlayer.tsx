@@ -1,5 +1,5 @@
 import { ActionIcon } from '@mantine/core';
-import { IconMaximize, IconPlayerPause, IconPlayerPlay } from '@tabler/icons-react';
+import { IconMaximize, IconPlayerPause, IconPlayerSkipForward } from '@tabler/icons-react';
 import React, { useState, useRef } from 'react';
 
 type Props = {
@@ -60,11 +60,20 @@ const VideoPlayer = ({ videoUrl }: Props) => {
       />
 
       {isHovering && (
+        <div
+          className="z-5 absolute inset-0"
+          style={{
+            background: `radial-gradient(circle, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 80%)`,
+          }}
+        ></div>
+      )}
+
+      {isHovering && (
         <>
           {/* Play/Pause Button */}
-          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform cursor-pointer rounded-full bg-none p-4">
-            <ActionIcon onClick={handlePlayPause} className="rounded-full text-white" radius="xl" bg="none">
-              {isPlaying ? <IconPlayerPause size={24} /> : <IconPlayerPlay size={24} />}
+          <div className="border-1 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform cursor-pointer rounded-full border-solid border-white bg-none p-4 shadow-lg">
+            <ActionIcon onClick={handlePlayPause} className="my-auto rounded-full text-white" radius="xl" bg="none">
+              {isPlaying ? <IconPlayerPause size={24} /> : <IconPlayerSkipForward size={24} />}
             </ActionIcon>
           </div>
 
