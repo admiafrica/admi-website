@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import { Group, Text, Anchor } from '@mantine/core';
+import { Group, Text, Anchor, Divider } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 
 import { IconCopyright } from '@tabler/icons-react';
@@ -46,6 +46,7 @@ export default function FooterMini() {
 
   return (
     <div className="relative w-full bg-[#FFF7F5] font-proxima">
+      <Divider size={0.5} opacity="20%" color="green" />
       <div className="flex w-full bg-[#002A23] pb-8">
         <div className="md:pt-auto mx-auto flex w-full max-w-screen-2xl flex-col items-center px-4 pt-8 md:flex-row">
           <div className="flex-start grow">{!isMobile && <SocialIcons />}</div>

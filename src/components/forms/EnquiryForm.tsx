@@ -25,7 +25,7 @@ export default function EnquiryForm() {
   };
 
   return (
-    <div className="w-full">
+    <div className="w-full bg-white p-4 sm:p-8">
       <div className="font-nexa">
         <Title label="Enquiry Form" color="black" />
       </div>
@@ -111,7 +111,7 @@ export default function EnquiryForm() {
           {...form.getInputProps('phoneNumber')}
         />
 
-        <Group justify="flex-end" mt="4em" className="w-full">
+        <Group justify="flex-end" mt="2em" className="w-full">
           <Button size="lg" backgroundColor="admiRed" label="Submit" onClick={() => handleSubmit()} />
         </Group>
       </form>
