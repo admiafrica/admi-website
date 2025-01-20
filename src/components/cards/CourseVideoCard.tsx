@@ -1,0 +1,38 @@
+import React from 'react';
+import { Card, Text } from '@mantine/core';
+import { IconCheck, IconExclamationCircle } from '@tabler/icons-react';
+
+import { VideoPlayer } from '../ui';
+
+type Props = {
+  intakes: string;
+  courseVideo: any;
+  educationalLevel: string;
+  venue?: string;
+};
+
+export default function CourseVideoCard(props: Props) {
+  return (
+    <Card shadow="sm" padding="lg" radius="md" withBorder className="max-w-[600px] sm:w-full">
+      <Card.Section>
+        <VideoPlayer videoUrl={props.courseVideo.fields.file.url} />
+      </Card.Section>
+      <Card.Section className="px-6">
+        <div className="flex py-4">
+          <IconCheck size={24} className="text-admiRed" />
+          <div className="font-proxima">
+            <Text pl={16}>Intakes: {props.intakes}</Text>
+          </div>
+        </div>
+      </Card.Section>
+      <Card.Section className="bg-[#F76335] px-6 py-4 text-white">
+        <div className="flex">
+          <IconExclamationCircle size={24} />
+          <div className="font-proxima">
+            <Text pl={16}>Venue: {props.venue || 'Caxton House, Nairobi'}</Text>
+          </div>
+        </div>
+      </Card.Section>
+    </Card>
+  );
+}

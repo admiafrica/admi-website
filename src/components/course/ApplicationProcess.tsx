@@ -7,6 +7,8 @@ type Props = {
 };
 
 export default function CourseApplicationProcess({ processes }: Props) {
+  if (processes.length < 1) return null;
+
   return (
     <div className="relative z-20 w-full pb-24">
       <div className="mx-auto w-full max-w-screen-xl px-4">
@@ -23,7 +25,7 @@ export default function CourseApplicationProcess({ processes }: Props) {
         </div>
         {processes.map((process, index) => (
           <CollapsibleContent
-          key={`application-process-${index}`}
+            key={`application-process-${index}`}
             title={process.fields.title}
             content={
               <div
