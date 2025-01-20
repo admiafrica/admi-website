@@ -1,20 +1,22 @@
-import { Card, Group, Text, Image } from '@mantine/core';
+import { Card } from '@mantine/core';
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import { EnquiryForm } from '../forms';
 import { Title } from '../ui';
-import { IconCheck, IconExclamationCircle } from '@tabler/icons-react';
+import { CourseVideoCard } from '../cards';
 
 type Props = {
   description: any;
-  isCampaign?: boolean;
   intakes: string;
+  courseVideo: any;
+  educationalLevel: string;
+  isCampaign?: boolean;
 };
-export default function CourseAbout({ description, isCampaign = false, intakes }: Props) {
+export default function CourseAbout( props: Props) {
   return (
     <div className="w-full pb-24 pt-48 sm:pt-0">
       <div className="mx-auto w-full max-w-screen-2xl px-4 pt-32 2xl:px-0">
         <div className="flex w-full flex-col sm:flex-row">
-          {isCampaign && (
+          {props.isCampaign && (
             <>
               <div className="flex flex-col sm:w-1/2">
                 <div className="font-nexa text-admiRed">
@@ -23,7 +25,7 @@ export default function CourseAbout({ description, isCampaign = false, intakes }
                 <div
                   className="mt-1 font-nexa text-lg"
                   dangerouslySetInnerHTML={{
-                    __html: documentToHtmlString(description),
+                    __html: documentToHtmlString(props.description),
                   }}
                 ></div>
               </div>
@@ -34,47 +36,21 @@ export default function CourseAbout({ description, isCampaign = false, intakes }
               </div>
             </>
           )}
-          {!isCampaign && (
+          {!props.isCampaign && (
             <>
-              <div className="flex w-full flex-col">
+              <div className="flex flex-col sm:w-1/2">
                 <div className="font-nexa text-admiRed">
                   <Title label="About this course" />
                 </div>
                 <div
                   className="mt-1 font-nexa text-lg"
                   dangerouslySetInnerHTML={{
-                    __html: documentToHtmlString(description),
+                    __html: documentToHtmlString(props.description),
                   }}
                 ></div>
               </div>
-              <div className="z-10 my-0 flex h-fit w-full justify-end pt-20">
-                <Card shadow="sm" padding="lg" radius="md" withBorder className="sm:w-[60%]">
-                  <Card.Section>
-                    <Image
-                      src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png"
-                      height={200}
-                      alt="Norway"
-                    />
-                  </Card.Section>
-
-                  <Card.Section className="px-6">
-                    <Group mt="md" mb="xs">
-                      <IconCheck size={24} className="text-admiRed" />
-                      <div className="font-proxima">
-                        <Text>Norway Fjord Adventures</Text>
-                      </div>
-                    </Group>
-                  </Card.Section>
-
-                  <Card.Section className="bg-[#F76335] px-6 py-4 text-white">
-                    <div className="flex">
-                      <IconExclamationCircle size={24} />
-                      <div className="font-proxima">
-                        <Text pl={16}>{intakes}</Text>
-                      </div>
-                    </div>
-                  </Card.Section>
-                </Card>
+              <div className="z-10 my-0 flex h-fit justify-end pt-20 sm:w-1/2">
+                <CourseVideoCard intakes={props.intakes} courseVideo={props.courseVideo} educationalLevel={props.educationalLevel}/>
               </div>
             </>
           )}

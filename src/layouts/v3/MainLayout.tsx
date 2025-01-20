@@ -10,9 +10,10 @@ type LayoutProps = {
   children: React.ReactNode;
   minimizeHeader?: boolean;
   minimizeFooter?: boolean;
+  footerBgColor?: string;
 };
 
-export function MainLayout({ children, minimizeFooter = false, minimizeHeader = false }: LayoutProps) {
+export function MainLayout({ children, minimizeFooter = false, minimizeHeader = false, footerBgColor }: LayoutProps) {
   const pinned = useHeadroom({ fixedAt: 120 });
   const mode = 'dark';
 
@@ -27,7 +28,7 @@ export function MainLayout({ children, minimizeFooter = false, minimizeHeader = 
           {children}
         </AppShell.Main>
         <AppShell.Footer pos="relative" withBorder={false}>
-          {minimizeFooter ? <FooterMini /> : <Footer />}
+          {minimizeFooter ? <FooterMini /> : <Footer bgColor={footerBgColor} />}
         </AppShell.Footer>
       </AppShell>
     </div>

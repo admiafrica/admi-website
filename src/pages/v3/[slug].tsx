@@ -18,7 +18,6 @@ export default function CourseDetailPage() {
     try {
       const response = await fetch(`/api/v3/course-details?slug=${slug}`);
       const data = await response.json();
-      console.log('COURSE', data);
 
       setCourse(data.fields);
       setCourseAssets(data.assets);
@@ -44,7 +43,13 @@ export default function CourseDetailPage() {
         creditHours={course.creditHours}
         isCampaign
       />
-      <CourseAbout description={course.aboutTheCourse} isCampaign intakes="" />
+      <CourseAbout
+        description={course.aboutTheCourse}
+        isCampaign
+        intakes={course.intakes}
+        courseVideo={course.courseVideo}
+        educationalLevel={course.educationalLevel}
+      />
       <CourseDetails
         benefits={course.courseBenefits || []}
         assets={courseAssets || []}
@@ -55,7 +60,7 @@ export default function CourseDetailPage() {
         careerOptions={course.careerOptions}
         learningOutcomes={course.learningOutcomes}
       />
-      <CourseApplicationProcess processes={course.applicationProcesses} />
+      <CourseApplicationProcess processes={course.applicationProcesses || []} />
       <CourseFAQs faqs={course.faqs || []} />
     </MainLayout>
   );
