@@ -1,11 +1,13 @@
 import { useCallback, useEffect, useState } from 'react';
+import { Box, Card, Input, Text, Pill } from '@mantine/core';
+import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
+import { IconSearch } from '@tabler/icons-react';
 
 import { MainLayout } from '@/layouts/v3/MainLayout';
-import { Box, Card, Input, Text, Pill } from '@mantine/core';
-import { IconSearch } from '@tabler/icons-react';
 import { Button, Title } from '@/components/ui';
-import Image from 'next/image';
 import { getAssetDetails } from '@/utils';
+import Image from 'next/image';
+import { CourseListItemCard, ProgramListItemCard } from '@/components/cards';
 
 export default function CoursesPage() {
   const [programs, setPrograms] = useState<any[]>([]);
@@ -47,9 +49,9 @@ export default function CoursesPage() {
     <MainLayout footerBgColor="#F5FFFD">
       <div className="h-[24vh] w-full bg-[#002A23]">
         <div className="mx-auto w-full max-w-screen-lg px-4 pt-24 2xl:px-0">
-          <Card>
+          <Card bg={'#173D37'}>
             <Card.Section>
-              <div className="flex w-full">
+              <div className="flex w-full text-white">
                 <IconSearch className="mx-4 my-auto" />
                 <Input className="grow py-4" placeholder="Search for course e.g Graphic Design, Content Creation" />
                 <div className="mx-4 my-auto">
@@ -73,46 +75,11 @@ export default function CoursesPage() {
           </div>
         </div>
         <div className="mx-auto w-full max-w-screen-xl px-4 2xl:px-0">
-          {programs.map((program) => {
-            const programCourses = filterProgramCourses(program.fields.name, courses);
-
-            return (
-              <Box className="flex h-fit w-full flex-col pt-24">
-                <Box className="flex flex-col sm:flex-row">
-                  <div className="flex grow flex-col">
-                    <Title label={program.fields.name} size="24px" color="black" />
-                  </div>
-                  <div className="flex">
-                    <Text>Duration:</Text>
-                    <Pill className="mx-1">{program.fields.duration}</Pill>
-                  </div>
-                  <div className="flex">
-                    <Text>Delivery Mode:</Text>
-                    {program.fields.deliveryMode.split(',').map((mode: any) => (
-                      <Pill className="mx-1">{mode}</Pill>
-                    ))}
-                  </div>
-                </Box>
-                <Box>
-                  {programCourses.map((course) => (
-                    <Card className="my-4 h-[16vh] w-full shadow-lg" withBorder>
-                      <Card.Section>
-                        <Box className="flex h-full w-full">
-                          <Image
-                            height={98}
-                            width={98}
-                            src={`https:${getAssetDetails(course.assets, course.fields.coverImage.sys.id)?.fields.file.url}`}
-                            alt={course.fields.name}
-                          />
-                          <Text>{course.fields.name}</Text>
-                        </Box>
-                      </Card.Section>
-                    </Card>
-                  ))}
-                </Box>
-              </Box>
-            );
-          })}
+          {programs.toReversed().map((program) => (
+            <Box key={program.sys.id}>
+              <ProgramListItemCard program={program} courses={courses} />
+            </Box>
+          ))}
         </div>
       </div>
     </MainLayout>
