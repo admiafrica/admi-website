@@ -138,7 +138,7 @@ export default function CourseStudents(props: Props) {
                 <Rating value={5} fractions={2} color="admiRed" readOnly className="pl-2" />
                 <Card.Section>
                   <div
-                    className="mt-1 px-6 font-proxima text-gray-600"
+                    className="mt-1 px-6 font-proxima text-gray-600 line-clamp-[5] h-[9em]"
                     dangerouslySetInnerHTML={{
                       __html: documentToHtmlString(testimonial.fields.description),
                     }}
