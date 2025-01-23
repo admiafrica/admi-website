@@ -4,6 +4,7 @@ import { useState, useCallback, useEffect } from 'react';
 import { MainLayout } from '@/layouts/v3/MainLayout';
 import { CourseHero, CourseAbout, CourseDetails, CourseApplicationProcess, CourseFAQs } from '@/components/course';
 import { PageSEO } from '@/components/shared/v3';
+import { GoogleAnalyticsTag } from '@/components/shared';
 
 export default function CourseDetailPage() {
   const router = useRouter();
@@ -64,6 +65,7 @@ export default function CourseDetailPage() {
       />
       <CourseApplicationProcess processes={course.applicationProcesses || []} />
       <CourseFAQs faqs={course.faqs || []} />
+      <GoogleAnalyticsTag analyticsId={process.env.NEXT_PUBLIC_ADMI_GTM_ID as string} />
     </MainLayout>
   );
 }

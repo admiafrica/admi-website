@@ -128,6 +128,12 @@ export default function EnquiryForm() {
           {...form.getInputProps('phoneNumber')}
         />
 
+        <input id="utm_source" type="hidden" value={''} />
+        <input id="utm_medium" type="hidden" value={''} />
+        <input id="utm_campaign" type="hidden" value={''} />
+        <input id="utm_term" type="hidden" value={''} />
+        <input id="utm_content" type="hidden" value={''} />
+
         <Group justify="flex-end" mt="2em" className="w-full">
           <Button size="lg" backgroundColor="admiRed" label="Submit" onClick={() => handleSubmit()} />
         </Group>
