@@ -3,36 +3,88 @@ import { Box, Card } from '@mantine/core';
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import { Title } from '@/components/ui';
 import { getAssetDetails } from '@/utils';
+import { useRouter } from 'next/router';
+import { motion } from 'framer-motion';
+
+import IconArrowTipRight from '@/assets/icons/arrow-tip-right.svg';
 
 type Props = {
   course: any;
 };
 
 export default function CourseListItemCard({ course }: Props) {
+  const router = useRouter();
+
+  const handleCourseClick = () => {
+    router.push(`/v3/courses/${course.fields.slug}`);
+  };
+
   return (
-    <Card className="my-4 h-[16vh] w-full shadow-lg cursor-pointer" withBorder key={course.sys.id} p={0}>
-      <div className="flex h-full w-full">
-        {/* Image Container */}
-        <div className="relative h-full w-[240px] flex-shrink-0">
-          <Image
-            fill
-            src={`https:${getAssetDetails(course.assets, course.fields.coverImage.sys.id)?.fields.file.url}`}
-            alt={course.fields.name}
-            style={{ objectFit: 'cover' }}
-          />
-        </div>
+    <Card
+      className="my-4 h-fit w-full cursor-pointer shadow-lg sm:h-[16vh]"
+      withBorder
+      key={course.sys.id}
+      p={0}
+      onClick={handleCourseClick}
+    >
+      {/* Card container */}
+      <motion.div
+        className="flex h-full w-full flex-col sm:flex-row"
+        whileHover="hover" // Shared hover animation key
+      >
+        {/* Image Container with Scaling */}
+        <motion.div
+          className="relative h-[16vh] w-full flex-shrink-0 overflow-hidden sm:h-full sm:w-[300px]"
+          variants={{
+            hover: { scale: 1.05 },
+          }}
+          transition={{
+            duration: 0.5,
+            ease: 'easeInOut',
+          }}
+        >
+          <motion.div
+            className="h-full w-full"
+            style={{ transformOrigin: 'center' }} // Ensure scaling centers the image
+          >
+            <Image
+              fill
+              src={`https:${getAssetDetails(course.assets, course.fields.coverImage.sys.id)?.fields.file.url}`}
+              alt={course.fields.name}
+              style={{ objectFit: 'cover', height: '100%', width: '100%' }}
+            />
+          </motion.div>
+        </motion.div>
 
         {/* Content Section */}
-        <Box className="flex flex-grow flex-col px-4 pt-6">
-          <Title label={course.fields.name} size="20px" color="black" />
-          <div
-            className="line-clamp-[3] font-proxima text-gray-500"
-            dangerouslySetInnerHTML={{
-              __html: documentToHtmlString(course.fields.description),
+        <Box className="flex w-full grow">
+          <Box className="flex w-[92%] flex-col px-4 pt-6">
+            <Title label={course.fields.name} size="20px" color="black" />
+            <div
+              className="line-clamp-[3] font-proxima text-gray-500"
+              dangerouslySetInnerHTML={{
+                __html: documentToHtmlString(course.fields.description),
+              }}
+            ></div>
+          </Box>
+
+          {/* Arrow Icon with Animation */}
+          <motion.div
+            className="flex h-full items-center"
+            variants={{
+              hover: { x: 20 },
             }}
-          ></div>
+            transition={{
+              type: 'spring',
+              stiffness: 200,
+              damping: 20,
+              duration: 0.5,
+            }}
+          >
+            <Image width={36} height={36} src={IconArrowTipRight} alt="arrow" />
+          </motion.div>
         </Box>
-      </div>
+      </motion.div>
     </Card>
   );
 }

@@ -1,10 +1,6 @@
-import { useCallback, useEffect, useState } from 'react';
-import { Box, Card, Input, Text, Pill, Divider } from '@mantine/core';
-import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
-import { IconSearch } from '@tabler/icons-react';
+import { Box, Text, Pill, Divider } from '@mantine/core';
 
-import { MainLayout } from '@/layouts/v3/MainLayout';
-import { Button, Title } from '@/components/ui';
+import { Title } from '@/components/ui';
 import { getAssetDetails } from '@/utils';
 import Image from 'next/image';
 import { CourseListItemCard } from '@/components/cards';
@@ -12,14 +8,10 @@ import { CourseListItemCard } from '@/components/cards';
 type Props = {
   courses: any[];
   program: any;
+  filterProgramCourses: (programType: string, courses: any[]) => any[];
 };
 
-export default function ProgramListItemCard({ courses, program }: Props) {
-  const filterProgramCourses = (programType: string, courses: any[]) => {
-    const programCourses = courses.filter((course) => course.fields.programType.fields.name == programType);
-    return programCourses;
-  };
-
+export default function ProgramListItemCard({ courses, program, filterProgramCourses }: Props) {
   const programCourses = filterProgramCourses(program.fields.name, courses);
 
   return (

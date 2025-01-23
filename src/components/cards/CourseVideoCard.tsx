@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Text } from '@mantine/core';
+import { Card, Image, Text } from '@mantine/core';
 import { IconCheck, IconExclamationCircle } from '@tabler/icons-react';
 
 import { VideoPlayer } from '../ui';
@@ -15,7 +15,14 @@ export default function CourseVideoCard(props: Props) {
   return (
     <Card shadow="sm" padding="lg" radius="md" withBorder className="max-w-[600px] sm:w-full">
       <Card.Section>
-        <VideoPlayer videoUrl={props.courseVideo.fields.file.url} />
+        {props.courseVideo ? (
+          <VideoPlayer videoUrl={props.courseVideo.fields.file.url} />
+        ) : (
+          <Image
+            src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png"
+            alt="about course"
+          />
+        )}
       </Card.Section>
       <Card.Section className="px-6">
         <div className="flex py-4">
