@@ -3,6 +3,7 @@ import { useState, useCallback, useEffect } from 'react';
 
 import { MainLayout } from '@/layouts/v3/MainLayout';
 import { CourseHero, CourseAbout, CourseDetails, CourseApplicationProcess, CourseFAQs } from '@/components/course';
+import { PageSEO } from '@/components/shared/v3';
 
 export default function CourseDetailPage() {
   const router = useRouter();
@@ -35,6 +36,7 @@ export default function CourseDetailPage() {
 
   return (
     <MainLayout minimizeFooter minimizeHeader>
+      <PageSEO title={course.name} />
       <CourseHero
         name={course.name}
         coverImage={course.coverImage}
