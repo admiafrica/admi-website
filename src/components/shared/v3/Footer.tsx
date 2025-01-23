@@ -57,7 +57,7 @@ export default function Footer({ bgColor }: Props) {
     <div className={`relative w-full ${bgColor ? `bg-[${bgColor}]` : 'bg-[#FFF7F5]'} font-proxima`}>
       {/* Floating Card */}
       <div className="w-full pt-48 sm:pt-36">
-        <div className="absolute left-1/2 top-[6vh] z-10 h-fit w-full max-w-screen-xl -translate-x-1/2 transform justify-center px-4 sm:top-[8vh] md:h-[7.125rem]">
+        <div className="absolute left-1/2 top-[6vh] z-10 h-fit w-full max-w-screen-xl -translate-x-1/2 transform justify-center px-4 2xl:px-0 sm:top-[8vh] md:h-[7.125rem]">
           <CourseEnrollCard />
         </div>
       </div>

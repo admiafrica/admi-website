@@ -5,6 +5,7 @@ import { Button } from '../ui';
 
 import IconHourglass from '@/assets/icons/hour-glass-white.svg';
 import IconCurrency from '@/assets/icons/group-6.svg';
+import { useRouter } from 'next/router';
 
 type Props = {
   programType: any;
@@ -13,6 +14,12 @@ type Props = {
 };
 
 export default function CourseEnquiryCard(props: Props) {
+  const router = useRouter();
+
+  const handleEnquiry = () => {
+    router.push('/v3/enquiry');
+  };
+
   return (
     <Card
       className="mx-auto mt-16 h-fit w-[92vw] justify-center shadow-lg md:h-[7.125rem] md:w-full"
@@ -57,7 +64,7 @@ export default function CourseEnquiryCard(props: Props) {
           </div>
         </div>
         <div className="md:py-auto mx-auto py-4">
-          <Button size="xl" backgroundColor="admiRed" label="Enquire Today" />
+          <Button size="xl" backgroundColor="admiRed" label="Enquire Today" onClick={handleEnquiry}/>
         </div>
       </div>
     </Card>

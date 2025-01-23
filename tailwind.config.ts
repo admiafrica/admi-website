@@ -11,7 +11,7 @@ const config: Config = {
       colors: {
         background: 'var(--background)',
         foreground: 'var(--foreground)',
-        admiOrange: '#BA2E36',
+        admiDarkOrange: '#BA2E36',
         admiShamrok: '#08F6CF',
         admiRed: '#F60834',
       },

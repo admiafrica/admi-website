@@ -43,13 +43,13 @@ export default function CourseAbout( props: Props) {
                   <Title label="About this course" />
                 </div>
                 <div
-                  className="mt-1 font-nexa text-lg"
+                  className="mt-1 font-nexa text-lg sm:pr-4"
                   dangerouslySetInnerHTML={{
                     __html: documentToHtmlString(props.description),
                   }}
                 ></div>
               </div>
-              <div className="z-10 my-0 flex h-fit justify-end pt-20 sm:w-1/2">
+              <div className="z-10 my-0 flex h-fit justify-end pt-8 sm:w-1/2">
                 <CourseVideoCard intakes={props.intakes} courseVideo={props.courseVideo} educationalLevel={props.educationalLevel}/>
               </div>
             </>
