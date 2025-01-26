@@ -10,7 +10,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   if (req.method === 'GET') {
     try {
       const response = await axiosContentfulClient.get<IContentfulResponse>(
-        `/spaces/${spaceId}/environments/${environment}/entries?access_token=${accessToken}&content_type=course&include=10`
+        `/spaces/${spaceId}/environments/${environment}/entries?access_token=${accessToken}&content_type=course&select=sys.id,fields.slug,fields.name,fields.description,fields.coverImage,fields.programType`
       );
       const data = response.data;
 

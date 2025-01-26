@@ -44,7 +44,7 @@ export default function CourseDetailPage() {
 
   return (
     <MainLayout>
-      <PageSEO title={course.name} />
+      <PageSEO title={course.name} image={`https:${course.coverImage.fields.file.url}`} />
       <CourseHero
         name={course.name}
         coverImage={course.coverImage}
