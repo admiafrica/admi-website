@@ -1,21 +1,18 @@
-import { useRouter } from 'next/router';
 import { useCallback, useEffect, useState } from 'react';
-import { Box, Card, Text, Select, Autocomplete } from '@mantine/core';
-import { IconSearch } from '@tabler/icons-react';
+import { Box, Text, Select } from '@mantine/core';
 
 import { MainLayout } from '@/layouts/v3/MainLayout';
-import { Button, Title } from '@/components/ui';
+import { Title } from '@/components/ui';
 import { ProgramListItemCard } from '@/components/cards';
 import { PageSEO } from '@/components/shared/v3';
+import { CourseSearch } from '@/components/course';
 
 export default function CoursesPage() {
-  const router = useRouter();
   const [programs, setPrograms] = useState<any[]>([]);
   const [filteredPrograms, setFilteredPrograms] = useState<any[]>([]);
   const [filterOptions, setFilterOptions] = useState<string[]>([]);
   const [activeOption, setActiveOption] = useState<string>('All Courses');
   const [courses, setCourses] = useState<any[]>([]);
-  const [selectedCourse, setSelectedCourse] = useState<string>();
 
   const fetchCoursePrograms = useCallback(async () => {
     try {
@@ -54,17 +51,6 @@ export default function CoursesPage() {
     setActiveOption(value || 'All Courses');
   };
 
-  const handleCourseSelect = (value: string) => {
-    setSelectedCourse(value);
-  };
-
-  const handleCourseSearch = () => {
-    console.log('SELECTED', selectedCourse);
-    console.log('COURSES', courses);
-    const course = courses.find((course) => course.fields.name == selectedCourse);
-    router.push(`/v3/courses/${course.fields.slug}`);
-  };
-
   useEffect(() => {
     fetchCoursePrograms();
     fetchCourses();
@@ -89,29 +75,8 @@ export default function CoursesPage() {
   return (
     <MainLayout footerBgColor="#F5FFFD">
       <PageSEO title="Courses" description="Explore our variety of courses across various topics that suits you!" />
-      <div className="h-[24vh] w-full bg-[#002A23]">
-        <div className="mx-auto w-full max-w-screen-lg px-4 pt-24 2xl:px-0">
-          <Card bg={'#173D37'}>
-            <Card.Section>
-              <div className="flex w-full text-white">
-                <IconSearch className="mx-4 my-auto" />
-                <Autocomplete
-                  className="grow py-4"
-                  placeholder="Search for course e.g Graphic Design, Content Creation"
-                  c="white"
-                  data={courses.map((course) => course.fields.name)}
-                  value={selectedCourse}
-                  onChange={handleCourseSelect}
-                />
-                <div className="mx-4 my-auto">
-                  <Button size="lg" backgroundColor="admiRed" label="Search" onClick={() => handleCourseSearch()} />
-                </div>
-              </div>
-            </Card.Section>
-          </Card>
-        </div>
-      </div>
-      <div className="w-full bg-[#F5FFFD]">
+      <CourseSearch courses={courses} />
+      <div className="relative z-10 w-full bg-[#F5FFFD]">
         <div className="mx-auto w-full max-w-screen-xl bg-[#F5FFFD] px-4 2xl:px-0">
           <div className="flex h-fit w-full flex-col pt-24 sm:flex-row">
             <div className="flex grow flex-col pb-4">
@@ -121,13 +86,17 @@ export default function CoursesPage() {
             <div className="flex items-center bg-white pl-4 font-proxima">
               <Text>Sort By:</Text>
               <Select
-                className="grow border-none font-proxima sm:w-[200px]"
+                className="grow border-none font-proxima font-bold sm:w-[220px]"
                 placeholder="Select Program"
-                searchable
+                allowDeselect={false}
                 nothingFoundMessage="No programs found"
                 data={[...filterOptions]}
-                defaultValue={'All Courses'}
                 onChange={(value) => updateFilterOption(value as string)}
+                renderOption={(value) => (
+                  <div className="font-proxima">
+                    <Text size="16px">{value.option.value}</Text>
+                  </div>
+                )}
               />
             </div>
           </div>

@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { Card, Text } from '@mantine/core';
+import { Card, ScrollArea, Text } from '@mantine/core';
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 
 import { getAssetDetails } from '@/utils';
@@ -44,9 +44,13 @@ export default function CourseDetails(props: Props) {
         <div className="z-20 mx-auto mb-8 w-fit pt-16 text-center font-nexa">
           <Title label="Why you should take this course" color="black" />
         </div>
-        <div className="relative z-20 flex flex-col justify-between sm:flex-row">
+        <div className="relative z-20 flex flex-col justify-between sm:flex-row sm:flex-wrap">
           {props.benefits.map((benefit) => (
-            <Card shadow="md" className="mb-8 sm:mb-auto sm:w-1/4" key={benefit.sys.id}>
+            <Card
+              shadow="md"
+              className={props.benefits.length > 3 ? 'mb-8 sm:w-[22%]' : 'mb-8 sm:w-[30%]'}
+              key={benefit.sys.id}
+            >
               <div className="flex px-4 pt-4">
                 <Image
                   src={`https:${getAssetDetails(props.assets, benefit.fields.icon.sys.id)?.fields.file.url}`}
@@ -60,12 +64,14 @@ export default function CourseDetails(props: Props) {
                   </Text>
                 </div>
               </div>
-              <div
-                className="px-4 py-2 font-proxima text-gray-500"
-                dangerouslySetInnerHTML={{
-                  __html: documentToHtmlString(benefit.fields.text),
-                }}
-              ></div>
+              <ScrollArea h={'14em'} offsetScrollbars>
+                <div
+                  className="px-4 font-proxima text-gray-500"
+                  dangerouslySetInnerHTML={{
+                    __html: documentToHtmlString(benefit.fields.text),
+                  }}
+                ></div>
+              </ScrollArea>
             </Card>
           ))}
         </div>

@@ -16,12 +16,27 @@ import IconShootingStar from '@/assets/icons/ShootingStar';
 import IconLightbulbOn from '@/assets/icons/LightbulbOn';
 import IconHat from '@/assets/icons/Hat';
 
-export default function CampaignsLandingPage() {
+import IconBgImageYellow from '@/assets/icons/ellipse-yellow.svg';
+import IconBgImageRed from '@/assets/icons/ellipse-red.svg';
+
+export default function EnquiryPage() {
   return (
     <MainLayout minimizeFooter minimizeHeader footerBgColor="#002A23">
-      <PageSEO title="Enquiry" description="Enquire about a course to gt more information." />
+      <PageSEO title="Enquiry" description="Enquire about a course to get more information." />
       <div className="h-[100vh] w-full bg-[#002A23] pt-16">
-        <div className="mx-auto flex w-full max-w-screen-2xl flex-col px-4 sm:flex-row 2xl:px-0">
+        {/* BACKGROUND IMAGES */}
+        <div className="absolute left-[54%] top-[24vh] h-fit w-full -translate-x-1/2 transform">
+          <div className="flex w-full justify-end pr-[10%]">
+            <Image src={IconBgImageYellow} alt={'background image'} />
+          </div>
+        </div>
+
+        <div className="absolute left-[50%] top-[20vh] h-fit w-full -translate-x-1/2 transform">
+          <div className="flex w-full">
+            <Image src={IconBgImageRed} alt={'background image'} />
+          </div>
+        </div>
+        <div className="relative z-10 mx-auto flex w-full max-w-screen-2xl flex-col px-4 sm:flex-row 2xl:px-0">
           <div className="sm:w-1/2">
             <Box mb={4}>
               <Title label="Take the first steps" color="#F1FE38" size="48px" />

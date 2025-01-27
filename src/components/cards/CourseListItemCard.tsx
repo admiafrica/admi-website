@@ -21,7 +21,7 @@ export default function CourseListItemCard({ course }: Props) {
 
   return (
     <Card
-      className="my-4 h-fit w-full cursor-pointer shadow-lg sm:h-[16vh]"
+      className="hover:border-1 my-4 h-fit w-full cursor-pointer shadow-lg hover:border-solid hover:border-admiRed sm:h-[16vh]"
       withBorder
       key={course.sys.id}
       p={0}
@@ -44,7 +44,7 @@ export default function CourseListItemCard({ course }: Props) {
           }}
         >
           <motion.div
-            className="h-full w-full"
+            className="relative h-full w-full"
             style={{ transformOrigin: 'center' }} // Ensure scaling centers the image
           >
             <Image
@@ -70,7 +70,7 @@ export default function CourseListItemCard({ course }: Props) {
 
           {/* Arrow Icon with Animation */}
           <motion.div
-            className="flex h-full items-center"
+            className="my-auto flex h-full sm:items-center"
             variants={{
               hover: { x: 20 },
             }}

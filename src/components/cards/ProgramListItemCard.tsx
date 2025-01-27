@@ -22,7 +22,7 @@ export default function ProgramListItemCard({ courses, program, filterProgramCou
             width={36}
             height={36}
             src={`https:${getAssetDetails(program.assets, program.fields.icon.sys.id)?.fields.file.url}`}
-            alt={program.fields.icon.fields.file.title}
+            alt={program.fields.icon.fields.file.fileName}
             className="my-auto"
           />
           <div className="my-auto pl-2">

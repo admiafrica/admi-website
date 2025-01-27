@@ -53,7 +53,7 @@ export default function CourseStudents(props: Props) {
               px={'7%'}
               align="start"
               slidesToScroll={1}
-              height={'24em'}
+              height={480}
               classNames={classes}
               previousControlIcon={<IconArrowLeft />}
               nextControlIcon={<IconArrowRight />}
@@ -71,7 +71,7 @@ export default function CourseStudents(props: Props) {
                             slideSize={{ base: '100%' }}
                             slideGap={{ base: 0, sm: 'md' }}
                             loop
-                            height={270}
+                            height={360}
                             align="start"
                             slidesToScroll={1}
                             previousControlIcon={<IconArrowLeft />}
