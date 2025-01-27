@@ -15,7 +15,6 @@ export default function CoursesPage() {
   const [filterOptions, setFilterOptions] = useState<string[]>([]);
   const [activeOption, setActiveOption] = useState<string>('All Courses');
   const [courses, setCourses] = useState<any[]>([]);
-  const [selectedCourse, setSelectedCourse] = useState<string>();
 
   const fetchCoursePrograms = useCallback(async () => {
     try {
@@ -52,17 +51,6 @@ export default function CoursesPage() {
 
   const updateFilterOption = (value: string) => {
     setActiveOption(value || 'All Courses');
-  };
-
-  const handleCourseSelect = (value: string) => {
-    setSelectedCourse(value);
-  };
-
-  const handleCourseSearch = () => {
-    console.log('SELECTED', selectedCourse);
-    console.log('COURSES', courses);
-    const course = courses.find((course) => course.fields.name == selectedCourse);
-    router.push(`/v3/courses/${course.fields.slug}`);
   };
 
   useEffect(() => {

@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, Image, Text } from '@mantine/core';
 import { IconCheck, IconExclamationCircle } from '@tabler/icons-react';
 
-import { VideoPlayer } from '../ui';
+import { VideoPlayer } from '../shared/v3';
 
 type Props = {
   intakes: string;

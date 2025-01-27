@@ -22,14 +22,12 @@ export default function CourseSearch({ courses }: Props) {
   };
 
   const handleCourseSearch = () => {
-    console.log('SELECTED', selectedCourse);
-    console.log('COURSES', courses);
     const course = courses.find((course) => course.fields.name == selectedCourse);
     router.push(`/v3/courses/${course.fields.slug}`);
   };
 
   return (
-    <div className="h-[24vh] w-full bg-[#002A23]">
+    <div className="h-[16em] w-full bg-[#002A23]">
       {/* BACKGROUND IMAGES */}
       <div className="absolute left-[62%] top-[20vh] z-0 h-fit w-full -translate-x-1/2 transform">
         <div className="flex w-full justify-end pr-[10%]">
