@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router';
 import { useCallback, useEffect, useState } from 'react';
 import { Box, Text, Select } from '@mantine/core';
 
@@ -9,7 +8,6 @@ import { PageSEO } from '@/components/shared/v3';
 import { CourseSearch } from '@/components/course';
 
 export default function CoursesPage() {
-  const router = useRouter();
   const [programs, setPrograms] = useState<any[]>([]);
   const [filteredPrograms, setFilteredPrograms] = useState<any[]>([]);
   const [filterOptions, setFilterOptions] = useState<string[]>([]);
