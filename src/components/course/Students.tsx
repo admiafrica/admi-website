@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import Image from 'next/image';
 import Autoplay from 'embla-carousel-autoplay';
-import { Avatar, Card, Group, Rating, Text } from '@mantine/core';
+import { Avatar, Card, Group, Rating, ScrollArea, Text } from '@mantine/core';
 import { Carousel } from '@mantine/carousel';
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 
@@ -53,7 +53,7 @@ export default function CourseStudents(props: Props) {
               px={'7%'}
               align="start"
               slidesToScroll={1}
-              height={'24em'}
+              height={480}
               classNames={classes}
               previousControlIcon={<IconArrowLeft />}
               nextControlIcon={<IconArrowRight />}
@@ -63,29 +63,38 @@ export default function CourseStudents(props: Props) {
                   <Carousel.Slide key={portfolio.fields.studentName}>
                     <Card>
                       <Card.Section>
-                        <Carousel
-                          plugins={[portfolioAutoplay.current]}
-                          onMouseEnter={portfolioAutoplay.current.stop}
-                          onMouseLeave={portfolioAutoplay.current.reset}
-                          slideSize={{ base: '100%' }}
-                          slideGap={{ base: 0, sm: 'md' }}
-                          loop
-                          height={270}
-                          align="start"
-                          slidesToScroll={1}
-                          previousControlIcon={<IconArrowLeft />}
-                          nextControlIcon={<IconArrowRight />}
-                        >
-                          {portfolio.fields.assets.map((portfolioAsset: any) => (
-                            <Carousel.Slide key={portfolioAsset.sys.id}>
-                              <Image
-                                src={`https:${getAssetDetails(props.assets, portfolioAsset.sys.id)?.fields.file.url}`}
-                                fill
-                                alt="#"
-                              />
-                            </Carousel.Slide>
-                          ))}
-                        </Carousel>
+                        {portfolio.fields.assets ? (
+                          <Carousel
+                            plugins={[portfolioAutoplay.current]}
+                            onMouseEnter={portfolioAutoplay.current.stop}
+                            onMouseLeave={portfolioAutoplay.current.reset}
+                            slideSize={{ base: '100%' }}
+                            slideGap={{ base: 0, sm: 'md' }}
+                            loop
+                            height={360}
+                            align="start"
+                            slidesToScroll={1}
+                            previousControlIcon={<IconArrowLeft />}
+                            nextControlIcon={<IconArrowRight />}
+                          >
+                            {portfolio.fields.assets.map((portfolioAsset: any) => (
+                              <Carousel.Slide key={portfolioAsset.sys.id}>
+                                <Image
+                                  src={`https:${getAssetDetails(props.assets, portfolioAsset.sys.id)?.fields.file.url}`}
+                                  fill
+                                  alt="#"
+                                />
+                              </Carousel.Slide>
+                            ))}
+                          </Carousel>
+                        ) : (
+                          <div
+                            className="mt-1 h-full min-h-[14em] px-6 font-proxima text-gray-600"
+                            dangerouslySetInnerHTML={{
+                              __html: documentToHtmlString(portfolio.fields.bio),
+                            }}
+                          ></div>
+                        )}
                       </Card.Section>
                       <Card.Section>
                         <Group py={16} bg={'#871F00'} c={'white'}>
@@ -137,12 +146,14 @@ export default function CourseStudents(props: Props) {
               <Card className="mb-16 mr-4 h-fit sm:w-1/4" key={`testimonial-${index}`}>
                 <Rating value={5} fractions={2} color="admiRed" readOnly className="pl-2" />
                 <Card.Section>
-                  <div
-                    className="mt-1 px-6 font-proxima text-gray-600"
-                    dangerouslySetInnerHTML={{
-                      __html: documentToHtmlString(testimonial.fields.description),
-                    }}
-                  ></div>
+                  <ScrollArea h={'12em'} offsetScrollbars>
+                    <div
+                      className="mt-1 h-full px-6 font-proxima text-gray-600"
+                      dangerouslySetInnerHTML={{
+                        __html: documentToHtmlString(testimonial.fields.description),
+                      }}
+                    ></div>
+                  </ScrollArea>
                 </Card.Section>
                 <div className="mt-8 flex px-2">
                   <Avatar

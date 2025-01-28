@@ -1,7 +1,14 @@
 import { Card, Text } from '@mantine/core';
 import { Button } from '../ui';
+import { useRouter } from 'next/router';
 
 export default function CourseEnrollCard() {
+  const router = useRouter();
+
+  const handleEnquiry = () => {
+    router.push('/v3/enquiry');
+  };
+
   return (
     <Card className="z-10 h-fit w-full max-w-screen-xl justify-center md:h-[7.125rem]" bg={'admiShamrok'} radius={6}>
       <div className="my-auto flex w-full flex-col p-2 md:flex-row md:p-4">
@@ -18,7 +25,7 @@ export default function CourseEnrollCard() {
           </div>
         </div>
         <div className="md:py-auto mx-auto py-4">
-          <Button size="xl" backgroundColor="admiRed" label="Enroll Today with ADMI" />
+          <Button size="xl" backgroundColor="admiRed" label="Enroll Today with ADMI" onClick={handleEnquiry}/>
         </div>
       </div>
     </Card>

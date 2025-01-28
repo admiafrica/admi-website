@@ -11,6 +11,7 @@ import {
   CourseMentors,
   CourseStudents,
 } from '@/components/course';
+import { PageSEO } from '@/components/shared/v3';
 
 export default function CourseDetailPage() {
   const router = useRouter();
@@ -43,6 +44,7 @@ export default function CourseDetailPage() {
 
   return (
     <MainLayout>
+      <PageSEO title={course.name} image={`https:${course.coverImage.fields.file.url}`} />
       <CourseHero
         name={course.name}
         coverImage={course.coverImage}

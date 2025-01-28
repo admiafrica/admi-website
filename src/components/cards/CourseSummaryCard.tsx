@@ -6,6 +6,7 @@ import IconAward from '@/assets/icons/Award';
 import IconTimer from '@/assets/icons/timer.svg';
 import IconHourGlass from '@/assets/icons/hourglass-start.svg';
 import IconAvatar from '@/assets/icons/avatar.svg';
+import { useRouter } from 'next/router';
 
 type Props = {
   programType: any;
@@ -15,6 +16,12 @@ type Props = {
 };
 
 export default function CourseSummaryCard(props: Props) {
+  const router = useRouter();
+
+  const handleEnquiry = () => {
+    router.push('/v3/enquiry');
+  };
+
   return (
     <Card
       className="h-fit max-w-screen-2xl justify-center sm:h-[7.125rem]"
@@ -73,7 +80,7 @@ export default function CourseSummaryCard(props: Props) {
         </div>
         {!props.isCampaign && (
           <div className="md:py-auto mx-auto py-4">
-            <Button size="xl" backgroundColor="admiRed" label="Get in Touch" />
+            <Button size="xl" backgroundColor="admiRed" label="Get in Touch" onClick={handleEnquiry} />
           </div>
         )}
       </div>

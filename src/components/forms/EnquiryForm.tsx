@@ -1,10 +1,13 @@
+import Link from 'next/link';
+import { useCallback, useEffect, useState } from 'react';
 import { Group, Select, Text, TextInput } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { Button, Title } from '../ui';
 import { IconAsterisk } from '@tabler/icons-react';
-import Link from 'next/link';
 
 export default function EnquiryForm() {
+  const [courses, setCourses] = useState<any[]>([]);
+
   const form = useForm({
     mode: 'uncontrolled',
     initialValues: {
@@ -20,12 +23,26 @@ export default function EnquiryForm() {
     },
   });
 
+  const fetchCourses = useCallback(async () => {
+    try {
+      const response = await fetch(`/api/v3/courses`);
+      const data = await response.json();
+      setCourses(data);
+    } catch (error) {
+      console.log('Error fetching courses:', error);
+    }
+  }, []);
+
   const handleSubmit = () => {
     console.log('VALUES', form.values);
   };
 
+  useEffect(() => {
+    fetchCourses();
+  }, [fetchCourses]);
+
   return (
-    <div className="w-full">
+    <div className="w-full bg-white p-4 sm:p-8">
       <div className="font-nexa">
         <Title label="Enquiry Form" color="black" />
       </div>
@@ -44,7 +61,7 @@ export default function EnquiryForm() {
           placeholder="Select a course you're interested in"
           searchable
           nothingFoundMessage="No options"
-          data={[]}
+          data={courses.map((course) => course.fields.name)}
           {...form.getInputProps('course')}
         />
         <div className="my-4 font-proxima">
@@ -111,7 +128,13 @@ export default function EnquiryForm() {
           {...form.getInputProps('phoneNumber')}
         />
 
-        <Group justify="flex-end" mt="4em" className="w-full">
+        <input id="utm_source" type="hidden" value={''} />
+        <input id="utm_medium" type="hidden" value={''} />
+        <input id="utm_campaign" type="hidden" value={''} />
+        <input id="utm_term" type="hidden" value={''} />
+        <input id="utm_content" type="hidden" value={''} />
+
+        <Group justify="flex-end" mt="2em" className="w-full">
           <Button size="lg" backgroundColor="admiRed" label="Submit" onClick={() => handleSubmit()} />
         </Group>
       </form>

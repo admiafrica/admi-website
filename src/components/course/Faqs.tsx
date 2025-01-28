@@ -26,7 +26,8 @@ export default function CourseFAQs({ faqs }: Props) {
           <Image src={IconBgImageRed} alt={'background image'} />
         </div>
       </div>
-      <div className="relative z-20 mx-auto min-h-[40em] w-full max-w-screen-xl px-4 pb-16">
+      
+      <div className="relative z-20 mx-auto min-h-[40em] w-full max-w-screen-xl px-4 2xl:px-0 pb-16">
         <div className="z-20 pt-16 font-nexa">
           <Text size="2em" fw={900}>
             Frequently Asked Questions

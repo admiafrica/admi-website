@@ -10,11 +10,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   if (req.method === 'GET') {
     try {
       const response = await axiosContentfulClient.get<IContentfulResponse>(
-        `/spaces/${spaceId}/environments/${environment}/entries?access_token=${accessToken}&content_type=course&select=sys.id,fields.slug,fields.name,fields.description,fields.coverImage,fields.programType`
+        `/spaces/${spaceId}/environments/${environment}/entries?access_token=${accessToken}&content_type=program&include=10`
       );
       const data = response.data;
 
-      const courseItems = data.items;
+      const programItems = data.items;
       const assets = data.includes?.Asset || [];
       const entries = data.includes?.Entry || [];
 
@@ -45,17 +45,17 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       };
 
       // Resolve references in the main item
-      const resolvedCourses = courseItems.map((course: any) => {
+      const resolvedPrograms = programItems.map((program: any) => {
         return {
-          ...course,
-          fields: resolveReferences(course.fields),
-          assets,
+          ...program,
+          fields: resolveReferences(program.fields),
+          assets
         };
       });
 
-      res.status(200).json(resolvedCourses);
+      res.status(200).json(resolvedPrograms);
     } catch (error) {
-      console.error('Failed to get courses', error);
+      console.error('Failed to get Course Programs', error);
       res.status(500).json({ message: 'Internal Server Error' });
     }
   } else {
