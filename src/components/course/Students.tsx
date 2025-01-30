@@ -147,33 +147,6 @@ export default function CourseStudents(props: Props) {
               <Box key={`testimonial-${index}`}>
                 <UserTestimonialCard user={testimonial.user} testimonial={testimonial} assets={props.assets} />
               </Box>
-              // <Card className="mb-16 mr-4 h-fit sm:w-1/4" key={`testimonial-${index}`}>
-              //   <Rating value={5} fractions={2} color="admiRed" readOnly className="pl-2" />
-              //   <Card.Section>
-              //     <ScrollArea h={'12em'} offsetScrollbars>
-              //       <div
-              //         className="mt-1 h-full px-6 font-proxima text-gray-600"
-              //         dangerouslySetInnerHTML={{
-              //           __html: documentToHtmlString(testimonial.fields.description),
-              //         }}
-              //       ></div>
-              //     </ScrollArea>
-              //   </Card.Section>
-              //   <div className="mt-8 flex px-2">
-              //     <Avatar
-              //       src={`https:${getAssetDetails(props.assets, testimonial.fields.authorImage.sys.id)?.fields.file.url}`}
-              //       variant="transparent"
-              //     />
-              //     <div className="flex flex-col px-4">
-              //       <div className="font-nexa">
-              //         <Text fw={900}>{testimonial.fields.authorName}</Text>
-              //       </div>
-              //       <div className="font-proxima">
-              //         <Text fw={500}>{testimonial.fields.authorRole}</Text>
-              //       </div>
-              //     </div>
-              //   </div>
-              // </Card>
             ))}
           </div>
         )}
