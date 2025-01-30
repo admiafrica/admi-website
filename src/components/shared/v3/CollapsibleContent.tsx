@@ -29,9 +29,9 @@ export default function CollapsibleContent({ icon, title, subTitle, content, isP
             <Text size="1.4em" fw={900}>
               {title}
               {isProfile && (
-                <Link href={profileLink || '#'}>
+                <a href={profileLink || '#'} target="_blank">
                   <Image width={20} height={20} src={IconLinkedIn} alt="linkedin profile" style={{ marginLeft: 8 }} />
-                </Link>
+                </a>
               )}
             </Text>
             {subTitle ? (
