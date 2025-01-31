@@ -1,13 +1,13 @@
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
-import { Card, Text, Autocomplete } from '@mantine/core';
-import { IconSearch } from '@tabler/icons-react';
+import { Card, Text, Autocomplete, Box } from '@mantine/core';
 
 import { Button } from '@/components/ui';
 
 import IconBgImageYellow from '@/assets/icons/ellipse-yellow.svg';
 import IconBgImageRed from '@/assets/icons/ellipse-red.svg';
+import IconSearch from '@/assets/icons/Search';
 
 type Props = {
   courses: any[];
@@ -41,12 +41,14 @@ export default function CourseSearch({ courses }: Props) {
         </div>
       </div>
       <div className="mx-auto w-full max-w-screen-lg px-4 pt-24 2xl:px-0">
-        <Card bg={'#173D37'}>
-          <Card.Section>
+        <Box bg={'#173D37'} className="rounded-lg">
+          <Box className="rounded-1xl py-4">
             <div className="flex w-full text-white">
-              <IconSearch className="mx-4 my-auto" />
+              <div className="my-auto pl-2">
+                <IconSearch color="white" width={36} height={36} />
+              </div>
               <Autocomplete
-                className="grow py-4 text-white"
+                className="grow pt-1 text-white"
                 placeholder="Search for course e.g Graphic Design, Content Creation"
                 styles={{
                   input: {
@@ -68,8 +70,8 @@ export default function CourseSearch({ courses }: Props) {
                 <Button size="lg" backgroundColor="admiRed" label="Search" onClick={() => handleCourseSearch()} />
               </div>
             </div>
-          </Card.Section>
-        </Card>
+          </Box>
+        </Box>
       </div>
     </div>
   );
