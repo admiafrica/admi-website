@@ -13,7 +13,7 @@ type Props = {
 
 export default function UserTestimonialCard(props: Props) {
   return (
-    <Card className="mb-16 mr-4 h-fit w-full max-w-[360px]">
+    <Card className="mb-16 mr-4 h-fit w-full max-w-[360px]" withBorder>
       <Rating value={5} fractions={2} color="admiRed" readOnly className="pb-2 pl-2" />
       <Card.Section>
         <ScrollArea h={'12em'} offsetScrollbars>
