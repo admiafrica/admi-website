@@ -55,7 +55,7 @@ export default function EnquiryPage() {
                   bg={'admiShamrok'}
                 >
                   <IconLightbulbOn width={54} height={54} color="white" />
-                  <IconHat width={48} height={48} color="white" />
+                  <IconHat width={44} height={44} color="white" />
                   <IconShootingStar width={54} height={54} color="white" />
                 </Box>
                 <Image width={280} src={ImageEnquiry3} alt="about course" objectFit="cover" />

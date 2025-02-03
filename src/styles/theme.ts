@@ -13,6 +13,11 @@ export const nexaFont = localFont({
       style: 'light',
     },
     {
+      path: '../assets/fonts/Nexa-Regular.otf',
+      weight: '400',
+      style: 'regular',
+    },
+    {
       path: '../assets/fonts/Nexa-Heavy.ttf',
       weight: '900',
       style: 'bold',

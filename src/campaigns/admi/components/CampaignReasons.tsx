@@ -1,10 +1,10 @@
 import styles from "@/assets/css/main.module.css";
-import { IContentfulEntry } from "@/types";
+import { IContentfulAsset, IContentfulEntry } from "@/types";
 import { getAssetDetails } from "@/utils";
 import Image from "next/image";
 
 type ReasonsProps = {
-  assets: IContentfulEntry[];
+  assets: IContentfulAsset[];
   reasons: IContentfulEntry[];
 };
 
