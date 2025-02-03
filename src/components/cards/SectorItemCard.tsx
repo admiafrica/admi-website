@@ -1,13 +1,8 @@
 import Image from 'next/image';
 import { Box, Card } from '@mantine/core';
-import { Title } from '@/components/ui';
-import { getAssetDetails } from '@/utils';
 import { useRouter } from 'next/router';
-import { motion } from 'framer-motion';
 
-import { IContentfulEntry } from '@/types';
-
-import IconArrowTipRight from '@/assets/icons/ArrowTipRight';
+import { Title } from '@/components/ui';
 
 type Props = {
   sector: any;

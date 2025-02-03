@@ -1,8 +1,6 @@
 import React from 'react';
-import Image from 'next/image';
-import { Box, Card, Image as MantineImage, Text } from '@mantine/core';
+import { Box, Card, Image, Text } from '@mantine/core';
 
-import IconLinkedIn from '@/assets/icons/linkedin-blue.svg';
 import { Title } from '../ui';
 
 type Props = {
@@ -20,7 +18,7 @@ export default function UserCareerCard(props: Props) {
           </div>
         </Box>
         <Box className="flex w-1/2">
-          <MantineImage
+          <Image
             src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png"
             alt="about course"
             height={'100%'}

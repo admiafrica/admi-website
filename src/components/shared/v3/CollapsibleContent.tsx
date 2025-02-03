@@ -6,7 +6,6 @@ import { useDisclosure } from '@mantine/hooks';
 import IconArrowLeft from '@/assets/icons/arrow-left.svg';
 import IconArrowDown from '@/assets/icons/arrow-down.svg';
 import IconLinkedIn from '@/assets/icons/linkedin-blue.svg';
-import Link from 'next/link';
 
 type Props = {
   title: string;

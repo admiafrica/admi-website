@@ -1,16 +1,16 @@
 import { useRef } from 'react';
 import Image from 'next/image';
 import Autoplay from 'embla-carousel-autoplay';
-import { Avatar, Box, Card, Group, Rating, ScrollArea, Text } from '@mantine/core';
+import { Avatar, Box, Card, Group, Text } from '@mantine/core';
 import { Carousel } from '@mantine/carousel';
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 
 import { getAssetDetails } from '@/utils';
+import { UserTestimonialCard } from '../cards';
 
 import { IconArrowLeft, IconArrowRight, IconChecks } from '@tabler/icons-react';
 
 import classes from '@/styles/Indicator.module.css';
-import { UserTestimonialCard } from '../cards';
 
 type Props = {
   portfolios: any[];
