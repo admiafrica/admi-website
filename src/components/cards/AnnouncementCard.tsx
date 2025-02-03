@@ -1,9 +1,10 @@
 import React from 'react';
-import { Box, Card, Image as MantineImage, Pill, Text } from '@mantine/core';
+import { Box, Card, Pill, Text } from '@mantine/core';
 import { Title } from '../ui';
 import { motion } from 'framer-motion';
 
 import IconArrowTipRight from '@/assets/icons/ArrowTipRight';
+import Image from 'next/image';
 
 type Props = {
   announcement: any;
@@ -11,6 +12,7 @@ type Props = {
   featured?: boolean;
   bgColor?: string;
   arrowColor?: string;
+  image?: any;
 };
 
 export default function AnnouncementCard(props: Props) {
@@ -24,8 +26,8 @@ export default function AnnouncementCard(props: Props) {
         className="flex h-full w-full flex-col sm:flex-row"
         whileHover="hover" // Shared hover animation key
       >
-        <Box className="flex w-full">
-          <Box className="flex w-[40%] flex-col">
+        <Box className="flex h-[400px] w-full">
+          <Box className="flex w-[40%] flex-col sm:pr-4">
             {props.featured && (
               <Pill
                 size="md"
@@ -58,15 +60,13 @@ export default function AnnouncementCard(props: Props) {
               }}
             >
               <IconArrowTipRight width={48} height={48} color={props.arrowColor} />
-              {/* <Image width={48} height={48} src={IconArrowTipRight} alt="arrow" /> */}
             </motion.div>
           </Box>
-          <Box className="flex w-[60%]">
-            <MantineImage
-              src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png"
+          <Box className="relative flex h-full w-[60%]">
+            <Image
+              fill
+              src={props.image || 'https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png'}
               alt="about course"
-              height={'100%'}
-              width={'100%'}
               style={{ borderRadius: 8 }}
             />
           </Box>
