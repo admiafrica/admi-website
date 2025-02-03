@@ -26,9 +26,9 @@ type Props = {
 
 export default function CourseDetails(props: Props) {
   return (
-    <div className="relative w-full bg-[#F5FFFD] pb-32">
+    <div className="relative w-full bg-[#F5FFFD] pb-16">
       {/* BACKGROUND IMAGES */}
-      <div className="absolute left-1/2 top-[1rem] z-10 h-fit w-full -translate-x-1/2 transform">
+      <div className="absolute left-1/2 z-10 h-fit w-full -translate-x-1/2 transform">
         <div className="flex w-full justify-end">
           <Image src={IconBackgroundImageA} alt={'background image'} />
         </div>
@@ -41,7 +41,7 @@ export default function CourseDetails(props: Props) {
       </div>
 
       <div className="relative z-20 mx-auto w-full max-w-screen-2xl px-4">
-        <div className="z-20 mx-auto mb-8 w-fit pt-16 text-center font-nexa">
+        <div className="z-20 mx-auto mb-8 w-fit pt-8 text-center font-nexa">
           <Title label="Why you should take this course" color="black" />
         </div>
         <div className="relative z-20 flex flex-col justify-between sm:flex-row sm:flex-wrap">

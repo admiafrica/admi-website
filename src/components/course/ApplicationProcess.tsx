@@ -10,7 +10,7 @@ export default function CourseApplicationProcess({ processes }: Props) {
   if (processes.length < 1) return null;
 
   return (
-    <div className="relative z-20 w-full pb-24">
+    <div className="relative z-20 w-full pb-16">
       <div className="mx-auto w-full max-w-screen-xl px-4 2xl:px-0">
         <div className="mt-16 font-nexa">
           <Text size="2em" fw={900}>

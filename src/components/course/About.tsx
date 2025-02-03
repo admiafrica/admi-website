@@ -13,7 +13,7 @@ type Props = {
 };
 export default function CourseAbout( props: Props) {
   return (
-    <div className="w-full pb-24 pt-48 sm:pt-0">
+    <div className="w-full pb-16 pt-48 sm:pt-0">
       <div className="mx-auto w-full max-w-screen-2xl px-4 pt-32 2xl:px-0">
         <div className="flex w-full flex-col sm:flex-row">
           {props.isCampaign && (
