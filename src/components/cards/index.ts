@@ -13,3 +13,6 @@ export { default as UserTestimonialCard } from './UserTestimonialCard';
 export { default as UserCareerCard } from './UserCareerCard';
 export { default as AnnouncementCard } from './AnnouncementCard';
 export { default as FacilityItemCard } from './FacilityItemCard';
+export { default as SectorItemCard } from './SectorItemCard';
+
+export { default as LearnMoreCard } from './LearnMoreCard';
