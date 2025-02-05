@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { Card, Box } from '@mantine/core';
+import { Card, Box, Divider } from '@mantine/core';
 import { IconPlus } from '@tabler/icons-react';
 import { Paragraph } from '@/components/ui';
 
@@ -16,23 +16,31 @@ export default function Timeline({ data }: Props) {
   };
   return (
     <Box className="w-full">
-      <Box className="flex w-full flex-col">
-        <Box className="flex w-full">
+      <Box className="relative flex w-full flex-col">
+        <Box className="absolute top-[22px] z-0 mx-auto w-full px-6">
+          <Divider color="admiShamrok" />
+        </Box>
+        <Box className="z-10 flex w-full">
           {data.map((item: any) => (
             <Card
               key={item.year}
               className="mx-auto cursor-pointer"
-              bg={'admiShamrok'}
+              bg={activeYear.year == item.year ? 'admiRed' : 'admiShamrok'}
               onClick={() => handleYearSelected(item)}
             >
-              <Paragraph fontFamily="font-nexa" size="12px">
+              <Paragraph
+                fontFamily="font-nexa"
+                size="12px"
+                fontWeight={900}
+                className={activeYear.year == item.year ? 'text-white' : 'text-black'}
+              >
                 {item.year}
               </Paragraph>
             </Card>
           ))}
         </Box>
         <Box className="flex w-full py-6">
-          <Box className="w-[20%] min-w-[200px]">
+          <Box className="w-[20%] w-[240px]">
             <Paragraph fontFamily="font-nexa py-2" size="76px">
               {activeYear.year}
             </Paragraph>

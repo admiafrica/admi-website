@@ -17,6 +17,7 @@ import IconLinkedIn from '@/assets/icons/linkedin.svg';
 import IconMail from '@/assets/icons/mail.svg';
 import IconCall from '@/assets/icons/call.svg';
 import IconStopWatch from '@/assets/icons/stop-watch.svg';
+import Ribbon from './Ribbon';
 
 const SocialIcons = React.memo(() => {
   return (
@@ -57,7 +58,7 @@ export default function Footer({ bgColor }: Props) {
     <div className={`relative w-full ${bgColor ? `bg-[${bgColor}]` : 'bg-[#FFF7F5]'} font-proxima`}>
       {/* Floating Card */}
       <div className="w-full pt-48 sm:pt-36">
-        <div className="absolute left-1/2 top-[6vh] z-10 h-fit w-full max-w-screen-xl -translate-x-1/2 transform justify-center px-4 2xl:px-0 sm:top-[8vh] md:h-[7.125rem]">
+        <div className="absolute left-1/2 top-[6vh] z-10 h-fit w-full max-w-screen-xl -translate-x-1/2 transform justify-center px-4 sm:top-[8vh] md:h-[7.125rem] 2xl:px-0">
           <CourseEnrollCard />
         </div>
       </div>
@@ -175,12 +176,7 @@ export default function Footer({ bgColor }: Props) {
         </Group>
       </div>
 
-      <div className="flex h-[0.75rem] w-full">
-        <div className="w-1/4 bg-[#E6F608]" />
-        <div className="w-1/4 bg-[#F60834]" />
-        <div className="w-1/4 bg-[#08F6CF]" />
-        <div className="w-1/4 bg-[#F76335]" />
-      </div>
+      <Ribbon />
     </div>
   );
 }
