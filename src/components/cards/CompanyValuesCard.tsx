@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Card, Text, Tabs } from '@mantine/core';
+import { Box, Card, Tabs } from '@mantine/core';
 import { Paragraph, Title } from '../ui';
 
 type Props = {
@@ -11,7 +11,7 @@ export default function CompanyValuesCard({ values }: Props) {
       <Tabs defaultValue="global" orientation="vertical">
         <Tabs.List>
           {values.map((item: any) => (
-            <Tabs.Tab value={item.id}>
+            <Tabs.Tab value={item.id} key={item.name}>
               <Box className="flex">
                 <item.icon />
                 <Paragraph className="my-auto pl-2">{item.name}</Paragraph>
@@ -21,12 +21,14 @@ export default function CompanyValuesCard({ values }: Props) {
         </Tabs.List>
 
         {values.map((item: any) => (
-          <Tabs.Panel value={item.id}>
+          <Tabs.Panel value={item.id} key={`content-${item.name}`}>
             <Box className="flex h-full w-full px-8" bg={'#FEFFF5'}>
               <Box>
                 <Title label={item.name} color="black" />
-                {item.description.map((paragraph: string) => (
-                  <Paragraph className="pb-8">{paragraph}</Paragraph>
+                {item.description.map((paragraph: string, index: number) => (
+                  <Paragraph className="pb-8" key={`paragraph-${index}`}>
+                    {paragraph}
+                  </Paragraph>
                 ))}
               </Box>
               <Box className="flex items-center justify-center">

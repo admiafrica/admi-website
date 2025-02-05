@@ -1,11 +1,6 @@
 import React, { useState } from 'react';
-import Image from 'next/image';
-import { Group, Text, Collapse, Card, Box } from '@mantine/core';
-import { useDisclosure } from '@mantine/hooks';
 
-import IconArrowLeft from '@/assets/icons/arrow-left.svg';
-import IconArrowDown from '@/assets/icons/arrow-down.svg';
-import IconLinkedIn from '@/assets/icons/linkedin-blue.svg';
+import { Card, Box } from '@mantine/core';
 import { IconPlus } from '@tabler/icons-react';
 import { Paragraph } from '@/components/ui';
 
@@ -34,8 +29,8 @@ export default function Timeline({ data }: Props) {
             </Paragraph>
           </Box>
           <Box className="flex w-[80%] flex-col">
-            {activeYear.achievements.map((item: string) => (
-              <Box className="flex w-full py-2">
+            {activeYear.achievements.map((item: string, index: number) => (
+              <Box className="flex w-full py-2" key={`achievement-${index}`}>
                 <IconPlus className="my-auto mr-2 rounded-full bg-admiShamrok" size={14} />
                 <Paragraph className="my-auto">{item}</Paragraph>
               </Box>

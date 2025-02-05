@@ -81,22 +81,22 @@ export default function AboutPage() {
           <Image src={ImageAboutLanding} alt={'background image'} fill objectFit="cover" />
         </Box>
         <Box className="mx-auto flex w-full max-w-screen-2xl">
-          <Box className="w-[50%] py-32 font-nexa text-white">
-            <Text size="18px" mb={32}>
+          <Box className="w-[50%] py-32 font-nexa text-white pr-4">
+            <Paragraph className="mb-8" fontFamily='font-nexa'>
               Africa Digital Media Institute (ADMI) based in Nairobi, Kenya, is Eastern Africa’s premier creative media
               and technology training institution.{' '}
-            </Text>
+            </Paragraph>
 
-            <Text size="18px" mb={32}>
+            <Paragraph className="mb-8" fontFamily='font-nexa'>
               It is an innovative career accelerator where creatives and techies receive training, mentorship, and a
               platform to turn their passion into a profession.{' '}
-            </Text>
+            </Paragraph>
 
-            <Text fw={900} size="18px">
+            <Paragraph fontFamily='font-nexa' fontWeight={900}>
               Our programs combine high-spec technical training in creative media and technology with intensive digital
               and soft-skills coaching, along with a rigorous internship process, helping to achieve above-market
               placement rates.
-            </Text>
+            </Paragraph>
           </Box>
           <Box className="w-[50%] py-16">
             <Box className="flex w-full flex-wrap">
@@ -125,7 +125,7 @@ export default function AboutPage() {
         </Box>
       </Box>
       {/* OUR HISTORY */}
-      <Box className="w-full py-8" bg={'#F5FFFD'}>
+      <Box className="1xl:px-0 w-full px-4 py-8" bg={'#F5FFFD'}>
         <Box className="mx-auto w-full max-w-screen-2xl">
           <Box className="flex w-full flex-row">
             <Box className="w-[30%]">
@@ -138,14 +138,14 @@ export default function AboutPage() {
         </Box>
       </Box>
       {/* OUR VALUES */}
-      <Box className="relative w-full pb-16" bg={'#F5FFFD'}>
+      <Box className="1xl:px-0 relative w-full px-4 pb-16" bg={'#F5FFFD'}>
         <Box className="mx-auto w-full max-w-screen-2xl pb-10">
           <Box className="flex w-full flex-row">
             <Box className="w-[30%]">
               <Title label="Our Values" color="black" />
             </Box>
             <Box className="w-[70%]">
-              <Paragraph size="20px" className="pt-4">
+              <Paragraph className="pt-4" fontFamily="font-nexa">
                 Our values at ADMI guide everything we do, from fostering creativity and innovation to ensuring
                 excellence and integrity in all our programs. We are committed to nurturing the next generation of
                 creative professionals with passion and purpose.
@@ -161,7 +161,7 @@ export default function AboutPage() {
         </div>
       </Box>
       {/* ACADEMIC TEAM */}
-      <Box className="w-full pt-56" bg={'admiRed'}>
+      <Box className="1xl:px-0 w-full px-4 pt-56" bg={'admiRed'}>
         <Box className="mx-auto w-full max-w-screen-2xl">
           <Box className="flex w-full flex-row">
             <Box className="w-[30%]">
@@ -178,19 +178,11 @@ export default function AboutPage() {
         </Box>
       </Box>
       {/* BOARD OF DIRECTORS */}
-      <Box className="w-full py-8" bg={'#F5FFFD'}>
+      <Box className="1xl:px-0 w-full px-4 py-8" bg={'#F5FFFD'}>
         <Box className="mx-auto w-full max-w-screen-2xl">
           <Box className="flex w-full flex-row">
             <Box className="w-[30%]">
               <Title label="Board of Directors" color="black" />
-            </Box>
-            <Box className="w-[70%]">
-              <Paragraph size="20px" className="pt-4">
-                ADMI’s campus is a vibrant, creatively designed workspace conveniently located right next to the GPO in
-                Nairobi’s Central Business District. The campus boasts extensive facilities including classrooms,
-                animation and graphics labs, TV and sound production studios, Mac and PC labs, and a film equipment
-                vault.
-              </Paragraph>
             </Box>
           </Box>
           <Box className="flex w-full flex-row flex-wrap py-8">
@@ -210,7 +202,7 @@ export default function AboutPage() {
               <Title label="Facilities" color="black" />
             </Box>
             <Box className="w-[70%]">
-              <Paragraph size="20px" className="pt-4">
+              <Paragraph className="pt-4" fontFamily="font-nexa">
                 ADMI&apos;s campus is a vibrant, creatively designed workspace conveniently located right next to the
                 GPO in Nairobi&apos;s Central Business District. The campus boasts extensive facilities including
                 classrooms, animation and graphics labs, TV and sound production studios, Mac and PC labs, and a film
