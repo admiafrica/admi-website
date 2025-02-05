@@ -12,6 +12,7 @@ import IconTikTok from '@/assets/icons/tiktok.svg';
 import IconX from '@/assets/icons/x.svg';
 import IconLinkedIn from '@/assets/icons/linkedin.svg';
 import { SOCIAL_LINKS } from '@/utils';
+import Ribbon from './Ribbon';
 
 const SocialIcons = React.memo(() => {
   return (
@@ -64,12 +65,7 @@ export default function FooterMini() {
         </div>
       </div>
 
-      <div className="flex h-[0.75rem] w-full">
-        <div className="w-1/4 bg-[#E6F608]" />
-        <div className="w-1/4 bg-[#F60834]" />
-        <div className="w-1/4 bg-[#08F6CF]" />
-        <div className="w-1/4 bg-[#F76335]" />
-      </div>
+      <Ribbon />
     </div>
   );
 }

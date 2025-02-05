@@ -5,7 +5,7 @@ import { Carousel } from '@mantine/carousel';
 import { Paragraph, Title } from '@/components/ui';
 import { MainLayout } from '@/layouts/v3/MainLayout';
 
-import { PageSEO, Timeline } from '@/components/shared/v3';
+import { PageSEO, Ribbon, Timeline } from '@/components/shared/v3';
 import { FacilityItemCard, SectorItemCard, CompanyValuesCard, UserProfileCard } from '@/components/cards';
 import { ADMI_ACADEMIC_TEAM, ADMI_DIRECTORS, ADMI_FACILITIES, ADMI_HISTORY, ADMI_VALUES } from '@/utils';
 
@@ -80,19 +80,20 @@ export default function AboutPage() {
         <Box className="relative h-[460px] w-full">
           <Image src={ImageAboutLanding} alt={'background image'} fill objectFit="cover" />
         </Box>
+        <Ribbon />
         <Box className="mx-auto flex w-full max-w-screen-2xl">
-          <Box className="w-[50%] py-32 font-nexa text-white pr-4">
-            <Paragraph className="mb-8" fontFamily='font-nexa'>
+          <Box className="w-[50%] px-4 py-32 font-nexa text-white">
+            <Paragraph className="mb-8" fontFamily="font-nexa">
               Africa Digital Media Institute (ADMI) based in Nairobi, Kenya, is Eastern Africa’s premier creative media
               and technology training institution.{' '}
             </Paragraph>
 
-            <Paragraph className="mb-8" fontFamily='font-nexa'>
+            <Paragraph className="mb-8" fontFamily="font-nexa">
               It is an innovative career accelerator where creatives and techies receive training, mentorship, and a
               platform to turn their passion into a profession.{' '}
             </Paragraph>
 
-            <Paragraph fontFamily='font-nexa' fontWeight={900}>
+            <Paragraph fontFamily="font-nexa" fontWeight={900}>
               Our programs combine high-spec technical training in creative media and technology with intensive digital
               and soft-skills coaching, along with a rigorous internship process, helping to achieve above-market
               placement rates.
@@ -170,7 +171,7 @@ export default function AboutPage() {
           </Box>
           <Box className="flex w-full flex-row flex-wrap py-8">
             {ADMI_ACADEMIC_TEAM.map((member, index) => (
-              <div className="mr-8 w-fit" key={`academic-member-${index}`}>
+              <div className="mr-8 mb-8 w-fit" key={`academic-member-${index}`}>
                 <UserProfileCard user={member} />
               </div>
             ))}
@@ -187,7 +188,7 @@ export default function AboutPage() {
           </Box>
           <Box className="flex w-full flex-row flex-wrap py-8">
             {ADMI_DIRECTORS.map((member, index) => (
-              <div className="mr-8 w-fit" key={`academic-member-${index}`}>
+              <div className="mr-8 mb-8 w-fit" key={`academic-member-${index}`}>
                 <UserProfileCard user={member} />
               </div>
             ))}
