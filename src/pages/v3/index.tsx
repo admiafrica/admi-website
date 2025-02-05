@@ -24,8 +24,6 @@ import HeroBackgroundImage from '@/assets/images/homepage-hero.svg';
 import AnnouncementImage from '@/assets/images/announcement.svg';
 import NewsImage from '@/assets/images/featured-news.svg';
 import AwardsImage from '@/assets/images/awards.svg';
-import StudiosImage from '@/assets/images/the-studios.svg';
-import SpacesImage from '@/assets/images/the-space.png';
 
 import IconSearch from '@/assets/icons/Search';
 import IconHome from '@/assets/icons/Home';
@@ -35,6 +33,7 @@ import IconMusic from '@/assets/icons/Music';
 import IconSoundwave from '@/assets/icons/Soundwave';
 import IconTruckSpeed from '@/assets/icons/TruckSpeed';
 import IconTv from '@/assets/icons/Tv';
+import { ADMI_FACILITIES } from '@/utils';
 
 export default function HomePage() {
   const router = useRouter();
@@ -76,37 +75,13 @@ export default function HomePage() {
       icon: <IconTv color="#F60834" />,
     },
   ];
+
   const announcement = {
     title: 'Introducing Aquila Creative Scholars: Your Gateway to a Thriving Creative Career',
     description:
       'The Africa Digital Media Foundation, in partnership with a generous anonymous donor, is thrilled to announce the launch of the Aquila Creative Scholars program.',
   };
-  const facilities = [
-    {
-      name: 'The Studios',
-      description:
-        'Our campus has industry-standard audio and TV studios. The TV studio has a tracking floor with lighting grid, while the music studio has a vocal booth that doubles up as rehearsal space that can accommodate a full band. The control room is equipped with professional software, including ProTools and Logic, as well as...',
-      image: StudiosImage,
-    },
-    {
-      name: 'The Space',
-      description:
-        'The ADMI campus at Caxton House has ample space to enable you to learn under the most conducive environment. The facilities include classrooms, animation and graphics labs, TV and sound production studios, Mac and PC labs, a film equipment vault and a fully stocked digital library.',
-      image: SpacesImage,
-    },
-    {
-      name: 'The Labs',
-      description:
-        'Our labs are fully equipped with both Mac and Pc computers and installed with industry-standard software, including Final Cut, Protools, Davinci Adobe Premier, Autodesk suite, Avid Composer and many more.',
-      image: '',
-    },
-    {
-      name: 'The Equipment',
-      description:
-        'We pride ourselves on being one of the few regional film schools that teach in HD, digital film formats. During your first year, you will hone your skills using small HD camcorders, before progressing to high-end HD formats and digital cinema cameras from popular manufacturers like Sony, Canon, Panasonic & Black...',
-      image: '',
-    },
-  ];
+  const facilities = ADMI_FACILITIES;
   const news = {
     title: 'Ganjisha Content Program: Empowering Kenyan Youth Through Digital Skills and Entrepreneurship',
     description:
@@ -220,8 +195,8 @@ export default function HomePage() {
           <Box className="w-full">
             <Carousel slideSize={260} slideGap="md" loop align="start" slidesToScroll={1}>
               {sectors.map((sector: any) => (
-                <Carousel.Slide key={sector.title}>
-                  <SectorItemCard sector={sector} />
+                <Carousel.Slide key={sector.title} py={6}>
+                  <SectorItemCard sector={sector} withBorder />
                 </Carousel.Slide>
               ))}
             </Carousel>
@@ -345,7 +320,7 @@ export default function HomePage() {
                 <Title label="Facilities" color="black" />
               </Box>
               <Box className="w-[70%]">
-                <Paragraph size="20px" className="pt-4">
+                <Paragraph size="20px" className="pt-4" fontFamily="font-nexa">
                   ADMI&apos;s campus is a vibrant, creatively designed workspace conveniently located right next to the
                   GPO in Nairobi&apos;s Central Business District. The campus boasts extensive facilities including
                   classrooms, animation and graphics labs, TV and sound production studios, Mac and PC labs, and a film
@@ -354,7 +329,15 @@ export default function HomePage() {
               </Box>
             </Box>
             <Box className="w-full">
-              <Carousel slideSize={600} slideGap="md" loop align="start" slidesToScroll={1} controlsOffset={0}>
+              <Carousel
+                slideSize={600}
+                height={360}
+                slideGap="md"
+                loop
+                align="start"
+                slidesToScroll={1}
+                controlsOffset={0}
+              >
                 {facilities.map((facility) => (
                   <Carousel.Slide key={facility.name}>
                     <FacilityItemCard facility={facility} />
@@ -376,7 +359,7 @@ export default function HomePage() {
                 <Title label="Our Courses" color="black" />
               </Box>
               <Box className="w-[70%]">
-                <Paragraph size="20px" className="pt-4">
+                <Paragraph size="20px" className="pt-4" fontFamily="font-nexa">
                   Explore ADMI&apos;s diverse range of courses designed to equip you with the skills and knowledge
                   needed to excel in the creative industries. Whether you&apos;re passionate about film, design, music,
                   or digital content, our programs offer hands-on training and expert guidance to help you succeed.

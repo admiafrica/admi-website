@@ -13,10 +13,10 @@ export default function FacilityItemCard({ facility }: Props) {
       padding="lg"
       radius="md"
       withBorder
-      className="hover:border-1 h-[340px] h-full cursor-pointer bg-white hover:border-solid hover:border-admiRed"
+      className="hover:border-1 h-[360px] h-full cursor-pointer bg-white hover:border-solid hover:border-admiRed"
     >
       <Box className="flex h-full">
-        <Box className="flex w-[60%] flex-col pt-4">
+        <Box className="flex h-full w-[60%] flex-col pt-4">
           <Title label={facility.name || 'The Studios'} size="24px" color="black" />
           <Paragraph className="mb-0 mt-auto h-[160px] pr-2">{facility.description}</Paragraph>
         </Box>
