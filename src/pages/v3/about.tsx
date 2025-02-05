@@ -34,7 +34,7 @@ export default function AboutPage() {
     },
     {
       title: 'Graphic Design',
-      icon: <IconTv color="#01C6A5" />,
+      icon: <IconTv color="#F60934" />,
     },
     {
       title: 'Film & TV Production',
