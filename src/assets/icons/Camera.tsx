@@ -25,7 +25,7 @@ export default function IconAward({ color = 'black', width, height }: Props) {
         strokeLinecap="round"
         strokeLinejoin="round"
       />
-      <path d="M32.5 20.75V28.25" stroke={color} stroke-width="2.5" stroke-linecap="round" />
+      <path d="M32.5 20.75V28.25" stroke={color} strokeWidth="2.5" strokeLinecap="round" />
     </svg>
   );
 }
