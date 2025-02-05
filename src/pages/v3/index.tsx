@@ -320,7 +320,7 @@ export default function HomePage() {
                 <Title label="Facilities" color="black" />
               </Box>
               <Box className="w-[70%]">
-                <Paragraph size="20px" className="pt-4">
+                <Paragraph size="20px" className="pt-4" fontFamily="font-nexa">
                   ADMI&apos;s campus is a vibrant, creatively designed workspace conveniently located right next to the
                   GPO in Nairobi&apos;s Central Business District. The campus boasts extensive facilities including
                   classrooms, animation and graphics labs, TV and sound production studios, Mac and PC labs, and a film
@@ -359,7 +359,7 @@ export default function HomePage() {
                 <Title label="Our Courses" color="black" />
               </Box>
               <Box className="w-[70%]">
-                <Paragraph size="20px" className="pt-4">
+                <Paragraph size="20px" className="pt-4" fontFamily="font-nexa">
                   Explore ADMI&apos;s diverse range of courses designed to equip you with the skills and knowledge
                   needed to excel in the creative industries. Whether you&apos;re passionate about film, design, music,
                   or digital content, our programs offer hands-on training and expert guidance to help you succeed.
