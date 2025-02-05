@@ -5,17 +5,26 @@ import { IconPlus } from '@tabler/icons-react';
 import { Paragraph } from '@/components/ui';
 
 type Props = {
-  data: any;
+  data: Array<{ year: number; achievements: Array<string> }>;
 };
 
 export default function Timeline({ data }: Props) {
-  const [activeYear] = useState(data[0]);
+  const [activeYear, setActiveYear] = useState(data[0]);
+
+  const handleYearSelected = (value: { year: number; achievements: Array<string> }) => {
+    setActiveYear(value);
+  };
   return (
     <Box className="w-full">
       <Box className="flex w-full flex-col">
         <Box className="flex w-full">
           {data.map((item: any) => (
-            <Card key={item.year} className="mx-auto" bg={'admiShamrok'}>
+            <Card
+              key={item.year}
+              className="mx-auto cursor-pointer"
+              bg={'admiShamrok'}
+              onClick={() => handleYearSelected(item)}
+            >
               <Paragraph fontFamily="font-nexa" size="12px">
                 {item.year}
               </Paragraph>
@@ -23,7 +32,7 @@ export default function Timeline({ data }: Props) {
           ))}
         </Box>
         <Box className="flex w-full py-6">
-          <Box className="w-[20%]">
+          <Box className="w-[20%] min-w-[200px]">
             <Paragraph fontFamily="font-nexa py-2" size="76px">
               {activeYear.year}
             </Paragraph>

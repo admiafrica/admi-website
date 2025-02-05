@@ -65,21 +65,25 @@ export const ADMI_ACADEMIC_TEAM = [
   {
     name: 'Carolyne Sila',
     title: 'Head of School',
+    linkedin: '',
     image: ImageCaroline,
   },
   {
     name: 'Peter Mwaniki',
     title: 'Academics',
+    linkedin: '',
     image: ImagePeter,
   },
   {
     name: 'Raji Ilangovan',
     title: 'Student Programs',
+    linkedin: '',
     image: ImageRaji,
   },
   {
     name: 'Ciku Munuku',
     title: 'Faculty Affairs',
+    linkedin: '',
     image: ImageCiku,
   },
 ];
@@ -135,43 +139,42 @@ export const ADMI_HISTORY = [
   },
   {
     year: 2015,
-    achievements: ['First ADMI campus established in nairoi through a partnership with JFTA'],
+    achievements: ['JFTA formally rebrands to ADMI.', 'Course offering deepens to 6 main courses.'],
   },
   {
     year: 2016,
-    achievements: ['First ADMI campus established in nairoi through a partnership with JFTA'],
+    achievements: [
+      'Student enrolment increases to over 150 students from 10 countries.',
+      'ADMI expands to a new state-of-the-art campus in Nairobi CBD.',
+    ],
   },
   {
     year: 2017,
-    achievements: ['First ADMI campus established in nairoi through a partnership with JFTA'],
+    achievements: ['ADMI enrols its 250th student.', 'ADMI celebrates its 5th anniversary.'],
   },
   {
     year: 2018,
-    achievements: ['First ADMI campus established in nairoi through a partnership with JFTA'],
+    achievements: ['ADMI enrols its 750th student.', 'ADMI enrols its 1,000th student.'],
   },
   {
     year: 2019,
-    achievements: ['First ADMI campus established in nairoi through a partnership with JFTA'],
+    achievements: [
+      'Revenues exceed $1M per year.',
+      'AFD invests $1M in animation & gaming.',
+      'ADMI partners with Rubika.',
+    ],
   },
   {
     year: 2020,
-    achievements: ['First ADMI campus established in nairoi through a partnership with JFTA'],
-  },
-  {
-    year: 2021,
-    achievements: ['First ADMI campus established in nairoi through a partnership with JFTA'],
+    achievements: ['Blended learning begins.'],
   },
   {
     year: 2022,
-    achievements: ['First ADMI campus established in nairoi through a partnership with JFTA'],
+    achievements: ['ADMI celebrates 10th anniversary.'],
   },
   {
     year: 2023,
-    achievements: ['First ADMI campus established in nairoi through a partnership with JFTA'],
-  },
-  {
-    year: 2024,
-    achievements: ['First ADMI campus established in nairoi through a partnership with JFTA'],
+    achievements: ['ADMI partners with GOYN.', 'ADMI partners with Google.org and DOT Kenya.'],
   },
 ];
 
@@ -225,5 +228,71 @@ export const ADMI_VALUES = [
       `Want to see your child change before your eyes, from disengaged student to passionate professional?`,
       `ADMI is a selective and intimate school with a low teacher -to-student ratio allowing us to closely monitor individual student progress. This way, we strive to ensure that ADMI is a "defining experience" for each student, teacher and employee.`,
     ],
+  },
+];
+
+export const ADMI_STUDENT_COUNCIL = [
+  {
+    name: 'Dave Rono',
+    title: 'President',
+    linkedin: '',
+    image: ImageCaroline,
+  },
+  {
+    name: 'Ivy Nyambura',
+    title: 'Vice-President',
+    linkedin: '',
+    image: ImagePeter,
+  },
+  {
+    name: 'Nicole Ochieng',
+    title: 'Treasurer',
+    linkedin: '',
+    image: ImageRaji,
+  },
+  {
+    name: 'Amani Mugambi',
+    title: 'Secretary',
+    linkedin: '',
+    image: ImageCiku,
+  },
+  {
+    name: 'Sammy Kamande',
+    title: 'Organising Secretary',
+    linkedin: '',
+    image: ImageCiku,
+  },
+  {
+    name: 'Azyzah Rehman',
+    title: 'International Officer',
+    linkedin: '',
+    image: ImageCiku,
+  },
+  {
+    name: 'Shalom Chihi',
+    title: 'Council Member',
+    linkedin: '',
+    image: ImageCiku,
+  },
+];
+
+export const ADMI_ACADEMIC_TEAM_MINIMAL = [
+  {
+    name: 'Raji Ilangovan',
+    title: 'Student Programs',
+    linkedin: '',
+    image: ImageRaji,
+  },
+  {
+    name: 'Evelyne Makena',
+    title: 'Registrar',
+    linkedin: '',
+    image: ImageCiku,
+  },
+  {
+    name: 'Mary Munene',
+    title: 'Student Services',
+    linkedin: '',
+    image: ImageCiku,
   },
 ];
