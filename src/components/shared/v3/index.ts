@@ -4,3 +4,5 @@ export { default as FooterMini } from './FooterMini';
 export { default as CollapsibleContent } from './CollapsibleContent';
 export { default as PageSEO } from './PageSEO';
 export { default as VideoPlayer } from './VideoPlayer';
+export { default as Timeline } from './Timeline';
+export { default as Ribbon } from './Ribbon';

@@ -6,7 +6,7 @@ import { getAssetDetails } from '@/utils';
 import { useRouter } from 'next/router';
 import { motion } from 'framer-motion';
 
-import IconArrowTipRight from '@/assets/icons/arrow-tip-right.svg';
+import IconArrowTipRight from '@/assets/icons/ArrowTipRight';
 
 type Props = {
   course: any;
@@ -81,7 +81,7 @@ export default function CourseListItemCard({ course }: Props) {
               duration: 0.5,
             }}
           >
-            <Image width={36} height={36} src={IconArrowTipRight} alt="arrow" />
+            <IconArrowTipRight width={36} height={36} color={'#F60834'} />
           </motion.div>
         </Box>
       </motion.div>

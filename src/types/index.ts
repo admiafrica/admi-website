@@ -1,4 +1,3 @@
-import {} from 'contentful'
 // Define TypeScript interfaces for Contentful data
 export interface IContentfulSys {
   id: string;
@@ -25,6 +24,7 @@ export interface IContentfulAsset {
 export interface IContentfulEntry {
   sys: IContentfulSys;
   fields: Record<string, any>;
+  assets?: IContentfulAsset[];
 }
 
 export interface IContentfulResponse {

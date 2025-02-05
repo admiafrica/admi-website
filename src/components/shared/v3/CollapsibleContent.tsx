@@ -6,7 +6,6 @@ import { useDisclosure } from '@mantine/hooks';
 import IconArrowLeft from '@/assets/icons/arrow-left.svg';
 import IconArrowDown from '@/assets/icons/arrow-down.svg';
 import IconLinkedIn from '@/assets/icons/linkedin-blue.svg';
-import Link from 'next/link';
 
 type Props = {
   title: string;
@@ -29,9 +28,9 @@ export default function CollapsibleContent({ icon, title, subTitle, content, isP
             <Text size="1.4em" fw={900}>
               {title}
               {isProfile && (
-                <Link href={profileLink || '#'}>
+                <a href={profileLink || '#'} target="_blank">
                   <Image width={20} height={20} src={IconLinkedIn} alt="linkedin profile" style={{ marginLeft: 8 }} />
-                </Link>
+                </a>
               )}
             </Text>
             {subTitle ? (
