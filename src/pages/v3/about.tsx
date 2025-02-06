@@ -171,7 +171,7 @@ export default function AboutPage() {
           </Box>
           <Box className="flex w-full flex-row flex-wrap py-8">
             {ADMI_ACADEMIC_TEAM.map((member, index) => (
-              <div className="mr-8 mb-8 w-fit" key={`academic-member-${index}`}>
+              <div className="mb-8 mr-8 w-fit" key={`academic-member-${index}`}>
                 <UserProfileCard user={member} />
               </div>
             ))}
@@ -182,13 +182,11 @@ export default function AboutPage() {
       <Box className="1xl:px-0 w-full px-4 py-8" bg={'#F5FFFD'}>
         <Box className="mx-auto w-full max-w-screen-2xl">
           <Box className="flex w-full flex-row">
-            <Box className="w-[30%]">
-              <Title label="Board of Directors" color="black" />
-            </Box>
+            <Title label="Board of Directors" color="black" />
           </Box>
           <Box className="flex w-full flex-row flex-wrap py-8">
             {ADMI_DIRECTORS.map((member, index) => (
-              <div className="mr-8 mb-8 w-fit" key={`academic-member-${index}`}>
+              <div className="mb-8 mr-8 w-fit" key={`academic-member-${index}`}>
                 <UserProfileCard user={member} />
               </div>
             ))}

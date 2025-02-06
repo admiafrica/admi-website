@@ -183,7 +183,7 @@ export default function HomePage() {
         <Box className="w-full">
           <Box className="w-full pt-20">
             <div className="mx-auto w-fit max-w-screen-md text-center">
-              <Paragraph size="20px" fontFamily="font-nexa">
+              <Paragraph fontFamily="font-nexa">
                 It is an innovative career accelerator where creatives and techies receive training, mentorship and a
                 platform to turn their passion into a profession.
               </Paragraph>
@@ -203,7 +203,7 @@ export default function HomePage() {
           </Box>
           <Box className="w-full">
             <div className="mx-auto w-fit max-w-screen-md py-12 text-center">
-              <Paragraph size="20px" fontFamily="font-nexa">
+              <Paragraph fontFamily="font-nexa">
                 Our programs combine high-spec technical training in creative media and technology with intensive
                 digital and soft-skills coaching, along with a rigorous internship process, helping to achieve
                 above-market placement rates.
@@ -219,7 +219,7 @@ export default function HomePage() {
                 <Title label="Our Impact" color="black" />
               </Box>
               <Box className="w-[70%]">
-                <Paragraph size="20px" className="pt-4">
+                <Paragraph fontFamily="font-nexa" className="pt-4">
                   Through our innovative programs and industry-focused training, we empower students to turn their
                   creative passions into successful careers. ADMI&apos;s impact extends beyond the classroom, fostering
                   a new generation of professionals ready to lead in the digital media industry.
@@ -284,7 +284,7 @@ export default function HomePage() {
                 <Title label="Testimonials" color="black" />
               </Box>
               <Box className="w-[70%]">
-                <Paragraph size="20px" className="pt-4">
+                <Paragraph fontFamily="font-nexa" className="pt-4">
                   Discover how ADMI has transformed the careers of our students through their own stories of success and
                   growth. Hear firsthand how our hands-on training and industry connections have helped them achieve
                   their creative dreams.
@@ -320,7 +320,7 @@ export default function HomePage() {
                 <Title label="Facilities" color="black" />
               </Box>
               <Box className="w-[70%]">
-                <Paragraph size="20px" className="pt-4" fontFamily="font-nexa">
+                <Paragraph fontFamily="font-nexa" className="pt-4">
                   ADMI&apos;s campus is a vibrant, creatively designed workspace conveniently located right next to the
                   GPO in Nairobi&apos;s Central Business District. The campus boasts extensive facilities including
                   classrooms, animation and graphics labs, TV and sound production studios, Mac and PC labs, and a film
@@ -359,7 +359,7 @@ export default function HomePage() {
                 <Title label="Our Courses" color="black" />
               </Box>
               <Box className="w-[70%]">
-                <Paragraph size="20px" className="pt-4" fontFamily="font-nexa">
+                <Paragraph fontFamily="font-nexa" className="pt-4">
                   Explore ADMI&apos;s diverse range of courses designed to equip you with the skills and knowledge
                   needed to excel in the creative industries. Whether you&apos;re passionate about film, design, music,
                   or digital content, our programs offer hands-on training and expert guidance to help you succeed.
