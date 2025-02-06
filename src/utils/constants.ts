@@ -1,6 +1,9 @@
 import StudiosImage from '@/assets/images/the-studios.svg';
 import SpacesImage from '@/assets/images/the-space.png';
 
+import ImageStudentLife from '@/assets/images/student-life.png';
+import ImagePersonalCounseling from '@/assets/images/personal-counseling.png';
+
 // User Profiles
 import ImageCaroline from '@/assets/images/caroline.png';
 import ImagePeter from '@/assets/images/peter.png';
@@ -12,6 +15,15 @@ import ImageWilfred from '@/assets/images/wilfred.png';
 import ImageMugo from '@/assets/images/mugo.png';
 import ImageRoss from '@/assets/images/ross.png';
 import ImageChris from '@/assets/images/chris.png';
+import ImageDave from '@/assets/images/dave-rono.png';
+import ImageIvy from '@/assets/images/ivy-nyambura.png';
+import ImageNicole from '@/assets/images/nicole-ochieng.png';
+import ImageAmani from '@/assets/images/amani-mugambi.png';
+import ImageSammy from '@/assets/images/sammy-kamande.png';
+import ImageAzyzah from '@/assets/images/azyzah-rehman.png';
+import ImageShalom from '@/assets/images/shalom-chihi.png';
+import ImageEvelyne from '@/assets/images/evelyne-makena.png';
+import ImageMary from '@/assets/images/mary-munene.png';
 
 // Icons
 import IconBrowser from '@/assets/icons/Browser';
@@ -135,7 +147,7 @@ export const ADMI_HISTORY = [
   },
   {
     year: 2014,
-    achievements: ['First ADMI campus established in nairoi through a partnership with JFTA'],
+    achievements: ['First ADMI campus established in Nairobi through a partnership with JFTA'],
   },
   {
     year: 2015,
@@ -215,8 +227,8 @@ export const ADMI_VALUES = [
     icon: IconGraphUp,
     iconColor: '#871F00',
     description: [
-      `ADMI is committed to a progressive and positive schol atmosphere where our students and staff can thrive.`,
-      `We striuctly enforce ethical behavior on campus and apply global professional standards in all our interactions. To ensure that studens receive personalized attention, we offer string psycho-social support, including academic suport as well as progressive guidance counselling.`,
+      `ADMI is committed to a progressive and positive school atmosphere where our students and staff can thrive.`,
+      `We strictly enforce ethical behavior on campus and apply global professional standards in all our interactions. To ensure that studens receive personalized attention, we offer string psycho-social support, including academic suport as well as progressive guidance counselling.`,
     ],
   },
   {
@@ -236,43 +248,43 @@ export const ADMI_STUDENT_COUNCIL = [
     name: 'Dave Rono',
     title: 'President',
     linkedin: '',
-    image: ImageCaroline,
+    image: ImageDave,
   },
   {
     name: 'Ivy Nyambura',
     title: 'Vice-President',
     linkedin: '',
-    image: ImagePeter,
+    image: ImageIvy,
   },
   {
     name: 'Nicole Ochieng',
     title: 'Treasurer',
     linkedin: '',
-    image: ImageRaji,
+    image: ImageNicole,
   },
   {
     name: 'Amani Mugambi',
     title: 'Secretary',
     linkedin: '',
-    image: ImageCiku,
+    image: ImageAmani,
   },
   {
     name: 'Sammy Kamande',
     title: 'Organising Secretary',
     linkedin: '',
-    image: ImageCiku,
+    image: ImageSammy,
   },
   {
     name: 'Azyzah Rehman',
     title: 'International Officer',
     linkedin: '',
-    image: ImageCiku,
+    image: ImageAzyzah,
   },
   {
     name: 'Shalom Chihi',
     title: 'Council Member',
     linkedin: '',
-    image: ImageCiku,
+    image: ImageShalom,
   },
 ];
 
@@ -287,12 +299,121 @@ export const ADMI_ACADEMIC_TEAM_MINIMAL = [
     name: 'Evelyne Makena',
     title: 'Registrar',
     linkedin: '',
-    image: ImageCiku,
+    image: ImageEvelyne,
   },
   {
     name: 'Mary Munene',
     title: 'Student Services',
     linkedin: '',
-    image: ImageCiku,
+    image: ImageMary,
+  },
+];
+
+export const ADMI_CAREER_ADVICE = [
+  {
+    title: 'Student Life',
+    description: [
+      {
+        type: 'paragraph',
+        content:
+          'At ADMI, we believe that learning happens both inside and outside the classroom. That’s why we offer a vibrant student life program, including:',
+      },
+      {
+        type: 'list',
+        content: [
+          'Student clubs and organizations',
+          'Sports and recreational activities',
+          'Cultural events and celebrations',
+        ],
+      },
+      {
+        type: 'paragraph',
+        content:
+          'Our student life program helps you build friendships, develop leadership skills, and explore your interests beyond your studies.',
+      },
+    ],
+    image: ImageStudentLife,
+  },
+  {
+    title: 'Personal Counseling',
+    description: [
+      {
+        type: 'paragraph',
+        content:
+          'We understand that school life can be challenging, both academically and personally. That’s why we offer confidential personal counselling services to help you navigate the ups and downs of student life. Our counsellors provide support for issues such as:',
+      },
+      {
+        type: 'list',
+        content: ['Stress management', 'Anxiety and depression', 'Relationship difficulties'],
+      },
+      {
+        type: 'paragraph',
+        content:
+          'We also offer workshops and support groups on topics such as time management, stress reduction, and healthy relationships. You can always book a personal session with our counsellor at counsellor@admi.ac.ke',
+      },
+    ],
+    image: ImagePersonalCounseling,
+  },
+  {
+    title: 'Career Development',
+    description: [
+      {
+        type: 'paragraph',
+        content:
+          'We believe that education is not just about acquiring knowledge, but also about preparing for the future. That’s why we offer a range of career development services, including:',
+      },
+      {
+        type: 'list',
+        content: [
+          'Career counselling to help you explore your interests and options',
+          'Resume and cover letter writing workshops',
+          'Mock interviews and networking events',
+        ],
+      },
+      {
+        type: 'paragraph',
+        content:
+          'Our strong partnerships with industry leaders ensure that you have access to internships and job opportunities upon graduation.',
+      },
+    ],
+    image: 'https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png',
+  },
+];
+
+export const ADMI_FINANCIAL_PLANNING = [
+  {
+    title: '2025 FEEs - January',
+    description: 'content here',
+  },
+  {
+    title: 'Paying your Fees',
+    description: 'content here',
+  },
+  {
+    title: 'Scholarships and Grants',
+    description: 'content here',
+  },
+  {
+    title: 'Contact Finance Office',
+    description: 'content here',
+  },
+];
+
+export const ADMI_INTERNATIONAL_STUDENTS = [
+  {
+    title: 'How to Apply',
+    description: 'content here',
+  },
+  {
+    title: 'Visa Requirements',
+    description: 'content here',
+  },
+  {
+    title: 'Accomodation',
+    description: 'content here',
+  },
+  {
+    title: 'International Student Community',
+    description: 'content here',
   },
 ];
