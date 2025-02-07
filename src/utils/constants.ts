@@ -1,8 +1,11 @@
-import StudiosImage from '@/assets/images/the-studios.svg';
-import SpacesImage from '@/assets/images/the-space.png';
+import ImageStudios from '@/assets/images/the-studios.svg';
+import ImageSpaces from '@/assets/images/the-space.png';
+import ImageLabs from '@/assets/images/the-labs.png';
+import ImageEquipment from '@/assets/images/the-equipment.png';
 
 import ImageStudentLife from '@/assets/images/student-life.png';
 import ImagePersonalCounseling from '@/assets/images/personal-counseling.png';
+import ImageCareerDevelopment from '@/assets/images/career-development.png';
 
 // User Profiles
 import ImageCaroline from '@/assets/images/caroline.png';
@@ -51,25 +54,25 @@ export const ADMI_FACILITIES = [
     name: 'The Studios',
     description:
       'Our campus has industry-standard audio and TV studios. The TV studio has a tracking floor with lighting grid, while the music studio has a vocal booth that doubles up as rehearsal space that can accommodate a full band. The control room is equipped with professional software, including ProTools and Logic, as well as...',
-    image: StudiosImage,
+    image: ImageStudios,
   },
   {
     name: 'The Space',
     description:
       'The ADMI campus at Caxton House has ample space to enable you to learn under the most conducive environment. The facilities include classrooms, animation and graphics labs, TV and sound production studios, Mac and PC labs, a film equipment vault and a fully stocked digital library.',
-    image: SpacesImage,
+    image: ImageSpaces,
   },
   {
     name: 'The Labs',
     description:
       'Our labs are fully equipped with both Mac and Pc computers and installed with industry-standard software, including Final Cut, Protools, Davinci Adobe Premier, Autodesk suite, Avid Composer and many more.',
-    image: '',
+    image: ImageLabs,
   },
   {
     name: 'The Equipment',
     description:
       'We pride ourselves on being one of the few regional film schools that teach in HD, digital film formats. During your first year, you will hone your skills using small HD camcorders, before progressing to high-end HD formats and digital cinema cameras from popular manufacturers like Sony, Canon, Panasonic & Black...',
-    image: '',
+    image: ImageEquipment,
   },
 ];
 
@@ -365,9 +368,9 @@ export const ADMI_CAREER_ADVICE = [
       {
         type: 'list',
         content: [
-          'Career counselling to help you explore your interests and options',
+          'Career counselling to help you explore your interests and options',
           'Resume and cover letter writing workshops',
-          'Mock interviews and networking events',
+          'Mock interviews and networking events',
         ],
       },
       {
@@ -376,7 +379,7 @@ export const ADMI_CAREER_ADVICE = [
           'Our strong partnerships with industry leaders ensure that you have access to internships and job opportunities upon graduation.',
       },
     ],
-    image: 'https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png',
+    image: ImageCareerDevelopment,
   },
 ];
 

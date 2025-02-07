@@ -16,7 +16,7 @@ export default function AdviceCard(props: Props) {
         <Box className="flex w-[60%] flex-col">
           <Title label={props.advice.title} color="black" size="24px" />
           {props.hasList ? (
-            <Box>
+            <Box className='pt-8'>
               {props.advice.description.map((item: any) => {
                 if (item.type == 'paragraph') {
                   return <Paragraph>{item.content}</Paragraph>;
@@ -46,7 +46,7 @@ export default function AdviceCard(props: Props) {
             }
             alt={props.advice.title}
             fill
-            style={{ borderRadius: 8 }}
+            style={{ borderRadius: 8, objectFit: 'cover' }}
           />
         </Box>
       </Box>
