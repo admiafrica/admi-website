@@ -420,3 +420,23 @@ export const ADMI_INTERNATIONAL_STUDENTS = [
     description: 'content here',
   },
 ];
+
+export const ADMI_STUDENT_SUPPORT = [
+  {
+    header:
+      'Our commitment to your success is reflected in our innovative Learn-and-Work model, where you will learn from faculty who are industry practitioners, providing you with real-world insights and connections.',
+    footer:
+      'This approach not only enhances your learning experience but also prepares you for the competitive job market.',
+  },
+  {
+    header:
+      'Our vibrant campus community is designed to encourage collaboration and creativity. You will have access to state-of-the-art facilities and resources, ensuring that you have everything you need to succeed.',
+    footer:
+      'Whether you are facing academic challenges or seeking personal growth, our team is here to support you every step of the way.',
+  },
+  {
+    header:
+      'We believe that your education should be a defining experience—one that not only prepares you for a career but also shapes you into a well-rounded individual ready to make a positive impact in the world.',
+    footer: 'Together, we will work towards unlocking your full potential and achieving your dreams.',
+  },
+];
