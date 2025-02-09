@@ -16,3 +16,5 @@ export { default as FacilityItemCard } from './FacilityItemCard';
 export { default as SectorItemCard } from './SectorItemCard';
 export { default as ClipCard } from './ClipCard';
 export { default as LearnMoreCard } from './LearnMoreCard';
+export { default as NewsItemCard } from './NewsItemCard';
+export { default as EmptyCard } from './EmptyCard';

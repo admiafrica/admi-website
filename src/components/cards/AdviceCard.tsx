@@ -13,7 +13,7 @@ export default function AdviceCard(props: Props) {
   return (
     <Card className="z-10 mx-4 h-full w-[680px]" withBorder>
       <Box className="flex h-full flex-row">
-        <Box className="flex w-[60%] flex-col">
+        <Box className="flex w-[60%] flex-col pr-2">
           <Title label={props.advice.title} color="black" size="24px" />
           {props.hasList ? (
             <Box className="pt-8">

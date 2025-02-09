@@ -173,7 +173,7 @@ export default function StudentSupportPage() {
               withBorder
               py={32}
             >
-              <Title label="Tutoring sessions" size="24px" color="black" className="mx-auto" />
+              <Title label="Tutoring sessions" size="20px" color="black" className="mx-auto" />
               <IconSpinner width={64} height={64} color="#F60934" />
               <Paragraph>with experienced faculty members</Paragraph>
             </Card>
@@ -183,7 +183,7 @@ export default function StudentSupportPage() {
               withBorder
               py={32}
             >
-              <Title label="Study groups" size="24px" color="black" className="mx-auto" />
+              <Title label="Study groups" size="20px" color="black" className="mx-auto" />
               <IconUsersGroup width={64} height={64} color="#01C6A5" />
               <Paragraph>and peer-to-peer learning opportunities</Paragraph>
             </Card>
@@ -193,7 +193,7 @@ export default function StudentSupportPage() {
               withBorder
               py={32}
             >
-              <Title label="Academic advising" size="24px" color="black" className="mx-auto" />
+              <Title label="Academic advising" size="20px" color="black" className="mx-auto" />
               <IconDashboardTabs width={72} height={72} color="#B9C601" />
               <Paragraph>to help you stay on track with your studies</Paragraph>
             </Card>
