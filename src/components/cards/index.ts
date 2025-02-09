@@ -14,5 +14,5 @@ export { default as AdviceCard } from './AdviceCard';
 export { default as AnnouncementCard } from './AnnouncementCard';
 export { default as FacilityItemCard } from './FacilityItemCard';
 export { default as SectorItemCard } from './SectorItemCard';
-
+export { default as ClipCard } from './ClipCard';
 export { default as LearnMoreCard } from './LearnMoreCard';
