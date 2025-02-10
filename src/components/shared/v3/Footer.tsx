@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import { Group, Text, Anchor, Stack, Divider } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 
@@ -52,7 +53,12 @@ type Props = {
 };
 
 export default function Footer({ bgColor }: Props) {
+  const router = useRouter();
   const isMobile = useMediaQuery('(max-width: 480px)');
+
+  const navigateToPage = (pagePath: string) => {
+    router.push(`/v3/${pagePath}`);
+  };
 
   return (
     <div className={`relative w-full ${bgColor ? `bg-[${bgColor}]` : 'bg-[#FFF7F5]'} font-proxima`}>
@@ -124,13 +130,13 @@ export default function Footer({ bgColor }: Props) {
             <Anchor href="#" c="white" fw={600}>
               Academic Team
             </Anchor>
-            <Anchor href="#" c="white" fw={600}>
+            <Anchor href="#" c="white" fw={600} onClick={() => navigateToPage('fellowship')}>
               Fellowship
             </Anchor>
-            <Anchor href="#" c="white" fw={600}>
+            <Anchor href="#" c="white" fw={600} onClick={() => navigateToPage('careers')}>
               Work with Us
             </Anchor>
-            <Anchor href="#" c="white" fw={600}>
+            <Anchor href="#" c="white" fw={600} onClick={() => navigateToPage('acreditaton')}>
               Accreditation
             </Anchor>
           </Stack>
@@ -145,13 +151,13 @@ export default function Footer({ bgColor }: Props) {
                     Student Portal
                   </Text>
                 </div>
-                <Anchor href="#" c="white" fw={600}>
+                <Anchor c="white" fw={600} onClick={() => navigateToPage('accomodation')}>
                   Accomodation
                 </Anchor>
-                <Anchor href="#" c="white" fw={600}>
+                <Anchor c="white" fw={600} onClick={() => navigateToPage('academic-pathways')}>
                   Academic Pathways
                 </Anchor>
-                <Anchor href="#" c="white" fw={600}>
+                <Anchor c="white" fw={600} onClick={() => navigateToPage('alumni')}>
                   Alumni Network
                 </Anchor>
               </Stack>

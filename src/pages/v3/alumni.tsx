@@ -64,7 +64,7 @@ export default function AlumniPage() {
               <PlainCard>
                 <Box className="flex w-full">
                   <Box className="grow">
-                    <Title label="Stay Connected" />
+                    <Title label="Stay Connected" color="black" />
                     <Paragraph fontFamily="font-nexa" fontWeight={400} className="py-4" size="20px">
                       As an ADMI alumnus, you are an essential part of our community, and we encourage you to register
                       and keep in touch with us.
@@ -84,7 +84,7 @@ export default function AlumniPage() {
               <PlainCard>
                 <Box className="flex w-full">
                   <Box className="grow">
-                    <Title label="Celebrate Your Success" />
+                    <Title label="Celebrate Your Success" color="black" />
                     <Paragraph fontFamily="font-nexa" fontWeight={400} className="py-4" size="20px">
                       We believe in celebrating the successes of our alumni.
                     </Paragraph>
