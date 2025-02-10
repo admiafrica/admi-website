@@ -34,6 +34,10 @@ import IconDesktop from '@/assets/icons/Desktop';
 import IconGraphUp from '@/assets/icons/GraphUp';
 import IconMouse from '@/assets/icons/Mouse';
 import IconSpinner from '@/assets/icons/Spinner';
+import IconBook from '@/assets/icons/Book';
+import IconSearch from '@/assets/icons/Search';
+import IconShootingStar from '@/assets/icons/ShootingStar';
+import IconHomeAlt from '@/assets/icons/HomeAlt';
 
 export const ROUTES = {
   INDEX: '/',
@@ -438,5 +442,226 @@ export const ADMI_STUDENT_SUPPORT = [
     header:
       'We believe that your education should be a defining experience—one that not only prepares you for a career but also shapes you into a well-rounded individual ready to make a positive impact in the world.',
     footer: 'Together, we will work towards unlocking your full potential and achieving your dreams.',
+  },
+];
+
+export const ADMI_FELLOWSHIP_VALUES = [
+  {
+    id: 'global',
+    name: 'Why Join Our Fellowship Program?',
+    icon: IconBrowser,
+    iconColor: '#F76335',
+    description: [
+      `As a fellow at ADMI, you will have the unique opportunity to engage in meaningful work while gaining valuable experience in the field of digital media and education.`,
+      `Our program is designed to foster professional growth and development, allowing you to collaborate with industry practitioners and educators who are dedicated to excellence in teaching and learning.`,
+    ],
+  },
+  {
+    id: 'practical',
+    name: 'Who Can Apply',
+    icon: IconMouse,
+    iconColor: '#03C6A4',
+    description: [
+      `We welcome applications from individuals with a strong passion or education and  commitment to making a difference.`,
+      `Whether you are a recent graduate, an experienced profesional, or someone loking to transition into academia, we encourage you to apply. Our fellowship program is open to candidates from diverse backgrounds, including international students, who can bring fresh perspectives and innovative ideas to our institution`,
+    ],
+  },
+  {
+    id: 'digital',
+    name: 'How To Apply',
+    icon: IconDesktop,
+    iconColor: '#F60934',
+    description: [
+      `If you are interested in joining our fellowship program, we invite you to express your interest by sending your CV and a cover letter detailing your background, the department you wish to cntribute to, and how your skills align with our mission to apply@admi.ac.ke .`,
+      `Join us at ADMI and be part of  transformative educational experience that embraces diversity and fosters innovation. Your journey as a fellow could be he catalyst for change, both or you and the students you inspire! `,
+    ],
+  },
+];
+
+export const ADMI_FELLOWSHIP_DEPARTMENTS = [
+  {
+    id: 'global',
+    name: 'Teaching & Curriculum Development',
+    icon: IconBook,
+    iconColor: '#F76335',
+    description: [`Contribute to course design and delivery, bringing your expertise to the classroom.`],
+  },
+  {
+    id: 'practical',
+    name: 'Research and Innovation',
+    icon: IconSearch,
+    iconColor: '#03C6A4',
+    description: [`Engage in research projects that advance knowledge in digital media and technology.`],
+  },
+  {
+    id: 'digital',
+    name: 'Student Support Services',
+    icon: IconShootingStar,
+    iconColor: '#F60934',
+    description: [`Assist in providing guidance and support to students, enhancing their educational experience.`],
+  },
+  {
+    id: 'digital',
+    name: 'Administrative Functions',
+    icon: IconHomeAlt,
+    iconColor: '#F60934',
+    description: [
+      `Participate in the operational aspects of the institute, gaining insights into higher education management.`,
+    ],
+  },
+];
+
+export const ADMI_CAREER_VALUES = [
+  {
+    id: 'global',
+    name: 'Impactful Teaching',
+    icon: IconBook,
+    iconColor: '#F76335',
+    description: [
+      `At ADMI, you will have the chance to shape the minds of students and make a lasting impact on their careers. Your expertise and passion for teaching can help cultivate the skills and creativity of future leaders in the digital media landscape.`,
+    ],
+  },
+  {
+    id: 'practical',
+    name: 'Collaborative Environment',
+    icon: IconSearch,
+    iconColor: '#03C6A4',
+    description: [
+      `Join a community of like-minded professionals who share your commitment to education and innovation. Our collaborative environment encourages knowledge sharing, creativity, and professional growth.`,
+    ],
+  },
+  {
+    id: 'digital',
+    name: 'Diverse Course Offerings',
+    icon: IconShootingStar,
+    iconColor: '#F60934',
+    description: [
+      `We offer a wide range of courses in digital media, including film, animation, graphic design, and more. If you have a particular area of expertise or a course you are passionate about teaching, we want to hear from you!`,
+    ],
+  },
+];
+
+export const ADMI_ACCREDITATION_VALUES = [
+  {
+    id: 'global',
+    name: 'Quality Assurance',
+    icon: IconBook,
+    iconColor: '#F76335',
+    description: [
+      `Our accreditation ensures that you receive a high-quality education that meets international standards, giving you confidence in your qualifications.`,
+    ],
+  },
+  {
+    id: 'practical',
+    name: 'Global Recognition',
+    icon: IconSearch,
+    iconColor: '#03C6A4',
+    description: [
+      `With Pearson Assured and Woolf University accreditation, your qualifications will be recognized by employers and educational institutions around the world, opening doors to further studies and career opportunities.`,
+    ],
+  },
+  {
+    id: 'digital',
+    name: 'Continuous Improvement',
+    icon: IconShootingStar,
+    iconColor: '#F60934',
+    description: [
+      `Our commitment to quality means that we continually assess and improve our programs to meet the evolving needs of the digital media industry.`,
+    ],
+  },
+];
+
+export const ADMI_FELLOWSHIPS = [
+  {
+    id: 'global',
+    name: 'Pearson Assured Status',
+    icon: IconBook,
+    iconColor: '#F76335',
+    description: [
+      `Achieving Pearson Assured status means that ADMI has undergone a thorough evaluation of our quality management systems. This independent verification process ensures that our programs deliver consistent, high-quality education to all learners.`,
+      `As a Pearson Assured institution, we are able to offer certificates that carry the Pearson logo, enhancing the credibility of your qualifications and providing assurance to employers and educational institutions worldwide`,
+    ],
+  },
+  {
+    id: 'practical',
+    name: 'Partnership with Woolf University',
+    icon: IconSearch,
+    iconColor: '#03C6A4',
+    description: [
+      `In addition to our Pearson Assured status, we are excited to announce our new partnership with Woolf University, which serves as our accreditation partner. `,
+      `This collaboration strengthens our commitment to providing a world-class education and ensures that our programs align with international standards. Woolf University’s accreditation will further enhance the recognition of our qualifications, allowing our graduates to pursue opportunities both locally and abroad.`,
+    ],
+  },
+];
+
+export const ADMI_ACADEMIC_PATHWAYS = [
+  {
+    id: 'global',
+    name: 'Articulation Agreements',
+    icon: IconBook,
+    iconColor: '#F76335',
+    description: [
+      `ADMI has established articulation agreements with reputable universities around the globe, ensuring that our qualifications are recognized and aligned with international standards. One such partnership is with Full Sail University in the United States, where our graduates can transfer credits and continue their education in digital cinematography programs.`,
+    ],
+  },
+  {
+    id: 'practical',
+    name: 'Alignment with KNQF',
+    icon: IconSearch,
+    iconColor: '#03C6A4',
+    description: [
+      `Our academic programs are designed to meet the standards set by the Kenya National Qualifications Framework (KNQF), which is recognized both locally and internationally. By aligning our qualifications with the KNQF, we ensure that our students can seamlessly progress through the education system, whether they choose to study in Kenya or abroad.`,
+    ],
+  },
+  {
+    id: 'practical',
+    name: 'Accreditation by Woolf University',
+    icon: IconSearch,
+    iconColor: '#03C6A4',
+    description: [
+      `Our quality assurance and articulation (credit transfer) arrangement with Woolf University guarantees full recognition of your ADMI diploma towards a university degree in Europe under the European Credit Transfer System (ECTS).`,
+    ],
+  },
+  {
+    id: 'practical',
+    name: 'Pathways to Further Education',
+    icon: IconSearch,
+    iconColor: '#03C6A4',
+    description: [
+      `Our academic pathways are designed to provide our students with a smooth transition to further their studies, both locally and internationally. Whether you aspire to pursue a bachelor’s degree, a master’s program, or a professional qualification, ADMI’s partnerships with institutions like Full Sail University and Woolf University ensure that you have access to a wide range of options.`,
+    ],
+  },
+];
+
+export const ADMI_ALUMNI = [
+  {
+    name: 'Teddy Muinde',
+    title: 'Audio Visual Technician at MSC Cruises',
+    linkedin: '',
+    image: ImageDave,
+  },
+  {
+    name: 'Linda Wairegi',
+    title: 'Multimedia Project Manager at inABLE',
+    linkedin: '',
+    image: ImageIvy,
+  },
+  {
+    name: 'Michael Kazinja',
+    title: 'Television Producer & Scriptwriter',
+    linkedin: '',
+    image: ImageNicole,
+  },
+  {
+    name: 'Alex Mwangi',
+    title: 'Creative Director at Sensorflick',
+    linkedin: '',
+    image: ImageAmani,
+  },
+  {
+    name: 'Cedric Mwangi',
+    title: 'Sound Technician at MSC Cruises',
+    linkedin: '',
+    image: ImageSammy,
   },
 ];
