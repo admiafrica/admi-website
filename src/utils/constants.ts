@@ -28,6 +28,12 @@ import ImageShalom from '@/assets/images/shalom-chihi.png';
 import ImageEvelyne from '@/assets/images/evelyne-makena.png';
 import ImageMary from '@/assets/images/mary-munene.png';
 
+import ImageTeddy from '@/assets/images/teddy-muinde.png';
+import ImageLinda from '@/assets/images/linda-wairegi.png';
+import ImageMichael from '@/assets/images/michael-kazinja.png';
+import ImageAlex from '@/assets/images/alex-mwangi.png';
+import ImageCedric from '@/assets/images/cedric-mwangi.png';
+
 // Icons
 import IconBrowser from '@/assets/icons/Browser';
 import IconDesktop from '@/assets/icons/Desktop';
@@ -38,6 +44,13 @@ import IconBook from '@/assets/icons/Book';
 import IconSearch from '@/assets/icons/Search';
 import IconShootingStar from '@/assets/icons/ShootingStar';
 import IconHomeAlt from '@/assets/icons/HomeAlt';
+
+import IconUnlock from '@/assets/icons/unlock.svg';
+import IconStar from '@/assets/icons/star.svg';
+import IconBicycle from '@/assets/icons/bicycle.svg';
+import IconMapMarker from '@/assets/icons/map-marker-3.svg';
+import IconBus from '@/assets/icons/bus.svg';
+import IconCloudSun from '@/assets/icons/cloud-sun.svg';
 
 export const ROUTES = {
   INDEX: '/',
@@ -638,30 +651,69 @@ export const ADMI_ALUMNI = [
     name: 'Teddy Muinde',
     title: 'Audio Visual Technician at MSC Cruises',
     linkedin: '',
-    image: ImageDave,
+    image: ImageTeddy,
   },
   {
     name: 'Linda Wairegi',
     title: 'Multimedia Project Manager at inABLE',
     linkedin: '',
-    image: ImageIvy,
+    image: ImageLinda,
   },
   {
     name: 'Michael Kazinja',
     title: 'Television Producer & Scriptwriter',
     linkedin: '',
-    image: ImageNicole,
+    image: ImageMichael,
   },
   {
     name: 'Alex Mwangi',
     title: 'Creative Director at Sensorflick',
     linkedin: '',
-    image: ImageAmani,
+    image: ImageAlex,
   },
   {
     name: 'Cedric Mwangi',
     title: 'Sound Technician at MSC Cruises',
     linkedin: '',
-    image: ImageSammy,
+    image: ImageCedric,
+  },
+];
+
+export const ADMI_ACCOMODATION_FEATURES = [
+  {
+    title: 'Safe and Secure Living',
+    description:
+      'Your safety is our top priority. Both Qwetu and Qejani provide 24/7 security personnel and access control systems, ensuring that you can live and study in a secure environment. You can rest easy knowing that you are part of a community that values your safety and well-being.',
+    icon: IconUnlock,
+  },
+  {
+    title: 'Comfortable Amenities',
+    description:
+      'Each residence is equipped with modern facilities designed to enhance your living experience. Enjoy high-speed Wi-Fi throughout the premises, allowing you to stay connected for both academic and personal needs. Well-furnished lounges and study areas create an ideal atmosphere for learning, collaboration, and relaxation.',
+    icon: IconStar,
+  },
+  {
+    title: 'Fitness and Recreation',
+    description:
+      'Staying active is important for maintaining a balanced lifestyle. Both Qwetu and Qejani feature on-site gyms and recreational spaces, providing you with the opportunity to engage in physical activities, unwind, and socialize with fellow students. Whether you prefer working out or simply relaxing with friends, you’ll find plenty of options to keep you engaged.',
+    icon: IconBicycle,
+  },
+  {
+    title: 'Convenient Location',
+    description:
+      'One of the biggest advantages of living at Qwetu or Qejani is their proximity to campus. Both residences are strategically located just a short distance from ADMI, making it easy for you to attend classes, participate in campus activities, and enjoy the vibrant student life that our institute offers. ',
+    icon: IconMapMarker,
+  },
+  {
+    title: 'Transportation Services',
+    description:
+      'Qwetu offers a convenient transportation service to and from campus, making your daily commute hassle-free. With free bus shuttles available for residents, you can easily travel to and from ADMI, ensuring you arrive on time for classes and activities without the stress of navigating traffic or finding parking.',
+    icon: IconBus,
+  },
+  {
+    title: 'Sustainable Living',
+    description:
+      'We are committed to promoting sustainable practices, and both Qwetu and Qejani share this vision. Enjoy access to borehole water and other eco-friendly initiatives that support sustainable living. This commitment not only benefits the environment but also enhances your living experience.',
+    icon: IconCloudSun,
   },
 ];

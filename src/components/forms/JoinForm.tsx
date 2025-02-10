@@ -20,7 +20,7 @@ export default function JoinForm() {
   };
 
   return (
-    <div className="h-full w-full bg-white p-4 sm:p-8">
+    <div className="h-full w-full bg-white p-4 sm:p-8 rounded-lg">
       <div className="font-nexa">
         <Title label="Join the ADMI" color="black" />
         <Title label="Alumni Network" color="black" />
