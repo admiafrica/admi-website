@@ -150,7 +150,19 @@ export default function HomePage() {
 
           <Box className="relative mx-auto flex h-[50vh] w-full max-w-screen-xl flex-row px-4 sm:flex-row 2xl:px-0">
             <Box className="mt-[12vh] flex w-1/2 flex-col">
-              <Title label="Launch your career in Creative Media" size="48px" color="white" />
+              <Box>
+                <Paragraph fontFamily="font-nexa" fontWeight={900} size="48px" className="text-white">
+                  Launch your career in
+                </Paragraph>
+                <Box className="flex">
+                  <Paragraph fontFamily="font-nexa" fontWeight={900} size="48px" className="pr-1 text-white">
+                    Creative
+                  </Paragraph>
+                  <Paragraph fontFamily="font-nexa" fontWeight={900} size="48px" className="text-[#F1FE38]">
+                    Media
+                  </Paragraph>
+                </Box>
+              </Box>
               <Paragraph className="py-6 text-white">
                 Africa Digital Media Institute (ADMI) based in Nairobi, Kenya, is Eastern Africa&apos;s premier creative
                 and technology training institution.

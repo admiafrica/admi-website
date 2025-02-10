@@ -83,7 +83,7 @@ export default function AboutPage() {
         </Box>
         <Ribbon />
         <Box className="mx-auto flex w-full max-w-screen-xl">
-          <Box className="w-[50%] px-4 py-32 font-nexa text-white">
+          <Box className="w-[40%] px-4 py-32 font-nexa text-white">
             <Paragraph className="mb-8" fontFamily="font-nexa">
               Africa Digital Media Institute (ADMI) based in Nairobi, Kenya, is Eastern Africa’s premier creative media
               and technology training institution.{' '}
@@ -100,7 +100,7 @@ export default function AboutPage() {
               placement rates.
             </Paragraph>
           </Box>
-          <Box className="w-[50%] py-16">
+          <Box className="w-[60%] py-16">
             <Box className="flex w-full flex-wrap">
               {sectors.map((sector: any) => (
                 <Box key={sector.title} className="mb-4 mr-4">
