@@ -1,5 +1,5 @@
 import React from 'react';
-import clsx from 'clsx'; // Helps merge classes dynamically
+import clsx from 'clsx'; // merge classes dynamically
 import { Text } from '@mantine/core';
 
 type Props = {

@@ -1,5 +1,11 @@
-import StudiosImage from '@/assets/images/the-studios.svg';
-import SpacesImage from '@/assets/images/the-space.png';
+import ImageStudios from '@/assets/images/the-studios.svg';
+import ImageSpaces from '@/assets/images/the-space.png';
+import ImageLabs from '@/assets/images/the-labs.png';
+import ImageEquipment from '@/assets/images/the-equipment.png';
+
+import ImageStudentLife from '@/assets/images/student-life.png';
+import ImagePersonalCounseling from '@/assets/images/personal-counseling.png';
+import ImageCareerDevelopment from '@/assets/images/career-development.png';
 
 // User Profiles
 import ImageCaroline from '@/assets/images/caroline.png';
@@ -12,6 +18,21 @@ import ImageWilfred from '@/assets/images/wilfred.png';
 import ImageMugo from '@/assets/images/mugo.png';
 import ImageRoss from '@/assets/images/ross.png';
 import ImageChris from '@/assets/images/chris.png';
+import ImageDave from '@/assets/images/dave-rono.png';
+import ImageIvy from '@/assets/images/ivy-nyambura.png';
+import ImageNicole from '@/assets/images/nicole-ochieng.png';
+import ImageAmani from '@/assets/images/amani-mugambi.png';
+import ImageSammy from '@/assets/images/sammy-kamande.png';
+import ImageAzyzah from '@/assets/images/azyzah-rehman.png';
+import ImageShalom from '@/assets/images/shalom-chihi.png';
+import ImageEvelyne from '@/assets/images/evelyne-makena.png';
+import ImageMary from '@/assets/images/mary-munene.png';
+
+import ImageTeddy from '@/assets/images/teddy-muinde.png';
+import ImageLinda from '@/assets/images/linda-wairegi.png';
+import ImageMichael from '@/assets/images/michael-kazinja.png';
+import ImageAlex from '@/assets/images/alex-mwangi.png';
+import ImageCedric from '@/assets/images/cedric-mwangi.png';
 
 // Icons
 import IconBrowser from '@/assets/icons/Browser';
@@ -19,6 +40,17 @@ import IconDesktop from '@/assets/icons/Desktop';
 import IconGraphUp from '@/assets/icons/GraphUp';
 import IconMouse from '@/assets/icons/Mouse';
 import IconSpinner from '@/assets/icons/Spinner';
+import IconBook from '@/assets/icons/Book';
+import IconSearch from '@/assets/icons/Search';
+import IconShootingStar from '@/assets/icons/ShootingStar';
+import IconHomeAlt from '@/assets/icons/HomeAlt';
+
+import IconUnlock from '@/assets/icons/unlock.svg';
+import IconStar from '@/assets/icons/star.svg';
+import IconBicycle from '@/assets/icons/bicycle.svg';
+import IconMapMarker from '@/assets/icons/map-marker-3.svg';
+import IconBus from '@/assets/icons/bus.svg';
+import IconCloudSun from '@/assets/icons/cloud-sun.svg';
 
 export const ROUTES = {
   INDEX: '/',
@@ -39,25 +71,25 @@ export const ADMI_FACILITIES = [
     name: 'The Studios',
     description:
       'Our campus has industry-standard audio and TV studios. The TV studio has a tracking floor with lighting grid, while the music studio has a vocal booth that doubles up as rehearsal space that can accommodate a full band. The control room is equipped with professional software, including ProTools and Logic, as well as...',
-    image: StudiosImage,
+    image: ImageStudios,
   },
   {
     name: 'The Space',
     description:
       'The ADMI campus at Caxton House has ample space to enable you to learn under the most conducive environment. The facilities include classrooms, animation and graphics labs, TV and sound production studios, Mac and PC labs, a film equipment vault and a fully stocked digital library.',
-    image: SpacesImage,
+    image: ImageSpaces,
   },
   {
     name: 'The Labs',
     description:
       'Our labs are fully equipped with both Mac and Pc computers and installed with industry-standard software, including Final Cut, Protools, Davinci Adobe Premier, Autodesk suite, Avid Composer and many more.',
-    image: '',
+    image: ImageLabs,
   },
   {
     name: 'The Equipment',
     description:
       'We pride ourselves on being one of the few regional film schools that teach in HD, digital film formats. During your first year, you will hone your skills using small HD camcorders, before progressing to high-end HD formats and digital cinema cameras from popular manufacturers like Sony, Canon, Panasonic & Black...',
-    image: '',
+    image: ImageEquipment,
   },
 ];
 
@@ -135,7 +167,7 @@ export const ADMI_HISTORY = [
   },
   {
     year: 2014,
-    achievements: ['First ADMI campus established in nairoi through a partnership with JFTA'],
+    achievements: ['First ADMI campus established in Nairobi through a partnership with JFTA'],
   },
   {
     year: 2015,
@@ -215,8 +247,8 @@ export const ADMI_VALUES = [
     icon: IconGraphUp,
     iconColor: '#871F00',
     description: [
-      `ADMI is committed to a progressive and positive schol atmosphere where our students and staff can thrive.`,
-      `We striuctly enforce ethical behavior on campus and apply global professional standards in all our interactions. To ensure that studens receive personalized attention, we offer string psycho-social support, including academic suport as well as progressive guidance counselling.`,
+      `ADMI is committed to a progressive and positive school atmosphere where our students and staff can thrive.`,
+      `We strictly enforce ethical behavior on campus and apply global professional standards in all our interactions. To ensure that studens receive personalized attention, we offer string psycho-social support, including academic suport as well as progressive guidance counselling.`,
     ],
   },
   {
@@ -236,43 +268,43 @@ export const ADMI_STUDENT_COUNCIL = [
     name: 'Dave Rono',
     title: 'President',
     linkedin: '',
-    image: ImageCaroline,
+    image: ImageDave,
   },
   {
     name: 'Ivy Nyambura',
     title: 'Vice-President',
     linkedin: '',
-    image: ImagePeter,
+    image: ImageIvy,
   },
   {
     name: 'Nicole Ochieng',
     title: 'Treasurer',
     linkedin: '',
-    image: ImageRaji,
+    image: ImageNicole,
   },
   {
     name: 'Amani Mugambi',
     title: 'Secretary',
     linkedin: '',
-    image: ImageCiku,
+    image: ImageAmani,
   },
   {
     name: 'Sammy Kamande',
     title: 'Organising Secretary',
     linkedin: '',
-    image: ImageCiku,
+    image: ImageSammy,
   },
   {
     name: 'Azyzah Rehman',
     title: 'International Officer',
     linkedin: '',
-    image: ImageCiku,
+    image: ImageAzyzah,
   },
   {
     name: 'Shalom Chihi',
     title: 'Council Member',
     linkedin: '',
-    image: ImageCiku,
+    image: ImageShalom,
   },
 ];
 
@@ -287,12 +319,401 @@ export const ADMI_ACADEMIC_TEAM_MINIMAL = [
     name: 'Evelyne Makena',
     title: 'Registrar',
     linkedin: '',
-    image: ImageCiku,
+    image: ImageEvelyne,
   },
   {
     name: 'Mary Munene',
     title: 'Student Services',
     linkedin: '',
-    image: ImageCiku,
+    image: ImageMary,
+  },
+];
+
+export const ADMI_CAREER_ADVICE = [
+  {
+    title: 'Student Life',
+    description: [
+      {
+        type: 'paragraph',
+        content:
+          'At ADMI, we believe that learning happens both inside and outside the classroom. That’s why we offer a vibrant student life program, including:',
+      },
+      {
+        type: 'list',
+        content: [
+          'Student clubs and organizations',
+          'Sports and recreational activities',
+          'Cultural events and celebrations',
+        ],
+      },
+      {
+        type: 'paragraph',
+        content:
+          'Our student life program helps you build friendships, develop leadership skills, and explore your interests beyond your studies.',
+      },
+    ],
+    image: ImageStudentLife,
+  },
+  {
+    title: 'Personal Counseling',
+    description: [
+      {
+        type: 'paragraph',
+        content:
+          'We understand that school life can be challenging, both academically and personally. That’s why we offer confidential personal counselling services to help you navigate the ups and downs of student life. Our counsellors provide support for issues such as:',
+      },
+      {
+        type: 'list',
+        content: ['Stress management', 'Anxiety and depression', 'Relationship difficulties'],
+      },
+      {
+        type: 'paragraph',
+        content:
+          'We also offer workshops and support groups on topics such as time management, stress reduction, and healthy relationships. You can always book a personal session with our counsellor at counsellor@admi.ac.ke',
+      },
+    ],
+    image: ImagePersonalCounseling,
+  },
+  {
+    title: 'Career Development',
+    description: [
+      {
+        type: 'paragraph',
+        content:
+          'We believe that education is not just about acquiring knowledge, but also about preparing for the future. That’s why we offer a range of career development services, including:',
+      },
+      {
+        type: 'list',
+        content: [
+          'Career counselling to help you explore your interests and options',
+          'Resume and cover letter writing workshops',
+          'Mock interviews and networking events',
+        ],
+      },
+      {
+        type: 'paragraph',
+        content:
+          'Our strong partnerships with industry leaders ensure that you have access to internships and job opportunities upon graduation.',
+      },
+    ],
+    image: ImageCareerDevelopment,
+  },
+];
+
+export const ADMI_FINANCIAL_PLANNING = [
+  {
+    title: '2025 FEEs - January',
+    description: 'content here',
+  },
+  {
+    title: 'Paying your Fees',
+    description: 'content here',
+  },
+  {
+    title: 'Scholarships and Grants',
+    description: 'content here',
+  },
+  {
+    title: 'Contact Finance Office',
+    description: 'content here',
+  },
+];
+
+export const ADMI_INTERNATIONAL_STUDENTS = [
+  {
+    title: 'How to Apply',
+    description: 'content here',
+  },
+  {
+    title: 'Visa Requirements',
+    description: 'content here',
+  },
+  {
+    title: 'Accomodation',
+    description: 'content here',
+  },
+  {
+    title: 'International Student Community',
+    description: 'content here',
+  },
+];
+
+export const ADMI_STUDENT_SUPPORT = [
+  {
+    header:
+      'Our commitment to your success is reflected in our innovative Learn-and-Work model, where you will learn from faculty who are industry practitioners, providing you with real-world insights and connections.',
+    footer:
+      'This approach not only enhances your learning experience but also prepares you for the competitive job market.',
+  },
+  {
+    header:
+      'Our vibrant campus community is designed to encourage collaboration and creativity. You will have access to state-of-the-art facilities and resources, ensuring that you have everything you need to succeed.',
+    footer:
+      'Whether you are facing academic challenges or seeking personal growth, our team is here to support you every step of the way.',
+  },
+  {
+    header:
+      'We believe that your education should be a defining experience—one that not only prepares you for a career but also shapes you into a well-rounded individual ready to make a positive impact in the world.',
+    footer: 'Together, we will work towards unlocking your full potential and achieving your dreams.',
+  },
+];
+
+export const ADMI_FELLOWSHIP_VALUES = [
+  {
+    id: 'global',
+    name: 'Why Join Our Fellowship Program?',
+    icon: IconBrowser,
+    iconColor: '#F76335',
+    description: [
+      `As a fellow at ADMI, you will have the unique opportunity to engage in meaningful work while gaining valuable experience in the field of digital media and education.`,
+      `Our program is designed to foster professional growth and development, allowing you to collaborate with industry practitioners and educators who are dedicated to excellence in teaching and learning.`,
+    ],
+  },
+  {
+    id: 'practical',
+    name: 'Who Can Apply',
+    icon: IconMouse,
+    iconColor: '#03C6A4',
+    description: [
+      `We welcome applications from individuals with a strong passion or education and  commitment to making a difference.`,
+      `Whether you are a recent graduate, an experienced profesional, or someone loking to transition into academia, we encourage you to apply. Our fellowship program is open to candidates from diverse backgrounds, including international students, who can bring fresh perspectives and innovative ideas to our institution`,
+    ],
+  },
+  {
+    id: 'digital',
+    name: 'How To Apply',
+    icon: IconDesktop,
+    iconColor: '#F60934',
+    description: [
+      `If you are interested in joining our fellowship program, we invite you to express your interest by sending your CV and a cover letter detailing your background, the department you wish to cntribute to, and how your skills align with our mission to apply@admi.ac.ke .`,
+      `Join us at ADMI and be part of  transformative educational experience that embraces diversity and fosters innovation. Your journey as a fellow could be he catalyst for change, both or you and the students you inspire! `,
+    ],
+  },
+];
+
+export const ADMI_FELLOWSHIP_DEPARTMENTS = [
+  {
+    id: 'global',
+    name: 'Teaching & Curriculum Development',
+    icon: IconBook,
+    iconColor: '#F76335',
+    description: [`Contribute to course design and delivery, bringing your expertise to the classroom.`],
+  },
+  {
+    id: 'practical',
+    name: 'Research and Innovation',
+    icon: IconSearch,
+    iconColor: '#03C6A4',
+    description: [`Engage in research projects that advance knowledge in digital media and technology.`],
+  },
+  {
+    id: 'digital',
+    name: 'Student Support Services',
+    icon: IconShootingStar,
+    iconColor: '#F60934',
+    description: [`Assist in providing guidance and support to students, enhancing their educational experience.`],
+  },
+  {
+    id: 'digital',
+    name: 'Administrative Functions',
+    icon: IconHomeAlt,
+    iconColor: '#F60934',
+    description: [
+      `Participate in the operational aspects of the institute, gaining insights into higher education management.`,
+    ],
+  },
+];
+
+export const ADMI_CAREER_VALUES = [
+  {
+    id: 'global',
+    name: 'Impactful Teaching',
+    icon: IconBook,
+    iconColor: '#F76335',
+    description: [
+      `At ADMI, you will have the chance to shape the minds of students and make a lasting impact on their careers. Your expertise and passion for teaching can help cultivate the skills and creativity of future leaders in the digital media landscape.`,
+    ],
+  },
+  {
+    id: 'practical',
+    name: 'Collaborative Environment',
+    icon: IconSearch,
+    iconColor: '#03C6A4',
+    description: [
+      `Join a community of like-minded professionals who share your commitment to education and innovation. Our collaborative environment encourages knowledge sharing, creativity, and professional growth.`,
+    ],
+  },
+  {
+    id: 'digital',
+    name: 'Diverse Course Offerings',
+    icon: IconShootingStar,
+    iconColor: '#F60934',
+    description: [
+      `We offer a wide range of courses in digital media, including film, animation, graphic design, and more. If you have a particular area of expertise or a course you are passionate about teaching, we want to hear from you!`,
+    ],
+  },
+];
+
+export const ADMI_ACCREDITATION_VALUES = [
+  {
+    id: 'global',
+    name: 'Quality Assurance',
+    icon: IconBook,
+    iconColor: '#F76335',
+    description: [
+      `Our accreditation ensures that you receive a high-quality education that meets international standards, giving you confidence in your qualifications.`,
+    ],
+  },
+  {
+    id: 'practical',
+    name: 'Global Recognition',
+    icon: IconSearch,
+    iconColor: '#03C6A4',
+    description: [
+      `With Pearson Assured and Woolf University accreditation, your qualifications will be recognized by employers and educational institutions around the world, opening doors to further studies and career opportunities.`,
+    ],
+  },
+  {
+    id: 'digital',
+    name: 'Continuous Improvement',
+    icon: IconShootingStar,
+    iconColor: '#F60934',
+    description: [
+      `Our commitment to quality means that we continually assess and improve our programs to meet the evolving needs of the digital media industry.`,
+    ],
+  },
+];
+
+export const ADMI_FELLOWSHIPS = [
+  {
+    id: 'global',
+    name: 'Pearson Assured Status',
+    icon: IconBook,
+    iconColor: '#F76335',
+    description: [
+      `Achieving Pearson Assured status means that ADMI has undergone a thorough evaluation of our quality management systems. This independent verification process ensures that our programs deliver consistent, high-quality education to all learners.`,
+      `As a Pearson Assured institution, we are able to offer certificates that carry the Pearson logo, enhancing the credibility of your qualifications and providing assurance to employers and educational institutions worldwide`,
+    ],
+  },
+  {
+    id: 'practical',
+    name: 'Partnership with Woolf University',
+    icon: IconSearch,
+    iconColor: '#03C6A4',
+    description: [
+      `In addition to our Pearson Assured status, we are excited to announce our new partnership with Woolf University, which serves as our accreditation partner. `,
+      `This collaboration strengthens our commitment to providing a world-class education and ensures that our programs align with international standards. Woolf University’s accreditation will further enhance the recognition of our qualifications, allowing our graduates to pursue opportunities both locally and abroad.`,
+    ],
+  },
+];
+
+export const ADMI_ACADEMIC_PATHWAYS = [
+  {
+    id: 'global',
+    name: 'Articulation Agreements',
+    icon: IconBook,
+    iconColor: '#F76335',
+    description: [
+      `ADMI has established articulation agreements with reputable universities around the globe, ensuring that our qualifications are recognized and aligned with international standards. One such partnership is with Full Sail University in the United States, where our graduates can transfer credits and continue their education in digital cinematography programs.`,
+    ],
+  },
+  {
+    id: 'practical',
+    name: 'Alignment with KNQF',
+    icon: IconSearch,
+    iconColor: '#03C6A4',
+    description: [
+      `Our academic programs are designed to meet the standards set by the Kenya National Qualifications Framework (KNQF), which is recognized both locally and internationally. By aligning our qualifications with the KNQF, we ensure that our students can seamlessly progress through the education system, whether they choose to study in Kenya or abroad.`,
+    ],
+  },
+  {
+    id: 'practical',
+    name: 'Accreditation by Woolf University',
+    icon: IconSearch,
+    iconColor: '#03C6A4',
+    description: [
+      `Our quality assurance and articulation (credit transfer) arrangement with Woolf University guarantees full recognition of your ADMI diploma towards a university degree in Europe under the European Credit Transfer System (ECTS).`,
+    ],
+  },
+  {
+    id: 'practical',
+    name: 'Pathways to Further Education',
+    icon: IconSearch,
+    iconColor: '#03C6A4',
+    description: [
+      `Our academic pathways are designed to provide our students with a smooth transition to further their studies, both locally and internationally. Whether you aspire to pursue a bachelor’s degree, a master’s program, or a professional qualification, ADMI’s partnerships with institutions like Full Sail University and Woolf University ensure that you have access to a wide range of options.`,
+    ],
+  },
+];
+
+export const ADMI_ALUMNI = [
+  {
+    name: 'Teddy Muinde',
+    title: 'Audio Visual Technician at MSC Cruises',
+    linkedin: '',
+    image: ImageTeddy,
+  },
+  {
+    name: 'Linda Wairegi',
+    title: 'Multimedia Project Manager at inABLE',
+    linkedin: '',
+    image: ImageLinda,
+  },
+  {
+    name: 'Michael Kazinja',
+    title: 'Television Producer & Scriptwriter',
+    linkedin: '',
+    image: ImageMichael,
+  },
+  {
+    name: 'Alex Mwangi',
+    title: 'Creative Director at Sensorflick',
+    linkedin: '',
+    image: ImageAlex,
+  },
+  {
+    name: 'Cedric Mwangi',
+    title: 'Sound Technician at MSC Cruises',
+    linkedin: '',
+    image: ImageCedric,
+  },
+];
+
+export const ADMI_ACCOMODATION_FEATURES = [
+  {
+    title: 'Safe and Secure Living',
+    description:
+      'Your safety is our top priority. Both Qwetu and Qejani provide 24/7 security personnel and access control systems, ensuring that you can live and study in a secure environment. You can rest easy knowing that you are part of a community that values your safety and well-being.',
+    icon: IconUnlock,
+  },
+  {
+    title: 'Comfortable Amenities',
+    description:
+      'Each residence is equipped with modern facilities designed to enhance your living experience. Enjoy high-speed Wi-Fi throughout the premises, allowing you to stay connected for both academic and personal needs. Well-furnished lounges and study areas create an ideal atmosphere for learning, collaboration, and relaxation.',
+    icon: IconStar,
+  },
+  {
+    title: 'Fitness and Recreation',
+    description:
+      'Staying active is important for maintaining a balanced lifestyle. Both Qwetu and Qejani feature on-site gyms and recreational spaces, providing you with the opportunity to engage in physical activities, unwind, and socialize with fellow students. Whether you prefer working out or simply relaxing with friends, you’ll find plenty of options to keep you engaged.',
+    icon: IconBicycle,
+  },
+  {
+    title: 'Convenient Location',
+    description:
+      'One of the biggest advantages of living at Qwetu or Qejani is their proximity to campus. Both residences are strategically located just a short distance from ADMI, making it easy for you to attend classes, participate in campus activities, and enjoy the vibrant student life that our institute offers. ',
+    icon: IconMapMarker,
+  },
+  {
+    title: 'Transportation Services',
+    description:
+      'Qwetu offers a convenient transportation service to and from campus, making your daily commute hassle-free. With free bus shuttles available for residents, you can easily travel to and from ADMI, ensuring you arrive on time for classes and activities without the stress of navigating traffic or finding parking.',
+    icon: IconBus,
+  },
+  {
+    title: 'Sustainable Living',
+    description:
+      'We are committed to promoting sustainable practices, and both Qwetu and Qejani share this vision. Enjoy access to borehole water and other eco-friendly initiatives that support sustainable living. This commitment not only benefits the environment but also enhances your living experience.',
+    icon: IconCloudSun,
   },
 ];

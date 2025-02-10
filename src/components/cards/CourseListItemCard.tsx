@@ -61,7 +61,7 @@ export default function CourseListItemCard({ course }: Props) {
           <Box className="flex w-[92%] flex-col px-4 pt-6">
             <Title label={course.fields.name} size="20px" color="black" />
             <div
-              className="line-clamp-[3] font-proxima text-gray-500"
+              className="line-clamp-[2] font-proxima text-gray-500"
               dangerouslySetInnerHTML={{
                 __html: documentToHtmlString(course.fields.description),
               }}

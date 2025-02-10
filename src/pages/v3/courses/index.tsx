@@ -64,7 +64,7 @@ export default function CoursesPage() {
       result = programs;
     }
     setFilteredPrograms(result);
-  }, [activeOption]);
+  }, [activeOption, programs]);
 
   useEffect(() => {
     if (programs) {

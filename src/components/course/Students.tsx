@@ -32,7 +32,7 @@ export default function CourseStudents(props: Props) {
     <Group bg={'#BD2D00'}>
       <div className="max-w-screen-3xl mx-auto w-full">
         {showPortfolios && (
-          <div className="mx-auto mb-8 mt-16 max-w-screen-2xl px-4 font-nexa text-white">
+          <div className="mx-auto mb-8 mt-16 max-w-screen-xl px-4 font-nexa text-white">
             <Text size="2em" fw={900}>
               Student Portfolio & Alumni Stories
             </Text>
@@ -125,7 +125,7 @@ export default function CourseStudents(props: Props) {
 
         {/* Testimonials */}
         {showTestimonials && (
-          <div className="mx-auto mb-8 max-w-screen-2xl px-4 font-nexa text-white">
+          <div className="mx-auto mb-8 max-w-screen-xl px-4 font-nexa text-white">
             <div className="mt-16 flex items-center">
               <Text size="2em" fw={900}>
                 Student Reviews & Testimonials
@@ -142,7 +142,7 @@ export default function CourseStudents(props: Props) {
         )}
 
         {showTestimonials && (
-          <div className="mx-auto flex h-fit w-full max-w-screen-2xl flex-col justify-start px-4 sm:flex-row">
+          <div className="mx-auto flex h-fit w-full max-w-screen-xl flex-col justify-start px-4 sm:flex-row">
             {props.testimonials.map((testimonial, index) => (
               <Box key={`testimonial-${index}`}>
                 <UserTestimonialCard user={testimonial.user} testimonial={testimonial} assets={props.assets} />

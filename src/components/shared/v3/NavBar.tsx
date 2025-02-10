@@ -1,6 +1,7 @@
 import { Group, Text, Menu } from '@mantine/core';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import { useMediaQuery } from '@mantine/hooks';
 import { IconMenu } from '@tabler/icons-react';
 
@@ -13,26 +14,37 @@ type Props = {
 };
 
 export default function NavBar({ mode, isMinimal = false }: Props) {
+  const router = useRouter();
   const isMobile = useMediaQuery('(max-width: 767px)');
+
+  const navigateToPage = (pagePath: string) => {
+    router.push(`/v3/${pagePath}`);
+  };
 
   const getMenuWideScreen = (mode: string) => {
     return (
       <Group c={mode == 'dark' ? 'white' : 'black'} gap={'xl'}>
         <Menu trigger="hover" openDelay={100} closeDelay={400}>
           <Menu.Target>
-            <Text style={menuItemStyle}>Home</Text>
+            <Text style={menuItemStyle} className="cursor-pointer" onClick={() => navigateToPage('')}>
+              Home
+            </Text>
           </Menu.Target>
         </Menu>
 
         <Menu trigger="hover" openDelay={100} closeDelay={400}>
           <Menu.Target>
-            <Text style={menuItemStyle}>Courses</Text>
+            <Text style={menuItemStyle} className="cursor-pointer" onClick={() => navigateToPage('courses')}>
+              Courses
+            </Text>
           </Menu.Target>
         </Menu>
 
         <Menu trigger="hover" openDelay={100} closeDelay={400}>
           <Menu.Target>
-            <Text style={menuItemStyle}>Student Support</Text>
+            <Text style={menuItemStyle} className="cursor-pointer" onClick={() => navigateToPage('student-support')}>
+              Student Support
+            </Text>
           </Menu.Target>
         </Menu>
 
@@ -44,13 +56,17 @@ export default function NavBar({ mode, isMinimal = false }: Props) {
 
         <Menu trigger="hover" openDelay={100} closeDelay={400}>
           <Menu.Target>
-            <Text style={menuItemStyle}>News & Events</Text>
+            <Text style={menuItemStyle} className="cursor-pointer" onClick={() => navigateToPage('news-events')}>
+              News & Events
+            </Text>
           </Menu.Target>
         </Menu>
 
         <Menu trigger="hover" openDelay={100} closeDelay={400}>
           <Menu.Target>
-            <Text style={menuItemStyle}>About ADMI</Text>
+            <Text style={menuItemStyle} className="cursor-pointer" onClick={() => navigateToPage('about')}>
+              About ADMI
+            </Text>
           </Menu.Target>
         </Menu>
       </Group>
@@ -64,15 +80,27 @@ export default function NavBar({ mode, isMinimal = false }: Props) {
           <Menu.Target>
             <IconMenu />
           </Menu.Target>
-
           <Menu.Dropdown style={menuDrawer}>
-            <Menu.Item style={menuItemStyle}>Home</Menu.Item>
-            <Menu.Item style={menuItemStyle}>Courses</Menu.Item>
-            <Menu.Item style={menuItemStyle}>Student Support</Menu.Item>
+            <Menu.Item style={menuItemStyle} className="cursor-pointer" onClick={() => navigateToPage('')}>
+              Home
+            </Menu.Item>
+            <Menu.Item style={menuItemStyle} className="cursor-pointer" onClick={() => navigateToPage('courses')}>
+              Courses
+            </Menu.Item>
+            <Menu.Item
+              style={menuItemStyle}
+              className="cursor-pointer"
+              onClick={() => navigateToPage('student-support')}
+            >
+              Student Support
+            </Menu.Item>
             <Menu.Item style={menuItemStyle}>Resources</Menu.Item>
-            <Menu.Item style={menuItemStyle}>News</Menu.Item>
-            <Menu.Item style={menuItemStyle}>Events</Menu.Item>
-            <Menu.Item style={menuItemStyle}>About</Menu.Item>
+            <Menu.Item style={menuItemStyle} className="cursor-pointer" onClick={() => navigateToPage('news-events')}>
+              News & Events
+            </Menu.Item>
+            <Menu.Item style={menuItemStyle} className="cursor-pointer" onClick={() => navigateToPage('about')}>
+              About
+            </Menu.Item>
           </Menu.Dropdown>
         </Menu>
       </Group>
@@ -81,7 +109,7 @@ export default function NavBar({ mode, isMinimal = false }: Props) {
 
   if (isMinimal) {
     return (
-      <Group className={`mx-auto w-full max-w-screen-2xl px-4`}>
+      <Group className={`mx-auto w-full max-w-screen-xl px-4`}>
         <div className="flex grow font-nexa sm:flex-row-reverse md:flex-row">
           <Link href="/" style={{ textDecoration: 'none' }} className="my-auto">
             {mode == 'dark' && <Image src={IconLogoLight} width={80} alt="Africa Digital Media Institute" />}
@@ -96,7 +124,7 @@ export default function NavBar({ mode, isMinimal = false }: Props) {
   }
 
   return (
-    <Group className={`mx-auto w-full max-w-screen-2xl px-4`}>
+    <Group className={`mx-auto w-full max-w-screen-xl px-4`}>
       <Group className="flex grow flex-row-reverse font-nexa md:flex-row">
         <Link href="/" style={{ textDecoration: 'none', margin: 'auto' }}>
           {mode == 'dark' && <Image src={IconLogoLight} width={80} height={60} alt="Africa Digital Media Institute" />}

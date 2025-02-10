@@ -40,7 +40,7 @@ export default function CourseDetails(props: Props) {
         </div>
       </div>
 
-      <div className="relative z-20 mx-auto w-full max-w-screen-2xl px-4">
+      <div className="relative z-20 mx-auto w-full max-w-screen-xl px-4">
         <div className="z-20 mx-auto mb-8 w-fit pt-8 text-center font-nexa">
           <Title label="Why you should take this course" color="black" />
         </div>

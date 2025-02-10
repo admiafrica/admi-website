@@ -4,8 +4,9 @@ import { Paragraph, Title } from '../ui';
 
 type Props = {
   values: any;
+  showRightIcons?: boolean;
 };
-export default function CompanyValuesCard({ values }: Props) {
+export default function CompanyValuesCard({ values, showRightIcons = true }: Props) {
   return (
     <Card shadow="sm" padding="lg" radius="md" withBorder className="w-full">
       <Tabs defaultValue="global" orientation="vertical">
@@ -31,9 +32,11 @@ export default function CompanyValuesCard({ values }: Props) {
                   </Paragraph>
                 ))}
               </Box>
-              <Box className="flex items-center justify-center">
-                <item.icon width={180} height={180} color={item.iconColor} />
-              </Box>
+              {showRightIcons && (
+                <Box className="flex items-center justify-center">
+                  <item.icon width={180} height={180} color={item.iconColor} />
+                </Box>
+              )}
             </Box>
           </Tabs.Panel>
         ))}
