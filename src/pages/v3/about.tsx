@@ -20,7 +20,6 @@ import IconArrowTipRight from '@/assets/icons/ArrowTipRight';
 import IconSoundwave from '@/assets/icons/Soundwave';
 import IconTv from '@/assets/icons/Tv';
 import { useRouter } from 'next/router';
-import { clear } from 'console';
 
 export default function AboutPage() {
   const router = useRouter();
