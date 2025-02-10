@@ -18,3 +18,5 @@ export { default as ClipCard } from './ClipCard';
 export { default as LearnMoreCard } from './LearnMoreCard';
 export { default as NewsItemCard } from './NewsItemCard';
 export { default as EmptyCard } from './EmptyCard';
+export { default as InfoCard } from './InfoCard';
+export { default as PlainCard } from './PlainCard';
