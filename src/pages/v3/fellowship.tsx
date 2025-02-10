@@ -1,39 +1,15 @@
-import { useCallback, useEffect, useState } from 'react';
 import Image from 'next/image';
 import { Box, Card, Divider, Text } from '@mantine/core';
-import { Carousel } from '@mantine/carousel';
 
 import { MainLayout } from '@/layouts/v3/MainLayout';
 import { Paragraph, Title } from '@/components/ui';
-import { CollapsibleContent, PageSEO } from '@/components/shared/v3';
-import { AdviceCard, ClipCard, CompanyValuesCard, UserProfileCard, UserTestimonialCard } from '@/components/cards';
+import { PageSEO } from '@/components/shared/v3';
+import { CompanyValuesCard } from '@/components/cards';
 import { ADMI_FELLOWSHIP_VALUES, ADMI_FELLOWSHIP_DEPARTMENTS } from '@/utils';
 
-import IconSpinner from '@/assets/icons/Spinner';
-import IconUsersGroup from '@/assets/icons/UsersGroup';
-import IconDashboardTabs from '@/assets/icons/DashboardTabs';
-import { IconDownload } from '@tabler/icons-react';
-import IconCalendarCheck from '@/assets/icons/CalendarCheck';
-import ImageCalendar from '@/assets/images/calendar.svg';
 import ImageFellowshipLanding from '@/assets/images/fellowship-landing.png';
 
 export default function FellowshipPage() {
-  const [content, setContent] = useState<any>();
-
-  const fetchContent = useCallback(async () => {
-    try {
-      const response = await fetch(`/api/v3/homepage`);
-      const data = await response.json();
-      setContent(data[0]);
-    } catch (error) {
-      console.log('Error fetching courses:', error);
-    }
-  }, []);
-
-  useEffect(() => {
-    fetchContent();
-  }, []);
-
   return (
     <MainLayout footerBgColor="white">
       <PageSEO title="Fellowship" />

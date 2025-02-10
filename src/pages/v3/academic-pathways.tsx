@@ -1,46 +1,12 @@
-import { useCallback, useEffect, useState } from 'react';
-import Image from 'next/image';
-import { Box, Card, Divider, Text } from '@mantine/core';
-import { Carousel } from '@mantine/carousel';
+import { Box } from '@mantine/core';
 
 import { MainLayout } from '@/layouts/v3/MainLayout';
 import { Paragraph, Title } from '@/components/ui';
-import { CollapsibleContent, PageSEO, VideoPlayer } from '@/components/shared/v3';
-import { AdviceCard, ClipCard, InfoCard, PlainCard, UserProfileCard, UserTestimonialCard } from '@/components/cards';
-import {
-  ADMI_ACADEMIC_PATHWAYS,
-  ADMI_ACADEMIC_TEAM_MINIMAL,
-  ADMI_CAREER_ADVICE,
-  ADMI_CAREER_VALUES,
-  ADMI_FINANCIAL_PLANNING,
-  ADMI_INTERNATIONAL_STUDENTS,
-  ADMI_STUDENT_COUNCIL,
-  ADMI_STUDENT_SUPPORT,
-} from '@/utils';
-
-import IconSpinner from '@/assets/icons/Spinner';
-import IconUsersGroup from '@/assets/icons/UsersGroup';
-import IconDashboardTabs from '@/assets/icons/DashboardTabs';
-import { IconDownload } from '@tabler/icons-react';
-import IconAudioPhoneAlt from '@/assets/icons/audio-phone-alt.svg';
-import ImageCalendar from '@/assets/images/calendar.svg';
-import ImageCareersLanding from '@/assets/images/careers-landing.png';
+import { PageSEO } from '@/components/shared/v3';
+import { InfoCard, PlainCard } from '@/components/cards';
+import { ADMI_ACADEMIC_PATHWAYS } from '@/utils';
 
 export default function AcademicPathwaysPage() {
-  const howToApply = {
-    title: 'How to Apply',
-    description:
-      'If you are interested in joining our faculty or would like to express your interest in teaching a specific course, we encourage you to reach out to us. Please send your CV and a brief cover letter outlining your teaching philosophy and the courses you wish to teach to apply@admi.ac.ke.',
-  };
-
-  const openVacancies = {
-    title: 'Open Vacancies',
-    description:
-      'We regularly post open faculty positions on our website. Be sure to check back frequently for the latest opportunities to join our team. If you are passionate about education and have the skills to inspire students, we want to hear from you!',
-    subtext:
-      'Join us at ADMI and be part of a transformative educational experience that empowers students to excel in the ever-evolving world of digital media. Your expertise could be the key to unlocking their potential!',
-  };
-
   return (
     <MainLayout footerBgColor="white">
       <PageSEO title="Academic Pathways" />

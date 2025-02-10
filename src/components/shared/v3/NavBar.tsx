@@ -64,7 +64,6 @@ export default function NavBar({ mode, isMinimal = false }: Props) {
           <Menu.Target>
             <IconMenu />
           </Menu.Target>
-
           <Menu.Dropdown style={menuDrawer}>
             <Menu.Item style={menuItemStyle}>Home</Menu.Item>
             <Menu.Item style={menuItemStyle}>Courses</Menu.Item>

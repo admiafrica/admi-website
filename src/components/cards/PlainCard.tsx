@@ -1,10 +1,6 @@
 import React from 'react';
 import { Box, Card } from '@mantine/core';
 
-import { Paragraph, Title } from '../ui';
-import Image from 'next/image';
-import IconAttach from '@/assets/icons/Attach';
-
 type Props = {
   children: any;
   bg?: string;

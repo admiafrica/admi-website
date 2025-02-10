@@ -1,4 +1,4 @@
-import { Card, Group, Text, TextInput } from '@mantine/core';
+import { Card, Group, TextInput } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { Button, Paragraph, Title } from '../ui';
 import { IconAsterisk } from '@tabler/icons-react';
@@ -20,7 +20,7 @@ export default function JoinForm() {
   };
 
   return (
-    <div className="h-full w-full bg-white p-4 sm:p-8 rounded-lg">
+    <div className="h-full w-full rounded-lg bg-white p-4 sm:p-8">
       <div className="font-nexa">
         <Title label="Join the ADMI" color="black" />
         <Title label="Alumni Network" color="black" />

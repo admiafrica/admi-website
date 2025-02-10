@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import Image from 'next/image';
-import { Box, Card, Text } from '@mantine/core';
+import { Box, Card } from '@mantine/core';
 import { Carousel } from '@mantine/carousel';
 
 import { MainLayout } from '@/layouts/v3/MainLayout';
@@ -39,7 +39,7 @@ export default function StudentSupportPage() {
 
   useEffect(() => {
     fetchContent();
-  }, []);
+  }, [fetchContent]);
 
   return (
     <MainLayout footerBgColor="white">

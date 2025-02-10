@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Box, Card, Divider, Tabs } from '@mantine/core';
 
 import { PageSEO } from '@/components/shared/v3';

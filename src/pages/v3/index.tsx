@@ -120,7 +120,7 @@ export default function HomePage() {
   useEffect(() => {
     fetchContent();
     fetchCourses();
-  }, []);
+  }, [fetchCourses, fetchContent]);
 
   return (
     <MainLayout footerBgColor="#E6F608">

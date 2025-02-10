@@ -1,28 +1,13 @@
-import { useCallback, useEffect, useState } from 'react';
 import Image from 'next/image';
-import { Box, Card, Divider, Text } from '@mantine/core';
-import { Carousel } from '@mantine/carousel';
+import { Box, Divider } from '@mantine/core';
 
 import { MainLayout } from '@/layouts/v3/MainLayout';
 import { Paragraph, Title } from '@/components/ui';
-import { CollapsibleContent, PageSEO } from '@/components/shared/v3';
-import { AdviceCard, ClipCard, InfoCard, PlainCard, UserProfileCard, UserTestimonialCard } from '@/components/cards';
-import {
-  ADMI_ACADEMIC_TEAM_MINIMAL,
-  ADMI_CAREER_ADVICE,
-  ADMI_CAREER_VALUES,
-  ADMI_FINANCIAL_PLANNING,
-  ADMI_INTERNATIONAL_STUDENTS,
-  ADMI_STUDENT_COUNCIL,
-  ADMI_STUDENT_SUPPORT,
-} from '@/utils';
+import { PageSEO } from '@/components/shared/v3';
+import { InfoCard, PlainCard } from '@/components/cards';
+import { ADMI_CAREER_VALUES } from '@/utils';
 
-import IconSpinner from '@/assets/icons/Spinner';
-import IconUsersGroup from '@/assets/icons/UsersGroup';
-import IconDashboardTabs from '@/assets/icons/DashboardTabs';
-import { IconDownload } from '@tabler/icons-react';
 import IconAudioPhoneAlt from '@/assets/icons/audio-phone-alt.svg';
-import ImageCalendar from '@/assets/images/calendar.svg';
 import ImageCareersLanding from '@/assets/images/careers-landing.png';
 
 export default function CareersPage() {

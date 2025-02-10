@@ -1,12 +1,10 @@
-import { useCallback, useEffect, useState } from 'react';
 import Image from 'next/image';
-import { Box, Card, Divider, Text } from '@mantine/core';
-import { Carousel } from '@mantine/carousel';
+import { Box, Card, Divider } from '@mantine/core';
 
 import { MainLayout } from '@/layouts/v3/MainLayout';
 import { Paragraph, Title } from '@/components/ui';
-import { CollapsibleContent, PageSEO } from '@/components/shared/v3';
-import { ADMI_FELLOWSHIP_VALUES, ADMI_FELLOWSHIP_DEPARTMENTS, ADMI_ACCOMODATION_FEATURES } from '@/utils';
+import { PageSEO } from '@/components/shared/v3';
+import { ADMI_ACCOMODATION_FEATURES } from '@/utils';
 
 import IconQwetu from '@/assets/icons/qwetu-residence.svg';
 import IconQwetuLight from '@/assets/icons/qwetu-residence-light.svg';
@@ -17,22 +15,6 @@ import ImageAccomodationLanding from '@/assets/images/accomodation-landing.png';
 import IconArrowTipRight from '@/assets/icons/ArrowTipRight';
 
 export default function AccomodationsPage() {
-  const [content, setContent] = useState<any>();
-
-  const fetchContent = useCallback(async () => {
-    try {
-      const response = await fetch(`/api/v3/homepage`);
-      const data = await response.json();
-      setContent(data[0]);
-    } catch (error) {
-      console.log('Error fetching courses:', error);
-    }
-  }, []);
-
-  useEffect(() => {
-    fetchContent();
-  }, []);
-
   return (
     <MainLayout footerBgColor="white">
       <PageSEO title="Accomodation" />

@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { Box, Card } from '@mantine/core';
-import { Paragraph, ParagraphContentful, Title } from '@/components/ui';
+import { Paragraph, ParagraphContentful } from '@/components/ui';
 import { getAssetDetails } from '@/utils';
 import { useRouter } from 'next/router';
 import { motion } from 'framer-motion';
@@ -8,7 +8,6 @@ import { motion } from 'framer-motion';
 import { IContentfulEntry } from '@/types';
 
 import IconArrowTipRight from '@/assets/icons/ArrowTipRight';
-import { useState } from 'react';
 
 type Props = {
   course: IContentfulEntry;
@@ -16,7 +15,6 @@ type Props = {
 
 export default function NewsItemCard({ course }: Props) {
   const router = useRouter();
-  const [courses, setCourses] = useState<Array<any>>([]);
 
   const handleNewsClick = () => {
     router.push(`/v3/news-events/news/${course.fields.slug}`);

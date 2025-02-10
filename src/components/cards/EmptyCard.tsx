@@ -2,7 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import { Card } from '@mantine/core';
 
-import { Paragraph, Title } from '../ui';
+import { Paragraph } from '../ui';
 
 import ImageNotFound from '@/assets/icons/audio-phone-alt.svg';
 

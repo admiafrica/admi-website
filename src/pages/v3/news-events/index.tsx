@@ -28,7 +28,7 @@ export default function NewsEventsLandingPage() {
 
   useEffect(() => {
     fetchCourses();
-  }, []);
+  }, [fetchCourses]);
 
   return (
     <MainLayout footerBgColor="white">

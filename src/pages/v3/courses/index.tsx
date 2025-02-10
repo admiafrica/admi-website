@@ -54,7 +54,7 @@ export default function CoursesPage() {
   useEffect(() => {
     fetchCoursePrograms();
     fetchCourses();
-  }, []);
+  }, [fetchCourses, fetchCoursePrograms]);
 
   useEffect(() => {
     let result = [];
@@ -64,7 +64,7 @@ export default function CoursesPage() {
       result = programs;
     }
     setFilteredPrograms(result);
-  }, [activeOption]);
+  }, [activeOption, programs]);
 
   useEffect(() => {
     if (programs) {
