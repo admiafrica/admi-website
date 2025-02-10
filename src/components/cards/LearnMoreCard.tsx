@@ -26,7 +26,7 @@ export default function LearnMoreCard() {
   };
 
   return (
-    <Box className="mx-auto flex w-full max-w-screen-2xl flex-col px-16">
+    <Box className="mx-auto flex w-full max-w-screen-xl flex-col px-16">
       <Image src={IconLogo} alt="about course" objectFit="cover" className="mb-6 h-[60px] w-[120px]" />
       <Box className="mx-auto flex w-full flex-col sm:flex-row">
         <div className="sm:w-1/2">

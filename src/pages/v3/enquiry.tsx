@@ -36,7 +36,7 @@ export default function EnquiryPage() {
             <Image src={IconBgImageRed} alt={'background image'} />
           </div>
         </div>
-        <div className="relative z-10 mx-auto flex w-full max-w-screen-2xl flex-col px-4 sm:flex-row 2xl:px-0">
+        <div className="relative z-10 mx-auto flex w-full max-w-screen-xl flex-col px-4 sm:flex-row 2xl:px-0">
           <div className="sm:w-1/2">
             <Box mb={4}>
               <Title label="Take the first steps" color="#F1FE38" size="48px" />

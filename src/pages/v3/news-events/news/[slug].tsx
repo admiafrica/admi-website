@@ -24,7 +24,7 @@ export default function NewsEventsDetailPage() {
           </Tabs.List>
 
           <Tabs.Panel value="news">
-            <Box className="mx-auto flex w-full max-w-screen-2xl px-4 py-16 2xl:px-0">
+            <Box className="mx-auto flex w-full max-w-screen-xl px-4 py-16 2xl:px-0">
               <Box className="flex w-[200px] flex-col">
                 <Box className="pb-6">
                   <Paragraph>Share on:</Paragraph>

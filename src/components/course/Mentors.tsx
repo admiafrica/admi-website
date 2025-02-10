@@ -16,7 +16,7 @@ export default function CourseMentors(props: Props) {
 
   return (
     <Group bg={'#F76335'} py={32}>
-      <div className="mx-auto w-full max-w-screen-2xl px-4">
+      <div className="mx-auto w-full max-w-screen-xl px-4">
         <div className="mt-4 font-nexa text-white">
           <Text size="2em" fw={900}>
             Course Leader & Mentor

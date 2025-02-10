@@ -109,7 +109,7 @@ export default function NavBar({ mode, isMinimal = false }: Props) {
 
   if (isMinimal) {
     return (
-      <Group className={`mx-auto w-full max-w-screen-2xl px-4`}>
+      <Group className={`mx-auto w-full max-w-screen-xl px-4`}>
         <div className="flex grow font-nexa sm:flex-row-reverse md:flex-row">
           <Link href="/" style={{ textDecoration: 'none' }} className="my-auto">
             {mode == 'dark' && <Image src={IconLogoLight} width={80} alt="Africa Digital Media Institute" />}
@@ -124,7 +124,7 @@ export default function NavBar({ mode, isMinimal = false }: Props) {
   }
 
   return (
-    <Group className={`mx-auto w-full max-w-screen-2xl px-4`}>
+    <Group className={`mx-auto w-full max-w-screen-xl px-4`}>
       <Group className="flex grow flex-row-reverse font-nexa md:flex-row">
         <Link href="/" style={{ textDecoration: 'none', margin: 'auto' }}>
           {mode == 'dark' && <Image src={IconLogoLight} width={80} height={60} alt="Africa Digital Media Institute" />}

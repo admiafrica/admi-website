@@ -32,7 +32,7 @@ export default function AccreditationPage() {
               background: `radial-gradient(circle, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 80%)`,
             }}
           ></div>
-          <Box className="relative z-10 mx-auto flex h-[50vh] w-full max-w-screen-2xl flex-row px-4 sm:flex-row 2xl:px-0">
+          <Box className="relative z-10 mx-auto flex h-[50vh] w-full max-w-screen-xl flex-row px-4 sm:flex-row 2xl:px-0">
             <Box className="mt-[12vh] flex w-full flex-col">
               <Box className="flex">
                 <Title label="Accreditation" color="#B9C601" size="64px" />
@@ -54,7 +54,7 @@ export default function AccreditationPage() {
         </Box>
         {/* WORK */}
         <Box className="relative z-10 w-full bg-[#002A23] pb-8 pt-8 sm:pb-56">
-          <Box className="mx-auto flex w-full max-w-screen-2xl flex-col">
+          <Box className="mx-auto flex w-full max-w-screen-xl flex-col">
             <Box className="w-full px-4 py-6 text-white 2xl:px-0 2xl:pr-4">
               <Title label="Why Work at ADMI?" color="white" />
             </Box>
@@ -69,7 +69,7 @@ export default function AccreditationPage() {
         </Box>
         {/* Floating Card */}
         <div className="relative w-full px-4 2xl:px-0">
-          <div className="z-10 w-full max-w-screen-2xl px-4 sm:absolute sm:left-1/2 sm:top-[-12vh] sm:top-[10vh] sm:-translate-x-1/2 sm:transform 2xl:px-0">
+          <div className="z-10 w-full max-w-screen-xl px-4 sm:absolute sm:left-1/2 sm:top-[-12vh] sm:top-[10vh] sm:-translate-x-1/2 sm:transform 2xl:px-0">
             <Box className="flex w-full flex-col sm:flex-row">
               <Box className="pr-4 sm:w-1/2">
                 <PlainCard>

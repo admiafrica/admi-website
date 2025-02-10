@@ -69,7 +69,7 @@ export default function Footer({ bgColor }: Props) {
         </div>
       </div>
       <div className="w-full bg-[#002A23] pb-8 pt-36">
-        <Group className="mx-auto w-full max-w-screen-2xl flex-col text-white md:flex-row" align="top">
+        <Group className="mx-auto w-full max-w-screen-xl flex-col text-white md:flex-row" align="top">
           <Stack className="grow" h="100%">
             <Stack className="px-4">
               <div className="font-nexa text-admiShamrok">
@@ -168,7 +168,7 @@ export default function Footer({ bgColor }: Props) {
         </Group>
         {isMobile && <SocialIcons />}
         <Divider mt={48} size={0.5} opacity="20%" />
-        <Group className="md:pt-auto mx-auto w-full max-w-screen-2xl flex-col px-4 pt-8 md:flex-row" gap={2}>
+        <Group className="md:pt-auto mx-auto w-full max-w-screen-xl flex-col px-4 pt-8 md:flex-row" gap={2}>
           <IconCopyright className="text-white" />
           <div className="text-white">
             <Text>

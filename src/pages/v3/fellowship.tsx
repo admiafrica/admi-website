@@ -32,7 +32,7 @@ export default function FellowshipPage() {
               background: `radial-gradient(circle, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 80%)`,
             }}
           ></div>
-          <Box className="relative z-10 mx-auto flex h-[50vh] w-full max-w-screen-2xl flex-row px-4 sm:flex-row 2xl:px-0">
+          <Box className="relative z-10 mx-auto flex h-[50vh] w-full max-w-screen-xl flex-row px-4 sm:flex-row 2xl:px-0">
             <Box className="mt-[12vh] flex w-full flex-col">
               <Title label="Fellowship" color="admiShamrok" size="64px" />
               <Title label="Opportunities" color="#B9C601" size="64px" />
@@ -52,12 +52,12 @@ export default function FellowshipPage() {
         </Box>
         {/* Floating Card */}
         <div className="w-full px-4 2xl:px-0">
-          <div className="absolute left-1/2 top-[10vh] z-10 w-full max-w-screen-2xl -translate-x-1/2 transform px-4 sm:top-[50vh] 2xl:px-0">
+          <div className="absolute left-1/2 top-[10vh] z-10 w-full max-w-screen-xl -translate-x-1/2 transform px-4 sm:top-[50vh] 2xl:px-0">
             <CompanyValuesCard values={ADMI_FELLOWSHIP_VALUES} showRightIcons={false} />
           </div>
         </div>
         {/* ACADEMIC CONTRIBUTION */}
-        <Box className="mx-auto w-full max-w-screen-2xl px-4 pb-8 pt-96 lg:pt-64 xl:pt-32 2xl:px-0">
+        <Box className="mx-auto w-full max-w-screen-xl px-4 pb-8 pt-96 lg:pt-64 xl:pt-32 2xl:px-0">
           <Box className="mt-20 w-full">
             <div className="my-8 w-fit">
               <Title label="Areas of Contribution" size="24px" color="black" />

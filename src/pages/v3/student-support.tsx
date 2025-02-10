@@ -63,10 +63,11 @@ export default function StudentSupportPage() {
               background: `radial-gradient(circle, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 80%)`,
             }}
           ></div>
-          <Box className="relative z-10 mx-auto flex h-[50vh] w-full max-w-screen-2xl flex-row px-4 sm:flex-row 2xl:px-0">
+          <Box className="relative z-10 mx-auto flex h-[50vh] w-full max-w-screen-xl flex-row px-4 sm:flex-row 2xl:px-0">
             <Box className="mt-[12vh] flex w-1/2 flex-col">
-              <Title label="ADMI Student Support" color="white" />
-              <Paragraph fontFamily="font-nexa" className="text-white">
+              <Title label="ADMI Student" color="white" size="48px" />
+              <Title label="Support" color="admiShamrok" size="48px" />
+              <Paragraph fontFamily="font-nexa" className="py-6 text-white">
                 We are deeply commited to providing you with comprehensive support that ensures your academic and
                 personal success
               </Paragraph>
@@ -86,7 +87,7 @@ export default function StudentSupportPage() {
         </Box>
         {/* STUDENT SUPPORT */}
         <Box className="relative z-10 w-full bg-[#002A23] py-8">
-          <Box className="mx-auto flex w-full max-w-screen-2xl">
+          <Box className="mx-auto flex w-full max-w-screen-xl">
             <Box className="w-[50%] px-4 text-white 2xl:px-0 2xl:pr-4">
               <Box>
                 <Title label="Welcome to Student Support" color="#F1FE37" />
@@ -153,7 +154,7 @@ export default function StudentSupportPage() {
           </Box>
         </Box>
         {/* ACADEMIC SUPPORT */}
-        <Box className="mx-auto w-full max-w-screen-2xl pb-8">
+        <Box className="mx-auto w-full max-w-screen-xl pb-8">
           <Box className="mt-20 w-full">
             <div className="mx-auto my-8 w-fit">
               <Title label="Academic Support" size="24px" color="black" />
@@ -210,7 +211,7 @@ export default function StudentSupportPage() {
         </Box>
         {/* FINANCIAL PLANNING */}
         <Box className="w-full py-8" bg={'#F76335'}>
-          <Box className="mx-auto flex w-full max-w-screen-2xl flex-col px-4 sm:flex-row 2xl:px-0">
+          <Box className="mx-auto flex w-full max-w-screen-xl flex-col px-4 sm:flex-row 2xl:px-0">
             <Box className="flex flex-row flex-col sm:w-[40%]">
               <Title label="Financial Planning" color="white" />
               <Title
@@ -236,7 +237,7 @@ export default function StudentSupportPage() {
         </Box>
         {/* INTERNATIONAL STUDENTS */}
         <Box className="w-full py-8" bg={'#E43B07'}>
-          <Box className="mx-auto flex w-full max-w-screen-2xl flex-col px-4 sm:flex-row 2xl:px-0">
+          <Box className="mx-auto flex w-full max-w-screen-xl flex-col px-4 sm:flex-row 2xl:px-0">
             <Box className="flex flex-row flex-col sm:w-[40%]">
               <Title label="International Students" color="white" />
               <Paragraph fontFamily="font-nexa" className="py-4 text-white">
@@ -281,7 +282,7 @@ export default function StudentSupportPage() {
             </Carousel>
           </Box>
 
-          <Box className="mx-auto w-full max-w-screen-2xl px-4 2xl:px-0">
+          <Box className="mx-auto w-full max-w-screen-xl px-4 2xl:px-0">
             <Box className="flex w-full flex-row py-8">
               <Box className="w-[30%]">
                 <Title label="Testimonials" color="black" />
@@ -308,7 +309,7 @@ export default function StudentSupportPage() {
         </Box>
         {/* STUDENT COUNCIL */}
         <Box className="w-full bg-admiRed px-4 py-8">
-          <Box className="mx-auto w-full max-w-screen-2xl">
+          <Box className="mx-auto w-full max-w-screen-xl">
             <Box className="flex w-full flex-row pb-4">
               <Box className="w-full">
                 <Title label="Student Council" color="white" />
@@ -316,7 +317,7 @@ export default function StudentSupportPage() {
             </Box>
             <Box className="flex w-full flex-wrap">
               {ADMI_STUDENT_COUNCIL.map((member, index) => (
-                <div className="mb-8 mr-8" key={`member-${index}`}>
+                <div className="mb-4 mr-4" key={`member-${index}`}>
                   <UserProfileCard user={member} />
                 </div>
               ))}
@@ -325,7 +326,7 @@ export default function StudentSupportPage() {
         </Box>
         {/* ACADEMIC TEAM */}
         <Box className="w-full px-4 py-8">
-          <Box className="mx-auto w-full max-w-screen-2xl">
+          <Box className="mx-auto w-full max-w-screen-xl">
             <Box className="flex w-full flex-row pb-4">
               <Box className="w-full">
                 <Title label="Academic Team" color="black" />
@@ -333,7 +334,7 @@ export default function StudentSupportPage() {
             </Box>
             <Box className="flex w-full flex-wrap">
               {ADMI_ACADEMIC_TEAM_MINIMAL.map((member, index) => (
-                <div className="mb-8 mr-8" key={`academic-member-${index}`}>
+                <div className="mb-4 mr-4" key={`academic-member-${index}`}>
                   <UserProfileCard user={member} />
                 </div>
               ))}

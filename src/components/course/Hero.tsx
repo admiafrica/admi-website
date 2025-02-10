@@ -42,7 +42,7 @@ export default function CourseHero(props: Props) {
 
       {/* Floating Card */}
       <div className={props.isCampaign ? 'w-full px-1 sm:w-fit' : 'w-full px-1'}>
-        <div className="absolute left-1/2 top-[66vh] z-10 w-full max-w-screen-2xl -translate-x-1/2 transform px-4 sm:top-[45vh] 2xl:px-0">
+        <div className="absolute left-1/2 top-[66vh] z-10 w-full max-w-screen-xl -translate-x-1/2 transform px-4 sm:top-[45vh] 2xl:px-0">
           {props.isCampaign ? (
             <CourseSummaryCard
               programType={props.programType}
@@ -62,7 +62,7 @@ export default function CourseHero(props: Props) {
       </div>
 
       {/* Content Section */}
-      <div className="relative z-10 mx-auto w-full max-w-screen-2xl pt-[15vh] text-white">
+      <div className="relative z-10 mx-auto w-full max-w-screen-xl pt-[15vh] text-white">
         <div className="md:w-1/2">
           <Badge
             h={36}

@@ -37,7 +37,7 @@ export default function AccomodationsPage() {
               background: `radial-gradient(circle, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 80%)`,
             }}
           ></div>
-          <Box className="relative z-10 mx-auto flex h-[50vh] w-full max-w-screen-2xl flex-row px-4 sm:flex-row 2xl:px-0">
+          <Box className="relative z-10 mx-auto flex h-[50vh] w-full max-w-screen-xl flex-row px-4 sm:flex-row 2xl:px-0">
             <Box className="mt-[12vh] flex w-full flex-col">
               <Title label="Accomodation" color="#B9C601" size="64px" />
               <Box className="flex w-full pt-12">
@@ -58,7 +58,7 @@ export default function AccomodationsPage() {
         </Box>
         {/* Floating Card */}
         <div className="w-full px-4 2xl:px-0">
-          <div className="absolute left-1/2 top-[10vh] z-10 w-full max-w-screen-2xl -translate-x-1/2 transform px-4 sm:top-[51vh] 2xl:px-0">
+          <div className="absolute left-1/2 top-[10vh] z-10 w-full max-w-screen-xl -translate-x-1/2 transform px-4 sm:top-[51vh] 2xl:px-0">
             <Card radius={8}>
               <Card.Section>
                 <Box bg={'#36030D'} className="px-6">
@@ -90,7 +90,7 @@ export default function AccomodationsPage() {
           </div>
         </div>
         {/* FEATURES */}
-        <Box className="mx-auto w-full max-w-screen-2xl px-4 pb-8 2xl:px-0">
+        <Box className="mx-auto w-full max-w-screen-xl px-4 pb-8 2xl:px-0">
           <Box className="w-full pt-80">
             <div className="mx-auto my-8 w-fit">
               <Title label="Key Features of Qwetu and Qejani Accomodation" size="24px" color="black" />
@@ -116,7 +116,7 @@ export default function AccomodationsPage() {
         </Box>
       </div>
       {/* BOOKING */}
-      <Box className="mx-auto w-full max-w-screen-2xl px-4 py-6">
+      <Box className="mx-auto w-full max-w-screen-xl px-4 py-6">
         <Box className="w-full">
           <div className="mx-auto my-8 w-fit">
             <Title label="How to Book Your Accomodation" size="24px" color="black" />
@@ -151,7 +151,7 @@ export default function AccomodationsPage() {
         </Box>
       </Box>
       {/* COMMUNITY */}
-      <Box className="mx-auto w-full max-w-screen-2xl px-4 py-6">
+      <Box className="mx-auto w-full max-w-screen-xl px-4 py-6">
         <Card className="w-full" bg={'#F1FE37'} radius={8}>
           <Card.Section className="w-full">
             <Box className="flex w-full">

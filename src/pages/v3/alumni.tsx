@@ -35,7 +35,7 @@ export default function AlumniPage() {
               background: `radial-gradient(circle, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 80%)`,
             }}
           ></div>
-          <Box className="relative z-10 mx-auto flex h-[50vh] w-full max-w-screen-2xl flex-row px-4 sm:flex-row 2xl:px-0">
+          <Box className="relative z-10 mx-auto flex h-[50vh] w-full max-w-screen-xl flex-row px-4 sm:flex-row 2xl:px-0">
             <Box className="mt-[12vh] flex w-full flex-col">
               <Box className="flex">
                 <Title label="Alumni" color="#B9C601" size="64px" />
@@ -59,7 +59,7 @@ export default function AlumniPage() {
         </Box>
         {/* NETWORK */}
         <Box className="relative z-10 w-full bg-[#002A23] py-8">
-          <Box className="mx-auto flex w-full max-w-screen-2xl sm:flex-row">
+          <Box className="mx-auto flex w-full max-w-screen-xl sm:flex-row">
             <Box className="flex w-[70%] flex-col px-4 2xl:px-0">
               <PlainCard>
                 <Box className="flex w-full">
@@ -108,7 +108,7 @@ export default function AlumniPage() {
         </Box>
         {/* ALUMNI */}
         <Box className="1xl:px-0 w-full px-4 py-8" bg={'#002A23'}>
-          <Box className="mx-auto w-full max-w-screen-2xl">
+          <Box className="mx-auto w-full max-w-screen-xl">
             <Divider pb={32} />
             <Box className="flex w-full flex-col">
               <Title label="Alumni Profiles" color="white" />
@@ -127,7 +127,7 @@ export default function AlumniPage() {
           </Box>
         </Box>
         {/* CONCLUSION */}
-        <Box className="mx-auto w-full max-w-screen-2xl">
+        <Box className="mx-auto w-full max-w-screen-xl">
           <Divider />
           <Box className="flex w-full flex-col py-6">
             <Title label="Conclusion" color="black" />

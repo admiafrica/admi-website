@@ -18,7 +18,7 @@ type Props = {
 export default function AnnouncementCard(props: Props) {
   return (
     <Card
-      className="mx-auto w-full max-w-screen-2xl cursor-pointer"
+      className="mx-auto w-full max-w-screen-xl cursor-pointer"
       bg={props.bgColor || 'white'}
       style={{ borderRadius: 8 }}
     >

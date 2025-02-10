@@ -45,7 +45,7 @@ export default function NewsEventsLandingPage() {
           </Tabs.List>
 
           <Tabs.Panel value="news">
-            <Box className="mx-auto w-full max-w-screen-2xl">
+            <Box className="mx-auto w-full max-w-screen-xl">
               {/* HEADLINE */}
               <Box className="w-full px-4 py-16 xl:px-0">
                 <AnnouncementCard announcement={news} bgColor="admiShamrok" image={ImageNews} featured />

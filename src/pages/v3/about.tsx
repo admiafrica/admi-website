@@ -20,6 +20,7 @@ import IconArrowTipRight from '@/assets/icons/ArrowTipRight';
 import IconSoundwave from '@/assets/icons/Soundwave';
 import IconTv from '@/assets/icons/Tv';
 import { useRouter } from 'next/router';
+import { clear } from 'console';
 
 export default function AboutPage() {
   const router = useRouter();
@@ -81,7 +82,7 @@ export default function AboutPage() {
           <Image src={ImageAboutLanding} alt={'background image'} fill objectFit="cover" />
         </Box>
         <Ribbon />
-        <Box className="mx-auto flex w-full max-w-screen-2xl">
+        <Box className="mx-auto flex w-full max-w-screen-xl">
           <Box className="w-[50%] px-4 py-32 font-nexa text-white">
             <Paragraph className="mb-8" fontFamily="font-nexa">
               Africa Digital Media Institute (ADMI) based in Nairobi, Kenya, is Eastern Africa’s premier creative media
@@ -127,7 +128,7 @@ export default function AboutPage() {
       </Box>
       {/* OUR HISTORY */}
       <Box className="1xl:px-0 w-full px-4 py-8" bg={'#F5FFFD'}>
-        <Box className="mx-auto w-full max-w-screen-2xl">
+        <Box className="mx-auto w-full max-w-screen-xl">
           <Box className="flex w-full flex-row">
             <Box className="w-[30%]">
               <Title label="Our History" color="black" />
@@ -140,7 +141,7 @@ export default function AboutPage() {
       </Box>
       {/* OUR VALUES */}
       <Box className="1xl:px-0 relative w-full px-4 pb-16" bg={'#F5FFFD'}>
-        <Box className="mx-auto w-full max-w-screen-2xl pb-10">
+        <Box className="mx-auto w-full max-w-screen-xl pb-10">
           <Box className="flex w-full flex-row">
             <Box className="w-[30%]">
               <Title label="Our Values" color="black" />
@@ -156,14 +157,14 @@ export default function AboutPage() {
         </Box>
         {/* Floating Card */}
         <div className="w-full px-1">
-          <div className="absolute left-1/2 top-[10vh] z-10 w-full max-w-screen-2xl -translate-x-1/2 transform px-4 sm:top-[10vh] 2xl:px-0">
+          <div className="absolute left-1/2 top-[10vh] z-10 w-full max-w-screen-xl -translate-x-1/2 transform px-4 sm:top-[10vh] 2xl:px-0">
             <CompanyValuesCard values={ADMI_VALUES} />
           </div>
         </div>
       </Box>
       {/* ACADEMIC TEAM */}
       <Box className="1xl:px-0 w-full px-4 pt-56" bg={'admiRed'}>
-        <Box className="mx-auto w-full max-w-screen-2xl">
+        <Box className="mx-auto w-full max-w-screen-xl">
           <Box className="flex w-full flex-row">
             <Box className="w-[30%]">
               <Title label="Academic Team" color="white" />
@@ -171,7 +172,7 @@ export default function AboutPage() {
           </Box>
           <Box className="flex w-full flex-row flex-wrap py-8">
             {ADMI_ACADEMIC_TEAM.map((member, index) => (
-              <div className="mb-8 mr-8 w-fit" key={`academic-member-${index}`}>
+              <div className="mb-4 mr-4 w-fit" key={`academic-member-${index}`}>
                 <UserProfileCard user={member} />
               </div>
             ))}
@@ -180,13 +181,13 @@ export default function AboutPage() {
       </Box>
       {/* BOARD OF DIRECTORS */}
       <Box className="1xl:px-0 w-full px-4 py-8" bg={'#F5FFFD'}>
-        <Box className="mx-auto w-full max-w-screen-2xl">
+        <Box className="mx-auto w-full max-w-screen-xl">
           <Box className="flex w-full flex-row">
             <Title label="Board of Directors" color="black" />
           </Box>
           <Box className="flex w-full flex-row flex-wrap py-8">
             {ADMI_DIRECTORS.map((member, index) => (
-              <div className="mb-8 mr-8 w-fit" key={`academic-member-${index}`}>
+              <div className="mb-4 mr-4 w-fit" key={`academic-member-${index}`}>
                 <UserProfileCard user={member} />
               </div>
             ))}
@@ -195,7 +196,7 @@ export default function AboutPage() {
       </Box>
       {/* FACILITIES */}
       <Box className="1xl:px-0 w-full px-4 py-8" bg={'#F5FFFD'}>
-        <Box className="mx-auto w-full max-w-screen-2xl">
+        <Box className="mx-auto w-full max-w-screen-xl">
           <Box className="flex w-full flex-row pb-12">
             <Box className="w-[30%]">
               <Title label="Facilities" color="black" />
@@ -209,23 +210,15 @@ export default function AboutPage() {
               </Paragraph>
             </Box>
           </Box>
-          <Box className="w-full">
-            <Carousel
-              slideSize={600}
-              height={360}
-              slideGap="md"
-              loop
-              align="start"
-              slidesToScroll={1}
-              controlsOffset={0}
-            >
-              {ADMI_FACILITIES.map((facility) => (
-                <Carousel.Slide key={facility.name}>
-                  <FacilityItemCard facility={facility} />
-                </Carousel.Slide>
-              ))}
-            </Carousel>
-          </Box>
+        </Box>
+        <Box className="w-full">
+          <Carousel slideSize={600} height={360} slideGap="md" loop align="start" slidesToScroll={1} controlsOffset={0}>
+            {ADMI_FACILITIES.map((facility) => (
+              <Carousel.Slide key={facility.name}>
+                <FacilityItemCard facility={facility} />
+              </Carousel.Slide>
+            ))}
+          </Carousel>
         </Box>
       </Box>
     </MainLayout>

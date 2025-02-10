@@ -148,7 +148,7 @@ export default function HomePage() {
             }}
           ></div>
 
-          <Box className="relative mx-auto flex h-[50vh] w-full max-w-screen-2xl flex-row px-4 sm:flex-row 2xl:px-0">
+          <Box className="relative mx-auto flex h-[50vh] w-full max-w-screen-xl flex-row px-4 sm:flex-row 2xl:px-0">
             <Box className="mt-[12vh] flex w-1/2 flex-col">
               <Title label="Launch your career in Creative Media" size="48px" color="white" />
               <Paragraph className="py-6 text-white">
@@ -213,7 +213,7 @@ export default function HomePage() {
         </Box>
         {/* IMPACT */}
         <Box className="w-full" bg={'#F5FFFD'}>
-          <Box className="mx-auto flex w-full max-w-screen-2xl flex-col px-4 py-8 2xl:px-0">
+          <Box className="mx-auto flex w-full max-w-screen-xl flex-col px-4 py-8 2xl:px-0">
             <Box className="flex w-full flex-row">
               <Box className="w-[30%]">
                 <Title label="Our Impact" color="black" />
@@ -314,7 +314,7 @@ export default function HomePage() {
         </Box>
         {/* FACILITIES */}
         <Box className="1xl:px-0 w-full px-4 py-16" bg={'#F5FFFD'}>
-          <Box className="mx-auto w-full max-w-screen-2xl">
+          <Box className="mx-auto w-full max-w-screen-xl">
             <Box className="flex w-full flex-row pb-12">
               <Box className="w-[30%]">
                 <Title label="Facilities" color="black" />
@@ -353,7 +353,7 @@ export default function HomePage() {
         </Box>
         {/* COURSES */}
         <Box className="1xl:px-0 w-full px-4 py-16" bg={'#F5FFFD'}>
-          <Box className="mx-auto w-full max-w-screen-2xl">
+          <Box className="mx-auto w-full max-w-screen-xl">
             <Box className="flex w-full flex-row pb-12">
               <Box className="w-[30%]">
                 <Title label="Our Courses" color="black" />

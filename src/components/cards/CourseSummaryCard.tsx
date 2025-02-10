@@ -24,7 +24,7 @@ export default function CourseSummaryCard(props: Props) {
 
   return (
     <Card
-      className="h-fit max-w-screen-2xl justify-center sm:h-[7.125rem]"
+      className="h-fit max-w-screen-xl justify-center sm:h-[7.125rem]"
       bg={'admiShamrok'}
       radius={6}
       w={props.isCampaign ? 'fit-content' : '100%'}

@@ -47,7 +47,7 @@ export default function CareersPage() {
               background: `radial-gradient(circle, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 80%)`,
             }}
           ></div>
-          <Box className="relative z-10 mx-auto flex h-[50vh] w-full max-w-screen-2xl flex-row px-4 sm:flex-row 2xl:px-0">
+          <Box className="relative z-10 mx-auto flex h-[50vh] w-full max-w-screen-xl flex-row px-4 sm:flex-row 2xl:px-0">
             <Box className="mt-[12vh] flex w-full flex-col">
               <Box className="flex">
                 <Title label="Work With" color="admiShamrok" size="64px" />
@@ -71,7 +71,7 @@ export default function CareersPage() {
         </Box>
         {/* WORK */}
         <Box className="relative z-10 w-full bg-[#002A23] pb-48 pt-8">
-          <Box className="mx-auto flex w-full max-w-screen-2xl flex-col">
+          <Box className="mx-auto flex w-full max-w-screen-xl flex-col">
             <Box className="w-full px-4 py-6 text-white 2xl:px-0 2xl:pr-4">
               <Title label="Why Work at ADMI?" color="white" />
             </Box>
@@ -86,7 +86,7 @@ export default function CareersPage() {
         </Box>
         {/* Floating Card */}
         <div className="relative w-full px-4 2xl:px-0">
-          <div className="absolute left-1/2 top-[10vh] z-10 w-full max-w-screen-2xl -translate-x-1/2 transform px-4 sm:top-[-8vh] 2xl:px-0">
+          <div className="absolute left-1/2 top-[10vh] z-10 w-full max-w-screen-xl -translate-x-1/2 transform px-4 sm:top-[-8vh] 2xl:px-0">
             <PlainCard>
               <Title label={howToApply.title} size="20px" color="black" />
               <Paragraph className="py-6" fontFamily="font-nexa">
@@ -96,7 +96,7 @@ export default function CareersPage() {
           </div>
         </div>
         {/* VACANCIES */}
-        <Box className="mx-auto w-full max-w-screen-2xl px-4 pb-8 pt-64 xl:pt-32 2xl:px-0">
+        <Box className="mx-auto w-full max-w-screen-xl px-4 pb-8 pt-56 xl:px-0">
           <PlainCard bg="#F5FAFF">
             <Box className="flex h-full w-full">
               <Box className="grow">
