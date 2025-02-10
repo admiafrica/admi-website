@@ -119,7 +119,7 @@ export default function AlumniPage() {
             </Box>
             <Box className="flex w-full flex-row flex-wrap py-8">
               {ADMI_ALUMNI.map((member, index) => (
-                <div className="mb-8 mr-8 w-fit" key={`academic-member-${index}`}>
+                <div className="mb-4 mr-4 w-fit" key={`academic-member-${index}`}>
                   <UserProfileCard user={member} />
                 </div>
               ))}

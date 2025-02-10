@@ -54,7 +54,7 @@ export default function CoursesPage() {
   useEffect(() => {
     fetchCoursePrograms();
     fetchCourses();
-  }, [fetchCourses, fetchCoursePrograms]);
+  }, []);
 
   useEffect(() => {
     let result = [];
