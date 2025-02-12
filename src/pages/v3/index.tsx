@@ -219,9 +219,9 @@ export default function HomePage() {
               slideSize={160}
               slideGap="md"
               loop
-              px={'7%'}
               align="start"
               slidesToScroll={1}
+              px={'7%'}
               plugins={[autoplaySectors.current]}
               onMouseEnter={autoplaySectors.current.stop}
               onMouseLeave={autoplaySectors.current.reset}

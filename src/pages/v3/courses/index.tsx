@@ -101,7 +101,7 @@ export default function CoursesPage() {
             </div>
           </div>
         </div>
-        <div className="mx-auto w-full max-w-screen-xl px-4 2xl:px-0">
+        <div className="relative mx-auto min-h-[60vh] w-full max-w-screen-xl px-4 2xl:px-0">
           {filteredPrograms &&
             courses &&
             filteredPrograms.map((program) => (

@@ -1,7 +1,8 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState, useRef } from 'react';
 import Image from 'next/image';
 import { Box, Card } from '@mantine/core';
 import { Carousel } from '@mantine/carousel';
+import Autoplay from 'embla-carousel-autoplay';
 
 import { MainLayout } from '@/layouts/v3/MainLayout';
 import { Paragraph, Title } from '@/components/ui';
@@ -26,6 +27,9 @@ import ImageSupportLanding from '@/assets/images/student-support-landing.png';
 
 export default function StudentSupportPage() {
   const [content, setContent] = useState<any>();
+  const autoplaySupport = useRef(Autoplay({ delay: 4000 }));
+  const autoplayTestimonials = useRef(Autoplay({ delay: 4000 }));
+  const autoplayFacilities = useRef(Autoplay({ delay: 4000 }));
 
   const fetchContent = useCallback(async () => {
     try {
@@ -60,7 +64,7 @@ export default function StudentSupportPage() {
           <div
             className="z-5 absolute inset-0"
             style={{
-              background: `radial-gradient(circle, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 80%)`,
+              background: 'linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0, 42, 35, 1) 100%)',
             }}
           ></div>
           <Box className="relative z-10 mx-auto flex h-[50vh] w-full max-w-screen-xl flex-row px-4 sm:flex-row 2xl:px-0">
@@ -111,9 +115,14 @@ export default function StudentSupportPage() {
                 height={400}
                 slideGap="md"
                 loop
+                withControls={false}
                 align="start"
                 slidesToScroll={1}
                 controlsOffset={0}
+                px={'4%'}
+                plugins={[autoplaySupport.current]}
+                onMouseEnter={autoplaySupport.current.stop}
+                onMouseLeave={autoplaySupport.current.reset}
               >
                 {ADMI_STUDENT_SUPPORT.map((support, index) => (
                   <Carousel.Slide key={`support-${index}`}>
@@ -273,6 +282,10 @@ export default function StudentSupportPage() {
               align="start"
               slidesToScroll={1}
               controlsOffset={0}
+              px={'4%'}
+              plugins={[autoplayFacilities.current]}
+              onMouseEnter={autoplayFacilities.current.stop}
+              onMouseLeave={autoplayFacilities.current.reset}
             >
               {ADMI_CAREER_ADVICE.map((advice) => (
                 <Carousel.Slide key={advice.title}>
@@ -296,7 +309,17 @@ export default function StudentSupportPage() {
               </Box>
             </Box>
             <Box className="w-full">
-              <Carousel slideSize={360} slideGap="md" loop align="start" slidesToScroll={1}>
+              <Carousel
+                slideSize={360}
+                slideGap="md"
+                loop
+                align="start"
+                slidesToScroll={1}
+                px={'4%'}
+                plugins={[autoplayTestimonials.current]}
+                onMouseEnter={autoplayTestimonials.current.stop}
+                onMouseLeave={autoplayTestimonials.current.reset}
+              >
                 {content &&
                   content.fields.testimonials.map((testimonial: any, index: number) => (
                     <Carousel.Slide key={`testimonial-${index}`}>

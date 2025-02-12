@@ -34,7 +34,7 @@ export default function AccomodationsPage() {
           <div
             className="z-5 absolute inset-0"
             style={{
-              background: `radial-gradient(circle, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 80%)`,
+              background: 'linear-gradient(to bottom, rgba(0,0,0,0.3) 20%, rgba(246, 8, 52, 1) 100%)',
             }}
           ></div>
           <Box className="relative z-10 mx-auto flex h-[50vh] w-full max-w-screen-xl flex-row px-4 sm:flex-row 2xl:px-0">

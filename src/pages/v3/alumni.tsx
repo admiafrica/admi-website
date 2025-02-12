@@ -32,7 +32,7 @@ export default function AlumniPage() {
           <div
             className="z-5 absolute inset-0"
             style={{
-              background: `radial-gradient(circle, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 80%)`,
+              background: 'linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0, 42, 35, 1) 100%)',
             }}
           ></div>
           <Box className="relative z-10 mx-auto flex h-[50vh] w-full max-w-screen-xl flex-row px-4 sm:flex-row 2xl:px-0">
@@ -127,7 +127,7 @@ export default function AlumniPage() {
           </Box>
         </Box>
         {/* CONCLUSION */}
-        <Box className="mx-auto w-full max-w-screen-xl">
+        <Box className="mx-auto w-full max-w-screen-xl px-4">
           <Divider />
           <Box className="flex w-full flex-col py-6">
             <Title label="Conclusion" color="black" />
