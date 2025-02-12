@@ -8,6 +8,7 @@ type Props = {
   className?: string; // Extra styles
   fontFamily?: string; // Font Family
   fontWeight?: number;
+  td?: any;
 };
 
 const Paragraph: React.FC<Props> = ({
@@ -16,10 +17,11 @@ const Paragraph: React.FC<Props> = ({
   className = '',
   fontFamily = 'font-proxima',
   fontWeight = 500,
+  td,
 }) => {
   return (
     <div className={clsx(fontFamily, className)}>
-      <Text size={size} fw={fontWeight}>
+      <Text size={size} fw={fontWeight} td={td || ''}>
         {children}
       </Text>
     </div>

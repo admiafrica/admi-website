@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { Box, Text } from '@mantine/core';
+import { Box, Divider, Text } from '@mantine/core';
 import { Button, Paragraph, Title } from '@/components/ui';
 import { useRouter } from 'next/router';
 
@@ -26,30 +26,38 @@ export default function LearnMoreCard() {
   };
 
   return (
-    <Box className="mx-auto flex w-full max-w-screen-xl flex-col px-16">
+    <Box className="mx-auto flex w-full max-w-screen-lg flex-col px-6">
       <Image src={IconLogo} alt="about course" objectFit="cover" className="mb-6 h-[60px] w-[120px]" />
       <Box className="mx-auto flex w-full flex-col sm:flex-row">
         <div className="sm:w-1/2">
           <div className="flex h-full w-full flex-col sm:pr-28">
-            <Title label="With ADMI, we make learning made coool!!" color="black" size="64px" />
+            <Box className="flex flex-col">
+              <Title label="With ADMI, we" color="black" size="48px" />
+              <Title label="make learning" color="black" size="48px" />
+              <Box className="flex">
+                <Title label="made" color="black" size="48px" />
+                <div className="px-1"></div>
+                <Title label="coool" color="admiRed" size="48px" />
+                <Title label="!!" color="black" size="48px" />
+              </Box>
+            </Box>
             <Box className="flex w-full py-6">
               <Box className="w-1/3">
-                <Paragraph>Enroll with</Paragraph>
-                <Paragraph>today low as</Paragraph>
+                <Paragraph fontFamily="font-nexa">Enroll with</Paragraph>
+                <Paragraph fontFamily="font-nexa">today low as</Paragraph>
               </Box>
-              <Box className="w-1/3">
-                <Box className="mx-auto w-fit font-nexa">
-                  <Text size="36px" fw={400} td="line-through">
-                    KES 20,000
-                  </Text>
+              <Box className="grow">
+                <Box className="relative">
+                  <Divider size={2} color="admiRed" className="absolute inset-0 z-0 top-[12px] w-[84%]" />
                 </Box>
+                <Paragraph size="24px" fontWeight={400} fontFamily="font-nexa" td={'strike-through'}>
+                  KES 20,000
+                </Paragraph>
               </Box>
-              <Box className="w-1/3">
-                <Box className="mx-auto w-fit font-nexa">
-                  <Text size="36px" fw={400}>
-                    KES 0.00
-                  </Text>
-                </Box>
+              <Box>
+                <Paragraph size="24px" fontFamily="font-nexa" fontWeight={400}>
+                  KES 0.00
+                </Paragraph>
               </Box>
             </Box>
             <Button label="Enquire Today" size="lg" onClick={handleViewEnquiry} />
@@ -70,35 +78,40 @@ export default function LearnMoreCard() {
         </div>
         <div className="sm:w-1/2">
           <Box className="flex flex-row">
-            <Box className="flex w-full max-w-[300px] flex-col px-2">
+            <Box className="flex w-full max-w-[240px] flex-col px-2">
               <Image
                 src={ImageEnquiry1}
                 alt="about course"
                 objectFit="cover"
-                className="mb-8"
+                className="mb-2"
                 style={{ width: '100%' }}
               />
-              <Box className="mb-8 flex h-[12vh] w-full items-center justify-between rounded-xl px-[8%]" bg={'#E6F608'}>
-                <IconLightbulbOn width={54} height={54} color="black" />
-                <IconHat width={44} height={44} color="black" />
-                <IconShootingStar width={54} height={54} color="black" />
+              <Box>
+                <Box
+                  className="mb-3 flex h-[12vh] w-full items-center justify-between rounded-xl px-[8%]"
+                  bg={'#E6F608'}
+                >
+                  <IconLightbulbOn width={54} height={54} color="black" />
+                  <IconHat width={44} height={44} color="black" />
+                  <IconShootingStar width={54} height={54} color="black" />
+                </Box>
               </Box>
               <Image src={ImageEnquiry2} alt="about course" objectFit="cover" style={{ width: '100%' }} />
             </Box>
             <Box className="flex w-1/2 flex-col px-2">
-              <Box className="pb-4">
+              <Box className="w-full pb-4">
                 <Image
                   src={ImageEnquiry3}
                   alt="about course"
                   objectFit="cover"
-                  style={{ width: '90%', height: '100%' }}
+                  style={{ width: '100%', height: '100%' }}
                 />
               </Box>
-              <Box className="flex flex-row justify-between" h={'100%'} w={'90%'}>
-                <Box className="flex w-[32%] items-center justify-center rounded-xl" bg={'#F76335'} h={'8em'} mr={16}>
+              <Box className="flex flex-row" h={'100%'} w={'100%'}>
+                <Box className="flex w-[32%] items-center justify-center rounded-xl" bg={'#F76335'} h={'4em'} mr={16}>
                   <IconTrophy width={40} height={40} />
                 </Box>
-                <Box className="flex w-[64%] items-center justify-center rounded-xl" bg={'admiShamrok'} h={'8em'}>
+                <Box className="flex w-[64%] items-center justify-center rounded-xl" bg={'admiShamrok'} h={'4em'}>
                   <IconDoorkey width={48} height={48} color="black" />
                 </Box>
               </Box>

@@ -1,11 +1,12 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState, useRef } from 'react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
-import { Box, Text, Indicator, Divider, NumberFormatter, Drawer, Input } from '@mantine/core';
+import { Box, Text, Indicator, Divider, NumberFormatter, Drawer, Input, Modal } from '@mantine/core';
 import { Carousel } from '@mantine/carousel';
 import { useDisclosure } from '@mantine/hooks';
+import Autoplay from 'embla-carousel-autoplay';
 
-import { Paragraph, Title } from '@/components/ui';
+import { AnimatedWordDisplay, Paragraph, Title } from '@/components/ui';
 import { MainLayout } from '@/layouts/v3/MainLayout';
 import { IconPlus } from '@tabler/icons-react';
 
@@ -40,6 +41,17 @@ export default function HomePage() {
   const [content, setContent] = useState<any>();
   const [courses, setCourses] = useState<Array<any>>([]);
   const [opened, { open, close }] = useDisclosure(false);
+  const autoplaySectors = useRef(Autoplay({ delay: 4000 }));
+  const autoplayTestimonials = useRef(Autoplay({ delay: 4000 }));
+  const autoplayFacilities = useRef(Autoplay({ delay: 4000 }));
+  const autoplayCourses = useRef(Autoplay({ delay: 4000 }));
+
+  const keyItems = [
+    { word: 'Media', styles: 'text-[#F1FE38]' },
+    { word: 'Technology', styles: 'text-[#01C6A5]' },
+    { word: 'Production', styles: 'text-[#F76335]' },
+    { word: 'Engineering', styles: 'text-[#F60834]' },
+  ];
 
   const sectors = [
     {
@@ -125,9 +137,9 @@ export default function HomePage() {
   return (
     <MainLayout footerBgColor="#E6F608">
       <PageSEO title="Home" />
-      <Drawer offset={'100px'} radius="md" opened={opened} onClose={close} position="top" size={'100%'} padding={0}>
+      <Modal radius="lg" opened={opened} onClose={close} size={'72rem'}>
         <LearnMoreCard />
-      </Drawer>
+      </Modal>
       <div className="w-full">
         {/* HERO */}
         <Box className="relative w-full">
@@ -158,9 +170,7 @@ export default function HomePage() {
                   <Paragraph fontFamily="font-nexa" fontWeight={900} size="48px" className="pr-1 text-white">
                     Creative
                   </Paragraph>
-                  <Paragraph fontFamily="font-nexa" fontWeight={900} size="48px" className="text-[#F1FE38]">
-                    Media
-                  </Paragraph>
+                  <AnimatedWordDisplay words={keyItems} fontFamily="font-nexa" fontWeight={900} size="48px" />
                 </Box>
               </Box>
               <Paragraph className="py-6 text-white">
@@ -201,11 +211,21 @@ export default function HomePage() {
               </Paragraph>
             </div>
             <div className="mx-auto my-8 w-fit">
-              <Title label="We offer practical courses in:" size="24px" color="black" />
+              <Title label="We offer practical courses in:" size="20px" color="black" />
             </div>
           </Box>
-          <Box className="w-full">
-            <Carousel slideSize={260} slideGap="md" loop align="start" slidesToScroll={1}>
+          <Box className="mx-auto w-full max-w-screen-xl">
+            <Carousel
+              slideSize={160}
+              slideGap="md"
+              loop
+              px={'7%'}
+              align="start"
+              slidesToScroll={1}
+              plugins={[autoplaySectors.current]}
+              onMouseEnter={autoplaySectors.current.stop}
+              onMouseLeave={autoplaySectors.current.reset}
+            >
               {sectors.map((sector: any) => (
                 <Carousel.Slide key={sector.title} py={6}>
                   <SectorItemCard sector={sector} withBorder />
@@ -304,7 +324,16 @@ export default function HomePage() {
               </Box>
             </Box>
             <Box className="w-full">
-              <Carousel slideSize={360} slideGap="md" loop align="start" slidesToScroll={1}>
+              <Carousel
+                slideSize={360}
+                slideGap="md"
+                loop
+                align="start"
+                slidesToScroll={1}
+                plugins={[autoplayTestimonials.current]}
+                onMouseEnter={autoplayTestimonials.current.stop}
+                onMouseLeave={autoplayTestimonials.current.reset}
+              >
                 {content &&
                   content.fields.testimonials.map((testimonial: any, index: number) => (
                     <Carousel.Slide key={`testimonial-${index}`}>
@@ -349,6 +378,9 @@ export default function HomePage() {
                 align="start"
                 slidesToScroll={1}
                 controlsOffset={0}
+                plugins={[autoplayFacilities.current]}
+                onMouseEnter={autoplayFacilities.current.stop}
+                onMouseLeave={autoplayFacilities.current.reset}
               >
                 {facilities.map((facility) => (
                   <Carousel.Slide key={facility.name}>
@@ -379,7 +411,16 @@ export default function HomePage() {
               </Box>
             </Box>
             <Box className="w-full">
-              <Carousel slideSize={260} slideGap="md" loop align="start" slidesToScroll={1}>
+              <Carousel
+                slideSize={260}
+                slideGap="md"
+                loop
+                align="start"
+                slidesToScroll={1}
+                plugins={[autoplayCourses.current]}
+                onMouseEnter={autoplayCourses.current.stop}
+                onMouseLeave={autoplayCourses.current.reset}
+              >
                 {courses.map((course) => (
                   <Carousel.Slide key={course.sys.id}>
                     <CourseItemCard course={course} />
