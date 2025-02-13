@@ -118,8 +118,6 @@ export default function StudentSupportPage() {
                 withControls={false}
                 align="start"
                 slidesToScroll={1}
-                controlsOffset={0}
-                px={'4%'}
                 plugins={[autoplaySupport.current]}
                 onMouseEnter={autoplaySupport.current.stop}
                 onMouseLeave={autoplaySupport.current.reset}
@@ -154,9 +152,9 @@ export default function StudentSupportPage() {
                 your schedule accordingly.
               </Paragraph>
             </Box>
-            <Box className="flex">
+            <Box className="flex mt-6">
               <IconDownload color="#F60934" size={32} />{' '}
-              <Paragraph fontFamily="font-nexa" fontWeight={900} className="text-admiRed">
+              <Paragraph fontFamily="font-nexa" fontWeight={900} className="text-admiRed my-auto px-2">
                 Download Calendar
               </Paragraph>
             </Box>
@@ -273,7 +271,7 @@ export default function StudentSupportPage() {
         </Box>
         {/* COUNSELING AND CAREER */}
         <Box className="w-full py-8" bg={'#F5FFFD'}>
-          <Box className="w-full">
+          <Box className="mx-auto w-full max-w-screen-xl">
             <Carousel
               slideSize={600}
               height={400}
@@ -281,8 +279,7 @@ export default function StudentSupportPage() {
               loop
               align="start"
               slidesToScroll={1}
-              controlsOffset={0}
-              px={'4%'}
+              withControls={false}
               plugins={[autoplayFacilities.current]}
               onMouseEnter={autoplayFacilities.current.stop}
               onMouseLeave={autoplayFacilities.current.reset}
@@ -315,7 +312,7 @@ export default function StudentSupportPage() {
                 loop
                 align="start"
                 slidesToScroll={1}
-                px={'4%'}
+                withControls={false}
                 plugins={[autoplayTestimonials.current]}
                 onMouseEnter={autoplayTestimonials.current.stop}
                 onMouseLeave={autoplayTestimonials.current.reset}

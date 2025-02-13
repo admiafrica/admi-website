@@ -51,6 +51,13 @@ import IconBicycle from '@/assets/icons/bicycle.svg';
 import IconMapMarker from '@/assets/icons/map-marker-3.svg';
 import IconBus from '@/assets/icons/bus.svg';
 import IconCloudSun from '@/assets/icons/cloud-sun.svg';
+import { IconPinned } from '@tabler/icons-react';
+import IconUsersGroup from '@/assets/icons/UsersGroup';
+import IconDashboardTabs from '@/assets/icons/DashboardTabs';
+import IconEdit from '@/assets/icons/Edit';
+import IconSettingGear from '@/assets/icons/SettingGear';
+import IconDrawSquare from '@/assets/icons/DrawSquare';
+import IconTopArrow from '@/assets/icons/TopArrow';
 
 export const ROUTES = {
   INDEX: '/',
@@ -462,7 +469,7 @@ export const ADMI_FELLOWSHIP_VALUES = [
   {
     id: 'global',
     name: 'Why Join Our Fellowship Program?',
-    icon: IconBrowser,
+    icon: IconPinned,
     iconColor: '#F76335',
     description: [
       `As a fellow at ADMI, you will have the unique opportunity to engage in meaningful work while gaining valuable experience in the field of digital media and education.`,
@@ -472,7 +479,7 @@ export const ADMI_FELLOWSHIP_VALUES = [
   {
     id: 'practical',
     name: 'Who Can Apply',
-    icon: IconMouse,
+    icon: IconPinned,
     iconColor: '#03C6A4',
     description: [
       `We welcome applications from individuals with a strong passion or education and  commitment to making a difference.`,
@@ -482,7 +489,7 @@ export const ADMI_FELLOWSHIP_VALUES = [
   {
     id: 'digital',
     name: 'How To Apply',
-    icon: IconDesktop,
+    icon: IconPinned,
     iconColor: '#F60934',
     description: [
       `If you are interested in joining our fellowship program, we invite you to express your interest by sending your CV and a cover letter detailing your background, the department you wish to cntribute to, and how your skills align with our mission to apply@admi.ac.ke .`,
@@ -496,28 +503,28 @@ export const ADMI_FELLOWSHIP_DEPARTMENTS = [
     id: 'global',
     name: 'Teaching & Curriculum Development',
     icon: IconBook,
-    iconColor: '#F76335',
+    iconColor: '#01C6A5',
     description: [`Contribute to course design and delivery, bringing your expertise to the classroom.`],
   },
   {
     id: 'practical',
     name: 'Research and Innovation',
     icon: IconSearch,
-    iconColor: '#03C6A4',
+    iconColor: '#F60834',
     description: [`Engage in research projects that advance knowledge in digital media and technology.`],
   },
   {
     id: 'digital',
     name: 'Student Support Services',
     icon: IconShootingStar,
-    iconColor: '#F60934',
+    iconColor: '#E43B07',
     description: [`Assist in providing guidance and support to students, enhancing their educational experience.`],
   },
   {
     id: 'digital',
     name: 'Administrative Functions',
     icon: IconHomeAlt,
-    iconColor: '#F60934',
+    iconColor: '#B9C601',
     description: [
       `Participate in the operational aspects of the institute, gaining insights into higher education management.`,
     ],
@@ -528,7 +535,7 @@ export const ADMI_CAREER_VALUES = [
   {
     id: 'global',
     name: 'Impactful Teaching',
-    icon: IconBook,
+    icon: IconEdit,
     iconColor: '#F76335',
     description: [
       `At ADMI, you will have the chance to shape the minds of students and make a lasting impact on their careers. Your expertise and passion for teaching can help cultivate the skills and creativity of future leaders in the digital media landscape.`,
@@ -537,7 +544,7 @@ export const ADMI_CAREER_VALUES = [
   {
     id: 'practical',
     name: 'Collaborative Environment',
-    icon: IconSearch,
+    icon: IconUsersGroup,
     iconColor: '#03C6A4',
     description: [
       `Join a community of like-minded professionals who share your commitment to education and innovation. Our collaborative environment encourages knowledge sharing, creativity, and professional growth.`,
@@ -546,7 +553,7 @@ export const ADMI_CAREER_VALUES = [
   {
     id: 'digital',
     name: 'Diverse Course Offerings',
-    icon: IconShootingStar,
+    icon: IconDashboardTabs,
     iconColor: '#F60934',
     description: [
       `We offer a wide range of courses in digital media, including film, animation, graphic design, and more. If you have a particular area of expertise or a course you are passionate about teaching, we want to hear from you!`,
@@ -558,7 +565,7 @@ export const ADMI_ACCREDITATION_VALUES = [
   {
     id: 'global',
     name: 'Quality Assurance',
-    icon: IconBook,
+    icon: IconSettingGear,
     iconColor: '#F76335',
     description: [
       `Our accreditation ensures that you receive a high-quality education that meets international standards, giving you confidence in your qualifications.`,
@@ -567,7 +574,7 @@ export const ADMI_ACCREDITATION_VALUES = [
   {
     id: 'practical',
     name: 'Global Recognition',
-    icon: IconSearch,
+    icon: IconDrawSquare,
     iconColor: '#03C6A4',
     description: [
       `With Pearson Assured and Woolf University accreditation, your qualifications will be recognized by employers and educational institutions around the world, opening doors to further studies and career opportunities.`,
@@ -576,7 +583,7 @@ export const ADMI_ACCREDITATION_VALUES = [
   {
     id: 'digital',
     name: 'Continuous Improvement',
-    icon: IconShootingStar,
+    icon: IconTopArrow,
     iconColor: '#F60934',
     description: [
       `Our commitment to quality means that we continually assess and improve our programs to meet the evolving needs of the digital media industry.`,

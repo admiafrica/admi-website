@@ -12,8 +12,12 @@ export default function InfoCard({ support }: Props) {
   return (
     <Card className="z-10 h-full w-full" bg={'#081E1A'} withBorder>
       <Box className="flex">
-        <IconAttach width={24} height={24} color="white" />
-        <Paragraph fontFamily="font-nexa" fontWeight={900} className="w-[90%] px-4 text-white">
+        {support.icon ? (
+          <support.icon width={36} height={36} color="white" />
+        ) : (
+          <IconAttach width={24} height={24} color="white" />
+        )}
+        <Paragraph fontFamily="font-nexa" fontWeight={900} className="my-auto w-[90%] px-4 text-white">
           {support.name}
         </Paragraph>
       </Box>

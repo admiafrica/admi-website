@@ -1,21 +1,27 @@
 import Image from 'next/image';
-import { Box, Divider } from '@mantine/core';
+import { Box, Divider, Modal } from '@mantine/core';
 
 import { MainLayout } from '@/layouts/v3/MainLayout';
 import { Paragraph, Title } from '@/components/ui';
 import { PageSEO } from '@/components/shared/v3';
-import { InfoCard, PlainCard } from '@/components/cards';
+import { InfoCard, LearnMoreCard, PlainCard } from '@/components/cards';
 import { ADMI_ACCREDITATION_VALUES, ADMI_FELLOWSHIPS } from '@/utils';
 
 import ImageAccreditationLanding from '@/assets/images/accreditation-landing.png';
+import { useDisclosure } from '@mantine/hooks';
 
 export default function AccreditationPage() {
+  const [opened, { open, close }] = useDisclosure(false);
+
   return (
     <MainLayout footerBgColor="white">
       <PageSEO title="Accreditation" />
+      <Modal radius="lg" opened={opened} onClose={close} size={'72rem'}>
+        <LearnMoreCard />
+      </Modal>
       <div className="w-full">
         {/* HEADER */}
-        <Box className="relative w-full" bg={'blue'}>
+        <Box className="relative w-full" bg={'blue'} onClick={open}>
           <Image
             src={ImageAccreditationLanding}
             placeholder="empty"
@@ -43,7 +49,7 @@ export default function AccreditationPage() {
                   educational excellence through our accreditation partnerships. Currently, we are recognized as a
                   Pearson Assured institution, which signifies our commitment to quality education and training.
                 </Paragraph>
-                <Divider orientation="vertical" size={2}/>
+                <Divider orientation="vertical" size={2} />
                 <Paragraph fontFamily="font-nexa" className="w-1/2 pl-6 text-white">
                   This independent benchmark from Pearson ensures that we meet rigorous quality criteria, providing you
                   with a reliable and respected qualification that is recognized globally.
@@ -69,7 +75,7 @@ export default function AccreditationPage() {
         </Box>
         {/* Floating Card */}
         <div className="relative w-full px-4 2xl:px-0">
-          <div className="z-10 w-full max-w-screen-xl px-4 sm:absolute sm:left-1/2 sm:top-[-12vh] sm:top-[10vh] sm:-translate-x-1/2 sm:transform 2xl:px-0">
+          <div className="z-10 w-full max-w-screen-xl px-4 sm:absolute sm:left-1/2 sm:top-[-120px] sm:-translate-x-1/2 sm:transform 2xl:px-0">
             <Box className="flex w-full flex-col sm:flex-row">
               <Box className="pr-4 sm:w-1/2">
                 <PlainCard>

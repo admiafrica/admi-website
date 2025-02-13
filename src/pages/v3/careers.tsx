@@ -1,16 +1,18 @@
 import Image from 'next/image';
-import { Box, Divider } from '@mantine/core';
+import { Box, Divider, Modal } from '@mantine/core';
 
 import { MainLayout } from '@/layouts/v3/MainLayout';
 import { Paragraph, Title } from '@/components/ui';
 import { PageSEO } from '@/components/shared/v3';
-import { InfoCard, PlainCard } from '@/components/cards';
+import { InfoCard, LearnMoreCard, PlainCard } from '@/components/cards';
 import { ADMI_CAREER_VALUES } from '@/utils';
 
 import IconAudioPhoneAlt from '@/assets/icons/audio-phone-alt.svg';
 import ImageCareersLanding from '@/assets/images/careers-landing.png';
+import { useDisclosure } from '@mantine/hooks';
 
 export default function CareersPage() {
+  const [opened, { open, close }] = useDisclosure(false);
   const howToApply = {
     title: 'How to Apply',
     description:
@@ -28,9 +30,12 @@ export default function CareersPage() {
   return (
     <MainLayout footerBgColor="white">
       <PageSEO title="Work With Us" />
+      <Modal radius="lg" opened={opened} onClose={close} size={'72rem'}>
+        <LearnMoreCard />
+      </Modal>
       <div className="w-full">
         {/* HEADER */}
-        <Box className="relative w-full">
+        <Box className="relative w-full" onClick={open}>
           <Image
             src={ImageCareersLanding}
             placeholder="empty"
