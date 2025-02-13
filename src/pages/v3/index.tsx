@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState, useRef } from 'react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
-import { Box, Text, Indicator, Divider, NumberFormatter, Drawer, Input, Modal } from '@mantine/core';
+import { Box, Text, Indicator, Divider, NumberFormatter, Input, Modal } from '@mantine/core';
 import { Carousel } from '@mantine/carousel';
 import { useDisclosure } from '@mantine/hooks';
 import Autoplay from 'embla-carousel-autoplay';
@@ -20,22 +20,13 @@ import {
   SectorItemCard,
   UserTestimonialCard,
 } from '@/components/cards';
+import { ADMI_FACILITIES, ADMI_HOMEPAGE_SECTORS } from '@/utils';
 
 import HeroBackgroundImage from '@/assets/images/homepage-hero.svg';
 import AnnouncementImage from '@/assets/images/announcement.svg';
 import NewsImage from '@/assets/images/featured-news.svg';
 import AwardsImage from '@/assets/images/awards.svg';
-
 import IconSearch from '@/assets/icons/Search';
-import IconHome from '@/assets/icons/Home';
-import IconTripodCamera from '@/assets/icons/TripodCamera';
-import IconCamera from '@/assets/icons/Camera';
-import IconMusic from '@/assets/icons/Music';
-import IconSoundwave from '@/assets/icons/Soundwave';
-import IconTruckSpeed from '@/assets/icons/TruckSpeed';
-import IconTv from '@/assets/icons/Tv';
-import { ADMI_FACILITIES, ADMI_HOMEPAGE_SECTORS } from '@/utils';
-import IconGamepad from '@/assets/icons/Gamepad';
 
 export default function HomePage() {
   const router = useRouter();

@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { Box, Card, Divider, Modal, Text } from '@mantine/core';
+import { useDisclosure } from '@mantine/hooks';
 
 import { MainLayout } from '@/layouts/v3/MainLayout';
 import { Paragraph, Title } from '@/components/ui';
@@ -8,7 +9,6 @@ import { CompanyValuesCard, LearnMoreCard } from '@/components/cards';
 import { ADMI_FELLOWSHIP_VALUES, ADMI_FELLOWSHIP_DEPARTMENTS } from '@/utils';
 
 import ImageFellowshipLanding from '@/assets/images/fellowship-landing.png';
-import { useDisclosure } from '@mantine/hooks';
 
 export default function FellowshipPage() {
   const [opened, { open, close }] = useDisclosure(false);

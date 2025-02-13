@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { Box, Divider, Modal } from '@mantine/core';
+import { useDisclosure } from '@mantine/hooks';
 
 import { MainLayout } from '@/layouts/v3/MainLayout';
 import { Paragraph, Title } from '@/components/ui';
@@ -9,7 +10,6 @@ import { ADMI_CAREER_VALUES } from '@/utils';
 
 import IconAudioPhoneAlt from '@/assets/icons/audio-phone-alt.svg';
 import ImageCareersLanding from '@/assets/images/careers-landing.png';
-import { useDisclosure } from '@mantine/hooks';
 
 export default function CareersPage() {
   const [opened, { open, close }] = useDisclosure(false);

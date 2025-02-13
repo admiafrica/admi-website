@@ -17,10 +17,10 @@ import {
   ADMI_STUDENT_SUPPORT,
 } from '@/utils';
 
+import { IconDownload } from '@tabler/icons-react';
 import IconSpinner from '@/assets/icons/Spinner';
 import IconUsersGroup from '@/assets/icons/UsersGroup';
 import IconDashboardTabs from '@/assets/icons/DashboardTabs';
-import { IconDownload } from '@tabler/icons-react';
 import IconCalendarCheck from '@/assets/icons/CalendarCheck';
 import ImageCalendar from '@/assets/images/calendar.svg';
 import ImageSupportLanding from '@/assets/images/student-support-landing.png';

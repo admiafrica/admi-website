@@ -194,6 +194,34 @@ export const ADMI_HOMEPAGE_SECTORS = [
   },
 ];
 
+export const ADMI_ABOUT_SECTORS = [
+  {
+    title: '2D and 3D animation',
+    icon: IconHome,
+    color: '#B9C601',
+  },
+  {
+    title: 'Video Production',
+    icon: IconCamera,
+    color: '#01C6A5',
+  },
+  {
+    title: 'Graphic Design',
+    icon: IconTv,
+    color: '#F60934',
+  },
+  {
+    title: 'Film & TV Production',
+    icon: IconTripodCamera,
+    color: '#F76335',
+  },
+  {
+    title: 'Sound Engineering',
+    icon: IconSoundwave,
+    color: '#B9C601',
+  },
+];
+
 export const ADMI_ACADEMIC_TEAM = [
   {
     name: 'Carolyne Sila',

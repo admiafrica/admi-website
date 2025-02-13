@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { Box, Divider, Modal } from '@mantine/core';
+import { useDisclosure } from '@mantine/hooks';
 
 import { MainLayout } from '@/layouts/v3/MainLayout';
 import { Paragraph, Title } from '@/components/ui';
@@ -8,7 +9,6 @@ import { InfoCard, LearnMoreCard, PlainCard } from '@/components/cards';
 import { ADMI_ACCREDITATION_VALUES, ADMI_FELLOWSHIPS } from '@/utils';
 
 import ImageAccreditationLanding from '@/assets/images/accreditation-landing.png';
-import { useDisclosure } from '@mantine/hooks';
 
 export default function AccreditationPage() {
   const [opened, { open, close }] = useDisclosure(false);

@@ -1,4 +1,6 @@
+import { useRef } from 'react';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import { Box, Text } from '@mantine/core';
 import { Carousel } from '@mantine/carousel';
 import Autoplay from 'embla-carousel-autoplay';
@@ -8,47 +10,23 @@ import { MainLayout } from '@/layouts/v3/MainLayout';
 
 import { PageSEO, Ribbon, Timeline } from '@/components/shared/v3';
 import { FacilityItemCard, SectorItemCard, CompanyValuesCard, UserProfileCard } from '@/components/cards';
-import { ADMI_ACADEMIC_TEAM, ADMI_DIRECTORS, ADMI_FACILITIES, ADMI_HISTORY, ADMI_VALUES } from '@/utils';
+import {
+  ADMI_ABOUT_SECTORS,
+  ADMI_ACADEMIC_TEAM,
+  ADMI_DIRECTORS,
+  ADMI_FACILITIES,
+  ADMI_HISTORY,
+  ADMI_VALUES,
+} from '@/utils';
 
 import ImageAboutLanding from '@/assets/images/about-landing.svg';
 import IconBgImageYellow from '@/assets/icons/ellipse-yellow.svg';
 import IconBgImageRed from '@/assets/icons/ellipse-red.svg';
-
-import IconHome from '@/assets/icons/Home';
-import IconTripodCamera from '@/assets/icons/TripodCamera';
-import IconCamera from '@/assets/icons/Camera';
 import IconArrowTipRight from '@/assets/icons/ArrowTipRight';
-import IconSoundwave from '@/assets/icons/Soundwave';
-import IconTv from '@/assets/icons/Tv';
-import { useRouter } from 'next/router';
-import { useRef } from 'react';
 
 export default function AboutPage() {
   const router = useRouter();
   const autoplayFacilities = useRef(Autoplay({ delay: 4000 }));
-
-  const sectors = [
-    {
-      title: '2D and 3D animation',
-      icon: <IconHome color="#B9C601" />,
-    },
-    {
-      title: 'Video Production',
-      icon: <IconCamera color="#01C6A5" />,
-    },
-    {
-      title: 'Graphic Design',
-      icon: <IconTv color="#F60934" />,
-    },
-    {
-      title: 'Film & TV Production',
-      icon: <IconTripodCamera color="#F76335" />,
-    },
-    {
-      title: 'Sound Engineering',
-      icon: <IconSoundwave color="#B9C601" />,
-    },
-  ];
 
   const handleViewCourses = () => {
     router.push('/v3/courses');
@@ -105,7 +83,7 @@ export default function AboutPage() {
           </Box>
           <Box className="w-[50%] py-16">
             <Box className="flex w-full flex-wrap">
-              {sectors.map((sector: any) => (
+              {ADMI_ABOUT_SECTORS.map((sector: any) => (
                 <Box key={sector.title} className="mb-4 mr-4">
                   <SectorItemCard
                     sector={sector}

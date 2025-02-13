@@ -1,9 +1,11 @@
 import Image from 'next/image';
 import { Box, Card, Divider, Modal } from '@mantine/core';
+import { useDisclosure } from '@mantine/hooks';
 
 import { MainLayout } from '@/layouts/v3/MainLayout';
 import { Paragraph, Title } from '@/components/ui';
 import { PageSEO } from '@/components/shared/v3';
+import { LearnMoreCard } from '@/components/cards';
 import { ADMI_ACCOMODATION_FEATURES } from '@/utils';
 
 import IconQwetu from '@/assets/icons/qwetu-residence.svg';
@@ -13,8 +15,6 @@ import IconQejaniLight from '@/assets/icons/qejani-residence-light.svg';
 import ImageCommunityBg from '@/assets/images/community-bg.png';
 import ImageAccomodationLanding from '@/assets/images/accomodation-landing.png';
 import IconArrowTipRight from '@/assets/icons/ArrowTipRight';
-import { useDisclosure } from '@mantine/hooks';
-import { LearnMoreCard } from '@/components/cards';
 
 export default function AccomodationsPage() {
   const [opened, { open, close }] = useDisclosure(false);

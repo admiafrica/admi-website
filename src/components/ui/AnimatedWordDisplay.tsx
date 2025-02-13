@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Text } from '@mantine/core';
 import { motion, AnimatePresence } from 'framer-motion';
 import Paragraph from './Paragraph';
 

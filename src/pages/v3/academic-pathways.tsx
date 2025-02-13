@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { Box } from '@mantine/core';
 
 import { MainLayout } from '@/layouts/v3/MainLayout';
@@ -5,7 +6,6 @@ import { Paragraph, Title } from '@/components/ui';
 import { PageSEO } from '@/components/shared/v3';
 import { InfoCard, PlainCard } from '@/components/cards';
 import { ADMI_ACADEMIC_PATHWAYS } from '@/utils';
-import Image from 'next/image';
 
 import ImagePathwaysLanding from '@/assets/images/academic-pathways-landing.jpeg';
 

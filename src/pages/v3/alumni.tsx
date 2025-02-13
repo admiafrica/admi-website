@@ -1,17 +1,17 @@
 import Image from 'next/image';
 import { Box, Divider, Modal } from '@mantine/core';
+import { useDisclosure } from '@mantine/hooks';
 
 import { MainLayout } from '@/layouts/v3/MainLayout';
 import { Paragraph, Title } from '@/components/ui';
 import { PageSEO } from '@/components/shared/v3';
 import { LearnMoreCard, PlainCard, UserProfileCard } from '@/components/cards';
+import { JoinForm } from '@/components/forms';
 import { ADMI_ALUMNI } from '@/utils';
 
 import IconUsersGroupAlt from '@/assets/icons/users-group-alt.svg';
 import IconCelebrate from '@/assets/icons/celebrate.svg';
 import ImageAlumniLanding from '@/assets/images/alumni-landing.png';
-import { JoinForm } from '@/components/forms';
-import { useDisclosure } from '@mantine/hooks';
 
 export default function AlumniPage() {
   const [opened, { open, close }] = useDisclosure(false);
