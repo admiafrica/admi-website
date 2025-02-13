@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { Box, Card, Divider } from '@mantine/core';
+import { Box, Card, Divider, Modal } from '@mantine/core';
 
 import { MainLayout } from '@/layouts/v3/MainLayout';
 import { Paragraph, Title } from '@/components/ui';
@@ -13,14 +13,21 @@ import IconQejaniLight from '@/assets/icons/qejani-residence-light.svg';
 import ImageCommunityBg from '@/assets/images/community-bg.png';
 import ImageAccomodationLanding from '@/assets/images/accomodation-landing.png';
 import IconArrowTipRight from '@/assets/icons/ArrowTipRight';
+import { useDisclosure } from '@mantine/hooks';
+import { LearnMoreCard } from '@/components/cards';
 
 export default function AccomodationsPage() {
+  const [opened, { open, close }] = useDisclosure(false);
+
   return (
-    <MainLayout footerBgColor="white">
+    <MainLayout footerBgColor="#F5FFFD">
       <PageSEO title="Accomodation" />
+      <Modal radius="lg" opened={opened} onClose={close} size={'72rem'}>
+        <LearnMoreCard />
+      </Modal>
       <div className="w-full">
         {/* HEADER */}
-        <Box className="relative w-full" bg={'blue'}>
+        <Box className="relative w-full cursor-pointer" bg={'blue'} onClick={open}>
           <Image
             src={ImageAccomodationLanding}
             placeholder="empty"
@@ -120,70 +127,74 @@ export default function AccomodationsPage() {
         </Box>
       </div>
       {/* BOOKING */}
-      <Box className="mx-auto w-full max-w-screen-xl px-4 py-6">
-        <Box className="w-full">
-          <div className="mx-auto my-8 w-fit">
-            <Title label="How to Book Your Accomodation" size="24px" color="black" />
-          </div>
-          <div className="mx-auto mb-8 w-full max-w-screen-xl">
-            <Paragraph fontFamily="font-nexa text-center" className="py-4">
-              We encourage you to take the next step in securing your accommodation at Qwetu or Qejani. Booking your
-              room is simple and straightforward. Visit their respective websites to explore available options and find
-              the perfect fit for your needs:
-            </Paragraph>
-            <Box className="mx-auto flex w-fit">
-              <Card className="flex h-[128px] w-[340px] flex-col items-center sm:mr-4" bg={'#E9530E'}>
-                <Image src={IconQwetuLight} alt="Qwetu Residences" width={150} height={80} />
-                <Box className="mx-auto flex">
-                  <Paragraph className="my-auto text-white">Book with Qwetu</Paragraph>
-                  <IconArrowTipRight color="white" />
-                </Box>
-              </Card>
-              <Card className="flex h-[128px] w-[340px] flex-col items-center sm:ml-4" bg={'#542883'}>
-                <Image src={IconQejaniLight} alt="Qejani Residences" width={150} height={80} />
-                <Box className="mx-auto flex">
-                  <Paragraph className="my-auto text-white">Book with Qejani</Paragraph>
-                  <IconArrowTipRight color="white" />
-                </Box>
-              </Card>
-            </Box>
-            <Paragraph fontFamily="font-nexa" className="py-4 text-center">
-              When booking, be sure to use the <strong>Referral Code: STU-0016368</strong> to enjoy exclusive benefits
-              and offers tailored for ADMI students.
-            </Paragraph>
-          </div>
+      <Box className="w-full" bg={'#F5FFFD'}>
+        <Box className="mx-auto w-full max-w-screen-xl px-4 py-6">
+          <Box className="w-full">
+            <div className="mx-auto my-8 w-fit">
+              <Title label="How to Book Your Accomodation" size="24px" color="black" />
+            </div>
+            <div className="mx-auto mb-8 w-full max-w-screen-xl">
+              <Paragraph fontFamily="font-nexa text-center" className="py-4">
+                We encourage you to take the next step in securing your accommodation at Qwetu or Qejani. Booking your
+                room is simple and straightforward. Visit their respective websites to explore available options and
+                find the perfect fit for your needs:
+              </Paragraph>
+              <Box className="mx-auto flex w-fit">
+                <Card className="flex h-[128px] w-[340px] flex-col items-center sm:mr-4" bg={'#E9530E'}>
+                  <Image src={IconQwetuLight} alt="Qwetu Residences" width={150} height={80} />
+                  <Box className="mx-auto flex">
+                    <Paragraph className="my-auto text-white">Book with Qwetu</Paragraph>
+                    <IconArrowTipRight color="white" />
+                  </Box>
+                </Card>
+                <Card className="flex h-[128px] w-[340px] flex-col items-center sm:ml-4" bg={'#542883'}>
+                  <Image src={IconQejaniLight} alt="Qejani Residences" width={150} height={80} />
+                  <Box className="mx-auto flex">
+                    <Paragraph className="my-auto text-white">Book with Qejani</Paragraph>
+                    <IconArrowTipRight color="white" />
+                  </Box>
+                </Card>
+              </Box>
+              <Paragraph fontFamily="font-nexa" className="py-4 text-center">
+                When booking, be sure to use the <strong>Referral Code: STU-0016368</strong> to enjoy exclusive benefits
+                and offers tailored for ADMI students.
+              </Paragraph>
+            </div>
+          </Box>
         </Box>
       </Box>
       {/* COMMUNITY */}
-      <Box className="mx-auto w-full max-w-screen-xl px-4 py-6">
-        <Card className="w-full" bg={'#F1FE37'} radius={8}>
-          <Card.Section className="w-full">
-            <Box className="flex w-full">
-              <Box className="grow p-16">
-                <Title label="Community and Support" color="black" />
-                <Paragraph fontFamily="font-nexa" fontWeight={400} size="24px">
-                  Qwetu or Qejani means becoming part of a vibrant community of fellow students from diverse
-                  backgrounds.
-                </Paragraph>
-                <Paragraph fontFamily="font-nexa" className="py-6">
-                  Engage in social events, workshops, and activities that foster connections and friendships that can
-                  last a lifetime. The supportive environment encourages collaboration, networking, and personal growth,
-                  allowing you to make the most of your time at ADMI.
-                </Paragraph>
-                <Paragraph fontFamily="font-nexa" className="py-6">
-                  At ADMI, we are committed to supporting your journey as a student, and we believe that finding the
-                  right accommodation is a crucial step in that process. With Qwetu and Qejani, you’ll find a welcoming
-                  community that enhances your educational experience and helps you thrive both academically and
-                  personally. Embrace the opportunity to live in a space that inspires you to achieve your goals and
-                  enjoy your university life to the fullest!
-                </Paragraph>
+      <Box bg={'#F5FFFD'}>
+        <Box className="mx-auto w-full max-w-screen-xl px-4 py-6">
+          <Card className="w-full" bg={'#F1FE37'} radius={8}>
+            <Card.Section className="w-full">
+              <Box className="flex w-full">
+                <Box className="grow p-16">
+                  <Title label="Community and Support" color="black" />
+                  <Paragraph fontFamily="font-nexa" fontWeight={400} size="24px">
+                    Qwetu or Qejani means becoming part of a vibrant community of fellow students from diverse
+                    backgrounds.
+                  </Paragraph>
+                  <Paragraph fontFamily="font-nexa" className="py-6">
+                    Engage in social events, workshops, and activities that foster connections and friendships that can
+                    last a lifetime. The supportive environment encourages collaboration, networking, and personal
+                    growth, allowing you to make the most of your time at ADMI.
+                  </Paragraph>
+                  <Paragraph fontFamily="font-nexa" className="py-6">
+                    At ADMI, we are committed to supporting your journey as a student, and we believe that finding the
+                    right accommodation is a crucial step in that process. With Qwetu and Qejani, you’ll find a
+                    welcoming community that enhances your educational experience and helps you thrive both academically
+                    and personally. Embrace the opportunity to live in a space that inspires you to achieve your goals
+                    and enjoy your university life to the fullest!
+                  </Paragraph>
+                </Box>
+                <Box className="w-[50%] items-end">
+                  <Image src={ImageCommunityBg} alt="community and support" />
+                </Box>
               </Box>
-              <Box className="w-[50%] items-end">
-                <Image src={ImageCommunityBg} alt="community and support" />
-              </Box>
-            </Box>
-          </Card.Section>
-        </Card>
+            </Card.Section>
+          </Card>
+        </Box>
       </Box>
     </MainLayout>
   );

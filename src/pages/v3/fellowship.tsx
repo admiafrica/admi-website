@@ -12,6 +12,7 @@ import { useDisclosure } from '@mantine/hooks';
 
 export default function FellowshipPage() {
   const [opened, { open, close }] = useDisclosure(false);
+
   return (
     <MainLayout footerBgColor="white">
       <PageSEO title="Fellowship" />
