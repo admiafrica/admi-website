@@ -10,6 +10,8 @@ type Props = {
   withBorder?: boolean;
   bgColor?: string;
   defaultBorder?: boolean;
+  width?: number;
+  height?: number;
 };
 
 export default function SectorItemCard({
@@ -18,6 +20,8 @@ export default function SectorItemCard({
   withBorder = false,
   bgColor = 'none',
   defaultBorder = true,
+  width = 160,
+  height = 160,
 }: Props) {
   const router = useRouter();
 
@@ -30,8 +34,8 @@ export default function SectorItemCard({
       padding="lg"
       radius="md"
       withBorder={withBorder}
-      w={160}
-      h={160}
+      w={width}
+      h={height}
       className="h-full cursor-pointer"
       onClick={handleCourseClick}
       bg={bgColor}

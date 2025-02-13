@@ -82,7 +82,7 @@ export default function AboutPage() {
         </Box>
         <Ribbon />
         <Box className="mx-auto flex w-full max-w-screen-xl">
-          <Box className="w-[40%] px-4 py-32 font-nexa text-white">
+          <Box className="w-[50%] px-4 py-32 font-nexa text-white">
             <Paragraph className="mb-8" fontFamily="font-nexa">
               Africa Digital Media Institute (ADMI) based in Nairobi, Kenya, is Eastern Africa’s premier creative media
               and technology training institution.{' '}
@@ -99,7 +99,7 @@ export default function AboutPage() {
               placement rates.
             </Paragraph>
           </Box>
-          <Box className="w-[60%] py-16">
+          <Box className="w-[50%] py-16">
             <Box className="flex w-full flex-wrap">
               {sectors.map((sector: any) => (
                 <Box key={sector.title} className="mb-4 mr-4">
@@ -113,11 +113,11 @@ export default function AboutPage() {
                 </Box>
               ))}
               <Box
-                className="mb-4 mr-4 flex w-[240px] cursor-pointer flex-col items-center justify-center rounded-lg bg-admiRed"
+                className="mb-4 mr-4 flex w-[160px] cursor-pointer flex-col items-center justify-center rounded-lg bg-admiRed"
                 onClick={handleViewCourses}
               >
                 <IconArrowTipRight width={48} height={48} color="white" />
-                <Paragraph className="text-white" fontFamily="font-nexa" fontWeight={900}>
+                <Paragraph className="text-white" fontFamily="font-nexa" fontWeight={900} size="14px">
                   View all courses
                 </Paragraph>
               </Box>
@@ -132,7 +132,7 @@ export default function AboutPage() {
             <Box className="w-[30%]">
               <Title label="Our History" color="black" />
             </Box>
-            <Box className="w-[70%]">
+            <Box className="h-[180px] w-[70%]">
               <Timeline data={ADMI_HISTORY} />
             </Box>
           </Box>
