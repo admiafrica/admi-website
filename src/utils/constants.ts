@@ -61,6 +61,14 @@ import IconTopArrow from '@/assets/icons/TopArrow';
 import IconCheckList from '@/assets/icons/CheckList';
 import IconArrowCurved from '@/assets/icons/ArrowCurved';
 import IconDiaryAlt from '@/assets/icons/DiaryAlt';
+import IconGamepad from '@/assets/icons/Gamepad';
+import IconTv from '@/assets/icons/Tv';
+import IconTruckSpeed from '@/assets/icons/TruckSpeed';
+import IconSoundwave from '@/assets/icons/Soundwave';
+import IconMusic from '@/assets/icons/Music';
+import IconHome from '@/assets/icons/Home';
+import IconTripodCamera from '@/assets/icons/TripodCamera';
+import IconCamera from '@/assets/icons/Camera';
 
 export const ROUTES = {
   INDEX: '/',
@@ -100,6 +108,89 @@ export const ADMI_FACILITIES = [
     description:
       'We pride ourselves on being one of the few regional film schools that teach in HD, digital film formats. During your first year, you will hone your skills using small HD camcorders, before progressing to high-end HD formats and digital cinema cameras from popular manufacturers like Sony, Canon, Panasonic & Black...',
     image: ImageEquipment,
+  },
+];
+
+export const ADMI_HOMEPAGE_SECTORS = [
+  {
+    title: '2D and 3D animation',
+    icon: IconHome,
+    color: '#B9C601',
+  },
+  {
+    title: 'Film & TV Production',
+    icon: IconTripodCamera,
+    color: '#F76335',
+  },
+  {
+    title: 'Video Production',
+    icon: IconCamera,
+    color: '#01C6A5',
+  },
+  {
+    title: 'Music Production',
+    icon: IconMusic,
+    color: '#F60834',
+  },
+  {
+    title: 'Sound Engineering',
+    icon: IconSoundwave,
+    color: '#B9C601',
+  },
+  {
+    title: 'Animation & Digital Media',
+    icon: IconTruckSpeed,
+    color: '#F76335',
+  },
+  {
+    title: 'Graphic Design',
+    icon: IconTv,
+    color: '#01C6A5',
+  },
+  {
+    title: 'Video Game Design',
+    icon: IconGamepad,
+    color: '#F60834',
+  },
+  {
+    title: '2D and 3D animation',
+    icon: IconHome,
+    color: '#B9C601',
+  },
+  {
+    title: 'Film & TV Production',
+    icon: IconTripodCamera,
+    color: '#F76335',
+  },
+  {
+    title: 'Video Production',
+    icon: IconCamera,
+    color: '#01C6A5',
+  },
+  {
+    title: 'Music Production',
+    icon: IconMusic,
+    color: '#F60834',
+  },
+  {
+    title: 'Sound Engineering',
+    icon: IconSoundwave,
+    color: '#B9C601',
+  },
+  {
+    title: 'Animation & Digital Media',
+    icon: IconTruckSpeed,
+    color: '#F76335',
+  },
+  {
+    title: 'Graphic Design',
+    icon: IconTv,
+    color: '#01C6A5',
+  },
+  {
+    title: 'Video Game Design',
+    icon: IconGamepad,
+    color: '#F60834',
   },
 ];
 

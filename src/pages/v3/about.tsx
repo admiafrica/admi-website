@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { Box, Text } from '@mantine/core';
 import { Carousel } from '@mantine/carousel';
+import Autoplay from 'embla-carousel-autoplay';
 
 import { Paragraph, Title } from '@/components/ui';
 import { MainLayout } from '@/layouts/v3/MainLayout';
@@ -20,9 +21,12 @@ import IconArrowTipRight from '@/assets/icons/ArrowTipRight';
 import IconSoundwave from '@/assets/icons/Soundwave';
 import IconTv from '@/assets/icons/Tv';
 import { useRouter } from 'next/router';
+import { useRef } from 'react';
 
 export default function AboutPage() {
   const router = useRouter();
+  const autoplayFacilities = useRef(Autoplay({ delay: 4000 }));
+
   const sectors = [
     {
       title: '2D and 3D animation',
@@ -211,7 +215,18 @@ export default function AboutPage() {
           </Box>
         </Box>
         <Box className="w-full">
-          <Carousel slideSize={600} height={360} slideGap="md" loop align="start" slidesToScroll={1} controlsOffset={0}>
+          <Carousel
+            slideSize={600}
+            height={360}
+            slideGap="md"
+            loop
+            align="start"
+            slidesToScroll={1}
+            withControls={false}
+            plugins={[autoplayFacilities.current]}
+            onMouseEnter={autoplayFacilities.current.stop}
+            onMouseLeave={autoplayFacilities.current.reset}
+          >
             {ADMI_FACILITIES.map((facility) => (
               <Carousel.Slide key={facility.name}>
                 <FacilityItemCard facility={facility} />

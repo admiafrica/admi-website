@@ -42,7 +42,9 @@ export default function SectorItemCard({
       bd={defaultBorder ? '1px solid rgba(233, 233, 233, 1)' : '1px solid rgba(255, 255, 255, 0.1)'}
     >
       {sector.icon ? (
-        <Box className="flex w-full items-center justify-center">{sector.icon}</Box>
+        <Box className="flex w-full items-center justify-center">
+          <sector.icon color={sector.color} width={48} height={48} />
+        </Box>
       ) : (
         <Image
           width={64}

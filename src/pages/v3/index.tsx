@@ -34,7 +34,8 @@ import IconMusic from '@/assets/icons/Music';
 import IconSoundwave from '@/assets/icons/Soundwave';
 import IconTruckSpeed from '@/assets/icons/TruckSpeed';
 import IconTv from '@/assets/icons/Tv';
-import { ADMI_FACILITIES } from '@/utils';
+import { ADMI_FACILITIES, ADMI_HOMEPAGE_SECTORS } from '@/utils';
+import IconGamepad from '@/assets/icons/Gamepad';
 
 export default function HomePage() {
   const router = useRouter();
@@ -53,40 +54,7 @@ export default function HomePage() {
     { word: 'Engineering', styles: 'text-[#F60834]' },
   ];
 
-  const sectors = [
-    {
-      title: '2D and 3D animation',
-      icon: <IconHome color="#B9C601" />,
-    },
-    {
-      title: 'Film & TV Production',
-      icon: <IconTripodCamera color="#F76335" />,
-    },
-    {
-      title: 'Video Production',
-      icon: <IconCamera color="#01C6A5" />,
-    },
-    {
-      title: 'Music Production',
-      icon: <IconMusic color="#F60834" />,
-    },
-    {
-      title: 'Sound Engineering',
-      icon: <IconSoundwave color="#B9C601" />,
-    },
-    {
-      title: 'Animation & Digital Media',
-      icon: <IconTruckSpeed color="#F76335" />,
-    },
-    {
-      title: 'Graphic Design',
-      icon: <IconTv color="#01C6A5" />,
-    },
-    {
-      title: 'Video Game Design',
-      icon: <IconTv color="#F60834" />,
-    },
-  ];
+  const sectors = ADMI_HOMEPAGE_SECTORS;
 
   const announcement = {
     title: 'Introducing Aquila Creative Scholars: Your Gateway to a Thriving Creative Career',
@@ -213,14 +181,15 @@ export default function HomePage() {
               <Title label="We offer practical courses in:" size="20px" color="black" />
             </div>
           </Box>
-          <Box className="mx-auto w-full max-w-screen-xl">
+          <Box className="mx-auto w-full">
             <Carousel
               slideSize={160}
               slideGap="md"
               loop
               align="start"
               slidesToScroll={1}
-              px={'7%'}
+              px={8}
+              withControls={false}
               plugins={[autoplaySectors.current]}
               onMouseEnter={autoplaySectors.current.stop}
               onMouseLeave={autoplaySectors.current.reset}
@@ -329,6 +298,7 @@ export default function HomePage() {
                 loop
                 align="start"
                 slidesToScroll={1}
+                withControls={false}
                 plugins={[autoplayTestimonials.current]}
                 onMouseEnter={autoplayTestimonials.current.stop}
                 onMouseLeave={autoplayTestimonials.current.reset}
@@ -368,26 +338,27 @@ export default function HomePage() {
                 </Paragraph>
               </Box>
             </Box>
-            <Box className="w-full">
-              <Carousel
-                slideSize={600}
-                height={360}
-                slideGap="md"
-                loop
-                align="start"
-                slidesToScroll={1}
-                controlsOffset={0}
-                plugins={[autoplayFacilities.current]}
-                onMouseEnter={autoplayFacilities.current.stop}
-                onMouseLeave={autoplayFacilities.current.reset}
-              >
-                {facilities.map((facility) => (
-                  <Carousel.Slide key={facility.name}>
-                    <FacilityItemCard facility={facility} />
-                  </Carousel.Slide>
-                ))}
-              </Carousel>
-            </Box>
+          </Box>
+          <Box className="w-full">
+            <Carousel
+              slideSize={600}
+              height={360}
+              slideGap="md"
+              loop
+              align="start"
+              slidesToScroll={1}
+              controlsOffset={0}
+              withControls={false}
+              plugins={[autoplayFacilities.current]}
+              onMouseEnter={autoplayFacilities.current.stop}
+              onMouseLeave={autoplayFacilities.current.reset}
+            >
+              {facilities.map((facility) => (
+                <Carousel.Slide key={facility.name}>
+                  <FacilityItemCard facility={facility} />
+                </Carousel.Slide>
+              ))}
+            </Carousel>
           </Box>
         </Box>
         {/* NEWS */}
