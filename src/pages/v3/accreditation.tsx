@@ -21,7 +21,7 @@ export default function AccreditationPage() {
       </Modal>
       <div className="w-full">
         {/* HEADER */}
-        <Box className="relative w-full" bg={'blue'} onClick={open}>
+        <Box className="relative w-full cursor-pointer" bg={'blue'} onClick={open}>
           <Image
             src={ImageAccreditationLanding}
             placeholder="empty"
@@ -41,7 +41,7 @@ export default function AccreditationPage() {
           <Box className="relative z-10 mx-auto flex h-[50vh] w-full max-w-screen-xl flex-row px-4 sm:flex-row 2xl:px-0">
             <Box className="mt-[20vh] flex w-full flex-col">
               <Box className="flex grow">
-                <Title label="Accreditation" color="#B9C601" size="64px" />
+                <Title label="Accreditation" color="#F1FE37" size="64px" />
               </Box>
               <Box className="flex w-full pt-12">
                 <Paragraph fontFamily="font-nexa" className="w-1/2 pr-6 text-white">
@@ -65,9 +65,9 @@ export default function AccreditationPage() {
               <Title label="Why Work at ADMI?" color="white" />
             </Box>
             <Box className="flex w-full flex-col justify-between sm:flex-row sm:px-0">
-              {ADMI_ACCREDITATION_VALUES.map((support, index) => (
-                <Box key={`support-${index}`} p={8}>
-                  <InfoCard support={support} />
+              {ADMI_ACCREDITATION_VALUES.map((value, index) => (
+                <Box key={`value-${index}`} p={8} className="w-[33%]">
+                  <InfoCard item={value} bgColor="#A02600" />
                 </Box>
               ))}
             </Box>

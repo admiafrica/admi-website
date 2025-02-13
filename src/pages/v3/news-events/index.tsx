@@ -6,7 +6,7 @@ import { AnnouncementCard, EmptyCard, NewsItemCard } from '@/components/cards';
 
 import ImageNews from '@/assets/images/featured-news.svg';
 import { useCallback, useEffect, useState } from 'react';
-import IconDiary from '@/assets/icons/Dairy';
+import IconDiary from '@/assets/icons/Diary';
 
 export default function NewsEventsLandingPage() {
   const [courses, setCourses] = useState<Array<any>>([]);

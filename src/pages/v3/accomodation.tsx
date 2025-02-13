@@ -39,13 +39,14 @@ export default function AccomodationsPage() {
           ></div>
           <Box className="relative z-10 mx-auto flex h-[50vh] w-full max-w-screen-xl flex-row px-4 sm:flex-row 2xl:px-0">
             <Box className="mt-[12vh] flex w-full flex-col">
-              <Title label="Accomodation" color="#B9C601" size="64px" />
-              <Box className="flex w-full pt-12">
+              <Title label="Accomodation" color="#F1FE37" size="64px" />
+              <Box className="grow"></Box>
+              <Box className="flex w-full pb-12">
                 <Paragraph fontFamily="font-nexa" className="w-[50%] pr-4 text-white">
                   At Africa Digital Media Institute (ADMI), we understand that finding the right accommodation is
                   essential for your academic success and overall well-being. 
                 </Paragraph>
-                <Divider orientation="vertical" />
+                <Divider orientation="vertical" size={2} color="admiShamrok" />
                 <Paragraph fontFamily="font-nexa" className="w-[50%] pl-4 text-white">
                   That’s why we have partnered with Qwetu and Qejani, two leading providers of modern student
                   accommodation, to offer you a comfortable and vibrant living experience close to campus. We believe
@@ -58,7 +59,7 @@ export default function AccomodationsPage() {
         </Box>
         {/* Floating Card */}
         <div className="w-full px-4 2xl:px-0">
-          <div className="absolute left-1/2 top-[10vh] z-10 w-full max-w-screen-xl -translate-x-1/2 transform px-4 sm:top-[51vh] 2xl:px-0">
+          <div className="absolute left-1/2 top-[10vh] z-10 w-full max-w-screen-xl -translate-x-1/2 transform px-4 sm:top-[60vh] 2xl:px-0">
             <Card radius={8}>
               <Card.Section>
                 <Box bg={'#36030D'} className="px-6">
@@ -89,6 +90,9 @@ export default function AccomodationsPage() {
             </Card>
           </div>
         </div>
+        <Box className="h-[90px] w-full" bg={'rgba(246, 8, 52, 1)'}>
+          {' '}
+        </Box>
         {/* FEATURES */}
         <Box className="mx-auto w-full max-w-screen-xl px-4 pb-8 2xl:px-0">
           <Box className="w-full pt-80">
@@ -99,7 +103,7 @@ export default function AccomodationsPage() {
 
           <div className="relative z-20 flex flex-col justify-between sm:flex-row sm:flex-wrap">
             {ADMI_ACCOMODATION_FEATURES.map((dept, index) => (
-              <Card shadow="md" className="mb-8 sm:w-[30%]" key={`dept-${index}`}>
+              <Card shadow="md" className="mb-8 sm:w-[30%]" key={`dept-${index}`} radius={8}>
                 <div className="flex px-4 pt-4">
                   {/* <dept.icon width={48} height={48} /> */}
                   <Image src={dept.icon} alt={dept.title} width={48} height={48} />

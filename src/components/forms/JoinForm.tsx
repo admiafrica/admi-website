@@ -23,7 +23,7 @@ export default function JoinForm() {
     <div className="h-full w-full rounded-lg bg-white p-4 sm:p-8">
       <div className="font-nexa">
         <Title label="Join the ADMI" color="black" />
-        <Title label="Alumni Network" color="black" />
+        <Title label="Alumni Network" color="#B9C601" />
         <Paragraph>
           If you haven’t already, we invite you to register with us and become an active member of the ADMI alumni
           community.

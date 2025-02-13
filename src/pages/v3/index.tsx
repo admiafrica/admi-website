@@ -142,7 +142,7 @@ export default function HomePage() {
       </Modal>
       <div className="w-full">
         {/* HERO */}
-        <Box className="relative w-full">
+        <Box className="relative w-full cursor-pointer" onClick={open}>
           <Image
             src={HeroBackgroundImage}
             placeholder="empty"
@@ -192,10 +192,9 @@ export default function HomePage() {
                       cursor: 'pointer',
                     },
                   }}
-                  onClick={open}
                 />
                 <div className="mx-4 my-auto">
-                  <Button size="lg" backgroundColor="admiRed" label="Learn More" onClick={open} />
+                  <Button size="lg" backgroundColor="admiRed" label="Learn More" />
                 </div>
               </div>
             </Box>

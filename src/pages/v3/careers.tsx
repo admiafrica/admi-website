@@ -55,9 +55,9 @@ export default function CareersPage() {
           <Box className="relative z-10 mx-auto flex h-[50vh] w-full max-w-screen-xl flex-row px-4 sm:flex-row 2xl:px-0">
             <Box className="mt-[20vh] flex w-full flex-col">
               <Box className="flex grow">
-                <Title label="Work With" color="admiShamrok" size="64px" />
+                <Title label="Work With" color="#F1FE37" size="64px" />
                 <Box className="px-1"></Box>
-                <Title label="Us" color="#B9C601" size="64px" />
+                <Title label="Us" color="admiShamrok" size="64px" />
               </Box>
               <Box className="flex w-full pt-12">
                 <Paragraph fontFamily="font-nexa" className="w-1/2 pr-6 text-white">
@@ -83,7 +83,7 @@ export default function CareersPage() {
             <Box className="flex w-full flex-col justify-between sm:flex-row sm:px-0">
               {ADMI_CAREER_VALUES.map((support, index) => (
                 <Box key={`support-${index}`} p={8}>
-                  <InfoCard support={support} />
+                  <InfoCard item={support} />
                 </Box>
               ))}
             </Box>

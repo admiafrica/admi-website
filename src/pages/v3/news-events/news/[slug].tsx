@@ -6,7 +6,7 @@ import {} from '@tabler/icons-react';
 import { EmptyCard } from '@/components/cards';
 import { Paragraph } from '@/components/ui';
 
-import IconDiary from '@/assets/icons/Dairy';
+import IconDiary from '@/assets/icons/Diary';
 
 export default function NewsEventsDetailPage() {
   return (

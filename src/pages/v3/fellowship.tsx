@@ -40,7 +40,7 @@ export default function FellowshipPage() {
           <Box className="relative z-10 mx-auto flex h-[50vh] w-full max-w-screen-xl flex-row px-4 sm:flex-row 2xl:px-0">
             <Box className="mt-[12vh] flex w-full flex-col">
               <Title label="Fellowship" color="admiShamrok" size="64px" />
-              <Title label="Opportunities" color="#B9C601" size="64px" />
+              <Title label="Opportunities" color="#F1FE37" size="64px" />
               <Box className="grow"></Box>
               <Box className="flex h-[120px] w-full pt-12">
                 <Paragraph fontFamily="font-nexa" className="my pr-6 text-white">
