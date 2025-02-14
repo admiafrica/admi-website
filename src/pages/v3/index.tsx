@@ -1,11 +1,12 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState, useRef } from 'react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
-import { Box, Text, Indicator, Divider, NumberFormatter, Drawer, Input } from '@mantine/core';
+import { Box, Text, Indicator, Divider, NumberFormatter, Input, Modal } from '@mantine/core';
 import { Carousel } from '@mantine/carousel';
 import { useDisclosure } from '@mantine/hooks';
+import Autoplay from 'embla-carousel-autoplay';
 
-import { Paragraph, Title } from '@/components/ui';
+import { AnimatedWordDisplay, Paragraph, Title } from '@/components/ui';
 import { MainLayout } from '@/layouts/v3/MainLayout';
 import { IconPlus } from '@tabler/icons-react';
 
@@ -19,62 +20,32 @@ import {
   SectorItemCard,
   UserTestimonialCard,
 } from '@/components/cards';
+import { ADMI_FACILITIES, ADMI_HOMEPAGE_SECTORS } from '@/utils';
 
 import HeroBackgroundImage from '@/assets/images/homepage-hero.svg';
 import AnnouncementImage from '@/assets/images/announcement.svg';
 import NewsImage from '@/assets/images/featured-news.svg';
 import AwardsImage from '@/assets/images/awards.svg';
-
 import IconSearch from '@/assets/icons/Search';
-import IconHome from '@/assets/icons/Home';
-import IconTripodCamera from '@/assets/icons/TripodCamera';
-import IconCamera from '@/assets/icons/Camera';
-import IconMusic from '@/assets/icons/Music';
-import IconSoundwave from '@/assets/icons/Soundwave';
-import IconTruckSpeed from '@/assets/icons/TruckSpeed';
-import IconTv from '@/assets/icons/Tv';
-import { ADMI_FACILITIES } from '@/utils';
 
 export default function HomePage() {
   const router = useRouter();
   const [content, setContent] = useState<any>();
   const [courses, setCourses] = useState<Array<any>>([]);
   const [opened, { open, close }] = useDisclosure(false);
+  const autoplaySectors = useRef(Autoplay({ delay: 4000 }));
+  const autoplayTestimonials = useRef(Autoplay({ delay: 4000 }));
+  const autoplayFacilities = useRef(Autoplay({ delay: 4000 }));
+  const autoplayCourses = useRef(Autoplay({ delay: 4000 }));
 
-  const sectors = [
-    {
-      title: '2D and 3D animation',
-      icon: <IconHome color="#B9C601" />,
-    },
-    {
-      title: 'Film & TV Production',
-      icon: <IconTripodCamera color="#F76335" />,
-    },
-    {
-      title: 'Video Production',
-      icon: <IconCamera color="#01C6A5" />,
-    },
-    {
-      title: 'Music Production',
-      icon: <IconMusic color="#F60834" />,
-    },
-    {
-      title: 'Sound Engineering',
-      icon: <IconSoundwave color="#B9C601" />,
-    },
-    {
-      title: 'Animation & Digital Media',
-      icon: <IconTruckSpeed color="#F76335" />,
-    },
-    {
-      title: 'Graphic Design',
-      icon: <IconTv color="#01C6A5" />,
-    },
-    {
-      title: 'Video Game Design',
-      icon: <IconTv color="#F60834" />,
-    },
+  const keyItems = [
+    { word: 'Media', styles: 'text-[#F1FE38]' },
+    { word: 'Technology', styles: 'text-[#01C6A5]' },
+    { word: 'Production', styles: 'text-[#F76335]' },
+    { word: 'Engineering', styles: 'text-[#F60834]' },
   ];
+
+  const sectors = ADMI_HOMEPAGE_SECTORS;
 
   const announcement = {
     title: 'Introducing Aquila Creative Scholars: Your Gateway to a Thriving Creative Career',
@@ -125,12 +96,12 @@ export default function HomePage() {
   return (
     <MainLayout footerBgColor="#E6F608">
       <PageSEO title="Home" />
-      <Drawer offset={'100px'} radius="md" opened={opened} onClose={close} position="top" size={'100%'} padding={0}>
+      <Modal radius="lg" opened={opened} onClose={close} size={'72rem'}>
         <LearnMoreCard />
-      </Drawer>
+      </Modal>
       <div className="w-full">
         {/* HERO */}
-        <Box className="relative w-full">
+        <Box className="relative w-full cursor-pointer" onClick={open}>
           <Image
             src={HeroBackgroundImage}
             placeholder="empty"
@@ -158,9 +129,7 @@ export default function HomePage() {
                   <Paragraph fontFamily="font-nexa" fontWeight={900} size="48px" className="pr-1 text-white">
                     Creative
                   </Paragraph>
-                  <Paragraph fontFamily="font-nexa" fontWeight={900} size="48px" className="text-[#F1FE38]">
-                    Media
-                  </Paragraph>
+                  <AnimatedWordDisplay words={keyItems} fontFamily="font-nexa" fontWeight={900} size="48px" />
                 </Box>
               </Box>
               <Paragraph className="py-6 text-white">
@@ -182,10 +151,9 @@ export default function HomePage() {
                       cursor: 'pointer',
                     },
                   }}
-                  onClick={open}
                 />
                 <div className="mx-4 my-auto">
-                  <Button size="lg" backgroundColor="admiRed" label="Learn More" onClick={open} />
+                  <Button size="lg" backgroundColor="admiRed" label="Learn More" />
                 </div>
               </div>
             </Box>
@@ -201,11 +169,22 @@ export default function HomePage() {
               </Paragraph>
             </div>
             <div className="mx-auto my-8 w-fit">
-              <Title label="We offer practical courses in:" size="24px" color="black" />
+              <Title label="We offer practical courses in:" size="20px" color="black" />
             </div>
           </Box>
-          <Box className="w-full">
-            <Carousel slideSize={260} slideGap="md" loop align="start" slidesToScroll={1}>
+          <Box className="mx-auto w-full">
+            <Carousel
+              slideSize={160}
+              slideGap="md"
+              loop
+              align="start"
+              slidesToScroll={1}
+              px={8}
+              withControls={false}
+              plugins={[autoplaySectors.current]}
+              onMouseEnter={autoplaySectors.current.stop}
+              onMouseLeave={autoplaySectors.current.reset}
+            >
               {sectors.map((sector: any) => (
                 <Carousel.Slide key={sector.title} py={6}>
                   <SectorItemCard sector={sector} withBorder />
@@ -304,7 +283,17 @@ export default function HomePage() {
               </Box>
             </Box>
             <Box className="w-full">
-              <Carousel slideSize={360} slideGap="md" loop align="start" slidesToScroll={1}>
+              <Carousel
+                slideSize={360}
+                slideGap="md"
+                loop
+                align="start"
+                slidesToScroll={1}
+                withControls={false}
+                plugins={[autoplayTestimonials.current]}
+                onMouseEnter={autoplayTestimonials.current.stop}
+                onMouseLeave={autoplayTestimonials.current.reset}
+              >
                 {content &&
                   content.fields.testimonials.map((testimonial: any, index: number) => (
                     <Carousel.Slide key={`testimonial-${index}`}>
@@ -340,23 +329,27 @@ export default function HomePage() {
                 </Paragraph>
               </Box>
             </Box>
-            <Box className="w-full">
-              <Carousel
-                slideSize={600}
-                height={360}
-                slideGap="md"
-                loop
-                align="start"
-                slidesToScroll={1}
-                controlsOffset={0}
-              >
-                {facilities.map((facility) => (
-                  <Carousel.Slide key={facility.name}>
-                    <FacilityItemCard facility={facility} />
-                  </Carousel.Slide>
-                ))}
-              </Carousel>
-            </Box>
+          </Box>
+          <Box className="w-full">
+            <Carousel
+              slideSize={600}
+              height={360}
+              slideGap="md"
+              loop
+              align="start"
+              slidesToScroll={1}
+              controlsOffset={0}
+              withControls={false}
+              plugins={[autoplayFacilities.current]}
+              onMouseEnter={autoplayFacilities.current.stop}
+              onMouseLeave={autoplayFacilities.current.reset}
+            >
+              {facilities.map((facility) => (
+                <Carousel.Slide key={facility.name}>
+                  <FacilityItemCard facility={facility} />
+                </Carousel.Slide>
+              ))}
+            </Carousel>
           </Box>
         </Box>
         {/* NEWS */}
@@ -379,7 +372,16 @@ export default function HomePage() {
               </Box>
             </Box>
             <Box className="w-full">
-              <Carousel slideSize={260} slideGap="md" loop align="start" slidesToScroll={1}>
+              <Carousel
+                slideSize={260}
+                slideGap="md"
+                loop
+                align="start"
+                slidesToScroll={1}
+                plugins={[autoplayCourses.current]}
+                onMouseEnter={autoplayCourses.current.stop}
+                onMouseLeave={autoplayCourses.current.reset}
+              >
                 {courses.map((course) => (
                   <Carousel.Slide key={course.sys.id}>
                     <CourseItemCard course={course} />

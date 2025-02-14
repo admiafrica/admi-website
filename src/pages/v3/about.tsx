@@ -1,50 +1,32 @@
+import { useRef } from 'react';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import { Box, Text } from '@mantine/core';
 import { Carousel } from '@mantine/carousel';
+import Autoplay from 'embla-carousel-autoplay';
 
 import { Paragraph, Title } from '@/components/ui';
 import { MainLayout } from '@/layouts/v3/MainLayout';
 
 import { PageSEO, Ribbon, Timeline } from '@/components/shared/v3';
 import { FacilityItemCard, SectorItemCard, CompanyValuesCard, UserProfileCard } from '@/components/cards';
-import { ADMI_ACADEMIC_TEAM, ADMI_DIRECTORS, ADMI_FACILITIES, ADMI_HISTORY, ADMI_VALUES } from '@/utils';
+import {
+  ADMI_ABOUT_SECTORS,
+  ADMI_ACADEMIC_TEAM,
+  ADMI_DIRECTORS,
+  ADMI_FACILITIES,
+  ADMI_HISTORY,
+  ADMI_VALUES,
+} from '@/utils';
 
 import ImageAboutLanding from '@/assets/images/about-landing.svg';
 import IconBgImageYellow from '@/assets/icons/ellipse-yellow.svg';
 import IconBgImageRed from '@/assets/icons/ellipse-red.svg';
-
-import IconHome from '@/assets/icons/Home';
-import IconTripodCamera from '@/assets/icons/TripodCamera';
-import IconCamera from '@/assets/icons/Camera';
 import IconArrowTipRight from '@/assets/icons/ArrowTipRight';
-import IconSoundwave from '@/assets/icons/Soundwave';
-import IconTv from '@/assets/icons/Tv';
-import { useRouter } from 'next/router';
 
 export default function AboutPage() {
   const router = useRouter();
-  const sectors = [
-    {
-      title: '2D and 3D animation',
-      icon: <IconHome color="#B9C601" />,
-    },
-    {
-      title: 'Video Production',
-      icon: <IconCamera color="#01C6A5" />,
-    },
-    {
-      title: 'Graphic Design',
-      icon: <IconTv color="#F60934" />,
-    },
-    {
-      title: 'Film & TV Production',
-      icon: <IconTripodCamera color="#F76335" />,
-    },
-    {
-      title: 'Sound Engineering',
-      icon: <IconSoundwave color="#B9C601" />,
-    },
-  ];
+  const autoplayFacilities = useRef(Autoplay({ delay: 4000 }));
 
   const handleViewCourses = () => {
     router.push('/v3/courses');
@@ -82,7 +64,7 @@ export default function AboutPage() {
         </Box>
         <Ribbon />
         <Box className="mx-auto flex w-full max-w-screen-xl">
-          <Box className="w-[40%] px-4 py-32 font-nexa text-white">
+          <Box className="w-[50%] px-4 py-32 font-nexa text-white">
             <Paragraph className="mb-8" fontFamily="font-nexa">
               Africa Digital Media Institute (ADMI) based in Nairobi, Kenya, is Eastern Africa’s premier creative media
               and technology training institution.{' '}
@@ -99,9 +81,9 @@ export default function AboutPage() {
               placement rates.
             </Paragraph>
           </Box>
-          <Box className="w-[60%] py-16">
+          <Box className="w-[50%] py-16">
             <Box className="flex w-full flex-wrap">
-              {sectors.map((sector: any) => (
+              {ADMI_ABOUT_SECTORS.map((sector: any) => (
                 <Box key={sector.title} className="mb-4 mr-4">
                   <SectorItemCard
                     sector={sector}
@@ -113,11 +95,11 @@ export default function AboutPage() {
                 </Box>
               ))}
               <Box
-                className="mb-4 mr-4 flex w-[240px] cursor-pointer flex-col items-center justify-center rounded-lg bg-admiRed"
+                className="mb-4 mr-4 flex w-[160px] cursor-pointer flex-col items-center justify-center rounded-lg bg-admiRed"
                 onClick={handleViewCourses}
               >
                 <IconArrowTipRight width={48} height={48} color="white" />
-                <Paragraph className="text-white" fontFamily="font-nexa" fontWeight={900}>
+                <Paragraph className="text-white" fontFamily="font-nexa" fontWeight={900} size="14px">
                   View all courses
                 </Paragraph>
               </Box>
@@ -132,7 +114,7 @@ export default function AboutPage() {
             <Box className="w-[30%]">
               <Title label="Our History" color="black" />
             </Box>
-            <Box className="w-[70%]">
+            <Box className="h-[180px] w-[70%]">
               <Timeline data={ADMI_HISTORY} />
             </Box>
           </Box>
@@ -211,7 +193,18 @@ export default function AboutPage() {
           </Box>
         </Box>
         <Box className="w-full">
-          <Carousel slideSize={600} height={360} slideGap="md" loop align="start" slidesToScroll={1} controlsOffset={0}>
+          <Carousel
+            slideSize={600}
+            height={360}
+            slideGap="md"
+            loop
+            align="start"
+            slidesToScroll={1}
+            withControls={false}
+            plugins={[autoplayFacilities.current]}
+            onMouseEnter={autoplayFacilities.current.stop}
+            onMouseLeave={autoplayFacilities.current.reset}
+          >
             {ADMI_FACILITIES.map((facility) => (
               <Carousel.Slide key={facility.name}>
                 <FacilityItemCard facility={facility} />

@@ -1,16 +1,18 @@
 import Image from 'next/image';
-import { Box, Divider } from '@mantine/core';
+import { Box, Divider, Modal } from '@mantine/core';
+import { useDisclosure } from '@mantine/hooks';
 
 import { MainLayout } from '@/layouts/v3/MainLayout';
 import { Paragraph, Title } from '@/components/ui';
 import { PageSEO } from '@/components/shared/v3';
-import { InfoCard, PlainCard } from '@/components/cards';
+import { InfoCard, LearnMoreCard, PlainCard } from '@/components/cards';
 import { ADMI_CAREER_VALUES } from '@/utils';
 
 import IconAudioPhoneAlt from '@/assets/icons/audio-phone-alt.svg';
 import ImageCareersLanding from '@/assets/images/careers-landing.png';
 
 export default function CareersPage() {
+  const [opened, { open, close }] = useDisclosure(false);
   const howToApply = {
     title: 'How to Apply',
     description:
@@ -28,9 +30,12 @@ export default function CareersPage() {
   return (
     <MainLayout footerBgColor="white">
       <PageSEO title="Work With Us" />
+      <Modal radius="lg" opened={opened} onClose={close} size={'72rem'}>
+        <LearnMoreCard />
+      </Modal>
       <div className="w-full">
         {/* HEADER */}
-        <Box className="relative w-full">
+        <Box className="relative w-full" onClick={open}>
           <Image
             src={ImageCareersLanding}
             placeholder="empty"
@@ -44,15 +49,15 @@ export default function CareersPage() {
           <div
             className="z-5 absolute inset-0"
             style={{
-              background: `radial-gradient(circle, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 80%)`,
+              background: 'linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0, 42, 35, 1) 100%)',
             }}
           ></div>
           <Box className="relative z-10 mx-auto flex h-[50vh] w-full max-w-screen-xl flex-row px-4 sm:flex-row 2xl:px-0">
-            <Box className="mt-[12vh] flex w-full flex-col">
-              <Box className="flex">
-                <Title label="Work With" color="admiShamrok" size="64px" />
+            <Box className="mt-[20vh] flex w-full flex-col">
+              <Box className="flex grow">
+                <Title label="Work With" color="#F1FE37" size="64px" />
                 <Box className="px-1"></Box>
-                <Title label="Us" color="#B9C601" size="64px" />
+                <Title label="Us" color="admiShamrok" size="64px" />
               </Box>
               <Box className="flex w-full pt-12">
                 <Paragraph fontFamily="font-nexa" className="w-1/2 pr-6 text-white">
@@ -60,7 +65,7 @@ export default function CareersPage() {
                   an outstanding educational experience. We are always on the lookout for passionate and skilled
                   educators who are eager to inspire and empower the next generation of digital media professionals.
                 </Paragraph>
-                <Divider orientation="vertical" />
+                <Divider orientation="vertical" size={2} color="#E43B07" />
                 <Paragraph fontFamily="font-nexa" className="w-1/2 pl-6 text-white">
                   Whether you are an experienced instructor or a talented industry practitioner, we invite you to
                   explore the opportunity to join our dynamic team.
@@ -78,7 +83,7 @@ export default function CareersPage() {
             <Box className="flex w-full flex-col justify-between sm:flex-row sm:px-0">
               {ADMI_CAREER_VALUES.map((support, index) => (
                 <Box key={`support-${index}`} p={8}>
-                  <InfoCard support={support} />
+                  <InfoCard item={support} />
                 </Box>
               ))}
             </Box>

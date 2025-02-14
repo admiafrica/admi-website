@@ -64,7 +64,7 @@ export default function Footer({ bgColor }: Props) {
     <div className={`relative w-full ${bgColor ? `bg-[${bgColor}]` : 'bg-[#FFF7F5]'} font-proxima`}>
       {/* Floating Card */}
       <div className="w-full pt-48 sm:pt-36">
-        <div className="absolute left-1/2 top-[6vh] z-10 h-fit w-full max-w-screen-xl -translate-x-1/2 transform justify-center px-4 sm:top-[8vh] md:h-[7.125rem] 2xl:px-0">
+        <div className="absolute left-1/2 top-[6vh] z-10 h-fit w-full max-w-screen-lg -translate-x-1/2 transform justify-center px-4 sm:top-[8vh] md:h-[7.125rem] 2xl:px-0">
           <CourseEnrollCard />
         </div>
       </div>
@@ -124,19 +124,19 @@ export default function Footer({ bgColor }: Props) {
                 Quick Links
               </Text>
             </div>
-            <Anchor href="#" c="white" fw={600}>
+            <Anchor c="white" fw={600}>
               Contact Us
             </Anchor>
-            <Anchor href="#" c="white" fw={600}>
+            <Anchor c="white" fw={600}>
               Academic Team
             </Anchor>
-            <Anchor href="#" c="white" fw={600} onClick={() => navigateToPage('fellowship')}>
+            <Anchor c="white" fw={600} onClick={() => navigateToPage('fellowship')}>
               Fellowship
             </Anchor>
-            <Anchor href="#" c="white" fw={600} onClick={() => navigateToPage('careers')}>
+            <Anchor c="white" fw={600} onClick={() => navigateToPage('careers')}>
               Work with Us
             </Anchor>
-            <Anchor href="#" c="white" fw={600} onClick={() => navigateToPage('acreditaton')}>
+            <Anchor c="white" fw={600} onClick={() => navigateToPage('accreditation')}>
               Accreditation
             </Anchor>
           </Stack>

@@ -51,6 +51,24 @@ import IconBicycle from '@/assets/icons/bicycle.svg';
 import IconMapMarker from '@/assets/icons/map-marker-3.svg';
 import IconBus from '@/assets/icons/bus.svg';
 import IconCloudSun from '@/assets/icons/cloud-sun.svg';
+import { IconPinned } from '@tabler/icons-react';
+import IconUsersGroup from '@/assets/icons/UsersGroup';
+import IconDashboardTabs from '@/assets/icons/DashboardTabs';
+import IconEdit from '@/assets/icons/Edit';
+import IconSettingGear from '@/assets/icons/SettingGear';
+import IconDrawSquare from '@/assets/icons/DrawSquare';
+import IconTopArrow from '@/assets/icons/TopArrow';
+import IconCheckList from '@/assets/icons/CheckList';
+import IconArrowCurved from '@/assets/icons/ArrowCurved';
+import IconDiaryAlt from '@/assets/icons/DiaryAlt';
+import IconGamepad from '@/assets/icons/Gamepad';
+import IconTv from '@/assets/icons/Tv';
+import IconTruckSpeed from '@/assets/icons/TruckSpeed';
+import IconSoundwave from '@/assets/icons/Soundwave';
+import IconMusic from '@/assets/icons/Music';
+import IconHome from '@/assets/icons/Home';
+import IconTripodCamera from '@/assets/icons/TripodCamera';
+import IconCamera from '@/assets/icons/Camera';
 
 export const ROUTES = {
   INDEX: '/',
@@ -90,6 +108,117 @@ export const ADMI_FACILITIES = [
     description:
       'We pride ourselves on being one of the few regional film schools that teach in HD, digital film formats. During your first year, you will hone your skills using small HD camcorders, before progressing to high-end HD formats and digital cinema cameras from popular manufacturers like Sony, Canon, Panasonic & Black...',
     image: ImageEquipment,
+  },
+];
+
+export const ADMI_HOMEPAGE_SECTORS = [
+  {
+    title: '2D and 3D animation',
+    icon: IconHome,
+    color: '#B9C601',
+  },
+  {
+    title: 'Film & TV Production',
+    icon: IconTripodCamera,
+    color: '#F76335',
+  },
+  {
+    title: 'Video Production',
+    icon: IconCamera,
+    color: '#01C6A5',
+  },
+  {
+    title: 'Music Production',
+    icon: IconMusic,
+    color: '#F60834',
+  },
+  {
+    title: 'Sound Engineering',
+    icon: IconSoundwave,
+    color: '#B9C601',
+  },
+  {
+    title: 'Animation & Digital Media',
+    icon: IconTruckSpeed,
+    color: '#F76335',
+  },
+  {
+    title: 'Graphic Design',
+    icon: IconTv,
+    color: '#01C6A5',
+  },
+  {
+    title: 'Video Game Design',
+    icon: IconGamepad,
+    color: '#F60834',
+  },
+  {
+    title: '2D and 3D animation',
+    icon: IconHome,
+    color: '#B9C601',
+  },
+  {
+    title: 'Film & TV Production',
+    icon: IconTripodCamera,
+    color: '#F76335',
+  },
+  {
+    title: 'Video Production',
+    icon: IconCamera,
+    color: '#01C6A5',
+  },
+  {
+    title: 'Music Production',
+    icon: IconMusic,
+    color: '#F60834',
+  },
+  {
+    title: 'Sound Engineering',
+    icon: IconSoundwave,
+    color: '#B9C601',
+  },
+  {
+    title: 'Animation & Digital Media',
+    icon: IconTruckSpeed,
+    color: '#F76335',
+  },
+  {
+    title: 'Graphic Design',
+    icon: IconTv,
+    color: '#01C6A5',
+  },
+  {
+    title: 'Video Game Design',
+    icon: IconGamepad,
+    color: '#F60834',
+  },
+];
+
+export const ADMI_ABOUT_SECTORS = [
+  {
+    title: '2D and 3D animation',
+    icon: IconHome,
+    color: '#B9C601',
+  },
+  {
+    title: 'Video Production',
+    icon: IconCamera,
+    color: '#01C6A5',
+  },
+  {
+    title: 'Graphic Design',
+    icon: IconTv,
+    color: '#F60934',
+  },
+  {
+    title: 'Film & TV Production',
+    icon: IconTripodCamera,
+    color: '#F76335',
+  },
+  {
+    title: 'Sound Engineering',
+    icon: IconSoundwave,
+    color: '#B9C601',
   },
 ];
 
@@ -462,7 +591,7 @@ export const ADMI_FELLOWSHIP_VALUES = [
   {
     id: 'global',
     name: 'Why Join Our Fellowship Program?',
-    icon: IconBrowser,
+    icon: IconPinned,
     iconColor: '#F76335',
     description: [
       `As a fellow at ADMI, you will have the unique opportunity to engage in meaningful work while gaining valuable experience in the field of digital media and education.`,
@@ -472,7 +601,7 @@ export const ADMI_FELLOWSHIP_VALUES = [
   {
     id: 'practical',
     name: 'Who Can Apply',
-    icon: IconMouse,
+    icon: IconPinned,
     iconColor: '#03C6A4',
     description: [
       `We welcome applications from individuals with a strong passion or education and  commitment to making a difference.`,
@@ -482,7 +611,7 @@ export const ADMI_FELLOWSHIP_VALUES = [
   {
     id: 'digital',
     name: 'How To Apply',
-    icon: IconDesktop,
+    icon: IconPinned,
     iconColor: '#F60934',
     description: [
       `If you are interested in joining our fellowship program, we invite you to express your interest by sending your CV and a cover letter detailing your background, the department you wish to cntribute to, and how your skills align with our mission to apply@admi.ac.ke .`,
@@ -496,28 +625,28 @@ export const ADMI_FELLOWSHIP_DEPARTMENTS = [
     id: 'global',
     name: 'Teaching & Curriculum Development',
     icon: IconBook,
-    iconColor: '#F76335',
+    iconColor: '#01C6A5',
     description: [`Contribute to course design and delivery, bringing your expertise to the classroom.`],
   },
   {
     id: 'practical',
     name: 'Research and Innovation',
     icon: IconSearch,
-    iconColor: '#03C6A4',
+    iconColor: '#F60834',
     description: [`Engage in research projects that advance knowledge in digital media and technology.`],
   },
   {
     id: 'digital',
     name: 'Student Support Services',
     icon: IconShootingStar,
-    iconColor: '#F60934',
+    iconColor: '#E43B07',
     description: [`Assist in providing guidance and support to students, enhancing their educational experience.`],
   },
   {
     id: 'digital',
     name: 'Administrative Functions',
     icon: IconHomeAlt,
-    iconColor: '#F60934',
+    iconColor: '#B9C601',
     description: [
       `Participate in the operational aspects of the institute, gaining insights into higher education management.`,
     ],
@@ -528,7 +657,7 @@ export const ADMI_CAREER_VALUES = [
   {
     id: 'global',
     name: 'Impactful Teaching',
-    icon: IconBook,
+    icon: IconEdit,
     iconColor: '#F76335',
     description: [
       `At ADMI, you will have the chance to shape the minds of students and make a lasting impact on their careers. Your expertise and passion for teaching can help cultivate the skills and creativity of future leaders in the digital media landscape.`,
@@ -537,7 +666,7 @@ export const ADMI_CAREER_VALUES = [
   {
     id: 'practical',
     name: 'Collaborative Environment',
-    icon: IconSearch,
+    icon: IconUsersGroup,
     iconColor: '#03C6A4',
     description: [
       `Join a community of like-minded professionals who share your commitment to education and innovation. Our collaborative environment encourages knowledge sharing, creativity, and professional growth.`,
@@ -546,7 +675,7 @@ export const ADMI_CAREER_VALUES = [
   {
     id: 'digital',
     name: 'Diverse Course Offerings',
-    icon: IconShootingStar,
+    icon: IconDashboardTabs,
     iconColor: '#F60934',
     description: [
       `We offer a wide range of courses in digital media, including film, animation, graphic design, and more. If you have a particular area of expertise or a course you are passionate about teaching, we want to hear from you!`,
@@ -558,8 +687,7 @@ export const ADMI_ACCREDITATION_VALUES = [
   {
     id: 'global',
     name: 'Quality Assurance',
-    icon: IconBook,
-    iconColor: '#F76335',
+    icon: IconSettingGear,
     description: [
       `Our accreditation ensures that you receive a high-quality education that meets international standards, giving you confidence in your qualifications.`,
     ],
@@ -567,8 +695,7 @@ export const ADMI_ACCREDITATION_VALUES = [
   {
     id: 'practical',
     name: 'Global Recognition',
-    icon: IconSearch,
-    iconColor: '#03C6A4',
+    icon: IconDrawSquare,
     description: [
       `With Pearson Assured and Woolf University accreditation, your qualifications will be recognized by employers and educational institutions around the world, opening doors to further studies and career opportunities.`,
     ],
@@ -576,8 +703,7 @@ export const ADMI_ACCREDITATION_VALUES = [
   {
     id: 'digital',
     name: 'Continuous Improvement',
-    icon: IconShootingStar,
-    iconColor: '#F60934',
+    icon: IconTopArrow,
     description: [
       `Our commitment to quality means that we continually assess and improve our programs to meet the evolving needs of the digital media industry.`,
     ],
@@ -611,8 +737,8 @@ export const ADMI_ACADEMIC_PATHWAYS = [
   {
     id: 'global',
     name: 'Articulation Agreements',
-    icon: IconBook,
-    iconColor: '#F76335',
+    icon: IconDiaryAlt,
+    iconColor: '#03C6A4',
     description: [
       `ADMI has established articulation agreements with reputable universities around the globe, ensuring that our qualifications are recognized and aligned with international standards. One such partnership is with Full Sail University in the United States, where our graduates can transfer credits and continue their education in digital cinematography programs.`,
     ],
@@ -620,8 +746,8 @@ export const ADMI_ACADEMIC_PATHWAYS = [
   {
     id: 'practical',
     name: 'Alignment with KNQF',
-    icon: IconSearch,
-    iconColor: '#03C6A4',
+    icon: IconCheckList,
+    iconColor: '#F76335',
     description: [
       `Our academic programs are designed to meet the standards set by the Kenya National Qualifications Framework (KNQF), which is recognized both locally and internationally. By aligning our qualifications with the KNQF, we ensure that our students can seamlessly progress through the education system, whether they choose to study in Kenya or abroad.`,
     ],
@@ -629,8 +755,8 @@ export const ADMI_ACADEMIC_PATHWAYS = [
   {
     id: 'practical',
     name: 'Accreditation by Woolf University',
-    icon: IconSearch,
-    iconColor: '#03C6A4',
+    icon: IconSettingGear,
+    iconColor: '#F1FE37',
     description: [
       `Our quality assurance and articulation (credit transfer) arrangement with Woolf University guarantees full recognition of your ADMI diploma towards a university degree in Europe under the European Credit Transfer System (ECTS).`,
     ],
@@ -638,8 +764,7 @@ export const ADMI_ACADEMIC_PATHWAYS = [
   {
     id: 'practical',
     name: 'Pathways to Further Education',
-    icon: IconSearch,
-    iconColor: '#03C6A4',
+    icon: IconArrowCurved,
     description: [
       `Our academic pathways are designed to provide our students with a smooth transition to further their studies, both locally and internationally. Whether you aspire to pursue a bachelor’s degree, a master’s program, or a professional qualification, ADMI’s partnerships with institutions like Full Sail University and Woolf University ensure that you have access to a wide range of options.`,
     ],

@@ -1,23 +1,29 @@
 import Image from 'next/image';
-import { Box, Divider } from '@mantine/core';
+import { Box, Divider, Modal } from '@mantine/core';
+import { useDisclosure } from '@mantine/hooks';
 
 import { MainLayout } from '@/layouts/v3/MainLayout';
 import { Paragraph, Title } from '@/components/ui';
 import { PageSEO } from '@/components/shared/v3';
-import { InfoCard, PlainCard } from '@/components/cards';
+import { InfoCard, LearnMoreCard, PlainCard } from '@/components/cards';
 import { ADMI_ACCREDITATION_VALUES, ADMI_FELLOWSHIPS } from '@/utils';
 
-import ImageCareersLanding from '@/assets/images/careers-landing.png';
+import ImageAccreditationLanding from '@/assets/images/accreditation-landing.png';
 
 export default function AccreditationPage() {
+  const [opened, { open, close }] = useDisclosure(false);
+
   return (
     <MainLayout footerBgColor="white">
       <PageSEO title="Accreditation" />
+      <Modal radius="lg" opened={opened} onClose={close} size={'72rem'}>
+        <LearnMoreCard />
+      </Modal>
       <div className="w-full">
         {/* HEADER */}
-        <Box className="relative w-full" bg={'blue'}>
+        <Box className="relative w-full cursor-pointer" bg={'blue'} onClick={open}>
           <Image
-            src={ImageCareersLanding}
+            src={ImageAccreditationLanding}
             placeholder="empty"
             alt="Fellowship Banner"
             fill
@@ -29,13 +35,13 @@ export default function AccreditationPage() {
           <div
             className="z-5 absolute inset-0"
             style={{
-              background: `radial-gradient(circle, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 80%)`,
+              background: 'linear-gradient(to bottom, rgba(0,0,0,0.3) 50%, rgba(228, 59, 7, 1) 100%)',
             }}
           ></div>
           <Box className="relative z-10 mx-auto flex h-[50vh] w-full max-w-screen-xl flex-row px-4 sm:flex-row 2xl:px-0">
-            <Box className="mt-[12vh] flex w-full flex-col">
-              <Box className="flex">
-                <Title label="Accreditation" color="#B9C601" size="64px" />
+            <Box className="mt-[20vh] flex w-full flex-col">
+              <Box className="flex grow">
+                <Title label="Accreditation" color="#F1FE37" size="64px" />
               </Box>
               <Box className="flex w-full pt-12">
                 <Paragraph fontFamily="font-nexa" className="w-1/2 pr-6 text-white">
@@ -43,7 +49,7 @@ export default function AccreditationPage() {
                   educational excellence through our accreditation partnerships. Currently, we are recognized as a
                   Pearson Assured institution, which signifies our commitment to quality education and training.
                 </Paragraph>
-                <Divider orientation="vertical" />
+                <Divider orientation="vertical" size={2} />
                 <Paragraph fontFamily="font-nexa" className="w-1/2 pl-6 text-white">
                   This independent benchmark from Pearson ensures that we meet rigorous quality criteria, providing you
                   with a reliable and respected qualification that is recognized globally.
@@ -53,15 +59,15 @@ export default function AccreditationPage() {
           </Box>
         </Box>
         {/* WORK */}
-        <Box className="relative z-10 w-full bg-[#002A23] pb-8 pt-8 sm:pb-56">
+        <Box className="relative z-10 w-full pb-8 pt-8 sm:pb-56" bg={'#E43B07'}>
           <Box className="mx-auto flex w-full max-w-screen-xl flex-col">
             <Box className="w-full px-4 py-6 text-white 2xl:px-0 2xl:pr-4">
               <Title label="Why Work at ADMI?" color="white" />
             </Box>
             <Box className="flex w-full flex-col justify-between sm:flex-row sm:px-0">
-              {ADMI_ACCREDITATION_VALUES.map((support, index) => (
-                <Box key={`support-${index}`} p={8}>
-                  <InfoCard support={support} />
+              {ADMI_ACCREDITATION_VALUES.map((value, index) => (
+                <Box key={`value-${index}`} p={8} className="w-[33%]">
+                  <InfoCard item={value} bgColor="#A02600" />
                 </Box>
               ))}
             </Box>
@@ -69,7 +75,7 @@ export default function AccreditationPage() {
         </Box>
         {/* Floating Card */}
         <div className="relative w-full px-4 2xl:px-0">
-          <div className="z-10 w-full max-w-screen-xl px-4 sm:absolute sm:left-1/2 sm:top-[-12vh] sm:top-[10vh] sm:-translate-x-1/2 sm:transform 2xl:px-0">
+          <div className="z-10 w-full max-w-screen-xl px-4 sm:absolute sm:left-1/2 sm:top-[-120px] sm:-translate-x-1/2 sm:transform 2xl:px-0">
             <Box className="flex w-full flex-col sm:flex-row">
               <Box className="pr-4 sm:w-1/2">
                 <PlainCard>

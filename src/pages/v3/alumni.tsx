@@ -1,24 +1,30 @@
 import Image from 'next/image';
-import { Box, Divider } from '@mantine/core';
+import { Box, Divider, Modal } from '@mantine/core';
+import { useDisclosure } from '@mantine/hooks';
 
 import { MainLayout } from '@/layouts/v3/MainLayout';
 import { Paragraph, Title } from '@/components/ui';
 import { PageSEO } from '@/components/shared/v3';
-import { PlainCard, UserProfileCard } from '@/components/cards';
+import { LearnMoreCard, PlainCard, UserProfileCard } from '@/components/cards';
+import { JoinForm } from '@/components/forms';
 import { ADMI_ALUMNI } from '@/utils';
 
 import IconUsersGroupAlt from '@/assets/icons/users-group-alt.svg';
 import IconCelebrate from '@/assets/icons/celebrate.svg';
 import ImageAlumniLanding from '@/assets/images/alumni-landing.png';
-import { JoinForm } from '@/components/forms';
 
 export default function AlumniPage() {
+  const [opened, { open, close }] = useDisclosure(false);
+
   return (
     <MainLayout footerBgColor="white">
       <PageSEO title="Academic Pathways" />
+      <Modal radius="lg" opened={opened} onClose={close} size={'72rem'}>
+        <LearnMoreCard />
+      </Modal>
       <div className="w-full">
         {/* HEADER */}
-        <Box className="relative w-full" bg={'#002A23'}>
+        <Box className="relative w-full cursor-pointer" bg={'#002A23'} onClick={open}>
           <Image
             src={ImageAlumniLanding}
             placeholder="empty"
@@ -32,22 +38,22 @@ export default function AlumniPage() {
           <div
             className="z-5 absolute inset-0"
             style={{
-              background: `radial-gradient(circle, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 80%)`,
+              background: 'linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0, 42, 35, 1) 100%)',
             }}
           ></div>
           <Box className="relative z-10 mx-auto flex h-[50vh] w-full max-w-screen-xl flex-row px-4 sm:flex-row 2xl:px-0">
             <Box className="mt-[12vh] flex w-full flex-col">
-              <Box className="flex">
-                <Title label="Alumni" color="#B9C601" size="64px" />
+              <Box className="flex grow">
+                <Title label="Alumni" color="#F1FE37" size="64px" />
                 <Box className="px-1"></Box>
                 <Title label="Network" color="admiShamrok" size="64px" />
               </Box>
-              <Box className="flex w-full pt-12">
+              <Box className="flex w-full pb-12">
                 <Paragraph fontFamily="font-nexa" className="w-1/2 pr-6 text-white">
                   Welcome to the Alumni page of Africa Digital Media Institute (ADMI)! We are proud of our graduates and
                   the incredible contributions they make to the digital media industry and beyond.
                 </Paragraph>
-                <Divider orientation="vertical" />
+                <Divider orientation="vertical" size={2} color="admiShamrok" />
                 <Paragraph fontFamily="font-nexa" className="w-1/2 pl-6 text-white">
                   Our alumni network is a vibrant community of talented individuals who have gone on to achieve
                   remarkable success in various fields, and we are excited to celebrate their accomplishments and keep
@@ -64,12 +70,12 @@ export default function AlumniPage() {
               <PlainCard>
                 <Box className="flex w-full">
                   <Box className="grow">
-                    <Title label="Stay Connected" color="black" />
-                    <Paragraph fontFamily="font-nexa" fontWeight={400} className="py-4" size="20px">
+                    <Title label="Stay Connected" color="black" size="24px" />
+                    <Paragraph fontFamily="font-nexa" fontWeight={400} className="py-4 sm:pr-12" size="20px">
                       As an ADMI alumnus, you are an essential part of our community, and we encourage you to register
                       and keep in touch with us.
                     </Paragraph>
-                    <Paragraph fontFamily="font-nexa" className="py-4">
+                    <Paragraph fontFamily="font-nexa" className="py-4 sm:pr-12">
                       By joining our alumni network, you will receive updates on events, job opportunities, and industry
                       news that can help you stay connected to your peers and the institute. We want to hear about your
                       journey, your achievements, and how you are making an impact in your respective industries.
@@ -84,11 +90,11 @@ export default function AlumniPage() {
               <PlainCard>
                 <Box className="flex w-full">
                   <Box className="grow">
-                    <Title label="Celebrate Your Success" color="black" />
-                    <Paragraph fontFamily="font-nexa" fontWeight={400} className="py-4" size="20px">
+                    <Title label="Celebrate Your Success" color="black" size="24px" />
+                    <Paragraph fontFamily="font-nexa" fontWeight={400} className="py-4 sm:pr-12" size="20px">
                       We believe in celebrating the successes of our alumni.
                     </Paragraph>
-                    <Paragraph fontFamily="font-nexa" className="py-4">
+                    <Paragraph fontFamily="font-nexa" className="py-4 sm:pr-12">
                       Whether you’ve launched your own business, landed a dream job, or made significant contributions
                       to your field, we want to share your story! By keeping us updated on your professional milestones,
                       you can inspire current students and fellow alumni while reinforcing the strength of the ADMI
@@ -127,7 +133,7 @@ export default function AlumniPage() {
           </Box>
         </Box>
         {/* CONCLUSION */}
-        <Box className="mx-auto w-full max-w-screen-xl">
+        <Box className="mx-auto w-full max-w-screen-xl px-4">
           <Divider />
           <Box className="flex w-full flex-col py-6">
             <Title label="Conclusion" color="black" />
