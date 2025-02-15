@@ -1,4 +1,4 @@
-import { IContentfulAsset } from '@/types';
+import { IContentfulAsset, IContentfulEntry } from '@/types';
 
 export * from './constants';
 
@@ -21,3 +21,33 @@ export function processVideoUrl(videoUrl: string): string {
   }
   return videoUrl; // Return the original URL if it's not a YouTube link with `/watch`
 }
+
+// Helper function to resolve references
+export const resolveReferences = (
+  fields: Record<string, IContentfulEntry>,
+  entries: Array<IContentfulEntry>,
+  assets: Array<IContentfulAsset>
+) => {
+  const resolveField: any = (field: any) => {
+    if (Array.isArray(field)) {
+      return field.map((item) => resolveField(item));
+    }
+    if (field?.sys?.type === 'Link') {
+      const linkedId = field.sys.id;
+      const linkedType = field.sys.linkType;
+
+      if (linkedType === 'Asset') {
+        return assets.find((asset) => asset.sys.id === linkedId) || field;
+      }
+      if (linkedType === 'Entry') {
+        return entries.find((entry) => entry.sys.id === linkedId) || field;
+      }
+    }
+    return field;
+  };
+
+  return Object.entries(fields).reduce<Record<string, IContentfulEntry>>((resolvedFields, [key, value]) => {
+    resolvedFields[key] = resolveField(value);
+    return resolvedFields;
+  }, {});
+};

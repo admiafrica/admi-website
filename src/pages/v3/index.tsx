@@ -27,12 +27,15 @@ import AnnouncementImage from '@/assets/images/announcement.svg';
 import NewsImage from '@/assets/images/featured-news.svg';
 import AwardsImage from '@/assets/images/awards.svg';
 import IconSearch from '@/assets/icons/Search';
+import { IContentfulEntry } from '@/types';
 
 export default function HomePage() {
   const router = useRouter();
   const [content, setContent] = useState<any>();
   const [courses, setCourses] = useState<Array<any>>([]);
   const [opened, { open, close }] = useDisclosure(false);
+  const [featured, setFeatured] = useState<IContentfulEntry>();
+
   const autoplaySectors = useRef(Autoplay({ delay: 4000 }));
   const autoplayTestimonials = useRef(Autoplay({ delay: 4000 }));
   const autoplayFacilities = useRef(Autoplay({ delay: 4000 }));
@@ -45,22 +48,15 @@ export default function HomePage() {
     { word: 'Engineering', styles: 'text-[#F60834]' },
   ];
 
-  const sectors = ADMI_HOMEPAGE_SECTORS;
-
   const announcement = {
     title: 'Introducing Aquila Creative Scholars: Your Gateway to a Thriving Creative Career',
-    description:
+    summary:
       'The Africa Digital Media Foundation, in partnership with a generous anonymous donor, is thrilled to announce the launch of the Aquila Creative Scholars program.',
   };
   const facilities = ADMI_FACILITIES;
-  const news = {
-    title: 'Ganjisha Content Program: Empowering Kenyan Youth Through Digital Skills and Entrepreneurship',
-    description:
-      'In response to Kenya’s high youth unemployment rates, the Ganjisha Content Program was established to equip young people with practical.',
-  };
   const award = {
     title: 'ADMI Wins Best Creative Media and Tech Training Institution at the 7th Annual Digital Tech Awards 2024',
-    description:
+    summary:
       'Named the Best Creative Media and Tech Training Institution at the prestigious 7th Annual Digital Tech Awards 2024!',
   };
 
@@ -84,6 +80,17 @@ export default function HomePage() {
     }
   }, []);
 
+  const fetchFeaturedNews = useCallback(async () => {
+    try {
+      const response = await fetch(`/api/v3/news`);
+      const data = await response.json();
+      const featuredArticle = data.find((article: IContentfulEntry) => article.fields.featured);
+      setFeatured(featuredArticle);
+    } catch (error) {
+      console.log('Error fetching courses:', error);
+    }
+  }, []);
+
   const handleViewCourses = () => {
     router.push(`/v3/courses`);
   };
@@ -91,7 +98,8 @@ export default function HomePage() {
   useEffect(() => {
     fetchContent();
     fetchCourses();
-  }, [fetchCourses, fetchContent]);
+    fetchFeaturedNews();
+  }, [fetchCourses, fetchContent, fetchFeaturedNews]);
 
   return (
     <MainLayout footerBgColor="#E6F608">
@@ -185,8 +193,13 @@ export default function HomePage() {
               onMouseEnter={autoplaySectors.current.stop}
               onMouseLeave={autoplaySectors.current.reset}
             >
-              {sectors.map((sector: any) => (
+              {ADMI_HOMEPAGE_SECTORS.map((sector: any) => (
                 <Carousel.Slide key={sector.title} py={6}>
+                  <SectorItemCard sector={sector} withBorder />
+                </Carousel.Slide>
+              ))}
+              {ADMI_HOMEPAGE_SECTORS.map((sector: any) => (
+                <Carousel.Slide key={`${sector.title}-2`} py={6}>
                   <SectorItemCard sector={sector} withBorder />
                 </Carousel.Slide>
               ))}
@@ -223,8 +236,8 @@ export default function HomePage() {
                         <Paragraph className="w-1/2" size="18px">
                           Student Satisfaction
                         </Paragraph>
-                        <div>
-                          <Text size="48px">{content.fields.employmentRate}</Text>
+                        <div className="my-auto">
+                          <Text size="48px">{content.fields.studentSatisfactionRating}</Text>
                         </div>
                       </div>
                       <Divider color="admiShamrok" orientation="vertical" h={100}></Divider>
@@ -232,7 +245,7 @@ export default function HomePage() {
                         <Paragraph className="w-1/2" size="18px">
                           Enrolled Students
                         </Paragraph>
-                        <div>
+                        <div className="my-auto">
                           <Indicator
                             color="admiShamrok"
                             inline
@@ -251,7 +264,7 @@ export default function HomePage() {
                         <Paragraph className="w-2/3 pr-4" size="18px">
                           Employment Rate within 6 months of graduation
                         </Paragraph>
-                        <div>
+                        <div className="my-auto">
                           <Indicator
                             color="admiShamrok"
                             inline
@@ -259,7 +272,7 @@ export default function HomePage() {
                             size={24}
                             offset={4}
                           >
-                            <Text size="48px">{content.fields.studentSatisfactionRating}</Text>
+                            <Text size="48px">{content.fields.employmentRate}</Text>
                           </Indicator>
                         </div>
                       </div>
@@ -354,7 +367,9 @@ export default function HomePage() {
         </Box>
         {/* NEWS */}
         <Box className="w-full px-4 py-16 xl:px-0" bg={'#01C6A5'}>
-          <AnnouncementCard announcement={news} bgColor="admiShamrok" image={NewsImage} featured />
+          {featured && (
+            <AnnouncementCard announcement={featured.fields} bgColor="admiShamrok" image={NewsImage} featured />
+          )}
         </Box>
         {/* COURSES */}
         <Box className="1xl:px-0 w-full px-4 py-16" bg={'#F5FFFD'}>

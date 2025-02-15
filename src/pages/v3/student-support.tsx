@@ -152,9 +152,9 @@ export default function StudentSupportPage() {
                 your schedule accordingly.
               </Paragraph>
             </Box>
-            <Box className="flex mt-6">
+            <Box className="mt-6 flex">
               <IconDownload color="#F60934" size={32} />{' '}
-              <Paragraph fontFamily="font-nexa" fontWeight={900} className="text-admiRed my-auto px-2">
+              <Paragraph fontFamily="font-nexa" fontWeight={900} className="my-auto px-2 text-admiRed">
                 Download Calendar
               </Paragraph>
             </Box>
@@ -271,7 +271,7 @@ export default function StudentSupportPage() {
         </Box>
         {/* COUNSELING AND CAREER */}
         <Box className="w-full py-8" bg={'#F5FFFD'}>
-          <Box className="mx-auto w-full max-w-screen-xl">
+          <Box className="mx-auto w-full">
             <Carousel
               slideSize={600}
               height={400}
@@ -286,6 +286,11 @@ export default function StudentSupportPage() {
             >
               {ADMI_CAREER_ADVICE.map((advice) => (
                 <Carousel.Slide key={advice.title}>
+                  <AdviceCard advice={advice} hasList />
+                </Carousel.Slide>
+              ))}
+              {ADMI_CAREER_ADVICE.map((advice) => (
+                <Carousel.Slide key={`${advice.title}-2`}>
                   <AdviceCard advice={advice} hasList />
                 </Carousel.Slide>
               ))}

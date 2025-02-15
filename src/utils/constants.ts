@@ -152,46 +152,6 @@ export const ADMI_HOMEPAGE_SECTORS = [
     icon: IconGamepad,
     color: '#F60834',
   },
-  {
-    title: '2D and 3D animation',
-    icon: IconHome,
-    color: '#B9C601',
-  },
-  {
-    title: 'Film & TV Production',
-    icon: IconTripodCamera,
-    color: '#F76335',
-  },
-  {
-    title: 'Video Production',
-    icon: IconCamera,
-    color: '#01C6A5',
-  },
-  {
-    title: 'Music Production',
-    icon: IconMusic,
-    color: '#F60834',
-  },
-  {
-    title: 'Sound Engineering',
-    icon: IconSoundwave,
-    color: '#B9C601',
-  },
-  {
-    title: 'Animation & Digital Media',
-    icon: IconTruckSpeed,
-    color: '#F76335',
-  },
-  {
-    title: 'Graphic Design',
-    icon: IconTv,
-    color: '#01C6A5',
-  },
-  {
-    title: 'Video Game Design',
-    icon: IconGamepad,
-    color: '#F60834',
-  },
 ];
 
 export const ADMI_ABOUT_SECTORS = [

@@ -1,4 +1,5 @@
 import { IContentfulEntry, IContentfulResponse } from '@/types';
+import { resolveReferences } from '@/utils';
 import axiosContentfulClient from '@/utils/axiosContentfulClient';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
@@ -18,38 +19,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       const assets = data.includes?.Asset || [];
       const entries = data.includes?.Entry || [];
 
-      // Helper function to resolve references
-      const resolveReferences = (fields: Record<string, IContentfulEntry>) => {
-        const resolveField: any = (field: any) => {
-          if (Array.isArray(field)) {
-            return field.map((item) => resolveField(item));
-          }
-          if (field?.sys?.type === 'Link') {
-            const linkedId = field.sys.id;
-            const linkedType = field.sys.linkType;
-
-            if (linkedType === 'Asset') {
-              return assets.find((asset) => asset.sys.id === linkedId) || field;
-            }
-            if (linkedType === 'Entry') {
-              return entries.find((entry) => entry.sys.id === linkedId) || field;
-            }
-          }
-          return field;
-        };
-
-        return Object.entries(fields).reduce<Record<string, IContentfulEntry>>((resolvedFields, [key, value]) => {
-          resolvedFields[key] = resolveField(value);
-          return resolvedFields;
-        }, {});
-      };
-
       // Resolve references in the main item
       const resolvedPrograms = programItems.map((program: any) => {
         return {
           ...program,
-          fields: resolveReferences(program.fields),
-          assets
+          fields: resolveReferences(program.fields, entries, assets),
+          assets,
         };
       });
 
