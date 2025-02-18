@@ -3,9 +3,8 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { Box, Card, Divider, Tabs } from '@mantine/core';
 
-import { PageSEO } from '@/components/shared/v3';
 import { MainLayout } from '@/layouts/v3/MainLayout';
-import {} from '@tabler/icons-react';
+import { PageSEO } from '@/components/shared/v3';
 import { EmptyCard } from '@/components/cards';
 import { Paragraph, ParagraphContentful } from '@/components/ui';
 

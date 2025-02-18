@@ -5,11 +5,14 @@ import { CollapsibleContent } from '../shared/v3';
 
 import IconBgImageYellow from '@/assets/icons/ellipse-yellow.svg';
 import IconBgImageRed from '@/assets/icons/ellipse-red.svg';
+import { Title } from '../ui';
+import { useIsMobile } from '@/hooks/useIsMobile';
 
 type Props = {
   faqs: any[];
 };
 export default function CourseFAQs({ faqs }: Props) {
+  const isMobile = useIsMobile();
   if (faqs.length < 1) return null;
 
   return (
@@ -26,12 +29,10 @@ export default function CourseFAQs({ faqs }: Props) {
           <Image src={IconBgImageRed} alt={'background image'} />
         </div>
       </div>
-      
-      <div className="relative z-20 mx-auto min-h-[40em] w-full max-w-screen-xl px-4 2xl:px-0 pb-16">
-        <div className="z-20 pt-16 font-nexa">
-          <Text size="2em" fw={900}>
-            Frequently Asked Questions
-          </Text>
+
+      <div className="relative z-20 mx-auto min-h-[40em] w-full max-w-screen-xl px-4 pb-16 2xl:px-0">
+        <div className="z-20 py-8">
+          <Title size={isMobile ? '24px' : '32px'} label="Frequently Asked Questions" color="black" className="mt-4" />
         </div>
         {faqs &&
           faqs.map((faq, index) => (

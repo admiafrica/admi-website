@@ -13,11 +13,6 @@ import { Paragraph } from '@/components/ui';
 export default function NewsEventsLandingPage() {
   const [news, setNews] = useState<Array<any>>([]);
   const [featured, setFeatured] = useState<IContentfulEntry>();
-  // const featured = {
-  //   title: 'Ganjisha Content Program: Empowering Kenyan Youth Through Digital Skills and Entrepreneurship',
-  //   description:
-  //     'In response to Kenya’s high youth unemployment rates, the Ganjisha Content Program was established to equip young people with practical.',
-  // };
 
   const fetchCourses = useCallback(async () => {
     try {
