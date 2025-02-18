@@ -14,8 +14,10 @@ import IconWhatsapp from '@/assets/icons/whatsapp-social.svg';
 import IconCopyContent from '@/assets/icons/copy-content.svg';
 import IconShare from '@/assets/icons/share.svg';
 import IconLinkedIn from '@/assets/icons/linkedin-social.svg';
+import { useIsMobile } from '@/hooks/useIsMobile';
 
 export default function NewsArticlePage() {
+  const isMobile = useIsMobile();
   const router = useRouter();
   const slug = router.query.slug;
   const [article, setArticle] = useState<any>();
@@ -67,11 +69,13 @@ export default function NewsArticlePage() {
           </Tabs.List>
 
           <Tabs.Panel value="news">
-            <Box className="mx-auto flex w-full max-w-screen-xl px-4 py-16 2xl:px-0">
-              <Box className="flex w-[200px] flex-col">
+            <Box className="mx-auto flex w-full max-w-screen-xl flex-col-reverse px-4 py-4 sm:flex-row sm:py-16 xl:px-0">
+              <Box className="flex flex-col sm:w-[200px]">
                 <Box className="flex pb-6">
                   <Image src={IconShare} alt="share" width={32} height={32} />
-                  <Paragraph className="my-auto">Share on:</Paragraph>
+                  <Paragraph className="my-auto" fontFamily="font-nexa">
+                    Share on:
+                  </Paragraph>
                 </Box>
                 <Card className="flex w-full flex-col" shadow="lg">
                   <Box className="flex py-4">
@@ -104,8 +108,8 @@ export default function NewsArticlePage() {
                 </Card>
               </Box>
               {article && (
-                <Card className="ml-8 min-h-[80vh] w-full" withBorder>
-                  <Box className="relative h-[600px]">
+                <Card className="mb-6 min-h-[80vh] w-full sm:ml-8" withBorder>
+                  <Box className="relative" h={isMobile ? '200px' : '600px'}>
                     <Image
                       src={`https:${article.coverImage.fields.file.url}`}
                       alt={article.title}

@@ -1,25 +1,32 @@
 import React from 'react';
 import Image from 'next/image';
-import { Card, Text } from '@mantine/core';
+import { Box, Card, Text } from '@mantine/core';
 
 import IconLinkedIn from '@/assets/icons/linkedin-blue.svg';
 import { Paragraph } from '../ui';
+import { useIsMobile } from '@/hooks/useIsMobile';
 
 type Props = {
   user: any;
 };
 
 export default function UserProfileCard(props: Props) {
+  const isMobile = useIsMobile();
+
   return (
     <Card
       shadow="sm"
       padding="lg"
       radius="md"
       withBorder
-      className="border-1 border-grey-500 1xl:w-full h-[240px] w-[240px] border-solid shadow-md"
+      className="border-1 border-grey-500 border-solid shadow-md"
+      w={isMobile ? '160px' : '240px'}
+      h={isMobile ? '240px' : '240px'}
     >
-      <Card.Section className="relative grow">
-        <Image fill src={props.user.image} alt="about course" objectFit="cover" />
+      <Card.Section className="grow">
+        <Box className="relative grow" h={isMobile ? '100px' : 'auto'}>
+          <Image fill src={props.user.image} alt="about course" objectFit="cover" />
+        </Box>
       </Card.Section>
       <Card.Section className="px-4">
         <div className="flex flex-col py-2">

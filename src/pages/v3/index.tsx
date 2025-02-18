@@ -28,9 +28,11 @@ import NewsImage from '@/assets/images/featured-news.svg';
 import AwardsImage from '@/assets/images/awards.svg';
 import IconSearch from '@/assets/icons/Search';
 import { IContentfulEntry } from '@/types';
+import { useIsMobile } from '@/hooks/useIsMobile';
 
 export default function HomePage() {
   const router = useRouter();
+  const isMobile = useIsMobile();
   const [content, setContent] = useState<any>();
   const [courses, setCourses] = useState<Array<any>>([]);
   const [opened, { open, close }] = useDisclosure(false);
@@ -127,17 +129,32 @@ export default function HomePage() {
             }}
           ></div>
 
-          <Box className="relative mx-auto flex h-[50vh] w-full max-w-screen-xl flex-row px-4 sm:flex-row 2xl:px-0">
-            <Box className="mt-[12vh] flex w-1/2 flex-col">
+          <Box className="relative mx-auto flex h-[50vh] w-full max-w-screen-xl flex-row px-4 sm:flex-row xl:px-0">
+            <Box className="mt-[12vh] flex w-full flex-col sm:w-1/2">
               <Box>
-                <Paragraph fontFamily="font-nexa" fontWeight={900} size="48px" className="text-white">
+                <Paragraph
+                  fontFamily="font-nexa"
+                  fontWeight={900}
+                  size={isMobile ? '30px' : '48px'}
+                  className="text-white"
+                >
                   Launch your career in
                 </Paragraph>
                 <Box className="flex">
-                  <Paragraph fontFamily="font-nexa" fontWeight={900} size="48px" className="pr-1 text-white">
+                  <Paragraph
+                    fontFamily="font-nexa"
+                    fontWeight={900}
+                    size={isMobile ? '30px' : '48px'}
+                    className="pr-1 text-white"
+                  >
                     Creative
                   </Paragraph>
-                  <AnimatedWordDisplay words={keyItems} fontFamily="font-nexa" fontWeight={900} size="48px" />
+                  <AnimatedWordDisplay
+                    words={keyItems}
+                    fontFamily="font-nexa"
+                    fontWeight={900}
+                    size={isMobile ? '30px' : '48px'}
+                  />
                 </Box>
               </Box>
               <Paragraph className="py-6 text-white">
@@ -170,7 +187,7 @@ export default function HomePage() {
         {/* OFFERINGS */}
         <Box className="w-full">
           <Box className="w-full pt-20">
-            <div className="mx-auto w-fit max-w-screen-md text-center">
+            <div className="mx-auto w-fit max-w-screen-md px-4 text-center">
               <Paragraph fontFamily="font-nexa">
                 It is an innovative career accelerator where creatives and techies receive training, mentorship and a
                 platform to turn their passion into a profession.
@@ -206,7 +223,7 @@ export default function HomePage() {
             </Carousel>
           </Box>
           <Box className="w-full">
-            <div className="mx-auto w-fit max-w-screen-md py-12 text-center">
+            <div className="mx-auto w-fit max-w-screen-md px-4 py-12 text-center">
               <Paragraph fontFamily="font-nexa">
                 Our programs combine high-spec technical training in creative media and technology with intensive
                 digital and soft-skills coaching, along with a rigorous internship process, helping to achieve
@@ -218,76 +235,132 @@ export default function HomePage() {
         {/* IMPACT */}
         <Box className="w-full" bg={'#F5FFFD'}>
           <Box className="mx-auto flex w-full max-w-screen-xl flex-col px-4 py-8 2xl:px-0">
-            <Box className="flex w-full flex-row">
-              <Box className="w-[30%]">
+            <Box className="flex w-full flex-col sm:flex-row">
+              <Box className="sm:w-[30%]">
                 <Title label="Our Impact" color="black" />
               </Box>
-              <Box className="w-[70%]">
+              <Box className="sm:w-[70%]">
                 <Paragraph fontFamily="font-nexa" className="pt-4">
                   Through our innovative programs and industry-focused training, we empower students to turn their
                   creative passions into successful careers. ADMI&apos;s impact extends beyond the classroom, fostering
                   a new generation of professionals ready to lead in the digital media industry.
                 </Paragraph>
                 <Box className="w-full">
-                  <Divider color="admiShamrok" mt="xl"></Divider>
-                  {content && (
-                    <Box className="flex">
-                      <div className="my-auto flex w-[30%] pr-4 font-proxima">
-                        <Paragraph className="w-1/2" size="18px">
-                          Student Satisfaction
-                        </Paragraph>
-                        <div className="my-auto">
-                          <Text size="48px">{content.fields.studentSatisfactionRating}</Text>
-                        </div>
-                      </div>
-                      <Divider color="admiShamrok" orientation="vertical" h={100}></Divider>
-                      <div className="my-auto flex w-[30%] px-4 font-proxima">
-                        <Paragraph className="w-1/2" size="18px">
-                          Enrolled Students
-                        </Paragraph>
-                        <div className="my-auto">
-                          <Indicator
-                            color="admiShamrok"
-                            inline
-                            label={<IconPlus size={16} color="black" />}
-                            size={24}
-                            offset={4}
-                          >
-                            <Paragraph size="48px">
-                              <NumberFormatter value={content.fields.numberOfEnrolledStudents} thousandSeparator />
+                  {!isMobile && <Divider color="admiShamrok" mt="xl"></Divider>}
+                  {content &&
+                    (isMobile ? (
+                      <Box className="flex flex-col">
+                        <div className="my-auto flex py-6">
+                          <Paragraph className="my-auto grow" size="18px" fontFamily="font-nexa">
+                            Student Satisfaction
+                          </Paragraph>
+                          <div className="my-auto">
+                            <Paragraph size="48px" fontFamily="font-nexa">
+                              {content.fields.studentSatisfactionRating}
                             </Paragraph>
-                          </Indicator>
+                          </div>
                         </div>
-                      </div>
-                      <Divider color="admiShamrok" orientation="vertical"></Divider>
-                      <div className="my-auto flex w-[30%] px-4 font-proxima">
-                        <Paragraph className="w-2/3 pr-4" size="18px">
-                          Employment Rate within 6 months of graduation
-                        </Paragraph>
-                        <div className="my-auto">
-                          <Indicator
-                            color="admiShamrok"
-                            inline
-                            label={<IconPlus size={16} color="black" />}
-                            size={24}
-                            offset={4}
-                          >
-                            <Text size="48px">{content.fields.employmentRate}</Text>
-                          </Indicator>
+                        <Divider color="admiShamrok" orientation="horizontal"></Divider>
+                        <div className="my-auto flex py-6">
+                          <Paragraph className="my-auto grow" size="18px" fontFamily="font-nexa">
+                            Enrolled Students
+                          </Paragraph>
+                          <div className="my-auto">
+                            <Indicator
+                              color="admiShamrok"
+                              inline
+                              label={<IconPlus size={16} color="black" />}
+                              size={24}
+                              offset={4}
+                            >
+                              <Paragraph size="48px" fontFamily="font-nexa">
+                                <NumberFormatter value={content.fields.numberOfEnrolledStudents} thousandSeparator />
+                              </Paragraph>
+                            </Indicator>
+                          </div>
                         </div>
-                      </div>
-                    </Box>
-                  )}
+                        <Divider color="admiShamrok" orientation="horizontal"></Divider>
+                        <div className="my-auto flex py-6">
+                          <Paragraph className="my-auto grow pr-4" size="18px" fontFamily="font-nexa">
+                            Employment Rate within 6 months of graduation
+                          </Paragraph>
+                          <div className="my-auto">
+                            <Indicator
+                              color="admiShamrok"
+                              inline
+                              label={<IconPlus size={16} color="black" />}
+                              size={24}
+                              offset={4}
+                            >
+                              <Paragraph size="48px" fontFamily="font-nexa">
+                                {content.fields.employmentRate}
+                              </Paragraph>
+                            </Indicator>
+                          </div>
+                        </div>
+                      </Box>
+                    ) : (
+                      <Box className="flex">
+                        <div className="my-auto flex w-[30%] pr-4 font-proxima">
+                          <Paragraph className="w-1/2" size="18px" fontFamily="font-nexa">
+                            Student Satisfaction
+                          </Paragraph>
+                          <div className="my-auto">
+                            <Paragraph size="48px" fontFamily="font-nexa">
+                              {content.fields.studentSatisfactionRating}
+                            </Paragraph>
+                          </div>
+                        </div>
+                        <Divider color="admiShamrok" orientation="vertical" h={100}></Divider>
+                        <div className="my-auto flex w-[30%] px-4 font-proxima">
+                          <Paragraph className="w-1/2" size="18px" fontFamily="font-nexa">
+                            Enrolled Students
+                          </Paragraph>
+                          <div className="my-auto">
+                            <Indicator
+                              color="admiShamrok"
+                              inline
+                              label={<IconPlus size={16} color="black" />}
+                              size={24}
+                              offset={4}
+                            >
+                              <Paragraph size="48px" fontFamily="font-nexa">
+                                <NumberFormatter value={content.fields.numberOfEnrolledStudents} thousandSeparator />
+                              </Paragraph>
+                            </Indicator>
+                          </div>
+                        </div>
+                        <Divider color="admiShamrok" orientation="vertical"></Divider>
+                        <div className="my-auto flex w-[30%] px-4 font-proxima">
+                          <Paragraph className="w-2/3 pr-4" size="18px" fontFamily="font-nexa">
+                            Employment Rate within 6 months of graduation
+                          </Paragraph>
+                          <div className="my-auto">
+                            <Indicator
+                              color="admiShamrok"
+                              inline
+                              label={<IconPlus size={16} color="black" />}
+                              size={24}
+                              offset={4}
+                            >
+                              <Paragraph size="48px" fontFamily="font-nexa">
+                                {content.fields.employmentRate}
+                              </Paragraph>
+                            </Indicator>
+                          </div>
+                        </div>
+                      </Box>
+                    ))}
                   <Divider color="admiShamrok" mb={'md'}></Divider>
                 </Box>
               </Box>
             </Box>
 
-            <Box className="flex w-full flex-row py-8">
-              <Box className="w-[30%]">
+            <Box className="flex w-full flex-col py-8 sm:flex-row">
+              <Box className="sm:w-[30%]">
                 <Title label="Testimonials" color="black" />
               </Box>
-              <Box className="w-[70%]">
+              <Box className="sm:w-[70%]">
                 <Paragraph fontFamily="font-nexa" className="pt-4">
                   Discover how ADMI has transformed the careers of our students through their own stories of success and
                   growth. Hear firsthand how our hands-on training and industry connections have helped them achieve
@@ -329,11 +402,11 @@ export default function HomePage() {
         {/* FACILITIES */}
         <Box className="1xl:px-0 w-full px-4 py-16" bg={'#F5FFFD'}>
           <Box className="mx-auto w-full max-w-screen-xl">
-            <Box className="flex w-full flex-row pb-12">
-              <Box className="w-[30%]">
+            <Box className="flex w-full flex-col pb-12 sm:flex-row">
+              <Box className="sm:w-[30%]">
                 <Title label="Facilities" color="black" />
               </Box>
-              <Box className="w-[70%]">
+              <Box className="sm:w-[70%]">
                 <Paragraph fontFamily="font-nexa" className="pt-4">
                   ADMI&apos;s campus is a vibrant, creatively designed workspace conveniently located right next to the
                   GPO in Nairobi&apos;s Central Business District. The campus boasts extensive facilities including
@@ -374,11 +447,11 @@ export default function HomePage() {
         {/* COURSES */}
         <Box className="1xl:px-0 w-full px-4 py-16" bg={'#F5FFFD'}>
           <Box className="mx-auto w-full max-w-screen-xl">
-            <Box className="flex w-full flex-row pb-12">
-              <Box className="w-[30%]">
+            <Box className="flex w-full flex-col pb-12 sm:flex-row">
+              <Box className="sm:w-[30%]">
                 <Title label="Our Courses" color="black" />
               </Box>
-              <Box className="w-[70%]">
+              <Box className="sm:w-[70%]">
                 <Paragraph fontFamily="font-nexa" className="pt-4">
                   Explore ADMI&apos;s diverse range of courses designed to equip you with the skills and knowledge
                   needed to excel in the creative industries. Whether you&apos;re passionate about film, design, music,

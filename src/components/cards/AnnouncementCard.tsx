@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 import IconArrowTipRight from '@/assets/icons/ArrowTipRight';
 import Image from 'next/image';
 import { getAssetDetails } from '@/utils';
+import { useIsMobile } from '@/hooks/useIsMobile';
 
 type Props = {
   announcement: any;
@@ -17,6 +18,8 @@ type Props = {
 };
 
 export default function AnnouncementCard(props: Props) {
+  const isMobile = useIsMobile();
+
   return (
     <Card
       className="mx-auto w-full max-w-screen-xl cursor-pointer"
@@ -27,8 +30,8 @@ export default function AnnouncementCard(props: Props) {
         className="flex h-full w-full flex-col sm:flex-row"
         whileHover="hover" // Shared hover animation key
       >
-        <Box className="flex h-[400px] w-full px-4">
-          <Box className="flex w-[40%] flex-col pt-6 sm:pr-4">
+        <Box className="flex h-fit w-full flex-col-reverse px-4 sm:h-[400px] sm:flex-row">
+          <Box className="flex flex-col pt-6 sm:w-[40%] sm:pr-4">
             {props.featured && (
               <Pill
                 size="md"
@@ -66,7 +69,7 @@ export default function AnnouncementCard(props: Props) {
               <IconArrowTipRight width={48} height={48} color={props.arrowColor} />
             </motion.div>
           </Box>
-          <Box className="relative flex h-full w-[60%]">
+          <Box className="relative flex h-[180px] sm:h-full sm:w-[60%]">
             {props.announcement.coverImage ? (
               <Image
                 fill
