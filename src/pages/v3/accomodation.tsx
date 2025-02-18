@@ -115,17 +115,22 @@ export default function AccomodationsPage() {
             </div>
           </Box>
 
-          <div className="relative z-20 flex flex-col justify-between sm:flex-row sm:flex-wrap">
+          <div className="relative z-20 flex flex-row flex-wrap justify-between">
             {ADMI_ACCOMODATION_FEATURES.map((dept, index) => (
-              <Card shadow="md" className="mb-8 sm:w-[30%]" key={`dept-${index}`} radius={8}>
-                <div className="flex px-4 pt-4">
+              <Card shadow="md" className="mb-8 w-[49%] sm:w-[30%]" key={`dept-${index}`} radius={8}>
+                <div className="flex pt-4 sm:px-4">
                   {/* <dept.icon width={48} height={48} /> */}
                   <Image src={dept.icon} alt={dept.title} width={48} height={48} />
-                  <Paragraph fontFamily="font-nexa" fontWeight={900} className="my-auto pl-4">
+                  <Paragraph
+                    fontFamily="font-nexa"
+                    fontWeight={900}
+                    className="my-auto sm:pl-4"
+                    size={isMobile ? '14px' : '18px'}
+                  >
                     {dept.title}
                   </Paragraph>
                 </div>
-                <Paragraph className="py-6" fontFamily="font-nexa">
+                <Paragraph className="py-6" fontFamily="font-nexa" size={isMobile ? '14px' : '18px'}>
                   {dept.description}
                 </Paragraph>
               </Card>

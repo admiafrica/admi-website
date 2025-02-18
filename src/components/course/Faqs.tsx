@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import { Text } from '@mantine/core';
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import { CollapsibleContent } from '../shared/v3';
 

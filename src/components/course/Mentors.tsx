@@ -1,5 +1,4 @@
-import { Group, Text } from '@mantine/core';
-import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
+import { Group } from '@mantine/core';
 import { CollapsibleContent } from '../shared/v3';
 import { getAssetDetails } from '@/utils';
 import Image from 'next/image';

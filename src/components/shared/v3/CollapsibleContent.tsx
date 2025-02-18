@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import { Group, Text, Collapse, Card, Box } from '@mantine/core';
+import { Group, Collapse, Card, Box } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 
 import IconArrowLeft from '@/assets/icons/arrow-left.svg';

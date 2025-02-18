@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import { Box, Card } from '@mantine/core';
-import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import { ParagraphContentful, Title } from '@/components/ui';
 import { getAssetDetails } from '@/utils';
 import { useRouter } from 'next/router';

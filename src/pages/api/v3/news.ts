@@ -1,4 +1,4 @@
-import { IContentfulEntry, IContentfulResponse } from '@/types';
+import { IContentfulResponse } from '@/types';
 import { resolveReferences } from '@/utils';
 import axiosContentfulClient from '@/utils/axiosContentfulClient';
 import type { NextApiRequest, NextApiResponse } from 'next';

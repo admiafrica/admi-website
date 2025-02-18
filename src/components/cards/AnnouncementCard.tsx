@@ -1,12 +1,10 @@
 import React from 'react';
-import { Box, Card, Pill, Text } from '@mantine/core';
+import { Box, Card, Pill } from '@mantine/core';
 import { Paragraph, Title } from '../ui';
 import { motion } from 'framer-motion';
 
 import IconArrowTipRight from '@/assets/icons/ArrowTipRight';
 import Image from 'next/image';
-import { getAssetDetails } from '@/utils';
-import { useIsMobile } from '@/hooks/useIsMobile';
 
 type Props = {
   announcement: any;
@@ -18,8 +16,6 @@ type Props = {
 };
 
 export default function AnnouncementCard(props: Props) {
-  const isMobile = useIsMobile();
-
   return (
     <Card
       className="mx-auto w-full max-w-screen-xl cursor-pointer"

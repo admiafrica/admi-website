@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { Box, Card, Divider, Modal, Text } from '@mantine/core';
+import { Box, Card, Divider, Modal } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 
 import { MainLayout } from '@/layouts/v3/MainLayout';

@@ -24,10 +24,8 @@ import IconDashboardTabs from '@/assets/icons/DashboardTabs';
 import IconCalendarCheck from '@/assets/icons/CalendarCheck';
 import ImageCalendar from '@/assets/images/calendar.svg';
 import ImageSupportLanding from '@/assets/images/student-support-landing.png';
-import { useIsMobile } from '@/hooks/useIsMobile';
 
 export default function StudentSupportPage() {
-  const isMobile = useIsMobile();
   const [content, setContent] = useState<any>();
   const autoplaySupport = useRef(Autoplay({ delay: 4000 }));
   const autoplayTestimonials = useRef(Autoplay({ delay: 4000 }));

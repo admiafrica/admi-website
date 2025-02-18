@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import { Box, Card } from '@mantine/core';
-import { Paragraph, ParagraphContentful } from '@/components/ui';
-import { getAssetDetails } from '@/utils';
+import { Paragraph } from '@/components/ui';
 import { useRouter } from 'next/router';
 import { motion } from 'framer-motion';
 

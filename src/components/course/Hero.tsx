@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { Badge, Group, Text } from '@mantine/core';
+import { Badge, Group } from '@mantine/core';
 import { CourseSummaryCard } from '../cards';
 
 import IconAward from '@/assets/icons/Award';

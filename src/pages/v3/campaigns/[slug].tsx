@@ -5,7 +5,6 @@ import { MainLayout } from '@/layouts/v3/MainLayout';
 import { CourseHero, CourseAbout, CourseDetails, CourseApplicationProcess, CourseFAQs } from '@/components/course';
 import { PageSEO } from '@/components/shared/v3';
 import { GoogleAnalyticsTag } from '@/components/shared';
-import { useIsMobile } from '@/hooks/useIsMobile';
 
 export default function CourseDetailPage() {
   const router = useRouter();

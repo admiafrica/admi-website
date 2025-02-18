@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import { Box, Card, Text } from '@mantine/core';
+import { Box, Card } from '@mantine/core';
 
 import IconLinkedIn from '@/assets/icons/linkedin-blue.svg';
 import { Paragraph, Title } from '../ui';

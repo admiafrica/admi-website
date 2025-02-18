@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState, useRef } from 'react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
-import { Box, Text, Indicator, Divider, NumberFormatter, Input, Modal } from '@mantine/core';
+import { Box, Indicator, Divider, NumberFormatter, Input, Modal } from '@mantine/core';
 import { Carousel } from '@mantine/carousel';
 import { useDisclosure } from '@mantine/hooks';
 import Autoplay from 'embla-carousel-autoplay';
