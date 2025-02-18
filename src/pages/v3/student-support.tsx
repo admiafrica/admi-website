@@ -68,7 +68,7 @@ export default function StudentSupportPage() {
             }}
           ></div>
           <Box className="relative z-10 mx-auto flex h-[50vh] w-full max-w-screen-xl flex-row px-4 sm:flex-row 2xl:px-0">
-            <Box className="mt-[12vh] flex w-1/2 flex-col">
+            <Box className="mt-[12vh] flex flex-col sm:w-1/2">
               <Title label="ADMI Student" color="white" size="48px" />
               <Title label="Support" color="admiShamrok" size="48px" />
               <Paragraph fontFamily="font-nexa" className="py-6 text-white">
@@ -91,8 +91,8 @@ export default function StudentSupportPage() {
         </Box>
         {/* STUDENT SUPPORT */}
         <Box className="relative z-10 w-full bg-[#002A23] py-8">
-          <Box className="mx-auto flex w-full max-w-screen-xl">
-            <Box className="w-[50%] px-4 text-white 2xl:px-0 2xl:pr-4">
+          <Box className="mx-auto flex w-full max-w-screen-xl flex-col sm:flex-row">
+            <Box className="px-4 text-white sm:w-[50%] 2xl:px-0 2xl:pr-4">
               <Box>
                 <Title label="Welcome to Student Support" color="#F1FE37" />
               </Box>
@@ -109,7 +109,7 @@ export default function StudentSupportPage() {
                 diverse needs, ensuring that you feel valued and empowered throughout your journey at ADMI.
               </Paragraph>
             </Box>
-            <Box className="w-[50%]">
+            <Box className="sm:w-[50%]">
               <Carousel
                 slideSize={300}
                 height={400}
@@ -132,11 +132,11 @@ export default function StudentSupportPage() {
           </Box>
         </Box>
         {/* ACADEMIC CALENDAR */}
-        <Box className="relative z-10 flex w-full py-8" bg={'#F5FFFD'}>
-          <Box className="relative h-[600px] w-[50%]">
+        <Box className="relative z-10 flex w-full flex-col px-4 py-8 sm:flex-row" bg={'#F5FFFD'}>
+          <Box className="relative h-[240px] sm:h-[600px] sm:w-[50%]">
             <Image fill src={ImageCalendar} alt="about course" />
           </Box>
-          <Box className="w-[50%]">
+          <Box className="sm:w-[50%]">
             <Box className="pt-12">
               <Title label="Academic Calendar" color="admiRed" />
             </Box>
@@ -152,9 +152,9 @@ export default function StudentSupportPage() {
                 your schedule accordingly.
               </Paragraph>
             </Box>
-            <Box className="flex mt-6">
+            <Box className="mt-6 flex">
               <IconDownload color="#F60934" size={32} />{' '}
-              <Paragraph fontFamily="font-nexa" fontWeight={900} className="text-admiRed my-auto px-2">
+              <Paragraph fontFamily="font-nexa" fontWeight={900} className="my-auto px-2 text-admiRed">
                 Download Calendar
               </Paragraph>
             </Box>
@@ -174,32 +174,35 @@ export default function StudentSupportPage() {
             </div>
           </Box>
 
-          <Box className="flex h-[28vh] w-full justify-between py-6">
+          <Box className="flex h-fit w-full flex-col justify-between px-4 py-6 sm:h-[28vh] sm:flex-row sm:px-0">
             <Card
-              className="flex w-[30%] flex-col items-center justify-between text-center"
+              className="flex flex-col items-center justify-between text-center sm:w-[30%]"
               shadow="xl"
               withBorder
               py={32}
+              mb={8}
             >
               <Title label="Tutoring sessions" size="20px" color="black" className="mx-auto" />
               <IconSpinner width={64} height={64} color="#F60934" />
               <Paragraph>with experienced faculty members</Paragraph>
             </Card>
             <Card
-              className="flex w-[30%] flex-col items-center justify-between text-center"
+              className="flex flex-col items-center justify-between text-center sm:w-[30%]"
               shadow="xl"
               withBorder
               py={32}
+              mb={8}
             >
               <Title label="Study groups" size="20px" color="black" className="mx-auto" />
               <IconUsersGroup width={64} height={64} color="#01C6A5" />
               <Paragraph>and peer-to-peer learning opportunities</Paragraph>
             </Card>
             <Card
-              className="flex w-[30%] flex-col items-center justify-between text-center"
+              className="flex flex-col items-center justify-between text-center sm:w-[30%]"
               shadow="xl"
               withBorder
               py={32}
+              mb={8}
             >
               <Title label="Academic advising" size="20px" color="black" className="mx-auto" />
               <IconDashboardTabs width={72} height={72} color="#B9C601" />
@@ -271,7 +274,7 @@ export default function StudentSupportPage() {
         </Box>
         {/* COUNSELING AND CAREER */}
         <Box className="w-full py-8" bg={'#F5FFFD'}>
-          <Box className="mx-auto w-full max-w-screen-xl">
+          <Box className="mx-auto w-full">
             <Carousel
               slideSize={600}
               height={400}
@@ -289,15 +292,20 @@ export default function StudentSupportPage() {
                   <AdviceCard advice={advice} hasList />
                 </Carousel.Slide>
               ))}
+              {ADMI_CAREER_ADVICE.map((advice) => (
+                <Carousel.Slide key={`${advice.title}-2`}>
+                  <AdviceCard advice={advice} hasList />
+                </Carousel.Slide>
+              ))}
             </Carousel>
           </Box>
 
           <Box className="mx-auto w-full max-w-screen-xl px-4 2xl:px-0">
-            <Box className="flex w-full flex-row py-8">
-              <Box className="w-[30%]">
+            <Box className="flex w-full flex-col py-8 sm:flex-row">
+              <Box className="sm:w-[30%]">
                 <Title label="Testimonials" color="black" />
               </Box>
-              <Box className="w-[70%]">
+              <Box className="sm:w-[70%]">
                 <Paragraph fontFamily="font-nexa" className="pt-4">
                   Discover how ADMI has transformed the careers of our students through their own stories of success and
                   growth. Hear firsthand how our hands-on training and industry connections have helped them achieve

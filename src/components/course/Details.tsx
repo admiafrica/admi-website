@@ -12,6 +12,7 @@ import IconBook from '@/assets/icons/book.svg';
 import IconHatBlack from '@/assets/icons/hat-black.svg';
 import IconBackgroundImageA from '@/assets/icons/ellipse-yellow-cut.svg';
 import IconBackgroundImageB from '@/assets/icons/ellipse-orange.svg';
+import { useIsMobile } from '@/hooks/useIsMobile';
 
 type Props = {
   programType: any;
@@ -25,6 +26,8 @@ type Props = {
 };
 
 export default function CourseDetails(props: Props) {
+  const isMobile = useIsMobile();
+
   return (
     <div className="relative w-full bg-[#F5FFFD] pb-16">
       {/* BACKGROUND IMAGES */}
@@ -41,8 +44,8 @@ export default function CourseDetails(props: Props) {
       </div>
 
       <div className="relative z-20 mx-auto w-full max-w-screen-xl px-4">
-        <div className="z-20 mx-auto mb-8 w-fit pt-8 text-center font-nexa">
-          <Title label="Why you should take this course" color="black" />
+        <div className="z-20 mx-auto mb-8 w-fit pt-8 text-center">
+          <Title label="Why you should take this course" color="black" size={isMobile ? '24px' : undefined} />
         </div>
         <div className="relative z-20 flex flex-col justify-between sm:flex-row sm:flex-wrap">
           {props.benefits.map((benefit) => (

@@ -1,6 +1,6 @@
 import React from 'react';
-import { Box, Card, Pill, Text } from '@mantine/core';
-import { Title } from '../ui';
+import { Box, Card, Pill } from '@mantine/core';
+import { Paragraph, Title } from '../ui';
 import { motion } from 'framer-motion';
 
 import IconArrowTipRight from '@/assets/icons/ArrowTipRight';
@@ -26,8 +26,8 @@ export default function AnnouncementCard(props: Props) {
         className="flex h-full w-full flex-col sm:flex-row"
         whileHover="hover" // Shared hover animation key
       >
-        <Box className="flex h-[400px] w-full px-4">
-          <Box className="flex w-[40%] flex-col sm:pr-4 pt-6">
+        <Box className="flex h-fit w-full flex-col-reverse px-4 sm:h-[400px] sm:flex-row">
+          <Box className="flex flex-col pt-6 sm:w-[40%] sm:pr-4">
             {props.featured && (
               <Pill
                 size="md"
@@ -40,12 +40,15 @@ export default function AnnouncementCard(props: Props) {
               </Pill>
             )}
             {props.title && <Title label={props.title} color="black" />}
-            <div className="font-nexa">
-              <Text size="26px">{props.announcement.title}</Text>
-            </div>
-            <div className="grow py-6 font-proxima">
-              <Text size="22px">{props.announcement.description}</Text>
-            </div>
+
+            <Paragraph size="26px" fontFamily="font-nexa" fontWeight={400}>
+              {props.announcement.title}
+            </Paragraph>
+
+            <Paragraph size="18px" className="grow py-6" fontFamily="font-nexa">
+              {props.announcement.summary}
+            </Paragraph>
+
             {/* Arrow Icon with Animation */}
             <motion.div
               className="my-auto flex h-fit sm:items-center"
@@ -62,13 +65,22 @@ export default function AnnouncementCard(props: Props) {
               <IconArrowTipRight width={48} height={48} color={props.arrowColor} />
             </motion.div>
           </Box>
-          <Box className="relative flex h-full w-[60%]">
-            <Image
-              fill
-              src={props.image || 'https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png'}
-              alt="about course"
-              style={{ borderRadius: 8 }}
-            />
+          <Box className="relative flex h-[180px] sm:h-full sm:w-[60%]">
+            {props.announcement.coverImage ? (
+              <Image
+                fill
+                src={`https:${props.announcement.coverImage.fields.file.url}`}
+                alt={props.announcement.title}
+                style={{ borderRadius: 8 }}
+              />
+            ) : (
+              <Image
+                fill
+                src={props.image || 'https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png'}
+                alt="about course"
+                style={{ borderRadius: 8 }}
+              />
+            )}
           </Box>
         </Box>
       </motion.div>

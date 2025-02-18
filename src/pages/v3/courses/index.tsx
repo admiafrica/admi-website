@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { Box, Text, Select } from '@mantine/core';
 
 import { MainLayout } from '@/layouts/v3/MainLayout';
-import { Title } from '@/components/ui';
+import { Paragraph, Title } from '@/components/ui';
 import { ProgramListItemCard } from '@/components/cards';
 import { PageSEO } from '@/components/shared/v3';
 import { CourseSearch } from '@/components/course';
@@ -81,7 +81,9 @@ export default function CoursesPage() {
           <div className="flex h-fit w-full flex-col pt-24 sm:flex-row">
             <div className="flex grow flex-col pb-4">
               <Title label="Courses" size="24px" color="black" />
-              <Text>Explore our variety of courses across various topics that suits you!</Text>
+              <Paragraph fontFamily="font-nexa" className="py-2">
+                Explore our variety of courses across various topics that suits you!
+              </Paragraph>
             </div>
             <div className="flex items-center bg-white pl-4 font-proxima">
               <Text>Sort By:</Text>

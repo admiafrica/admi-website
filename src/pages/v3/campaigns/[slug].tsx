@@ -15,6 +15,7 @@ export default function CourseDetailPage() {
   const slug = router.query.slug;
 
   const fetchCourse = useCallback(async () => {
+
     if (!slug) return;
 
     try {

@@ -8,23 +8,26 @@ import { InfoCard, PlainCard } from '@/components/cards';
 import { ADMI_ACADEMIC_PATHWAYS } from '@/utils';
 
 import ImagePathwaysLanding from '@/assets/images/academic-pathways-landing.jpeg';
+import { useIsMobile } from '@/hooks/useIsMobile';
 
 export default function AcademicPathwaysPage() {
+  const isMobile = useIsMobile();
+
   return (
     <MainLayout footerBgColor="white">
       <PageSEO title="Academic Pathways" />
       <div className="w-full">
         {/* HEADER */}
         <Box className="relative w-full" bg={'#002A23'}>
-          <Box className="relative z-10 mx-auto flex h-[60vh] w-full max-w-screen-xl flex-row px-4 sm:flex-row 2xl:px-0">
+          <Box className="relative z-10 mx-auto flex w-full max-w-screen-xl flex-row px-4 sm:h-[60vh] sm:flex-row 2xl:px-0">
             <Box className="mt-[12vh] flex w-full flex-col">
               <Box className="flex">
-                <Title label="Academic" color="#F1FE37" size="64px" />
+                <Title label="Academic" color="#F1FE37" size={isMobile ? '36px' : '64px'} />
                 <Box className="px-1"></Box>
-                <Title label="Pathways" color="admiShamrok" size="64px" />
+                <Title label="Pathways" color="admiShamrok" size={isMobile ? '36px' : '64px'} />
               </Box>
-              <Box className="flex w-full pt-12">
-                <Box className="flex w-[50%] flex-col">
+              <Box className="flex w-full flex-col pt-12 sm:flex-row">
+                <Box className="flex flex-col sm:w-[50%]">
                   <Paragraph fontFamily="font-nexa" className="pb-4 text-white sm:pr-4" size="26px" fontWeight={400}>
                     At Africa Digital Media Institute (ADMI), we are committed to providing our students with a
                     world-class education that opens doors to endless possibilities.
@@ -35,7 +38,7 @@ export default function AcademicPathwaysPage() {
                     studies or pursue their careers.
                   </Paragraph>
                 </Box>
-                <Box className="relative h-[360px] w-[50%]">
+                <Box className="relative h-[360px] sm:w-[50%]">
                   <Image
                     fill
                     src={ImagePathwaysLanding}
@@ -50,12 +53,12 @@ export default function AcademicPathwaysPage() {
         {/* WORK */}
         <Box className="relative z-10 w-full bg-[#002A23] pb-48 pt-8">
           <Box className="mx-auto flex w-full max-w-screen-xl flex-col">
-            <Box className="w-full px-4 py-6 text-white 2xl:px-0 2xl:pr-4">
+            <Box className="w-full px-4 py-6 text-white xl:px-0">
               <Title label="Why Work at ADMI?" color="white" />
             </Box>
-            <Box className="flex w-full flex-col justify-between sm:flex-row sm:px-0">
+            <Box className="flex w-full flex-col justify-between px-4 sm:flex-row sm:px-0">
               {ADMI_ACADEMIC_PATHWAYS.map((pathway, index) => (
-                <Box key={`pathway-${index}`} p={8} className="w-[25%]">
+                <Box key={`pathway-${index}`} p={8} className="sm:w-[25%]">
                   <InfoCard item={pathway} />
                 </Box>
               ))}
@@ -63,8 +66,8 @@ export default function AcademicPathwaysPage() {
           </Box>
         </Box>
         {/* Floating Card */}
-        <div className="relative w-full px-4 2xl:px-0">
-          <div className="absolute left-1/2 top-[10vh] z-10 w-full max-w-screen-xl -translate-x-1/2 transform px-4 sm:top-[-8vh] 2xl:px-0">
+        <div className="relative w-full px-4 2xl:px-0 h-[400px]">
+          <div className="absolute left-1/2 top-[-10vh] z-10 w-full max-w-screen-xl -translate-x-1/2 transform px-4 sm:top-[-8vh] 2xl:px-0">
             <PlainCard>
               <Title label="Career Opportunities" size="20px" color="black" />
               <Paragraph className="py-4" fontFamily="font-nexa">
