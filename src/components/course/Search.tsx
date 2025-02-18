@@ -40,7 +40,7 @@ export default function CourseSearch({ courses }: Props) {
           <Image src={IconBgImageRed} alt={'background image'} />
         </div>
       </div>
-      <div className="mx-auto w-full max-w-screen-lg px-4 pt-24 2xl:px-0">
+      <div className="relative z-10 mx-auto w-full max-w-screen-lg px-4 pt-24 2xl:px-0">
         <Box bg={'#173D37'} className="rounded-lg">
           <Box className="rounded-1xl py-4">
             <div className="flex w-full text-white">

@@ -42,7 +42,7 @@ export default function EnquiryForm() {
   }, [fetchCourses]);
 
   return (
-    <div className="w-full bg-white p-4 sm:p-8">
+    <div className="w-full bg-white p-4 sm:p-8 rounded-lg">
       <div className="font-nexa">
         <Title label="Enquiry Form" color="black" />
       </div>

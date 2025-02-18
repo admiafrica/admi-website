@@ -23,7 +23,7 @@ export default function CourseHero(props: Props) {
   const remainingName = words.join(' ');
 
   return (
-    <div className="relative h-[64vh] w-full px-4 sm:h-[50vh]">
+    <div className="relative h-[56vh] w-full px-4 sm:h-[50vh]">
       {/* Background Image */}
       <Image
         src={`https:${props.coverImage.fields.file.url}`}

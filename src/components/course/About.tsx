@@ -16,11 +16,11 @@ export default function CourseAbout(props: Props) {
 
   return (
     <div className={isMobile ? 'w-full pb-16 pt-12 sm:pt-0' : 'w-full pb-16 pt-48 sm:pt-0'}>
-      <div className="mx-auto w-full max-w-screen-xl px-4 pt-32 2xl:px-0">
+      <div className="mx-auto w-full max-w-screen-xl px-4 2xl:px-0">
         <div className="flex w-full flex-col sm:flex-row">
           {props.isCampaign && (
             <>
-              <div className="flex flex-col sm:w-1/2">
+              <div className="flex flex-col sm:w-1/2 pt-24">
                 <Title label="About this course" size={isMobile ? '24px' : '48px'} color="admiRed" />
 
                 <ParagraphContentful className="mt-1 text-lg" fontFamily="font-nexa">
@@ -36,7 +36,7 @@ export default function CourseAbout(props: Props) {
           )}
           {!props.isCampaign && (
             <>
-              <div className="flex flex-col sm:w-1/2">
+              <div className="flex flex-col sm:w-1/2 pt-32">
                 <div className="font-nexa text-admiRed">
                   <Title label="About this course" />
                 </div>
