@@ -8,12 +8,14 @@ import { PageSEO } from '@/components/shared/v3';
 import { LearnMoreCard, PlainCard, UserProfileCard } from '@/components/cards';
 import { JoinForm } from '@/components/forms';
 import { ADMI_ALUMNI } from '@/utils';
+import { useIsMobile } from '@/hooks/useIsMobile';
 
 import IconUsersGroupAlt from '@/assets/icons/users-group-alt.svg';
 import IconCelebrate from '@/assets/icons/celebrate.svg';
 import ImageAlumniLanding from '@/assets/images/alumni-landing.png';
 
 export default function AlumniPage() {
+  const isMobile = useIsMobile();
   const [opened, { open, close }] = useDisclosure(false);
 
   return (
@@ -41,20 +43,25 @@ export default function AlumniPage() {
               background: 'linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0, 42, 35, 1) 100%)',
             }}
           ></div>
-          <Box className="relative z-10 mx-auto flex h-[50vh] w-full max-w-screen-xl flex-row px-4 sm:flex-row 2xl:px-0">
+          <Box className="relative z-10 mx-auto flex w-full max-w-screen-xl flex-row px-4 sm:h-[50vh] sm:flex-row 2xl:px-0">
             <Box className="mt-[12vh] flex w-full flex-col">
               <Box className="flex grow">
-                <Title label="Alumni" color="#F1FE37" size="64px" />
+                <Title label="Alumni" color="#F1FE37" size={isMobile ? '36px' : '64px'} />
                 <Box className="px-1"></Box>
-                <Title label="Network" color="admiShamrok" size="64px" />
+                <Title label="Network" color="admiShamrok" size={isMobile ? '36px' : '64px'} />
               </Box>
-              <Box className="flex w-full pb-12">
-                <Paragraph fontFamily="font-nexa" className="w-1/2 pr-6 text-white">
+              <Box className="flex w-full flex-col pt-12 sm:flex-row sm:pb-12 sm:pt-0">
+                <Paragraph fontFamily="font-nexa" className="pr-6 text-white sm:w-1/2">
                   Welcome to the Alumni page of Africa Digital Media Institute (ADMI)! We are proud of our graduates and
                   the incredible contributions they make to the digital media industry and beyond.
                 </Paragraph>
-                <Divider orientation="vertical" size={2} color="admiShamrok" />
-                <Paragraph fontFamily="font-nexa" className="w-1/2 pl-6 text-white">
+                <Divider
+                  orientation={isMobile ? 'horizontal' : 'vertical'}
+                  size={2}
+                  color="admiShamrok"
+                  my={isMobile ? 16 : 0}
+                />
+                <Paragraph fontFamily="font-nexa" className="text-white sm:w-1/2 sm:pl-6">
                   Our alumni network is a vibrant community of talented individuals who have gone on to achieve
                   remarkable success in various fields, and we are excited to celebrate their accomplishments and keep
                   the connections alive.
@@ -65,8 +72,8 @@ export default function AlumniPage() {
         </Box>
         {/* NETWORK */}
         <Box className="relative z-10 w-full bg-[#002A23] py-8">
-          <Box className="mx-auto flex w-full max-w-screen-xl sm:flex-row">
-            <Box className="flex w-[70%] flex-col px-4 2xl:px-0">
+          <Box className="mx-auto flex w-full max-w-screen-xl flex-col sm:flex-row">
+            <Box className="flex flex-col px-4 sm:w-[70%] 2xl:px-0">
               <PlainCard>
                 <Box className="flex w-full">
                   <Box className="grow">
@@ -81,9 +88,11 @@ export default function AlumniPage() {
                       journey, your achievements, and how you are making an impact in your respective industries.
                     </Paragraph>
                   </Box>
-                  <Box className="flex w-[300px] items-center justify-center">
-                    <Image src={IconUsersGroupAlt} width={90} height={90} alt="connected-img" />
-                  </Box>
+                  {!isMobile && (
+                    <Box className="flex w-[300px] items-center justify-center">
+                      <Image src={IconUsersGroupAlt} width={90} height={90} alt="connected-img" />
+                    </Box>
+                  )}
                 </Box>
               </PlainCard>
               <Box className="my-4" />
@@ -101,13 +110,15 @@ export default function AlumniPage() {
                       community.
                     </Paragraph>
                   </Box>
-                  <Box className="flex w-[300px] items-center justify-center">
-                    <Image src={IconCelebrate} width={90} height={90} alt="connected-img" />
-                  </Box>
+                  {!isMobile && (
+                    <Box className="flex w-[300px] items-center justify-center">
+                      <Image src={IconCelebrate} width={90} height={90} alt="connected-img" />
+                    </Box>
+                  )}
                 </Box>
               </PlainCard>
             </Box>
-            <Box className="w-[30%] px-4">
+            <Box className="sm:py-auto px-4 py-8 sm:w-[30%]">
               <JoinForm />
             </Box>
           </Box>

@@ -7,10 +7,12 @@ import { Paragraph, Title } from '@/components/ui';
 import { PageSEO } from '@/components/shared/v3';
 import { CompanyValuesCard, LearnMoreCard } from '@/components/cards';
 import { ADMI_FELLOWSHIP_VALUES, ADMI_FELLOWSHIP_DEPARTMENTS } from '@/utils';
+import { useIsMobile } from '@/hooks/useIsMobile';
 
 import ImageFellowshipLanding from '@/assets/images/fellowship-landing.png';
 
 export default function FellowshipPage() {
+  const isMobile = useIsMobile();
   const [opened, { open, close }] = useDisclosure(false);
 
   return (
@@ -21,7 +23,7 @@ export default function FellowshipPage() {
       </Modal>
       <div className="w-full">
         {/* HEADER */}
-        <Box className="relative w-full" bg={'blue'} onClick={open}>
+        <Box className="relative w-full" onClick={open}>
           <Image
             src={ImageFellowshipLanding}
             placeholder="empty"
@@ -40,16 +42,23 @@ export default function FellowshipPage() {
           ></div>
           <Box className="relative z-10 mx-auto flex h-[50vh] w-full max-w-screen-xl flex-row px-4 sm:flex-row 2xl:px-0">
             <Box className="mt-[12vh] flex w-full flex-col">
-              <Title label="Fellowship" color="admiShamrok" size="64px" />
-              <Title label="Opportunities" color="#F1FE37" size="64px" />
+              <Title label="Fellowship" color="admiShamrok" size={isMobile ? '36px' : '64px'} />
+              <Title label="Opportunities" color="#F1FE37" size={isMobile ? '36px' : '64px'} />
               <Box className="grow"></Box>
-              <Box className="flex h-[120px] w-full pt-12">
-                <Paragraph fontFamily="font-nexa" className="my pr-6 text-white">
+              <Box className="flex h-[120px] w-full flex-col pt-12 sm:flex-row">
+                <Paragraph fontFamily="font-nexa" className="my text-white sm:pr-6">
                   We are deeply commited to providing you with comprehensive support that ensures your academic and
                   personal success
                 </Paragraph>
-                <Divider orientation="vertical" size={2} color="#F5FFFD" />
-                <Paragraph fontFamily="font-nexa" className="pl-6 text-white">
+                <Divider
+                  orientation={isMobile ? 'horizontal' : 'vertical'}
+                  size={2}
+                  color="#F5FFFD"
+                  my={isMobile ? 16 : 0}
+                  opacity={'20%'}
+                  h={isMobile ? '' : '100%'}
+                />
+                <Paragraph fontFamily="font-nexa" className="text-white sm:pl-6">
                   We are deeply commited to providing you with comprehensive support that ensures your academic and
                   personal success
                 </Paragraph>
@@ -59,11 +68,11 @@ export default function FellowshipPage() {
         </Box>
         {/* Floating Card */}
         <div className="w-full px-4 2xl:px-0">
-          <div className="absolute left-1/2 top-[10vh] z-10 w-full max-w-screen-xl -translate-x-1/2 transform px-4 sm:top-[60vh] 2xl:px-0">
+          <div className="absolute left-1/2 top-[640px] z-10 w-full max-w-screen-xl -translate-x-1/2 transform px-4 sm:top-[600px] 2xl:px-0">
             <CompanyValuesCard values={ADMI_FELLOWSHIP_VALUES} showRightIcons={false} />
           </div>
         </div>
-        <Box className="h-[160px] w-full" bg={'#097160'}>
+        <Box className="h-[400px] w-full sm:h-[200px]" bg={'#097160'}>
           {' '}
         </Box>
         {/* ACADEMIC CONTRIBUTION */}
@@ -79,18 +88,14 @@ export default function FellowshipPage() {
             </div>
           </Box>
 
-          <div className="relative z-20 flex flex-col justify-between sm:flex-row sm:flex-wrap">
+          <div className="relative z-20 flex flex-wrap justify-between sm:flex-row">
             {ADMI_FELLOWSHIP_DEPARTMENTS.map((dept, index) => (
-              <Card shadow="md" className="mb-8 sm:w-[24%]" key={`dept-${index}`}>
-                <div className="flex px-4 pt-4">
+              <Card shadow="md" className="mb-8 w-[48%] sm:w-[24%]" key={`dept-${index}`}>
+                <div className="flex flex-col pt-4 sm:flex-row sm:px-4">
                   <dept.icon width={48} height={48} color={dept.iconColor} />
-                  <div className="min-h-[3em] pl-4 font-nexa">
-                    <Text size="1.2em" fw={900}>
-                      {dept.name}
-                    </Text>
-                  </div>
+                  <Title size={isMobile ? '16px' : '24px'} label={dept.name} color="black" className="sm:pl-2" />
                 </div>
-                <Paragraph className="py-6" fontFamily="font-nexa">
+                <Paragraph className="py-6 sm:px-4" fontFamily="font-nexa" size={isMobile ? '16px' : '18px'}>
                   {dept.description}
                 </Paragraph>
               </Card>
