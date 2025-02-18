@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { Box, Card, Text } from '@mantine/core';
 
 import IconLinkedIn from '@/assets/icons/linkedin-blue.svg';
-import { Paragraph } from '../ui';
+import { Paragraph, Title } from '../ui';
 import { useIsMobile } from '@/hooks/useIsMobile';
 
 type Props = {
@@ -21,20 +21,20 @@ export default function UserProfileCard(props: Props) {
       withBorder
       className="border-1 border-grey-500 border-solid shadow-md"
       w={isMobile ? '160px' : '240px'}
-      h={isMobile ? '240px' : '240px'}
+      h={isMobile ? 'fit-content' : '240px'}
     >
       <Card.Section className="grow">
-        <Box className="relative grow" h={isMobile ? '100px' : 'auto'}>
+        <Box className="relative grow" h={isMobile ? '140px' : '100%'}>
           <Image fill src={props.user.image} alt="about course" objectFit="cover" />
         </Box>
       </Card.Section>
       <Card.Section className="px-4">
         <div className="flex flex-col py-2">
-          <div className="font-nexa">
-            <Text fw={900}>{props.user.name}</Text>
+          <div className="pb-2">
+            <Title size={isMobile ? '14px' : '16px'} label={props.user.name} color="black" />
           </div>
           <div className="flex w-full">
-            <Paragraph className="grow" size="16px">
+            <Paragraph className="grow" size={isMobile ? '12px' : '16px'}>
               {props.user.title}
             </Paragraph>
             <a href={props.user.linkedin || '#'} target="_blank" className="cursor-pointer">
