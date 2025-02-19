@@ -54,12 +54,9 @@ export default function EnquiryForm() {
         setAlert({ type: 'error', message: errorData.error || 'Failed to submit enquiry.' });
         return;
       }
-
-      setAlert({ type: 'success', message: 'Enquiry submitted successfully!' });
-      form.reset();
       router.push('/v3/enquiry-thank-you');
     } catch (error) {
-      console.error('Error submitting enquiry:', error);
+      // console.error('Error submitting enquiry:', error);
       setAlert({ type: 'error', message: 'An error occurred. Please try again later.' });
     }
   };
