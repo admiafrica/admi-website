@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import { Group, Text, Anchor, Stack, Divider } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 
@@ -52,18 +53,23 @@ type Props = {
 };
 
 export default function Footer({ bgColor }: Props) {
+  const router = useRouter();
   const isMobile = useMediaQuery('(max-width: 480px)');
+
+  const navigateToPage = (pagePath: string) => {
+    router.push(`/v3/${pagePath}`);
+  };
 
   return (
     <div className={`relative w-full ${bgColor ? `bg-[${bgColor}]` : 'bg-[#FFF7F5]'} font-proxima`}>
       {/* Floating Card */}
       <div className="w-full pt-48 sm:pt-36">
-        <div className="absolute left-1/2 top-[6vh] z-10 h-fit w-full max-w-screen-xl -translate-x-1/2 transform justify-center px-4 sm:top-[8vh] md:h-[7.125rem] 2xl:px-0">
+        <div className="absolute left-1/2 top-[6vh] z-10 h-fit w-full max-w-screen-lg -translate-x-1/2 transform justify-center px-4 sm:top-[8vh] md:h-[7.125rem] 2xl:px-0">
           <CourseEnrollCard />
         </div>
       </div>
       <div className="w-full bg-[#002A23] pb-8 pt-36">
-        <Group className="mx-auto w-full max-w-screen-2xl flex-col text-white md:flex-row" align="top">
+        <Group className="mx-auto w-full max-w-screen-xl flex-col text-white md:flex-row" align="top">
           <Stack className="grow" h="100%">
             <Stack className="px-4">
               <div className="font-nexa text-admiShamrok">
@@ -118,19 +124,19 @@ export default function Footer({ bgColor }: Props) {
                 Quick Links
               </Text>
             </div>
-            <Anchor href="#" c="white" fw={600}>
+            <Anchor c="white" fw={600} href="https://africadigitalmedia.ed-space.net/onlineenquiry.cfm" target="_blank">
               Contact Us
             </Anchor>
-            <Anchor href="#" c="white" fw={600}>
+            <Anchor c="white" fw={600}>
               Academic Team
             </Anchor>
-            <Anchor href="#" c="white" fw={600}>
+            <Anchor c="white" fw={600} onClick={() => navigateToPage('fellowship')}>
               Fellowship
             </Anchor>
-            <Anchor href="#" c="white" fw={600}>
+            <Anchor c="white" fw={600} onClick={() => navigateToPage('careers')}>
               Work with Us
             </Anchor>
-            <Anchor href="#" c="white" fw={600}>
+            <Anchor c="white" fw={600} onClick={() => navigateToPage('accreditation')}>
               Accreditation
             </Anchor>
           </Stack>
@@ -145,13 +151,13 @@ export default function Footer({ bgColor }: Props) {
                     Student Portal
                   </Text>
                 </div>
-                <Anchor href="#" c="white" fw={600}>
+                <Anchor c="white" fw={600} onClick={() => navigateToPage('accomodation')}>
                   Accomodation
                 </Anchor>
-                <Anchor href="#" c="white" fw={600}>
+                <Anchor c="white" fw={600} onClick={() => navigateToPage('academic-pathways')}>
                   Academic Pathways
                 </Anchor>
-                <Anchor href="#" c="white" fw={600}>
+                <Anchor c="white" fw={600} onClick={() => navigateToPage('alumni')}>
                   Alumni Network
                 </Anchor>
               </Stack>
@@ -162,7 +168,7 @@ export default function Footer({ bgColor }: Props) {
         </Group>
         {isMobile && <SocialIcons />}
         <Divider mt={48} size={0.5} opacity="20%" />
-        <Group className="md:pt-auto mx-auto w-full max-w-screen-2xl flex-col px-4 pt-8 md:flex-row" gap={2}>
+        <Group className="md:pt-auto mx-auto w-full max-w-screen-xl flex-col px-4 pt-8 md:flex-row" gap={2}>
           <IconCopyright className="text-white" />
           <div className="text-white">
             <Text>

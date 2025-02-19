@@ -1,8 +1,10 @@
 import Image from 'next/image';
-import { Badge, Group, Text } from '@mantine/core';
+import { Badge, Group } from '@mantine/core';
 import { CourseSummaryCard } from '../cards';
 
 import IconAward from '@/assets/icons/Award';
+import { useIsMobile } from '@/hooks/useIsMobile';
+import { Paragraph, Title } from '../ui';
 
 type Props = {
   name: string;
@@ -14,13 +16,14 @@ type Props = {
 };
 
 export default function CourseHero(props: Props) {
+  const isMobile = useIsMobile();
   const words = props.name.trim().split(' ');
   // Remove last word
   const lastWord = words.pop();
   const remainingName = words.join(' ');
 
   return (
-    <div className="relative h-[64vh] w-full px-4 sm:h-[50vh]">
+    <div className="relative h-[56vh] w-full px-4 sm:h-[50vh]">
       {/* Background Image */}
       <Image
         src={`https:${props.coverImage.fields.file.url}`}
@@ -42,27 +45,18 @@ export default function CourseHero(props: Props) {
 
       {/* Floating Card */}
       <div className={props.isCampaign ? 'w-full px-1 sm:w-fit' : 'w-full px-1'}>
-        <div className="absolute left-1/2 top-[66vh] z-10 w-full max-w-screen-2xl -translate-x-1/2 transform px-4 sm:top-[45vh] 2xl:px-0">
-          {props.isCampaign ? (
-            <CourseSummaryCard
-              programType={props.programType}
-              creditHours={props.creditHours}
-              awardLevel={props.awardLevel}
-              isCampaign={props.isCampaign}
-            />
-          ) : (
-            <CourseSummaryCard
-              programType={props.programType}
-              creditHours={props.creditHours}
-              awardLevel={props.awardLevel}
-              isCampaign={props.isCampaign}
-            />
-          )}
+        <div className="absolute left-1/2 top-[400px] z-10 w-full max-w-screen-xl -translate-x-1/2 transform px-4 sm:top-[45vh] 2xl:px-0">
+          <CourseSummaryCard
+            programType={props.programType}
+            creditHours={props.creditHours}
+            awardLevel={props.awardLevel}
+            isCampaign={props.isCampaign}
+          />
         </div>
       </div>
 
       {/* Content Section */}
-      <div className="relative z-10 mx-auto w-full max-w-screen-2xl pt-[15vh] text-white">
+      <div className="relative z-10 mx-auto w-full max-w-screen-xl pt-[15vh] text-white">
         <div className="md:w-1/2">
           <Badge
             h={36}
@@ -74,24 +68,15 @@ export default function CourseHero(props: Props) {
           >
             <Group m={8}>
               <IconAward color="white" width={28} height={28} />
-              <div className="font-nexa">
-                <Text size="sm" fw={900}>
-                  {props.programType.fields.name}
-                </Text>
-              </div>
+              <Paragraph size="sm" fontFamily="font-nexa" fontWeight={900}>
+                {props.programType.fields.name}
+              </Paragraph>
             </Group>
           </Badge>
 
-          <div className="font-nexa">
-            <Text size="60px" fw={900}>
-              {remainingName}
-            </Text>
-          </div>
-          <div className="font-nexa text-[#F1FE38]">
-            <Text size="60px" fw={900}>
-              {lastWord}
-            </Text>
-          </div>
+          <Title size={isMobile ? '32px' : '60px'} label={remainingName} color="white" />
+
+          <Title size={isMobile ? '32px' : '60px'} label={lastWord || 'Certificate'} color="#F1FE38" />
         </div>
       </div>
     </div>

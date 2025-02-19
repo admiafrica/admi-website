@@ -25,7 +25,7 @@ export default function CourseEnrollCard() {
           </div>
         </div>
         <div className="md:py-auto mx-auto py-4">
-          <Button size="xl" backgroundColor="admiRed" label="Enroll Today with ADMI" onClick={handleEnquiry}/>
+          <Button size="xl" backgroundColor="admiRed" label="Enroll Today with ADMI" onClick={handleEnquiry} />
         </div>
       </div>
     </Card>

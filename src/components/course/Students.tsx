@@ -11,6 +11,8 @@ import { UserTestimonialCard } from '../cards';
 import { IconArrowLeft, IconArrowRight, IconChecks } from '@tabler/icons-react';
 
 import classes from '@/styles/Indicator.module.css';
+import { useIsMobile } from '@/hooks/useIsMobile';
+import { Paragraph, Title } from '../ui';
 
 type Props = {
   portfolios: any[];
@@ -20,6 +22,7 @@ type Props = {
 };
 
 export default function CourseStudents(props: Props) {
+  const isMobile = useIsMobile();
   const autoplay = useRef(Autoplay({ delay: 6000 }));
   const portfolioAutoplay = useRef(Autoplay({ delay: 8000 }));
 
@@ -32,26 +35,23 @@ export default function CourseStudents(props: Props) {
     <Group bg={'#BD2D00'}>
       <div className="max-w-screen-3xl mx-auto w-full">
         {showPortfolios && (
-          <div className="mx-auto mb-8 mt-16 max-w-screen-2xl px-4 font-nexa text-white">
-            <Text size="2em" fw={900}>
-              Student Portfolio & Alumni Stories
-            </Text>
+          <div className="mx-auto py-12 max-w-screen-xl px-4">
+            <Title size={isMobile ? '24px' : '32px'} label="Student Portfolio & Alumni Stories" color="white" />
           </div>
         )}
 
         {/* Portfolios */}
         {showPortfolios && (
-          <div className="max-w-screen-3xl mx-auto h-fit w-full px-4">
+          <div className="mx-auto h-fit w-full max-w-screen-xl px-4">
             <Carousel
-              withControls={enableCarousel}
-              withIndicators={enableCarousel}
+              withControls={false}
+              withIndicators={false}
               loop={enableCarousel}
               plugins={enableCarousel ? [autoplay.current] : []}
               onMouseEnter={autoplay.current.stop}
               onMouseLeave={autoplay.current.reset}
               slideSize={{ base: '100%', sm: '50%', md: '33.333333%' }}
               slideGap={{ base: 0, sm: 'md' }}
-              px={'7%'}
               align="start"
               slidesToScroll={1}
               height={480}
@@ -110,7 +110,7 @@ export default function CourseStudents(props: Props) {
                               <Text fw={900}>{portfolio.fields.studentName}</Text>
                             </div>
                             <div className="font-proxima">
-                              <Text fw={300}>{portfolio.fields.professionalTitle}</Text>
+                              <Text>{portfolio.fields.professionalTitle}</Text>
                             </div>
                           </div>
                         </Group>
@@ -125,24 +125,25 @@ export default function CourseStudents(props: Props) {
 
         {/* Testimonials */}
         {showTestimonials && (
-          <div className="mx-auto mb-8 max-w-screen-2xl px-4 font-nexa text-white">
-            <div className="mt-16 flex items-center">
-              <Text size="2em" fw={900}>
-                Student Reviews & Testimonials
-              </Text>
-              <div className="grow"></div>
-              <div className="flex font-proxima">
+          <div className="mx-auto mb-8 max-w-screen-xl px-4 font-nexa text-white">
+            <div className="flex flex-col items-center sm:flex-row py-8">
+              <Title
+                size={isMobile ? '24px' : '32px'}
+                label="Student Reviews & Testimonials"
+                color="white"
+                className="mt-4"
+              />
+              <div className="mb-4 grow sm:mb-0"></div>
+              <div className="flex">
                 <IconChecks />
-                <Text size="1.1em" fw={600} ml={8}>
-                  Over {props.totalHistoricalEnrollment}+ Students have taken this course
-                </Text>
+                <Paragraph>Over {props.totalHistoricalEnrollment}+ Students have taken this course</Paragraph>
               </div>
             </div>
           </div>
         )}
 
         {showTestimonials && (
-          <div className="mx-auto flex h-fit w-full max-w-screen-2xl flex-col justify-start px-4 sm:flex-row">
+          <div className="mx-auto flex h-fit w-full max-w-screen-xl flex-col justify-start px-4 sm:flex-row">
             {props.testimonials.map((testimonial, index) => (
               <Box key={`testimonial-${index}`}>
                 <UserTestimonialCard user={testimonial.user} testimonial={testimonial} assets={props.assets} />

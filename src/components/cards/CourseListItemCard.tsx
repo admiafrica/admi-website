@@ -1,12 +1,12 @@
 import Image from 'next/image';
 import { Box, Card } from '@mantine/core';
-import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
-import { Title } from '@/components/ui';
+import { ParagraphContentful, Title } from '@/components/ui';
 import { getAssetDetails } from '@/utils';
 import { useRouter } from 'next/router';
 import { motion } from 'framer-motion';
 
 import IconArrowTipRight from '@/assets/icons/ArrowTipRight';
+import { useIsMobile } from '@/hooks/useIsMobile';
 
 type Props = {
   course: any;
@@ -14,6 +14,7 @@ type Props = {
 
 export default function CourseListItemCard({ course }: Props) {
   const router = useRouter();
+  const isMobile = useIsMobile();
 
   const handleCourseClick = () => {
     router.push(`/v3/courses/${course.fields.slug}`);
@@ -21,7 +22,7 @@ export default function CourseListItemCard({ course }: Props) {
 
   return (
     <Card
-      className="hover:border-1 my-4 h-fit w-full cursor-pointer shadow-lg hover:border-solid hover:border-admiRed sm:h-[16vh]"
+      className="hover:border-1 my-4 h-[100px] w-full cursor-pointer shadow-lg hover:border-solid hover:border-admiRed sm:h-[16vh]"
       withBorder
       key={course.sys.id}
       p={0}
@@ -29,12 +30,12 @@ export default function CourseListItemCard({ course }: Props) {
     >
       {/* Card container */}
       <motion.div
-        className="flex h-full w-full flex-col sm:flex-row"
+        className="flex h-full w-full flex-row"
         whileHover="hover" // Shared hover animation key
       >
         {/* Image Container with Scaling */}
         <motion.div
-          className="relative h-[16vh] w-full flex-shrink-0 overflow-hidden sm:h-full sm:w-[300px]"
+          className="relative h-[16vh] w-1/3 flex-shrink-0 overflow-hidden sm:h-full sm:w-[300px]"
           variants={{
             hover: { scale: 1.05 },
           }}
@@ -44,7 +45,7 @@ export default function CourseListItemCard({ course }: Props) {
           }}
         >
           <motion.div
-            className="relative h-full w-full"
+            className="relative h-full w-full sm:w-full"
             style={{ transformOrigin: 'center' }} // Ensure scaling centers the image
           >
             <Image
@@ -57,20 +58,19 @@ export default function CourseListItemCard({ course }: Props) {
         </motion.div>
 
         {/* Content Section */}
-        <Box className="flex w-full grow">
+        <Box className="flex w-1/2 grow sm:w-full">
           <Box className="flex w-[92%] flex-col px-4 pt-6">
-            <Title label={course.fields.name} size="20px" color="black" />
-            <div
-              className="line-clamp-[3] font-proxima text-gray-500"
-              dangerouslySetInnerHTML={{
-                __html: documentToHtmlString(course.fields.description),
-              }}
-            ></div>
+            <Title label={course.fields.name} size={isMobile ? '16px' : '20px'} color="black" />
+            {!isMobile && (
+              <ParagraphContentful className="line-clamp-[2] text-gray-500">
+                {course.fields.description}
+              </ParagraphContentful>
+            )}
           </Box>
 
           {/* Arrow Icon with Animation */}
           <motion.div
-            className="my-auto flex h-full sm:items-center"
+            className="my-auto flex h-fit sm:items-center"
             variants={{
               hover: { x: 20 },
             }}

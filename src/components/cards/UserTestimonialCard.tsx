@@ -1,9 +1,13 @@
 import React from 'react';
-import { Avatar, Card, Rating, ScrollArea, Text } from '@mantine/core';
+import Image from 'next/image';
+import { Avatar, Box, Card, Rating, ScrollArea } from '@mantine/core';
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 
 import { getAssetDetails } from '@/utils';
 import { IContentfulAsset, IContentfulEntry } from '@/types';
+
+import ImageKenyanFlag from '@/assets/images/kenyan-flag.svg';
+import { Paragraph, Title } from '../ui';
 
 type Props = {
   user: IContentfulEntry;
@@ -34,28 +38,42 @@ export default function UserTestimonialCard(props: Props) {
           <Avatar
             src={`https:${getAssetDetails(props.assets, props.testimonial.fields.authorImage.sys.id)?.fields.file.url}`}
             variant="transparent"
+            size={56}
           />
         ) : (
           <Avatar
             src={`https:${getAssetDetails(props.assets, props.testimonial.fields.image.sys.id)?.fields.file.url}`}
             variant="transparent"
+            size={56}
           />
         )}
 
-        <div className="flex flex-col px-4">
-          <div className="font-nexa">
+        <div className="flex w-full px-4">
+          <div className="flex grow flex-col">
             {props.testimonial.fields.authorName ? (
-              <Text fw={900}>{props.testimonial.fields.authorName}</Text>
+              <Box className="my-auto w-full">
+                <Title label={props.testimonial.fields.authorName} size="18px" color="black" />
+                <Paragraph size="16px">{props.testimonial.fields.authorRole}</Paragraph>
+              </Box>
             ) : (
-              <Text fw={900}>{props.testimonial.fields.fullName}</Text>
+              <Box className="my-auto w-full">
+                <Title label={props.testimonial.fields.fullName} size="18px" color="black" />
+                <Paragraph size="16px" className="pt-2 text-gray-500">
+                  {props.testimonial.fields.role}
+                </Paragraph>
+              </Box>
             )}
+            {/* {props.testimonial.fields.authorName ? (
+              <Paragraph size="16px">{props.testimonial.fields.authorRole}</Paragraph>
+            ) : (
+              <Paragraph size="16px" className="pt-2 text-gray-500">
+                {props.testimonial.fields.role}
+              </Paragraph>
+            )} */}
           </div>
-          <div className="font-proxima">
-            {props.testimonial.fields.authorName ? (
-              <Text fw={500}>{props.testimonial.fields.authorRole}</Text>
-            ) : (
-              <Text fw={500}>{props.testimonial.fields.role}</Text>
-            )}
+
+          <div className='flex justify-center items-center'>
+            <Image src={ImageKenyanFlag} alt="Flag of Kenya" width={24} height={24}/>
           </div>
         </div>
       </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import clsx from 'clsx'; // Helps merge classes dynamically
+import clsx from 'clsx'; // merge classes dynamically
 import { Text } from '@mantine/core';
 
 type Props = {
@@ -8,6 +8,7 @@ type Props = {
   className?: string; // Extra styles
   fontFamily?: string; // Font Family
   fontWeight?: number;
+  td?: any;
 };
 
 const Paragraph: React.FC<Props> = ({
@@ -16,10 +17,11 @@ const Paragraph: React.FC<Props> = ({
   className = '',
   fontFamily = 'font-proxima',
   fontWeight = 500,
+  td,
 }) => {
   return (
     <div className={clsx(fontFamily, className)}>
-      <Text size={size} fw={fontWeight}>
+      <Text size={size} fw={fontWeight} td={td || ''}>
         {children}
       </Text>
     </div>

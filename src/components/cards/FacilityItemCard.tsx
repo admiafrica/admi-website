@@ -26,6 +26,7 @@ export default function FacilityItemCard({ facility }: Props) {
             src={facility.image || 'https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png'}
             alt={facility.name}
             style={{ borderRadius: 8 }}
+            objectFit='cover'
           />
         </Box>
       </Box>

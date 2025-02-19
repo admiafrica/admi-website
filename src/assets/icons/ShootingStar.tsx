@@ -4,7 +4,7 @@ type Props = {
   height?: number;
 };
 
-export default function IconAward({ color = 'black', width, height }: Props) {
+export default function IconShootingStar({ color = 'black', width, height }: Props) {
   return (
     <svg width={width || 47} height={height || 47} viewBox="0 0 47 47" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
