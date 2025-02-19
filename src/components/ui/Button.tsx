@@ -5,21 +5,26 @@ type Props = {
   size: string;
   backgroundColor?: string;
   onClick?: () => void;
+  type?: 'button' | 'submit' | 'reset';
 };
 
 export default function Button(props: Props) {
+  const { label, size, backgroundColor, onClick, type = 'button', ...rest } = props;
+
   return (
     <div className="w-full">
       <MantineButton
-        size={props.size}
-        bg={props.backgroundColor || 'admiRed'}
+        size={size}
+        bg={backgroundColor || 'admiRed'}
         radius={6}
         w={'100%'}
-        onClick={props.onClick}
+        onClick={onClick}
+        type={type}
+        {...rest} // any other props
       >
         <div className="font-nexa">
-          <Text size={props.size} fw={900}>
-            {props.label}
+          <Text size={size} fw={900}>
+            {label}
           </Text>
         </div>
       </MantineButton>

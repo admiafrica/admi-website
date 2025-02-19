@@ -1,12 +1,16 @@
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { useCallback, useEffect, useState } from 'react';
-import { Group, Select, Text, TextInput } from '@mantine/core';
+import { Alert, Group, Select, Text, TextInput } from '@mantine/core';
 import { useForm } from '@mantine/form';
-import { Button, Title } from '../ui';
+import { Button, Paragraph, Title } from '../ui';
+
 import { IconAsterisk } from '@tabler/icons-react';
 
 export default function EnquiryForm() {
+  const router = useRouter();
   const [courses, setCourses] = useState<any[]>([]);
+  const [alert, setAlert] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
 
   const form = useForm({
     mode: 'uncontrolled',
@@ -14,8 +18,8 @@ export default function EnquiryForm() {
       email: '',
       firstName: '',
       lastName: '',
-      phoneNumber: '',
-      course: '',
+      phone: '',
+      courseName: '',
     },
 
     validate: {
@@ -33,8 +37,31 @@ export default function EnquiryForm() {
     }
   }, []);
 
-  const handleSubmit = () => {
-    console.log('VALUES', form.values);
+  const handleSubmit = async (values: any) => {
+    setAlert(null); // Clear previous alerts
+
+    try {
+      const response = await fetch('/api/v3/push-lead', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(values),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        setAlert({ type: 'error', message: errorData.error || 'Failed to submit enquiry.' });
+        return;
+      }
+
+      setAlert({ type: 'success', message: 'Enquiry submitted successfully!' });
+      form.reset();
+      router.push('/v3/enquiry-thank-you');
+    } catch (error) {
+      console.error('Error submitting enquiry:', error);
+      setAlert({ type: 'error', message: 'An error occurred. Please try again later.' });
+    }
   };
 
   useEffect(() => {
@@ -42,14 +69,14 @@ export default function EnquiryForm() {
   }, [fetchCourses]);
 
   return (
-    <div className="w-full bg-white p-4 sm:p-8 rounded-lg">
+    <div className="w-full rounded-lg bg-white p-4 sm:p-8">
       <div className="font-nexa">
         <Title label="Enquiry Form" color="black" />
       </div>
       <div className="mb-8 font-proxima">
         <Text fw={600}>Kindly provide the details below</Text>
       </div>
-      <form onSubmit={form.onSubmit((values) => console.log(values))}>
+      <form onSubmit={form.onSubmit((values) => handleSubmit(values))}>
         <Select
           label={
             <div className="flex pl-2">
@@ -62,7 +89,7 @@ export default function EnquiryForm() {
           searchable
           nothingFoundMessage="No options"
           data={courses.map((course) => course.fields.name)}
-          {...form.getInputProps('course')}
+          {...form.getInputProps('courseName')}
         />
         <div className="my-4 font-proxima">
           <Text size="1.1em">
@@ -123,21 +150,23 @@ export default function EnquiryForm() {
               <IconAsterisk size={8} className="mt-1.5 text-admiRed" />
             </div>
           }
-          placeholder="Enter phone number"
-          key={form.key('phoneNumber')}
-          {...form.getInputProps('phoneNumber')}
+          placeholder="Enter phone i.e +254723..."
+          key={form.key('phone')}
+          {...form.getInputProps('phone')}
         />
-
-        <input id="utm_source" type="hidden" value={''} />
-        <input id="utm_medium" type="hidden" value={''} />
-        <input id="utm_campaign" type="hidden" value={''} />
-        <input id="utm_term" type="hidden" value={''} />
-        <input id="utm_content" type="hidden" value={''} />
-
         <Group justify="flex-end" mt="2em" className="w-full">
-          <Button size="lg" backgroundColor="admiRed" label="Submit" onClick={() => handleSubmit()} />
+          <Button size="lg" backgroundColor="admiRed" label="Submit" type="submit" />
         </Group>
       </form>
+      {alert && (
+        <Alert
+          color={alert.type === 'success' ? '#339900' : '#ff9966'}
+          title={<Paragraph fontWeight={900}>{alert.type === 'success' ? 'Success' : 'Error'}</Paragraph>}
+          my={8}
+        >
+          <Paragraph>{alert.message}</Paragraph>
+        </Alert>
+      )}
     </div>
   );
 }
