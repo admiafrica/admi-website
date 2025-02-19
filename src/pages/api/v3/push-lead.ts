@@ -18,13 +18,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   // NOTE: Phone must be prefixed with country code e.g. +254792111222
   const payload = {
-    email: email,
     attributes: {
       FIRSTNAME: firstName,
       LASTNAME: lastName,
       EMAIL: email,
       SMS: phone,
-      COURSE_INTERESTED_IN: courseName,
+      // COURSE_INTERESTED_IN: [courseName],
+      PREFERRED_COURSE: courseName,
     },
     listIds: [parseInt(LIST_ID)], // Convert to integer
     updateEnabled: true,

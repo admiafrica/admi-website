@@ -5,6 +5,7 @@ import { MainLayout } from '@/layouts/v3/MainLayout';
 import { EnquiryForm } from '@/components/forms';
 import { Title } from '@/components/ui';
 import { PageSEO } from '@/components/shared/v3';
+import { useIsMobile } from '@/hooks/useIsMobile';
 
 import ImageEnquiry1 from '../../assets/images/enquiry-1.png';
 import ImageEnquiry2 from '@/assets/images/enquiry-2.png';
@@ -18,7 +19,6 @@ import IconHat from '@/assets/icons/Hat';
 
 import IconBgImageYellow from '@/assets/icons/ellipse-yellow.svg';
 import IconBgImageRed from '@/assets/icons/ellipse-red.svg';
-import { useIsMobile } from '@/hooks/useIsMobile';
 
 export default function EnquiryPage() {
   const isMobile = useIsMobile();

@@ -124,7 +124,7 @@ export default function Footer({ bgColor }: Props) {
                 Quick Links
               </Text>
             </div>
-            <Anchor c="white" fw={600}>
+            <Anchor c="white" fw={600} href="https://africadigitalmedia.ed-space.net/onlineenquiry.cfm" target="_blank">
               Contact Us
             </Anchor>
             <Anchor c="white" fw={600}>

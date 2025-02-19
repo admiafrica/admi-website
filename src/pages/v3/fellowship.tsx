@@ -10,6 +10,8 @@ import { ADMI_FELLOWSHIP_VALUES, ADMI_FELLOWSHIP_DEPARTMENTS } from '@/utils';
 import { useIsMobile } from '@/hooks/useIsMobile';
 
 import ImageFellowshipLanding from '@/assets/images/fellowship-landing.png';
+import IconBgImageYellow from '@/assets/icons/ellipse-yellow.svg';
+import IconBgImageOrange from '@/assets/icons/ellipse-orange-full.svg';
 
 export default function FellowshipPage() {
   const isMobile = useIsMobile();
@@ -76,31 +78,45 @@ export default function FellowshipPage() {
           {' '}
         </Box>
         {/* ACADEMIC CONTRIBUTION */}
-        <Box className="mx-auto w-full max-w-screen-xl px-4 pb-8 pt-96 lg:pt-64 xl:pt-32 2xl:px-0">
-          <Box className="w-full">
-            <div className="my-8 w-fit">
-              <Title label="Areas of Contribution" size="24px" color="black" />
+        <Box className="relative w-full">
+          {/* BACKGROUND IMAGES */}
+          <div className="absolute left-[54%] top-[24vh] h-fit w-full -translate-x-1/2 transform">
+            <div className="flex w-full justify-end pr-[10%]">
+              <Image src={IconBgImageYellow} alt={'background image'} />
             </div>
-            <div className="mb-8 w-full max-w-screen-md">
-              <Paragraph fontFamily="font-nexa" className="py-4">
-                Fellows at ADMI can serve in various departments, including but not limited to:
-              </Paragraph>
+          </div>
+
+          <div className="absolute left-[60vw] top-[280px] h-fit w-full -translate-x-1/2 transform">
+            <div className="flex w-full">
+              <Image src={IconBgImageOrange} alt={'background image'} />
+            </div>
+          </div>
+          <Box className="relative mx-auto w-full max-w-screen-xl px-4 pb-8 pt-96 lg:pt-64 xl:pt-32 2xl:px-0">
+            <Box className="w-full">
+              <div className="my-8 w-fit">
+                <Title label="Areas of Contribution" size="24px" color="black" />
+              </div>
+              <div className="mb-8 w-full max-w-screen-md">
+                <Paragraph fontFamily="font-nexa" className="py-4">
+                  Fellows at ADMI can serve in various departments, including but not limited to:
+                </Paragraph>
+              </div>
+            </Box>
+
+            <div className="relative z-20 flex flex-wrap justify-between sm:flex-row">
+              {ADMI_FELLOWSHIP_DEPARTMENTS.map((dept, index) => (
+                <Card shadow="md" className="mb-8 w-[48%] sm:w-[24%]" key={`dept-${index}`}>
+                  <div className="flex flex-col pt-4 sm:flex-row sm:px-4">
+                    <dept.icon width={48} height={48} color={dept.iconColor} />
+                    <Title size={isMobile ? '14px' : '18px'} label={dept.name} color="black" className="sm:pl-2" />
+                  </div>
+                  <Paragraph className="py-6 sm:px-4" fontFamily="font-nexa" size={isMobile ? '16px' : '18px'}>
+                    {dept.description}
+                  </Paragraph>
+                </Card>
+              ))}
             </div>
           </Box>
-
-          <div className="relative z-20 flex flex-wrap justify-between sm:flex-row">
-            {ADMI_FELLOWSHIP_DEPARTMENTS.map((dept, index) => (
-              <Card shadow="md" className="mb-8 w-[48%] sm:w-[24%]" key={`dept-${index}`}>
-                <div className="flex flex-col pt-4 sm:flex-row sm:px-4">
-                  <dept.icon width={48} height={48} color={dept.iconColor} />
-                  <Title size={isMobile ? '16px' : '24px'} label={dept.name} color="black" className="sm:pl-2" />
-                </div>
-                <Paragraph className="py-6 sm:px-4" fontFamily="font-nexa" size={isMobile ? '16px' : '18px'}>
-                  {dept.description}
-                </Paragraph>
-              </Card>
-            ))}
-          </div>
         </Box>
       </div>
     </MainLayout>

@@ -3,36 +3,36 @@ import ImageSpaces from '@/assets/images/the-space.png';
 import ImageLabs from '@/assets/images/the-labs.png';
 import ImageEquipment from '@/assets/images/the-equipment.png';
 
-import ImageStudentLife from '@/assets/images/student-life.png';
-import ImagePersonalCounseling from '@/assets/images/personal-counseling.png';
+import ImageStudentLife from '@/assets/images/student-life.svg';
+import ImagePersonalCounseling from '@/assets/images/personal-counseling.svg';
 import ImageCareerDevelopment from '@/assets/images/career-development.png';
 
 // User Profiles
-import ImageCaroline from '@/assets/images/caroline.png';
-import ImagePeter from '@/assets/images/peter.png';
-import ImageRaji from '@/assets/images/raji.png';
-import ImageCiku from '@/assets/images/ciku.png';
+import ImageCaroline from '@/assets/images/carolyne-sila.svg';
+import ImagePeter from '@/assets/images/peter-mwaniki.svg';
+import ImageRaji from '@/assets/images/raji-ilangovan.svg';
+import ImageCiku from '@/assets/images/ciku-munuku.svg';
 
-import ImageLaila from '@/assets/images/laila.png';
-import ImageWilfred from '@/assets/images/wilfred.png';
-import ImageMugo from '@/assets/images/mugo.png';
-import ImageRoss from '@/assets/images/ross.png';
-import ImageChris from '@/assets/images/chris.png';
-import ImageDave from '@/assets/images/dave-rono.png';
-import ImageIvy from '@/assets/images/ivy-nyambura.png';
-import ImageNicole from '@/assets/images/nicole-ochieng.png';
-import ImageAmani from '@/assets/images/amani-mugambi.png';
-import ImageSammy from '@/assets/images/sammy-kamande.png';
-import ImageAzyzah from '@/assets/images/azyzah-rehman.png';
-import ImageShalom from '@/assets/images/shalom-chihi.png';
-import ImageEvelyne from '@/assets/images/evelyne-makena.png';
-import ImageMary from '@/assets/images/mary-munene.png';
+import ImageLaila from '@/assets/images/laila-macharia.svg';
+import ImageWilfred from '@/assets/images/wilfred-kiumi.svg';
+import ImageMugo from '@/assets/images/mugo-kibati.svg';
+import ImageRoss from '@/assets/images/ross-franks.svg';
+import ImageChris from '@/assets/images/chris-foot.svg';
+import ImageDave from '@/assets/images/dave-rono.svg';
+import ImageIvy from '@/assets/images/ivy-nyambura.svg';
+import ImageNicole from '@/assets/images/nicole-ochieng.svg';
+import ImageAmani from '@/assets/images/amani-mugambi.svg';
+import ImageSammy from '@/assets/images/sammy-kamande.svg';
+import ImageAzyzah from '@/assets/images/azyzah-rehman.svg';
+import ImageShalom from '@/assets/images/shalom-chihi.svg';
+import ImageEvelyne from '@/assets/images/evelyne-makena.svg';
+import ImageMary from '@/assets/images/mary-munene.svg';
 
-import ImageTeddy from '@/assets/images/teddy-muinde.png';
-import ImageLinda from '@/assets/images/linda-wairegi.png';
-import ImageMichael from '@/assets/images/michael-kazinja.png';
-import ImageAlex from '@/assets/images/alex-mwangi.png';
-import ImageCedric from '@/assets/images/cedric-mwangi.png';
+import ImageTeddy from '@/assets/images/teddy-muinde.svg';
+import ImageLinda from '@/assets/images/linda-wairegi.svg';
+import ImageMichael from '@/assets/images/michael-kazinja.svg';
+import ImageAlex from '@/assets/images/alex-mwangi.svg';
+import ImageCedric from '@/assets/images/cedric-mwangi.svg';
 
 // Icons
 import IconBrowser from '@/assets/icons/Browser';
