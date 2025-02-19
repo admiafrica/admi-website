@@ -16,6 +16,8 @@ import IconQejaniLight from '@/assets/icons/qejani-residence-light.svg';
 import ImageCommunityBg from '@/assets/images/community-bg.png';
 import ImageAccomodationLanding from '@/assets/images/accomodation-landing.png';
 import IconArrowTipRight from '@/assets/icons/ArrowTipRight';
+import IconBgImageYellow from '@/assets/icons/ellipse-yellow.svg';
+import IconBgImageRed from '@/assets/icons/ellipse-red.svg';
 
 export default function AccomodationsPage() {
   const isMobile = useIsMobile();
@@ -48,7 +50,7 @@ export default function AccomodationsPage() {
           ></div>
           <Box className="relative z-10 mx-auto flex h-[50vh] w-full max-w-screen-xl flex-row px-4 sm:flex-row 2xl:px-0">
             <Box className="mt-[12vh] flex w-full flex-col">
-              <Title label="Accomodation" color="#F1FE37" size={isMobile ? '36px' : '64px'} />
+              <Title label="Accommodation" color="#F1FE37" size={isMobile ? '36px' : '64px'} />
               <Box className="grow"></Box>
               <Box className="flex w-full flex-col pt-12 sm:flex-row sm:pb-12 sm:pt-0">
                 <Paragraph fontFamily="font-nexa" className="pr-4 text-white sm:w-[50%]">
@@ -108,34 +110,48 @@ export default function AccomodationsPage() {
           {' '}
         </Box>
         {/* FEATURES */}
-        <Box className="mx-auto w-full max-w-screen-xl px-4 pb-8 2xl:px-0">
-          <Box className="w-full pt-[600px] sm:pt-80">
-            <div className="mx-auto my-8 w-fit text-center">
-              <Title label="Key Features of Qwetu and Qejani Accomodation" size="24px" color="black" />
+        <Box className="relative w-full">
+          {/* BACKGROUND IMAGES */}
+          <div className="absolute left-[54%] top-[24vh] h-fit w-full -translate-x-1/2 transform">
+            <div className="flex w-full justify-end pr-[10%]">
+              <Image src={IconBgImageYellow} alt={'background image'} />
+            </div>
+          </div>
+
+          <div className="absolute left-[50%] top-[20vh] h-fit w-full -translate-x-1/2 transform">
+            <div className="flex w-full">
+              <Image src={IconBgImageRed} alt={'background image'} />
+            </div>
+          </div>
+          <Box className="relative mx-auto w-full max-w-screen-xl px-4 pb-8 2xl:px-0">
+            <Box className="w-full pt-[600px] sm:pt-80">
+              <div className="mx-auto my-8 w-fit text-center">
+                <Title label="Key Features of Qwetu and Qejani Accomodation" size="24px" color="black" />
+              </div>
+            </Box>
+
+            <div className="relative z-20 flex flex-row flex-wrap justify-between">
+              {ADMI_ACCOMODATION_FEATURES.map((dept, index) => (
+                <Card shadow="md" className="mb-8 w-[49%] sm:w-[30%]" key={`dept-${index}`} radius={8}>
+                  <div className="flex pt-4 sm:px-4">
+                    {/* <dept.icon width={48} height={48} /> */}
+                    <Image src={dept.icon} alt={dept.title} width={48} height={48} />
+                    <Paragraph
+                      fontFamily="font-nexa"
+                      fontWeight={900}
+                      className="my-auto sm:pl-4"
+                      size={isMobile ? '14px' : '18px'}
+                    >
+                      {dept.title}
+                    </Paragraph>
+                  </div>
+                  <Paragraph className="py-6" fontFamily="font-nexa" size={isMobile ? '14px' : '18px'}>
+                    {dept.description}
+                  </Paragraph>
+                </Card>
+              ))}
             </div>
           </Box>
-
-          <div className="relative z-20 flex flex-row flex-wrap justify-between">
-            {ADMI_ACCOMODATION_FEATURES.map((dept, index) => (
-              <Card shadow="md" className="mb-8 w-[49%] sm:w-[30%]" key={`dept-${index}`} radius={8}>
-                <div className="flex pt-4 sm:px-4">
-                  {/* <dept.icon width={48} height={48} /> */}
-                  <Image src={dept.icon} alt={dept.title} width={48} height={48} />
-                  <Paragraph
-                    fontFamily="font-nexa"
-                    fontWeight={900}
-                    className="my-auto sm:pl-4"
-                    size={isMobile ? '14px' : '18px'}
-                  >
-                    {dept.title}
-                  </Paragraph>
-                </div>
-                <Paragraph className="py-6" fontFamily="font-nexa" size={isMobile ? '14px' : '18px'}>
-                  {dept.description}
-                </Paragraph>
-              </Card>
-            ))}
-          </div>
         </Box>
       </div>
       {/* BOOKING */}
