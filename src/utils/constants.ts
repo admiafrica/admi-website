@@ -8,16 +8,16 @@ import ImagePersonalCounseling from '@/assets/images/personal-counseling.svg';
 import ImageCareerDevelopment from '@/assets/images/career-development.png';
 
 // User Profiles
-import ImageCaroline from '@/assets/images/caroline.png';
-import ImagePeter from '@/assets/images/peter.png';
+import ImageCaroline from '@/assets/images/carolyne-sila.svg';
+import ImagePeter from '@/assets/images/peter-mwaniki.svg';
 import ImageRaji from '@/assets/images/raji-ilangovan.svg';
-import ImageCiku from '@/assets/images/ciku.png';
+import ImageCiku from '@/assets/images/ciku-munuku.svg';
 
-import ImageLaila from '@/assets/images/laila.png';
-import ImageWilfred from '@/assets/images/wilfred.png';
-import ImageMugo from '@/assets/images/mugo.png';
-import ImageRoss from '@/assets/images/ross.png';
-import ImageChris from '@/assets/images/chris.png';
+import ImageLaila from '@/assets/images/laila-macharia.svg';
+import ImageWilfred from '@/assets/images/wilfred-kiumi.svg';
+import ImageMugo from '@/assets/images/mugo-kibati.svg';
+import ImageRoss from '@/assets/images/ross-franks.svg';
+import ImageChris from '@/assets/images/chris-foot.svg';
 import ImageDave from '@/assets/images/dave-rono.svg';
 import ImageIvy from '@/assets/images/ivy-nyambura.svg';
 import ImageNicole from '@/assets/images/nicole-ochieng.svg';
@@ -28,11 +28,11 @@ import ImageShalom from '@/assets/images/shalom-chihi.svg';
 import ImageEvelyne from '@/assets/images/evelyne-makena.svg';
 import ImageMary from '@/assets/images/mary-munene.svg';
 
-import ImageTeddy from '@/assets/images/teddy-muinde.png';
-import ImageLinda from '@/assets/images/linda-wairegi.png';
-import ImageMichael from '@/assets/images/michael-kazinja.png';
-import ImageAlex from '@/assets/images/alex-mwangi.png';
-import ImageCedric from '@/assets/images/cedric-mwangi.png';
+import ImageTeddy from '@/assets/images/teddy-muinde.svg';
+import ImageLinda from '@/assets/images/linda-wairegi.svg';
+import ImageMichael from '@/assets/images/michael-kazinja.svg';
+import ImageAlex from '@/assets/images/alex-mwangi.svg';
+import ImageCedric from '@/assets/images/cedric-mwangi.svg';
 
 // Icons
 import IconBrowser from '@/assets/icons/Browser';

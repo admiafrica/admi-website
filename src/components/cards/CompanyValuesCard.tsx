@@ -29,7 +29,7 @@ export default function CompanyValuesCard({ values, showRightIcons = true }: Pro
           <Box>
             {values.map((item: any) => (
               <Tabs.Panel value={item.id} key={`content-${item.name}`}>
-                <Box className="flex h-full w-full px-8" bg={'#FEFFF5'}>
+                <Box className="flex flex-col sm:flex-row h-full w-full px-8" bg={'#FEFFF5'}>
                   <Box>
                     <Title label={item.name} color="black" size={isMobile ? '24px' : '36px'} className="py-4" />
                     {item.description.map((paragraph: string, index: number) => (
