@@ -1,14 +1,11 @@
-import { Box, Card } from '@mantine/core';
-import { EnquiryForm } from '../forms';
-import { Paragraph, ParagraphContentful, Title } from '../ui';
-import { CourseVideoCard } from '../cards';
-import { useIsMobile } from '@/hooks/useIsMobile';
+import { Box } from '@mantine/core';
+
+import { Paragraph, Title } from '../ui';
 import { CollapsibleContent } from '../shared/v3';
 import { useCallback, useEffect, useState } from 'react';
 import { IContentfulEntry } from '@/types';
 
 export default function FinancialPlanning() {
-  const isMobile = useIsMobile();
   const [kenyanFees, setKenyanFees] = useState<Array<IContentfulEntry>>([]);
   const [intlFees, setIntlFees] = useState<Array<IContentfulEntry>>([]);
 
@@ -67,7 +64,7 @@ export default function FinancialPlanning() {
             <Title label="Kenyan & East African Students" color="black" size="20px" />
             <ul>
               {kenyanFees.map((fee) => (
-                <li>
+                <li key={fee.fields.name}>
                   <Box
                     className="my-4 cursor-pointer"
                     onClick={() => handleDocumentDownload(fee.fields.document.fields.file)}
@@ -84,7 +81,7 @@ export default function FinancialPlanning() {
 
             <ul>
               {intlFees.map((fee) => (
-                <li>
+                <li key={fee.fields.name}>
                   <Box
                     className="my-4 cursor-pointer"
                     onClick={() => handleDocumentDownload(fee.fields.document.fields.file)}

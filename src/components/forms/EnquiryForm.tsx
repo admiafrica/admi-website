@@ -150,7 +150,7 @@ export default function EnquiryForm() {
           key={form.key('lastName')}
           {...form.getInputProps('lastName')}
         />
-        <Box my={16} className="border-1 rounded-lg border-solid border-gray-200 py-2 px-2">
+        <Box my={16} className="border-1 rounded-lg border-solid border-gray-200 px-2 py-2">
           <div className="flex pl-2">
             <Title label="Phone Number" color="black" size="1.4em" />
             <IconAsterisk size={8} className="mt-1.5 text-admiRed" />
@@ -182,7 +182,7 @@ export default function EnquiryForm() {
               className="grow"
               placeholder="Enter phone i.e 0700000000"
               key={form.key('phone')}
-              type='number'
+              type="number"
               {...form.getInputProps('phone')}
             />
           </Box>
@@ -203,11 +203,3 @@ export default function EnquiryForm() {
     </div>
   );
 }
-
-const numberInputStyle: React.CSSProperties = {
-  border: 'none',
-};
-
-const numberDropdownStyle: React.CSSProperties = {
-  border: 'none',
-};

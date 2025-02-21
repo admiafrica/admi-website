@@ -1,14 +1,12 @@
 import { useCallback, useEffect, useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { Box, Card, Divider, Tabs } from '@mantine/core';
+import { Box, Card, Divider } from '@mantine/core';
 
 import { MainLayout } from '@/layouts/v3/MainLayout';
 import { PageSEO } from '@/components/shared/v3';
-import { EmptyCard } from '@/components/cards';
 import { Paragraph, ParagraphContentful } from '@/components/ui';
 
-import IconDiary from '@/assets/icons/Diary';
 import IconFacebook from '@/assets/icons/facebook-social.svg';
 import IconWhatsapp from '@/assets/icons/whatsapp-social.svg';
 import IconCopyContent from '@/assets/icons/copy-content.svg';

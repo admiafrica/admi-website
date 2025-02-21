@@ -1,10 +1,8 @@
-import { Box, Card } from '@mantine/core';
-import { Paragraph, ParagraphContentful, Title } from '../ui';
-import { useIsMobile } from '@/hooks/useIsMobile';
+import { Box } from '@mantine/core';
+import { Paragraph, Title } from '../ui';
 import { CollapsibleContent } from '../shared/v3';
 
 export default function InternationalStudents() {
-  const isMobile = useIsMobile();
 
   return (
     <Box className="w-full">
@@ -269,17 +267,17 @@ export default function InternationalStudents() {
         content={
           <Paragraph>
             ADMI is a truly global institution, offering an exceptional education delivered to international standards.
-            As an ADMI alumnus, you’ll be part of a global community that spans over 2,000 students from more than 27
+            As an ADMI alumnus, you&apos;ll be part of a global community that spans over 2,000 students from more than 27
             countries, including Kenya, Uganda, Tanzania, Rwanda, Brazil, Burundi, DRC, Ethiopia, South Sudan, Benin,
-            Ghana, Liberia, Nigeria, Cote d’Ivoire, Malawi, Mexico, Sudan, India, Germany, Zambia, Hungary, Bangladesh,
+            Ghana, Liberia, Nigeria, Cote d&apos;Ivoire, Malawi, Mexico, Sudan, India, Germany, Zambia, Hungary, Bangladesh,
             Cameroon, the Netherlands, the United Kingdom, and the United States. At ADMI, international students are
             fully integrated into the student community and supported throughout their journey. The Student Council
-            plays a vital role in ensuring that every student’s voice is heard, and it includes a dedicated
+            plays a vital role in ensuring that every student&apos;s voice is heard, and it includes a dedicated
             International Officer who represents the needs of international students. Through the Student Council,
             students can engage in leadership, shape campus life, and advocate for their peers. Each class elects a
             representative to participate in the Student Executive Council, fostering a strong community across all
             programs. This council is committed to helping students transition smoothly into ADMI, creating a supportive
-            and inclusive environment. By joining ADMI, you'll receive a world-class education and become part of a
+            and inclusive environment. By joining ADMI, you&apos;ll receive a world-class education and become part of a
             diverse, dynamic, and globally connected community.
           </Paragraph>
         }
