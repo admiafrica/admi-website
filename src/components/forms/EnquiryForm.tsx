@@ -110,6 +110,7 @@ export default function EnquiryForm() {
         </div>
         <TextInput
           my={16}
+          px={8}
           className="border-1 rounded-lg border-solid border-gray-200 py-2"
           label={
             <div className="flex pl-2">
@@ -123,6 +124,7 @@ export default function EnquiryForm() {
         />
         <TextInput
           my={16}
+          px={8}
           className="border-1 rounded-lg border-solid border-gray-200 py-2"
           label={
             <div className="flex pl-2">
@@ -136,6 +138,7 @@ export default function EnquiryForm() {
         />
         <TextInput
           my={16}
+          px={8}
           className="border-1 rounded-lg border-solid border-gray-200 py-2"
           label={
             <div className="flex pl-2">
@@ -147,7 +150,7 @@ export default function EnquiryForm() {
           key={form.key('lastName')}
           {...form.getInputProps('lastName')}
         />
-        <Box my={16} className="border-1 rounded-lg border-solid border-gray-200 py-2">
+        <Box my={16} className="border-1 rounded-lg border-solid border-gray-200 py-2 px-2">
           <div className="flex pl-2">
             <Title label="Phone Number" color="black" size="1.4em" />
             <IconAsterisk size={8} className="mt-1.5 text-admiRed" />
@@ -179,6 +182,7 @@ export default function EnquiryForm() {
               className="grow"
               placeholder="Enter phone i.e 0700000000"
               key={form.key('phone')}
+              type='number'
               {...form.getInputProps('phone')}
             />
           </Box>
