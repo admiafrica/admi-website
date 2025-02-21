@@ -127,7 +127,7 @@ export default function Footer({ bgColor }: Props) {
             <Anchor c="white" fw={600} href="https://africadigitalmedia.ed-space.net/onlineenquiry.cfm" target="_blank">
               Contact Us
             </Anchor>
-            <Anchor c="white" fw={600}>
+            <Anchor c="white" fw={600} onClick={() => navigateToPage('academic-team')}>
               Academic Team
             </Anchor>
             <Anchor c="white" fw={600} onClick={() => navigateToPage('fellowship')}>
