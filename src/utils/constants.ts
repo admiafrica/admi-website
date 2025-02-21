@@ -493,44 +493,6 @@ export const ADMI_CAREER_ADVICE = [
   },
 ];
 
-export const ADMI_FINANCIAL_PLANNING = [
-  {
-    title: 'Fee Structure',
-    description: 'content here',
-  },
-  {
-    title: 'Paying your Fees',
-    description: 'content here',
-  },
-  {
-    title: 'Scholarships and Grants',
-    description: 'content here',
-  },
-  {
-    title: 'Contact Finance Office',
-    description: 'content here',
-  },
-];
-
-export const ADMI_INTERNATIONAL_STUDENTS = [
-  {
-    title: 'How to Apply',
-    description: 'content here',
-  },
-  {
-    title: 'Visa Requirements',
-    description: 'content here',
-  },
-  {
-    title: 'Accomodation',
-    description: 'content here',
-  },
-  {
-    title: 'International Student Community',
-    description: 'content here',
-  },
-];
-
 export const ADMI_STUDENT_SUPPORT = [
   {
     header:

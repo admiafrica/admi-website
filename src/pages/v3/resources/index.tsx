@@ -1,14 +1,12 @@
-import { Box, Tabs } from '@mantine/core';
+import { useCallback, useEffect, useState } from 'react';
+import { Box } from '@mantine/core';
 
 import { PageSEO } from '@/components/shared/v3';
 import { MainLayout } from '@/layouts/v3/MainLayout';
-import { AnnouncementCard, EmptyCard, NewsItemCard } from '@/components/cards';
+import { AnnouncementCard, NewsItemCard } from '@/components/cards';
+import { IContentfulEntry } from '@/types';
 
 import ImageNews from '@/assets/images/featured-news.svg';
-import { useCallback, useEffect, useState } from 'react';
-import IconDiary from '@/assets/icons/Diary';
-import { IContentfulEntry } from '@/types';
-import { Paragraph } from '@/components/ui';
 
 export default function ResourcesPage() {
   const [news, setNews] = useState<Array<any>>([]);
@@ -42,12 +40,14 @@ export default function ResourcesPage() {
             )}
           </Box>
           {/* NEWS */}
-          <Box className="mx-auto flex w-full max-w-screen-xl flex-wrap pl-4 xl:px-0">
-            {news.map((article) => (
-              <Box key={article.sys.id} className="mx-auto mb-10 h-[400px] w-[32%]">
-                <NewsItemCard item={article} />
-              </Box>
-            ))}
+          <Box className="mx-auto flex w-full max-w-screen-xl flex-wrap px-4 xl:px-0">
+            {news
+              .filter((article) => !article.fields.featured)
+              .map((article) => (
+                <Box key={article.sys.id} className="mx-auto mb-10 h-[400px] sm:w-[32%]">
+                  <NewsItemCard item={article} />
+                </Box>
+              ))}
           </Box>
         </Box>
       </Box>
