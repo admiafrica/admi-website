@@ -176,7 +176,7 @@ export default function Footer({ bgColor }: Props) {
             </Text>
           </div>
           <div className="grow cursor-pointer text-admiShamrok md:pl-4">
-            <Text>Privacy Policy | Terms & Conditions</Text>
+            <Text onClick={() => navigateToPage('privacy-policy')}>Privacy Policy | Terms & Conditions</Text>
           </div>
           <Image width={95} src={IconLogoWhite} alt="logo" />
         </Group>
