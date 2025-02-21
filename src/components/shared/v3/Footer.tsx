@@ -57,7 +57,7 @@ export default function Footer({ bgColor }: Props) {
   const isMobile = useMediaQuery('(max-width: 480px)');
 
   const navigateToPage = (pagePath: string) => {
-    router.push(`/v3/${pagePath}`);
+    router.push(`/${pagePath}`);
   };
 
   return (

@@ -64,7 +64,7 @@ export default function EnquiryForm() {
         setAlert({ type: 'error', message: errorData.error || 'Failed to submit enquiry.' });
         return;
       }
-      router.push('/v3/enquiry-thank-you');
+      router.push('/enquiry-thank-you');
     } catch (error) {
       setAlert({ type: 'error', message: 'An error occurred. Please try again later.' });
     }
@@ -102,7 +102,7 @@ export default function EnquiryForm() {
             Curious about our courses and the benefits they offer? Explore the details and discover what you could gain
             by visiting our{' '}
             <span>
-              <Link href="/v3/courses">
+              <Link href="/courses">
                 <span className="font-bold text-admiShamrok brightness-90">Courses page</span>
               </Link>
             </span>

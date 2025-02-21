@@ -21,10 +21,10 @@ export default function AnnouncementCard(props: Props) {
 
   const handleCardClick = () => {
     if (props.announcement.category == 'News') {
-      router.push(`/v3/news-events/news/${props.announcement.slug}`);
+      router.push(`/news-events/news/${props.announcement.slug}`);
     }
     if (props.announcement.category == 'Resources') {
-      router.push(`/v3/resources/${props.announcement.slug}`);
+      router.push(`/resources/${props.announcement.slug}`);
     }
   };
   return (

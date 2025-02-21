@@ -4,8 +4,8 @@ import { Box } from '@mantine/core';
 import { MainLayout } from '@/layouts/v3/MainLayout';
 import { Paragraph, Title } from '@/components/ui';
 import { PageSEO } from '@/components/shared/v3';
-import { InfoCard, PlainCard, UserProfileCard } from '@/components/cards';
-import { ADMI_ACADEMIC_PATHWAYS, ADMI_ACADEMIC_TEAM_MINIMAL } from '@/utils';
+import { UserProfileCard } from '@/components/cards';
+import { ADMI_ACADEMIC_TEAM_MINIMAL } from '@/utils';
 
 import ImagePathwaysLanding from '@/assets/images/academic-pathways-landing.jpeg';
 import { useIsMobile } from '@/hooks/useIsMobile';

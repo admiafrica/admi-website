@@ -23,7 +23,7 @@ export default function CourseSearch({ courses }: Props) {
 
   const handleCourseSearch = () => {
     const course = courses.find((course) => course.fields.name == selectedCourse);
-    router.push(`/v3/courses/${course.fields.slug}`);
+    router.push(`/courses/${course.fields.slug}`);
   };
 
   return (

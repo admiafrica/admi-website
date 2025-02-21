@@ -18,7 +18,7 @@ export default function NavBar({ mode, isMinimal = false }: Props) {
   const isMobile = useMediaQuery('(max-width: 767px)');
 
   const navigateToPage = (pagePath: string) => {
-    router.push(`/v3/${pagePath}`);
+    router.push(`/${pagePath}`);
   };
 
   const getMenuWideScreen = (mode: string) => {

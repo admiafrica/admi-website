@@ -17,10 +17,10 @@ export default function NewsItemCard({ item }: Props) {
 
   const handleCardClick = () => {
     if (item.fields.category == 'News') {
-      router.push(`/v3/news-events/news/${item.fields.slug}`);
+      router.push(`/news-events/news/${item.fields.slug}`);
     }
     if (item.fields.category == 'Resources') {
-      router.push(`/v3/resources/${item.fields.slug}`);
+      router.push(`/resources/${item.fields.slug}`);
     }
   };
 
