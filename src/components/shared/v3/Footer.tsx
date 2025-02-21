@@ -151,8 +151,8 @@ export default function Footer({ bgColor }: Props) {
                     Student Portal
                   </Text>
                 </div>
-                <Anchor c="white" fw={600} onClick={() => navigateToPage('accomodation')}>
-                  Accomodation
+                <Anchor c="white" fw={600} onClick={() => navigateToPage('accommodation')}>
+                  Accommodation
                 </Anchor>
                 <Anchor c="white" fw={600} onClick={() => navigateToPage('academic-pathways')}>
                   Academic Pathways

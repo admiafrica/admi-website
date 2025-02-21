@@ -15,8 +15,13 @@ type Props = {
 export default function NewsItemCard({ item }: Props) {
   const router = useRouter();
 
-  const handleNewsClick = () => {
-    router.push(`/v3/news-events/news/${item.fields.slug}`);
+  const handleCardClick = () => {
+    if (item.fields.category == 'News') {
+      router.push(`/v3/news-events/news/${item.fields.slug}`);
+    }
+    if (item.fields.category == 'Resources') {
+      router.push(`/v3/resources/${item.fields.slug}`);
+    }
   };
 
   return (
@@ -26,7 +31,7 @@ export default function NewsItemCard({ item }: Props) {
       radius="md"
       withBorder
       className="hover:border-1 h-full cursor-pointer hover:border-solid hover:border-admiRed"
-      onClick={handleNewsClick}
+      onClick={handleCardClick}
     >
       <motion.div
         whileHover="hover" // Shared hover animation key
@@ -45,10 +50,10 @@ export default function NewsItemCard({ item }: Props) {
         </Card.Section>
         <Box className="flex h-[60px]">
           <Box className="grow pt-4">
-            <Paragraph fontFamily="font-nexa" fontWeight={400} size="20px" className='pb-4'>
+            <Paragraph fontFamily="font-nexa" fontWeight={400} size="20px" className="pb-4">
               {item.fields.title}
             </Paragraph>
-            <Paragraph className="line-clamp-[3]" size="16px">
+            <Paragraph className="line-clamp-[5]" size="16px">
               {item.fields.summary}
             </Paragraph>
             {/* Arrow Icon with Animation */}

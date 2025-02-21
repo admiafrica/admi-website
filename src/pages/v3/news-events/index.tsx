@@ -71,7 +71,7 @@ export default function NewsEventsLandingPage() {
               {/* NEWS */}
               <Box className="mx-auto flex w-full max-w-screen-xl flex-wrap pl-4 xl:px-0">
                 {news.map((article) => (
-                  <Box key={article.sys.id} className="mb-4 mr-4 h-[400px] w-[360px]">
+                  <Box key={article.sys.id} className="mb-4 h-[400px] w-[33%]">
                     <NewsItemCard item={article} />
                   </Box>
                 ))}
