@@ -730,7 +730,7 @@ export const ADMI_ALUMNI = [
   },
 ];
 
-export const ADMI_ACCOMODATION_FEATURES = [
+export const ADMI_ACCOMMODATION_FEATURES = [
   {
     title: 'Safe and Secure Living',
     description:
