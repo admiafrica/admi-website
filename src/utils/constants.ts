@@ -75,6 +75,10 @@ export const ROUTES = {
   CAMPAIGNS: '/:country/:category/:campaign',
 };
 
+export const CALENDAR_DOWNLOAD_LINK =
+  ' https://assets.ctfassets.net/qtu3mga6n6gc/2EeAdlCS9LfEiOPTfH74Z4/c8c4eb311dd97ed65e86fd76624e27ab/Calendar-2025.pdf';
+export const CALENDAR_DOWNLOAD_NAME = 'ADMI-Calendar-2025.pdf';
+
 export const SOCIAL_LINKS = {
   INSTAGRAM: 'https://www.instagram.com/admiafrica/',
   LINKEDIN: 'https://www.linkedin.com/school/admiafrica/',
@@ -486,44 +490,6 @@ export const ADMI_CAREER_ADVICE = [
       },
     ],
     image: ImageCareerDevelopment,
-  },
-];
-
-export const ADMI_FINANCIAL_PLANNING = [
-  {
-    title: '2025 FEEs - January',
-    description: 'content here',
-  },
-  {
-    title: 'Paying your Fees',
-    description: 'content here',
-  },
-  {
-    title: 'Scholarships and Grants',
-    description: 'content here',
-  },
-  {
-    title: 'Contact Finance Office',
-    description: 'content here',
-  },
-];
-
-export const ADMI_INTERNATIONAL_STUDENTS = [
-  {
-    title: 'How to Apply',
-    description: 'content here',
-  },
-  {
-    title: 'Visa Requirements',
-    description: 'content here',
-  },
-  {
-    title: 'Accomodation',
-    description: 'content here',
-  },
-  {
-    title: 'International Student Community',
-    description: 'content here',
   },
 ];
 

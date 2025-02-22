@@ -6,15 +6,15 @@ import Autoplay from 'embla-carousel-autoplay';
 
 import { MainLayout } from '@/layouts/v3/MainLayout';
 import { Paragraph, Title } from '@/components/ui';
-import { CollapsibleContent, PageSEO } from '@/components/shared/v3';
+import { PageSEO } from '@/components/shared/v3';
 import { AdviceCard, ClipCard, UserProfileCard, UserTestimonialCard } from '@/components/cards';
 import {
   ADMI_ACADEMIC_TEAM_MINIMAL,
   ADMI_CAREER_ADVICE,
-  ADMI_FINANCIAL_PLANNING,
-  ADMI_INTERNATIONAL_STUDENTS,
   ADMI_STUDENT_COUNCIL,
   ADMI_STUDENT_SUPPORT,
+  CALENDAR_DOWNLOAD_LINK,
+  CALENDAR_DOWNLOAD_NAME,
 } from '@/utils';
 
 import { IconDownload } from '@tabler/icons-react';
@@ -24,6 +24,7 @@ import IconDashboardTabs from '@/assets/icons/DashboardTabs';
 import IconCalendarCheck from '@/assets/icons/CalendarCheck';
 import ImageCalendar from '@/assets/images/calendar.svg';
 import ImageSupportLanding from '@/assets/images/student-support-landing.png';
+import { FinancialPlanning, InternationalStudents } from '@/components/student-support';
 
 export default function StudentSupportPage() {
   const [content, setContent] = useState<any>();
@@ -40,6 +41,25 @@ export default function StudentSupportPage() {
       console.log('Error fetching courses:', error);
     }
   }, []);
+
+  const handleCalendarDownload = async () => {
+    try {
+      const response = await fetch(CALENDAR_DOWNLOAD_LINK);
+      if (!response.ok) throw new Error('Failed to fetch file');
+
+      const blob = await response.blob();
+      const link = document.createElement('a');
+
+      link.href = URL.createObjectURL(blob);
+      link.download = CALENDAR_DOWNLOAD_NAME;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(link.href);
+    } catch (error) {
+      console.error('Download failed:', error);
+    }
+  };
 
   useEffect(() => {
     fetchContent();
@@ -75,7 +95,7 @@ export default function StudentSupportPage() {
                 We are deeply commited to providing you with comprehensive support that ensures your academic and
                 personal success
               </Paragraph>
-              <Box className="flex items-center pt-12">
+              <Box className="flex cursor-pointer items-center pt-12" onClick={handleCalendarDownload}>
                 <IconCalendarCheck color="white" />
                 <Box>
                   <Paragraph size="16px" fontFamily="font-nexa" fontWeight={100} className="text-white">
@@ -152,7 +172,7 @@ export default function StudentSupportPage() {
                 your schedule accordingly.
               </Paragraph>
             </Box>
-            <Box className="mt-6 flex">
+            <Box className="mt-6 flex" onClick={handleCalendarDownload}>
               <IconDownload color="#F60934" size={32} />{' '}
               <Paragraph fontFamily="font-nexa" fontWeight={900} className="my-auto px-2 text-admiRed">
                 Download Calendar
@@ -222,7 +242,7 @@ export default function StudentSupportPage() {
         {/* FINANCIAL PLANNING */}
         <Box className="w-full py-8" bg={'#F76335'}>
           <Box className="mx-auto flex w-full max-w-screen-xl flex-col px-4 sm:flex-row 2xl:px-0">
-            <Box className="flex flex-row flex-col sm:w-[40%]">
+            <Box className="flex flex-row flex-col sm:w-[40%] sm:pr-4">
               <Title label="Financial Planning" color="white" />
               <Title
                 label="Understanding financial planning is crucial for students at ADMI."
@@ -235,20 +255,14 @@ export default function StudentSupportPage() {
               </Paragraph>
             </Box>
             <Box className="sm:w-[60%]">
-              {ADMI_FINANCIAL_PLANNING.map((process, index) => (
-                <CollapsibleContent
-                  key={`finance-plan-${index}`}
-                  title={process.title}
-                  content={<Paragraph>{process.description}</Paragraph>}
-                />
-              ))}
+              <FinancialPlanning />
             </Box>
           </Box>
         </Box>
         {/* INTERNATIONAL STUDENTS */}
         <Box className="w-full py-8" bg={'#E43B07'}>
           <Box className="mx-auto flex w-full max-w-screen-xl flex-col px-4 sm:flex-row 2xl:px-0">
-            <Box className="flex flex-row flex-col sm:w-[40%]">
+            <Box className="flex flex-row flex-col sm:w-[40%] sm:pr-4">
               <Title label="International Students" color="white" />
               <Paragraph fontFamily="font-nexa" className="py-4 text-white">
                 ADMI welcomes international students from around the globe, providing a supportive environment that
@@ -262,13 +276,7 @@ export default function StudentSupportPage() {
               </Paragraph>
             </Box>
             <Box className="sm:w-[60%]">
-              {ADMI_INTERNATIONAL_STUDENTS.map((process, index) => (
-                <CollapsibleContent
-                  key={`finance-plan-${index}`}
-                  title={process.title}
-                  content={<Paragraph>{process.description}</Paragraph>}
-                />
-              ))}
+              <InternationalStudents />
             </Box>
           </Box>
         </Box>

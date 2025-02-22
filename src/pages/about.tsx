@@ -29,7 +29,7 @@ export default function AboutPage() {
   const autoplayFacilities = useRef(Autoplay({ delay: 4000 }));
 
   const handleViewCourses = () => {
-    router.push('/v3/courses');
+    router.push('/courses');
   };
 
   return (

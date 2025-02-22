@@ -1,15 +1,18 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useCallback, useEffect, useState } from 'react';
-import { Alert, Group, Select, Text, TextInput } from '@mantine/core';
+import { Alert, Box, Group, Select, Text, TextInput } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { Button, Paragraph, Title } from '../ui';
+import PhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/lib/style.css';
 
 import { IconAsterisk } from '@tabler/icons-react';
 
 export default function EnquiryForm() {
   const router = useRouter();
   const [courses, setCourses] = useState<any[]>([]);
+  const [countryCode, setCountryCode] = useState('254'); // State for the phone number
   const [alert, setAlert] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
 
   const form = useForm({
@@ -40,13 +43,20 @@ export default function EnquiryForm() {
   const handleSubmit = async (values: any) => {
     setAlert(null); // Clear previous alerts
 
+    // always remove leading zero from phone incase included
+    const formattedPhone = values.phone.replace(/^0+/, '');
+    const data = {
+      ...values,
+      phone: `${countryCode}${formattedPhone}`,
+    };
+
     try {
       const response = await fetch('/api/v3/push-lead', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(values),
+        body: JSON.stringify({ ...data }),
       });
 
       if (!response.ok) {
@@ -54,9 +64,8 @@ export default function EnquiryForm() {
         setAlert({ type: 'error', message: errorData.error || 'Failed to submit enquiry.' });
         return;
       }
-      router.push('/v3/enquiry-thank-you');
+      router.push('/enquiry-thank-you');
     } catch (error) {
-      // console.error('Error submitting enquiry:', error);
       setAlert({ type: 'error', message: 'An error occurred. Please try again later.' });
     }
   };
@@ -93,7 +102,7 @@ export default function EnquiryForm() {
             Curious about our courses and the benefits they offer? Explore the details and discover what you could gain
             by visiting our{' '}
             <span>
-              <Link href="/v3/courses">
+              <Link href="/courses">
                 <span className="font-bold text-admiShamrok brightness-90">Courses page</span>
               </Link>
             </span>
@@ -101,6 +110,7 @@ export default function EnquiryForm() {
         </div>
         <TextInput
           my={16}
+          px={8}
           className="border-1 rounded-lg border-solid border-gray-200 py-2"
           label={
             <div className="flex pl-2">
@@ -114,6 +124,7 @@ export default function EnquiryForm() {
         />
         <TextInput
           my={16}
+          px={8}
           className="border-1 rounded-lg border-solid border-gray-200 py-2"
           label={
             <div className="flex pl-2">
@@ -127,6 +138,7 @@ export default function EnquiryForm() {
         />
         <TextInput
           my={16}
+          px={8}
           className="border-1 rounded-lg border-solid border-gray-200 py-2"
           label={
             <div className="flex pl-2">
@@ -138,19 +150,43 @@ export default function EnquiryForm() {
           key={form.key('lastName')}
           {...form.getInputProps('lastName')}
         />
-        <TextInput
-          my={16}
-          className="border-1 rounded-lg border-solid border-gray-200 py-2"
-          label={
-            <div className="flex pl-2">
-              <Title label="Phone Number" color="black" size="1.4em" />
-              <IconAsterisk size={8} className="mt-1.5 text-admiRed" />
-            </div>
-          }
-          placeholder="Enter phone i.e +254723..."
-          key={form.key('phone')}
-          {...form.getInputProps('phone')}
-        />
+        <Box my={16} className="border-1 rounded-lg border-solid border-gray-200 px-2 py-2">
+          <div className="flex pl-2">
+            <Title label="Phone Number" color="black" size="1.4em" />
+            <IconAsterisk size={8} className="mt-1.5 text-admiRed" />
+          </div>
+          <Box className="flex">
+            <PhoneInput
+              country={'ke'}
+              value={countryCode}
+              onChange={(value) => {
+                setCountryCode(value);
+              }}
+              containerStyle={{
+                border: 'none',
+                width: 100,
+              }}
+              inputStyle={{
+                border: 'none',
+              }}
+              buttonStyle={{
+                border: 'none', // Remove dropdown button border
+                marginLeft: '8px',
+              }}
+              dropdownStyle={{
+                border: 'none', // Remove dropdown border
+                boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)', // Optional: Add a subtle shadow
+              }}
+            />
+            <TextInput
+              className="grow"
+              placeholder="Enter phone i.e 0700000000"
+              key={form.key('phone')}
+              type="number"
+              {...form.getInputProps('phone')}
+            />
+          </Box>
+        </Box>
         <Group justify="flex-end" mt="2em" className="w-full">
           <Button size="lg" backgroundColor="admiRed" label="Submit" type="submit" />
         </Group>

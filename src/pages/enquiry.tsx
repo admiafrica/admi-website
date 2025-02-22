@@ -7,7 +7,7 @@ import { Title } from '@/components/ui';
 import { PageSEO } from '@/components/shared/v3';
 import { useIsMobile } from '@/hooks/useIsMobile';
 
-import ImageEnquiry1 from '../../assets/images/enquiry-1.png';
+import ImageEnquiry1 from '@/assets/images/enquiry-1.png';
 import ImageEnquiry2 from '@/assets/images/enquiry-2.png';
 import ImageEnquiry3 from '@/assets/images/enquiry-3.png';
 

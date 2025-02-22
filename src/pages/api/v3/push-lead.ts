@@ -23,10 +23,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       LASTNAME: lastName,
       EMAIL: email,
       SMS: phone,
-      // COURSE_INTERESTED_IN: [courseName],
       PREFERRED_COURSE: courseName,
     },
-    listIds: [parseInt(LIST_ID)], // Convert to integer
+    listIds: [parseInt(LIST_ID)],
     updateEnabled: true,
   };
 

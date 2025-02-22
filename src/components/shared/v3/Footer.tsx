@@ -57,7 +57,7 @@ export default function Footer({ bgColor }: Props) {
   const isMobile = useMediaQuery('(max-width: 480px)');
 
   const navigateToPage = (pagePath: string) => {
-    router.push(`/v3/${pagePath}`);
+    router.push(`/${pagePath}`);
   };
 
   return (
@@ -127,7 +127,7 @@ export default function Footer({ bgColor }: Props) {
             <Anchor c="white" fw={600} href="https://africadigitalmedia.ed-space.net/onlineenquiry.cfm" target="_blank">
               Contact Us
             </Anchor>
-            <Anchor c="white" fw={600}>
+            <Anchor c="white" fw={600} onClick={() => navigateToPage('academic-team')}>
               Academic Team
             </Anchor>
             <Anchor c="white" fw={600} onClick={() => navigateToPage('fellowship')}>
@@ -151,8 +151,8 @@ export default function Footer({ bgColor }: Props) {
                     Student Portal
                   </Text>
                 </div>
-                <Anchor c="white" fw={600} onClick={() => navigateToPage('accomodation')}>
-                  Accomodation
+                <Anchor c="white" fw={600} onClick={() => navigateToPage('accommodation')}>
+                  Accommodation
                 </Anchor>
                 <Anchor c="white" fw={600} onClick={() => navigateToPage('academic-pathways')}>
                   Academic Pathways
@@ -176,7 +176,7 @@ export default function Footer({ bgColor }: Props) {
             </Text>
           </div>
           <div className="grow cursor-pointer text-admiShamrok md:pl-4">
-            <Text>Privacy Policy | Terms & Conditions</Text>
+            <Text onClick={() => navigateToPage('privacy-policy')}>Privacy Policy | Terms & Conditions</Text>
           </div>
           <Image width={95} src={IconLogoWhite} alt="logo" />
         </Group>
