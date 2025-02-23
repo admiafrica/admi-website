@@ -10,32 +10,30 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   if (req.method === 'GET') {
     try {
-      const { slug } = req.query;
-
+      // const response = await axiosContentfulClient.get<IContentfulResponse>(
+      //   `/spaces/${spaceId}/environments/${environment}/entries?access_token=${accessToken}&content_type=article&fields.category=Awards`
+      // );
       const response = await axiosContentfulClient.get<IContentfulResponse>(
-        `/spaces/${spaceId}/environments/${environment}/entries?access_token=${accessToken}&content_type=article&fields.category=Resources&fields.slug=${slug}&include=10`
+        `/spaces/${spaceId}/environments/${environment}/entries?access_token=${accessToken}&content_type=article&fields.category=Resources`
       );
       const data = response.data;
 
-      if (!data.items.length) {
-        return res.status(404).json({ message: `No resource found for slug: ${slug}` });
-      }
-
-      const mainItem = data.items[0]; // The primary course item
+      const items = data.items;
       const assets = data.includes?.Asset || [];
       const entries = data.includes?.Entry || [];
 
       // Resolve references in the main item
-      const resolvedMainItem = {
-        ...mainItem,
-        fields: resolveReferences(mainItem.fields, entries, assets),
-        assets,
-        entries,
-      };
+      const resolvedItems = items.map((course: any) => {
+        return {
+          ...course,
+          fields: resolveReferences(course.fields, entries, assets),
+          assets,
+        };
+      });
 
-      res.status(200).json(resolvedMainItem);
+      res.status(200).json(resolvedItems);
     } catch (error) {
-      console.error('Failed to get courses', error);
+      console.error('Failed to get news', error);
       res.status(500).json({ message: 'Internal Server Error' });
     }
   } else {

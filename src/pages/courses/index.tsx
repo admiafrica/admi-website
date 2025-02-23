@@ -1,17 +1,18 @@
 import { useCallback, useEffect, useState } from 'react';
+import Image from 'next/image';
 import { Box, Text, Select } from '@mantine/core';
 
 import { MainLayout } from '@/layouts/v3/MainLayout';
 import { Paragraph, Title, SearchDropdown } from '@/components/ui';
 import { ProgramListItemCard } from '@/components/cards';
 import { PageSEO } from '@/components/shared/v3';
-
+import { useIsMobile } from '@/hooks/useIsMobile';
 
 import IconBgImageYellow from '@/assets/icons/ellipse-yellow.svg';
 import IconBgImageRed from '@/assets/icons/ellipse-red.svg';
-import Image from 'next/image';
 
 export default function CoursesPage() {
+  const isMobile = useIsMobile();
   const [programs, setPrograms] = useState<any[]>([]);
   const [filteredPrograms, setFilteredPrograms] = useState<any[]>([]);
   const [filterOptions, setFilterOptions] = useState<string[]>([]);
@@ -94,10 +95,14 @@ export default function CoursesPage() {
         </div>
         <div className="relative z-10 mx-auto w-full max-w-screen-lg px-4 pt-24 2xl:px-0">
           <SearchDropdown
-            destination='courses'
+            destination="courses"
             items={courses}
             buttonLabel="Search"
-            placeholder="Search for course e.g Graphic Design, Content Creation"
+            placeholder={
+              isMobile
+                ? 'Search for course'
+                : 'Search for course e.g Graphic Design, Content Creation'
+            }
           />
         </div>
       </div>

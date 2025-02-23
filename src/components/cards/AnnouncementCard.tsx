@@ -38,8 +38,8 @@ export default function AnnouncementCard(props: Props) {
         className="flex h-full w-full flex-col sm:flex-row"
         whileHover="hover" // Shared hover animation key
       >
-        <Box className="flex h-fit w-full flex-col-reverse px-4 sm:h-[400px] sm:flex-row">
-          <Box className="flex flex-col pt-6 sm:w-[40%] sm:pr-4">
+        <Box className="flex h-fit w-full flex-col-reverse px-0 sm:px-4 sm:h-[400px] sm:flex-row">
+          <Box className="flex flex-col pt-4 sm:w-[40%] sm:pr-4 sm:pt-0">
             {props.featured && (
               <Pill
                 size="md"

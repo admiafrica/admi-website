@@ -32,7 +32,9 @@ export default function HomePage() {
   const isMobile = useIsMobile();
   const [content, setContent] = useState<any>();
   const [courses, setCourses] = useState<Array<any>>([]);
-  const [featured, setFeatured] = useState<IContentfulEntry>();
+  const [featuredNews, setFeaturedNews] = useState<IContentfulEntry>();
+  const [featuredResource, setFeaturedResource] = useState<IContentfulEntry>();
+  // const [featuredAward, setFeaturedAward] = useState<IContentfulEntry>();
 
   const autoplaySectors = useRef(Autoplay({ delay: 4000 }));
   const autoplayTestimonials = useRef(Autoplay({ delay: 4000 }));
@@ -46,17 +48,15 @@ export default function HomePage() {
     { word: 'Engineering', styles: 'text-[#F60834]' },
   ];
 
-  const announcement = {
-    title: 'Introducing Aquila Creative Scholars: Your Gateway to a Thriving Creative Career',
-    summary:
-      'The Africa Digital Media Foundation, in partnership with a generous anonymous donor, is thrilled to announce the launch of the Aquila Creative Scholars program.',
-  };
   const facilities = ADMI_FACILITIES;
-  const award = {
-    title: 'ADMI Wins Best Creative Media and Tech Training Institution at the 7th Annual Digital Tech Awards 2024',
-    summary:
-      'Named the Best Creative Media and Tech Training Institution at the prestigious 7th Annual Digital Tech Awards 2024!',
-  };
+
+  // const award = {
+  //   title: 'ADMI Wins Best Creative Media and Tech Training Institution at the 7th Annual Digital Tech Awards 2024',
+  //   summary:
+  //     'Named the Best Creative Media and Tech Training Institution at the prestigious 7th Annual Digital Tech Awards 2024!',
+  //   slug: 'admi-wins-best-creative-media-and-tech-training-institution-at-the-7th-annual-digital-tech-awards-2024',
+  //   category: 'Awards',
+  // };
 
   const fetchCourses = useCallback(async () => {
     try {
@@ -83,9 +83,31 @@ export default function HomePage() {
       const response = await fetch(`/api/v3/news`);
       const data = await response.json();
       const featuredArticle = data.find((article: IContentfulEntry) => article.fields.featured);
-      setFeatured(featuredArticle);
+      setFeaturedNews(featuredArticle);
     } catch (error) {
       console.log('Error fetching courses:', error);
+    }
+  }, []);
+
+  // const fetchFeaturedAward = useCallback(async () => {
+  //   try {
+  //     const response = await fetch(`/api/v3/awards`);
+  //     const data = await response.json();
+  //     const featuredArticle = data.find((article: IContentfulEntry) => article.fields.featured);
+  //     setFeaturedAward(featuredArticle);
+  //   } catch (error) {
+  //     console.log('Error fetching courses:', error);
+  //   }
+  // }, []);
+
+  const fetchFeaturedResource = useCallback(async () => {
+    try {
+      const response = await fetch(`/api/v3/resources`);
+      const data = await response.json();
+      const featuredArticle = data.find((article: IContentfulEntry) => article.fields.featured);
+      setFeaturedResource(featuredArticle);
+    } catch (error) {
+      console.log('Error fetching resources:', error);
     }
   }, []);
 
@@ -97,14 +119,16 @@ export default function HomePage() {
     fetchContent();
     fetchCourses();
     fetchFeaturedNews();
-  }, [fetchCourses, fetchContent, fetchFeaturedNews]);
+    fetchFeaturedResource();
+    // fetchFeaturedAward();
+  }, [fetchCourses, fetchContent, fetchFeaturedNews, fetchFeaturedResource]);
 
   return (
     <MainLayout footerBgColor="#E6F608">
       <PageSEO title="Home" />
       <div className="w-full">
         {/* HERO */}
-        <Box className="relative w-full cursor-pointer">
+        <Box className="relative w-full">
           <Image
             src={HeroBackgroundImage}
             placeholder="empty"
@@ -372,14 +396,16 @@ export default function HomePage() {
           </Box>
         </Box>
         {/* ANNOUNCEMENTS */}
-        <Box className="w-full px-4 py-16 xl:px-0" bg={'admiOrangeDark'}>
-          <AnnouncementCard
-            announcement={announcement}
-            title={'Announcements'}
-            arrowColor={'#F60834'}
-            image={AnnouncementImage}
-          />
-        </Box>
+        {featuredResource && (
+          <Box className="w-full px-4 py-16 xl:px-0" bg={'admiOrangeDark'}>
+            <AnnouncementCard
+              announcement={featuredResource.fields}
+              title={'Announcements'}
+              arrowColor={'#F60834'}
+              image={AnnouncementImage}
+            />
+          </Box>
+        )}
         {/* FACILITIES */}
         <Box className="1xl:px-0 w-full px-4 py-16" bg={'#F5FFFD'}>
           <Box className="mx-auto w-full max-w-screen-xl">
@@ -420,11 +446,11 @@ export default function HomePage() {
           </Box>
         </Box>
         {/* NEWS */}
-        <Box className="w-full px-4 py-16 xl:px-0" bg={'#01C6A5'}>
-          {featured && (
-            <AnnouncementCard announcement={featured.fields} bgColor="admiShamrok" image={NewsImage} featured />
-          )}
-        </Box>
+        {featuredNews && (
+          <Box className="w-full px-4 py-16 xl:px-0" bg={'#01C6A5'}>
+            <AnnouncementCard announcement={featuredNews.fields} bgColor="admiShamrok" image={NewsImage} featured />
+          </Box>
+        )}
         {/* COURSES */}
         <Box className="1xl:px-0 w-full px-4 py-16" bg={'#F5FFFD'}>
           <Box className="mx-auto w-full max-w-screen-xl">
@@ -464,9 +490,19 @@ export default function HomePage() {
           </Box>
         </Box>
         {/* AWARDS */}
-        <Box className="w-full px-4 py-16 xl:px-0" bg={'#E6F608'}>
+        {featuredNews && (
+          <Box className="w-full px-4 py-16 xl:px-0" bg={'#E6F608'}>
+            <AnnouncementCard
+              announcement={featuredNews.fields}
+              title="Awards"
+              arrowColor="#F60834"
+              image={AwardsImage}
+            />
+          </Box>
+        )}
+        {/* <Box className="w-full px-4 py-16 xl:px-0" bg={'#E6F608'}>
           <AnnouncementCard announcement={award} title="Awards" arrowColor="#F60834" image={AwardsImage} />
-        </Box>
+        </Box> */}
       </div>
     </MainLayout>
   );

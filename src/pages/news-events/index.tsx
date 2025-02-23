@@ -69,7 +69,7 @@ export default function NewsEventsLandingPage() {
                 )}
               </Box>
               {/* NEWS */}
-              <Box className="mx-auto flex w-full max-w-screen-xl flex-wrap pl-4 xl:px-0">
+              <Box className="mx-auto flex w-full max-w-screen-xl flex-wrap justify-between pl-4 xl:px-0">
                 {news
                   .filter((article) => !article.fields.featured)
                   .map((article) => (

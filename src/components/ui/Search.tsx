@@ -26,7 +26,10 @@ export default function SearchDropdown({ items, buttonLabel, placeholder, destin
 
   const handleItemSearch = () => {
     const course = items.find((item) => item.fields.name == selectedItem);
-    router.push(`/${destination}/${course.fields.slug}`);
+    if (course) {
+      router.push(`/${destination}/${course.fields.slug}`);
+    }
+    return;
   };
 
   return (
