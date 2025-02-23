@@ -2,10 +2,14 @@ import { useCallback, useEffect, useState } from 'react';
 import { Box, Text, Select } from '@mantine/core';
 
 import { MainLayout } from '@/layouts/v3/MainLayout';
-import { Paragraph, Title } from '@/components/ui';
+import { Paragraph, Title, SearchDropdown } from '@/components/ui';
 import { ProgramListItemCard } from '@/components/cards';
 import { PageSEO } from '@/components/shared/v3';
-import { CourseSearch } from '@/components/course';
+
+
+import IconBgImageYellow from '@/assets/icons/ellipse-yellow.svg';
+import IconBgImageRed from '@/assets/icons/ellipse-red.svg';
+import Image from 'next/image';
 
 export default function CoursesPage() {
   const [programs, setPrograms] = useState<any[]>([]);
@@ -75,7 +79,28 @@ export default function CoursesPage() {
   return (
     <MainLayout footerBgColor="#F5FFFD">
       <PageSEO title="Courses" description="Explore our variety of courses across various topics that suits you!" />
-      <CourseSearch courses={courses} />
+      <div className="h-[16em] w-full bg-[#002A23]">
+        {/* BACKGROUND IMAGES */}
+        <div className="absolute left-[62%] top-[20vh] z-0 h-fit w-full -translate-x-1/2 transform">
+          <div className="flex w-full justify-end pr-[10%]">
+            <Image src={IconBgImageYellow} alt={'background image'} />
+          </div>
+        </div>
+
+        <div className="absolute left-1/2 top-[5vh] z-0 h-fit w-full -translate-x-1/2 transform">
+          <div className="flex w-full">
+            <Image src={IconBgImageRed} alt={'background image'} />
+          </div>
+        </div>
+        <div className="relative z-10 mx-auto w-full max-w-screen-lg px-4 pt-24 2xl:px-0">
+          <SearchDropdown
+            destination='courses'
+            items={courses}
+            buttonLabel="Search"
+            placeholder="Search for course e.g Graphic Design, Content Creation"
+          />
+        </div>
+      </div>
       <div className="relative z-10 w-full bg-[#F5FFFD]">
         <div className="mx-auto w-full max-w-screen-xl bg-[#F5FFFD] px-4 2xl:px-0">
           <div className="flex h-fit w-full flex-col pt-24 sm:flex-row">

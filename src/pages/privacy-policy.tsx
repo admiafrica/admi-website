@@ -31,7 +31,7 @@ export default function PrivacyPolicyPage() {
             }}
           ></div>
           <Box className="relative z-10 mx-auto flex h-[50vh] w-full max-w-screen-xl flex-row px-4 sm:flex-row 2xl:px-0">
-            <Box className="mt-[12vh] flex flex-col sm:w-1/2">
+            <Box className="mt-[12vh] flex flex-col sm:w-1/2">Í
               <Title label="Privacy Policy" color="admiShamrok" size="48px" />
             </Box>
           </Box>

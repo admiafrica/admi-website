@@ -1,14 +1,12 @@
 import { useCallback, useEffect, useState, useRef } from 'react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
-import { Box, Indicator, Divider, NumberFormatter, Input, Modal } from '@mantine/core';
+import { Box, Indicator, Divider, NumberFormatter } from '@mantine/core';
 import { Carousel } from '@mantine/carousel';
-import { useDisclosure } from '@mantine/hooks';
 import Autoplay from 'embla-carousel-autoplay';
 
-import { AnimatedWordDisplay, Paragraph, Title } from '@/components/ui';
+import { AnimatedWordDisplay, Paragraph, SearchDropdown, Title } from '@/components/ui';
 import { MainLayout } from '@/layouts/v3/MainLayout';
-import { IconPlus } from '@tabler/icons-react';
 
 import { Button } from '@/components/ui';
 import { PageSEO } from '@/components/shared/v3';
@@ -16,26 +14,24 @@ import {
   AnnouncementCard,
   CourseItemCard,
   FacilityItemCard,
-  LearnMoreCard,
   SectorItemCard,
   UserTestimonialCard,
 } from '@/components/cards';
 import { ADMI_FACILITIES, ADMI_HOMEPAGE_SECTORS } from '@/utils';
+import { IContentfulEntry } from '@/types';
+import { useIsMobile } from '@/hooks/useIsMobile';
 
+import { IconPlus } from '@tabler/icons-react';
 import HeroBackgroundImage from '@/assets/images/homepage-hero.svg';
 import AnnouncementImage from '@/assets/images/announcement.svg';
 import NewsImage from '@/assets/images/featured-news.svg';
 import AwardsImage from '@/assets/images/awards.svg';
-import IconSearch from '@/assets/icons/Search';
-import { IContentfulEntry } from '@/types';
-import { useIsMobile } from '@/hooks/useIsMobile';
 
 export default function HomePage() {
   const router = useRouter();
   const isMobile = useIsMobile();
   const [content, setContent] = useState<any>();
   const [courses, setCourses] = useState<Array<any>>([]);
-  const [opened, { open, close }] = useDisclosure(false);
   const [featured, setFeatured] = useState<IContentfulEntry>();
 
   const autoplaySectors = useRef(Autoplay({ delay: 4000 }));
@@ -106,12 +102,9 @@ export default function HomePage() {
   return (
     <MainLayout footerBgColor="#E6F608">
       <PageSEO title="Home" />
-      <Modal radius="lg" opened={opened} onClose={close} size={'72rem'}>
-        <LearnMoreCard />
-      </Modal>
       <div className="w-full">
         {/* HERO */}
-        <Box className="relative w-full cursor-pointer" onClick={open}>
+        <Box className="relative w-full cursor-pointer">
           <Image
             src={HeroBackgroundImage}
             placeholder="empty"
@@ -125,7 +118,7 @@ export default function HomePage() {
           <div
             className="z-5 absolute inset-0"
             style={{
-              background: `radial-gradient(circle, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 80%)`,
+              background: `radial-gradient(38.35% 91.08% at 66.59% 45.79%, rgba(0, 0, 0, 0) 14.71%, rgba(0, 0, 0, 0.8) 100%)`,
             }}
           ></div>
 
@@ -161,26 +154,14 @@ export default function HomePage() {
                 Africa Digital Media Institute (ADMI) based in Nairobi, Kenya, is Eastern Africa&apos;s premier creative
                 and technology training institution.
               </Paragraph>
-              <div className="flex w-full cursor-pointer rounded-xl bg-[#414438] py-4 text-white">
-                <Box my={'auto'} pl={8}>
-                  <IconSearch color="white" width={36} height={36} />
-                </Box>
-                <Input
-                  className="grow pt-1 text-white"
-                  placeholder="What are you looking for?"
-                  styles={{
-                    input: {
-                      color: 'white',
-                      fontSize: '16px',
-                      fontWeight: 600,
-                      cursor: 'pointer',
-                    },
-                  }}
-                />
-                <div className="mx-4 my-auto">
-                  <Button size="lg" backgroundColor="admiRed" label="Learn More" />
-                </div>
-              </div>
+
+              <SearchDropdown
+                destination="courses"
+                items={courses}
+                buttonLabel="Learn More"
+                placeholder="What are you looking for?"
+                bg="#414438"
+              />
             </Box>
           </Box>
         </Box>

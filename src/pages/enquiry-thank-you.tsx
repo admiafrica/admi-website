@@ -7,7 +7,7 @@ import { Paragraph, Title } from '@/components/ui';
 import { MainLayout } from '@/layouts/v3/MainLayout';
 import { PageSEO } from '@/components/shared/v3';
 
-import successIcon from '@/assets/images/success-icon.svg';
+import successIcon from '@/assets/icons/success-icon.svg';
 import logo from '@/assets/logo.svg';
 
 import IconBgImageYellow from '@/assets/icons/ellipse-yellow.svg';

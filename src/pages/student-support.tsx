@@ -92,7 +92,7 @@ export default function StudentSupportPage() {
               <Title label="ADMI Student" color="white" size="48px" />
               <Title label="Support" color="admiShamrok" size="48px" />
               <Paragraph fontFamily="font-nexa" className="py-6 text-white">
-                We are deeply commited to providing you with comprehensive support that ensures your academic and
+                We are deeply committed to providing you with comprehensive support that ensures your academic and
                 personal success
               </Paragraph>
               <Box className="flex cursor-pointer items-center pt-12" onClick={handleCalendarDownload}>
@@ -172,7 +172,7 @@ export default function StudentSupportPage() {
                 your schedule accordingly.
               </Paragraph>
             </Box>
-            <Box className="mt-6 flex" onClick={handleCalendarDownload}>
+            <Box className="mt-6 flex cursor-pointer" onClick={handleCalendarDownload}>
               <IconDownload color="#F60934" size={32} />{' '}
               <Paragraph fontFamily="font-nexa" fontWeight={900} className="my-auto px-2 text-admiRed">
                 Download Calendar
