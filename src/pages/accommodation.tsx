@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { Box, Card, Divider, Modal } from '@mantine/core';
+import { Anchor, Box, Card, Divider, Modal } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 
 import { MainLayout } from '@/layouts/v3/MainLayout';
@@ -168,24 +168,28 @@ export default function AccommodationPage() {
                 find the perfect fit for your needs:
               </Paragraph>
               <Box className="mx-auto flex w-fit flex-col sm:flex-row">
-                <Card
-                  className="flex h-[128px] w-[340px] flex-col items-center sm:mr-4"
-                  bg={'#E9530E'}
-                  mb={isMobile ? 16 : 0}
-                >
-                  <Image src={IconQwetuLight} alt="Qwetu Residences" width={150} height={80} />
-                  <Box className="mx-auto flex">
-                    <Paragraph className="my-auto text-white">Book with Qwetu</Paragraph>
-                    <IconArrowTipRight color="white" />
-                  </Box>
-                </Card>
-                <Card className="flex h-[128px] w-[340px] flex-col items-center sm:ml-4" bg={'#542883'}>
-                  <Image src={IconQejaniLight} alt="Qejani Residences" width={150} height={80} />
-                  <Box className="mx-auto flex">
-                    <Paragraph className="my-auto text-white">Book with Qejani</Paragraph>
-                    <IconArrowTipRight color="white" />
-                  </Box>
-                </Card>
+                <Anchor href="https://qwetu.co.ke/" target="_blank">
+                  <Card
+                    className="flex h-[128px] w-[340px] flex-col items-center sm:mr-4"
+                    bg={'#E9530E'}
+                    mb={isMobile ? 16 : 0}
+                  >
+                    <Image src={IconQwetuLight} alt="Qwetu Residences" width={150} height={80} />
+                    <Box className="mx-auto flex">
+                      <Paragraph className="my-auto text-white">Book with Qwetu</Paragraph>
+                      <IconArrowTipRight color="white" />
+                    </Box>
+                  </Card>
+                </Anchor>
+                <Anchor href="https://qejani.co.ke/" target="_blank">
+                  <Card className="flex h-[128px] w-[340px] flex-col items-center sm:ml-4" bg={'#542883'}>
+                    <Image src={IconQejaniLight} alt="Qejani Residences" width={150} height={80} />
+                    <Box className="mx-auto flex">
+                      <Paragraph className="my-auto text-white">Book with Qejani</Paragraph>
+                      <IconArrowTipRight color="white" />
+                    </Box>
+                  </Card>
+                </Anchor>
               </Box>
               <Paragraph fontFamily="font-nexa" className="py-4 text-center">
                 When booking, be sure to use the <strong>Referral Code: STU-0016368</strong> to enjoy exclusive benefits

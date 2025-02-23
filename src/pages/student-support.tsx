@@ -78,7 +78,7 @@ export default function StudentSupportPage() {
             fill
             priority
             className="absolute inset-0 z-0"
-            style={{ objectFit: 'cover' }}
+            style={{ objectFit: 'cover', objectPosition: '50% 20%' }}
           />
           {/* Radial Gradient Overlay */}
           <div
@@ -87,8 +87,8 @@ export default function StudentSupportPage() {
               background: 'linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0, 42, 35, 1) 100%)',
             }}
           ></div>
-          <Box className="relative z-10 mx-auto flex h-[50vh] w-full max-w-screen-xl flex-row px-4 sm:flex-row 2xl:px-0">
-            <Box className="mt-[12vh] flex flex-col sm:w-1/2">
+          <Box className="relative z-10 mx-auto flex h-[500px] w-full max-w-screen-xl flex-row px-4 sm:flex-row 2xl:px-0">
+            <Box className="mt-[120px] flex flex-col sm:w-1/2">
               <Title label="ADMI Student" color="white" size="48px" />
               <Title label="Support" color="admiShamrok" size="48px" />
               <Paragraph fontFamily="font-nexa" className="py-6 text-white">

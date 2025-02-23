@@ -768,3 +768,60 @@ export const ADMI_ACCOMMODATION_FEATURES = [
     icon: IconCloudSun,
   },
 ];
+
+export const ADMI_STUDENT_PORTAL_FEATURES = [
+  {
+    id: 'course-management',
+    name: 'Course Management',
+    icon: IconBook,
+    iconColor: 'black',
+    description: [
+      `Access your course materials, syllabi, and assignments all in one place. Stay organized and keep track of your academic progress with ease.`,
+    ],
+  },
+  {
+    id: 'registration-enrollment',
+    name: 'Registration and Enrollment',
+    icon: IconDrawSquare,
+    iconColor: 'black',
+    description: [
+      `Simplify your registration process by enrolling in courses, managing your schedule, and viewing important deadlines. The Student Portal allows you to take control of your academic journey.`,
+    ],
+  },
+  {
+    id: 'grades-transcripts',
+    name: 'Grades and Transcripts',
+    icon: IconTopArrow,
+    iconColor: 'black',
+    description: [
+      `Monitor your academic performance by checking your grades and accessing your official transcripts. Stay informed about your progress and identify areas for improvement.`,
+    ],
+  },
+  {
+    id: 'global',
+    name: 'Financial Services',
+    icon: IconSettingGear,
+    iconColor: 'black',
+    description: [
+      `View your tuition balance, make payments, and access financial aid information. The Student Portal provides all the financial resources you need to manage your educational expenses effectively.`,
+    ],
+  },
+  {
+    id: 'practical',
+    name: 'Campus News and Events',
+    icon: IconDrawSquare,
+    iconColor: 'black',
+    description: [
+      `Stay up-to-date with the latest news, announcements, and events happening at ADMI. The portal keeps you informed about workshops, guest lectures, and extracurricular activities.`,
+    ],
+  },
+  {
+    id: 'digital',
+    name: 'Student Support Services',
+    icon: IconUsersGroup,
+    iconColor: 'black',
+    description: [
+      `Access a range of support services, including academic advising, counseling, and career development resources. We are here to help you succeed both academically and personally.`,
+    ],
+  },
+];

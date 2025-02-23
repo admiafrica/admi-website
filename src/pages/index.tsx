@@ -136,7 +136,7 @@ export default function HomePage() {
             fill
             priority
             className="absolute inset-0 z-0"
-            style={{ objectFit: 'cover' }}
+            style={{ objectFit: 'cover', objectPosition: '50% 20%' }}
           />
           {/* Radial Gradient Overlay */}
           <div
@@ -146,8 +146,8 @@ export default function HomePage() {
             }}
           ></div>
 
-          <Box className="relative mx-auto flex h-[50vh] w-full max-w-screen-xl flex-row px-4 sm:flex-row xl:px-0">
-            <Box className="mt-[12vh] flex w-full flex-col sm:w-1/2">
+          <Box className="relative mx-auto flex h-[500px] w-full max-w-screen-xl flex-row px-4 sm:flex-row xl:px-0">
+            <Box className="mt-[120px] flex w-full flex-col sm:w-1/2">
               <Box>
                 <Paragraph
                   fontFamily="font-nexa"

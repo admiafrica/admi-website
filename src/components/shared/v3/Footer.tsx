@@ -19,6 +19,7 @@ import IconMail from '@/assets/icons/mail.svg';
 import IconCall from '@/assets/icons/call.svg';
 import IconStopWatch from '@/assets/icons/stop-watch.svg';
 import Ribbon from './Ribbon';
+import { Title } from '@/components/ui';
 
 const SocialIcons = React.memo(() => {
   return (
@@ -72,11 +73,7 @@ export default function Footer({ bgColor }: Props) {
         <Group className="mx-auto w-full max-w-screen-xl flex-col text-white md:flex-row" align="top">
           <Stack className="grow" h="100%">
             <Stack className="px-4">
-              <div className="font-nexa text-admiShamrok">
-                <Text size={'1.4em'} fw={600}>
-                  Get in Touch
-                </Text>
-              </div>
+              <Title size={'1.4em'} label="Get in Touch" color="admiShamrok" />
               <div className="flex flex-row md:flex-col">
                 <Text p={0}>Caxton House, 3rd Floor</Text>
                 <Text>25, Kenyatta Avenue.</Text>
@@ -119,11 +116,7 @@ export default function Footer({ bgColor }: Props) {
 
           {/* Quick Links and Social Media */}
           <Stack className="grow pl-4">
-            <div className="font-nexa text-admiShamrok">
-              <Text size={'1.4em'} fw={600}>
-                Quick Links
-              </Text>
-            </div>
+            <Title size={'1.4em'} label="Quick Links" color="admiShamrok" />
             <Anchor c="white" fw={600} href="https://africadigitalmedia.ed-space.net/onlineenquiry.cfm" target="_blank">
               Contact Us
             </Anchor>
@@ -146,11 +139,10 @@ export default function Footer({ bgColor }: Props) {
             <div className="flex w-full">
               <div className="grow"></div>
               <Stack>
-                <div className="font-nexa text-admiShamrok">
-                  <Text size={'1.4em'} fw={600}>
-                    Student Portal
-                  </Text>
-                </div>
+                <Title size={'1.4em'} label="Student Corner" color="admiShamrok" />
+                <Anchor c="white" fw={600} onClick={() => navigateToPage('student-portal')}>
+                  Student Portal
+                </Anchor>
                 <Anchor c="white" fw={600} onClick={() => navigateToPage('accommodation')}>
                   Accommodation
                 </Anchor>
