@@ -18,7 +18,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       const data = response.data;
 
       if (!data.items.length) {
-        return res.status(404).json({ message: `No course found for slug: ${slug}` });
+        return res.status(404).json({ message: `No resource found for slug: ${slug}` });
       }
 
       const mainItem = data.items[0]; // The primary course item

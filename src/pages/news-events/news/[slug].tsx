@@ -70,42 +70,44 @@ export default function NewsArticlePage() {
 
           <Tabs.Panel value="news">
             <Box className="mx-auto flex w-full max-w-screen-xl flex-col-reverse px-4 py-4 sm:flex-row sm:py-16 xl:px-0">
-              <Box className="flex flex-col sm:w-[200px]">
-                <Box className="flex pb-6">
-                  <Image src={IconShare} alt="share" width={32} height={32} />
-                  <Paragraph className="my-auto" fontFamily="font-nexa">
-                    Share on:
-                  </Paragraph>
+              <Box className="sm:w-[200px]">
+                <Box className="sticky top-[100px] flex flex-col sm:w-[200px]">
+                  <Box className="flex pb-6">
+                    <Image src={IconShare} alt="share" width={32} height={32} />
+                    <Paragraph className="my-auto" fontFamily="font-nexa">
+                      Share on:
+                    </Paragraph>
+                  </Box>
+                  <Card className="flex w-full flex-col" shadow="lg">
+                    <Box className="flex py-4">
+                      <Image src={IconFacebook} alt="facebook" width={24} height={24} />
+                      <Paragraph fontFamily="font-nexa" size="16px" className="my-auto ml-2">
+                        Facebook
+                      </Paragraph>
+                    </Box>
+                    <Divider />
+                    <Box className="flex py-4">
+                      <Image src={IconLinkedIn} alt="facebook" width={24} height={24} />
+                      <Paragraph fontFamily="font-nexa" size="16px" className="my-auto ml-2">
+                        LinkedIn
+                      </Paragraph>
+                    </Box>
+                    <Divider />
+                    <Box className="flex py-4">
+                      <Image src={IconWhatsapp} alt="facebook" width={24} height={24} />
+                      <Paragraph fontFamily="font-nexa" size="16px" className="my-auto ml-2">
+                        Whatsapp
+                      </Paragraph>
+                    </Box>
+                    <Divider />
+                    <Box className="flex py-4">
+                      <Image src={IconCopyContent} alt="facebook" width={24} height={24} />
+                      <Paragraph fontFamily="font-nexa" size="16px" className="my-auto ml-2">
+                        Copy Link
+                      </Paragraph>
+                    </Box>
+                  </Card>
                 </Box>
-                <Card className="flex w-full flex-col" shadow="lg">
-                  <Box className="flex py-4">
-                    <Image src={IconFacebook} alt="facebook" width={24} height={24} />
-                    <Paragraph fontFamily="font-nexa" size="16px" className="my-auto ml-2">
-                      Facebook
-                    </Paragraph>
-                  </Box>
-                  <Divider />
-                  <Box className="flex py-4">
-                    <Image src={IconLinkedIn} alt="facebook" width={24} height={24} />
-                    <Paragraph fontFamily="font-nexa" size="16px" className="my-auto ml-2">
-                      LinkedIn
-                    </Paragraph>
-                  </Box>
-                  <Divider />
-                  <Box className="flex py-4">
-                    <Image src={IconWhatsapp} alt="facebook" width={24} height={24} />
-                    <Paragraph fontFamily="font-nexa" size="16px" className="my-auto ml-2">
-                      Whatsapp
-                    </Paragraph>
-                  </Box>
-                  <Divider />
-                  <Box className="flex py-4">
-                    <Image src={IconCopyContent} alt="facebook" width={24} height={24} />
-                    <Paragraph fontFamily="font-nexa" size="16px" className="my-auto ml-2">
-                      Copy Link
-                    </Paragraph>
-                  </Box>
-                </Card>
               </Box>
               {article && (
                 <Card className="mb-6 min-h-[80vh] w-full sm:ml-8" withBorder>

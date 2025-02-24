@@ -80,7 +80,7 @@ export default function CustomFooter() {
           Student Portal
         </Anchor>
         <Anchor href="https://admi.africa/accommodation" fw={'bold'}>
-          Accomodation
+          Accommodation
         </Anchor>
         <Anchor href="https://admi.africa/academic-pathways" fw={'bold'}>
           Academic Pathways

@@ -65,11 +65,17 @@ export default function NewsEventsLandingPage() {
               {/* HEADLINE */}
               <Box className="w-full px-4 py-16 xl:px-0">
                 {featured && (
-                  <AnnouncementCard announcement={featured.fields} bgColor="admiShamrok" image={ImageNews} featured />
+                  <AnnouncementCard
+                    destination="news-events/news"
+                    announcement={featured.fields}
+                    bgColor="admiShamrok"
+                    image={ImageNews}
+                    featured
+                  />
                 )}
               </Box>
               {/* NEWS */}
-              <Box className="mx-auto flex w-full max-w-screen-xl flex-wrap pl-4 xl:px-0">
+              <Box className="mx-auto flex w-full max-w-screen-xl flex-wrap justify-between pl-4 xl:px-0">
                 {news
                   .filter((article) => !article.fields.featured)
                   .map((article) => (

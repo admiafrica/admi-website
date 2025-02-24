@@ -15,7 +15,7 @@ type Props = {
 
 export default function NavBar({ mode, isMinimal = false }: Props) {
   const router = useRouter();
-  const isMobile = useMediaQuery('(max-width: 767px)');
+  const isSmallScreen = useMediaQuery('(max-width: 1366px)');
 
   const navigateToPage = (pagePath: string) => {
     router.push(`/${pagePath}`);
@@ -77,7 +77,7 @@ export default function NavBar({ mode, isMinimal = false }: Props) {
 
   const getMenuMobile = (mode: string) => {
     return (
-      <Group c={mode == 'dark' ? 'white' : 'black'}>
+      <Group c={mode == 'dark' ? 'white' : 'black'} className='w-fit'>
         <Menu trigger="hover" openDelay={100} closeDelay={400}>
           <Menu.Target>
             <IconMenu />
@@ -129,12 +129,12 @@ export default function NavBar({ mode, isMinimal = false }: Props) {
 
   return (
     <Group className={`mx-auto w-full max-w-screen-xl px-4`}>
-      <Group className="flex grow flex-row-reverse font-nexa md:flex-row">
+      <Group className="flex w-full flex-row-reverse font-nexa md:flex-row">
         <Link href="/" style={{ textDecoration: 'none', margin: 'auto' }} className="pt-4">
           {mode == 'dark' && <Image src={IconLogoLight} width={80} height={60} alt="Africa Digital Media Institute" />}
         </Link>
         <div className="grow"></div>
-        {isMobile ? getMenuMobile(mode) : getMenuWideScreen(mode)}
+        {isSmallScreen ? getMenuMobile(mode) : getMenuWideScreen(mode)}
       </Group>
     </Group>
   );
@@ -142,7 +142,7 @@ export default function NavBar({ mode, isMinimal = false }: Props) {
 
 const menuDrawer: React.CSSProperties = {
   marginTop: 20,
-  width: '90%',
+  width: '200px',
 };
 
 const menuItemStyle: React.CSSProperties = {

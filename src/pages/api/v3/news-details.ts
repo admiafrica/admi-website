@@ -13,7 +13,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       const { slug } = req.query;
 
       const response = await axiosContentfulClient.get<IContentfulResponse>(
-        `/spaces/${spaceId}/environments/${environment}/entries?access_token=${accessToken}&content_type=article&fields.category=News&fields.slug=${slug}&include=10`
+        `/spaces/${spaceId}/environments/${environment}/entries?access_token=${accessToken}&content_type=article&fields.category[match]=News&fields.slug=${slug}&include=10`
       );
       const data = response.data;
 

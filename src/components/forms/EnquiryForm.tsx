@@ -170,17 +170,18 @@ export default function EnquiryForm() {
                 border: 'none',
               }}
               buttonStyle={{
-                border: 'none', // Remove dropdown button border
+                border: 'none',
                 marginLeft: '8px',
               }}
               dropdownStyle={{
-                border: 'none', // Remove dropdown border
-                boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)', // Optional: Add a subtle shadow
+                border: 'none',
+                boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
               }}
+              inputProps={{ readOnly: true }}
             />
             <TextInput
               className="grow"
-              placeholder="Enter phone i.e 0700000000"
+              placeholder="Enter phone"
               key={form.key('phone')}
               type="number"
               {...form.getInputProps('phone')}

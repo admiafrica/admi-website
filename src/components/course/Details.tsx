@@ -1,10 +1,9 @@
 import Image from 'next/image';
-import { Card, ScrollArea, Text } from '@mantine/core';
-import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
+import { Card, ScrollArea } from '@mantine/core';
 
 import { getAssetDetails } from '@/utils';
 import { CollapsibleContent } from '../shared/v3';
-import { Title } from '../ui';
+import { Paragraph, ParagraphContentful, Title } from '../ui';
 import { CourseEnquiryCard } from '../cards';
 
 import IconCheckbox from '@/assets/icons/checkbox.svg';
@@ -51,7 +50,7 @@ export default function CourseDetails(props: Props) {
           {props.benefits.map((benefit) => (
             <Card
               shadow="md"
-              className={props.benefits.length > 3 ? 'mb-8 sm:w-[22%]' : 'mb-8 sm:w-[30%]'}
+              className={props.benefits.length > 3 ? 'mb-8 sm:w-[48%] lg:w-[24%]' : 'mb-8 sm:w-[30%]'}
               key={benefit.sys.id}
             >
               <div className="flex px-4 pt-4">
@@ -61,19 +60,12 @@ export default function CourseDetails(props: Props) {
                   width={32}
                   height={32}
                 />
-                <div className="min-h-[3em] pl-4 font-nexa">
-                  <Text size="1.2em" fw={900}>
-                    {benefit.fields.title}
-                  </Text>
-                </div>
+                <Paragraph fontFamily="font-nexa" fontWeight={900} className="min-h-[3em] pl-4 pt-1">
+                  {benefit.fields.title}
+                </Paragraph>
               </div>
-              <ScrollArea h={'14em'} offsetScrollbars>
-                <div
-                  className="px-4 font-proxima text-gray-500"
-                  dangerouslySetInnerHTML={{
-                    __html: documentToHtmlString(benefit.fields.text),
-                  }}
-                ></div>
+              <ScrollArea h={isMobile ? 'fit-content' : '14em'} offsetScrollbars>
+                <ParagraphContentful className="px-4 text-gray-500">{benefit.fields.text}</ParagraphContentful>
               </ScrollArea>
             </Card>
           ))}
@@ -82,38 +74,17 @@ export default function CourseDetails(props: Props) {
         <div className="relative z-20">
           <CollapsibleContent
             title="Course Description"
-            content={
-              <div
-                className="z-20 font-proxima text-lg"
-                dangerouslySetInnerHTML={{
-                  __html: documentToHtmlString(props.courseDescription),
-                }}
-              ></div>
-            }
+            content={<ParagraphContentful className="z-20 text-lg">{props.courseDescription}</ParagraphContentful>}
             icon={<Image width={24} height={24} src={IconCheckbox} alt="email" />}
           />
           <CollapsibleContent
             title="Learning Outcomes"
-            content={
-              <div
-                className="z-20 font-proxima text-lg"
-                dangerouslySetInnerHTML={{
-                  __html: documentToHtmlString(props.learningOutcomes),
-                }}
-              ></div>
-            }
+            content={<ParagraphContentful className="z-20 text-lg">{props.learningOutcomes}</ParagraphContentful>}
             icon={<Image width={24} height={24} src={IconBook} alt="email" />}
           />
           <CollapsibleContent
             title="Career Options"
-            content={
-              <div
-                className="z-20 font-proxima text-lg"
-                dangerouslySetInnerHTML={{
-                  __html: documentToHtmlString(props.careerOptions),
-                }}
-              ></div>
-            }
+            content={<ParagraphContentful className="z-20 text-lg">{props.careerOptions}</ParagraphContentful>}
             icon={<Image width={24} height={24} src={IconHatBlack} alt="email" />}
           />
 
