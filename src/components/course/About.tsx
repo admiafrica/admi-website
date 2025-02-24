@@ -21,7 +21,7 @@ export default function CourseAbout(props: Props) {
           {props.isCampaign && (
             <>
               <div className="mt-24 flex flex-col sm:w-1/2">
-                <Title label="About this course" size={isMobile ? '24px' : '48px'} color="admiRed" />
+                <Title label="About this course" size={isMobile ? '24px' : '36px'} color="admiRed" />
 
                 <ParagraphContentful className="mt-1 text-lg" fontFamily="font-nexa">
                   {props.description}
