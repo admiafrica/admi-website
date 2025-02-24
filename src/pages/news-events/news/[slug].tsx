@@ -70,7 +70,8 @@ export default function NewsArticlePage() {
 
           <Tabs.Panel value="news">
             <Box className="mx-auto flex w-full max-w-screen-xl flex-col-reverse px-4 py-4 sm:flex-row sm:py-16 xl:px-0">
-              <Box className="flex flex-col sm:w-[200px]">
+              <Box className="sm:w-[200px]">
+              <Box className="sticky top-12 flex flex-col sm:w-[200px]">
                 <Box className="flex pb-6">
                   <Image src={IconShare} alt="share" width={32} height={32} />
                   <Paragraph className="my-auto" fontFamily="font-nexa">
@@ -106,6 +107,7 @@ export default function NewsArticlePage() {
                     </Paragraph>
                   </Box>
                 </Card>
+                </Box>
               </Box>
               {article && (
                 <Card className="mb-6 min-h-[80vh] w-full sm:ml-8" withBorder>

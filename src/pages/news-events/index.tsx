@@ -65,7 +65,13 @@ export default function NewsEventsLandingPage() {
               {/* HEADLINE */}
               <Box className="w-full px-4 py-16 xl:px-0">
                 {featured && (
-                  <AnnouncementCard announcement={featured.fields} bgColor="admiShamrok" image={ImageNews} featured />
+                  <AnnouncementCard
+                    destination="news-events/news"
+                    announcement={featured.fields}
+                    bgColor="admiShamrok"
+                    image={ImageNews}
+                    featured
+                  />
                 )}
               </Box>
               {/* NEWS */}

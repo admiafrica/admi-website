@@ -34,7 +34,7 @@ export default function HomePage() {
   const [courses, setCourses] = useState<Array<any>>([]);
   const [featuredNews, setFeaturedNews] = useState<IContentfulEntry>();
   const [featuredResource, setFeaturedResource] = useState<IContentfulEntry>();
-  // const [featuredAward, setFeaturedAward] = useState<IContentfulEntry>();
+  const [featuredAward, setFeaturedAward] = useState<IContentfulEntry>();
 
   const autoplaySectors = useRef(Autoplay({ delay: 4000 }));
   const autoplayTestimonials = useRef(Autoplay({ delay: 4000 }));
@@ -89,16 +89,16 @@ export default function HomePage() {
     }
   }, []);
 
-  // const fetchFeaturedAward = useCallback(async () => {
-  //   try {
-  //     const response = await fetch(`/api/v3/awards`);
-  //     const data = await response.json();
-  //     const featuredArticle = data.find((article: IContentfulEntry) => article.fields.featured);
-  //     setFeaturedAward(featuredArticle);
-  //   } catch (error) {
-  //     console.log('Error fetching courses:', error);
-  //   }
-  // }, []);
+  const fetchFeaturedAward = useCallback(async () => {
+    try {
+      const response = await fetch(`/api/v3/awards`);
+      const data = await response.json();
+      const featuredArticle = data.find((article: IContentfulEntry) => article.fields.featured);
+      setFeaturedAward(featuredArticle);
+    } catch (error) {
+      console.log('Error fetching courses:', error);
+    }
+  }, []);
 
   const fetchFeaturedResource = useCallback(async () => {
     try {
@@ -120,7 +120,7 @@ export default function HomePage() {
     fetchCourses();
     fetchFeaturedNews();
     fetchFeaturedResource();
-    // fetchFeaturedAward();
+    fetchFeaturedAward();
   }, [fetchCourses, fetchContent, fetchFeaturedNews, fetchFeaturedResource]);
 
   return (
@@ -399,6 +399,7 @@ export default function HomePage() {
         {featuredResource && (
           <Box className="w-full px-4 py-16 xl:px-0" bg={'admiOrangeDark'}>
             <AnnouncementCard
+              destination="resources"
               announcement={featuredResource.fields}
               title={'Announcements'}
               arrowColor={'#F60834'}
@@ -448,7 +449,13 @@ export default function HomePage() {
         {/* NEWS */}
         {featuredNews && (
           <Box className="w-full px-4 py-16 xl:px-0" bg={'#01C6A5'}>
-            <AnnouncementCard announcement={featuredNews.fields} bgColor="admiShamrok" image={NewsImage} featured />
+            <AnnouncementCard
+              destination="news-events/news"
+              announcement={featuredNews.fields}
+              bgColor="admiShamrok"
+              image={NewsImage}
+              featured
+            />
           </Box>
         )}
         {/* COURSES */}
@@ -490,19 +497,17 @@ export default function HomePage() {
           </Box>
         </Box>
         {/* AWARDS */}
-        {featuredNews && (
+        {featuredAward && (
           <Box className="w-full px-4 py-16 xl:px-0" bg={'#E6F608'}>
             <AnnouncementCard
-              announcement={featuredNews.fields}
+              destination="news-events/news"
+              announcement={featuredAward.fields}
               title="Awards"
               arrowColor="#F60834"
               image={AwardsImage}
             />
           </Box>
         )}
-        {/* <Box className="w-full px-4 py-16 xl:px-0" bg={'#E6F608'}>
-          <AnnouncementCard announcement={award} title="Awards" arrowColor="#F60834" image={AwardsImage} />
-        </Box> */}
       </div>
     </MainLayout>
   );

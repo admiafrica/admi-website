@@ -36,7 +36,13 @@ export default function ResourcesPage() {
           {/* HEADLINE */}
           <Box className="w-full px-4 py-16 xl:px-0">
             {featured && (
-              <AnnouncementCard announcement={featured.fields} bgColor="admiShamrok" image={ImageNews} featured />
+              <AnnouncementCard
+                destination="resources"
+                announcement={featured.fields}
+                bgColor="admiShamrok"
+                image={ImageNews}
+                featured
+              />
             )}
           </Box>
           {/* RESOURCES */}
