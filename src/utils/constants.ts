@@ -106,6 +106,8 @@ export const CALENDAR_DOWNLOAD_LINK =
   ' https://assets.ctfassets.net/qtu3mga6n6gc/2EeAdlCS9LfEiOPTfH74Z4/c8c4eb311dd97ed65e86fd76624e27ab/Calendar-2025.pdf';
 export const CALENDAR_DOWNLOAD_NAME = 'ADMI-Calendar-2025.pdf';
 
+export const STUDENT_PORTAL_LOGIN = 'https://africadigitalmedia.ed-space.net/login.cfm';
+
 export const SOCIAL_LINKS = {
   INSTAGRAM: 'https://www.instagram.com/admiafrica/',
   LINKEDIN: 'https://www.linkedin.com/school/admiafrica/',

@@ -1,5 +1,6 @@
-import { Box, Group } from '@mantine/core';
+import { Anchor, Box, Group } from '@mantine/core';
 import { Button, Paragraph, Title } from '../ui';
+import { STUDENT_PORTAL_LOGIN } from '@/utils';
 
 export default function PortalForm() {
   const handlePortalLogin = () => {
@@ -21,7 +22,14 @@ export default function PortalForm() {
         accessing the portal, please contact our IT support team for assistance.
       </Paragraph>
       <Group justify="flex-end" mt="2em" className="w-full">
-        <Button size="lg" backgroundColor="admiRed" label="Student Portal Login" onClick={() => handlePortalLogin()} />
+        <Anchor href={STUDENT_PORTAL_LOGIN} target="_blank">
+          <Button
+            size="lg"
+            backgroundColor="admiRed"
+            label="Student Portal Login"
+            onClick={() => handlePortalLogin()}
+          />
+        </Anchor>
       </Group>
     </div>
   );

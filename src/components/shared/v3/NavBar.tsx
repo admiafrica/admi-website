@@ -7,6 +7,7 @@ import { IconMenu } from '@tabler/icons-react';
 
 import IconLogoLight from '@/assets/logo-light.svg';
 import { Button } from '@/components/ui';
+import { usePathname } from 'next/navigation';
 
 type Props = {
   mode: string;
@@ -16,6 +17,7 @@ type Props = {
 export default function NavBar({ mode, isMinimal = false }: Props) {
   const router = useRouter();
   const isSmallScreen = useMediaQuery('(max-width: 1366px)');
+  const pathname = usePathname();
 
   const navigateToPage = (pagePath: string) => {
     router.push(`/${pagePath}`);
@@ -77,7 +79,7 @@ export default function NavBar({ mode, isMinimal = false }: Props) {
 
   const getMenuMobile = (mode: string) => {
     return (
-      <Group c={mode == 'dark' ? 'white' : 'black'} className='w-fit'>
+      <Group c={mode == 'dark' ? 'white' : 'black'} className="w-fit">
         <Menu trigger="hover" openDelay={100} closeDelay={400}>
           <Menu.Target>
             <IconMenu />
@@ -119,9 +121,11 @@ export default function NavBar({ mode, isMinimal = false }: Props) {
             {mode == 'dark' && <Image src={IconLogoLight} width={80} alt="Africa Digital Media Institute" />}
           </Link>
           <div className="grow"></div>
-          <div className="my-auto">
-            <Button size="lg" backgroundColor="admiRed" label="Get In Touch" />
-          </div>
+          {pathname != '/enquiry' && (
+            <div className="my-auto">
+              <Button size="lg" backgroundColor="admiRed" label="Get In Touch" />
+            </div>
+          )}
         </div>
       </Group>
     );
