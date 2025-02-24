@@ -5,15 +5,12 @@ import { MainLayout } from '@/layouts/v3/MainLayout';
 import { PageSEO } from '@/components/shared/v3';
 import { UserProfileCard } from '@/components/cards';
 import { ADMI_ACADEMIC_MENTORS, ADMI_ACADEMIC_TEAM } from '@/utils';
-import { useIsMobile } from '@/hooks/useIsMobile';
 
 import IconBgImageYellow from '@/assets/icons/ellipse-yellow.svg';
 import IconBgImageRed from '@/assets/icons/ellipse-red.svg';
 import { Title } from '@/components/ui';
 
 export default function AcademicTeamPage() {
-  const isMobile = useIsMobile();
-
   return (
     <MainLayout footerBgColor="#F5FFFD">
       <PageSEO title="Academic Team" />

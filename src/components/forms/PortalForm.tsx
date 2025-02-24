@@ -1,7 +1,5 @@
-import { Box, Card, Group, TextInput } from '@mantine/core';
-import { useForm } from '@mantine/form';
+import { Box, Group } from '@mantine/core';
 import { Button, Paragraph, Title } from '../ui';
-import { IconAsterisk } from '@tabler/icons-react';
 
 export default function PortalForm() {
   const handlePortalLogin = () => {

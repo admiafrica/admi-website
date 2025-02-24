@@ -6,7 +6,7 @@ import { MainLayout } from '@/layouts/v3/MainLayout';
 import { Paragraph, Title } from '@/components/ui';
 import { PageSEO } from '@/components/shared/v3';
 import { InfoCard, LearnMoreCard, PlainCard } from '@/components/cards';
-import { JoinForm, PortalForm } from '@/components/forms';
+import { PortalForm } from '@/components/forms';
 import { ADMI_STUDENT_PORTAL_FEATURES } from '@/utils';
 import { useIsMobile } from '@/hooks/useIsMobile';
 
