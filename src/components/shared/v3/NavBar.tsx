@@ -18,6 +18,7 @@ export default function NavBar({ mode, isMinimal = false }: Props) {
   const router = useRouter();
   const isSmallScreen = useMediaQuery('(max-width: 1366px)');
   const pathname = usePathname();
+  const hideCTA = pathname === '/enquiry' || pathname.startsWith('/campaigns');
 
   const navigateToPage = (pagePath: string) => {
     router.push(`/${pagePath}`);
@@ -121,7 +122,7 @@ export default function NavBar({ mode, isMinimal = false }: Props) {
             {mode == 'dark' && <Image src={IconLogoLight} width={80} alt="Africa Digital Media Institute" />}
           </Link>
           <div className="grow"></div>
-          {pathname != '/enquiry' && (
+          {!hideCTA && (
             <div className="my-auto">
               <Button size="lg" backgroundColor="admiRed" label="Get In Touch" />
             </div>

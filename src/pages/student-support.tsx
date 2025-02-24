@@ -95,7 +95,7 @@ export default function StudentSupportPage() {
                 We are deeply committed to providing you with comprehensive support that ensures your academic and
                 personal success
               </Paragraph>
-              <Box className="flex cursor-pointer items-center pt-12" onClick={handleCalendarDownload}>
+              <Box className="flex cursor-pointer items-center pt-12 w-fit" onClick={handleCalendarDownload}>
                 <IconCalendarCheck color="white" />
                 <Box>
                   <Paragraph size="16px" fontFamily="font-nexa" fontWeight={100} className="text-white">
@@ -172,7 +172,7 @@ export default function StudentSupportPage() {
                 your schedule accordingly.
               </Paragraph>
             </Box>
-            <Box className="mt-6 flex cursor-pointer" onClick={handleCalendarDownload}>
+            <Box className="mt-6 flex cursor-pointer w-fit" onClick={handleCalendarDownload}>
               <IconDownload color="#F60934" size={32} />{' '}
               <Paragraph fontFamily="font-nexa" fontWeight={900} className="my-auto px-2 text-admiRed">
                 Download Calendar
