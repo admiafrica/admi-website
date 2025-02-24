@@ -18,7 +18,7 @@ export default function NavBar({ mode, isMinimal = false }: Props) {
   const isMobile = useMediaQuery('(max-width: 767px)');
 
   const navigateToPage = (pagePath: string) => {
-    router.push(`/v3/${pagePath}`);
+    router.push(`/${pagePath}`);
   };
 
   const getMenuWideScreen = (mode: string) => {
@@ -50,7 +50,9 @@ export default function NavBar({ mode, isMinimal = false }: Props) {
 
         <Menu trigger="hover" openDelay={100} closeDelay={400}>
           <Menu.Target>
-            <Text style={menuItemStyle}>Resources</Text>
+            <Text style={menuItemStyle} className="cursor-pointer" onClick={() => navigateToPage('resources')}>
+              Resources
+            </Text>
           </Menu.Target>
         </Menu>
 
@@ -94,7 +96,9 @@ export default function NavBar({ mode, isMinimal = false }: Props) {
             >
               Student Support
             </Menu.Item>
-            <Menu.Item style={menuItemStyle}>Resources</Menu.Item>
+            <Menu.Item style={menuItemStyle} onClick={() => navigateToPage('resources')}>
+              Resources
+            </Menu.Item>
             <Menu.Item style={menuItemStyle} className="cursor-pointer" onClick={() => navigateToPage('news-events')}>
               News & Events
             </Menu.Item>

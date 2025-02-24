@@ -6,7 +6,7 @@ export default function CourseEnrollCard() {
   const router = useRouter();
 
   const handleEnquiry = () => {
-    router.push('/v3/enquiry');
+    router.push('/enquiry');
   };
 
   return (

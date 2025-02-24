@@ -18,11 +18,11 @@ export default function LearnMoreCard() {
   const router = useRouter();
 
   const handleViewCourses = () => {
-    router.push(`/v3/courses`);
+    router.push(`/courses`);
   };
 
   const handleViewEnquiry = () => {
-    router.push(`/v3/enquiry`);
+    router.push(`/enquiry`);
   };
 
   return (

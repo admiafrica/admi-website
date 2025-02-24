@@ -26,7 +26,7 @@ export default function SectorItemCard({
   const router = useRouter();
 
   const handleCourseClick = () => {
-    router.push(`/v3/courses/${sector.fields.slug}`);
+    router.push(`/courses/${sector.fields.slug}`);
   };
 
   return (

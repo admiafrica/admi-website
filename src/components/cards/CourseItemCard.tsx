@@ -17,7 +17,7 @@ export default function CourseItemCard({ course }: Props) {
   const router = useRouter();
 
   const handleCourseClick = () => {
-    router.push(`/v3/courses/${course.fields.slug}`);
+    router.push(`/courses/${course.fields.slug}`);
   };
 
   return (

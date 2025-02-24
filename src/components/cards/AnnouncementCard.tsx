@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 
 import IconArrowTipRight from '@/assets/icons/ArrowTipRight';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 
 type Props = {
   announcement: any;
@@ -16,11 +17,22 @@ type Props = {
 };
 
 export default function AnnouncementCard(props: Props) {
+  const router = useRouter();
+
+  const handleCardClick = () => {
+    if (props.announcement.category == 'News') {
+      router.push(`/news-events/news/${props.announcement.slug}`);
+    }
+    if (props.announcement.category == 'Resources') {
+      router.push(`/resources/${props.announcement.slug}`);
+    }
+  };
   return (
     <Card
       className="mx-auto w-full max-w-screen-xl cursor-pointer"
       bg={props.bgColor || 'white'}
       style={{ borderRadius: 8 }}
+      onClick={handleCardClick}
     >
       <motion.div
         className="flex h-full w-full flex-col sm:flex-row"

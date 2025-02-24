@@ -19,7 +19,7 @@ export default function CourseEnquiryCard(props: Props) {
   const isMobile = useIsMobile();
 
   const handleEnquiry = () => {
-    router.push('/v3/enquiry');
+    router.push('/enquiry');
   };
 
   return (
