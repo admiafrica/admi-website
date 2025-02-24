@@ -62,10 +62,12 @@ import IconDesktop from '@/assets/icons/Desktop';
 import IconGraphUp from '@/assets/icons/GraphUp';
 import IconMouse from '@/assets/icons/Mouse';
 import IconSpinner from '@/assets/icons/Spinner';
-import IconBook from '@/assets/icons/Book';
+import IconBook from '@/assets/icons/BookAlt';
 import IconSearch from '@/assets/icons/Search';
 import IconShootingStar from '@/assets/icons/ShootingStar';
 import IconHomeAlt from '@/assets/icons/HomeAlt';
+
+import IconLike from '@/assets/icons/Like';
 
 import IconUnlock from '@/assets/icons/unlock.svg';
 import IconStar from '@/assets/icons/star.svg';
@@ -91,6 +93,9 @@ import IconMusic from '@/assets/icons/Music';
 import IconHome from '@/assets/icons/Home';
 import IconTripodCamera from '@/assets/icons/TripodCamera';
 import IconCamera from '@/assets/icons/Camera';
+import IconContactDiary from '@/assets/icons/ContactDiary';
+import IconTree from '@/assets/icons/Tree';
+import IconPlaylist from '@/assets/icons/Playlist';
 
 export const ROUTES = {
   INDEX: '/',
@@ -958,7 +963,7 @@ export const ADMI_STUDENT_PORTAL_FEATURES = [
     id: 'course-management',
     name: 'Course Management',
     icon: IconBook,
-    iconColor: 'black',
+    iconColor: '#E43B07',
     description: [
       `Access your course materials, syllabi, and assignments all in one place. Stay organized and keep track of your academic progress with ease.`,
     ],
@@ -966,7 +971,7 @@ export const ADMI_STUDENT_PORTAL_FEATURES = [
   {
     id: 'registration-enrollment',
     name: 'Registration and Enrollment',
-    icon: IconDrawSquare,
+    icon: IconContactDiary,
     iconColor: 'black',
     description: [
       `Simplify your registration process by enrolling in courses, managing your schedule, and viewing important deadlines. The Student Portal allows you to take control of your academic journey.`,
@@ -975,35 +980,35 @@ export const ADMI_STUDENT_PORTAL_FEATURES = [
   {
     id: 'grades-transcripts',
     name: 'Grades and Transcripts',
-    icon: IconTopArrow,
-    iconColor: 'black',
+    icon: IconPlaylist,
+    iconColor: '#01C6A5',
     description: [
       `Monitor your academic performance by checking your grades and accessing your official transcripts. Stay informed about your progress and identify areas for improvement.`,
     ],
   },
   {
-    id: 'global',
+    id: 'financial-services',
     name: 'Financial Services',
-    icon: IconSettingGear,
-    iconColor: 'black',
+    icon: IconLike,
+    iconColor: '#E43B07',
     description: [
       `View your tuition balance, make payments, and access financial aid information. The Student Portal provides all the financial resources you need to manage your educational expenses effectively.`,
     ],
   },
   {
-    id: 'practical',
+    id: 'campus-news-events',
     name: 'Campus News and Events',
-    icon: IconDrawSquare,
-    iconColor: 'black',
+    icon: IconTree,
+    iconColor: '#B9C601',
     description: [
       `Stay up-to-date with the latest news, announcements, and events happening at ADMI. The portal keeps you informed about workshops, guest lectures, and extracurricular activities.`,
     ],
   },
   {
-    id: 'digital',
+    id: 'student-support-services',
     name: 'Student Support Services',
     icon: IconUsersGroup,
-    iconColor: 'black',
+    iconColor: '#FE375B',
     description: [
       `Access a range of support services, including academic advising, counseling, and career development resources. We are here to help you succeed both academically and personally.`,
     ],
