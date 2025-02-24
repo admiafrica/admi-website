@@ -110,7 +110,7 @@ export default function StudentPortalPage() {
                   {!isMobile && (
                     <Anchor href="https://qwetu.co.ke/" target="_blank">
                       <Box className="flex w-[300px] items-center justify-center">
-                        <Image src={IconMessageBoxes} width={90} height={90} alt="connected-img" />
+                        <Image src={IconMessageBoxes} width={160} height={160} alt="connected-img" />
                       </Box>
                     </Anchor>
                   )}
@@ -135,7 +135,7 @@ export default function StudentPortalPage() {
                   {!isMobile && (
                     <Anchor href="https://qejani.co.ke/" target="_blank">
                       <Box className="flex w-[300px] items-center justify-center">
-                        <Image src={IconWhiteboard} width={90} height={90} alt="connected-img" />
+                        <Image src={IconWhiteboard} width={160} height={160} alt="connected-img" />
                       </Box>
                     </Anchor>
                   )}

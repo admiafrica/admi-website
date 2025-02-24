@@ -50,14 +50,6 @@ export default function HomePage() {
 
   const facilities = ADMI_FACILITIES;
 
-  // const award = {
-  //   title: 'ADMI Wins Best Creative Media and Tech Training Institution at the 7th Annual Digital Tech Awards 2024',
-  //   summary:
-  //     'Named the Best Creative Media and Tech Training Institution at the prestigious 7th Annual Digital Tech Awards 2024!',
-  //   slug: 'admi-wins-best-creative-media-and-tech-training-institution-at-the-7th-annual-digital-tech-awards-2024',
-  //   category: 'Awards',
-  // };
-
   const fetchCourses = useCallback(async () => {
     try {
       const response = await fetch(`/api/v3/courses`);

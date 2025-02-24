@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { Box } from '@mantine/core';
+import { Box, Divider } from '@mantine/core';
 
 import { MainLayout } from '@/layouts/v3/MainLayout';
 import { Paragraph, Title } from '@/components/ui';
@@ -9,11 +9,11 @@ import ImageSupportLanding from '@/assets/images/student-support-landing.png';
 
 export default function PrivacyPolicyPage() {
   return (
-    <MainLayout footerBgColor="white">
+    <MainLayout footerBgColor="#002A23">
       <PageSEO title="Privacy Policy" />
       <div className="w-full">
         {/* HEADER */}
-        <Box className="relative w-full" bg={'blue'}>
+        <Box className="relative w-full">
           <Image
             src={ImageSupportLanding}
             placeholder="empty"
@@ -21,8 +21,9 @@ export default function PrivacyPolicyPage() {
             fill
             priority
             className="absolute inset-0 z-0"
-            style={{ objectFit: 'cover' }}
+            style={{ objectFit: 'cover', objectPosition: '50% 50%' }}
           />
+          <Box className="" bg={'#F5FFFD'}></Box>
           {/* Radial Gradient Overlay */}
           <div
             className="z-5 absolute inset-0"
@@ -30,8 +31,9 @@ export default function PrivacyPolicyPage() {
               background: 'linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0, 42, 35, 1) 100%)',
             }}
           ></div>
-          <Box className="relative z-10 mx-auto flex h-[50vh] w-full max-w-screen-xl flex-row px-4 sm:flex-row 2xl:px-0">
-            <Box className="mt-[12vh] flex flex-col sm:w-1/2">Í
+          <Box className="relative z-10 mx-auto flex h-[40vh] w-full max-w-screen-xl flex-row px-4 sm:flex-row 2xl:px-0">
+            <Box className="mt-[8vh] flex flex-col sm:w-1/2">
+              Í
               <Title label="Privacy Policy" color="admiShamrok" size="48px" />
             </Box>
           </Box>
@@ -236,6 +238,7 @@ export default function PrivacyPolicyPage() {
               </Paragraph>
             </Box>
           </Box>
+          <Divider mt={24} c={'admiShamrok'} opacity={'20%'} />
         </Box>
       </div>
     </MainLayout>
