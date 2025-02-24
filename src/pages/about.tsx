@@ -12,7 +12,7 @@ import { PageSEO, Ribbon, Timeline } from '@/components/shared/v3';
 import { FacilityItemCard, SectorItemCard, CompanyValuesCard, UserProfileCard } from '@/components/cards';
 import {
   ADMI_ABOUT_SECTORS,
-  ADMI_ACADEMIC_TEAM,
+  ADMI_ACADEMIC_TEAM_SUMMARY,
   ADMI_DIRECTORS,
   ADMI_FACILITIES,
   ADMI_HISTORY,
@@ -152,7 +152,7 @@ export default function AboutPage() {
             </Box>
           </Box>
           <Box className="flex w-full flex-row flex-wrap py-8">
-            {ADMI_ACADEMIC_TEAM.map((member, index) => (
+            {ADMI_ACADEMIC_TEAM_SUMMARY.map((member, index) => (
               <div className="mb-4 mr-4 w-fit" key={`academic-member-${index}`}>
                 <UserProfileCard user={member} />
               </div>

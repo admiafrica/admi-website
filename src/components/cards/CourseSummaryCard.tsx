@@ -154,7 +154,11 @@ export default function CourseSummaryCard(props: Props) {
           )}
         </div>
         {!props.isCampaign && (
-          <div className={isMobile ? 'md:py-auto mx-auto w-full py-4' : 'md:py-auto mx-auto py-4'}>
+          <div
+            className={
+              isMobile ? 'md:py-auto mx-auto w-full cursor-pointer py-4' : 'md:py-auto mx-auto cursor-pointer py-4'
+            }
+          >
             <Button size="xl" backgroundColor="admiRed" label="Get in Touch" onClick={handleEnquiry} />
           </div>
         )}

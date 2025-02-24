@@ -2,59 +2,58 @@ import Image from 'next/image';
 import { Box } from '@mantine/core';
 
 import { MainLayout } from '@/layouts/v3/MainLayout';
-import { Paragraph, Title } from '@/components/ui';
 import { PageSEO } from '@/components/shared/v3';
 import { UserProfileCard } from '@/components/cards';
-import { ADMI_ACADEMIC_TEAM_MINIMAL } from '@/utils';
-
-import ImagePathwaysLanding from '@/assets/images/academic-pathways-landing.jpeg';
+import { ADMI_ACADEMIC_MENTORS, ADMI_ACADEMIC_TEAM } from '@/utils';
 import { useIsMobile } from '@/hooks/useIsMobile';
+
+import IconBgImageYellow from '@/assets/icons/ellipse-yellow.svg';
+import IconBgImageRed from '@/assets/icons/ellipse-red.svg';
+import { Title } from '@/components/ui';
 
 export default function AcademicTeamPage() {
   const isMobile = useIsMobile();
 
   return (
-    <MainLayout footerBgColor="white">
+    <MainLayout footerBgColor="#F5FFFD">
       <PageSEO title="Academic Team" />
       <div className="w-full">
         {/* HEADER */}
-        <Box className="relative w-full" bg={'#002A23'}>
-          <Box className="relative z-10 mx-auto flex w-full max-w-screen-xl flex-row px-4 sm:h-[60vh] sm:flex-row 2xl:px-0">
-            <Box className="mt-[12vh] flex w-full flex-col">
-              <Box className="flex">
-                <Title label="Academic" color="#F1FE37" size={isMobile ? '36px' : '64px'} />
-                <Box className="px-1"></Box>
-                <Title label="Team" color="admiShamrok" size={isMobile ? '36px' : '64px'} />
-              </Box>
-              <Box className="flex w-full flex-col pt-12 sm:flex-row">
-                <Box className="flex flex-col sm:w-[50%]">
-                  <Paragraph fontFamily="font-nexa" className="pb-4 text-white sm:pr-4" size="26px" fontWeight={400}>
-                    At Africa Digital Media Institute (ADMI), we are committed to providing our students with a
-                    world-class education that opens doors to endless possibilities.
-                  </Paragraph>
-                </Box>
-                <Box className="relative h-[360px] sm:w-[50%]">
-                  <Image
-                    fill
-                    src={ImagePathwaysLanding}
-                    alt="academic pathways"
-                    style={{ objectFit: 'cover', borderRadius: 16 }}
-                  />
-                </Box>
-              </Box>
+        <Box className="relative z-0 h-[16em] w-full bg-[#002A23]">
+          {/* BACKGROUND IMAGES */}
+          <div className="absolute left-[62%] top-[60px] z-0 h-fit w-full -translate-x-1/2 transform">
+            <div className="flex w-full justify-end pr-[10%]">
+              <Image src={IconBgImageYellow} alt={'background image'} />
+            </div>
+          </div>
+
+          <div className="absolute left-1/2 z-0 h-fit w-full -translate-x-1/2 transform">
+            <div className="flex w-full">
+              <Image src={IconBgImageRed} alt={'background image'} />
+            </div>
+          </div>
+          <div className="relative z-10 mx-auto w-full max-w-screen-lg px-4 pt-24 2xl:px-0">
+            <Title label="Academic Team" size="48px" color="white" className="mx-auto" />
+          </div>
+        </Box>
+        {/* ACADEMIC TEAM */}
+        <Box className="relative z-10 w-full px-4 py-8" bg={'#F5FFFD'}>
+          <Box className="mx-auto w-full max-w-screen-xl">
+            <Box className="flex w-full flex-wrap">
+              {ADMI_ACADEMIC_TEAM.map((member, index) => (
+                <div className="mb-4 mr-4" key={`academic-member-${index}`}>
+                  <UserProfileCard user={member} />
+                </div>
+              ))}
             </Box>
           </Box>
         </Box>
-        {/* ACADEMIC TEAM */}
-        <Box className="w-full px-4 py-8">
+        {/* ACADEMIC MENTORS */}
+        <Box className="relative z-10 w-full px-4 py-8" bg={'#F5FFFD'}>
           <Box className="mx-auto w-full max-w-screen-xl">
-            <Box className="flex w-full flex-row pb-4">
-              <Box className="w-full">
-                <Title label="Academic Team" color="black" />
-              </Box>
-            </Box>
-            <Box className="flex w-full flex-wrap">
-              {ADMI_ACADEMIC_TEAM_MINIMAL.map((member, index) => (
+            <Title label="Mentors" size="32px" color="black" />
+            <Box className="flex w-full flex-wrap pt-12">
+              {ADMI_ACADEMIC_MENTORS.map((member, index) => (
                 <div className="mb-4 mr-4" key={`academic-member-${index}`}>
                   <UserProfileCard user={member} />
                 </div>

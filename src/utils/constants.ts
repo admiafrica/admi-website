@@ -34,6 +34,28 @@ import ImageMichael from '@/assets/images/michael-kazinja.svg';
 import ImageAlex from '@/assets/images/alex-mwangi.svg';
 import ImageCedric from '@/assets/images/cedric-mwangi.svg';
 
+import ImageAlfred from '@/assets/images/alfred-chomba.svg';
+import ImageAnne from '@/assets/images/anne-wanjiku.svg';
+import ImageArlene from '@/assets/images/arlene-ayirah.svg';
+import ImageBarrak from '@/assets/images/barrak-bukusi.svg';
+import ImageBenjamin from '@/assets/images/benjamin-waithaka.svg';
+import ImageBrian from '@/assets/images/brian-omolo.svg';
+import ImageAdwar from '@/assets/images/chris-adwar.svg';
+import ImageDorothy from '@/assets/images/dorothy-lavuna.svg';
+import ImageEddy from '@/assets/images/eddy-mwazige.svg';
+import ImageEdwin from '@/assets/images/edwin-ochieng.svg';
+import ImageFredrick from '@/assets/images/fredrick-muendo.svg';
+import ImageHendrick from '@/assets/images/hendrick-sam.svg';
+import ImageIsaac from '@/assets/images/isaac-kamau.svg';
+import ImageKarumba from '@/assets/images/karumba-ngatia.svg';
+import ImageKennedy from '@/assets/images/kennedy-wathome.svg';
+import ImageManal from '@/assets/images/manal-omayer.svg';
+import ImageNzilani from '@/assets/images/nzilani-simu.svg';
+import ImagePatrick from '@/assets/images/patrick-kabugi.svg';
+import ImageSam from '@/assets/images/sam-mungai.svg';
+import ImageSaum from '@/assets/images/saum-idd.svg';
+import ImageShadrach from '@/assets/images/shadrach-munene.svg';
+
 // Icons
 import IconBrowser from '@/assets/icons/Browser';
 import IconDesktop from '@/assets/icons/Desktop';
@@ -186,33 +208,6 @@ export const ADMI_ABOUT_SECTORS = [
   },
 ];
 
-export const ADMI_ACADEMIC_TEAM = [
-  {
-    name: 'Carolyne Sila',
-    title: 'Head of School',
-    linkedin: '',
-    image: ImageCaroline,
-  },
-  {
-    name: 'Peter Mwaniki',
-    title: 'Academics',
-    linkedin: '',
-    image: ImagePeter,
-  },
-  {
-    name: 'Raji Ilangovan',
-    title: 'Student Programs',
-    linkedin: '',
-    image: ImageRaji,
-  },
-  {
-    name: 'Ciku Munuku',
-    title: 'Faculty Affairs',
-    linkedin: '',
-    image: ImageCiku,
-  },
-];
-
 export const ADMI_DIRECTORS = [
   {
     name: 'Laila Macharia',
@@ -243,6 +238,216 @@ export const ADMI_DIRECTORS = [
     title: 'Director',
     linkedin: '',
     image: ImageChris,
+  },
+];
+
+export const ADMI_ACADEMIC_TEAM_SUMMARY = [
+  {
+    name: 'Carolyne Sila',
+    title: 'Head of School',
+    linkedin: '',
+    image: ImageCaroline,
+  },
+  {
+    name: 'Peter Mwaniki',
+    title: 'Academics',
+    linkedin: '',
+    image: ImagePeter,
+  },
+  {
+    name: 'Raji Ilangovan',
+    title: 'Student Programs',
+    linkedin: '',
+    image: ImageRaji,
+  },
+  {
+    name: 'Ciku Munuku',
+    title: 'Faculty Affairs',
+    linkedin: '',
+    image: ImageCiku,
+  },
+];
+
+export const ADMI_ACADEMIC_TEAM_MINIMAL = [
+  {
+    name: 'Raji Ilangovan',
+    title: 'Student Programs',
+    linkedin: '',
+    image: ImageRaji,
+  },
+  {
+    name: 'Evelyne Makena',
+    title: 'Registrar',
+    linkedin: '',
+    image: ImageEvelyne,
+  },
+  {
+    name: 'Mary Munene',
+    title: 'Student Services',
+    linkedin: '',
+    image: ImageMary,
+  },
+];
+
+export const ADMI_ACADEMIC_TEAM = [
+  {
+    name: 'Carolyne Sila',
+    title: 'Head of School',
+    linkedin: '',
+    image: ImageCaroline,
+  },
+  {
+    name: 'Raji Ilangovan',
+    title: 'Student Programs',
+    linkedin: '',
+    image: ImageRaji,
+  },
+  {
+    name: 'Ciku Munuku',
+    title: 'Faculty Affairs',
+    linkedin: '',
+    image: ImageCiku,
+  },
+  {
+    name: 'Evelyne Makena',
+    title: 'Registrar',
+    linkedin: '',
+    image: ImageEvelyne,
+  },
+  {
+    name: 'Mary Munene',
+    title: 'Student Services',
+    linkedin: '',
+    image: ImageMary,
+  },
+];
+
+export const ADMI_ACADEMIC_MENTORS = [
+  {
+    name: 'Alfred Chomba',
+    title: 'Film & TV Production',
+    linkedin: '',
+    image: ImageAlfred,
+  },
+  {
+    name: 'Anne Wanjiku Irungu',
+    title: 'Digital Marketing',
+    linkedin: '',
+    image: ImageAnne,
+  },
+  {
+    name: 'Arlene Ayirah',
+    title: 'Digital Marketing',
+    linkedin: '',
+    image: ImageArlene,
+  },
+  {
+    name: 'Barrack Bukusi',
+    title: 'Entertainment Business',
+    linkedin: '',
+    image: ImageBarrak,
+  },
+  {
+    name: 'Benjamin Waithaka',
+    title: 'Student Services',
+    linkedin: '',
+    image: ImageBenjamin,
+  },
+  {
+    name: 'Brian Omolo',
+    title: 'Graphic Design',
+    linkedin: '',
+    image: ImageBrian,
+  },
+  {
+    name: 'Chris Adwar',
+    title: 'Music Production',
+    linkedin: '',
+    image: ImageAdwar,
+  },
+  {
+    name: 'Dorothy Lavina',
+    title: 'Digtal Marketing',
+    linkedin: '',
+    image: ImageDorothy,
+  },
+  {
+    name: 'Eddy Mwazige',
+    title: 'Animation',
+    linkedin: '',
+    image: ImageEddy,
+  },
+  {
+    name: 'Edwin Ochieng W',
+    title: 'Graphic Design',
+    linkedin: '',
+    image: ImageEdwin,
+  },
+  {
+    name: 'Fredrick Muendo',
+    title: 'Graphic Design',
+    linkedin: '',
+    image: ImageFredrick,
+  },
+  {
+    name: 'Hendrick Sam',
+    title: 'Music Production',
+    linkedin: '',
+    image: ImageHendrick,
+  },
+  {
+    name: 'Isaac Kamau',
+    title: 'Multimedia',
+    linkedin: '',
+    image: ImageIsaac,
+  },
+  {
+    name: 'Karumba Ngatia',
+    title: 'Sound Engineering',
+    linkedin: '',
+    image: ImageKarumba,
+  },
+  {
+    name: 'Kennedy Wahome',
+    title: 'Sound Engineering',
+    linkedin: '',
+    image: ImageKennedy,
+  },
+  {
+    name: 'Manal Omayer',
+    title: '2D Animation',
+    linkedin: '',
+    image: ImageManal,
+  },
+  {
+    name: 'Nzilani Simu',
+    title: 'Graphic Design',
+    linkedin: '',
+    image: ImageNzilani,
+  },
+  {
+    name: 'Patrick Kabugi',
+    title: 'Sound Engineering',
+    linkedin: '',
+    image: ImagePatrick,
+  },
+  {
+    name: 'Sam Mungai',
+    title: 'Digital Marketing',
+    linkedin: '',
+    image: ImageSam,
+  },
+  {
+    name: 'Saum Idd',
+    title: 'Film & TV Production',
+    linkedin: '',
+    image: ImageSaum,
+  },
+  {
+    name: 'Shadrach Munene',
+    title: '2D Animation',
+    linkedin: '',
+    image: ImageShadrach,
   },
 ];
 
@@ -398,27 +603,6 @@ export const ADMI_STUDENT_COUNCIL = [
     title: 'Council Member',
     linkedin: '',
     image: ImageShalom,
-  },
-];
-
-export const ADMI_ACADEMIC_TEAM_MINIMAL = [
-  {
-    name: 'Raji Ilangovan',
-    title: 'Student Programs',
-    linkedin: '',
-    image: ImageRaji,
-  },
-  {
-    name: 'Evelyne Makena',
-    title: 'Registrar',
-    linkedin: '',
-    image: ImageEvelyne,
-  },
-  {
-    name: 'Mary Munene',
-    title: 'Student Services',
-    linkedin: '',
-    image: ImageMary,
   },
 ];
 
