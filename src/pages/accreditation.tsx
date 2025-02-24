@@ -80,7 +80,7 @@ export default function AccreditationPage() {
             </Box>
           </Box>
         </Box>
-        {/* Floating Card */}
+        {/* Floating Cards */}
         <div className="relative w-full px-4 xl:px-0">
           <div className="z-10 w-full max-w-screen-xl sm:absolute sm:left-1/2 sm:top-[-120px] sm:-translate-x-1/2 sm:transform">
             <Box className="flex w-full flex-col sm:flex-row">

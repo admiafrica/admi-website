@@ -43,8 +43,8 @@ export default function AlumniPage() {
               background: 'linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0, 42, 35, 1) 100%)',
             }}
           ></div>
-          <Box className="relative z-10 mx-auto flex w-full max-w-screen-xl flex-row px-4 sm:h-[50vh] sm:flex-row 2xl:px-0">
-            <Box className="mt-[12vh] flex w-full flex-col">
+          <Box className="relative z-10 mx-auto flex h-[500px] w-full max-w-screen-xl flex-row px-4 sm:flex-row 2xl:px-0">
+            <Box className="mt-[120px] flex w-full flex-col">
               <Box className="flex grow">
                 <Title label="Alumni" color="#F1FE37" size={isMobile ? '36px' : '64px'} />
                 <Box className="px-1"></Box>

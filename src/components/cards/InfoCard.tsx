@@ -7,9 +7,11 @@ import IconAttach from '@/assets/icons/Attach';
 type Props = {
   item: any;
   bgColor?: string;
+  textColor?: string;
+  textWeight?: number;
 };
 
-export default function InfoCard({ item, bgColor = '#081E1A' }: Props) {
+export default function InfoCard({ item, bgColor = '#081E1A', textColor = 'white', textWeight=100 }: Props) {
   return (
     <Card className="z-10 h-full w-full" bg={bgColor} withBorder>
       <Box className="flex">
@@ -18,11 +20,11 @@ export default function InfoCard({ item, bgColor = '#081E1A' }: Props) {
         ) : (
           <IconAttach width={24} height={24} color="white" />
         )}
-        <Paragraph fontFamily="font-nexa" fontWeight={900} className="my-auto w-[90%] px-4 text-white">
+        <Paragraph fontFamily="font-nexa" fontWeight={900} className={`my-auto w-[90%] px-4 text-${textColor}`}>
           {item.name}
         </Paragraph>
       </Box>
-      <Paragraph fontFamily="font-nexa" fontWeight={100} className="px-2 py-4 text-white" size="16px">
+      <Paragraph fontFamily="font-nexa" fontWeight={textWeight} className={`px-2 py-4 text-${textColor}`} size="16px">
         {item.description}
       </Paragraph>
       <Box className="flex h-full flex-row"></Box>

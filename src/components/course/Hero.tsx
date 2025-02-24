@@ -39,13 +39,13 @@ export default function CourseHero(props: Props) {
       <div
         className="z-5 absolute inset-0"
         style={{
-          background: `radial-gradient(circle, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 80%)`,
+          background: `radial-gradient(38.35% 91.08% at 66.59% 45.79%, rgba(0, 0, 0, 0) 14.71%, #000000 100%)`,
         }}
       ></div>
 
       {/* Floating Card */}
       <div className={props.isCampaign ? 'w-full px-1 sm:w-fit' : 'w-full px-1'}>
-        <div className="absolute left-1/2 top-[400px] z-10 w-full max-w-screen-xl -translate-x-1/2 transform px-4 sm:top-[45vh] 2xl:px-0">
+        <div className="absolute left-1/2 top-[400px] z-20 w-full max-w-screen-xl -translate-x-1/2 transform px-4 sm:top-[45vh] 2xl:px-0">
           <CourseSummaryCard
             programType={props.programType}
             creditHours={props.creditHours}

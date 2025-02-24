@@ -5,4 +5,3 @@ export { default as CourseMentors } from './Mentors';
 export { default as CourseStudents } from './Students';
 export { default as CourseApplicationProcess } from './ApplicationProcess';
 export { default as CourseFAQs } from './Faqs';
-export { default as CourseSearch } from './Search';

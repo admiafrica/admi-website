@@ -244,7 +244,7 @@ export default function InternationalStudents() {
       />
       <CollapsibleContent
         key={`finance-plan-3`}
-        title="Accomodation"
+        title="Accommodation"
         content={
           <Box>
             <Paragraph>

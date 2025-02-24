@@ -1,14 +1,12 @@
 import { useCallback, useEffect, useState, useRef } from 'react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
-import { Box, Indicator, Divider, NumberFormatter, Input, Modal } from '@mantine/core';
+import { Box, Indicator, Divider, NumberFormatter } from '@mantine/core';
 import { Carousel } from '@mantine/carousel';
-import { useDisclosure } from '@mantine/hooks';
 import Autoplay from 'embla-carousel-autoplay';
 
-import { AnimatedWordDisplay, Paragraph, Title } from '@/components/ui';
+import { AnimatedWordDisplay, Paragraph, SearchDropdown, Title } from '@/components/ui';
 import { MainLayout } from '@/layouts/v3/MainLayout';
-import { IconPlus } from '@tabler/icons-react';
 
 import { Button } from '@/components/ui';
 import { PageSEO } from '@/components/shared/v3';
@@ -16,27 +14,27 @@ import {
   AnnouncementCard,
   CourseItemCard,
   FacilityItemCard,
-  LearnMoreCard,
   SectorItemCard,
   UserTestimonialCard,
 } from '@/components/cards';
 import { ADMI_FACILITIES, ADMI_HOMEPAGE_SECTORS } from '@/utils';
+import { IContentfulEntry } from '@/types';
+import { useIsMobile } from '@/hooks/useIsMobile';
 
+import { IconPlus } from '@tabler/icons-react';
 import HeroBackgroundImage from '@/assets/images/homepage-hero.svg';
 import AnnouncementImage from '@/assets/images/announcement.svg';
 import NewsImage from '@/assets/images/featured-news.svg';
 import AwardsImage from '@/assets/images/awards.svg';
-import IconSearch from '@/assets/icons/Search';
-import { IContentfulEntry } from '@/types';
-import { useIsMobile } from '@/hooks/useIsMobile';
 
 export default function HomePage() {
   const router = useRouter();
   const isMobile = useIsMobile();
   const [content, setContent] = useState<any>();
   const [courses, setCourses] = useState<Array<any>>([]);
-  const [opened, { open, close }] = useDisclosure(false);
-  const [featured, setFeatured] = useState<IContentfulEntry>();
+  const [featuredNews, setFeaturedNews] = useState<IContentfulEntry>();
+  const [featuredResource, setFeaturedResource] = useState<IContentfulEntry>();
+  const [featuredAward, setFeaturedAward] = useState<IContentfulEntry>();
 
   const autoplaySectors = useRef(Autoplay({ delay: 4000 }));
   const autoplayTestimonials = useRef(Autoplay({ delay: 4000 }));
@@ -50,17 +48,7 @@ export default function HomePage() {
     { word: 'Engineering', styles: 'text-[#F60834]' },
   ];
 
-  const announcement = {
-    title: 'Introducing Aquila Creative Scholars: Your Gateway to a Thriving Creative Career',
-    summary:
-      'The Africa Digital Media Foundation, in partnership with a generous anonymous donor, is thrilled to announce the launch of the Aquila Creative Scholars program.',
-  };
   const facilities = ADMI_FACILITIES;
-  const award = {
-    title: 'ADMI Wins Best Creative Media and Tech Training Institution at the 7th Annual Digital Tech Awards 2024',
-    summary:
-      'Named the Best Creative Media and Tech Training Institution at the prestigious 7th Annual Digital Tech Awards 2024!',
-  };
 
   const fetchCourses = useCallback(async () => {
     try {
@@ -87,9 +75,31 @@ export default function HomePage() {
       const response = await fetch(`/api/v3/news`);
       const data = await response.json();
       const featuredArticle = data.find((article: IContentfulEntry) => article.fields.featured);
-      setFeatured(featuredArticle);
+      setFeaturedNews(featuredArticle);
     } catch (error) {
       console.log('Error fetching courses:', error);
+    }
+  }, []);
+
+  const fetchFeaturedAward = useCallback(async () => {
+    try {
+      const response = await fetch(`/api/v3/awards`);
+      const data = await response.json();
+      const featuredArticle = data.find((article: IContentfulEntry) => article.fields.featured);
+      setFeaturedAward(featuredArticle);
+    } catch (error) {
+      console.log('Error fetching courses:', error);
+    }
+  }, []);
+
+  const fetchFeaturedResource = useCallback(async () => {
+    try {
+      const response = await fetch(`/api/v3/resources`);
+      const data = await response.json();
+      const featuredArticle = data.find((article: IContentfulEntry) => article.fields.featured);
+      setFeaturedResource(featuredArticle);
+    } catch (error) {
+      console.log('Error fetching resources:', error);
     }
   }, []);
 
@@ -101,17 +111,16 @@ export default function HomePage() {
     fetchContent();
     fetchCourses();
     fetchFeaturedNews();
-  }, [fetchCourses, fetchContent, fetchFeaturedNews]);
+    fetchFeaturedResource();
+    fetchFeaturedAward();
+  }, [fetchCourses, fetchContent, fetchFeaturedNews, fetchFeaturedResource]);
 
   return (
     <MainLayout footerBgColor="#E6F608">
       <PageSEO title="Home" />
-      <Modal radius="lg" opened={opened} onClose={close} size={'72rem'}>
-        <LearnMoreCard />
-      </Modal>
       <div className="w-full">
         {/* HERO */}
-        <Box className="relative w-full cursor-pointer" onClick={open}>
+        <Box className="relative w-full">
           <Image
             src={HeroBackgroundImage}
             placeholder="empty"
@@ -119,18 +128,18 @@ export default function HomePage() {
             fill
             priority
             className="absolute inset-0 z-0"
-            style={{ objectFit: 'cover' }}
+            style={{ objectFit: 'cover', objectPosition: '50% 20%' }}
           />
           {/* Radial Gradient Overlay */}
           <div
             className="z-5 absolute inset-0"
             style={{
-              background: `radial-gradient(circle, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 80%)`,
+              background: `radial-gradient(38.35% 91.08% at 66.59% 45.79%, rgba(0, 0, 0, 0) 14.71%, rgba(0, 0, 0, 0.8) 100%)`,
             }}
           ></div>
 
-          <Box className="relative mx-auto flex h-[50vh] w-full max-w-screen-xl flex-row px-4 sm:flex-row xl:px-0">
-            <Box className="mt-[12vh] flex w-full flex-col sm:w-1/2">
+          <Box className="relative mx-auto flex h-[500px] w-full max-w-screen-xl flex-row px-4 sm:flex-row xl:px-0">
+            <Box className="mt-[120px] flex w-full flex-col sm:w-1/2">
               <Box>
                 <Paragraph
                   fontFamily="font-nexa"
@@ -161,26 +170,14 @@ export default function HomePage() {
                 Africa Digital Media Institute (ADMI) based in Nairobi, Kenya, is Eastern Africa&apos;s premier creative
                 and technology training institution.
               </Paragraph>
-              <div className="flex w-full cursor-pointer rounded-xl bg-[#414438] py-4 text-white">
-                <Box my={'auto'} pl={8}>
-                  <IconSearch color="white" width={36} height={36} />
-                </Box>
-                <Input
-                  className="grow pt-1 text-white"
-                  placeholder="What are you looking for?"
-                  styles={{
-                    input: {
-                      color: 'white',
-                      fontSize: '16px',
-                      fontWeight: 600,
-                      cursor: 'pointer',
-                    },
-                  }}
-                />
-                <div className="mx-4 my-auto">
-                  <Button size="lg" backgroundColor="admiRed" label="Learn More" />
-                </div>
-              </div>
+
+              <SearchDropdown
+                destination="courses"
+                items={courses}
+                buttonLabel="Learn More"
+                placeholder="What are you looking for?"
+                bg="#414438"
+              />
             </Box>
           </Box>
         </Box>
@@ -391,14 +388,17 @@ export default function HomePage() {
           </Box>
         </Box>
         {/* ANNOUNCEMENTS */}
-        <Box className="w-full px-4 py-16 xl:px-0" bg={'admiOrangeDark'}>
-          <AnnouncementCard
-            announcement={announcement}
-            title={'Announcements'}
-            arrowColor={'#F60834'}
-            image={AnnouncementImage}
-          />
-        </Box>
+        {featuredResource && (
+          <Box className="w-full px-4 py-16 xl:px-0" bg={'admiOrangeDark'}>
+            <AnnouncementCard
+              destination="resources"
+              announcement={featuredResource.fields}
+              title={'Announcements'}
+              arrowColor={'#F60834'}
+              image={AnnouncementImage}
+            />
+          </Box>
+        )}
         {/* FACILITIES */}
         <Box className="1xl:px-0 w-full px-4 py-16" bg={'#F5FFFD'}>
           <Box className="mx-auto w-full max-w-screen-xl">
@@ -439,11 +439,17 @@ export default function HomePage() {
           </Box>
         </Box>
         {/* NEWS */}
-        <Box className="w-full px-4 py-16 xl:px-0" bg={'#01C6A5'}>
-          {featured && (
-            <AnnouncementCard announcement={featured.fields} bgColor="admiShamrok" image={NewsImage} featured />
-          )}
-        </Box>
+        {featuredNews && (
+          <Box className="w-full px-4 py-16 xl:px-0" bg={'#01C6A5'}>
+            <AnnouncementCard
+              destination="news-events/news"
+              announcement={featuredNews.fields}
+              bgColor="admiShamrok"
+              image={NewsImage}
+              featured
+            />
+          </Box>
+        )}
         {/* COURSES */}
         <Box className="1xl:px-0 w-full px-4 py-16" bg={'#F5FFFD'}>
           <Box className="mx-auto w-full max-w-screen-xl">
@@ -483,9 +489,17 @@ export default function HomePage() {
           </Box>
         </Box>
         {/* AWARDS */}
-        <Box className="w-full px-4 py-16 xl:px-0" bg={'#E6F608'}>
-          <AnnouncementCard announcement={award} title="Awards" arrowColor="#F60834" image={AwardsImage} />
-        </Box>
+        {featuredAward && (
+          <Box className="w-full px-4 py-16 xl:px-0" bg={'#E6F608'}>
+            <AnnouncementCard
+              destination="news-events/news"
+              announcement={featuredAward.fields}
+              title="Awards"
+              arrowColor="#F60834"
+              image={AwardsImage}
+            />
+          </Box>
+        )}
       </div>
     </MainLayout>
   );

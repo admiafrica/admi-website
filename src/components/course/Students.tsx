@@ -1,9 +1,8 @@
 import { useRef } from 'react';
 import Image from 'next/image';
 import Autoplay from 'embla-carousel-autoplay';
-import { Avatar, Box, Card, Group, Text } from '@mantine/core';
+import { Avatar, Box, Card, Group } from '@mantine/core';
 import { Carousel } from '@mantine/carousel';
-import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 
 import { getAssetDetails } from '@/utils';
 import { UserTestimonialCard } from '../cards';
@@ -12,7 +11,7 @@ import { IconArrowLeft, IconArrowRight, IconChecks } from '@tabler/icons-react';
 
 import classes from '@/styles/Indicator.module.css';
 import { useIsMobile } from '@/hooks/useIsMobile';
-import { Paragraph, Title } from '../ui';
+import { Paragraph, ParagraphContentful, Title } from '../ui';
 
 type Props = {
   portfolios: any[];
@@ -35,7 +34,7 @@ export default function CourseStudents(props: Props) {
     <Group bg={'#BD2D00'}>
       <div className="max-w-screen-3xl mx-auto w-full">
         {showPortfolios && (
-          <div className="mx-auto py-12 max-w-screen-xl px-4">
+          <div className="mx-auto max-w-screen-xl px-4 py-12">
             <Title size={isMobile ? '24px' : '32px'} label="Student Portfolio & Alumni Stories" color="white" />
           </div>
         )}
@@ -89,12 +88,9 @@ export default function CourseStudents(props: Props) {
                             ))}
                           </Carousel>
                         ) : (
-                          <div
-                            className="mt-1 h-full min-h-[14em] px-6 font-proxima text-gray-600"
-                            dangerouslySetInnerHTML={{
-                              __html: documentToHtmlString(portfolio.fields.bio),
-                            }}
-                          ></div>
+                          <ParagraphContentful className="mt-1 h-full min-h-[14em] px-6 text-gray-600">
+                            {portfolio.fields.bio}
+                          </ParagraphContentful>
                         )}
                       </Card.Section>
                       <Card.Section>
@@ -106,12 +102,10 @@ export default function CourseStudents(props: Props) {
                             ml={16}
                           />
                           <div className="flex grow flex-col">
-                            <div className="font-nexa">
-                              <Text fw={900}>{portfolio.fields.studentName}</Text>
-                            </div>
-                            <div className="font-proxima">
-                              <Text>{portfolio.fields.professionalTitle}</Text>
-                            </div>
+                            <Paragraph fontFamily="font-nexa" fontWeight={900}>
+                              {portfolio.fields.studentName}
+                            </Paragraph>
+                            <Paragraph>{portfolio.fields.professionalTitle}</Paragraph>
                           </div>
                         </Group>
                       </Card.Section>
@@ -126,7 +120,7 @@ export default function CourseStudents(props: Props) {
         {/* Testimonials */}
         {showTestimonials && (
           <div className="mx-auto mb-8 max-w-screen-xl px-4 font-nexa text-white">
-            <div className="flex flex-col items-center sm:flex-row py-8">
+            <div className="flex flex-col items-center py-8 sm:flex-row">
               <Title
                 size={isMobile ? '24px' : '32px'}
                 label="Student Reviews & Testimonials"
@@ -134,10 +128,12 @@ export default function CourseStudents(props: Props) {
                 className="mt-4"
               />
               <div className="mb-4 grow sm:mb-0"></div>
-              <div className="flex">
-                <IconChecks />
-                <Paragraph>Over {props.totalHistoricalEnrollment}+ Students have taken this course</Paragraph>
-              </div>
+              {props.totalHistoricalEnrollment && (
+                <div className="flex">
+                  <IconChecks />
+                  <Paragraph>Over {props.totalHistoricalEnrollment}+ Students have taken this course</Paragraph>
+                </div>
+              )}
             </div>
           </div>
         )}

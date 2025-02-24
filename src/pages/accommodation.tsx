@@ -1,12 +1,12 @@
 import Image from 'next/image';
-import { Box, Card, Divider, Modal } from '@mantine/core';
+import { Anchor, Box, Card, Divider, Modal } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 
 import { MainLayout } from '@/layouts/v3/MainLayout';
 import { Paragraph, Title } from '@/components/ui';
 import { PageSEO } from '@/components/shared/v3';
 import { LearnMoreCard } from '@/components/cards';
-import { ADMI_ACCOMODATION_FEATURES } from '@/utils';
+import { ADMI_ACCOMMODATION_FEATURES } from '@/utils';
 import { useIsMobile } from '@/hooks/useIsMobile';
 
 import IconQwetu from '@/assets/icons/qwetu-residence.svg';
@@ -14,18 +14,18 @@ import IconQwetuLight from '@/assets/icons/qwetu-residence-light.svg';
 import IconQejani from '@/assets/icons/qejani-residence.svg';
 import IconQejaniLight from '@/assets/icons/qejani-residence-light.svg';
 import ImageCommunityBg from '@/assets/images/community-bg.png';
-import ImageAccomodationLanding from '@/assets/images/accomodation-landing.png';
+import ImageAccommodationLanding from '@/assets/images/accommodation-landing.png';
 import IconArrowTipRight from '@/assets/icons/ArrowTipRight';
 import IconBgImageYellow from '@/assets/icons/ellipse-yellow.svg';
 import IconBgImageRed from '@/assets/icons/ellipse-red.svg';
 
-export default function AccomodationsPage() {
+export default function AccommodationPage() {
   const isMobile = useIsMobile();
   const [opened, { open, close }] = useDisclosure(false);
 
   return (
     <MainLayout footerBgColor="#F5FFFD">
-      <PageSEO title="Accomodation" />
+      <PageSEO title="Accommodation" />
       <Modal radius="lg" opened={opened} onClose={close} size={'72rem'}>
         <LearnMoreCard />
       </Modal>
@@ -33,7 +33,7 @@ export default function AccomodationsPage() {
         {/* HEADER */}
         <Box className="relative w-full cursor-pointer" bg={'blue'} onClick={open}>
           <Image
-            src={ImageAccomodationLanding}
+            src={ImageAccommodationLanding}
             placeholder="empty"
             alt="Fellowship Banner"
             fill
@@ -126,12 +126,12 @@ export default function AccomodationsPage() {
           <Box className="relative mx-auto w-full max-w-screen-xl px-4 pb-8 2xl:px-0">
             <Box className="w-full pt-[600px] sm:pt-80">
               <div className="mx-auto my-8 w-fit text-center">
-                <Title label="Key Features of Qwetu and Qejani Accomodation" size="24px" color="black" />
+                <Title label="Key Features of Qwetu and Qejani Accommodation" size="24px" color="black" />
               </div>
             </Box>
 
             <div className="relative z-20 flex flex-row flex-wrap justify-between">
-              {ADMI_ACCOMODATION_FEATURES.map((dept, index) => (
+              {ADMI_ACCOMMODATION_FEATURES.map((dept, index) => (
                 <Card shadow="md" className="mb-8 w-[49%] sm:w-[30%]" key={`dept-${index}`} radius={8}>
                   <div className="flex pt-4 sm:px-4">
                     {/* <dept.icon width={48} height={48} /> */}
@@ -159,7 +159,7 @@ export default function AccomodationsPage() {
         <Box className="mx-auto w-full max-w-screen-xl px-4 py-6">
           <Box className="w-full">
             <div className="mx-auto my-8 w-fit text-center">
-              <Title label="How to Book Your Accomodation" size="24px" color="black" />
+              <Title label="How to Book Your Accommodation" size="24px" color="black" />
             </div>
             <div className="mx-auto mb-8 w-full max-w-screen-xl">
               <Paragraph fontFamily="font-nexa text-center" className="py-4">
@@ -168,24 +168,28 @@ export default function AccomodationsPage() {
                 find the perfect fit for your needs:
               </Paragraph>
               <Box className="mx-auto flex w-fit flex-col sm:flex-row">
-                <Card
-                  className="flex h-[128px] w-[340px] flex-col items-center sm:mr-4"
-                  bg={'#E9530E'}
-                  mb={isMobile ? 16 : 0}
-                >
-                  <Image src={IconQwetuLight} alt="Qwetu Residences" width={150} height={80} />
-                  <Box className="mx-auto flex">
-                    <Paragraph className="my-auto text-white">Book with Qwetu</Paragraph>
-                    <IconArrowTipRight color="white" />
-                  </Box>
-                </Card>
-                <Card className="flex h-[128px] w-[340px] flex-col items-center sm:ml-4" bg={'#542883'}>
-                  <Image src={IconQejaniLight} alt="Qejani Residences" width={150} height={80} />
-                  <Box className="mx-auto flex">
-                    <Paragraph className="my-auto text-white">Book with Qejani</Paragraph>
-                    <IconArrowTipRight color="white" />
-                  </Box>
-                </Card>
+                <Anchor href="https://qwetu.co.ke/" target="_blank">
+                  <Card
+                    className="flex h-[128px] w-[340px] flex-col items-center sm:mr-4"
+                    bg={'#E9530E'}
+                    mb={isMobile ? 16 : 0}
+                  >
+                    <Image src={IconQwetuLight} alt="Qwetu Residences" width={150} height={80} />
+                    <Box className="mx-auto flex">
+                      <Paragraph className="my-auto text-white">Book with Qwetu</Paragraph>
+                      <IconArrowTipRight color="white" />
+                    </Box>
+                  </Card>
+                </Anchor>
+                <Anchor href="https://qejani.co.ke/" target="_blank">
+                  <Card className="flex h-[128px] w-[340px] flex-col items-center sm:ml-4" bg={'#542883'}>
+                    <Image src={IconQejaniLight} alt="Qejani Residences" width={150} height={80} />
+                    <Box className="mx-auto flex">
+                      <Paragraph className="my-auto text-white">Book with Qejani</Paragraph>
+                      <IconArrowTipRight color="white" />
+                    </Box>
+                  </Card>
+                </Anchor>
               </Box>
               <Paragraph fontFamily="font-nexa" className="py-4 text-center">
                 When booking, be sure to use the <strong>Referral Code: STU-0016368</strong> to enjoy exclusive benefits
