@@ -9,7 +9,11 @@ import 'react-phone-input-2/lib/style.css';
 
 import { IconAsterisk } from '@tabler/icons-react';
 
-export default function EnquiryForm() {
+type Props = {
+  isCampaign?: boolean;
+};
+
+export default function EnquiryForm({ isCampaign = false }: Props) {
   const router = useRouter();
   const [courses, setCourses] = useState<any[]>([]);
   const [countryCode, setCountryCode] = useState('254'); // State for the phone number
@@ -23,6 +27,12 @@ export default function EnquiryForm() {
       lastName: '',
       phone: '',
       courseName: '',
+      utm_source: '',
+      utm_medium: '',
+      utm_campaign: '',
+      utm_term: '',
+      utm_content: '',
+      isCampaign: isCampaign,
     },
 
     validate: {
