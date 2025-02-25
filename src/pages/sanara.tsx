@@ -1,12 +1,10 @@
-import { useCallback, useEffect, useState } from 'react';
 import Image from 'next/image';
-import { useRouter } from 'next/router';
-import { Anchor, Box, Card, Divider, Tabs } from '@mantine/core';
+import { Anchor, Box, Card, Divider } from '@mantine/core';
 
 import { MainLayout } from '@/layouts/v3/MainLayout';
 import { PageSEO } from '@/components/shared/v3';
-import { EmptyCard } from '@/components/cards';
-import { Paragraph, ParagraphContentful, Title } from '@/components/ui';
+import { Paragraph } from '@/components/ui';
+import { useIsMobile } from '@/hooks/useIsMobile';
 
 import IconFacebook from '@/assets/icons/facebook-social.svg';
 import IconWhatsapp from '@/assets/icons/whatsapp-social.svg';
@@ -14,11 +12,9 @@ import IconCopyContent from '@/assets/icons/copy-content.svg';
 import IconShare from '@/assets/icons/share.svg';
 import IconLinkedIn from '@/assets/icons/linkedin-social.svg';
 import ImageSanaraLanding from '@/assets/images/sanara-landing.png';
-import { useIsMobile } from '@/hooks/useIsMobile';
 
 export default function NewsArticlePage() {
   const isMobile = useIsMobile();
-  const router = useRouter();
 
   return (
     <MainLayout footerBgColor="white">
