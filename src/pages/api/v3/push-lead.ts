@@ -5,7 +5,19 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(405).json({ error: 'Method Not Allowed' });
   }
 
-  const { firstName, lastName, email, phone, courseName } = req.body;
+  const {
+    isCampaign,
+    firstName,
+    lastName,
+    email,
+    phone,
+    courseName,
+    utm_source = '',
+    utm_medium = '',
+    utm_campaign = '',
+    utm_term = '',
+    utm_content = '',
+  } = req.body;
 
   if (!email || !firstName || !lastName || !phone || !courseName) {
     return res.status(400).json({ error: 'All fields are required.' });
@@ -16,8 +28,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   const BREVO_URL = 'https://api.brevo.com/v3/contacts';
 
-  // NOTE: Phone must be prefixed with country code e.g. +254792111222
-  const payload = {
+  const payload: any = {
     attributes: {
       FIRSTNAME: firstName,
       LASTNAME: lastName,
@@ -28,6 +39,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     listIds: [parseInt(LIST_ID)],
     updateEnabled: true,
   };
+
+  // Conditionally add UTM parameters if isCampaign is true
+  if (isCampaign) {
+    payload.attributes.UTM_SOURCE = utm_source;
+    payload.attributes.UTM_MEDIUM = utm_medium;
+    payload.attributes.UTM_CAMPAIGN = utm_campaign;
+    payload.attributes.UTM_TERM = utm_term;
+    payload.attributes.UTM_CONTENT = utm_content;
+  }
 
   try {
     const response = await fetch(BREVO_URL, {

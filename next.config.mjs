@@ -17,7 +17,7 @@ const nextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'another-domain.com',
+        hostname: 'cdn.admi.africa',
         port: '',
         pathname: '/**',
       },

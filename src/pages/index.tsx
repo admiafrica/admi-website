@@ -113,7 +113,7 @@ export default function HomePage() {
     fetchFeaturedNews();
     fetchFeaturedResource();
     fetchFeaturedAward();
-  }, [fetchCourses, fetchContent, fetchFeaturedNews, fetchFeaturedResource]);
+  }, [fetchCourses, fetchContent, fetchFeaturedNews, fetchFeaturedResource, fetchFeaturedAward]);
 
   return (
     <MainLayout footerBgColor="#E6F608">
