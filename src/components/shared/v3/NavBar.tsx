@@ -1,4 +1,6 @@
+import { useState, useEffect } from 'react';
 import { Group, Text, Menu } from '@mantine/core';
+import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
@@ -7,7 +9,6 @@ import { IconMenu } from '@tabler/icons-react';
 
 import IconLogoLight from '@/assets/logo-light.svg';
 import { Button } from '@/components/ui';
-import { usePathname } from 'next/navigation';
 
 type Props = {
   mode: string;
@@ -18,10 +19,18 @@ export default function NavBar({ mode, isMinimal = false }: Props) {
   const router = useRouter();
   const isSmallScreen = useMediaQuery('(max-width: 1366px)');
   const pathname = usePathname();
+  const [hiddenCTA, setHiddenCTA] = useState<boolean>(false);
 
   const navigateToPage = (pagePath: string) => {
     router.push(`/${pagePath}`);
   };
+
+  useEffect(() => {
+    if (pathname) {
+      const isHidden = pathname === '/enquiry' || pathname.startsWith('/campaigns');
+      setHiddenCTA(isHidden);
+    }
+  }, [pathname]);
 
   const getMenuWideScreen = (mode: string) => {
     return (
@@ -121,7 +130,7 @@ export default function NavBar({ mode, isMinimal = false }: Props) {
             {mode == 'dark' && <Image src={IconLogoLight} width={80} alt="Africa Digital Media Institute" />}
           </Link>
           <div className="grow"></div>
-          {pathname != '/enquiry' && (
+          {!hiddenCTA && (
             <div className="my-auto">
               <Button size="lg" backgroundColor="admiRed" label="Get In Touch" />
             </div>
