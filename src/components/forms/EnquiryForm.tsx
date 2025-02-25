@@ -9,7 +9,11 @@ import 'react-phone-input-2/lib/style.css';
 
 import { IconAsterisk } from '@tabler/icons-react';
 
-export default function EnquiryForm() {
+type Props = {
+  isCampaign?: boolean;
+};
+
+export default function EnquiryForm({ isCampaign = false }: Props) {
   const router = useRouter();
   const [courses, setCourses] = useState<any[]>([]);
   const [countryCode, setCountryCode] = useState('254'); // State for the phone number
@@ -83,6 +87,16 @@ export default function EnquiryForm() {
         <Text fw={600}>Kindly provide the details below</Text>
       </div>
       <form onSubmit={form.onSubmit((values) => handleSubmit(values))}>
+        {/* Conditionally render hidden UTM fields if isCampaign is true */}
+        {isCampaign && (
+          <>
+            <input id="utm_source" type="hidden" name="utm_source" value=" " />
+            <input id="utm_medium" type="hidden" name="utm_medium" value=" " />
+            <input id="utm_campaign" type="hidden" name="utm_campaign" value=" " />
+            <input id="utm_term" type="hidden" name="utm_term" value=" " />
+            <input id="utm_content" type="hidden" name="utm_content" value=" " />
+          </>
+        )}
         <Select
           label={
             <div className="flex pl-2">

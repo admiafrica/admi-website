@@ -5,7 +5,18 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(405).json({ error: 'Method Not Allowed' });
   }
 
-  const { firstName, lastName, email, phone, courseName } = req.body;
+  const {
+    firstName,
+    lastName,
+    email,
+    phone,
+    courseName,
+    utm_source = '',
+    utm_medium = '',
+    utm_campaign = '',
+    utm_term = '',
+    utm_content = '',
+  } = req.body;
 
   if (!email || !firstName || !lastName || !phone || !courseName) {
     return res.status(400).json({ error: 'All fields are required.' });
@@ -17,13 +28,30 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const BREVO_URL = 'https://api.brevo.com/v3/contacts';
 
   // NOTE: Phone must be prefixed with country code e.g. +254792111222
-  const payload = {
+  // const payload = {
+  //   attributes: {
+  //     FIRSTNAME: firstName,
+  //     LASTNAME: lastName,
+  //     EMAIL: email,
+  //     SMS: phone,
+  //     PREFERRED_COURSE: courseName,
+  //   },
+  //   listIds: [parseInt(LIST_ID)],
+  //   updateEnabled: true,
+  // };
+
+  const payloadWithUTM = {
     attributes: {
       FIRSTNAME: firstName,
       LASTNAME: lastName,
       EMAIL: email,
       SMS: phone,
       PREFERRED_COURSE: courseName,
+      UTM_SOURCE: utm_source,
+      UTM_MEDIUM: utm_medium,
+      UTM_CAMPAIGN: utm_campaign,
+      UTM_TERM: utm_term,
+      UTM_CONTENT: utm_content,
     },
     listIds: [parseInt(LIST_ID)],
     updateEnabled: true,
@@ -37,7 +65,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         'content-type': 'application/json',
         'api-key': API_KEY,
       },
-      body: JSON.stringify(payload),
+      body: JSON.stringify(payloadWithUTM),
     });
 
     if (!response.ok) {

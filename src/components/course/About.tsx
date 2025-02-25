@@ -1,4 +1,4 @@
-import { Card } from '@mantine/core';
+import { Box, Card } from '@mantine/core';
 import { EnquiryForm } from '../forms';
 import { ParagraphContentful, Title } from '../ui';
 import { CourseVideoCard } from '../cards';
@@ -19,23 +19,25 @@ export default function CourseAbout(props: Props) {
       <div className="mx-auto w-full max-w-screen-xl px-4 2xl:px-0">
         <div className="flex w-full flex-col sm:flex-row">
           {props.isCampaign && (
-            <>
-              <div className="mt-24 flex flex-col sm:w-1/2">
+            <Box className="flex w-full flex-col sm:flex-row">
+              <div className="mt-24 flex flex-col sm:w-1/2 sm:pr-4">
                 <Title label="About this course" size={isMobile ? '24px' : '36px'} color="admiRed" />
 
                 <ParagraphContentful className="mt-1 text-lg" fontFamily="font-nexa">
                   {props.description}
                 </ParagraphContentful>
               </div>
-              <div className="top-[36vh] z-10 h-fit w-full transform sm:absolute sm:left-[80%] sm:w-[48em] sm:-translate-x-1/2">
-                <Card padding="lg" radius="md" className="mx-auto mt-8 w-full sm:w-[64%]" bg={'#F5FFFD'}>
-                  <EnquiryForm />
-                </Card>
-              </div>
-            </>
+              <Box className="relative sm:w-1/2">
+                <div className="top-[-180px] z-10 h-fit w-full transform sm:absolute sm:left-1/2 sm:-translate-x-1/2">
+                  <Card padding="lg" radius="md" className="ml-auto mr-0 mt-8 sm:w-[72%]" bg={'#F5FFFD'}>
+                    <EnquiryForm isCampaign />
+                  </Card>
+                </div>
+              </Box>
+            </Box>
           )}
           {!props.isCampaign && (
-            <>
+            <Box className="sm:w-1/2">
               <div className="relative flex flex-col pt-32 sm:w-1/2">
                 <div className="font-nexa text-admiRed">
                   <Title label="About this course" />
@@ -51,7 +53,7 @@ export default function CourseAbout(props: Props) {
                   educationalLevel={props.educationalLevel}
                 />
               </div>
-            </>
+            </Box>
           )}
         </div>
       </div>

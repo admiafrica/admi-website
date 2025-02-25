@@ -45,7 +45,13 @@ export default function CourseHero(props: Props) {
 
       {/* Floating Card */}
       <div className={props.isCampaign ? 'w-full px-1 sm:w-fit' : 'w-full px-1'}>
-        <div className="absolute left-1/2 top-[400px] z-20 w-full max-w-screen-xl -translate-x-1/2 transform px-4 sm:top-[45vh] 2xl:px-0">
+        <div
+          className={
+            props.isCampaign
+              ? 'absolute left-1/2 top-[400px] z-20 w-full max-w-screen-xl -translate-x-1/2 transform px-4 sm:top-[45vh] xl:px-0'
+              : 'absolute left-1/2 top-[400px] z-20 w-full max-w-screen-xl -translate-x-1/2 transform px-4 sm:top-[45vh] xl:px-0'
+          }
+        >
           <CourseSummaryCard
             programType={props.programType}
             creditHours={props.creditHours}
