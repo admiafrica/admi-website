@@ -37,7 +37,7 @@ export default function CourseAbout(props: Props) {
             </Box>
           )}
           {!props.isCampaign && (
-            <Box className="sm:w-1/2">
+            <>
               <div className="relative flex flex-col pt-32 sm:w-1/2">
                 <div className="font-nexa text-admiRed">
                   <Title label="About this course" />
@@ -53,7 +53,7 @@ export default function CourseAbout(props: Props) {
                   educationalLevel={props.educationalLevel}
                 />
               </div>
-            </Box>
+            </>
           )}
         </div>
       </div>

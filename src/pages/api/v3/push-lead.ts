@@ -6,6 +6,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   const {
+    isCampaign,
     firstName,
     lastName,
     email,
@@ -27,35 +28,26 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   const BREVO_URL = 'https://api.brevo.com/v3/contacts';
 
-  // NOTE: Phone must be prefixed with country code e.g. +254792111222
-  // const payload = {
-  //   attributes: {
-  //     FIRSTNAME: firstName,
-  //     LASTNAME: lastName,
-  //     EMAIL: email,
-  //     SMS: phone,
-  //     PREFERRED_COURSE: courseName,
-  //   },
-  //   listIds: [parseInt(LIST_ID)],
-  //   updateEnabled: true,
-  // };
-
-  const payloadWithUTM = {
+  const payload: any = {
     attributes: {
       FIRSTNAME: firstName,
       LASTNAME: lastName,
       EMAIL: email,
       SMS: phone,
       PREFERRED_COURSE: courseName,
-      UTM_SOURCE: utm_source,
-      UTM_MEDIUM: utm_medium,
-      UTM_CAMPAIGN: utm_campaign,
-      UTM_TERM: utm_term,
-      UTM_CONTENT: utm_content,
     },
     listIds: [parseInt(LIST_ID)],
     updateEnabled: true,
   };
+
+  // Conditionally add UTM parameters if isCampaign is true
+  if (isCampaign) {
+    payload.attributes.UTM_SOURCE = utm_source;
+    payload.attributes.UTM_MEDIUM = utm_medium;
+    payload.attributes.UTM_CAMPAIGN = utm_campaign;
+    payload.attributes.UTM_TERM = utm_term;
+    payload.attributes.UTM_CONTENT = utm_content;
+  }
 
   try {
     const response = await fetch(BREVO_URL, {
@@ -65,7 +57,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         'content-type': 'application/json',
         'api-key': API_KEY,
       },
-      body: JSON.stringify(payloadWithUTM),
+      body: JSON.stringify(payload),
     });
 
     if (!response.ok) {
