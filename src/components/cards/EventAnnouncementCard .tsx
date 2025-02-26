@@ -35,7 +35,7 @@ export default function EventAnnouncementCard(props: Props) {
       style={{ borderRadius: 8 }}
     >
       <Modal radius="lg" opened={opened} onClose={close} size={isMobile ? '100%' : '600px'}>
-        <EventReservationForm />
+        <EventReservationForm close={close} />
       </Modal>
       <motion.div
         className="flex h-full w-full flex-col sm:flex-row"

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Alert, Box, Group, Text, TextInput } from '@mantine/core';
+import { Alert, Box, Text, TextInput } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { Button, Paragraph, Title } from '../ui';
 import PhoneInput from 'react-phone-input-2';
@@ -7,7 +7,11 @@ import 'react-phone-input-2/lib/style.css';
 
 import { IconAsterisk } from '@tabler/icons-react';
 
-export default function EventReservationForm() {
+type Props = {
+  close: () => void;
+};
+
+export default function EventReservationForm({ close }: Props) {
   const [countryCode, setCountryCode] = useState('254'); // State for the phone number
   const [alert, setAlert] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
 
@@ -146,9 +150,14 @@ export default function EventReservationForm() {
             />
           </Box>
         </Box>
-        <Group justify="flex-end" mt="2em" className="w-full">
-          <Button size="lg" backgroundColor="admiRed" label="Submit" type="submit" />
-        </Group>
+        <Box className="flex-end flex justify-between" mt="2em">
+          <Box className="w-fit sm:w-[160px]">
+            <Button size="lg" backgroundColor="white" label="Cancel" color="admiRed" onClick={close} />
+          </Box>
+          <Box className="w-fit sm:w-[160px]">
+            <Button size="lg" backgroundColor="admiRed" label="Submit" type="submit" />
+          </Box>
+        </Box>
       </form>
       {alert && (
         <Alert
