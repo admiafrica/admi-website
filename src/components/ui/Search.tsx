@@ -25,9 +25,9 @@ export default function SearchDropdown({ items, buttonLabel, placeholder, destin
   };
 
   const handleItemSearch = () => {
-    const course = items.find((item) => item.fields.name == selectedItem);
-    if (course) {
-      router.push(`/${destination}/${course.fields.slug}`);
+    const item = items.find((item) => item.fields.name == selectedItem || item.fields.title == selectedItem);
+    if (item) {
+      router.push(`/${destination}/${item.fields.slug}`);
     }
     return;
   };
@@ -57,7 +57,7 @@ export default function SearchDropdown({ items, buttonLabel, placeholder, destin
                 {value.option.value}
               </Paragraph>
             )}
-            data={items.map((item) => item.fields.name)}
+            data={items.map((item) => item.fields.name || item.fields.title)}
             value={selectedItem}
             onChange={handleItemSelect}
             rightSection={

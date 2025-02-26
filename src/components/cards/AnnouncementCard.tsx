@@ -13,21 +13,13 @@ type Props = {
   featured?: boolean;
   bgColor?: string;
   arrowColor?: string;
+  textColor?: string;
   image?: any;
   destination: string;
 };
 
 export default function AnnouncementCard(props: Props) {
   const router = useRouter();
-
-  // const handleCardClick = () => {
-  //   if (props.announcement.category == 'News') {
-  //     router.push(`/news-events/news/${props.announcement.slug}`);
-  //   }
-  //   if (props.announcement.category == 'Resources') {
-  //     router.push(`/resources/${props.announcement.slug}`);
-  //   }
-  // };
 
   const handleCardClick = () => {
     router.push(`/${props.destination}/${props.announcement.slug}`);
@@ -59,11 +51,16 @@ export default function AnnouncementCard(props: Props) {
             )}
             {props.title && <Title label={props.title} color="black" />}
 
-            <Paragraph size="26px" fontFamily="font-nexa" fontWeight={400}>
+            <Paragraph
+              size="26px"
+              fontFamily="font-nexa"
+              fontWeight={400}
+              className={`text-${props.textColor || 'black'}`}
+            >
               {props.announcement.title}
             </Paragraph>
 
-            <Paragraph size="18px" className="grow py-6" fontFamily="font-nexa">
+            <Paragraph size="18px" className={`grow py-6 text-${props.textColor || 'black'}`} fontFamily="font-nexa">
               {props.announcement.summary}
             </Paragraph>
 
