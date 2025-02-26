@@ -10,7 +10,7 @@ type LayoutProps = {
   children: React.ReactNode;
 };
 
-export function CampaignLayout({ children, client }: LayoutProps) {
+export function CampaignLayout({ children }: LayoutProps) {
   const pinned = useHeadroom({ fixedAt: 120 });
   return (
     <>

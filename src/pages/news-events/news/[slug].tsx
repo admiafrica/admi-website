@@ -66,7 +66,7 @@ export default function NewsArticlePage() {
           <Tabs.Panel value="news">
             <Box className="mx-auto flex w-full max-w-screen-xl flex-col-reverse px-4 py-4 sm:flex-row sm:py-16 xl:px-0">
               <Box className="sm:w-[200px]">
-                <SocialShare item={article}/>
+                <SocialShare item={article} />
               </Box>
               {article && (
                 <Card className="mb-6 min-h-[80vh] w-full sm:ml-8" withBorder>

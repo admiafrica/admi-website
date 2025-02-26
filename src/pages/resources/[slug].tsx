@@ -1,17 +1,11 @@
 import { useCallback, useEffect, useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { Box, Card, Divider } from '@mantine/core';
+import { Box, Card } from '@mantine/core';
 
 import { MainLayout } from '@/layouts/v3/MainLayout';
 import { PageSEO, SocialShare } from '@/components/shared/v3';
 import { Paragraph, ParagraphContentful } from '@/components/ui';
-
-import IconFacebook from '@/assets/icons/facebook-social.svg';
-import IconWhatsapp from '@/assets/icons/whatsapp-social.svg';
-import IconCopyContent from '@/assets/icons/copy-content.svg';
-import IconShare from '@/assets/icons/share.svg';
-import IconLinkedIn from '@/assets/icons/linkedin-social.svg';
 import { useIsMobile } from '@/hooks/useIsMobile';
 
 export default function ResourceArticlePage() {
@@ -42,7 +36,7 @@ export default function ResourceArticlePage() {
       <Box className="w-full">
         <Box className="mx-auto flex w-full max-w-screen-xl flex-col-reverse px-4 py-4 sm:flex-row sm:py-16 xl:px-0">
           <Box className="sm:w-[200px]">
-          <SocialShare item={article}/>
+            <SocialShare item={article} />
           </Box>
           {article && (
             <Card className="mb-6 min-h-[80vh] w-full sm:ml-8" withBorder>
