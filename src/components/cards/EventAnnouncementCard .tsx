@@ -1,5 +1,5 @@
 import React from 'react';
-import { Anchor, Box, Card, Divider, Pill } from '@mantine/core';
+import { Anchor, Box, Card, Divider, Modal, Pill } from '@mantine/core';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 
@@ -10,6 +10,8 @@ import { formatDate } from '@/utils';
 import IconLocation from '@/assets/icons/map-marker-3-black.svg';
 import IconCall from '@/assets/icons/call-black.svg';
 import IconStopwatch from '@/assets/icons/stopwatch-black.svg';
+import { useDisclosure } from '@mantine/hooks';
+import { EventReservationForm } from '../forms';
 
 type Props = {
   announcement: any;
@@ -23,6 +25,7 @@ type Props = {
 
 export default function EventAnnouncementCard(props: Props) {
   const isMobile = useIsMobile();
+  const [opened, { open, close }] = useDisclosure(false);
   const googleMapsUrl = `https://www.google.com/maps?q=${props.announcement.location.lat},${props.announcement.location.lon}`;
 
   return (
@@ -31,6 +34,9 @@ export default function EventAnnouncementCard(props: Props) {
       bg={props.bgColor || 'white'}
       style={{ borderRadius: 8 }}
     >
+      <Modal radius="lg" opened={opened} onClose={close} size={isMobile ? '100%' : '600px'}>
+        <EventReservationForm />
+      </Modal>
       <motion.div
         className="flex h-full w-full flex-col sm:flex-row"
         whileHover="hover" // Shared hover animation key
@@ -123,9 +129,8 @@ export default function EventAnnouncementCard(props: Props) {
                 />
               )}
             </Box>
-            <Anchor href={props.announcement.link} target="_blank">
-              <Button size="lg" backgroundColor="admiRed" label="Make Reservation" />
-            </Anchor>
+
+            <Button size="lg" backgroundColor="admiRed" label="Make Reservation" onClick={open} />
           </Box>
         </Box>
       </motion.div>
