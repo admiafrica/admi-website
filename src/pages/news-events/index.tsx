@@ -1,50 +1,14 @@
 import { Box, Tabs } from '@mantine/core';
-
 import { PageSEO } from '@/components/shared/v3';
 import { MainLayout } from '@/layouts/v3/MainLayout';
 import { AnnouncementCard, EmptyCard, EventAnnouncementCard, NewsItemCard } from '@/components/cards';
 
 import ImageNews from '@/assets/images/featured-news.svg';
-import { useCallback, useEffect, useState } from 'react';
 import IconDiary from '@/assets/icons/Diary';
 import { IContentfulEntry } from '@/types';
 import { Paragraph } from '@/components/ui';
 
-export default function NewsEventsLandingPage() {
-  const [news, setNews] = useState<Array<any>>([]);
-  const [events, setEvents] = useState<Array<any>>([]);
-  const [featuredNews, setFeaturedNews] = useState<IContentfulEntry>();
-  const [featuredEvent, setFeaturedEvent] = useState<IContentfulEntry>();
-
-  const fetchCourses = useCallback(async () => {
-    try {
-      const response = await fetch(`/api/v3/news`);
-      const data = await response.json();
-      setNews(data);
-      const featuredArticle = data.find((article: IContentfulEntry) => article.fields.featured);
-      setFeaturedNews(featuredArticle);
-    } catch (error) {
-      console.log('Error fetching news:', error);
-    }
-  }, []);
-
-  const fetchEvents = useCallback(async () => {
-    try {
-      const response = await fetch(`/api/v3/events`);
-      const data = await response.json();
-      setEvents(data);
-      // const result = data.find((event: IContentfulEntry) => event.fields.featured);
-      setFeaturedEvent(data[0]);
-    } catch (error) {
-      console.log('Error fetching events:', error);
-    }
-  }, []);
-
-  useEffect(() => {
-    fetchCourses();
-    fetchEvents();
-  }, [fetchCourses, fetchEvents]);
-
+export default function NewsEventsLandingPage({ news, events, featuredNews, featuredEvent }: any) {
   return (
     <MainLayout footerBgColor="white">
       <PageSEO title="News & Events" />
@@ -92,8 +56,8 @@ export default function NewsEventsLandingPage() {
               {/* NEWS */}
               <Box className="mx-auto flex w-full max-w-screen-xl flex-wrap justify-between pl-4 xl:px-0">
                 {news
-                  .filter((article) => !article.fields.featured)
-                  .map((article) => (
+                  .filter((article: IContentfulEntry) => !article.fields.featured)
+                  .map((article: IContentfulEntry) => (
                     <Box key={article.sys.id} className="mb-4 h-[400px] w-[33%]">
                       <NewsItemCard item={article} />
                     </Box>
@@ -101,10 +65,10 @@ export default function NewsEventsLandingPage() {
               </Box>
             </Box>
           </Tabs.Panel>
+
           <Tabs.Panel value="events" w={'100%'} h={'100%'} className="flex items-center justify-center">
             <Box className="mx-auto w-full">
-              {/* HEADLINE */}
-              {events.length == 0 ? (
+              {events.length === 0 ? (
                 <Box className="flex h-full w-full justify-center pt-[10vh]">
                   <EmptyCard
                     title="No events available!"
@@ -126,18 +90,6 @@ export default function NewsEventsLandingPage() {
                       </Box>
                     </Box>
                   )}
-                  {/* EVENTS */}
-                  {/* <Box className="relative mx-auto flex w-full max-w-screen-xl flex-wrap justify-between pl-4 xl:px-0">
-                    <Box className="w-full pt-[240px]">
-                      {events
-                        .filter((event) => !event.fields.featured)
-                        .map((event) => (
-                          <Box key={event.sys.id} className="mb-4 h-[400px] w-fit">
-                            <NewsItemCard item={event} isEvent />
-                          </Box>
-                        ))}
-                    </Box>
-                  </Box> */}
                 </Box>
               )}
             </Box>
@@ -146,4 +98,29 @@ export default function NewsEventsLandingPage() {
       </Box>
     </MainLayout>
   );
+}
+
+export async function getServerSideProps() {
+  try {
+    const [newsRes, eventsRes] = await Promise.all([
+      fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v3/news`),
+      fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v3/events`),
+    ]);
+
+    if (!newsRes.ok || !eventsRes.ok) throw new Error('Failed to fetch data');
+
+    const [news, events] = await Promise.all([newsRes.json(), eventsRes.json()]);
+
+    return {
+      props: {
+        news,
+        events,
+        featuredNews: news.find((article: IContentfulEntry) => article.fields.featured) || null,
+        featuredEvent: events[0] || null,
+      },
+    };
+  } catch (error) {
+    console.error('Error fetching news & events:', error);
+    return { props: { news: [], events: [], featuredNews: null, featuredEvent: null } };
+  }
 }

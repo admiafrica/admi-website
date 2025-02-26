@@ -15,7 +15,11 @@ export default function CourseAbout(props: Props) {
   const isMobile = useIsMobile();
 
   return (
-    <div className={isMobile ? 'w-full pb-16 pt-12 sm:pt-0' : 'w-full pb-16 pt-48 sm:pt-0'}>
+    <div
+      className={
+        isMobile ? `w-full pb-16 pt-${props.isCampaign ? '[56em]' : '20'} sm:pt-0` : 'w-full pb-16 pt-48 sm:pt-0'
+      }
+    >
       <div className="mx-auto w-full max-w-screen-xl px-4 2xl:px-0">
         <div className="flex w-full flex-col sm:flex-row">
           {props.isCampaign && (
@@ -27,13 +31,6 @@ export default function CourseAbout(props: Props) {
                   {props.description}
                 </ParagraphContentful>
               </div>
-              <Box className="relative sm:w-1/2">
-                <div className="top-[-180px] z-10 h-fit w-full transform sm:absolute sm:left-1/2 sm:-translate-x-1/2">
-                  <Card padding="lg" radius="md" className="ml-auto mr-0 mt-8 sm:w-[72%]" bg={'#F5FFFD'}>
-                    <EnquiryForm isCampaign />
-                  </Card>
-                </div>
-              </Box>
             </Box>
           )}
           {!props.isCampaign && (

@@ -1,4 +1,3 @@
-import { useCallback, useEffect, useState } from 'react';
 import Image from 'next/image';
 import { Box } from '@mantine/core';
 
@@ -12,26 +11,13 @@ import ImageNews from '@/assets/images/featured-news.svg';
 import IconBgImageYellow from '@/assets/icons/ellipse-yellow.svg';
 import IconBgImageRed from '@/assets/icons/ellipse-red.svg';
 
-export default function ResourcesPage() {
-  const [resources, setResources] = useState<Array<any>>([]);
-  const [featured, setFeatured] = useState<IContentfulEntry>();
-
-  const fetchResources = useCallback(async () => {
-    try {
-      const response = await fetch(`/api/v3/resources`);
-      const data = await response.json();
-      setResources(data);
-      const featuredArticle = data.find((article: IContentfulEntry) => article.fields.featured);
-      setFeatured(featuredArticle);
-    } catch (error) {
-      console.log('Error fetching resources:', error);
-    }
-  }, []);
-
-  useEffect(() => {
-    fetchResources();
-  }, [fetchResources]);
-
+export default function ResourcesPage({
+  resources,
+  featured,
+}: {
+  resources: IContentfulEntry[];
+  featured: IContentfulEntry | null;
+}) {
   return (
     <MainLayout footerBgColor="white">
       <PageSEO title="Resources" />
@@ -54,10 +40,11 @@ export default function ResourcesPage() {
               destination="resources"
               items={resources}
               buttonLabel="Search"
-              placeholder={'Search for Resource'}
+              placeholder="Search for Resource"
             />
           </div>
         </div>
+
         <Box className="relative w-full" bg={'#F5FFFD'}>
           <Box className="mx-auto w-full max-w-screen-xl">
             {/* HEADLINE */}
@@ -88,4 +75,24 @@ export default function ResourcesPage() {
       </Box>
     </MainLayout>
   );
+}
+
+export async function getServerSideProps(context: any) {
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v3/resources`);
+
+    if (!res.ok) throw new Error('Failed to fetch resources');
+
+    const resources: IContentfulEntry[] = await res.json();
+
+    return {
+      props: {
+        resources,
+        featured: resources.find((article) => article.fields.featured) || null,
+      },
+    };
+  } catch (error) {
+    console.error('Error fetching resources:', error);
+    return { props: { resources: [], featured: null } };
+  }
 }

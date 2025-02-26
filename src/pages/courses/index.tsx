@@ -1,4 +1,3 @@
-import { useCallback, useEffect, useState } from 'react';
 import Image from 'next/image';
 import { Box, Text, Select } from '@mantine/core';
 
@@ -10,87 +9,43 @@ import { useIsMobile } from '@/hooks/useIsMobile';
 
 import IconBgImageYellow from '@/assets/icons/ellipse-yellow.svg';
 import IconBgImageRed from '@/assets/icons/ellipse-red.svg';
+import { useEffect, useState } from 'react';
 
-export default function CoursesPage() {
+export default function CoursesPage({
+  programs,
+  courses,
+  filterOptions,
+}: {
+  programs: any[];
+  courses: any[];
+  filterOptions: string[];
+}) {
   const isMobile = useIsMobile();
-  const [programs, setPrograms] = useState<any[]>([]);
-  const [filteredPrograms, setFilteredPrograms] = useState<any[]>([]);
-  const [filterOptions, setFilterOptions] = useState<string[]>([]);
   const [activeOption, setActiveOption] = useState<string>('All Courses');
-  const [courses, setCourses] = useState<any[]>([]);
-
-  const fetchCoursePrograms = useCallback(async () => {
-    try {
-      const response = await fetch(`/api/v3/course-programs`);
-      const data = await response.json();
-      const sortedPrograms = data.toReversed();
-      setPrograms(sortedPrograms);
-      setFilteredPrograms(sortedPrograms);
-      setFilterOptions(['All Courses', ...formatProgramOptions(programs)]);
-    } catch (error) {
-      console.log('Error fetching programs:', error);
-    }
-  }, [programs]);
-
-  const fetchCourses = useCallback(async () => {
-    try {
-      const response = await fetch(`/api/v3/courses`);
-      const data = await response.json();
-      setCourses(data);
-    } catch (error) {
-      console.log('Error fetching courses:', error);
-    }
-  }, []);
-
-  const filterProgramCourses = (programType: string, courses: any[]) => {
-    const programCourses = courses.filter((course) => course.fields.programType.fields.name == programType);
-    return programCourses;
-  };
-
-  const formatProgramOptions = (programs: any[]) => {
-    const programNames = programs.map((program) => program.fields.name);
-    return programNames;
-  };
-
-  const updateFilterOption = (value: string) => {
-    setActiveOption(value || 'All Courses');
-  };
+  const [filteredPrograms, setFilteredPrograms] = useState<any[]>(programs);
 
   useEffect(() => {
-    fetchCoursePrograms();
-    fetchCourses();
-  }, []);
-
-  useEffect(() => {
-    let result = [];
-    if (activeOption !== 'All Courses') {
-      result = programs.filter((program) => program.fields.name.includes(activeOption));
-    } else {
-      result = programs;
-    }
-    setFilteredPrograms(result);
+    setFilteredPrograms(
+      activeOption !== 'All Courses'
+        ? programs.filter((program) => program.fields.name.includes(activeOption))
+        : programs
+    );
   }, [activeOption, programs]);
-
-  useEffect(() => {
-    if (programs) {
-      setFilterOptions(['All Courses', ...formatProgramOptions(programs)]);
-    }
-  }, [programs]);
 
   return (
     <MainLayout footerBgColor="#F5FFFD">
-      <PageSEO title="Courses" description="Explore our variety of courses across various topics that suits you!" />
+      <PageSEO title="Courses" description="Explore our variety of courses across various topics that suit you!" />
       <div className="h-[16em] w-full bg-[#002A23]">
         {/* BACKGROUND IMAGES */}
         <div className="absolute left-[62%] top-[20vh] z-0 h-fit w-full -translate-x-1/2 transform">
           <div className="flex w-full justify-end pr-[10%]">
-            <Image src={IconBgImageYellow} alt={'background image'} />
+            <Image src={IconBgImageYellow} alt="background image" />
           </div>
         </div>
 
         <div className="absolute left-1/2 top-[5vh] z-0 h-fit w-full -translate-x-1/2 transform">
           <div className="flex w-full">
-            <Image src={IconBgImageRed} alt={'background image'} />
+            <Image src={IconBgImageRed} alt="background image" />
           </div>
         </div>
         <div className="relative z-10 mx-auto w-full max-w-screen-lg px-4 pt-24 2xl:px-0">
@@ -108,7 +63,7 @@ export default function CoursesPage() {
             <div className="flex grow flex-col pb-4">
               <Title label="Courses" size="24px" color="black" />
               <Paragraph fontFamily="font-nexa" className="py-2">
-                Explore our variety of courses across various topics that suits you!
+                Explore our variety of courses across various topics that suit you!
               </Paragraph>
             </div>
             <div className="flex items-center bg-white pl-4 font-proxima">
@@ -118,8 +73,8 @@ export default function CoursesPage() {
                 placeholder="Select Program"
                 allowDeselect={false}
                 nothingFoundMessage="No programs found"
-                data={[...filterOptions]}
-                onChange={(value) => updateFilterOption(value as string)}
+                data={filterOptions}
+                onChange={(value) => setActiveOption(value as string)}
                 renderOption={(value) => (
                   <div className="font-proxima">
                     <Text size="16px">{value.option.value}</Text>
@@ -130,15 +85,45 @@ export default function CoursesPage() {
           </div>
         </div>
         <div className="relative mx-auto min-h-[60vh] w-full max-w-screen-xl px-4 2xl:px-0">
-          {filteredPrograms &&
-            courses &&
-            filteredPrograms.map((program) => (
-              <Box key={program.sys.id}>
-                <ProgramListItemCard program={program} courses={courses} filterProgramCourses={filterProgramCourses} />
-              </Box>
-            ))}
+          {filteredPrograms.map((program) => (
+            <Box key={program.sys.id}>
+              <ProgramListItemCard
+                program={program}
+                courses={courses}
+                filterProgramCourses={(programType: string, courses: any[]) =>
+                  courses.filter((course) => course.fields.programType.fields.name === programType)
+                }
+              />
+            </Box>
+          ))}
         </div>
       </div>
     </MainLayout>
   );
+}
+
+export async function getServerSideProps() {
+  try {
+    const [programsRes, coursesRes] = await Promise.all([
+      fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v3/course-programs`),
+      fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v3/courses`),
+    ]);
+
+    if (!programsRes.ok || !coursesRes.ok) throw new Error('Failed to fetch data');
+
+    const programs = await programsRes.json();
+    const courses = await coursesRes.json();
+    const sortedPrograms = programs.reverse();
+
+    return {
+      props: {
+        programs: sortedPrograms,
+        courses,
+        filterOptions: ['All Courses', ...sortedPrograms.map((program: any) => program.fields.name)],
+      },
+    };
+  } catch (error) {
+    console.error('Error fetching courses:', error);
+    return { props: { programs: [], courses: [], filterOptions: ['All Courses'] } };
+  }
 }
