@@ -126,7 +126,7 @@ export default function AlumniPage() {
         {/* ALUMNI */}
         <Box className="1xl:px-0 w-full px-4 py-8" bg={'#002A23'}>
           <Box className="mx-auto w-full max-w-screen-xl">
-            <Divider pb={32} />
+            <Divider pb={32} opacity={'30%'}/>
             <Box className="flex w-full flex-col">
               <Title label="Alumni Profiles" color="white" />
               <Paragraph className="text-white" fontFamily="font-nexa">

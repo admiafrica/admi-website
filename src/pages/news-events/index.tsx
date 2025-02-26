@@ -2,7 +2,7 @@ import { Box, Tabs } from '@mantine/core';
 
 import { PageSEO } from '@/components/shared/v3';
 import { MainLayout } from '@/layouts/v3/MainLayout';
-import { AnnouncementCard, EmptyCard, NewsItemCard } from '@/components/cards';
+import { AnnouncementCard, EmptyCard, EventAnnouncementCard, NewsItemCard } from '@/components/cards';
 
 import ImageNews from '@/assets/images/featured-news.svg';
 import { useCallback, useEffect, useState } from 'react';
@@ -12,7 +12,9 @@ import { Paragraph } from '@/components/ui';
 
 export default function NewsEventsLandingPage() {
   const [news, setNews] = useState<Array<any>>([]);
-  const [featured, setFeatured] = useState<IContentfulEntry>();
+  const [events, setEvents] = useState<Array<any>>([]);
+  const [featuredNews, setFeaturedNews] = useState<IContentfulEntry>();
+  const [featuredEvent, setFeaturedEvent] = useState<IContentfulEntry>();
 
   const fetchCourses = useCallback(async () => {
     try {
@@ -20,15 +22,28 @@ export default function NewsEventsLandingPage() {
       const data = await response.json();
       setNews(data);
       const featuredArticle = data.find((article: IContentfulEntry) => article.fields.featured);
-      setFeatured(featuredArticle);
+      setFeaturedNews(featuredArticle);
     } catch (error) {
       console.log('Error fetching news:', error);
     }
   }, []);
 
+  const fetchEvents = useCallback(async () => {
+    try {
+      const response = await fetch(`/api/v3/events`);
+      const data = await response.json();
+      setEvents(data);
+      // const result = data.find((event: IContentfulEntry) => event.fields.featured);
+      setFeaturedEvent(data[0]);
+    } catch (error) {
+      console.log('Error fetching events:', error);
+    }
+  }, []);
+
   useEffect(() => {
     fetchCourses();
-  }, [fetchCourses]);
+    fetchEvents();
+  }, [fetchCourses, fetchEvents]);
 
   return (
     <MainLayout footerBgColor="white">
@@ -64,10 +79,10 @@ export default function NewsEventsLandingPage() {
             <Box className="mx-auto w-full max-w-screen-xl">
               {/* HEADLINE */}
               <Box className="w-full px-4 py-16 xl:px-0">
-                {featured && (
+                {featuredNews && (
                   <AnnouncementCard
                     destination="news-events/news"
-                    announcement={featured.fields}
+                    announcement={featuredNews.fields}
                     bgColor="admiShamrok"
                     image={ImageNews}
                     featured
@@ -86,11 +101,39 @@ export default function NewsEventsLandingPage() {
               </Box>
             </Box>
           </Tabs.Panel>
-          <Tabs.Panel value="events" w={'100%'} h={'80vh'} className="flex items-center justify-center px-4">
-            <EmptyCard
-              title="No events available!"
-              subtext="Hello there! Seems like we currently don’t have any event ongoing. Kindly check again"
-            />
+          <Tabs.Panel value="events" w={'100%'} h={'100%'} className="flex items-center justify-center">
+            <Box className="mx-auto w-full">
+              {/* HEADLINE */}
+              <div className="h-[450px] w-full bg-[#002A23]"></div>
+              {featuredEvent && (
+                <Box className="w-full" bg={'#F5FFFD'}>
+                  <Box className="absolute left-1/2 top-[300px] z-0 mx-auto h-fit w-full max-w-screen-xl -translate-x-1/2 transform px-4 py-16 xl:px-0">
+                    <EventAnnouncementCard
+                      announcement={featuredEvent.fields}
+                      bgColor="linear-gradient(0deg, #FEFFF5, #FEFFF5),linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 0) 80%, rgba(0, 0, 0, 0.1) 100%)"
+                      image={ImageNews}
+                      featured
+                    />
+                  </Box>
+                </Box>
+              )}
+              {/* EVENTS */}
+              <Box className="relative mx-auto flex w-full max-w-screen-xl flex-wrap justify-between pl-4 xl:px-0">
+                {events.length == 0 && (
+                  <EmptyCard
+                    title="No events available!"
+                    subtext="Hello there! Seems like we currently don’t have any event ongoing. Kindly check again"
+                  />
+                )}
+                {events
+                  .filter((event) => !event.fields.featured)
+                  .map((event) => (
+                    <Box key={event.sys.id} className="mb-4 h-[400px]">
+                      {/* <NewsItemCard item={article} /> */}
+                    </Box>
+                  ))}
+              </Box>
+            </Box>
           </Tabs.Panel>
         </Tabs>
       </Box>
