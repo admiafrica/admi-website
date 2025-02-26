@@ -6,10 +6,11 @@ type Props = {
   backgroundColor?: string;
   onClick?: () => void;
   type?: 'button' | 'submit' | 'reset';
+  color?: string
 };
 
 export default function Button(props: Props) {
-  const { label, size, backgroundColor, onClick, type = 'button', ...rest } = props;
+  const { label, size, backgroundColor, onClick, type = 'button', color='white', ...rest } = props;
 
   return (
     <div className="w-full">
@@ -23,7 +24,7 @@ export default function Button(props: Props) {
         {...rest} // any other props
       >
         <div className="font-nexa">
-          <Text size={size} fw={900}>
+          <Text size={size} fw={900} c={color}>
             {label}
           </Text>
         </div>
