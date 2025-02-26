@@ -333,37 +333,37 @@ export const ADMI_ACADEMIC_MENTORS = [
   {
     name: 'Alfred Chomba',
     title: 'Film & TV Production',
-    linkedin: '',
+    linkedin: 'https://www.linkedin.com/in/alfred-chomba-2594155a/',
     image: ImageAlfred,
   },
   {
     name: 'Anne Wanjiku Irungu',
     title: 'Digital Marketing',
-    linkedin: '',
+    linkedin: 'https://www.linkedin.com/in/shikuanne/',
     image: ImageAnne,
   },
   {
     name: 'Arlene Ayirah',
     title: 'Digital Marketing',
-    linkedin: '',
+    linkedin: 'https://www.linkedin.com/in/arleneayirah/',
     image: ImageArlene,
   },
   {
     name: 'Barrack Bukusi',
     title: 'Entertainment Business',
-    linkedin: '',
+    linkedin: 'https://www.linkedin.com/in/barrack-bukusi-007893a1/',
     image: ImageBarrak,
   },
   {
     name: 'Benjamin Waithaka',
     title: 'Student Services',
-    linkedin: '',
+    linkedin: 'https://www.linkedin.com/in/benjamin-waithaka-8b7804a0/',
     image: ImageBenjamin,
   },
   {
     name: 'Brian Omolo',
     title: 'Graphic Design',
-    linkedin: '',
+    linkedin: 'https://www.behance.net/brianomolo',
     image: ImageBrian,
   },
   {
@@ -375,13 +375,13 @@ export const ADMI_ACADEMIC_MENTORS = [
   {
     name: 'Dorothy Lavina',
     title: 'Digtal Marketing',
-    linkedin: '',
+    linkedin: 'https://www.linkedin.com/in/dorothy-lavuna-55aa6020/',
     image: ImageDorothy,
   },
   {
     name: 'Eddy Mwazige',
     title: 'Animation',
-    linkedin: '',
+    linkedin: 'https://linktr.ee/eddyzi',
     image: ImageEddy,
   },
   {
@@ -393,13 +393,13 @@ export const ADMI_ACADEMIC_MENTORS = [
   {
     name: 'Fredrick Muendo',
     title: 'Graphic Design',
-    linkedin: '',
+    linkedin: 'https://www.linkedin.com/in/fredrick-muendo-a8366171/',
     image: ImageFredrick,
   },
   {
     name: 'Hendrick Sam',
     title: 'Music Production',
-    linkedin: '',
+    linkedin: 'https://www.linkedin.com/in/samuel-hendrick-ace/',
     image: ImageHendrick,
   },
   {
@@ -411,49 +411,49 @@ export const ADMI_ACADEMIC_MENTORS = [
   {
     name: 'Karumba Ngatia',
     title: 'Sound Engineering',
-    linkedin: '',
+    linkedin: 'https://www.linkedin.com/in/karumba-ngatia-82015316a/',
     image: ImageKarumba,
   },
   {
     name: 'Kennedy Wahome',
     title: 'Sound Engineering',
-    linkedin: '',
+    linkedin: 'https://www.linkedin.com/in/kennedy-wathome-085a2a122/',
     image: ImageKennedy,
   },
   {
     name: 'Manal Omayer',
     title: '2D Animation',
-    linkedin: '',
+    linkedin: 'https://manaloli.weebly.com/',
     image: ImageManal,
   },
   {
     name: 'Nzilani Simu',
     title: 'Graphic Design',
-    linkedin: '',
+    linkedin: 'https://nzilanisimu.com/',
     image: ImageNzilani,
   },
   {
     name: 'Patrick Kabugi',
     title: 'Sound Engineering',
-    linkedin: '',
+    linkedin: 'https://www.linkedin.com/in/patrick-kabugi/',
     image: ImagePatrick,
   },
   {
     name: 'Sam Mungai',
     title: 'Digital Marketing',
-    linkedin: '',
+    linkedin: 'https://www.linkedin.com/in/samuel-mungai-46836761/',
     image: ImageSam,
   },
   {
     name: 'Saum Idd',
     title: 'Film & TV Production',
-    linkedin: '',
+    linkedin: 'https://www.linkedin.com/in/saum-idd-715a4660/',
     image: ImageSaum,
   },
   {
     name: 'Shadrach Munene',
     title: '2D Animation',
-    linkedin: '',
+    linkedin: 'https://www.shadrackmunene.com/',
     image: ImageShadrach,
   },
 ];
