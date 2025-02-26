@@ -6,7 +6,10 @@ import Image from 'next/image';
 import { Button, Paragraph, Title } from '../ui';
 import { useIsMobile } from '@/hooks/useIsMobile';
 import { formatDate } from '@/utils';
-import { IconLocation } from '@tabler/icons-react';
+
+import IconLocation from '@/assets/icons/map-marker-3-black.svg';
+import IconCall from '@/assets/icons/call-black.svg';
+import IconStopwatch from '@/assets/icons/stopwatch-black.svg';
 
 type Props = {
   announcement: any;
@@ -64,31 +67,40 @@ export default function EventAnnouncementCard(props: Props) {
                 />
               </Box>
               <Anchor href={googleMapsUrl} target="_blank" rel="noopener noreferrer">
+                <Box className="flex w-full">
+                  <Image src={IconLocation} height={24} width={24} alt="location" className="mr-2 mt-1" />
+                  <Paragraph
+                    size="18px"
+                    fontFamily="font-nexa"
+                    fontWeight={400}
+                    className={`text-${props.textColor || 'black'} py-2`}
+                  >
+                    <strong>Location:</strong> Caxton House, 3rd Floor, Kenyatta AveDate
+                  </Paragraph>
+                </Box>
+              </Anchor>
+              <Box className="flex w-full">
+                <Image src={IconCall} height={24} width={24} alt="location" className="mr-2 mt-1" />
                 <Paragraph
                   size="18px"
                   fontFamily="font-nexa"
                   fontWeight={400}
                   className={`text-${props.textColor || 'black'} py-2`}
                 >
-                  <strong>Location:</strong> Caxton House, 3rd Floor, Kenyatta AveDate
+                  <strong>Date:</strong> {formatDate(props.announcement.date)}
                 </Paragraph>
-              </Anchor>
-              <Paragraph
-                size="18px"
-                fontFamily="font-nexa"
-                fontWeight={400}
-                className={`text-${props.textColor || 'black'} py-2`}
-              >
-                <strong>Date:</strong> {formatDate(props.announcement.date)}
-              </Paragraph>
-              <Paragraph
-                size="18px"
-                fontFamily="font-nexa"
-                fontWeight={400}
-                className={`text-${props.textColor || 'black'} py-2`}
-              >
-                <strong>Time:</strong> {props.announcement.time}
-              </Paragraph>
+              </Box>
+              <Box className="flex w-full">
+                <Image src={IconStopwatch} height={24} width={24} alt="location" className="mr-2 mt-1" />
+                <Paragraph
+                  size="18px"
+                  fontFamily="font-nexa"
+                  fontWeight={400}
+                  className={`text-${props.textColor || 'black'} py-2`}
+                >
+                  <strong>Time:</strong> {props.announcement.time}
+                </Paragraph>
+              </Box>
             </Box>
           </Box>
           <Box className="ml-auto mr-0 w-full sm:w-[300px]">
