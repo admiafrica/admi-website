@@ -104,35 +104,42 @@ export default function NewsEventsLandingPage() {
           <Tabs.Panel value="events" w={'100%'} h={'100%'} className="flex items-center justify-center">
             <Box className="mx-auto w-full">
               {/* HEADLINE */}
-              <div className="h-[450px] w-full bg-[#002A23]"></div>
-              {featuredEvent && (
-                <Box className="w-full" bg={'#F5FFFD'}>
-                  <Box className="absolute left-1/2 top-[300px] z-0 mx-auto h-fit w-full max-w-screen-xl -translate-x-1/2 transform px-4 py-16 xl:px-0">
-                    <EventAnnouncementCard
-                      announcement={featuredEvent.fields}
-                      bgColor="linear-gradient(0deg, #FEFFF5, #FEFFF5),linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 0) 80%, rgba(0, 0, 0, 0.1) 100%)"
-                      image={ImageNews}
-                      featured
-                    />
-                  </Box>
-                </Box>
-              )}
-              {/* EVENTS */}
-              <Box className="relative mx-auto flex w-full max-w-screen-xl flex-wrap justify-between pl-4 xl:px-0">
-                {events.length == 0 && (
+              {events.length == 0 ? (
+                <Box className="flex h-full w-full justify-center pt-[10vh]">
                   <EmptyCard
                     title="No events available!"
                     subtext="Hello there! Seems like we currently don’t have any event ongoing. Kindly check again"
                   />
-                )}
-                {events
-                  .filter((event) => !event.fields.featured)
-                  .map((event) => (
-                    <Box key={event.sys.id} className="mb-4 h-[400px]">
-                      {/* <NewsItemCard item={article} /> */}
+                </Box>
+              ) : (
+                <Box className="w-full">
+                  <div className="h-[450px] w-full bg-[#002A23]"></div>
+                  {featuredEvent && (
+                    <Box className="w-full" bg={'#F5FFFD'}>
+                      <Box className="absolute left-1/2 top-[300px] z-0 mx-auto h-fit w-full max-w-screen-xl -translate-x-1/2 transform px-4 py-16 xl:px-0">
+                        <EventAnnouncementCard
+                          announcement={featuredEvent.fields}
+                          bgColor="linear-gradient(0deg, #FEFFF5, #FEFFF5),linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 0) 80%, rgba(0, 0, 0, 0.1) 100%)"
+                          image={ImageNews}
+                          featured
+                        />
+                      </Box>
                     </Box>
-                  ))}
-              </Box>
+                  )}
+                  {/* EVENTS */}
+                  {/* <Box className="relative mx-auto flex w-full max-w-screen-xl flex-wrap justify-between pl-4 xl:px-0">
+                    <Box className="w-full pt-[240px]">
+                      {events
+                        .filter((event) => !event.fields.featured)
+                        .map((event) => (
+                          <Box key={event.sys.id} className="mb-4 h-[400px] w-fit">
+                            <NewsItemCard item={event} isEvent />
+                          </Box>
+                        ))}
+                    </Box>
+                  </Box> */}
+                </Box>
+              )}
             </Box>
           </Tabs.Panel>
         </Tabs>

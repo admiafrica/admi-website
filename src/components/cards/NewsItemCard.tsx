@@ -7,12 +7,14 @@ import { motion } from 'framer-motion';
 import { IContentfulEntry } from '@/types';
 
 import IconArrowTipRight from '@/assets/icons/ArrowTipRight';
+import { formatDate } from '@/utils';
 
 type Props = {
   item: IContentfulEntry;
+  isEvent?: boolean;
 };
 
-export default function NewsItemCard({ item }: Props) {
+export default function NewsItemCard({ item, isEvent = false }: Props) {
   const router = useRouter();
 
   const handleCardClick = () => {
@@ -37,12 +39,12 @@ export default function NewsItemCard({ item }: Props) {
         whileHover="hover" // Shared hover animation key
         className="h-full"
       >
-        <Card.Section className="relative h-[50%]">
+        <Card.Section className={isEvent ? 'relative h-[80%]' : 'relative h-[50%]'}>
           <Image
             fill
             src={
               item.assets
-                ? `https:${item.fields.coverImage.fields.file.url}`
+                ? `https:${item.fields.coverImage?.fields.file.url || item.fields.flyer?.fields.file.url}`
                 : `https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png`
             }
             alt={item.fields.title}
@@ -53,6 +55,11 @@ export default function NewsItemCard({ item }: Props) {
             <Paragraph fontFamily="font-nexa" fontWeight={400} size="20px" className="pb-4">
               {item.fields.title}
             </Paragraph>
+            {isEvent && (
+              <Paragraph fontFamily="font-nexa" fontWeight={400} size="16px">
+                {formatDate(item.fields.date)}
+              </Paragraph>
+            )}
             <Paragraph className="line-clamp-[5]" size="16px">
               {item.fields.summary}
             </Paragraph>

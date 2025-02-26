@@ -1,13 +1,12 @@
 import React from 'react';
 import { Anchor, Box, Card, Divider, Pill } from '@mantine/core';
-import { format } from 'date-fns';
-import { enUS } from 'date-fns/locale';
+import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 import { Button, Paragraph, Title } from '../ui';
-import { motion } from 'framer-motion';
-
-import Image from 'next/image';
 import { useIsMobile } from '@/hooks/useIsMobile';
+import { formatDate } from '@/utils';
+import { IconLocation } from '@tabler/icons-react';
 
 type Props = {
   announcement: any;
@@ -18,10 +17,6 @@ type Props = {
   textColor?: string;
   image?: any;
 };
-
-function formatDate(dateString: string): string {
-  return format(new Date(dateString), 'EEEE, do MMMM, yyyy', { locale: enUS });
-}
 
 export default function EventAnnouncementCard(props: Props) {
   const isMobile = useIsMobile();
