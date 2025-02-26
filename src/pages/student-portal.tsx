@@ -74,7 +74,7 @@ export default function StudentPortalPage() {
           </Box>
         </Box>
         <Box h={200} bg="#872000" className="w-full">
-          <Box className="mx-auto w-full max-w-screen-xl px-4 xl:px-0">
+          <Box className="mx-auto w-full max-w-screen-xl px-4 pt-28 sm:pt-0 xl:px-0">
             <Title label="Key Features of the Student Portal" color="white" size={isMobile ? '25px' : '36px'} />
           </Box>
         </Box>

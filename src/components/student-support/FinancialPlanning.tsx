@@ -1,4 +1,4 @@
-import { Box } from '@mantine/core';
+import { Anchor, Box } from '@mantine/core';
 
 import { Paragraph, Title } from '../ui';
 import { CollapsibleContent } from '../shared/v3';
@@ -101,42 +101,44 @@ export default function FinancialPlanning() {
         title="Paying your Fees"
         content={
           <Box>
-            <Paragraph fontWeight={900}>How to Pay</Paragraph>
-
-            <Paragraph fontWeight={900} className="mt-6">
-              Option 1:NCBA BANK
+            <Paragraph fontWeight={900} size="24px">
+              How to Pay
             </Paragraph>
-            <Paragraph>Account Name: Africa Digital Media Institute</Paragraph>
-            <Paragraph>Bank: NCBA Bank</Paragraph>
-            <Paragraph>Branch: Harambee Avenue</Paragraph>
-            <Paragraph>Account No (KSH): 2665570197</Paragraph>
-            <Paragraph>Account No (USD): 2665570071</Paragraph>
-            <Paragraph>Bank Code: 07000</Paragraph>
-            <Paragraph>Branch Code: 110</Paragraph>
-            <Paragraph>Swift Code: CBAFKENX</Paragraph>
 
-            <Paragraph fontWeight={900} className="mt-6">
+            <Paragraph fontWeight={900} className="mb-2 mt-6">
+              Option 1: NCBA BANK
+            </Paragraph>
+            <Paragraph className="py-1">Account Name: Africa Digital Media Institute</Paragraph>
+            <Paragraph className="py-1">Bank: NCBA Bank</Paragraph>
+            <Paragraph className="py-1">Branch: Harambee Avenue</Paragraph>
+            <Paragraph className="py-1">Account No (KSH): 2665570197</Paragraph>
+            <Paragraph className="py-1">Account No (USD): 2665570071</Paragraph>
+            <Paragraph className="py-1">Bank Code: 07000</Paragraph>
+            <Paragraph className="py-1">Branch Code: 110</Paragraph>
+            <Paragraph className="py-1">Swift Code: CBAFKENX</Paragraph>
+
+            <Paragraph fontWeight={900} className="mb-2 mt-6">
               Option 2: Kingdom Bank
             </Paragraph>
-            <Paragraph>Account Name: Africa Digital Media Institute</Paragraph>
-            <Paragraph>Bank: Jamii Bora Bank</Paragraph>
-            <Paragraph>Branch: Koinange Branch</Paragraph>
-            <Paragraph>Account No:1001801622002</Paragraph>
-            <Paragraph>Bank Branch Code:02</Paragraph>
-            <Paragraph>Swift Code: CIFIKENA</Paragraph>
+            <Paragraph className="py-1">Account Name: Africa Digital Media Institute</Paragraph>
+            <Paragraph className="py-1">Bank: Jamii Bora Bank</Paragraph>
+            <Paragraph className="py-1">Branch: Koinange Branch</Paragraph>
+            <Paragraph className="py-1">Account No:1001801622002</Paragraph>
+            <Paragraph className="py-1">Bank Branch Code:02</Paragraph>
+            <Paragraph className="py-1">Swift Code: CIFIKENA</Paragraph>
 
-            <Paragraph fontWeight={900} className="mt-6">
+            <Paragraph fontWeight={900} className="mb-2 mt-6">
               Option 3: MPESA
             </Paragraph>
-            <Paragraph>Mpesa Menu</Paragraph>
-            <Paragraph>Lipa Na Mpesa</Paragraph>
-            <Paragraph>Select Paybill</Paragraph>
-            <Paragraph>Enter Business Number:836036</Paragraph>
-            <Paragraph>Enter Account Number: Admission Number/Full names</Paragraph>
-            <Paragraph>Enter Amount: XXX</Paragraph>
-            <Paragraph>Mpesa Pin: XXX</Paragraph>
-            <Paragraph>Click: Confirm Mpesa notification</Paragraph>
-            <Paragraph>Account Name: Africa Digital Media Institute</Paragraph>
+            <Paragraph className="py-1">Mpesa Menu</Paragraph>
+            <Paragraph className="py-1">Lipa Na Mpesa</Paragraph>
+            <Paragraph className="py-1">Select Paybill</Paragraph>
+            <Paragraph className="py-1">Enter Business Number:836036</Paragraph>
+            <Paragraph className="py-1">Enter Account Number: Admission Number/Full names</Paragraph>
+            <Paragraph className="py-1">Enter Amount: XXX</Paragraph>
+            <Paragraph className="py-1">Mpesa Pin: XXX</Paragraph>
+            <Paragraph className="py-1">Click: Confirm Mpesa notification</Paragraph>
+            <Paragraph className="py-1">Account Name: Africa Digital Media Institute</Paragraph>
 
             <Paragraph className="mt-6">
               NB: During payment in the bank, the person paying should ensure that the Full Names of the student is
@@ -164,14 +166,18 @@ export default function FinancialPlanning() {
             </Paragraph>
             <ul>
               <li>
-                <Paragraph className="mt-6" fontWeight={900}>
-                  Email: fee@admi.ac.ke
-                </Paragraph>
+                <Anchor href="mailto:fee@admi.ac.ke" target="_blank">
+                  <Paragraph className="mt-6" fontWeight={900}>
+                    Email: fee@admi.ac.ke
+                  </Paragraph>
+                </Anchor>
               </li>
               <li>
-                <Paragraph className="mt-6" fontWeight={900}>
-                  Call: +254 770370691
-                </Paragraph>
+                <Anchor href="tel:+254770370691" target="_blank">
+                  <Paragraph className="mt-6" fontWeight={900}>
+                    Call: +254 770370691
+                  </Paragraph>
+                </Anchor>
               </li>
             </ul>
           </Box>

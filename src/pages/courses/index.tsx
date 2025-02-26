@@ -98,11 +98,7 @@ export default function CoursesPage() {
             destination="courses"
             items={courses}
             buttonLabel="Search"
-            placeholder={
-              isMobile
-                ? 'Search for course'
-                : 'Search for course e.g Graphic Design, Content Creation'
-            }
+            placeholder={isMobile ? 'Search for course' : 'Search for course e.g Graphic Design, Content Creation'}
           />
         </div>
       </div>

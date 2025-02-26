@@ -15,6 +15,7 @@ type Props = {
 
 export default function EnquiryForm({ isCampaign = false }: Props) {
   const router = useRouter();
+  const { utm_source, utm_medium, utm_campaign, utm_term, utm_content } = router.query;
   const [courses, setCourses] = useState<any[]>([]);
   const [countryCode, setCountryCode] = useState('254'); // State for the phone number
   const [alert, setAlert] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
@@ -27,11 +28,11 @@ export default function EnquiryForm({ isCampaign = false }: Props) {
       lastName: '',
       phone: '',
       courseName: '',
-      utm_source: '',
-      utm_medium: '',
-      utm_campaign: '',
-      utm_term: '',
-      utm_content: '',
+      utm_source,
+      utm_medium,
+      utm_campaign,
+      utm_term,
+      utm_content,
       isCampaign: isCampaign,
     },
 
@@ -93,6 +94,16 @@ export default function EnquiryForm({ isCampaign = false }: Props) {
         <Text fw={600}>Kindly provide the details below</Text>
       </div>
       <form onSubmit={form.onSubmit((values) => handleSubmit(values))}>
+        {/* Conditionally render hidden UTM fields if isCampaign is true */}
+        {isCampaign && (
+          <>
+            <input {...form.getInputProps('utm_source')} type="hidden" />
+            <input {...form.getInputProps('utm_medium')} type="hidden" />
+            <input {...form.getInputProps('utm_campaign')} type="hidden" />
+            <input {...form.getInputProps('utm_term')} type="hidden" />
+            <input {...form.getInputProps('utm_content')} type="hidden" />
+          </>
+        )}
         <Select
           label={
             <div className="flex pl-2">
