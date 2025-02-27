@@ -60,7 +60,7 @@ export default function CourseHero(props: Props) {
             isCampaign={props.isCampaign}
           />
           {props.isCampaign && (
-            <Box className="relative w-full max-w-[600px] sm:top-[-120px]">
+            <Box className="relative w-full max-w-[480px] sm:top-[-120px] sm:ml-2">
               <EnquiryForm isCampaign />
             </Box>
           )}

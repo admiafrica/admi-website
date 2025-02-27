@@ -31,7 +31,7 @@ export default function CourseSummaryCard(props: Props) {
       radius={6}
       w={props.isCampaign ? 'fit-content' : '100%'}
     >
-      <div className="my-auto flex w-full flex-col p-2 md:flex-row md:p-4">
+      <div className="my-auto flex w-full flex-col p-2 md:flex-row md:p-0">
         <div className="my-auto grow">
           {isMobile ? (
             <Box className="flex flex-col p-0">
