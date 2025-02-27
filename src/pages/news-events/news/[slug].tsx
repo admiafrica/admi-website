@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import { Box, Card, Tabs } from '@mantine/core';
 
 import { MainLayout } from '@/layouts/v3/MainLayout';
@@ -11,6 +12,11 @@ import { useIsMobile } from '@/hooks/useIsMobile';
 
 export default function NewsArticlePage({ article }: { article: any }) {
   const isMobile = useIsMobile();
+  const router = useRouter();
+
+  const navigateToPage = (value: string) => {
+    router.push(value);
+  };
 
   if (!article) {
     return (
@@ -37,9 +43,10 @@ export default function NewsArticlePage({ article }: { article: any }) {
             <Tabs.Tab
               value="news"
               rightSection={<IconDiary width={32} height={32} color="white" />}
-              className="grow"
+              className="grow transition hover:bg-admiRed"
               w={'50%'}
               h={60}
+              onClick={() => navigateToPage('/news-events')}
             >
               <Paragraph className="text-white" fontFamily="font-nexa" fontWeight={900}>
                 News
@@ -48,9 +55,10 @@ export default function NewsArticlePage({ article }: { article: any }) {
             <Tabs.Tab
               value="events"
               rightSection={<IconDiary width={32} height={32} color="white" />}
-              className="grow"
+              className="grow transition hover:bg-admiRed"
               w={'50%'}
               h={60}
+              onClick={() => navigateToPage('/news-events')}
             >
               <Paragraph className="text-white" fontFamily="font-nexa" fontWeight={900}>
                 Events

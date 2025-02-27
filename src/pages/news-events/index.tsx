@@ -18,7 +18,7 @@ export default function NewsEventsLandingPage({ news, events, featuredNews, feat
             <Tabs.Tab
               value="news"
               rightSection={<IconDiary width={32} height={32} color="white" />}
-              className="grow"
+              className="grow transition hover:bg-admiRed"
               w={'50%'}
               h={60}
             >
@@ -29,7 +29,7 @@ export default function NewsEventsLandingPage({ news, events, featuredNews, feat
             <Tabs.Tab
               value="events"
               rightSection={<IconDiary width={32} height={32} color="white" />}
-              className="grow"
+              className="grow transition hover:bg-admiRed"
               w={'50%'}
               h={60}
             >

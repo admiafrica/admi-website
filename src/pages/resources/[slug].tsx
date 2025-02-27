@@ -1,13 +1,22 @@
 import Image from 'next/image';
 import { Box, Card } from '@mantine/core';
+import { useRouter } from 'next/router';
 
 import { MainLayout } from '@/layouts/v3/MainLayout';
 import { PageSEO, SocialShare } from '@/components/shared/v3';
-import { Paragraph, ParagraphContentful } from '@/components/ui';
+import { Button, Paragraph, ParagraphContentful } from '@/components/ui';
 import { useIsMobile } from '@/hooks/useIsMobile';
+
+import IconBgImageYellow from '@/assets/icons/ellipse-yellow.svg';
+import IconBgImageRed from '@/assets/icons/ellipse-red.svg';
 
 export default function ResourceArticlePage({ article }: { article: any }) {
   const isMobile = useIsMobile();
+  const router = useRouter();
+
+  const navigateToResources = () => {
+    router.push('/resources');
+  };
 
   return (
     <MainLayout footerBgColor="white">
@@ -18,7 +27,26 @@ export default function ResourceArticlePage({ article }: { article: any }) {
           image={`https://${article.coverImage?.fields.file.url}`}
         />
       )}
-      <Box className="w-full">
+      <div className="h-[16em] w-full bg-[#002A23]">
+        {/* BACKGROUND IMAGES */}
+        <div className="absolute left-[62%] top-[20vh] z-0 h-fit w-full -translate-x-1/2 transform">
+          <div className="flex w-full justify-end pr-[10%]">
+            <Image src={IconBgImageYellow} alt={'background image'} />
+          </div>
+        </div>
+
+        <div className="absolute left-1/2 top-[5vh] z-0 h-fit w-full -translate-x-1/2 transform">
+          <div className="flex w-full">
+            <Image src={IconBgImageRed} alt={'background image'} />
+          </div>
+        </div>
+        <div className="relative z-10 mx-auto w-full max-w-screen-xl px-4 pt-24 2xl:px-0">
+          <Box className="w-fit">
+            <Button label="Back to Resources" size="lg" onClick={navigateToResources} />
+          </Box>
+        </div>
+      </div>
+      <Box className="relative w-full" bg={'white'}>
         <Box className="mx-auto flex w-full max-w-screen-xl flex-col-reverse px-4 py-4 sm:flex-row sm:py-16 xl:px-0">
           <Box className="sm:w-[200px]">
             <SocialShare item={article} />

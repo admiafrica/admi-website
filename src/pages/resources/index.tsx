@@ -56,6 +56,7 @@ export default function ResourcesPage({
                   bgColor="#E43B07"
                   image={ImageNews}
                   textColor="white"
+                  arrowColor="white"
                   featured
                 />
               )}

@@ -23,7 +23,6 @@ type Props = {
 
 export default function EventAnnouncementCard(props: Props) {
   const isMobile = useIsMobile();
-  console.log('EVENT DETAILS', props.announcement);
   const googleMapsUrl = `https://www.google.com/maps?q=${props.announcement.location.lat},${props.announcement.location.lon}`;
 
   return (
@@ -31,6 +30,7 @@ export default function EventAnnouncementCard(props: Props) {
       className="mx-auto w-full max-w-screen-lg cursor-pointer"
       bg={props.bgColor || 'white'}
       style={{ borderRadius: 8 }}
+      withBorder
     >
       <motion.div
         className="flex h-full w-full flex-col sm:flex-row"
@@ -64,10 +64,10 @@ export default function EventAnnouncementCard(props: Props) {
                   label={props.announcement.title}
                   color="black"
                   size={isMobile ? '18px' : '24px'}
-                  className="my-auto w-fit"
+                  className="mt-auto w-fit"
                 />
               </Box>
-              <Anchor href={googleMapsUrl} target="_blank" rel="noopener noreferrer">
+              <Anchor href={googleMapsUrl} target="_blank" rel="noopener noreferrer" mt={32}>
                 <Box className="flex w-full">
                   <Image src={IconLocation} height={24} width={24} alt="location" className="mr-2 mt-1" />
                   <Paragraph

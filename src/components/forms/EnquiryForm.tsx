@@ -54,7 +54,7 @@ export default function EnquiryForm() {
       ...values,
       phone: `${countryCode}${formattedPhone}`,
     };
-    console.log('VALUES', data);
+
     try {
       const response = await fetch('/api/v3/push-lead', {
         method: 'POST',

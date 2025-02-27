@@ -44,8 +44,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     updateEnabled: true,
   };
 
-  console.log('SUBMISSION', payload);
-  return;
   try {
     const response = await fetch(BREVO_URL, {
       method: 'POST',
