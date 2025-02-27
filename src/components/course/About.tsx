@@ -23,7 +23,7 @@ export default function CourseAbout(props: Props) {
         <div className="flex w-full flex-col sm:flex-row">
           {props.isCampaign && (
             <Box className="flex w-full flex-col sm:flex-row">
-              <div className="mt-24 flex flex-col sm:w-1/2 sm:pr-4">
+              <div className="mt-24 flex flex-col sm:w-1/2 sm:pr-4 xl:w-[60%]">
                 <Title label="About this course" size={isMobile ? '24px' : '36px'} color="admiRed" />
 
                 <ParagraphContentful className="mt-1 text-lg" fontFamily="font-nexa">

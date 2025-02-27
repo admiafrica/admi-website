@@ -37,9 +37,11 @@ export default function UserProfileCard(props: Props) {
             <Paragraph className="grow" size={isMobile ? '12px' : '16px'}>
               {props.user.title}
             </Paragraph>
-            <a href={props.user.linkedin || '#'} target="_blank" className="cursor-pointer">
-              <Image width={20} height={20} src={IconLinkedIn} alt="linkedin profile" style={{ marginLeft: 8 }} />
-            </a>
+            {props.user.linkedin && (
+              <a href={props.user.linkedin} target="_blank" className="cursor-pointer">
+                <Image width={20} height={20} src={IconLinkedIn} alt="linkedin profile" style={{ marginLeft: 8 }} />
+              </a>
+            )}
           </div>
         </div>
       </Card.Section>

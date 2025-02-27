@@ -892,31 +892,31 @@ export const ADMI_ALUMNI = [
   {
     name: 'Teddy Muinde',
     title: 'Audio Visual Technician at MSC Cruises',
-    linkedin: '',
+    linkedin: 'https://www.linkedin.com/in/teddymuinde/',
     image: ImageTeddy,
   },
   {
     name: 'Linda Wairegi',
     title: 'Multimedia Project Manager at inABLE',
-    linkedin: '',
+    linkedin: 'https://www.linkedin.com/in/lindawairegi/',
     image: ImageLinda,
   },
   {
     name: 'Michael Kazinja',
     title: 'Television Producer & Scriptwriter',
-    linkedin: '',
+    linkedin: 'https://www.linkedin.com/in/lindawairegi/https://www.linkedin.com/in/kazinjamichaelpaul/',
     image: ImageMichael,
   },
   {
     name: 'Alex Mwangi',
     title: 'Creative Director at Sensorflick',
-    linkedin: '',
+    linkedin: 'https://www.linkedin.com/in/mwangialexndaiga/',
     image: ImageAlex,
   },
   {
     name: 'Cedric Mwangi',
     title: 'Sound Technician at MSC Cruises',
-    linkedin: '',
+    linkedin: 'https://www.linkedin.com/in/cedric-charles-mwangi/',
     image: ImageCedric,
   },
 ];
