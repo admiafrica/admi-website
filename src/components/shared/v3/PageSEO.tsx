@@ -1,5 +1,6 @@
 import Head from 'next/head';
 
+import ImageLogo from '@/assets/logo.svg';
 interface Props {
   title?: string;
   description?: string;
@@ -18,14 +19,14 @@ function PageSEO({ title, description, image }: Props) {
       <link rel="icon" href="/favicon.ico" />
 
       {/* Open Graph meta tags */}
-      {image && <meta property="og:image" content={image} />}
+      {image && <meta property="og:image" content={image || ImageLogo} />}
       <meta property="og:title" content={pageTitle} />
       <meta property="og:description" content={pageDescription} />
       <meta property="og:type" content="website" />
 
       {/* Twitter meta tags */}
       {image && <meta name="twitter:card" content="summary_large_image" />}
-      {image && <meta name="twitter:image" content={image} />}
+      {image && <meta name="twitter:image" content={image || ImageLogo} />}
       <meta name="twitter:title" content={pageTitle} />
       <meta name="twitter:description" content={pageDescription} />
     </Head>
