@@ -20,7 +20,7 @@ export default function CourseAbout(props: Props) {
       }
     >
       <div className="mx-auto w-full max-w-screen-xl px-4 2xl:px-0">
-        <div className="flex w-full flex-col sm:flex-row">
+        <div className="flex w-full flex-col sm:flex-row min-h-[600px]">
           {props.isCampaign && (
             <Box className="flex w-full flex-col sm:flex-row">
               <div className="mt-24 flex flex-col sm:w-1/2 sm:pr-4 xl:w-[60%]">
