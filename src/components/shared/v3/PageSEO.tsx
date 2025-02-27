@@ -4,7 +4,7 @@ import ImageLogo from '@/assets/logo.svg';
 interface Props {
   title?: string;
   description?: string;
-  image?: string; // Optional image URL prop
+  image?: string;
 }
 
 function PageSEO({ title, description, image }: Props) {
@@ -19,14 +19,14 @@ function PageSEO({ title, description, image }: Props) {
       <link rel="icon" href="/favicon.ico" />
 
       {/* Open Graph meta tags */}
-      {image && <meta property="og:image" content={image || ImageLogo} />}
+      {image ? <meta property="og:image" content={image} /> : <meta property="og:image" content={ImageLogo} />}
       <meta property="og:title" content={pageTitle} />
       <meta property="og:description" content={pageDescription} />
       <meta property="og:type" content="website" />
 
       {/* Twitter meta tags */}
-      {image && <meta name="twitter:card" content="summary_large_image" />}
-      {image && <meta name="twitter:image" content={image || ImageLogo} />}
+      {image ? <meta name="twitter:card" content={image} /> : <meta property="twitter:card" content={ImageLogo} />}
+      {image ? <meta name="twitter:image" content={image} /> : <meta property="twitter:image" content={ImageLogo} />}
       <meta name="twitter:title" content={pageTitle} />
       <meta name="twitter:description" content={pageDescription} />
     </Head>
