@@ -77,7 +77,7 @@ export default function ResourcesPage({
   );
 }
 
-export async function getServerSideProps(context: any) {
+export async function getServerSideProps() {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v3/resources`);
 

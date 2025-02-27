@@ -9,13 +9,8 @@ import 'react-phone-input-2/lib/style.css';
 
 import { IconAsterisk } from '@tabler/icons-react';
 
-type Props = {
-  isCampaign?: boolean;
-};
-
-export default function EnquiryForm({ isCampaign = false }: Props) {
+export default function EnquiryForm() {
   const router = useRouter();
-  const { utm_source, utm_medium, utm_campaign, utm_term, utm_content } = router.query;
   const [courses, setCourses] = useState<any[]>([]);
   const [countryCode, setCountryCode] = useState('254'); // State for the phone number
   const [alert, setAlert] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
@@ -28,12 +23,11 @@ export default function EnquiryForm({ isCampaign = false }: Props) {
       lastName: '',
       phone: '',
       courseName: '',
-      utm_source,
-      utm_medium,
-      utm_campaign,
-      utm_term,
-      utm_content,
-      isCampaign: isCampaign,
+      utm_source: '',
+      utm_medium: '',
+      utm_campaign: '',
+      utm_term: '',
+      utm_content: '',
     },
 
     validate: {
@@ -60,7 +54,7 @@ export default function EnquiryForm({ isCampaign = false }: Props) {
       ...values,
       phone: `${countryCode}${formattedPhone}`,
     };
-
+    console.log('VALUES', data);
     try {
       const response = await fetch('/api/v3/push-lead', {
         method: 'POST',
@@ -85,6 +79,17 @@ export default function EnquiryForm({ isCampaign = false }: Props) {
     fetchCourses();
   }, [fetchCourses]);
 
+  useEffect(() => {
+    if (router.isReady) {
+      const { utm_source, utm_medium, utm_campaign, utm_term, utm_content } = router.query;
+      form.setFieldValue('utm_source', utm_source as string);
+      form.setFieldValue('utm_medium', utm_medium as string);
+      form.setFieldValue('utm_campaign', utm_campaign as string);
+      form.setFieldValue('utm_term', utm_term as string);
+      form.setFieldValue('utm_content', utm_content as string);
+    }
+  }, [router.isReady, router.query, form]);
+
   return (
     <div className="w-full rounded-lg bg-white p-4 sm:p-8">
       <div className="font-nexa">
@@ -94,16 +99,13 @@ export default function EnquiryForm({ isCampaign = false }: Props) {
         <Text fw={600}>Kindly provide the details below</Text>
       </div>
       <form onSubmit={form.onSubmit((values) => handleSubmit(values))}>
-        {/* Conditionally render hidden UTM fields if isCampaign is true */}
-        {isCampaign && (
-          <>
-            <input {...form.getInputProps('utm_source')} type="hidden" />
-            <input {...form.getInputProps('utm_medium')} type="hidden" />
-            <input {...form.getInputProps('utm_campaign')} type="hidden" />
-            <input {...form.getInputProps('utm_term')} type="hidden" />
-            <input {...form.getInputProps('utm_content')} type="hidden" />
-          </>
-        )}
+        {/* Hidden UTM fields */}
+        <input {...form.getInputProps('utm_source')} type="hidden" />
+        <input {...form.getInputProps('utm_medium')} type="hidden" />
+        <input {...form.getInputProps('utm_campaign')} type="hidden" />
+        <input {...form.getInputProps('utm_term')} type="hidden" />
+        <input {...form.getInputProps('utm_content')} type="hidden" />
+
         <Select
           label={
             <div className="flex pl-2">

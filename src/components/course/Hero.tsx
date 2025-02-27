@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { Badge, Box, Card, Group } from '@mantine/core';
+import { Badge, Box, Group } from '@mantine/core';
 import { CourseSummaryCard } from '../cards';
 
 import IconAward from '@/assets/icons/Award';
@@ -61,7 +61,7 @@ export default function CourseHero(props: Props) {
           />
           {props.isCampaign && (
             <Box className="relative w-full max-w-[480px] sm:top-[-120px] sm:ml-2">
-              <EnquiryForm isCampaign />
+              <EnquiryForm />
             </Box>
           )}
         </div>

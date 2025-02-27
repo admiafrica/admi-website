@@ -25,7 +25,7 @@ export default function UserProfileCard(props: Props) {
     >
       <Card.Section className="grow">
         <Box className="relative grow" h={isMobile ? '140px' : '100%'}>
-          <Image fill src={props.user.image} alt="about course" objectFit="cover" />
+          <Image fill src={props.user.image} alt="about course" objectFit="cover" priority />
         </Box>
       </Card.Section>
       <Card.Section className="px-4">

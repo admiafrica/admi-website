@@ -20,13 +20,13 @@ export default function AcademicTeamPage() {
           {/* BACKGROUND IMAGES */}
           <div className="absolute left-[62%] top-[60px] z-0 h-fit w-full -translate-x-1/2 transform">
             <div className="flex w-full justify-end pr-[10%]">
-              <Image src={IconBgImageYellow} alt={'background image'} />
+              <Image src={IconBgImageYellow} alt={'background image'} priority />
             </div>
           </div>
 
           <div className="absolute left-1/2 z-0 h-fit w-full -translate-x-1/2 transform">
             <div className="flex w-full">
-              <Image src={IconBgImageRed} alt={'background image'} />
+              <Image src={IconBgImageRed} alt={'background image'} priority />
             </div>
           </div>
           <div className="relative z-10 mx-auto w-full max-w-screen-lg px-4 pt-24 2xl:px-0">
