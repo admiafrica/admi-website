@@ -48,6 +48,7 @@ export default function NewsEventsLandingPage({ news, events, featuredNews, feat
                     destination="news-events/news"
                     announcement={featuredNews.fields}
                     bgColor="admiShamrok"
+                    ribbonColor="admiRed"
                     image={ImageNews}
                     featured
                   />

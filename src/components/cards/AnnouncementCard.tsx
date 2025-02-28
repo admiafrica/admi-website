@@ -16,6 +16,7 @@ type Props = {
   textColor?: string;
   image?: any;
   destination: string;
+  ribbonColor?: string;
 };
 
 export default function AnnouncementCard(props: Props) {
@@ -29,6 +30,7 @@ export default function AnnouncementCard(props: Props) {
     <Card
       className="mx-auto w-full max-w-screen-xl cursor-pointer"
       bg={props.bgColor || 'white'}
+      p={0}
       style={{ borderRadius: 8 }}
       onClick={handleCardClick}
     >
@@ -36,8 +38,20 @@ export default function AnnouncementCard(props: Props) {
         className="flex h-full w-full flex-col sm:flex-row"
         whileHover="hover" // Shared hover animation key
       >
-        <Box className="flex h-fit w-full flex-col-reverse px-0 sm:h-[400px] sm:flex-row sm:px-4">
-          <Box className="flex flex-col pt-4 sm:w-[40%] sm:pr-4 sm:pt-0">
+        {props.featured && (
+          <motion.div
+            className="relative flex"
+            initial={{ width: '0%' }}
+            variants={{
+              hover: { width: '2%' },
+            }}
+            transition={{ duration: 0.3 }}
+          >
+            <Box className="h-full w-full" bg={props.ribbonColor}></Box>
+          </motion.div>
+        )}
+        <Box className="flex h-fit w-full flex-col-reverse px-0 py-4 sm:h-[420px] sm:flex-row sm:px-4">
+          <Box className="flex grow flex-col pt-4 sm:w-[44%] hover:w-[42%] sm:pr-4 sm:pt-0">
             {props.featured && (
               <Pill
                 size="md"
@@ -80,23 +94,31 @@ export default function AnnouncementCard(props: Props) {
               <IconArrowTipRight width={48} height={48} color={props.arrowColor} />
             </motion.div>
           </Box>
-          <Box className="relative flex h-[180px] sm:h-full sm:w-[60%]">
+          {/* Image Container with Hover Effect */}
+          <motion.div
+            className="relative flex h-[180px] sm:h-full"
+            initial={{ width: '56%' }}
+            variants={{
+              hover: { width: props.featured ? '55%' : '56%' },
+            }}
+            transition={{ duration: 0.3 }}
+          >
             {props.announcement.coverImage ? (
               <Image
                 fill
                 src={`https:${props.announcement.coverImage.fields.file.url}`}
                 alt={props.announcement.title}
-                style={{ borderRadius: 8 }}
+                style={{ borderRadius: 8, objectFit: 'cover' }}
               />
             ) : (
               <Image
                 fill
                 src={props.image || 'https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png'}
                 alt="about course"
-                style={{ borderRadius: 8 }}
+                style={{ borderRadius: 8, objectFit: 'cover' }}
               />
             )}
-          </Box>
+          </motion.div>
         </Box>
       </motion.div>
     </Card>

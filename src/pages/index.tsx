@@ -390,6 +390,7 @@ export default function HomePage({ content, courses, featuredNews, featuredResou
               destination="news-events/news"
               announcement={featuredNews.fields}
               bgColor="admiShamrok"
+              ribbonColor="admiRed"
               image={NewsImage}
               featured
             />

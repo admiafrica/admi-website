@@ -57,6 +57,7 @@ export default function ResourcesPage({
                   image={ImageNews}
                   textColor="white"
                   arrowColor="white"
+                  ribbonColor="admiShamrok"
                   featured
                 />
               )}
