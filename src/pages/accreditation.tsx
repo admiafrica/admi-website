@@ -45,8 +45,8 @@ export default function AccreditationPage() {
               <Box className="flex grow">
                 <Title label="Accreditation" color="#F1FE37" size={isMobile ? '36px' : '64px'} />
               </Box>
-              <Box className="flex w-full flex-col pt-12 sm:flex-row">
-                <Paragraph fontFamily="font-nexa" className="pr-6 text-white sm:w-1/2">
+              <Box className="flex w-full flex-col pt-12 sm:flex-row sm:h-[180px]">
+                <Paragraph fontFamily="font-nexa" className="pr-6 text-white sm:w-1/2 my-auto">
                   At Africa Digital Media Institute (ADMI), we pride ourselves on maintaining the highest standards of
                   educational excellence through our accreditation partnerships. Currently, we are recognized as a
                   Pearson Assured institution, which signifies our commitment to quality education and training.
@@ -57,7 +57,7 @@ export default function AccreditationPage() {
                   my={isMobile ? 16 : 0}
                   opacity={'20%'}
                 />
-                <Paragraph fontFamily="font-nexa" className="text-white sm:w-1/2 sm:pl-6">
+                <Paragraph fontFamily="font-nexa" className="text-white sm:w-1/2 sm:pl-6 my-auto">
                   This independent benchmark from Pearson ensures that we meet rigorous quality criteria, providing you
                   with a reliable and respected qualification that is recognized globally.
                 </Paragraph>

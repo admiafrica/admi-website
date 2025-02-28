@@ -7,7 +7,7 @@ import ImageFormBackground from '@/assets/images/student-portal-bg.jpeg';
 
 export default function PortalForm() {
   return (
-    <Card className="relative h-full w-full bg-white p-4 sm:p-8" bd={'4px solid #FFFFFF38'} radius="lg">
+    <Card className="relative h-full w-full bg-white p-4 sm:p-8" bd={'4px solid #FFFFFF38'} radius="md">
       {/* Background Image */}
       <Image
         src={ImageFormBackground}
@@ -30,7 +30,7 @@ export default function PortalForm() {
         <Title label="How to Access" color="white" size="24px" />
         <Box className="flex pb-4">
           <Title label="the" color="white" size="24px" className="pr-1" />
-          <Title label="Student Portal" color="#B9C601" size="24px" />
+          <Title label="Student Portal" color="#F1FE37" size="24px" />
         </Box>
         <Paragraph className="pb-6 text-white">
           To access the Student Portal, simply log in using your student credentials.

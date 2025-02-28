@@ -53,8 +53,8 @@ export default function StudentPortalPage() {
                 <Box className="px-1"></Box>
                 <Title label="Portal" color="admiShamrok" size={isMobile ? '36px' : '64px'} />
               </Box>
-              <Box className="flex w-full flex-col pt-12 sm:flex-row sm:pb-12 sm:pt-0">
-                <Paragraph fontFamily="font-nexa" className="pr-6 text-white sm:w-1/2">
+              <Box className="flex w-full flex-col pt-12 sm:h-[180px] sm:flex-row sm:pb-12 sm:pt-0">
+                <Paragraph fontFamily="font-nexa" className="my-auto pr-6 text-white sm:w-1/2">
                   Welcome to the ADMI Student Portal, your one-stop destination for all things related to your academic
                   journey at Africa Digital Media Institute (ADMI).
                 </Paragraph>
@@ -65,7 +65,7 @@ export default function StudentPortalPage() {
                   opacity="30%"
                   my={isMobile ? 16 : 0}
                 />
-                <Paragraph fontFamily="font-nexa" className="text-white sm:w-1/2 sm:pl-6">
+                <Paragraph fontFamily="font-nexa" className="my-auto text-white sm:w-1/2 sm:pl-6">
                   Our Student Portal is designed to provide you with easy access to essential resources, tools, and
                   information that will support your studies and enhance your overall experience at ADMI.
                 </Paragraph>
@@ -142,7 +142,7 @@ export default function StudentPortalPage() {
                 </Box>
               </PlainCard>
             </Box>
-            <Box className="sm:py-auto px-4 py-8 sm:w-[30%]">
+            <Box className="px-4 pt-8 sm:w-[30%] sm:pt-0">
               <PortalForm />
             </Box>
           </Box>

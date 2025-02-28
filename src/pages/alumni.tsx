@@ -50,8 +50,8 @@ export default function AlumniPage() {
                 <Box className="px-1"></Box>
                 <Title label="Network" color="admiShamrok" size={isMobile ? '36px' : '64px'} />
               </Box>
-              <Box className="flex w-full flex-col pt-12 sm:flex-row sm:pb-12 sm:pt-0">
-                <Paragraph fontFamily="font-nexa" className="pr-6 text-white sm:w-1/2">
+              <Box className="flex w-full flex-col pt-12 sm:h-[180px] sm:flex-row sm:pb-12 sm:pt-0">
+                <Paragraph fontFamily="font-nexa" className="my-auto pr-6 text-white sm:w-1/2">
                   Welcome to the Alumni page of Africa Digital Media Institute (ADMI)! We are proud of our graduates and
                   the incredible contributions they make to the digital media industry and beyond.
                 </Paragraph>
@@ -61,7 +61,7 @@ export default function AlumniPage() {
                   color="admiShamrok"
                   my={isMobile ? 16 : 0}
                 />
-                <Paragraph fontFamily="font-nexa" className="text-white sm:w-1/2 sm:pl-6">
+                <Paragraph fontFamily="font-nexa" className="my-auto text-white sm:w-1/2 sm:pl-6">
                   Our alumni network is a vibrant community of talented individuals who have gone on to achieve
                   remarkable success in various fields, and we are excited to celebrate their accomplishments and keep
                   the connections alive.
@@ -73,7 +73,7 @@ export default function AlumniPage() {
         {/* NETWORK */}
         <Box className="relative z-10 w-full bg-[#002A23] py-8">
           <Box className="mx-auto flex w-full max-w-screen-xl flex-col sm:flex-row">
-            <Box className="flex flex-col px-4 sm:w-[70%] 2xl:px-0">
+            <Box className="flex flex-col px-4 sm:w-[70%] xl:px-0">
               <PlainCard>
                 <Box className="flex w-full">
                   <Box className="grow">
@@ -118,7 +118,7 @@ export default function AlumniPage() {
                 </Box>
               </PlainCard>
             </Box>
-            <Box className="sm:py-auto px-4 py-8 sm:w-[30%]">
+            <Box className="px-4 pt-8 sm:w-[30%] sm:pt-0">
               <JoinForm />
             </Box>
           </Box>
@@ -126,7 +126,7 @@ export default function AlumniPage() {
         {/* ALUMNI */}
         <Box className="1xl:px-0 w-full px-4 py-8" bg={'#002A23'}>
           <Box className="mx-auto w-full max-w-screen-xl">
-            <Divider pb={32} opacity={'30%'}/>
+            <Divider pb={32} opacity={'30%'} />
             <Box className="flex w-full flex-col">
               <Title label="Alumni Profiles" color="white" />
               <Paragraph className="text-white" fontFamily="font-nexa">
