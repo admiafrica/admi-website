@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 import IconArrowTipRight from '@/assets/icons/ArrowTipRight';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
+import { useIsMobile } from '@/hooks/useIsMobile';
 
 type Props = {
   announcement: any;
@@ -21,6 +22,7 @@ type Props = {
 
 export default function AnnouncementCard(props: Props) {
   const router = useRouter();
+  const isMobile = useIsMobile();
 
   const handleCardClick = () => {
     router.push(`/${props.destination}/${props.announcement.slug}`);
@@ -50,8 +52,8 @@ export default function AnnouncementCard(props: Props) {
             <Box className="h-full w-full" bg={props.ribbonColor}></Box>
           </motion.div>
         )}
-        <Box className="flex h-fit w-full flex-col-reverse px-0 py-4 sm:h-[420px] sm:flex-row sm:px-4">
-          <Box className="flex grow flex-col pt-4 sm:w-[44%] hover:w-[42%] sm:pr-4 sm:pt-0">
+        <Box className="flex h-fit w-full flex-col-reverse px-4 py-4 sm:h-[420px] sm:flex-row">
+          <Box className="flex grow flex-col pt-4 hover:w-[42%] sm:w-[44%] sm:pr-4 sm:pt-0">
             {props.featured && (
               <Pill
                 size="md"
@@ -95,30 +97,54 @@ export default function AnnouncementCard(props: Props) {
             </motion.div>
           </Box>
           {/* Image Container with Hover Effect */}
-          <motion.div
-            className="relative flex h-[180px] sm:h-full"
-            initial={{ width: '56%' }}
-            variants={{
-              hover: { width: props.featured ? '55%' : '56%' },
-            }}
-            transition={{ duration: 0.3 }}
-          >
-            {props.announcement.coverImage ? (
-              <Image
-                fill
-                src={`https:${props.announcement.coverImage.fields.file.url}`}
-                alt={props.announcement.title}
-                style={{ borderRadius: 8, objectFit: 'cover' }}
-              />
-            ) : (
-              <Image
-                fill
-                src={props.image || 'https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png'}
-                alt="about course"
-                style={{ borderRadius: 8, objectFit: 'cover' }}
-              />
-            )}
-          </motion.div>
+          {isMobile ? (
+            <div className="relative mx-auto flex h-[180px] w-full sm:h-full">
+              {props.announcement.coverImage ? (
+                <Image
+                  fill
+                  src={`https:${props.announcement.coverImage.fields.file.url}`}
+                  alt={props.announcement.title}
+                  style={{ borderRadius: 8, objectFit: 'cover' }}
+                />
+              ) : (
+                <Image
+                  fill
+                  src={
+                    props.image || 'https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png'
+                  }
+                  alt="about course"
+                  style={{ borderRadius: 8, objectFit: 'cover' }}
+                />
+              )}
+            </div>
+          ) : (
+            <motion.div
+              className="relative flex h-[180px] sm:h-full"
+              initial={{ width: '56%' }}
+              variants={{
+                hover: { width: props.featured ? '55%' : '56%' },
+              }}
+              transition={{ duration: 0.3 }}
+            >
+              {props.announcement.coverImage ? (
+                <Image
+                  fill
+                  src={`https:${props.announcement.coverImage.fields.file.url}`}
+                  alt={props.announcement.title}
+                  style={{ borderRadius: 8, objectFit: 'cover' }}
+                />
+              ) : (
+                <Image
+                  fill
+                  src={
+                    props.image || 'https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png'
+                  }
+                  alt="about course"
+                  style={{ borderRadius: 8, objectFit: 'cover' }}
+                />
+              )}
+            </motion.div>
+          )}
         </Box>
       </motion.div>
     </Card>
