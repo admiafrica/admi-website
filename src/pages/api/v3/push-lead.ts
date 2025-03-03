@@ -34,6 +34,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       EMAIL: email,
       SMS: phone,
       PREFERRED_COURSE: courseName,
+      COURSE_INTERESTED_IN: [courseName],
       UTM_SOURCE: utm_source,
       UTM_MEDIUM: utm_medium,
       UTM_CAMPAIGN: utm_campaign,

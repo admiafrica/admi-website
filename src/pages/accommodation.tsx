@@ -95,10 +95,10 @@ export default function AccommodationPage() {
                   </Box>
                   <Box className="flex flex-col items-end sm:w-[40%]">
                     <Card bg={'white'} radius={8} my={4} w={300} className="flex items-center">
-                      <Image src={IconQwetu} alt="Qwetu Residences" width={150} height={80} />
+                      <Image src={IconQwetu} alt="Qwetu Residences" width={150} height={70} />
                     </Card>
                     <Card bg={'white'} radius={8} my={4} w={300} className="flex items-center">
-                      <Image src={IconQejani} alt="Qejani Residences" width={150} height={80} />
+                      <Image src={IconQejani} alt="Qejani Residences" width={150} height={70} />
                     </Card>
                   </Box>
                 </Box>
