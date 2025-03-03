@@ -1,10 +1,11 @@
 import Image from 'next/image';
-import { Badge, Group } from '@mantine/core';
+import { Badge, Box, Group } from '@mantine/core';
 import { CourseSummaryCard } from '../cards';
 
 import IconAward from '@/assets/icons/Award';
 import { useIsMobile } from '@/hooks/useIsMobile';
 import { Paragraph, Title } from '../ui';
+import { EnquiryForm } from '../forms';
 
 type Props = {
   name: string;
@@ -44,12 +45,12 @@ export default function CourseHero(props: Props) {
       ></div>
 
       {/* Floating Card */}
-      <div className={props.isCampaign ? 'w-full px-1 sm:w-fit' : 'w-full px-1'}>
+      <div className={props.isCampaign ? 'w-full px-1 sm:w-full' : 'w-full px-1'}>
         <div
           className={
             props.isCampaign
-              ? 'absolute left-1/2 top-[400px] z-20 w-full max-w-screen-xl -translate-x-1/2 transform px-4 sm:top-[45vh] xl:px-0'
-              : 'absolute left-1/2 top-[400px] z-20 w-full max-w-screen-xl -translate-x-1/2 transform px-4 sm:top-[45vh] xl:px-0'
+              ? 'absolute left-1/2 top-[400px] z-20 flex w-full max-w-screen-xl -translate-x-1/2 transform flex-col px-4 sm:top-[45vh] sm:flex-row xl:px-0'
+              : 'absolute left-1/2 top-[400px] z-20 flex w-full max-w-screen-xl -translate-x-1/2 transform px-4 sm:top-[45vh] xl:px-0'
           }
         >
           <CourseSummaryCard
@@ -58,6 +59,11 @@ export default function CourseHero(props: Props) {
             awardLevel={props.awardLevel}
             isCampaign={props.isCampaign}
           />
+          {props.isCampaign && (
+            <Box className="relative w-full max-w-[480px] sm:top-[-120px] sm:ml-2">
+              <EnquiryForm />
+            </Box>
+          )}
         </div>
       </div>
 

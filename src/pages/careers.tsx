@@ -62,8 +62,8 @@ export default function CareersPage() {
                 <Box className="px-1"></Box>
                 <Title label="Us" color="admiShamrok" size={isMobile ? '32px' : '64px'} />
               </Box>
-              <Box className="flex w-full flex-col pt-12 sm:flex-row">
-                <Paragraph fontFamily="font-nexa" className="pr-6 text-white sm:w-1/2">
+              <Box className="flex w-full flex-col pt-12 sm:h-[180px] sm:flex-row">
+                <Paragraph fontFamily="font-nexa" className="my-auto pr-6 text-white sm:w-1/2">
                   At Africa Digital Media Institute (ADMI), we believe that exceptional faculty are the cornerstone of
                   an outstanding educational experience. We are always on the lookout for passionate and skilled
                   educators who are eager to inspire and empower the next generation of digital media professionals.
@@ -74,7 +74,7 @@ export default function CareersPage() {
                   color="#E43B07"
                   my={isMobile ? 16 : 0}
                 />
-                <Paragraph fontFamily="font-nexa" className="text-white sm:w-1/2 sm:pl-6">
+                <Paragraph fontFamily="font-nexa" className="my-auto text-white sm:w-1/2 sm:pl-6">
                   Whether you are an experienced instructor or a talented industry practitioner, we invite you to
                   explore the opportunity to join our dynamic team.
                 </Paragraph>

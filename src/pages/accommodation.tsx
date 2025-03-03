@@ -52,8 +52,8 @@ export default function AccommodationPage() {
             <Box className="mt-[12vh] flex w-full flex-col">
               <Title label="Accommodation" color="#F1FE37" size={isMobile ? '36px' : '64px'} />
               <Box className="grow"></Box>
-              <Box className="flex w-full flex-col pt-12 sm:flex-row sm:pb-12 sm:pt-0">
-                <Paragraph fontFamily="font-nexa" className="pr-4 text-white sm:w-[50%]">
+              <Box className="flex w-full flex-col pt-12 sm:h-[180px] sm:flex-row sm:pb-12 sm:pt-0">
+                <Paragraph fontFamily="font-nexa" className="my-auto pr-4 text-white sm:w-[50%]">
                   At Africa Digital Media Institute (ADMI), we understand that finding the right accommodation is
                   essential for your academic success and overall well-being. 
                 </Paragraph>
@@ -63,7 +63,7 @@ export default function AccommodationPage() {
                   color="admiShamrok"
                   my={isMobile ? 16 : 0}
                 />
-                <Paragraph fontFamily="font-nexa" className="text-white sm:w-[50%] sm:pl-4">
+                <Paragraph fontFamily="font-nexa" className="my-auto text-white sm:w-[50%] sm:pl-4">
                   That’s why we have partnered with Qwetu and Qejani, two leading providers of modern student
                   accommodation, to offer you a comfortable and vibrant living experience close to campus. We believe
                   that a supportive living environment plays a crucial role in your educational journey, and we are here
@@ -95,10 +95,10 @@ export default function AccommodationPage() {
                   </Box>
                   <Box className="flex flex-col items-end sm:w-[40%]">
                     <Card bg={'white'} radius={8} my={4} w={300} className="flex items-center">
-                      <Image src={IconQwetu} alt="Qwetu Residences" width={150} height={80} />
+                      <Image src={IconQwetu} alt="Qwetu Residences" width={150} height={70} />
                     </Card>
                     <Card bg={'white'} radius={8} my={4} w={300} className="flex items-center">
-                      <Image src={IconQejani} alt="Qejani Residences" width={150} height={80} />
+                      <Image src={IconQejani} alt="Qejani Residences" width={150} height={70} />
                     </Card>
                   </Box>
                 </Box>

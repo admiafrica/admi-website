@@ -48,9 +48,9 @@ export default function LearnMoreCard() {
               </Box>
               <Box className="grow">
                 <Box className="relative">
-                  <Divider size={2} color="admiRed" className="absolute inset-0 z-0 top-[12px] w-[84%]" />
+                  <Divider size={2} color="admiRed" className="absolute inset-0 top-[12px] z-0 w-[84%]" />
                 </Box>
-                <Paragraph size="24px" fontWeight={400} fontFamily="font-nexa" td={'strike-through'}>
+                <Paragraph size="24px" fontWeight={400} fontFamily="font-nexa">
                   KES 20,000
                 </Paragraph>
               </Box>

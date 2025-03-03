@@ -23,7 +23,7 @@ export default function JoinForm() {
   };
 
   return (
-    <Card className="relative h-full w-full bg-white p-4 sm:p-8" radius="lg">
+    <Card className="relative h-full w-full bg-white p-4 sm:p-8" radius="md">
       {/* Background Image */}
       <Image
         src={ImageJoinNetworkBackground}
@@ -42,9 +42,10 @@ export default function JoinForm() {
           background: `linear-gradient(170.72deg, rgba(1, 198, 165, 0) 22.23%, rgba(1, 198, 165, 0.8) 89.36%),linear-gradient(218.97deg, rgba(246, 8, 52, 0.8) 7.01%, rgba(246, 8, 52, 0) 49.52%)`,
         }}
       ></div>
+      <div className="grow"></div>
       <div className="relative">
         <Title label="Join the ADMI" color="white" />
-        <Title label="Alumni Network" color="#B9C601" />
+        <Title label="Alumni Network" color="#F1FE37" />
         <Paragraph className="text-white">
           If you haven’t already, we invite you to register with us and become an active member of the ADMI alumni
           community.
@@ -56,7 +57,7 @@ export default function JoinForm() {
       <Card withBorder bg={'black'} p={12} radius={'md'}>
         <Title label="Alumni Network" color="white" size="20px" />
         <Paragraph className="py-2 text-white">Subscribe to our alumni network and stay updated.</Paragraph>S
-        <form onSubmit={form.onSubmit((values) => console.log(values))}>
+        <form onSubmit={handleSubmit}>
           <TextInput
             my={16}
             className="border-1 rounded-lg border-solid border-gray-200 py-2"
@@ -71,7 +72,7 @@ export default function JoinForm() {
             {...form.getInputProps('email')}
           />
           <Group justify="flex-end" mt="2em" className="w-full">
-            <Button size="lg" backgroundColor="admiRed" label="Subscribe" onClick={() => handleSubmit()} />
+            <Button size="lg" backgroundColor="admiRed" label="Subscribe" type="submit" />
           </Group>
         </form>
       </Card>

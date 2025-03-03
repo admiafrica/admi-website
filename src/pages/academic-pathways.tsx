@@ -44,6 +44,7 @@ export default function AcademicPathwaysPage() {
                     src={ImagePathwaysLanding}
                     alt="academic pathways"
                     style={{ objectFit: 'cover', borderRadius: 16 }}
+                    priority
                   />
                 </Box>
               </Box>
@@ -66,7 +67,7 @@ export default function AcademicPathwaysPage() {
           </Box>
         </Box>
         {/* Floating Card */}
-        <div className="relative w-full px-4 2xl:px-0 h-[400px]">
+        <div className="relative h-[400px] w-full px-4 2xl:px-0">
           <div className="absolute left-1/2 top-[-10vh] z-10 w-full max-w-screen-xl -translate-x-1/2 transform px-4 sm:top-[-8vh] 2xl:px-0">
             <PlainCard>
               <Title label="Career Opportunities" size="20px" color="black" />
@@ -84,7 +85,6 @@ export default function AcademicPathwaysPage() {
             </PlainCard>
           </div>
         </div>
-        <Box className="mx-auto w-full pt-56"></Box>
       </div>
     </MainLayout>
   );

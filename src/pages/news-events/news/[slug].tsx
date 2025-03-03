@@ -1,4 +1,3 @@
-import { useCallback, useEffect, useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { Box, Card, Tabs } from '@mantine/core';
@@ -11,40 +10,43 @@ import { Paragraph, ParagraphContentful } from '@/components/ui';
 import IconDiary from '@/assets/icons/Diary';
 import { useIsMobile } from '@/hooks/useIsMobile';
 
-export default function NewsArticlePage() {
+export default function NewsArticlePage({ article }: { article: any }) {
   const isMobile = useIsMobile();
   const router = useRouter();
-  const slug = router.query.slug;
-  const [article, setArticle] = useState<any>();
 
-  const fetchNewsArticle = useCallback(async () => {
-    if (!slug) return;
+  const navigateToPage = (value: string) => {
+    router.push(value);
+  };
 
-    try {
-      const response = await fetch(`/api/v3/news-details?slug=${slug}`);
-      const data = await response.json();
-      setArticle(data.fields);
-    } catch (error) {
-      console.log('Error fetching article:', error);
-    }
-  }, [slug]);
-
-  useEffect(() => {
-    fetchNewsArticle();
-  }, [fetchNewsArticle]);
+  if (!article) {
+    return (
+      <MainLayout footerBgColor="white">
+        <Box className="flex h-[80vh] w-full items-center justify-center">
+          <Paragraph fontFamily="font-nexa" size="24px">
+            Resource not found.
+          </Paragraph>
+        </Box>
+      </MainLayout>
+    );
+  }
 
   return (
     <MainLayout footerBgColor="white">
-      <PageSEO title="News & Events" />
+      <PageSEO
+        title={`News - ${article.title}`}
+        description={article.summary}
+        image={`https://${article.coverImage?.fields.file.url}`}
+      />
       <Box className="w-full">
         <Tabs defaultValue="news">
           <Tabs.List w={'100%'} bg={'#002A23'}>
             <Tabs.Tab
               value="news"
               rightSection={<IconDiary width={32} height={32} color="white" />}
-              className="grow"
+              className="grow transition hover:bg-admiRed"
               w={'50%'}
               h={60}
+              onClick={() => navigateToPage('/news-events')}
             >
               <Paragraph className="text-white" fontFamily="font-nexa" fontWeight={900}>
                 News
@@ -53,9 +55,10 @@ export default function NewsArticlePage() {
             <Tabs.Tab
               value="events"
               rightSection={<IconDiary width={32} height={32} color="white" />}
-              className="grow"
+              className="grow transition hover:bg-admiRed"
               w={'50%'}
               h={60}
+              onClick={() => navigateToPage('/news-events')}
             >
               <Paragraph className="text-white" fontFamily="font-nexa" fontWeight={900}>
                 Events
@@ -68,22 +71,21 @@ export default function NewsArticlePage() {
               <Box className="sm:w-[200px]">
                 <SocialShare item={article} />
               </Box>
-              {article && (
-                <Card className="mb-6 min-h-[80vh] w-full sm:ml-8" withBorder>
-                  <Box className="relative" h={isMobile ? '200px' : '600px'}>
-                    <Image
-                      src={`https:${article.coverImage.fields.file.url}`}
-                      alt={article.title}
-                      style={{ borderRadius: 8 }}
-                      fill
-                    />
-                  </Box>
-                  <Paragraph fontFamily="font-nexa" fontWeight={400} size="26px" className="py-6">
-                    {article.title}
-                  </Paragraph>
-                  <ParagraphContentful fontFamily="font-nexa">{article.body}</ParagraphContentful>
-                </Card>
-              )}
+              <Card className="mb-6 min-h-[80vh] w-full sm:ml-8" withBorder>
+                <Box className="relative" h={isMobile ? '200px' : '600px'}>
+                  <Image
+                    src={`https:${article.coverImage.fields.file.url}`}
+                    alt={article.title}
+                    style={{ borderRadius: 8 }}
+                    fill
+                    priority
+                  />
+                </Box>
+                <Paragraph fontFamily="font-nexa" fontWeight={400} size="26px" className="py-6">
+                  {article.title}
+                </Paragraph>
+                <ParagraphContentful fontFamily="font-nexa">{article.body}</ParagraphContentful>
+              </Card>
             </Box>
           </Tabs.Panel>
           <Tabs.Panel value="events" w={'100%'} h={'80vh'} className="flex items-center justify-center px-4">
@@ -96,4 +98,25 @@ export default function NewsArticlePage() {
       </Box>
     </MainLayout>
   );
+}
+
+export async function getServerSideProps(context: any) {
+  const { slug } = context.params;
+
+  try {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v3/news-details?slug=${slug}`);
+
+    if (!response.ok) {
+      return { notFound: true };
+    }
+
+    const data = await response.json();
+
+    return {
+      props: { article: data.fields },
+    };
+  } catch (error) {
+    console.error('Error fetching article:', error);
+    return { props: { article: null } };
+  }
 }
