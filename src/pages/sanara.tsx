@@ -19,7 +19,7 @@ export default function NewsArticlePage() {
 
   return (
     <MainLayout footerBgColor="white">
-      <PageSEO title="Sanara Animation Program" description="" image={ImageSanaraLanding} />
+      <PageSEO title="Sanara Animation Program" description="Unlock Your Creative Future" image={ImageSanaraLanding} />
       <Box className="w-full">
         <Box className="mx-auto flex w-full max-w-screen-xl flex-col-reverse px-4 py-4 sm:flex-row sm:py-16 xl:px-0">
           <Box className="sm:w-[200px]">
