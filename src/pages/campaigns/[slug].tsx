@@ -1,44 +1,24 @@
-import { useRouter } from 'next/router';
-import { useState, useCallback, useEffect } from 'react';
-
+import { GetServerSideProps } from 'next';
 import { MainLayout } from '@/layouts/v3/MainLayout';
 import { CourseHero, CourseAbout, CourseDetails, CourseApplicationProcess, CourseFAQs } from '@/components/course';
 import { PageSEO } from '@/components/shared/v3';
 import { GoogleAnalyticsTag } from '@/components/shared';
 
-export default function CourseDetailPage() {
-  const router = useRouter();
-  const [course, setCourse] = useState<any>();
-  const [courseAssets, setCourseAssets] = useState<any>();
-  const [, setCourseEntries] = useState<any>();
+interface CourseDetailPageProps {
+  course: any;
+  courseAssets: any;
+}
 
-  const slug = router.query.slug;
-
-  const fetchCourse = useCallback(async () => {
-
-    if (!slug) return;
-
-    try {
-      const response = await fetch(`/api/v3/course-details?slug=${slug}`);
-      const data = await response.json();
-
-      setCourse(data.fields);
-      setCourseAssets(data.assets);
-      setCourseEntries(data.entries);
-    } catch (error) {
-      console.log('Error fetching course:', error);
-    }
-  }, [slug]);
-
-  useEffect(() => {
-    fetchCourse();
-  }, [fetchCourse]);
-
+export default function CourseDetailPage({ course, courseAssets }: CourseDetailPageProps) {
   if (!course) return null;
 
   return (
     <MainLayout minimizeFooter minimizeHeader>
-      <PageSEO title={course.name} image={`https:${course.coverImage.fields.file.url}`} />
+      <PageSEO
+        title={course.name}
+        description={`${course.programType.fields.duration}, ${course.programType.fields.deliveryMode}`}
+        image={`https:${course.coverImage?.fields.file.url}`}
+      />
       <CourseHero
         name={course.name}
         coverImage={course.coverImage}
@@ -70,3 +50,31 @@ export default function CourseDetailPage() {
     </MainLayout>
   );
 }
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const { slug } = context.params ?? {};
+
+  if (!slug) {
+    return { notFound: true };
+  }
+
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v3/course-details?slug=${slug}`);
+
+    if (!res.ok) {
+      throw new Error('Failed to fetch course details');
+    }
+
+    const data = await res.json();
+
+    return {
+      props: {
+        course: data.fields || null,
+        courseAssets: data.assets || null,
+      },
+    };
+  } catch (error) {
+    console.error('Error fetching course:', error);
+    return { notFound: true };
+  }
+};

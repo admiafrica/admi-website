@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState, useRef } from 'react';
+import { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import { Box, Indicator, Divider, NumberFormatter } from '@mantine/core';
@@ -7,7 +7,6 @@ import Autoplay from 'embla-carousel-autoplay';
 
 import { AnimatedWordDisplay, Paragraph, SearchDropdown, Title } from '@/components/ui';
 import { MainLayout } from '@/layouts/v3/MainLayout';
-
 import { Button } from '@/components/ui';
 import { PageSEO } from '@/components/shared/v3';
 import {
@@ -27,19 +26,22 @@ import AnnouncementImage from '@/assets/images/announcement.svg';
 import NewsImage from '@/assets/images/featured-news.svg';
 import AwardsImage from '@/assets/images/awards.svg';
 
-export default function HomePage() {
+interface HomePageProps {
+  content: any;
+  courses: Array<any>;
+  featuredNews: IContentfulEntry | null;
+  featuredResource: IContentfulEntry | null;
+  featuredAward: IContentfulEntry | null;
+}
+
+export default function HomePage({ content, courses, featuredNews, featuredResource, featuredAward }: HomePageProps) {
   const router = useRouter();
   const isMobile = useIsMobile();
-  const [content, setContent] = useState<any>();
-  const [courses, setCourses] = useState<Array<any>>([]);
-  const [featuredNews, setFeaturedNews] = useState<IContentfulEntry>();
-  const [featuredResource, setFeaturedResource] = useState<IContentfulEntry>();
-  const [featuredAward, setFeaturedAward] = useState<IContentfulEntry>();
 
-  const autoplaySectors = useRef(Autoplay({ delay: 4000 }));
-  const autoplayTestimonials = useRef(Autoplay({ delay: 4000 }));
-  const autoplayFacilities = useRef(Autoplay({ delay: 4000 }));
-  const autoplayCourses = useRef(Autoplay({ delay: 4000 }));
+  const autoplaySectors = Autoplay({ delay: 4000 });
+  const autoplayTestimonials = Autoplay({ delay: 4000 });
+  const autoplayFacilities = Autoplay({ delay: 4000 });
+  const autoplayCourses = Autoplay({ delay: 4000 });
 
   const keyItems = [
     { word: 'Media', styles: 'text-[#F1FE38]' },
@@ -50,74 +52,17 @@ export default function HomePage() {
 
   const facilities = ADMI_FACILITIES;
 
-  const fetchCourses = useCallback(async () => {
-    try {
-      const response = await fetch(`/api/v3/courses`);
-      const data = await response.json();
-      setCourses(data);
-    } catch (error) {
-      console.log('Error fetching courses:', error);
-    }
-  }, []);
-
-  const fetchContent = useCallback(async () => {
-    try {
-      const response = await fetch(`/api/v3/homepage`);
-      const data = await response.json();
-      setContent(data[0]);
-    } catch (error) {
-      console.log('Error fetching courses:', error);
-    }
-  }, []);
-
-  const fetchFeaturedNews = useCallback(async () => {
-    try {
-      const response = await fetch(`/api/v3/news`);
-      const data = await response.json();
-      const featuredArticle = data.find((article: IContentfulEntry) => article.fields.featured);
-      setFeaturedNews(featuredArticle);
-    } catch (error) {
-      console.log('Error fetching courses:', error);
-    }
-  }, []);
-
-  const fetchFeaturedAward = useCallback(async () => {
-    try {
-      const response = await fetch(`/api/v3/awards`);
-      const data = await response.json();
-      const featuredArticle = data.find((article: IContentfulEntry) => article.fields.featured);
-      setFeaturedAward(featuredArticle);
-    } catch (error) {
-      console.log('Error fetching courses:', error);
-    }
-  }, []);
-
-  const fetchFeaturedResource = useCallback(async () => {
-    try {
-      const response = await fetch(`/api/v3/resources`);
-      const data = await response.json();
-      const featuredArticle = data.find((article: IContentfulEntry) => article.fields.featured);
-      setFeaturedResource(featuredArticle);
-    } catch (error) {
-      console.log('Error fetching resources:', error);
-    }
-  }, []);
-
   const handleViewCourses = () => {
     router.push(`/courses`);
   };
 
-  useEffect(() => {
-    fetchContent();
-    fetchCourses();
-    fetchFeaturedNews();
-    fetchFeaturedResource();
-    fetchFeaturedAward();
-  }, [fetchCourses, fetchContent, fetchFeaturedNews, fetchFeaturedResource, fetchFeaturedAward]);
-
   return (
     <MainLayout footerBgColor="#E6F608">
-      <PageSEO title="Home" />
+      <PageSEO
+        title="Home"
+        description="Africa Digital Media Institute (ADMI) based in Nairobi, Kenya, is Eastern Africa's premier creative
+                and technology training institution."
+      />
       <div className="w-full">
         {/* HERO */}
         <Box className="relative w-full">
@@ -203,9 +148,9 @@ export default function HomePage() {
               slidesToScroll={1}
               px={8}
               withControls={false}
-              plugins={[autoplaySectors.current]}
-              onMouseEnter={autoplaySectors.current.stop}
-              onMouseLeave={autoplaySectors.current.reset}
+              plugins={[autoplaySectors]}
+              onMouseEnter={autoplaySectors.stop}
+              onMouseLeave={autoplaySectors.reset}
             >
               {ADMI_HOMEPAGE_SECTORS.map((sector: any) => (
                 <Carousel.Slide key={sector.title} py={6}>
@@ -373,9 +318,9 @@ export default function HomePage() {
                 align="start"
                 slidesToScroll={1}
                 withControls={false}
-                plugins={[autoplayTestimonials.current]}
-                onMouseEnter={autoplayTestimonials.current.stop}
-                onMouseLeave={autoplayTestimonials.current.reset}
+                plugins={[autoplayTestimonials]}
+                onMouseEnter={autoplayTestimonials.stop}
+                onMouseLeave={autoplayTestimonials.reset}
               >
                 {content &&
                   content.fields.testimonials.map((testimonial: any, index: number) => (
@@ -426,9 +371,9 @@ export default function HomePage() {
               slidesToScroll={1}
               controlsOffset={0}
               withControls={false}
-              plugins={[autoplayFacilities.current]}
-              onMouseEnter={autoplayFacilities.current.stop}
-              onMouseLeave={autoplayFacilities.current.reset}
+              plugins={[autoplayFacilities]}
+              onMouseEnter={autoplayFacilities.stop}
+              onMouseLeave={autoplayFacilities.reset}
             >
               {facilities.map((facility) => (
                 <Carousel.Slide key={facility.name}>
@@ -445,6 +390,7 @@ export default function HomePage() {
               destination="news-events/news"
               announcement={featuredNews.fields}
               bgColor="admiShamrok"
+              ribbonColor="admiRed"
               image={NewsImage}
               featured
             />
@@ -472,9 +418,9 @@ export default function HomePage() {
                 loop
                 align="start"
                 slidesToScroll={1}
-                plugins={[autoplayCourses.current]}
-                onMouseEnter={autoplayCourses.current.stop}
-                onMouseLeave={autoplayCourses.current.reset}
+                plugins={[autoplayCourses]}
+                onMouseEnter={autoplayCourses.stop}
+                onMouseLeave={autoplayCourses.reset}
               >
                 {courses.map((course) => (
                   <Carousel.Slide key={course.sys.id}>
@@ -504,3 +450,44 @@ export default function HomePage() {
     </MainLayout>
   );
 }
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  try {
+    const [contentRes, coursesRes, newsRes, resourcesRes, awardsRes] = await Promise.all([
+      fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v3/homepage`),
+      fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v3/courses`),
+      fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v3/news`),
+      fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v3/resources`),
+      fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v3/awards`),
+    ]);
+
+    const [contentData, coursesData, newsData, resourcesData, awardsData] = await Promise.all([
+      contentRes.json(),
+      coursesRes.json(),
+      newsRes.json(),
+      resourcesRes.json(),
+      awardsRes.json(),
+    ]);
+
+    return {
+      props: {
+        content: contentData[0] || null,
+        courses: coursesData || [],
+        featuredNews: newsData.find((article: IContentfulEntry) => article.fields.featured) || null,
+        featuredResource: resourcesData.find((article: IContentfulEntry) => article.fields.featured) || null,
+        featuredAward: awardsData.find((article: IContentfulEntry) => article.fields.featured) || null,
+      },
+    };
+  } catch (error) {
+    console.error('Error fetching homepage data:', error);
+    return {
+      props: {
+        content: null,
+        courses: [],
+        featuredNews: null,
+        featuredResource: null,
+        featuredAward: null,
+      },
+    };
+  }
+};

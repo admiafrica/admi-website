@@ -1,5 +1,5 @@
 import React from 'react';
-import { Anchor, Box, Card, Divider, Modal, Pill } from '@mantine/core';
+import { Anchor, Box, Card, Divider, Pill } from '@mantine/core';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 
@@ -10,8 +10,6 @@ import { formatDate } from '@/utils';
 import IconLocation from '@/assets/icons/map-marker-3-black.svg';
 import IconCall from '@/assets/icons/call-black.svg';
 import IconStopwatch from '@/assets/icons/stopwatch-black.svg';
-import { useDisclosure } from '@mantine/hooks';
-import { EventReservationForm } from '../forms';
 
 type Props = {
   announcement: any;
@@ -25,7 +23,6 @@ type Props = {
 
 export default function EventAnnouncementCard(props: Props) {
   const isMobile = useIsMobile();
-  const [opened, { open, close }] = useDisclosure(false);
   const googleMapsUrl = `https://www.google.com/maps?q=${props.announcement.location.lat},${props.announcement.location.lon}`;
 
   return (
@@ -33,10 +30,8 @@ export default function EventAnnouncementCard(props: Props) {
       className="mx-auto w-full max-w-screen-lg cursor-pointer"
       bg={props.bgColor || 'white'}
       style={{ borderRadius: 8 }}
+      withBorder
     >
-      <Modal radius="lg" opened={opened} onClose={close} size={isMobile ? '100%' : '600px'}>
-        <EventReservationForm close={close} />
-      </Modal>
       <motion.div
         className="flex h-full w-full flex-col sm:flex-row"
         whileHover="hover" // Shared hover animation key
@@ -69,10 +64,10 @@ export default function EventAnnouncementCard(props: Props) {
                   label={props.announcement.title}
                   color="black"
                   size={isMobile ? '18px' : '24px'}
-                  className="my-auto w-fit"
+                  className="mt-auto w-fit"
                 />
               </Box>
-              <Anchor href={googleMapsUrl} target="_blank" rel="noopener noreferrer">
+              <Anchor href={googleMapsUrl} target="_blank" rel="noopener noreferrer" mt={32}>
                 <Box className="flex w-full">
                   <Image src={IconLocation} height={24} width={24} alt="location" className="mr-2 mt-1" />
                   <Paragraph
@@ -129,8 +124,11 @@ export default function EventAnnouncementCard(props: Props) {
                 />
               )}
             </Box>
-
-            <Button size="lg" backgroundColor="admiRed" label="Make Reservation" onClick={open} />
+            {props.announcement.link && (
+              <Anchor href={props.announcement.link} target="_blank">
+                <Button size="lg" backgroundColor="admiRed" label="Register" />
+              </Anchor>
+            )}
           </Box>
         </Box>
       </motion.div>

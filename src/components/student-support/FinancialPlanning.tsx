@@ -27,7 +27,6 @@ export default function FinancialPlanning() {
   }, []);
 
   const handleDocumentDownload = async (feeDocument: any) => {
-    console.log(kenyanFees);
     try {
       const response = await fetch(`https:${feeDocument.url}`);
       if (!response.ok) throw new Error('Failed to fetch file');

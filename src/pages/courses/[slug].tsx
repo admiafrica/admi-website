@@ -1,6 +1,3 @@
-import { useRouter } from 'next/router';
-import { useState, useCallback, useEffect } from 'react';
-
 import { MainLayout } from '@/layouts/v3/MainLayout';
 import {
   CourseAbout,
@@ -13,38 +10,18 @@ import {
 } from '@/components/course';
 import { PageSEO } from '@/components/shared/v3';
 
-export default function CourseDetailPage() {
-  const router = useRouter();
-  const [course, setCourse] = useState<any>();
-  const [courseAssets, setCourseAssets] = useState<any>();
-  const [, setCourseEntries] = useState<any>();
-
-  const slug = router.query.slug;
-
-  const fetchCourse = useCallback(async () => {
-    if (!slug) return;
-
-    try {
-      const response = await fetch(`/api/v3/course-details?slug=${slug}`);
-      const data = await response.json();
-
-      setCourse(data.fields);
-      setCourseAssets(data.assets);
-      setCourseEntries(data.entries);
-    } catch (error) {
-      console.log('Error fetching course:', error);
-    }
-  }, [slug]);
-
-  useEffect(() => {
-    fetchCourse();
-  }, [fetchCourse]);
-
-  if (!course) return null;
-
+export default function CourseDetailPage({
+  course,
+  courseAssets,
+  slug,
+}: {
+  course: any;
+  courseAssets: any[];
+  slug: string;
+}) {
   return (
     <MainLayout>
-      <PageSEO title={course.name} image={`https:${course.coverImage.fields.file.url}`} />
+      <PageSEO title={course.name} image={`https:${course.coverImage.fields.file.url}`} url={`/courses/${slug}`} />
       <CourseHero
         name={course.name}
         coverImage={course.coverImage}
@@ -79,4 +56,28 @@ export default function CourseDetailPage() {
       <CourseFAQs faqs={course.faqs || []} />
     </MainLayout>
   );
+}
+
+export async function getServerSideProps({ params }: { params: { slug: string } }) {
+  const { slug } = params;
+
+  try {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v3/course-details?slug=${slug}`);
+    if (!response.ok) {
+      return { notFound: true }; // Redirect to 404 if course is not found
+    }
+
+    const data = await response.json();
+
+    return {
+      props: {
+        course: data.fields,
+        courseAssets: data.assets || [],
+        slug,
+      },
+    };
+  } catch (error) {
+    console.error('Error fetching course:', error);
+    return { notFound: true };
+  }
 }

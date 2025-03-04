@@ -1,5 +1,4 @@
-import { Box, Card } from '@mantine/core';
-import { EnquiryForm } from '../forms';
+import { Box } from '@mantine/core';
 import { ParagraphContentful, Title } from '../ui';
 import { CourseVideoCard } from '../cards';
 import { useIsMobile } from '@/hooks/useIsMobile';
@@ -15,25 +14,22 @@ export default function CourseAbout(props: Props) {
   const isMobile = useIsMobile();
 
   return (
-    <div className={isMobile ? 'w-full pb-16 pt-12 sm:pt-0' : 'w-full pb-16 pt-48 sm:pt-0'}>
+    <div
+      className={
+        isMobile ? `w-full pb-16 pt-${props.isCampaign ? '[56em]' : '20'} sm:pt-0` : 'w-full pb-16 pt-48 sm:pt-0'
+      }
+    >
       <div className="mx-auto w-full max-w-screen-xl px-4 2xl:px-0">
-        <div className="flex w-full flex-col sm:flex-row">
+        <div className="flex w-full flex-col sm:flex-row min-h-[600px]">
           {props.isCampaign && (
             <Box className="flex w-full flex-col sm:flex-row">
-              <div className="mt-24 flex flex-col sm:w-1/2 sm:pr-4">
+              <div className="mt-24 flex flex-col sm:w-1/2 sm:pr-4 xl:w-[60%]">
                 <Title label="About this course" size={isMobile ? '24px' : '36px'} color="admiRed" />
 
                 <ParagraphContentful className="mt-1 text-lg" fontFamily="font-nexa">
                   {props.description}
                 </ParagraphContentful>
               </div>
-              <Box className="relative sm:w-1/2">
-                <div className="top-[-180px] z-10 h-fit w-full transform sm:absolute sm:left-1/2 sm:-translate-x-1/2">
-                  <Card padding="lg" radius="md" className="ml-auto mr-0 mt-8 sm:w-[72%]" bg={'#F5FFFD'}>
-                    <EnquiryForm isCampaign />
-                  </Card>
-                </div>
-              </Box>
             </Box>
           )}
           {!props.isCampaign && (

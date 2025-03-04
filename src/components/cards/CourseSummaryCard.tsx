@@ -31,12 +31,12 @@ export default function CourseSummaryCard(props: Props) {
       radius={6}
       w={props.isCampaign ? 'fit-content' : '100%'}
     >
-      <div className="my-auto flex w-full flex-col p-2 md:flex-row md:p-4">
+      <div className="my-auto flex w-full flex-col p-2 md:flex-row md:p-0">
         <div className="my-auto grow">
           {isMobile ? (
             <Box className="flex flex-col p-0">
               <Box className="flex w-full">
-                <div className="flex w-1/2">
+                <div className={'flex w-1/2'}>
                   <Image width={32} src={IconTimer} alt="duration" />
                   <div className="pl-2">
                     <Paragraph size={isMobile ? '14px' : '16px'} fontWeight={100} className="pb-2">
@@ -52,7 +52,7 @@ export default function CourseSummaryCard(props: Props) {
                     </Paragraph>
                   </div>
                 </div>
-                <div className="flex w-1/2">
+                <div className={'flex w-1/2'}>
                   <IconAward />
                   <div>
                     <Paragraph size={isMobile ? '14px' : '16px'} fontWeight={100} className="pb-2">
@@ -70,7 +70,7 @@ export default function CourseSummaryCard(props: Props) {
                 </div>
               </Box>
               <Box className="flex w-full">
-                <div className="flex w-1/2">
+                <div className={'flex w-1/2'}>
                   <Image width={40} src={IconHourGlass} alt="term length" />
                   <div>
                     <Paragraph size={isMobile ? '14px' : '16px'} fontWeight={100} className="pb-2">
@@ -86,7 +86,7 @@ export default function CourseSummaryCard(props: Props) {
                     </Paragraph>
                   </div>
                 </div>
-                <div className="flex w-1/2">
+                <div className={'flex w-1/2'}>
                   <Image width={40} src={IconAvatar} alt="email" />
                   <div>
                     <Paragraph size={isMobile ? '14px' : '16px'} fontWeight={100} className="pb-2">

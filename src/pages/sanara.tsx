@@ -3,7 +3,7 @@ import { Anchor, Box, Card, Divider } from '@mantine/core';
 
 import { MainLayout } from '@/layouts/v3/MainLayout';
 import { PageSEO } from '@/components/shared/v3';
-import { Paragraph } from '@/components/ui';
+import { Button, Paragraph } from '@/components/ui';
 import { useIsMobile } from '@/hooks/useIsMobile';
 
 import IconFacebook from '@/assets/icons/facebook-social.svg';
@@ -61,7 +61,7 @@ export default function NewsArticlePage() {
             </Box>
           </Box>
           <Card className="mb-6 min-h-[80vh] w-full sm:ml-8" withBorder>
-            <Box className="relative" h={isMobile ? '200px' : '600px'}>
+            <Box className="relative" h={isMobile ? '200px' : '500px'}>
               <Image src={ImageSanaraLanding} alt={'sanara'} style={{ borderRadius: 8 }} fill />
             </Box>
             <Paragraph fontFamily="font-nexa" fontWeight={400} size="26px" className="py-6">
@@ -75,6 +75,38 @@ export default function NewsArticlePage() {
               Are you passionate about Animation? This is your opportunity to gain industry-leading skills and turn your
               creativity into a thriving career.
             </Paragraph>
+
+            <Paragraph fontFamily="font-nexa" fontWeight={400} size="24px" className="py-6">
+              About the Sanara Program
+            </Paragraph>
+            <Paragraph className="py-1">
+              <strong>Sanara</strong> is inspired by the Swahili words sanaa (arts) and biashara (business). This
+              exciting inclusive program designed for young women and men across Kenya aims to enable access to
+              dignified and fulfilling work in the creative and cultural industries.
+            </Paragraph>
+
+            <Paragraph className="py-1">
+              Mastercard Foundation in partnership with the consortium of HEVA, SNDBX, Baraza Media Lab and GoDown Arts
+              Center, have launched this 3 year program to offer opportunities for financing, skilling programs and
+              infrastructure, and adoption of sustainable practices that advance safer working environments.
+            </Paragraph>
+
+            <Paragraph className="py-1">
+              Learn more at{' '}
+              <Anchor href="http://hevafund.com/sanara" target="_blank" fw={900}>
+                hevafund.com/sanara
+              </Anchor>
+            </Paragraph>
+
+            <Box className="relative mx-auto" h={isMobile ? '200px' : '800px'} w={isMobile ? '100%' : '800px'}>
+              <Image
+                src="https://cdn.admi.africa/media/sites/2/2025/02/20125057/Animation-Gaming-3.png"
+                alt={'sanara-poster'}
+                style={{ borderRadius: 8 }}
+                fill
+                priority
+              />
+            </Box>
 
             <Paragraph fontFamily="font-nexa" fontWeight={400} size="24px" className="py-6">
               Why Choose This Program?
@@ -123,37 +155,23 @@ export default function NewsArticlePage() {
               <Paragraph className="py-1">📌 Step 1: Contact us on WhatsApp for more information to apply</Paragraph>
               <Paragraph className="py-1">📌 Step 2: Submit a short 2 – 3 min video statement of interest</Paragraph>
               <Paragraph className="py-1">📌 Step 3: Wait for the selection team to review your application</Paragraph>
-            </Box>
+              <Paragraph className="pt-6">
+                🛑 <strong>Deadline to Apply: March 4</strong> – Don’t miss this opportunity!
+              </Paragraph>
 
-            <Paragraph fontFamily="font-nexa" fontWeight={400} size="24px" className="py-6">
-              About the Sanara Program
-            </Paragraph>
-            <Paragraph className="py-1">
-              <strong>Sanara</strong> is inspired by the Swahili words sanaa (arts) and biashara (business). This
-              exciting inclusive program designed for young women and men across Kenya aims to enable access to
-              dignified and fulfilling work in the creative and cultural industries.
-            </Paragraph>
+              <Box className="w-[200px] py-4">
+                <Anchor href="https://tinyurl.com/admi-application-form" target="_blank">
+                  <Button size="lg" backgroundColor="admiRed" label="Apply" />
+                </Anchor>
+              </Box>
 
-            <Paragraph className="py-1">
-              Mastercard Foundation in partnership with the consortium of HEVA, SNDBX, Baraza Media Lab and GoDown Arts
-              Center, have launched this 3 year program to offer opportunities for financing, skilling programs and
-              infrastructure, and adoption of sustainable practices that advance safer working environments.
-            </Paragraph>
-
-            <Paragraph className="py-1">
-              Learn more at{' '}
-              <Anchor href="http://hevafund.com/sanara" target="_blank" fw={900}>
-                hevafund.com/sanara
-              </Anchor>
-            </Paragraph>
-            <Box className="relative mx-auto" h={isMobile ? '200px' : '800px'} w={isMobile ? '100%' : '800px'}>
-              <Image
-                src="https://cdn.admi.africa/media/sites/2/2025/02/20125057/Animation-Gaming-3.png"
-                alt={'sanara-poster'}
-                style={{ borderRadius: 8 }}
-                fill
-                priority
-              />
+              <Paragraph className="pt-6">
+                📢 WhatsApp us at{' '}
+                <Anchor href="tel:+254706349696" target="_blank" fw={900}>
+                  +254 706 349696
+                </Anchor>{' '}
+                for more details!
+              </Paragraph>
             </Box>
           </Card>
         </Box>
