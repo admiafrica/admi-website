@@ -64,7 +64,7 @@ export default function EventAnnouncementCard(props: Props) {
                   label={props.announcement.title}
                   color="black"
                   size={isMobile ? '18px' : '24px'}
-                  className="mt-auto w-fit"
+                  className="my-auto w-fit"
                 />
               </Box>
               <Anchor href={googleMapsUrl} target="_blank" rel="noopener noreferrer" mt={32}>

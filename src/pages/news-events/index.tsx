@@ -77,11 +77,11 @@ export default function NewsEventsLandingPage({ news, events, featuredNews, feat
                   />
                 </Box>
               ) : (
-                <Box className="w-full">
-                  <div className="h-[450px] w-full bg-[#002A23]"></div>
+                <Box className="w-full h-[900px]">
+                  <div className="sm:h-[450px] w-full bg-[#002A23]"></div>
                   {featuredEvent && (
                     <Box className="w-full" bg={'#F5FFFD'}>
-                      <Box className="absolute left-1/2 top-[300px] z-0 mx-auto h-fit w-full max-w-screen-xl -translate-x-1/2 transform px-4 py-16 xl:px-0">
+                      <Box className="absolute left-1/2 sm:top-[300px] z-0 mx-auto h-fit w-full max-w-screen-xl -translate-x-1/2 transform px-4 py-16 xl:px-0">
                         <EventAnnouncementCard
                           announcement={featuredEvent.fields}
                           bgColor="linear-gradient(0deg, #FEFFF5, #FEFFF5),linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 0) 80%, rgba(0, 0, 0, 0.1) 100%)"
