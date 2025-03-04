@@ -34,7 +34,6 @@ export default function NewsArticlePage({ article, slug }: { article: any; slug:
     <MainLayout footerBgColor="white">
       <PageSEO
         title={`News - ${article.title}`}
-        description={article.summary}
         url={`/news-events/news/${slug}`}
         image={`https://${article.coverImage?.fields.file.url}`}
       />
