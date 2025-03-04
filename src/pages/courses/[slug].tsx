@@ -10,10 +10,18 @@ import {
 } from '@/components/course';
 import { PageSEO } from '@/components/shared/v3';
 
-export default function CourseDetailPage({ course, courseAssets }: { course: any; courseAssets: any[] }) {
+export default function CourseDetailPage({
+  course,
+  courseAssets,
+  slug,
+}: {
+  course: any;
+  courseAssets: any[];
+  slug: string;
+}) {
   return (
     <MainLayout>
-      <PageSEO title={course.name} image={`https:${course.coverImage.fields.file.url}`} />
+      <PageSEO title={course.name} image={`https:${course.coverImage.fields.file.url}`} url={`/courses/${slug}`} />
       <CourseHero
         name={course.name}
         coverImage={course.coverImage}
@@ -65,6 +73,7 @@ export async function getServerSideProps({ params }: { params: { slug: string } 
       props: {
         course: data.fields,
         courseAssets: data.assets || [],
+        slug,
       },
     };
   } catch (error) {

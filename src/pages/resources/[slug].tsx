@@ -10,9 +10,10 @@ import { useIsMobile } from '@/hooks/useIsMobile';
 import IconBgImageYellow from '@/assets/icons/ellipse-yellow.svg';
 import IconBgImageRed from '@/assets/icons/ellipse-red.svg';
 
-export default function ResourceArticlePage({ article }: { article: any }) {
+export default function ResourceArticlePage({ article, slug }: { article: any; slug: string }) {
   const isMobile = useIsMobile();
   const router = useRouter();
+  console.log('SLUG', slug);
 
   const navigateToResources = () => {
     router.push('/resources');
@@ -24,6 +25,7 @@ export default function ResourceArticlePage({ article }: { article: any }) {
         <PageSEO
           title={`Resources - ${article.title}`}
           description={article.summary}
+          url={`/resources/${slug}`}
           image={`https://${article.coverImage?.fields.file.url}`}
         />
       )}
@@ -84,7 +86,7 @@ export async function getServerSideProps(context: any) {
     const data = await response.json();
 
     return {
-      props: { article: data.fields },
+      props: { article: data.fields, slug },
     };
   } catch (error) {
     console.error('Error fetching resource:', error);
