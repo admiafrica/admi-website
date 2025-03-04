@@ -18,7 +18,7 @@ type Props = {
 
 export default function NavBar({ mode, isMinimal = false }: Props) {
   const router = useRouter();
-  const isSmallScreen = useMediaQuery('(max-width: 1366px)');
+  const isSmallScreen = useMediaQuery('(max-width: 992px)');
   const pathname = usePathname();
   const [hiddenCTA, setHiddenCTA] = useState<boolean>(false);
 

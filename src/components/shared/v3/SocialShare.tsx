@@ -73,7 +73,7 @@ export default function SocialShare({ item }: Props) {
         <Box className="flex cursor-pointer py-4" onClick={() => handleShare('whatsapp')}>
           <Image src={IconWhatsapp} alt="whatsapp" width={24} height={24} />
           <Paragraph fontFamily="font-nexa" size="16px" className="my-auto ml-2">
-            Whatsapp
+            WhatsApp
           </Paragraph>
         </Box>
         <Divider />

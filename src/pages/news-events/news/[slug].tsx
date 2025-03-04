@@ -10,7 +10,7 @@ import { Paragraph, ParagraphContentful } from '@/components/ui';
 import IconDiary from '@/assets/icons/Diary';
 import { useIsMobile } from '@/hooks/useIsMobile';
 
-export default function NewsArticlePage({ article }: { article: any }) {
+export default function NewsArticlePage({ article, slug }: { article: any; slug: string }) {
   const isMobile = useIsMobile();
   const router = useRouter();
 
@@ -35,6 +35,7 @@ export default function NewsArticlePage({ article }: { article: any }) {
       <PageSEO
         title={`News - ${article.title}`}
         description={article.summary}
+        url={`/news-events/news/${slug}`}
         image={`https://${article.coverImage?.fields.file.url}`}
       />
       <Box className="w-full">
@@ -72,7 +73,7 @@ export default function NewsArticlePage({ article }: { article: any }) {
                 <SocialShare item={article} />
               </Box>
               <Card className="mb-6 min-h-[80vh] w-full sm:ml-8" withBorder>
-                <Box className="relative" h={isMobile ? '200px' : '600px'}>
+                <Box className="relative" h={isMobile ? '200px' : '540px'}>
                   <Image
                     src={`https:${article.coverImage.fields.file.url}`}
                     alt={article.title}
@@ -113,7 +114,7 @@ export async function getServerSideProps(context: any) {
     const data = await response.json();
 
     return {
-      props: { article: data.fields },
+      props: { article: data.fields, slug },
     };
   } catch (error) {
     console.error('Error fetching article:', error);

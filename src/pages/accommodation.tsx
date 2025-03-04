@@ -19,6 +19,10 @@ import IconArrowTipRight from '@/assets/icons/ArrowTipRight';
 import IconBgImageYellow from '@/assets/icons/ellipse-yellow.svg';
 import IconBgImageRed from '@/assets/icons/ellipse-red.svg';
 
+import IconBgEllipseA from '@/assets/icons/ellipse-11.svg';
+import IconBgEllipseB from '@/assets/icons/ellipse-13.svg';
+import IconBgEllipseC from '@/assets/icons/ellipse-14.svg';
+
 export default function AccommodationPage() {
   const isMobile = useIsMobile();
   const [opened, { open, close }] = useDisclosure(false);
@@ -224,8 +228,25 @@ export default function AccommodationPage() {
                     and enjoy your university life to the fullest!
                   </Paragraph>
                 </Box>
-                <Box className="items-end sm:w-[50%]">
-                  <Image src={ImageCommunityBg} alt="community and support" />
+                <Box className="relative my-auto items-end sm:w-[50%]">
+                  {/* BACKGROUND IMAGES */}
+                  <div className="absolute left-[1/2] top-[400px] z-10 ml-[54%] h-fit w-full -translate-x-1/2 transform">
+                    <div className="flex w-full justify-end">
+                      <Image src={IconBgEllipseC} alt="background image" />
+                    </div>
+                  </div>
+
+                  <div className="absolute left-1/2 z-0 h-fit w-full -translate-x-1/2 transform pl-16">
+                    <div className="flex w-full">
+                      <Image src={IconBgEllipseA} alt="background image" />
+                    </div>
+                  </div>
+                  <div className="absolute left-1/2 top-[200px] z-10 h-fit w-full -translate-x-1/2 transform pl-8">
+                    <div className="flex w-full">
+                      <Image src={IconBgEllipseB} alt="background image" />
+                    </div>
+                  </div>
+                  <Image src={ImageCommunityBg} alt="community and support" className="relative" />
                 </Box>
               </Box>
             </Card.Section>

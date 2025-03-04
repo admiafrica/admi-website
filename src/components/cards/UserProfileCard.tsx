@@ -21,14 +21,14 @@ export default function UserProfileCard(props: Props) {
       withBorder
       className="border-1 border-grey-500 border-solid shadow-md"
       w={isMobile ? '160px' : '240px'}
-      h={isMobile ? 'fit-content' : '240px'}
+      h={isMobile ? '220px' : '240px'}
     >
       <Card.Section>
-        <Box className="relative grow" h={isMobile ? '140px' : '170px'}>
+        <Box className="relative grow" h={isMobile ? '150px' : '170px'}>
           <Image fill src={props.user.image} alt="about course" objectFit="cover" priority />
         </Box>
       </Card.Section>
-      <Card.Section className="px-4">
+      <Card.Section className={isMobile ? 'px-2' : 'px-4'}>
         <div className="flex flex-col py-2">
           <div className="pb-2">
             <Title size={isMobile ? '14px' : '16px'} label={props.user.name} color="black" />
