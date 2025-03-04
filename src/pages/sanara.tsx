@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { Anchor, Box, Card, Divider } from '@mantine/core';
+import { Anchor, Box, Card } from '@mantine/core';
 
 import { MainLayout } from '@/layouts/v3/MainLayout';
 import { PageSEO, SocialShare } from '@/components/shared/v3';
@@ -33,7 +33,7 @@ export default function NewsArticlePage() {
               ADMI-Sanara Animation Program
             </Paragraph>
 
-            <Paragraph fontFamily="font-nexa" fontWeight={400} size="24px" className="py-6">
+            <Paragraph fontFamily="font-nexa" fontWeight={900} size="20px" className="py-6">
               Unlock Your Creative Future
             </Paragraph>
             <Paragraph className="py-1">
@@ -41,7 +41,7 @@ export default function NewsArticlePage() {
               creativity into a thriving career.
             </Paragraph>
 
-            <Paragraph fontFamily="font-nexa" fontWeight={400} size="24px" className="py-6">
+            <Paragraph fontFamily="font-nexa" fontWeight={900} size="20px" className="py-6">
               About the Sanara Program
             </Paragraph>
             <Paragraph className="py-1">
@@ -73,7 +73,7 @@ export default function NewsArticlePage() {
               />
             </Box>
 
-            <Paragraph fontFamily="font-nexa" fontWeight={400} size="24px" className="py-6">
+            <Paragraph fontFamily="font-nexa" fontWeight={900} size="20px" className="py-6">
               Why Choose This Program?
             </Paragraph>
 
@@ -99,7 +99,7 @@ export default function NewsArticlePage() {
               </Anchor>
             </Paragraph>
 
-            <Paragraph fontFamily="font-nexa" fontWeight={400} size="24px" className="py-6">
+            <Paragraph fontFamily="font-nexa" fontWeight={900} size="20px" className="py-6">
               Who can apply?
             </Paragraph>
 
@@ -112,7 +112,7 @@ export default function NewsArticlePage() {
               </Paragraph>
             </Box>
 
-            <Paragraph fontFamily="font-nexa" fontWeight={400} size="24px" className="py-6">
+            <Paragraph fontFamily="font-nexa" fontWeight={900} size="20px" className="py-6">
               How to Apply?
             </Paragraph>
 
