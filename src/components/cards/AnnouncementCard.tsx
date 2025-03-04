@@ -52,7 +52,7 @@ export default function AnnouncementCard(props: Props) {
             <Box className="h-full w-full" bg={props.ribbonColor}></Box>
           </motion.div>
         )}
-        <Box className="flex h-fit w-full flex-col-reverse px-4 py-4 sm:h-[420px] sm:flex-row">
+        <Box className="flex h-fit w-full flex-col-reverse px-6 py-4 sm:h-[420px] sm:flex-row">
           <Box className="flex grow flex-col pt-4 hover:w-[42%] sm:w-[44%] sm:pr-4 sm:pt-0">
             {props.featured && (
               <Pill

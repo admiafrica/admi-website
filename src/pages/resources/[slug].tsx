@@ -53,7 +53,7 @@ export default function ResourceArticlePage({ article }: { article: any }) {
           </Box>
           {article && (
             <Card className="mb-6 min-h-[80vh] w-full sm:ml-8" withBorder>
-              <Box className="relative" h={isMobile ? '200px' : '600px'}>
+              <Box className="relative" h={isMobile ? '200px' : '540px'}>
                 <Image
                   src={`https:${article.coverImage.fields.file.url}`}
                   alt={article.title}
