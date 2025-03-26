@@ -9,7 +9,6 @@ import ImageCareerDevelopment from '@/assets/images/career-development.png';
 
 // User Profiles
 import ImageCaroline from '@/assets/images/carolyne-sila.svg';
-import ImagePeter from '@/assets/images/peter-mwaniki.svg';
 import ImageRaji from '@/assets/images/raji-ilangovan.svg';
 import ImageCiku from '@/assets/images/ciku-munuku.svg';
 
@@ -171,7 +170,7 @@ export const ADMI_HOMEPAGE_SECTORS = [
     color: '#B9C601',
   },
   {
-    title: 'Animation & Digital Media',
+    title: 'Animation & Motion Graphics',
     icon: IconTruckSpeed,
     color: '#F76335',
   },
@@ -254,12 +253,6 @@ export const ADMI_ACADEMIC_TEAM_SUMMARY = [
     title: 'Head of School',
     linkedin: '',
     image: ImageCaroline,
-  },
-  {
-    name: 'Peter Mwaniki',
-    title: 'Academics',
-    linkedin: '',
-    image: ImagePeter,
   },
   {
     name: 'Raji Ilangovan',
@@ -600,7 +593,7 @@ export const ADMI_STUDENT_COUNCIL = [
     image: ImageSammy,
   },
   {
-    name: 'Azyzah Rehman',
+    name: 'Khamisi Msomba',
     title: 'International Officer',
     linkedin: '',
     image: ImageAzyzah,
