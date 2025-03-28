@@ -22,7 +22,6 @@ import ImageIvy from '@/assets/images/ivy-nyambura.svg';
 import ImageNicole from '@/assets/images/nicole-ochieng.svg';
 import ImageAmani from '@/assets/images/amani-mugambi.svg';
 import ImageSammy from '@/assets/images/sammy-kamande.svg';
-import ImageAzyzah from '@/assets/images/azyzah-rehman.svg';
 import ImageShalom from '@/assets/images/shalom-chihi.svg';
 import ImageEvelyne from '@/assets/images/evelyne-makena.svg';
 import ImageMary from '@/assets/images/mary-munene.svg';
@@ -596,7 +595,7 @@ export const ADMI_STUDENT_COUNCIL = [
     name: 'Khamisi Msomba',
     title: 'International Officer',
     linkedin: '',
-    image: ImageAzyzah,
+    image: null,
   },
   {
     name: 'Shalom Chihi',
