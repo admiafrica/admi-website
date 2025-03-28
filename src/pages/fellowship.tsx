@@ -47,8 +47,8 @@ export default function FellowshipPage() {
               <Title label="Fellowship" color="admiShamrok" size={isMobile ? '36px' : '64px'} />
               <Title label="Opportunities" color="#F1FE37" size={isMobile ? '36px' : '64px'} />
               <Box className="grow"></Box>
-              <Box className="flex h-[120px] w-full flex-col pt-12 sm:flex-row">
-                <Paragraph fontFamily="font-nexa" className="my text-white sm:pr-6">
+              <Box className="flex sm:h-[180px] w-full flex-col pt-12 sm:flex-row">
+                <Paragraph fontFamily="font-nexa" className="my text-white sm:pr-6 my-auto">
                   We are deeply commited to providing you with comprehensive support that ensures your academic and
                   personal success
                 </Paragraph>
@@ -60,7 +60,7 @@ export default function FellowshipPage() {
                   opacity={'20%'}
                   h={isMobile ? '' : '100%'}
                 />
-                <Paragraph fontFamily="font-nexa" className="text-white sm:pl-6">
+                <Paragraph fontFamily="font-nexa" className="text-white sm:pl-6 my-auto">
                   We are deeply commited to providing you with comprehensive support that ensures your academic and
                   personal success
                 </Paragraph>
@@ -70,7 +70,7 @@ export default function FellowshipPage() {
         </Box>
         {/* Floating Card */}
         <div className="w-full px-4 2xl:px-0">
-          <div className="absolute left-1/2 top-[640px] z-10 w-full max-w-screen-xl -translate-x-1/2 transform px-4 sm:top-[600px] 2xl:px-0">
+          <div className="absolute left-1/2 top-[640px] z-10 w-full max-w-screen-xl -translate-x-1/2 transform px-4 sm:top-[640px] 2xl:px-0">
             <CompanyValuesCard values={ADMI_FELLOWSHIP_VALUES} showRightIcons={false} />
           </div>
         </div>
