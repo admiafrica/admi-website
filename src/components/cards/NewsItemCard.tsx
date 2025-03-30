@@ -42,6 +42,7 @@ export default function NewsItemCard({ item, isEvent = false }: Props) {
         <Card.Section className={isEvent ? 'relative h-[80%]' : 'relative h-[50%]'}>
           <Image
             fill
+            priority
             src={
               item.assets
                 ? `https:${item.fields.coverImage?.fields.file.url || item.fields.flyer?.fields.file.url}`

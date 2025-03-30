@@ -3,7 +3,7 @@ import { Anchor, Box, Card, Divider, Pill } from '@mantine/core';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 
-import { Button, Paragraph, Title } from '../ui';
+import { Button, Paragraph, ParagraphContentful, Title } from '../ui';
 import { useIsMobile } from '@/hooks/useIsMobile';
 import { formatDate } from '@/utils';
 
@@ -36,7 +36,7 @@ export default function EventAnnouncementCard(props: Props) {
         className="flex h-full w-full flex-col sm:flex-row"
         whileHover="hover" // Shared hover animation key
       >
-        <Box className="flex h-fit w-full grow flex-col-reverse px-0 sm:h-[400px] sm:flex-row sm:px-4">
+        <Box className="flex h-fit w-full grow flex-col-reverse px-0 sm:h-[480px] sm:flex-row sm:px-4">
           <Box className="flex flex-col pt-4 sm:pr-4 sm:pt-0">
             {props.featured && (
               <Pill
@@ -102,16 +102,25 @@ export default function EventAnnouncementCard(props: Props) {
                   <strong>Time:</strong> {props.announcement.time}
                 </Paragraph>
               </Box>
+              <Box className="flex w-full">
+                <ParagraphContentful
+                  fontFamily="font-nexa"
+                  fontWeight={400}
+                  className={`text-${props.textColor || 'black'} py-2`}
+                >
+                  {props.announcement.description}
+                </ParagraphContentful>
+              </Box>
             </Box>
           </Box>
-          <Box className="ml-auto mr-0 w-full sm:w-[300px]">
-            <Box className="relative mb-4 flex h-[300px] w-full flex-col">
+          <Box className=" w-full sm:w-full">
+            <Box className="relative mb-4 flex h-[300px] sm:h-[80%] w-full flex-col">
               {props.announcement.flyer ? (
                 <Image
                   fill
                   src={`https:${props.announcement.flyer?.fields.file.url}`}
                   alt={props.announcement.title}
-                  style={{ objectFit: 'contain', height: '100%', width: '100%' }}
+                  style={{ objectFit: 'cover' }}
                 />
               ) : (
                 <Image
@@ -120,13 +129,14 @@ export default function EventAnnouncementCard(props: Props) {
                     props.image || 'https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png'
                   }
                   alt="about course"
-                  style={{ borderRadius: 8 }}
+                  // style={{ borderRadius: 8 }}
+                  style={{ objectFit: 'cover' }}
                 />
               )}
             </Box>
             {props.announcement.link && (
               <Anchor href={props.announcement.link} target="_blank">
-                <Button size="lg" backgroundColor="admiRed" label="Register" />
+                <Button size="lg" backgroundColor="admiRed" label={props.announcement.cta} />
               </Anchor>
             )}
           </Box>
