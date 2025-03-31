@@ -56,7 +56,7 @@ export default function EventAnnouncementCard(props: Props) {
                     fill
                     src={`https:${props.announcement.logo?.fields.file.url}`}
                     alt={props.announcement.title}
-                    style={{ objectFit: 'cover' }}
+                    style={{ objectFit: 'contain' }}
                   />
                 </Box>
                 <Divider color="admiRed" size={2} orientation="vertical" mx={isMobile ? 12 : 24} my={'auto'} h={80} />
@@ -67,7 +67,16 @@ export default function EventAnnouncementCard(props: Props) {
                   className="my-auto w-fit"
                 />
               </Box>
-              <Anchor href={googleMapsUrl} target="_blank" rel="noopener noreferrer" mt={32}>
+              <Box className="flex w-full">
+                <ParagraphContentful
+                  fontFamily="font-nexa"
+                  fontWeight={400}
+                  className={`text-${props.textColor || 'black'} py-2`}
+                >
+                  {props.announcement.description}
+                </ParagraphContentful>
+              </Box>
+              <Anchor href={googleMapsUrl} target="_blank" rel="noopener noreferrer">
                 <Box className="flex w-full">
                   <Image src={IconLocation} height={24} width={24} alt="location" className="mr-2 mt-1" />
                   <Paragraph
@@ -102,15 +111,6 @@ export default function EventAnnouncementCard(props: Props) {
                   <strong>Time:</strong> {props.announcement.time}
                 </Paragraph>
               </Box>
-              <Box className="flex w-full">
-                <ParagraphContentful
-                  fontFamily="font-nexa"
-                  fontWeight={400}
-                  className={`text-${props.textColor || 'black'} py-2`}
-                >
-                  {props.announcement.description}
-                </ParagraphContentful>
-              </Box>
             </Box>
           </Box>
           <Box className=" w-full sm:w-full">
@@ -120,7 +120,7 @@ export default function EventAnnouncementCard(props: Props) {
                   fill
                   src={`https:${props.announcement.flyer?.fields.file.url}`}
                   alt={props.announcement.title}
-                  style={{ objectFit: 'cover' }}
+                  style={{ objectFit: 'cover', borderRadius: 8 }}
                 />
               ) : (
                 <Image
