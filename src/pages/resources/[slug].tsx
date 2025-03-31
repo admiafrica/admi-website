@@ -24,7 +24,6 @@ export default function ResourceArticlePage({ article, slug }: { article: any; s
       {article && (
         <PageSEO
           title={`Resources - ${article.title}`}
-          description={article.summary}
           url={`/resources/${slug}`}
           image={`https://${article.coverImage?.fields.file.url}`}
         />

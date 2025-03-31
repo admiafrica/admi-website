@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import { Box, Card } from '@mantine/core';
+import { Avatar, Box, Card } from '@mantine/core';
 
 import IconLinkedIn from '@/assets/icons/linkedin-blue.svg';
 import { Paragraph, Title } from '../ui';
@@ -12,6 +12,12 @@ type Props = {
 
 export default function UserProfileCard(props: Props) {
   const isMobile = useIsMobile();
+
+  const getInitials = (name: string) => {
+    if (!name) return '';
+    const words = name.split(' ');
+    return words.map((word) => word.charAt(0).toUpperCase()).join('');
+  };
 
   return (
     <Card
@@ -25,7 +31,13 @@ export default function UserProfileCard(props: Props) {
     >
       <Card.Section>
         <Box className="relative grow" h={isMobile ? '150px' : '170px'}>
-          <Image fill src={props.user.image} alt="about course" objectFit="cover" priority />
+          {props.user.image ? (
+            <Image fill src={props.user.image} alt="about course" objectFit="cover" priority />
+          ) : (
+            <Avatar color="admiRed" w={'100%'} h={'100%'} radius={0} size={72}>
+              {getInitials(props.user.name)}
+            </Avatar>
+          )}
         </Box>
       </Card.Section>
       <Card.Section className={isMobile ? 'px-2' : 'px-4'}>

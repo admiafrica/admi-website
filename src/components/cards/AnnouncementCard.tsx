@@ -76,7 +76,11 @@ export default function AnnouncementCard(props: Props) {
               {props.announcement.title}
             </Paragraph>
 
-            <Paragraph size="18px" className={`grow py-6 text-${props.textColor || 'black'}`} fontFamily="font-nexa">
+            <Paragraph
+              size="18px"
+              className={`line-clamp-6 h-fit my-6 text-${props.textColor || 'black'}`}
+              fontFamily="font-nexa"
+            >
               {props.announcement.summary}
             </Paragraph>
 
