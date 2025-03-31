@@ -112,8 +112,6 @@ export async function getServerSideProps() {
 
     const [news, events] = await Promise.all([newsRes.json(), eventsRes.json()]);
 
-    const featuredNews = news.find((article: IContentfulEntry) => article.fields.featured);
-
     return {
       props: {
         news,
