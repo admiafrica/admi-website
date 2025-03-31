@@ -23,7 +23,7 @@ type Props = {
 
 export default function EventAnnouncementCard(props: Props) {
   const isMobile = useIsMobile();
-  const googleMapsUrl = `https://www.google.com/maps?q=${props.announcement.location.lat},${props.announcement.location.lon}`;
+  const googleMapsUrl = `https://www.google.com/maps?q=${props.announcement.locationAddress?.lat},${props.announcement.locationAddress?.lon}`;
 
   return (
     <Card
@@ -76,7 +76,21 @@ export default function EventAnnouncementCard(props: Props) {
                   {props.announcement.description}
                 </ParagraphContentful>
               </Box>
-              <Anchor href={googleMapsUrl} target="_blank" rel="noopener noreferrer">
+              {props.announcement.locationAddress?.lat ? (
+                <Anchor href={googleMapsUrl} target="_blank" rel="noopener noreferrer">
+                  <Box className="flex w-full">
+                    <Image src={IconLocation} height={24} width={24} alt="location" className="mr-2 mt-1" />
+                    <Paragraph
+                      size="18px"
+                      fontFamily="font-nexa"
+                      fontWeight={400}
+                      className={`text-${props.textColor || 'black'} py-2`}
+                    >
+                      <strong>Location:</strong> {props.announcement.locationName}
+                    </Paragraph>
+                  </Box>
+                </Anchor>
+              ) : (
                 <Box className="flex w-full">
                   <Image src={IconLocation} height={24} width={24} alt="location" className="mr-2 mt-1" />
                   <Paragraph
@@ -85,10 +99,10 @@ export default function EventAnnouncementCard(props: Props) {
                     fontWeight={400}
                     className={`text-${props.textColor || 'black'} py-2`}
                   >
-                    <strong>Location:</strong> Caxton House, 3rd Floor, Kenyatta Avenue
+                    <strong>Location:</strong> {props.announcement.locationName}
                   </Paragraph>
                 </Box>
-              </Anchor>
+              )}
               <Box className="flex w-full">
                 <Image src={IconCall} height={24} width={24} alt="location" className="mr-2 mt-1" />
                 <Paragraph
