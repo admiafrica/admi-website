@@ -6,7 +6,7 @@ import ImageLogo from '@/assets/logo.svg';
 interface Props {
   title?: string;
   description?: string;
-  image?: string;
+  image?: any;
   url?: string;
   keywords?: string;
 }

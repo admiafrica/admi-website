@@ -46,7 +46,7 @@ export default function StudentPortalPage() {
               background: 'linear-gradient(181.92deg, rgba(135, 32, 0, 0) 15.5%, #872000 80.69%)',
             }}
           ></div>
-          <Box className="relative z-10 mx-auto flex w-full max-w-screen-xl flex-row px-4 sm:h-[50vh] sm:flex-row 2xl:px-0">
+          <Box className="relative z-10 mx-auto flex w-full max-w-screen-xl flex-row px-4 sm:h-[50vh] sm:flex-row xl:px-0">
             <Box className="mt-[12vh] flex w-full flex-col">
               <Box className="flex grow flex-col">
                 <Title label="Student" color="#F1FE37" size={isMobile ? '36px' : '64px'} />
@@ -79,11 +79,11 @@ export default function StudentPortalPage() {
           </Box>
         </Box>
         {/* Floating Cards */}
-        <div className="relative w-full px-4 sm:h-[30vh] xl:px-0">
+        <div className="relative w-full px-4 sm:h-[30vh] sm:px-0">
           <div className="z-10 w-full max-w-screen-xl sm:absolute sm:left-1/2 sm:top-[-120px] sm:-translate-x-1/2 sm:transform">
             <Box className="flex w-full flex-col flex-wrap justify-between sm:flex-row sm:px-0">
               {ADMI_STUDENT_PORTAL_FEATURES.map((value, index) => (
-                <Box key={`value-${index}`} p={8} className="sm:w-[33%]">
+                <Box key={`value-${index}`} py={8} className="sm:w-[33%]">
                   <InfoCard item={value} bgColor="#F5FFFD" textColor="black" textWeight={500} />
                 </Box>
               ))}
@@ -142,7 +142,7 @@ export default function StudentPortalPage() {
                 </Box>
               </PlainCard>
             </Box>
-            <Box className="px-4 pt-8 sm:w-[30%] sm:pt-0">
+            <Box className="px-4 pt-8 sm:w-[30%] sm:px-0 sm:pl-4 sm:pt-0">
               <PortalForm />
             </Box>
           </Box>

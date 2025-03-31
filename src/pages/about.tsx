@@ -40,7 +40,7 @@ export default function AboutPage() {
         {/* BACKGROUND IMAGES */}
         <div className="absolute left-[95%] top-[10vh] z-0 h-fit w-full -translate-x-1/2 transform sm:left-[63%]">
           <div className="flex w-full justify-end pr-[10%]">
-            <Image src={IconBgImageYellow} alt={'background image'} priority/>
+            <Image src={IconBgImageYellow} alt={'background image'} priority />
           </div>
         </div>
 
@@ -72,7 +72,7 @@ export default function AboutPage() {
 
             <Paragraph className="mb-8" fontFamily="font-nexa">
               It is an innovative career accelerator where creatives and techies receive training, mentorship, and a
-              platform to turn their passion into a profession.{' '}
+              platform to turn their passion into a profession.
             </Paragraph>
 
             <Paragraph fontFamily="font-nexa" fontWeight={900}>
