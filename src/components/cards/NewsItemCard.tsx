@@ -27,29 +27,37 @@ export default function NewsItemCard({ item, isEvent = false }: Props) {
   };
 
   return (
-    <Card
-      shadow="sm"
-      padding="lg"
-      radius="md"
-      withBorder
-      className="hover:border-1 h-full cursor-pointer hover:border-solid hover:border-admiRed"
-      onClick={handleCardClick}
+    <motion.div
+      className="h-full"
+      whileHover="hover" // Shared hover animation key
     >
-      <motion.div
-        whileHover="hover" // Shared hover animation key
-        className="h-full"
+      <Card
+        shadow="sm"
+        padding="lg"
+        radius="md"
+        withBorder
+        className="hover:border-1 h-full cursor-pointer hover:border-solid hover:border-admiRed"
+        onClick={handleCardClick}
       >
-        <Card.Section className={isEvent ? 'relative h-[80%]' : 'relative h-[50%]'}>
-          <Image
-            fill
-            priority
-            src={
-              item.assets
-                ? `https:${item.fields.coverImage?.fields.file.url || item.fields.flyer?.fields.file.url}`
-                : `https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png`
-            }
-            alt={item.fields.title}
-          />
+        <Card.Section className={isEvent ? 'relative h-[80%] overflow-hidden' : 'relative h-[50%] overflow-hidden'}>
+          <motion.div
+            className="relative h-full w-full"
+            variants={{
+              hover: { scale: 1.1 },
+            }} // Zoom effect for the image
+            transition={{ duration: 0.3, ease: 'easeOut' }}
+          >
+            <Image
+              fill
+              priority
+              src={
+                item.assets
+                  ? `https:${item.fields.coverImage?.fields.file.url || item.fields.flyer?.fields.file.url}`
+                  : `https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png`
+              }
+              alt={item.fields.title}
+            />
+          </motion.div>
         </Card.Section>
         <Box className="flex">
           <Box className="grow pt-4">
@@ -81,7 +89,7 @@ export default function NewsItemCard({ item, isEvent = false }: Props) {
             </motion.div>
           </Box>
         </Box>
-      </motion.div>
-    </Card>
+      </Card>
+    </motion.div>
   );
 }
