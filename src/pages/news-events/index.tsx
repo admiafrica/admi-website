@@ -78,10 +78,10 @@ export default function NewsEventsLandingPage({ news, events, featuredNews, feat
                 </Box>
               ) : (
                 <Box className="w-full sm:h-[900px]">
-                  <div className="sm:h-[450px] w-full bg-[#002A23]"></div>
+                  <div className="w-full bg-[#002A23] sm:h-[450px]"></div>
                   {featuredEvent && (
                     <Box className="w-full" bg={'#F5FFFD'}>
-                      <Box className="sm:absolute sm:left-1/2 sm:top-[300px] z-0 mx-auto h-fit w-full max-w-screen-xl sm:-translate-x-1/2 transform px-4 py-16 xl:px-0">
+                      <Box className="z-0 mx-auto h-fit w-full max-w-screen-xl transform px-4 py-16 sm:absolute sm:left-1/2 sm:top-[300px] sm:-translate-x-1/2 xl:px-0">
                         <EventAnnouncementCard
                           announcement={featuredEvent.fields}
                           bgColor="linear-gradient(0deg, #FEFFF5, #FEFFF5),linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 0) 80%, rgba(0, 0, 0, 0.1) 100%)"
@@ -111,6 +111,8 @@ export async function getServerSideProps() {
     if (!newsRes.ok || !eventsRes.ok) throw new Error('Failed to fetch data');
 
     const [news, events] = await Promise.all([newsRes.json(), eventsRes.json()]);
+
+    const featuredNews = news.find((article: IContentfulEntry) => article.fields.featured);
 
     return {
       props: {
