@@ -85,7 +85,7 @@ export default function EventAnnouncementCard(props: Props) {
                     fontWeight={400}
                     className={`text-${props.textColor || 'black'} py-2`}
                   >
-                    <strong>Location:</strong> Caxton House, 3rd Floor, Kenyatta AveDate
+                    <strong>Location:</strong> Caxton House, 3rd Floor, Kenyatta Avenue
                   </Paragraph>
                 </Box>
               </Anchor>
