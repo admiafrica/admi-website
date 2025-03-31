@@ -59,7 +59,7 @@ export default function NewsEventsLandingPage({ news, events, featuredNews, feat
                 {news
                   .filter((article: IContentfulEntry) => !article.fields.featured)
                   .map((article: IContentfulEntry) => (
-                    <Box key={article.sys.id} className="mb-4 h-[400px] w-[33%]">
+                    <Box key={article.sys.id} className="mb-4 h-[400px] w-[96%] sm:w-[33%]">
                       <NewsItemCard item={article} />
                     </Box>
                   ))}

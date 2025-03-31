@@ -113,8 +113,8 @@ export default function EventAnnouncementCard(props: Props) {
               </Box>
             </Box>
           </Box>
-          <Box className=" w-full sm:w-full">
-            <Box className="relative mb-4 flex h-[300px] sm:h-[80%] w-full flex-col">
+          <Box className="w-full sm:w-full">
+            <Box className="relative mb-4 flex h-[300px] w-full flex-col sm:h-[80%]">
               {props.announcement.flyer ? (
                 <Image
                   fill
