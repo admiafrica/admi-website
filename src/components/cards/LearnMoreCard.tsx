@@ -23,15 +23,11 @@ export default function LearnMoreCard() {
 
   const handleViewEnquiry = () => {
     const { utm_source, utm_medium, utm_campaign, utm_term, utm_content } = router.query;
+    const query = utm_source ? { utm_source, utm_medium, utm_campaign, utm_term, utm_content } : undefined;
+
     router.push({
       pathname: '/enquiry',
-      query: {
-        utm_source,
-        utm_medium,
-        utm_campaign,
-        utm_term,
-        utm_content,
-      },
+      query,
     });
   };
 

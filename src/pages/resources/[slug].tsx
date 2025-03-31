@@ -13,7 +13,6 @@ import IconBgImageRed from '@/assets/icons/ellipse-red.svg';
 export default function ResourceArticlePage({ article, slug }: { article: any; slug: string }) {
   const isMobile = useIsMobile();
   const router = useRouter();
-  console.log('SLUG', slug);
 
   const navigateToResources = () => {
     router.push('/resources');
