@@ -16,12 +16,11 @@ import {
   SectorItemCard,
   UserTestimonialCard,
 } from '@/components/cards';
-import { ADMI_FACILITIES, ADMI_HOMEPAGE_SECTORS } from '@/utils';
+import { ADMI_FACILITIES, ADMI_HOMEPAGE_SECTORS, getAssetDetails } from '@/utils';
 import { IContentfulEntry } from '@/types';
 import { useIsMobile } from '@/hooks/useIsMobile';
 
 import { IconPlus } from '@tabler/icons-react';
-import HeroBackgroundImage from '@/assets/images/homepage-hero.svg';
 import AnnouncementImage from '@/assets/images/announcement.svg';
 import NewsImage from '@/assets/images/featured-news.svg';
 import AwardsImage from '@/assets/images/awards.svg';
@@ -67,7 +66,7 @@ export default function HomePage({ content, courses, featuredNews, featuredResou
         {/* HERO */}
         <Box className="relative w-full">
           <Image
-            src={HeroBackgroundImage}
+            src={`https:${getAssetDetails(content.assets, content.fields.coverImage.sys.id)?.fields.file.url}`}
             placeholder="empty"
             alt="Course Banner"
             fill
