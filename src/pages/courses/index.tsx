@@ -35,7 +35,7 @@ export default function CoursesPage({
   return (
     <MainLayout footerBgColor="#F5FFFD">
       <PageSEO title="Courses" description="Explore our variety of courses across various topics that suit you!" />
-      <div className="h-[16em] w-full bg-[#002A23]">
+      <div className="h-[16em] w-full bg-[#002A23] overflow-x-hidden">
         {/* BACKGROUND IMAGES */}
         <div className="absolute left-[62%] top-[20vh] z-0 h-fit w-full -translate-x-1/2 transform">
           <div className="flex w-full justify-end pr-[10%]">
