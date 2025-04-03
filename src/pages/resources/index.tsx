@@ -21,7 +21,7 @@ export default function ResourcesPage({
   return (
     <MainLayout footerBgColor="white">
       <PageSEO title="Resources" />
-      <Box className="w-full">
+      <Box className="w-full overflow-x-hidden">
         <div className="h-[16em] w-full bg-[#002A23]">
           {/* BACKGROUND IMAGES */}
           <div className="absolute left-[62%] top-[20vh] z-0 h-fit w-full -translate-x-1/2 transform">
