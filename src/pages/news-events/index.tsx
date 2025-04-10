@@ -55,11 +55,11 @@ export default function NewsEventsLandingPage({ news, events, featuredNews, feat
                 )}
               </Box>
               {/* NEWS */}
-              <Box className="mx-auto flex w-full max-w-screen-xl flex-wrap justify-between pl-4 xl:px-0">
+              <Box className="mx-auto grid w-full max-w-screen-xl grid-cols-1 gap-6 px-4 sm:grid-cols-2 lg:grid-cols-3 xl:px-0">
                 {news
                   .filter((article: IContentfulEntry) => !article.fields.featured)
                   .map((article: IContentfulEntry) => (
-                    <Box key={article.sys.id} className="mb-4 h-[400px] w-[96%] sm:w-[33%]">
+                    <Box key={article.sys.id} className="mb-4 h-[400px]">
                       <NewsItemCard item={article} />
                     </Box>
                   ))}
@@ -77,7 +77,7 @@ export default function NewsEventsLandingPage({ news, events, featuredNews, feat
                   />
                 </Box>
               ) : (
-                <Box className="w-full sm:h-[900px]">
+                <Box className="sm:h-min-[900px] w-full">
                   <div className="w-full bg-[#002A23] sm:h-[450px]"></div>
                   {featuredEvent && (
                     <Box className="w-full" bg={'#F5FFFD'}>
@@ -91,6 +91,18 @@ export default function NewsEventsLandingPage({ news, events, featuredNews, feat
                       </Box>
                     </Box>
                   )}
+                  {/* EVENTS */}
+                  <Box className="sm:mt-[320px] mx-auto w-full max-w-screen-xl px-4">
+                    {events
+                      .filter((_event: IContentfulEntry, index: number) => index != 0)
+                      .map((event: IContentfulEntry) => (
+                        <EventAnnouncementCard
+                          announcement={event.fields}
+                          bgColor="linear-gradient(0deg, #FEFFF5, #FEFFF5),linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 0) 80%, rgba(0, 0, 0, 0.1) 100%)"
+                          image={ImageNews}
+                        />
+                      ))}
+                  </Box>
                 </Box>
               )}
             </Box>

@@ -20,7 +20,7 @@ export default function AlumniPage() {
 
   return (
     <MainLayout footerBgColor="white">
-      <PageSEO title="Academic Pathways" />
+      <PageSEO title="Alumni Network" />
       <Modal radius="lg" opened={opened} onClose={close} size={'72rem'}>
         <LearnMoreCard />
       </Modal>
