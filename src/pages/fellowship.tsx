@@ -47,10 +47,11 @@ export default function FellowshipPage() {
               <Title label="Fellowship" color="admiShamrok" size={isMobile ? '36px' : '64px'} />
               <Title label="Opportunities" color="#F1FE37" size={isMobile ? '36px' : '64px'} />
               <Box className="grow"></Box>
-              <Box className="flex sm:h-[180px] w-full flex-col pt-12 sm:flex-row">
-                <Paragraph fontFamily="font-nexa" className="my text-white sm:pr-6 my-auto">
-                  We are deeply commited to providing you with comprehensive support that ensures your academic and
-                  personal success
+              <Box className="flex w-full flex-col pt-12 sm:h-[180px] sm:flex-row">
+                <Paragraph fontFamily="font-nexa" className="my my-auto text-white sm:pr-6 sm:w-1/2">
+                  At Africa Digital Media Institute (ADMI), we are excited to offer fellowship opportunities that
+                  empower individuals from diverse backgrounds, including international graduates, to contribute to our
+                  vibrant academic community.
                 </Paragraph>
                 <Divider
                   orientation={isMobile ? 'horizontal' : 'vertical'}
@@ -60,9 +61,9 @@ export default function FellowshipPage() {
                   opacity={'20%'}
                   h={isMobile ? '' : '100%'}
                 />
-                <Paragraph fontFamily="font-nexa" className="text-white sm:pl-6 my-auto">
-                  We are deeply commited to providing you with comprehensive support that ensures your academic and
-                  personal success
+                <Paragraph fontFamily="font-nexa" className="my-auto text-white sm:pl-6 sm:w-1/2">
+                  Our fellowship program is designed to attract passionate individuals who are eager to share their
+                  knowledge and skills across various departments.
                 </Paragraph>
               </Box>
             </Box>

@@ -63,11 +63,11 @@ export default function ResourcesPage({
               )}
             </Box>
             {/* RESOURCES */}
-            <Box className="mx-auto flex w-full max-w-screen-xl flex-wrap justify-between px-4 xl:px-0">
+            <Box className="mx-auto grid w-full max-w-screen-xl grid-cols-1 gap-6 px-4 sm:grid-cols-2 lg:grid-cols-3 xl:px-0">
               {resources
                 .filter((article) => !article.fields.featured)
                 .map((article) => (
-                  <Box key={article.sys.id} className="mb-10 h-[400px] sm:w-[32%]">
+                  <Box key={article.sys.id} className="mb-10 h-[400px]">
                     <NewsItemCard item={article} />
                   </Box>
                 ))}
