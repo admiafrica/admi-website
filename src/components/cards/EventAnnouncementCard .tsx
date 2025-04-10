@@ -27,7 +27,7 @@ export default function EventAnnouncementCard(props: Props) {
 
   return (
     <Card
-      className="mx-auto w-full max-w-screen-xl cursor-pointer"
+      className="mx-auto w-full max-w-screen-xl cursor-pointer mb-4"
       bg={props.bgColor || 'white'}
       style={{ borderRadius: 8 }}
       withBorder
