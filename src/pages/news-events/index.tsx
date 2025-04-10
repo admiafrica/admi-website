@@ -92,11 +92,12 @@ export default function NewsEventsLandingPage({ news, events, featuredNews, feat
                     </Box>
                   )}
                   {/* EVENTS */}
-                  <Box className="sm:mt-[320px] mx-auto w-full max-w-screen-xl px-4">
+                  <Box className="mx-auto w-full max-w-screen-xl px-4 sm:mt-[320px]">
                     {events
                       .filter((_event: IContentfulEntry, index: number) => index != 0)
                       .map((event: IContentfulEntry) => (
                         <EventAnnouncementCard
+                          key={event.sys.id}
                           announcement={event.fields}
                           bgColor="linear-gradient(0deg, #FEFFF5, #FEFFF5),linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 0) 80%, rgba(0, 0, 0, 0.1) 100%)"
                           image={ImageNews}
