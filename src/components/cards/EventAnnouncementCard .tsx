@@ -27,7 +27,7 @@ export default function EventAnnouncementCard(props: Props) {
 
   return (
     <Card
-      className="mx-auto w-full max-w-screen-lg cursor-pointer"
+      className="mx-auto w-full max-w-screen-xl cursor-pointer mb-4"
       bg={props.bgColor || 'white'}
       style={{ borderRadius: 8 }}
       withBorder
@@ -37,7 +37,7 @@ export default function EventAnnouncementCard(props: Props) {
         whileHover="hover" // Shared hover animation key
       >
         <Box className="flex h-fit w-full grow flex-col-reverse px-0 sm:h-[480px] sm:flex-row sm:px-4">
-          <Box className="flex flex-col pt-4 sm:pr-4 sm:pt-0">
+          <Box className="flex flex-col pt-4 sm:w-[70%] sm:pr-4 sm:pt-0">
             {props.featured && (
               <Pill
                 size="md"
@@ -127,14 +127,14 @@ export default function EventAnnouncementCard(props: Props) {
               </Box>
             </Box>
           </Box>
-          <Box className="w-full sm:w-full">
+          <Box className="w-full sm:w-[30%]">
             <Box className="relative mb-4 flex h-[300px] w-full flex-col sm:h-[80%]">
               {props.announcement.flyer ? (
                 <Image
                   fill
                   src={`https:${props.announcement.flyer?.fields.file.url}`}
                   alt={props.announcement.title}
-                  style={{ objectFit: 'cover', borderRadius: 8 }}
+                  style={{ objectFit: 'contain', borderRadius: 8 }}
                 />
               ) : (
                 <Image

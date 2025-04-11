@@ -65,7 +65,7 @@ export default function NewsItemCard({ item, isEvent = false }: Props) {
               {item.fields.title}
             </Paragraph>
             {isEvent && (
-              <Paragraph fontFamily="font-nexa" fontWeight={400} size="16px">
+              <Paragraph fontFamily="font-nexa" fontWeight={400} size="16px" className="mt-2">
                 {formatDate(item.fields.date)}
               </Paragraph>
             )}
