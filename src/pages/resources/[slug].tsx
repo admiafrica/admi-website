@@ -46,9 +46,9 @@ export default function ResourceArticlePage({ article, slug }: { article: any; s
           </Box>
         </div>
       </div>
-      <Box className="relative w-full" bg={'white'}>
-        <Box className="mx-auto flex w-full max-w-screen-xl flex-col-reverse px-4 py-4 sm:flex-row sm:py-16 xl:px-0">
-          <Box className="sm:w-[200px]">
+      <Box className="relative w-full h-full" bg={'white'}>
+        <Box className="mx-auto flex w-full max-w-screen-xl flex-col-reverse px-4 py-4 sm:flex-row sm:py-16 xl:px-0 h-full">
+          <Box className="sm:w-[200px] h-full">
             <SocialShare item={article} />
           </Box>
           {article && (

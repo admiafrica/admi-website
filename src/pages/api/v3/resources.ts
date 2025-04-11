@@ -15,12 +15,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       );
       const data = response.data;
 
-      const courseItems = data.items;
+      const resources = data.items;
       const assets = data.includes?.Asset || [];
       const entries = data.includes?.Entry || [];
 
       // Resolve references in the main item
-      const resolvedCourses = courseItems.map((course: any) => {
+      const resolvedResources = resources.map((course: any) => {
         return {
           ...course,
           fields: resolveReferences(course.fields, entries, assets),
@@ -28,9 +28,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         };
       });
 
-      res.status(200).json(resolvedCourses);
+      res.status(200).json(resolvedResources);
     } catch (error) {
-      console.error('Failed to get courses', error);
+      console.error('Failed to get resources', error);
       res.status(500).json({ message: 'Internal Server Error' });
     }
   } else {
