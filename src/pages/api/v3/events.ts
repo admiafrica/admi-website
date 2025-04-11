@@ -30,7 +30,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
       res.status(200).json(resolvedItems);
     } catch (error) {
-      console.error('Failed to get news', error);
+      console.error('Failed to get events', error);
       res.status(500).json({ message: 'Internal Server Error' });
     }
   } else {

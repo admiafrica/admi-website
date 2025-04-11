@@ -35,7 +35,7 @@ export default function CoursesPage({
   return (
     <MainLayout footerBgColor="#F5FFFD">
       <PageSEO title="Courses" description="Explore our variety of courses across various topics that suit you!" />
-      <div className="h-[16em] w-full bg-[#002A23] overflow-x-hidden">
+      <div className="h-[16em] w-full overflow-x-hidden bg-[#002A23]">
         {/* BACKGROUND IMAGES */}
         <div className="absolute left-[62%] top-[20vh] z-0 h-fit w-full -translate-x-1/2 transform">
           <div className="flex w-full justify-end pr-[10%]">
@@ -113,12 +113,14 @@ export async function getServerSideProps() {
 
     const programs = await programsRes.json();
     const courses = await coursesRes.json();
+
     const sortedPrograms = programs.reverse();
+    const sortedCourses = courses.reverse();
 
     return {
       props: {
         programs: sortedPrograms,
-        courses,
+        courses: sortedCourses,
         filterOptions: ['All Courses', ...sortedPrograms.map((program: any) => program.fields.name)],
       },
     };
