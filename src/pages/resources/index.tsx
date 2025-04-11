@@ -87,10 +87,12 @@ export async function getServerSideProps() {
 
     const resources: IContentfulEntry[] = await res.json();
 
+    const sortedResources = resources.reverse();
+
     return {
       props: {
-        resources,
-        featured: resources.find((article) => article.fields.featured) || null,
+        resources: sortedResources,
+        featured: sortedResources.find((article) => article.fields.featured) || null,
       },
     };
   } catch (error) {

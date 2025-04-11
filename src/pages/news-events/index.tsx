@@ -78,10 +78,10 @@ export default function NewsEventsLandingPage({ news, events, featuredNews, feat
                 </Box>
               ) : (
                 <Box className="sm:h-min-[900px] w-full">
-                  <div className="w-full bg-[#002A23] sm:h-[450px]"></div>
+                  <div className="w-full bg-[#002A23] sm:h-[320px]"></div>
                   {featuredEvent && (
                     <Box className="w-full" bg={'#F5FFFD'}>
-                      <Box className="z-0 mx-auto h-fit w-full max-w-screen-xl transform px-4 py-16 sm:absolute sm:left-1/2 sm:top-[300px] sm:-translate-x-1/2 xl:px-0">
+                      <Box className="z-0 mx-auto h-fit w-full max-w-screen-xl transform px-4 py-16 sm:absolute sm:left-1/2 sm:top-[180px] sm:-translate-x-1/2 xl:px-0">
                         <EventAnnouncementCard
                           announcement={featuredEvent.fields}
                           bgColor="linear-gradient(0deg, #FEFFF5, #FEFFF5),linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 0) 80%, rgba(0, 0, 0, 0.1) 100%)"
@@ -92,7 +92,7 @@ export default function NewsEventsLandingPage({ news, events, featuredNews, feat
                     </Box>
                   )}
                   {/* EVENTS */}
-                  <Box className="mx-auto w-full max-w-screen-xl px-4 sm:mt-[320px]">
+                  <Box className="mx-auto w-full max-w-screen-xl px-4 sm:mt-[320px] xl:px-0">
                     {events
                       .filter((_event: IContentfulEntry, index: number) => index != 0)
                       .map((event: IContentfulEntry) => (
@@ -124,13 +124,14 @@ export async function getServerSideProps() {
     if (!newsRes.ok || !eventsRes.ok) throw new Error('Failed to fetch data');
 
     const [news, events] = await Promise.all([newsRes.json(), eventsRes.json()]);
+    const sortedEvents = events.reverse();
 
     return {
       props: {
-        news,
-        events,
+        news: news,
+        events: sortedEvents,
         featuredNews: news.find((article: IContentfulEntry) => article.fields.featured) || null,
-        featuredEvent: events[0] || null,
+        featuredEvent: sortedEvents[0] || null,
       },
     };
   } catch (error) {
