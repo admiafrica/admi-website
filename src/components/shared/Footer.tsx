@@ -41,12 +41,6 @@ export default function CustomFooter() {
         <Anchor href="https://admi.africa/fellowship" fw={'bold'}>
           Fellowship
         </Anchor>
-        <Anchor href="https://admi.africa/work-with-us" fw={'bold'}>
-          Work with Us
-        </Anchor>
-        <Anchor href="https://admi.africa/accreditation" fw={'bold'}>
-          Accreditation
-        </Anchor>
         <Anchor href="https://admi.africa/privacy-policy" fw={'bold'}>
           Privacy Policy
         </Anchor>
@@ -81,12 +75,6 @@ export default function CustomFooter() {
         </Anchor>
         <Anchor href="https://admi.africa/accommodation" fw={'bold'}>
           Accommodation
-        </Anchor>
-        <Anchor href="https://admi.africa/academic-pathways" fw={'bold'}>
-          Academic Pathways
-        </Anchor>
-        <Anchor href="https://admi.africa/alumni-network" fw={'bold'}>
-          Alumni Network
         </Anchor>
       </Stack>
     </Group>
