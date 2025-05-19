@@ -76,12 +76,6 @@ export default function CustomFooter() {
         <Anchor href="https://admi.africa/accommodation" fw={'bold'}>
           Accommodation
         </Anchor>
-        <Anchor href="https://admi.africa/academic-pathways" fw={'bold'}>
-          Academic Pathways
-        </Anchor>
-        <Anchor href="https://admi.africa/alumni-network" fw={'bold'}>
-          Alumni Network
-        </Anchor>
       </Stack>
     </Group>
   );
