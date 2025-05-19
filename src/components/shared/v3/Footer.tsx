@@ -126,14 +126,8 @@ export default function Footer({ bgColor }: Props) {
             <Anchor c="white" fw={600} onClick={() => navigateToPage('fellowship')}>
               Fellowship
             </Anchor>
-            <Anchor c="white" fw={600} onClick={() => navigateToPage('careers')}>
-              Work with Us
-            </Anchor>
-            <Anchor c="white" fw={600} onClick={() => navigateToPage('accreditation')}>
-              Accreditation
-            </Anchor>
           </Stack>
-
+          
           {/* Student Corner */}
           <div className="mr-4 flex flex-col">
             <div className="flex w-full">
@@ -145,12 +139,6 @@ export default function Footer({ bgColor }: Props) {
                 </Anchor>
                 <Anchor c="white" fw={600} onClick={() => navigateToPage('accommodation')}>
                   Accommodation
-                </Anchor>
-                <Anchor c="white" fw={600} onClick={() => navigateToPage('academic-pathways')}>
-                  Academic Pathways
-                </Anchor>
-                <Anchor c="white" fw={600} onClick={() => navigateToPage('alumni')}>
-                  Alumni Network
                 </Anchor>
               </Stack>
             </div>
