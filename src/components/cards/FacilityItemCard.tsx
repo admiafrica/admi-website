@@ -23,10 +23,10 @@ export default function FacilityItemCard({ facility }: Props) {
         <Box className="relative h-full w-[40%]">
           <Image
             fill
+            sizes="(max-width: 768px) 100vw, 40vw"
             src={facility.image || 'https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png'}
             alt={facility.name}
-            style={{ borderRadius: 8 }}
-            objectFit='cover'
+            style={{ borderRadius: 8, objectFit: 'cover' }}
           />
         </Box>
       </Box>

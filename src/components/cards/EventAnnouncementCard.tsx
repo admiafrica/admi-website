@@ -54,6 +54,7 @@ export default function EventAnnouncementCard(props: Props) {
                 <Box className={'relative my-auto h-[120px] w-[200px]'}>
                   <Image
                     fill
+                    sizes="200px"
                     src={`https:${props.announcement.logo?.fields.file.url}`}
                     alt={props.announcement.title}
                     style={{ objectFit: 'contain' }}
@@ -132,6 +133,7 @@ export default function EventAnnouncementCard(props: Props) {
               {props.announcement.flyer ? (
                 <Image
                   fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
                   src={`https:${props.announcement.flyer?.fields.file.url}`}
                   alt={props.announcement.title}
                   style={{ objectFit: 'contain', borderRadius: 8 }}
@@ -139,12 +141,12 @@ export default function EventAnnouncementCard(props: Props) {
               ) : (
                 <Image
                   fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
                   src={
                     props.image || 'https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png'
                   }
                   alt="about course"
-                  // style={{ borderRadius: 8 }}
-                  style={{ objectFit: 'cover' }}
+                  style={{ objectFit: 'cover', borderRadius: 8 }}
                 />
               )}
             </Box>
