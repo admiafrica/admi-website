@@ -9,21 +9,24 @@ export default function RootLayout({
     <html lang="en">
       <head>
         {/* Web Vitals Monitoring */}
-        <Script id="web-vitals" strategy="afterInteractive">
+        <Script id="web-vitals" strategy="afterInteractive" type="module">
           {`
             function sendToAnalytics(metric) {
               const body = JSON.stringify(metric);
-              (navigator.sendBeacon && navigator.sendBeacon('/api/vitals', body)) || 
+              (navigator.sendBeacon && navigator.sendBeacon('/api/vitals', body)) ||
                 fetch('/api/vitals', {body, method: 'POST', keepalive: true});
             }
-            
-            import('web-vitals').then(({getCLS, getFID, getLCP, getFCP, getTTFB}) => {
+
+            try {
+              const { getCLS, getFID, getLCP, getFCP, getTTFB } = await import('web-vitals');
               getCLS(sendToAnalytics);
               getFID(sendToAnalytics);
               getLCP(sendToAnalytics);
               getFCP(sendToAnalytics);
               getTTFB(sendToAnalytics);
-            });
+            } catch (error) {
+              console.warn('Web Vitals could not be loaded:', error);
+            }
           `}
         </Script>
       </head>
