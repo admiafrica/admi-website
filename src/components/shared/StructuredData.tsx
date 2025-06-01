@@ -93,7 +93,7 @@ export function LocalBusinessSchema({
 }: LocalBusinessProps) {
   const structuredData = {
     '@context': 'https://schema.org',
-    '@type': 'EducationalOrganization',
+    '@type': 'LocalBusiness',
     name,
     image,
     logo,
@@ -240,7 +240,6 @@ interface CourseProps {
   }
   url: string
   image?: string
-  programType?: string
   awardLevel?: string
   creditHours?: number
   tuitionFees?: string
@@ -264,7 +263,6 @@ export function CourseSchema({
   },
   url,
   image,
-  programType,
   awardLevel,
   creditHours,
   tuitionFees,

@@ -26,8 +26,9 @@ export default function SectorItemCard({
   const router = useRouter();
 
   const handleCourseClick = () => {
-    // Navigate to courses page with the sector title as a filter/search
-    router.push(`/courses`);
+    // Navigate to courses page with the sector title as a search parameter
+    const searchQuery = encodeURIComponent(sector.title);
+    router.push(`/courses?search=${searchQuery}`);
   };
 
   return (

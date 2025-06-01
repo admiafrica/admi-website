@@ -20,4 +20,4 @@ export { default as NewsItemCard } from './NewsItemCard';
 export { default as EmptyCard } from './EmptyCard';
 export { default as InfoCard } from './InfoCard';
 export { default as PlainCard } from './PlainCard';
-export { default as EventAnnouncementCard } from './EventAnnouncementCard ';
+export { default as EventAnnouncementCard } from './EventAnnouncementCard';

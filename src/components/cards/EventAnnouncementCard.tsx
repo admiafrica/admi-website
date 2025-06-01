@@ -54,6 +54,7 @@ export default function EventAnnouncementCard(props: Props) {
                 <Box className={'relative my-auto h-[120px] w-[200px]'}>
                   <Image
                     fill
+                    sizes="200px"
                     src={`https:${props.announcement.logo?.fields.file.url}`}
                     alt={props.announcement.title}
                     style={{ objectFit: 'contain' }}
