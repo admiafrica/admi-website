@@ -106,7 +106,7 @@ export default function AnnouncementCard(props: Props) {
               {props.announcement.coverImage ? (
                 <Image
                   fill
-                  sizes="(max-width: 768px) 100vw, 56vw"
+                  sizes={IMAGE_SIZES}
                   src={`https:${props.announcement.coverImage.fields.file.url}`}
                   alt={props.announcement.title}
                   style={{ borderRadius: 8, objectFit: 'cover' }}
