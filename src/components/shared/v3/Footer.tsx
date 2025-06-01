@@ -127,7 +127,7 @@ export default function Footer({ bgColor }: Props) {
               Fellowship
             </Anchor>
           </Stack>
-
+          
           {/* Student Corner */}
           <div className="mr-4 flex flex-col">
             <div className="flex w-full">

@@ -34,7 +34,12 @@ export default function CoursesPage({
 
   return (
     <MainLayout footerBgColor="#F5FFFD">
-      <PageSEO title="Courses" description="Explore our variety of courses across various topics that suit you!" />
+      <PageSEO
+        title="Courses"
+        description="Explore ADMI's comprehensive range of digital media and creative courses in Kenya. From certificate to diploma programs, find the perfect course to advance your creative career in Nairobi."
+        keywords="ADMI courses, digital media courses Kenya, creative education Nairobi, certificate programs, diploma courses, Africa Digital Media Institute"
+        url="/courses"
+      />
       <div className="h-[16em] w-full overflow-x-hidden bg-[#002A23]">
         {/* BACKGROUND IMAGES */}
         <div className="absolute left-[62%] top-[20vh] z-0 h-fit w-full -translate-x-1/2 transform">

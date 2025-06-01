@@ -50,12 +50,14 @@ export default function NewsItemCard({ item, isEvent = false }: Props) {
             <Image
               fill
               priority
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               src={
                 item.assets
                   ? `https:${item.fields.coverImage?.fields.file.url || item.fields.flyer?.fields.file.url}`
                   : `https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png`
               }
               alt={item.fields.title}
+              style={{ objectFit: 'cover' }}
             />
           </motion.div>
         </Card.Section>

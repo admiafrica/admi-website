@@ -32,6 +32,7 @@ export default function CourseHero(props: Props) {
         alt="Course Banner"
         fill
         priority
+        sizes="100vw"
         className="absolute inset-0 z-0"
         style={{ objectFit: 'cover' }}
       />

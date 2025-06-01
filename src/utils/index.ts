@@ -1,5 +1,4 @@
 import { format } from 'date-fns';
-import { enUS } from 'date-fns/locale';
 import { IContentfulAsset, IContentfulEntry } from '@/types';
 
 export * from './constants';
@@ -55,5 +54,5 @@ export const resolveReferences = (
 };
 
 export function formatDate(dateString: string): string {
-  return format(new Date(dateString), 'EEEE, do MMMM, yyyy', { locale: enUS });
+  return format(new Date(dateString), 'EEEE, do MMMM, yyyy');
 }
