@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { Group, Text, Menu } from '@mantine/core';
-import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
@@ -19,7 +18,6 @@ type Props = {
 export default function NavBar({ mode, isMinimal = false }: Props) {
   const router = useRouter();
   const isSmallScreen = useMediaQuery('(max-width: 992px)');
-  const pathname = usePathname();
   const [hiddenCTA, setHiddenCTA] = useState<boolean>(false);
 
   const navigateToPage = (pagePath: string) => {
@@ -27,11 +25,11 @@ export default function NavBar({ mode, isMinimal = false }: Props) {
   };
 
   useEffect(() => {
-    if (pathname) {
-      const isHidden = pathname === '/enquiry' || pathname.startsWith('/campaigns');
+    if (router.pathname) {
+      const isHidden = router.pathname === '/enquiry' || router.pathname.startsWith('/campaigns');
       setHiddenCTA(isHidden);
     }
-  }, [pathname]);
+  }, [router.pathname]);
 
   const getMenuWideScreen = (mode: string) => {
     return (

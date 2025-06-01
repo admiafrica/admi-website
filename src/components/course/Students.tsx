@@ -82,7 +82,9 @@ export default function CourseStudents(props: Props) {
                                 <Image
                                   src={`https:${getAssetDetails(props.assets, portfolioAsset.sys.id)?.fields.file.url}`}
                                   fill
-                                  alt="#"
+                                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                  alt={`Student portfolio work - ${portfolio.fields.name || 'ADMI Student'}`}
+                                  style={{ objectFit: 'cover' }}
                                 />
                               </Carousel.Slide>
                             ))}

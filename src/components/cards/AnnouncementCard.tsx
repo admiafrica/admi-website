@@ -106,6 +106,7 @@ export default function AnnouncementCard(props: Props) {
               {props.announcement.coverImage ? (
                 <Image
                   fill
+                  sizes="(max-width: 768px) 100vw, 56vw"
                   src={`https:${props.announcement.coverImage.fields.file.url}`}
                   alt={props.announcement.title}
                   style={{ borderRadius: 8, objectFit: 'cover' }}
@@ -113,6 +114,7 @@ export default function AnnouncementCard(props: Props) {
               ) : (
                 <Image
                   fill
+                  sizes="(max-width: 768px) 100vw, 56vw"
                   src={
                     props.image || 'https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png'
                   }
@@ -133,6 +135,7 @@ export default function AnnouncementCard(props: Props) {
               {props.announcement.coverImage ? (
                 <Image
                   fill
+                  sizes="(max-width: 768px) 100vw, 56vw"
                   src={`https:${props.announcement.coverImage.fields.file.url}`}
                   alt={props.announcement.title}
                   style={{ borderRadius: 8, objectFit: 'cover' }}
@@ -140,6 +143,7 @@ export default function AnnouncementCard(props: Props) {
               ) : (
                 <Image
                   fill
+                  sizes="(max-width: 768px) 100vw, 56vw"
                   src={
                     props.image || 'https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png'
                   }
