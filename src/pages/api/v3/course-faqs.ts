@@ -36,9 +36,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       const response = await axiosContentfulClient.get<IContentfulResponse>(
         `/spaces/${spaceId}/environments/${environment}/entries?access_token=${accessToken}&${query}&include=2`
       );
-      
+
       const data = response.data;
-      const faqItems = data.items;
+      const faqItems = data.items || [];
       const assets = data.includes?.Asset || [];
       const entries = data.includes?.Entry || [];
 
@@ -54,9 +54,23 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         items: resolvedFAQs,
         total: resolvedFAQs.length
       });
-    } catch (error) {
+    } catch (error: any) {
       console.error('Failed to get course FAQs', error);
-      res.status(500).json({ message: 'Internal Server Error' });
+
+      // If content type doesn't exist, return empty array instead of error
+      if (error?.response?.status === 400 && error?.response?.data?.message?.includes('content_type')) {
+        console.warn('courseFaq content type not found in Contentful, returning empty array');
+        return res.status(200).json({
+          items: [],
+          total: 0
+        });
+      }
+
+      res.status(500).json({
+        message: 'Internal Server Error',
+        items: [],
+        total: 0
+      });
     }
   } else {
     res.status(405).json({ message: 'Method Not Allowed' });

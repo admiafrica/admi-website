@@ -61,18 +61,25 @@ export function CMSCourseFAQs({
       try {
         setLoading(true)
         setError(null)
-        
+
         const response = await fetch(`/api/v3/course-faqs?slug=${courseSlug}`)
-        
+
         if (!response.ok) {
+          // If it's a 404 or content type doesn't exist, silently fall back to hardcoded FAQs
+          if (response.status === 404 || response.status === 500) {
+            console.warn(`CMS FAQs not available for ${courseSlug}, using fallback FAQs`)
+            setFaqs([]) // This will trigger fallback FAQ display
+            return
+          }
           throw new Error(`Failed to fetch FAQs: ${response.statusText}`)
         }
-        
+
         const data: IFAQResponse = await response.json()
-        setFaqs(data.items)
+        setFaqs(data.items || [])
       } catch (err) {
-        console.error('Error fetching course FAQs:', err)
-        setError(err instanceof Error ? err.message : 'Failed to load FAQs')
+        console.warn('CMS FAQ system not ready, using fallback FAQs:', err)
+        // Don't set error state, just use fallback FAQs
+        setFaqs([])
       } finally {
         setLoading(false)
       }
@@ -156,12 +163,13 @@ export function CMSCourseFAQs({
     )
   }
 
+  // Only show error if we have a real error AND no fallback FAQs
   if (error && displayFAQs.length === 0) {
     return (
       <Container size="lg" py="xl">
-        <Alert 
-          icon={<IconAlertCircle size={16} />} 
-          title="Unable to load FAQs" 
+        <Alert
+          icon={<IconAlertCircle size={16} />}
+          title="Unable to load FAQs"
           color="red"
           variant="light"
         >
@@ -187,7 +195,10 @@ export function CMSCourseFAQs({
         </Text>
         {faqs.length === 0 && (
           <Text size="sm" c="dimmed" mt="xs">
-            Showing general course information. Course-specific FAQs will be added soon.
+            {fallbackFAQs.length > 0
+              ? "Showing course-specific FAQs from course data."
+              : "Showing general diploma FAQs. Course-specific FAQs will be added soon."
+            }
           </Text>
         )}
       </div>
