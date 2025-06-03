@@ -25,7 +25,7 @@ const PageSEO: React.FC<PageSEOProps> = ({
   const canonicalUrl = canonical || fullUrl
 
   const pageTitle = `ADMI${title ? ` - ${title}` : ''}`
-  const pageDescription = description || 'Africa Digital Media Institute - Empowering creative professionals through industry-relevant education and training.'
+  const pageDescription = description || 'Africa Digital Media Institute - Empowering creative professionals across Africa through industry-relevant digital media education and training.'
   const pageImage = typeof image === 'string' ? image : image?.src || ImageLogo
 
   return (
@@ -44,7 +44,7 @@ const PageSEO: React.FC<PageSEOProps> = ({
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
       <meta property="og:image:alt" content="ADMI" />
-      <meta property="og:locale" content="en_KE" />
+      <meta property="og:locale" content="en_US" />
       <meta property="og:type" content="website" />
 
       {/* Twitter */}
@@ -59,11 +59,18 @@ const PageSEO: React.FC<PageSEOProps> = ({
       {/* Additional SEO Meta Tags */}
       <meta name="author" content="Africa Digital Media Institute" />
       <meta name="publisher" content="Africa Digital Media Institute" />
-      <meta name="language" content="en-KE" />
+      <meta name="language" content="en" />
+
+      {/* Primary location (headquarters) */}
       <meta name="geo.region" content="KE-30" />
-      <meta name="geo.placename" content="Nairobi" />
+      <meta name="geo.placename" content="Nairobi, Kenya" />
       <meta name="geo.position" content="-1.286389;36.817223" />
       <meta name="ICBM" content="-1.286389, 36.817223" />
+
+      {/* Service area coverage */}
+      <meta name="coverage" content="Africa" />
+      <meta name="distribution" content="global" />
+      <meta name="target" content="all" />
 
       {/* Mobile Optimization */}
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />

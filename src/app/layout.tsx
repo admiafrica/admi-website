@@ -1,4 +1,66 @@
 import Script from 'next/script'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: {
+    default: 'Africa Digital Media Institute (ADMI)',
+    template: '%s | ADMI'
+  },
+  description: 'Africa Digital Media Institute - Empowering creative professionals across Africa through industry-relevant digital media education and training. Serving students from Kenya, Tanzania, Uganda, Rwanda, Nigeria, Ghana, South Africa and beyond.',
+  keywords: [
+    'digital media', 'creative education', 'Africa', 'ADMI', 'Africa Digital Media Institute',
+    'film', 'animation', 'graphic design', 'Kenya', 'Tanzania', 'Uganda', 'Rwanda',
+    'Nigeria', 'Ghana', 'South Africa', 'East Africa', 'West Africa', 'Southern Africa',
+    'online learning', 'creative training', 'media education', 'Nairobi'
+  ],
+  authors: [{ name: 'Africa Digital Media Institute' }],
+  creator: 'Africa Digital Media Institute',
+  publisher: 'Africa Digital Media Institute',
+  metadataBase: new URL(process.env.NEXT_PUBLIC_API_BASE_URL || 'https://admi.africa'),
+  alternates: {
+    canonical: '/',
+    languages: {
+      'en': '/',
+      'sw': '/sw',
+      'fr': '/fr',
+      'ar': '/ar',
+      'pt': '/pt',
+    },
+  },
+  openGraph: {
+    title: 'Africa Digital Media Institute (ADMI)',
+    description: 'Africa Digital Media Institute - Empowering creative professionals across Africa through industry-relevant digital media education and training.',
+    url: '/',
+    siteName: 'Africa Digital Media Institute',
+    images: [
+      {
+        url: '/logo.png',
+        width: 1200,
+        height: 630,
+        alt: 'Africa Digital Media Institute',
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Africa Digital Media Institute (ADMI)',
+    description: 'Africa Digital Media Institute - Empowering creative professionals across Africa through industry-relevant digital media education and training.',
+    images: ['/logo.png'],
+    creator: '@admiafrica',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    'max-snippet': 200,
+    'max-image-preview': 'large',
+    'max-video-preview': -1,
+  },
+  verification: {
+    google: process.env.GOOGLE_SITE_VERIFICATION,
+  },
+}
 
 export default function RootLayout({
   children,
@@ -8,6 +70,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        {/* Preconnect to external domains */}
+        <link rel="preconnect" href="https://images.ctfassets.net" />
+        <link rel="preconnect" href="https://cdn.contentful.com" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+
         {/* Web Vitals Monitoring */}
         <Script id="web-vitals" strategy="afterInteractive" type="module">
           {`

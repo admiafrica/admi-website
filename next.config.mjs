@@ -2,8 +2,18 @@
 const nextConfig = {
   reactStrictMode: true,
   i18n: {
-    locales: ['en', 'sw', 'fr'],
+    locales: ['en', 'sw', 'fr', 'ar', 'pt'],
     defaultLocale: 'en',
+    domains: [
+      {
+        domain: 'admi.africa',
+        defaultLocale: 'en',
+      },
+      // Future: Add country-specific domains if needed
+      // { domain: 'admi.co.ke', defaultLocale: 'en' },
+      // { domain: 'admi.co.tz', defaultLocale: 'sw' },
+      // { domain: 'admi.sn', defaultLocale: 'fr' },
+    ],
   },
   images: {
     remotePatterns: [
@@ -66,6 +76,25 @@ const nextConfig = {
           {
             key: 'Permissions-Policy',
             value: 'camera=(), microphone=(), geolocation=(self), interest-cohort=()',
+          },
+        ],
+      },
+      // Cache static assets
+      {
+        source: '/favicon.ico',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      {
+        source: '/(.*\\.(js|css|png|jpg|jpeg|gif|webp|avif|svg|ico|woff|woff2))',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
           },
         ],
       },

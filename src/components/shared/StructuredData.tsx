@@ -5,6 +5,10 @@ interface OrganizationProps {
   name?: string
   logo?: string
   url?: string
+  contactPoint?: {
+    telephone: string
+    email: string
+  }
   sameAs?: string[]
 }
 
@@ -12,6 +16,10 @@ export function OrganizationSchema({
   name = 'Africa Digital Media Institute',
   logo = 'https://admi.africa/logo.png',
   url = 'https://admi.africa',
+  contactPoint = {
+    telephone: '+254-700-000-000',
+    email: 'info@admi.africa'
+  },
   sameAs = [
     'https://www.facebook.com/africadigitalmediainstitute',
     'https://twitter.com/admi_ke',
@@ -23,7 +31,10 @@ export function OrganizationSchema({
     '@context': 'https://schema.org',
     '@type': 'EducationalOrganization',
     name,
-    logo,
+    logo: {
+      '@type': 'ImageObject',
+      url: logo
+    },
     url,
     sameAs,
     address: {
@@ -33,6 +44,31 @@ export function OrganizationSchema({
       addressRegion: 'Nairobi',
       postalCode: '00100',
       addressCountry: 'KE'
+    },
+    contactPoint: {
+      '@type': 'ContactPoint',
+      telephone: contactPoint.telephone,
+      email: contactPoint.email,
+      contactType: 'customer service'
+    },
+    foundingDate: '2012',
+    description: 'Africa Digital Media Institute - Empowering creative professionals across Africa through industry-relevant digital media education and training.',
+    areaServed: [
+      { '@type': 'Country', name: 'Kenya' },
+      { '@type': 'Country', name: 'Tanzania' },
+      { '@type': 'Country', name: 'Uganda' },
+      { '@type': 'Country', name: 'Rwanda' },
+      { '@type': 'Country', name: 'Nigeria' },
+      { '@type': 'Country', name: 'Ghana' },
+      { '@type': 'Country', name: 'South Africa' },
+      { '@type': 'Country', name: 'Ethiopia' },
+      { '@type': 'Country', name: 'Cameroon' },
+      { '@type': 'Country', name: 'Senegal' },
+      { '@type': 'Continent', name: 'Africa' }
+    ],
+    hasCredential: {
+      '@type': 'EducationalOccupationalCredential',
+      credentialCategory: 'Higher Education'
     }
   }
 
@@ -252,6 +288,129 @@ interface CourseProps {
   applicationDeadline?: string
   courseCode?: string
   prerequisites?: string[]
+}
+
+
+
+interface DiplomaProps extends CourseProps {
+  employmentRate?: number
+  averageSalary?: string
+  industryPartners?: string[]
+  accreditation?: string
+  transferCredits?: boolean
+}
+
+export function DiplomaSchema({
+  name,
+  description,
+  provider = {
+    name: 'Africa Digital Media Institute',
+    url: 'https://admi.africa'
+  },
+  url,
+  image,
+  awardLevel,
+  creditHours,
+  tuitionFees,
+  duration,
+  deliveryMode,
+  educationalLevel,
+  learningOutcomes = [],
+  careerOptions = [],
+  intakes,
+  applicationDeadline,
+  courseCode,
+  prerequisites = [],
+  employmentRate,
+  averageSalary,
+  industryPartners = [],
+  accreditation,
+  transferCredits
+}: DiplomaProps) {
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'Course',
+    name,
+    description,
+    provider: {
+      '@type': 'EducationalOrganization',
+      name: provider.name,
+      url: provider.url,
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: 'Caxton House, Standard Street',
+        addressLocality: 'Nairobi',
+        addressRegion: 'Nairobi',
+        postalCode: '00100',
+        addressCountry: 'KE'
+      }
+    },
+    url,
+    ...(image && { image }),
+    ...(courseCode && { courseCode }),
+    educationalLevel: 'Diploma',
+    courseMode: deliveryMode?.toLowerCase().includes('online') ? 'online' :
+                deliveryMode?.toLowerCase().includes('hybrid') ? 'blended' : 'onsite',
+    timeRequired: duration === '2 years' ? 'P2Y' : duration,
+    ...(creditHours && { creditHours: creditHours.toString() }),
+    ...(prerequisites.length > 0 && { coursePrerequisites: prerequisites }),
+    ...(learningOutcomes.length > 0 && {
+      teaches: learningOutcomes.map(outcome => ({
+        '@type': 'DefinedTerm',
+        name: outcome
+      }))
+    }),
+    ...(careerOptions.length > 0 && {
+      occupationalCredentialAwarded: careerOptions.map(career => ({
+        '@type': 'EducationalOccupationalCredential',
+        credentialCategory: career
+      }))
+    }),
+    offers: {
+      '@type': 'Offer',
+      category: 'Educational',
+      ...(tuitionFees && { price: tuitionFees, priceCurrency: 'KES' }),
+      ...(applicationDeadline && { validThrough: applicationDeadline }),
+      availability: 'https://schema.org/InStock'
+    },
+    ...(intakes && { startDate: intakes }),
+    ...(awardLevel && { educationalCredentialAwarded: awardLevel }),
+    inLanguage: 'en',
+    isAccessibleForFree: false,
+    audience: {
+      '@type': 'EducationalAudience',
+      educationalRole: 'student'
+    },
+    ...(employmentRate && {
+      aggregateRating: {
+        '@type': 'AggregateRating',
+        ratingValue: employmentRate / 20, // Convert percentage to 5-star scale
+        bestRating: 5,
+        worstRating: 1,
+        ratingCount: 100
+      }
+    }),
+    ...(accreditation && {
+      accreditedBy: {
+        '@type': 'Organization',
+        name: accreditation
+      }
+    }),
+    ...(industryPartners.length > 0 && {
+      sponsor: industryPartners.map(partner => ({
+        '@type': 'Organization',
+        name: partner
+      }))
+    })
+  }
+
+  return (
+    <Script
+      id="diploma-schema"
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+    />
+  )
 }
 
 export function CourseSchema({

@@ -4,7 +4,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Base URL from environment variable
   const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'https://admi.africa'
   
-  // Core pages
+  // Core pages with African market focus
   const staticPages = [
     '',
     '/about',
@@ -19,12 +19,25 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/alumni',
     '/partners',
     '/facilities',
+    '/africa', // African market page
+    '/online-learning', // For remote African students
+    '/scholarships', // African scholarship opportunities
   ].map(route => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date(),
     changeFrequency: 'monthly' as const,
-    priority: route === '' ? 1 : 0.8,
+    priority: route === '' ? 1 : route === '/africa' ? 0.9 : 0.8,
   }))
+
+  // Add language-specific pages for African markets
+  const languagePages = ['sw', 'fr', 'ar', 'pt'].flatMap(lang =>
+    ['', '/courses', '/about', '/contact'].map(route => ({
+      url: `${baseUrl}/${lang}${route}`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    }))
+  )
 
   // Fetch courses from Contentful
   let coursePages: any[] = []
@@ -35,19 +48,25 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const coursesData = await coursesResponse.json()
 
     if (coursesData.items) {
-      coursePages = coursesData.items.map((item: any) => ({
-        url: `${baseUrl}/courses/${item.fields.slug}`,
-        lastModified: new Date(item.sys.updatedAt),
-        changeFrequency: 'weekly' as const,
-        priority: 0.9,
-        // Add image extension for courses
-        images: [
-          {
-            loc: `https:${item.fields.coverImage?.fields?.file?.url}`,
-            title: item.fields.name,
-          }
-        ]
-      }))
+      coursePages = coursesData.items.map((item: any) => {
+        // Higher priority for diploma programs (2-year courses)
+        const isDiploma = item.fields.awardLevel?.toLowerCase().includes('diploma') ||
+                         item.fields.programType?.fields?.duration?.includes('2 year')
+
+        return {
+          url: `${baseUrl}/courses/${item.fields.slug}`,
+          lastModified: new Date(item.sys.updatedAt),
+          changeFrequency: 'weekly' as const,
+          priority: isDiploma ? 0.95 : 0.9, // Higher priority for diplomas
+          // Add image extension for courses
+          images: [
+            {
+              loc: `https:${item.fields.coverImage?.fields?.file?.url}`,
+              title: item.fields.name,
+            }
+          ]
+        }
+      })
     }
   } catch (error) {
     console.error('Error fetching courses for sitemap:', error)
@@ -100,5 +119,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     console.error('Error fetching resources for sitemap:', error)
   }
 
-  return [...staticPages, ...coursePages, ...newsPages, ...resourcePages]
+  return [...staticPages, ...languagePages, ...coursePages, ...newsPages, ...resourcePages]
 }

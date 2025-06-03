@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { Box, Card } from '@mantine/core';
+import Head from 'next/head';
 
 import { GoogleAnalyticsTag } from '@/components/shared';
 import { Paragraph, Title } from '@/components/ui';
