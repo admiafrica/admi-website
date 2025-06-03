@@ -314,7 +314,6 @@ export function DiplomaSchema({
   tuitionFees,
   duration,
   deliveryMode,
-  educationalLevel,
   learningOutcomes = [],
   careerOptions = [],
   intakes,
@@ -322,10 +321,8 @@ export function DiplomaSchema({
   courseCode,
   prerequisites = [],
   employmentRate,
-  averageSalary,
   industryPartners = [],
-  accreditation,
-  transferCredits
+  accreditation
 }: DiplomaProps) {
   const structuredData = {
     '@context': 'https://schema.org',

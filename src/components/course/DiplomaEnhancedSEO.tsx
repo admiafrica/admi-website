@@ -7,7 +7,6 @@ import { generateFAQSchema } from '@/data/diploma-faqs'
 interface DiplomaEnhancedSEOProps {
   course: any
   slug: string
-  programId?: string
   faqs?: any[]
   employmentRate?: number
   averageSalary?: string
@@ -18,7 +17,6 @@ interface DiplomaEnhancedSEOProps {
 export function DiplomaEnhancedSEO({
   course,
   slug,
-  programId,
   faqs = [],
   employmentRate = 85,
   averageSalary = 'KES 45,000 - 120,000',
@@ -26,8 +24,7 @@ export function DiplomaEnhancedSEO({
   accreditation = 'Pearson Assured & Woolf University'
 }: DiplomaEnhancedSEOProps) {
   
-  // Generate enhanced keywords for diploma programs
-  const diplomaKeywords = programId ? generateDiplomaKeywords(programId) : []
+  // Note: Enhanced keywords are generated via generateDiplomaKeywords utility when needed
   
   // Enhanced description for diploma programs
   const enhancedDescription = `${course.name} - 2-year comprehensive diploma program at Africa Digital Media Institute. Industry-recognized qualification with ${employmentRate}% employment rate. Hands-on training with professional equipment, internships, and career placement assistance. Serving students across Africa with flexible learning options.`

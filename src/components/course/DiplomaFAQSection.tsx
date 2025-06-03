@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Accordion, Badge, Container, Title, Text, Group, Button } from '@mantine/core'
-import { IconChevronDown, IconChevronUp, IconSchool, IconBriefcase, IconCertificate } from '@tabler/icons-react'
+import { IconChevronDown, IconSchool, IconBriefcase, IconCertificate } from '@tabler/icons-react'
 import { 
   GENERAL_DIPLOMA_FAQS, 
   FILM_TELEVISION_FAQS, 

@@ -11,7 +11,7 @@ import {
 import { PageSEO } from '@/components/shared/v3';
 import { CourseSchema, BreadcrumbSchema } from '@/components/shared/StructuredData';
 import { DiplomaEnhancedSEO } from '@/components/course/DiplomaEnhancedSEO';
-import { generateDiplomaKeywords } from '@/utils/diploma-seo-config';
+// generateDiplomaKeywords utility available for future enhancements
 import { GENERAL_DIPLOMA_FAQS } from '@/data/diploma-faqs';
 
 export default function CourseDetailPage({
@@ -58,21 +58,7 @@ export default function CourseDetailPage({
   const isDiploma = course.awardLevel?.toLowerCase().includes('diploma') ||
                    course.programType?.fields?.duration?.includes('2 year')
 
-  // Determine program type for enhanced SEO
-  const getProgramType = () => {
-    const courseName = course.name.toLowerCase()
-    if (courseName.includes('film') || courseName.includes('television')) return 'film-television'
-    if (courseName.includes('animation') || courseName.includes('vfx')) return 'animation-vfx'
-    if (courseName.includes('graphic') || courseName.includes('design')) return 'graphic-design'
-    if (courseName.includes('audio') || courseName.includes('sound')) return 'audio-production'
-    if (courseName.includes('photography')) return 'photography'
-    return undefined
-  }
-
-  const programType = getProgramType()
-
-  // Generate enhanced keywords for diploma programs
-  const diplomaKeywords = isDiploma && programType ? generateDiplomaKeywords(programType) : []
+  // Program type detection available for future enhancements
 
   // Create SEO keywords with African market focus
   const keywords = [
@@ -95,7 +81,6 @@ export default function CourseDetailPage({
     'African students',
     'pan-African education',
     ...(isDiploma ? ['diploma courses Africa', '2 year diploma', 'professional diploma', 'industry-recognized diploma'] : []),
-    ...diplomaKeywords.slice(0, 10),
     ...learningOutcomes.slice(0, 3),
     ...careerOptions.slice(0, 3)
   ].filter(Boolean).join(', ');
@@ -115,7 +100,6 @@ export default function CourseDetailPage({
         <DiplomaEnhancedSEO
           course={course}
           slug={slug}
-          programId={programType}
           faqs={course.faqs?.length > 0 ? course.faqs : GENERAL_DIPLOMA_FAQS.slice(0, 8)}
           employmentRate={85}
           averageSalary="KES 45,000 - 120,000"
