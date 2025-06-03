@@ -27,7 +27,7 @@ export function generateSEO({
 }: SEOProps): Metadata {
   const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'https://admi.africa'
   const fullUrl = url ? `${baseUrl}${url}` : baseUrl
-  const defaultDescription = 'Africa Digital Media Institute - Empowering creative professionals through industry-relevant education and training.'
+  const defaultDescription = 'Africa Digital Media Institute - Leading Creative Media and Technology Training Institution across Africa. Empowering creative professionals through industry-relevant education and training.'
   const defaultImage = `${baseUrl}/logo.png`
   
   const pageTitle = `ADMI${title ? ` - ${title}` : ''}`
@@ -54,7 +54,7 @@ export function generateSEO({
           alt: title,
         },
       ],
-      locale: 'en_KE',
+      locale: 'en_US',
       type: type === 'course' ? 'article' : type,
       ...(publishedTime && { publishedTime }),
       ...(modifiedTime && { modifiedTime }),

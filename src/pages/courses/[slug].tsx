@@ -3,13 +3,33 @@ import {
   CourseAbout,
   CourseApplicationProcess,
   CourseDetails,
-  CourseFAQs,
   CourseHero,
   CourseMentors,
   CourseStudents,
 } from '@/components/course';
+import { CMSCourseFAQs } from '@/components/course/CMSCourseFAQs';
+import {
+  GRAPHIC_DESIGN_FAQS,
+  ANIMATION_VFX_FAQS,
+  FILM_TELEVISION_FAQS,
+  AUDIO_PRODUCTION_FAQS,
+  PHOTOGRAPHY_FAQS
+} from '@/data/diploma-faqs';
 import { PageSEO } from '@/components/shared/v3';
 import { CourseSchema, BreadcrumbSchema } from '@/components/shared/StructuredData';
+import { DiplomaEnhancedSEO } from '@/components/course/DiplomaEnhancedSEO';
+// generateDiplomaKeywords utility available for future enhancements
+import { GENERAL_DIPLOMA_FAQS } from '@/data/diploma-faqs';
+
+// Helper function to get correct FAQs based on course slug
+const getCorrectFAQsForCourse = (slug: string) => {
+  if (slug.includes('graphic-design')) return GRAPHIC_DESIGN_FAQS
+  if (slug.includes('animation') || slug.includes('vfx')) return ANIMATION_VFX_FAQS
+  if (slug.includes('film') || slug.includes('television')) return FILM_TELEVISION_FAQS
+  if (slug.includes('audio') || slug.includes('sound')) return AUDIO_PRODUCTION_FAQS
+  if (slug.includes('photography')) return PHOTOGRAPHY_FAQS
+  return [] // Return empty array for non-diploma courses
+}
 
 export default function CourseDetailPage({
   course,
@@ -51,17 +71,33 @@ export default function CourseDetailPage({
     ?.map((block: any) => block.content?.map((content: any) => content.value).join(' '))
     .filter(Boolean) || [];
 
-  // Create SEO keywords
+  // Check if this is a diploma program
+  const isDiploma = course.awardLevel?.toLowerCase().includes('diploma') ||
+                   course.programType?.fields?.duration?.includes('2 year')
+
+  // Program type detection available for future enhancements
+
+  // Create SEO keywords with African market focus
   const keywords = [
     course.name,
     course.programType?.fields?.name,
     course.awardLevel,
     'ADMI',
     'Africa Digital Media Institute',
+    'Africa',
+    'African education',
     'Kenya',
     'Nairobi',
+    'East Africa',
+    'West Africa',
+    'Southern Africa',
     'digital media',
     'creative education',
+    'online learning Africa',
+    'distance learning',
+    'African students',
+    'pan-African education',
+    ...(isDiploma ? ['diploma courses Africa', '2 year diploma', 'professional diploma', 'industry-recognized diploma'] : []),
     ...learningOutcomes.slice(0, 3),
     ...careerOptions.slice(0, 3)
   ].filter(Boolean).join(', ');
@@ -76,26 +112,39 @@ export default function CourseDetailPage({
         url={`/courses/${slug}`}
       />
 
-      {/* Course Structured Data */}
-      <CourseSchema
-        name={course.name}
-        description={courseDescription}
-        provider={{
-          name: 'Africa Digital Media Institute',
-          url: 'https://admi.africa'
-        }}
-        url={`${process.env.NEXT_PUBLIC_API_BASE_URL || 'https://admi.africa'}/courses/${slug}`}
-        image={course.coverImage?.fields?.file?.url ? `https:${course.coverImage.fields.file.url}` : undefined}
-        awardLevel={course.awardLevel}
-        creditHours={course.creditHours}
-        tuitionFees={course.tuitionFees}
-        duration={course.programType?.fields?.duration}
-        deliveryMode={course.programType?.fields?.deliveryMode}
-        educationalLevel={course.educationalLevel}
-        learningOutcomes={learningOutcomes}
-        careerOptions={careerOptions}
-        intakes={course.intakes}
-      />
+      {/* Enhanced SEO for Diploma Programs */}
+      {isDiploma ? (
+        <DiplomaEnhancedSEO
+          course={course}
+          slug={slug}
+          faqs={course.faqs?.length > 0 ? course.faqs : GENERAL_DIPLOMA_FAQS.slice(0, 8)}
+          employmentRate={85}
+          averageSalary="KES 45,000 - 120,000"
+          industryPartners={['Safaricom', 'Nation Media Group', 'Standard Group', 'Royal Media Services']}
+          accreditation="Pearson Assured & Woolf University"
+        />
+      ) : (
+        /* Regular Course Structured Data */
+        <CourseSchema
+          name={course.name}
+          description={courseDescription}
+          provider={{
+            name: 'Africa Digital Media Institute',
+            url: 'https://admi.africa'
+          }}
+          url={`${process.env.NEXT_PUBLIC_API_BASE_URL || 'https://admi.africa'}/courses/${slug}`}
+          image={course.coverImage?.fields?.file?.url ? `https:${course.coverImage.fields.file.url}` : undefined}
+          awardLevel={course.awardLevel}
+          creditHours={course.creditHours}
+          tuitionFees={course.tuitionFees}
+          duration={course.programType?.fields?.duration}
+          deliveryMode={course.programType?.fields?.deliveryMode}
+          educationalLevel={course.educationalLevel}
+          learningOutcomes={learningOutcomes}
+          careerOptions={careerOptions}
+          intakes={course.intakes}
+        />
+      )}
 
       {/* Breadcrumb Structured Data */}
       <BreadcrumbSchema
@@ -136,7 +185,11 @@ export default function CourseDetailPage({
         totalHistoricalEnrollment={course.totalHistoricalEnrollment}
       />
       <CourseApplicationProcess processes={course.applicationProcesses || []} />
-      <CourseFAQs faqs={course.faqs || []} />
+      <CMSCourseFAQs
+        courseSlug={slug}
+        fallbackFAQs={getCorrectFAQsForCourse(slug)}
+        showGeneralFallback={isDiploma}
+      />
     </MainLayout>
   );
 }
