@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { Accordion, Badge, Container, Title, Text, Group, Button, Loader, Alert } from '@mantine/core'
-import { IconChevronDown, IconSchool, IconBriefcase, IconCertificate, IconAlertCircle } from '@tabler/icons-react'
+import { Accordion, Container, Title, Text, Group, Loader, Alert } from '@mantine/core'
+import { IconChevronDown, IconAlertCircle } from '@tabler/icons-react'
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer'
 import { ICourseFAQ, IFAQResponse } from '@/types'
 import { GENERAL_DIPLOMA_FAQS } from '@/data/diploma-faqs'
@@ -54,7 +54,7 @@ export function CMSCourseFAQs({
   const [faqs, setFaqs] = useState<ICourseFAQ[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
-  const [activeCategory, setActiveCategory] = useState<string>('all')
+
 
   useEffect(() => {
     const fetchFAQs = async () => {
@@ -114,43 +114,10 @@ export function CMSCourseFAQs({
     isRichText: !!(faq.fields?.answer?.nodeType || (typeof (faq.fields?.answer || faq.answer) === 'object' && (faq.fields?.answer || faq.answer)?.nodeType))
   }))
 
-  // Filter FAQs by category
-  const filteredFAQs = activeCategory === 'all' 
-    ? formattedFAQs
-    : formattedFAQs.filter(faq => faq.category === activeCategory)
+  // Show all FAQs (no filtering)
+  const filteredFAQs = formattedFAQs
 
-  // Get unique categories
-  const categories = ['all', ...Array.from(new Set(formattedFAQs.map(faq => faq.category)))]
 
-  const getCategoryIcon = (category: string) => {
-    switch (category) {
-      case 'Career Prospects':
-        return <IconBriefcase size={16} />
-      case 'Accreditation & Recognition':
-        return <IconCertificate size={16} />
-      case 'Course Content & Structure':
-        return <IconSchool size={16} />
-      default:
-        return null
-    }
-  }
-
-  const getCategoryColor = (category: string) => {
-    switch (category) {
-      case 'Career Prospects':
-        return 'green'
-      case 'Accreditation & Recognition':
-        return 'blue'
-      case 'Course Content & Structure':
-        return 'orange'
-      case 'Fees & Payment':
-        return 'red'
-      case 'Admission Requirements':
-        return 'purple'
-      default:
-        return 'gray'
-    }
-  }
 
   if (loading) {
     return (
@@ -196,23 +163,7 @@ export function CMSCourseFAQs({
 
       </div>
 
-      {/* Category Filter - Hidden for cleaner UI */}
-      {false && categories.length > 2 && (
-        <Group justify="center" mb="xl" gap="xs">
-          {categories.map((category) => (
-            <Button
-              key={category}
-              variant={activeCategory === category ? 'filled' : 'outline'}
-              size="sm"
-              onClick={() => setActiveCategory(category)}
-              leftSection={getCategoryIcon(category)}
-              color={getCategoryColor(category)}
-            >
-              {category === 'all' ? 'All Questions' : category}
-            </Button>
-          ))}
-        </Group>
-      )}
+
 
       {/* FAQ Accordion */}
       <Accordion
