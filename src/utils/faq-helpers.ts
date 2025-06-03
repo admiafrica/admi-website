@@ -1,11 +1,48 @@
 import { ICourseFAQ } from '@/types'
+import { documentToHtmlString } from '@contentful/rich-text-html-renderer'
+
+// Helper function to safely render FAQ content
+export const renderFAQContent = (content: any): string => {
+  if (!content) return ''
+
+  // If it's already a string, return it
+  if (typeof content === 'string') return content
+
+  // If it's a rich text object, convert it to HTML
+  if (content.nodeType && content.content) {
+    try {
+      return documentToHtmlString(content)
+    } catch (error) {
+      console.error('Error rendering rich text:', error)
+      // Fallback: extract plain text
+      return extractPlainTextFromRichText(content)
+    }
+  }
+
+  // Fallback: convert to string
+  return String(content)
+}
+
+// Helper function to extract plain text from rich text
+export const extractPlainTextFromRichText = (richText: any): string => {
+  if (!richText || !richText.content) return ''
+
+  return richText.content
+    .map((block: any) =>
+      block.content
+        ?.map((content: any) => content.value || '')
+        .join(' ')
+    )
+    .join(' ')
+}
 
 // Helper function to format FAQ data consistently
 export const formatFAQData = (faq: ICourseFAQ | any) => ({
   question: faq.fields?.question || faq.question,
-  answer: faq.fields?.answer || faq.answer,
+  answer: renderFAQContent(faq.fields?.answer || faq.answer),
   category: faq.fields?.category || faq.category || 'General Information',
-  displayOrder: faq.fields?.displayOrder || 0
+  displayOrder: faq.fields?.displayOrder || 0,
+  isRichText: !!(faq.fields?.answer?.nodeType || (typeof (faq.fields?.answer || faq.answer) === 'object' && (faq.fields?.answer || faq.answer)?.nodeType))
 })
 
 // Helper function to sort FAQs by display order

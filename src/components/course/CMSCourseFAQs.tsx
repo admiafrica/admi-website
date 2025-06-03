@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Accordion, Badge, Container, Title, Text, Group, Button, Loader, Alert } from '@mantine/core'
 import { IconChevronDown, IconSchool, IconBriefcase, IconCertificate, IconAlertCircle } from '@tabler/icons-react'
+import { documentToHtmlString } from '@contentful/rich-text-html-renderer'
 import { ICourseFAQ, IFAQResponse } from '@/types'
 import { GENERAL_DIPLOMA_FAQS } from '@/data/diploma-faqs'
 
@@ -10,10 +11,45 @@ interface CMSCourseFAQsProps {
   showGeneralFallback?: boolean
 }
 
-export function CMSCourseFAQs({ 
-  courseSlug, 
-  fallbackFAQs = [], 
-  showGeneralFallback = true 
+// Helper function to safely render FAQ content
+const renderFAQContent = (content: any): string => {
+  if (!content) return ''
+
+  // If it's already a string, return it
+  if (typeof content === 'string') return content
+
+  // If it's a rich text object, convert it to HTML
+  if (content.nodeType && content.content) {
+    try {
+      return documentToHtmlString(content)
+    } catch (error) {
+      console.error('Error rendering rich text:', error)
+      // Fallback: extract plain text
+      return extractPlainText(content)
+    }
+  }
+
+  // Fallback: convert to string
+  return String(content)
+}
+
+// Helper function to extract plain text from rich text
+const extractPlainText = (richText: any): string => {
+  if (!richText || !richText.content) return ''
+
+  return richText.content
+    .map((block: any) =>
+      block.content
+        ?.map((content: any) => content.value || '')
+        .join(' ')
+    )
+    .join(' ')
+}
+
+export function CMSCourseFAQs({
+  courseSlug,
+  fallbackFAQs = [],
+  showGeneralFallback = true
 }: CMSCourseFAQsProps) {
   const [faqs, setFaqs] = useState<ICourseFAQ[]>([])
   const [loading, setLoading] = useState(true)
@@ -66,8 +102,9 @@ export function CMSCourseFAQs({
   // Convert CMS FAQs to the format expected by the UI
   const formattedFAQs = displayFAQs.map((faq: any) => ({
     question: faq.fields?.question || faq.question,
-    answer: faq.fields?.answer || faq.answer,
-    category: faq.fields?.category || faq.category || 'General Information'
+    answer: renderFAQContent(faq.fields?.answer || faq.answer),
+    category: faq.fields?.category || faq.category || 'General Information',
+    isRichText: !!(faq.fields?.answer?.nodeType || (typeof (faq.fields?.answer || faq.answer) === 'object' && (faq.fields?.answer || faq.answer)?.nodeType))
   }))
 
   // Filter FAQs by category
@@ -222,9 +259,16 @@ export function CMSCourseFAQs({
               </Group>
             </Accordion.Control>
             <Accordion.Panel>
-              <Text size="sm" lh={1.6}>
-                {faq.answer}
-              </Text>
+              {faq.isRichText ? (
+                <div
+                  className="text-sm leading-relaxed"
+                  dangerouslySetInnerHTML={{ __html: faq.answer }}
+                />
+              ) : (
+                <Text size="sm" lh={1.6}>
+                  {faq.answer}
+                </Text>
+              )}
             </Accordion.Panel>
           </Accordion.Item>
         ))}
