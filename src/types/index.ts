@@ -34,3 +34,20 @@ export interface IContentfulResponse {
     Entry?: IContentfulEntry[];
   };
 }
+
+// FAQ-specific interfaces
+export interface ICourseFAQ {
+  sys: IContentfulSys;
+  fields: {
+    question: string;
+    answer: string;
+    category: string;
+    course?: IContentfulLink;
+    displayOrder?: number;
+  };
+}
+
+export interface IFAQResponse {
+  items: ICourseFAQ[];
+  total: number;
+}

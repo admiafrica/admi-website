@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Script from 'next/script'
-import { DiplomaSchema } from '@/components/shared/StructuredData'
+import { DiplomaSchema, CMSFAQSchema } from '@/components/shared/StructuredData'
 import { generateDiplomaKeywords } from '@/utils/diploma-seo-config'
 import { generateFAQSchema } from '@/data/diploma-faqs'
+import { ICourseFAQ, IFAQResponse } from '@/types'
 
 interface DiplomaEnhancedSEOProps {
   course: any
@@ -23,7 +24,31 @@ export function DiplomaEnhancedSEO({
   industryPartners = ['Safaricom', 'Nation Media Group', 'Standard Group', 'Royal Media Services'],
   accreditation = 'Pearson Assured & Woolf University'
 }: DiplomaEnhancedSEOProps) {
-  
+
+  const [cmsFaqs, setCmsFaqs] = useState<ICourseFAQ[]>([])
+
+  // Fetch CMS FAQs for this course
+  useEffect(() => {
+    const fetchCMSFAQs = async () => {
+      try {
+        const response = await fetch(`/api/v3/course-faqs?slug=${slug}`)
+        if (response.ok) {
+          const data: IFAQResponse = await response.json()
+          setCmsFaqs(data.items)
+        }
+      } catch (error) {
+        console.error('Error fetching CMS FAQs for SEO:', error)
+      }
+    }
+
+    if (slug) {
+      fetchCMSFAQs()
+    }
+  }, [slug])
+
+  // Use CMS FAQs if available, otherwise use provided FAQs
+  const activeFaqs = cmsFaqs.length > 0 ? cmsFaqs : faqs
+
   // Note: Enhanced keywords are generated via generateDiplomaKeywords utility when needed
   
   // Enhanced description for diploma programs
@@ -38,8 +63,8 @@ export function DiplomaEnhancedSEO({
     ?.map((block: any) => block.content?.map((content: any) => content.value).join(' '))
     .filter(Boolean) || []
 
-  // Generate FAQ schema if FAQs are provided
-  const faqSchema = faqs.length > 0 ? generateFAQSchema(faqs) : null
+  // Generate FAQ schema if FAQs are provided (now using CMS FAQs when available)
+  const faqSchema = activeFaqs.length > 0 ? generateFAQSchema(activeFaqs) : null
 
   return (
     <>
@@ -69,8 +94,11 @@ export function DiplomaEnhancedSEO({
         transferCredits={true}
       />
 
-      {/* FAQ Schema for SEO */}
-      {faqSchema && (
+      {/* CMS FAQ Schema for SEO */}
+      <CMSFAQSchema faqs={activeFaqs} courseName={course.name} />
+
+      {/* Fallback FAQ Schema for SEO (if no CMS FAQs) */}
+      {activeFaqs.length === 0 && faqSchema && (
         <Script
           id="diploma-faq-schema"
           type="application/ld+json"

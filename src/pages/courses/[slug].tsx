@@ -3,11 +3,11 @@ import {
   CourseAbout,
   CourseApplicationProcess,
   CourseDetails,
-  CourseFAQs,
   CourseHero,
   CourseMentors,
   CourseStudents,
 } from '@/components/course';
+import { CMSCourseFAQs } from '@/components/course/CMSCourseFAQs';
 import { PageSEO } from '@/components/shared/v3';
 import { CourseSchema, BreadcrumbSchema } from '@/components/shared/StructuredData';
 import { DiplomaEnhancedSEO } from '@/components/course/DiplomaEnhancedSEO';
@@ -168,7 +168,11 @@ export default function CourseDetailPage({
         totalHistoricalEnrollment={course.totalHistoricalEnrollment}
       />
       <CourseApplicationProcess processes={course.applicationProcesses || []} />
-      <CourseFAQs faqs={course.faqs || []} />
+      <CMSCourseFAQs
+        courseSlug={slug}
+        fallbackFAQs={course.faqs || []}
+        showGeneralFallback={isDiploma}
+      />
     </MainLayout>
   );
 }

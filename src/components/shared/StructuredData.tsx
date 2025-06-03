@@ -1,5 +1,6 @@
 import React from 'react'
 import Script from 'next/script'
+import { ICourseFAQ } from '@/types'
 
 interface OrganizationProps {
   name?: string
@@ -261,6 +262,40 @@ export function BreadcrumbSchema({ items }: BreadcrumbProps) {
   return (
     <Script
       id="breadcrumb-schema"
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+    />
+  )
+}
+
+// CMS-driven FAQ Schema
+interface CMSFAQSchemaProps {
+  faqs: ICourseFAQ[] | any[]
+  courseName?: string
+}
+
+export function CMSFAQSchema({ faqs, courseName }: CMSFAQSchemaProps) {
+  if (!faqs || faqs.length === 0) {
+    return null
+  }
+
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    name: courseName ? `${courseName} - Frequently Asked Questions` : 'Course FAQs',
+    mainEntity: faqs.map(faq => ({
+      '@type': 'Question',
+      name: faq.fields?.question || faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.fields?.answer || faq.answer
+      }
+    }))
+  }
+
+  return (
+    <Script
+      id="cms-faq-schema"
       type="application/ld+json"
       dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
     />
