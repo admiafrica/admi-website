@@ -22,12 +22,15 @@
     margin-bottom: 0.5em;
   }
 
-  ol, ul {
+  ol,
+  ul {
     margin-bottom: rem(20);
   }
 
-  ul, ol {
-    ul, ol {
+  ul,
+  ol {
+    ul,
+    ol {
       margin-top: 1rem;
 
       &:last-child {
@@ -46,7 +49,8 @@
     font-size: smaller;
   }
 
-  figure, .article-video-banner {
+  figure,
+  .article-video-banner {
     display: block;
     margin-bottom: rem(32);
     aspect-ratio: 3/1;
@@ -56,8 +60,12 @@
     img {
       height: 100%;
       object-fit: cover;
-      -webkit-transition: opacity 1s, -webkit-transform 1s;
-      transition: opacity 1s, transform 1s;
+      -webkit-transition:
+        opacity 1s,
+        -webkit-transform 1s;
+      transition:
+        opacity 1s,
+        transform 1s;
       -webkit-backface-visibility: hidden;
       backface-visibility: hidden;
     }
@@ -72,12 +80,12 @@
     border-left: 8px solid $red;
     line-height: 1.6;
     position: relative;
-    background: #EDEDED;
+    background: #ededed;
 
     &::before {
-      font-family: "Arial Black", sans-serif;
+      font-family: 'Arial Black', sans-serif;
       font-style: normal;
-      content: "\201C";
+      content: '\201C';
       color: $red;
       font-size: 4em;
       position: absolute;
@@ -99,7 +107,8 @@
     table-layout: fixed;
     width: 100%;
 
-    th, td {
+    th,
+    td {
       padding: rem(14);
       border: 1px solid #efefef;
     }
@@ -114,7 +123,6 @@
       font-size: rem(14);
     }
   }
-
 }
 
 @include mappy-query(lm) {
@@ -158,10 +166,9 @@
       }
 
       td {
-
         border-bottom: 0 none;
         display: block;
-        font-size: .8em;
+        font-size: 0.8em;
 
         &::before {
           content: attr(data-label);

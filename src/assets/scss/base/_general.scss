@@ -14,7 +14,10 @@
     display: block;
   }
 
-  h1, h2, h3, h4 {
+  h1,
+  h2,
+  h3,
+  h4 {
     font-weight: normal;
   }
 
@@ -31,7 +34,8 @@
     margin-bottom: rem(20);
   }
 
-  ol, ul {
+  ol,
+  ul {
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -39,7 +43,8 @@
     margin-left: rem(20);
   }
 
-  b, strong {
+  b,
+  strong {
     font-weight: bold;
   }
 }
@@ -136,7 +141,18 @@
   overflow: hidden;
   position: relative;
   background: rgba(#000, 0.04);
-  background: linear-gradient(135deg, rgba(211, 223, 232, .5) 30%, rgba(169, 184, 197, .5) 38%, rgba(168, 182, 193, .6) 41%, rgba(168, 182, 193, .6) 50%, rgba(168, 182, 193, .6) 50%, rgba(169, 184, 197, .6) 51%, rgba(211, 223, 232, .6) 57%, rgba(211, 223, 232, .6) 80%, rgba(211, 223, 232, .6) 80%);
+  background: linear-gradient(
+    135deg,
+    rgba(211, 223, 232, 0.5) 30%,
+    rgba(169, 184, 197, 0.5) 38%,
+    rgba(168, 182, 193, 0.6) 41%,
+    rgba(168, 182, 193, 0.6) 50%,
+    rgba(168, 182, 193, 0.6) 50%,
+    rgba(169, 184, 197, 0.6) 51%,
+    rgba(211, 223, 232, 0.6) 57%,
+    rgba(211, 223, 232, 0.6) 80%,
+    rgba(211, 223, 232, 0.6) 80%
+  );
   background-size: 1200% 1200%;
   -webkit-animation: LazyContent 2s ease infinite reverse;
   -moz-animation: LazyContent 2s ease infinite reverse;

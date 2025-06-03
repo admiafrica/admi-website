@@ -1,16 +1,16 @@
-import { Button as MantineButton, Text } from '@mantine/core';
+import { Button as MantineButton, Text } from '@mantine/core'
 
 type Props = {
-  label: string;
-  size: string;
-  backgroundColor?: string;
-  onClick?: () => void;
-  type?: 'button' | 'submit' | 'reset';
+  label: string
+  size: string
+  backgroundColor?: string
+  onClick?: () => void
+  type?: 'button' | 'submit' | 'reset'
   color?: string
-};
+}
 
 export default function Button(props: Props) {
-  const { label, size, backgroundColor, onClick, type = 'button', color='white', ...rest } = props;
+  const { label, size, backgroundColor, onClick, type = 'button', color = 'white', ...rest } = props
 
   return (
     <div className="w-full">
@@ -30,5 +30,5 @@ export default function Button(props: Props) {
         </div>
       </MantineButton>
     </div>
-  );
+  )
 }

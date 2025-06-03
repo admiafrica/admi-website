@@ -1,52 +1,52 @@
-import { ActionIcon } from '@mantine/core';
-import { IconMaximize, IconPlayerPause, IconPlayerSkipForward } from '@tabler/icons-react';
-import React, { useState, useRef } from 'react';
+import { ActionIcon } from '@mantine/core'
+import { IconMaximize, IconPlayerPause, IconPlayerSkipForward } from '@tabler/icons-react'
+import React, { useState, useRef } from 'react'
 
 type Props = {
-  videoUrl: string;
-};
+  videoUrl: string
+}
 
 const VideoPlayer = ({ videoUrl }: Props) => {
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [isHovering, setIsHovering] = useState(false);
-  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const [isPlaying, setIsPlaying] = useState(false)
+  const [isHovering, setIsHovering] = useState(false)
+  const videoRef = useRef<HTMLVideoElement | null>(null)
 
   const handlePlayPause = () => {
-    const videoElement = videoRef.current;
-    if (!videoElement) return;
+    const videoElement = videoRef.current
+    if (!videoElement) return
 
     if (isPlaying) {
-      videoElement.pause();
+      videoElement.pause()
     } else {
-      videoElement.play();
+      videoElement.play()
     }
-    setIsPlaying(!isPlaying);
-  };
+    setIsPlaying(!isPlaying)
+  }
 
   const handleMouseEnter = () => {
-    setIsHovering(true);
-  };
+    setIsHovering(true)
+  }
 
   const handleMouseLeave = () => {
-    setIsHovering(false);
+    setIsHovering(false)
     // Pause video when mouse leaves if not playing
-    const videoElement = videoRef.current;
+    const videoElement = videoRef.current
     if (!isPlaying && videoElement) {
-      videoElement.pause();
+      videoElement.pause()
     }
-  };
+  }
 
   const handleFullscreen = () => {
-    const videoElement = videoRef.current;
+    const videoElement = videoRef.current
 
-    if (!videoElement) return;
+    if (!videoElement) return
 
     if (document.fullscreenElement) {
-      document.exitFullscreen();
+      document.exitFullscreen()
     } else {
-      videoElement.requestFullscreen();
+      videoElement.requestFullscreen()
     }
-  };
+  }
 
   return (
     <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className="relative">
@@ -63,7 +63,7 @@ const VideoPlayer = ({ videoUrl }: Props) => {
         <div
           className="z-5 absolute inset-0"
           style={{
-            background: `radial-gradient(circle, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 80%)`,
+            background: 'radial-gradient(circle, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 80%)'
           }}
         ></div>
       )}
@@ -87,7 +87,7 @@ const VideoPlayer = ({ videoUrl }: Props) => {
         </>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default VideoPlayer;
+export default VideoPlayer

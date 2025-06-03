@@ -1,12 +1,12 @@
-import { Anchor, Box } from '@mantine/core';
-import { Paragraph, Title } from '../ui';
-import { CollapsibleContent } from '../shared/v3';
+import { Anchor, Box } from '@mantine/core'
+import { Paragraph, Title } from '../ui'
+import { CollapsibleContent } from '../shared/v3'
 
 export default function InternationalStudents() {
   return (
     <Box className="w-full">
       <CollapsibleContent
-        key={`finance-plan-1`}
+        key={'finance-plan-1'}
         title="How to Apply"
         content={
           <Paragraph>
@@ -17,7 +17,7 @@ export default function InternationalStudents() {
         }
       />
       <CollapsibleContent
-        key={`finance-plan-2`}
+        key={'finance-plan-2'}
         title="Visa Requirements"
         content={
           <Box className="w-full">
@@ -302,7 +302,7 @@ export default function InternationalStudents() {
         }
       />
       <CollapsibleContent
-        key={`finance-plan-3`}
+        key={'finance-plan-3'}
         title="Accommodation"
         content={
           <Box>
@@ -329,7 +329,7 @@ export default function InternationalStudents() {
         }
       />
       <CollapsibleContent
-        key={`finance-plan-4`}
+        key={'finance-plan-4'}
         title="International Student Community"
         content={
           <Paragraph>
@@ -350,5 +350,5 @@ export default function InternationalStudents() {
         }
       />
     </Box>
-  );
+  )
 }

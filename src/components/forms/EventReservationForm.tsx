@@ -1,19 +1,19 @@
-import { useState } from 'react';
-import { Alert, Box, Text, TextInput } from '@mantine/core';
-import { useForm } from '@mantine/form';
-import { Button, Paragraph, Title } from '../ui';
-import PhoneInput from 'react-phone-input-2';
-import 'react-phone-input-2/lib/style.css';
+import { useState } from 'react'
+import { Alert, Box, Text, TextInput } from '@mantine/core'
+import { useForm } from '@mantine/form'
+import { Button, Paragraph, Title } from '../ui'
+import PhoneInput from 'react-phone-input-2'
+import 'react-phone-input-2/lib/style.css'
 
-import { IconAsterisk } from '@tabler/icons-react';
+import { IconAsterisk } from '@tabler/icons-react'
 
 type Props = {
-  close: () => void;
-};
+  close: () => void
+}
 
 export default function EventReservationForm({ close }: Props) {
-  const [countryCode, setCountryCode] = useState('254'); // State for the phone number
-  const [alert, setAlert] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
+  const [countryCode, setCountryCode] = useState('254') // State for the phone number
+  const [alert, setAlert] = useState<{ type: 'success' | 'error'; message: string } | null>(null)
 
   const form = useForm({
     mode: 'uncontrolled',
@@ -22,18 +22,18 @@ export default function EventReservationForm({ close }: Props) {
       firstName: '',
       lastName: '',
       phone: '',
-      courseName: '',
+      courseName: ''
     },
 
     validate: {
-      email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Invalid email'),
-    },
-  });
+      email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Invalid email')
+    }
+  })
 
   const handleSubmit = async (values: any) => {
-    setAlert(null); // Clear previous alerts
+    setAlert(null) // Clear previous alerts
 
-    return values;
+    return values
     // always remove leading zero from phone incase included
     // const formattedPhone = values.phone.replace(/^0+/, '');
     // const data = {
@@ -59,7 +59,7 @@ export default function EventReservationForm({ close }: Props) {
     // } catch (error) {
     //   setAlert({ type: 'error', message: 'An error occurred. Please try again later.' });
     // }
-  };
+  }
 
   return (
     <div className="w-full rounded-lg bg-white p-4 sm:p-8">
@@ -122,22 +122,22 @@ export default function EventReservationForm({ close }: Props) {
               country={'ke'}
               value={countryCode}
               onChange={(value) => {
-                setCountryCode(value);
+                setCountryCode(value)
               }}
               containerStyle={{
                 border: 'none',
-                width: 100,
+                width: 100
               }}
               inputStyle={{
-                border: 'none',
+                border: 'none'
               }}
               buttonStyle={{
                 border: 'none',
-                marginLeft: '8px',
+                marginLeft: '8px'
               }}
               dropdownStyle={{
                 border: 'none',
-                boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+                boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)'
               }}
               inputProps={{ readOnly: true }}
             />
@@ -169,5 +169,5 @@ export default function EventReservationForm({ close }: Props) {
         </Alert>
       )}
     </div>
-  );
+  )
 }

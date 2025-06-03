@@ -1,59 +1,59 @@
-import { GetServerSideProps } from 'next';
-import { useRouter } from 'next/router';
-import Image from 'next/image';
-import { Box, Indicator, Divider, NumberFormatter } from '@mantine/core';
-import { Carousel } from '@mantine/carousel';
-import Autoplay from 'embla-carousel-autoplay';
+import { GetServerSideProps } from 'next'
+import { useRouter } from 'next/router'
+import Image from 'next/image'
+import { Box, Indicator, Divider, NumberFormatter } from '@mantine/core'
+import { Carousel } from '@mantine/carousel'
+import Autoplay from 'embla-carousel-autoplay'
 
-import { AnimatedWordDisplay, Paragraph, SearchDropdown, Title } from '@/components/ui';
-import { MainLayout } from '@/layouts/v3/MainLayout';
-import { Button } from '@/components/ui';
-import { PageSEO } from '@/components/shared/v3';
+import { AnimatedWordDisplay, Paragraph, SearchDropdown, Title } from '@/components/ui'
+import { MainLayout } from '@/layouts/v3/MainLayout'
+import { Button } from '@/components/ui'
+import { PageSEO } from '@/components/shared/v3'
 import {
   AnnouncementCard,
   CourseItemCard,
   FacilityItemCard,
   SectorItemCard,
-  UserTestimonialCard,
-} from '@/components/cards';
-import { ADMI_FACILITIES, ADMI_HOMEPAGE_SECTORS, getAssetDetails } from '@/utils';
-import { IContentfulEntry } from '@/types';
-import { useIsMobile } from '@/hooks/useIsMobile';
+  UserTestimonialCard
+} from '@/components/cards'
+import { ADMI_FACILITIES, ADMI_HOMEPAGE_SECTORS, getAssetDetails } from '@/utils'
+import { IContentfulEntry } from '@/types'
+import { useIsMobile } from '@/hooks/useIsMobile'
 
-import { IconPlus } from '@tabler/icons-react';
-import AnnouncementImage from '@/assets/images/announcement.svg';
-import NewsImage from '@/assets/images/featured-news.svg';
-import AwardsImage from '@/assets/images/awards.svg';
+import { IconPlus } from '@tabler/icons-react'
+import AnnouncementImage from '@/assets/images/announcement.svg'
+import NewsImage from '@/assets/images/featured-news.svg'
+import AwardsImage from '@/assets/images/awards.svg'
 
 interface HomePageProps {
-  content: any;
-  courses: Array<any>;
-  featuredNews: IContentfulEntry | null;
-  featuredResource: IContentfulEntry | null;
-  featuredAward: IContentfulEntry | null;
+  content: any
+  courses: Array<any>
+  featuredNews: IContentfulEntry | null
+  featuredResource: IContentfulEntry | null
+  featuredAward: IContentfulEntry | null
 }
 
 export default function HomePage({ content, courses, featuredNews, featuredResource, featuredAward }: HomePageProps) {
-  const router = useRouter();
-  const isMobile = useIsMobile();
+  const router = useRouter()
+  const isMobile = useIsMobile()
 
-  const autoplaySectors = Autoplay({ delay: 4000 });
-  const autoplayTestimonials = Autoplay({ delay: 4000 });
-  const autoplayFacilities = Autoplay({ delay: 4000 });
-  const autoplayCourses = Autoplay({ delay: 4000 });
+  const autoplaySectors = Autoplay({ delay: 4000 })
+  const autoplayTestimonials = Autoplay({ delay: 4000 })
+  const autoplayFacilities = Autoplay({ delay: 4000 })
+  const autoplayCourses = Autoplay({ delay: 4000 })
 
   const keyItems = [
     { word: 'Media', styles: 'text-[#F1FE38]' },
     { word: 'Technology', styles: 'text-[#01C6A5]' },
     { word: 'Production', styles: 'text-[#F76335]' },
-    { word: 'Engineering', styles: 'text-[#F60834]' },
-  ];
+    { word: 'Engineering', styles: 'text-[#F60834]' }
+  ]
 
-  const facilities = ADMI_FACILITIES;
+  const facilities = ADMI_FACILITIES
 
   const handleViewCourses = () => {
-    router.push(`/courses`);
-  };
+    router.push('/courses')
+  }
 
   return (
     <MainLayout footerBgColor="#E6F608">
@@ -78,7 +78,8 @@ export default function HomePage({ content, courses, featuredNews, featuredResou
           <div
             className="z-5 absolute inset-0"
             style={{
-              background: `radial-gradient(38.35% 91.08% at 66.59% 45.79%, rgba(0, 0, 0, 0) 14.71%, rgba(0, 0, 0, 0.8) 100%)`,
+              background:
+                'radial-gradient(38.35% 91.08% at 66.59% 45.79%, rgba(0, 0, 0, 0) 14.71%, rgba(0, 0, 0, 0.8) 100%)'
             }}
           ></div>
 
@@ -447,7 +448,7 @@ export default function HomePage({ content, courses, featuredNews, featuredResou
         )}
       </div>
     </MainLayout>
-  );
+  )
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
@@ -457,16 +458,16 @@ export const getServerSideProps: GetServerSideProps = async () => {
       fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v3/courses`),
       fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v3/news`),
       fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v3/resources`),
-      fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v3/awards`),
-    ]);
+      fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v3/awards`)
+    ])
 
     const [contentData, coursesData, newsData, resourcesData, awardsData] = await Promise.all([
       contentRes.json(),
       coursesRes.json(),
       newsRes.json(),
       resourcesRes.json(),
-      awardsRes.json(),
-    ]);
+      awardsRes.json()
+    ])
 
     return {
       props: {
@@ -474,19 +475,19 @@ export const getServerSideProps: GetServerSideProps = async () => {
         courses: coursesData || [],
         featuredNews: newsData.find((article: IContentfulEntry) => article.fields.featured) || null,
         featuredResource: resourcesData.find((article: IContentfulEntry) => article.fields.featured) || null,
-        featuredAward: awardsData.find((article: IContentfulEntry) => article.fields.featured) || null,
-      },
-    };
+        featuredAward: awardsData.find((article: IContentfulEntry) => article.fields.featured) || null
+      }
+    }
   } catch (error) {
-    console.error('Error fetching homepage data:', error);
+    console.error('Error fetching homepage data:', error)
     return {
       props: {
         content: null,
         courses: [],
         featuredNews: null,
         featuredResource: null,
-        featuredAward: null,
-      },
-    };
+        featuredAward: null
+      }
+    }
   }
-};
+}

@@ -1,18 +1,18 @@
-import React from 'react';
-import Image from 'next/image';
-import { Group, Text, Anchor, Divider } from '@mantine/core';
-import { useMediaQuery } from '@mantine/hooks';
+import React from 'react'
+import Image from 'next/image'
+import { Group, Text, Anchor, Divider } from '@mantine/core'
+import { useMediaQuery } from '@mantine/hooks'
 
-import { IconCopyright } from '@tabler/icons-react';
-import IconLogoWhite from '@/assets/logo-light.svg';
-import IconYouTube from '@/assets/icons/youtube.svg';
-import IconInstagram from '@/assets/icons/instagram.svg';
-import IconFacebook from '@/assets/icons/facebook.svg';
-import IconTikTok from '@/assets/icons/tiktok.svg';
-import IconX from '@/assets/icons/x.svg';
-import IconLinkedIn from '@/assets/icons/linkedin.svg';
-import { SOCIAL_LINKS } from '@/utils';
-import Ribbon from './Ribbon';
+import { IconCopyright } from '@tabler/icons-react'
+import IconLogoWhite from '@/assets/logo-light.svg'
+import IconYouTube from '@/assets/icons/youtube.svg'
+import IconInstagram from '@/assets/icons/instagram.svg'
+import IconFacebook from '@/assets/icons/facebook.svg'
+import IconTikTok from '@/assets/icons/tiktok.svg'
+import IconX from '@/assets/icons/x.svg'
+import IconLinkedIn from '@/assets/icons/linkedin.svg'
+import { SOCIAL_LINKS } from '@/utils'
+import Ribbon from './Ribbon'
 
 const SocialIcons = React.memo(() => {
   return (
@@ -36,14 +36,14 @@ const SocialIcons = React.memo(() => {
         <Image width={32} src={IconFacebook} alt={SOCIAL_LINKS.FACEBOOK} />
       </Anchor>
     </Group>
-  );
-});
+  )
+})
 
 // Assign a display name
-SocialIcons.displayName = 'SocialIcons';
+SocialIcons.displayName = 'SocialIcons'
 
 export default function FooterMini() {
-  const isMobile = useMediaQuery('(max-width: 480px)');
+  const isMobile = useMediaQuery('(max-width: 480px)')
 
   return (
     <div className="relative w-full bg-[#FFF7F5] font-proxima">
@@ -67,5 +67,5 @@ export default function FooterMini() {
 
       <Ribbon />
     </div>
-  );
+  )
 }

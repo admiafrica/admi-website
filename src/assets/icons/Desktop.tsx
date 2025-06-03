@@ -1,8 +1,8 @@
 type Props = {
-  color?: string;
-  width?: number;
-  height?: number;
-};
+  color?: string
+  width?: number
+  height?: number
+}
 
 export default function IconDesktop({ color = 'black', width, height }: Props) {
   return (
@@ -18,5 +18,5 @@ export default function IconDesktop({ color = 'black', width, height }: Props) {
       />
       <path d="M7 19.2998H17" stroke={color} strokeWidth="1.5" strokeLinecap="round" />
     </svg>
-  );
+  )
 }

@@ -1,8 +1,8 @@
 type Props = {
-  color?: string;
-  width?: number;
-  height?: number;
-};
+  color?: string
+  width?: number
+  height?: number
+}
 
 export default function IconMusic({ color = 'black', width, height }: Props) {
   return (
@@ -37,5 +37,5 @@ export default function IconMusic({ color = 'black', width, height }: Props) {
     //     fill={color}
     //   />
     // </svg>
-  );
+  )
 }

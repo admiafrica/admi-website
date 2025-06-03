@@ -1,17 +1,17 @@
-import React from 'react';
-import { Box, Card } from '@mantine/core';
+import React from 'react'
+import { Box, Card } from '@mantine/core'
 
-import { Paragraph } from '../ui';
-import IconAttach from '@/assets/icons/Attach';
+import { Paragraph } from '../ui'
+import IconAttach from '@/assets/icons/Attach'
 
 type Props = {
-  item: any;
-  bgColor?: string;
-  textColor?: string;
-  textWeight?: number;
-};
+  item: any
+  bgColor?: string
+  textColor?: string
+  textWeight?: number
+}
 
-export default function InfoCard({ item, bgColor = '#081E1A', textColor = 'white', textWeight=100 }: Props) {
+export default function InfoCard({ item, bgColor = '#081E1A', textColor = 'white', textWeight = 100 }: Props) {
   return (
     <Card className="z-10 h-full w-full" bg={bgColor} withBorder>
       <Box className="flex">
@@ -29,5 +29,5 @@ export default function InfoCard({ item, bgColor = '#081E1A', textColor = 'white
       </Paragraph>
       <Box className="flex h-full flex-row"></Box>
     </Card>
-  );
+  )
 }

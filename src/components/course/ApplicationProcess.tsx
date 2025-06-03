@@ -1,16 +1,16 @@
-import { Text } from '@mantine/core';
-import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
-import { CollapsibleContent } from '../shared/v3';
-import { useIsMobile } from '@/hooks/useIsMobile';
-import { Title } from '../ui';
+import { Text } from '@mantine/core'
+import { documentToHtmlString } from '@contentful/rich-text-html-renderer'
+import { CollapsibleContent } from '../shared/v3'
+import { useIsMobile } from '@/hooks/useIsMobile'
+import { Title } from '../ui'
 
 type Props = {
-  processes: any[];
-};
+  processes: any[]
+}
 
 export default function CourseApplicationProcess({ processes }: Props) {
-  const isMobile = useIsMobile();
-  if (processes.length < 1) return null;
+  const isMobile = useIsMobile()
+  if (processes.length < 1) return null
 
   return (
     <div className="relative z-20 w-full pb-16">
@@ -32,7 +32,7 @@ export default function CourseApplicationProcess({ processes }: Props) {
               <div
                 className="z-20 font-proxima text-lg"
                 dangerouslySetInnerHTML={{
-                  __html: documentToHtmlString(process.fields.text),
+                  __html: documentToHtmlString(process.fields.text)
                 }}
               ></div>
             }
@@ -40,5 +40,5 @@ export default function CourseApplicationProcess({ processes }: Props) {
         ))}
       </div>
     </div>
-  );
+  )
 }

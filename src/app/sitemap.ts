@@ -3,7 +3,7 @@ import { MetadataRoute } from 'next'
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Base URL from environment variable
   const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'https://admi.africa'
-  
+
   // Core pages with African market focus
   const staticPages = [
     '',
@@ -21,21 +21,21 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/facilities',
     '/africa', // African market page
     '/online-learning', // For remote African students
-    '/scholarships', // African scholarship opportunities
-  ].map(route => ({
+    '/scholarships' // African scholarship opportunities
+  ].map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date(),
     changeFrequency: 'monthly' as const,
-    priority: route === '' ? 1 : route === '/africa' ? 0.9 : 0.8,
+    priority: route === '' ? 1 : route === '/africa' ? 0.9 : 0.8
   }))
 
   // Add language-specific pages for African markets
-  const languagePages = ['sw', 'fr', 'ar', 'pt'].flatMap(lang =>
-    ['', '/courses', '/about', '/contact'].map(route => ({
+  const languagePages = ['sw', 'fr', 'ar', 'pt'].flatMap((lang) =>
+    ['', '/courses', '/about', '/contact'].map((route) => ({
       url: `${baseUrl}/${lang}${route}`,
       lastModified: new Date(),
       changeFrequency: 'monthly' as const,
-      priority: 0.7,
+      priority: 0.7
     }))
   )
 
@@ -50,8 +50,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     if (coursesData.items) {
       coursePages = coursesData.items.map((item: any) => {
         // Higher priority for diploma programs (2-year courses)
-        const isDiploma = item.fields.awardLevel?.toLowerCase().includes('diploma') ||
-                         item.fields.programType?.fields?.duration?.includes('2 year')
+        const isDiploma =
+          item.fields.awardLevel?.toLowerCase().includes('diploma') ||
+          item.fields.programType?.fields?.duration?.includes('2 year')
 
         return {
           url: `${baseUrl}/courses/${item.fields.slug}`,
@@ -62,7 +63,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
           images: [
             {
               loc: `https:${item.fields.coverImage?.fields?.file?.url}`,
-              title: item.fields.name,
+              title: item.fields.name
             }
           ]
         }
@@ -90,7 +91,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         images: [
           {
             loc: `https:${item.fields.featuredImage?.fields?.file?.url}`,
-            title: item.fields.title,
+            title: item.fields.title
           }
         ]
       }))
@@ -112,7 +113,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         url: `${baseUrl}/resources/${item.fields.slug}`,
         lastModified: new Date(item.sys.updatedAt),
         changeFrequency: 'monthly' as const,
-        priority: 0.6,
+        priority: 0.6
       }))
     }
   } catch (error) {

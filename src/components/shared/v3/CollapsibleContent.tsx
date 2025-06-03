@@ -1,26 +1,26 @@
-import React from 'react';
-import Image from 'next/image';
-import { Group, Collapse, Card, Box } from '@mantine/core';
-import { useDisclosure } from '@mantine/hooks';
+import React from 'react'
+import Image from 'next/image'
+import { Group, Collapse, Card, Box } from '@mantine/core'
+import { useDisclosure } from '@mantine/hooks'
 
-import IconArrowLeft from '@/assets/icons/arrow-left.svg';
-import IconArrowDown from '@/assets/icons/arrow-down.svg';
-import IconLinkedIn from '@/assets/icons/linkedin-blue.svg';
-import { Paragraph, Title } from '@/components/ui';
-import { useIsMobile } from '@/hooks/useIsMobile';
+import IconArrowLeft from '@/assets/icons/arrow-left.svg'
+import IconArrowDown from '@/assets/icons/arrow-down.svg'
+import IconLinkedIn from '@/assets/icons/linkedin-blue.svg'
+import { Paragraph, Title } from '@/components/ui'
+import { useIsMobile } from '@/hooks/useIsMobile'
 
 type Props = {
-  title: string;
-  subTitle?: string;
-  content: React.ReactNode;
-  icon?: React.ReactNode;
-  isProfile?: boolean;
-  profileLink?: string;
-};
+  title: string
+  subTitle?: string
+  content: React.ReactNode
+  icon?: React.ReactNode
+  isProfile?: boolean
+  profileLink?: string
+}
 
 export default function CollapsibleContent({ icon, title, subTitle, content, isProfile = false, profileLink }: Props) {
-  const isMobile = useIsMobile();
-  const [opened, { toggle }] = useDisclosure(false);
+  const isMobile = useIsMobile()
+  const [opened, { toggle }] = useDisclosure(false)
 
   return (
     <Card shadow="md" className="mt-8 w-full" mx="auto" p={isProfile ? 0 : 24}>
@@ -70,5 +70,5 @@ export default function CollapsibleContent({ icon, title, subTitle, content, isP
         <div className="w-full bg-[#FEFFF5] p-4 font-proxima">{content}</div>
       </Collapse>
     </Card>
-  );
+  )
 }

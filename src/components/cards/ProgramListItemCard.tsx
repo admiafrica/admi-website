@@ -1,18 +1,18 @@
-import { Box, Pill, Divider } from '@mantine/core';
+import { Box, Pill, Divider } from '@mantine/core'
 
-import { Paragraph, Title } from '@/components/ui';
-import { getAssetDetails } from '@/utils';
-import Image from 'next/image';
-import { CourseListItemCard } from '@/components/cards';
+import { Paragraph, Title } from '@/components/ui'
+import { getAssetDetails } from '@/utils'
+import Image from 'next/image'
+import { CourseListItemCard } from '@/components/cards'
 
 type Props = {
-  courses: any[];
-  program: any;
-  filterProgramCourses: (programType: string, courses: any[]) => any[];
-};
+  courses: any[]
+  program: any
+  filterProgramCourses: (programType: string, courses: any[]) => any[]
+}
 
 export default function ProgramListItemCard({ courses, program, filterProgramCourses }: Props) {
-  const programCourses = filterProgramCourses(program.fields.name, courses);
+  const programCourses = filterProgramCourses(program.fields.name, courses)
 
   return (
     <Box className="flex h-fit w-full flex-col pt-20" key={program.sys.id}>
@@ -74,5 +74,5 @@ export default function ProgramListItemCard({ courses, program, filterProgramCou
         ))}
       </Box>
     </Box>
-  );
+  )
 }

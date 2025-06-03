@@ -1,10 +1,10 @@
-import Image from 'next/image';
-import { Box, Card } from '@mantine/core';
-import { Paragraph, Title } from '@/components/ui';
+import Image from 'next/image'
+import { Box, Card } from '@mantine/core'
+import { Paragraph, Title } from '@/components/ui'
 
 type Props = {
-  facility: any;
-};
+  facility: any
+}
 
 export default function FacilityItemCard({ facility }: Props) {
   return (
@@ -31,5 +31,5 @@ export default function FacilityItemCard({ facility }: Props) {
         </Box>
       </Box>
     </Card>
-  );
+  )
 }

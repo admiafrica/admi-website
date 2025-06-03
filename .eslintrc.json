@@ -1,6 +1,18 @@
 {
   "extends": ["next/core-web-vitals", "next/typescript"],
   "rules": {
-    "@typescript-eslint/no-explicit-any": "off"
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-unused-vars": "error",
+    "@typescript-eslint/no-console": "off",
+    "react/jsx-key": "error",
+    "react/no-unescaped-entities": "error",
+    "react/display-name": "error",
+    "prefer-const": "error",
+    "no-var": "error",
+    "no-trailing-spaces": "error",
+    "eol-last": "error",
+    "comma-dangle": ["error", "never"],
+    "semi": ["error", "never"],
+    "quotes": ["error", "single", { "avoidEscape": true }]
   }
 }

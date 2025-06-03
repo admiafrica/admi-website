@@ -28,11 +28,7 @@ export const extractPlainTextFromRichText = (richText: any): string => {
   if (!richText || !richText.content) return ''
 
   return richText.content
-    .map((block: any) =>
-      block.content
-        ?.map((content: any) => content.value || '')
-        .join(' ')
-    )
+    .map((block: any) => block.content?.map((content: any) => content.value || '').join(' '))
     .join(' ')
 }
 
@@ -42,7 +38,10 @@ export const formatFAQData = (faq: ICourseFAQ | any) => ({
   answer: renderFAQContent(faq.fields?.answer || faq.answer),
   category: faq.fields?.category || faq.category || 'General Information',
   displayOrder: faq.fields?.displayOrder || 0,
-  isRichText: !!(faq.fields?.answer?.nodeType || (typeof (faq.fields?.answer || faq.answer) === 'object' && (faq.fields?.answer || faq.answer)?.nodeType))
+  isRichText: !!(
+    faq.fields?.answer?.nodeType ||
+    (typeof (faq.fields?.answer || faq.answer) === 'object' && (faq.fields?.answer || faq.answer)?.nodeType)
+  )
 })
 
 // Helper function to sort FAQs by display order
@@ -58,20 +57,20 @@ export const sortFAQsByOrder = (faqs: (ICourseFAQ | any)[]) => {
 export const groupFAQsByCategory = (faqs: (ICourseFAQ | any)[]) => {
   const formatted = faqs.map(formatFAQData)
   const grouped: Record<string, any[]> = {}
-  
-  formatted.forEach(faq => {
+
+  formatted.forEach((faq) => {
     if (!grouped[faq.category]) {
       grouped[faq.category] = []
     }
     grouped[faq.category].push(faq)
   })
-  
+
   return grouped
 }
 
 // Helper function to get unique categories from FAQs
 export const getFAQCategories = (faqs: (ICourseFAQ | any)[]) => {
-  const categories = faqs.map(faq => faq.fields?.category || faq.category || 'General Information')
+  const categories = faqs.map((faq) => faq.fields?.category || faq.category || 'General Information')
   return Array.from(new Set(categories))
 }
 
@@ -79,7 +78,7 @@ export const getFAQCategories = (faqs: (ICourseFAQ | any)[]) => {
 export const validateFAQData = (faq: any): boolean => {
   const question = faq.fields?.question || faq.question
   const answer = faq.fields?.answer || faq.answer
-  
+
   return !!(question && answer && question.trim() && answer.trim())
 }
 
@@ -91,16 +90,16 @@ export const filterValidFAQs = (faqs: (ICourseFAQ | any)[]) => {
 // Helper function to create FAQ schema data
 export const createFAQSchemaData = (faqs: (ICourseFAQ | any)[], courseName?: string) => {
   const validFAQs = filterValidFAQs(faqs)
-  
+
   if (validFAQs.length === 0) {
     return null
   }
-  
+
   return {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
     name: courseName ? `${courseName} - Frequently Asked Questions` : 'Course FAQs',
-    mainEntity: validFAQs.map(faq => ({
+    mainEntity: validFAQs.map((faq) => ({
       '@type': 'Question',
       name: faq.fields?.question || faq.question,
       acceptedAnswer: {
@@ -112,17 +111,13 @@ export const createFAQSchemaData = (faqs: (ICourseFAQ | any)[], courseName?: str
 }
 
 // Helper function to merge CMS FAQs with fallback FAQs
-export const mergeFAQsWithFallback = (
-  cmsFaqs: ICourseFAQ[], 
-  fallbackFaqs: any[], 
-  maxFallback: number = 5
-) => {
+export const mergeFAQsWithFallback = (cmsFaqs: ICourseFAQ[], fallbackFaqs: any[], maxFallback: number = 5) => {
   const validCmsFaqs = filterValidFAQs(cmsFaqs)
-  
+
   if (validCmsFaqs.length > 0) {
     return sortFAQsByOrder(validCmsFaqs)
   }
-  
+
   // If no CMS FAQs, use fallback FAQs (limited number)
   const validFallbackFaqs = filterValidFAQs(fallbackFaqs).slice(0, maxFallback)
   return sortFAQsByOrder(validFallbackFaqs)
@@ -142,7 +137,7 @@ export const getFAQCategoryColor = (category: string): string => {
     'Graduate Outcomes': 'cyan',
     'General Information': 'gray'
   }
-  
+
   return colorMap[category] || 'gray'
 }
 
@@ -160,6 +155,6 @@ export const getFAQCategoryIcon = (category: string): string => {
     'Graduate Outcomes': 'IconTrendingUp',
     'General Information': 'IconInfoCircle'
   }
-  
+
   return iconMap[category] || 'IconInfoCircle'
 }

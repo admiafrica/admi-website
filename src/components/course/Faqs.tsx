@@ -1,18 +1,18 @@
-import Image from 'next/image';
-import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
-import { CollapsibleContent } from '../shared/v3';
+import Image from 'next/image'
+import { documentToHtmlString } from '@contentful/rich-text-html-renderer'
+import { CollapsibleContent } from '../shared/v3'
 
-import IconBgImageYellow from '@/assets/icons/ellipse-yellow.svg';
-import IconBgImageRed from '@/assets/icons/ellipse-red.svg';
-import { Title } from '../ui';
-import { useIsMobile } from '@/hooks/useIsMobile';
+import IconBgImageYellow from '@/assets/icons/ellipse-yellow.svg'
+import IconBgImageRed from '@/assets/icons/ellipse-red.svg'
+import { Title } from '../ui'
+import { useIsMobile } from '@/hooks/useIsMobile'
 
 type Props = {
-  faqs: any[];
-};
+  faqs: any[]
+}
 export default function CourseFAQs({ faqs }: Props) {
-  const isMobile = useIsMobile();
-  if (faqs.length < 1) return null;
+  const isMobile = useIsMobile()
+  if (faqs.length < 1) return null
 
   return (
     <div className="relative w-full bg-[#FFF7F5]">
@@ -42,7 +42,7 @@ export default function CourseFAQs({ faqs }: Props) {
                 <div
                   className="z-20 font-proxima text-lg"
                   dangerouslySetInnerHTML={{
-                    __html: documentToHtmlString(faq.fields.answer),
+                    __html: documentToHtmlString(faq.fields.answer)
                   }}
                 ></div>
               }
@@ -50,5 +50,5 @@ export default function CourseFAQs({ faqs }: Props) {
           ))}
       </div>
     </div>
-  );
+  )
 }

@@ -1,25 +1,25 @@
-import { MainLayout } from '@/layouts/v3/MainLayout';
+import { MainLayout } from '@/layouts/v3/MainLayout'
 import {
   CourseAbout,
   CourseApplicationProcess,
   CourseDetails,
   CourseHero,
   CourseMentors,
-  CourseStudents,
-} from '@/components/course';
-import { CMSCourseFAQs } from '@/components/course/CMSCourseFAQs';
+  CourseStudents
+} from '@/components/course'
+import { CMSCourseFAQs } from '@/components/course/CMSCourseFAQs'
 import {
   GRAPHIC_DESIGN_FAQS,
   ANIMATION_VFX_FAQS,
   FILM_TELEVISION_FAQS,
   AUDIO_PRODUCTION_FAQS,
   PHOTOGRAPHY_FAQS
-} from '@/data/diploma-faqs';
-import { PageSEO } from '@/components/shared/v3';
-import { CourseSchema, BreadcrumbSchema } from '@/components/shared/StructuredData';
-import { DiplomaEnhancedSEO } from '@/components/course/DiplomaEnhancedSEO';
+} from '@/data/diploma-faqs'
+import { PageSEO } from '@/components/shared/v3'
+import { CourseSchema, BreadcrumbSchema } from '@/components/shared/StructuredData'
+import { DiplomaEnhancedSEO } from '@/components/course/DiplomaEnhancedSEO'
 // generateDiplomaKeywords utility available for future enhancements
-import { GENERAL_DIPLOMA_FAQS } from '@/data/diploma-faqs';
+import { GENERAL_DIPLOMA_FAQS } from '@/data/diploma-faqs'
 
 // Helper function to get correct FAQs based on course slug
 const getCorrectFAQsForCourse = (slug: string) => {
@@ -34,46 +34,46 @@ const getCorrectFAQsForCourse = (slug: string) => {
 export default function CourseDetailPage({
   course,
   courseAssets,
-  slug,
+  slug
 }: {
-  course: any;
-  courseAssets: any[];
-  slug: string;
+  course: any
+  courseAssets: any[]
+  slug: string
 }) {
   // Extract rich text content for description
   const getPlainTextFromRichText = (richText: any) => {
-    if (!richText || !richText.content) return '';
+    if (!richText || !richText.content) return ''
 
-    return richText.content
-      .map((block: any) =>
-        block.content
-          ?.map((content: any) => content.value)
-          .join(' ')
-      )
-      .join(' ')
-      .substring(0, 160) + '...';
-  };
+    return (
+      richText.content
+        .map((block: any) => block.content?.map((content: any) => content.value).join(' '))
+        .join(' ')
+        .substring(0, 160) + '...'
+    )
+  }
 
   // Create comprehensive course description for SEO
   const courseDescription = course.description
     ? getPlainTextFromRichText(course.description)
     : course.aboutTheCourse
       ? getPlainTextFromRichText(course.aboutTheCourse)
-      : `${course.name} - ${course.programType?.fields?.duration || ''} ${course.programType?.fields?.deliveryMode || ''} course at ADMI. ${course.awardLevel || ''} level program.`;
+      : `${course.name} - ${course.programType?.fields?.duration || ''} ${course.programType?.fields?.deliveryMode || ''} course at ADMI. ${course.awardLevel || ''} level program.`
 
   // Extract learning outcomes as array
-  const learningOutcomes = course.learningOutcomes?.content
-    ?.map((block: any) => block.content?.map((content: any) => content.value).join(' '))
-    .filter(Boolean) || [];
+  const learningOutcomes =
+    course.learningOutcomes?.content
+      ?.map((block: any) => block.content?.map((content: any) => content.value).join(' '))
+      .filter(Boolean) || []
 
   // Extract career options as array
-  const careerOptions = course.careerOptions?.content
-    ?.map((block: any) => block.content?.map((content: any) => content.value).join(' '))
-    .filter(Boolean) || [];
+  const careerOptions =
+    course.careerOptions?.content
+      ?.map((block: any) => block.content?.map((content: any) => content.value).join(' '))
+      .filter(Boolean) || []
 
   // Check if this is a diploma program
-  const isDiploma = course.awardLevel?.toLowerCase().includes('diploma') ||
-                   course.programType?.fields?.duration?.includes('2 year')
+  const isDiploma =
+    course.awardLevel?.toLowerCase().includes('diploma') || course.programType?.fields?.duration?.includes('2 year')
 
   // Program type detection available for future enhancements
 
@@ -97,10 +97,14 @@ export default function CourseDetailPage({
     'distance learning',
     'African students',
     'pan-African education',
-    ...(isDiploma ? ['diploma courses Africa', '2 year diploma', 'professional diploma', 'industry-recognized diploma'] : []),
+    ...(isDiploma
+      ? ['diploma courses Africa', '2 year diploma', 'professional diploma', 'industry-recognized diploma']
+      : []),
     ...learningOutcomes.slice(0, 3),
     ...careerOptions.slice(0, 3)
-  ].filter(Boolean).join(', ');
+  ]
+    .filter(Boolean)
+    .join(', ')
 
   return (
     <MainLayout>
@@ -151,7 +155,10 @@ export default function CourseDetailPage({
         items={[
           { name: 'Home', url: process.env.NEXT_PUBLIC_API_BASE_URL || 'https://admi.africa' },
           { name: 'Courses', url: `${process.env.NEXT_PUBLIC_API_BASE_URL || 'https://admi.africa'}/courses` },
-          { name: course.name, url: `${process.env.NEXT_PUBLIC_API_BASE_URL || 'https://admi.africa'}/courses/${slug}` }
+          {
+            name: course.name,
+            url: `${process.env.NEXT_PUBLIC_API_BASE_URL || 'https://admi.africa'}/courses/${slug}`
+          }
         ]}
       />
       <CourseHero
@@ -185,35 +192,31 @@ export default function CourseDetailPage({
         totalHistoricalEnrollment={course.totalHistoricalEnrollment}
       />
       <CourseApplicationProcess processes={course.applicationProcesses || []} />
-      <CMSCourseFAQs
-        courseSlug={slug}
-        fallbackFAQs={getCorrectFAQsForCourse(slug)}
-        showGeneralFallback={isDiploma}
-      />
+      <CMSCourseFAQs courseSlug={slug} fallbackFAQs={getCorrectFAQsForCourse(slug)} showGeneralFallback={isDiploma} />
     </MainLayout>
-  );
+  )
 }
 
 export async function getServerSideProps({ params }: { params: { slug: string } }) {
-  const { slug } = params;
+  const { slug } = params
 
   try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v3/course-details?slug=${slug}`);
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v3/course-details?slug=${slug}`)
     if (!response.ok) {
-      return { notFound: true }; // Redirect to 404 if course is not found
+      return { notFound: true } // Redirect to 404 if course is not found
     }
 
-    const data = await response.json();
+    const data = await response.json()
 
     return {
       props: {
         course: data.fields,
         courseAssets: data.assets || [],
-        slug,
-      },
-    };
+        slug
+      }
+    }
   } catch (error) {
-    console.error('Error fetching course:', error);
-    return { notFound: true };
+    console.error('Error fetching course:', error)
+    return { notFound: true }
   }
 }

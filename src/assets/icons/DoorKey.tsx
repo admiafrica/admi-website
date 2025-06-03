@@ -1,8 +1,8 @@
 type Props = {
-  color?: string;
-  width?: number;
-  height?: number;
-};
+  color?: string
+  width?: number
+  height?: number
+}
 
 export default function IconDoorKey({ color = 'black', width, height }: Props) {
   return (
@@ -26,5 +26,5 @@ export default function IconDoorKey({ color = 'black', width, height }: Props) {
         strokeLinejoin="round"
       />
     </svg>
-  );
+  )
 }

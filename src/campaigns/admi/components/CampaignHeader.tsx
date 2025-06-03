@@ -1,10 +1,10 @@
-import styles from "@/assets/css/main.module.css";
-import { Affix, Group } from "@mantine/core";
-import logo from "@/assets/logo-main.svg";
-import { getCourseFormUrl } from "@/utils";
-import Image from "next/image";
-import React from "react";
-import { CampaignHeaderLayout } from "@/campaigns/components";
+import styles from '@/assets/css/main.module.css'
+import { Affix, Group } from '@mantine/core'
+import logo from '@/assets/logo-main.svg'
+import { getCourseFormUrl } from '@/utils'
+import Image from 'next/image'
+import React from 'react'
+import { CampaignHeaderLayout } from '@/campaigns/components'
 
 export default function CampaignHeader() {
   return (
@@ -15,7 +15,7 @@ export default function CampaignHeader() {
         <Affix position={{ right: 10 }}>
           <a
             href={getCourseFormUrl()}
-            className={`${styles["btn"]} ${styles["btn-primary"]} ${styles["btn-floating"]} ${styles["pulse"]}`}
+            className={`${styles['btn']} ${styles['btn-primary']} ${styles['btn-floating']} ${styles['pulse']}`}
             style={ctaBtnStyle}
           >
             Get a call back
@@ -23,21 +23,21 @@ export default function CampaignHeader() {
         </Affix>
       </Group>
     </CampaignHeaderLayout>
-  );
+  )
 }
 
 const headerContentStyle: React.CSSProperties = {
   flex: 1,
-  padding: "0 15px",
-  display: "flex",
+  padding: '0 15px',
+  display: 'flex',
   maxWidth: 1280,
-  margin: "auto",
-};
+  margin: 'auto'
+}
 
 const ctaBtnStyle: React.CSSProperties = {
   top: 14,
   width: 200,
   height: 54,
   padding: 8,
-  fontSize: "1.2em",
-};
+  fontSize: '1.2em'
+}

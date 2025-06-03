@@ -18,37 +18,31 @@ export function AfricaSEO({
   targetRegions = [],
   additionalKeywords = []
 }: AfricaSEOProps) {
-  
   // Generate country-specific keywords
-  const countryKeywords = targetCountries.length > 0 
-    ? AFRICAN_COUNTRIES
-        .filter(country => targetCountries.includes(country.code))
-        .flatMap(country => [
+  const countryKeywords =
+    targetCountries.length > 0
+      ? AFRICAN_COUNTRIES.filter((country) => targetCountries.includes(country.code)).flatMap((country) => [
           country.name,
           `digital media ${country.name}`,
           `creative education ${country.name}`,
           `online learning ${country.name}`,
           `ADMI ${country.name}`
         ])
-    : []
+      : []
 
   // Generate region-specific keywords
-  const regionKeywords = targetRegions.length > 0
-    ? targetRegions.flatMap(region => [
-        region,
-        `digital media ${region}`,
-        `creative education ${region}`,
-        `online learning ${region}`,
-        `ADMI ${region}`
-      ])
-    : []
+  const regionKeywords =
+    targetRegions.length > 0
+      ? targetRegions.flatMap((region) => [
+          region,
+          `digital media ${region}`,
+          `creative education ${region}`,
+          `online learning ${region}`,
+          `ADMI ${region}`
+        ])
+      : []
 
-  const allKeywords = [
-    ...AFRICAN_SEO_KEYWORDS,
-    ...countryKeywords,
-    ...regionKeywords,
-    ...additionalKeywords
-  ].join(', ')
+  const allKeywords = [...AFRICAN_SEO_KEYWORDS, ...countryKeywords, ...regionKeywords, ...additionalKeywords].join(', ')
 
   const structuredData = generateAfricanStructuredData()
 
@@ -58,14 +52,14 @@ export function AfricaSEO({
         <title>{`ADMI - ${title}`}</title>
         <meta name="description" content={description} />
         <meta name="keywords" content={allKeywords} />
-        
+
         {/* Geographic targeting */}
         <meta name="geo.region" content="AF" />
         <meta name="geo.placename" content="Africa" />
         <meta name="coverage" content="Africa" />
         <meta name="distribution" content="global" />
         <meta name="target" content="all" />
-        
+
         {/* Language alternatives */}
         <link rel="alternate" hrefLang="en" href="/" />
         <link rel="alternate" hrefLang="sw" href="/sw" />
@@ -73,7 +67,7 @@ export function AfricaSEO({
         <link rel="alternate" hrefLang="ar" href="/ar" />
         <link rel="alternate" hrefLang="pt" href="/pt" />
         <link rel="alternate" hrefLang="x-default" href="/" />
-        
+
         {/* Open Graph for African markets */}
         <meta property="og:title" content={`ADMI - ${title}`} />
         <meta property="og:description" content={description} />
@@ -82,17 +76,17 @@ export function AfricaSEO({
         <meta property="og:locale:alternate" content="fr_SN" />
         <meta property="og:locale:alternate" content="ar_EG" />
         <meta property="og:locale:alternate" content="pt_AO" />
-        
+
         {/* Twitter for African markets */}
         <meta name="twitter:title" content={`ADMI - ${title}`} />
         <meta name="twitter:description" content={description} />
-        
+
         {/* Additional African market meta tags */}
         <meta name="audience" content="African students, creative professionals" />
         <meta name="subject" content="Digital media education, creative training, online learning" />
         <meta name="classification" content="Education, Training, Digital Media" />
       </Head>
-      
+
       {/* African market structured data */}
       <Script
         id="africa-structured-data"
@@ -112,8 +106,13 @@ export function EastAfricaSEO() {
       targetCountries={['KE', 'TZ', 'UG', 'RW', 'ET']}
       targetRegions={['East Africa']}
       additionalKeywords={[
-        'East African students', 'Swahili education', 'Nairobi campus',
-        'Dar es Salaam', 'Kampala', 'Kigali', 'Addis Ababa'
+        'East African students',
+        'Swahili education',
+        'Nairobi campus',
+        'Dar es Salaam',
+        'Kampala',
+        'Kigali',
+        'Addis Ababa'
       ]}
     />
   )
@@ -127,8 +126,14 @@ export function WestAfricaSEO() {
       targetCountries={['NG', 'GH', 'SN', 'CM']}
       targetRegions={['West Africa']}
       additionalKeywords={[
-        'West African students', 'Nollywood', 'Lagos', 'Accra',
-        'Dakar', 'Douala', 'French education', 'Anglophone Africa'
+        'West African students',
+        'Nollywood',
+        'Lagos',
+        'Accra',
+        'Dakar',
+        'Douala',
+        'French education',
+        'Anglophone Africa'
       ]}
     />
   )
@@ -142,8 +147,13 @@ export function SouthernAfricaSEO() {
       targetCountries={['ZA', 'BW', 'NA', 'ZW']}
       targetRegions={['Southern Africa']}
       additionalKeywords={[
-        'Southern African students', 'Cape Town', 'Johannesburg',
-        'Gaborone', 'Windhoek', 'Harare', 'SADC region'
+        'Southern African students',
+        'Cape Town',
+        'Johannesburg',
+        'Gaborone',
+        'Windhoek',
+        'Harare',
+        'SADC region'
       ]}
     />
   )

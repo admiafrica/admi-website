@@ -8,11 +8,7 @@ interface LazySectionProps {
   threshold?: number
 }
 
-export default function LazySection({ 
-  children, 
-  placeholder, 
-  threshold = 0.1 
-}: LazySectionProps) {
+export default function LazySection({ children, placeholder, threshold = 0.1 }: LazySectionProps) {
   const [isVisible, setIsVisible] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
 
@@ -36,9 +32,5 @@ export default function LazySection({
     }
   }, [threshold])
 
-  return (
-    <div ref={ref}>
-      {isVisible ? children : placeholder || <div style={{ height: '100px' }} />}
-    </div>
-  )
+  return <div ref={ref}>{isVisible ? children : placeholder || <div style={{ height: '100px' }} />}</div>
 }

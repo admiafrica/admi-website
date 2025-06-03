@@ -1,8 +1,8 @@
 type Props = {
-  color?: string;
-  width?: number;
-  height?: number;
-};
+  color?: string
+  width?: number
+  height?: number
+}
 
 export default function IconBrowser({ color = 'black', width, height }: Props) {
   return (
@@ -23,5 +23,5 @@ export default function IconBrowser({ color = 'black', width, height }: Props) {
         strokeLinecap="round"
       />
     </svg>
-  );
+  )
 }

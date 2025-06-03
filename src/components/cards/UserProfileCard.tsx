@@ -1,23 +1,23 @@
-import React from 'react';
-import Image from 'next/image';
-import { Avatar, Box, Card } from '@mantine/core';
+import React from 'react'
+import Image from 'next/image'
+import { Avatar, Box, Card } from '@mantine/core'
 
-import IconLinkedIn from '@/assets/icons/linkedin-blue.svg';
-import { Paragraph, Title } from '../ui';
-import { useIsMobile } from '@/hooks/useIsMobile';
+import IconLinkedIn from '@/assets/icons/linkedin-blue.svg'
+import { Paragraph, Title } from '../ui'
+import { useIsMobile } from '@/hooks/useIsMobile'
 
 type Props = {
-  user: any;
-};
+  user: any
+}
 
 export default function UserProfileCard(props: Props) {
-  const isMobile = useIsMobile();
+  const isMobile = useIsMobile()
 
   const getInitials = (name: string) => {
-    if (!name) return '';
-    const words = name.split(' ');
-    return words.map((word) => word.charAt(0).toUpperCase()).join('');
-  };
+    if (!name) return ''
+    const words = name.split(' ')
+    return words.map((word) => word.charAt(0).toUpperCase()).join('')
+  }
 
   return (
     <Card
@@ -58,5 +58,5 @@ export default function UserProfileCard(props: Props) {
         </div>
       </Card.Section>
     </Card>
-  );
+  )
 }

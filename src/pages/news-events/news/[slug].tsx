@@ -1,22 +1,22 @@
-import Image from 'next/image';
-import { useRouter } from 'next/router';
-import { Box, Card, Tabs } from '@mantine/core';
+import Image from 'next/image'
+import { useRouter } from 'next/router'
+import { Box, Card, Tabs } from '@mantine/core'
 
-import { MainLayout } from '@/layouts/v3/MainLayout';
-import { PageSEO, SocialShare } from '@/components/shared/v3';
-import { EmptyCard } from '@/components/cards';
-import { Paragraph, ParagraphContentful } from '@/components/ui';
+import { MainLayout } from '@/layouts/v3/MainLayout'
+import { PageSEO, SocialShare } from '@/components/shared/v3'
+import { EmptyCard } from '@/components/cards'
+import { Paragraph, ParagraphContentful } from '@/components/ui'
 
-import IconDiary from '@/assets/icons/Diary';
-import { useIsMobile } from '@/hooks/useIsMobile';
+import IconDiary from '@/assets/icons/Diary'
+import { useIsMobile } from '@/hooks/useIsMobile'
 
 export default function NewsArticlePage({ article, slug }: { article: any; slug: string }) {
-  const isMobile = useIsMobile();
-  const router = useRouter();
+  const isMobile = useIsMobile()
+  const router = useRouter()
 
   const navigateToPage = (value: string) => {
-    router.push(value);
-  };
+    router.push(value)
+  }
 
   if (!article) {
     return (
@@ -27,7 +27,7 @@ export default function NewsArticlePage({ article, slug }: { article: any; slug:
           </Paragraph>
         </Box>
       </MainLayout>
-    );
+    )
   }
 
   return (
@@ -97,26 +97,26 @@ export default function NewsArticlePage({ article, slug }: { article: any; slug:
         </Tabs>
       </Box>
     </MainLayout>
-  );
+  )
 }
 
 export async function getServerSideProps(context: any) {
-  const { slug } = context.params;
+  const { slug } = context.params
 
   try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v3/news-details?slug=${slug}`);
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v3/news-details?slug=${slug}`)
 
     if (!response.ok) {
-      return { notFound: true };
+      return { notFound: true }
     }
 
-    const data = await response.json();
+    const data = await response.json()
 
     return {
-      props: { article: data.fields, slug },
-    };
+      props: { article: data.fields, slug }
+    }
   } catch (error) {
-    console.error('Error fetching article:', error);
-    return { props: { article: null } };
+    console.error('Error fetching article:', error)
+    return { props: { article: null } }
   }
 }

@@ -1,8 +1,8 @@
 type Props = {
-  color?: string;
-  width?: number;
-  height?: number;
-};
+  color?: string
+  width?: number
+  height?: number
+}
 
 export default function IconAttach({ color = 'black', width, height }: Props) {
   return (
@@ -15,5 +15,5 @@ export default function IconAttach({ color = 'black', width, height }: Props) {
         strokeLinejoin="round"
       />
     </svg>
-  );
+  )
 }

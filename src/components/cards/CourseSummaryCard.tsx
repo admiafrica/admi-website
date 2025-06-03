@@ -1,34 +1,34 @@
-import Image from 'next/image';
-import { Box, Card, Text } from '@mantine/core';
-import { Button, Paragraph } from '../ui';
+import Image from 'next/image'
+import { Box, Card, Text } from '@mantine/core'
+import { Button, Paragraph } from '../ui'
 
-import IconAward from '@/assets/icons/Award';
-import IconTimer from '@/assets/icons/timer.svg';
-import IconHourGlass from '@/assets/icons/hourglass-start.svg';
-import IconAvatar from '@/assets/icons/avatar.svg';
-import { useRouter } from 'next/router';
-import { useIsMobile } from '@/hooks/useIsMobile';
+import IconAward from '@/assets/icons/Award'
+import IconTimer from '@/assets/icons/timer.svg'
+import IconHourGlass from '@/assets/icons/hourglass-start.svg'
+import IconAvatar from '@/assets/icons/avatar.svg'
+import { useRouter } from 'next/router'
+import { useIsMobile } from '@/hooks/useIsMobile'
 
 type Props = {
-  programType: any;
-  creditHours: number;
-  awardLevel: string;
-  isCampaign?: boolean;
-};
+  programType: any
+  creditHours: number
+  awardLevel: string
+  isCampaign?: boolean
+}
 
 export default function CourseSummaryCard(props: Props) {
-  const router = useRouter();
-  const isMobile = useIsMobile();
+  const router = useRouter()
+  const isMobile = useIsMobile()
 
   const handleEnquiry = () => {
-    const { utm_source, utm_medium, utm_campaign, utm_term, utm_content } = router.query;
-    const query = utm_source ? { utm_source, utm_medium, utm_campaign, utm_term, utm_content } : undefined;
+    const { utm_source, utm_medium, utm_campaign, utm_term, utm_content } = router.query
+    const query = utm_source ? { utm_source, utm_medium, utm_campaign, utm_term, utm_content } : undefined
 
     router.push({
       pathname: '/enquiry',
-      query,
-    });
-  };
+      query
+    })
+  }
 
   return (
     <Card
@@ -170,5 +170,5 @@ export default function CourseSummaryCard(props: Props) {
         )}
       </div>
     </Card>
-  );
+  )
 }

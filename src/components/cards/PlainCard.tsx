@@ -1,10 +1,10 @@
-import React from 'react';
-import { Box, Card } from '@mantine/core';
+import React from 'react'
+import { Box, Card } from '@mantine/core'
 
 type Props = {
-  children: any;
-  bg?: string;
-};
+  children: any
+  bg?: string
+}
 
 export default function PlainCard({ children, bg = '#FEFFF5' }: Props) {
   return (
@@ -13,5 +13,5 @@ export default function PlainCard({ children, bg = '#FEFFF5' }: Props) {
         {children}
       </Box>
     </Card>
-  );
+  )
 }

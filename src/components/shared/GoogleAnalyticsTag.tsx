@@ -1,11 +1,11 @@
-import Script from "next/script";
+import Script from 'next/script'
 
 type Props = {
-  analyticsId: string;
-};
+  analyticsId: string
+}
 
 export default function GoogleAnalyticsTag(props: Props) {
-  const scriptId = `google-tag-manager-${props.analyticsId}`;
+  const scriptId = `google-tag-manager-${props.analyticsId}`
 
   return (
     <>
@@ -20,7 +20,7 @@ export default function GoogleAnalyticsTag(props: Props) {
             'https://www.googletagmanager.com/gtm.js?id=' + '${props.analyticsId}' + dl;
             f.parentNode.insertBefore(j,f);
             })(window,document,'script','dataLayer','${props.analyticsId}');
-          `,
+          `
         }}
       />
       {/* Noscript Google Tag Manager */}
@@ -30,10 +30,10 @@ export default function GoogleAnalyticsTag(props: Props) {
             src={`https://www.googletagmanager.com/ns.html?id=${props.analyticsId}`}
             height="0"
             width="0"
-            style={{ display: "none", visibility: "hidden" }}
+            style={{ display: 'none', visibility: 'hidden' }}
           ></iframe>
         </noscript>
       )}
     </>
-  );
+  )
 }

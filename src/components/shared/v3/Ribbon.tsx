@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 export default function Ribbon() {
   return (
@@ -8,5 +8,5 @@ export default function Ribbon() {
       <div className="w-1/4 bg-[#08F6CF]" />
       <div className="w-1/4 bg-[#F76335]" />
     </div>
-  );
+  )
 }

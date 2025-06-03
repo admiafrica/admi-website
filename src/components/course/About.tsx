@@ -1,17 +1,17 @@
-import { Box } from '@mantine/core';
-import { ParagraphContentful, Title } from '../ui';
-import { CourseVideoCard } from '../cards';
-import { useIsMobile } from '@/hooks/useIsMobile';
+import { Box } from '@mantine/core'
+import { ParagraphContentful, Title } from '../ui'
+import { CourseVideoCard } from '../cards'
+import { useIsMobile } from '@/hooks/useIsMobile'
 
 type Props = {
-  description: any;
-  intakes: string;
-  courseVideo: any;
-  educationalLevel: string;
-  isCampaign?: boolean;
-};
+  description: any
+  intakes: string
+  courseVideo: any
+  educationalLevel: string
+  isCampaign?: boolean
+}
 export default function CourseAbout(props: Props) {
-  const isMobile = useIsMobile();
+  const isMobile = useIsMobile()
 
   return (
     <div
@@ -20,7 +20,7 @@ export default function CourseAbout(props: Props) {
       }
     >
       <div className="mx-auto w-full max-w-screen-xl px-4 2xl:px-0">
-        <div className="flex w-full flex-col sm:flex-row min-h-[600px]">
+        <div className="flex min-h-[600px] w-full flex-col sm:flex-row">
           {props.isCampaign && (
             <Box className="flex w-full flex-col sm:flex-row">
               <div className="mt-24 flex flex-col sm:w-1/2 sm:pr-4 xl:w-[60%]">
@@ -54,5 +54,5 @@ export default function CourseAbout(props: Props) {
         </div>
       </div>
     </div>
-  );
+  )
 }

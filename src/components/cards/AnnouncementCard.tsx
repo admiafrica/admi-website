@@ -1,32 +1,32 @@
-import React from 'react';
-import { Box, Card, Pill } from '@mantine/core';
-import { Paragraph, Title } from '../ui';
-import { motion } from 'framer-motion';
+import React from 'react'
+import { Box, Card, Pill } from '@mantine/core'
+import { Paragraph, Title } from '../ui'
+import { motion } from 'framer-motion'
 
-import IconArrowTipRight from '@/assets/icons/ArrowTipRight';
-import Image from 'next/image';
-import { useRouter } from 'next/router';
-import { useIsMobile } from '@/hooks/useIsMobile';
+import IconArrowTipRight from '@/assets/icons/ArrowTipRight'
+import Image from 'next/image'
+import { useRouter } from 'next/router'
+import { useIsMobile } from '@/hooks/useIsMobile'
 
 type Props = {
-  announcement: any;
-  title?: string;
-  featured?: boolean;
-  bgColor?: string;
-  arrowColor?: string;
-  textColor?: string;
-  image?: any;
-  destination: string;
-  ribbonColor?: string;
-};
+  announcement: any
+  title?: string
+  featured?: boolean
+  bgColor?: string
+  arrowColor?: string
+  textColor?: string
+  image?: any
+  destination: string
+  ribbonColor?: string
+}
 
 export default function AnnouncementCard(props: Props) {
-  const router = useRouter();
-  const isMobile = useIsMobile();
+  const router = useRouter()
+  const isMobile = useIsMobile()
 
   const handleCardClick = () => {
-    router.push(`/${props.destination}/${props.announcement.slug}`);
-  };
+    router.push(`/${props.destination}/${props.announcement.slug}`)
+  }
 
   return (
     <Card
@@ -45,7 +45,7 @@ export default function AnnouncementCard(props: Props) {
             className="relative flex"
             initial={{ width: '0%' }}
             variants={{
-              hover: { width: '2%' },
+              hover: { width: '2%' }
             }}
             transition={{ duration: 0.3 }}
           >
@@ -78,7 +78,7 @@ export default function AnnouncementCard(props: Props) {
 
             <Paragraph
               size="18px"
-              className={`line-clamp-6 h-fit my-6 text-${props.textColor || 'black'}`}
+              className={`my-6 line-clamp-6 h-fit text-${props.textColor || 'black'}`}
               fontFamily="font-nexa"
             >
               {props.announcement.summary}
@@ -88,13 +88,13 @@ export default function AnnouncementCard(props: Props) {
             <motion.div
               className="my-auto flex h-fit sm:items-center"
               variants={{
-                hover: { x: 20 },
+                hover: { x: 20 }
               }}
               transition={{
                 type: 'spring',
                 stiffness: 200,
                 damping: 20,
-                duration: 0.5,
+                duration: 0.5
               }}
             >
               <IconArrowTipRight width={48} height={48} color={props.arrowColor} />
@@ -128,7 +128,7 @@ export default function AnnouncementCard(props: Props) {
               className="relative flex h-[180px] sm:h-full"
               initial={{ width: '56%' }}
               variants={{
-                hover: { width: props.featured ? '55%' : '56%' },
+                hover: { width: props.featured ? '55%' : '56%' }
               }}
               transition={{ duration: 0.3 }}
             >
@@ -156,5 +156,5 @@ export default function AnnouncementCard(props: Props) {
         </Box>
       </motion.div>
     </Card>
-  );
+  )
 }

@@ -1,30 +1,30 @@
-import Image from 'next/image';
-import { Box, Card } from '@mantine/core';
-import { Paragraph } from '@/components/ui';
-import { useRouter } from 'next/router';
-import { motion } from 'framer-motion';
+import Image from 'next/image'
+import { Box, Card } from '@mantine/core'
+import { Paragraph } from '@/components/ui'
+import { useRouter } from 'next/router'
+import { motion } from 'framer-motion'
 
-import { IContentfulEntry } from '@/types';
+import { IContentfulEntry } from '@/types'
 
-import IconArrowTipRight from '@/assets/icons/ArrowTipRight';
-import { formatDate } from '@/utils';
+import IconArrowTipRight from '@/assets/icons/ArrowTipRight'
+import { formatDate } from '@/utils'
 
 type Props = {
-  item: IContentfulEntry;
-  isEvent?: boolean;
-};
+  item: IContentfulEntry
+  isEvent?: boolean
+}
 
 export default function NewsItemCard({ item, isEvent = false }: Props) {
-  const router = useRouter();
+  const router = useRouter()
 
   const handleCardClick = () => {
     if (item.fields.category == 'News') {
-      router.push(`/news-events/news/${item.fields.slug}`);
+      router.push(`/news-events/news/${item.fields.slug}`)
     }
     if (item.fields.category == 'Resources') {
-      router.push(`/resources/${item.fields.slug}`);
+      router.push(`/resources/${item.fields.slug}`)
     }
-  };
+  }
 
   return (
     <motion.div
@@ -43,7 +43,7 @@ export default function NewsItemCard({ item, isEvent = false }: Props) {
           <motion.div
             className="relative h-full w-full"
             variants={{
-              hover: { scale: 1.1 },
+              hover: { scale: 1.1 }
             }} // Zoom effect for the image
             transition={{ duration: 0.3, ease: 'easeOut' }}
           >
@@ -54,7 +54,7 @@ export default function NewsItemCard({ item, isEvent = false }: Props) {
               src={
                 item.assets
                   ? `https:${item.fields.coverImage?.fields.file.url || item.fields.flyer?.fields.file.url}`
-                  : `https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png`
+                  : 'https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png'
               }
               alt={item.fields.title}
               style={{ objectFit: 'cover' }}
@@ -78,13 +78,13 @@ export default function NewsItemCard({ item, isEvent = false }: Props) {
             <motion.div
               className="my-auto ml-auto mr-0 mt-2 flex h-full w-fit"
               variants={{
-                hover: { x: 20 },
+                hover: { x: 20 }
               }}
               transition={{
                 type: 'spring',
                 stiffness: 200,
                 damping: 20,
-                duration: 0.5,
+                duration: 0.5
               }}
             >
               <IconArrowTipRight width={36} height={36} color={'#F60834'} />
@@ -93,5 +93,5 @@ export default function NewsItemCard({ item, isEvent = false }: Props) {
         </Box>
       </Card>
     </motion.div>
-  );
+  )
 }

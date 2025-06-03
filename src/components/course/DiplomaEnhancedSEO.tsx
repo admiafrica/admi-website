@@ -24,7 +24,6 @@ export function DiplomaEnhancedSEO({
   industryPartners = ['Safaricom', 'Nation Media Group', 'Standard Group', 'Royal Media Services'],
   accreditation = 'Pearson Assured & Woolf University'
 }: DiplomaEnhancedSEOProps) {
-
   const [cmsFaqs, setCmsFaqs] = useState<ICourseFAQ[]>([])
 
   // Fetch CMS FAQs for this course
@@ -50,18 +49,20 @@ export function DiplomaEnhancedSEO({
   const activeFaqs = cmsFaqs.length > 0 ? cmsFaqs : faqs
 
   // Note: Enhanced keywords are generated via generateDiplomaKeywords utility when needed
-  
+
   // Enhanced description for diploma programs
   const enhancedDescription = `${course.name} - 2-year comprehensive diploma program at Africa Digital Media Institute, the leading Creative Media and Technology Training Institution across Africa. Industry-recognized qualification with ${employmentRate}% employment rate. Hands-on training with professional equipment, internships, and career placement assistance. Serving students across Africa with flexible learning options.`
 
   // Extract learning outcomes and career options
-  const learningOutcomes = course.learningOutcomes?.content
-    ?.map((block: any) => block.content?.map((content: any) => content.value).join(' '))
-    .filter(Boolean) || []
+  const learningOutcomes =
+    course.learningOutcomes?.content
+      ?.map((block: any) => block.content?.map((content: any) => content.value).join(' '))
+      .filter(Boolean) || []
 
-  const careerOptions = course.careerOptions?.content
-    ?.map((block: any) => block.content?.map((content: any) => content.value).join(' '))
-    .filter(Boolean) || []
+  const careerOptions =
+    course.careerOptions?.content
+      ?.map((block: any) => block.content?.map((content: any) => content.value).join(' '))
+      .filter(Boolean) || []
 
   // Generate FAQ schema if FAQs are provided (now using CMS FAQs when available)
   const faqSchema = activeFaqs.length > 0 ? generateFAQSchema(activeFaqs) : null
@@ -147,7 +148,9 @@ export function DiplomaEnhancedSEO({
             timeToComplete: 'P2Y',
             occupationalCategory: careerOptions,
             programPrerequisites: 'Secondary education completion',
-            educationalProgramMode: course.programType?.fields?.deliveryMode?.toLowerCase().includes('online') ? 'online' : 'blended',
+            educationalProgramMode: course.programType?.fields?.deliveryMode?.toLowerCase().includes('online')
+              ? 'online'
+              : 'blended',
             offers: {
               '@type': 'Offer',
               category: 'Educational',
@@ -168,14 +171,14 @@ export function DiplomaEnhancedSEO({
 }
 
 // Component for diploma-specific meta tags
-export function DiplomaSEOTags({ 
-  course, 
-  programId, 
-  keywords = [] 
-}: { 
+export function DiplomaSEOTags({
+  course,
+  programId,
+  keywords = []
+}: {
   course: any
   programId?: string
-  keywords?: string[] 
+  keywords?: string[]
 }) {
   const diplomaKeywords = programId ? generateDiplomaKeywords(programId) : []
   const allKeywords = [...diplomaKeywords, ...keywords].join(', ')
@@ -183,20 +186,23 @@ export function DiplomaSEOTags({
   return (
     <>
       <meta name="keywords" content={allKeywords} />
-      <meta name="description" content={`${course.name} - 2-year diploma program with industry placement. ${course.programType?.fields?.deliveryMode} learning across Africa.`} />
-      
+      <meta
+        name="description"
+        content={`${course.name} - 2-year diploma program with industry placement. ${course.programType?.fields?.deliveryMode} learning across Africa.`}
+      />
+
       {/* Diploma-specific meta tags */}
       <meta name="education.level" content="diploma" />
       <meta name="education.duration" content="2 years" />
       <meta name="education.mode" content={course.programType?.fields?.deliveryMode?.toLowerCase() || 'hybrid'} />
       <meta name="education.accreditation" content="Pearson Assured, Woolf University" />
       <meta name="education.employment_rate" content="85%" />
-      
+
       {/* Geographic and market targeting */}
       <meta name="geo.region" content="AF" />
       <meta name="coverage" content="Africa" />
       <meta name="target.market" content="African students, career changers, creative professionals" />
-      
+
       {/* Social proof and credibility */}
       <meta name="institution.type" content="private higher education" />
       <meta name="institution.recognition" content="international" />

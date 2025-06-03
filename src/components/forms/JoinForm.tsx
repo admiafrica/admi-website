@@ -1,26 +1,26 @@
-import { Card, Group, TextInput } from '@mantine/core';
-import { useForm } from '@mantine/form';
-import { Button, Paragraph, Title } from '../ui';
-import { IconAsterisk } from '@tabler/icons-react';
+import { Card, Group, TextInput } from '@mantine/core'
+import { useForm } from '@mantine/form'
+import { Button, Paragraph, Title } from '../ui'
+import { IconAsterisk } from '@tabler/icons-react'
 
-import ImageJoinNetworkBackground from '@/assets/images/join-network-bg.jpeg';
-import Image from 'next/image';
+import ImageJoinNetworkBackground from '@/assets/images/join-network-bg.jpeg'
+import Image from 'next/image'
 
 export default function JoinForm() {
   const form = useForm({
     mode: 'uncontrolled',
     initialValues: {
-      email: '',
+      email: ''
     },
 
     validate: {
-      email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Invalid email'),
-    },
-  });
+      email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Invalid email')
+    }
+  })
 
   const handleSubmit = () => {
-    console.log('VALUES', form.values);
-  };
+    console.log('VALUES', form.values)
+  }
 
   return (
     <Card className="relative h-full w-full bg-white p-4 sm:p-8" radius="md">
@@ -39,7 +39,8 @@ export default function JoinForm() {
       <div
         className="z-5 absolute inset-0"
         style={{
-          background: `linear-gradient(170.72deg, rgba(1, 198, 165, 0) 22.23%, rgba(1, 198, 165, 0.8) 89.36%),linear-gradient(218.97deg, rgba(246, 8, 52, 0.8) 7.01%, rgba(246, 8, 52, 0) 49.52%)`,
+          background:
+            'linear-gradient(170.72deg, rgba(1, 198, 165, 0) 22.23%, rgba(1, 198, 165, 0.8) 89.36%),linear-gradient(218.97deg, rgba(246, 8, 52, 0.8) 7.01%, rgba(246, 8, 52, 0) 49.52%)'
         }}
       ></div>
       <div className="grow"></div>
@@ -77,5 +78,5 @@ export default function JoinForm() {
         </form>
       </Card>
     </Card>
-  );
+  )
 }

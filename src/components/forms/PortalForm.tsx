@@ -1,9 +1,9 @@
-import Image from 'next/image';
-import { Anchor, Box, Card, Group } from '@mantine/core';
-import { Button, Paragraph, Title } from '../ui';
-import { STUDENT_PORTAL_LOGIN } from '@/utils';
+import Image from 'next/image'
+import { Anchor, Box, Card, Group } from '@mantine/core'
+import { Button, Paragraph, Title } from '../ui'
+import { STUDENT_PORTAL_LOGIN } from '@/utils'
 
-import ImageFormBackground from '@/assets/images/student-portal-bg.jpeg';
+import ImageFormBackground from '@/assets/images/student-portal-bg.jpeg'
 
 export default function PortalForm() {
   return (
@@ -23,7 +23,8 @@ export default function PortalForm() {
       <div
         className="z-5 absolute inset-0"
         style={{
-          background: `linear-gradient(170.72deg, rgba(1, 198, 165, 0) 22.23%, rgba(4, 3, 0, 0.8) 89.36%),linear-gradient(218.97deg, rgba(246, 8, 52, 0.8) 7.01%, rgba(246, 8, 52, 0) 49.52%)`,
+          background:
+            'linear-gradient(170.72deg, rgba(1, 198, 165, 0) 22.23%, rgba(4, 3, 0, 0.8) 89.36%),linear-gradient(218.97deg, rgba(246, 8, 52, 0.8) 7.01%, rgba(246, 8, 52, 0) 49.52%)'
         }}
       ></div>
       <div className="relative mb-0 mt-auto">
@@ -46,5 +47,5 @@ export default function PortalForm() {
         </Group>
       </div>
     </Card>
-  );
+  )
 }

@@ -12,20 +12,15 @@ interface PageSEOProps {
   canonical?: string
 }
 
-const PageSEO: React.FC<PageSEOProps> = ({
-  title,
-  description,
-  image,
-  url,
-  keywords,
-  canonical,
-}) => {
+const PageSEO: React.FC<PageSEOProps> = ({ title, description, image, url, keywords, canonical }) => {
   const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'https://admi.africa'
   const fullUrl = url ? `${baseUrl}${url}` : baseUrl
   const canonicalUrl = canonical || fullUrl
 
   const pageTitle = `ADMI${title ? ` - ${title}` : ''}`
-  const pageDescription = description || 'Africa Digital Media Institute - Leading Creative Media and Technology Training Institution across Africa. Empowering creative professionals through industry-relevant education and training.'
+  const pageDescription =
+    description ||
+    'Africa Digital Media Institute - Leading Creative Media and Technology Training Institution across Africa. Empowering creative professionals through industry-relevant education and training.'
   const pageImage = typeof image === 'string' ? image : image?.src || ImageLogo
 
   return (

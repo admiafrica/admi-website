@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import { Accordion, Badge, Container, Title, Text, Group, Button } from '@mantine/core'
 import { IconChevronDown, IconSchool, IconBriefcase, IconCertificate } from '@tabler/icons-react'
-import { 
-  GENERAL_DIPLOMA_FAQS, 
-  FILM_TELEVISION_FAQS, 
-  ANIMATION_VFX_FAQS, 
-  GRAPHIC_DESIGN_FAQS, 
-  AUDIO_PRODUCTION_FAQS, 
-  PHOTOGRAPHY_FAQS 
+import {
+  GENERAL_DIPLOMA_FAQS,
+  FILM_TELEVISION_FAQS,
+  ANIMATION_VFX_FAQS,
+  GRAPHIC_DESIGN_FAQS,
+  AUDIO_PRODUCTION_FAQS,
+  PHOTOGRAPHY_FAQS
 } from '@/data/diploma-faqs'
 
 interface DiplomaFAQSectionProps {
@@ -16,11 +16,7 @@ interface DiplomaFAQSectionProps {
   maxFAQs?: number
 }
 
-export function DiplomaFAQSection({ 
-  programType, 
-  showGeneralFAQs = true, 
-  maxFAQs = 10 
-}: DiplomaFAQSectionProps) {
+export function DiplomaFAQSection({ programType, showGeneralFAQs = true, maxFAQs = 10 }: DiplomaFAQSectionProps) {
   const [activeCategory, setActiveCategory] = useState<string>('all')
 
   // Get program-specific FAQs
@@ -42,18 +38,16 @@ export function DiplomaFAQSection({
   }
 
   // Combine general and program-specific FAQs
-  const allFAQs = [
-    ...(showGeneralFAQs ? GENERAL_DIPLOMA_FAQS : []),
-    ...getProgramFAQs()
-  ]
+  const allFAQs = [...(showGeneralFAQs ? GENERAL_DIPLOMA_FAQS : []), ...getProgramFAQs()]
 
   // Filter FAQs by category
-  const filteredFAQs = activeCategory === 'all' 
-    ? allFAQs.slice(0, maxFAQs)
-    : allFAQs.filter(faq => faq.category === activeCategory).slice(0, maxFAQs)
+  const filteredFAQs =
+    activeCategory === 'all'
+      ? allFAQs.slice(0, maxFAQs)
+      : allFAQs.filter((faq) => faq.category === activeCategory).slice(0, maxFAQs)
 
   // Get unique categories
-  const categories = ['all', ...Array.from(new Set(allFAQs.map(faq => faq.category)))]
+  const categories = ['all', ...Array.from(new Set(allFAQs.map((faq) => faq.category)))]
 
   const getCategoryIcon = (category: string) => {
     switch (category) {
@@ -87,13 +81,13 @@ export function DiplomaFAQSection({
 
   return (
     <Container size="lg" py="xl">
-      <div className="text-center mb-8">
+      <div className="mb-8 text-center">
         <Title order={2} size="h1" mb="md">
           Frequently Asked Questions
         </Title>
         <Text size="lg" c="dimmed" maw={600} mx="auto">
-          Get answers to common questions about our diploma programs, admission requirements, 
-          career prospects, and student support services.
+          Get answers to common questions about our diploma programs, admission requirements, career prospects, and
+          student support services.
         </Text>
       </div>
 
@@ -121,25 +115,25 @@ export function DiplomaFAQSection({
         styles={{
           chevron: {
             '&[data-rotate]': {
-              transform: 'rotate(180deg)',
-            },
+              transform: 'rotate(180deg)'
+            }
           },
           item: {
             border: '1px solid #e9ecef',
             '&[data-active]': {
-              borderColor: '#228be6',
-            },
+              borderColor: '#228be6'
+            }
           },
           control: {
             padding: '1rem 1.5rem',
             '&:hover': {
-              backgroundColor: '#f8f9fa',
-            },
+              backgroundColor: '#f8f9fa'
+            }
           },
           content: {
             padding: '1rem 1.5rem',
-            paddingTop: 0,
-          },
+            paddingTop: 0
+          }
         }}
       >
         {filteredFAQs.map((faq, index) => (
@@ -150,12 +144,7 @@ export function DiplomaFAQSection({
                   <Text fw={500} size="md">
                     {faq.question}
                   </Text>
-                  <Badge 
-                    size="xs" 
-                    variant="light" 
-                    color={getCategoryColor(faq.category)}
-                    mt={4}
-                  >
+                  <Badge size="xs" variant="light" color={getCategoryColor(faq.category)} mt={4}>
                     {faq.category}
                   </Badge>
                 </div>
@@ -171,7 +160,7 @@ export function DiplomaFAQSection({
       </Accordion>
 
       {/* Call to Action */}
-      <div className="text-center mt-12 p-8 bg-gray-50 rounded-lg">
+      <div className="mt-12 rounded-lg bg-gray-50 p-8 text-center">
         <Title order={3} mb="md">
           Still Have Questions?
         </Title>
@@ -192,16 +181,10 @@ export function DiplomaFAQSection({
 }
 
 // Simplified FAQ component for course pages
-export function CourseFAQs({ faqs, programType }: { faqs: any[], programType?: string }) {
+export function CourseFAQs({ faqs, programType }: { faqs: any[]; programType?: string }) {
   if (!faqs || faqs.length === 0) {
     // Show default diploma FAQs if no course-specific FAQs
-    return (
-      <DiplomaFAQSection 
-        programType={programType as any}
-        showGeneralFAQs={true}
-        maxFAQs={8}
-      />
-    )
+    return <DiplomaFAQSection programType={programType as any} showGeneralFAQs={true} maxFAQs={8} />
   }
 
   return (

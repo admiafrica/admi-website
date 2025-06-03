@@ -1,42 +1,38 @@
 import Image from 'next/image'
 
 interface CourseHeroProps {
-  name: string;
+  name: string
   coverImage?: {
     fields: {
       file: {
-        url: string;
+        url: string
         details: {
           image: {
-            width: number;
-            height: number;
-          };
-        };
-      };
-    };
-  };
+            width: number
+            height: number
+          }
+        }
+      }
+    }
+  }
   programType?: {
     fields: {
-      name: string;
-    };
-  };
-  awardLevel?: string;
-  creditHours?: number;
+      name: string
+    }
+  }
+  awardLevel?: string
+  creditHours?: number
 }
 
-export function CourseHero({
-  name,
-  coverImage,
-  programType,
-  awardLevel,
-  creditHours,
-}: CourseHeroProps) {
+export function CourseHero({ name, coverImage, programType, awardLevel, creditHours }: CourseHeroProps) {
   return (
     <section aria-labelledby="course-title" className="course-hero">
       <div className="container">
         <div className="course-hero__content">
-          <h1 id="course-title" className="course-hero__title">{name}</h1>
-          
+          <h1 id="course-title" className="course-hero__title">
+            {name}
+          </h1>
+
           <div className="course-hero__details">
             {programType && (
               <div className="course-hero__detail">
@@ -44,14 +40,14 @@ export function CourseHero({
                 <span className="course-hero__detail-value">{programType.fields.name}</span>
               </div>
             )}
-            
+
             {awardLevel && (
               <div className="course-hero__detail">
                 <span className="course-hero__detail-label">Award Level:</span>
                 <span className="course-hero__detail-value">{awardLevel}</span>
               </div>
             )}
-            
+
             {creditHours && (
               <div className="course-hero__detail">
                 <span className="course-hero__detail-label">Credit Hours:</span>
@@ -60,7 +56,7 @@ export function CourseHero({
             )}
           </div>
         </div>
-        
+
         {coverImage && (
           <figure className="course-hero__image">
             <Image

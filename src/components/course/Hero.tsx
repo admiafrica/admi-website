@@ -1,27 +1,27 @@
-import Image from 'next/image';
-import { Badge, Box, Group } from '@mantine/core';
-import { CourseSummaryCard } from '../cards';
+import Image from 'next/image'
+import { Badge, Box, Group } from '@mantine/core'
+import { CourseSummaryCard } from '../cards'
 
-import IconAward from '@/assets/icons/Award';
-import { useIsMobile } from '@/hooks/useIsMobile';
-import { Paragraph, Title } from '../ui';
-import { EnquiryForm } from '../forms';
+import IconAward from '@/assets/icons/Award'
+import { useIsMobile } from '@/hooks/useIsMobile'
+import { Paragraph, Title } from '../ui'
+import { EnquiryForm } from '../forms'
 
 type Props = {
-  name: string;
-  coverImage: any;
-  programType: any;
-  creditHours: number;
-  awardLevel: string;
-  isCampaign?: boolean;
-};
+  name: string
+  coverImage: any
+  programType: any
+  creditHours: number
+  awardLevel: string
+  isCampaign?: boolean
+}
 
 export default function CourseHero(props: Props) {
-  const isMobile = useIsMobile();
-  const words = props.name.trim().split(' ');
+  const isMobile = useIsMobile()
+  const words = props.name.trim().split(' ')
   // Remove last word
-  const lastWord = words.pop();
-  const remainingName = words.join(' ');
+  const lastWord = words.pop()
+  const remainingName = words.join(' ')
 
   return (
     <div className="relative h-[56vh] w-full px-4 sm:h-[50vh]">
@@ -41,7 +41,7 @@ export default function CourseHero(props: Props) {
       <div
         className="z-5 absolute inset-0"
         style={{
-          background: `radial-gradient(38.35% 91.08% at 66.59% 45.79%, rgba(0, 0, 0, 0) 14.71%, #000000 100%)`,
+          background: 'radial-gradient(38.35% 91.08% at 66.59% 45.79%, rgba(0, 0, 0, 0) 14.71%, #000000 100%)'
         }}
       ></div>
 
@@ -75,8 +75,8 @@ export default function CourseHero(props: Props) {
             h={36}
             mb={8}
             style={{
-              backgroundColor: `rgba(255, 255, 255, 0.07)`, // Adjust the color and opacity
-              backdropFilter: `blur(4px)`, // Optional: adds a blur effect
+              backgroundColor: 'rgba(255, 255, 255, 0.07)', // Adjust the color and opacity
+              backdropFilter: 'blur(4px)' // Optional: adds a blur effect
             }}
           >
             <Group m={8}>
@@ -93,5 +93,5 @@ export default function CourseHero(props: Props) {
         </div>
       </div>
     </div>
-  );
+  )
 }

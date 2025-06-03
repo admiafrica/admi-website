@@ -1,13 +1,13 @@
-import { Text } from '@mantine/core';
-import clsx from 'clsx';
+import { Text } from '@mantine/core'
+import clsx from 'clsx'
 
 type Props = {
-  label: string;
-  size?: string;
-  onClick?: () => void;
-  color?: string;
-  className?: string;
-};
+  label: string
+  size?: string
+  onClick?: () => void
+  color?: string
+  className?: string
+}
 
 export default function Title({ label, size, color = 'admiRed', className = '' }: Props) {
   return (
@@ -16,5 +16,5 @@ export default function Title({ label, size, color = 'admiRed', className = '' }
         {label}
       </Text>
     </div>
-  );
+  )
 }

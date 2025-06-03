@@ -1,19 +1,19 @@
-import { Card, Text } from '@mantine/core';
-import { Button } from '../ui';
-import { useRouter } from 'next/router';
+import { Card, Text } from '@mantine/core'
+import { Button } from '../ui'
+import { useRouter } from 'next/router'
 
 export default function CourseEnrollCard() {
-  const router = useRouter();
+  const router = useRouter()
 
   const handleEnquiry = () => {
-    const { utm_source, utm_medium, utm_campaign, utm_term, utm_content } = router.query;
-    const query = utm_source ? { utm_source, utm_medium, utm_campaign, utm_term, utm_content } : undefined;
+    const { utm_source, utm_medium, utm_campaign, utm_term, utm_content } = router.query
+    const query = utm_source ? { utm_source, utm_medium, utm_campaign, utm_term, utm_content } : undefined
 
     router.push({
       pathname: '/enquiry',
-      query,
-    });
-  };
+      query
+    })
+  }
 
   return (
     <Card className="z-10 h-fit w-full max-w-screen-xl justify-center md:h-[7.125rem]" bg={'admiShamrok'} radius={6}>
@@ -35,5 +35,5 @@ export default function CourseEnrollCard() {
         </div>
       </div>
     </Card>
-  );
+  )
 }

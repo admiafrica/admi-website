@@ -53,7 +53,8 @@ export function OrganizationSchema({
       contactType: 'customer service'
     },
     foundingDate: '2012',
-    description: 'Africa Digital Media Institute - Leading Creative Media and Technology Training Institution across Africa. Empowering creative professionals through industry-relevant education and training.',
+    description:
+      'Africa Digital Media Institute - Leading Creative Media and Technology Training Institution across Africa. Empowering creative professionals through industry-relevant education and training.',
     areaServed: [
       { '@type': 'Country', name: 'Kenya' },
       { '@type': 'Country', name: 'Tanzania' },
@@ -123,10 +124,7 @@ export function LocalBusinessSchema({
     latitude: -1.2833,
     longitude: 36.8167
   },
-  openingHours = [
-    'Monday-Friday 08:00-17:00',
-    'Saturday 09:00-13:00'
-  ]
+  openingHours = ['Monday-Friday 08:00-17:00', 'Saturday 09:00-13:00']
 }: LocalBusinessProps) {
   const structuredData = {
     '@context': 'https://schema.org',
@@ -146,17 +144,17 @@ export function LocalBusinessSchema({
       '@type': 'GeoCoordinates',
       ...geo
     },
-    openingHoursSpecification: openingHours.map(hours => {
-      const [days, time] = hours.split(' ');
-      const [opens, closes] = time.split('-');
+    openingHoursSpecification: openingHours.map((hours) => {
+      const [days, time] = hours.split(' ')
+      const [opens, closes] = time.split('-')
       return {
         '@type': 'OpeningHoursSpecification',
-        dayOfWeek: days.split('-').map(day => `https://schema.org/${day}`),
+        dayOfWeek: days.split('-').map((day) => `https://schema.org/${day}`),
         opens,
         closes
-      };
+      }
     })
-  };
+  }
 
   return (
     <Script
@@ -164,7 +162,7 @@ export function LocalBusinessSchema({
       type="application/ld+json"
       dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
     />
-  );
+  )
 }
 
 interface ArticleProps {
@@ -200,11 +198,12 @@ export function ArticleSchema({
     logo: 'https://admi.africa/logo.png'
   }
 }: ArticleProps) {
-  const authorData = typeof author === 'string'
-    ? { '@type': 'Person', name: author }
-    : author
-      ? { '@type': 'Person', name: author.name, url: author.url }
-      : { '@type': 'Person', name: 'ADMI Editorial Team' }
+  const authorData =
+    typeof author === 'string'
+      ? { '@type': 'Person', name: author }
+      : author
+        ? { '@type': 'Person', name: author.name, url: author.url }
+        : { '@type': 'Person', name: 'ADMI Editorial Team' }
 
   const structuredData = {
     '@context': 'https://schema.org',
@@ -283,7 +282,7 @@ export function CMSFAQSchema({ faqs, courseName }: CMSFAQSchemaProps) {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
     name: courseName ? `${courseName} - Frequently Asked Questions` : 'Course FAQs',
-    mainEntity: faqs.map(faq => ({
+    mainEntity: faqs.map((faq) => ({
       '@type': 'Question',
       name: faq.fields?.question || faq.question,
       acceptedAnswer: {
@@ -324,8 +323,6 @@ interface CourseProps {
   courseCode?: string
   prerequisites?: string[]
 }
-
-
 
 interface DiplomaProps extends CourseProps {
   employmentRate?: number
@@ -381,19 +378,22 @@ export function DiplomaSchema({
     ...(image && { image }),
     ...(courseCode && { courseCode }),
     educationalLevel: 'Diploma',
-    courseMode: deliveryMode?.toLowerCase().includes('online') ? 'online' :
-                deliveryMode?.toLowerCase().includes('hybrid') ? 'blended' : 'onsite',
+    courseMode: deliveryMode?.toLowerCase().includes('online')
+      ? 'online'
+      : deliveryMode?.toLowerCase().includes('hybrid')
+        ? 'blended'
+        : 'onsite',
     timeRequired: duration === '2 years' ? 'P2Y' : duration,
     ...(creditHours && { creditHours: creditHours.toString() }),
     ...(prerequisites.length > 0 && { coursePrerequisites: prerequisites }),
     ...(learningOutcomes.length > 0 && {
-      teaches: learningOutcomes.map(outcome => ({
+      teaches: learningOutcomes.map((outcome) => ({
         '@type': 'DefinedTerm',
         name: outcome
       }))
     }),
     ...(careerOptions.length > 0 && {
-      occupationalCredentialAwarded: careerOptions.map(career => ({
+      occupationalCredentialAwarded: careerOptions.map((career) => ({
         '@type': 'EducationalOccupationalCredential',
         credentialCategory: career
       }))
@@ -429,7 +429,7 @@ export function DiplomaSchema({
       }
     }),
     ...(industryPartners.length > 0 && {
-      sponsor: industryPartners.map(partner => ({
+      sponsor: industryPartners.map((partner) => ({
         '@type': 'Organization',
         name: partner
       }))
@@ -492,7 +492,7 @@ export function CourseSchema({
     ...(creditHours && { creditHours: creditHours.toString() }),
     ...(prerequisites.length > 0 && { coursePrerequisites: prerequisites }),
     ...(learningOutcomes.length > 0 && {
-      teaches: learningOutcomes.map(outcome => ({
+      teaches: learningOutcomes.map((outcome) => ({
         '@type': 'DefinedTerm',
         name: outcome
       }))
@@ -506,13 +506,16 @@ export function CourseSchema({
     },
     ...(duration && { timeRequired: duration }),
     ...(deliveryMode && {
-      courseMode: deliveryMode.toLowerCase().includes('online') ? 'online' :
-                  deliveryMode.toLowerCase().includes('hybrid') ? 'blended' : 'onsite'
+      courseMode: deliveryMode.toLowerCase().includes('online')
+        ? 'online'
+        : deliveryMode.toLowerCase().includes('hybrid')
+          ? 'blended'
+          : 'onsite'
     }),
     ...(intakes && { startDate: intakes }),
     ...(awardLevel && { educationalCredentialAwarded: awardLevel }),
     ...(careerOptions.length > 0 && {
-      occupationalCredentialAwarded: careerOptions.map(career => ({
+      occupationalCredentialAwarded: careerOptions.map((career) => ({
         '@type': 'EducationalOccupationalCredential',
         credentialCategory: career
       }))

@@ -1,36 +1,36 @@
-import Image from 'next/image';
-import { Box, Text, Select } from '@mantine/core';
+import Image from 'next/image'
+import { Box, Text, Select } from '@mantine/core'
 
-import { MainLayout } from '@/layouts/v3/MainLayout';
-import { Paragraph, Title, SearchDropdown } from '@/components/ui';
-import { ProgramListItemCard } from '@/components/cards';
-import { PageSEO } from '@/components/shared/v3';
-import { useIsMobile } from '@/hooks/useIsMobile';
+import { MainLayout } from '@/layouts/v3/MainLayout'
+import { Paragraph, Title, SearchDropdown } from '@/components/ui'
+import { ProgramListItemCard } from '@/components/cards'
+import { PageSEO } from '@/components/shared/v3'
+import { useIsMobile } from '@/hooks/useIsMobile'
 
-import IconBgImageYellow from '@/assets/icons/ellipse-yellow.svg';
-import IconBgImageRed from '@/assets/icons/ellipse-red.svg';
-import { useEffect, useState } from 'react';
+import IconBgImageYellow from '@/assets/icons/ellipse-yellow.svg'
+import IconBgImageRed from '@/assets/icons/ellipse-red.svg'
+import { useEffect, useState } from 'react'
 
 export default function CoursesPage({
   programs,
   courses,
-  filterOptions,
+  filterOptions
 }: {
-  programs: any[];
-  courses: any[];
-  filterOptions: string[];
+  programs: any[]
+  courses: any[]
+  filterOptions: string[]
 }) {
-  const isMobile = useIsMobile();
-  const [activeOption, setActiveOption] = useState<string>('All Courses');
-  const [filteredPrograms, setFilteredPrograms] = useState<any[]>(programs);
+  const isMobile = useIsMobile()
+  const [activeOption, setActiveOption] = useState<string>('All Courses')
+  const [filteredPrograms, setFilteredPrograms] = useState<any[]>(programs)
 
   useEffect(() => {
     setFilteredPrograms(
       activeOption !== 'All Courses'
         ? programs.filter((program) => program.fields.name.includes(activeOption))
         : programs
-    );
-  }, [activeOption, programs]);
+    )
+  }, [activeOption, programs])
 
   return (
     <MainLayout footerBgColor="#F5FFFD">
@@ -104,33 +104,33 @@ export default function CoursesPage({
         </div>
       </div>
     </MainLayout>
-  );
+  )
 }
 
 export async function getServerSideProps() {
   try {
     const [programsRes, coursesRes] = await Promise.all([
       fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v3/course-programs`),
-      fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v3/courses`),
-    ]);
+      fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v3/courses`)
+    ])
 
-    if (!programsRes.ok || !coursesRes.ok) throw new Error('Failed to fetch data');
+    if (!programsRes.ok || !coursesRes.ok) throw new Error('Failed to fetch data')
 
-    const programs = await programsRes.json();
-    const courses = await coursesRes.json();
+    const programs = await programsRes.json()
+    const courses = await coursesRes.json()
 
-    const sortedPrograms = programs.reverse();
-    const sortedCourses = courses.reverse();
+    const sortedPrograms = programs.reverse()
+    const sortedCourses = courses.reverse()
 
     return {
       props: {
         programs: sortedPrograms,
         courses: sortedCourses,
-        filterOptions: ['All Courses', ...sortedPrograms.map((program: any) => program.fields.name)],
-      },
-    };
+        filterOptions: ['All Courses', ...sortedPrograms.map((program: any) => program.fields.name)]
+      }
+    }
   } catch (error) {
-    console.error('Error fetching courses:', error);
-    return { props: { programs: [], courses: [], filterOptions: ['All Courses'] } };
+    console.error('Error fetching courses:', error)
+    return { props: { programs: [], courses: [], filterOptions: ['All Courses'] } }
   }
 }

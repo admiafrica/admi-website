@@ -1,12 +1,12 @@
 type Props = {
-  color?: string;
-  width?: number;
-  height?: number;
-};
+  color?: string
+  width?: number
+  height?: number
+}
 
 export default function IconAward({ color = 'black', width, height }: Props) {
   return (
-    <svg width={width|| 46} height={height || 47} viewBox="0 0 46 47" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width={width || 46} height={height || 47} viewBox="0 0 46 47" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
         fillRule="evenodd"
         clipRule="evenodd"
@@ -30,5 +30,5 @@ export default function IconAward({ color = 'black', width, height }: Props) {
         fill={color}
       />
     </svg>
-  );
+  )
 }

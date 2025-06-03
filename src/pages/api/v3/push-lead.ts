@@ -1,8 +1,8 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
+import type { NextApiRequest, NextApiResponse } from 'next'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method Not Allowed' });
+    return res.status(405).json({ error: 'Method Not Allowed' })
   }
 
   const {
@@ -15,17 +15,17 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     utm_medium = '',
     utm_campaign = '',
     utm_term = '',
-    utm_content = '',
-  } = req.body;
+    utm_content = ''
+  } = req.body
 
   if (!email || !firstName || !lastName || !phone || !courseName) {
-    return res.status(400).json({ error: 'All fields are required.' });
+    return res.status(400).json({ error: 'All fields are required.' })
   }
 
-  const API_KEY = process.env.BREVO_API_KEY as string;
-  const LIST_ID = process.env.BREVO_LIST_ID as string;
+  const API_KEY = process.env.BREVO_API_KEY as string
+  const LIST_ID = process.env.BREVO_LIST_ID as string
 
-  const BREVO_URL = 'https://api.brevo.com/v3/contacts';
+  const BREVO_URL = 'https://api.brevo.com/v3/contacts'
 
   const payload: any = {
     attributes: {
@@ -39,11 +39,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       UTM_MEDIUM: utm_medium,
       UTM_CAMPAIGN: utm_campaign,
       UTM_TERM: utm_term,
-      UTM_CONTENT: utm_content,
+      UTM_CONTENT: utm_content
     },
     listIds: [parseInt(LIST_ID)],
-    updateEnabled: true,
-  };
+    updateEnabled: true
+  }
 
   try {
     const response = await fetch(BREVO_URL, {
@@ -51,19 +51,19 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       headers: {
         accept: 'application/json',
         'content-type': 'application/json',
-        'api-key': API_KEY,
+        'api-key': API_KEY
       },
-      body: JSON.stringify(payload),
-    });
+      body: JSON.stringify(payload)
+    })
 
     if (!response.ok) {
-      const errorData = await response.json();
-      return res.status(response.status).json({ error: errorData });
+      const errorData = await response.json()
+      return res.status(response.status).json({ error: errorData })
     }
 
-    return res.status(201).json({ message: 'Lead added successfully' });
+    return res.status(201).json({ message: 'Lead added successfully' })
   } catch (error) {
-    console.error('Brevo API error:', error);
-    return res.status(500).json({ error: 'Internal Server Error' });
+    console.error('Brevo API error:', error)
+    return res.status(500).json({ error: 'Internal Server Error' })
   }
 }

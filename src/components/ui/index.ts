@@ -1,6 +1,6 @@
-export { default as Button } from './Button';
-export { default as Title } from './Title';
-export { default as Paragraph } from './Paragraph';
-export { default as ParagraphContentful } from './ParagraphContentful';
-export { default as AnimatedWordDisplay } from './AnimatedWordDisplay';
-export { default as SearchDropdown } from './Search';
+export { default as Button } from './Button'
+export { default as Title } from './Title'
+export { default as Paragraph } from './Paragraph'
+export { default as ParagraphContentful } from './ParagraphContentful'
+export { default as AnimatedWordDisplay } from './AnimatedWordDisplay'
+export { default as SearchDropdown } from './Search'

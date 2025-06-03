@@ -1,26 +1,26 @@
-import Image from 'next/image';
-import { Card, Text, NumberFormatter, Divider } from '@mantine/core';
+import Image from 'next/image'
+import { Card, Text, NumberFormatter, Divider } from '@mantine/core'
 
-import { Button, Paragraph, Title } from '../ui';
+import { Button, Paragraph, Title } from '../ui'
 
-import IconHourglass from '@/assets/icons/hour-glass-white.svg';
-import IconCurrency from '@/assets/icons/group-6.svg';
-import { useRouter } from 'next/router';
-import { useIsMobile } from '@/hooks/useIsMobile';
+import IconHourglass from '@/assets/icons/hour-glass-white.svg'
+import IconCurrency from '@/assets/icons/group-6.svg'
+import { useRouter } from 'next/router'
+import { useIsMobile } from '@/hooks/useIsMobile'
 
 type Props = {
-  programType: any;
-  creditHours: number;
-  tuitionFees: string;
-};
+  programType: any
+  creditHours: number
+  tuitionFees: string
+}
 
 export default function CourseEnquiryCard(props: Props) {
-  const router = useRouter();
-  const isMobile = useIsMobile();
+  const router = useRouter()
+  const isMobile = useIsMobile()
 
   const handleEnquiry = () => {
-    router.push('/enquiry');
-  };
+    router.push('/enquiry')
+  }
 
   return (
     <Card
@@ -96,5 +96,5 @@ export default function CourseEnquiryCard(props: Props) {
         </div>
       </div>
     </Card>
-  );
+  )
 }

@@ -1,35 +1,35 @@
-import { useState, useEffect } from 'react';
-import { Group, Text, Menu } from '@mantine/core';
-import Link from 'next/link';
-import Image from 'next/image';
-import { useRouter } from 'next/router';
-import { useMediaQuery } from '@mantine/hooks';
-import { Button } from '@/components/ui';
-import GoogleAnalyticsTag from '../GoogleAnalyticsTag';
+import { useState, useEffect } from 'react'
+import { Group, Text, Menu } from '@mantine/core'
+import Link from 'next/link'
+import Image from 'next/image'
+import { useRouter } from 'next/router'
+import { useMediaQuery } from '@mantine/hooks'
+import { Button } from '@/components/ui'
+import GoogleAnalyticsTag from '../GoogleAnalyticsTag'
 
-import { IconMenu } from '@tabler/icons-react';
-import IconLogoLight from '@/assets/logo-light.svg';
+import { IconMenu } from '@tabler/icons-react'
+import IconLogoLight from '@/assets/logo-light.svg'
 
 type Props = {
-  mode: string;
-  isMinimal?: boolean;
-};
+  mode: string
+  isMinimal?: boolean
+}
 
 export default function NavBar({ mode, isMinimal = false }: Props) {
-  const router = useRouter();
-  const isSmallScreen = useMediaQuery('(max-width: 992px)');
-  const [hiddenCTA, setHiddenCTA] = useState<boolean>(false);
+  const router = useRouter()
+  const isSmallScreen = useMediaQuery('(max-width: 992px)')
+  const [hiddenCTA, setHiddenCTA] = useState<boolean>(false)
 
   const navigateToPage = (pagePath: string) => {
-    router.push(`/${pagePath}`);
-  };
+    router.push(`/${pagePath}`)
+  }
 
   useEffect(() => {
     if (router.pathname) {
-      const isHidden = router.pathname === '/enquiry' || router.pathname.startsWith('/campaigns');
-      setHiddenCTA(isHidden);
+      const isHidden = router.pathname === '/enquiry' || router.pathname.startsWith('/campaigns')
+      setHiddenCTA(isHidden)
     }
-  }, [router.pathname]);
+  }, [router.pathname])
 
   const getMenuWideScreen = (mode: string) => {
     return (
@@ -82,8 +82,8 @@ export default function NavBar({ mode, isMinimal = false }: Props) {
           </Menu.Target>
         </Menu>
       </Group>
-    );
-  };
+    )
+  }
 
   const getMenuMobile = (mode: string) => {
     return (
@@ -118,12 +118,12 @@ export default function NavBar({ mode, isMinimal = false }: Props) {
           </Menu.Dropdown>
         </Menu>
       </Group>
-    );
-  };
+    )
+  }
 
   if (isMinimal) {
     return (
-      <Group className={`mx-auto w-full max-w-screen-xl px-4`}>
+      <Group className={'mx-auto w-full max-w-screen-xl px-4'}>
         <div className="flex grow font-nexa sm:flex-row-reverse md:flex-row">
           <Link href="/" style={{ textDecoration: 'none' }} className="my-auto h-fit pt-4">
             {mode == 'dark' && <Image src={IconLogoLight} width={80} alt="Africa Digital Media Institute" />}
@@ -136,11 +136,11 @@ export default function NavBar({ mode, isMinimal = false }: Props) {
           )}
         </div>
       </Group>
-    );
+    )
   }
 
   return (
-    <Group className={`mx-auto w-full max-w-screen-xl px-4`}>
+    <Group className={'mx-auto w-full max-w-screen-xl px-4'}>
       <GoogleAnalyticsTag analyticsId={process.env.NEXT_PUBLIC_ADMI_GTM_ID as string} />
       <Group className="flex w-full flex-row-reverse font-nexa md:flex-row">
         <Link href="/" style={{ textDecoration: 'none', margin: 'auto' }} className="pt-4">
@@ -150,16 +150,16 @@ export default function NavBar({ mode, isMinimal = false }: Props) {
         {isSmallScreen ? getMenuMobile(mode) : getMenuWideScreen(mode)}
       </Group>
     </Group>
-  );
+  )
 }
 
 const menuDrawer: React.CSSProperties = {
   marginTop: 20,
-  width: '200px',
-};
+  width: '200px'
+}
 
 const menuItemStyle: React.CSSProperties = {
   cursor: 'pointer',
   fontWeight: 'bold',
-  fontSize: 18,
-};
+  fontSize: 18
+}

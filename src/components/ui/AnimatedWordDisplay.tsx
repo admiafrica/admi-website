@@ -1,46 +1,46 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import Paragraph from './Paragraph';
+import React, { useState, useEffect } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import Paragraph from './Paragraph'
 
 type Props = {
-  words: any;
-  interval?: number;
-  size?: string;
-  className?: string;
-  fontFamily?: string;
-  fontWeight?: number;
-};
+  words: any
+  interval?: number
+  size?: string
+  className?: string
+  fontFamily?: string
+  fontWeight?: number
+}
 
 export default function AnimatedWordDisplay({ words, size, fontFamily, fontWeight, interval = 2000 }: Props) {
-  const [currentWordIndex, setCurrentWordIndex] = useState(0);
+  const [currentWordIndex, setCurrentWordIndex] = useState(0)
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentWordIndex((prevIndex) => (prevIndex + 1) % words.length);
-    }, interval);
+      setCurrentWordIndex((prevIndex) => (prevIndex + 1) % words.length)
+    }, interval)
 
-    return () => clearInterval(timer);
-  }, [words, interval]);
+    return () => clearInterval(timer)
+  }, [words, interval])
 
   const wordVariants = {
     enter: {
-      opacity: 0,
+      opacity: 0
     },
     center: {
       zIndex: 1,
-      opacity: 1,
+      opacity: 1
     },
     exit: {
       zIndex: 0,
-      opacity: 0,
-    },
-  };
+      opacity: 0
+    }
+  }
 
   const wordTransition = {
     type: 'tween',
     duration: 0.5,
-    ease: 'easeInOut',
-  };
+    ease: 'easeInOut'
+  }
 
   return (
     <div style={{ position: 'relative', height: '60px', width: '300px', overflow: 'hidden' }}>
@@ -59,7 +59,7 @@ export default function AnimatedWordDisplay({ words, size, fontFamily, fontWeigh
             top: 0,
             left: 0,
             width: '100%',
-            display: 'flex',
+            display: 'flex'
           }}
         >
           <Paragraph
@@ -73,5 +73,5 @@ export default function AnimatedWordDisplay({ words, size, fontFamily, fontWeigh
         </motion.div>
       </AnimatePresence>
     </div>
-  );
+  )
 }

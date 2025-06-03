@@ -1,34 +1,34 @@
-import Image from 'next/image';
-import { Box, Divider, Modal } from '@mantine/core';
-import { useDisclosure } from '@mantine/hooks';
+import Image from 'next/image'
+import { Box, Divider, Modal } from '@mantine/core'
+import { useDisclosure } from '@mantine/hooks'
 
-import { MainLayout } from '@/layouts/v3/MainLayout';
-import { Paragraph, Title } from '@/components/ui';
-import { PageSEO } from '@/components/shared/v3';
-import { InfoCard, LearnMoreCard, PlainCard } from '@/components/cards';
-import { ADMI_CAREER_VALUES } from '@/utils';
+import { MainLayout } from '@/layouts/v3/MainLayout'
+import { Paragraph, Title } from '@/components/ui'
+import { PageSEO } from '@/components/shared/v3'
+import { InfoCard, LearnMoreCard, PlainCard } from '@/components/cards'
+import { ADMI_CAREER_VALUES } from '@/utils'
 
-import IconAudioPhoneAlt from '@/assets/icons/audio-phone-alt.svg';
-import ImageCareersLanding from '@/assets/images/careers-landing.png';
-import { useIsMobile } from '@/hooks/useIsMobile';
+import IconAudioPhoneAlt from '@/assets/icons/audio-phone-alt.svg'
+import ImageCareersLanding from '@/assets/images/careers-landing.png'
+import { useIsMobile } from '@/hooks/useIsMobile'
 
 export default function CareersPage() {
-  const isMobile = useIsMobile();
-  const [opened, { open, close }] = useDisclosure(false);
+  const isMobile = useIsMobile()
+  const [opened, { open, close }] = useDisclosure(false)
 
   const howToApply = {
     title: 'How to Apply',
     description:
-      'If you are interested in joining our faculty or would like to express your interest in teaching a specific course, we encourage you to reach out to us. Please send your CV and a brief cover letter outlining your teaching philosophy and the courses you wish to teach to apply@admi.ac.ke.',
-  };
+      'If you are interested in joining our faculty or would like to express your interest in teaching a specific course, we encourage you to reach out to us. Please send your CV and a brief cover letter outlining your teaching philosophy and the courses you wish to teach to apply@admi.ac.ke.'
+  }
 
   const openVacancies = {
     title: 'Open Vacancies',
     description:
       'We regularly post open faculty positions on our website. Be sure to check back frequently for the latest opportunities to join our team. If you are passionate about education and have the skills to inspire students, we want to hear from you!',
     subtext:
-      'Join us at ADMI and be part of a transformative educational experience that empowers students to excel in the ever-evolving world of digital media. Your expertise could be the key to unlocking their potential!',
-  };
+      'Join us at ADMI and be part of a transformative educational experience that empowers students to excel in the ever-evolving world of digital media. Your expertise could be the key to unlocking their potential!'
+  }
 
   return (
     <MainLayout footerBgColor="white">
@@ -52,7 +52,7 @@ export default function CareersPage() {
           <div
             className="z-5 absolute inset-0"
             style={{
-              background: 'linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0, 42, 35, 1) 100%)',
+              background: 'linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0, 42, 35, 1) 100%)'
             }}
           ></div>
           <Box className="relative z-10 mx-auto flex w-full max-w-screen-xl flex-row px-4 sm:h-[50vh] sm:flex-row 2xl:px-0">
@@ -129,5 +129,5 @@ export default function CareersPage() {
         </Box>
       </div>
     </MainLayout>
-  );
+  )
 }

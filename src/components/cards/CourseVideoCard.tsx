@@ -1,15 +1,15 @@
-import React from 'react';
-import { Card, Image, Text } from '@mantine/core';
-import { IconCheck, IconExclamationCircle } from '@tabler/icons-react';
+import React from 'react'
+import { Card, Image, Text } from '@mantine/core'
+import { IconCheck, IconExclamationCircle } from '@tabler/icons-react'
 
-import { VideoPlayer } from '../shared/v3';
+import { VideoPlayer } from '../shared/v3'
 
 type Props = {
-  intakes: string;
-  courseVideo: any;
-  educationalLevel: string;
-  venue?: string;
-};
+  intakes: string
+  courseVideo: any
+  educationalLevel: string
+  venue?: string
+}
 
 export default function CourseVideoCard(props: Props) {
   return (
@@ -41,5 +41,5 @@ export default function CourseVideoCard(props: Props) {
         </div>
       </Card.Section>
     </Card>
-  );
+  )
 }

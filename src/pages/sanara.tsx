@@ -1,21 +1,21 @@
-import Image from 'next/image';
-import { Anchor, Box, Card } from '@mantine/core';
+import Image from 'next/image'
+import { Anchor, Box, Card } from '@mantine/core'
 
-import { MainLayout } from '@/layouts/v3/MainLayout';
-import { PageSEO, SocialShare } from '@/components/shared/v3';
-import { Button, Paragraph } from '@/components/ui';
-import { useIsMobile } from '@/hooks/useIsMobile';
+import { MainLayout } from '@/layouts/v3/MainLayout'
+import { PageSEO, SocialShare } from '@/components/shared/v3'
+import { Button, Paragraph } from '@/components/ui'
+import { useIsMobile } from '@/hooks/useIsMobile'
 
-import ImageSanaraLanding from '@/assets/images/sanara-landing.png';
+import ImageSanaraLanding from '@/assets/images/sanara-landing.png'
 
 export default function NewsArticlePage() {
   const article = {
     title: 'ADMI-Sanara Animation Program',
     summary: `Sanara is inspired by the Swahili words sanaa (arts) and biashara (business). This
               exciting inclusive program designed for young women and men across Kenya aims to enable access to
-              dignified and fulfilling work in the creative and cultural industries.`,
-  };
-  const isMobile = useIsMobile();
+              dignified and fulfilling work in the creative and cultural industries.`
+  }
+  const isMobile = useIsMobile()
 
   return (
     <MainLayout footerBgColor="white">
@@ -142,5 +142,5 @@ export default function NewsArticlePage() {
         </Box>
       </Box>
     </MainLayout>
-  );
+  )
 }

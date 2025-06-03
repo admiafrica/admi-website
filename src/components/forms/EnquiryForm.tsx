@@ -1,19 +1,19 @@
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import { useCallback, useEffect, useState } from 'react';
-import { Alert, Box, Group, Select, Text, TextInput } from '@mantine/core';
-import { useForm } from '@mantine/form';
-import { Button, Paragraph, Title } from '../ui';
-import PhoneInput from 'react-phone-input-2';
-import 'react-phone-input-2/lib/style.css';
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+import { useCallback, useEffect, useState } from 'react'
+import { Alert, Box, Group, Select, Text, TextInput } from '@mantine/core'
+import { useForm } from '@mantine/form'
+import { Button, Paragraph, Title } from '../ui'
+import PhoneInput from 'react-phone-input-2'
+import 'react-phone-input-2/lib/style.css'
 
-import { IconAsterisk } from '@tabler/icons-react';
+import { IconAsterisk } from '@tabler/icons-react'
 
 export default function EnquiryForm() {
-  const router = useRouter();
-  const [courses, setCourses] = useState<any[]>([]);
-  const [countryCode, setCountryCode] = useState('254'); // State for the phone number
-  const [alert, setAlert] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
+  const router = useRouter()
+  const [courses, setCourses] = useState<any[]>([])
+  const [countryCode, setCountryCode] = useState('254') // State for the phone number
+  const [alert, setAlert] = useState<{ type: 'success' | 'error'; message: string } | null>(null)
 
   const form = useForm({
     mode: 'uncontrolled',
@@ -27,68 +27,68 @@ export default function EnquiryForm() {
       utm_medium: '',
       utm_campaign: '',
       utm_term: '',
-      utm_content: '',
+      utm_content: ''
     },
 
     validate: {
-      email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Invalid email'),
-    },
-  });
+      email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Invalid email')
+    }
+  })
 
   const fetchCourses = useCallback(async () => {
     try {
-      const response = await fetch(`/api/v3/courses`);
-      const data = await response.json();
-      setCourses(data);
+      const response = await fetch('/api/v3/courses')
+      const data = await response.json()
+      setCourses(data)
     } catch (error) {
-      console.log('Error fetching courses:', error);
+      console.log('Error fetching courses:', error)
     }
-  }, []);
+  }, [])
 
   const handleSubmit = async (values: any) => {
-    setAlert(null); // Clear previous alerts
+    setAlert(null) // Clear previous alerts
 
     // always remove leading zero from phone incase included
-    const formattedPhone = values.phone.replace(/^0+/, '');
+    const formattedPhone = values.phone.replace(/^0+/, '')
     const data = {
       ...values,
-      phone: `${countryCode}${formattedPhone}`,
-    };
+      phone: `${countryCode}${formattedPhone}`
+    }
 
     try {
       const response = await fetch('/api/v3/push-lead', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ ...data }),
-      });
+        body: JSON.stringify({ ...data })
+      })
 
       if (!response.ok) {
-        const errorData = await response.json();
-        setAlert({ type: 'error', message: errorData.error || 'Failed to submit enquiry.' });
-        return;
+        const errorData = await response.json()
+        setAlert({ type: 'error', message: errorData.error || 'Failed to submit enquiry.' })
+        return
       }
-      router.push('/enquiry-thank-you');
+      router.push('/enquiry-thank-you')
     } catch (error) {
-      setAlert({ type: 'error', message: 'An error occurred. Please try again later.' });
+      setAlert({ type: 'error', message: 'An error occurred. Please try again later.' })
     }
-  };
+  }
 
   useEffect(() => {
-    fetchCourses();
-  }, [fetchCourses]);
+    fetchCourses()
+  }, [fetchCourses])
 
   useEffect(() => {
     if (router.isReady) {
-      const { utm_source, utm_medium, utm_campaign, utm_term, utm_content } = router.query;
-      form.setFieldValue('utm_source', utm_source as string);
-      form.setFieldValue('utm_medium', utm_medium as string);
-      form.setFieldValue('utm_campaign', utm_campaign as string);
-      form.setFieldValue('utm_term', utm_term as string);
-      form.setFieldValue('utm_content', utm_content as string);
+      const { utm_source, utm_medium, utm_campaign, utm_term, utm_content } = router.query
+      form.setFieldValue('utm_source', utm_source as string)
+      form.setFieldValue('utm_medium', utm_medium as string)
+      form.setFieldValue('utm_campaign', utm_campaign as string)
+      form.setFieldValue('utm_term', utm_term as string)
+      form.setFieldValue('utm_content', utm_content as string)
     }
-  }, [router.isReady, router.query, form]);
+  }, [router.isReady, router.query, form])
 
   return (
     <div className="w-full rounded-lg bg-white p-4 sm:p-8">
@@ -183,22 +183,22 @@ export default function EnquiryForm() {
               country={'ke'}
               value={countryCode}
               onChange={(value) => {
-                setCountryCode(value);
+                setCountryCode(value)
               }}
               containerStyle={{
                 border: 'none',
-                width: 100,
+                width: 100
               }}
               inputStyle={{
-                border: 'none',
+                border: 'none'
               }}
               buttonStyle={{
                 border: 'none',
-                marginLeft: '8px',
+                marginLeft: '8px'
               }}
               dropdownStyle={{
                 border: 'none',
-                boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+                boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)'
               }}
               inputProps={{ readOnly: true }}
             />
@@ -225,5 +225,5 @@ export default function EnquiryForm() {
         </Alert>
       )}
     </div>
-  );
+  )
 }

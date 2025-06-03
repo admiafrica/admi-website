@@ -1,16 +1,16 @@
-import { GetServerSideProps } from 'next';
-import { MainLayout } from '@/layouts/v3/MainLayout';
-import { CourseHero, CourseAbout, CourseDetails, CourseApplicationProcess, CourseFAQs } from '@/components/course';
-import { PageSEO } from '@/components/shared/v3';
-import { GoogleAnalyticsTag } from '@/components/shared';
+import { GetServerSideProps } from 'next'
+import { MainLayout } from '@/layouts/v3/MainLayout'
+import { CourseHero, CourseAbout, CourseDetails, CourseApplicationProcess, CourseFAQs } from '@/components/course'
+import { PageSEO } from '@/components/shared/v3'
+import { GoogleAnalyticsTag } from '@/components/shared'
 
 interface CourseDetailPageProps {
-  course: any;
-  courseAssets: any;
+  course: any
+  courseAssets: any
 }
 
 export default function CourseDetailPage({ course, courseAssets }: CourseDetailPageProps) {
-  if (!course) return null;
+  if (!course) return null
 
   return (
     <MainLayout minimizeFooter minimizeHeader>
@@ -48,33 +48,33 @@ export default function CourseDetailPage({ course, courseAssets }: CourseDetailP
       <CourseFAQs faqs={course.faqs || []} />
       <GoogleAnalyticsTag analyticsId={process.env.NEXT_PUBLIC_ADMI_GTM_ID as string} />
     </MainLayout>
-  );
+  )
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const { slug } = context.params ?? {};
+  const { slug } = context.params ?? {}
 
   if (!slug) {
-    return { notFound: true };
+    return { notFound: true }
   }
 
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v3/course-details?slug=${slug}`);
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v3/course-details?slug=${slug}`)
 
     if (!res.ok) {
-      throw new Error('Failed to fetch course details');
+      throw new Error('Failed to fetch course details')
     }
 
-    const data = await res.json();
+    const data = await res.json()
 
     return {
       props: {
         course: data.fields || null,
-        courseAssets: data.assets || null,
-      },
-    };
+        courseAssets: data.assets || null
+      }
+    }
   } catch (error) {
-    console.error('Error fetching course:', error);
-    return { notFound: true };
+    console.error('Error fetching course:', error)
+    return { notFound: true }
   }
-};
+}

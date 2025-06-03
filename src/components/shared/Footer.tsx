@@ -1,19 +1,19 @@
-import Image from 'next/image';
-import { Group, Text, Anchor, Stack, Title } from '@mantine/core';
-import { useMediaQuery } from '@mantine/hooks';
+import Image from 'next/image'
+import { Group, Text, Anchor, Stack, Title } from '@mantine/core'
+import { useMediaQuery } from '@mantine/hooks'
 import {
   IconBrandFacebook,
   IconBrandLinkedin,
   IconBrandInstagram,
   IconBrandTiktok,
   IconBrandYoutube,
-  IconBrandX,
-} from '@tabler/icons-react';
-import { SOCIAL_LINKS } from '@/utils';
-import LogoIcon from '../../assets/logo.svg';
+  IconBrandX
+} from '@tabler/icons-react'
+import { SOCIAL_LINKS } from '@/utils'
+import LogoIcon from '../../assets/logo.svg'
 
 export default function CustomFooter() {
-  const isMobile = useMediaQuery('(max-width: 480px)');
+  const isMobile = useMediaQuery('(max-width: 480px)')
 
   return (
     <Group className="mx-auto w-full max-w-screen-xl flex-col md:flex-row">
@@ -78,9 +78,9 @@ export default function CustomFooter() {
         </Anchor>
       </Stack>
     </Group>
-  );
+  )
 }
 
 const sectionStyle: React.CSSProperties = {
-  padding: '0 20px',
-};
+  padding: '0 20px'
+}

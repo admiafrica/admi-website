@@ -1,18 +1,18 @@
-import Image from 'next/image';
-import { Box, Card } from '@mantine/core';
-import { useRouter } from 'next/router';
+import Image from 'next/image'
+import { Box, Card } from '@mantine/core'
+import { useRouter } from 'next/router'
 
-import { Title } from '@/components/ui';
+import { Title } from '@/components/ui'
 
 type Props = {
-  sector: any;
-  textColor?: string;
-  withBorder?: boolean;
-  bgColor?: string;
-  defaultBorder?: boolean;
-  width?: number;
-  height?: number;
-};
+  sector: any
+  textColor?: string
+  withBorder?: boolean
+  bgColor?: string
+  defaultBorder?: boolean
+  width?: number
+  height?: number
+}
 
 export default function SectorItemCard({
   sector,
@@ -21,15 +21,15 @@ export default function SectorItemCard({
   bgColor = 'none',
   defaultBorder = true,
   width = 160,
-  height = 160,
+  height = 160
 }: Props) {
-  const router = useRouter();
+  const router = useRouter()
 
   const handleCourseClick = () => {
     // Navigate to courses page with the sector title as a search parameter
-    const searchQuery = encodeURIComponent(sector.title);
-    router.push(`/courses?search=${searchQuery}`);
-  };
+    const searchQuery = encodeURIComponent(sector.title)
+    router.push(`/courses?search=${searchQuery}`)
+  }
 
   return (
     <Card
@@ -51,7 +51,7 @@ export default function SectorItemCard({
         <Image
           width={64}
           height={64}
-          src={`https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png`}
+          src={'https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png'}
           alt={sector.title}
           style={{ margin: 'auto' }}
         />
@@ -62,5 +62,5 @@ export default function SectorItemCard({
         </Box>
       </Box>
     </Card>
-  );
+  )
 }

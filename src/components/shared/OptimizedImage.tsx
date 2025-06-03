@@ -10,16 +10,9 @@ interface OptimizedImageProps {
   priority?: boolean
 }
 
-export default function OptimizedImage({
-  src,
-  alt,
-  width,
-  height,
-  className,
-  priority = false
-}: OptimizedImageProps) {
+export default function OptimizedImage({ src, alt, width, height, className, priority = false }: OptimizedImageProps) {
   const [isLoading, setIsLoading] = useState(true)
-  
+
   return (
     <div className={`relative ${className}`}>
       <Image

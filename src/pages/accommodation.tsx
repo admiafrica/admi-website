@@ -1,31 +1,31 @@
-import Image from 'next/image';
-import { Anchor, Box, Card, Divider, Modal } from '@mantine/core';
-import { useDisclosure } from '@mantine/hooks';
+import Image from 'next/image'
+import { Anchor, Box, Card, Divider, Modal } from '@mantine/core'
+import { useDisclosure } from '@mantine/hooks'
 
-import { MainLayout } from '@/layouts/v3/MainLayout';
-import { Paragraph, Title } from '@/components/ui';
-import { PageSEO } from '@/components/shared/v3';
-import { LearnMoreCard } from '@/components/cards';
-import { ADMI_ACCOMMODATION_FEATURES } from '@/utils';
-import { useIsMobile } from '@/hooks/useIsMobile';
+import { MainLayout } from '@/layouts/v3/MainLayout'
+import { Paragraph, Title } from '@/components/ui'
+import { PageSEO } from '@/components/shared/v3'
+import { LearnMoreCard } from '@/components/cards'
+import { ADMI_ACCOMMODATION_FEATURES } from '@/utils'
+import { useIsMobile } from '@/hooks/useIsMobile'
 
-import IconQwetu from '@/assets/icons/qwetu-residence.svg';
-import IconQwetuLight from '@/assets/icons/qwetu-residence-light.svg';
-import IconQejani from '@/assets/icons/qejani-residence.svg';
-import IconQejaniLight from '@/assets/icons/qejani-residence-light.svg';
-import ImageCommunityBg from '@/assets/images/community-bg.png';
-import ImageAccommodationLanding from '@/assets/images/accommodation-landing.png';
-import IconArrowTipRight from '@/assets/icons/ArrowTipRight';
-import IconBgImageYellow from '@/assets/icons/ellipse-yellow.svg';
-import IconBgImageRed from '@/assets/icons/ellipse-red.svg';
+import IconQwetu from '@/assets/icons/qwetu-residence.svg'
+import IconQwetuLight from '@/assets/icons/qwetu-residence-light.svg'
+import IconQejani from '@/assets/icons/qejani-residence.svg'
+import IconQejaniLight from '@/assets/icons/qejani-residence-light.svg'
+import ImageCommunityBg from '@/assets/images/community-bg.png'
+import ImageAccommodationLanding from '@/assets/images/accommodation-landing.png'
+import IconArrowTipRight from '@/assets/icons/ArrowTipRight'
+import IconBgImageYellow from '@/assets/icons/ellipse-yellow.svg'
+import IconBgImageRed from '@/assets/icons/ellipse-red.svg'
 
-import IconBgEllipseA from '@/assets/icons/ellipse-11.svg';
-import IconBgEllipseB from '@/assets/icons/ellipse-13.svg';
-import IconBgEllipseC from '@/assets/icons/ellipse-14.svg';
+import IconBgEllipseA from '@/assets/icons/ellipse-11.svg'
+import IconBgEllipseB from '@/assets/icons/ellipse-13.svg'
+import IconBgEllipseC from '@/assets/icons/ellipse-14.svg'
 
 export default function AccommodationPage() {
-  const isMobile = useIsMobile();
-  const [opened, { open, close }] = useDisclosure(false);
+  const isMobile = useIsMobile()
+  const [opened, { open, close }] = useDisclosure(false)
 
   return (
     <MainLayout footerBgColor="#F5FFFD">
@@ -49,7 +49,7 @@ export default function AccommodationPage() {
           <div
             className="z-5 absolute inset-0"
             style={{
-              background: 'linear-gradient(to bottom, rgba(0,0,0,0.3) 20%, rgba(246, 8, 52, 1) 100%)',
+              background: 'linear-gradient(to bottom, rgba(0,0,0,0.3) 20%, rgba(246, 8, 52, 1) 100%)'
             }}
           ></div>
           <Box className="relative z-10 mx-auto flex h-[50vh] w-full max-w-screen-xl flex-row px-4 sm:flex-row 2xl:px-0">
@@ -59,7 +59,7 @@ export default function AccommodationPage() {
               <Box className="flex w-full flex-col pt-12 sm:h-[180px] sm:flex-row sm:pb-12 sm:pt-0">
                 <Paragraph fontFamily="font-nexa" className="my-auto pr-4 text-white sm:w-[50%]">
                   At Africa Digital Media Institute (ADMI), we understand that finding the right accommodation is
-                  essential for your academic success and overall well-being. 
+                  essential for your academic success and overall well-being.
                 </Paragraph>
                 <Divider
                   orientation={isMobile ? 'horizontal' : 'vertical'}
@@ -254,5 +254,5 @@ export default function AccommodationPage() {
         </Box>
       </Box>
     </MainLayout>
-  );
+  )
 }

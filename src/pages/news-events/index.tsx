@@ -1,12 +1,12 @@
-import { Box, Tabs } from '@mantine/core';
-import { PageSEO } from '@/components/shared/v3';
-import { MainLayout } from '@/layouts/v3/MainLayout';
-import { AnnouncementCard, EmptyCard, EventAnnouncementCard, NewsItemCard } from '@/components/cards';
+import { Box, Tabs } from '@mantine/core'
+import { PageSEO } from '@/components/shared/v3'
+import { MainLayout } from '@/layouts/v3/MainLayout'
+import { AnnouncementCard, EmptyCard, EventAnnouncementCard, NewsItemCard } from '@/components/cards'
 
-import ImageNews from '@/assets/images/featured-news.svg';
-import IconDiary from '@/assets/icons/Diary';
-import { IContentfulEntry } from '@/types';
-import { Paragraph } from '@/components/ui';
+import ImageNews from '@/assets/images/featured-news.svg'
+import IconDiary from '@/assets/icons/Diary'
+import { IContentfulEntry } from '@/types'
+import { Paragraph } from '@/components/ui'
 
 export default function NewsEventsLandingPage({ news, events, featuredNews, featuredEvent }: any) {
   return (
@@ -111,31 +111,31 @@ export default function NewsEventsLandingPage({ news, events, featuredNews, feat
         </Tabs>
       </Box>
     </MainLayout>
-  );
+  )
 }
 
 export async function getServerSideProps() {
   try {
     const [newsRes, eventsRes] = await Promise.all([
       fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v3/news`),
-      fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v3/events`),
-    ]);
+      fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v3/events`)
+    ])
 
-    if (!newsRes.ok || !eventsRes.ok) throw new Error('Failed to fetch data');
+    if (!newsRes.ok || !eventsRes.ok) throw new Error('Failed to fetch data')
 
-    const [news, events] = await Promise.all([newsRes.json(), eventsRes.json()]);
-    const sortedEvents = events.reverse();
+    const [news, events] = await Promise.all([newsRes.json(), eventsRes.json()])
+    const sortedEvents = events.reverse()
 
     return {
       props: {
         news: news,
         events: sortedEvents,
         featuredNews: news.find((article: IContentfulEntry) => article.fields.featured) || null,
-        featuredEvent: sortedEvents[0] || null,
-      },
-    };
+        featuredEvent: sortedEvents[0] || null
+      }
+    }
   } catch (error) {
-    console.error('Error fetching news & events:', error);
-    return { props: { news: [], events: [], featuredNews: null, featuredEvent: null } };
+    console.error('Error fetching news & events:', error)
+    return { props: { news: [], events: [], featuredNews: null, featuredEvent: null } }
   }
 }

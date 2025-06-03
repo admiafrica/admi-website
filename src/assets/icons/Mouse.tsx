@@ -1,8 +1,8 @@
 type Props = {
-  color?: string;
-  width?: number;
-  height?: number;
-};
+  color?: string
+  width?: number
+  height?: number
+}
 
 export default function IconMouse({ color = 'black', width, height }: Props) {
   return (
@@ -18,5 +18,5 @@ export default function IconMouse({ color = 'black', width, height }: Props) {
       />
       <path d="M12 9.5V11.5" stroke={color} strokeWidth="1.5" strokeLinecap="round" />
     </svg>
-  );
+  )
 }

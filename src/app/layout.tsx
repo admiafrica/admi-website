@@ -6,12 +6,37 @@ export const metadata: Metadata = {
     default: 'Africa Digital Media Institute (ADMI)',
     template: '%s | ADMI'
   },
-  description: 'Africa Digital Media Institute - Leading Creative Media and Technology Training Institution across Africa. Empowering creative professionals through industry-relevant education and training. Serving students from Kenya, Tanzania, Uganda, Rwanda, Nigeria, Ghana, South Africa and beyond.',
+  description:
+    'Africa Digital Media Institute - Leading Creative Media and Technology Training Institution across Africa. Empowering creative professionals through industry-relevant education and training. Serving students from Kenya, Tanzania, Uganda, Rwanda, Nigeria, Ghana, South Africa and beyond.',
   keywords: [
-    'creative media', 'technology training', 'digital media', 'creative education', 'Africa', 'ADMI', 'Africa Digital Media Institute',
-    'film', 'animation', 'graphic design', 'creative technology', 'media technology', 'Kenya', 'Tanzania', 'Uganda', 'Rwanda',
-    'Nigeria', 'Ghana', 'South Africa', 'East Africa', 'West Africa', 'Southern Africa',
-    'online learning', 'creative training', 'media education', 'technology education', 'creative institution', 'Nairobi'
+    'creative media',
+    'technology training',
+    'digital media',
+    'creative education',
+    'Africa',
+    'ADMI',
+    'Africa Digital Media Institute',
+    'film',
+    'animation',
+    'graphic design',
+    'creative technology',
+    'media technology',
+    'Kenya',
+    'Tanzania',
+    'Uganda',
+    'Rwanda',
+    'Nigeria',
+    'Ghana',
+    'South Africa',
+    'East Africa',
+    'West Africa',
+    'Southern Africa',
+    'online learning',
+    'creative training',
+    'media education',
+    'technology education',
+    'creative institution',
+    'Nairobi'
   ],
   authors: [{ name: 'Africa Digital Media Institute' }],
   creator: 'Africa Digital Media Institute',
@@ -20,16 +45,17 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/',
     languages: {
-      'en': '/',
-      'sw': '/sw',
-      'fr': '/fr',
-      'ar': '/ar',
-      'pt': '/pt',
-    },
+      en: '/',
+      sw: '/sw',
+      fr: '/fr',
+      ar: '/ar',
+      pt: '/pt'
+    }
   },
   openGraph: {
     title: 'Africa Digital Media Institute (ADMI)',
-    description: 'Africa Digital Media Institute - Leading Creative Media and Technology Training Institution across Africa. Empowering creative professionals through industry-relevant education and training.',
+    description:
+      'Africa Digital Media Institute - Leading Creative Media and Technology Training Institution across Africa. Empowering creative professionals through industry-relevant education and training.',
     url: '/',
     siteName: 'Africa Digital Media Institute',
     images: [
@@ -37,36 +63,33 @@ export const metadata: Metadata = {
         url: '/logo.png',
         width: 1200,
         height: 630,
-        alt: 'Africa Digital Media Institute',
-      },
+        alt: 'Africa Digital Media Institute'
+      }
     ],
     locale: 'en_US',
-    type: 'website',
+    type: 'website'
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Africa Digital Media Institute (ADMI)',
-    description: 'Africa Digital Media Institute - Leading Creative Media and Technology Training Institution across Africa. Empowering creative professionals through industry-relevant education and training.',
+    description:
+      'Africa Digital Media Institute - Leading Creative Media and Technology Training Institution across Africa. Empowering creative professionals through industry-relevant education and training.',
     images: ['/logo.png'],
-    creator: '@admiafrica',
+    creator: '@admiafrica'
   },
   robots: {
     index: true,
     follow: true,
     'max-snippet': 200,
     'max-image-preview': 'large',
-    'max-video-preview': -1,
+    'max-video-preview': -1
   },
   verification: {
-    google: process.env.GOOGLE_SITE_VERIFICATION,
-  },
+    google: process.env.GOOGLE_SITE_VERIFICATION
+  }
 }
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <head>

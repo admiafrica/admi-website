@@ -1,58 +1,58 @@
-import { Anchor, Box } from '@mantine/core';
+import { Anchor, Box } from '@mantine/core'
 
-import { Paragraph, Title } from '../ui';
-import { CollapsibleContent } from '../shared/v3';
-import { useCallback, useEffect, useState } from 'react';
-import { IContentfulEntry } from '@/types';
+import { Paragraph, Title } from '../ui'
+import { CollapsibleContent } from '../shared/v3'
+import { useCallback, useEffect, useState } from 'react'
+import { IContentfulEntry } from '@/types'
 
 export default function FinancialPlanning() {
-  const [kenyanFees, setKenyanFees] = useState<Array<IContentfulEntry>>([]);
-  const [intlFees, setIntlFees] = useState<Array<IContentfulEntry>>([]);
+  const [kenyanFees, setKenyanFees] = useState<Array<IContentfulEntry>>([])
+  const [intlFees, setIntlFees] = useState<Array<IContentfulEntry>>([])
 
   const fetchFeeStructure = useCallback(async () => {
     try {
-      const response = await fetch(`/api/v3/fee-structure`);
-      const data = await response.json();
+      const response = await fetch('/api/v3/fee-structure')
+      const data = await response.json()
       const filteredKenyan = data.filter(
         (item: IContentfulEntry) => item.fields.studentCategory == 'Kenyan & East African Students'
-      );
+      )
       const filteredIntl = data.filter(
         (item: IContentfulEntry) => item.fields.studentCategory != 'Kenyan & East African Students'
-      );
-      setKenyanFees(filteredKenyan);
-      setIntlFees(filteredIntl);
+      )
+      setKenyanFees(filteredKenyan)
+      setIntlFees(filteredIntl)
     } catch (error) {
-      console.log('Error fetching courses:', error);
+      console.log('Error fetching courses:', error)
     }
-  }, []);
+  }, [])
 
   const handleDocumentDownload = async (feeDocument: any) => {
     try {
-      const response = await fetch(`https:${feeDocument.url}`);
-      if (!response.ok) throw new Error('Failed to fetch file');
+      const response = await fetch(`https:${feeDocument.url}`)
+      if (!response.ok) throw new Error('Failed to fetch file')
 
-      const blob = await response.blob();
-      const link = document.createElement('a');
+      const blob = await response.blob()
+      const link = document.createElement('a')
 
-      link.href = URL.createObjectURL(blob);
-      link.download = feeDocument.fileName;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      URL.revokeObjectURL(link.href);
+      link.href = URL.createObjectURL(blob)
+      link.download = feeDocument.fileName
+      document.body.appendChild(link)
+      link.click()
+      document.body.removeChild(link)
+      URL.revokeObjectURL(link.href)
     } catch (error) {
-      console.error('Download failed:', error);
+      console.error('Download failed:', error)
     }
-  };
+  }
 
   useEffect(() => {
-    fetchFeeStructure();
-  }, [fetchFeeStructure]);
+    fetchFeeStructure()
+  }, [fetchFeeStructure])
 
   return (
     <Box className="w-full">
       <CollapsibleContent
-        key={`finance-plan-1`}
+        key={'finance-plan-1'}
         title="Fee Structure"
         content={
           <Box>
@@ -96,7 +96,7 @@ export default function FinancialPlanning() {
         }
       />
       <CollapsibleContent
-        key={`finance-plan-2`}
+        key={'finance-plan-2'}
         title="Paying your Fees"
         content={
           <Box>
@@ -147,7 +147,7 @@ export default function FinancialPlanning() {
         }
       />
       <CollapsibleContent
-        key={`finance-plan-3`}
+        key={'finance-plan-3'}
         title="Scholarships and Grants"
         content={
           <Paragraph>
@@ -156,7 +156,7 @@ export default function FinancialPlanning() {
         }
       />
       <CollapsibleContent
-        key={`finance-plan-4`}
+        key={'finance-plan-4'}
         title="Contact Finance Office"
         content={
           <Box>
@@ -183,5 +183,5 @@ export default function FinancialPlanning() {
         }
       />
     </Box>
-  );
+  )
 }

@@ -38,23 +38,14 @@ const extractPlainText = (richText: any): string => {
   if (!richText || !richText.content) return ''
 
   return richText.content
-    .map((block: any) =>
-      block.content
-        ?.map((content: any) => content.value || '')
-        .join(' ')
-    )
+    .map((block: any) => block.content?.map((content: any) => content.value || '').join(' '))
     .join(' ')
 }
 
-export function CMSCourseFAQs({
-  courseSlug,
-  fallbackFAQs = [],
-  showGeneralFallback = true
-}: CMSCourseFAQsProps) {
+export function CMSCourseFAQs({ courseSlug, fallbackFAQs = [], showGeneralFallback = true }: CMSCourseFAQsProps) {
   const [faqs, setFaqs] = useState<ICourseFAQ[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
-
 
   useEffect(() => {
     const fetchFAQs = async () => {
@@ -95,11 +86,11 @@ export function CMSCourseFAQs({
     if (fallbackFAQs.length > 0) {
       return fallbackFAQs
     }
-    
+
     if (showGeneralFallback) {
       return GENERAL_DIPLOMA_FAQS.slice(0, 8) // Show first 8 general FAQs as fallback
     }
-    
+
     return []
   }
 
@@ -111,20 +102,23 @@ export function CMSCourseFAQs({
     question: faq.fields?.question || faq.question,
     answer: renderFAQContent(faq.fields?.answer || faq.answer),
     category: faq.fields?.category || faq.category || 'General Information',
-    isRichText: !!(faq.fields?.answer?.nodeType || (typeof (faq.fields?.answer || faq.answer) === 'object' && (faq.fields?.answer || faq.answer)?.nodeType))
+    isRichText: !!(
+      faq.fields?.answer?.nodeType ||
+      (typeof (faq.fields?.answer || faq.answer) === 'object' && (faq.fields?.answer || faq.answer)?.nodeType)
+    )
   }))
 
   // Show all FAQs (no filtering)
   const filteredFAQs = formattedFAQs
-
-
 
   if (loading) {
     return (
       <Container size="lg" py="xl">
         <div className="text-center">
           <Loader size="lg" />
-          <Text mt="md" c="dimmed">Loading course FAQs...</Text>
+          <Text mt="md" c="dimmed">
+            Loading course FAQs...
+          </Text>
         </div>
       </Container>
     )
@@ -134,12 +128,7 @@ export function CMSCourseFAQs({
   if (error && displayFAQs.length === 0) {
     return (
       <Container size="lg" py="xl">
-        <Alert
-          icon={<IconAlertCircle size={16} />}
-          title="Unable to load FAQs"
-          color="red"
-          variant="light"
-        >
+        <Alert icon={<IconAlertCircle size={16} />} title="Unable to load FAQs" color="red" variant="light">
           {error}. Please try refreshing the page or contact support if the problem persists.
         </Alert>
       </Container>
@@ -152,18 +141,15 @@ export function CMSCourseFAQs({
 
   return (
     <Container size="lg" py="xl">
-      <div className="text-center mb-8">
+      <div className="mb-8 text-center">
         <Title order={2} size="h1" mb="md">
           Frequently Asked Questions
         </Title>
         <Text size="lg" c="dimmed" maw={600} mx="auto">
-          Get answers to common questions about this course, admission requirements, 
-          career prospects, and student support services.
+          Get answers to common questions about this course, admission requirements, career prospects, and student
+          support services.
         </Text>
-
       </div>
-
-
 
       {/* FAQ Accordion */}
       <Accordion
@@ -173,25 +159,25 @@ export function CMSCourseFAQs({
         styles={{
           chevron: {
             '&[data-rotate]': {
-              transform: 'rotate(180deg)',
-            },
+              transform: 'rotate(180deg)'
+            }
           },
           item: {
             border: '1px solid #e9ecef',
             '&[data-active]': {
-              borderColor: '#228be6',
-            },
+              borderColor: '#228be6'
+            }
           },
           control: {
             padding: '1rem 1.5rem',
             '&:hover': {
-              backgroundColor: '#f8f9fa',
-            },
+              backgroundColor: '#f8f9fa'
+            }
           },
           content: {
             padding: '1rem 1.5rem',
-            paddingTop: 0,
-          },
+            paddingTop: 0
+          }
         }}
       >
         {filteredFAQs.map((faq, index) => (
@@ -207,10 +193,7 @@ export function CMSCourseFAQs({
             </Accordion.Control>
             <Accordion.Panel>
               {faq.isRichText ? (
-                <div
-                  className="text-sm leading-relaxed"
-                  dangerouslySetInnerHTML={{ __html: faq.answer }}
-                />
+                <div className="text-sm leading-relaxed" dangerouslySetInnerHTML={{ __html: faq.answer }} />
               ) : (
                 <Text size="sm" lh={1.6}>
                   {faq.answer}
@@ -220,8 +203,6 @@ export function CMSCourseFAQs({
           </Accordion.Item>
         ))}
       </Accordion>
-
-
     </Container>
   )
 }
