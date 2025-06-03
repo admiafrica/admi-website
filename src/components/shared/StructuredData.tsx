@@ -52,7 +52,7 @@ export function OrganizationSchema({
       contactType: 'customer service'
     },
     foundingDate: '2012',
-    description: 'Africa Digital Media Institute - Empowering creative professionals across Africa through industry-relevant digital media education and training.',
+    description: 'Africa Digital Media Institute - Leading Creative Media and Technology Training Institution across Africa. Empowering creative professionals through industry-relevant education and training.',
     areaServed: [
       { '@type': 'Country', name: 'Kenya' },
       { '@type': 'Country', name: 'Tanzania' },

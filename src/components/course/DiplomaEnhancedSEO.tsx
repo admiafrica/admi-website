@@ -27,7 +27,7 @@ export function DiplomaEnhancedSEO({
   // Note: Enhanced keywords are generated via generateDiplomaKeywords utility when needed
   
   // Enhanced description for diploma programs
-  const enhancedDescription = `${course.name} - 2-year comprehensive diploma program at Africa Digital Media Institute. Industry-recognized qualification with ${employmentRate}% employment rate. Hands-on training with professional equipment, internships, and career placement assistance. Serving students across Africa with flexible learning options.`
+  const enhancedDescription = `${course.name} - 2-year comprehensive diploma program at Africa Digital Media Institute, the leading Creative Media and Technology Training Institution across Africa. Industry-recognized qualification with ${employmentRate}% employment rate. Hands-on training with professional equipment, internships, and career placement assistance. Serving students across Africa with flexible learning options.`
 
   // Extract learning outcomes and career options
   const learningOutcomes = course.learningOutcomes?.content

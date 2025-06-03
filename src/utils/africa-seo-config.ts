@@ -49,27 +49,27 @@ export const AFRICAN_LANGUAGES = {
 export const AFRICAN_SEO_KEYWORDS = [
   // General Africa terms
   'Africa', 'African', 'pan-African', 'sub-Saharan Africa',
-  
+
   // Regional terms
   'East Africa', 'West Africa', 'Southern Africa', 'North Africa', 'Central Africa',
-  
+
   // Country-specific terms
   'Kenya', 'Tanzania', 'Uganda', 'Rwanda', 'Nigeria', 'Ghana', 'South Africa',
   'Ethiopia', 'Cameroon', 'Senegal', 'Egypt', 'Morocco', 'Angola',
-  
+
   // City terms
   'Nairobi', 'Lagos', 'Accra', 'Cape Town', 'Johannesburg', 'Dar es Salaam',
   'Kampala', 'Kigali', 'Addis Ababa', 'Cairo', 'Casablanca', 'Dakar',
-  
+
   // Education terms
-  'African education', 'digital media Africa', 'creative education Africa',
+  'African education', 'creative media Africa', 'technology training Africa', 'digital media Africa', 'creative education Africa',
   'online learning Africa', 'distance learning Africa', 'African students',
-  'African universities', 'higher education Africa',
-  
+  'African universities', 'higher education Africa', 'creative institution Africa',
+
   // Industry terms
-  'African creative industry', 'Nollywood', 'African film', 'African animation',
+  'African creative industry', 'creative media training', 'technology education Africa', 'Nollywood', 'African film', 'African animation',
   'African digital transformation', 'African tech education', 'African media',
-  'creative professionals Africa', 'digital skills Africa'
+  'creative professionals Africa', 'digital skills Africa', 'media technology Africa'
 ]
 
 export const generateAfricanHreflangTags = (currentPath: string = '/') => {
@@ -105,7 +105,7 @@ export const generateAfricanStructuredData = () => ({
   '@type': 'EducationalOrganization',
   name: 'Africa Digital Media Institute',
   alternateName: 'ADMI',
-  description: 'Leading digital media and creative education institute serving students across Africa',
+  description: 'Leading Creative Media and Technology Training Institution serving students across Africa',
   url: 'https://admi.africa',
   areaServed: AFRICAN_COUNTRIES.map(country => ({
     '@type': 'Country',

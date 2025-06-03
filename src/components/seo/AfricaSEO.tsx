@@ -13,7 +13,7 @@ interface AfricaSEOProps {
 
 export function AfricaSEO({
   title = 'Digital Media Education Across Africa',
-  description = 'Africa Digital Media Institute serves students across Africa with world-class digital media and creative education. From Kenya to Nigeria, Ghana to South Africa - empowering African creative professionals.',
+  description = 'Africa Digital Media Institute - Leading Creative Media and Technology Training Institution across Africa. From Kenya to Nigeria, Ghana to South Africa - empowering African creative professionals with world-class education.',
   targetCountries = [],
   targetRegions = [],
   additionalKeywords = []

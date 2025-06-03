@@ -6,12 +6,12 @@ export const metadata: Metadata = {
     default: 'Africa Digital Media Institute (ADMI)',
     template: '%s | ADMI'
   },
-  description: 'Africa Digital Media Institute - Empowering creative professionals across Africa through industry-relevant digital media education and training. Serving students from Kenya, Tanzania, Uganda, Rwanda, Nigeria, Ghana, South Africa and beyond.',
+  description: 'Africa Digital Media Institute - Leading Creative Media and Technology Training Institution across Africa. Empowering creative professionals through industry-relevant education and training. Serving students from Kenya, Tanzania, Uganda, Rwanda, Nigeria, Ghana, South Africa and beyond.',
   keywords: [
-    'digital media', 'creative education', 'Africa', 'ADMI', 'Africa Digital Media Institute',
-    'film', 'animation', 'graphic design', 'Kenya', 'Tanzania', 'Uganda', 'Rwanda',
+    'creative media', 'technology training', 'digital media', 'creative education', 'Africa', 'ADMI', 'Africa Digital Media Institute',
+    'film', 'animation', 'graphic design', 'creative technology', 'media technology', 'Kenya', 'Tanzania', 'Uganda', 'Rwanda',
     'Nigeria', 'Ghana', 'South Africa', 'East Africa', 'West Africa', 'Southern Africa',
-    'online learning', 'creative training', 'media education', 'Nairobi'
+    'online learning', 'creative training', 'media education', 'technology education', 'creative institution', 'Nairobi'
   ],
   authors: [{ name: 'Africa Digital Media Institute' }],
   creator: 'Africa Digital Media Institute',
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'Africa Digital Media Institute (ADMI)',
-    description: 'Africa Digital Media Institute - Empowering creative professionals across Africa through industry-relevant digital media education and training.',
+    description: 'Africa Digital Media Institute - Leading Creative Media and Technology Training Institution across Africa. Empowering creative professionals through industry-relevant education and training.',
     url: '/',
     siteName: 'Africa Digital Media Institute',
     images: [
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Africa Digital Media Institute (ADMI)',
-    description: 'Africa Digital Media Institute - Empowering creative professionals across Africa through industry-relevant digital media education and training.',
+    description: 'Africa Digital Media Institute - Leading Creative Media and Technology Training Institution across Africa. Empowering creative professionals through industry-relevant education and training.',
     images: ['/logo.png'],
     creator: '@admiafrica',
   },
