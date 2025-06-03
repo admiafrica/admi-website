@@ -193,18 +193,11 @@ export function CMSCourseFAQs({
           Get answers to common questions about this course, admission requirements, 
           career prospects, and student support services.
         </Text>
-        {faqs.length === 0 && (
-          <Text size="sm" c="dimmed" mt="xs">
-            {fallbackFAQs.length > 0
-              ? "Showing course-specific FAQs from course data."
-              : "Showing general diploma FAQs. Course-specific FAQs will be added soon."
-            }
-          </Text>
-        )}
+
       </div>
 
-      {/* Category Filter */}
-      {categories.length > 2 && (
+      {/* Category Filter - Hidden for cleaner UI */}
+      {false && categories.length > 2 && (
         <Group justify="center" mb="xl" gap="xs">
           {categories.map((category) => (
             <Button
@@ -258,14 +251,6 @@ export function CMSCourseFAQs({
                   <Text fw={500} size="md">
                     {faq.question}
                   </Text>
-                  <Badge 
-                    size="xs" 
-                    variant="light" 
-                    color={getCategoryColor(faq.category)}
-                    mt={4}
-                  >
-                    {faq.category}
-                  </Badge>
                 </div>
               </Group>
             </Accordion.Control>
@@ -285,23 +270,7 @@ export function CMSCourseFAQs({
         ))}
       </Accordion>
 
-      {/* Call to Action */}
-      <div className="text-center mt-12 p-8 bg-gray-50 rounded-lg">
-        <Title order={3} mb="md">
-          Still Have Questions?
-        </Title>
-        <Text mb="lg" c="dimmed">
-          Our admissions team is here to help you make the right choice for your career.
-        </Text>
-        <Group justify="center" gap="md">
-          <Button size="lg" variant="filled">
-            Contact Admissions
-          </Button>
-          <Button size="lg" variant="outline">
-            Download Brochure
-          </Button>
-        </Group>
-      </div>
+
     </Container>
   )
 }

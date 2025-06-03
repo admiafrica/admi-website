@@ -8,11 +8,28 @@ import {
   CourseStudents,
 } from '@/components/course';
 import { CMSCourseFAQs } from '@/components/course/CMSCourseFAQs';
+import {
+  GRAPHIC_DESIGN_FAQS,
+  ANIMATION_VFX_FAQS,
+  FILM_TELEVISION_FAQS,
+  AUDIO_PRODUCTION_FAQS,
+  PHOTOGRAPHY_FAQS
+} from '@/data/diploma-faqs';
 import { PageSEO } from '@/components/shared/v3';
 import { CourseSchema, BreadcrumbSchema } from '@/components/shared/StructuredData';
 import { DiplomaEnhancedSEO } from '@/components/course/DiplomaEnhancedSEO';
 // generateDiplomaKeywords utility available for future enhancements
 import { GENERAL_DIPLOMA_FAQS } from '@/data/diploma-faqs';
+
+// Helper function to get correct FAQs based on course slug
+const getCorrectFAQsForCourse = (slug: string) => {
+  if (slug.includes('graphic-design')) return GRAPHIC_DESIGN_FAQS
+  if (slug.includes('animation') || slug.includes('vfx')) return ANIMATION_VFX_FAQS
+  if (slug.includes('film') || slug.includes('television')) return FILM_TELEVISION_FAQS
+  if (slug.includes('audio') || slug.includes('sound')) return AUDIO_PRODUCTION_FAQS
+  if (slug.includes('photography')) return PHOTOGRAPHY_FAQS
+  return [] // Return empty array for non-diploma courses
+}
 
 export default function CourseDetailPage({
   course,
@@ -170,7 +187,7 @@ export default function CourseDetailPage({
       <CourseApplicationProcess processes={course.applicationProcesses || []} />
       <CMSCourseFAQs
         courseSlug={slug}
-        fallbackFAQs={course.faqs || []}
+        fallbackFAQs={getCorrectFAQsForCourse(slug)}
         showGeneralFallback={isDiploma}
       />
     </MainLayout>
