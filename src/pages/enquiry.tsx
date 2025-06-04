@@ -1,27 +1,27 @@
-import { Box } from '@mantine/core';
-import Image from 'next/image';
+import { Box } from '@mantine/core'
+import Image from 'next/image'
 
-import { MainLayout } from '@/layouts/v3/MainLayout';
-import { EnquiryForm } from '@/components/forms';
-import { Title } from '@/components/ui';
-import { PageSEO } from '@/components/shared/v3';
-import { useIsMobile } from '@/hooks/useIsMobile';
+import { MainLayout } from '@/layouts/v3/MainLayout'
+import { EnquiryForm } from '@/components/forms'
+import { Title } from '@/components/ui'
+import { PageSEO } from '@/components/shared/v3'
+import { useIsMobile } from '@/hooks/useIsMobile'
 
-import ImageEnquiry1 from '@/assets/images/enquiry-1.png';
-import ImageEnquiry2 from '@/assets/images/enquiry-2.png';
-import ImageEnquiry3 from '@/assets/images/enquiry-3.png';
+import ImageEnquiry1 from '@/assets/images/enquiry-1.png'
+import ImageEnquiry2 from '@/assets/images/enquiry-2.png'
+import ImageEnquiry3 from '@/assets/images/enquiry-3.png'
 
-import IconTrophy from '@/assets/icons/Trophy';
-import IconDoorkey from '@/assets/icons/DoorKey';
-import IconShootingStar from '@/assets/icons/ShootingStar';
-import IconLightbulbOn from '@/assets/icons/LightbulbOn';
-import IconHat from '@/assets/icons/Hat';
+import IconTrophy from '@/assets/icons/Trophy'
+import IconDoorkey from '@/assets/icons/DoorKey'
+import IconShootingStar from '@/assets/icons/ShootingStar'
+import IconLightbulbOn from '@/assets/icons/LightbulbOn'
+import IconHat from '@/assets/icons/Hat'
 
-import IconBgImageYellow from '@/assets/icons/ellipse-yellow.svg';
-import IconBgImageRed from '@/assets/icons/ellipse-red.svg';
+import IconBgImageYellow from '@/assets/icons/ellipse-yellow.svg'
+import IconBgImageRed from '@/assets/icons/ellipse-red.svg'
 
 export default function EnquiryPage() {
-  const isMobile = useIsMobile();
+  const isMobile = useIsMobile()
 
   return (
     <MainLayout minimizeFooter minimizeHeader footerBgColor="#002A23">
@@ -98,5 +98,5 @@ export default function EnquiryPage() {
         </div>
       </div>
     </MainLayout>
-  );
+  )
 }

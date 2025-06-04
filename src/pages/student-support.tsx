@@ -1,69 +1,69 @@
-import { useCallback, useEffect, useState, useRef } from 'react';
-import Image from 'next/image';
-import { Box, Card } from '@mantine/core';
-import { Carousel } from '@mantine/carousel';
-import Autoplay from 'embla-carousel-autoplay';
+import { useCallback, useEffect, useState, useRef } from 'react'
+import Image from 'next/image'
+import { Box, Card } from '@mantine/core'
+import { Carousel } from '@mantine/carousel'
+import Autoplay from 'embla-carousel-autoplay'
 
-import { MainLayout } from '@/layouts/v3/MainLayout';
-import { Paragraph, Title } from '@/components/ui';
-import { PageSEO } from '@/components/shared/v3';
-import { AdviceCard, ClipCard, UserProfileCard, UserTestimonialCard } from '@/components/cards';
+import { MainLayout } from '@/layouts/v3/MainLayout'
+import { Paragraph, Title } from '@/components/ui'
+import { PageSEO } from '@/components/shared/v3'
+import { AdviceCard, ClipCard, UserProfileCard, UserTestimonialCard } from '@/components/cards'
 import {
   ADMI_ACADEMIC_TEAM_MINIMAL,
   ADMI_CAREER_ADVICE,
   ADMI_STUDENT_COUNCIL,
   ADMI_STUDENT_SUPPORT,
   CALENDAR_DOWNLOAD_LINK,
-  CALENDAR_DOWNLOAD_NAME,
-} from '@/utils';
+  CALENDAR_DOWNLOAD_NAME
+} from '@/utils'
 
-import { IconDownload } from '@tabler/icons-react';
-import IconSpinner from '@/assets/icons/Spinner';
-import IconUsersGroup from '@/assets/icons/UsersGroup';
-import IconDashboardTabs from '@/assets/icons/DashboardTabs';
-import IconCalendarCheck from '@/assets/icons/CalendarCheck';
-import ImageCalendar from '@/assets/images/calendar.svg';
-import ImageSupportLanding from '@/assets/images/student-support-landing.png';
-import { FinancialPlanning, InternationalStudents } from '@/components/student-support';
+import { IconDownload } from '@tabler/icons-react'
+import IconSpinner from '@/assets/icons/Spinner'
+import IconUsersGroup from '@/assets/icons/UsersGroup'
+import IconDashboardTabs from '@/assets/icons/DashboardTabs'
+import IconCalendarCheck from '@/assets/icons/CalendarCheck'
+import ImageCalendar from '@/assets/images/calendar.svg'
+import ImageSupportLanding from '@/assets/images/student-support-landing.png'
+import { FinancialPlanning, InternationalStudents } from '@/components/student-support'
 
 export default function StudentSupportPage() {
-  const [content, setContent] = useState<any>();
-  const autoplaySupport = useRef(Autoplay({ delay: 4000 }));
-  const autoplayTestimonials = useRef(Autoplay({ delay: 4000 }));
-  const autoplayFacilities = useRef(Autoplay({ delay: 4000 }));
+  const [content, setContent] = useState<any>()
+  const autoplaySupport = useRef(Autoplay({ delay: 4000 }))
+  const autoplayTestimonials = useRef(Autoplay({ delay: 4000 }))
+  const autoplayFacilities = useRef(Autoplay({ delay: 4000 }))
 
   const fetchContent = useCallback(async () => {
     try {
-      const response = await fetch(`/api/v3/homepage`);
-      const data = await response.json();
-      setContent(data[0]);
+      const response = await fetch('/api/v3/homepage')
+      const data = await response.json()
+      setContent(data[0])
     } catch (error) {
-      console.log('Error fetching courses:', error);
+      console.log('Error fetching courses:', error)
     }
-  }, []);
+  }, [])
 
   const handleCalendarDownload = async () => {
     try {
-      const response = await fetch(CALENDAR_DOWNLOAD_LINK);
-      if (!response.ok) throw new Error('Failed to fetch file');
+      const response = await fetch(CALENDAR_DOWNLOAD_LINK)
+      if (!response.ok) throw new Error('Failed to fetch file')
 
-      const blob = await response.blob();
-      const link = document.createElement('a');
+      const blob = await response.blob()
+      const link = document.createElement('a')
 
-      link.href = URL.createObjectURL(blob);
-      link.download = CALENDAR_DOWNLOAD_NAME;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      URL.revokeObjectURL(link.href);
+      link.href = URL.createObjectURL(blob)
+      link.download = CALENDAR_DOWNLOAD_NAME
+      document.body.appendChild(link)
+      link.click()
+      document.body.removeChild(link)
+      URL.revokeObjectURL(link.href)
     } catch (error) {
-      console.error('Download failed:', error);
+      console.error('Download failed:', error)
     }
-  };
+  }
 
   useEffect(() => {
-    fetchContent();
-  }, [fetchContent]);
+    fetchContent()
+  }, [fetchContent])
 
   return (
     <MainLayout footerBgColor="white">
@@ -84,7 +84,7 @@ export default function StudentSupportPage() {
           <div
             className="z-5 absolute inset-0"
             style={{
-              background: 'linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0, 42, 35, 1) 100%)',
+              background: 'linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0, 42, 35, 1) 100%)'
             }}
           ></div>
           <Box className="relative z-10 mx-auto flex h-[500px] w-full max-w-screen-xl flex-row px-4 sm:flex-row 2xl:px-0">
@@ -95,7 +95,7 @@ export default function StudentSupportPage() {
                 We are deeply committed to providing you with comprehensive support that ensures your academic and
                 personal success
               </Paragraph>
-              <Box className="flex cursor-pointer items-center pt-12 w-fit" onClick={handleCalendarDownload}>
+              <Box className="flex w-fit cursor-pointer items-center pt-12" onClick={handleCalendarDownload}>
                 <IconCalendarCheck color="white" />
                 <Box>
                   <Paragraph size="16px" fontFamily="font-nexa" fontWeight={100} className="text-white">
@@ -172,7 +172,7 @@ export default function StudentSupportPage() {
                 your schedule accordingly.
               </Paragraph>
             </Box>
-            <Box className="mt-6 flex cursor-pointer w-fit" onClick={handleCalendarDownload}>
+            <Box className="mt-6 flex w-fit cursor-pointer" onClick={handleCalendarDownload}>
               <IconDownload color="#F60934" size={32} />{' '}
               <Paragraph fontFamily="font-nexa" fontWeight={900} className="my-auto px-2 text-admiRed">
                 Download Calendar
@@ -379,5 +379,5 @@ export default function StudentSupportPage() {
         </Box>
       </div>
     </MainLayout>
-  );
+  )
 }

@@ -1,8 +1,8 @@
 type Props = {
-  color?: string;
-  width?: number;
-  height?: number;
-};
+  color?: string
+  width?: number
+  height?: number
+}
 
 export default function IconSettingGear({ color = 'black', width, height }: Props) {
   return (
@@ -26,5 +26,5 @@ export default function IconSettingGear({ color = 'black', width, height }: Prop
         strokeLinejoin="round"
       />
     </svg>
-  );
+  )
 }

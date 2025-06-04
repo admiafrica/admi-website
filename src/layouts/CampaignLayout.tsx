@@ -1,17 +1,17 @@
-import Head from 'next/head';
+import Head from 'next/head'
 
-import { AppShell, rem } from '@mantine/core';
-import { useHeadroom } from '@mantine/hooks';
+import { AppShell, rem } from '@mantine/core'
+import { useHeadroom } from '@mantine/hooks'
 
-import { Footer } from '@/components/shared';
+import { Footer } from '@/components/shared'
 
 type LayoutProps = {
-  client: 'admi' | 'craydel';
-  children: React.ReactNode;
-};
+  client: 'admi' | 'craydel'
+  children: React.ReactNode
+}
 
 export function CampaignLayout({ children }: LayoutProps) {
-  const pinned = useHeadroom({ fixedAt: 120 });
+  const pinned = useHeadroom({ fixedAt: 120 })
   return (
     <>
       <Head>
@@ -26,12 +26,12 @@ export function CampaignLayout({ children }: LayoutProps) {
         </AppShell.Footer>
       </AppShell>
     </>
-  );
+  )
 }
 
 const footerStyle: React.CSSProperties = {
   backgroundColor: 'white',
   display: 'flex',
   justifyContent: 'space-between',
-  padding: '20px',
-};
+  padding: '20px'
+}

@@ -1,8 +1,8 @@
 type Props = {
-  color?: string;
-  width?: number;
-  height?: number;
-};
+  color?: string
+  width?: number
+  height?: number
+}
 
 export default function IconSpinner({ color = 'black', width, height }: Props) {
   return (
@@ -16,5 +16,5 @@ export default function IconSpinner({ color = 'black', width, height }: Props) {
       <path d="M16.9511 7.04977L14.8298 9.17109" stroke={color} strokeWidth="1.5" strokeLinecap="round" />
       <path d="M16.9511 16.9502L14.8298 14.8289" stroke={color} strokeWidth="1.5" strokeLinecap="round" />
     </svg>
-  );
+  )
 }

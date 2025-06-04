@@ -1,20 +1,20 @@
-import { Group } from '@mantine/core';
-import { CollapsibleContent } from '../shared/v3';
-import { getAssetDetails } from '@/utils';
-import Image from 'next/image';
-import { ParagraphContentful, Title } from '../ui';
-import { useIsMobile } from '@/hooks/useIsMobile';
+import { Group } from '@mantine/core'
+import { CollapsibleContent } from '../shared/v3'
+import { getAssetDetails } from '@/utils'
+import Image from 'next/image'
+import { ParagraphContentful, Title } from '../ui'
+import { useIsMobile } from '@/hooks/useIsMobile'
 
 type Props = {
-  mentors: any[];
-  assets: any[];
-};
+  mentors: any[]
+  assets: any[]
+}
 
 export default function CourseMentors(props: Props) {
-  const isMobile = useIsMobile();
-  const showMentors = props.mentors.length > 1;
+  const isMobile = useIsMobile()
+  const showMentors = props.mentors.length > 1
 
-  if (!showMentors) return;
+  if (!showMentors) return
 
   return (
     <Group bg={'#F76335'} py={32}>
@@ -44,5 +44,5 @@ export default function CourseMentors(props: Props) {
         </div>
       </div>
     </Group>
-  );
+  )
 }

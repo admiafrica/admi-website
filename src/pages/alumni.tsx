@@ -1,22 +1,22 @@
-import Image from 'next/image';
-import { Box, Divider, Modal } from '@mantine/core';
-import { useDisclosure } from '@mantine/hooks';
+import Image from 'next/image'
+import { Box, Divider, Modal } from '@mantine/core'
+import { useDisclosure } from '@mantine/hooks'
 
-import { MainLayout } from '@/layouts/v3/MainLayout';
-import { Paragraph, Title } from '@/components/ui';
-import { PageSEO } from '@/components/shared/v3';
-import { LearnMoreCard, PlainCard, UserProfileCard } from '@/components/cards';
-import { JoinForm } from '@/components/forms';
-import { ADMI_ALUMNI } from '@/utils';
-import { useIsMobile } from '@/hooks/useIsMobile';
+import { MainLayout } from '@/layouts/v3/MainLayout'
+import { Paragraph, Title } from '@/components/ui'
+import { PageSEO } from '@/components/shared/v3'
+import { LearnMoreCard, PlainCard, UserProfileCard } from '@/components/cards'
+import { JoinForm } from '@/components/forms'
+import { ADMI_ALUMNI } from '@/utils'
+import { useIsMobile } from '@/hooks/useIsMobile'
 
-import IconUsersGroupAlt from '@/assets/icons/users-group-alt.svg';
-import IconCelebrate from '@/assets/icons/celebrate.svg';
-import ImageAlumniLanding from '@/assets/images/alumni-landing.png';
+import IconUsersGroupAlt from '@/assets/icons/users-group-alt.svg'
+import IconCelebrate from '@/assets/icons/celebrate.svg'
+import ImageAlumniLanding from '@/assets/images/alumni-landing.png'
 
 export default function AlumniPage() {
-  const isMobile = useIsMobile();
-  const [opened, { open, close }] = useDisclosure(false);
+  const isMobile = useIsMobile()
+  const [opened, { open, close }] = useDisclosure(false)
 
   return (
     <MainLayout footerBgColor="white">
@@ -40,7 +40,7 @@ export default function AlumniPage() {
           <div
             className="z-5 absolute inset-0"
             style={{
-              background: 'linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0, 42, 35, 1) 100%)',
+              background: 'linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0, 42, 35, 1) 100%)'
             }}
           ></div>
           <Box className="relative z-10 mx-auto flex h-[500px] w-full max-w-screen-xl flex-row px-4 sm:flex-row 2xl:px-0">
@@ -158,5 +158,5 @@ export default function AlumniPage() {
         </Box>
       </div>
     </MainLayout>
-  );
+  )
 }

@@ -1,12 +1,12 @@
-import React from 'react';
-import { Box, Card } from '@mantine/core';
+import React from 'react'
+import { Box, Card } from '@mantine/core'
 
-import { Paragraph } from '../ui';
-import IconAttach from '@/assets/icons/Attach';
+import { Paragraph } from '../ui'
+import IconAttach from '@/assets/icons/Attach'
 
 type Props = {
-  support: any;
-};
+  support: any
+}
 
 export default function ClipCard({ support }: Props) {
   return (
@@ -22,5 +22,5 @@ export default function ClipCard({ support }: Props) {
       </Paragraph>
       <Box className="flex h-full flex-row"></Box>
     </Card>
-  );
+  )
 }

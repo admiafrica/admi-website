@@ -1,22 +1,22 @@
-import Image from 'next/image';
-import { Anchor, Box, Divider, Modal } from '@mantine/core';
-import { useDisclosure } from '@mantine/hooks';
+import Image from 'next/image'
+import { Anchor, Box, Divider, Modal } from '@mantine/core'
+import { useDisclosure } from '@mantine/hooks'
 
-import { MainLayout } from '@/layouts/v3/MainLayout';
-import { Paragraph, Title } from '@/components/ui';
-import { PageSEO } from '@/components/shared/v3';
-import { InfoCard, LearnMoreCard, PlainCard } from '@/components/cards';
-import { PortalForm } from '@/components/forms';
-import { ADMI_STUDENT_PORTAL_FEATURES } from '@/utils';
-import { useIsMobile } from '@/hooks/useIsMobile';
+import { MainLayout } from '@/layouts/v3/MainLayout'
+import { Paragraph, Title } from '@/components/ui'
+import { PageSEO } from '@/components/shared/v3'
+import { InfoCard, LearnMoreCard, PlainCard } from '@/components/cards'
+import { PortalForm } from '@/components/forms'
+import { ADMI_STUDENT_PORTAL_FEATURES } from '@/utils'
+import { useIsMobile } from '@/hooks/useIsMobile'
 
-import IconWhiteboard from '@/assets/icons/whiteboard.svg';
-import IconMessageBoxes from '@/assets/icons/message-boxes.svg';
-import ImageStudentLanding from '@/assets/images/student-portal-landing.png';
+import IconWhiteboard from '@/assets/icons/whiteboard.svg'
+import IconMessageBoxes from '@/assets/icons/message-boxes.svg'
+import ImageStudentLanding from '@/assets/images/student-portal-landing.png'
 
 export default function StudentPortalPage() {
-  const isMobile = useIsMobile();
-  const [opened, { open, close }] = useDisclosure(false);
+  const isMobile = useIsMobile()
+  const [opened, { open, close }] = useDisclosure(false)
 
   return (
     <MainLayout footerBgColor="#F5FFFD">
@@ -36,14 +36,14 @@ export default function StudentPortalPage() {
             className="absolute inset-0 z-0"
             style={{
               objectFit: 'cover',
-              objectPosition: '50% 0%',
+              objectPosition: '50% 0%'
             }}
           />
           {/* Radial Gradient Overlay */}
           <div
             className="z-5 absolute inset-0"
             style={{
-              background: 'linear-gradient(181.92deg, rgba(135, 32, 0, 0) 15.5%, #872000 80.69%)',
+              background: 'linear-gradient(181.92deg, rgba(135, 32, 0, 0) 15.5%, #872000 80.69%)'
             }}
           ></div>
           <Box className="relative z-10 mx-auto flex w-full max-w-screen-xl flex-row px-4 sm:h-[50vh] sm:flex-row xl:px-0">
@@ -149,5 +149,5 @@ export default function StudentPortalPage() {
         </Box>
       </div>
     </MainLayout>
-  );
+  )
 }

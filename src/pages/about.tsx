@@ -1,36 +1,36 @@
-import { useRef } from 'react';
-import Image from 'next/image';
-import { useRouter } from 'next/router';
-import { Box, Text } from '@mantine/core';
-import { Carousel } from '@mantine/carousel';
-import Autoplay from 'embla-carousel-autoplay';
+import { useRef } from 'react'
+import Image from 'next/image'
+import { useRouter } from 'next/router'
+import { Box, Text } from '@mantine/core'
+import { Carousel } from '@mantine/carousel'
+import Autoplay from 'embla-carousel-autoplay'
 
-import { Paragraph, Title } from '@/components/ui';
-import { MainLayout } from '@/layouts/v3/MainLayout';
+import { Paragraph, Title } from '@/components/ui'
+import { MainLayout } from '@/layouts/v3/MainLayout'
 
-import { PageSEO, Ribbon, Timeline } from '@/components/shared/v3';
-import { FacilityItemCard, SectorItemCard, CompanyValuesCard, UserProfileCard } from '@/components/cards';
+import { PageSEO, Ribbon, Timeline } from '@/components/shared/v3'
+import { FacilityItemCard, SectorItemCard, CompanyValuesCard, UserProfileCard } from '@/components/cards'
 import {
   ADMI_ABOUT_SECTORS,
   ADMI_ACADEMIC_TEAM_SUMMARY,
   ADMI_DIRECTORS,
   ADMI_FACILITIES,
   ADMI_HISTORY,
-  ADMI_VALUES,
-} from '@/utils';
+  ADMI_VALUES
+} from '@/utils'
 
-import ImageAboutLanding from '@/assets/images/about-landing.svg';
-import IconBgImageYellow from '@/assets/icons/ellipse-yellow.svg';
-import IconBgImageRed from '@/assets/icons/ellipse-red.svg';
-import IconArrowTipRight from '@/assets/icons/ArrowTipRight';
+import ImageAboutLanding from '@/assets/images/about-landing.svg'
+import IconBgImageYellow from '@/assets/icons/ellipse-yellow.svg'
+import IconBgImageRed from '@/assets/icons/ellipse-red.svg'
+import IconArrowTipRight from '@/assets/icons/ArrowTipRight'
 
 export default function AboutPage() {
-  const router = useRouter();
-  const autoplayFacilities = useRef(Autoplay({ delay: 4000 }));
+  const router = useRouter()
+  const autoplayFacilities = useRef(Autoplay({ delay: 4000 }))
 
   const handleViewCourses = () => {
-    router.push('/courses');
-  };
+    router.push('/courses')
+  }
 
   return (
     <MainLayout footerBgColor="#F5FFFD">
@@ -214,5 +214,5 @@ export default function AboutPage() {
         </Box>
       </Box>
     </MainLayout>
-  );
+  )
 }

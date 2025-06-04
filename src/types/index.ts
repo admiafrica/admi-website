@@ -1,53 +1,53 @@
 // Define TypeScript interfaces for Contentful data
 export interface IContentfulSys {
-  id: string;
-  type: string;
-  linkType?: string;
+  id: string
+  type: string
+  linkType?: string
 }
 
 export interface IContentfulLink {
-  sys: IContentfulSys;
+  sys: IContentfulSys
 }
 
 export interface IContentfulAsset {
-  sys: IContentfulSys;
+  sys: IContentfulSys
   fields: {
-    title: string;
+    title: string
     file: {
-      url: string;
-      contentType: string;
-      details: { size: number };
-    };
-  };
+      url: string
+      contentType: string
+      details: { size: number }
+    }
+  }
 }
 
 export interface IContentfulEntry {
-  sys: IContentfulSys;
-  fields: Record<string, any>;
-  assets?: IContentfulAsset[];
+  sys: IContentfulSys
+  fields: Record<string, any>
+  assets?: IContentfulAsset[]
 }
 
 export interface IContentfulResponse {
-  items: IContentfulEntry[];
+  items: IContentfulEntry[]
   includes?: {
-    Asset?: IContentfulAsset[];
-    Entry?: IContentfulEntry[];
-  };
+    Asset?: IContentfulAsset[]
+    Entry?: IContentfulEntry[]
+  }
 }
 
 // FAQ-specific interfaces
 export interface ICourseFAQ {
-  sys: IContentfulSys;
+  sys: IContentfulSys
   fields: {
-    question: string;
-    answer: string;
-    category: string;
-    course?: IContentfulLink;
-    displayOrder?: number;
-  };
+    question: string
+    answer: string
+    category: string
+    course?: IContentfulLink
+    displayOrder?: number
+  }
 }
 
 export interface IFAQResponse {
-  items: ICourseFAQ[];
-  total: number;
+  items: ICourseFAQ[]
+  total: number
 }

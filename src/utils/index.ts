@@ -1,26 +1,26 @@
-import { format } from 'date-fns';
-import { IContentfulAsset, IContentfulEntry } from '@/types';
+import { format } from 'date-fns'
+import { IContentfulAsset, IContentfulEntry } from '@/types'
 
-export * from './constants';
+export * from './constants'
 
 export const getCourseFormUrl = () => {
-  return `https://airtable.com/app0kRJindIHzHTM2/pagmXFb9WKJbimfFa/form`;
-};
+  return 'https://airtable.com/app0kRJindIHzHTM2/pagmXFb9WKJbimfFa/form'
+}
 
 export const getAssetDetails = (assets: IContentfulAsset[], assetId: string) => {
-  const entry = assets.find((item) => item.sys.id === assetId);
-  return entry;
-};
+  const entry = assets.find((item) => item.sys.id === assetId)
+  return entry
+}
 
 // to help in embedding youtube videos
 export function processVideoUrl(videoUrl: string): string {
-  const youtubeRegex = /(?:https?:\/\/)?(?:www\.)?youtube\.com\/watch\?v=([a-zA-Z0-9_-]+)/;
-  const match = videoUrl.match(youtubeRegex);
+  const youtubeRegex = /(?:https?:\/\/)?(?:www\.)?youtube\.com\/watch\?v=([a-zA-Z0-9_-]+)/
+  const match = videoUrl.match(youtubeRegex)
   if (match && match[1]) {
-    const videoId = match[1];
-    return `https://www.youtube.com/embed/${videoId}`;
+    const videoId = match[1]
+    return `https://www.youtube.com/embed/${videoId}`
   }
-  return videoUrl; // Return the original URL if it's not a YouTube link with `/watch`
+  return videoUrl // Return the original URL if it's not a YouTube link with `/watch`
 }
 
 // Helper function to resolve references
@@ -31,28 +31,28 @@ export const resolveReferences = (
 ) => {
   const resolveField: any = (field: any) => {
     if (Array.isArray(field)) {
-      return field.map((item) => resolveField(item));
+      return field.map((item) => resolveField(item))
     }
     if (field?.sys?.type === 'Link') {
-      const linkedId = field.sys.id;
-      const linkedType = field.sys.linkType;
+      const linkedId = field.sys.id
+      const linkedType = field.sys.linkType
 
       if (linkedType === 'Asset') {
-        return assets.find((asset) => asset.sys.id === linkedId) || field;
+        return assets.find((asset) => asset.sys.id === linkedId) || field
       }
       if (linkedType === 'Entry') {
-        return entries.find((entry) => entry.sys.id === linkedId) || field;
+        return entries.find((entry) => entry.sys.id === linkedId) || field
       }
     }
-    return field;
-  };
+    return field
+  }
 
   return Object.entries(fields).reduce<Record<string, IContentfulEntry>>((resolvedFields, [key, value]) => {
-    resolvedFields[key] = resolveField(value);
-    return resolvedFields;
-  }, {});
-};
+    resolvedFields[key] = resolveField(value)
+    return resolvedFields
+  }, {})
+}
 
 export function formatDate(dateString: string): string {
-  return format(new Date(dateString), 'EEEE, do MMMM, yyyy');
+  return format(new Date(dateString), 'EEEE, do MMMM, yyyy')
 }

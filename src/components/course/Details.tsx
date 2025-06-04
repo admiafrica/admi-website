@@ -1,31 +1,31 @@
-import Image from 'next/image';
-import { Card, ScrollArea } from '@mantine/core';
+import Image from 'next/image'
+import { Card, ScrollArea } from '@mantine/core'
 
-import { getAssetDetails } from '@/utils';
-import { CollapsibleContent } from '../shared/v3';
-import { Paragraph, ParagraphContentful, Title } from '../ui';
-import { CourseEnquiryCard } from '../cards';
+import { getAssetDetails } from '@/utils'
+import { CollapsibleContent } from '../shared/v3'
+import { Paragraph, ParagraphContentful, Title } from '../ui'
+import { CourseEnquiryCard } from '../cards'
 
-import IconCheckbox from '@/assets/icons/checkbox.svg';
-import IconBook from '@/assets/icons/book.svg';
-import IconHatBlack from '@/assets/icons/hat-black.svg';
-import IconBackgroundImageA from '@/assets/icons/ellipse-yellow-cut.svg';
-import IconBackgroundImageB from '@/assets/icons/ellipse-orange.svg';
-import { useIsMobile } from '@/hooks/useIsMobile';
+import IconCheckbox from '@/assets/icons/checkbox.svg'
+import IconBook from '@/assets/icons/book.svg'
+import IconHatBlack from '@/assets/icons/hat-black.svg'
+import IconBackgroundImageA from '@/assets/icons/ellipse-yellow-cut.svg'
+import IconBackgroundImageB from '@/assets/icons/ellipse-orange.svg'
+import { useIsMobile } from '@/hooks/useIsMobile'
 
 type Props = {
-  programType: any;
-  creditHours: number;
-  tuitionFees: string;
-  benefits: any[];
-  assets: any[];
-  careerOptions: any;
-  learningOutcomes: any;
-  courseDescription: any;
-};
+  programType: any
+  creditHours: number
+  tuitionFees: string
+  benefits: any[]
+  assets: any[]
+  careerOptions: any
+  learningOutcomes: any
+  courseDescription: any
+}
 
 export default function CourseDetails(props: Props) {
-  const isMobile = useIsMobile();
+  const isMobile = useIsMobile()
 
   return (
     <div className="relative w-full bg-[#F5FFFD] pb-16">
@@ -96,5 +96,5 @@ export default function CourseDetails(props: Props) {
         </div>
       </div>
     </div>
-  );
+  )
 }

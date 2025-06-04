@@ -2,7 +2,9 @@
   margin-bottom: rem(4);
   position: relative;
 
-  input, select, textarea {
+  input,
+  select,
+  textarea {
     font-family: $primary-font;
     font-size: rem(15);
   }
@@ -11,8 +13,10 @@
     color: #000;
   }
 
-  input[type="password"] {
-    font: large Verdana, sans-serif;
+  input[type='password'] {
+    font:
+      large Verdana,
+      sans-serif;
     letter-spacing: 1px;
   }
 
@@ -21,7 +25,8 @@
     resize: none;
   }
 
-  select, textarea {
+  select,
+  textarea {
     &::-webkit-scrollbar {
       width: 5px;
 
@@ -42,7 +47,6 @@
       }
     }
   }
-
 }
 
 .field-label {
@@ -87,7 +91,10 @@
     border-color: #77869d;
   }
 
-  &:active, &:focus, &:focus-within, &:focus-visible {
+  &:active,
+  &:focus,
+  &:focus-within,
+  &:focus-visible {
     border-color: $primary-color;
     outline: none;
   }
@@ -96,7 +103,8 @@
     border-color: $error;
   }
 
-  &:disabled, &[readonly] {
+  &:disabled,
+  &[readonly] {
     background-color: #e9ecef;
     opacity: 1;
     border-color: #e1e3e4;
@@ -134,7 +142,10 @@
     border-color: #77869d !important;
   }
 
-  &:active, &:focus, &:focus-within, &:focus-visible {
+  &:active,
+  &:focus,
+  &:focus-within,
+  &:focus-visible {
     border-color: $primary-color !important;
     outline: none;
   }
@@ -152,7 +163,10 @@
     border-color: #77869d !important;
   }
 
-  &:active, &:focus, &:focus-within, &:focus-visible {
+  &:active,
+  &:focus,
+  &:focus-within,
+  &:focus-visible {
     border-color: $primary-color !important;
     outline: none;
   }
@@ -169,7 +183,6 @@
     width: 100%;
     margin-left: 0 !important;
   }
-
 }
 
 .inline-fields {
@@ -208,7 +221,9 @@
     border-color: #77869d;
   }
 
-  &:active, &:focus, &:focus-within {
+  &:active,
+  &:focus,
+  &:focus-within {
     border-color: $primary-color;
 
     &::after {
@@ -217,7 +232,7 @@
   }
 
   &::after {
-    content: "⯆";
+    content: '⯆';
     display: flex;
     align-items: center;
     justify-content: center;
@@ -225,7 +240,7 @@
     pointer-events: none;
     top: 0;
     right: 0;
-    color: rgba(0, 0, 0, .54);
+    color: rgba(0, 0, 0, 0.54);
     height: 100%;
     width: 40px;
     font-size: rem(14);
@@ -269,7 +284,6 @@
     }
   }
 }
-
 
 @include mappy-query(sm) {
   .inline-fields {

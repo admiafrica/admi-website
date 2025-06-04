@@ -1,33 +1,33 @@
-import React from 'react';
-import { Anchor, Box, Card, Divider, Pill } from '@mantine/core';
-import { motion } from 'framer-motion';
-import Image from 'next/image';
+import React from 'react'
+import { Anchor, Box, Card, Divider, Pill } from '@mantine/core'
+import { motion } from 'framer-motion'
+import Image from 'next/image'
 
-import { Button, Paragraph, ParagraphContentful, Title } from '../ui';
-import { useIsMobile } from '@/hooks/useIsMobile';
-import { formatDate } from '@/utils';
+import { Button, Paragraph, ParagraphContentful, Title } from '../ui'
+import { useIsMobile } from '@/hooks/useIsMobile'
+import { formatDate } from '@/utils'
 
-import IconLocation from '@/assets/icons/map-marker-3-black.svg';
-import IconCall from '@/assets/icons/call-black.svg';
-import IconStopwatch from '@/assets/icons/stopwatch-black.svg';
+import IconLocation from '@/assets/icons/map-marker-3-black.svg'
+import IconCall from '@/assets/icons/call-black.svg'
+import IconStopwatch from '@/assets/icons/stopwatch-black.svg'
 
 type Props = {
-  announcement: any;
-  title?: string;
-  featured?: boolean;
-  bgColor?: string;
-  arrowColor?: string;
-  textColor?: string;
-  image?: any;
-};
+  announcement: any
+  title?: string
+  featured?: boolean
+  bgColor?: string
+  arrowColor?: string
+  textColor?: string
+  image?: any
+}
 
 export default function EventAnnouncementCard(props: Props) {
-  const isMobile = useIsMobile();
-  const googleMapsUrl = `https://www.google.com/maps?q=${props.announcement.locationAddress?.lat},${props.announcement.locationAddress?.lon}`;
+  const isMobile = useIsMobile()
+  const googleMapsUrl = `https://www.google.com/maps?q=${props.announcement.locationAddress?.lat},${props.announcement.locationAddress?.lon}`
 
   return (
     <Card
-      className="mx-auto w-full max-w-screen-xl cursor-pointer mb-4"
+      className="mx-auto mb-4 w-full max-w-screen-xl cursor-pointer"
       bg={props.bgColor || 'white'}
       style={{ borderRadius: 8 }}
       withBorder
@@ -159,5 +159,5 @@ export default function EventAnnouncementCard(props: Props) {
         </Box>
       </motion.div>
     </Card>
-  );
+  )
 }

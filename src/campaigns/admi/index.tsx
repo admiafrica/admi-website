@@ -1,95 +1,95 @@
-import { useEffect, useState } from 'react';
-import { StaticImageData } from 'next/image';
-import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
-import { Document as ContentfulDocument } from '@contentful/rich-text-types';
+import { useEffect, useState } from 'react'
+import { StaticImageData } from 'next/image'
+import { documentToHtmlString } from '@contentful/rich-text-html-renderer'
+import { Document as ContentfulDocument } from '@contentful/rich-text-types'
 
-import { CampaignLayout } from '@/layouts/CampaignLayout';
-import courseImage from '@/assets/images/course-banner.webp';
+import { CampaignLayout } from '@/layouts/CampaignLayout'
+import courseImage from '@/assets/images/course-banner.webp'
 import {
   CampaignBanner,
   CampaignFaqs,
   CampaignHeader,
   CampaignHighlights,
   CampaignReasons,
-  CampaignTestimonials,
-} from './components';
-import styles from '@/assets/css/main.module.css';
-import { useRouter } from 'next/router';
-import { Skeleton } from '@mantine/core';
-import { GoogleAnalyticsTag } from '@/components/shared';
-import { getCourseFormUrl } from '@/utils';
+  CampaignTestimonials
+} from './components'
+import styles from '@/assets/css/main.module.css'
+import { useRouter } from 'next/router'
+import { Skeleton } from '@mantine/core'
+import { GoogleAnalyticsTag } from '@/components/shared'
+import { getCourseFormUrl } from '@/utils'
 
 export function CampaignsPage() {
-  const [status, setStatus] = useState(1);
-  const [courseBanner, setCourseBanner] = useState<string | StaticImageData>(courseImage); // Initialize with a default image
-  const [courseName, setCourseName] = useState('');
-  const [courseOverview, setCourseOverview] = useState<ContentfulDocument>();
-  const [courseUsps, setCourseUsps] = useState([]);
-  const [courseFee, setCourseFee] = useState('');
-  const [courseHours, setCourseHours] = useState('');
-  const [courseProspectus, setCourseProspectus] = useState('');
-  const [courseTestimonials, setCourseTestimonials] = useState([]);
-  const [courseFaqs, setCourseFaqs] = useState([]);
-  const [courseAssets, setCourseAssets] = useState([]);
-  const [isLeadFormVisible] = useState(false);
-  const [, setLeadFormFooterText] = useState('');
-  const [, setCourseIntake] = useState('');
-  const router = useRouter();
-  const [loading, setLoading] = useState(true);
-  const campaign = router.query.campaign;
+  const [status, setStatus] = useState(1)
+  const [courseBanner, setCourseBanner] = useState<string | StaticImageData>(courseImage) // Initialize with a default image
+  const [courseName, setCourseName] = useState('')
+  const [courseOverview, setCourseOverview] = useState<ContentfulDocument>()
+  const [courseUsps, setCourseUsps] = useState([])
+  const [courseFee, setCourseFee] = useState('')
+  const [courseHours, setCourseHours] = useState('')
+  const [courseProspectus, setCourseProspectus] = useState('')
+  const [courseTestimonials, setCourseTestimonials] = useState([])
+  const [courseFaqs, setCourseFaqs] = useState([])
+  const [courseAssets, setCourseAssets] = useState([])
+  const [isLeadFormVisible] = useState(false)
+  const [, setLeadFormFooterText] = useState('')
+  const [, setCourseIntake] = useState('')
+  const router = useRouter()
+  const [loading, setLoading] = useState(true)
+  const campaign = router.query.campaign
 
   useEffect(() => {
     const fetchCourseData = async () => {
-      if (!campaign) return;
+      if (!campaign) return
       try {
-        setLoading(true);
-        const response = await fetch(`/api/courses?slug=${campaign}`);
+        setLoading(true)
+        const response = await fetch(`/api/courses?slug=${campaign}`)
         const data = await response.json()
 
         if (data) {
-            setStatus(1);
-            setCourseBanner(`https:${data.fields.banner.fields.file.url}`);
-            setCourseName(data.fields.name);
-            setCourseOverview(data.fields.description);
-            setCourseUsps(data.fields.usp);
-            setCourseFee(data.fields.tuitionFee);
-            setCourseHours(data.fields.creditHours);
-            setCourseProspectus(data.fields.courseDuration);
-            setCourseTestimonials(data.fields.testimonials);
-            setCourseFaqs(data.fields.faqs);
-            setCourseAssets(data.assets)
-            setLeadFormFooterText(data.fields.lead_form_footer_text);
-            setCourseIntake(data.fields.intake);
+          setStatus(1)
+          setCourseBanner(`https:${data.fields.banner.fields.file.url}`)
+          setCourseName(data.fields.name)
+          setCourseOverview(data.fields.description)
+          setCourseUsps(data.fields.usp)
+          setCourseFee(data.fields.tuitionFee)
+          setCourseHours(data.fields.creditHours)
+          setCourseProspectus(data.fields.courseDuration)
+          setCourseTestimonials(data.fields.testimonials)
+          setCourseFaqs(data.fields.faqs)
+          setCourseAssets(data.assets)
+          setLeadFormFooterText(data.fields.lead_form_footer_text)
+          setCourseIntake(data.fields.intake)
         } else {
-          setStatus(0);
-          setCourseBanner(courseImage.src);
-          throw new Error('Failed to fetch data');
+          setStatus(0)
+          setCourseBanner(courseImage.src)
+          throw new Error('Failed to fetch data')
         }
 
-        setLoading(false);
+        setLoading(false)
       } catch (error) {
-        setStatus(0);
-        setCourseBanner(courseImage.src);
+        setStatus(0)
+        setCourseBanner(courseImage.src)
       } finally {
-        setLoading(false);
+        setLoading(false)
       }
-    };
+    }
 
     if (router.isReady) {
-      fetchCourseData();
+      fetchCourseData()
     }
-  }, [router.isReady, campaign, status]);
+  }, [router.isReady, campaign, status])
 
   return (
-    <CampaignLayout client='admi'>
+    <CampaignLayout client="admi">
       <CampaignHeader />
-      <GoogleAnalyticsTag analyticsId={process.env.NEXT_PUBLIC_ADMI_GTM_ID as string}/>
+      <GoogleAnalyticsTag analyticsId={process.env.NEXT_PUBLIC_ADMI_GTM_ID as string} />
       <Skeleton visible={loading} className={`${styles['course-banner']}`}>
         {!loading && (
           <CampaignBanner
-              status={status}
-              src={courseBanner} // courseBanner should never be null now
-              alt={courseName}
+            status={status}
+            src={courseBanner} // courseBanner should never be null now
+            alt={courseName}
           />
         )}
       </Skeleton>
@@ -132,8 +132,7 @@ export function CampaignsPage() {
       )}
 
       <section className={`${styles['course-summary']}`}>
-        <div className={`${styles['wrapper']}`}>
-        </div>
+        <div className={`${styles['wrapper']}`}></div>
       </section>
 
       {status === 1 && courseOverview && (
@@ -149,10 +148,12 @@ export function CampaignsPage() {
             ) : (
               <div>
                 <h2 className={`${styles['section-title']} ${styles['section-title--small']}`}>About this Course</h2>
-                <div className={`${styles['article']}`} dangerouslySetInnerHTML={{ __html: documentToHtmlString(courseOverview) }}></div>
+                <div
+                  className={`${styles['article']}`}
+                  dangerouslySetInnerHTML={{ __html: documentToHtmlString(courseOverview) }}
+                ></div>
               </div>
             )}
-
           </div>
         </section>
       )}
@@ -176,11 +177,15 @@ export function CampaignsPage() {
               </div>
             ) : (
               <div>
-                <h2 className={`${styles['section-title']} ${styles['section-title--small']}`}>Why you should take this
-                  course</h2>
+                <h2 className={`${styles['section-title']} ${styles['section-title--small']}`}>
+                  Why you should take this course
+                </h2>
                 <CampaignReasons assets={courseAssets} reasons={courseUsps}></CampaignReasons>
-                <CampaignHighlights fee={courseFee} hours={courseHours}
-                                    prospectus={courseProspectus}></CampaignHighlights>
+                <CampaignHighlights
+                  fee={courseFee}
+                  hours={courseHours}
+                  prospectus={courseProspectus}
+                ></CampaignHighlights>
               </div>
             )}
           </div>
@@ -213,8 +218,9 @@ export function CampaignsPage() {
             ) : (
               <div>
                 <h2 className={`${styles['section-title']} ${styles['section-title--small']}`}>Testimonials</h2>
-                <p className={`${styles['summary-text']}`}>Watch to learn about this course - Hear why people choose
-                  ADMI for Creative Education</p>
+                <p className={`${styles['summary-text']}`}>
+                  Watch to learn about this course - Hear why people choose ADMI for Creative Education
+                </p>
                 <CampaignTestimonials testimonials={courseTestimonials}></CampaignTestimonials>
               </div>
             )}
@@ -236,9 +242,9 @@ export function CampaignsPage() {
               </div>
             ) : (
               <div>
-                <h2
-                  className={`${styles['section-title']} ${styles['section-title--small']} ${styles['mb-5']}`}>Frequently
-                  Asked Questions</h2>
+                <h2 className={`${styles['section-title']} ${styles['section-title--small']} ${styles['mb-5']}`}>
+                  Frequently Asked Questions
+                </h2>
                 <CampaignFaqs faqs={courseFaqs}></CampaignFaqs>
               </div>
             )}
@@ -248,13 +254,18 @@ export function CampaignsPage() {
 
       {status === 1 && (
         <section
-          className={`${styles['section-wrapper']} ${styles['lead-form-cta']} ${styles['sticky-btn']} ${styles['sticky-btn--no-footer']} ${styles['sticky-btn--desktop-hidden']} ${isLeadFormVisible ? '' : styles['is-visible']}`}>
+          className={`${styles['section-wrapper']} ${styles['lead-form-cta']} ${styles['sticky-btn']} ${styles['sticky-btn--no-footer']} ${styles['sticky-btn--desktop-hidden']} ${isLeadFormVisible ? '' : styles['is-visible']}`}
+        >
           <div className={`${styles['wrapper']} ${styles['text-center']}`}>
-            <a href={getCourseFormUrl()} className={`${styles['btn']} ${styles['btn-primary']} ${styles['btn-min-width']}`}>
-              Get a call back</a>
+            <a
+              href={getCourseFormUrl()}
+              className={`${styles['btn']} ${styles['btn-primary']} ${styles['btn-min-width']}`}
+            >
+              Get a call back
+            </a>
           </div>
         </section>
       )}
     </CampaignLayout>
-  );
+  )
 }

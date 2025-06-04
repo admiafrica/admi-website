@@ -1,11 +1,11 @@
-import Image from 'next/image';
-import { Box, Divider } from '@mantine/core';
+import Image from 'next/image'
+import { Box, Divider } from '@mantine/core'
 
-import { MainLayout } from '@/layouts/v3/MainLayout';
-import { Paragraph, Title } from '@/components/ui';
-import { PageSEO } from '@/components/shared/v3';
+import { MainLayout } from '@/layouts/v3/MainLayout'
+import { Paragraph, Title } from '@/components/ui'
+import { PageSEO } from '@/components/shared/v3'
 
-import ImageSupportLanding from '@/assets/images/student-support-landing.png';
+import ImageSupportLanding from '@/assets/images/student-support-landing.png'
 
 export default function PrivacyPolicyPage() {
   return (
@@ -28,7 +28,7 @@ export default function PrivacyPolicyPage() {
           <div
             className="z-5 absolute inset-0"
             style={{
-              background: 'linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0, 42, 35, 1) 100%)',
+              background: 'linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0, 42, 35, 1) 100%)'
             }}
           ></div>
           <Box className="relative z-10 mx-auto flex h-[40vh] w-full max-w-screen-xl flex-row px-4 sm:flex-row 2xl:px-0">
@@ -242,5 +242,5 @@ export default function PrivacyPolicyPage() {
         </Box>
       </div>
     </MainLayout>
-  );
+  )
 }

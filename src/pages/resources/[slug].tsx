@@ -1,22 +1,22 @@
-import Image from 'next/image';
-import { Box, Card } from '@mantine/core';
-import { useRouter } from 'next/router';
+import Image from 'next/image'
+import { Box, Card } from '@mantine/core'
+import { useRouter } from 'next/router'
 
-import { MainLayout } from '@/layouts/v3/MainLayout';
-import { PageSEO, SocialShare } from '@/components/shared/v3';
-import { Button, Paragraph, ParagraphContentful } from '@/components/ui';
-import { useIsMobile } from '@/hooks/useIsMobile';
+import { MainLayout } from '@/layouts/v3/MainLayout'
+import { PageSEO, SocialShare } from '@/components/shared/v3'
+import { Button, Paragraph, ParagraphContentful } from '@/components/ui'
+import { useIsMobile } from '@/hooks/useIsMobile'
 
-import IconBgImageYellow from '@/assets/icons/ellipse-yellow.svg';
-import IconBgImageRed from '@/assets/icons/ellipse-red.svg';
+import IconBgImageYellow from '@/assets/icons/ellipse-yellow.svg'
+import IconBgImageRed from '@/assets/icons/ellipse-red.svg'
 
 export default function ResourceArticlePage({ article, slug }: { article: any; slug: string }) {
-  const isMobile = useIsMobile();
-  const router = useRouter();
+  const isMobile = useIsMobile()
+  const router = useRouter()
 
   const navigateToResources = () => {
-    router.push('/resources');
-  };
+    router.push('/resources')
+  }
 
   return (
     <MainLayout footerBgColor="white">
@@ -46,9 +46,9 @@ export default function ResourceArticlePage({ article, slug }: { article: any; s
           </Box>
         </div>
       </div>
-      <Box className="relative w-full h-full" bg={'white'}>
-        <Box className="mx-auto flex w-full max-w-screen-xl flex-col-reverse px-4 py-4 sm:flex-row sm:py-16 xl:px-0 h-full">
-          <Box className="sm:w-[200px] h-full">
+      <Box className="relative h-full w-full" bg={'white'}>
+        <Box className="mx-auto flex h-full w-full max-w-screen-xl flex-col-reverse px-4 py-4 sm:flex-row sm:py-16 xl:px-0">
+          <Box className="h-full sm:w-[200px]">
             <SocialShare item={article} />
           </Box>
           {article && (
@@ -70,27 +70,27 @@ export default function ResourceArticlePage({ article, slug }: { article: any; s
         </Box>
       </Box>
     </MainLayout>
-  );
+  )
 }
 
 export async function getServerSideProps(context: any) {
-  const { slug } = context.params;
-  const baseUrl = `http://${context.req.headers.host}`;
+  const { slug } = context.params
+  const baseUrl = `http://${context.req.headers.host}`
 
   try {
-    const response = await fetch(`${baseUrl}/api/v3/resource-details?slug=${slug}`);
-    if (!response.ok) throw new Error('Failed to fetch article');
+    const response = await fetch(`${baseUrl}/api/v3/resource-details?slug=${slug}`)
+    if (!response.ok) throw new Error('Failed to fetch article')
 
-    const data = await response.json();
+    const data = await response.json()
 
     return {
-      props: { article: data.fields, slug },
-    };
+      props: { article: data.fields, slug }
+    }
   } catch (error) {
-    console.error('Error fetching resource:', error);
+    console.error('Error fetching resource:', error)
 
     return {
-      notFound: true, // Show 404 page if article is not found
-    };
+      notFound: true // Show 404 page if article is not found
+    }
   }
 }

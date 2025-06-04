@@ -1,17 +1,17 @@
-import React from 'react';
-import Image from 'next/image';
-import { Box, Card } from '@mantine/core';
+import React from 'react'
+import Image from 'next/image'
+import { Box, Card } from '@mantine/core'
 
-import { GoogleAnalyticsTag } from '@/components/shared';
-import { Paragraph, Title } from '@/components/ui';
-import { MainLayout } from '@/layouts/v3/MainLayout';
-import { PageSEO } from '@/components/shared/v3';
+import { GoogleAnalyticsTag } from '@/components/shared'
+import { Paragraph, Title } from '@/components/ui'
+import { MainLayout } from '@/layouts/v3/MainLayout'
+import { PageSEO } from '@/components/shared/v3'
 
-import successIcon from '@/assets/icons/success-icon.svg';
-import logo from '@/assets/logo.svg';
+import successIcon from '@/assets/icons/success-icon.svg'
+import logo from '@/assets/logo.svg'
 
-import IconBgImageYellow from '@/assets/icons/ellipse-yellow.svg';
-import IconBgImageRed from '@/assets/icons/ellipse-red.svg';
+import IconBgImageYellow from '@/assets/icons/ellipse-yellow.svg'
+import IconBgImageRed from '@/assets/icons/ellipse-red.svg'
 
 export default function EnquiryThanksPage() {
   return (
@@ -50,5 +50,5 @@ export default function EnquiryThanksPage() {
         </div>
       </Box>
     </MainLayout>
-  );
+  )
 }

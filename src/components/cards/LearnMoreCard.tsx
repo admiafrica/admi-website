@@ -1,35 +1,35 @@
-import Image from 'next/image';
-import { Box, Divider, Text } from '@mantine/core';
-import { Button, Paragraph, Title } from '@/components/ui';
-import { useRouter } from 'next/router';
+import Image from 'next/image'
+import { Box, Divider, Text } from '@mantine/core'
+import { Button, Paragraph, Title } from '@/components/ui'
+import { useRouter } from 'next/router'
 
-import ImageEnquiry1 from '../../assets/images/learn-more-1.svg';
-import ImageEnquiry2 from '@/assets/images/learn-more-2.svg';
-import ImageEnquiry3 from '@/assets/images/learn-more-3.svg';
+import ImageEnquiry1 from '../../assets/images/learn-more-1.svg'
+import ImageEnquiry2 from '@/assets/images/learn-more-2.svg'
+import ImageEnquiry3 from '@/assets/images/learn-more-3.svg'
 
-import IconLogo from '@/assets/logo-dark.svg';
-import IconTrophy from '@/assets/icons/Trophy';
-import IconDoorkey from '@/assets/icons/DoorKey';
-import IconShootingStar from '@/assets/icons/ShootingStar';
-import IconLightbulbOn from '@/assets/icons/LightbulbOn';
-import IconHat from '@/assets/icons/Hat';
+import IconLogo from '@/assets/logo-dark.svg'
+import IconTrophy from '@/assets/icons/Trophy'
+import IconDoorkey from '@/assets/icons/DoorKey'
+import IconShootingStar from '@/assets/icons/ShootingStar'
+import IconLightbulbOn from '@/assets/icons/LightbulbOn'
+import IconHat from '@/assets/icons/Hat'
 
 export default function LearnMoreCard() {
-  const router = useRouter();
+  const router = useRouter()
 
   const handleViewCourses = () => {
-    router.push(`/courses`);
-  };
+    router.push('/courses')
+  }
 
   const handleViewEnquiry = () => {
-    const { utm_source, utm_medium, utm_campaign, utm_term, utm_content } = router.query;
-    const query = utm_source ? { utm_source, utm_medium, utm_campaign, utm_term, utm_content } : undefined;
+    const { utm_source, utm_medium, utm_campaign, utm_term, utm_content } = router.query
+    const query = utm_source ? { utm_source, utm_medium, utm_campaign, utm_term, utm_content } : undefined
 
     router.push({
       pathname: '/enquiry',
-      query,
-    });
-  };
+      query
+    })
+  }
 
   return (
     <Box className="mx-auto flex w-full max-w-screen-lg flex-col px-6">
@@ -126,5 +126,5 @@ export default function LearnMoreCard() {
         </div>
       </Box>
     </Box>
-  );
+  )
 }

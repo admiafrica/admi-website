@@ -1,14 +1,14 @@
-import React from 'react';
-import { Box, Card, Tabs } from '@mantine/core';
-import { Paragraph, Title } from '../ui';
-import { useIsMobile } from '@/hooks/useIsMobile';
+import React from 'react'
+import { Box, Card, Tabs } from '@mantine/core'
+import { Paragraph, Title } from '../ui'
+import { useIsMobile } from '@/hooks/useIsMobile'
 
 type Props = {
-  values: any;
-  showRightIcons?: boolean;
-};
+  values: any
+  showRightIcons?: boolean
+}
 export default function CompanyValuesCard({ values, showRightIcons = true }: Props) {
-  const isMobile = useIsMobile();
+  const isMobile = useIsMobile()
 
   return (
     <Card shadow="sm" padding="lg" radius="md" withBorder className="w-full">
@@ -29,7 +29,7 @@ export default function CompanyValuesCard({ values, showRightIcons = true }: Pro
           <Box>
             {values.map((item: any) => (
               <Tabs.Panel value={item.id} key={`content-${item.name}`}>
-                <Box className="flex flex-col sm:flex-row h-full w-full px-8" bg={'#FEFFF5'}>
+                <Box className="flex h-full w-full flex-col px-8 sm:flex-row" bg={'#FEFFF5'}>
                   <Box>
                     <Title label={item.name} color="black" size={isMobile ? '24px' : '36px'} className="py-4" />
                     {item.description.map((paragraph: string, index: number) => (
@@ -50,5 +50,5 @@ export default function CompanyValuesCard({ values, showRightIcons = true }: Pro
         </Box>
       </Tabs>
     </Card>
-  );
+  )
 }

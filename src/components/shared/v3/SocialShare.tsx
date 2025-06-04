@@ -1,51 +1,51 @@
-import React from 'react';
-import { Box, Card, Divider } from '@mantine/core';
-import Image from 'next/image';
+import React from 'react'
+import { Box, Card, Divider } from '@mantine/core'
+import Image from 'next/image'
 
-import { Paragraph } from '@/components/ui';
+import { Paragraph } from '@/components/ui'
 
-import IconFacebook from '@/assets/icons/facebook-social.svg';
-import IconWhatsapp from '@/assets/icons/whatsapp-social.svg';
-import IconCopyContent from '@/assets/icons/copy-content.svg';
-import IconShare from '@/assets/icons/share.svg';
-import IconLinkedIn from '@/assets/icons/linkedin-social.svg';
-import useFullUrl from '@/hooks/useFullUrl';
+import IconFacebook from '@/assets/icons/facebook-social.svg'
+import IconWhatsapp from '@/assets/icons/whatsapp-social.svg'
+import IconCopyContent from '@/assets/icons/copy-content.svg'
+import IconShare from '@/assets/icons/share.svg'
+import IconLinkedIn from '@/assets/icons/linkedin-social.svg'
+import useFullUrl from '@/hooks/useFullUrl'
 
 type Props = {
-  item: { title: string; summary: string };
-};
+  item: { title: string; summary: string }
+}
 
 export default function SocialShare({ item }: Props) {
-  const urlToShare = useFullUrl();
+  const urlToShare = useFullUrl()
 
   const handleShare = (platform: string) => {
-    let shareUrl = '';
+    let shareUrl = ''
 
     switch (platform) {
       case 'facebook':
-        shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(urlToShare)}`;
-        break;
+        shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(urlToShare)}`
+        break
       case 'linkedin':
-        shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(urlToShare)}`;
-        break;
+        shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(urlToShare)}`
+        break
       case 'whatsapp':
-        shareUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(`${item.title} - ${item.summary} ${urlToShare}`)}`;
-        break;
+        shareUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(`${item.title} - ${item.summary} ${urlToShare}`)}`
+        break
       default:
-        return;
+        return
     }
 
-    window.open(shareUrl, '_blank', 'noopener,noreferrer');
-  };
+    window.open(shareUrl, '_blank', 'noopener,noreferrer')
+  }
 
   const handleCopyLink = async () => {
     try {
-      await navigator.clipboard.writeText(urlToShare);
-      alert('Link copied to clipboard!');
+      await navigator.clipboard.writeText(urlToShare)
+      alert('Link copied to clipboard!')
     } catch (err) {
-      console.error('Failed to copy: ', err);
+      console.error('Failed to copy: ', err)
     }
-  };
+  }
 
   return (
     <Box className="sticky top-[100px] flex flex-col sm:w-[200px]">
@@ -85,5 +85,5 @@ export default function SocialShare({ item }: Props) {
         </Box>
       </Card>
     </Box>
-  );
+  )
 }

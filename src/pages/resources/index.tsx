@@ -1,22 +1,22 @@
-import Image from 'next/image';
-import { Box } from '@mantine/core';
+import Image from 'next/image'
+import { Box } from '@mantine/core'
 
-import { PageSEO } from '@/components/shared/v3';
-import { MainLayout } from '@/layouts/v3/MainLayout';
-import { AnnouncementCard, NewsItemCard } from '@/components/cards';
-import { SearchDropdown } from '@/components/ui';
-import { IContentfulEntry } from '@/types';
+import { PageSEO } from '@/components/shared/v3'
+import { MainLayout } from '@/layouts/v3/MainLayout'
+import { AnnouncementCard, NewsItemCard } from '@/components/cards'
+import { SearchDropdown } from '@/components/ui'
+import { IContentfulEntry } from '@/types'
 
-import ImageNews from '@/assets/images/featured-news.svg';
-import IconBgImageYellow from '@/assets/icons/ellipse-yellow.svg';
-import IconBgImageRed from '@/assets/icons/ellipse-red.svg';
+import ImageNews from '@/assets/images/featured-news.svg'
+import IconBgImageYellow from '@/assets/icons/ellipse-yellow.svg'
+import IconBgImageRed from '@/assets/icons/ellipse-red.svg'
 
 export default function ResourcesPage({
   resources,
-  featured,
+  featured
 }: {
-  resources: IContentfulEntry[];
-  featured: IContentfulEntry | null;
+  resources: IContentfulEntry[]
+  featured: IContentfulEntry | null
 }) {
   return (
     <MainLayout footerBgColor="white">
@@ -76,27 +76,27 @@ export default function ResourcesPage({
         </Box>
       </Box>
     </MainLayout>
-  );
+  )
 }
 
 export async function getServerSideProps() {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v3/resources`);
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v3/resources`)
 
-    if (!res.ok) throw new Error('Failed to fetch resources');
+    if (!res.ok) throw new Error('Failed to fetch resources')
 
-    const resources: IContentfulEntry[] = await res.json();
+    const resources: IContentfulEntry[] = await res.json()
 
-    const sortedResources = resources.reverse();
+    const sortedResources = resources.reverse()
 
     return {
       props: {
         resources: sortedResources,
-        featured: sortedResources.find((article) => article.fields.featured) || null,
-      },
-    };
+        featured: sortedResources.find((article) => article.fields.featured) || null
+      }
+    }
   } catch (error) {
-    console.error('Error fetching resources:', error);
-    return { props: { resources: [], featured: null } };
+    console.error('Error fetching resources:', error)
+    return { props: { resources: [], featured: null } }
   }
 }

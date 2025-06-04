@@ -1,24 +1,24 @@
-import React, { useRef, useState } from 'react';
-import { Carousel } from '@mantine/carousel';
-import { Card, Box, Divider } from '@mantine/core';
-import Autoplay from 'embla-carousel-autoplay';
+import React, { useRef, useState } from 'react'
+import { Carousel } from '@mantine/carousel'
+import { Card, Box, Divider } from '@mantine/core'
+import Autoplay from 'embla-carousel-autoplay'
 
-import { IconPlus } from '@tabler/icons-react';
-import { Paragraph } from '@/components/ui';
-import { useIsMobile } from '@/hooks/useIsMobile';
+import { IconPlus } from '@tabler/icons-react'
+import { Paragraph } from '@/components/ui'
+import { useIsMobile } from '@/hooks/useIsMobile'
 
 type Props = {
-  data: Array<{ year: number; achievements: Array<string> }>;
-};
+  data: Array<{ year: number; achievements: Array<string> }>
+}
 
 export default function Timeline({ data }: Props) {
-  const isMobile = useIsMobile();
-  const [activeYear, setActiveYear] = useState(data[0]);
-  const autoplay = useRef(Autoplay({ delay: 4000 }));
+  const isMobile = useIsMobile()
+  const [activeYear, setActiveYear] = useState(data[0])
+  const autoplay = useRef(Autoplay({ delay: 4000 }))
 
   const handleYearSelected = (value: { year: number; achievements: Array<string> }) => {
-    setActiveYear(value);
-  };
+    setActiveYear(value)
+  }
   return (
     <Box className="w-full">
       {isMobile ? (
@@ -98,5 +98,5 @@ export default function Timeline({ data }: Props) {
         </Box>
       )}
     </Box>
-  );
+  )
 }

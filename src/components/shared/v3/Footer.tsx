@@ -1,25 +1,25 @@
-import React from 'react';
-import Image from 'next/image';
-import { useRouter } from 'next/router';
-import { Group, Text, Anchor, Stack, Divider } from '@mantine/core';
-import { useMediaQuery } from '@mantine/hooks';
+import React from 'react'
+import Image from 'next/image'
+import { useRouter } from 'next/router'
+import { Group, Text, Anchor, Stack, Divider } from '@mantine/core'
+import { useMediaQuery } from '@mantine/hooks'
 
-import { CourseEnrollCard } from '@/components/cards';
-import { SOCIAL_LINKS } from '@/utils';
+import { CourseEnrollCard } from '@/components/cards'
+import { SOCIAL_LINKS } from '@/utils'
 
-import { IconCopyright } from '@tabler/icons-react';
-import IconLogoWhite from '@/assets/logo-light.svg';
-import IconYouTube from '@/assets/icons/youtube.svg';
-import IconInstagram from '@/assets/icons/instagram.svg';
-import IconFacebook from '@/assets/icons/facebook.svg';
-import IconTikTok from '@/assets/icons/tiktok.svg';
-import IconX from '@/assets/icons/x.svg';
-import IconLinkedIn from '@/assets/icons/linkedin.svg';
-import IconMail from '@/assets/icons/mail.svg';
-import IconCall from '@/assets/icons/call.svg';
-import IconStopWatch from '@/assets/icons/stop-watch.svg';
-import Ribbon from './Ribbon';
-import { Title } from '@/components/ui';
+import { IconCopyright } from '@tabler/icons-react'
+import IconLogoWhite from '@/assets/logo-light.svg'
+import IconYouTube from '@/assets/icons/youtube.svg'
+import IconInstagram from '@/assets/icons/instagram.svg'
+import IconFacebook from '@/assets/icons/facebook.svg'
+import IconTikTok from '@/assets/icons/tiktok.svg'
+import IconX from '@/assets/icons/x.svg'
+import IconLinkedIn from '@/assets/icons/linkedin.svg'
+import IconMail from '@/assets/icons/mail.svg'
+import IconCall from '@/assets/icons/call.svg'
+import IconStopWatch from '@/assets/icons/stop-watch.svg'
+import Ribbon from './Ribbon'
+import { Title } from '@/components/ui'
 
 const SocialIcons = React.memo(() => {
   return (
@@ -43,23 +43,23 @@ const SocialIcons = React.memo(() => {
         <Image width={32} src={IconFacebook} alt={SOCIAL_LINKS.FACEBOOK} />
       </Anchor>
     </Group>
-  );
-});
+  )
+})
 
 // Assign a display name
-SocialIcons.displayName = 'SocialIcons';
+SocialIcons.displayName = 'SocialIcons'
 
 type Props = {
-  bgColor?: string;
-};
+  bgColor?: string
+}
 
 export default function Footer({ bgColor }: Props) {
-  const router = useRouter();
-  const isMobile = useMediaQuery('(max-width: 480px)');
+  const router = useRouter()
+  const isMobile = useMediaQuery('(max-width: 480px)')
 
   const navigateToPage = (pagePath: string) => {
-    router.push(`/${pagePath}`);
-  };
+    router.push(`/${pagePath}`)
+  }
 
   return (
     <div className={`relative w-full ${bgColor ? `bg-[${bgColor}]` : 'bg-[#FFF7F5]'} font-proxima`}>
@@ -103,6 +103,16 @@ export default function Footer({ bgColor }: Props) {
             </Group>
 
             <Group gap={4} className="px-4">
+              <Image width={24} height={24} src={IconCall} alt="whatsapp" />
+              <Text fw="bold" ml={10}>
+                WhatsApp:
+              </Text>
+              <Anchor href="https://wa.me/254711486581" target="_blank" c="admiShamrok" fw="bold">
+                (+254) 711 486 581
+              </Anchor>
+            </Group>
+
+            <Group gap={4} className="px-4">
               <Image width={24} src={IconStopWatch} alt="hours active" />
               <Text fw="bold" ml={10}>
                 Hours:
@@ -127,7 +137,7 @@ export default function Footer({ bgColor }: Props) {
               Fellowship
             </Anchor>
           </Stack>
-          
+
           {/* Student Corner */}
           <div className="mr-4 flex flex-col">
             <div className="flex w-full">
@@ -164,5 +174,5 @@ export default function Footer({ bgColor }: Props) {
 
       <Ribbon />
     </div>
-  );
+  )
 }

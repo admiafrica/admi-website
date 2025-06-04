@@ -26,18 +26,18 @@
       &::marker,
       &::-webkit-details-marker {
         display: none;
-        content: "";
+        content: '';
       }
 
       &::after {
-        content: "⯆";
+        content: '⯆';
         display: flex;
         align-items: center;
         justify-content: center;
         height: rem(40);
         font-size: rem(14);
         color: $black;
-        transition: transform .2s;
+        transition: transform 0.2s;
       }
 
       &:hover {
@@ -70,7 +70,8 @@
       padding-inline: rem(16);
       padding-bottom: 1rem;
 
-      ul, ol {
+      ul,
+      ol {
         margin-bottom: rem(20);
       }
     }

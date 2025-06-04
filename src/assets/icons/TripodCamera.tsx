@@ -1,8 +1,8 @@
 type Props = {
-  color?: string;
-  width?: number;
-  height?: number;
-};
+  color?: string
+  width?: number
+  height?: number
+}
 
 export default function IconTripodCamera({ color = 'black', width, height }: Props) {
   return (
@@ -21,5 +21,5 @@ export default function IconTripodCamera({ color = 'black', width, height }: Pro
         fill={color}
       />
     </svg>
-  );
+  )
 }

@@ -1,34 +1,34 @@
-import { useRef } from 'react';
-import Image from 'next/image';
-import Autoplay from 'embla-carousel-autoplay';
-import { Avatar, Box, Card, Group } from '@mantine/core';
-import { Carousel } from '@mantine/carousel';
+import { useRef } from 'react'
+import Image from 'next/image'
+import Autoplay from 'embla-carousel-autoplay'
+import { Avatar, Box, Card, Group } from '@mantine/core'
+import { Carousel } from '@mantine/carousel'
 
-import { getAssetDetails } from '@/utils';
-import { UserTestimonialCard } from '../cards';
+import { getAssetDetails } from '@/utils'
+import { UserTestimonialCard } from '../cards'
 
-import { IconArrowLeft, IconArrowRight, IconChecks } from '@tabler/icons-react';
+import { IconArrowLeft, IconArrowRight, IconChecks } from '@tabler/icons-react'
 
-import classes from '@/styles/Indicator.module.css';
-import { useIsMobile } from '@/hooks/useIsMobile';
-import { Paragraph, ParagraphContentful, Title } from '../ui';
+import classes from '@/styles/Indicator.module.css'
+import { useIsMobile } from '@/hooks/useIsMobile'
+import { Paragraph, ParagraphContentful, Title } from '../ui'
 
 type Props = {
-  portfolios: any[];
-  assets: any[];
-  testimonials: any[];
-  totalHistoricalEnrollment: number;
-};
+  portfolios: any[]
+  assets: any[]
+  testimonials: any[]
+  totalHistoricalEnrollment: number
+}
 
 export default function CourseStudents(props: Props) {
-  const isMobile = useIsMobile();
-  const autoplay = useRef(Autoplay({ delay: 6000 }));
-  const portfolioAutoplay = useRef(Autoplay({ delay: 8000 }));
+  const isMobile = useIsMobile()
+  const autoplay = useRef(Autoplay({ delay: 6000 }))
+  const portfolioAutoplay = useRef(Autoplay({ delay: 8000 }))
 
-  const showPortfolios = props.portfolios.length >= 1;
-  const showTestimonials = props.testimonials.length >= 1;
+  const showPortfolios = props.portfolios.length >= 1
+  const showTestimonials = props.testimonials.length >= 1
 
-  const enableCarousel = props.portfolios.length >= 3;
+  const enableCarousel = props.portfolios.length >= 3
 
   return (
     <Group bg={'#BD2D00'}>
@@ -113,7 +113,7 @@ export default function CourseStudents(props: Props) {
                       </Card.Section>
                     </Card>
                   </Carousel.Slide>
-                );
+                )
               })}
             </Carousel>
           </div>
@@ -151,5 +151,5 @@ export default function CourseStudents(props: Props) {
         )}
       </div>
     </Group>
-  );
+  )
 }

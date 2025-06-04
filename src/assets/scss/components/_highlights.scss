@@ -11,22 +11,22 @@
     flex-direction: column;
     gap: rem(30);
     align-items: center;
-    background-color: #FAEEEE;
+    background-color: #faeeee;
     border-radius: 10px;
     padding: rem(30 14 20 14);
     position: relative;
     text-align: center;
     @include trans-all;
 
-    &:nth-child(3n+1) {
-      background-color:  #9cccc1;
+    &:nth-child(3n + 1) {
+      background-color: #9cccc1;
     }
 
-    &:nth-child(3n+2) {
+    &:nth-child(3n + 2) {
       background-color: #7bc4ee;
     }
 
-    &:nth-child(3n+3) {
+    &:nth-child(3n + 3) {
       background-color: #f1a248;
     }
 

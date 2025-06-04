@@ -1,8 +1,8 @@
 type Props = {
-  color?: string;
-  width?: number;
-  height?: number;
-};
+  color?: string
+  width?: number
+  height?: number
+}
 
 export default function IconCamera({ color = 'black', width, height }: Props) {
   return (
@@ -27,5 +27,5 @@ export default function IconCamera({ color = 'black', width, height }: Props) {
       />
       <path d="M32.5 20.75V28.25" stroke={color} strokeWidth="2.5" strokeLinecap="round" />
     </svg>
-  );
+  )
 }

@@ -1,19 +1,19 @@
-import Image from 'next/image';
-import { Group, Text, Anchor, Stack, Title } from '@mantine/core';
-import { useMediaQuery } from '@mantine/hooks';
+import Image from 'next/image'
+import { Group, Text, Anchor, Stack, Title } from '@mantine/core'
+import { useMediaQuery } from '@mantine/hooks'
 import {
   IconBrandFacebook,
   IconBrandLinkedin,
   IconBrandInstagram,
   IconBrandTiktok,
   IconBrandYoutube,
-  IconBrandX,
-} from '@tabler/icons-react';
-import { SOCIAL_LINKS } from '@/utils';
-import LogoIcon from '../../assets/logo.svg';
+  IconBrandX
+} from '@tabler/icons-react'
+import { SOCIAL_LINKS } from '@/utils'
+import LogoIcon from '../../assets/logo.svg'
 
 export default function CustomFooter() {
-  const isMobile = useMediaQuery('(max-width: 480px)');
+  const isMobile = useMediaQuery('(max-width: 480px)')
 
   return (
     <Group className="mx-auto w-full max-w-screen-xl flex-col md:flex-row">
@@ -24,6 +24,9 @@ export default function CustomFooter() {
 
         <Text pt={20}>Email: info@admi.ac.ke</Text>
         <Text>Phone: (+254) 706 349 696, (+254) 711 486 581</Text>
+        <Anchor href="https://wa.me/254711486581" target="_blank" c="green" fw="bold">
+          WhatsApp: (+254) 711 486 581
+        </Anchor>
         <Text>Hours: Mon-Fri 8:00am - 5:00pm / Sat: 8:00am to 2:00pm</Text>
 
         <Image width={isMobile ? 80 : 140} src={LogoIcon} alt="logo" />
@@ -78,9 +81,9 @@ export default function CustomFooter() {
         </Anchor>
       </Stack>
     </Group>
-  );
+  )
 }
 
 const sectionStyle: React.CSSProperties = {
-  padding: '0 20px',
-};
+  padding: '0 20px'
+}

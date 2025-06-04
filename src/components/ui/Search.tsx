@@ -1,36 +1,36 @@
-import { useRouter } from 'next/router';
-import { useState } from 'react';
-import { Autocomplete, Box } from '@mantine/core';
+import { useRouter } from 'next/router'
+import { useState } from 'react'
+import { Autocomplete, Box } from '@mantine/core'
 
-import { Button, Paragraph } from '@/components/ui';
-import { useIsMobile } from '@/hooks/useIsMobile';
+import { Button, Paragraph } from '@/components/ui'
+import { useIsMobile } from '@/hooks/useIsMobile'
 
-import IconSearch from '@/assets/icons/Search';
+import IconSearch from '@/assets/icons/Search'
 
 type Props = {
-  items: any[];
-  buttonLabel: string;
-  placeholder: string;
-  destination: string;
-  bg?: string;
-};
+  items: any[]
+  buttonLabel: string
+  placeholder: string
+  destination: string
+  bg?: string
+}
 
 export default function SearchDropdown({ items, buttonLabel, placeholder, destination, bg = '#173D37' }: Props) {
-  const router = useRouter();
-  const isMobile = useIsMobile();
-  const [selectedItem, setSelectedItem] = useState<string>();
+  const router = useRouter()
+  const isMobile = useIsMobile()
+  const [selectedItem, setSelectedItem] = useState<string>()
 
   const handleItemSelect = (value: string) => {
-    setSelectedItem(value);
-  };
+    setSelectedItem(value)
+  }
 
   const handleItemSearch = () => {
-    const item = items.find((item) => item.fields.name == selectedItem || item.fields.title == selectedItem);
+    const item = items.find((item) => item.fields.name == selectedItem || item.fields.title == selectedItem)
     if (item) {
-      router.push(`/${destination}/${item.fields.slug}`);
+      router.push(`/${destination}/${item.fields.slug}`)
     }
-    return;
-  };
+    return
+  }
 
   return (
     <Box bg={bg} className="rounded-lg">
@@ -46,11 +46,11 @@ export default function SearchDropdown({ items, buttonLabel, placeholder, destin
               input: {
                 color: 'white',
                 fontSize: isMobile ? '12px' : '16px',
-                fontWeight: 600,
+                fontWeight: 600
               },
               dropdown: {
-                marginTop: 16,
-              },
+                marginTop: 16
+              }
             }}
             renderOption={(value) => (
               <Paragraph size="16px" className="py-1">
@@ -75,5 +75,5 @@ export default function SearchDropdown({ items, buttonLabel, placeholder, destin
         </div>
       </Box>
     </Box>
-  );
+  )
 }

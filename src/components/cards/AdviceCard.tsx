@@ -1,13 +1,13 @@
-import React from 'react';
-import { Box, Card } from '@mantine/core';
+import React from 'react'
+import { Box, Card } from '@mantine/core'
 
-import { Paragraph, Title } from '../ui';
-import Image from 'next/image';
+import { Paragraph, Title } from '../ui'
+import Image from 'next/image'
 
 type Props = {
-  advice: any;
-  hasList?: boolean;
-};
+  advice: any
+  hasList?: boolean
+}
 
 export default function AdviceCard(props: Props) {
   return (
@@ -19,7 +19,7 @@ export default function AdviceCard(props: Props) {
             <Box className="pt-8">
               {props.advice.description.map((item: any, index: number) => {
                 if (item.type == 'paragraph') {
-                  return <Paragraph key={`advice-${index}`}>{item.content}</Paragraph>;
+                  return <Paragraph key={`advice-${index}`}>{item.content}</Paragraph>
                 }
 
                 if (item.type == 'list') {
@@ -31,7 +31,7 @@ export default function AdviceCard(props: Props) {
                         </li>
                       ))}
                     </ul>
-                  );
+                  )
                 }
               })}
             </Box>
@@ -51,5 +51,5 @@ export default function AdviceCard(props: Props) {
         </Box>
       </Box>
     </Card>
-  );
+  )
 }

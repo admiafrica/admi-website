@@ -1,19 +1,19 @@
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import { useCallback, useEffect, useState } from 'react';
-import { Alert, Box, Group, Select, Text, TextInput } from '@mantine/core';
-import { useForm } from '@mantine/form';
-import { Button, Paragraph, Title } from '../ui';
-import PhoneInput from 'react-phone-input-2';
-import 'react-phone-input-2/lib/style.css';
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+import { useCallback, useEffect, useState } from 'react'
+import { Alert, Box, Group, Select, Text, TextInput } from '@mantine/core'
+import { useForm } from '@mantine/form'
+import { Button, Paragraph, Title } from '../ui'
+import PhoneInput from 'react-phone-input-2'
+import 'react-phone-input-2/lib/style.css'
 
-import { IconAsterisk } from '@tabler/icons-react';
+import { IconAsterisk } from '@tabler/icons-react'
 
 export default function EnquiryForm() {
-  const router = useRouter();
-  const [courses, setCourses] = useState<any[]>([]);
-  const [countryCode, setCountryCode] = useState('254'); // State for the phone number
-  const [alert, setAlert] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
+  const router = useRouter()
+  const [courses, setCourses] = useState<any[]>([])
+  const [countryCode, setCountryCode] = useState('254') // State for the phone number
+  const [alert, setAlert] = useState<{ type: 'success' | 'error'; message: string } | null>(null)
 
   const form = useForm({
     mode: 'uncontrolled',
@@ -27,68 +27,113 @@ export default function EnquiryForm() {
       utm_medium: '',
       utm_campaign: '',
       utm_term: '',
-      utm_content: '',
+      utm_content: ''
     },
 
     validate: {
       email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Invalid email'),
-    },
-  });
+      firstName: (value) => (value.trim().length < 2 ? 'First name must be at least 2 characters' : null),
+      lastName: (value) => (value.trim().length < 2 ? 'Last name must be at least 2 characters' : null),
+      phone: (value) => (value.trim().length < 8 ? 'Phone number must be at least 8 digits' : null),
+      courseName: (value) => (!value ? 'Please select a course' : null)
+    }
+  })
 
   const fetchCourses = useCallback(async () => {
     try {
-      const response = await fetch(`/api/v3/courses`);
-      const data = await response.json();
-      setCourses(data);
+      const response = await fetch('/api/v3/courses')
+      const data = await response.json()
+      setCourses(data)
     } catch (error) {
-      console.log('Error fetching courses:', error);
+      console.log('Error fetching courses:', error)
     }
-  }, []);
+  }, [])
 
   const handleSubmit = async (values: any) => {
-    setAlert(null); // Clear previous alerts
+    setAlert(null) // Clear previous alerts
+
+    // Validate required fields
+    if (
+      !values.firstName?.trim() ||
+      !values.lastName?.trim() ||
+      !values.email?.trim() ||
+      !values.phone?.trim() ||
+      !values.courseName?.trim()
+    ) {
+      setAlert({ type: 'error', message: 'Please fill in all required fields.' })
+      return
+    }
 
     // always remove leading zero from phone incase included
-    const formattedPhone = values.phone.replace(/^0+/, '');
+    const formattedPhone = values.phone.replace(/^0+/, '')
     const data = {
       ...values,
+      firstName: values.firstName.trim(),
+      lastName: values.lastName.trim(),
+      email: values.email.trim(),
       phone: `${countryCode}${formattedPhone}`,
-    };
+      courseName: values.courseName.trim()
+    }
 
     try {
       const response = await fetch('/api/v3/push-lead', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ ...data }),
-      });
+        body: JSON.stringify(data)
+      })
+
+      const responseData = await response.json()
 
       if (!response.ok) {
-        const errorData = await response.json();
-        setAlert({ type: 'error', message: errorData.error || 'Failed to submit enquiry.' });
-        return;
+        let errorMessage = 'Failed to submit enquiry.'
+        try {
+          errorMessage = typeof responseData.error === 'string' ? responseData.error : errorMessage
+        } catch (e) {
+          // If we can't parse the error response, use default message
+        }
+        setAlert({ type: 'error', message: errorMessage })
+        return
       }
-      router.push('/enquiry-thank-you');
+
+      // Check if this is an existing contact
+      if (responseData.message === 'existing_contact') {
+        setAlert({
+          type: 'success',
+          message:
+            'Your record is already with us! For further assistance, please email us at admissions@admi.africa or contact us via WhatsApp at +254 711 486 581.'
+        })
+        return
+      }
+
+      // Show success message before redirect for new contacts
+      setAlert({ type: 'success', message: 'Enquiry submitted successfully! Redirecting...' })
+
+      // Redirect after a short delay to show success message
+      setTimeout(() => {
+        window.location.href = 'https://admi.africa/enquiry-thank-you'
+      }, 1500)
     } catch (error) {
-      setAlert({ type: 'error', message: 'An error occurred. Please try again later.' });
+      console.error('Form submission error:', error)
+      setAlert({ type: 'error', message: 'An error occurred. Please try again later.' })
     }
-  };
+  }
 
   useEffect(() => {
-    fetchCourses();
-  }, [fetchCourses]);
+    fetchCourses()
+  }, [fetchCourses])
 
   useEffect(() => {
     if (router.isReady) {
-      const { utm_source, utm_medium, utm_campaign, utm_term, utm_content } = router.query;
-      form.setFieldValue('utm_source', utm_source as string);
-      form.setFieldValue('utm_medium', utm_medium as string);
-      form.setFieldValue('utm_campaign', utm_campaign as string);
-      form.setFieldValue('utm_term', utm_term as string);
-      form.setFieldValue('utm_content', utm_content as string);
+      const { utm_source, utm_medium, utm_campaign, utm_term, utm_content } = router.query
+      form.setFieldValue('utm_source', utm_source as string)
+      form.setFieldValue('utm_medium', utm_medium as string)
+      form.setFieldValue('utm_campaign', utm_campaign as string)
+      form.setFieldValue('utm_term', utm_term as string)
+      form.setFieldValue('utm_content', utm_content as string)
     }
-  }, [router.isReady, router.query, form]);
+  }, [router.isReady, router.query, form])
 
   return (
     <div className="w-full rounded-lg bg-white p-4 sm:p-8">
@@ -183,22 +228,22 @@ export default function EnquiryForm() {
               country={'ke'}
               value={countryCode}
               onChange={(value) => {
-                setCountryCode(value);
+                setCountryCode(value)
               }}
               containerStyle={{
                 border: 'none',
-                width: 100,
+                width: 100
               }}
               inputStyle={{
-                border: 'none',
+                border: 'none'
               }}
               buttonStyle={{
                 border: 'none',
-                marginLeft: '8px',
+                marginLeft: '8px'
               }}
               dropdownStyle={{
                 border: 'none',
-                boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+                boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)'
               }}
               inputProps={{ readOnly: true }}
             />
@@ -221,9 +266,31 @@ export default function EnquiryForm() {
           title={<Paragraph fontWeight={900}>{alert.type === 'success' ? 'Success' : 'Error'}</Paragraph>}
           my={8}
         >
-          <Paragraph>{alert.message}</Paragraph>
+          <Paragraph className="text-sm leading-relaxed">{alert.message}</Paragraph>
+          {alert.message.includes('already with us') && (
+            <div className="mt-3 space-y-2">
+              <div>
+                <a
+                  href="mailto:admissions@admi.africa"
+                  className="inline-block rounded bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700"
+                >
+                  Email Us
+                </a>
+              </div>
+              <div>
+                <a
+                  href="https://wa.me/254711486581"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block rounded bg-green-600 px-4 py-2 text-sm font-medium text-white hover:bg-green-700"
+                >
+                  WhatsApp Us
+                </a>
+              </div>
+            </div>
+          )}
         </Alert>
       )}
     </div>
-  );
+  )
 }

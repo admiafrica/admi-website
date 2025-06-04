@@ -1,19 +1,19 @@
-import React from 'react';
-import Image from 'next/image';
-import { Avatar, Box, Card, Rating, ScrollArea } from '@mantine/core';
-import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
+import React from 'react'
+import Image from 'next/image'
+import { Avatar, Box, Card, Rating, ScrollArea } from '@mantine/core'
+import { documentToHtmlString } from '@contentful/rich-text-html-renderer'
 
-import { getAssetDetails } from '@/utils';
-import { IContentfulAsset, IContentfulEntry } from '@/types';
+import { getAssetDetails } from '@/utils'
+import { IContentfulAsset, IContentfulEntry } from '@/types'
 
-import ImageKenyanFlag from '@/assets/images/kenyan-flag.svg';
-import { Paragraph, Title } from '../ui';
+import ImageKenyanFlag from '@/assets/images/kenyan-flag.svg'
+import { Paragraph, Title } from '../ui'
 
 type Props = {
-  user: IContentfulEntry;
-  testimonial: IContentfulEntry;
-  assets: Array<IContentfulAsset>;
-};
+  user: IContentfulEntry
+  testimonial: IContentfulEntry
+  assets: Array<IContentfulAsset>
+}
 
 export default function UserTestimonialCard(props: Props) {
   return (
@@ -28,7 +28,7 @@ export default function UserTestimonialCard(props: Props) {
                 props.testimonial.fields.description
                   ? props.testimonial.fields.description
                   : props.testimonial.fields.testimonial
-              ),
+              )
             }}
           ></div>
         </ScrollArea>
@@ -72,11 +72,11 @@ export default function UserTestimonialCard(props: Props) {
             )} */}
           </div>
 
-          <div className='flex justify-center items-center'>
-            <Image src={ImageKenyanFlag} alt="Flag of Kenya" width={24} height={24}/>
+          <div className="flex items-center justify-center">
+            <Image src={ImageKenyanFlag} alt="Flag of Kenya" width={24} height={24} />
           </div>
         </div>
       </div>
     </Card>
-  );
+  )
 }

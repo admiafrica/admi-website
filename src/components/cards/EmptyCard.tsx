@@ -1,15 +1,15 @@
-import React from 'react';
-import Image from 'next/image';
-import { Card } from '@mantine/core';
+import React from 'react'
+import Image from 'next/image'
+import { Card } from '@mantine/core'
 
-import { Paragraph } from '../ui';
+import { Paragraph } from '../ui'
 
-import ImageNotFound from '@/assets/icons/audio-phone-alt.svg';
+import ImageNotFound from '@/assets/icons/audio-phone-alt.svg'
 
 type Props = {
-  title: string;
-  subtext: string;
-};
+  title: string
+  subtext: string
+}
 
 export default function EmptyCard({ title, subtext }: Props) {
   return (
@@ -22,5 +22,5 @@ export default function EmptyCard({ title, subtext }: Props) {
         {subtext}
       </Paragraph>
     </Card>
-  );
+  )
 }

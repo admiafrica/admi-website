@@ -1,19 +1,19 @@
-import Image from 'next/image';
-import { Box, Divider, Modal } from '@mantine/core';
-import { useDisclosure } from '@mantine/hooks';
+import Image from 'next/image'
+import { Box, Divider, Modal } from '@mantine/core'
+import { useDisclosure } from '@mantine/hooks'
 
-import { MainLayout } from '@/layouts/v3/MainLayout';
-import { Paragraph, Title } from '@/components/ui';
-import { PageSEO } from '@/components/shared/v3';
-import { InfoCard, LearnMoreCard, PlainCard } from '@/components/cards';
-import { ADMI_ACCREDITATION_VALUES, ADMI_FELLOWSHIPS } from '@/utils';
-import { useIsMobile } from '@/hooks/useIsMobile';
+import { MainLayout } from '@/layouts/v3/MainLayout'
+import { Paragraph, Title } from '@/components/ui'
+import { PageSEO } from '@/components/shared/v3'
+import { InfoCard, LearnMoreCard, PlainCard } from '@/components/cards'
+import { ADMI_ACCREDITATION_VALUES, ADMI_FELLOWSHIPS } from '@/utils'
+import { useIsMobile } from '@/hooks/useIsMobile'
 
-import ImageAccreditationLanding from '@/assets/images/accreditation-landing.png';
+import ImageAccreditationLanding from '@/assets/images/accreditation-landing.png'
 
 export default function AccreditationPage() {
-  const isMobile = useIsMobile();
-  const [opened, { open, close }] = useDisclosure(false);
+  const isMobile = useIsMobile()
+  const [opened, { open, close }] = useDisclosure(false)
 
   return (
     <MainLayout footerBgColor="white">
@@ -37,7 +37,7 @@ export default function AccreditationPage() {
           <div
             className="z-5 absolute inset-0"
             style={{
-              background: 'linear-gradient(to bottom, rgba(0,0,0,0.3) 50%, rgba(228, 59, 7, 1) 100%)',
+              background: 'linear-gradient(to bottom, rgba(0,0,0,0.3) 50%, rgba(228, 59, 7, 1) 100%)'
             }}
           ></div>
           <Box className="relative z-10 mx-auto flex w-full max-w-screen-xl flex-row px-4 sm:h-[50vh] sm:flex-row 2xl:px-0">
@@ -45,8 +45,8 @@ export default function AccreditationPage() {
               <Box className="flex grow">
                 <Title label="Accreditation" color="#F1FE37" size={isMobile ? '36px' : '64px'} />
               </Box>
-              <Box className="flex w-full flex-col pt-12 sm:flex-row sm:h-[180px]">
-                <Paragraph fontFamily="font-nexa" className="pr-6 text-white sm:w-1/2 my-auto">
+              <Box className="flex w-full flex-col pt-12 sm:h-[180px] sm:flex-row">
+                <Paragraph fontFamily="font-nexa" className="my-auto pr-6 text-white sm:w-1/2">
                   At Africa Digital Media Institute (ADMI), we pride ourselves on maintaining the highest standards of
                   educational excellence through our accreditation partnerships. Currently, we are recognized as a
                   Pearson Assured institution, which signifies our commitment to quality education and training.
@@ -57,7 +57,7 @@ export default function AccreditationPage() {
                   my={isMobile ? 16 : 0}
                   opacity={'20%'}
                 />
-                <Paragraph fontFamily="font-nexa" className="text-white sm:w-1/2 sm:pl-6 my-auto">
+                <Paragraph fontFamily="font-nexa" className="my-auto text-white sm:w-1/2 sm:pl-6">
                   This independent benchmark from Pearson ensures that we meet rigorous quality criteria, providing you
                   with a reliable and respected qualification that is recognized globally.
                 </Paragraph>
@@ -110,5 +110,5 @@ export default function AccreditationPage() {
         <Box className="w-full pt-64"></Box>
       </div>
     </MainLayout>
-  );
+  )
 }

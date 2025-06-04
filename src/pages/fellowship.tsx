@@ -1,21 +1,21 @@
-import Image from 'next/image';
-import { Box, Card, Divider, Modal } from '@mantine/core';
-import { useDisclosure } from '@mantine/hooks';
+import Image from 'next/image'
+import { Box, Card, Divider, Modal } from '@mantine/core'
+import { useDisclosure } from '@mantine/hooks'
 
-import { MainLayout } from '@/layouts/v3/MainLayout';
-import { Paragraph, Title } from '@/components/ui';
-import { PageSEO } from '@/components/shared/v3';
-import { CompanyValuesCard, LearnMoreCard } from '@/components/cards';
-import { ADMI_FELLOWSHIP_VALUES, ADMI_FELLOWSHIP_DEPARTMENTS } from '@/utils';
-import { useIsMobile } from '@/hooks/useIsMobile';
+import { MainLayout } from '@/layouts/v3/MainLayout'
+import { Paragraph, Title } from '@/components/ui'
+import { PageSEO } from '@/components/shared/v3'
+import { CompanyValuesCard, LearnMoreCard } from '@/components/cards'
+import { ADMI_FELLOWSHIP_VALUES, ADMI_FELLOWSHIP_DEPARTMENTS } from '@/utils'
+import { useIsMobile } from '@/hooks/useIsMobile'
 
-import ImageFellowshipLanding from '@/assets/images/fellowship-landing.png';
-import IconBgImageYellow from '@/assets/icons/ellipse-yellow.svg';
-import IconBgImageOrange from '@/assets/icons/ellipse-orange-full.svg';
+import ImageFellowshipLanding from '@/assets/images/fellowship-landing.png'
+import IconBgImageYellow from '@/assets/icons/ellipse-yellow.svg'
+import IconBgImageOrange from '@/assets/icons/ellipse-orange-full.svg'
 
 export default function FellowshipPage() {
-  const isMobile = useIsMobile();
-  const [opened, { open, close }] = useDisclosure(false);
+  const isMobile = useIsMobile()
+  const [opened, { open, close }] = useDisclosure(false)
 
   return (
     <MainLayout footerBgColor="white">
@@ -39,7 +39,7 @@ export default function FellowshipPage() {
           <div
             className="z-5 absolute inset-0"
             style={{
-              background: 'linear-gradient(to bottom, rgba(0,0,0,0.3) 50%, rgba(9, 113, 96, 1) 100%)',
+              background: 'linear-gradient(to bottom, rgba(0,0,0,0.3) 50%, rgba(9, 113, 96, 1) 100%)'
             }}
           ></div>
           <Box className="relative z-10 mx-auto flex h-[50vh] w-full max-w-screen-xl flex-row px-4 sm:flex-row 2xl:px-0">
@@ -48,7 +48,7 @@ export default function FellowshipPage() {
               <Title label="Opportunities" color="#F1FE37" size={isMobile ? '36px' : '64px'} />
               <Box className="grow"></Box>
               <Box className="flex w-full flex-col pt-12 sm:h-[180px] sm:flex-row">
-                <Paragraph fontFamily="font-nexa" className="my my-auto text-white sm:pr-6 sm:w-1/2">
+                <Paragraph fontFamily="font-nexa" className="my my-auto text-white sm:w-1/2 sm:pr-6">
                   At Africa Digital Media Institute (ADMI), we are excited to offer fellowship opportunities that
                   empower individuals from diverse backgrounds, including international graduates, to contribute to our
                   vibrant academic community.
@@ -61,7 +61,7 @@ export default function FellowshipPage() {
                   opacity={'20%'}
                   h={isMobile ? '' : '100%'}
                 />
-                <Paragraph fontFamily="font-nexa" className="my-auto text-white sm:pl-6 sm:w-1/2">
+                <Paragraph fontFamily="font-nexa" className="my-auto text-white sm:w-1/2 sm:pl-6">
                   Our fellowship program is designed to attract passionate individuals who are eager to share their
                   knowledge and skills across various departments.
                 </Paragraph>
@@ -121,5 +121,5 @@ export default function FellowshipPage() {
         </Box>
       </div>
     </MainLayout>
-  );
+  )
 }

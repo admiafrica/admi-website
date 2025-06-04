@@ -16,7 +16,6 @@ $mappy-queries: () !default;
 // - $query-fallback  : <string> selector class
 // - $breakpoints     : <map>
 @mixin mappy-bp($queries, $type: all, $query-fallback: null, $breakpoints: $breakpoints) {
-
   // Gets mappy map through mappy-bp fn
   $mappy-map: mappy-bp($queries, $type, $query-fallback, $breakpoints);
 
@@ -70,16 +69,16 @@ $mappy-queries: () !default;
   @each $key, $value in $media-map {
     @if $value and $value != 0 {
       @if $media-string == (()) {
-        $media-string: append($media-string, unquote("(#{$key}: #{$value})"));
+        $media-string: append($media-string, unquote('(#{$key}: #{$value})'));
       } @else {
-        $media-string: append($media-string, unquote("and (#{$key}: #{$value})"));
+        $media-string: append($media-string, unquote('and (#{$key}: #{$value})'));
       }
     }
   }
   $_return: (
-          type: $type,
-          media-string: implode($media-string),
-          query-fallback: $query-fallback
+    type: $type,
+    media-string: implode($media-string),
+    query-fallback: $query-fallback
   );
 
   @return $_return;
@@ -113,7 +112,12 @@ $mappy-queries: () !default;
   // Check for width queries
   @if $_minw {
     $_minw: mappy-convert-to-em($_minw);
-    $_return: map-merge($_return, (min-width: $_minw));
+    $_return: map-merge(
+      $_return,
+      (
+        min-width: $_minw
+      )
+    );
     $queries: set-nth($queries, 1, null);
   }
 
@@ -125,7 +129,12 @@ $mappy-queries: () !default;
 
   @if $_maxw {
     $_maxw: mappy-convert-to-em($_maxw - 1px);
-    $_return: map-merge($_return, (max-width: $_maxw));
+    $_return: map-merge(
+      $_return,
+      (
+        max-width: $_maxw
+      )
+    );
     $queries: set-nth($queries, 2, null);
   }
 
@@ -138,7 +147,12 @@ $mappy-queries: () !default;
 
     @if $_minh {
       $_minh: mappy-convert-to-em($_minh);
-      $_return: map-merge($_return, (min-height: $_minh));
+      $_return: map-merge(
+        $_return,
+        (
+          min-height: $_minh
+        )
+      );
       $queries: set-nth($queries, $_h + 1, null);
     }
 
@@ -150,7 +164,12 @@ $mappy-queries: () !default;
 
     @if $_maxh {
       $_maxh: mappy-convert-to-em($_maxh - 1px);
-      $_return: map-merge($_return, (max-height: $_maxh));
+      $_return: map-merge(
+        $_return,
+        (
+          max-height: $_maxh
+        )
+      );
       $queries: set-nth($queries, $_h + 2, null);
     }
     // Reset h marker
@@ -187,7 +206,7 @@ $mappy-queries: () !default;
     $_return: map-get($breakpoints, $query);
   } @else if type-of($query) == number {
     $_return: $query;
-  } @else if $query == "max" or $query == "max-height" or $query == "max-width" {
+  } @else if $query == 'max' or $query == 'max-height' or $query == 'max-width' {
     $_return: 0;
   } @else {
     $_return: null;
@@ -200,11 +219,11 @@ $mappy-queries: () !default;
 // Checks and converts px values to em. Leave other units untouched.
 
 @function mappy-convert-to-em($val) {
-  @if unit($val) == "px" or $val == 0 {
+  @if unit($val) == 'px' or $val == 0 {
     @return mappy-em($val);
-  } @else if unit($val) == "em" {
+  } @else if unit($val) == 'em' {
     @return $val;
-  } @else if unit($val) == "rem" {
+  } @else if unit($val) == 'rem' {
     @return mappy-strip-unit($val) * 1em;
   } @else {
     @error unquote("Breakpoint value must have a unit if it's a number");
@@ -236,9 +255,9 @@ $mappy-queries: () !default;
   @for $i from 1 through $len {
     $e: nth($list, $i);
     @if $i == $len {
-      $res: unquote("#{$res}#{$e}");
+      $res: unquote('#{$res}#{$e}');
     } @else {
-      $res: unquote("#{$res}#{$e}#{$glue}");
+      $res: unquote('#{$res}#{$e}#{$glue}');
     }
   }
 
@@ -246,11 +265,11 @@ $mappy-queries: () !default;
 }
 
 $mappy-queries: (
-        xl: mappy-bp(max 1670px),
-        lg: mappy-bp(max 1470px),
-        lm: mappy-bp(max 1370px),
-        md: mappy-bp(max 1100px),
-        xm: mappy-bp(max 870px),
-        sm: mappy-bp(max 670px),
-        xs: mappy-bp(max 570px)
+  xl: mappy-bp(max 1670px),
+  lg: mappy-bp(max 1470px),
+  lm: mappy-bp(max 1370px),
+  md: mappy-bp(max 1100px),
+  xm: mappy-bp(max 870px),
+  sm: mappy-bp(max 670px),
+  xs: mappy-bp(max 570px)
 );

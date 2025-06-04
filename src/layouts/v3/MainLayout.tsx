@@ -1,21 +1,21 @@
-import '@mantine/carousel/styles.css';
+import '@mantine/carousel/styles.css'
 
-import { AppShell, rem } from '@mantine/core';
-import { useHeadroom } from '@mantine/hooks';
+import { AppShell, rem } from '@mantine/core'
+import { useHeadroom } from '@mantine/hooks'
 
-import { Footer, FooterMini, NavBar } from '@/components/shared/v3';
-import { nexaFont, proximaNovaFont } from '@/styles/theme';
+import { Footer, FooterMini, NavBar } from '@/components/shared/v3'
+import { nexaFont, proximaNovaFont } from '@/styles/theme'
 
 type LayoutProps = {
-  children: React.ReactNode;
-  minimizeHeader?: boolean;
-  minimizeFooter?: boolean;
-  footerBgColor?: string;
-};
+  children: React.ReactNode
+  minimizeHeader?: boolean
+  minimizeFooter?: boolean
+  footerBgColor?: string
+}
 
 export function MainLayout({ children, minimizeFooter = false, minimizeHeader = false, footerBgColor }: LayoutProps) {
-  const pinned = useHeadroom({ fixedAt: 120 });
-  const mode = 'dark';
+  const pinned = useHeadroom({ fixedAt: 120 })
+  const mode = 'dark'
 
   return (
     <div className={`${proximaNovaFont.variable} ${nexaFont.variable}`}>
@@ -32,7 +32,7 @@ export function MainLayout({ children, minimizeFooter = false, minimizeHeader = 
         </AppShell.Footer>
       </AppShell>
     </div>
-  );
+  )
 }
 
 const headerStyle: React.CSSProperties = {
@@ -41,5 +41,5 @@ const headerStyle: React.CSSProperties = {
   justifyContent: 'space-between',
   padding: '0 20px',
   margin: 0,
-  borderBottom: 'none',
-};
+  borderBottom: 'none'
+}
