@@ -31,7 +31,11 @@ export default function EnquiryForm() {
     },
 
     validate: {
-      email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Invalid email')
+      email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Invalid email'),
+      firstName: (value) => (value.trim().length < 2 ? 'First name must be at least 2 characters' : null),
+      lastName: (value) => (value.trim().length < 2 ? 'Last name must be at least 2 characters' : null),
+      phone: (value) => (value.trim().length < 8 ? 'Phone number must be at least 8 digits' : null),
+      courseName: (value) => (!value ? 'Please select a course' : null)
     }
   })
 
@@ -48,11 +52,27 @@ export default function EnquiryForm() {
   const handleSubmit = async (values: any) => {
     setAlert(null) // Clear previous alerts
 
+    // Validate required fields
+    if (
+      !values.firstName?.trim() ||
+      !values.lastName?.trim() ||
+      !values.email?.trim() ||
+      !values.phone?.trim() ||
+      !values.courseName?.trim()
+    ) {
+      setAlert({ type: 'error', message: 'Please fill in all required fields.' })
+      return
+    }
+
     // always remove leading zero from phone incase included
     const formattedPhone = values.phone.replace(/^0+/, '')
     const data = {
       ...values,
-      phone: `${countryCode}${formattedPhone}`
+      firstName: values.firstName.trim(),
+      lastName: values.lastName.trim(),
+      email: values.email.trim(),
+      phone: `${countryCode}${formattedPhone}`,
+      courseName: values.courseName.trim()
     }
 
     try {
@@ -61,16 +81,30 @@ export default function EnquiryForm() {
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ ...data })
+        body: JSON.stringify(data)
       })
 
       if (!response.ok) {
-        const errorData = await response.json()
-        setAlert({ type: 'error', message: errorData.error || 'Failed to submit enquiry.' })
+        let errorMessage = 'Failed to submit enquiry.'
+        try {
+          const errorData = await response.json()
+          errorMessage = typeof errorData.error === 'string' ? errorData.error : errorMessage
+        } catch (e) {
+          // If we can't parse the error response, use default message
+        }
+        setAlert({ type: 'error', message: errorMessage })
         return
       }
-      router.push('/enquiry-thank-you')
+
+      // Show success message before redirect
+      setAlert({ type: 'success', message: 'Enquiry submitted successfully! Redirecting...' })
+
+      // Redirect after a short delay to show success message
+      setTimeout(() => {
+        window.location.href = 'https://admi.africa/enquiry-thank-you'
+      }, 1500)
     } catch (error) {
+      console.error('Form submission error:', error)
       setAlert({ type: 'error', message: 'An error occurred. Please try again later.' })
     }
   }

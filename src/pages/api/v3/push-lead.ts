@@ -18,12 +18,27 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     utm_content = ''
   } = req.body
 
-  if (!email || !firstName || !lastName || !phone || !courseName) {
-    return res.status(400).json({ error: 'All fields are required.' })
+  // Validate required fields with more specific error messages
+  const missingFields = []
+  if (!email?.trim()) missingFields.push('email')
+  if (!firstName?.trim()) missingFields.push('firstName')
+  if (!lastName?.trim()) missingFields.push('lastName')
+  if (!phone?.trim()) missingFields.push('phone')
+  if (!courseName?.trim()) missingFields.push('courseName')
+
+  if (missingFields.length > 0) {
+    return res.status(400).json({
+      error: `Missing required fields: ${missingFields.join(', ')}`
+    })
   }
 
   const API_KEY = process.env.BREVO_API_KEY as string
   const LIST_ID = process.env.BREVO_LIST_ID as string
+
+  if (!API_KEY || !LIST_ID) {
+    console.error('Missing Brevo configuration:', { API_KEY: !!API_KEY, LIST_ID: !!LIST_ID })
+    return res.status(500).json({ error: 'Server configuration error' })
+  }
 
   const BREVO_URL = 'https://api.brevo.com/v3/contacts'
 
@@ -57,8 +72,22 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     })
 
     if (!response.ok) {
-      const errorData = await response.json()
-      return res.status(response.status).json({ error: errorData })
+      let errorData
+      try {
+        errorData = await response.json()
+      } catch (e) {
+        errorData = { message: 'Unknown error from Brevo API' }
+      }
+
+      console.error('Brevo API error:', {
+        status: response.status,
+        statusText: response.statusText,
+        error: errorData
+      })
+
+      return res.status(response.status).json({
+        error: `Failed to add lead to CRM: ${errorData.message || 'Unknown error'}`
+      })
     }
 
     return res.status(201).json({ message: 'Lead added successfully' })
