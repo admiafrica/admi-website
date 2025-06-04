@@ -84,11 +84,12 @@ export default function EnquiryForm() {
         body: JSON.stringify(data)
       })
 
+      const responseData = await response.json()
+
       if (!response.ok) {
         let errorMessage = 'Failed to submit enquiry.'
         try {
-          const errorData = await response.json()
-          errorMessage = typeof errorData.error === 'string' ? errorData.error : errorMessage
+          errorMessage = typeof responseData.error === 'string' ? responseData.error : errorMessage
         } catch (e) {
           // If we can't parse the error response, use default message
         }
@@ -96,7 +97,17 @@ export default function EnquiryForm() {
         return
       }
 
-      // Show success message before redirect
+      // Check if this is an existing contact
+      if (responseData.message === 'existing_contact') {
+        setAlert({
+          type: 'success',
+          message:
+            'Your record is already with us! For further assistance, please email us at admissions@admi.africa or contact us via WhatsApp at +254 722 857 660.'
+        })
+        return
+      }
+
+      // Show success message before redirect for new contacts
       setAlert({ type: 'success', message: 'Enquiry submitted successfully! Redirecting...' })
 
       // Redirect after a short delay to show success message
@@ -255,7 +266,29 @@ export default function EnquiryForm() {
           title={<Paragraph fontWeight={900}>{alert.type === 'success' ? 'Success' : 'Error'}</Paragraph>}
           my={8}
         >
-          <Paragraph>{alert.message}</Paragraph>
+          <Paragraph className="text-sm leading-relaxed">{alert.message}</Paragraph>
+          {alert.message.includes('already with us') && (
+            <div className="mt-3 space-y-2">
+              <div>
+                <a
+                  href="mailto:admissions@admi.africa"
+                  className="inline-block rounded bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700"
+                >
+                  Email Us
+                </a>
+              </div>
+              <div>
+                <a
+                  href="https://wa.me/254722857660"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block rounded bg-green-600 px-4 py-2 text-sm font-medium text-white hover:bg-green-700"
+                >
+                  WhatsApp Us
+                </a>
+              </div>
+            </div>
+          )}
         </Alert>
       )}
     </div>

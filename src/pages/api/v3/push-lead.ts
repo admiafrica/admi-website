@@ -85,8 +85,43 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         error: errorData
       })
 
+      // Handle duplicate contact error with user-friendly message
+      if (
+        response.status === 400 &&
+        errorData.message &&
+        (errorData.message.includes('already associated') ||
+          errorData.message.includes('SMS is already associated') ||
+          errorData.message.includes('duplicate'))
+      ) {
+        return res.status(200).json({
+          message: 'existing_contact',
+          friendlyMessage:
+            'Your record is already with us! For further assistance, please email us at admissions@admi.africa or contact us via WhatsApp.'
+        })
+      }
+
+      // Handle phone number validation errors with user-friendly message
+      if (
+        response.status === 400 &&
+        errorData.message &&
+        (errorData.message.includes('Invalid phone number') ||
+          errorData.message.includes('phone') ||
+          errorData.message.includes('SMS'))
+      ) {
+        return res.status(400).json({
+          error: 'Please enter a valid phone number. Make sure to include the correct country code and number format.'
+        })
+      }
+
+      // Handle other validation errors
+      if (response.status === 400) {
+        return res.status(400).json({
+          error: 'Please check your information and try again. Make sure all fields are filled correctly.'
+        })
+      }
+
       return res.status(response.status).json({
-        error: `Failed to add lead to CRM: ${errorData.message || 'Unknown error'}`
+        error: 'Unable to submit your enquiry at this time. Please try again later or contact us directly.'
       })
     }
 
