@@ -103,6 +103,16 @@ export default function Footer({ bgColor }: Props) {
             </Group>
 
             <Group gap={4} className="px-4">
+              <Image width={24} height={24} src={IconCall} alt="whatsapp" />
+              <Text fw="bold" ml={10}>
+                WhatsApp:
+              </Text>
+              <Anchor href="https://wa.me/254711486581" target="_blank" c="admiShamrok" fw="bold">
+                (+254) 711 486 581
+              </Anchor>
+            </Group>
+
+            <Group gap={4} className="px-4">
               <Image width={24} src={IconStopWatch} alt="hours active" />
               <Text fw="bold" ml={10}>
                 Hours:

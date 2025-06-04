@@ -102,7 +102,7 @@ export default function EnquiryForm() {
         setAlert({
           type: 'success',
           message:
-            'Your record is already with us! For further assistance, please email us at admissions@admi.africa or contact us via WhatsApp at +254 722 857 660.'
+            'Your record is already with us! For further assistance, please email us at admissions@admi.africa or contact us via WhatsApp at +254 711 486 581.'
         })
         return
       }
@@ -279,7 +279,7 @@ export default function EnquiryForm() {
               </div>
               <div>
                 <a
-                  href="https://wa.me/254722857660"
+                  href="https://wa.me/254711486581"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-block rounded bg-green-600 px-4 py-2 text-sm font-medium text-white hover:bg-green-700"

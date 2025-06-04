@@ -24,6 +24,9 @@ export default function CustomFooter() {
 
         <Text pt={20}>Email: info@admi.ac.ke</Text>
         <Text>Phone: (+254) 706 349 696, (+254) 711 486 581</Text>
+        <Anchor href="https://wa.me/254711486581" target="_blank" c="green" fw="bold">
+          WhatsApp: (+254) 711 486 581
+        </Anchor>
         <Text>Hours: Mon-Fri 8:00am - 5:00pm / Sat: 8:00am to 2:00pm</Text>
 
         <Image width={isMobile ? 80 : 140} src={LogoIcon} alt="logo" />
