@@ -16,10 +16,10 @@ import {
   PHOTOGRAPHY_FAQS
 } from '@/data/diploma-faqs'
 import { PageSEO } from '@/components/shared/v3'
-import { CourseSchema, BreadcrumbSchema, CMSFAQSchema, VideoSchema, TestimonialSchema } from '@/components/shared/StructuredData'
+import { CourseSchema, BreadcrumbSchema, CMSFAQSchema, VideoSchema } from '@/components/shared/StructuredData'
 import { DiplomaEnhancedSEO } from '@/components/course/DiplomaEnhancedSEO'
 import { EastAfricaLocalSEO } from '@/components/seo/EastAfricaLocalSEO'
-import { ENROLLMENT_FAQS, generateEnrollmentFAQSchema } from '@/data/enrollment-faqs'
+import { ENROLLMENT_FAQS } from '@/data/enrollment-faqs'
 // generateDiplomaKeywords utility available for future enhancements
 import { GENERAL_DIPLOMA_FAQS } from '@/data/diploma-faqs'
 
@@ -87,7 +87,7 @@ export default function CourseDetailPage({
   const enrollmentKeywords = [
     'apply now',
     'admission requirements',
-    'scholarship opportunities', 
+    'scholarship opportunities',
     'payment plans',
     '2025 intake',
     '2026 intake',
@@ -123,7 +123,14 @@ export default function CourseDetailPage({
     'pan-African education',
     ...enrollmentKeywords,
     ...(isDiploma
-      ? ['diploma courses Africa', '2 year diploma', 'professional diploma', 'industry-recognized diploma', '85% employment rate', 'hands-on training']
+      ? [
+          'diploma courses Africa',
+          '2 year diploma',
+          'professional diploma',
+          'industry-recognized diploma',
+          '85% employment rate',
+          'hands-on training'
+        ]
       : []),
     ...learningOutcomes.slice(0, 3),
     ...careerOptions.slice(0, 3)

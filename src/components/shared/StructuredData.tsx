@@ -537,4 +537,201 @@ export function CourseSchema({
   )
 }
 
+// Video Schema for Course Previews
+interface VideoProps {
+  name: string
+  description: string
+  thumbnailUrl: string
+  contentUrl: string
+  uploadDate: string
+  duration?: string
+  embedUrl?: string
+  publisher?: {
+    name: string
+    logo: string
+  }
+}
+
+export function VideoSchema({
+  name,
+  description,
+  thumbnailUrl,
+  contentUrl,
+  uploadDate,
+  duration,
+  embedUrl,
+  publisher = {
+    name: 'Africa Digital Media Institute',
+    logo: 'https://admi.africa/logo.png'
+  }
+}: VideoProps) {
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'VideoObject',
+    name,
+    description,
+    thumbnailUrl,
+    contentUrl,
+    embedUrl,
+    uploadDate,
+    ...(duration && { duration }),
+    publisher: {
+      '@type': 'Organization',
+      name: publisher.name,
+      logo: {
+        '@type': 'ImageObject',
+        url: publisher.logo
+      }
+    }
+  }
+
+  return (
+    <Script
+      id="video-schema"
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+    />
+  )
+}
+
+// Testimonial/Review Schema for Student Success Stories
+interface TestimonialProps {
+  author: {
+    name: string
+    image?: string
+    jobTitle?: string
+    worksFor?: string
+  }
+  reviewBody: string
+  reviewRating: number
+  datePublished?: string
+  about?: {
+    name: string
+    type: string
+  }
+}
+
+export function TestimonialSchema({
+  author,
+  reviewBody,
+  reviewRating,
+  datePublished,
+  about = {
+    name: 'Africa Digital Media Institute',
+    type: 'EducationalOrganization'
+  }
+}: TestimonialProps) {
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'Review',
+    author: {
+      '@type': 'Person',
+      name: author.name,
+      ...(author.image && { image: author.image }),
+      ...(author.jobTitle && { jobTitle: author.jobTitle }),
+      ...(author.worksFor && {
+        worksFor: {
+          '@type': 'Organization',
+          name: author.worksFor
+        }
+      })
+    },
+    reviewBody,
+    reviewRating: {
+      '@type': 'Rating',
+      ratingValue: reviewRating,
+      bestRating: 5,
+      worstRating: 1
+    },
+    ...(datePublished && { datePublished }),
+    itemReviewed: {
+      '@type': about.type,
+      name: about.name
+    }
+  }
+
+  return (
+    <Script
+      id="testimonial-schema"
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+    />
+  )
+}
+
+// Enhanced Local Business Schema for Multiple Cities
+interface MultiCityLocalBusinessProps {
+  city: string
+  country: string
+  region: string
+  coordinates?: {
+    latitude: number
+    longitude: number
+  }
+  serviceArea?: string[]
+  courses?: string[]
+}
+
+export function MultiCityLocalBusinessSchema({
+  city,
+  country,
+  region,
+  coordinates,
+  serviceArea = [],
+  courses = []
+}: MultiCityLocalBusinessProps) {
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'LocalBusiness',
+    '@id': `https://admi.africa/${city.toLowerCase()}-campus`,
+    name: `Africa Digital Media Institute - ${city} Campus`,
+    alternateName: `ADMI ${city}`,
+    description: `Leading Creative Media and Technology Training Institution in ${city}, ${country}. Offering diploma courses in film, animation, graphic design, audio production, and photography.`,
+    url: `https://admi.africa/${city.toLowerCase()}`,
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: city,
+      addressRegion: region,
+      addressCountry: country
+    },
+    ...(coordinates && {
+      geo: {
+        '@type': 'GeoCoordinates',
+        latitude: coordinates.latitude,
+        longitude: coordinates.longitude
+      }
+    }),
+    telephone: city === 'Nairobi' ? '+254 772 913 811' : '+254 772 913 811',
+    email: 'info@admi.ac.ke',
+    areaServed: serviceArea.length > 0 ? serviceArea : [city, region, country],
+    serviceType: 'Higher Education',
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: 'ADMI Course Catalog',
+      itemListElement: courses.map((course, index) => ({
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Course',
+          name: course
+        },
+        position: index + 1
+      }))
+    },
+    sameAs: [
+      'https://www.facebook.com/africadigitalmediainstitute',
+      'https://twitter.com/admi_ke',
+      'https://www.instagram.com/admi_ke/',
+      'https://www.linkedin.com/school/africa-digital-media-institute/'
+    ]
+  }
+
+  return (
+    <Script
+      id={`local-business-${city.toLowerCase()}`}
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+    />
+  )
+}
+
 // Add more structured data components as needed for other content types.
