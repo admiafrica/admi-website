@@ -38,20 +38,20 @@ export default function AboutPage() {
       {/* HEADER */}
       <div className="relative h-[30vh] w-full overflow-hidden bg-[#002A23] sm:h-[35vh] md:h-[40vh] lg:h-[45vh] xl:h-[50vh]">
         {/* BACKGROUND IMAGES */}
-        <div className="absolute left-[85%] top-[8vh] z-0 h-fit w-full -translate-x-1/2 transform sm:left-[63%] sm:top-[10vh] md:top-[12vh]">
-          <div className="flex w-full justify-end pr-[5%] sm:pr-[10%]">
+        <div className="absolute left-[85%] top-[6vh] z-0 h-fit w-full -translate-x-1/2 transform sm:left-[70%] sm:top-[8vh] md:left-[65%] md:top-[10vh] lg:top-[12vh]">
+          <div className="flex w-full justify-end pr-[5%] sm:pr-[8%] md:pr-[10%]">
             <Image src={IconBgImageYellow} alt={'background image'} priority />
           </div>
         </div>
 
-        <div className="absolute left-1/2 top-[4vh] z-0 h-fit w-full -translate-x-1/2 transform sm:top-[5vh] md:top-[6vh]">
-          <div className="flex w-full pl-[5%]">
+        <div className="absolute left-1/2 top-[3vh] z-0 h-fit w-full -translate-x-1/2 transform sm:top-[4vh] md:top-[5vh] lg:top-[6vh]">
+          <div className="flex w-full pl-[3%] sm:pl-[4%] md:pl-[5%]">
             <Image src={IconBgImageRed} alt={'background image'} priority />
           </div>
         </div>
-        <div className="relative z-10 mx-auto flex h-full w-full max-w-screen-lg items-center justify-center px-4 pt-16 sm:pt-20 md:pt-24 lg:pt-28 xl:pt-32 2xl:px-0">
+        <div className="relative z-10 mx-auto flex h-full w-full max-w-screen-lg items-center justify-center px-4 2xl:px-0">
           <div className="text-center font-nexa text-white">
-            <Text fw={900} className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl">
+            <Text fw={900} className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl">
               Africa Digital Media <br></br> Institute <span className="text-admiShamrok">(ADMI)</span>
             </Text>
           </div>
