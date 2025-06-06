@@ -86,7 +86,7 @@ export default function NavBar({ mode, isMinimal = false }: Props) {
 
   const getMenuMobile = (mode: string) => {
     return (
-      <Group c={mode == 'dark' ? 'white' : 'black'} className="ml-auto w-fit">
+      <Group c={mode == 'dark' ? 'white' : 'black'} className="ml-auto w-fit pr-6">
         <Menu trigger="hover" openDelay={100} closeDelay={400}>
           <Menu.Target>
             <IconMenu />

@@ -52,7 +52,7 @@ export default function CampaignHeader() {
 
   const getMenuMobile = () => {
     return (
-      <Group>
+      <Group className="ml-auto w-fit pr-6">
         <Menu trigger="hover" openDelay={100} closeDelay={400}>
           <Menu.Target>
             <IconMenu />
