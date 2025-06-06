@@ -3,7 +3,7 @@ import { Box, Text, Select } from '@mantine/core'
 
 import { MainLayout } from '@/layouts/v3/MainLayout'
 import { Paragraph, Title, SearchDropdown } from '@/components/ui'
-import { ProgramListItemCard, CourseListItemCard } from '@/components/cards'
+import { ProgramListItemCard } from '@/components/cards'
 import { PageSEO } from '@/components/shared/v3'
 import { useIsMobile } from '@/hooks/useIsMobile'
 
@@ -31,33 +31,6 @@ export default function CoursesPage({
         : programs
     )
   }, [activeOption, programs])
-
-  // Categorize courses by award level
-  const categorizeCourses = (courses: any[]) => {
-    const foundationCertificates: any[] = []
-    const professionalCertificates: any[] = []
-    const diplomas: any[] = []
-
-    courses.forEach((course) => {
-      const awardLevel = course.fields.awardLevel?.toLowerCase() || ''
-      const duration = course.fields.programType?.fields?.duration?.toLowerCase() || ''
-
-      if (awardLevel.includes('diploma') || duration.includes('2 year')) {
-        diplomas.push(course)
-      } else if (awardLevel.includes('foundation') || awardLevel.includes('basic')) {
-        foundationCertificates.push(course)
-      } else if (awardLevel.includes('professional') || awardLevel.includes('advanced') || awardLevel.includes('certificate')) {
-        professionalCertificates.push(course)
-      } else {
-        // Default to professional certificates for uncategorized courses
-        professionalCertificates.push(course)
-      }
-    })
-
-    return { foundationCertificates, professionalCertificates, diplomas }
-  }
-
-  const { foundationCertificates, professionalCertificates, diplomas } = categorizeCourses(courses)
 
   return (
     <MainLayout footerBgColor="#F5FFFD">
@@ -117,91 +90,17 @@ export default function CoursesPage({
           </div>
         </div>
         <div className="relative mx-auto min-h-[60vh] w-full max-w-screen-xl px-4 2xl:px-0">
-          {activeOption === 'All Courses' ? (
-            // Show categorized view when "All Courses" is selected
-            <div className="space-y-16">
-              {/* Diplomas Section */}
-              {diplomas.length > 0 && (
-                <Box className="flex h-fit w-full flex-col pt-8">
-                  <div className="flex items-center mb-6">
-                    <div className="flex items-center">
-                      <div className="w-8 h-8 bg-gradient-to-r from-admiRed to-admiDarkOrange rounded-full flex items-center justify-center mr-3">
-                        <span className="text-white font-bold text-sm">🎓</span>
-                      </div>
-                      <Title label="Diplomas" size="28px" color="admiDarkOrange" />
-                    </div>
-                  </div>
-                  <Paragraph fontFamily="font-nexa" className="mb-6 text-gray-600">
-                    2-year comprehensive programs with industry placement and 85% employment rate
-                  </Paragraph>
-                  <div className="grid gap-4">
-                    {diplomas.map((course) => (
-                      <Box key={course.sys.id}>
-                        <CourseListItemCard course={course} />
-                      </Box>
-                    ))}
-                  </div>
-                </Box>
-              )}
-
-              {/* Professional Certificates Section */}
-              {professionalCertificates.length > 0 && (
-                <Box className="flex h-fit w-full flex-col pt-8">
-                  <div className="flex items-center mb-6">
-                    <div className="w-8 h-8 bg-gradient-to-r from-admiShamrok to-green-600 rounded-full flex items-center justify-center mr-3">
-                      <span className="text-white font-bold text-sm">📜</span>
-                    </div>
-                    <Title label="Professional Certificates" size="28px" color="admiShamrok" />
-                  </div>
-                  <Paragraph fontFamily="font-nexa" className="mb-6 text-gray-600">
-                    Advanced skill-building programs for career advancement and specialization
-                  </Paragraph>
-                  <div className="grid gap-4">
-                    {professionalCertificates.map((course) => (
-                      <Box key={course.sys.id}>
-                        <CourseListItemCard course={course} />
-                      </Box>
-                    ))}
-                  </div>
-                </Box>
-              )}
-
-              {/* Foundation Certificates Section */}
-              {foundationCertificates.length > 0 && (
-                <Box className="flex h-fit w-full flex-col pt-8">
-                  <div className="flex items-center mb-6">
-                    <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-blue-700 rounded-full flex items-center justify-center mr-3">
-                      <span className="text-white font-bold text-sm">🌟</span>
-                    </div>
-                    <Title label="Foundation Certificates" size="28px" color="blue" />
-                  </div>
-                  <Paragraph fontFamily="font-nexa" className="mb-6 text-gray-600">
-                    Entry-level programs perfect for beginners starting their creative journey
-                  </Paragraph>
-                  <div className="grid gap-4">
-                    {foundationCertificates.map((course) => (
-                      <Box key={course.sys.id}>
-                        <CourseListItemCard course={course} />
-                      </Box>
-                    ))}
-                  </div>
-                </Box>
-              )}
-            </div>
-          ) : (
-            // Show filtered programs view when specific program is selected
-            filteredPrograms.map((program) => (
-              <Box key={program.sys.id}>
-                <ProgramListItemCard
-                  program={program}
-                  courses={courses}
-                  filterProgramCourses={(programType: string, courses: any[]) =>
-                    courses.filter((course) => course.fields.programType.fields.name === programType)
-                  }
-                />
-              </Box>
-            ))
-          )}
+          {filteredPrograms.map((program) => (
+            <Box key={program.sys.id}>
+              <ProgramListItemCard
+                program={program}
+                courses={courses}
+                filterProgramCourses={(programType: string, courses: any[]) =>
+                  courses.filter((course) => course.fields.programType.fields.name === programType)
+                }
+              />
+            </Box>
+          ))}
         </div>
       </div>
     </MainLayout>
