@@ -16,8 +16,10 @@ import {
   PHOTOGRAPHY_FAQS
 } from '@/data/diploma-faqs'
 import { PageSEO } from '@/components/shared/v3'
-import { CourseSchema, BreadcrumbSchema } from '@/components/shared/StructuredData'
+import { CourseSchema, BreadcrumbSchema, CMSFAQSchema, VideoSchema, TestimonialSchema } from '@/components/shared/StructuredData'
 import { DiplomaEnhancedSEO } from '@/components/course/DiplomaEnhancedSEO'
+import { EastAfricaLocalSEO } from '@/components/seo/EastAfricaLocalSEO'
+import { ENROLLMENT_FAQS, generateEnrollmentFAQSchema } from '@/data/enrollment-faqs'
 // generateDiplomaKeywords utility available for future enhancements
 import { GENERAL_DIPLOMA_FAQS } from '@/data/diploma-faqs'
 
@@ -52,12 +54,20 @@ export default function CourseDetailPage({
     )
   }
 
-  // Create comprehensive course description for SEO
-  const courseDescription = course.description
+  // Create comprehensive course description for SEO with enrollment focus
+  const baseDescription = course.description
     ? getPlainTextFromRichText(course.description)
     : course.aboutTheCourse
       ? getPlainTextFromRichText(course.aboutTheCourse)
       : `${course.name} - ${course.programType?.fields?.duration || ''} ${course.programType?.fields?.deliveryMode || ''} course at ADMI. ${course.awardLevel || ''} level program.`
+
+  // Check if this is a diploma program (moved before usage)
+  const isDiploma =
+    course.awardLevel?.toLowerCase().includes('diploma') || course.programType?.fields?.duration?.includes('2 year')
+
+  const courseDescription = isDiploma
+    ? `${baseDescription} 🎓 Apply now for 2025/2026 intake! 85% employment rate. Scholarship opportunities available. Flexible payment plans. Industry placement guaranteed. Limited seats - secure your spot today!`
+    : `${baseDescription} Apply now for upcoming intakes. Flexible payment options available. Industry-recognized certification.`
 
   // Extract learning outcomes as array
   const learningOutcomes =
@@ -71,13 +81,27 @@ export default function CourseDetailPage({
       ?.map((block: any) => block.content?.map((content: any) => content.value).join(' '))
       .filter(Boolean) || []
 
-  // Check if this is a diploma program
-  const isDiploma =
-    course.awardLevel?.toLowerCase().includes('diploma') || course.programType?.fields?.duration?.includes('2 year')
-
   // Program type detection available for future enhancements
 
-  // Create SEO keywords with African market focus
+  // Create SEO keywords with African market focus and high-intent enrollment terms
+  const enrollmentKeywords = [
+    'apply now',
+    'admission requirements',
+    'scholarship opportunities', 
+    'payment plans',
+    '2025 intake',
+    '2026 intake',
+    'career change program',
+    'register now',
+    'secure your spot',
+    'limited seats available',
+    'early bird discount',
+    'industry placement',
+    'job placement guarantee',
+    'flexible payment options',
+    'financial aid available'
+  ]
+
   const keywords = [
     course.name,
     course.programType?.fields?.name,
@@ -97,8 +121,9 @@ export default function CourseDetailPage({
     'distance learning',
     'African students',
     'pan-African education',
+    ...enrollmentKeywords,
     ...(isDiploma
-      ? ['diploma courses Africa', '2 year diploma', 'professional diploma', 'industry-recognized diploma']
+      ? ['diploma courses Africa', '2 year diploma', 'professional diploma', 'industry-recognized diploma', '85% employment rate', 'hands-on training']
       : []),
     ...learningOutcomes.slice(0, 3),
     ...careerOptions.slice(0, 3)
@@ -161,6 +186,24 @@ export default function CourseDetailPage({
           }
         ]}
       />
+
+      {/* East Africa Local Business Schema */}
+      <EastAfricaLocalSEO targetCity="Nairobi" />
+
+      {/* Enrollment FAQs Schema */}
+      <CMSFAQSchema faqs={ENROLLMENT_FAQS} courseName={`${course.name} - Enrollment Information`} />
+
+      {/* Course Video Schema (if video exists) */}
+      {course.courseVideo && (
+        <VideoSchema
+          name={`${course.name} - Course Preview`}
+          description={`Watch this preview of ${course.name} at Africa Digital Media Institute. Learn about the curriculum, facilities, and career opportunities.`}
+          thumbnailUrl={course.coverImage?.fields?.file?.url ? `https:${course.coverImage.fields.file.url}` : ''}
+          contentUrl={course.courseVideo}
+          uploadDate={new Date().toISOString()}
+          duration="PT2M30S"
+        />
+      )}
       <CourseHero
         name={course.name}
         coverImage={course.coverImage}
