@@ -16,7 +16,6 @@ import {
 import styles from '@/assets/css/main.module.css'
 import { useRouter } from 'next/router'
 import { Skeleton } from '@mantine/core'
-import { GoogleAnalyticsTag } from '@/components/shared'
 import { getCourseFormUrl } from '@/utils'
 
 export function CampaignsPage() {
@@ -83,7 +82,6 @@ export function CampaignsPage() {
   return (
     <CampaignLayout client="admi">
       <CampaignHeader />
-      <GoogleAnalyticsTag analyticsId={process.env.NEXT_PUBLIC_ADMI_GTM_ID as string} />
       <Skeleton visible={loading} className={`${styles['course-banner']}`}>
         {!loading && (
           <CampaignBanner
