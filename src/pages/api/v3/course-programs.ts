@@ -11,7 +11,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   if (req.method === 'GET') {
     try {
       const response = await axiosContentfulClient.get<IContentfulResponse>(
-        `/spaces/${spaceId}/environments/${environment}/entries?access_token=${accessToken}&content_type=program`
+        `/spaces/${spaceId}/environments/${environment}/entries?access_token=${accessToken}&content_type=program&include=1`
       )
       const data = response.data
 

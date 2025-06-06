@@ -36,22 +36,22 @@ export default function AboutPage() {
     <MainLayout footerBgColor="#F5FFFD">
       <PageSEO title="About Us" />
       {/* HEADER */}
-      <div className="w-full bg-[#002A23] pb-8 sm:h-[24vh]">
+      <div className="relative h-[30vh] w-full overflow-hidden bg-[#002A23] sm:h-[35vh] md:h-[40vh] lg:h-[45vh] xl:h-[50vh]">
         {/* BACKGROUND IMAGES */}
-        <div className="absolute left-[95%] top-[10vh] z-0 h-fit w-full -translate-x-1/2 transform sm:left-[63%]">
-          <div className="flex w-full justify-end pr-[10%]">
+        <div className="absolute left-[85%] top-[6vh] z-0 h-fit w-full -translate-x-1/2 transform sm:left-[70%] sm:top-[8vh] md:left-[65%] md:top-[10vh] lg:top-[12vh]">
+          <div className="flex w-full justify-end pr-[5%] sm:pr-[8%] md:pr-[10%]">
             <Image src={IconBgImageYellow} alt={'background image'} priority />
           </div>
         </div>
 
-        <div className="absolute left-1/2 top-[5vh] z-0 h-fit w-full -translate-x-1/2 transform">
-          <div className="flex w-full">
+        <div className="absolute left-1/2 top-[3vh] z-0 h-fit w-full -translate-x-1/2 transform sm:top-[4vh] md:top-[5vh] lg:top-[6vh]">
+          <div className="flex w-full pl-[3%] sm:pl-[4%] md:pl-[5%]">
             <Image src={IconBgImageRed} alt={'background image'} priority />
           </div>
         </div>
-        <div className="relative z-10 mx-auto w-full max-w-screen-lg px-4 pt-24 2xl:px-0">
+        <div className="relative z-10 mx-auto flex h-full w-full max-w-screen-lg items-center justify-center px-4 2xl:px-0">
           <div className="text-center font-nexa text-white">
-            <Text fw={900} size="46px">
+            <Text fw={900} className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl">
               Africa Digital Media <br></br> Institute <span className="text-admiShamrok">(ADMI)</span>
             </Text>
           </div>
@@ -123,7 +123,7 @@ export default function AboutPage() {
       {/* OUR VALUES */}
       <Box className="1xl:px-0 relative w-full px-4 pb-16" bg={'#F5FFFD'}>
         <Box className="mx-auto w-full max-w-screen-xl pb-10">
-          <Box className="flex w-full flex-row flex-col sm:flex-row">
+          <Box className="flex w-full flex-col sm:flex-row">
             <Box className="sm:w-[30%]">
               <Title label="Our Values" color="black" />
             </Box>
@@ -146,14 +146,14 @@ export default function AboutPage() {
       {/* ACADEMIC TEAM */}
       <Box className="1xl:px-0 w-full px-4 sm:pt-56" bg={'admiRed'}>
         <Box className="mx-auto w-full max-w-screen-xl">
-          <Box className="flex w-full flex-row">
-            <Box className="w-[30%]">
+          <Box className="flex w-full flex-col sm:flex-row">
+            <Box className="sm:w-[30%]">
               <Title label="Academic Team" color="white" />
             </Box>
           </Box>
-          <Box className="flex w-full flex-row flex-wrap py-8">
+          <Box className="flex w-full flex-col flex-wrap py-8 sm:flex-row">
             {ADMI_ACADEMIC_TEAM_SUMMARY.map((member, index) => (
-              <div className="mb-4 mr-4 w-fit" key={`academic-member-${index}`}>
+              <div className="mb-4 w-fit sm:mr-4" key={`academic-member-${index}`}>
                 <UserProfileCard user={member} />
               </div>
             ))}
@@ -163,7 +163,7 @@ export default function AboutPage() {
       {/* BOARD OF DIRECTORS */}
       <Box className="1xl:px-0 w-full px-4 py-8" bg={'#F5FFFD'}>
         <Box className="mx-auto w-full max-w-screen-xl">
-          <Box className="flex w-full flex-row">
+          <Box className="flex w-full flex-col sm:flex-row">
             <Title label="Board of Directors" color="black" />
           </Box>
           <Box className="flex w-full flex-row flex-wrap py-8">
@@ -178,7 +178,7 @@ export default function AboutPage() {
       {/* FACILITIES */}
       <Box className="1xl:px-0 w-full px-4 py-8" bg={'#F5FFFD'}>
         <Box className="mx-auto w-full max-w-screen-xl">
-          <Box className="flex w-full flex-row flex-col pb-12 sm:flex-row">
+          <Box className="flex w-full flex-col pb-12 sm:flex-row">
             <Box className="sm:w-[30%]">
               <Title label="Facilities" color="black" />
             </Box>
@@ -192,9 +192,9 @@ export default function AboutPage() {
             </Box>
           </Box>
         </Box>
-        <Box className="w-full">
+        <Box className="w-full overflow-hidden">
           <Carousel
-            slideSize={600}
+            slideSize={{ base: '90%', sm: '70%', md: 600 }}
             height={360}
             slideGap="md"
             loop

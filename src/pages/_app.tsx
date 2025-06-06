@@ -3,6 +3,7 @@ import type { AppProps } from 'next/app'
 
 import { MantineProvider } from '@mantine/core'
 import { Notifications } from '@mantine/notifications'
+import { GoogleTagManager } from '@/components/analytics/GoogleTagManager'
 
 // mantine components
 import { defaultTheme } from '@/styles/theme'
@@ -13,8 +14,13 @@ import '@fontsource/inter/500.css'
 import '@fontsource/inter/700.css'
 
 export default function App({ Component, pageProps }: AppProps) {
+  const gtmId = process.env.NEXT_PUBLIC_ADMI_GTM_ID
+
   return (
     <MantineProvider theme={defaultTheme}>
+      {/* Google Tag Manager */}
+      {gtmId && <GoogleTagManager gtmId={gtmId} />}
+
       <Notifications />
       <Component {...pageProps} />
     </MantineProvider>
