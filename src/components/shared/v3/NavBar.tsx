@@ -5,7 +5,6 @@ import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { useMediaQuery } from '@mantine/hooks'
 import { Button } from '@/components/ui'
-import GoogleAnalyticsTag from '../GoogleAnalyticsTag'
 
 import { IconMenu } from '@tabler/icons-react'
 import IconLogoLight from '@/assets/logo-light.svg'
@@ -141,7 +140,6 @@ export default function NavBar({ mode, isMinimal = false }: Props) {
 
   return (
     <Group className={'mx-auto w-full max-w-screen-xl px-4'}>
-      <GoogleAnalyticsTag analyticsId={process.env.NEXT_PUBLIC_ADMI_GTM_ID as string} />
       <Group className="flex w-full flex-row-reverse font-nexa md:flex-row">
         <Link href="/" style={{ textDecoration: 'none', margin: 'auto' }} className="pt-4">
           {mode == 'dark' && <Image src={IconLogoLight} width={80} height={60} alt="Africa Digital Media Institute" />}

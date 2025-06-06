@@ -2,7 +2,6 @@ import { GetServerSideProps } from 'next'
 import { MainLayout } from '@/layouts/v3/MainLayout'
 import { CourseHero, CourseAbout, CourseDetails, CourseApplicationProcess, CourseFAQs } from '@/components/course'
 import { PageSEO } from '@/components/shared/v3'
-import { GoogleAnalyticsTag } from '@/components/shared'
 
 interface CourseDetailPageProps {
   course: any
@@ -46,7 +45,6 @@ export default function CourseDetailPage({ course, courseAssets }: CourseDetailP
       />
       <CourseApplicationProcess processes={course.applicationProcesses || []} />
       <CourseFAQs faqs={course.faqs || []} />
-      <GoogleAnalyticsTag analyticsId={process.env.NEXT_PUBLIC_ADMI_GTM_ID as string} />
     </MainLayout>
   )
 }

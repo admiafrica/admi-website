@@ -9,6 +9,8 @@ import { AnimatedWordDisplay, Paragraph, SearchDropdown, Title } from '@/compone
 import { MainLayout } from '@/layouts/v3/MainLayout'
 import { Button } from '@/components/ui'
 import { PageSEO } from '@/components/shared/v3'
+import { TestimonialSchema } from '@/components/shared/StructuredData'
+import { EastAfricaLocalSEO } from '@/components/seo/EastAfricaLocalSEO'
 import {
   AnnouncementCard,
   CourseItemCard,
@@ -60,20 +62,42 @@ export default function HomePage({ content, courses, featuredNews, featuredResou
       <PageSEO
         title="Home"
         description="Africa Digital Media Institute (ADMI) based in Nairobi, Kenya, is Eastern Africa's premier creative
-                and technology training institution."
+                and technology training institution. 🎓 Apply now for 2025 intake! Scholarship opportunities available."
+        keywords="apply now, 2025 intake, scholarship opportunities, payment plans, admission requirements, career change program, digital media courses Africa, creative education Kenya"
       />
+
+      {/* East Africa Local SEO for all major cities */}
+      <EastAfricaLocalSEO showAll={true} />
+
+      {/* Testimonial Schemas for homepage testimonials */}
+      {content && content.fields.testimonials?.map((testimonial: any, index: number) => (
+        <TestimonialSchema
+          key={`testimonial-schema-${index}`}
+          author={{
+            name: testimonial.user?.fields?.name || 'ADMI Graduate',
+            image: testimonial.user?.fields?.profileImage?.fields?.file?.url ? `https:${testimonial.user.fields.profileImage.fields.file.url}` : undefined,
+            jobTitle: testimonial.user?.fields?.jobTitle,
+            worksFor: testimonial.user?.fields?.workplace
+          }}
+          reviewBody={testimonial.quote || testimonial.testimonial}
+          reviewRating={5}
+          datePublished={testimonial.sys?.createdAt || new Date().toISOString()}
+        />
+      ))}
       <div className="w-full">
         {/* HERO */}
         <Box className="relative w-full">
-          <Image
-            src={`https:${getAssetDetails(content.assets, content.fields.coverImage.sys.id)?.fields.file.url}`}
-            placeholder="empty"
-            alt="Course Banner"
-            fill
-            priority
-            className="absolute inset-0 z-0"
-            style={{ objectFit: 'cover', objectPosition: '50% 20%' }}
-          />
+          {content?.assets && content?.fields?.coverImage?.sys?.id && (
+            <Image
+              src={`https:${getAssetDetails(content.assets, content.fields.coverImage.sys.id)?.fields.file.url}`}
+              placeholder="empty"
+              alt="Course Banner"
+              fill
+              priority
+              className="absolute inset-0 z-0"
+              style={{ objectFit: 'cover', objectPosition: '50% 20%' }}
+            />
+          )}
           {/* Radial Gradient Overlay */}
           <div
             className="z-5 absolute inset-0"
@@ -198,7 +222,7 @@ export default function HomePage({ content, courses, featuredNews, featuredResou
                           </Paragraph>
                           <div className="my-auto">
                             <Paragraph size="48px" fontFamily="font-nexa">
-                              {content.fields.studentSatisfactionRating}
+                              {content.fields?.studentSatisfactionRating || 'N/A'}
                             </Paragraph>
                           </div>
                         </div>
@@ -216,7 +240,7 @@ export default function HomePage({ content, courses, featuredNews, featuredResou
                               offset={4}
                             >
                               <Paragraph size="48px" fontFamily="font-nexa">
-                                <NumberFormatter value={content.fields.numberOfEnrolledStudents} thousandSeparator />
+                                <NumberFormatter value={content.fields?.numberOfEnrolledStudents || 0} thousandSeparator />
                               </Paragraph>
                             </Indicator>
                           </div>
@@ -235,7 +259,7 @@ export default function HomePage({ content, courses, featuredNews, featuredResou
                               offset={4}
                             >
                               <Paragraph size="48px" fontFamily="font-nexa">
-                                {content.fields.employmentRate}
+                                {content.fields?.employmentRate || 'N/A'}
                               </Paragraph>
                             </Indicator>
                           </div>
@@ -249,7 +273,7 @@ export default function HomePage({ content, courses, featuredNews, featuredResou
                           </Paragraph>
                           <div className="my-auto">
                             <Paragraph size="48px" fontFamily="font-nexa">
-                              {content.fields.studentSatisfactionRating}
+                              {content.fields?.studentSatisfactionRating || 'N/A'}
                             </Paragraph>
                           </div>
                         </div>
@@ -267,7 +291,7 @@ export default function HomePage({ content, courses, featuredNews, featuredResou
                               offset={4}
                             >
                               <Paragraph size="48px" fontFamily="font-nexa">
-                                <NumberFormatter value={content.fields.numberOfEnrolledStudents} thousandSeparator />
+                                <NumberFormatter value={content.fields?.numberOfEnrolledStudents || 0} thousandSeparator />
                               </Paragraph>
                             </Indicator>
                           </div>
@@ -286,7 +310,7 @@ export default function HomePage({ content, courses, featuredNews, featuredResou
                               offset={4}
                             >
                               <Paragraph size="48px" fontFamily="font-nexa">
-                                {content.fields.employmentRate}
+                                {content.fields?.employmentRate || 'N/A'}
                               </Paragraph>
                             </Indicator>
                           </div>
@@ -323,9 +347,9 @@ export default function HomePage({ content, courses, featuredNews, featuredResou
                 onMouseLeave={autoplayTestimonials.reset}
               >
                 {content &&
-                  content.fields.testimonials.map((testimonial: any, index: number) => (
+                  content.fields?.testimonials?.map((testimonial: any, index: number) => (
                     <Carousel.Slide key={`testimonial-${index}`}>
-                      <UserTestimonialCard user={testimonial.user} testimonial={testimonial} assets={content.assets} />
+                      <UserTestimonialCard user={testimonial.user} testimonial={testimonial} assets={content.assets || []} />
                     </Carousel.Slide>
                   ))}
               </Carousel>
