@@ -40,23 +40,33 @@ export default function AboutPage() {
         keywords="ADMI about, Africa Digital Media Institute history, creative media training Kenya, digital media education Nairobi, ADMI values, academic team, board of directors, campus facilities"
       />
       {/* HEADER */}
-      <div className="relative h-[30vh] w-full overflow-hidden bg-[#002A23] sm:h-[35vh] md:h-[40vh] lg:h-[45vh] xl:h-[50vh]">
+      <div className="relative min-h-[40vh] w-full overflow-hidden bg-[#002A23] sm:h-[45vh] md:h-[50vh] lg:h-[55vh] xl:h-[60vh]">
         {/* BACKGROUND IMAGES */}
-        <div className="absolute left-[85%] top-[6vh] z-0 h-fit w-full -translate-x-1/2 transform sm:left-[70%] sm:top-[8vh] md:left-[65%] md:top-[10vh] lg:top-[12vh]">
-          <div className="flex w-full justify-end pr-[5%] sm:pr-[8%] md:pr-[10%]">
-            <Image src={IconBgImageYellow} alt={'background image'} priority />
-          </div>
+        <div className="absolute right-[5%] top-[8vh] z-0 h-fit w-fit sm:right-[10%] sm:top-[10vh] md:right-[15%] md:top-[12vh] lg:top-[15vh]">
+          <Image
+            src={IconBgImageYellow}
+            alt={'background image'}
+            priority
+            className="h-auto w-16 sm:w-20 md:w-24 lg:w-28"
+          />
         </div>
 
-        <div className="absolute left-1/2 top-[3vh] z-0 h-fit w-full -translate-x-1/2 transform sm:top-[4vh] md:top-[5vh] lg:top-[6vh]">
-          <div className="flex w-full pl-[3%] sm:pl-[4%] md:pl-[5%]">
-            <Image src={IconBgImageRed} alt={'background image'} priority />
-          </div>
+        <div className="absolute left-[5%] top-[5vh] z-0 h-fit w-fit sm:left-[8%] sm:top-[6vh] md:left-[10%] md:top-[8vh] lg:top-[10vh]">
+          <Image
+            src={IconBgImageRed}
+            alt={'background image'}
+            priority
+            className="h-auto w-20 sm:w-24 md:w-28 lg:w-32"
+          />
         </div>
-        <div className="relative z-10 mx-auto flex h-full w-full max-w-screen-lg items-center justify-center px-4 2xl:px-0">
+        <div className="relative z-10 mx-auto flex h-full w-full max-w-screen-xl items-center justify-center px-6 py-8 sm:px-8 md:px-12 2xl:px-0">
           <div className="text-center font-nexa text-white">
-            <Text fw={900} className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl">
-              Africa Digital Media <br></br> Institute <span className="text-admiShamrok">(ADMI)</span>
+            <Text
+              fw={900}
+              className="text-xl leading-tight sm:text-2xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl"
+            >
+              Africa Digital Media <br className="hidden sm:block" />
+              <span className="sm:hidden"> </span>Institute <span className="text-admiShamrok">(ADMI)</span>
             </Text>
           </div>
         </div>
