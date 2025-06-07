@@ -63,7 +63,7 @@ export default function AboutPage() {
           <div className="text-center font-nexa text-white">
             <Text
               fw={900}
-              className="text-xl leading-tight sm:text-2xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl"
+              className="text-xl leading-tight sm:text-2xl md:text-4xl lg:text-6xl xl:text-7xl 2xl:text-8xl"
             >
               Africa Digital Media <br className="hidden sm:block" />
               <span className="sm:hidden"> </span>Institute <span className="text-admiShamrok">(ADMI)</span>
