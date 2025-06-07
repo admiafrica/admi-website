@@ -59,11 +59,15 @@ const nextConfig = {
           },
           {
             key: 'Referrer-Policy',
-            value: 'origin-when-cross-origin',
+            value: 'strict-origin-when-cross-origin',
           },
           {
             key: 'Permissions-Policy',
             value: 'camera=(), microphone=(), geolocation=(self), interest-cohort=()',
+          },
+          {
+            key: 'X-Robots-Tag',
+            value: 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1',
           },
         ],
       },
@@ -94,6 +98,74 @@ const nextConfig = {
             value: 'public, max-age=31536000, immutable',
           },
         ],
+      },
+    ];
+  },
+  async redirects() {
+    return [
+      // Redirect old domain to new domain
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: 'admi.ac.ke',
+          },
+        ],
+        destination: 'https://admi.africa/:path*',
+        permanent: true,
+      },
+      // Block and redirect spam URLs with WordPress search parameters
+      {
+        source: '/',
+        has: [
+          {
+            type: 'query',
+            key: 's',
+          },
+        ],
+        destination: '/404',
+        permanent: false,
+      },
+      // Block URLs with gambling/casino content
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'query',
+            key: 'ch',
+          },
+        ],
+        destination: '/404',
+        permanent: false,
+      },
+      // Redirect common WordPress URLs to appropriate pages
+      {
+        source: '/wp-admin/:path*',
+        destination: '/404',
+        permanent: true,
+      },
+      {
+        source: '/wp-content/:path*',
+        destination: '/404',
+        permanent: true,
+      },
+      {
+        source: '/wp-includes/:path*',
+        destination: '/404',
+        permanent: true,
+      },
+      // Redirect old course URLs if they exist
+      {
+        source: '/course/:slug',
+        destination: '/courses/:slug',
+        permanent: true,
+      },
+      // Redirect old news URLs if they exist
+      {
+        source: '/article/:slug',
+        destination: '/news/:slug',
+        permanent: true,
       },
     ];
   },
