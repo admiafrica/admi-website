@@ -10,7 +10,11 @@ import ImageSupportLanding from '@/assets/images/student-support-landing.png'
 export default function PrivacyPolicyPage() {
   return (
     <MainLayout footerBgColor="#002A23">
-      <PageSEO title="Privacy Policy" />
+      <PageSEO
+        title="Privacy Policy"
+        description="Read ADMI's privacy policy to understand how we collect, use, and protect your personal information. Learn about your rights and our commitment to data protection."
+        keywords="ADMI privacy policy, data protection, personal information, privacy rights, data security, information collection, student privacy"
+      />
       <div className="w-full">
         {/* HEADER */}
         <Box className="relative w-full">

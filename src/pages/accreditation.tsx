@@ -17,7 +17,11 @@ export default function AccreditationPage() {
 
   return (
     <MainLayout footerBgColor="white">
-      <PageSEO title="Accreditation" />
+      <PageSEO
+        title="Accreditation"
+        description="ADMI is a Pearson Assured institution maintaining the highest standards of educational excellence. Learn about our accreditation partnerships and globally recognized qualifications."
+        keywords="ADMI accreditation, Pearson Assured, educational excellence, quality education, globally recognized qualifications, accredited institution Kenya"
+      />
       <Modal radius="lg" opened={opened} onClose={close} size={'72rem'}>
         <LearnMoreCard />
       </Modal>
@@ -30,6 +34,7 @@ export default function AccreditationPage() {
             alt="Fellowship Banner"
             fill
             priority
+            sizes="100vw"
             className="absolute inset-0 z-0"
             style={{ objectFit: 'cover' }}
           />

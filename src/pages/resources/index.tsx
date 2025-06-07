@@ -20,7 +20,11 @@ export default function ResourcesPage({
 }) {
   return (
     <MainLayout footerBgColor="white">
-      <PageSEO title="Resources" />
+      <PageSEO
+        title="Resources"
+        description="Access valuable resources for creative media and technology professionals. Industry insights, career guidance, tutorials, and educational content from ADMI experts and industry leaders."
+        keywords="creative media resources, digital media tutorials, industry insights, career guidance, educational content, ADMI resources, professional development, creative industry news"
+      />
       <Box className="w-full overflow-x-hidden">
         <div className="h-[16em] w-full bg-[#002A23]">
           {/* BACKGROUND IMAGES */}

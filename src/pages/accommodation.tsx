@@ -29,7 +29,11 @@ export default function AccommodationPage() {
 
   return (
     <MainLayout footerBgColor="#F5FFFD">
-      <PageSEO title="Accommodation" />
+      <PageSEO
+        title="Accommodation"
+        description="Find comfortable student accommodation near ADMI through our partnerships with Qwetu and Qejani. Modern, safe, and vibrant living spaces designed for student success in Nairobi, Kenya."
+        keywords="ADMI accommodation, student housing Nairobi, Qwetu residences, Qejani accommodation, student living Kenya, campus housing, student apartments"
+      />
       <Modal radius="lg" opened={opened} onClose={close} size={'72rem'}>
         <LearnMoreCard />
       </Modal>
@@ -42,6 +46,7 @@ export default function AccommodationPage() {
             alt="Fellowship Banner"
             fill
             priority
+            sizes="100vw"
             className="absolute inset-0 z-0"
             style={{ objectFit: 'cover' }}
           />

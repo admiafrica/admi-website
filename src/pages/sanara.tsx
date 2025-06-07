@@ -19,7 +19,12 @@ export default function NewsArticlePage() {
 
   return (
     <MainLayout footerBgColor="white">
-      <PageSEO title="Sanara Animation Program" description="Unlock Your Creative Future" image={ImageSanaraLanding} />
+      <PageSEO
+        title="Sanara Animation Program"
+        description="Unlock your creative future with ADMI-Sanara Animation Program. 18-month 2D Animation training with guaranteed internship, expert-led instruction, and career launchpad for young Kenyans aged 18-24."
+        keywords="Sanara animation program, 2D animation training Kenya, animation course, creative careers, Mastercard Foundation, HEVA fund, animation skills, digital arts Kenya"
+        image={ImageSanaraLanding}
+      />
       <Box className="w-full">
         <Box className="mx-auto flex w-full max-w-screen-xl flex-col-reverse px-4 py-4 sm:flex-row sm:py-16 xl:px-0">
           <Box className="sm:w-[200px]">
@@ -70,6 +75,7 @@ export default function NewsArticlePage() {
                 style={{ borderRadius: 8 }}
                 fill
                 priority
+                sizes="(max-width: 768px) 100vw, 800px"
               />
             </Box>
 

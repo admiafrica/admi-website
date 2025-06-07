@@ -22,10 +22,10 @@ export function OrganizationSchema({
     email: 'info@admi.africa'
   },
   sameAs = [
-    'https://www.facebook.com/africadigitalmediainstitute',
-    'https://twitter.com/admi_ke',
-    'https://www.instagram.com/admi_ke/',
-    'https://www.linkedin.com/school/africa-digital-media-institute/'
+    'https://www.facebook.com/ADMIAFRICA',
+    'https://x.com/ADMIafrica',
+    'https://www.instagram.com/admiafrica/',
+    'https://www.linkedin.com/school/admiafrica/'
   ]
 }: OrganizationProps) {
   const structuredData = {
@@ -718,10 +718,10 @@ export function MultiCityLocalBusinessSchema({
       }))
     },
     sameAs: [
-      'https://www.facebook.com/africadigitalmediainstitute',
-      'https://twitter.com/admi_ke',
-      'https://www.instagram.com/admi_ke/',
-      'https://www.linkedin.com/school/africa-digital-media-institute/'
+      'https://www.facebook.com/ADMIAFRICA',
+      'https://x.com/ADMIafrica',
+      'https://www.instagram.com/admiafrica/',
+      'https://www.linkedin.com/school/admiafrica/'
     ]
   }
 

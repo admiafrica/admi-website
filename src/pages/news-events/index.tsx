@@ -11,7 +11,11 @@ import { Paragraph } from '@/components/ui'
 export default function NewsEventsLandingPage({ news, events, featuredNews, featuredEvent }: any) {
   return (
     <MainLayout footerBgColor="white">
-      <PageSEO title="News & Events" />
+      <PageSEO
+        title="News & Events"
+        description="Stay updated with the latest news and events from ADMI. Discover industry insights, campus updates, student achievements, and upcoming events in creative media and technology."
+        keywords="ADMI news, ADMI events, campus news, student achievements, industry updates, creative media news, technology events, educational events, ADMI announcements"
+      />
       <Box className="w-full">
         <Tabs defaultValue="news">
           <Tabs.List w={'100%'} bg={'#002A23'}>

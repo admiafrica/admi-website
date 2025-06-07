@@ -98,13 +98,13 @@ export const FILM_TELEVISION_FAQS = [
     category: 'Course Content & Structure',
     question: 'What aspects of film and television production will I learn?',
     answer:
-      "The program covers all aspects of production including screenwriting, directing, cinematography, editing, sound design, production management, and post-production. You'll work with professional cameras, editing suites, and sound equipment used in the industry."
+      "The program covers all aspects of production including screenwriting, directing, cinematography, editing, sound design, production management, and post-production. You'll work with professional cameras, editing suites, and sound equipment used in the industry. Our film production school in Nairobi provides hands-on training with industry-standard equipment."
   },
   {
     category: 'Career Prospects',
     question: 'Can I work in Nollywood or other African film industries?',
     answer:
-      'Absolutely! Our curriculum is designed with African film industries in mind, including Nollywood, Riverwood (Kenya), and emerging markets across the continent. We have partnerships with production companies and provide networking opportunities with industry professionals.'
+      'Absolutely! Our film school in Kenya prepares graduates for African film industries, including Nollywood, Riverwood (Kenya), and emerging markets across the continent. As one of the leading film production schools in Kenya, we have partnerships with production companies and provide networking opportunities with industry professionals.'
   },
   {
     category: 'Technology Requirements',
@@ -117,6 +117,30 @@ export const FILM_TELEVISION_FAQS = [
     question: 'Do I get to make my own films during the program?',
     answer:
       "Yes! Students create multiple projects including short films, documentaries, commercials, and a final capstone project. You'll build a professional portfolio showcasing your work in various genres and formats suitable for industry presentation."
+  },
+  {
+    category: 'Career Prospects',
+    question: 'What salary can I expect as a film and TV production graduate in Kenya?',
+    answer:
+      'Film and TV production graduates in Kenya typically start with salaries ranging from KES 50,000-120,000 monthly. Experienced professionals can earn KES 150,000-300,000+ monthly. Many graduates also work as freelancers, earning KES 15,000-50,000 per project depending on scope and client.'
+  },
+  {
+    category: 'Industry Connections',
+    question: 'Do you have partnerships with Kenyan TV stations and production companies?',
+    answer:
+      'Yes! We partner with major Kenyan media houses including Nation Media Group, Standard Group, Royal Media Services, and many independent production companies. Students get internship opportunities and many graduates are hired directly by our industry partners.'
+  },
+  {
+    category: 'Course Content & Structure',
+    question: 'Do you teach documentary filmmaking and investigative journalism?',
+    answer:
+      'Yes, documentary production is a key component of our curriculum. Students learn investigative techniques, ethical storytelling, interview skills, and documentary editing. This is particularly valuable for the growing demand for documentary content in African media.'
+  },
+  {
+    category: 'Technology Requirements',
+    question: 'Will I learn drone cinematography and modern filming techniques?',
+    answer:
+      'Absolutely! Our program includes drone cinematography, 360-degree filming, live streaming production, and virtual production techniques. These modern skills are essential for contemporary film and TV production in Kenya and across Africa.'
   }
 ]
 
@@ -177,9 +201,9 @@ export const GRAPHIC_DESIGN_FAQS = [
 export const AUDIO_PRODUCTION_FAQS = [
   {
     category: 'Course Content & Structure',
-    question: 'What aspects of audio production will I learn?',
+    question: 'What aspects of audio production and music technology will I learn?',
     answer:
-      "The program covers recording techniques, mixing, mastering, sound design, music production, podcast production, radio broadcasting, and audio post-production for film and TV. You'll work in professional recording studios and learn both analog and digital techniques."
+      "The program covers recording techniques, mixing, mastering, sound design, music production, music technology, podcast production, radio broadcasting, and audio post-production for film and TV. You'll work in professional recording studios and learn both analog and digital music technology techniques."
   },
   {
     category: 'Career Prospects',
@@ -198,6 +222,36 @@ export const AUDIO_PRODUCTION_FAQS = [
     question: 'Do you cover podcast and radio production?',
     answer:
       'Yes, with the growth of podcasting and digital radio in Africa, we include comprehensive training in podcast production, radio broadcasting, voice-over work, and audio content creation for digital platforms.'
+  },
+  {
+    category: 'Career Prospects',
+    question: 'What salary can I expect as a music producer in Kenya?',
+    answer:
+      'Music producers and audio engineers in Kenya typically earn KES 40,000-100,000 monthly in studios and media houses. Freelance producers can earn KES 5,000-25,000 per song/project. Successful producers working with top artists can earn KES 150,000+ monthly.'
+  },
+  {
+    category: 'Industry Connections',
+    question: 'Do you have connections with Kenyan record labels and radio stations?',
+    answer:
+      'Yes! We partner with major Kenyan radio stations (Capital FM, Kiss 100, Classic 105), record labels, and production houses. Students get internship opportunities and many graduates work with top Kenyan and international artists.'
+  },
+  {
+    category: 'Course Content & Structure',
+    question: 'Will I learn to produce Afrobeats, Amapiano, and other African music genres?',
+    answer:
+      "Absolutely! Our curriculum specifically covers African music genres including Afrobeats, Amapiano, Gengetone, Bongo Flava, and traditional fusion styles. You'll learn the production techniques, rhythms, and cultural elements that make these genres unique."
+  },
+  {
+    category: 'Technology Requirements',
+    question: 'Do you teach live sound engineering and concert production?',
+    answer:
+      "Yes, live sound engineering is a major component. Students learn concert sound setup, mixing for live events, festival production, and working with touring artists. This is crucial for Kenya's growing live music and events industry."
+  },
+  {
+    category: 'Course Content & Structure',
+    question: 'Will I learn audio for film, TV, and advertising?',
+    answer:
+      "Yes! Audio post-production for visual media is extensively covered. You'll learn dialogue editing, sound effects creation, music scoring, and mixing for film, TV shows, commercials, and online content - skills in high demand across African media industries."
   }
 ]
 

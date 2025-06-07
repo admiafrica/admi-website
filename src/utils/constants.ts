@@ -112,7 +112,7 @@ export const SOCIAL_LINKS = {
   FACEBOOK: 'https://www.facebook.com/ADMIAFRICA',
   TIKTOK: 'https://www.tiktok.com/@admiafrica',
   YOUTUBE: 'https://www.youtube.com/@ADMIafrica/',
-  X: 'https://twitter.com/ADMIafrica'
+  X: 'https://x.com/ADMIafrica'
 }
 
 export const ADMI_FACILITIES = [
