@@ -22,6 +22,7 @@ import { EastAfricaLocalSEO } from '@/components/seo/EastAfricaLocalSEO'
 import { ENROLLMENT_FAQS } from '@/data/enrollment-faqs'
 // generateDiplomaKeywords utility available for future enhancements
 import { GENERAL_DIPLOMA_FAQS } from '@/data/diploma-faqs'
+import { generateCourseSpecificMeta } from '@/utils/course-specific-seo'
 
 // Helper function to get correct FAQs based on course slug
 const getCorrectFAQsForCourse = (slug: string) => {
@@ -65,9 +66,14 @@ export default function CourseDetailPage({
   const isDiploma =
     course.awardLevel?.toLowerCase().includes('diploma') || course.programType?.fields?.duration?.includes('2 year')
 
-  const courseDescription = isDiploma
-    ? `${baseDescription} 🎓 Apply now for 2025/2026 intake! 85% employment rate. Scholarship opportunities available. Flexible payment plans. Industry placement guaranteed. Limited seats - secure your spot today!`
-    : `${baseDescription} Apply now for upcoming intakes. Flexible payment options available. Industry-recognized certification.`
+  // Enhanced keywords with course-specific targeting
+  const courseSpecificSEO = generateCourseSpecificMeta(slug)
+
+  const courseDescription =
+    courseSpecificSEO?.description ||
+    (isDiploma
+      ? `${baseDescription} 🎓 Apply now for 2025/2026 intake! 85% employment rate. Scholarship opportunities available. Flexible payment plans. Industry placement guaranteed. Limited seats - secure your spot today!`
+      : `${baseDescription} Apply now for upcoming intakes. Flexible payment options available. Industry-recognized certification.`)
 
   // Extract learning outcomes as array
   const learningOutcomes =
@@ -102,7 +108,7 @@ export default function CourseDetailPage({
     'financial aid available'
   ]
 
-  const keywords = [
+  const baseKeywords = [
     course.name,
     course.programType?.fields?.name,
     course.awardLevel,
@@ -135,8 +141,8 @@ export default function CourseDetailPage({
     ...learningOutcomes.slice(0, 3),
     ...careerOptions.slice(0, 3)
   ]
-    .filter(Boolean)
-    .join(', ')
+
+  const keywords = courseSpecificSEO?.keywords || baseKeywords.filter(Boolean).join(', ')
 
   return (
     <MainLayout>
