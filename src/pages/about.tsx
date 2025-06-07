@@ -34,7 +34,11 @@ export default function AboutPage() {
 
   return (
     <MainLayout footerBgColor="#F5FFFD">
-      <PageSEO title="About Us" />
+      <PageSEO
+        title="About Us"
+        description="Learn about Africa Digital Media Institute (ADMI) - Eastern Africa's premier creative media and technology training institution based in Nairobi, Kenya. Discover our history, values, academic team, and state-of-the-art facilities."
+        keywords="ADMI about, Africa Digital Media Institute history, creative media training Kenya, digital media education Nairobi, ADMI values, academic team, board of directors, campus facilities"
+      />
       {/* HEADER */}
       <div className="relative h-[30vh] w-full overflow-hidden bg-[#002A23] sm:h-[35vh] md:h-[40vh] lg:h-[45vh] xl:h-[50vh]">
         {/* BACKGROUND IMAGES */}

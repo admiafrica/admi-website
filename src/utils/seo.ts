@@ -66,7 +66,8 @@ export function generateSEO({
       title: pageTitle,
       description: description || defaultDescription,
       images: [image || defaultImage],
-      creator: '@admi_ke'
+      creator: '@ADMIafrica',
+      site: '@ADMIafrica'
     },
     robots: {
       index: true,

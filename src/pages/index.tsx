@@ -70,20 +70,23 @@ export default function HomePage({ content, courses, featuredNews, featuredResou
       <EastAfricaLocalSEO showAll={true} />
 
       {/* Testimonial Schemas for homepage testimonials */}
-      {content && content.fields.testimonials?.map((testimonial: any, index: number) => (
-        <TestimonialSchema
-          key={`testimonial-schema-${index}`}
-          author={{
-            name: testimonial.user?.fields?.name || 'ADMI Graduate',
-            image: testimonial.user?.fields?.profileImage?.fields?.file?.url ? `https:${testimonial.user.fields.profileImage.fields.file.url}` : undefined,
-            jobTitle: testimonial.user?.fields?.jobTitle,
-            worksFor: testimonial.user?.fields?.workplace
-          }}
-          reviewBody={testimonial.quote || testimonial.testimonial}
-          reviewRating={5}
-          datePublished={testimonial.sys?.createdAt || new Date().toISOString()}
-        />
-      ))}
+      {content &&
+        content.fields.testimonials?.map((testimonial: any, index: number) => (
+          <TestimonialSchema
+            key={`testimonial-schema-${index}`}
+            author={{
+              name: testimonial.user?.fields?.name || 'ADMI Graduate',
+              image: testimonial.user?.fields?.profileImage?.fields?.file?.url
+                ? `https:${testimonial.user.fields.profileImage.fields.file.url}`
+                : undefined,
+              jobTitle: testimonial.user?.fields?.jobTitle,
+              worksFor: testimonial.user?.fields?.workplace
+            }}
+            reviewBody={testimonial.quote || testimonial.testimonial}
+            reviewRating={5}
+            datePublished={testimonial.sys?.createdAt || new Date().toISOString()}
+          />
+        ))}
       <div className="w-full">
         {/* HERO */}
         <Box className="relative w-full">
@@ -94,6 +97,7 @@ export default function HomePage({ content, courses, featuredNews, featuredResou
               alt="Course Banner"
               fill
               priority
+              sizes="100vw"
               className="absolute inset-0 z-0"
               style={{ objectFit: 'cover', objectPosition: '50% 20%' }}
             />
@@ -240,7 +244,10 @@ export default function HomePage({ content, courses, featuredNews, featuredResou
                               offset={4}
                             >
                               <Paragraph size="48px" fontFamily="font-nexa">
-                                <NumberFormatter value={content.fields?.numberOfEnrolledStudents || 0} thousandSeparator />
+                                <NumberFormatter
+                                  value={content.fields?.numberOfEnrolledStudents || 0}
+                                  thousandSeparator
+                                />
                               </Paragraph>
                             </Indicator>
                           </div>
@@ -291,7 +298,10 @@ export default function HomePage({ content, courses, featuredNews, featuredResou
                               offset={4}
                             >
                               <Paragraph size="48px" fontFamily="font-nexa">
-                                <NumberFormatter value={content.fields?.numberOfEnrolledStudents || 0} thousandSeparator />
+                                <NumberFormatter
+                                  value={content.fields?.numberOfEnrolledStudents || 0}
+                                  thousandSeparator
+                                />
                               </Paragraph>
                             </Indicator>
                           </div>
@@ -349,7 +359,11 @@ export default function HomePage({ content, courses, featuredNews, featuredResou
                 {content &&
                   content.fields?.testimonials?.map((testimonial: any, index: number) => (
                     <Carousel.Slide key={`testimonial-${index}`}>
-                      <UserTestimonialCard user={testimonial.user} testimonial={testimonial} assets={content.assets || []} />
+                      <UserTestimonialCard
+                        user={testimonial.user}
+                        testimonial={testimonial}
+                        assets={content.assets || []}
+                      />
                     </Carousel.Slide>
                   ))}
               </Carousel>

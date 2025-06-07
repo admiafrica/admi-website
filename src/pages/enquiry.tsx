@@ -25,7 +25,11 @@ export default function EnquiryPage() {
 
   return (
     <MainLayout minimizeFooter minimizeHeader footerBgColor="#002A23">
-      <PageSEO title="Enquiry" description="Enquire about a course to get more information." />
+      <PageSEO
+        title="Enquiry"
+        description="Enquire about ADMI courses and programs. Get detailed information about our creative media and technology training programs. Contact our admissions team for personalized guidance."
+        keywords="ADMI enquiry, course information, admissions enquiry, program details, course consultation, apply to ADMI, student enquiry, course guidance"
+      />
       <div className="min-h-[100vh] w-full bg-[#002A23] pt-16">
         {/* BACKGROUND IMAGES */}
         <div className="absolute left-[54%] top-[24vh] h-fit w-full -translate-x-1/2 transform">

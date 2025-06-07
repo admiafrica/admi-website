@@ -15,7 +15,11 @@ export default function AcademicPathwaysPage() {
 
   return (
     <MainLayout footerBgColor="white">
-      <PageSEO title="Academic Pathways" />
+      <PageSEO
+        title="Academic Pathways"
+        description="Explore ADMI's academic pathways and strategic partnerships with leading institutions. Discover seamless transitions for further studies and career opportunities in digital media and creative technology."
+        keywords="ADMI academic pathways, university partnerships, further studies, career opportunities, digital media education progression, international partnerships, student transitions"
+      />
       <div className="w-full">
         {/* HEADER */}
         <Box className="relative w-full" bg={'#002A23'}>

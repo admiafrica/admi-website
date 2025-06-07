@@ -20,7 +20,11 @@ export default function AlumniPage() {
 
   return (
     <MainLayout footerBgColor="white">
-      <PageSEO title="Alumni Network" />
+      <PageSEO
+        title="Alumni Network"
+        description="Connect with ADMI's global alumni network of creative professionals. Discover success stories, career opportunities, and networking events with graduates working across Africa and beyond."
+        keywords="ADMI alumni, alumni network, graduate success stories, creative professionals network, career opportunities, alumni events, graduate community, professional networking"
+      />
       <Modal radius="lg" opened={opened} onClose={close} size={'72rem'}>
         <LearnMoreCard />
       </Modal>

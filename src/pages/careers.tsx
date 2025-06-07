@@ -32,7 +32,11 @@ export default function CareersPage() {
 
   return (
     <MainLayout footerBgColor="white">
-      <PageSEO title="Work With Us" />
+      <PageSEO
+        title="Work With Us"
+        description="Join ADMI's dynamic team of educators and industry professionals. Explore career opportunities at Africa's premier creative media and technology training institution. Apply to inspire the next generation."
+        keywords="ADMI careers, work at ADMI, faculty positions, educator jobs Kenya, creative media jobs, digital media instructor, academic careers, teaching opportunities"
+      />
       <Modal radius="lg" opened={opened} onClose={close} size={'72rem'}>
         <LearnMoreCard />
       </Modal>
@@ -45,6 +49,7 @@ export default function CareersPage() {
             alt="Fellowship Banner"
             fill
             priority
+            sizes="100vw"
             className="absolute inset-0 z-0"
             style={{ objectFit: 'cover' }}
           />

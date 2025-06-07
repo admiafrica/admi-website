@@ -46,6 +46,7 @@ export default function AdviceCard(props: Props) {
             }
             alt={props.advice.title}
             fill
+            sizes="(max-width: 768px) 100vw, 40vw"
             style={{ borderRadius: 8, objectFit: 'cover' }}
           />
         </Box>

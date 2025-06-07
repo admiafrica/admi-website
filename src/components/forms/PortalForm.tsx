@@ -15,6 +15,7 @@ export default function PortalForm() {
         alt="Join Network"
         fill
         priority
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
         className="absolute inset-0 z-0"
         style={{ objectFit: 'cover', transform: 'scaleX(-1)', objectPosition: '75% 5%' }}
       />

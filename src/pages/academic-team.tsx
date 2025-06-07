@@ -13,7 +13,11 @@ import { Title } from '@/components/ui'
 export default function AcademicTeamPage() {
   return (
     <MainLayout footerBgColor="#F5FFFD">
-      <PageSEO title="Academic Team" />
+      <PageSEO
+        title="Academic Team"
+        description="Meet ADMI's experienced academic team and industry mentors. Our faculty combines academic excellence with real-world industry experience to deliver world-class creative media and technology education."
+        keywords="ADMI academic team, faculty members, industry mentors, creative media educators, digital media instructors, experienced faculty, industry professionals"
+      />
       <div className="w-full">
         {/* HEADER */}
         <Box className="relative z-0 h-[16em] w-full bg-[#002A23]">

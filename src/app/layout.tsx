@@ -75,7 +75,7 @@ export const metadata: Metadata = {
     description:
       'Africa Digital Media Institute - Leading Creative Media and Technology Training Institution across Africa. Empowering creative professionals through industry-relevant education and training.',
     images: ['/logo.png'],
-    creator: '@admiafrica'
+    creator: '@ADMIafrica'
   },
   robots: {
     index: true,

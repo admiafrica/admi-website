@@ -59,6 +59,7 @@ export default function ResourceArticlePage({ article, slug }: { article: any; s
                   alt={article.title}
                   style={{ borderRadius: 8 }}
                   fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
                 />
               </Box>
               <Paragraph fontFamily="font-nexa" fontWeight={400} size="26px" className="py-6">

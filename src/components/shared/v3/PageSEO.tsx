@@ -47,6 +47,8 @@ const PageSEO: React.FC<PageSEOProps> = ({ title, description, image, url, keywo
       <meta name="twitter:title" content={pageTitle} />
       <meta name="twitter:description" content={pageDescription} />
       <meta name="twitter:image" content={pageImage} />
+      <meta name="twitter:creator" content="@ADMIafrica" />
+      <meta name="twitter:site" content="@ADMIafrica" />
 
       {/* Robots */}
       <meta name="robots" content="index, follow" />

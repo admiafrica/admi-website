@@ -19,7 +19,11 @@ export default function FellowshipPage() {
 
   return (
     <MainLayout footerBgColor="white">
-      <PageSEO title="Fellowship" />
+      <PageSEO
+        title="Fellowship"
+        description="Discover fellowship opportunities at ADMI for passionate individuals from diverse backgrounds. Join our vibrant academic community and contribute to creative media and technology education across various departments."
+        keywords="ADMI fellowship, fellowship opportunities, academic fellowship, international graduates, teaching fellowship, research opportunities, creative media fellowship"
+      />
       <Modal radius="lg" opened={opened} onClose={close} size={'72rem'}>
         <LearnMoreCard />
       </Modal>
@@ -32,6 +36,7 @@ export default function FellowshipPage() {
             alt="Fellowship Banner"
             fill
             priority
+            sizes="100vw"
             className="absolute inset-0 z-0"
             style={{ objectFit: 'cover' }}
           />
