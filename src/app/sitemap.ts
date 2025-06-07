@@ -48,29 +48,27 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const coursesData = await coursesResponse.json()
 
     if (coursesData.items) {
-      coursePages = coursesData.items.map((item: any) => {
-        // Higher priority for diploma programs (2-year courses)
-        const isDiploma =
-          item.fields.awardLevel?.toLowerCase().includes('diploma') ||
-          item.fields.programType?.fields?.duration?.includes('2 year')
+      coursePages = coursesData.items
+        .filter((item: any) => item.fields?.slug) // Only include items with valid slugs
+        .map((item: any) => {
+          // Higher priority for diploma programs (2-year courses)
+          const isDiploma =
+            item.fields.awardLevel?.toLowerCase().includes('diploma') ||
+            item.fields.programType?.fields?.duration?.includes('2 year')
 
-        return {
-          url: `${baseUrl}/courses/${item.fields.slug}`,
-          lastModified: new Date(item.sys.updatedAt),
-          changeFrequency: 'weekly' as const,
-          priority: isDiploma ? 0.95 : 0.9, // Higher priority for diplomas
-          // Add image extension for courses
-          images: [
-            {
-              loc: `https:${item.fields.coverImage?.fields?.file?.url}`,
-              title: item.fields.name
-            }
-          ]
-        }
-      })
+          // Return simple sitemap entry without images to avoid [object Object] issues
+          return {
+            url: `${baseUrl}/courses/${item.fields.slug}`,
+            lastModified: new Date(item.sys.updatedAt),
+            changeFrequency: 'weekly' as const,
+            priority: isDiploma ? 0.95 : 0.9 // Higher priority for diplomas
+          }
+        })
     }
   } catch (error) {
     console.error('Error fetching courses for sitemap:', error)
+    // Ensure coursePages is always an array
+    coursePages = []
   }
 
   // Fetch news articles from Contentful
@@ -82,22 +80,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const newsData = await newsResponse.json()
 
     if (newsData.items) {
-      newsPages = newsData.items.map((item: any) => ({
-        url: `${baseUrl}/news/${item.fields.slug}`,
-        lastModified: new Date(item.sys.updatedAt),
-        changeFrequency: 'weekly' as const,
-        priority: 0.7,
-        // Add image extension for news articles
-        images: [
-          {
-            loc: `https:${item.fields.featuredImage?.fields?.file?.url}`,
-            title: item.fields.title
-          }
-        ]
-      }))
+      newsPages = newsData.items
+        .filter((item: any) => item.fields?.slug) // Only include items with valid slugs
+        .map((item: any) => ({
+          url: `${baseUrl}/news/${item.fields.slug}`,
+          lastModified: new Date(item.sys.updatedAt),
+          changeFrequency: 'weekly' as const,
+          priority: 0.7
+        }))
     }
   } catch (error) {
     console.error('Error fetching news for sitemap:', error)
+    // Ensure newsPages is always an array
+    newsPages = []
   }
 
   // Fetch resources from Contentful
@@ -109,16 +104,32 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const resourcesData = await resourcesResponse.json()
 
     if (resourcesData.items) {
-      resourcePages = resourcesData.items.map((item: any) => ({
-        url: `${baseUrl}/resources/${item.fields.slug}`,
-        lastModified: new Date(item.sys.updatedAt),
-        changeFrequency: 'monthly' as const,
-        priority: 0.6
-      }))
+      resourcePages = resourcesData.items
+        .filter((item: any) => item.fields?.slug) // Only include items with valid slugs
+        .map((item: any) => ({
+          url: `${baseUrl}/resources/${item.fields.slug}`,
+          lastModified: new Date(item.sys.updatedAt),
+          changeFrequency: 'monthly' as const,
+          priority: 0.6
+        }))
     }
   } catch (error) {
     console.error('Error fetching resources for sitemap:', error)
+    // Ensure resourcePages is always an array
+    resourcePages = []
   }
 
-  return [...staticPages, ...languagePages, ...coursePages, ...newsPages, ...resourcePages]
+  // Filter out any invalid entries and ensure all URLs are properly formatted
+  const allPages = [...staticPages, ...languagePages, ...coursePages, ...newsPages, ...resourcePages]
+    .filter((page) => page && page.url && typeof page.url === 'string')
+    .map((page) => ({
+      ...page,
+      url: page.url.replace(/\/+/g, '/').replace(/\/$/, '') || baseUrl, // Clean up double slashes and trailing slashes
+      lastModified: page.lastModified || new Date(),
+      changeFrequency: page.changeFrequency || 'monthly',
+      priority: typeof page.priority === 'number' ? page.priority : 0.5
+    }))
+
+  console.log(`Generated sitemap with ${allPages.length} pages`)
+  return allPages
 }
