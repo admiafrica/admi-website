@@ -74,6 +74,8 @@ ${coursesWithVideos
       : `${baseUrl}/logo.png`
     const contentUrl = `https:${videoAsset.fields.file.url}`
     const watchPageUrl = `${baseUrl}/watch/${slug}`
+    // For player_loc, we'll use the direct video URL since we don't have a separate video player
+    const playerUrl = contentUrl
     const lastModified = new Date(course.sys.updatedAt).toISOString()
 
     return `  <url>
@@ -84,7 +86,7 @@ ${coursesWithVideos
       <video:title><![CDATA[${videoTitle}]]></video:title>
       <video:description><![CDATA[${videoDescription}]]></video:description>
       <video:content_loc>${contentUrl}</video:content_loc>
-      <video:player_loc>${watchPageUrl}</video:player_loc>
+      <video:player_loc>${playerUrl}</video:player_loc>
       <video:duration>150</video:duration>
       <video:publication_date>${lastModified}</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
@@ -95,7 +97,7 @@ ${coursesWithVideos
       <video:tag>education</video:tag>
       <video:tag>course preview</video:tag>
       <video:tag>ADMI</video:tag>
-      <video:tag>${escapeXml(course.fields.name.toLowerCase().replace(/\s+/g, '-'))}</video:tag>
+      <video:tag>${escapeXml(course.fields.slug)}</video:tag>
       <video:tag>Kenya</video:tag>
       <video:tag>Africa</video:tag>
       <video:tag>digital media</video:tag>
