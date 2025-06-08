@@ -47,14 +47,20 @@ export async function GET() {
       })
     }
 
-    // Helper function to escape XML entities
+    // Helper function to escape XML entities and handle special characters
     const escapeXml = (str: string) => {
-      return str
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&apos;')
+      if (!str) return ''
+      return (
+        str
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&apos;')
+          // Remove or replace other problematic characters
+          .replace(/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/g, '') // Remove control characters
+          .replace(/[^\x09\x0A\x0D\x20-\uD7FF\uE000-\uFFFD]/g, '')
+      ) // Keep only valid XML characters
     }
 
     // Generate video sitemap XML
@@ -67,8 +73,13 @@ ${coursesWithVideos
     const videoAsset = resolveAsset(course.fields.courseVideo)
     const coverImageAsset = resolveAsset(course.fields.coverImage)
 
-    const videoTitle = `${course.fields.name} - Course Preview`
-    const videoDescription = `Watch this comprehensive preview of ${course.fields.name} at Africa Digital Media Institute. Learn about the curriculum, facilities, career opportunities, and what makes this ${course.fields.awardLevel || 'course'} program special.`
+    // Safely extract and clean all content
+    const courseName = course.fields.name || 'Course'
+    const awardLevel = course.fields.awardLevel || 'course'
+
+    const videoTitle = `${courseName} - Course Preview`
+    const videoDescription = `Watch this comprehensive preview of ${courseName} at Africa Digital Media Institute. Learn about the curriculum, facilities, career opportunities, and what makes this ${awardLevel} program special.`
+
     const thumbnailUrl = coverImageAsset?.fields?.file?.url
       ? `https:${coverImageAsset.fields.file.url}`
       : `${baseUrl}/logo.png`
