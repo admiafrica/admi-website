@@ -97,7 +97,7 @@ ${coursesWithVideos
       <video:tag>education</video:tag>
       <video:tag>course preview</video:tag>
       <video:tag>ADMI</video:tag>
-      <video:tag>${escapeXml(course.fields.name.toLowerCase().replace(/\s+/g, '-'))}</video:tag>
+      <video:tag>${escapeXml(course.fields.slug)}</video:tag>
       <video:tag>Kenya</video:tag>
       <video:tag>Africa</video:tag>
       <video:tag>digital media</video:tag>
