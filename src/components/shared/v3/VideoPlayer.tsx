@@ -4,9 +4,10 @@ import React, { useState, useRef } from 'react'
 
 type Props = {
   videoUrl: string
+  showControls?: boolean
 }
 
-const VideoPlayer = ({ videoUrl }: Props) => {
+const VideoPlayer = ({ videoUrl, showControls = false }: Props) => {
   const [isPlaying, setIsPlaying] = useState(false)
   const [isHovering, setIsHovering] = useState(false)
   const videoRef = useRef<HTMLVideoElement | null>(null)
@@ -56,6 +57,7 @@ const VideoPlayer = ({ videoUrl }: Props) => {
         className="w-full"
         onPlay={() => setIsPlaying(true)}
         onPause={() => setIsPlaying(false)}
+        controls={showControls}
         controlsList="nofullscreen nodownload noremoteplayback noplaybackrate"
       />
 

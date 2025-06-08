@@ -50,11 +50,11 @@ export default function VideoWatchPage({ course, slug }: VideoWatchPageProps) {
         name={videoTitle}
         description={videoDescription}
         thumbnailUrl={
-          course.coverImage?.fields?.file?.url
-            ? `https:${course.coverImage.fields.file.url}`
+          course.resolvedCoverImage?.fields?.file?.url || course.coverImage?.fields?.file?.url
+            ? `https:${course.resolvedCoverImage?.fields?.file?.url || course.coverImage?.fields?.file?.url}`
             : 'https://admi.africa/logo.png'
         }
-        contentUrl={`https:${course.courseVideo.fields.file.url}`}
+        contentUrl={`https:${course.resolvedVideo?.fields?.file?.url || course.courseVideo?.fields?.file?.url}`}
         embedUrl={`https://admi.africa/watch/${slug}`}
         uploadDate={course.sys?.updatedAt || new Date().toISOString()}
         duration="PT2M30S"
@@ -87,6 +87,7 @@ export default function VideoWatchPage({ course, slug }: VideoWatchPageProps) {
             <div className="relative aspect-video w-full">
               <VideoPlayer
                 videoUrl={course.resolvedVideo?.fields?.file?.url || course.courseVideo?.fields?.file?.url}
+                showControls={true}
               />
             </div>
           </Card.Section>
@@ -206,8 +207,9 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       return coursesData.includes.Asset.find((asset: any) => asset.sys.id === assetRef.sys.id)
     }
 
-    // Resolve video asset
+    // Resolve video and cover image assets
     const videoAsset = resolveAsset(course.fields?.courseVideo)
+    const coverImageAsset = resolveAsset(course.fields?.coverImage)
 
     // Only show video watch page if course has a valid video file
     if (!videoAsset?.fields?.file?.url) {
@@ -218,7 +220,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       props: {
         course: {
           ...course.fields,
-          resolvedVideo: videoAsset
+          resolvedVideo: videoAsset,
+          resolvedCoverImage: coverImageAsset
         },
         slug
       },
