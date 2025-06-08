@@ -13,7 +13,7 @@ interface VideoWatchPageProps {
 }
 
 export default function VideoWatchPage({ course, slug }: VideoWatchPageProps) {
-  if (!course?.courseVideo) {
+  if (!course?.courseVideo?.fields?.file?.url) {
     return (
       <MainLayout>
         <Container size="lg" py="xl">
@@ -145,14 +145,16 @@ export default function VideoWatchPage({ course, slug }: VideoWatchPageProps) {
 export const getStaticPaths: GetStaticPaths = async () => {
   try {
     const coursesResponse = await fetch(
-      `https://cdn.contentful.com/spaces/${process.env.ADMI_CONTENTFUL_SPACE_ID}/environments/${process.env.ADMI_CONTENTFUL_ENVIRONMENT}/entries?access_token=${process.env.ADMI_CONTENTFUL_ACCESS_TOKEN}&content_type=course&select=fields.slug,fields.courseVideo`
+      `https://cdn.contentful.com/spaces/${process.env.ADMI_CONTENTFUL_SPACE_ID}/environments/${process.env.ADMI_CONTENTFUL_ENVIRONMENT}/entries?access_token=${process.env.ADMI_CONTENTFUL_ACCESS_TOKEN}&content_type=course&include=2`
     )
     const coursesData = await coursesResponse.json()
 
-    // Only generate paths for courses that have videos
+    // Only generate paths for courses that have valid video files
     const paths =
       coursesData.items
-        ?.filter((course: any) => course.fields?.slug && course.fields?.courseVideo)
+        ?.filter((course: any) => {
+          return course.fields?.slug && course.fields?.courseVideo?.fields?.file?.url
+        })
         .map((course: any) => ({
           params: { slug: course.fields.slug }
         })) || []
@@ -185,8 +187,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
     const course = coursesData.items[0]
 
-    // Only show video watch page if course has a video
-    if (!course.fields?.courseVideo) {
+    // Only show video watch page if course has a valid video file
+    if (!course.fields?.courseVideo?.fields?.file?.url) {
       return { notFound: true }
     }
 
