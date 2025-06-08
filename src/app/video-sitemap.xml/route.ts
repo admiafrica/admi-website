@@ -47,6 +47,16 @@ export async function GET() {
       })
     }
 
+    // Helper function to escape XML entities
+    const escapeXml = (str: string) => {
+      return str
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&apos;')
+    }
+
     // Generate video sitemap XML
     const videoSitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
@@ -57,8 +67,10 @@ ${coursesWithVideos
     const videoAsset = resolveAsset(course.fields.courseVideo)
     const coverImageAsset = resolveAsset(course.fields.coverImage)
 
-    const videoTitle = `${course.fields.name} - Course Preview`
-    const videoDescription = `Watch this comprehensive preview of ${course.fields.name} at Africa Digital Media Institute. Learn about the curriculum, facilities, career opportunities, and what makes this ${course.fields.awardLevel || 'course'} program special.`
+    const videoTitle = escapeXml(`${course.fields.name} - Course Preview`)
+    const videoDescription = escapeXml(
+      `Watch this comprehensive preview of ${course.fields.name} at Africa Digital Media Institute. Learn about the curriculum, facilities, career opportunities, and what makes this ${course.fields.awardLevel || 'course'} program special.`
+    )
     const thumbnailUrl = coverImageAsset?.fields?.file?.url
       ? `https:${coverImageAsset.fields.file.url}`
       : `${baseUrl}/logo.png`
