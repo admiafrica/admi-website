@@ -67,10 +67,8 @@ ${coursesWithVideos
     const videoAsset = resolveAsset(course.fields.courseVideo)
     const coverImageAsset = resolveAsset(course.fields.coverImage)
 
-    const videoTitle = escapeXml(`${course.fields.name} - Course Preview`)
-    const videoDescription = escapeXml(
-      `Watch this comprehensive preview of ${course.fields.name} at Africa Digital Media Institute. Learn about the curriculum, facilities, career opportunities, and what makes this ${course.fields.awardLevel || 'course'} program special.`
-    )
+    const videoTitle = `${course.fields.name} - Course Preview`
+    const videoDescription = `Watch this comprehensive preview of ${course.fields.name} at Africa Digital Media Institute. Learn about the curriculum, facilities, career opportunities, and what makes this ${course.fields.awardLevel || 'course'} program special.`
     const thumbnailUrl = coverImageAsset?.fields?.file?.url
       ? `https:${coverImageAsset.fields.file.url}`
       : `${baseUrl}/logo.png`
@@ -97,7 +95,7 @@ ${coursesWithVideos
       <video:tag>education</video:tag>
       <video:tag>course preview</video:tag>
       <video:tag>ADMI</video:tag>
-      <video:tag>${course.fields.name.toLowerCase().replace(/\s+/g, '-')}</video:tag>
+      <video:tag>${escapeXml(course.fields.name.toLowerCase().replace(/\s+/g, '-'))}</video:tag>
       <video:tag>Kenya</video:tag>
       <video:tag>Africa</video:tag>
       <video:tag>digital media</video:tag>
