@@ -13,7 +13,10 @@ interface VideoWatchPageProps {
 }
 
 export default function VideoWatchPage({ course, slug }: VideoWatchPageProps) {
-  if (!course?.courseVideo?.fields?.file?.url) {
+  // Check if we have a valid video (either direct or resolved from includes)
+  const hasValidVideo = course?.courseVideo?.fields?.file?.url || course?.resolvedVideo?.fields?.file?.url
+
+  if (!hasValidVideo) {
     return (
       <MainLayout>
         <Container size="lg" py="xl">
@@ -82,7 +85,9 @@ export default function VideoWatchPage({ course, slug }: VideoWatchPageProps) {
         <Card shadow="sm" padding="lg" radius="md" withBorder mb="xl">
           <Card.Section>
             <div className="relative aspect-video w-full">
-              <VideoPlayer videoUrl={course.courseVideo.fields.file.url} />
+              <VideoPlayer
+                videoUrl={course.resolvedVideo?.fields?.file?.url || course.courseVideo?.fields?.file?.url}
+              />
             </div>
           </Card.Section>
 
@@ -149,11 +154,19 @@ export const getStaticPaths: GetStaticPaths = async () => {
     )
     const coursesData = await coursesResponse.json()
 
+    // Helper function to resolve asset references
+    const resolveAsset = (assetRef: any) => {
+      if (!assetRef?.sys?.id || !coursesData.includes?.Asset) return null
+      return coursesData.includes.Asset.find((asset: any) => asset.sys.id === assetRef.sys.id)
+    }
+
     // Only generate paths for courses that have valid video files
     const paths =
       coursesData.items
         ?.filter((course: any) => {
-          return course.fields?.slug && course.fields?.courseVideo?.fields?.file?.url
+          if (!course.fields?.slug || !course.fields?.courseVideo) return false
+          const videoAsset = resolveAsset(course.fields.courseVideo)
+          return videoAsset?.fields?.file?.url
         })
         .map((course: any) => ({
           params: { slug: course.fields.slug }
@@ -187,14 +200,26 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
     const course = coursesData.items[0]
 
+    // Helper function to resolve asset references
+    const resolveAsset = (assetRef: any) => {
+      if (!assetRef?.sys?.id || !coursesData.includes?.Asset) return null
+      return coursesData.includes.Asset.find((asset: any) => asset.sys.id === assetRef.sys.id)
+    }
+
+    // Resolve video asset
+    const videoAsset = resolveAsset(course.fields?.courseVideo)
+
     // Only show video watch page if course has a valid video file
-    if (!course.fields?.courseVideo?.fields?.file?.url) {
+    if (!videoAsset?.fields?.file?.url) {
       return { notFound: true }
     }
 
     return {
       props: {
-        course: course.fields,
+        course: {
+          ...course.fields,
+          resolvedVideo: videoAsset
+        },
         slug
       },
       revalidate: 3600 // Revalidate every hour

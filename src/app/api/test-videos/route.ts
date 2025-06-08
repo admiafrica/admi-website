@@ -19,6 +19,7 @@ export async function GET() {
       hasVideo: !!course.fields?.courseVideo,
       hasVideoFile: !!course.fields?.courseVideo?.fields?.file,
       hasVideoUrl: !!course.fields?.courseVideo?.fields?.file?.url,
+      rawVideoData: course.fields?.courseVideo || null,
       videoStructure: course.fields?.courseVideo
         ? {
             hasFields: !!course.fields.courseVideo.fields,
@@ -36,12 +37,16 @@ export async function GET() {
     return NextResponse.json({
       totalCourses: coursesData.items.length,
       coursesWithVideos: coursesWithVideos.length,
-      analysis: courseAnalysis,
+      hasIncludes: !!coursesData.includes,
+      includesAssets: coursesData.includes?.Asset?.length || 0,
+      includesEntries: coursesData.includes?.Entry?.length || 0,
+      analysis: courseAnalysis.slice(0, 5), // Only show first 5 for readability
       validVideoCourses: coursesWithVideos.map((course: any) => ({
         name: course.fields.name,
         slug: course.fields.slug,
         videoUrl: course.fields.courseVideo.fields.file.url
-      }))
+      })),
+      sampleVideoAssets: coursesData.includes?.Asset?.slice(0, 3) || []
     })
   } catch (error) {
     console.error('Error testing videos:', error)

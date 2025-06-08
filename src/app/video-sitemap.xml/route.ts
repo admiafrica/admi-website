@@ -14,10 +14,19 @@ export async function GET() {
       throw new Error('No courses found')
     }
 
-    // Filter courses that have valid video files
-    const coursesWithVideos = coursesData.items.filter(
-      (course: any) => course.fields?.slug && course.fields?.courseVideo?.fields?.file?.url
-    )
+    // Helper function to resolve asset references
+    const resolveAsset = (assetRef: any) => {
+      if (!assetRef?.sys?.id || !coursesData.includes?.Asset) return null
+      return coursesData.includes.Asset.find((asset: any) => asset.sys.id === assetRef.sys.id)
+    }
+
+    // Filter courses that have valid video files (resolve asset references)
+    const coursesWithVideos = coursesData.items.filter((course: any) => {
+      if (!course.fields?.slug || !course.fields?.courseVideo) return false
+
+      const videoAsset = resolveAsset(course.fields.courseVideo)
+      return videoAsset?.fields?.file?.url
+    })
 
     console.log(`Total courses: ${coursesData.items.length}`)
     console.log(`Courses with videos: ${coursesWithVideos.length}`)
@@ -45,12 +54,15 @@ export async function GET() {
 ${coursesWithVideos
   .map((course: any) => {
     const slug = course.fields.slug
+    const videoAsset = resolveAsset(course.fields.courseVideo)
+    const coverImageAsset = resolveAsset(course.fields.coverImage)
+
     const videoTitle = `${course.fields.name} - Course Preview`
     const videoDescription = `Watch this comprehensive preview of ${course.fields.name} at Africa Digital Media Institute. Learn about the curriculum, facilities, career opportunities, and what makes this ${course.fields.awardLevel || 'course'} program special.`
-    const thumbnailUrl = course.fields.coverImage?.fields?.file?.url
-      ? `https:${course.fields.coverImage.fields.file.url}`
+    const thumbnailUrl = coverImageAsset?.fields?.file?.url
+      ? `https:${coverImageAsset.fields.file.url}`
       : `${baseUrl}/logo.png`
-    const contentUrl = `https:${course.fields.courseVideo.fields.file.url}`
+    const contentUrl = `https:${videoAsset.fields.file.url}`
     const watchPageUrl = `${baseUrl}/watch/${slug}`
     const lastModified = new Date(course.sys.updatedAt).toISOString()
 
