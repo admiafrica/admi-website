@@ -1,8 +1,16 @@
 import { MetadataRoute } from 'next'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  // Base URL from environment variable
-  const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'https://admi.africa'
+  // Base URL from environment variable - ensure it's properly formatted
+  let baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'https://admi.africa'
+
+  // Ensure baseUrl doesn't have trailing slash and has proper protocol
+  baseUrl = baseUrl.replace(/\/$/, '')
+  if (!baseUrl.startsWith('http')) {
+    baseUrl = `https://${baseUrl}`
+  }
+
+  console.log('Sitemap baseUrl:', baseUrl)
 
   // Core pages with African market focus
   const staticPages = [
@@ -124,7 +132,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     .filter((page) => page && page.url && typeof page.url === 'string')
     .map((page) => ({
       ...page,
-      url: page.url.replace(/\/+/g, '/').replace(/\/$/, '') || baseUrl, // Clean up double slashes and trailing slashes
+      // Ensure URL is properly formatted
+      url: page.url.replace(/\/$/, '') || baseUrl, // Just remove trailing slash, don't mess with protocol
       lastModified: page.lastModified || new Date(),
       changeFrequency: page.changeFrequency || 'monthly',
       priority: typeof page.priority === 'number' ? page.priority : 0.5
