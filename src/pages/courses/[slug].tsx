@@ -206,15 +206,24 @@ export default function CourseDetailPage({
       {/* Enrollment FAQs Schema */}
       <CMSFAQSchema faqs={ENROLLMENT_FAQS} courseName={`${course.name} - Enrollment Information`} />
 
-      {/* Course Video Schema (if video exists) */}
+      {/* Course Video Schema (if video exists) - Points to dedicated watch page */}
       {course.courseVideo && (
         <VideoSchema
           name={`${course.name} - Course Preview`}
-          description={`Watch this preview of ${course.name} at Africa Digital Media Institute. Learn about the curriculum, facilities, and career opportunities.`}
-          thumbnailUrl={course.coverImage?.fields?.file?.url ? `https:${course.coverImage.fields.file.url}` : ''}
-          contentUrl={course.courseVideo}
-          uploadDate={new Date().toISOString()}
+          description={`Watch this comprehensive preview of ${course.name} at Africa Digital Media Institute. Learn about the curriculum, facilities, career opportunities, and what makes this ${course.awardLevel || 'course'} program special.`}
+          thumbnailUrl={
+            course.coverImage?.fields?.file?.url
+              ? `https:${course.coverImage.fields.file.url}`
+              : 'https://admi.africa/logo.png'
+          }
+          contentUrl={`https:${course.courseVideo.fields.file.url}`}
+          embedUrl={`${process.env.NEXT_PUBLIC_API_BASE_URL || 'https://admi.africa'}/watch/${slug}`}
+          uploadDate={course.sys?.updatedAt || new Date().toISOString()}
           duration="PT2M30S"
+          publisher={{
+            name: 'Africa Digital Media Institute',
+            logo: 'https://admi.africa/logo.png'
+          }}
         />
       )}
       <CourseHero
@@ -229,6 +238,7 @@ export default function CourseDetailPage({
         intakes={course.intakes}
         courseVideo={course.courseVideo}
         educationalLevel={course.educationalLevel}
+        courseSlug={slug}
       />
       <CourseDetails
         benefits={course.courseBenefits || []}

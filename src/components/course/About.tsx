@@ -9,6 +9,7 @@ type Props = {
   courseVideo: any
   educationalLevel: string
   isCampaign?: boolean
+  courseSlug?: string
 }
 export default function CourseAbout(props: Props) {
   const isMobile = useIsMobile()
@@ -47,6 +48,7 @@ export default function CourseAbout(props: Props) {
                   intakes={props.intakes}
                   courseVideo={props.courseVideo}
                   educationalLevel={props.educationalLevel}
+                  courseSlug={props.courseSlug}
                 />
               </div>
             </>
