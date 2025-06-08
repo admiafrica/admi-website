@@ -14,10 +14,29 @@ export async function GET() {
       throw new Error('No courses found')
     }
 
-    // Filter courses that have videos
+    // Filter courses that have valid video files
     const coursesWithVideos = coursesData.items.filter(
-      (course: any) => course.fields?.slug && course.fields?.courseVideo
+      (course: any) => course.fields?.slug && course.fields?.courseVideo?.fields?.file?.url
     )
+
+    console.log(`Total courses: ${coursesData.items.length}`)
+    console.log(`Courses with videos: ${coursesWithVideos.length}`)
+
+    // If no courses with videos, return empty sitemap
+    if (coursesWithVideos.length === 0) {
+      console.log('No courses with videos found')
+      const emptySitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+</urlset>`
+
+      return new NextResponse(emptySitemap, {
+        headers: {
+          'Content-Type': 'application/xml',
+          'Cache-Control': 'public, max-age=300, s-maxage=300'
+        }
+      })
+    }
 
     // Generate video sitemap XML
     const videoSitemap = `<?xml version="1.0" encoding="UTF-8"?>
