@@ -356,11 +356,16 @@ export function DiplomaSchema({
   industryPartners = [],
   accreditation
 }: DiplomaProps) {
+  // Ensure description is never empty
+  const diplomaDescription =
+    description ||
+    `Earn a ${name} diploma at Africa Digital Media Institute. 2-year comprehensive program with 85% employment rate and industry placement guarantee.`
+
   const structuredData = {
     '@context': 'https://schema.org',
     '@type': 'Course',
     name,
-    description,
+    description: diplomaDescription,
     provider: {
       '@type': 'EducationalOrganization',
       name: provider.name,
@@ -404,6 +409,32 @@ export function DiplomaSchema({
       ...(tuitionFees && { price: tuitionFees, priceCurrency: 'KES' }),
       ...(applicationDeadline && { validThrough: applicationDeadline }),
       availability: 'https://schema.org/InStock'
+    },
+    hasCourseInstance: {
+      '@type': 'CourseInstance',
+      courseMode: deliveryMode?.toLowerCase().includes('online')
+        ? 'online'
+        : deliveryMode?.toLowerCase().includes('hybrid')
+          ? 'blended'
+          : 'onsite',
+      ...(intakes && { startDate: intakes }),
+      duration: duration === '2 years' ? 'P2Y' : duration,
+      instructor: {
+        '@type': 'Organization',
+        name: provider.name
+      },
+      location: {
+        '@type': 'Place',
+        name: 'Africa Digital Media Institute',
+        address: {
+          '@type': 'PostalAddress',
+          streetAddress: 'Caxton House, Standard Street',
+          addressLocality: 'Nairobi',
+          addressRegion: 'Nairobi',
+          postalCode: '00100',
+          addressCountry: 'KE'
+        }
+      }
     },
     ...(intakes && { startDate: intakes }),
     ...(awardLevel && { educationalCredentialAwarded: awardLevel }),
@@ -467,11 +498,28 @@ export function CourseSchema({
   courseCode,
   prerequisites = []
 }: CourseProps) {
+  // Ensure description is never empty
+  const courseDescription =
+    description ||
+    `Learn ${name} at Africa Digital Media Institute. ${awardLevel || 'Professional'} level course with practical training and industry placement.`
+
+  // Parse tuition fees for offers
+  const parseTuitionFees = (fees: string | undefined) => {
+    if (!fees) return { price: '0', currency: 'KES' }
+    const match = fees.match(/(\d+(?:,\d+)*)/)
+    return {
+      price: match ? match[1].replace(/,/g, '') : '0',
+      currency: 'KES'
+    }
+  }
+
+  const feeInfo = parseTuitionFees(tuitionFees)
+
   const structuredData = {
     '@context': 'https://schema.org',
     '@type': 'Course',
     name,
-    description,
+    description: courseDescription,
     provider: {
       '@type': 'EducationalOrganization',
       name: provider.name,
@@ -500,9 +548,36 @@ export function CourseSchema({
     offers: {
       '@type': 'Offer',
       category: 'Educational',
-      ...(tuitionFees && { price: tuitionFees, priceCurrency: 'KES' }),
+      price: feeInfo.price,
+      priceCurrency: feeInfo.currency,
       ...(applicationDeadline && { validThrough: applicationDeadline }),
       availability: 'https://schema.org/InStock'
+    },
+    hasCourseInstance: {
+      '@type': 'CourseInstance',
+      courseMode: deliveryMode?.toLowerCase().includes('online')
+        ? 'online'
+        : deliveryMode?.toLowerCase().includes('hybrid')
+          ? 'blended'
+          : 'onsite',
+      ...(intakes && { startDate: intakes }),
+      ...(duration && { duration: duration }),
+      instructor: {
+        '@type': 'Organization',
+        name: provider.name
+      },
+      location: {
+        '@type': 'Place',
+        name: 'Africa Digital Media Institute',
+        address: {
+          '@type': 'PostalAddress',
+          streetAddress: 'Caxton House, Standard Street',
+          addressLocality: 'Nairobi',
+          addressRegion: 'Nairobi',
+          postalCode: '00100',
+          addressCountry: 'KE'
+        }
+      }
     },
     ...(duration && { timeRequired: duration }),
     ...(deliveryMode && {

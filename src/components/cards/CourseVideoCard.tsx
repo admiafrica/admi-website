@@ -1,6 +1,7 @@
 import React from 'react'
-import { Card, Image, Text } from '@mantine/core'
-import { IconCheck, IconExclamationCircle } from '@tabler/icons-react'
+import { Card, Image, Text, Button, Group } from '@mantine/core'
+import { IconCheck, IconExclamationCircle, IconPlayerPlay } from '@tabler/icons-react'
+import Link from 'next/link'
 
 import { VideoPlayer } from '../shared/v3'
 
@@ -9,6 +10,7 @@ type Props = {
   courseVideo: any
   educationalLevel: string
   venue?: string
+  courseSlug?: string
 }
 
 export default function CourseVideoCard(props: Props) {
@@ -31,6 +33,22 @@ export default function CourseVideoCard(props: Props) {
             <Text pl={16}>Intakes: {props.intakes}</Text>
           </div>
         </div>
+
+        {/* Watch Full Video Button */}
+        {props.courseVideo && props.courseSlug && (
+          <Group justify="center" pb="md">
+            <Button
+              component={Link}
+              href={`/watch/${props.courseSlug}`}
+              leftSection={<IconPlayerPlay size={16} />}
+              variant="outline"
+              color="red"
+              size="sm"
+            >
+              Watch Full Video
+            </Button>
+          </Group>
+        )}
       </Card.Section>
       <Card.Section className="bg-[#F76335] px-6 py-4 text-white">
         <div className="flex">

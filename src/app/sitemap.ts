@@ -49,6 +49,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // Fetch courses from Contentful
   let coursePages: any[] = []
+  let videoWatchPages: any[] = []
   try {
     const coursesResponse = await fetch(
       `https://cdn.contentful.com/spaces/${process.env.ADMI_CONTENTFUL_SPACE_ID}/environments/${process.env.ADMI_CONTENTFUL_ENVIRONMENT}/entries?access_token=${process.env.ADMI_CONTENTFUL_ACCESS_TOKEN}&content_type=course`
@@ -72,11 +73,22 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             priority: isDiploma ? 0.95 : 0.9 // Higher priority for diplomas
           }
         })
+
+      // Generate video watch pages for courses with videos
+      videoWatchPages = coursesData.items
+        .filter((item: any) => item.fields?.slug && item.fields?.courseVideo) // Only courses with videos
+        .map((item: any) => ({
+          url: `${baseUrl}/watch/${item.fields.slug}`,
+          lastModified: new Date(item.sys.updatedAt),
+          changeFrequency: 'weekly' as const,
+          priority: 0.8 // High priority for video content
+        }))
     }
   } catch (error) {
     console.error('Error fetching courses for sitemap:', error)
-    // Ensure coursePages is always an array
+    // Ensure arrays are always defined
     coursePages = []
+    videoWatchPages = []
   }
 
   // Fetch news articles from Contentful
@@ -128,7 +140,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }
 
   // Filter out any invalid entries and ensure all URLs are properly formatted
-  const allPages = [...staticPages, ...languagePages, ...coursePages, ...newsPages, ...resourcePages]
+  const allPages = [
+    ...staticPages,
+    ...languagePages,
+    ...coursePages,
+    ...videoWatchPages,
+    ...newsPages,
+    ...resourcePages
+  ]
     .filter((page) => page && page.url && typeof page.url === 'string')
     .map((page) => ({
       ...page,
