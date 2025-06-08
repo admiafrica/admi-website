@@ -40,17 +40,32 @@ export default function CoursesPage({
         keywords="ADMI courses, digital media courses Kenya, creative education Nairobi, certificate programs, diploma courses, Africa Digital Media Institute"
         url="/courses"
       />
-      <div className="h-[16em] w-full bg-[#002A23]">
-        {/* BACKGROUND IMAGES */}
-        <div className="absolute left-[62%] top-[20vh] z-0 h-fit w-full -translate-x-1/2 transform">
+      <div
+        className="relative h-[16em] w-full overflow-hidden bg-[#002A23]"
+        style={{ minHeight: '16em', contain: 'layout' }}
+      >
+        {/* BACKGROUND IMAGES - Fixed positioning to prevent layout shifts */}
+        <div className="absolute left-[62%] top-[3rem] z-0 h-fit w-full -translate-x-1/2 transform will-change-transform">
           <div className="flex w-full justify-end pr-[10%]">
-            <Image src={IconBgImageYellow} alt="background image" priority />
+            <Image
+              src={IconBgImageYellow}
+              alt="background image"
+              priority
+              style={{ maxWidth: '100%', height: 'auto' }}
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
           </div>
         </div>
 
-        <div className="absolute left-1/2 top-[5vh] z-0 h-fit w-full -translate-x-1/2 transform">
+        <div className="absolute left-1/2 top-[1rem] z-0 h-fit w-full -translate-x-1/2 transform will-change-transform">
           <div className="flex w-full pl-[5%]">
-            <Image src={IconBgImageRed} alt="background image" priority />
+            <Image
+              src={IconBgImageRed}
+              alt="background image"
+              priority
+              style={{ maxWidth: '100%', height: 'auto' }}
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
           </div>
         </div>
         <div className="relative z-10 mx-auto w-full max-w-screen-lg px-4 pt-24 2xl:px-0">
