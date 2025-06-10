@@ -40,7 +40,8 @@ export function OrganizationSchema({
     sameAs,
     address: {
       '@type': 'PostalAddress',
-      streetAddress: 'Caxton House, Standard Street',
+      streetAddress: '25 Caxton House 3rd Floor, Kenyatta Avenue',
+      postOfficeBoxNumber: 'P.O. Box 35447',
       addressLocality: 'Nairobi',
       addressRegion: 'Nairobi',
       postalCode: '00100',
@@ -93,6 +94,7 @@ interface LocalBusinessProps {
   description?: string
   address?: {
     streetAddress: string
+    postOfficeBoxNumber?: string
     addressLocality: string
     addressRegion: string
     postalCode: string
@@ -114,7 +116,8 @@ export function LocalBusinessSchema({
   url = 'https://admi.africa',
   description = 'Africa Digital Media Institute (ADMI) is a leading creative media and technology training institution based in Nairobi, Kenya.',
   address = {
-    streetAddress: 'Caxton House, Standard Street',
+    streetAddress: '25 Caxton House 3rd Floor, Kenyatta Avenue',
+    postOfficeBoxNumber: 'P.O. Box 35447',
     addressLocality: 'Nairobi',
     addressRegion: 'Nairobi',
     postalCode: '00100',
@@ -342,7 +345,7 @@ export function DiplomaSchema({
   url,
   image,
   awardLevel,
-  creditHours,
+  // Remove creditHours parameter as it's not used in schema
   tuitionFees,
   duration,
   deliveryMode,
@@ -355,7 +358,7 @@ export function DiplomaSchema({
   employmentRate,
   industryPartners = [],
   accreditation
-}: DiplomaProps) {
+}: Omit<DiplomaProps, 'creditHours'>) {
   // Ensure description is never empty
   const diplomaDescription =
     description ||
@@ -372,7 +375,8 @@ export function DiplomaSchema({
       url: provider.url,
       address: {
         '@type': 'PostalAddress',
-        streetAddress: 'Caxton House, Standard Street',
+        streetAddress: '25 Caxton House 3rd Floor, Kenyatta Avenue',
+        postOfficeBoxNumber: 'P.O. Box 35447',
         addressLocality: 'Nairobi',
         addressRegion: 'Nairobi',
         postalCode: '00100',
@@ -383,13 +387,10 @@ export function DiplomaSchema({
     ...(image && { image }),
     ...(courseCode && { courseCode }),
     educationalLevel: 'Diploma',
-    courseMode: deliveryMode?.toLowerCase().includes('online')
-      ? 'online'
-      : deliveryMode?.toLowerCase().includes('hybrid')
-        ? 'blended'
-        : 'onsite',
+    // Remove courseMode from main Course schema as it's not recognized by schema.org
+    // This property is correctly placed in hasCourseInstance below
     timeRequired: duration === '2 years' ? 'P2Y' : duration,
-    ...(creditHours && { creditHours: creditHours.toString() }),
+    // Remove creditHours as it's not recognized by schema.org for Course type
     ...(prerequisites.length > 0 && { coursePrerequisites: prerequisites }),
     ...(learningOutcomes.length > 0 && {
       teaches: learningOutcomes.map((outcome) => ({
@@ -419,16 +420,14 @@ export function DiplomaSchema({
           : 'onsite',
       ...(intakes && { startDate: intakes }),
       duration: duration === '2 years' ? 'P2Y' : duration,
-      instructor: {
-        '@type': 'Organization',
-        name: provider.name
-      },
+      // Remove instructor as Organization is not a valid target type for instructor property
       location: {
         '@type': 'Place',
         name: 'Africa Digital Media Institute',
         address: {
           '@type': 'PostalAddress',
-          streetAddress: 'Caxton House, Standard Street',
+          streetAddress: '25 Caxton House 3rd Floor, Kenyatta Avenue',
+          postOfficeBoxNumber: 'P.O. Box 35447',
           addressLocality: 'Nairobi',
           addressRegion: 'Nairobi',
           postalCode: '00100',
@@ -436,7 +435,8 @@ export function DiplomaSchema({
         }
       }
     },
-    ...(intakes && { startDate: intakes }),
+    // Remove startDate from main Course schema as it's not recognized by schema.org
+    // This property is correctly placed in hasCourseInstance above
     ...(awardLevel && { educationalCredentialAwarded: awardLevel }),
     inLanguage: 'en',
     isAccessibleForFree: false,
@@ -486,7 +486,7 @@ export function CourseSchema({
   url,
   image,
   awardLevel,
-  creditHours,
+  // Remove creditHours parameter as it's not used in schema
   tuitionFees,
   duration,
   deliveryMode,
@@ -497,7 +497,7 @@ export function CourseSchema({
   applicationDeadline,
   courseCode,
   prerequisites = []
-}: CourseProps) {
+}: Omit<CourseProps, 'creditHours'>) {
   // Ensure description is never empty
   const courseDescription =
     description ||
@@ -526,18 +526,22 @@ export function CourseSchema({
       url: provider.url,
       address: {
         '@type': 'PostalAddress',
-        streetAddress: 'Caxton House, Standard Street',
+        streetAddress: '25 Caxton House 3rd Floor, Kenyatta Avenue',
+        postOfficeBoxNumber: 'P.O. Box 35447',
         addressLocality: 'Nairobi',
         addressRegion: 'Nairobi',
         postalCode: '00100',
-        addressCountry: 'KE'
+        addressCountry: {
+          '@type': 'Country',
+          name: 'KE'
+        }
       }
     },
     url,
     ...(image && { image }),
     ...(courseCode && { courseCode }),
     ...(educationalLevel && { educationalLevel }),
-    ...(creditHours && { creditHours: creditHours.toString() }),
+    // Remove creditHours as it's not recognized by schema.org for Course type
     ...(prerequisites.length > 0 && { coursePrerequisites: prerequisites }),
     ...(learningOutcomes.length > 0 && {
       teaches: learningOutcomes.map((outcome) => ({
@@ -562,16 +566,14 @@ export function CourseSchema({
           : 'onsite',
       ...(intakes && { startDate: intakes }),
       ...(duration && { duration: duration }),
-      instructor: {
-        '@type': 'Organization',
-        name: provider.name
-      },
+      // Remove instructor as Organization is not a valid target type for instructor property
       location: {
         '@type': 'Place',
         name: 'Africa Digital Media Institute',
         address: {
           '@type': 'PostalAddress',
-          streetAddress: 'Caxton House, Standard Street',
+          streetAddress: '25 Caxton House 3rd Floor, Kenyatta Avenue',
+          postOfficeBoxNumber: 'P.O. Box 35447',
           addressLocality: 'Nairobi',
           addressRegion: 'Nairobi',
           postalCode: '00100',
@@ -580,14 +582,8 @@ export function CourseSchema({
       }
     },
     ...(duration && { timeRequired: duration }),
-    ...(deliveryMode && {
-      courseMode: deliveryMode.toLowerCase().includes('online')
-        ? 'online'
-        : deliveryMode.toLowerCase().includes('hybrid')
-          ? 'blended'
-          : 'onsite'
-    }),
-    ...(intakes && { startDate: intakes }),
+    // Remove courseMode and startDate from main Course schema as they're not recognized by schema.org
+    // These properties are correctly placed in hasCourseInstance above
     ...(awardLevel && { educationalCredentialAwarded: awardLevel }),
     ...(careerOptions.length > 0 && {
       occupationalCredentialAwarded: careerOptions.map((career) => ({
@@ -762,7 +758,7 @@ export function MultiCityLocalBusinessSchema({
     name: `Africa Digital Media Institute - ${city} Campus`,
     alternateName: `ADMI ${city}`,
     description: `Leading Creative Media and Technology Training Institution in ${city}, ${country}. Offering diploma courses in film, animation, graphic design, audio production, and photography.`,
-    url: `https://admi.africa/${city.toLowerCase()}`,
+    url: 'https://admi.africa/',
     address: {
       '@type': 'PostalAddress',
       addressLocality: city,
@@ -779,17 +775,17 @@ export function MultiCityLocalBusinessSchema({
     telephone: city === 'Nairobi' ? '+254 772 913 811' : '+254 772 913 811',
     email: 'info@admi.ac.ke',
     areaServed: serviceArea.length > 0 ? serviceArea : [city, region, country],
-    serviceType: 'Higher Education',
+    // Remove serviceType as it's not recognized by schema.org for LocalBusiness
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
       name: 'ADMI Course Catalog',
-      itemListElement: courses.map((course, index) => ({
+      itemListElement: courses.map((course) => ({
         '@type': 'Offer',
         itemOffered: {
           '@type': 'Course',
           name: course
-        },
-        position: index + 1
+        }
+        // Remove position as it's not recognized by schema.org for Offer type
       }))
     },
     sameAs: [

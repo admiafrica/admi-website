@@ -228,7 +228,8 @@ export const DIPLOMA_STRUCTURED_DATA_TEMPLATE = {
     url: 'https://admi.africa',
     address: {
       '@type': 'PostalAddress',
-      streetAddress: 'Caxton House, Standard Street',
+      streetAddress: '25 Caxton House 3rd Floor, Kenyatta Avenue',
+      postOfficeBoxNumber: 'P.O. Box 35447',
       addressLocality: 'Nairobi',
       addressRegion: 'Nairobi',
       postalCode: '00100',

@@ -4,7 +4,7 @@ export const ENROLLMENT_FAQS = [
     id: 'how-to-apply',
     question: 'How do I apply for ADMI courses?',
     answer:
-      'Applying to ADMI is simple! Visit our online application portal, complete the application form, upload required documents (ID copy, academic certificates, portfolio if applicable), and pay the application fee of KES 2,000. You can also visit our Nairobi campus at Caxton House, Standard Street for in-person assistance. Our admissions team is available Monday-Friday 8AM-5PM to guide you through the process.',
+      'Applying to ADMI is simple! Visit our online application portal, complete the application form, upload required documents (ID copy, academic certificates, portfolio if applicable), and pay the application fee of KES 2,000. You can also visit our Nairobi campus at 25 Caxton House 3rd Floor, Kenyatta Avenue for in-person assistance. Our admissions team is available Monday-Friday 8AM-5PM to guide you through the process.',
     category: 'Application Process',
     keywords: ['apply now', 'application process', 'admission requirements', 'how to apply', 'online application']
   },
