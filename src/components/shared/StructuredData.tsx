@@ -342,7 +342,7 @@ export function DiplomaSchema({
   url,
   image,
   awardLevel,
-  creditHours,
+  // Remove creditHours parameter as it's not used in schema
   tuitionFees,
   duration,
   deliveryMode,
@@ -355,7 +355,7 @@ export function DiplomaSchema({
   employmentRate,
   industryPartners = [],
   accreditation
-}: DiplomaProps) {
+}: Omit<DiplomaProps, 'creditHours'>) {
   // Ensure description is never empty
   const diplomaDescription =
     description ||
@@ -389,7 +389,7 @@ export function DiplomaSchema({
         ? 'blended'
         : 'onsite',
     timeRequired: duration === '2 years' ? 'P2Y' : duration,
-    ...(creditHours && { creditHours: creditHours.toString() }),
+    // Remove creditHours as it's not recognized by schema.org for Course type
     ...(prerequisites.length > 0 && { coursePrerequisites: prerequisites }),
     ...(learningOutcomes.length > 0 && {
       teaches: learningOutcomes.map((outcome) => ({
@@ -419,10 +419,7 @@ export function DiplomaSchema({
           : 'onsite',
       ...(intakes && { startDate: intakes }),
       duration: duration === '2 years' ? 'P2Y' : duration,
-      instructor: {
-        '@type': 'Organization',
-        name: provider.name
-      },
+      // Remove instructor as Organization is not a valid target type for instructor property
       location: {
         '@type': 'Place',
         name: 'Africa Digital Media Institute',
@@ -486,7 +483,7 @@ export function CourseSchema({
   url,
   image,
   awardLevel,
-  creditHours,
+  // Remove creditHours parameter as it's not used in schema
   tuitionFees,
   duration,
   deliveryMode,
@@ -497,7 +494,7 @@ export function CourseSchema({
   applicationDeadline,
   courseCode,
   prerequisites = []
-}: CourseProps) {
+}: Omit<CourseProps, 'creditHours'>) {
   // Ensure description is never empty
   const courseDescription =
     description ||
@@ -530,14 +527,17 @@ export function CourseSchema({
         addressLocality: 'Nairobi',
         addressRegion: 'Nairobi',
         postalCode: '00100',
-        addressCountry: 'KE'
+        addressCountry: {
+          '@type': 'Country',
+          name: 'KE'
+        }
       }
     },
     url,
     ...(image && { image }),
     ...(courseCode && { courseCode }),
     ...(educationalLevel && { educationalLevel }),
-    ...(creditHours && { creditHours: creditHours.toString() }),
+    // Remove creditHours as it's not recognized by schema.org for Course type
     ...(prerequisites.length > 0 && { coursePrerequisites: prerequisites }),
     ...(learningOutcomes.length > 0 && {
       teaches: learningOutcomes.map((outcome) => ({
@@ -562,10 +562,7 @@ export function CourseSchema({
           : 'onsite',
       ...(intakes && { startDate: intakes }),
       ...(duration && { duration: duration }),
-      instructor: {
-        '@type': 'Organization',
-        name: provider.name
-      },
+      // Remove instructor as Organization is not a valid target type for instructor property
       location: {
         '@type': 'Place',
         name: 'Africa Digital Media Institute',

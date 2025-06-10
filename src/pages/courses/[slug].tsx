@@ -177,7 +177,7 @@ export default function CourseDetailPage({
           url={`${process.env.NEXT_PUBLIC_API_BASE_URL || 'https://admi.africa'}/courses/${slug}`}
           image={course.coverImage?.fields?.file?.url ? `https:${course.coverImage.fields.file.url}` : undefined}
           awardLevel={course.awardLevel}
-          creditHours={course.creditHours}
+          // Remove creditHours as it's not supported by Course schema
           tuitionFees={course.tuitionFees}
           duration={course.programType?.fields?.duration}
           deliveryMode={course.programType?.fields?.deliveryMode}
