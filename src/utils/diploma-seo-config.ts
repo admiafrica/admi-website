@@ -2,7 +2,7 @@
 export const DIPLOMA_PROGRAMS = [
   {
     id: 'film-television',
-    name: 'Diploma in Film and Television Production',
+    name: 'Film and Television Production Diploma',
     slug: 'diploma-film-television-production',
     duration: '2 years',
     keywords: [
@@ -32,7 +32,7 @@ export const DIPLOMA_PROGRAMS = [
   },
   {
     id: 'animation-vfx',
-    name: 'Diploma in Animation and Visual Effects',
+    name: 'Animation & Motion Graphics Diploma',
     slug: 'diploma-animation-visual-effects',
     duration: '2 years',
     keywords: [
@@ -62,7 +62,7 @@ export const DIPLOMA_PROGRAMS = [
   },
   {
     id: 'graphic-design',
-    name: 'Diploma in Graphic Design and Digital Media',
+    name: 'Graphic Design Diploma',
     slug: 'diploma-graphic-design-digital-media',
     duration: '2 years',
     keywords: [
@@ -92,7 +92,7 @@ export const DIPLOMA_PROGRAMS = [
   },
   {
     id: 'audio-production',
-    name: 'Diploma in Audio Production and Sound Engineering',
+    name: 'Sound Engineering Diploma',
     slug: 'diploma-audio-production-sound-engineering',
     duration: '2 years',
     keywords: [
@@ -121,34 +121,34 @@ export const DIPLOMA_PROGRAMS = [
     industries: ['Recording Studios', 'Radio Stations', 'Film & TV', 'Music Industry', 'Podcast Production']
   },
   {
-    id: 'photography',
-    name: 'Diploma in Photography and Digital Imaging',
-    slug: 'diploma-photography-digital-imaging',
+    id: 'music-production',
+    name: 'Music Production Diploma',
+    slug: 'music-production-diploma',
     duration: '2 years',
     keywords: [
-      'photography diploma Africa',
-      'digital photography course Kenya',
-      'commercial photography training',
-      'portrait photography course',
-      'wedding photography diploma',
-      'fashion photography training',
-      'photojournalism course',
-      'studio photography diploma',
-      'photo editing course',
-      'digital imaging training',
-      'photography business course'
+      'music production diploma Africa',
+      'music producer course Kenya',
+      'audio engineering training',
+      'recording studio course',
+      'music technology diploma',
+      'sound design course',
+      'music composition training',
+      'beat making course',
+      'music mixing diploma',
+      'music business course',
+      'digital audio workstation training'
     ],
     careerPaths: [
-      'Professional Photographer',
-      'Commercial Photographer',
-      'Wedding Photographer',
-      'Fashion Photographer',
-      'Photojournalist',
-      'Studio Manager',
-      'Photo Editor',
-      'Photography Instructor'
+      'Music Producer',
+      'Audio Engineer',
+      'Sound Designer',
+      'Recording Engineer',
+      'Mixing Engineer',
+      'Mastering Engineer',
+      'Music Composer',
+      'Beat Maker'
     ],
-    industries: ['Photography Studios', 'Media Houses', 'Fashion Industry', 'Advertising', 'Event Management']
+    industries: ['Recording Studios', 'Music Industry', 'Film & TV', 'Radio Stations', 'Live Events']
   }
 ]
 

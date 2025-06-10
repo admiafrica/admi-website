@@ -10,11 +10,11 @@ const EAST_AFRICAN_CITIES = [
     coordinates: { latitude: -1.286389, longitude: 36.817223 },
     serviceArea: ['Nairobi', 'Central Kenya', 'Eastern Kenya', 'Coast Province'],
     courses: [
-      'Diploma in Film and Television Production',
-      'Diploma in Animation and Visual Effects',
-      'Diploma in Graphic Design and Digital Media',
-      'Diploma in Audio Production and Sound Engineering',
-      'Diploma in Photography and Digital Imaging'
+      'Film and Television Production Diploma',
+      'Animation & Motion Graphics Diploma',
+      'Graphic Design Diploma',
+      'Music Production Diploma',
+      'Sound Engineering Diploma'
     ]
   },
   {
@@ -24,11 +24,11 @@ const EAST_AFRICAN_CITIES = [
     coordinates: { latitude: 0.3476, longitude: 32.5825 },
     serviceArea: ['Kampala', 'Central Uganda', 'Western Uganda', 'Eastern Uganda'],
     courses: [
-      'Diploma in Film Production',
-      'Diploma in Digital Animation',
-      'Diploma in Graphic Design',
-      'Diploma in Audio Production',
-      'Certificate in Digital Media'
+      'Film and Television Production Diploma',
+      'Animation & Motion Graphics Diploma',
+      'Graphic Design Diploma',
+      'Music Production Diploma',
+      'Digital Content Creation Certificate'
     ]
   },
   {
@@ -38,11 +38,11 @@ const EAST_AFRICAN_CITIES = [
     coordinates: { latitude: -6.7924, longitude: 39.2083 },
     serviceArea: ['Dar es Salaam', 'Coast Region', 'Dodoma', 'Arusha'],
     courses: [
-      'Diploma in Film and TV Production',
-      'Diploma in Animation and VFX',
-      'Diploma in Creative Design',
-      'Certificate in Media Production',
-      'Short Course in Photography'
+      'Film and Television Production Diploma',
+      'Animation & Motion Graphics Diploma',
+      'Graphic Design Diploma',
+      'Video Production Certificate',
+      'Photography Certificate'
     ]
   },
   {
@@ -52,11 +52,11 @@ const EAST_AFRICAN_CITIES = [
     coordinates: { latitude: -1.9441, longitude: 30.0619 },
     serviceArea: ['Kigali', 'Northern Province', 'Southern Province', 'Eastern Province'],
     courses: [
-      'Diploma in Digital Media Production',
-      'Diploma in Animation',
-      'Certificate in Graphic Design',
-      'Short Course in Film Making',
-      'Digital Skills Training'
+      'Digital Content Creation Certificate',
+      'Animation & Motion Graphics Diploma',
+      'Graphic Design Certificate',
+      'Video Production Certificate',
+      'Digital Marketing Certificate'
     ]
   },
   {
@@ -66,11 +66,11 @@ const EAST_AFRICAN_CITIES = [
     coordinates: { latitude: 9.032, longitude: 38.7469 },
     serviceArea: ['Addis Ababa', 'Amhara Region', 'Oromia Region', 'Tigray Region'],
     courses: [
-      'Diploma in Media Production',
-      'Certificate in Digital Design',
-      'Animation Training Program',
-      'Photography Workshop',
-      'Audio Production Course'
+      'Digital Content Creation Certificate',
+      'Graphic Design Certificate',
+      'Animation & Motion Graphics Diploma',
+      'Photography Certificate',
+      'Music Production and Sound Engineering Certificate'
     ]
   }
 ]
