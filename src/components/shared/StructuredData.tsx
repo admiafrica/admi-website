@@ -420,6 +420,13 @@ export function DiplomaSchema({
           : 'onsite',
       ...(intakes && { startDate: intakes }),
       duration: duration === '2 years' ? 'P2Y' : duration,
+      courseWorkload: duration === '2 years' ? 'P2Y' : duration || 'P2Y',
+      courseSchedule: {
+        '@type': 'Schedule',
+        scheduleTimezone: 'Africa/Nairobi',
+        repeatFrequency: 'P1W',
+        byDay: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
+      },
       // Remove instructor as Organization is not a valid target type for instructor property
       location: {
         '@type': 'Place',
@@ -566,6 +573,13 @@ export function CourseSchema({
           : 'onsite',
       ...(intakes && { startDate: intakes }),
       ...(duration && { duration: duration }),
+      courseWorkload: duration || 'P2Y',
+      courseSchedule: {
+        '@type': 'Schedule',
+        scheduleTimezone: 'Africa/Nairobi',
+        repeatFrequency: 'P1W',
+        byDay: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
+      },
       // Remove instructor as Organization is not a valid target type for instructor property
       location: {
         '@type': 'Place',
