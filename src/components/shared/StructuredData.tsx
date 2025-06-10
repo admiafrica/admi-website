@@ -751,7 +751,7 @@ export function MultiCityLocalBusinessSchema({
     name: `Africa Digital Media Institute - ${city} Campus`,
     alternateName: `ADMI ${city}`,
     description: `Leading Creative Media and Technology Training Institution in ${city}, ${country}. Offering diploma courses in film, animation, graphic design, audio production, and photography.`,
-    url: `https://admi.africa/${city.toLowerCase()}`,
+    url: 'https://admi.africa/',
     address: {
       '@type': 'PostalAddress',
       addressLocality: city,
@@ -768,17 +768,17 @@ export function MultiCityLocalBusinessSchema({
     telephone: city === 'Nairobi' ? '+254 772 913 811' : '+254 772 913 811',
     email: 'info@admi.ac.ke',
     areaServed: serviceArea.length > 0 ? serviceArea : [city, region, country],
-    serviceType: 'Higher Education',
+    // Remove serviceType as it's not recognized by schema.org for LocalBusiness
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
       name: 'ADMI Course Catalog',
-      itemListElement: courses.map((course, index) => ({
+      itemListElement: courses.map((course) => ({
         '@type': 'Offer',
         itemOffered: {
           '@type': 'Course',
           name: course
-        },
-        position: index + 1
+        }
+        // Remove position as it's not recognized by schema.org for Offer type
       }))
     },
     sameAs: [
