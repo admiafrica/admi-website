@@ -869,31 +869,33 @@ export function MultiCityLocalBusinessSchema({
     email: 'info@admi.ac.ke',
     areaServed: serviceArea.length > 0 ? serviceArea : [city, region, country],
     // Remove serviceType as it's not recognized by schema.org for LocalBusiness
-    hasOfferCatalog: {
-      '@type': 'OfferCatalog',
-      name: 'ADMI Course Catalog',
-      itemListElement: courses.map((course) => ({
-        '@type': 'Offer',
-        itemOffered: {
-          '@type': 'Course',
-          name: course,
-          description: getCourseDescription(course),
-          provider: {
-            '@type': 'EducationalOrganization',
-            name: 'Africa Digital Media Institute',
-            url: 'https://admi.africa'
-          },
-          educationalLevel: course.includes('Diploma') ? 'Diploma' : 'Certificate',
-          inLanguage: 'en-KE',
-          isAccessibleForFree: false,
-          audience: {
-            '@type': 'EducationalAudience',
-            educationalRole: 'student'
+    ...(courses.length > 0 && {
+      hasOfferCatalog: {
+        '@type': 'OfferCatalog',
+        name: 'ADMI Course Catalog',
+        itemListElement: courses.map((course) => ({
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Course',
+            name: course,
+            description: getCourseDescription(course),
+            provider: {
+              '@type': 'EducationalOrganization',
+              name: 'Africa Digital Media Institute',
+              url: 'https://admi.africa'
+            },
+            educationalLevel: course.includes('Diploma') ? 'Diploma' : 'Certificate',
+            inLanguage: 'en-KE',
+            isAccessibleForFree: false,
+            audience: {
+              '@type': 'EducationalAudience',
+              educationalRole: 'student'
+            }
           }
-        }
-        // Remove position as it's not recognized by schema.org for Offer type
-      }))
-    },
+          // Remove position as it's not recognized by schema.org for Offer type
+        }))
+      }
+    }),
     sameAs: [
       'https://www.facebook.com/ADMIAFRICA',
       'https://x.com/ADMIafrica',

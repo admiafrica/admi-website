@@ -114,13 +114,13 @@ export function DiplomaFAQSection({ programType, showGeneralFAQs = true, maxFAQs
         chevron={<IconChevronDown size={16} />}
         styles={{
           chevron: {
-            '&[data-rotate]': {
+            '&[data-rotate="true"]': {
               transform: 'rotate(180deg)'
             }
           },
           item: {
             border: '1px solid #e9ecef',
-            '&[data-active]': {
+            '&[data-active="true"]': {
               borderColor: '#228be6'
             }
           },
