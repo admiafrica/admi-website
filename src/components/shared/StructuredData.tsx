@@ -420,12 +420,19 @@ export function DiplomaSchema({
           : 'onsite',
       ...(intakes && { startDate: intakes }),
       duration: duration === '2 years' ? 'P2Y' : duration,
-      courseWorkload: duration === '2 years' ? 'P2Y' : duration || 'P2Y',
+      courseWorkload: convertToISO8601Duration(duration),
       courseSchedule: {
         '@type': 'Schedule',
         scheduleTimezone: 'Africa/Nairobi',
-        repeatFrequency: 'P1W',
-        byDay: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
+        repeatFrequency: 'Weekly',
+        repeatCount: 104,
+        byDay: [
+          'https://schema.org/Monday',
+          'https://schema.org/Tuesday',
+          'https://schema.org/Wednesday',
+          'https://schema.org/Thursday',
+          'https://schema.org/Friday'
+        ]
       },
       // Remove instructor as Organization is not a valid target type for instructor property
       location: {
@@ -573,12 +580,19 @@ export function CourseSchema({
           : 'onsite',
       ...(intakes && { startDate: intakes }),
       ...(duration && { duration: duration }),
-      courseWorkload: duration || 'P2Y',
+      courseWorkload: convertToISO8601Duration(duration),
       courseSchedule: {
         '@type': 'Schedule',
         scheduleTimezone: 'Africa/Nairobi',
-        repeatFrequency: 'P1W',
-        byDay: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
+        repeatFrequency: 'Weekly',
+        repeatCount: 104,
+        byDay: [
+          'https://schema.org/Monday',
+          'https://schema.org/Tuesday',
+          'https://schema.org/Wednesday',
+          'https://schema.org/Thursday',
+          'https://schema.org/Friday'
+        ]
       },
       // Remove instructor as Organization is not a valid target type for instructor property
       location: {
@@ -755,6 +769,38 @@ interface MultiCityLocalBusinessProps {
   }
   serviceArea?: string[]
   courses?: string[]
+}
+
+// Helper function to convert duration to ISO 8601 format
+const convertToISO8601Duration = (duration: string | undefined): string => {
+  if (!duration) return 'P2Y'
+
+  // Convert common duration formats to ISO 8601
+  const durationLower = duration.toLowerCase()
+
+  if (durationLower.includes('2 year') || durationLower.includes('diploma')) {
+    return 'P2Y'
+  }
+  if (durationLower.includes('1 year')) {
+    return 'P1Y'
+  }
+  if (durationLower.includes('6 month')) {
+    return 'P6M'
+  }
+  if (durationLower.includes('3 month')) {
+    return 'P3M'
+  }
+  if (durationLower.includes('4-5 term') || durationLower.includes('certificate')) {
+    return 'P6M' // Assume 6 months for certificate programs
+  }
+
+  // If already in ISO format, return as is
+  if (duration.match(/^P(\d+Y)?(\d+M)?(\d+D)?$/)) {
+    return duration
+  }
+
+  // Default fallback
+  return 'P2Y'
 }
 
 // Course descriptions for schema markup
