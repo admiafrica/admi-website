@@ -40,7 +40,8 @@ export function OrganizationSchema({
     sameAs,
     address: {
       '@type': 'PostalAddress',
-      streetAddress: 'Caxton House, Standard Street',
+      streetAddress: '25 Caxton House 3rd Floor, Kenyatta Avenue',
+      postOfficeBoxNumber: 'P.O. Box 35447',
       addressLocality: 'Nairobi',
       addressRegion: 'Nairobi',
       postalCode: '00100',
@@ -93,6 +94,7 @@ interface LocalBusinessProps {
   description?: string
   address?: {
     streetAddress: string
+    postOfficeBoxNumber?: string
     addressLocality: string
     addressRegion: string
     postalCode: string
@@ -114,7 +116,8 @@ export function LocalBusinessSchema({
   url = 'https://admi.africa',
   description = 'Africa Digital Media Institute (ADMI) is a leading creative media and technology training institution based in Nairobi, Kenya.',
   address = {
-    streetAddress: 'Caxton House, Standard Street',
+    streetAddress: '25 Caxton House 3rd Floor, Kenyatta Avenue',
+    postOfficeBoxNumber: 'P.O. Box 35447',
     addressLocality: 'Nairobi',
     addressRegion: 'Nairobi',
     postalCode: '00100',
@@ -372,7 +375,8 @@ export function DiplomaSchema({
       url: provider.url,
       address: {
         '@type': 'PostalAddress',
-        streetAddress: 'Caxton House, Standard Street',
+        streetAddress: '25 Caxton House 3rd Floor, Kenyatta Avenue',
+        postOfficeBoxNumber: 'P.O. Box 35447',
         addressLocality: 'Nairobi',
         addressRegion: 'Nairobi',
         postalCode: '00100',
@@ -422,7 +426,8 @@ export function DiplomaSchema({
         name: 'Africa Digital Media Institute',
         address: {
           '@type': 'PostalAddress',
-          streetAddress: 'Caxton House, Standard Street',
+          streetAddress: '25 Caxton House 3rd Floor, Kenyatta Avenue',
+          postOfficeBoxNumber: 'P.O. Box 35447',
           addressLocality: 'Nairobi',
           addressRegion: 'Nairobi',
           postalCode: '00100',
@@ -521,7 +526,8 @@ export function CourseSchema({
       url: provider.url,
       address: {
         '@type': 'PostalAddress',
-        streetAddress: 'Caxton House, Standard Street',
+        streetAddress: '25 Caxton House 3rd Floor, Kenyatta Avenue',
+        postOfficeBoxNumber: 'P.O. Box 35447',
         addressLocality: 'Nairobi',
         addressRegion: 'Nairobi',
         postalCode: '00100',
@@ -566,7 +572,8 @@ export function CourseSchema({
         name: 'Africa Digital Media Institute',
         address: {
           '@type': 'PostalAddress',
-          streetAddress: 'Caxton House, Standard Street',
+          streetAddress: '25 Caxton House 3rd Floor, Kenyatta Avenue',
+          postOfficeBoxNumber: 'P.O. Box 35447',
           addressLocality: 'Nairobi',
           addressRegion: 'Nairobi',
           postalCode: '00100',
