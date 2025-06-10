@@ -383,11 +383,8 @@ export function DiplomaSchema({
     ...(image && { image }),
     ...(courseCode && { courseCode }),
     educationalLevel: 'Diploma',
-    courseMode: deliveryMode?.toLowerCase().includes('online')
-      ? 'online'
-      : deliveryMode?.toLowerCase().includes('hybrid')
-        ? 'blended'
-        : 'onsite',
+    // Remove courseMode from main Course schema as it's not recognized by schema.org
+    // This property is correctly placed in hasCourseInstance below
     timeRequired: duration === '2 years' ? 'P2Y' : duration,
     // Remove creditHours as it's not recognized by schema.org for Course type
     ...(prerequisites.length > 0 && { coursePrerequisites: prerequisites }),
@@ -433,7 +430,8 @@ export function DiplomaSchema({
         }
       }
     },
-    ...(intakes && { startDate: intakes }),
+    // Remove startDate from main Course schema as it's not recognized by schema.org
+    // This property is correctly placed in hasCourseInstance above
     ...(awardLevel && { educationalCredentialAwarded: awardLevel }),
     inLanguage: 'en',
     isAccessibleForFree: false,
@@ -577,14 +575,8 @@ export function CourseSchema({
       }
     },
     ...(duration && { timeRequired: duration }),
-    ...(deliveryMode && {
-      courseMode: deliveryMode.toLowerCase().includes('online')
-        ? 'online'
-        : deliveryMode.toLowerCase().includes('hybrid')
-          ? 'blended'
-          : 'onsite'
-    }),
-    ...(intakes && { startDate: intakes }),
+    // Remove courseMode and startDate from main Course schema as they're not recognized by schema.org
+    // These properties are correctly placed in hasCourseInstance above
     ...(awardLevel && { educationalCredentialAwarded: awardLevel }),
     ...(careerOptions.length > 0 && {
       occupationalCredentialAwarded: careerOptions.map((career) => ({
