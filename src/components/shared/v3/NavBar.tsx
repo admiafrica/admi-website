@@ -96,7 +96,7 @@ export default function NavBar({ mode, isMinimal = false }: Props) {
               Home
             </Menu.Item>
             <Menu.Item style={menuItemStyle} className="cursor-pointer" onClick={() => navigateToPage('courses')}>
-              Courses
+              Course
             </Menu.Item>
             <Menu.Item
               style={menuItemStyle}
