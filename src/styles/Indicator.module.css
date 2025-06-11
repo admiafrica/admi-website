@@ -2,8 +2,8 @@
   width: 12px;
   height: 6px;
   transition: width 250ms ease;
+}
 
-  &[data-active] {
-    width: 60px;
-  }
+.indicator[data-active] {
+  width: 60px;
 }

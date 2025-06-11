@@ -420,6 +420,20 @@ export function DiplomaSchema({
           : 'onsite',
       ...(intakes && { startDate: intakes }),
       duration: duration === '2 years' ? 'P2Y' : duration,
+      courseWorkload: convertToISO8601Duration(duration),
+      courseSchedule: {
+        '@type': 'Schedule',
+        scheduleTimezone: 'Africa/Nairobi',
+        repeatFrequency: 'Weekly',
+        repeatCount: 104,
+        byDay: [
+          'https://schema.org/Monday',
+          'https://schema.org/Tuesday',
+          'https://schema.org/Wednesday',
+          'https://schema.org/Thursday',
+          'https://schema.org/Friday'
+        ]
+      },
       // Remove instructor as Organization is not a valid target type for instructor property
       location: {
         '@type': 'Place',
@@ -566,6 +580,20 @@ export function CourseSchema({
           : 'onsite',
       ...(intakes && { startDate: intakes }),
       ...(duration && { duration: duration }),
+      courseWorkload: convertToISO8601Duration(duration),
+      courseSchedule: {
+        '@type': 'Schedule',
+        scheduleTimezone: 'Africa/Nairobi',
+        repeatFrequency: 'Weekly',
+        repeatCount: 104,
+        byDay: [
+          'https://schema.org/Monday',
+          'https://schema.org/Tuesday',
+          'https://schema.org/Wednesday',
+          'https://schema.org/Thursday',
+          'https://schema.org/Friday'
+        ]
+      },
       // Remove instructor as Organization is not a valid target type for instructor property
       location: {
         '@type': 'Place',
@@ -743,6 +771,71 @@ interface MultiCityLocalBusinessProps {
   courses?: string[]
 }
 
+// Helper function to convert duration to ISO 8601 format
+const convertToISO8601Duration = (duration: string | undefined): string => {
+  if (!duration) return 'P2Y'
+
+  // Convert common duration formats to ISO 8601
+  const durationLower = duration.toLowerCase()
+
+  if (durationLower.includes('2 year') || durationLower.includes('diploma')) {
+    return 'P2Y'
+  }
+  if (durationLower.includes('1 year')) {
+    return 'P1Y'
+  }
+  if (durationLower.includes('6 month')) {
+    return 'P6M'
+  }
+  if (durationLower.includes('3 month')) {
+    return 'P3M'
+  }
+  if (durationLower.includes('4-5 term') || durationLower.includes('certificate')) {
+    return 'P6M' // Assume 6 months for certificate programs
+  }
+
+  // If already in ISO format, return as is
+  if (duration.match(/^P(\d+Y)?(\d+M)?(\d+D)?$/)) {
+    return duration
+  }
+
+  // Default fallback
+  return 'P2Y'
+}
+
+// Course descriptions for schema markup
+const getCourseDescription = (courseName: string): string => {
+  const courseDescriptions: Record<string, string> = {
+    'Film and Television Production Diploma':
+      'Comprehensive 2-year diploma program covering cinematography, directing, editing, and production management for film and television industry.',
+    'Animation & Motion Graphics Diploma':
+      '2-year diploma program in 2D/3D animation, motion graphics, visual effects, and character animation for entertainment and advertising industries.',
+    'Graphic Design Diploma':
+      '2-year diploma program in visual communication, brand design, digital graphics, and creative design for print and digital media.',
+    'Music Production Diploma':
+      '2-year diploma program in music production, audio engineering, sound design, and music technology for recording and entertainment industries.',
+    'Sound Engineering Diploma':
+      '2-year diploma program in audio engineering, live sound, studio recording, and broadcast audio for music and media industries.',
+    'Digital Content Creation Certificate':
+      'Professional certificate program in digital content creation, social media content, and multimedia production for digital marketing.',
+    'Graphic Design Certificate':
+      'Professional certificate program in graphic design fundamentals, digital design tools, and visual communication principles.',
+    'Video Production Certificate':
+      'Professional certificate program in video production, editing, and post-production for corporate and creative content.',
+    'Photography Certificate':
+      'Professional certificate program in digital photography, photo editing, and commercial photography techniques.',
+    'Digital Marketing Certificate':
+      'Professional certificate program in digital marketing strategies, social media marketing, and online brand management.',
+    'Music Production and Sound Engineering Certificate':
+      'Professional certificate program combining music production techniques with sound engineering fundamentals.'
+  }
+
+  return (
+    courseDescriptions[courseName] ||
+    `Professional training program in ${courseName.toLowerCase()} at Africa Digital Media Institute.`
+  )
+}
+
 export function MultiCityLocalBusinessSchema({
   city,
   country,
@@ -776,18 +869,33 @@ export function MultiCityLocalBusinessSchema({
     email: 'info@admi.ac.ke',
     areaServed: serviceArea.length > 0 ? serviceArea : [city, region, country],
     // Remove serviceType as it's not recognized by schema.org for LocalBusiness
-    hasOfferCatalog: {
-      '@type': 'OfferCatalog',
-      name: 'ADMI Course Catalog',
-      itemListElement: courses.map((course) => ({
-        '@type': 'Offer',
-        itemOffered: {
-          '@type': 'Course',
-          name: course
-        }
-        // Remove position as it's not recognized by schema.org for Offer type
-      }))
-    },
+    ...(courses.length > 0 && {
+      hasOfferCatalog: {
+        '@type': 'OfferCatalog',
+        name: 'ADMI Course Catalog',
+        itemListElement: courses.map((course) => ({
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Course',
+            name: course,
+            description: getCourseDescription(course),
+            provider: {
+              '@type': 'EducationalOrganization',
+              name: 'Africa Digital Media Institute',
+              url: 'https://admi.africa'
+            },
+            educationalLevel: course.includes('Diploma') ? 'Diploma' : 'Certificate',
+            inLanguage: 'en-KE',
+            isAccessibleForFree: false,
+            audience: {
+              '@type': 'EducationalAudience',
+              educationalRole: 'student'
+            }
+          }
+          // Remove position as it's not recognized by schema.org for Offer type
+        }))
+      }
+    }),
     sameAs: [
       'https://www.facebook.com/ADMIAFRICA',
       'https://x.com/ADMIafrica',

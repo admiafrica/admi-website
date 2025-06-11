@@ -78,9 +78,14 @@ const EAST_AFRICAN_CITIES = [
 interface EastAfricaLocalSEOProps {
   targetCity?: string
   showAll?: boolean
+  excludeCourseCatalog?: boolean
 }
 
-export function EastAfricaLocalSEO({ targetCity, showAll = false }: EastAfricaLocalSEOProps) {
+export function EastAfricaLocalSEO({
+  targetCity,
+  showAll = false,
+  excludeCourseCatalog = false
+}: EastAfricaLocalSEOProps) {
   const citiesToRender = targetCity
     ? EAST_AFRICAN_CITIES.filter((city) => city.city.toLowerCase() === targetCity.toLowerCase())
     : showAll
@@ -97,7 +102,7 @@ export function EastAfricaLocalSEO({ targetCity, showAll = false }: EastAfricaLo
           region={cityData.region}
           coordinates={cityData.coordinates}
           serviceArea={cityData.serviceArea}
-          courses={cityData.courses}
+          courses={excludeCourseCatalog ? [] : cityData.courses}
         />
       ))}
     </>

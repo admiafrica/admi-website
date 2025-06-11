@@ -200,8 +200,8 @@ export default function CourseDetailPage({
         ]}
       />
 
-      {/* East Africa Local Business Schema */}
-      <EastAfricaLocalSEO targetCity="Nairobi" />
+      {/* East Africa Local Business Schema - No course catalog on individual course pages */}
+      <EastAfricaLocalSEO targetCity="Nairobi" excludeCourseCatalog={true} />
 
       {/* Enrollment FAQs Schema */}
       <CMSFAQSchema faqs={ENROLLMENT_FAQS} courseName={`${course.name} - Enrollment Information`} />
