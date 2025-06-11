@@ -93,6 +93,8 @@ export function DiplomaEnhancedSEO({
         industryPartners={industryPartners}
         accreditation={accreditation}
         transferCredits={true}
+        courseVideo={course.courseVideo}
+        courseSlug={slug}
       />
 
       {/* CMS FAQ Schema for SEO */}

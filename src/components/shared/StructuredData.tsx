@@ -357,8 +357,13 @@ export function DiplomaSchema({
   prerequisites = [],
   employmentRate,
   industryPartners = [],
-  accreditation
-}: Omit<DiplomaProps, 'creditHours'>) {
+  accreditation,
+  courseVideo,
+  courseSlug
+}: Omit<DiplomaProps, 'creditHours'> & {
+  courseVideo?: any
+  courseSlug?: string
+}) {
   // Ensure description is never empty
   const diplomaDescription =
     description ||
@@ -458,6 +463,45 @@ export function DiplomaSchema({
       '@type': 'EducationalAudience',
       educationalRole: 'student'
     },
+    // Add video content if available
+    ...(courseVideo && {
+      video: {
+        '@type': 'VideoObject',
+        name: courseVideo.fields?.title || `${name} - Course Preview`,
+        description:
+          courseVideo.fields?.description ||
+          `Watch this comprehensive preview of ${name} at Africa Digital Media Institute. Learn about the curriculum, facilities, career opportunities, and what makes this diploma program special.`,
+        thumbnailUrl: courseVideo.fields?.thumbnail?.fields?.file?.url
+          ? `https:${courseVideo.fields.thumbnail.fields.file.url}`
+          : image,
+        embedUrl: courseSlug ? `https://admi.africa/watch/${courseSlug}` : `${url}/watch`,
+        contentUrl: courseVideo.fields?.videoFile?.fields?.file?.url
+          ? `https:${courseVideo.fields.videoFile.fields.file.url}`
+          : undefined,
+        uploadDate: courseVideo.fields?.publishDate || new Date().toISOString(),
+        duration: courseVideo.fields?.duration || 'PT2M30S',
+        publisher: {
+          '@type': 'Organization',
+          name: 'Africa Digital Media Institute',
+          logo: 'https://admi.africa/logo.png',
+          sameAs: [
+            'https://www.facebook.com/ADMIAFRICA',
+            'https://x.com/ADMIafrica',
+            'https://www.instagram.com/admiafrica/',
+            'https://www.linkedin.com/school/admiafrica/',
+            'https://www.tiktok.com/@admiafrica'
+          ]
+        }
+      }
+    }),
+    // Add social media channels
+    sameAs: [
+      'https://www.facebook.com/ADMIAFRICA',
+      'https://x.com/ADMIafrica',
+      'https://www.instagram.com/admiafrica/',
+      'https://www.linkedin.com/school/admiafrica/',
+      'https://www.tiktok.com/@admiafrica'
+    ],
     ...(employmentRate && {
       aggregateRating: {
         '@type': 'AggregateRating',
@@ -510,8 +554,13 @@ export function CourseSchema({
   intakes,
   applicationDeadline,
   courseCode,
-  prerequisites = []
-}: Omit<CourseProps, 'creditHours'>) {
+  prerequisites = [],
+  courseVideo,
+  courseSlug
+}: Omit<CourseProps, 'creditHours'> & {
+  courseVideo?: any
+  courseSlug?: string
+}) {
   // Ensure description is never empty
   const courseDescription =
     description ||
@@ -624,7 +673,46 @@ export function CourseSchema({
     audience: {
       '@type': 'EducationalAudience',
       educationalRole: 'student'
-    }
+    },
+    // Add video content if available
+    ...(courseVideo && {
+      video: {
+        '@type': 'VideoObject',
+        name: courseVideo.fields?.title || `${name} - Course Preview`,
+        description:
+          courseVideo.fields?.description ||
+          `Watch this comprehensive preview of ${name} at Africa Digital Media Institute. Learn about the curriculum, facilities, career opportunities, and what makes this ${awardLevel || 'course'} program special.`,
+        thumbnailUrl: courseVideo.fields?.thumbnail?.fields?.file?.url
+          ? `https:${courseVideo.fields.thumbnail.fields.file.url}`
+          : image,
+        embedUrl: courseSlug ? `https://admi.africa/watch/${courseSlug}` : `${url}/watch`,
+        contentUrl: courseVideo.fields?.videoFile?.fields?.file?.url
+          ? `https:${courseVideo.fields.videoFile.fields.file.url}`
+          : undefined,
+        uploadDate: courseVideo.fields?.publishDate || new Date().toISOString(),
+        duration: courseVideo.fields?.duration || 'PT2M30S',
+        publisher: {
+          '@type': 'Organization',
+          name: 'Africa Digital Media Institute',
+          logo: 'https://admi.africa/logo.png',
+          sameAs: [
+            'https://www.facebook.com/ADMIAFRICA',
+            'https://x.com/ADMIafrica',
+            'https://www.instagram.com/admiafrica/',
+            'https://www.linkedin.com/school/admiafrica/',
+            'https://www.tiktok.com/@admiafrica'
+          ]
+        }
+      }
+    }),
+    // Add social media channels
+    sameAs: [
+      'https://www.facebook.com/ADMIAFRICA',
+      'https://x.com/ADMIafrica',
+      'https://www.instagram.com/admiafrica/',
+      'https://www.linkedin.com/school/admiafrica/',
+      'https://www.tiktok.com/@admiafrica'
+    ]
   }
 
   return (
