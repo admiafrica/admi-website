@@ -44,9 +44,6 @@ export default function CustomFooter() {
         <Anchor href="https://admi.africa/fellowship" fw={'bold'}>
           Fellowship
         </Anchor>
-         <Anchor href="https://admi.africa/admi-ai" fw={'bold'}>
-          ADMI AI
-        </Anchor>
         <Anchor href="https://admi.africa/privacy-policy" fw={'bold'}>
           Privacy Policy
         </Anchor>
