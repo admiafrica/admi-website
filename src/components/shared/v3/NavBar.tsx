@@ -51,20 +51,12 @@ export default function NavBar({ mode, isMinimal = false }: Props) {
 
        <Menu trigger="hover" openDelay={100} closeDelay={400}>
           <Menu.Target>
-            <Text style={menuItemStyle} className="cursor-pointer" onClick={() => window.open('https://ai.admi.africa', '_blank')}>
+            <Text style={menuItemStyle} className="cursor-pointer" onClick={() => navigateToPage('student-support')}>
               Ai Academy
             </Text>
           </Menu.Target>
         </Menu>
-
-        <Menu trigger="hover" openDelay={100} closeDelay={400}>
-          <Menu.Target>
-            <Text style={menuItemStyle} className="cursor-pointer" onClick={() => window.open('https://www.externalwebsite.com', '_blank')}>
-              Ai Academy
-            </Text>
-          </Menu.Target>
-        </Menu>
-        
+     
         <Menu trigger="hover" openDelay={100} closeDelay={400}>
           <Menu.Target>
             <Text style={menuItemStyle} className="cursor-pointer" onClick={() => navigateToPage('student-support')}>
