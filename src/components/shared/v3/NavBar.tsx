@@ -49,13 +49,13 @@ export default function NavBar({ mode, isMinimal = false }: Props) {
           </Menu.Target>
         </Menu>
         
-        <Menu trigger="hover" openDelay={100} closeDelay={400}>
+        {/* <Menu trigger="hover" openDelay={100} closeDelay={400}>
           <Menu.Target>
             <Text style={menuItemStyle} className="cursor-pointer" onClick={() => navigateToPage('ai-academy')}>
               Ai Academy
             </Text>
           </Menu.Target>
-        </Menu>
+        </Menu>*/}
         
         <Menu trigger="hover" openDelay={100} closeDelay={400}>
           <Menu.Target>
