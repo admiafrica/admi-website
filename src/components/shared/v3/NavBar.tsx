@@ -60,7 +60,7 @@ export default function NavBar({ mode, isMinimal = false }: Props) {
         <Menu trigger="hover" openDelay={100} closeDelay={400}>
           <Menu.Target>
             <Text style={menuItemStyle} className="cursor-pointer" onClick={() => navigateToPage('resources')}>
-              Resource
+              Resources
             </Text>
           </Menu.Target>
         </Menu>
