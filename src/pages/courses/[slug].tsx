@@ -185,6 +185,8 @@ export default function CourseDetailPage({
           learningOutcomes={learningOutcomes}
           careerOptions={careerOptions}
           intakes={course.intakes}
+          courseVideo={course.courseVideo}
+          courseSlug={slug}
         />
       )}
 
