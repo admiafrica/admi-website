@@ -40,7 +40,12 @@ export const VOICE_SEARCH_PATTERNS: VoiceSearchPattern[] = [
       'What do I need to study to work in Nollywood?',
       'How do I choose between diploma and certificate programs?'
     ],
-    targetKeywords: ['film vs animation', 'media courses africa', 'music production education', 'creative education kenya'],
+    targetKeywords: [
+      'film vs animation',
+      'media courses africa',
+      'music production education',
+      'creative education kenya'
+    ],
     contentType: 'comparison',
     priority: 'high'
   },
@@ -58,7 +63,12 @@ export const VOICE_SEARCH_PATTERNS: VoiceSearchPattern[] = [
       'How much does it cost to study at ADMI?',
       'Are there scholarships for creative students in Kenya?'
     ],
-    targetKeywords: ['admi admission', 'film school requirements kenya', 'creative education cost', 'scholarships kenya'],
+    targetKeywords: [
+      'admi admission',
+      'film school requirements kenya',
+      'creative education cost',
+      'scholarships kenya'
+    ],
     contentType: 'direct',
     priority: 'high'
   },
@@ -110,7 +120,12 @@ export const VOICE_SEARCH_PATTERNS: VoiceSearchPattern[] = [
       'How do I get into the gaming industry in Africa?',
       'What media companies are in Nairobi?'
     ],
-    targetKeywords: ['african film industry', 'music industry africa', 'creative jobs nairobi', 'media companies kenya'],
+    targetKeywords: [
+      'african film industry',
+      'music industry africa',
+      'creative jobs nairobi',
+      'media companies kenya'
+    ],
     contentType: 'conversational',
     priority: 'medium'
   },
@@ -127,7 +142,12 @@ export const VOICE_SEARCH_PATTERNS: VoiceSearchPattern[] = [
       'Where do I learn music production in Kenya?',
       'What animation schools are in Africa?'
     ],
-    targetKeywords: ['creative courses nairobi', 'film school kenya', 'media training east africa', 'animation school africa'],
+    targetKeywords: [
+      'creative courses nairobi',
+      'film school kenya',
+      'media training east africa',
+      'animation school africa'
+    ],
     contentType: 'direct',
     priority: 'high'
   }
@@ -143,7 +163,7 @@ export const generateVoiceSearchContent = (pattern: VoiceSearchPattern) => {
   }
 
   // Generate FAQ variations for each pattern
-  const faqVariations = pattern.patterns.map(question => ({
+  const faqVariations = pattern.patterns.map((question) => ({
     question,
     expectedAnswerType: pattern.contentType,
     voiceSearchOptimized: true,
@@ -162,7 +182,7 @@ export const optimizeExistingFAQForVoiceSearch = (faq: any) => {
 
   // Add conversational variations
   const voiceSearchVariations = []
-  
+
   // Add "How do I..." variations
   if (question.includes('requirements') || question.includes('apply')) {
     voiceSearchVariations.push(`How do I ${question.toLowerCase().replace('what are the ', '').replace('?', '')}?`)
@@ -170,7 +190,9 @@ export const optimizeExistingFAQForVoiceSearch = (faq: any) => {
 
   // Add "What is..." variations
   if (question.includes('duration') || question.includes('cost')) {
-    voiceSearchVariations.push(`What is the ${question.toLowerCase().replace('what is the ', '').replace('what are the ', '')}`)
+    voiceSearchVariations.push(
+      `What is the ${question.toLowerCase().replace('what is the ', '').replace('what are the ', '')}`
+    )
   }
 
   // Add "Can I..." variations
@@ -192,9 +214,9 @@ export const makeAnswerConversational = (answer: string): string => {
   if (answer.startsWith('Yes,')) {
     return answer.replace('Yes,', 'Yes, absolutely!')
   }
-  
+
   if (answer.startsWith('No,')) {
-    return answer.replace('No,', 'No, but here\'s what you should know:')
+    return answer.replace('No,', "No, but here's what you should know:")
   }
 
   // Add specific numbers and timeframes for voice search
@@ -295,13 +317,13 @@ export const generateVoiceSearchFAQ = (
 
 // Export patterns for easy access
 export const getVoiceSearchPatternsByIntent = (intent: string) => {
-  return VOICE_SEARCH_PATTERNS.filter(pattern => pattern.intent === intent)
+  return VOICE_SEARCH_PATTERNS.filter((pattern) => pattern.intent === intent)
 }
 
 export const getHighPriorityVoiceSearchPatterns = () => {
-  return VOICE_SEARCH_PATTERNS.filter(pattern => pattern.priority === 'high')
+  return VOICE_SEARCH_PATTERNS.filter((pattern) => pattern.priority === 'high')
 }
 
 export const getAllVoiceSearchQuestions = () => {
-  return VOICE_SEARCH_PATTERNS.flatMap(pattern => pattern.patterns)
+  return VOICE_SEARCH_PATTERNS.flatMap((pattern) => pattern.patterns)
 }

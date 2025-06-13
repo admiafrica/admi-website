@@ -3,10 +3,7 @@ import { Accordion, Container, Title, Text, Group, Loader, Alert, Badge } from '
 import { IconChevronDown, IconAlertCircle, IconMicrophone } from '@tabler/icons-react'
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer'
 import { ICourseFAQ, IFAQResponse } from '@/types'
-import { 
-  createFAQSchemaData, 
-  optimizeFAQsForVoiceSearch
-} from '@/utils/faq-helpers'
+import { createFAQSchemaData, optimizeFAQsForVoiceSearch } from '@/utils/faq-helpers'
 import { GENERAL_DIPLOMA_FAQS } from '@/data/diploma-faqs'
 
 interface VoiceSearchOptimizedFAQsProps {
@@ -159,7 +156,7 @@ export function VoiceSearchOptimizedFAQs({
           {error}. Please try refreshing the page or contact support if the problem persists.
         </Alert>
       </Container>
-    )  
+    )
   }
 
   if (displayFAQs.length === 0) {
@@ -185,20 +182,14 @@ export function VoiceSearchOptimizedFAQs({
               Frequently Asked Questions
             </Title>
             {enableVoiceSearchIndicators && (
-              <Badge 
-                variant="light" 
-                color="blue" 
-                leftSection={<IconMicrophone size={12} />}
-                size="sm"
-              >
+              <Badge variant="light" color="blue" leftSection={<IconMicrophone size={12} />} size="sm">
                 Voice Search Optimized
               </Badge>
             )}
           </Group>
           <Text size="lg" c="dimmed" maw={600} mx="auto">
-            Get answers to common questions about {courseName || 'this course'}, admission requirements, 
-            career prospects, and student support services. These FAQs are optimized for voice search 
-            and AI assistants.
+            Get answers to common questions about {courseName || 'this course'}, admission requirements, career
+            prospects, and student support services. These FAQs are optimized for voice search and AI assistants.
           </Text>
         </div>
 
@@ -262,14 +253,14 @@ export function VoiceSearchOptimizedFAQs({
                     {faq.answer}
                   </Text>
                 )}
-                
+
                 {/* Show voice search variations for debugging/development */}
                 {enableVoiceSearchIndicators && faq.voiceSearchVariations && faq.voiceSearchVariations.length > 0 && (
-                  <div className="mt-4 p-3 bg-gray-50 rounded-md">
+                  <div className="mt-4 rounded-md bg-gray-50 p-3">
                     <Text size="xs" fw={500} c="dimmed" mb="xs">
                       Voice Search Variations:
                     </Text>
-                    <ul className="text-xs text-gray-600 space-y-1">
+                    <ul className="space-y-1 text-xs text-gray-600">
                       {faq.voiceSearchVariations.map((variation: string, vIndex: number) => (
                         <li key={vIndex}>&ldquo;{variation}&rdquo;</li>
                       ))}
@@ -283,16 +274,16 @@ export function VoiceSearchOptimizedFAQs({
 
         {/* Voice Search Help Section */}
         {enableVoiceSearchIndicators && (
-          <div className="mt-8 p-4 bg-blue-50 rounded-lg">
+          <div className="mt-8 rounded-lg bg-blue-50 p-4">
             <Group align="start" gap="md">
-              <IconMicrophone size={20} className="text-blue-600 mt-1" />
+              <IconMicrophone size={20} className="mt-1 text-blue-600" />
               <div>
                 <Text fw={500} size="sm" c="blue.7" mb="xs">
                   Voice Search Tip
                 </Text>
                 <Text size="sm" c="blue.6">
-                  You can ask voice assistants questions like &ldquo;How do I apply to ADMI?&rdquo; or 
-                  &ldquo;What are the requirements for film school in Kenya?&rdquo; to get instant answers.
+                  You can ask voice assistants questions like &ldquo;How do I apply to ADMI?&rdquo; or &ldquo;What are
+                  the requirements for film school in Kenya?&rdquo; to get instant answers.
                 </Text>
               </div>
             </Group>

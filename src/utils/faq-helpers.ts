@@ -99,31 +99,33 @@ export const createFAQSchemaData = (faqs: (ICourseFAQ | any)[], courseName?: str
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
     name: courseName ? `${courseName} - Frequently Asked Questions` : 'Course FAQs',
-    about: courseName ? {
-      '@type': 'Course',
-      name: courseName,
-      provider: {
-        '@type': 'EducationalOrganization',
-        name: 'Africa Digital Media Institute',
-        address: {
-          '@type': 'PostalAddress',
-          addressCountry: 'KE',
-          addressLocality: 'Nairobi'
+    about: courseName
+      ? {
+          '@type': 'Course',
+          name: courseName,
+          provider: {
+            '@type': 'EducationalOrganization',
+            name: 'Africa Digital Media Institute',
+            address: {
+              '@type': 'PostalAddress',
+              addressCountry: 'KE',
+              addressLocality: 'Nairobi'
+            }
+          }
         }
-      }
-    } : undefined,
+      : undefined,
     inLanguage: ['en', 'sw'], // English and Swahili for voice search
     audience: {
       '@type': 'Audience',
       geographicArea: {
-        '@type': 'Place', 
+        '@type': 'Place',
         name: location
       }
     },
     mainEntity: validFAQs.map((faq) => {
       const question = faq.fields?.question || faq.question
       const answer = faq.fields?.answer || faq.answer
-      
+
       return {
         '@type': 'Question',
         name: question,
@@ -156,23 +158,58 @@ export const createFAQSchemaData = (faqs: (ICourseFAQ | any)[], courseName?: str
 export const extractKeywordsFromFAQ = (question: string, answer: string): string => {
   const questionKeywords = extractKeywords(question)
   const answerKeywords = extractKeywords(answer)
-  
+
   // Combine and deduplicate keywords
   const allKeywords = [...new Set([...questionKeywords, ...answerKeywords])]
-  
+
   return allKeywords.slice(0, 10).join(', ') // Limit to top 10 keywords
 }
 
 // Simple keyword extraction function
 const extractKeywords = (text: string): string[] => {
   // Remove common stop words and extract meaningful terms
-  const stopWords = ['the', 'is', 'at', 'which', 'on', 'a', 'an', 'and', 'or', 'but', 'in', 'with', 'to', 'for', 'of', 'as', 'by', 'that', 'this', 'it', 'from', 'they', 'we', 'you', 'are', 'will', 'can', 'do', 'does', 'what', 'how', 'when', 'where', 'why']
-  
+  const stopWords = [
+    'the',
+    'is',
+    'at',
+    'which',
+    'on',
+    'a',
+    'an',
+    'and',
+    'or',
+    'but',
+    'in',
+    'with',
+    'to',
+    'for',
+    'of',
+    'as',
+    'by',
+    'that',
+    'this',
+    'it',
+    'from',
+    'they',
+    'we',
+    'you',
+    'are',
+    'will',
+    'can',
+    'do',
+    'does',
+    'what',
+    'how',
+    'when',
+    'where',
+    'why'
+  ]
+
   return text
     .toLowerCase()
     .replace(/[^\w\s]/g, ' ')
     .split(/\s+/)
-    .filter(word => word.length > 3 && !stopWords.includes(word))
+    .filter((word) => word.length > 3 && !stopWords.includes(word))
     .slice(0, 5)
 }
 
@@ -231,15 +268,16 @@ export const getFAQCategoryIcon = (category: string): string => {
 export const makeQuestionVoiceSearchFriendly = (question: string): string => {
   // Convert formal questions to conversational voice search patterns
   let voiceQuestion = question.trim()
-  
+
   // Add conversational starters if missing
-  if (!voiceQuestion.toLowerCase().startsWith('how') && 
-      !voiceQuestion.toLowerCase().startsWith('what') && 
-      !voiceQuestion.toLowerCase().startsWith('can') && 
-      !voiceQuestion.toLowerCase().startsWith('do') &&
-      !voiceQuestion.toLowerCase().startsWith('is') &&
-      !voiceQuestion.toLowerCase().startsWith('are')) {
-    
+  if (
+    !voiceQuestion.toLowerCase().startsWith('how') &&
+    !voiceQuestion.toLowerCase().startsWith('what') &&
+    !voiceQuestion.toLowerCase().startsWith('can') &&
+    !voiceQuestion.toLowerCase().startsWith('do') &&
+    !voiceQuestion.toLowerCase().startsWith('is') &&
+    !voiceQuestion.toLowerCase().startsWith('are')
+  ) {
     // Determine appropriate starter based on content
     if (voiceQuestion.includes('requirement') || voiceQuestion.includes('need')) {
       voiceQuestion = `What are the ${voiceQuestion.toLowerCase()}`
@@ -251,26 +289,26 @@ export const makeQuestionVoiceSearchFriendly = (question: string): string => {
       voiceQuestion = `What ${voiceQuestion.toLowerCase()}`
     }
   }
-  
+
   // Ensure it ends with question mark
   if (!voiceQuestion.endsWith('?')) {
     voiceQuestion += '?'
   }
-  
+
   return voiceQuestion
 }
 
 // Make FAQ answer more conversational for voice search
 export const makeAnswerVoiceSearchFriendly = (answer: string, question: string): string => {
   let voiceAnswer = answer.trim()
-  
+
   // Add conversational starters based on question type
   if (question.toLowerCase().includes('can i') || question.toLowerCase().includes('do i')) {
     if (!voiceAnswer.toLowerCase().startsWith('yes') && !voiceAnswer.toLowerCase().startsWith('no')) {
       voiceAnswer = `Yes, ${voiceAnswer.toLowerCase()}`
     }
   }
-  
+
   // Replace technical terms with voice-friendly versions
   voiceAnswer = voiceAnswer
     .replace(/KCSE/g, 'Kenya Certificate of Secondary Education')
@@ -282,7 +320,7 @@ export const makeAnswerVoiceSearchFriendly = (answer: string, question: string):
     .replace(/C-/g, 'C minus')
     .replace(/UI\/UX/g, 'user interface and user experience')
     .replace(/VR\/AR/g, 'virtual reality and augmented reality')
-  
+
   return voiceAnswer
 }
 
@@ -290,14 +328,17 @@ export const makeAnswerVoiceSearchFriendly = (answer: string, question: string):
 export const generateVoiceSearchVariations = (question: string, category: string): string[] => {
   const variations: string[] = []
   const baseQuestion = question.toLowerCase().replace(/\?$/, '')
-  
+
   // Common voice search patterns
   const patterns = [
-    `How do I ${baseQuestion.replace(/^how /, '').replace(/^what /, '').replace(/^can i /, '')}?`,
+    `How do I ${baseQuestion
+      .replace(/^how /, '')
+      .replace(/^what /, '')
+      .replace(/^can i /, '')}?`,
     `What do I need to ${baseQuestion.replace(/^what are the requirements for /, '').replace(/^how do i /, '')}?`,
     `Can I ${baseQuestion.replace(/^can i /, '').replace(/^do i need /, '')}?`
   ]
-  
+
   // Category-specific patterns
   if (category === 'Career Prospects') {
     variations.push(
@@ -305,24 +346,24 @@ export const generateVoiceSearchVariations = (question: string, category: string
       `What jobs can I get with ${extractSkillOrDegree(question)}?`
     )
   }
-  
+
   if (category === 'Admission Requirements') {
     variations.push(
       `How do I apply for ${extractCourseFromQuestion(question)}?`,
       `What grades do I need for ${extractCourseFromQuestion(question)}?`
     )
   }
-  
+
   if (category === 'Fees & Payment') {
     variations.push(
       `How much does it cost to study ${extractCourseFromQuestion(question)} in Kenya?`,
       `Are there scholarships for ${extractCourseFromQuestion(question)} students?`
     )
   }
-  
+
   // Filter out duplicates and invalid variations
   return [...new Set([...patterns, ...variations])]
-    .filter(variation => variation.length > 10 && variation.includes('?'))
+    .filter((variation) => variation.length > 10 && variation.includes('?'))
     .slice(0, 3) // Limit to 3 variations
 }
 
@@ -346,21 +387,21 @@ const extractCourseFromQuestion = (question: string): string => {
 export const optimizeFAQForVoiceSearch = (faq: any, category: string = 'General Information') => {
   const originalQuestion = faq.fields?.question || faq.question
   const originalAnswer = faq.fields?.answer || faq.answer
-  
+
   return {
     ...faq,
     // Original data
     originalQuestion,
     originalAnswer,
-    
+
     // Voice search optimized versions
     voiceSearchQuestion: makeQuestionVoiceSearchFriendly(originalQuestion),
     voiceSearchAnswer: makeAnswerVoiceSearchFriendly(originalAnswer, originalQuestion),
     voiceSearchVariations: generateVoiceSearchVariations(originalQuestion, category),
-    
+
     // Keywords for AI understanding
     keywords: extractKeywordsFromFAQ(originalQuestion, originalAnswer),
-    
+
     // Metadata for voice search
     conversationalTone: true,
     voiceSearchOptimized: true,
@@ -371,7 +412,7 @@ export const optimizeFAQForVoiceSearch = (faq: any, category: string = 'General 
 
 // Batch optimize multiple FAQs for voice search
 export const optimizeFAQsForVoiceSearch = (faqs: any[], defaultCategory: string = 'General Information') => {
-  return faqs.map(faq => {
+  return faqs.map((faq) => {
     const category = faq.fields?.category || faq.category || defaultCategory
     return optimizeFAQForVoiceSearch(faq, category)
   })
