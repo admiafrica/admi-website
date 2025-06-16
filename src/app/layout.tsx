@@ -97,6 +97,40 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="preconnect" href="https://images.ctfassets.net" />
         <link rel="preconnect" href="https://cdn.contentful.com" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        {/* Block Brevo chat widget with CSS */}
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `
+            /* Hide all Brevo chat widgets */
+            [id*="brevo"],
+            [class*="brevo"],
+            [class*="sib-conversations"],
+            [id^="sib-container"],
+            [id^="sib-chatbox"],
+            iframe[src*="conversations-widget.brevo.com"],
+            iframe[src*="sendinblue.com"] {
+              display: none !important;
+              visibility: hidden !important;
+              opacity: 0 !important;
+              pointer-events: none !important;
+              position: absolute !important;
+              left: -9999px !important;
+              top: -9999px !important;
+            }
+            
+            /* Ensure our ADMI widget is always visible */
+            .admi-ai-widget,
+            #ai-chat-widget,
+            #admi-chat-button,
+            #admi-chat-container {
+              display: block !important;
+              visibility: visible !important;
+              opacity: 1 !important;
+              pointer-events: auto !important;
+            }
+          `
+          }}
+        />
 
         {/* Web Vitals Monitoring */}
         <Script id="web-vitals" strategy="afterInteractive" type="module">
