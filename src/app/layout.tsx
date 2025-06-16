@@ -97,6 +97,46 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="preconnect" href="https://images.ctfassets.net" />
         <link rel="preconnect" href="https://cdn.contentful.com" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        {/* Early Brevo Blocker - Runs before GTM */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+            // Block Brevo before GTM loads
+            (function() {
+              // Override document.createElement to block Brevo iframes
+              const originalCreateElement = document.createElement;
+              document.createElement = function(tagName) {
+                const element = originalCreateElement.call(document, tagName);
+                
+                if (tagName.toLowerCase() === 'iframe') {
+                  const originalSetAttribute = element.setAttribute;
+                  element.setAttribute = function(name, value) {
+                    if (name === 'src' && value && (value.includes('brevo') || value.includes('sendinblue'))) {
+                      console.log('Blocked Brevo iframe:', value);
+                      return;
+                    }
+                    return originalSetAttribute.call(this, name, value);
+                  };
+                }
+                
+                return element;
+              };
+              
+              // Block network requests to Brevo
+              if (window.fetch) {
+                const originalFetch = window.fetch;
+                window.fetch = function(...args) {
+                  if (args[0] && (args[0].includes('brevo') || args[0].includes('sendinblue'))) {
+                    console.log('Blocked Brevo fetch:', args[0]);
+                    return Promise.reject(new Error('Blocked Brevo request'));
+                  }
+                  return originalFetch.apply(this, args);
+                };
+              }
+            })();
+            `
+          }}
+        />
         {/* Block Brevo chat widget with CSS */}
         <style
           dangerouslySetInnerHTML={{
