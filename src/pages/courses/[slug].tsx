@@ -184,7 +184,6 @@ export default function CourseDetailPage({
           educationalLevel={course.educationalLevel}
           learningOutcomes={learningOutcomes}
           careerOptions={careerOptions}
-          intakes={course.intakes}
           courseVideo={course.courseVideo}
           courseSlug={slug}
         />
