@@ -87,7 +87,6 @@ export function DiplomaEnhancedSEO({
         educationalLevel="Diploma"
         learningOutcomes={learningOutcomes}
         careerOptions={careerOptions}
-        intakes={course.intakes}
         employmentRate={employmentRate}
         averageSalary={averageSalary}
         industryPartners={industryPartners}

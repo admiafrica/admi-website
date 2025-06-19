@@ -321,7 +321,6 @@ interface CourseProps {
   educationalLevel?: string
   learningOutcomes?: string[]
   careerOptions?: string[]
-  intakes?: string
   applicationDeadline?: string
   courseCode?: string
   prerequisites?: string[]
@@ -351,7 +350,6 @@ export function DiplomaSchema({
   deliveryMode,
   learningOutcomes = [],
   careerOptions = [],
-  intakes,
   applicationDeadline,
   courseCode,
   prerequisites = [],
@@ -409,51 +407,99 @@ export function DiplomaSchema({
         credentialCategory: career
       }))
     }),
-    offers: {
-      '@type': 'Offer',
-      category: 'Educational',
-      ...(tuitionFees && { price: tuitionFees, priceCurrency: 'KES' }),
-      ...(applicationDeadline && { validThrough: applicationDeadline }),
-      availability: 'https://schema.org/InStock'
-    },
-    hasCourseInstance: {
-      '@type': 'CourseInstance',
-      courseMode: deliveryMode?.toLowerCase().includes('online')
-        ? 'online'
-        : deliveryMode?.toLowerCase().includes('hybrid')
-          ? 'blended'
-          : 'onsite',
-      ...(intakes && { startDate: intakes }),
-      duration: duration === '2 years' ? 'P2Y' : duration,
-      courseWorkload: convertToISO8601Duration(duration),
-      courseSchedule: {
-        '@type': 'Schedule',
-        scheduleTimezone: 'Africa/Nairobi',
-        repeatFrequency: 'Weekly',
-        repeatCount: 104,
-        byDay: [
-          'https://schema.org/Monday',
-          'https://schema.org/Tuesday',
-          'https://schema.org/Wednesday',
-          'https://schema.org/Thursday',
-          'https://schema.org/Friday'
-        ]
-      },
-      // Remove instructor as Organization is not a valid target type for instructor property
-      location: {
-        '@type': 'Place',
-        name: 'Africa Digital Media Institute',
-        address: {
-          '@type': 'PostalAddress',
-          streetAddress: '25 Caxton House 3rd Floor, Kenyatta Avenue',
-          postOfficeBoxNumber: 'P.O. Box 35447',
-          addressLocality: 'Nairobi',
-          addressRegion: 'Nairobi',
-          postalCode: '00100',
-          addressCountry: 'KE'
+    offers: [
+      {
+        '@type': 'Offer',
+        category: 'Educational',
+        price: tuitionFees ? tuitionFees.replace(/[^\d]/g, '') : '0',
+        priceCurrency: 'KES',
+        availability: 'https://schema.org/InStock',
+        validFrom: new Date().toISOString().split('T')[0],
+        validThrough: applicationDeadline || new Date(new Date().getFullYear() + 1, 11, 31).toISOString().split('T')[0],
+        seller: {
+          '@type': 'EducationalOrganization',
+          name: 'Africa Digital Media Institute',
+          url: 'https://admi.africa'
         }
       }
-    },
+    ],
+    hasCourseInstance: [
+      {
+        '@type': 'CourseInstance',
+        courseMode: deliveryMode?.toLowerCase().includes('online')
+          ? 'online'
+          : deliveryMode?.toLowerCase().includes('hybrid')
+            ? 'blended'
+            : 'onsite',
+        startDate: `${new Date().getFullYear()}-01-15`,
+        endDate:
+          duration === '2 years' ? `${new Date().getFullYear() + 2}-01-15` : `${new Date().getFullYear() + 1}-01-15`,
+        courseWorkload: convertToISO8601Duration(duration),
+        location: {
+          '@type': 'Place',
+          name: 'Africa Digital Media Institute',
+          address: {
+            '@type': 'PostalAddress',
+            streetAddress: '25 Caxton House 3rd Floor, Kenyatta Avenue',
+            postOfficeBoxNumber: 'P.O. Box 35447',
+            addressLocality: 'Nairobi',
+            addressRegion: 'Nairobi',
+            postalCode: '00100',
+            addressCountry: 'KE'
+          }
+        }
+      },
+      {
+        '@type': 'CourseInstance',
+        courseMode: deliveryMode?.toLowerCase().includes('online')
+          ? 'online'
+          : deliveryMode?.toLowerCase().includes('hybrid')
+            ? 'blended'
+            : 'onsite',
+        startDate: `${new Date().getFullYear()}-05-15`,
+        endDate:
+          duration === '2 years' ? `${new Date().getFullYear() + 2}-05-15` : `${new Date().getFullYear() + 1}-05-15`,
+        courseWorkload: convertToISO8601Duration(duration),
+        location: {
+          '@type': 'Place',
+          name: 'Africa Digital Media Institute',
+          address: {
+            '@type': 'PostalAddress',
+            streetAddress: '25 Caxton House 3rd Floor, Kenyatta Avenue',
+            postOfficeBoxNumber: 'P.O. Box 35447',
+            addressLocality: 'Nairobi',
+            addressRegion: 'Nairobi',
+            postalCode: '00100',
+            addressCountry: 'KE'
+          }
+        }
+      },
+      {
+        '@type': 'CourseInstance',
+        courseMode: deliveryMode?.toLowerCase().includes('online')
+          ? 'online'
+          : deliveryMode?.toLowerCase().includes('hybrid')
+            ? 'blended'
+            : 'onsite',
+        startDate: `${new Date().getFullYear()}-09-15`,
+        endDate:
+          duration === '2 years' ? `${new Date().getFullYear() + 2}-09-15` : `${new Date().getFullYear() + 1}-09-15`,
+        courseWorkload: convertToISO8601Duration(duration),
+        location: {
+          '@type': 'Place',
+          name: 'Africa Digital Media Institute',
+          address: {
+            '@type': 'PostalAddress',
+            streetAddress: '25 Caxton House 3rd Floor, Kenyatta Avenue',
+            postOfficeBoxNumber: 'P.O. Box 35447',
+            addressLocality: 'Nairobi',
+            addressRegion: 'Nairobi',
+            postalCode: '00100',
+            addressCountry: 'KE'
+          }
+        }
+      }
+    ],
     // Remove startDate from main Course schema as it's not recognized by schema.org
     // This property is correctly placed in hasCourseInstance above
     ...(awardLevel && { educationalCredentialAwarded: awardLevel }),
@@ -551,7 +597,6 @@ export function CourseSchema({
   educationalLevel,
   learningOutcomes = [],
   careerOptions = [],
-  intakes,
   applicationDeadline,
   courseCode,
   prerequisites = [],
@@ -612,52 +657,105 @@ export function CourseSchema({
         name: outcome
       }))
     }),
-    offers: {
-      '@type': 'Offer',
-      category: 'Educational',
-      price: feeInfo.price,
-      priceCurrency: feeInfo.currency,
-      ...(applicationDeadline && { validThrough: applicationDeadline }),
-      availability: 'https://schema.org/InStock'
-    },
-    hasCourseInstance: {
-      '@type': 'CourseInstance',
-      courseMode: deliveryMode?.toLowerCase().includes('online')
-        ? 'online'
-        : deliveryMode?.toLowerCase().includes('hybrid')
-          ? 'blended'
-          : 'onsite',
-      ...(intakes && { startDate: intakes }),
-      ...(duration && { duration: duration }),
-      courseWorkload: convertToISO8601Duration(duration),
-      courseSchedule: {
-        '@type': 'Schedule',
-        scheduleTimezone: 'Africa/Nairobi',
-        repeatFrequency: 'Weekly',
-        repeatCount: 104,
-        byDay: [
-          'https://schema.org/Monday',
-          'https://schema.org/Tuesday',
-          'https://schema.org/Wednesday',
-          'https://schema.org/Thursday',
-          'https://schema.org/Friday'
-        ]
-      },
-      // Remove instructor as Organization is not a valid target type for instructor property
-      location: {
-        '@type': 'Place',
-        name: 'Africa Digital Media Institute',
-        address: {
-          '@type': 'PostalAddress',
-          streetAddress: '25 Caxton House 3rd Floor, Kenyatta Avenue',
-          postOfficeBoxNumber: 'P.O. Box 35447',
-          addressLocality: 'Nairobi',
-          addressRegion: 'Nairobi',
-          postalCode: '00100',
-          addressCountry: 'KE'
+    offers: [
+      {
+        '@type': 'Offer',
+        category: 'Educational',
+        price: feeInfo.price,
+        priceCurrency: feeInfo.currency,
+        availability: 'https://schema.org/InStock',
+        validFrom: new Date().toISOString().split('T')[0],
+        validThrough: applicationDeadline || new Date(new Date().getFullYear() + 1, 11, 31).toISOString().split('T')[0],
+        seller: {
+          '@type': 'EducationalOrganization',
+          name: 'Africa Digital Media Institute',
+          url: 'https://admi.africa'
         }
       }
-    },
+    ],
+    hasCourseInstance: [
+      {
+        '@type': 'CourseInstance',
+        courseMode: deliveryMode?.toLowerCase().includes('online')
+          ? 'online'
+          : deliveryMode?.toLowerCase().includes('hybrid')
+            ? 'blended'
+            : 'onsite',
+        startDate: `${new Date().getFullYear()}-01-15`,
+        endDate:
+          duration?.includes('2 year') || duration?.includes('diploma')
+            ? `${new Date().getFullYear() + 2}-01-15`
+            : `${new Date().getFullYear() + 1}-01-15`,
+        courseWorkload: convertToISO8601Duration(duration),
+        location: {
+          '@type': 'Place',
+          name: 'Africa Digital Media Institute',
+          address: {
+            '@type': 'PostalAddress',
+            streetAddress: '25 Caxton House 3rd Floor, Kenyatta Avenue',
+            postOfficeBoxNumber: 'P.O. Box 35447',
+            addressLocality: 'Nairobi',
+            addressRegion: 'Nairobi',
+            postalCode: '00100',
+            addressCountry: 'KE'
+          }
+        }
+      },
+      {
+        '@type': 'CourseInstance',
+        courseMode: deliveryMode?.toLowerCase().includes('online')
+          ? 'online'
+          : deliveryMode?.toLowerCase().includes('hybrid')
+            ? 'blended'
+            : 'onsite',
+        startDate: `${new Date().getFullYear()}-05-15`,
+        endDate:
+          duration?.includes('2 year') || duration?.includes('diploma')
+            ? `${new Date().getFullYear() + 2}-05-15`
+            : `${new Date().getFullYear() + 1}-05-15`,
+        courseWorkload: convertToISO8601Duration(duration),
+        location: {
+          '@type': 'Place',
+          name: 'Africa Digital Media Institute',
+          address: {
+            '@type': 'PostalAddress',
+            streetAddress: '25 Caxton House 3rd Floor, Kenyatta Avenue',
+            postOfficeBoxNumber: 'P.O. Box 35447',
+            addressLocality: 'Nairobi',
+            addressRegion: 'Nairobi',
+            postalCode: '00100',
+            addressCountry: 'KE'
+          }
+        }
+      },
+      {
+        '@type': 'CourseInstance',
+        courseMode: deliveryMode?.toLowerCase().includes('online')
+          ? 'online'
+          : deliveryMode?.toLowerCase().includes('hybrid')
+            ? 'blended'
+            : 'onsite',
+        startDate: `${new Date().getFullYear()}-09-15`,
+        endDate:
+          duration?.includes('2 year') || duration?.includes('diploma')
+            ? `${new Date().getFullYear() + 2}-09-15`
+            : `${new Date().getFullYear() + 1}-09-15`,
+        courseWorkload: convertToISO8601Duration(duration),
+        location: {
+          '@type': 'Place',
+          name: 'Africa Digital Media Institute',
+          address: {
+            '@type': 'PostalAddress',
+            streetAddress: '25 Caxton House 3rd Floor, Kenyatta Avenue',
+            postOfficeBoxNumber: 'P.O. Box 35447',
+            addressLocality: 'Nairobi',
+            addressRegion: 'Nairobi',
+            postalCode: '00100',
+            addressCountry: 'KE'
+          }
+        }
+      }
+    ],
     ...(duration && { timeRequired: duration }),
     // Remove courseMode and startDate from main Course schema as they're not recognized by schema.org
     // These properties are correctly placed in hasCourseInstance above
