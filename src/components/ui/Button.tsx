@@ -7,10 +7,11 @@ type Props = {
   onClick?: () => void
   type?: 'button' | 'submit' | 'reset'
   color?: string
+  disabled?: boolean
 }
 
 export default function Button(props: Props) {
-  const { label, size, backgroundColor, onClick, type = 'button', color = 'white', ...rest } = props
+  const { label, size, backgroundColor, onClick, type = 'button', color = 'white', disabled, ...rest } = props
 
   return (
     <div className="w-full">
@@ -21,6 +22,7 @@ export default function Button(props: Props) {
         w={'100%'}
         onClick={onClick}
         type={type}
+        disabled={disabled}
         {...rest} // any other props
       >
         <div className="font-nexa">
