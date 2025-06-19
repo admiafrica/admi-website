@@ -131,7 +131,8 @@ export const config = {
      * - favicon.ico (favicon file)
      * - robots.txt
      * - sitemap.xml
+     * - llm.txt
      */
-    '/((?!api|_next/static|_next/image|favicon.ico|robots.txt|sitemap.xml).*)'
+    '/((?!api|_next/static|_next/image|favicon.ico|robots.txt|sitemap.xml|llm.txt).*)'
   ]
 }

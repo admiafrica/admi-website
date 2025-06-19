@@ -97,6 +97,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="preconnect" href="https://images.ctfassets.net" />
         <link rel="preconnect" href="https://cdn.contentful.com" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+
+        {/* LLM-friendly content discovery */}
+        <link rel="alternate" type="text/plain" href="/llm.txt" title="LLM Information" />
         {/* Early Brevo Blocker - Runs before GTM */}
         <script
           dangerouslySetInnerHTML={{
