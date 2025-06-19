@@ -235,12 +235,6 @@ export const DIPLOMA_STRUCTURED_DATA_TEMPLATE = {
       postalCode: '00100',
       addressCountry: 'KE'
     }
-  },
-  offers: {
-    '@type': 'Offer',
-    category: 'Educational',
-    priceCurrency: 'KES',
-    availability: 'https://schema.org/InStock'
   }
 }
 
