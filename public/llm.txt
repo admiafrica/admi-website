@@ -73,6 +73,7 @@ To empower creative professionals across Africa through industry-relevant educat
 - Homepage: https://admi.africa/
 - Courses: https://admi.africa/courses
 - About: https://admi.africa/about
+- Contact: https://admi.africa/contact
 - Student Support: https://admi.africa/student-support
 - Enquiry: https://admi.africa/enquiry
 - News & Events: https://admi.africa/news-events

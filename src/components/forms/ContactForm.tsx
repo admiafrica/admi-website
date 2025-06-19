@@ -1,0 +1,248 @@
+import { useState } from 'react'
+import { Alert, Box, Text, TextInput, Textarea, Select } from '@mantine/core'
+import { useForm } from '@mantine/form'
+import { Button, Paragraph, Title } from '../ui'
+import PhoneInput from 'react-phone-input-2'
+import 'react-phone-input-2/lib/style.css'
+import { IconAsterisk } from '@tabler/icons-react'
+
+interface ContactFormData {
+  firstName: string
+  lastName: string
+  email: string
+  phone: string
+  subject: string
+  message: string
+}
+
+export default function ContactForm() {
+  const [countryCode, setCountryCode] = useState('254')
+  const [alert, setAlert] = useState<{ type: 'success' | 'error'; message: string } | null>(null)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+
+  const form = useForm({
+    mode: 'uncontrolled',
+    initialValues: {
+      firstName: '',
+      lastName: '',
+      email: '',
+      phone: '',
+      subject: '',
+      message: ''
+    },
+    validate: {
+      firstName: (value) => (value.trim().length < 2 ? 'First name must be at least 2 characters' : null),
+      lastName: (value) => (value.trim().length < 2 ? 'Last name must be at least 2 characters' : null),
+      email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Invalid email'),
+      subject: (value) => (value.trim().length < 3 ? 'Subject must be at least 3 characters' : null),
+      message: (value) => (value.trim().length < 10 ? 'Message must be at least 10 characters' : null)
+    }
+  })
+
+  const subjectOptions = [
+    { value: 'General Inquiry', label: 'General Inquiry' },
+    { value: 'Course Information', label: 'Course Information' },
+    { value: 'Admissions', label: 'Admissions' },
+    { value: 'Technical Support', label: 'Technical Support' },
+    { value: 'Partnership Opportunities', label: 'Partnership Opportunities' },
+    { value: 'Media Inquiries', label: 'Media Inquiries' },
+    { value: 'Alumni Services', label: 'Alumni Services' },
+    { value: 'Other', label: 'Other' }
+  ]
+
+  const handleSubmit = async (values: ContactFormData) => {
+    setAlert(null)
+    setIsSubmitting(true)
+
+    // Format phone number
+    const formattedPhone = values.phone.replace(/^0+/, '')
+    const fullPhone = values.phone ? `${countryCode}${formattedPhone}` : ''
+
+    // Get UTM parameters from URL
+    const urlParams = new URLSearchParams(window.location.search)
+    const utmData = {
+      utm_source: urlParams.get('utm_source') || undefined,
+      utm_medium: urlParams.get('utm_medium') || undefined,
+      utm_campaign: urlParams.get('utm_campaign') || undefined,
+      utm_term: urlParams.get('utm_term') || undefined,
+      utm_content: urlParams.get('utm_content') || undefined
+    }
+
+    const data = {
+      ...values,
+      phone: fullPhone,
+      ...utmData
+    }
+
+    try {
+      const response = await fetch('/api/v3/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+
+      const responseData = await response.json()
+
+      if (!response.ok) {
+        let errorMessage = 'Failed to submit contact form.'
+        try {
+          errorMessage = typeof responseData.error === 'string' ? responseData.error : errorMessage
+        } catch (e) {
+          // If we can't parse the error response, use default message
+        }
+        setAlert({ type: 'error', message: errorMessage })
+        return
+      }
+
+      // Show success message
+      setAlert({
+        type: 'success',
+        message: 'Thank you for contacting us! We will get back to you within 24 hours.'
+      })
+
+      // Reset form
+      form.reset()
+      setCountryCode('254')
+
+      // Scroll to top to show success message
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    } catch (error) {
+      console.error('Contact form submission error:', error)
+      setAlert({ type: 'error', message: 'An error occurred. Please try again later.' })
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
+  return (
+    <div className="w-full rounded-lg bg-white p-4 sm:p-8">
+      <div className="mb-6 font-nexa">
+        <Title label="Contact Us" color="black" size="32px" />
+        <Paragraph className="mt-2 text-gray-600">Get in touch with us. We&apos;d love to hear from you!</Paragraph>
+      </div>
+
+      {alert && (
+        <Alert
+          color={alert.type === 'success' ? '#339900' : '#ff9966'}
+          title={<Paragraph fontWeight={900}>{alert.type === 'success' ? 'Success' : 'Error'}</Paragraph>}
+          mb={20}
+        >
+          <Paragraph>{alert.message}</Paragraph>
+        </Alert>
+      )}
+
+      <form onSubmit={form.onSubmit((values) => handleSubmit(values))}>
+        {/* Name Fields */}
+        <Box className="flex flex-col gap-4 sm:flex-row">
+          <TextInput
+            className="flex-1"
+            label={
+              <div className="flex pl-2">
+                <Title label="First Name" color="black" size="1.4em" />
+                <IconAsterisk size={8} className="mt-1.5 text-admiRed" />
+              </div>
+            }
+            placeholder="Enter your first name"
+            key={form.key('firstName')}
+            {...form.getInputProps('firstName')}
+          />
+          <TextInput
+            className="flex-1"
+            label={
+              <div className="flex pl-2">
+                <Title label="Last Name" color="black" size="1.4em" />
+                <IconAsterisk size={8} className="mt-1.5 text-admiRed" />
+              </div>
+            }
+            placeholder="Enter your last name"
+            key={form.key('lastName')}
+            {...form.getInputProps('lastName')}
+          />
+        </Box>
+
+        {/* Email */}
+        <TextInput
+          my={16}
+          label={
+            <div className="flex pl-2">
+              <Title label="Email Address" color="black" size="1.4em" />
+              <IconAsterisk size={8} className="mt-1.5 text-admiRed" />
+            </div>
+          }
+          placeholder="your@email.com"
+          key={form.key('email')}
+          {...form.getInputProps('email')}
+        />
+
+        {/* Phone */}
+        <Box my={16}>
+          <div className="flex pl-2">
+            <Title label="Phone Number" color="black" size="1.4em" />
+            <Text className="ml-2 text-sm text-gray-500">(Optional)</Text>
+          </div>
+          <Box className="flex items-center gap-2 rounded-lg border border-gray-200 p-2">
+            <PhoneInput
+              country={'ke'}
+              value={countryCode}
+              onChange={(value) => setCountryCode(value)}
+              inputProps={{ readOnly: true }}
+            />
+            <TextInput
+              className="grow"
+              placeholder="Enter phone number"
+              key={form.key('phone')}
+              type="tel"
+              {...form.getInputProps('phone')}
+            />
+          </Box>
+        </Box>
+
+        {/* Subject */}
+        <Select
+          my={16}
+          label={
+            <div className="flex pl-2">
+              <Title label="Subject" color="black" size="1.4em" />
+              <IconAsterisk size={8} className="mt-1.5 text-admiRed" />
+            </div>
+          }
+          placeholder="Select a subject"
+          data={subjectOptions}
+          key={form.key('subject')}
+          {...form.getInputProps('subject')}
+        />
+
+        {/* Message */}
+        <Textarea
+          my={16}
+          label={
+            <div className="flex pl-2">
+              <Title label="Message" color="black" size="1.4em" />
+              <IconAsterisk size={8} className="mt-1.5 text-admiRed" />
+            </div>
+          }
+          placeholder="Tell us how we can help you..."
+          minRows={4}
+          maxRows={8}
+          key={form.key('message')}
+          {...form.getInputProps('message')}
+        />
+
+        {/* Submit Button */}
+        <Box className="flex justify-end" mt="2em">
+          <Box className="w-full sm:w-[200px]">
+            <Button
+              size="lg"
+              backgroundColor="admiRed"
+              label={isSubmitting ? 'Sending...' : 'Send Message'}
+              type="submit"
+              disabled={isSubmitting}
+            />
+          </Box>
+        </Box>
+      </form>
+    </div>
+  )
+}

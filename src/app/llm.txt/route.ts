@@ -78,6 +78,7 @@ To empower creative professionals across Africa through industry-relevant educat
 - Homepage: ${baseUrl}/
 - Courses: ${baseUrl}/courses
 - About: ${baseUrl}/about
+- Contact: ${baseUrl}/contact
 - Student Support: ${baseUrl}/student-support
 - Enquiry: ${baseUrl}/enquiry
 - News & Events: ${baseUrl}/news-events
