@@ -45,7 +45,7 @@ export default function ContactPage() {
               <Title label="with ADMI" color="white" size={isMobile ? '30px' : '48px'} />
             </Box>
             <Box mb={8}>
-              <Paragraph className="text-gray-300">
+              <Paragraph className="text-white">
                 We&apos;re here to help you with any questions about our programs, admissions, or services. Reach out to
                 us and we&apos;ll get back to you as soon as possible.
               </Paragraph>
@@ -57,11 +57,11 @@ export default function ContactPage() {
               <Card className="border border-white/20 bg-white/10 backdrop-blur-sm" p="lg">
                 <div className="flex items-start space-x-4">
                   <div className="flex-shrink-0">
-                    <IconMapPin size={24} className="text-[#F1FE38]" />
+                    <IconMapPin size={24} className="text-[#01C6A5]" />
                   </div>
                   <div>
-                    <Title label="Visit Us" color="white" size="18px" />
-                    <Paragraph className="mt-1 text-gray-300">
+                    <Title label="Visit Us" color="black" size="18px" />
+                    <Paragraph className="mt-1 text-black">
                       25 Caxton House 3rd Floor
                       <br />
                       Kenyatta Avenue
@@ -78,11 +78,11 @@ export default function ContactPage() {
               <Card className="border border-white/20 bg-white/10 backdrop-blur-sm" p="lg">
                 <div className="flex items-start space-x-4">
                   <div className="flex-shrink-0">
-                    <IconMail size={24} className="text-[#F1FE38]" />
+                    <IconMail size={24} className="text-[#01C6A5]" />
                   </div>
                   <div>
-                    <Title label="Email Us" color="white" size="18px" />
-                    <Paragraph className="mt-1 text-gray-300">
+                    <Title label="Email Us" color="black" size="18px" />
+                    <Paragraph className="mt-1 text-black">
                       General Inquiries:{' '}
                       <a href="mailto:info@admi.africa" className="text-[#01C6A5] hover:underline">
                         info@admi.africa
@@ -101,11 +101,11 @@ export default function ContactPage() {
               <Card className="border border-white/20 bg-white/10 backdrop-blur-sm" p="lg">
                 <div className="flex items-start space-x-4">
                   <div className="flex-shrink-0">
-                    <IconPhone size={24} className="text-[#F1FE38]" />
+                    <IconPhone size={24} className="text-[#01C6A5]" />
                   </div>
                   <div>
-                    <Title label="Call or WhatsApp" color="white" size="18px" />
-                    <Paragraph className="mt-1 text-gray-300">
+                    <Title label="Call or WhatsApp" color="black" size="18px" />
+                    <Paragraph className="mt-1 text-black">
                       <a href="tel:+254711486581" className="text-[#01C6A5] hover:underline">
                         +254 711 486 581
                       </a>
@@ -129,11 +129,11 @@ export default function ContactPage() {
               <Card className="border border-white/20 bg-white/10 backdrop-blur-sm" p="lg">
                 <div className="flex items-start space-x-4">
                   <div className="flex-shrink-0">
-                    <IconClock size={24} className="text-[#F1FE38]" />
+                    <IconClock size={24} className="text-[#01C6A5]" />
                   </div>
                   <div>
-                    <Title label="Office Hours" color="white" size="18px" />
-                    <Paragraph className="mt-1 text-gray-300">
+                    <Title label="Office Hours" color="black" size="18px" />
+                    <Paragraph className="mt-1 text-black">
                       Monday - Friday: 8:00 AM - 5:00 PM
                       <br />
                       Saturday: 9:00 AM - 1:00 PM
