@@ -127,13 +127,60 @@ const nextConfig = {
         destination: '/404',
         permanent: false,
       },
-      // Block URLs with gambling/casino content
+      // Block URLs with gambling/casino parameters
       {
         source: '/:path*',
         has: [
           {
             type: 'query',
             key: 'ch',
+          },
+        ],
+        destination: '/404',
+        permanent: false,
+      },
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'query',
+            key: 'one',
+          },
+        ],
+        destination: '/404',
+        permanent: false,
+      },
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'query',
+            key: 'suka',
+          },
+        ],
+        destination: '/404',
+        permanent: false,
+      },
+      // Block Facebook tracking parameters that are being abused
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'query',
+            key: 'fbclid',
+          },
+        ],
+        destination: '/404',
+        permanent: false,
+      },
+      // Block image optimization abuse
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'query',
+            key: 'url',
+            value: '/_next/static/media/.*',
           },
         ],
         destination: '/404',
