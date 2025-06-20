@@ -77,7 +77,13 @@ export default function robots(): MetadataRoute.Robots {
         crawlDelay: 1
       }
     ],
-    sitemap: `${baseUrl}/sitemap.xml`,
+    sitemap: [
+      `${baseUrl}/sitemap-index.xml`,
+      `${baseUrl}/sitemap.xml`,
+      `${baseUrl}/video-sitemap.xml`,
+      `${baseUrl}/news-sitemap.xml`,
+      `${baseUrl}/resources-sitemap.xml`
+    ],
     host: baseUrl
   }
 }

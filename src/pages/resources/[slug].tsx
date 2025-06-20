@@ -4,6 +4,7 @@ import { useRouter } from 'next/router'
 
 import { MainLayout } from '@/layouts/v3/MainLayout'
 import { PageSEO, SocialShare } from '@/components/shared/v3'
+import { ArticleSchema } from '@/components/shared/StructuredData'
 import { Button, Paragraph, ParagraphContentful } from '@/components/ui'
 import { useIsMobile } from '@/hooks/useIsMobile'
 
@@ -21,11 +22,38 @@ export default function ResourceArticlePage({ article, slug }: { article: any; s
   return (
     <MainLayout footerBgColor="white">
       {article && (
-        <PageSEO
-          title={`Resources - ${article.title}`}
-          url={`/resources/${slug}`}
-          image={`https://${article.coverImage?.fields.file.url}`}
-        />
+        <>
+          <PageSEO
+            title={`Resources - ${article.title}`}
+            url={`/resources/${slug}`}
+            image={`https://${article.coverImage?.fields.file.url}`}
+          />
+          <ArticleSchema
+            headline={article.title}
+            description={
+              article.summary || article.excerpt || 'Educational resource from Africa Digital Media Institute'
+            }
+            image={`https:${article.coverImage?.fields.file.url}`}
+            author="ADMI Editorial Team"
+            datePublished={article.publishDate || article.sys?.createdAt}
+            dateModified={article.sys?.updatedAt}
+            publisher={{
+              name: 'Africa Digital Media Institute',
+              logo: 'https://admi.africa/logo.png'
+            }}
+            url={`https://admi.africa/resources/${slug}`}
+            articleSection="Educational Resources"
+            keywords={[
+              'ADMI',
+              'Africa Digital Media Institute',
+              'creative media',
+              'technology training',
+              'digital media education',
+              'Kenya',
+              'Africa'
+            ]}
+          />
+        </>
       )}
       <div className="h-[16em] w-full bg-[#002A23]">
         {/* BACKGROUND IMAGES */}

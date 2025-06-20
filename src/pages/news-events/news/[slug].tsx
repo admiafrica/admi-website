@@ -4,6 +4,7 @@ import { Box, Card, Tabs } from '@mantine/core'
 
 import { MainLayout } from '@/layouts/v3/MainLayout'
 import { PageSEO, SocialShare } from '@/components/shared/v3'
+import { ArticleSchema } from '@/components/shared/StructuredData'
 import { EmptyCard } from '@/components/cards'
 import { Paragraph, ParagraphContentful } from '@/components/ui'
 
@@ -32,11 +33,37 @@ export default function NewsArticlePage({ article, slug }: { article: any; slug:
 
   return (
     <MainLayout footerBgColor="white">
-      <PageSEO
-        title={`News - ${article.title}`}
-        url={`/news-events/news/${slug}`}
-        image={`https://${article.coverImage?.fields.file.url}`}
-      />
+      <>
+        <PageSEO
+          title={`News - ${article.title}`}
+          url={`/news-events/news/${slug}`}
+          image={`https://${article.coverImage?.fields.file.url}`}
+        />
+        <ArticleSchema
+          headline={article.title}
+          description={article.summary || article.excerpt || 'Latest news from Africa Digital Media Institute'}
+          image={`https:${article.coverImage?.fields.file.url}`}
+          author="ADMI Editorial Team"
+          datePublished={article.publishDate || article.sys?.createdAt}
+          dateModified={article.sys?.updatedAt}
+          publisher={{
+            name: 'Africa Digital Media Institute',
+            logo: 'https://admi.africa/logo.png'
+          }}
+          url={`https://admi.africa/news-events/news/${slug}`}
+          articleSection="News"
+          keywords={[
+            'ADMI',
+            'Africa Digital Media Institute',
+            'news',
+            'creative media',
+            'technology training',
+            'digital media education',
+            'Kenya',
+            'Africa'
+          ]}
+        />
+      </>
       <Box className="w-full">
         <Tabs defaultValue="news">
           <Tabs.List w={'100%'} bg={'#002A23'}>
