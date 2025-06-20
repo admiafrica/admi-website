@@ -152,7 +152,14 @@ export function DiplomaEnhancedSEO({
             educationalProgramMode: course.programType?.fields?.deliveryMode?.toLowerCase().includes('online')
               ? 'online'
               : 'blended',
-
+            offers: {
+              '@type': 'Offer',
+              category: 'Educational',
+              priceCurrency: 'KES',
+              availability: 'https://schema.org/InStock',
+              validFrom: `${new Date().getFullYear()}-01-01`,
+              validThrough: `${new Date().getFullYear() + 1}-12-31`
+            },
             hasCourse: {
               '@type': 'Course',
               name: course.name,
