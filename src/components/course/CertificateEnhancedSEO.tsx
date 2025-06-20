@@ -163,6 +163,44 @@ export function CertificateEnhancedSEO({
       {activeFaqs.length > 0 && (
         <CMSFAQSchema faqs={activeFaqs} courseName={`${course.name} - Certificate Program Information`} />
       )}
+
+      {/* Video Schema for Certificate Course Preview */}
+      {course.courseVideo && (
+        <Script
+          id="certificate-video-schema"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'VideoObject',
+              name: `${course.name} - Course Preview`,
+              description: `Watch this comprehensive preview of ${course.name} at Africa Digital Media Institute. Learn about the curriculum, facilities, career opportunities, and what makes this ${certificateType.toLowerCase()} program special.`,
+              thumbnailUrl: course.coverImage?.fields?.file?.url
+                ? `https:${course.coverImage.fields.file.url}`
+                : 'https://admi.africa/logo.png',
+              contentUrl: `https:${course.courseVideo.fields.file.url}`,
+              embedUrl: `${process.env.NEXT_PUBLIC_API_BASE_URL || 'https://admi.africa'}/watch/${slug}`,
+              uploadDate: course.sys?.updatedAt || new Date().toISOString(),
+              duration: 'PT2M30S',
+              publisher: {
+                '@type': 'Organization',
+                name: 'Africa Digital Media Institute',
+                logo: {
+                  '@type': 'ImageObject',
+                  url: 'https://admi.africa/logo.png'
+                },
+                sameAs: [
+                  'https://www.facebook.com/ADMIAFRICA',
+                  'https://x.com/ADMIafrica',
+                  'https://www.instagram.com/admiafrica/',
+                  'https://www.linkedin.com/school/admiafrica/',
+                  'https://www.tiktok.com/@admiafrica'
+                ]
+              }
+            })
+          }}
+        />
+      )}
     </>
   )
 }

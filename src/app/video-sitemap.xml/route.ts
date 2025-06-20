@@ -85,8 +85,8 @@ ${coursesWithVideos
       : `${baseUrl}/logo.png`
     const contentUrl = `https:${videoAsset.fields.file.url}`
     const watchPageUrl = `${baseUrl}/watch/${slug}`
-    // For player_loc, we'll use the direct video URL since we don't have a separate video player
-    const playerUrl = contentUrl
+    // For player_loc, we'll use the watch page URL which contains the video player
+    const playerUrl = watchPageUrl
     const lastModified = new Date(course.sys.updatedAt).toISOString()
 
     return `  <url>
