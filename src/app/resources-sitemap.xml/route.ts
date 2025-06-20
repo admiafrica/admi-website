@@ -11,16 +11,25 @@ export async function GET() {
 
     console.log('Resources sitemap baseUrl:', baseUrl)
 
+    // Check environment variables
+    if (!process.env.ADMI_CONTENTFUL_SPACE_ID || !process.env.ADMI_CONTENTFUL_ACCESS_TOKEN) {
+      console.error('Missing Contentful environment variables')
+      throw new Error('Missing Contentful configuration')
+    }
+
     // Fetch resources from Contentful
-    const resourcesResponse = await fetch(
-      `https://cdn.contentful.com/spaces/${process.env.ADMI_CONTENTFUL_SPACE_ID}/environments/${process.env.ADMI_CONTENTFUL_ENVIRONMENT}/entries?access_token=${process.env.ADMI_CONTENTFUL_ACCESS_TOKEN}&content_type=article&fields.category=Resources&order=-sys.createdAt&limit=1000&include=2`
-    )
+    const contentfulUrl = `https://cdn.contentful.com/spaces/${process.env.ADMI_CONTENTFUL_SPACE_ID}/environments/${process.env.ADMI_CONTENTFUL_ENVIRONMENT}/entries?access_token=${process.env.ADMI_CONTENTFUL_ACCESS_TOKEN}&content_type=article&fields.category=Resources&order=-sys.createdAt&limit=1000&include=2`
+    console.log('Fetching resources from Contentful...')
+
+    const resourcesResponse = await fetch(contentfulUrl)
 
     if (!resourcesResponse.ok) {
+      console.error(`Contentful API error: ${resourcesResponse.status} ${resourcesResponse.statusText}`)
       throw new Error(`Failed to fetch resources: ${resourcesResponse.status}`)
     }
 
     const resourcesData = await resourcesResponse.json()
+    console.log(`Found ${resourcesData.items?.length || 0} resource items`)
 
     // Helper function to resolve asset references
     const resolveAsset = (assetRef: any) => {
@@ -40,41 +49,42 @@ export async function GET() {
 
     // Generate resources sitemap entries
     const resourceEntries =
-      resourcesData.items
-        ?.filter((item: any) => item.fields?.slug && item.fields?.title)
-        .map((item: any) => {
-          const slug = item.fields.slug
-          const title = escapeXml(item.fields.title || '')
-          const lastModified = new Date(item.sys.updatedAt).toISOString()
+      resourcesData.items && resourcesData.items.length > 0
+        ? resourcesData.items
+            .filter((item: any) => item.fields?.slug && item.fields?.title)
+            .map((item: any) => {
+              const slug = item.fields.slug
+              const title = escapeXml(item.fields.title || '')
+              const lastModified = new Date(item.sys.updatedAt).toISOString()
 
-          // Extract description from content
-          let description = ''
-          if (item.fields.excerpt) {
-            description = escapeXml(item.fields.excerpt.substring(0, 200))
-          } else if (item.fields.summary) {
-            description = escapeXml(item.fields.summary.substring(0, 200))
-          } else if (item.fields.body?.content) {
-            const textContent = item.fields.body.content
-              .map((block: any) => block.content?.map((content: any) => content.value).join(' '))
-              .join(' ')
-              .substring(0, 200)
-            description = escapeXml(textContent)
-          }
+              // Extract description from content
+              let description = ''
+              if (item.fields.excerpt) {
+                description = escapeXml(item.fields.excerpt.substring(0, 200))
+              } else if (item.fields.summary) {
+                description = escapeXml(item.fields.summary.substring(0, 200))
+              } else if (item.fields.body?.content) {
+                const textContent = item.fields.body.content
+                  .map((block: any) => block.content?.map((content: any) => content.value).join(' '))
+                  .join(' ')
+                  .substring(0, 200)
+                description = escapeXml(textContent)
+              }
 
-          // Get featured image using asset resolution
-          const featuredImageAsset = resolveAsset(item.fields.featuredImage)
-          const coverImageAsset = resolveAsset(item.fields.coverImage)
+              // Get featured image using asset resolution
+              const featuredImageAsset = resolveAsset(item.fields.featuredImage)
+              const coverImageAsset = resolveAsset(item.fields.coverImage)
 
-          const imageUrl = featuredImageAsset?.fields?.file?.url
-            ? `https:${featuredImageAsset.fields.file.url}`
-            : coverImageAsset?.fields?.file?.url
-              ? `https:${coverImageAsset.fields.file.url}`
-              : `${baseUrl}/logo.png`
+              const imageUrl = featuredImageAsset?.fields?.file?.url
+                ? `https:${featuredImageAsset.fields.file.url}`
+                : coverImageAsset?.fields?.file?.url
+                  ? `https:${coverImageAsset.fields.file.url}`
+                  : `${baseUrl}/logo.png`
 
-          // Determine priority based on content type
-          const priority = item.fields.featured ? '0.8' : '0.6'
+              // Determine priority based on content type
+              const priority = item.fields.featured ? '0.8' : '0.6'
 
-          return `  <url>
+              return `  <url>
     <loc>${baseUrl}/resources/${slug}</loc>
     <lastmod>${lastModified}</lastmod>
     <changefreq>monthly</changefreq>
@@ -85,8 +95,11 @@ export async function GET() {
       <image:caption><![CDATA[${description}]]></image:caption>
     </image:image>
   </url>`
-        })
-        .join('\n') || ''
+            })
+            .join('\n')
+        : ''
+
+    console.log(`Generated ${resourceEntries ? resourceEntries.split('\n').length : 0} resource entries`)
 
     const resourcesSitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"

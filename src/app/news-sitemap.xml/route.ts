@@ -11,16 +11,25 @@ export async function GET() {
 
     console.log('News sitemap baseUrl:', baseUrl)
 
+    // Check environment variables
+    if (!process.env.ADMI_CONTENTFUL_SPACE_ID || !process.env.ADMI_CONTENTFUL_ACCESS_TOKEN) {
+      console.error('Missing Contentful environment variables')
+      throw new Error('Missing Contentful configuration')
+    }
+
     // Fetch news articles from Contentful
-    const newsResponse = await fetch(
-      `https://cdn.contentful.com/spaces/${process.env.ADMI_CONTENTFUL_SPACE_ID}/environments/${process.env.ADMI_CONTENTFUL_ENVIRONMENT}/entries?access_token=${process.env.ADMI_CONTENTFUL_ACCESS_TOKEN}&content_type=article&fields.category[match]=News&order=-sys.createdAt&limit=1000&include=2`
-    )
+    const contentfulUrl = `https://cdn.contentful.com/spaces/${process.env.ADMI_CONTENTFUL_SPACE_ID}/environments/${process.env.ADMI_CONTENTFUL_ENVIRONMENT}/entries?access_token=${process.env.ADMI_CONTENTFUL_ACCESS_TOKEN}&content_type=article&fields.category[match]=News&order=-sys.createdAt&limit=1000&include=2`
+    console.log('Fetching news from Contentful...')
+
+    const newsResponse = await fetch(contentfulUrl)
 
     if (!newsResponse.ok) {
+      console.error(`Contentful API error: ${newsResponse.status} ${newsResponse.statusText}`)
       throw new Error(`Failed to fetch news: ${newsResponse.status}`)
     }
 
     const newsData = await newsResponse.json()
+    console.log(`Found ${newsData.items?.length || 0} news items`)
 
     // Helper function to resolve asset references
     const resolveAsset = (assetRef: any) => {
@@ -40,39 +49,40 @@ export async function GET() {
 
     // Generate news sitemap entries
     const newsEntries =
-      newsData.items
-        ?.filter((item: any) => item.fields?.slug && item.fields?.title)
-        .map((item: any) => {
-          const slug = item.fields.slug
-          const title = escapeXml(item.fields.title || '')
-          const lastModified = new Date(item.sys.updatedAt).toISOString()
-          const publishDate = item.fields.publishDate
-            ? new Date(item.fields.publishDate).toISOString()
-            : new Date(item.sys.createdAt).toISOString()
+      newsData.items && newsData.items.length > 0
+        ? newsData.items
+            .filter((item: any) => item.fields?.slug && item.fields?.title)
+            .map((item: any) => {
+              const slug = item.fields.slug
+              const title = escapeXml(item.fields.title || '')
+              const lastModified = new Date(item.sys.updatedAt).toISOString()
+              const publishDate = item.fields.publishDate
+                ? new Date(item.fields.publishDate).toISOString()
+                : new Date(item.sys.createdAt).toISOString()
 
-          // Extract description from content
-          let description = ''
-          if (item.fields.excerpt) {
-            description = escapeXml(item.fields.excerpt.substring(0, 200))
-          } else if (item.fields.content?.content) {
-            const textContent = item.fields.content.content
-              .map((block: any) => block.content?.map((content: any) => content.value).join(' '))
-              .join(' ')
-              .substring(0, 200)
-            description = escapeXml(textContent)
-          }
+              // Extract description from content
+              let description = ''
+              if (item.fields.excerpt) {
+                description = escapeXml(item.fields.excerpt.substring(0, 200))
+              } else if (item.fields.content?.content) {
+                const textContent = item.fields.content.content
+                  .map((block: any) => block.content?.map((content: any) => content.value).join(' '))
+                  .join(' ')
+                  .substring(0, 200)
+                description = escapeXml(textContent)
+              }
 
-          // Get featured image using asset resolution
-          const featuredImageAsset = resolveAsset(item.fields.featuredImage)
-          const coverImageAsset = resolveAsset(item.fields.coverImage)
+              // Get featured image using asset resolution
+              const featuredImageAsset = resolveAsset(item.fields.featuredImage)
+              const coverImageAsset = resolveAsset(item.fields.coverImage)
 
-          const imageUrl = featuredImageAsset?.fields?.file?.url
-            ? `https:${featuredImageAsset.fields.file.url}`
-            : coverImageAsset?.fields?.file?.url
-              ? `https:${coverImageAsset.fields.file.url}`
-              : `${baseUrl}/logo.png`
+              const imageUrl = featuredImageAsset?.fields?.file?.url
+                ? `https:${featuredImageAsset.fields.file.url}`
+                : coverImageAsset?.fields?.file?.url
+                  ? `https:${coverImageAsset.fields.file.url}`
+                  : `${baseUrl}/logo.png`
 
-          return `  <url>
+              return `  <url>
     <loc>${baseUrl}/news-events/news/${slug}</loc>
     <lastmod>${lastModified}</lastmod>
     <changefreq>weekly</changefreq>
@@ -92,8 +102,11 @@ export async function GET() {
       <image:caption><![CDATA[${description}]]></image:caption>
     </image:image>
   </url>`
-        })
-        .join('\n') || ''
+            })
+            .join('\n')
+        : ''
+
+    console.log(`Generated ${newsEntries ? newsEntries.split('\n').length : 0} news entries`)
 
     const newsSitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
