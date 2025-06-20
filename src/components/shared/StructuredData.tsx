@@ -500,13 +500,9 @@ export function DiplomaSchema({
         description:
           courseVideo.fields?.description ||
           `Watch this comprehensive preview of ${name} at Africa Digital Media Institute. Learn about the curriculum, facilities, career opportunities, and what makes this diploma program special.`,
-        thumbnailUrl: courseVideo.fields?.thumbnail?.fields?.file?.url
-          ? `https:${courseVideo.fields.thumbnail.fields.file.url}`
-          : image,
+        thumbnailUrl: image || 'https://admi.africa/logo.png',
         embedUrl: courseSlug ? `https://admi.africa/watch/${courseSlug}` : `${url}/watch`,
-        contentUrl: courseVideo.fields?.videoFile?.fields?.file?.url
-          ? `https:${courseVideo.fields.videoFile.fields.file.url}`
-          : undefined,
+        contentUrl: courseVideo.fields?.file?.url ? `https:${courseVideo.fields.file.url}` : undefined,
         uploadDate: courseVideo.fields?.publishDate || new Date().toISOString(),
         duration: courseVideo.fields?.duration || 'PT2M30S',
         publisher: {
@@ -750,13 +746,9 @@ export function CourseSchema({
         description:
           courseVideo.fields?.description ||
           `Watch this comprehensive preview of ${name} at Africa Digital Media Institute. Learn about the curriculum, facilities, career opportunities, and what makes this ${awardLevel || 'course'} program special.`,
-        thumbnailUrl: courseVideo.fields?.thumbnail?.fields?.file?.url
-          ? `https:${courseVideo.fields.thumbnail.fields.file.url}`
-          : image,
+        thumbnailUrl: image || 'https://admi.africa/logo.png',
         embedUrl: courseSlug ? `https://admi.africa/watch/${courseSlug}` : `${url}/watch`,
-        contentUrl: courseVideo.fields?.videoFile?.fields?.file?.url
-          ? `https:${courseVideo.fields.videoFile.fields.file.url}`
-          : undefined,
+        contentUrl: courseVideo.fields?.file?.url ? `https:${courseVideo.fields.file.url}` : undefined,
         uploadDate: courseVideo.fields?.publishDate || new Date().toISOString(),
         duration: courseVideo.fields?.duration || 'PT2M30S',
         publisher: {
