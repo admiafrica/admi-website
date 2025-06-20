@@ -235,6 +235,20 @@ export const DIPLOMA_STRUCTURED_DATA_TEMPLATE = {
       postalCode: '00100',
       addressCountry: 'KE'
     }
+  },
+  offers: {
+    '@type': 'Offer',
+    category: 'Educational',
+    price: 'Contact for pricing',
+    priceCurrency: 'KES',
+    availability: 'https://schema.org/InStock',
+    validFrom: `${new Date().getFullYear()}-01-01`,
+    validThrough: `${new Date().getFullYear() + 1}-12-31`,
+    seller: {
+      '@type': 'EducationalOrganization',
+      name: 'Africa Digital Media Institute',
+      url: 'https://admi.africa'
+    }
   }
 }
 

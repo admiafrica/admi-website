@@ -551,7 +551,23 @@ export function DiplomaSchema({
         '@type': 'Organization',
         name: partner
       }))
-    })
+    }),
+    // Add offers field for Google Rich Results compliance
+    offers: {
+      '@type': 'Offer',
+      category: 'Educational',
+      price: 'Contact for pricing',
+      priceCurrency: 'KES',
+      availability: 'https://schema.org/InStock',
+      url: url,
+      validFrom: `${new Date().getFullYear()}-01-01`,
+      validThrough: `${new Date().getFullYear() + 1}-12-31`,
+      seller: {
+        '@type': 'EducationalOrganization',
+        name: provider.name,
+        url: provider.url
+      }
+    }
   }
 
   return (
@@ -764,7 +780,23 @@ export function CourseSchema({
       'https://www.instagram.com/admiafrica/',
       'https://www.linkedin.com/school/admiafrica/',
       'https://www.tiktok.com/@admiafrica'
-    ]
+    ],
+    // Add offers field for Google Rich Results compliance
+    offers: {
+      '@type': 'Offer',
+      category: 'Educational',
+      price: 'Contact for pricing',
+      priceCurrency: 'KES',
+      availability: 'https://schema.org/InStock',
+      url: url,
+      validFrom: `${new Date().getFullYear()}-01-01`,
+      validThrough: `${new Date().getFullYear() + 1}-12-31`,
+      seller: {
+        '@type': 'EducationalOrganization',
+        name: provider.name,
+        url: provider.url
+      }
+    }
   }
 
   return (

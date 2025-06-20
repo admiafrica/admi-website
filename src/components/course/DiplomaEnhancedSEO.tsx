@@ -129,39 +129,6 @@ export function DiplomaEnhancedSEO({
           `
         }}
       />
-
-      {/* Rich snippets for diploma programs */}
-      <Script
-        id="diploma-rich-snippets"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'EducationalOccupationalProgram',
-            name: course.name,
-            description: enhancedDescription,
-            provider: {
-              '@type': 'EducationalOrganization',
-              name: 'Africa Digital Media Institute',
-              url: 'https://admi.africa'
-            },
-            programType: 'Diploma',
-            timeToComplete: 'P2Y',
-            occupationalCategory: careerOptions,
-            programPrerequisites: 'Secondary education completion',
-            educationalProgramMode: course.programType?.fields?.deliveryMode?.toLowerCase().includes('online')
-              ? 'online'
-              : 'blended',
-
-            hasCourse: {
-              '@type': 'Course',
-              name: course.name,
-              courseCode: course.courseCode || slug.toUpperCase(),
-              numberOfCredits: course.creditHours
-            }
-          })
-        }}
-      />
     </>
   )
 }
