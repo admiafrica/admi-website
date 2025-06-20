@@ -95,7 +95,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   let newsPages: any[] = []
   try {
     const newsResponse = await fetch(
-      `https://cdn.contentful.com/spaces/${process.env.ADMI_CONTENTFUL_SPACE_ID}/environments/${process.env.ADMI_CONTENTFUL_ENVIRONMENT}/entries?access_token=${process.env.ADMI_CONTENTFUL_ACCESS_TOKEN}&content_type=article`
+      `https://cdn.contentful.com/spaces/${process.env.ADMI_CONTENTFUL_SPACE_ID}/environments/${process.env.ADMI_CONTENTFUL_ENVIRONMENT}/entries?access_token=${process.env.ADMI_CONTENTFUL_ACCESS_TOKEN}&content_type=article&fields.category[match]=News`
     )
     const newsData = await newsResponse.json()
 
@@ -103,7 +103,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       newsPages = newsData.items
         .filter((item: any) => item.fields?.slug) // Only include items with valid slugs
         .map((item: any) => ({
-          url: `${baseUrl}/news/${item.fields.slug}`,
+          url: `${baseUrl}/news-events/news/${item.fields.slug}`,
           lastModified: new Date(item.sys.updatedAt),
           changeFrequency: 'weekly' as const,
           priority: 0.7
@@ -119,7 +119,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   let resourcePages: any[] = []
   try {
     const resourcesResponse = await fetch(
-      `https://cdn.contentful.com/spaces/${process.env.ADMI_CONTENTFUL_SPACE_ID}/environments/${process.env.ADMI_CONTENTFUL_ENVIRONMENT}/entries?access_token=${process.env.ADMI_CONTENTFUL_ACCESS_TOKEN}&content_type=resource`
+      `https://cdn.contentful.com/spaces/${process.env.ADMI_CONTENTFUL_SPACE_ID}/environments/${process.env.ADMI_CONTENTFUL_ENVIRONMENT}/entries?access_token=${process.env.ADMI_CONTENTFUL_ACCESS_TOKEN}&content_type=article&fields.category=Resources`
     )
     const resourcesData = await resourcesResponse.json()
 
