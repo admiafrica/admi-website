@@ -18,20 +18,41 @@ import {
 import { PageSEO } from '@/components/shared/v3'
 import { CourseSchema, BreadcrumbSchema, CMSFAQSchema, VideoSchema } from '@/components/shared/StructuredData'
 import { DiplomaEnhancedSEO } from '@/components/course/DiplomaEnhancedSEO'
+import { CertificateEnhancedSEO } from '@/components/course/CertificateEnhancedSEO'
 import { EastAfricaLocalSEO } from '@/components/seo/EastAfricaLocalSEO'
 import { ENROLLMENT_FAQS } from '@/data/enrollment-faqs'
 // generateDiplomaKeywords utility available for future enhancements
 import { GENERAL_DIPLOMA_FAQS } from '@/data/diploma-faqs'
+import {
+  GENERAL_CERTIFICATE_FAQS,
+  GRAPHIC_DESIGN_CERTIFICATE_FAQS,
+  DIGITAL_MARKETING_CERTIFICATE_FAQS,
+  VIDEO_PRODUCTION_CERTIFICATE_FAQS,
+  PHOTOGRAPHY_CERTIFICATE_FAQS,
+  MUSIC_PRODUCTION_CERTIFICATE_FAQS
+} from '@/data/certificate-faqs'
 import { generateCourseSpecificMeta } from '@/utils/course-specific-seo'
 
 // Helper function to get correct FAQs based on course slug
-const getCorrectFAQsForCourse = (slug: string) => {
-  if (slug.includes('graphic-design')) return GRAPHIC_DESIGN_FAQS
-  if (slug.includes('animation') || slug.includes('vfx')) return ANIMATION_VFX_FAQS
-  if (slug.includes('film') || slug.includes('television')) return FILM_TELEVISION_FAQS
-  if (slug.includes('audio') || slug.includes('sound')) return AUDIO_PRODUCTION_FAQS
-  if (slug.includes('photography')) return PHOTOGRAPHY_FAQS
-  return [] // Return empty array for non-diploma courses
+const getCorrectFAQsForCourse = (slug: string, isDiploma: boolean) => {
+  // Diploma course FAQs
+  if (isDiploma) {
+    if (slug.includes('graphic-design')) return GRAPHIC_DESIGN_FAQS
+    if (slug.includes('animation') || slug.includes('vfx')) return ANIMATION_VFX_FAQS
+    if (slug.includes('film') || slug.includes('television')) return FILM_TELEVISION_FAQS
+    if (slug.includes('audio') || slug.includes('sound')) return AUDIO_PRODUCTION_FAQS
+    if (slug.includes('photography')) return PHOTOGRAPHY_FAQS
+    return GENERAL_DIPLOMA_FAQS.slice(0, 8)
+  }
+
+  // Certificate course FAQs
+  if (slug.includes('graphic-design')) return GRAPHIC_DESIGN_CERTIFICATE_FAQS
+  if (slug.includes('digital-marketing')) return DIGITAL_MARKETING_CERTIFICATE_FAQS
+  if (slug.includes('video-production')) return VIDEO_PRODUCTION_CERTIFICATE_FAQS
+  if (slug.includes('photography')) return PHOTOGRAPHY_CERTIFICATE_FAQS
+  if (slug.includes('music-production')) return MUSIC_PRODUCTION_CERTIFICATE_FAQS
+
+  return GENERAL_CERTIFICATE_FAQS.slice(0, 6) // Return general certificate FAQs
 }
 
 export default function CourseDetailPage({
@@ -154,7 +175,7 @@ export default function CourseDetailPage({
         url={`/courses/${slug}`}
       />
 
-      {/* Enhanced SEO for Diploma Programs */}
+      {/* Enhanced SEO for Different Program Types */}
       {isDiploma ? (
         <DiplomaEnhancedSEO
           course={course}
@@ -165,8 +186,19 @@ export default function CourseDetailPage({
           industryPartners={['Safaricom', 'Nation Media Group', 'Standard Group', 'Royal Media Services']}
           accreditation="Pearson Assured & Woolf University"
         />
+      ) : course.awardLevel?.toLowerCase().includes('certificate') ? (
+        /* Enhanced Certificate Structured Data */
+        <CertificateEnhancedSEO
+          course={course}
+          slug={slug}
+          faqs={course.faqs?.length > 0 ? course.faqs : getCorrectFAQsForCourse(slug, false)}
+          employmentRate={75}
+          averageSalary="KES 25,000 - 80,000"
+          industryPartners={['Safaricom', 'Nation Media Group', 'Standard Group', 'Royal Media Services']}
+          accreditation="Pearson Assured"
+        />
       ) : (
-        /* Regular Course Structured Data */
+        /* Basic Course Structured Data */
         <CourseSchema
           name={course.name}
           description={courseDescription}
@@ -259,7 +291,11 @@ export default function CourseDetailPage({
         totalHistoricalEnrollment={course.totalHistoricalEnrollment}
       />
       <CourseApplicationProcess processes={course.applicationProcesses || []} />
-      <CMSCourseFAQs courseSlug={slug} fallbackFAQs={getCorrectFAQsForCourse(slug)} showGeneralFallback={isDiploma} />
+      <CMSCourseFAQs
+        courseSlug={slug}
+        fallbackFAQs={getCorrectFAQsForCourse(slug, isDiploma)}
+        showGeneralFallback={isDiploma}
+      />
     </MainLayout>
   )
 }
