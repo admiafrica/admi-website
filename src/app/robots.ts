@@ -14,11 +14,24 @@ export default function robots(): MetadataRoute.Robots {
           '/private/',
           '/*?s=*', // Block WordPress-style search parameters
           '/*?ch=*', // Block channel parameters used in spam
+          '/*?one=*', // Block 'one' parameter used in gambling spam
+          '/*?suka=*', // Block 'suka' parameter used in gambling spam
+          '/*?fbclid=*', // Block abused Facebook tracking
           '/*?*casino*',
           '/*?*slots*',
           '/*?*betting*',
           '/*?*gambling*',
           '/*?*poker*',
+          '/*?*toto*',
+          '/*?*88*',
+          '/*?*77*',
+          '/*?*4d*',
+          '/*?*123*',
+          '/*?*168*',
+          '/*?*888*',
+          '/*?*hokibet*',
+          '/*?*mito99*',
+          '/*?*77luck*',
           '/*?*adult*',
           '/*?*porn*',
           '/*?*viagra*',
