@@ -13,7 +13,7 @@ export async function GET() {
 
     // Fetch resources from Contentful
     const resourcesResponse = await fetch(
-      `https://cdn.contentful.com/spaces/${process.env.ADMI_CONTENTFUL_SPACE_ID}/environments/${process.env.ADMI_CONTENTFUL_ENVIRONMENT}/entries?access_token=${process.env.ADMI_CONTENTFUL_ACCESS_TOKEN}&content_type=article&fields.category=Resources&order=-sys.createdAt&limit=1000`
+      `https://cdn.contentful.com/spaces/${process.env.ADMI_CONTENTFUL_SPACE_ID}/environments/${process.env.ADMI_CONTENTFUL_ENVIRONMENT}/entries?access_token=${process.env.ADMI_CONTENTFUL_ACCESS_TOKEN}&content_type=article&fields.category=Resources&order=-sys.createdAt&limit=1000&include=2`
     )
 
     if (!resourcesResponse.ok) {
@@ -21,6 +21,12 @@ export async function GET() {
     }
 
     const resourcesData = await resourcesResponse.json()
+
+    // Helper function to resolve asset references
+    const resolveAsset = (assetRef: any) => {
+      if (!assetRef?.sys?.id || !resourcesData.includes?.Asset) return null
+      return resourcesData.includes.Asset.find((asset: any) => asset.sys.id === assetRef.sys.id)
+    }
 
     // Helper function to escape XML special characters
     const escapeXml = (str: string): string => {
@@ -55,11 +61,14 @@ export async function GET() {
             description = escapeXml(textContent)
           }
 
-          // Get featured image
-          const imageUrl = item.fields.featuredImage?.fields?.file?.url
-            ? `https:${item.fields.featuredImage.fields.file.url}`
-            : item.fields.coverImage?.fields?.file?.url
-              ? `https:${item.fields.coverImage.fields.file.url}`
+          // Get featured image using asset resolution
+          const featuredImageAsset = resolveAsset(item.fields.featuredImage)
+          const coverImageAsset = resolveAsset(item.fields.coverImage)
+
+          const imageUrl = featuredImageAsset?.fields?.file?.url
+            ? `https:${featuredImageAsset.fields.file.url}`
+            : coverImageAsset?.fields?.file?.url
+              ? `https:${coverImageAsset.fields.file.url}`
               : `${baseUrl}/logo.png`
 
           // Determine priority based on content type
