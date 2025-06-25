@@ -16,11 +16,10 @@ import {
   PHOTOGRAPHY_FAQS
 } from '@/data/diploma-faqs'
 import { PageSEO } from '@/components/shared/v3'
-import { CourseSchema, BreadcrumbSchema, CMSFAQSchema, VideoSchema } from '@/components/shared/StructuredData'
+import { CourseSchema, BreadcrumbSchema, VideoSchema } from '@/components/shared/StructuredData'
 import { DiplomaEnhancedSEO } from '@/components/course/DiplomaEnhancedSEO'
 import { CertificateEnhancedSEO } from '@/components/course/CertificateEnhancedSEO'
 import { EastAfricaLocalSEO } from '@/components/seo/EastAfricaLocalSEO'
-import { ENROLLMENT_FAQS } from '@/data/enrollment-faqs'
 // generateDiplomaKeywords utility available for future enhancements
 import { GENERAL_DIPLOMA_FAQS } from '@/data/diploma-faqs'
 import {
@@ -175,7 +174,7 @@ export default function CourseDetailPage({
         url={`/courses/${slug}`}
       />
 
-      {/* Enhanced SEO for Different Program Types */}
+      {/* Enhanced SEO for Different Program Types - Only ONE Course Schema per page */}
       {isDiploma ? (
         <DiplomaEnhancedSEO
           course={course}
@@ -209,7 +208,6 @@ export default function CourseDetailPage({
           url={`${process.env.NEXT_PUBLIC_API_BASE_URL || 'https://admi.africa'}/courses/${slug}`}
           image={course.coverImage?.fields?.file?.url ? `https:${course.coverImage.fields.file.url}` : undefined}
           awardLevel={course.awardLevel}
-          // Remove creditHours as it's not supported by Course schema
           tuitionFees={course.tuitionFees}
           duration={course.programType?.fields?.duration}
           deliveryMode={course.programType?.fields?.deliveryMode}
@@ -236,8 +234,7 @@ export default function CourseDetailPage({
       {/* East Africa Local Business Schema - No course catalog on individual course pages */}
       <EastAfricaLocalSEO targetCity="Nairobi" excludeCourseCatalog={true} />
 
-      {/* Enrollment FAQs Schema */}
-      <CMSFAQSchema faqs={ENROLLMENT_FAQS} courseName={`${course.name} - Enrollment Information`} />
+      {/* Note: FAQ Schema is handled within the enhanced SEO components above to avoid duplication */}
 
       {/* Course Video Schema (if video exists) - Points to dedicated watch page */}
       {course.courseVideo && (
