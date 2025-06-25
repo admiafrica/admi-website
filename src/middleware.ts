@@ -39,7 +39,8 @@ const SPAM_PATTERNS: SpamPattern[] = [
 
 // Rate limiting store (in production, use Redis or similar)
 const rateLimitStore = new Map<string, { count: number; timestamp: number }>()
-const RATE_LIMIT_REQUESTS = 10
+// More lenient rate limiting for development
+const RATE_LIMIT_REQUESTS = process.env.NODE_ENV === 'development' ? 100 : 10
 const RATE_LIMIT_WINDOW = 60000 // 1 minute
 
 function isRateLimited(ip: string): boolean {
@@ -67,6 +68,27 @@ function detectSpam(request: NextRequest): { isSpam: boolean; reason: string } {
   const url = new URL(request.url)
   const userAgent = request.headers.get('user-agent') || ''
   const referer = request.headers.get('referer') || ''
+
+  // Skip spam detection for development files and legitimate paths
+  const isDevelopment = process.env.NODE_ENV === 'development'
+  const isDevFile =
+    url.pathname.includes('node_modules') ||
+    url.pathname.includes('_next') ||
+    url.pathname.includes('.vite') ||
+    url.pathname.includes('src/') ||
+    url.pathname.includes('@')
+
+  // Skip spam detection for legitimate course and content paths
+  const isLegitimateContent =
+    url.pathname.startsWith('/courses/') ||
+    url.pathname.startsWith('/watch/') ||
+    url.pathname.startsWith('/news-events/') ||
+    url.pathname.startsWith('/resources/') ||
+    url.pathname.startsWith('/api/')
+
+  if ((isDevelopment && isDevFile) || isLegitimateContent) {
+    return { isSpam: false, reason: '' }
+  }
 
   // Check URL parameters
   for (const [key, value] of url.searchParams.entries()) {
@@ -125,10 +147,17 @@ function logSpamAttempt(request: NextRequest, reason: string) {
 export function middleware(request: NextRequest) {
   const ip = request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'unknown'
 
-  // Rate limiting check
-  if (isRateLimited(ip)) {
-    console.log(`[RATE LIMITED] ${new Date().toISOString()} - IP: ${ip}, URL: ${request.url}`)
-    return new NextResponse('Too Many Requests', { status: 429 })
+  // Skip rate limiting for localhost in development
+  const isLocalhost =
+    ip === 'unknown' || ip === '::1' || ip === '127.0.0.1' || ip?.startsWith('192.168.') || ip?.startsWith('10.')
+  const isDevelopment = process.env.NODE_ENV === 'development'
+
+  // Rate limiting check (skip for localhost in development)
+  if (!isDevelopment || !isLocalhost) {
+    if (isRateLimited(ip)) {
+      console.log(`[RATE LIMITED] ${new Date().toISOString()} - IP: ${ip}, URL: ${request.url}`)
+      return new NextResponse('Too Many Requests', { status: 429 })
+    }
   }
 
   // Spam detection
