@@ -9,11 +9,15 @@ interface SpamPattern {
 const SPAM_PATTERNS: SpamPattern[] = [
   // Gambling and betting parameters
   { type: 'param', pattern: /^(one|suka|ch|s)$/, description: 'Gambling parameter' },
+  { type: 'param', pattern: /^(p|cat|page_id|url|fbclid)$/, description: 'Spam parameter' },
   {
     type: 'param',
     pattern: /^(slot|bet|casino|poker|toto|game|win|luck|88|77|4d|123|168|888)/,
     description: 'Gaming parameter'
   },
+
+  // Specific blocked post IDs
+  { type: 'param', pattern: /^p$/, description: 'Post ID parameter' },
 
   // Gambling and betting URLs
   {
@@ -24,7 +28,7 @@ const SPAM_PATTERNS: SpamPattern[] = [
   {
     type: 'url',
     pattern:
-      /\b(hokibet|mito99|77luck|dewa|boss|king|mega|royal|premium|capitaltoto|sonic|premium|mega|royal|king|boss|dewa|saga|master|bendera|iasia|gurita|era|murn|rumah|pelangitoto|yolo|studio|inter|play|iklan|ahli|win|warung|markas|agent|unik|dragon|snica|neko|bulan|warkop|togel|topcer|sambal|diva|barong)\b/i,
+      /\b(casper77|totogel|hokibet138|mito99|77luck|dewa|boss|king|mega|royal|premium|capitaltoto|sonic|premium|mega|royal|king|boss|dewa|saga|master|bendera|iasia|gurita|era|murn|rumah|pelangitoto|yolo|studio|inter|play|iklan|ahli|win|warung|markas|agent|unik|dragon|snica|neko|bulan|warkop|togel|topcer|sambal|diva|barong|suksestoto|citra88|kedai|dolar888|lj9696|inaslot88|garuda338|bosbobet|koinslot168|semi4d|slot36|buahtogel|dj4d|judi123|pucuk88|dewa123|pokersgp|slotmania88|shio77|dewa234|megabandar|bigg77|asialive88|tombolslot|maha168|elanggame|spartaplay88|playwin123|fiona77|gangtoto|tiger78|bigslot88|sagawin365|royalwin|susterslot|unggultoto|899sport|buntogel|master188|mandiritogel|bendera88|koinslot888|iasia88|pangkalantoto|djr888|gurita168|eraspin|murniqq|rumahmpo|pelangitoto888|cwdbet|yolo4d|slot5000|studiobet78|interwin88|play303|198slot|iklan4d|sonic77|premium303|capitaltoto|ahli4d|winbet88|warung168|slottoto|qqmaha88|markas123|agentoto|unik777|dragonslot99|snicasino|nekobet99|bulantogel|warkop89|togel388|topcer88|sambaltoto|divatogel|kingtoto4d|barong4d|aman4d|duniaslot77|ligamansion|qqfullbet|erek2d|chongtogel|jalak4d|supra4d|king338|vgslot|dewaslot777|asiabet4d|okeslot777|nona888|rajabola88|ludo88|pantai77|hometogel|totojitu|pandaspin88|jendral888|tag4d|sultanbet89|ketua777|sgpslot|ex88|winning369|cpgtoto|nusabet|royalslot88|qq555|ebet88|luxury333|idrsloto|kipertoto|qq188|berkah777|iblis4d|viva99)\b/i,
     description: 'Gambling brand'
   },
   { type: 'url', pattern: /\b(ak\.bet|bet-nigeria\.com|ajccom\.com|ak9ja\.bet)\b/i, description: 'Betting domain' },
@@ -32,8 +36,13 @@ const SPAM_PATTERNS: SpamPattern[] = [
   // Suspicious referrers
   { type: 'referrer', pattern: /\b(slot|bet|casino|poker|gambling|toto)\b/i, description: 'Gambling referrer' },
 
-  // Bot user agents
-  { type: 'userAgent', pattern: /\b(bot|crawler|spider|scraper|scanner)\b/i, description: 'Bot user agent' },
+  // Bot user agents (excluding legitimate search engines)
+  {
+    type: 'userAgent',
+    pattern:
+      /\b(scraper|scanner|semrushbot|ahrefsbot|mj12bot|dotbot|blexbot|dataforseobot|petalbot|yandexbot|seznambot|megaindex|linkpadbot|spbot)\b/i,
+    description: 'Malicious bot user agent'
+  },
   { type: 'userAgent', pattern: /^$/, description: 'Empty user agent' }
 ]
 
@@ -84,10 +93,72 @@ function detectSpam(request: NextRequest): { isSpam: boolean; reason: string } {
     url.pathname.startsWith('/watch/') ||
     url.pathname.startsWith('/news-events/') ||
     url.pathname.startsWith('/resources/') ||
-    url.pathname.startsWith('/api/')
+    url.pathname.startsWith('/api/') ||
+    url.pathname.endsWith('.xml') || // Allow all XML files (sitemaps)
+    url.pathname === '/robots.txt' || // Allow robots.txt
+    url.pathname === '/llm.txt' || // Allow LLM context file
+    url.pathname.startsWith('/llm') // Allow all LLM-related endpoints
 
-  if ((isDevelopment && isDevFile) || isLegitimateContent) {
+  // Allow legitimate search engine bots
+  const legitimateBots = [
+    'googlebot',
+    'bingbot',
+    'slurp', // Yahoo
+    'duckduckbot',
+    'baiduspider',
+    'facebookexternalhit',
+    'twitterbot',
+    'linkedinbot',
+    'whatsapp',
+    'applebot'
+  ]
+
+  const isLegitimateBot = legitimateBots.some((bot) => userAgent.toLowerCase().includes(bot))
+
+  if ((isDevelopment && isDevFile) || isLegitimateContent || isLegitimateBot) {
     return { isSpam: false, reason: '' }
+  }
+
+  // Check for specific blocked post IDs
+  const blockedPostIds = ['1692', '1636', '1695', '1655', '15711', '15724']
+  const postId = url.searchParams.get('p')
+  if (postId && blockedPostIds.includes(postId)) {
+    return { isSpam: true, reason: `Blocked post ID: ${postId}` }
+  }
+
+  // Check for specific blocked page IDs
+  const pageId = url.searchParams.get('page_id')
+  if (pageId && blockedPostIds.includes(pageId)) {
+    return { isSpam: true, reason: `Blocked page ID: ${pageId}` }
+  }
+
+  // Check for blocked category
+  const cat = url.searchParams.get('cat')
+  if (cat === '59') {
+    return { isSpam: true, reason: `Blocked category: ${cat}` }
+  }
+
+  // Check for search parameter with Nigeria betting content
+  const searchParam = url.searchParams.get('s')
+  if (searchParam) {
+    const nigeriaBettingPatterns = [
+      /nigeria.*online.*slot/i,
+      /nigeria.*betting.*platform/i,
+      /nigeria.*slot.*machine/i,
+      /professional.*nigerian.*betting/i,
+      /nigeria.*official.*betting/i,
+      /ak\.bet/i,
+      /bet-nigeria\.com/i,
+      /ajccom\.com/i,
+      /ak9ja\.bet/i,
+      /vincent\s+mutiso/i
+    ]
+
+    for (const pattern of nigeriaBettingPatterns) {
+      if (pattern.test(searchParam)) {
+        return { isSpam: true, reason: `Spam search query: ${searchParam.substring(0, 50)}...` }
+      }
+    }
   }
 
   // Check URL parameters
