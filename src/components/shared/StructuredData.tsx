@@ -1062,6 +1062,16 @@ export function MultiCityLocalBusinessSchema({
             '@type': 'EducationalAudience',
             educationalRole: 'student'
           },
+          offers: {
+            '@type': 'Offer',
+            category: 'Education',
+            priceCurrency: 'KES',
+            price: course.includes('Diploma') ? '150000' : '75000',
+            availability: 'https://schema.org/InStock',
+            validFrom: `${new Date().getFullYear()}-01-01`,
+            validThrough: `${new Date().getFullYear()}-12-31`,
+            url: `https://admi.africa/courses/${course.toLowerCase().replace(/\s+/g, '-').replace(/&/g, 'and')}`
+          },
           hasCourseInstance: [
             {
               '@type': 'CourseInstance',
