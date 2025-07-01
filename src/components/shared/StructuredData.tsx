@@ -1032,114 +1032,30 @@ export function MultiCityLocalBusinessSchema({
     telephone: city === 'Nairobi' ? '+254 772 913 811' : '+254 772 913 811',
     email: 'info@admi.ac.ke',
     areaServed: serviceArea.length > 0 ? serviceArea : [city, region, country],
-    // Remove serviceType as it's not recognized by schema.org for LocalBusiness
+    // Educational programs offered (simplified without Course schema)
     ...(courses.length > 0 && {
       hasOfferCatalog: {
         '@type': 'OfferCatalog',
-        name: 'ADMI Course Catalog',
+        name: 'ADMI Educational Programs',
+        description: 'Creative media and technology training programs offered by Africa Digital Media Institute',
         itemListElement: courses.map((course) => ({
-          '@type': 'Course',
+          '@type': 'Offer',
           name: course,
           description: getCourseDescription(course),
-          provider: {
+          category: 'Education',
+          priceCurrency: 'KES',
+          price: course.includes('Diploma') ? '150000' : '75000',
+          availability: 'https://schema.org/InStock',
+          validFrom: `${new Date().getFullYear()}-01-01`,
+          validThrough: `${new Date().getFullYear()}-12-31`,
+          url: `https://admi.africa/courses/${course.toLowerCase().replace(/\s+/g, '-').replace(/&/g, 'and')}`,
+          seller: {
             '@type': 'EducationalOrganization',
             name: 'Africa Digital Media Institute',
-            url: 'https://admi.africa',
-            address: {
-              '@type': 'PostalAddress',
-              streetAddress: '25 Caxton House 3rd Floor, Kenyatta Avenue',
-              postOfficeBoxNumber: 'P.O. Box 35447',
-              addressLocality: 'Nairobi',
-              addressRegion: 'Nairobi',
-              postalCode: '00100',
-              addressCountry: 'KE'
-            }
+            url: 'https://admi.africa'
           },
-          educationalLevel: course.includes('Diploma') ? 'Diploma' : 'Certificate',
-          inLanguage: 'en-KE',
-          isAccessibleForFree: false,
-          audience: {
-            '@type': 'EducationalAudience',
-            educationalRole: 'student'
-          },
-          offers: {
-            '@type': 'Offer',
-            category: 'Education',
-            priceCurrency: 'KES',
-            price: course.includes('Diploma') ? '150000' : '75000',
-            availability: 'https://schema.org/InStock',
-            validFrom: `${new Date().getFullYear()}-01-01`,
-            validThrough: `${new Date().getFullYear()}-12-31`,
-            url: `https://admi.africa/courses/${course.toLowerCase().replace(/\s+/g, '-').replace(/&/g, 'and')}`
-          },
-          hasCourseInstance: [
-            {
-              '@type': 'CourseInstance',
-              courseMode: 'blended',
-              startDate: `${new Date().getFullYear()}-01-15`,
-              endDate: course.includes('Diploma')
-                ? `${new Date().getFullYear() + 2}-01-15`
-                : `${new Date().getFullYear() + 1}-01-15`,
-              courseWorkload: course.includes('Diploma') ? 'P2Y' : 'P6M',
-              location: {
-                '@type': 'Place',
-                name: 'Africa Digital Media Institute',
-                address: {
-                  '@type': 'PostalAddress',
-                  streetAddress: '25 Caxton House 3rd Floor, Kenyatta Avenue',
-                  postOfficeBoxNumber: 'P.O. Box 35447',
-                  addressLocality: 'Nairobi',
-                  addressRegion: 'Nairobi',
-                  postalCode: '00100',
-                  addressCountry: 'KE'
-                }
-              }
-            },
-            {
-              '@type': 'CourseInstance',
-              courseMode: 'blended',
-              startDate: `${new Date().getFullYear()}-05-15`,
-              endDate: course.includes('Diploma')
-                ? `${new Date().getFullYear() + 2}-05-15`
-                : `${new Date().getFullYear() + 1}-05-15`,
-              courseWorkload: course.includes('Diploma') ? 'P2Y' : 'P6M',
-              location: {
-                '@type': 'Place',
-                name: 'Africa Digital Media Institute',
-                address: {
-                  '@type': 'PostalAddress',
-                  streetAddress: '25 Caxton House 3rd Floor, Kenyatta Avenue',
-                  postOfficeBoxNumber: 'P.O. Box 35447',
-                  addressLocality: 'Nairobi',
-                  addressRegion: 'Nairobi',
-                  postalCode: '00100',
-                  addressCountry: 'KE'
-                }
-              }
-            },
-            {
-              '@type': 'CourseInstance',
-              courseMode: 'blended',
-              startDate: `${new Date().getFullYear()}-09-15`,
-              endDate: course.includes('Diploma')
-                ? `${new Date().getFullYear() + 2}-09-15`
-                : `${new Date().getFullYear() + 1}-09-15`,
-              courseWorkload: course.includes('Diploma') ? 'P2Y' : 'P6M',
-              location: {
-                '@type': 'Place',
-                name: 'Africa Digital Media Institute',
-                address: {
-                  '@type': 'PostalAddress',
-                  streetAddress: '25 Caxton House 3rd Floor, Kenyatta Avenue',
-                  postOfficeBoxNumber: 'P.O. Box 35447',
-                  addressLocality: 'Nairobi',
-                  addressRegion: 'Nairobi',
-                  postalCode: '00100',
-                  addressCountry: 'KE'
-                }
-              }
-            }
-          ]
+          educationalCredentialAwarded: course.includes('Diploma') ? 'Diploma' : 'Certificate',
+          duration: course.includes('Diploma') ? 'P2Y' : 'P6M'
         }))
       }
     }),
