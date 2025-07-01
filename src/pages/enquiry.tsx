@@ -6,6 +6,7 @@ import { EnquiryForm } from '@/components/forms'
 import { Title } from '@/components/ui'
 import { PageSEO } from '@/components/shared/v3'
 import { useIsMobile } from '@/hooks/useIsMobile'
+import { InstitutionalFAQSchema } from '@/components/seo/InstitutionalFAQSchema'
 
 import ImageEnquiry1 from '@/assets/images/enquiry-1.png'
 import ImageEnquiry2 from '@/assets/images/enquiry-2.png'
@@ -30,6 +31,9 @@ export default function EnquiryPage() {
         description="Enquire about ADMI courses and programs. Get detailed information about our creative media and technology training programs. Contact our admissions team for personalized guidance."
         keywords="ADMI enquiry, course information, admissions enquiry, program details, course consultation, apply to ADMI, student enquiry, course guidance"
       />
+
+      {/* Admissions FAQ Schema for enquiry page */}
+      <InstitutionalFAQSchema faqType="admissions" />
       <div className="min-h-[100vh] w-full bg-[#002A23] pt-16">
         {/* BACKGROUND IMAGES */}
         <div className="absolute left-[54%] top-[24vh] h-fit w-full -translate-x-1/2 transform">

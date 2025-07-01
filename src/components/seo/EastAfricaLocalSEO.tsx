@@ -2,6 +2,7 @@ import React from 'react'
 import { MultiCityLocalBusinessSchema } from '@/components/shared/StructuredData'
 import { EducationalOrganizationSchema } from './EducationalOrganizationSchema'
 import { CourseIntakeEventSchema } from './CourseIntakeEventSchema'
+import { InstitutionalFAQSchema } from './InstitutionalFAQSchema'
 
 // East African cities data for local SEO
 const EAST_AFRICAN_CITIES = [
@@ -101,6 +102,9 @@ export function EastAfricaLocalSEO({
 
       {/* Course Intake Events Schema */}
       <CourseIntakeEventSchema targetIntake="all" />
+
+      {/* Institutional FAQ Schema */}
+      <InstitutionalFAQSchema faqType="general" />
 
       {/* Local Business Schema for East African cities */}
       {citiesToRender.map((cityData) => (
