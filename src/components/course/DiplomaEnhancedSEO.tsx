@@ -4,6 +4,7 @@ import { DiplomaSchema, CMSFAQSchema } from '@/components/shared/StructuredData'
 import { generateDiplomaKeywords } from '@/utils/diploma-seo-config'
 import { generateFAQSchema } from '@/data/diploma-faqs'
 import { ICourseFAQ, IFAQResponse } from '@/types'
+import { CourseIntakeEventSchema } from '@/components/seo/CourseIntakeEventSchema'
 
 interface DiplomaEnhancedSEOProps {
   course: any
@@ -107,6 +108,9 @@ export function DiplomaEnhancedSEO({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
         />
       )}
+
+      {/* Course Intake Events Schema */}
+      <CourseIntakeEventSchema courseName={course.name} courseType="diploma" targetIntake="all" />
 
       {/* Enhanced meta tags for diploma programs */}
       <Script
