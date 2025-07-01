@@ -6,6 +6,7 @@ import { MainLayout } from '@/layouts/v3/MainLayout'
 import { AnnouncementCard, NewsItemCard } from '@/components/cards'
 import { SearchDropdown } from '@/components/ui'
 import { IContentfulEntry } from '@/types'
+import { InstitutionalFAQSchema } from '@/components/seo/InstitutionalFAQSchema'
 
 import ImageNews from '@/assets/images/featured-news.svg'
 import IconBgImageYellow from '@/assets/icons/ellipse-yellow.svg'
@@ -25,6 +26,9 @@ export default function ResourcesPage({
         description="Access valuable resources for creative media and technology professionals. Industry insights, career guidance, tutorials, and educational content from ADMI experts and industry leaders."
         keywords="creative media resources, digital media tutorials, industry insights, career guidance, educational content, ADMI resources, professional development, creative industry news"
       />
+
+      {/* Academic FAQ Schema for resources page */}
+      <InstitutionalFAQSchema faqType="academic" />
       <Box className="w-full overflow-x-hidden">
         <div className="h-[16em] w-full bg-[#002A23]">
           {/* BACKGROUND IMAGES */}

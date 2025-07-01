@@ -2,6 +2,7 @@ import { Box, Tabs } from '@mantine/core'
 import { PageSEO } from '@/components/shared/v3'
 import { MainLayout } from '@/layouts/v3/MainLayout'
 import { AnnouncementCard, EmptyCard, EventAnnouncementCard, NewsItemCard } from '@/components/cards'
+import { InstitutionalFAQSchema } from '@/components/seo/InstitutionalFAQSchema'
 
 import ImageNews from '@/assets/images/featured-news.svg'
 import IconDiary from '@/assets/icons/Diary'
@@ -16,6 +17,9 @@ export default function NewsEventsLandingPage({ news, events, featuredNews, feat
         description="Stay updated with the latest news and events from ADMI. Discover industry insights, campus updates, student achievements, and upcoming events in creative media and technology."
         keywords="ADMI news, ADMI events, campus news, student achievements, industry updates, creative media news, technology events, educational events, ADMI announcements"
       />
+
+      {/* General FAQ Schema for news and events page */}
+      <InstitutionalFAQSchema faqType="general" />
       <Box className="w-full">
         <Tabs defaultValue="news">
           <Tabs.List w={'100%'} bg={'#002A23'}>

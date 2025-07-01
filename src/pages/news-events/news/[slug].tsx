@@ -4,7 +4,7 @@ import { Box, Card, Tabs } from '@mantine/core'
 
 import { MainLayout } from '@/layouts/v3/MainLayout'
 import { PageSEO, SocialShare } from '@/components/shared/v3'
-import { ArticleSchema } from '@/components/shared/StructuredData'
+import { BlogPostSchema } from '@/components/seo/ArticleSchema'
 import { EmptyCard } from '@/components/cards'
 import { Paragraph, ParagraphContentful } from '@/components/ui'
 
@@ -39,20 +39,15 @@ export default function NewsArticlePage({ article, slug }: { article: any; slug:
           url={`/news-events/news/${slug}`}
           image={`https://${article.coverImage?.fields.file.url}`}
         />
-        <ArticleSchema
-          headline={article.title}
+        <BlogPostSchema
+          title={article.title}
           description={article.summary || article.excerpt || 'Latest news from Africa Digital Media Institute'}
           image={`https:${article.coverImage?.fields.file.url}`}
-          author="ADMI Editorial Team"
-          datePublished={article.publishDate || article.sys?.createdAt}
-          dateModified={article.sys?.updatedAt}
-          publisher={{
-            name: 'Africa Digital Media Institute',
-            logo: 'https://admi.africa/logo.png'
-          }}
+          publishedDate={article.publishDate || article.sys?.createdAt}
+          modifiedDate={article.sys?.updatedAt}
           url={`https://admi.africa/news-events/news/${slug}`}
-          articleSection="News"
-          keywords={[
+          category="News"
+          tags={[
             'ADMI',
             'Africa Digital Media Institute',
             'news',
