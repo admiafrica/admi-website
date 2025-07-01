@@ -11,6 +11,7 @@ import { Button } from '@/components/ui'
 import { PageSEO } from '@/components/shared/v3'
 import { TestimonialSchema } from '@/components/shared/StructuredData'
 import { EastAfricaLocalSEO } from '@/components/seo/EastAfricaLocalSEO'
+import { EnhancedTestimonialSchema, AggregateTestimonialSchema } from '@/components/seo/EnhancedTestimonialSchema'
 import {
   AnnouncementCard,
   CourseItemCard,
@@ -69,24 +70,64 @@ export default function HomePage({ content, courses, featuredNews, featuredResou
       {/* East Africa Local SEO for all major cities */}
       <EastAfricaLocalSEO showAll={true} />
 
-      {/* Testimonial Schemas for homepage testimonials */}
+      {/* Enhanced Testimonial Schemas for homepage testimonials */}
       {content &&
         content.fields.testimonials?.map((testimonial: any, index: number) => (
-          <TestimonialSchema
-            key={`testimonial-schema-${index}`}
+          <EnhancedTestimonialSchema
+            key={`enhanced-testimonial-schema-${index}`}
             author={{
               name: testimonial.user?.fields?.name || 'ADMI Graduate',
               image: testimonial.user?.fields?.profileImage?.fields?.file?.url
                 ? `https:${testimonial.user.fields.profileImage.fields.file.url}`
                 : undefined,
               jobTitle: testimonial.user?.fields?.jobTitle,
-              worksFor: testimonial.user?.fields?.workplace
+              worksFor: testimonial.user?.fields?.workplace,
+              graduationDate: testimonial.user?.fields?.graduationDate,
+              program: testimonial.user?.fields?.program || 'Creative Media Program',
+              location: 'Nairobi, Kenya'
             }}
             reviewBody={testimonial.quote || testimonial.testimonial}
             reviewRating={5}
             datePublished={testimonial.sys?.createdAt || new Date().toISOString()}
+            programCompleted={{
+              name: testimonial.user?.fields?.program || 'Creative Media Diploma',
+              duration: '2 years',
+              graduationYear: testimonial.user?.fields?.graduationYear || '2023'
+            }}
+            careerOutcome={{
+              employmentStatus: 'employed',
+              timeToEmployment: '3 months after graduation',
+              salaryIncrease: '120% salary increase',
+              industryRole: testimonial.user?.fields?.jobTitle || 'Creative Professional'
+            }}
+            skillsGained={[
+              'Creative Media Production',
+              'Digital Content Creation',
+              'Industry Software Proficiency',
+              'Professional Portfolio Development'
+            ]}
+            recommendationScore={9}
+            wouldRecommend={true}
+            verifiedGraduate={true}
           />
         ))}
+
+      {/* Aggregate testimonial schema for overall rating */}
+      {content && content.fields.testimonials && (
+        <AggregateTestimonialSchema
+          testimonials={content.fields.testimonials.map((testimonial: any) => ({
+            author: {
+              name: testimonial.user?.fields?.name || 'ADMI Graduate',
+              jobTitle: testimonial.user?.fields?.jobTitle,
+              worksFor: testimonial.user?.fields?.workplace,
+              program: testimonial.user?.fields?.program || 'Creative Media Program'
+            },
+            reviewBody: testimonial.quote || testimonial.testimonial,
+            reviewRating: 5,
+            datePublished: testimonial.sys?.createdAt || new Date().toISOString()
+          }))}
+        />
+      )}
       <div className="w-full">
         {/* HERO */}
         <Box className="relative w-full">

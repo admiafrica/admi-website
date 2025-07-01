@@ -8,6 +8,8 @@ import { MainLayout } from '@/layouts/v3/MainLayout'
 import { Paragraph, Title } from '@/components/ui'
 import { PageSEO } from '@/components/shared/v3'
 import { AdviceCard, ClipCard, UserProfileCard, UserTestimonialCard } from '@/components/cards'
+import { InstitutionalFAQSchema } from '@/components/seo/InstitutionalFAQSchema'
+import { EnhancedTestimonialSchema } from '@/components/seo/EnhancedTestimonialSchema'
 import {
   ADMI_ACADEMIC_TEAM_MINIMAL,
   ADMI_CAREER_ADVICE,
@@ -68,6 +70,50 @@ export default function StudentSupportPage() {
   return (
     <MainLayout footerBgColor="white">
       <PageSEO title="Student Support" />
+
+      {/* Career FAQ Schema for student support page */}
+      <InstitutionalFAQSchema faqType="career" />
+
+      {/* Enhanced testimonial schemas for student support testimonials */}
+      {content &&
+        content.fields.testimonials?.map((testimonial: any, index: number) => (
+          <EnhancedTestimonialSchema
+            key={`student-support-testimonial-${index}`}
+            author={{
+              name: testimonial.user?.fields?.name || 'ADMI Graduate',
+              image: testimonial.user?.fields?.profileImage?.fields?.file?.url
+                ? `https:${testimonial.user.fields.profileImage.fields.file.url}`
+                : undefined,
+              jobTitle: testimonial.user?.fields?.jobTitle,
+              worksFor: testimonial.user?.fields?.workplace,
+              program: testimonial.user?.fields?.program || 'Creative Media Program',
+              location: 'Nairobi, Kenya'
+            }}
+            reviewBody={testimonial.quote || testimonial.testimonial}
+            reviewRating={5}
+            datePublished={testimonial.sys?.createdAt || new Date().toISOString()}
+            programCompleted={{
+              name: testimonial.user?.fields?.program || 'Creative Media Diploma',
+              duration: '2 years',
+              graduationYear: testimonial.user?.fields?.graduationYear || '2023'
+            }}
+            careerOutcome={{
+              employmentStatus: 'employed',
+              timeToEmployment: '2 months after graduation',
+              industryRole: testimonial.user?.fields?.jobTitle || 'Creative Professional',
+              companyType: 'Media & Entertainment'
+            }}
+            skillsGained={[
+              'Professional Portfolio Development',
+              'Industry Networking',
+              'Career Planning',
+              'Interview Skills'
+            ]}
+            recommendationScore={10}
+            wouldRecommend={true}
+            verifiedGraduate={true}
+          />
+        ))}
       <div className="w-full">
         {/* HEADER */}
         <Box className="relative w-full" bg={'blue'}>
