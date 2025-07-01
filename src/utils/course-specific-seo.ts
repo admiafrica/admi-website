@@ -9,61 +9,95 @@ export interface CourseSpecificSEO {
   competitorKeywords: string[]
 }
 
-// Music Production Diploma SEO
+// Music Production Diploma SEO - ENHANCED FOR BETTER RANKINGS
 export const MUSIC_PRODUCTION_SEO: CourseSpecificSEO = {
   keywords: [
-    'music production diploma Kenya',
-    'music technology course Nairobi',
-    'audio engineering diploma Africa',
-    'music production school Kenya',
-    'sound engineering course Nairobi',
-    'music producer training Kenya',
-    'audio production diploma East Africa',
-    'music technology Kenya',
-    'recording studio course Nairobi',
-    'music production certification Kenya'
+    'music production courses in kenya',
+    'music production kenya',
+    'music production school kenya',
+    'music production schools in kenya',
+    'music production schools in nairobi',
+    'best music production school in kenya nairobi',
+    'sound engineering courses in kenya',
+    'sound engineering schools in kenya',
+    'audio engineering course kenya',
+    'music school in kenya',
+    'music production course nairobi',
+    'music producer training kenya',
+    'audio production diploma kenya',
+    'recording studio course kenya',
+    'music technology course kenya',
+    'music production certification kenya',
+    'music production diploma kenya',
+    'sound engineering certificate course',
+    'music production courses near me',
+    'sound production school near me'
   ],
   metaDescription:
-    'Music Production & Technology Diploma in Kenya - 2-year program at ADMI Nairobi. Learn music production, audio engineering, music technology, mixing & mastering. Industry partnerships with top Kenyan studios & radio stations. 85% employment rate.',
+    'Music Production Courses in Kenya - Premier 2-year diploma at ADMI, the leading creative media training institution in East Africa. Learn music production, sound engineering, audio engineering, mixing & mastering. State-of-the-art recording studios in Nairobi. Industry partnerships with top Kenyan studios & radio stations. 85% employment rate. Apply now!',
   localKeywords: [
     'music production Nairobi',
+    'music production Kenya',
     'audio engineering Kenya',
+    'sound engineering Kenya',
     'music producer Kenya',
     'sound engineering Nairobi',
     'recording studio Kenya',
     'music school Nairobi',
+    'music school Kenya',
     'audio production Kenya',
     'music technology Nairobi',
-    'music technology Kenya'
+    'music technology Kenya',
+    'music studio Kenya',
+    'recording studio Nairobi',
+    'music courses Kenya',
+    'audio courses Kenya'
   ],
   industryKeywords: [
-    'Afrobeats production',
-    'Amapiano production',
-    'Gengetone production',
+    'Afrobeats production Kenya',
+    'Amapiano production Kenya',
+    'Gengetone production course',
     'Bongo Flava production',
     'African music production',
-    'Kenyan music industry',
-    'East African music',
-    'African record labels',
-    'Kenyan radio stations',
-    'African music streaming'
+    'Kenyan music industry training',
+    'East African music production',
+    'African record labels internship',
+    'Kenyan radio stations partnership',
+    'music streaming production',
+    'music business Kenya',
+    'music marketing Kenya',
+    'recording industry Kenya',
+    'music copyright Kenya',
+    'live sound engineering Kenya'
   ],
   careerKeywords: [
-    'music producer salary Kenya',
+    'music producer jobs Kenya',
     'audio engineer jobs Kenya',
-    'sound engineer career Kenya',
+    'sound engineer jobs Kenya',
     'music production jobs Nairobi',
-    'recording engineer Kenya',
-    'live sound engineer Kenya',
+    'music production jobs Kenya',
+    'recording engineer jobs Kenya',
+    'live sound engineer jobs Kenya',
     'music technology jobs Kenya',
-    'audio post production Kenya'
+    'audio post production jobs Kenya',
+    'radio station jobs Kenya',
+    'music studio jobs Kenya',
+    'sound engineer career Kenya',
+    'music producer salary Kenya',
+    'audio engineer salary Kenya',
+    'freelance music producer Kenya'
   ],
   competitorKeywords: [
     'best music production school Kenya',
+    'best music production school in kenya nairobi',
+    'top music schools Kenya',
     'top audio engineering course Kenya',
     'music production diploma vs certificate',
     'ADMI vs other music schools Kenya',
-    'professional music training Kenya'
+    'professional music training Kenya',
+    'accredited music school Kenya',
+    'music production course comparison Kenya',
+    'affordable music school Kenya'
   ]
 }
 
@@ -82,7 +116,7 @@ export const FILM_TV_PRODUCTION_SEO: CourseSpecificSEO = {
     'video editing course Kenya'
   ],
   metaDescription:
-    'Film & Television Production Diploma at top film production school in Nairobi, Kenya. 2-year program at ADMI. Learn filmmaking, cinematography, editing & directing. Partnerships with Kenyan TV stations & production companies. 85% employment rate.',
+    'Film & Television Production Diploma at ADMI - the leading creative media training institution in East Africa. 2-year program in Nairobi, Kenya. Learn filmmaking, cinematography, editing & directing. Partnerships with Kenyan TV stations & production companies. 85% employment rate.',
   localKeywords: [
     'film production Nairobi',
     'video production Kenya',
@@ -173,7 +207,7 @@ export const DIGITAL_MARKETING_SEO: CourseSpecificSEO = {
     'social media marketing course Kenya'
   ],
   metaDescription:
-    'Digital Marketing Diploma in Kenya - Top-rated 2-year program at ADMI. Learn SEO, social media, Google Ads, analytics & content marketing. Flexible payment plans from KES 60,000/semester. Industry certifications included. Apply now!',
+    'Digital Marketing Diploma in Kenya - Premier 2-year program at ADMI, the leading creative media & technology training institution in East Africa. Learn SEO, social media, Google Ads, analytics & content marketing. Flexible payment plans from KES 60,000/semester. Industry certifications included. Apply now!',
   localKeywords: [
     'digital marketing Nairobi',
     'digital marketing Kenya',
@@ -230,7 +264,7 @@ export const GRAPHIC_DESIGN_SEO: CourseSpecificSEO = {
     'graphic design course fees Kenya'
   ],
   metaDescription:
-    'Diploma in Graphic Design Kenya - 2-year program at ADMI starting from KES 50,000/semester. Learn Adobe Creative Suite, UI/UX, branding & portfolio development. Meet diploma requirements: KCSE C- or equivalent. Apply for 2025 intake!',
+    'Diploma in Graphic Design Kenya - 2-year program at ADMI, the premier creative media training institution in East Africa. Starting from KES 50,000/semester. Learn Adobe Creative Suite, UI/UX, branding & portfolio development. Meet diploma requirements: KCSE C- or equivalent. Apply for 2025 intake!',
   localKeywords: [
     'graphic designer Kenya',
     'graphic design Nairobi',

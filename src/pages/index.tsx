@@ -9,9 +9,10 @@ import { AnimatedWordDisplay, Paragraph, SearchDropdown, Title } from '@/compone
 import { MainLayout } from '@/layouts/v3/MainLayout'
 import { Button } from '@/components/ui'
 import { PageSEO } from '@/components/shared/v3'
-import { TestimonialSchema } from '@/components/shared/StructuredData'
+import { CMSFAQSchema } from '@/components/shared/StructuredData'
 import { EastAfricaLocalSEO } from '@/components/seo/EastAfricaLocalSEO'
 import { EnhancedTestimonialSchema, AggregateTestimonialSchema } from '@/components/seo/EnhancedTestimonialSchema'
+import { MusicProductionSEOBoost } from '@/components/seo/MusicProductionSEOBoost'
 import {
   AnnouncementCard,
   CourseItemCard,
@@ -61,10 +62,9 @@ export default function HomePage({ content, courses, featuredNews, featuredResou
   return (
     <MainLayout footerBgColor="#E6F608">
       <PageSEO
-        title="Home"
-        description="Africa Digital Media Institute (ADMI) based in Nairobi, Kenya, is Eastern Africa's premier creative
-                and technology training institution. 🎓 Apply now for 2025 intake! Scholarship opportunities available."
-        keywords="apply now, 2025 intake, scholarship opportunities, payment plans, admission requirements, career change program, digital media courses Africa, creative education Kenya"
+        title="ADMI - Africa Digital Media Institute | Leading Creative Media & Technology Training in East Africa"
+        description="ADMI (Africa Digital Media Institute) - The premier creative media and technology training institution in East Africa. Digital Marketing, Graphic Design, Film Production, Music Production & Sound Engineering courses in Nairobi, Kenya. Fee structure from KES 50,000/semester. Apply for 2025 intake!"
+        keywords="ADMI, Africa Digital Media Institute, ADMI Kenya, ADMI Nairobi, creative school Kenya, digital marketing course Kenya, graphic design diploma Kenya, film school Kenya, music production courses in kenya, music production kenya, sound engineering courses in kenya, ADMI fees, ADMI courses, best creative school Kenya"
       />
 
       {/* East Africa Local SEO for all major cities */}
@@ -128,6 +128,36 @@ export default function HomePage({ content, courses, featuredNews, featuredResou
           }))}
         />
       )}
+
+      {/* FAQ Schema for "What is ADMI?" queries */}
+      <CMSFAQSchema
+        faqs={[
+          {
+            question: 'What does ADMI stand for?',
+            answer:
+              "ADMI stands for Africa Digital Media Institute. We are Kenya's premier creative and technology training institution located in Nairobi."
+          },
+          {
+            question: 'What is ADMI?',
+            answer:
+              'ADMI (Africa Digital Media Institute) is the premier and leading training institution in creative media and technology in the region, offering diploma and certificate courses in Digital Marketing, Graphic Design, Film Production, Animation, Music Production, and Photography.'
+          },
+          {
+            question: 'What courses does ADMI offer?',
+            answer:
+              'ADMI offers diploma and certificate courses in Digital Marketing, Graphic Design, Film & TV Production, Music Production & Sound Engineering, Animation, and Photography with flexible payment plans and industry-standard equipment.'
+          },
+          {
+            question: 'How much are ADMI fees?',
+            answer:
+              'ADMI fees range from KES 50,000 to KES 75,000 per semester for diploma courses, and KES 80,000 total for certificate programs. Flexible payment plans and scholarships available.'
+          }
+        ]}
+      />
+
+      {/* Music Production SEO Boost - Hidden schema and content for better rankings */}
+      <MusicProductionSEOBoost />
+
       <div className="w-full">
         {/* HERO */}
         <Box className="relative w-full">
@@ -181,8 +211,9 @@ export default function HomePage({ content, courses, featuredNews, featuredResou
                 </Box>
               </Box>
               <Paragraph className="py-6 text-white">
-                Africa Digital Media Institute (ADMI) based in Nairobi, Kenya, is Eastern Africa&apos;s premier creative
-                and technology training institution.
+                <strong>ADMI stands for Africa Digital Media Institute</strong> - based in Nairobi, Kenya, we are the
+                premier and leading training institution in creative media and technology in the region, offering
+                diploma and certificate courses.
               </Paragraph>
 
               <SearchDropdown
@@ -241,6 +272,61 @@ export default function HomePage({ content, courses, featuredNews, featuredResou
                 above-market placement rates.
               </Paragraph>
             </div>
+          </Box>
+        </Box>
+        {/* WHAT IS ADMI FAQ */}
+        <Box className="w-full py-16" bg={'white'}>
+          <Box className="mx-auto w-full max-w-screen-xl px-4 2xl:px-0">
+            <Box className="mb-12 text-center">
+              <Title label="What is ADMI?" color="black" size="32px" />
+              <Paragraph fontFamily="font-nexa" className="mx-auto max-w-3xl pt-4">
+                Common questions about Africa Digital Media Institute answered
+              </Paragraph>
+            </Box>
+
+            <div className="mx-auto grid max-w-4xl gap-8 md:grid-cols-2">
+              <Box className="rounded-lg bg-gray-50 p-6">
+                <Title label="What does ADMI stand for?" color="black" size="18px" className="mb-3" />
+                <Paragraph>
+                  ADMI stands for Africa Digital Media Institute. We are the premier and leading training institution in
+                  creative media and technology in the region, located in Nairobi, Kenya.
+                </Paragraph>
+              </Box>
+
+              <Box className="rounded-lg bg-gray-50 p-6">
+                <Title label="What courses does ADMI offer?" color="black" size="18px" className="mb-3" />
+                <Paragraph>
+                  ADMI offers diploma and certificate courses in Digital Marketing, Graphic Design, Film & TV
+                  Production, Music Production & Sound Engineering, Animation, and Photography with state-of-the-art
+                  facilities.
+                </Paragraph>
+              </Box>
+
+              <Box className="rounded-lg bg-gray-50 p-6">
+                <Title label="How much are ADMI fees?" color="black" size="18px" className="mb-3" />
+                <Paragraph>
+                  ADMI fees range from KES 50,000 to KES 75,000 per semester for diploma courses, and KES 80,000 total
+                  for certificate programs. Flexible payment plans available.
+                </Paragraph>
+              </Box>
+
+              <Box className="rounded-lg bg-gray-50 p-6">
+                <Title label="Where is ADMI located?" color="black" size="18px" className="mb-3" />
+                <Paragraph>
+                  ADMI is located in Nairobi&apos;s Central Business District, right next to the GPO. Our campus
+                  features state-of-the-art facilities and equipment.
+                </Paragraph>
+              </Box>
+            </div>
+
+            <Box className="mt-8 text-center">
+              <Button
+                size="lg"
+                backgroundColor="admiRed"
+                label="View All Courses & Fees"
+                onClick={() => router.push('/student-support#fees')}
+              />
+            </Box>
           </Box>
         </Box>
         {/* IMPACT */}
