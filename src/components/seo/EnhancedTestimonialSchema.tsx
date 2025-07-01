@@ -51,12 +51,10 @@ export function EnhancedTestimonialSchema({
   verifiedGraduate = true
 }: EnhancedTestimonialSchemaProps) {
   const currentDate = new Date().toISOString()
-  
   const structuredData = {
     '@context': 'https://schema.org',
     '@type': 'Review',
     '@id': `https://admi.africa/testimonials/${author.name.replace(/\s+/g, '-').toLowerCase()}`,
-    
     // Review content
     reviewBody: reviewBody,
     reviewRating: {
@@ -65,7 +63,7 @@ export function EnhancedTestimonialSchema({
       bestRating: 5,
       worstRating: 1
     },
-    
+
     // Author information (enhanced)
     author: {
       '@type': 'Person',
@@ -168,21 +166,33 @@ export function EnhancedTestimonialSchema({
           name: 'Career Outcomes',
           description: `Graduate achieved ${careerOutcome.employmentStatus} status${careerOutcome.timeToEmployment ? ` within ${careerOutcome.timeToEmployment}` : ''}`,
           additionalProperty: [
-            ...(careerOutcome.salaryIncrease ? [{
-              '@type': 'PropertyValue',
-              name: 'Salary Improvement',
-              value: careerOutcome.salaryIncrease
-            }] : []),
-            ...(careerOutcome.industryRole ? [{
-              '@type': 'PropertyValue',
-              name: 'Industry Role',
-              value: careerOutcome.industryRole
-            }] : []),
-            ...(careerOutcome.companyType ? [{
-              '@type': 'PropertyValue',
-              name: 'Company Type',
-              value: careerOutcome.companyType
-            }] : [])
+            ...(careerOutcome.salaryIncrease
+              ? [
+                  {
+                    '@type': 'PropertyValue',
+                    name: 'Salary Improvement',
+                    value: careerOutcome.salaryIncrease
+                  }
+                ]
+              : []),
+            ...(careerOutcome.industryRole
+              ? [
+                  {
+                    '@type': 'PropertyValue',
+                    name: 'Industry Role',
+                    value: careerOutcome.industryRole
+                  }
+                ]
+              : []),
+            ...(careerOutcome.companyType
+              ? [
+                  {
+                    '@type': 'PropertyValue',
+                    name: 'Company Type',
+                    value: careerOutcome.companyType
+                  }
+                ]
+              : [])
           ]
         }
       ]
@@ -213,7 +223,7 @@ export function EnhancedTestimonialSchema({
 
     // Industry context
     industry: 'Creative Media and Technology Education',
-    
+
     // Content language
     inLanguage: 'en-KE'
   }

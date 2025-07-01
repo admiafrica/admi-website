@@ -47,7 +47,6 @@ export function ArticleSchema({
     headline: title,
     description: description,
     ...(content && { articleBody: content }),
-    
     // Author information
     author: {
       '@type': 'Person',
@@ -186,17 +185,9 @@ export function ArticleSchema({
     ],
 
     // Content accessibility
-    accessibilityFeature: [
-      'structuredNavigation',
-      'readingOrder',
-      'alternativeText'
-    ],
+    accessibilityFeature: ['structuredNavigation', 'readingOrder', 'alternativeText'],
     accessibilityHazard: 'none',
-    accessibilityControl: [
-      'fullKeyboardControl',
-      'fullMouseControl',
-      'fullTouchControl'
-    ],
+    accessibilityControl: ['fullKeyboardControl', 'fullMouseControl', 'fullTouchControl'],
 
     // Content format
     encodingFormat: 'text/html',
