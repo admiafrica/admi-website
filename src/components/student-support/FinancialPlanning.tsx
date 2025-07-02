@@ -1,4 +1,4 @@
-import { Anchor, Box, Table } from '@mantine/core'
+import { Anchor, Box, Accordion } from '@mantine/core'
 
 import { Paragraph, Title } from '../ui'
 import { CollapsibleContent } from '../shared/v3'
@@ -6,72 +6,26 @@ import { useCallback, useEffect, useState } from 'react'
 import { IContentfulEntry } from '@/types'
 import { CMSFAQSchema } from '@/components/shared/StructuredData'
 
-// SEO-optimized fee structure data
-const COURSE_FEES = [
-  {
-    program: 'Digital Marketing Diploma',
-    duration: '2 years',
-    totalFee: 'KES 240,000',
-    perYear: 'KES 120,000',
-    perSemester: 'KES 60,000'
-  },
-  {
-    program: 'Graphic Design Diploma',
-    duration: '2 years',
-    totalFee: 'KES 200,000',
-    perYear: 'KES 100,000',
-    perSemester: 'KES 50,000'
-  },
-  {
-    program: 'Film & TV Production Diploma',
-    duration: '2 years',
-    totalFee: 'KES 300,000',
-    perYear: 'KES 150,000',
-    perSemester: 'KES 75,000'
-  },
-  {
-    program: 'Animation & Motion Graphics Diploma',
-    duration: '2 years',
-    totalFee: 'KES 280,000',
-    perYear: 'KES 140,000',
-    perSemester: 'KES 70,000'
-  },
-  {
-    program: 'Music Production Diploma',
-    duration: '2 years',
-    totalFee: 'KES 240,000',
-    perYear: 'KES 120,000',
-    perSemester: 'KES 60,000'
-  },
-  {
-    program: 'Photography Certificate',
-    duration: '6 months',
-    totalFee: 'KES 80,000',
-    perYear: 'N/A',
-    perSemester: 'KES 80,000'
-  }
-]
-
 const FEE_FAQS = [
   {
     question: 'What is the ADMI fee structure for 2025?',
     answer:
-      'ADMI fees range from KES 50,000 to KES 75,000 per semester for diploma programs. Certificate courses cost KES 80,000 total. All fees include access to industry-standard equipment and software.'
+      'ADMI diploma programs have varying durations (4-5 semesters) and different fee structures for East African vs International students. Download the official fee documents below for complete and up-to-date semester-wise costs.'
   },
   {
-    question: 'How much does the Digital Marketing course cost at ADMI?',
+    question: 'How long are ADMI diploma programs?',
     answer:
-      'The Digital Marketing Diploma at ADMI costs KES 60,000 per semester (KES 120,000 per year, KES 240,000 total for the 2-year program). Flexible payment plans are available.'
+      'ADMI diploma programs vary in duration from 4-5 semesters depending on the specific program. Please download the official fee structure documents for detailed program duration and semester-wise costs.'
+  },
+  {
+    question: 'Are there different fees for East African and International students?',
+    answer:
+      'Yes, ADMI has separate fee structures for East African students (Kenya, Uganda, Tanzania, Rwanda, Burundi) and International students. Download the respective fee documents for detailed semester-wise costs and payment options.'
   },
   {
     question: 'Does ADMI offer payment plans?',
     answer:
       'Yes, ADMI offers flexible payment options including full payment (with 5% discount), semester payments, and monthly installment plans spread over 10 months.'
-  },
-  {
-    question: 'Are there scholarships available at ADMI?',
-    answer:
-      'ADMI partners with organizations like Sanara to offer sponsored programs. We also have merit-based scholarships. Contact our admissions office for current opportunities.'
   },
   {
     question: 'What is included in ADMI course fees?',
@@ -134,52 +88,33 @@ export default function FinancialPlanning() {
         title="ADMI Fee Structure 2025"
         content={
           <Box>
-            {/* SEO-optimized fee table */}
-            <Title label="Course Fees at a Glance" color="black" size="20px" className="mb-4" />
-            <Paragraph className="mb-6">
-              View ADMI fee structure for all diploma and certificate programs. Our competitive fees include access to
-              industry-standard equipment, software licenses, and mentorship programs.
+            {/* Downloadable fee structures */}
+            <Title label="Official Fee Structure Documents" color="black" size="18px" className="mb-4" />
+            <Paragraph className="mb-6 text-gray-700">
+              Download the complete and official fee structure documents below. These PDFs contain detailed
+              semester-wise fees, payment options, and terms for East African and International students. Course
+              durations vary from 4-5 semesters depending on the program, so please refer to these updated documents for
+              accurate information.
             </Paragraph>
 
-            <div className="mb-8 overflow-x-auto">
-              <Table striped highlightOnHover>
-                <thead>
-                  <tr>
-                    <th>Program</th>
-                    <th>Duration</th>
-                    <th>Total Fee</th>
-                    <th>Per Year</th>
-                    <th>Per Semester</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {COURSE_FEES.map((course) => (
-                    <tr key={course.program}>
-                      <td className="font-semibold">{course.program}</td>
-                      <td>{course.duration}</td>
-                      <td className="font-bold text-blue-600">{course.totalFee}</td>
-                      <td>{course.perYear}</td>
-                      <td>{course.perSemester}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </Table>
-            </div>
-
-            {/* Downloadable fee structures */}
-            <Title label="Detailed Fee Documents" color="black" size="18px" className="mb-4 mt-8" />
-
             <div className="mb-6">
-              <Title label="Kenyan & East African Students" color="black" size="16px" />
+              <Title
+                label="East African Students (Kenya, Uganda, Tanzania, Rwanda, Burundi)"
+                color="black"
+                size="16px"
+              />
               <ul>
                 {kenyanFees.map((fee) => (
                   <li key={fee.fields.name}>
                     <Box
-                      className="my-4 cursor-pointer"
+                      className="my-4 cursor-pointer rounded-lg border-l-4 border-admiDarkOrange bg-gray-50 p-4 hover:bg-gray-100"
                       onClick={() => handleDocumentDownload(fee.fields.document.fields.file)}
                     >
                       <Paragraph className="text-admiDarkOrange" fontWeight={900}>
-                        {fee.fields.displayName}
+                        📄 {fee.fields.displayName}
+                      </Paragraph>
+                      <Paragraph className="text-sm text-gray-600">
+                        Click to download complete fee structure with semester breakdown
                       </Paragraph>
                     </Box>
                   </li>
@@ -193,11 +128,14 @@ export default function FinancialPlanning() {
                 {intlFees.map((fee) => (
                   <li key={fee.fields.name}>
                     <Box
-                      className="my-4 cursor-pointer"
+                      className="my-4 cursor-pointer rounded-lg border-l-4 border-admiDarkOrange bg-gray-50 p-4 hover:bg-gray-100"
                       onClick={() => handleDocumentDownload(fee.fields.document.fields.file)}
                     >
                       <Paragraph className="text-admiDarkOrange" fontWeight={900}>
-                        {fee.fields.displayName}
+                        📄 {fee.fields.displayName}
+                      </Paragraph>
+                      <Paragraph className="text-sm text-gray-600">
+                        Click to download complete fee structure with semester breakdown
                       </Paragraph>
                     </Box>
                   </li>
@@ -334,16 +272,77 @@ export default function FinancialPlanning() {
       />
 
       {/* FAQ Section for SEO */}
-      <Box className="mt-8 rounded-lg bg-gray-50 p-6">
-        <Title label="Frequently Asked Questions About ADMI Fees" color="black" size="20px" className="mb-4" />
-        {FEE_FAQS.map((faq, index) => (
-          <Box key={index} className="mb-4">
-            <Paragraph fontWeight={900} className="mb-2">
-              {faq.question}
-            </Paragraph>
-            <Paragraph>{faq.answer}</Paragraph>
-          </Box>
-        ))}
+      <Box className="mt-8">
+        <Title
+          label="Frequently Asked Questions About ADMI Fees"
+          color="black"
+          size="24px"
+          className="mb-6 text-center"
+        />
+
+        <Accordion variant="separated" radius="lg" chevronPosition="right" className="mb-8">
+          {FEE_FAQS.map((faq, index) => (
+            <Accordion.Item
+              key={index}
+              value={`faq-${index}`}
+              className="border border-gray-200 bg-white shadow-sm transition-shadow duration-200 hover:shadow-md"
+            >
+              <Accordion.Control className="hover:bg-gray-50">
+                <div className="flex items-center gap-3">
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-admiDarkOrange text-sm font-bold text-white">
+                    {index + 1}
+                  </div>
+                  <Paragraph fontWeight={700} className="text-gray-900" size="16px">
+                    {faq.question}
+                  </Paragraph>
+                </div>
+              </Accordion.Control>
+              <Accordion.Panel>
+                <div className="flex items-start gap-3 pt-2">
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gray-100 text-sm font-bold text-gray-600">
+                    A
+                  </div>
+                  <Paragraph className="leading-relaxed text-gray-700">{faq.answer}</Paragraph>
+                </div>
+              </Accordion.Panel>
+            </Accordion.Item>
+          ))}
+        </Accordion>
+
+        {/* Call to action */}
+        <div className="mt-8 rounded-xl bg-gradient-to-r from-admiDarkOrange to-orange-600 p-8 text-center text-white">
+          <Title label="Still Have Questions?" color="white" size="24px" className="mb-4" />
+          <Paragraph className="mb-6 text-lg text-orange-100">
+            Our finance team is here to help you understand the fee structure and payment options.
+          </Paragraph>
+          <div className="flex flex-col items-center justify-center gap-6 sm:flex-row">
+            <div className="rounded-lg bg-white px-6 py-4 shadow-lg transition-shadow hover:shadow-xl">
+              <Anchor
+                href="mailto:fee@admi.ac.ke"
+                target="_blank"
+                className="text-lg font-bold text-admiDarkOrange no-underline"
+              >
+                <div className="flex items-center gap-3">
+                  <span className="text-2xl">📧</span>
+                  <span>Email Finance Team</span>
+                </div>
+              </Anchor>
+            </div>
+
+            <div className="rounded-lg bg-white px-6 py-4 shadow-lg transition-shadow hover:shadow-xl">
+              <Anchor
+                href="tel:+254770370691"
+                target="_blank"
+                className="text-lg font-bold text-admiDarkOrange no-underline"
+              >
+                <div className="flex items-center gap-3">
+                  <span className="text-2xl">📞</span>
+                  <span>Call +254 770 370 691</span>
+                </div>
+              </Anchor>
+            </div>
+          </div>
+        </div>
       </Box>
     </Box>
   )
