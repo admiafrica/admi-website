@@ -1,12 +1,17 @@
 import Image from 'next/image'
 import { Box, Pagination, LoadingOverlay } from '@mantine/core'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { useRouter } from 'next/router'
 
 import { PageSEO } from '@/components/shared/v3'
 import { MainLayout } from '@/layouts/v3/MainLayout'
 import { AnnouncementCard, NewsItemCard } from '@/components/cards'
-import { SearchDropdown } from '@/components/ui'
+// import { SearchDropdown } from '@/components/ui'
+import dynamic from 'next/dynamic'
+
+const SearchDropdown = dynamic(() => import('@/components/ui').then((mod) => mod.SearchDropdown), {
+  ssr: false
+})
 import { IContentfulEntry } from '@/types'
 import { InstitutionalFAQSchema } from '@/components/seo/InstitutionalFAQSchema'
 
@@ -35,9 +40,12 @@ export default function ResourcesPage({ initialResources, initialFeatured, initi
   const [featured] = useState(initialFeatured)
   const [pagination, setPagination] = useState(initialPagination)
   const [loading, setLoading] = useState(false)
-  const [currentPage, setCurrentPage] = useState(initialPagination.page)
 
-  const fetchPage = async (page: number) => {
+  // Use router query for initial page to ensure consistency
+  const pageFromUrl = parseInt(router.query.page as string) || 1
+  const [currentPage, setCurrentPage] = useState(pageFromUrl)
+
+  const fetchPage = useCallback(async (page: number) => {
     setLoading(true)
     try {
       const response = await fetch(`/api/v3/resources?page=${page}&limit=9`)
@@ -47,16 +55,13 @@ export default function ResourcesPage({ initialResources, initialFeatured, initi
       setPagination(data.pagination)
       setCurrentPage(page)
 
-      // Update URL without page reload
-      router.push(`/resources?page=${page}`, undefined, { shallow: true })
-
       // Scroll to top of resources section
       document.getElementById('resources-section')?.scrollIntoView({ behavior: 'smooth' })
     } catch (error) {
       console.error('Error fetching page:', error)
     }
     setLoading(false)
-  }
+  }, [])
 
   // Handle URL changes (back/forward navigation)
   useEffect(() => {
@@ -67,9 +72,8 @@ export default function ResourcesPage({ initialResources, initialFeatured, initi
   }, [router.query.page, currentPage, fetchPage])
 
   const handlePageChange = (page: number) => {
-    if (page !== currentPage) {
-      fetchPage(page)
-    }
+    // Simply update the URL, let useEffect handle the actual fetching
+    router.push(`/resources?page=${page}`, undefined, { shallow: true })
   }
   return (
     <MainLayout footerBgColor="white">
@@ -168,8 +172,11 @@ export default function ResourcesPage({ initialResources, initialFeatured, initi
               {/* Pagination Info */}
               {pagination.totalPages > 1 && (
                 <Box className="pb-8 text-center text-gray-600">
-                  Showing {(currentPage - 1) * pagination.limit + 1} -{' '}
-                  {Math.min(currentPage * pagination.limit, pagination.totalCount)} of {pagination.totalCount} resources
+                  <span>
+                    Showing {(currentPage - 1) * pagination.limit + 1} -{' '}
+                    {Math.min(currentPage * pagination.limit, pagination.totalCount)} of {pagination.totalCount}{' '}
+                    resources
+                  </span>
                 </Box>
               )}
             </Box>
