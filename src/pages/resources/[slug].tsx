@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 
 import { MainLayout } from '@/layouts/v3/MainLayout'
 import { PageSEO, SocialShare } from '@/components/shared/v3'
-import { ArticleSchema } from '@/components/shared/StructuredData'
+import { EducationalResourceSchema } from '@/components/seo/ArticleSchema'
 import { Button, Paragraph, ParagraphContentful } from '@/components/ui'
 import { useIsMobile } from '@/hooks/useIsMobile'
 
@@ -28,22 +28,17 @@ export default function ResourceArticlePage({ article, slug }: { article: any; s
             url={`/resources/${slug}`}
             image={`https://${article.coverImage?.fields.file.url}`}
           />
-          <ArticleSchema
-            headline={article.title}
+          <EducationalResourceSchema
+            title={article.title}
             description={
               article.summary || article.excerpt || 'Educational resource from Africa Digital Media Institute'
             }
             image={`https:${article.coverImage?.fields.file.url}`}
-            author="ADMI Editorial Team"
-            datePublished={article.publishDate || article.sys?.createdAt}
-            dateModified={article.sys?.updatedAt}
-            publisher={{
-              name: 'Africa Digital Media Institute',
-              logo: 'https://admi.africa/logo.png'
-            }}
+            publishedDate={article.publishDate || article.sys?.createdAt}
+            modifiedDate={article.sys?.updatedAt}
             url={`https://admi.africa/resources/${slug}`}
-            articleSection="Educational Resources"
-            keywords={[
+            category="Educational Resources"
+            tags={[
               'ADMI',
               'Africa Digital Media Institute',
               'creative media',

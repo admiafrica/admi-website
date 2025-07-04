@@ -62,6 +62,11 @@ export default function NavBar({ mode, isMinimal = false }: Props) {
               Student Support
             </Text>
           </Menu.Target>
+          <Menu.Dropdown>
+            <Menu.Item onClick={() => navigateToPage('student-support#fees')}>Fee Structure & Payment Plans</Menu.Item>
+            <Menu.Item onClick={() => navigateToPage('student-support')}>Academic Support</Menu.Item>
+            <Menu.Item onClick={() => navigateToPage('student-portal')}>Student Portal</Menu.Item>
+          </Menu.Dropdown>
         </Menu>
 
         <Menu trigger="hover" openDelay={100} closeDelay={400}>
@@ -111,6 +116,13 @@ export default function NavBar({ mode, isMinimal = false }: Props) {
               onClick={() => navigateToPage('student-support')}
             >
               Student Support
+            </Menu.Item>
+            <Menu.Item
+              style={{ ...menuItemStyle, paddingLeft: '2rem' }}
+              className="cursor-pointer"
+              onClick={() => navigateToPage('student-support#fees')}
+            >
+              📋 Fee Structure & Payments
             </Menu.Item>
             <Menu.Item style={menuItemStyle} onClick={() => navigateToPage('resources')}>
               Resources

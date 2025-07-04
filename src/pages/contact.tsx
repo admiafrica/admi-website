@@ -6,6 +6,7 @@ import { ContactForm } from '@/components/forms'
 import { Title, Paragraph } from '@/components/ui'
 import { PageSEO } from '@/components/shared/v3'
 import { useIsMobile } from '@/hooks/useIsMobile'
+import { InstitutionalFAQSchema } from '@/components/seo/InstitutionalFAQSchema'
 
 import IconBgImageYellow from '@/assets/icons/ellipse-yellow.svg'
 import IconBgImageRed from '@/assets/icons/ellipse-red.svg'
@@ -21,6 +22,9 @@ export default function ContactPage() {
         description="Get in touch with Africa Digital Media Institute (ADMI). Contact our team for inquiries about courses, admissions, partnerships, or general information. We're here to help you start your creative journey."
         keywords="contact ADMI, get in touch, ADMI contact information, course inquiries, admissions contact, ADMI Nairobi, creative media institute contact"
       />
+
+      {/* General FAQ Schema for contact page */}
+      <InstitutionalFAQSchema faqType="general" />
       <div className="min-h-[100vh] w-full bg-[#002A23] pt-16">
         {/* BACKGROUND IMAGES */}
         <div className="absolute left-[54%] top-[24vh] h-fit w-full -translate-x-1/2 transform">

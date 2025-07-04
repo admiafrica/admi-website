@@ -25,6 +25,13 @@ export default function AnnouncementCard(props: Props) {
   const isMobile = useIsMobile()
 
   const handleCardClick = () => {
+    // Check if slug exists
+    if (!props.announcement?.slug) {
+      console.error('Announcement missing slug:', props.announcement?.title || 'Unknown announcement')
+      alert('This article link is not available. Please contact support.')
+      return
+    }
+
     router.push(`/${props.destination}/${props.announcement.slug}`)
   }
 

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Script from 'next/script'
 import { CourseSchema, CMSFAQSchema } from '@/components/shared/StructuredData'
 import { ICourseFAQ, IFAQResponse } from '@/types'
+import { CourseIntakeEventSchema } from '@/components/seo/CourseIntakeEventSchema'
 
 interface CertificateEnhancedSEOProps {
   course: any
@@ -163,6 +164,9 @@ export function CertificateEnhancedSEO({
       {activeFaqs.length > 0 && (
         <CMSFAQSchema faqs={activeFaqs} courseName={`${course.name} - Certificate Program Information`} />
       )}
+
+      {/* Course Intake Events Schema */}
+      <CourseIntakeEventSchema courseName={course.name} courseType="certificate" targetIntake="all" />
 
       {/* Video Schema for Certificate Course Preview */}
       {course.courseVideo && (

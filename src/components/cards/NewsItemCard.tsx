@@ -18,11 +18,46 @@ export default function NewsItemCard({ item, isEvent = false }: Props) {
   const router = useRouter()
 
   const handleCardClick = () => {
-    if (item.fields.category == 'News') {
-      router.push(`/news-events/news/${item.fields.slug}`)
+    // Check if slug exists
+    if (!item?.fields?.slug) {
+      console.error('Article missing slug:', {
+        title: item?.fields?.title || 'Unknown article',
+        category: item?.fields?.category,
+        fields: Object.keys(item?.fields || {})
+      })
+      alert('This article link is not available. Please contact support.')
+      return
     }
-    if (item.fields.category == 'Resources') {
+
+    // Log category for debugging
+    console.log('Article click:', {
+      title: item.fields.title,
+      category: item.fields.category,
+      slug: item.fields.slug
+    })
+
+    const category = item.fields.category?.trim()
+
+    if (category === 'News') {
+      router.push(`/news-events/news/${item.fields.slug}`)
+    } else if (category === 'Resources') {
       router.push(`/resources/${item.fields.slug}`)
+    } else if (category === 'news' || category === 'News & Events') {
+      // Handle variations in category naming
+      router.push(`/news-events/news/${item.fields.slug}`)
+    } else if (category === 'resources' || category === 'Resource') {
+      // Handle variations in category naming
+      router.push(`/resources/${item.fields.slug}`)
+    } else {
+      console.error('Unknown article category:', {
+        category: item.fields.category,
+        title: item.fields.title,
+        availableFields: Object.keys(item.fields)
+      })
+
+      // Default to news if uncertain
+      console.log('Defaulting to news route for:', item.fields.title)
+      router.push(`/news-events/news/${item.fields.slug}`)
     }
   }
 
@@ -52,7 +87,7 @@ export default function NewsItemCard({ item, isEvent = false }: Props) {
               priority
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               src={
-                item.assets
+                item.fields.coverImage?.fields?.file?.url || item.fields.flyer?.fields?.file?.url
                   ? `https:${item.fields.coverImage?.fields.file.url || item.fields.flyer?.fields.file.url}`
                   : 'https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png'
               }

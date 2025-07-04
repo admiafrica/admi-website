@@ -2,13 +2,26 @@ import { Box, Tabs } from '@mantine/core'
 import { PageSEO } from '@/components/shared/v3'
 import { MainLayout } from '@/layouts/v3/MainLayout'
 import { AnnouncementCard, EmptyCard, EventAnnouncementCard, NewsItemCard } from '@/components/cards'
+import { InstitutionalFAQSchema } from '@/components/seo/InstitutionalFAQSchema'
 
 import ImageNews from '@/assets/images/featured-news.svg'
 import IconDiary from '@/assets/icons/Diary'
 import { IContentfulEntry } from '@/types'
 import { Paragraph } from '@/components/ui'
 
-export default function NewsEventsLandingPage({ news, events, featuredNews, featuredEvent }: any) {
+interface NewsEventsProps {
+  news: IContentfulEntry[]
+  events: IContentfulEntry[]
+  featuredNews: IContentfulEntry | null
+  featuredEvent: IContentfulEntry | null
+}
+
+export default function NewsEventsLandingPage({
+  news = [],
+  events = [],
+  featuredNews,
+  featuredEvent
+}: NewsEventsProps) {
   return (
     <MainLayout footerBgColor="white">
       <PageSEO
@@ -16,6 +29,9 @@ export default function NewsEventsLandingPage({ news, events, featuredNews, feat
         description="Stay updated with the latest news and events from ADMI. Discover industry insights, campus updates, student achievements, and upcoming events in creative media and technology."
         keywords="ADMI news, ADMI events, campus news, student achievements, industry updates, creative media news, technology events, educational events, ADMI announcements"
       />
+
+      {/* General FAQ Schema for news and events page */}
+      <InstitutionalFAQSchema faqType="general" />
       <Box className="w-full">
         <Tabs defaultValue="news">
           <Tabs.List w={'100%'} bg={'#002A23'}>
@@ -60,13 +76,19 @@ export default function NewsEventsLandingPage({ news, events, featuredNews, feat
               </Box>
               {/* NEWS */}
               <Box className="mx-auto grid w-full max-w-screen-xl grid-cols-1 gap-6 px-4 sm:grid-cols-2 lg:grid-cols-3 xl:px-0">
-                {news
-                  .filter((article: IContentfulEntry) => !article.fields.featured)
-                  .map((article: IContentfulEntry) => (
-                    <Box key={article.sys.id} className="mb-4 h-[400px]">
-                      <NewsItemCard item={article} />
-                    </Box>
-                  ))}
+                {news && news.length > 0 ? (
+                  news
+                    .filter((article: IContentfulEntry) => article?.fields && !article.fields.featured)
+                    .map((article: IContentfulEntry) => (
+                      <Box key={article.sys.id} className="mb-4 h-[400px]">
+                        <NewsItemCard item={article} />
+                      </Box>
+                    ))
+                ) : (
+                  <Box className="col-span-full py-8 text-center">
+                    <Paragraph>No news articles available at the moment.</Paragraph>
+                  </Box>
+                )}
               </Box>
             </Box>
           </Tabs.Panel>
@@ -125,21 +147,40 @@ export async function getServerSideProps() {
       fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v3/events`)
     ])
 
-    if (!newsRes.ok || !eventsRes.ok) throw new Error('Failed to fetch data')
+    if (!newsRes.ok || !eventsRes.ok) {
+      console.error('API response not ok:', { newsOk: newsRes.ok, eventsOk: eventsRes.ok })
+      throw new Error('Failed to fetch data')
+    }
 
-    const [news, events] = await Promise.all([newsRes.json(), eventsRes.json()])
-    const sortedEvents = events.reverse()
+    const [newsData, eventsData] = await Promise.all([newsRes.json(), eventsRes.json()])
+
+    // Ensure we have arrays, handle different API response formats
+    const news = Array.isArray(newsData) ? newsData : newsData?.news || newsData?.resources || []
+    const events = Array.isArray(eventsData) ? eventsData : eventsData?.events || []
+
+    // Filter out any invalid entries
+    const validNews = news.filter((article: any) => article && article.fields)
+    const validEvents = events.filter((event: any) => event && event.fields)
+
+    const sortedEvents = validEvents.reverse()
 
     return {
       props: {
-        news: news,
+        news: validNews,
         events: sortedEvents,
-        featuredNews: news.find((article: IContentfulEntry) => article.fields.featured) || null,
+        featuredNews: validNews.find((article: IContentfulEntry) => article?.fields?.featured) || null,
         featuredEvent: sortedEvents[0] || null
       }
     }
   } catch (error) {
     console.error('Error fetching news & events:', error)
-    return { props: { news: [], events: [], featuredNews: null, featuredEvent: null } }
+    return {
+      props: {
+        news: [],
+        events: [],
+        featuredNews: null,
+        featuredEvent: null
+      }
+    }
   }
 }
