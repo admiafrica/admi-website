@@ -9,6 +9,7 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
 Allow: /
 Allow: /frequently-asked-questions
 Allow: /careers/*
+Allow: /courses/
 Allow: /courses/*
 
 Sitemap: https://admi.africa/sitemap.xml
