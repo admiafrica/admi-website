@@ -88,28 +88,6 @@ const DigitalMarketingKisumuPage = () => {
                   View Full Digital Marketing Course Details
                 </Button>
               </Card>
-              <Card mt="md" shadow="sm" padding="md" radius="md" withBorder>
-                <Text fw={500} mb="sm">
-                  📊 Course Structure
-                </Text>
-                <List spacing="xs" size="sm">
-                  <List.Item>
-                    <strong>Level 1 - Certificate:</strong> 4 months (1 semester)
-                  </List.Item>
-                  <List.Item>
-                    <strong>Level 2 - Diploma:</strong> 4 months (1 semester)
-                  </List.Item>
-                  <List.Item>
-                    <strong>Level 3 - Advanced Diploma:</strong> 4 months (1 semester)
-                  </List.Item>
-                  <List.Item>
-                    <strong>Total Duration:</strong> 12 months (3 semesters)
-                  </List.Item>
-                </List>
-                <Text size="sm" mt="sm" c="dimmed">
-                  Progress through each level to gain comprehensive digital marketing expertise.
-                </Text>
-              </Card>
             </Card>
           </Grid.Col>
 
