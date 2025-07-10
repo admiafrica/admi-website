@@ -129,7 +129,7 @@ export const FILM_TV_PRODUCTION_SEO: CourseSpecificSEO = {
     'film production schools Kenya'
   ],
   industryKeywords: [
-    'Nollywood film industry',
+    'African film industry',
     'Riverwood Kenya films',
     'Kenyan film industry',
     'African cinema',

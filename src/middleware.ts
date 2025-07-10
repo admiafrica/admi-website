@@ -12,8 +12,8 @@ const SPAM_PATTERNS: SpamPattern[] = [
   { type: 'param', pattern: /^(p|cat|page_id|url|fbclid)$/, description: 'Spam parameter' },
   {
     type: 'param',
-    pattern: /^(slot|bet|casino|poker|toto|game|win|luck|88|77|4d|123|168|888)/,
-    description: 'Gaming parameter'
+    pattern: /^(slot|bet|casino|poker|toto|win|luck|88|77|4d|123|168|888)/,
+    description: 'Gambling parameter'
   },
 
   // Specific blocked post IDs
@@ -22,8 +22,8 @@ const SPAM_PATTERNS: SpamPattern[] = [
   // Gambling and betting URLs
   {
     type: 'url',
-    pattern: /\b(slot|bet|casino|poker|toto|game|win|luck|88|77|4d|123|168|888)\b/i,
-    description: 'Gaming URL'
+    pattern: /\b(slot|bet|casino|poker|toto|win|luck|88|77|4d|123|168|888)\b/i,
+    description: 'Gambling URL'
   },
   {
     type: 'url',

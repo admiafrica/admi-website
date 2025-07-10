@@ -1,14 +1,86 @@
 import { NextRequest, NextResponse } from 'next/server'
 
+// Simple in-memory rate limiting (for basic protection)
+const rateLimitMap = new Map<string, { count: number; lastReset: number }>()
+const RATE_LIMIT_WINDOW = 60 * 1000 // 1 minute
+const RATE_LIMIT_MAX_REQUESTS = 100 // 100 requests per minute per IP
+
+function isRateLimited(ip: string): boolean {
+  const now = Date.now()
+  const current = rateLimitMap.get(ip) || { count: 0, lastReset: now }
+
+  // Reset count if window has passed
+  if (now - current.lastReset > RATE_LIMIT_WINDOW) {
+    current.count = 0
+    current.lastReset = now
+  }
+
+  current.count++
+  rateLimitMap.set(ip, current)
+
+  return current.count > RATE_LIMIT_MAX_REQUESTS
+}
+
 export function middleware(request: NextRequest) {
   const { pathname, search } = request.nextUrl
   const url = request.nextUrl.clone()
+
+  // Get client IP for rate limiting
+  const ip = request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'unknown'
+
+  // Apply rate limiting (skip for legitimate traffic patterns)
+  if (ip !== 'unknown' && !pathname.startsWith('/_next/') && !pathname.includes('.')) {
+    if (isRateLimited(ip)) {
+      console.log(`Rate limited IP: ${ip}`)
+      return new NextResponse('Too Many Requests', { status: 429 })
+    }
+  }
 
   // List of spam/malicious query parameters to block
   const spamParams = [
     's=', // WordPress search parameter often used in spam
     'ch=', // Channel parameter used in gambling spam
     'ak.bet', // Gambling domain
+    'gaming', // Gaming can be confused with gambling in Kenya
+    'bet-nigeria.com', // Nigerian betting spam
+    'ajccom.com', // Gambling domain
+    'ak9ja.bet', // Nigerian betting spam
+    'casper77',
+    'totogel',
+    'hokibet138',
+    'mito99',
+    '77luck',
+    'suksestoto',
+    'citra88',
+    'kedai',
+    'dolar888',
+    'lj9696',
+    'inaslot88',
+    'garuda338',
+    'bosbobet',
+    'koinslot168',
+    'semi4d',
+    'slot36',
+    'buahtogel',
+    'judi123',
+    'pucuk88',
+    'dewa123',
+    'pokersgp',
+    'slotmania88',
+    'shio77',
+    'dewa234',
+    'megabandar',
+    'bigg77',
+    'asialive88',
+    'tombolslot',
+    'maha168',
+    'elanggame',
+    'spartaplay88',
+    'playwin123',
+    'fiona77',
+    'gangtoto',
+    'tiger78',
+    'bigslot88',
     'casino',
     'slots',
     'poker',
