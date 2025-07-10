@@ -1,5 +1,6 @@
 import React from 'react'
-import { Container, Title, Text, Button, Grid, Card, List } from '@mantine/core'
+import { Title, Text, Button, Grid, Card, List } from '@mantine/core'
+import { MainLayout } from '@/layouts/v3/MainLayout'
 import PageSEO from '../../components/shared/v3/PageSEO'
 
 const DigitalMarketingKisumuPage = () => {
@@ -36,7 +37,7 @@ const DigitalMarketingKisumuPage = () => {
   }
 
   return (
-    <>
+    <MainLayout>
       <PageSEO
         title="Digital Marketing Course in Western - ADMI"
         description="Best Digital Marketing course in kisumu, Kenya. Professional training with industry experts, modern facilities, and guaranteed job placement support."
@@ -51,7 +52,7 @@ const DigitalMarketingKisumuPage = () => {
         }}
       />
 
-      <Container size="lg" py="xl">
+      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <Title order={1} ta="center" mb="md">
           Digital Marketing Course in Western
         </Title>
@@ -138,8 +139,8 @@ const DigitalMarketingKisumuPage = () => {
             Explore Full Digital Marketing Program Details
           </Button>
         </Card>
-      </Container>
-    </>
+      </div>
+    </MainLayout>
   )
 }
 
