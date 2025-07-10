@@ -489,7 +489,7 @@ export const ADMI_HISTORY = [
     year: 2019,
     achievements: [
       'Revenues exceed $1M per year.',
-      'AFD invests $1M in animation & gaming.',
+      'AFD invests $1M in animation & video game development.',
       'ADMI partners with Rubika.'
     ]
   },

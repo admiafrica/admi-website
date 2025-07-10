@@ -33,7 +33,6 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
     'photography',
     'web-development',
     'ui-ux-design',
-    'gaming',
     'sound-engineering',
     'entertainment-business',
     'video-game-development'

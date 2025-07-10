@@ -208,6 +208,12 @@ const nextConfig = {
         destination: '/courses/:slug',
         permanent: true,
       },
+      // Redirect gaming URLs to video-game-development (gambling confusion)
+      {
+        source: '/courses/gaming-:location',
+        destination: '/courses/video-game-development-:location',
+        permanent: true,
+      },
       // Redirect old news URLs if they exist
       {
         source: '/article/:slug',

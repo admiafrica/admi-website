@@ -117,7 +117,7 @@ export const VOICE_SEARCH_PATTERNS: VoiceSearchPattern[] = [
       'What companies hire creative professionals in Kenya?',
       'Where do ADMI graduates work?',
       'What is the future of creative industries in Africa?',
-      'How do I get into the gaming industry in Africa?',
+      'How do I get into the video game development industry in Africa?',
       'What media companies are in Nairobi?'
     ],
     targetKeywords: [
