@@ -10,27 +10,27 @@ const FEE_FAQS = [
   {
     question: 'What is the ADMI fee structure for 2025?',
     answer:
-      'ADMI diploma programs have varying durations (4-5 semesters) and different fee structures for East African vs International students. Download the official fee documents below for complete and up-to-date semester-wise costs.'
+      'For the most current and accurate fee information for all ADMI programs, please visit our official student support page at https://admi.africa/student-support#fees. This page contains up-to-date fee structures for both East African and International students, payment plans, and course-specific costs.'
   },
   {
     question: 'How long are ADMI diploma programs?',
     answer:
-      'ADMI diploma programs vary in duration from 4-5 semesters depending on the specific program. Please download the official fee structure documents for detailed program duration and semester-wise costs.'
+      'ADMI diploma programs vary in duration from 4-5 semesters depending on the specific program. For detailed program duration, semester-wise costs, and payment options, please visit https://admi.africa/student-support#fees.'
   },
   {
     question: 'Are there different fees for East African and International students?',
     answer:
-      'Yes, ADMI has separate fee structures for East African students (Kenya, Uganda, Tanzania, Rwanda, Burundi) and International students. Download the respective fee documents for detailed semester-wise costs and payment options.'
+      'Yes, ADMI has separate fee structures for East African students (Kenya, Uganda, Tanzania, Rwanda, Burundi) and International students. For current fee information and detailed payment options, please visit https://admi.africa/student-support#fees.'
   },
   {
     question: 'Does ADMI offer payment plans?',
     answer:
-      'Yes, ADMI offers flexible payment options including full payment (with 5% discount), semester payments, and monthly installment plans spread over 10 months.'
+      'Yes, ADMI offers flexible payment options including full payment with discounts, semester payments, and monthly installment plans. For current payment terms, discount details, and complete payment options, please visit https://admi.africa/student-support#fees or contact fee@admi.ac.ke.'
   },
   {
     question: 'What is included in ADMI course fees?',
     answer:
-      'Course fees include tuition, access to labs and equipment, software licenses, workshop materials, and industry mentorship programs. Accommodation and meals are separate.'
+      "Course fees include tuition, access to labs and equipment, software licenses, workshop materials, and industry mentorship programs. For complete details about what's included and current fee structures, please visit https://admi.africa/student-support#fees. Accommodation and meals are separate."
   }
 ]
 

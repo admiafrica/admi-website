@@ -63,7 +63,7 @@ export default function HomePage({ content, courses, featuredNews, featuredResou
     <MainLayout footerBgColor="#E6F608">
       <PageSEO
         title="ADMI - Africa Digital Media Institute | Leading Creative Media & Technology Training in East Africa"
-        description="ADMI (Africa Digital Media Institute) - The premier creative media and technology training institution in East Africa. Digital Marketing, Graphic Design, Film Production, Music Production & Sound Engineering courses in Nairobi, Kenya. Fee structure from KES 50,000/semester. Apply for 2025 intake!"
+        description="ADMI (Africa Digital Media Institute) - The premier creative media and technology training institution in East Africa. Digital Marketing, Graphic Design, Film Production, Music Production & Sound Engineering courses in Nairobi, Kenya. Competitive fee structure available. Apply for 2025 intake!"
         keywords="ADMI, Africa Digital Media Institute, ADMI Kenya, ADMI Nairobi, creative school Kenya, digital marketing course Kenya, graphic design diploma Kenya, film school Kenya, music production courses in kenya, music production kenya, sound engineering courses in kenya, ADMI fees, ADMI courses, best creative school Kenya"
       />
 
@@ -150,7 +150,7 @@ export default function HomePage({ content, courses, featuredNews, featuredResou
           {
             question: 'How much are ADMI fees?',
             answer:
-              'ADMI fees range from KES 50,000 to KES 75,000 per semester for diploma courses, and KES 80,000 total for certificate programs. Flexible payment plans and scholarships available.'
+              'ADMI offers competitive and flexible fee structures for all programs. For current 2025 rates, payment options, and detailed fee information, please visit https://admi.africa/student-support#fees or contact fee@admi.ac.ke.'
           }
         ]}
       />
@@ -304,9 +304,15 @@ export default function HomePage({ content, courses, featuredNews, featuredResou
 
               <Box className="rounded-lg bg-gray-50 p-6">
                 <Title label="How much are ADMI fees?" color="black" size="18px" className="mb-3" />
+                <div className="mb-3 rounded border-l-4 border-orange-400 bg-orange-50 p-3">
+                  <Paragraph className="text-sm text-orange-800">
+                    <strong>Fee Verification Required:</strong> Contact fee@admi.ac.ke for current 2025 rates.
+                  </Paragraph>
+                </div>
                 <Paragraph>
-                  ADMI fees range from KES 50,000 to KES 75,000 per semester for diploma courses, and KES 80,000 total
-                  for certificate programs. Flexible payment plans available.
+                  ADMI offers competitive fee structures for all diploma and certificate programs. For current rates,
+                  payment options, and detailed fee information, please visit our student support page or contact our
+                  finance office directly.
                 </Paragraph>
               </Box>
 
