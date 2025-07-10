@@ -38,10 +38,10 @@ const FilmProductionEldoretPage = () => {
   return (
     <>
       <PageSEO
-        title="Film Production Course in Rift Valley - ADMI"
-        description="Best Film Production course in eldoret, Kenya. Professional training with industry experts, modern facilities, and guaranteed job placement support."
+        title="Premier Film School in Rift Valley - ADMI Film Production Eldoret"
+        description="East Africa's premier film school welcomes students from Eldoret and Rift Valley. All classes held at our state-of-the-art Nairobi campus with industry-leading facilities."
         canonical="https://admi.ac.ke/courses/film-production-eldoret"
-        keywords="film-production, eldoret, course, training, kenya, admi"
+        keywords="premier film school rift valley, top film school eldoret, leading film school kenya, film production eldoret, best film school rift valley, film school eldoret, admi"
       />
 
       <script
@@ -53,27 +53,29 @@ const FilmProductionEldoretPage = () => {
 
       <Container size="lg" py="xl">
         <Title order={1} ta="center" mb="md">
-          Film Production Course in Rift Valley
+          Premier Film School in Rift Valley - Film Production Course
         </Title>
 
         <Text size="lg" ta="center" mb="xl" c="dimmed">
-          Professional Film Production training in eldoret with industry experts and guaranteed job placement support
+          East Africa&apos;s premier film school welcomes students from Eldoret and Rift Valley. All classes at our
+          state-of-the-art Nairobi campus
         </Text>
 
         <Grid>
           <Grid.Col span={{ base: 12, md: 8 }}>
             <Card shadow="sm" padding="lg" radius="md" withBorder>
               <Title order={2} mb="md">
-                Why Choose Film Production in eldoret?
+                Why Choose East Africa&apos;s Premier Film School?
               </Title>
 
               <List spacing="sm" size="sm">
-                <List.Item>Industry-relevant curriculum designed for Rift Valley market</List.Item>
-                <List.Item>Experienced instructors with real-world experience</List.Item>
-                <List.Item>State-of-the-art facilities and equipment</List.Item>
-                <List.Item>90% job placement rate in eldoret and surrounding areas</List.Item>
-                <List.Item>Flexible payment plans available</List.Item>
-                <List.Item>Career support and internship opportunities</List.Item>
+                <List.Item>🏆 Top-rated film school in East Africa with regional recognition</List.Item>
+                <List.Item>🎬 All classes held at our modern Nairobi campus</List.Item>
+                <List.Item>⭐ Award-winning instructors with international film experience</List.Item>
+                <List.Item>🎥 State-of-the-art HD and digital cinema equipment in Nairobi</List.Item>
+                <List.Item>📈 90% job placement rate across Kenya and East Africa</List.Item>
+                <List.Item>🌍 Partnerships with Africa&apos;s vibrant film industry</List.Item>
+                <List.Item>💼 Comprehensive career support and industry networking</List.Item>
               </List>
 
               <Card mt="md" shadow="sm" padding="md" radius="md" withBorder>
@@ -110,7 +112,7 @@ const FilmProductionEldoretPage = () => {
                 <strong>Population:</strong> 475,000
               </Text>
 
-              <Button fullWidth mt="md" color="blue">
+              <Button component="a" href="/enquiry" fullWidth mt="md" color="blue">
                 Apply Now
               </Button>
             </Card>

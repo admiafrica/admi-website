@@ -38,10 +38,10 @@ const GraphicDesignMombasaPage = () => {
   return (
     <>
       <PageSEO
-        title="Graphic Design Course in Coast - ADMI"
-        description="Best Graphic Design course in mombasa, Kenya. Professional training with industry experts, modern facilities, and guaranteed job placement support."
+        title="Kenya's Most Sought-After Graphic Design Course - ADMI"
+        description="Industry's best-kept secret for students from Mombasa. Learn from star teachers like Brian Omolo at our Nairobi campus. Over 90% employment rate."
         canonical="https://admi.ac.ke/courses/graphic-design-mombasa"
-        keywords="graphic-design, mombasa, course, training, kenya, admi"
+        keywords="best graphic design course kenya, graphic design school mombasa, brian omolo graphic design, top design school kenya, graphic design diploma kenya, admi"
       />
 
       <script
@@ -53,27 +53,41 @@ const GraphicDesignMombasaPage = () => {
 
       <Container size="lg" py="xl">
         <Title order={1} ta="center" mb="md">
-          Graphic Design Course in Coast
+          Kenya&apos;s Most Sought-After Graphic Design Course
         </Title>
 
         <Text size="lg" ta="center" mb="xl" c="dimmed">
-          Professional Graphic Design training in mombasa with industry experts and guaranteed job placement support
+          Welcoming students from Mombasa to Kenya&apos;s best-kept secret. Learn from star teacher Brian Omolo at our
+          Nairobi campus. Over 90% employment rate
         </Text>
 
         <Grid>
           <Grid.Col span={{ base: 12, md: 8 }}>
             <Card shadow="sm" padding="lg" radius="md" withBorder>
               <Title order={2} mb="md">
-                Why Choose Graphic Design in mombasa?
+                Why ADMI is Kenya&apos;s Best-Kept Secret for Graphic Design
               </Title>
 
               <List spacing="sm" size="sm">
-                <List.Item>Industry-relevant curriculum designed for Coast market</List.Item>
-                <List.Item>Experienced instructors with real-world experience</List.Item>
-                <List.Item>State-of-the-art facilities and equipment</List.Item>
-                <List.Item>90% job placement rate in mombasa and surrounding areas</List.Item>
-                <List.Item>Flexible payment plans available</List.Item>
-                <List.Item>Career support and internship opportunities</List.Item>
+                <List.Item>
+                  🌆 <strong>Star Faculty:</strong> Learn from industry legends like Brian Omolo, revolutionizing
+                  digital art & murals across Nairobi
+                </List.Item>
+                <List.Item>
+                  📈 <strong>Outstanding Results:</strong> Over 90% employment rate - the highest in Kenya
+                </List.Item>
+                <List.Item>
+                  🏆 <strong>Industry Recognition:</strong> Most sought-after course among creative professionals
+                </List.Item>
+                <List.Item>
+                  🎬 <strong>Nairobi Campus:</strong> All classes at our state-of-the-art Nairobi facilities
+                </List.Item>
+                <List.Item>
+                  ✨ <strong>Cutting-Edge Equipment:</strong> Professional-grade design labs and software
+                </List.Item>
+                <List.Item>
+                  🎨 <strong>Revolutionary Techniques:</strong> Master digital art, murals, and contemporary design
+                </List.Item>
               </List>
 
               <Card mt="md" shadow="sm" padding="md" radius="md" withBorder>
@@ -110,7 +124,7 @@ const GraphicDesignMombasaPage = () => {
                 <strong>Population:</strong> 1.2 million
               </Text>
 
-              <Button fullWidth mt="md" color="blue">
+              <Button component="a" href="/enquiry" fullWidth mt="md" color="blue">
                 Apply Now
               </Button>
             </Card>

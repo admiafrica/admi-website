@@ -102,9 +102,9 @@ export const FILM_TELEVISION_FAQS = [
   },
   {
     category: 'Career Prospects',
-    question: 'Can I work in Nollywood or other African film industries?',
+    question: "Can I work in Africa's vibrant film industry after graduation?",
     answer:
-      'Absolutely! Our film school in Kenya prepares graduates for African film industries, including Nollywood, Riverwood (Kenya), and emerging markets across the continent. As one of the leading film production schools in Kenya, we have partnerships with production companies and provide networking opportunities with industry professionals.'
+      "Absolutely! Our film school in Kenya prepares graduates for Africa's vibrant film industry, including Riverwood (Kenya), and emerging markets across the continent. As one of the leading film production schools in Kenya, we have partnerships with production companies and provide networking opportunities with industry professionals."
   },
   {
     category: 'Technology Requirements',

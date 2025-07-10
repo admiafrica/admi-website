@@ -116,7 +116,7 @@ const GamingEldoretPage = () => {
                 <strong>Campus:</strong> 25 Kenyatta Avenue, Nairobi
               </Text>
 
-              <Button fullWidth mt="md" color="blue">
+              <Button component="a" href="/enquiry" fullWidth mt="md" color="blue">
                 Apply Now
               </Button>
             </Card>

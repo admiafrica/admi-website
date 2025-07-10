@@ -38,10 +38,10 @@ const FilmProductionNakuruPage = () => {
   return (
     <>
       <PageSEO
-        title="Film Production Course in Rift Valley - ADMI"
-        description="Best Film Production course in nakuru, Kenya. Professional training with industry experts, modern facilities, and guaranteed job placement support."
+        title="Premier Film School in Rift Valley - ADMI Film Production Nakuru"
+        description="East Africa's premier film school welcomes students from Nakuru and Rift Valley. All classes held at our state-of-the-art Nairobi campus with industry-leading facilities."
         canonical="https://admi.ac.ke/courses/film-production-nakuru"
-        keywords="film-production, nakuru, course, training, kenya, admi"
+        keywords="premier film school rift valley, top film school nakuru, leading film school kenya, film production nakuru, best film school rift valley, film school nakuru, admi"
       />
 
       <script
@@ -53,27 +53,29 @@ const FilmProductionNakuruPage = () => {
 
       <Container size="lg" py="xl">
         <Title order={1} ta="center" mb="md">
-          Film Production Course in Rift Valley
+          Premier Film School in Rift Valley - Film Production Course
         </Title>
 
         <Text size="lg" ta="center" mb="xl" c="dimmed">
-          Professional Film Production training in nakuru with industry experts and guaranteed job placement support
+          East Africa&apos;s premier film school welcomes students from Nakuru and Rift Valley. All classes at our
+          state-of-the-art Nairobi campus
         </Text>
 
         <Grid>
           <Grid.Col span={{ base: 12, md: 8 }}>
             <Card shadow="sm" padding="lg" radius="md" withBorder>
               <Title order={2} mb="md">
-                Why Choose Film Production in nakuru?
+                Why Choose East Africa&apos;s Premier Film School?
               </Title>
 
               <List spacing="sm" size="sm">
-                <List.Item>Industry-relevant curriculum designed for Rift Valley market</List.Item>
-                <List.Item>Experienced instructors with real-world experience</List.Item>
-                <List.Item>State-of-the-art facilities and equipment</List.Item>
-                <List.Item>90% job placement rate in nakuru and surrounding areas</List.Item>
-                <List.Item>Flexible payment plans available</List.Item>
-                <List.Item>Career support and internship opportunities</List.Item>
+                <List.Item>🏆 Top-rated film school in East Africa with regional recognition</List.Item>
+                <List.Item>🎬 All classes held at our modern Nairobi campus</List.Item>
+                <List.Item>⭐ Award-winning instructors with international film experience</List.Item>
+                <List.Item>🎥 State-of-the-art HD and digital cinema equipment in Nairobi</List.Item>
+                <List.Item>📈 90% job placement rate across Kenya and East Africa</List.Item>
+                <List.Item>🌍 Partnerships with Africa&apos;s vibrant film industry</List.Item>
+                <List.Item>💼 Comprehensive career support and industry networking</List.Item>
               </List>
 
               <Card mt="md" shadow="sm" padding="md" radius="md" withBorder>
@@ -110,7 +112,7 @@ const FilmProductionNakuruPage = () => {
                 <strong>Population:</strong> 570,000
               </Text>
 
-              <Button fullWidth mt="md" color="blue">
+              <Button component="a" href="/enquiry" fullWidth mt="md" color="blue">
                 Apply Now
               </Button>
             </Card>

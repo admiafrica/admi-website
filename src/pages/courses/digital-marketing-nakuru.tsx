@@ -111,7 +111,7 @@ const DigitalMarketingNakuruPage = () => {
                 <strong>Population:</strong> 570,000
               </Text>
 
-              <Button fullWidth mt="md" color="blue">
+              <Button component="a" href="/enquiry" fullWidth mt="md" color="blue">
                 Apply Now
               </Button>
             </Card>

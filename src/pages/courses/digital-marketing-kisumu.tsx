@@ -111,7 +111,7 @@ const DigitalMarketingKisumuPage = () => {
                 <strong>Population:</strong> 610,000
               </Text>
 
-              <Button fullWidth mt="md" color="blue">
+              <Button component="a" href="/enquiry" fullWidth mt="md" color="blue">
                 Apply Now
               </Button>
             </Card>

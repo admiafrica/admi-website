@@ -38,10 +38,10 @@ const FilmProductionNairobiPage = () => {
   return (
     <>
       <PageSEO
-        title="Film Production Course in Nairobi - ADMI"
-        description="Best Film Production course in nairobi, Kenya. Professional training with industry experts, modern facilities, and guaranteed job placement support."
+        title="Premier Film School in Nairobi - ADMI Film Production Course"
+        description="Top-rated film school in East Africa. Premier Film Production training in Nairobi, Kenya. Leading film school with industry experts, state-of-the-art facilities, and 90% job placement rate."
         canonical="https://admi.ac.ke/courses/film-production-nairobi"
-        keywords="film-production, nairobi, course, training, kenya, admi"
+        keywords="premier film school nairobi, top rated film school kenya, leading film school east africa, film production nairobi, best film school kenya, film school nairobi, cinematography school kenya, admi"
       />
 
       <script
@@ -53,27 +53,31 @@ const FilmProductionNairobiPage = () => {
 
       <Container size="lg" py="xl">
         <Title order={1} ta="center" mb="md">
-          Film Production Course in Nairobi
+          Premier Film School in Nairobi - Film Production Course
         </Title>
 
         <Text size="lg" ta="center" mb="xl" c="dimmed">
-          Professional Film Production training in nairobi with industry experts and guaranteed job placement support
+          East Africa&apos;s top-rated film school. Premier Film Production training in Nairobi with industry-leading
+          experts and 90% job placement rate
         </Text>
 
         <Grid>
           <Grid.Col span={{ base: 12, md: 8 }}>
             <Card shadow="sm" padding="lg" radius="md" withBorder>
               <Title order={2} mb="md">
-                Why Choose Film Production in nairobi?
+                Why Choose East Africa&apos;s Premier Film School?
               </Title>
 
               <List spacing="sm" size="sm">
-                <List.Item>Industry-relevant curriculum designed for Nairobi market</List.Item>
-                <List.Item>Experienced instructors with real-world experience</List.Item>
-                <List.Item>State-of-the-art facilities and equipment</List.Item>
-                <List.Item>90% job placement rate in nairobi and surrounding areas</List.Item>
-                <List.Item>Flexible payment plans available</List.Item>
-                <List.Item>Career support and internship opportunities</List.Item>
+                <List.Item>🏆 Top-rated film school in East Africa with regional recognition</List.Item>
+                <List.Item>🎬 Industry-leading curriculum designed by film industry professionals</List.Item>
+                <List.Item>⭐ Award-winning instructors with international film experience</List.Item>
+                <List.Item>🎥 State-of-the-art HD and digital cinema equipment</List.Item>
+                <List.Item>📈 90% job placement rate with leading production companies</List.Item>
+                <List.Item>
+                  🌍 Partnerships with Africa&apos;s vibrant film industry and international studios
+                </List.Item>
+                <List.Item>💼 Comprehensive career support and industry networking</List.Item>
               </List>
 
               <Card mt="md" shadow="sm" padding="md" radius="md" withBorder>
@@ -110,7 +114,7 @@ const FilmProductionNairobiPage = () => {
                 <strong>Population:</strong> 4.4 million
               </Text>
 
-              <Button fullWidth mt="md" color="blue">
+              <Button component="a" href="/enquiry" fullWidth mt="md" color="blue">
                 Apply Now
               </Button>
             </Card>

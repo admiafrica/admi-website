@@ -111,7 +111,7 @@ const DigitalMarketingNairobiPage = () => {
                 <strong>Population:</strong> 4.4 million
               </Text>
 
-              <Button fullWidth mt="md" color="blue">
+              <Button component="a" href="/enquiry" fullWidth mt="md" color="blue">
                 Apply Now
               </Button>
             </Card>
