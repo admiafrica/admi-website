@@ -11,6 +11,8 @@ Allow: /frequently-asked-questions
 Allow: /careers/*
 Allow: /courses/
 Allow: /courses/*
+Allow: /news-events/
+Allow: /watch/
 
 Sitemap: https://admi.africa/sitemap.xml
 Sitemap: https://admi.africa/video-sitemap.xml
