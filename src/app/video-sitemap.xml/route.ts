@@ -85,8 +85,9 @@ ${coursesWithVideos
       : `${baseUrl}/logo.png`
     const contentUrl = `https:${videoAsset.fields.file.url}`
     const watchPageUrl = `${baseUrl}/watch/${slug}`
-    // For player_loc, we'll use the watch page URL which contains the video player
-    const playerUrl = watchPageUrl
+    // For player_loc, we'll use an embed-style URL that points to the video player
+    // This should be different from the HTML landing page URL
+    const playerUrl = `${baseUrl}/watch/${slug}?embed=true`
     const lastModified = new Date(course.sys.updatedAt).toISOString()
 
     return `  <url>

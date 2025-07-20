@@ -1,4 +1,5 @@
 import { GetStaticPaths, GetStaticProps } from 'next'
+import { useRouter } from 'next/router'
 import { MainLayout } from '@/layouts/v3/MainLayout'
 import { PageSEO } from '@/components/shared/v3'
 import { VideoSchema, BreadcrumbSchema } from '@/components/shared/StructuredData'
@@ -13,6 +14,8 @@ interface VideoWatchPageProps {
 }
 
 export default function VideoWatchPage({ course, slug }: VideoWatchPageProps) {
+  const router = useRouter()
+  const isEmbedMode = router.query.embed === 'true'
   // Check if we have a valid video (either direct or resolved from includes)
   const hasValidVideo = course?.courseVideo?.fields?.file?.url || course?.resolvedVideo?.fields?.file?.url
 
@@ -35,6 +38,18 @@ export default function VideoWatchPage({ course, slug }: VideoWatchPageProps) {
     { name: course.name, url: `https://admi.africa/courses/${slug}` },
     { name: 'Video Preview', url: `https://admi.africa/watch/${slug}` }
   ]
+
+  // If in embed mode, render minimal player-only view
+  if (isEmbedMode) {
+    return (
+      <div style={{ width: '100%', height: '100vh', backgroundColor: '#000' }}>
+        <VideoPlayer
+          videoUrl={course.resolvedVideo?.fields?.file?.url || course.courseVideo?.fields?.file?.url}
+          showControls={true}
+        />
+      </div>
+    )
+  }
 
   return (
     <MainLayout>
