@@ -231,8 +231,8 @@ export default function CourseDetailPage({
         ]}
       />
 
-      {/* East Africa Local Business Schema - No course catalog on individual course pages */}
-      <EastAfricaLocalSEO targetCity="Nairobi" excludeCourseCatalog={true} />
+      {/* East Africa Local Business Schema - No course catalog or FAQ schema on individual course pages */}
+      <EastAfricaLocalSEO targetCity="Nairobi" excludeCourseCatalog={true} excludeFAQSchema={true} />
 
       {/* Note: FAQ Schema is handled within the enhanced SEO components above to avoid duplication */}
 

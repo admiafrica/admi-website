@@ -82,12 +82,14 @@ interface EastAfricaLocalSEOProps {
   targetCity?: string
   showAll?: boolean
   excludeCourseCatalog?: boolean
+  excludeFAQSchema?: boolean
 }
 
 export function EastAfricaLocalSEO({
   targetCity,
   showAll = false,
-  excludeCourseCatalog = false
+  excludeCourseCatalog = false,
+  excludeFAQSchema = false
 }: EastAfricaLocalSEOProps) {
   const citiesToRender = targetCity
     ? EAST_AFRICAN_CITIES.filter((city) => city.city.toLowerCase() === targetCity.toLowerCase())
@@ -103,8 +105,8 @@ export function EastAfricaLocalSEO({
       {/* Course Intake Events Schema */}
       <CourseIntakeEventSchema targetIntake="all" />
 
-      {/* Institutional FAQ Schema */}
-      <InstitutionalFAQSchema faqType="general" />
+      {/* Institutional FAQ Schema - Only render if not excluded */}
+      {!excludeFAQSchema && <InstitutionalFAQSchema faqType="general" />}
 
       {/* Local Business Schema for East African cities */}
       {citiesToRender.map((cityData) => (

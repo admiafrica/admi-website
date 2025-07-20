@@ -9,10 +9,10 @@ const FAQPage = () => {
     mainEntity: [
       {
         '@type': 'Question',
-        name: 'What is ADMI?',
+        name: 'Why choose ADMI for creative media training?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Africa Digital Media Institute (ADMI) is Kenya&apos;s leading creative media and technology training institution, offering practical courses in Film & TV, Music, Animation, Gaming, Graphic Design, and Digital Marketing with 90% job placement rate.'
+          text: 'ADMI is Kenya&apos;s leading creative media and technology training institution with 90% job placement rate. We offer practical, industry-standard courses in Film & TV, Music, Animation, Gaming, Graphic Design, and Digital Marketing with modern equipment, experienced instructors, and strong industry connections.'
         }
       },
       {
@@ -100,15 +100,16 @@ const FAQPage = () => {
         </Text>
 
         <Accordion variant="separated">
-          <Accordion.Item key="What is ADMI?" value="What is ADMI?">
+          <Accordion.Item key="Why choose ADMI?" value="Why choose ADMI?">
             <Accordion.Control>
-              <Text fw={500}>What is ADMI?</Text>
+              <Text fw={500}>Why choose ADMI for creative media training?</Text>
             </Accordion.Control>
             <Accordion.Panel>
               <Text>
-                Africa Digital Media Institute (ADMI) is Kenya&apos;s leading creative media and technology training
-                institution, offering practical courses in Film & TV, Music, Animation, Gaming, Graphic Design, and
-                Digital Marketing with 90% job placement rate.
+                ADMI is Kenya&apos;s leading creative media and technology training institution with 90% job placement
+                rate. We offer practical, industry-standard courses in Film & TV, Music, Animation, Gaming, Graphic
+                Design, and Digital Marketing with modern equipment, experienced instructors, and strong industry
+                connections.
               </Text>
             </Accordion.Panel>
           </Accordion.Item>

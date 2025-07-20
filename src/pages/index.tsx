@@ -67,8 +67,8 @@ export default function HomePage({ content, courses, featuredNews, featuredResou
         keywords="ADMI, Africa Digital Media Institute, ADMI Kenya, ADMI Nairobi, creative school Kenya, digital marketing course Kenya, graphic design diploma Kenya, film school Kenya, music production courses in kenya, music production kenya, sound engineering courses in kenya, ADMI fees, ADMI courses, best creative school Kenya"
       />
 
-      {/* East Africa Local SEO for all major cities */}
-      <EastAfricaLocalSEO showAll={true} />
+      {/* East Africa Local SEO for all major cities - Exclude FAQ schema to avoid duplication */}
+      <EastAfricaLocalSEO showAll={true} excludeFAQSchema={true} />
 
       {/* Enhanced Testimonial Schemas for homepage testimonials */}
       {content &&
@@ -133,14 +133,9 @@ export default function HomePage({ content, courses, featuredNews, featuredResou
       <CMSFAQSchema
         faqs={[
           {
-            question: 'What does ADMI stand for?',
+            question: 'What is ADMI (Africa Digital Media Institute)?',
             answer:
-              "ADMI stands for Africa Digital Media Institute. We are Kenya's premier creative and technology training institution located in Nairobi."
-          },
-          {
-            question: 'What is ADMI?',
-            answer:
-              'ADMI (Africa Digital Media Institute) is the premier and leading training institution in creative media and technology in the region, offering diploma and certificate courses in Digital Marketing, Graphic Design, Film Production, Animation, Music Production, and Photography.'
+              "ADMI stands for Africa Digital Media Institute. We are Eastern Africa's premier creative media and technology training institution located in Nairobi, Kenya. Founded in 2012, ADMI offers diploma and certificate programs in Digital Marketing, Graphic Design, Film & TV Production, Music Production & Sound Engineering, Animation, and Photography with industry-standard training and career placement support."
           },
           {
             question: 'What courses does ADMI offer?',
