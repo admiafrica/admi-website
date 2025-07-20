@@ -8,6 +8,7 @@ import {
   CourseStudents
 } from '@/components/course'
 import { CMSCourseFAQs } from '@/components/course/CMSCourseFAQs'
+import { CourseVideoSection } from '@/components/course/CourseVideoSection'
 import {
   GRAPHIC_DESIGN_FAQS,
   ANIMATION_VFX_FAQS,
@@ -22,6 +23,7 @@ import { CertificateEnhancedSEO } from '@/components/course/CertificateEnhancedS
 import { EastAfricaLocalSEO } from '@/components/seo/EastAfricaLocalSEO'
 // generateDiplomaKeywords utility available for future enhancements
 import { GENERAL_DIPLOMA_FAQS } from '@/data/diploma-faqs'
+import { YouTubeVideo, fetchADMIChannelVideos } from '@/utils/youtube-api'
 import {
   GENERAL_CERTIFICATE_FAQS,
   GRAPHIC_DESIGN_CERTIFICATE_FAQS,
@@ -57,11 +59,13 @@ const getCorrectFAQsForCourse = (slug: string, isDiploma: boolean) => {
 export default function CourseDetailPage({
   course,
   courseAssets,
-  slug
+  slug,
+  youtubeVideos
 }: {
   course: any
   courseAssets: any[]
   slug: string
+  youtubeVideos: YouTubeVideo[]
 }) {
   // Extract rich text content for description
   const getPlainTextFromRichText = (richText: any) => {
@@ -288,6 +292,10 @@ export default function CourseDetailPage({
         totalHistoricalEnrollment={course.totalHistoricalEnrollment}
       />
       <CourseApplicationProcess processes={course.applicationProcesses || []} />
+
+      {/* Enhanced Video Section with YouTube Integration */}
+      <CourseVideoSection course={course} slug={slug} youtubeVideos={youtubeVideos} />
+
       <CMSCourseFAQs
         courseSlug={slug}
         fallbackFAQs={getCorrectFAQsForCourse(slug, isDiploma)}
@@ -301,6 +309,7 @@ export async function getServerSideProps({ params }: { params: { slug: string } 
   const { slug } = params
 
   try {
+    // Fetch course details
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v3/course-details?slug=${slug}`)
     if (!response.ok) {
       return { notFound: true } // Redirect to 404 if course is not found
@@ -308,11 +317,21 @@ export async function getServerSideProps({ params }: { params: { slug: string } 
 
     const data = await response.json()
 
+    // Fetch YouTube videos for enhanced video section
+    let youtubeVideos: YouTubeVideo[] = []
+    try {
+      youtubeVideos = await fetchADMIChannelVideos(30) // Fetch up to 30 videos
+    } catch (videoError) {
+      console.error('Error fetching YouTube videos for course page:', videoError)
+      // Continue without videos if YouTube API fails
+    }
+
     return {
       props: {
         course: data.fields,
         courseAssets: data.assets || [],
-        slug
+        slug,
+        youtubeVideos
       }
     }
   } catch (error) {
