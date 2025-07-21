@@ -59,6 +59,11 @@ ${videos
     const pageUrl = `${baseUrl}/videos?id=${video.id}` // URL to the page on your site
     const embedUrl = `https://www.youtube.com/embed/${video.id}`
     const thumbnailUrl = escapeXml(video.thumbnail.high || video.thumbnail.medium)
+    const duration = convertDurationToSeconds(video.duration)
+
+    if (duration === 0) {
+      return null // Skip videos with invalid duration
+    }
 
     return `  <url>
     <loc>${escapeXml(pageUrl)}</loc>
@@ -70,7 +75,7 @@ ${videos
       <video:title><![CDATA[${sanitizeForCDATA(video.title)}]]></video:title>
       <video:description><![CDATA[${sanitizeForCDATA(video.description.substring(0, 2048))}]]></video:description>
       <video:player_loc>${escapeXml(embedUrl)}</video:player_loc>
-      <video:duration>${convertDurationToSeconds(video.duration)}</video:duration>
+      <video:duration>${duration}</video:duration>
       <video:publication_date>${video.publishedAt}</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
       <video:view_count>${convertViewCountToNumber(video.viewCount)}</video:view_count>
@@ -83,6 +88,7 @@ ${videos
     </video:video>
   </url>`
   })
+  .filter(Boolean) // Remove null entries
   .join('\n')}
 </urlset>`
 
@@ -94,8 +100,10 @@ ${videos
 }
 
 function convertDurationToSeconds(duration: string): number {
-  if (!duration || duration === 'N/A') return 0
+  if (!duration || typeof duration !== 'string' || duration === 'N/A') return 0
   const parts = duration.split(':').map(Number)
+  if (parts.some(isNaN)) return 0
+
   if (parts.length === 2) return parts[0] * 60 + parts[1]
   if (parts.length === 3) return parts[0] * 3600 + parts[1] * 60 + parts[2]
   return 0
