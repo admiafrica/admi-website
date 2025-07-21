@@ -109,7 +109,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       .map((video) => {
         const duration = convertDurationToSeconds(video.duration)
         // Skip videos with invalid durations or longer than 2 hours (0 means invalid)
-        if (duration === 0) {
+        if (duration === 0 || duration > 7200) {
           return null
         }
 
