@@ -1,6 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { readVideoCache } from '@/utils/video-cache'
-import { getYouTubeWatchUrl } from '@/utils/youtube-api'
 
 // Helper to escape characters for XML
 const escapeXml = (unsafe: string): string => {
@@ -57,12 +56,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
 ${videos
   .map((video) => {
-    const watchUrl = getYouTubeWatchUrl(video.id)
+    const pageUrl = `${baseUrl}/videos?id=${video.id}` // URL to the page on your site
     const embedUrl = `https://www.youtube.com/embed/${video.id}`
     const thumbnailUrl = escapeXml(video.thumbnail.high || video.thumbnail.medium)
 
     return `  <url>
-    <loc>${escapeXml(watchUrl)}</loc>
+    <loc>${escapeXml(pageUrl)}</loc>
     <lastmod>${new Date(video.publishedAt).toISOString()}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -70,7 +69,6 @@ ${videos
       <video:thumbnail_loc>${thumbnailUrl}</video:thumbnail_loc>
       <video:title><![CDATA[${sanitizeForCDATA(video.title)}]]></video:title>
       <video:description><![CDATA[${sanitizeForCDATA(video.description.substring(0, 2048))}]]></video:description>
-      <video:content_loc>${escapeXml(watchUrl)}</video:content_loc>
       <video:player_loc>${escapeXml(embedUrl)}</video:player_loc>
       <video:duration>${convertDurationToSeconds(video.duration)}</video:duration>
       <video:publication_date>${video.publishedAt}</video:publication_date>
