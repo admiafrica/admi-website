@@ -10,10 +10,10 @@ Allow: /
 Disallow: /admin/
 Disallow: /api/
 Disallow: /student-portal/login
-Allow: /api/video-sitemap.xml
+Allow: /youtube-video-sitemap.xml
 
 Sitemap: https://admi.africa/sitemap.xml
-Sitemap: https://admi.africa/api/video-sitemap.xml
+Sitemap: https://admi.africa/youtube-video-sitemap.xml
 Sitemap: https://admi.africa/video-sitemap.xml
 Sitemap: https://admi.africa/news-sitemap.xml
 `

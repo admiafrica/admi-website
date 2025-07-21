@@ -27,6 +27,19 @@ const sanitizeForCDATA = (str: string) => {
   return str.replace(/]]>/g, ']]&gt;')
 }
 
+// Helper to convert ISO 8601 duration to seconds
+const convertISO8601ToSeconds = (duration: string): number => {
+  if (!duration || typeof duration !== 'string') return 0
+  const match = duration.match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/)
+  if (!match) return 0
+
+  const hours = parseInt(match[1] || '0')
+  const minutes = parseInt(match[2] || '0')
+  const seconds = parseInt(match[3] || '0')
+
+  return hours * 3600 + minutes * 60 + seconds
+}
+
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'GET') {
     res.setHeader('Allow', ['GET'])
@@ -56,10 +69,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
 ${videos
   .map((video) => {
-    const pageUrl = `${baseUrl}/videos?id=${video.id}` // URL to the page on your site
+    const pageUrl = `${baseUrl}/videos?id=${video.id}`
     const embedUrl = `https://www.youtube.com/embed/${video.id}`
     const thumbnailUrl = escapeXml(video.thumbnail.high || video.thumbnail.medium)
-    const duration = convertDurationToSeconds(video.duration)
+    const duration = convertISO8601ToSeconds(video.duration)
 
     if (duration === 0) {
       return null // Skip videos with invalid duration
@@ -88,7 +101,7 @@ ${videos
     </video:video>
   </url>`
   })
-  .filter(Boolean) // Remove null entries
+  .filter(Boolean)
   .join('\n')}
 </urlset>`
 
@@ -97,16 +110,6 @@ ${videos
     console.error('❌ Video sitemap generation error:', error)
     return res.status(500).json({ error: 'Failed to generate video sitemap' })
   }
-}
-
-function convertDurationToSeconds(duration: string): number {
-  if (!duration || typeof duration !== 'string' || duration === 'N/A') return 0
-  const parts = duration.split(':').map(Number)
-  if (parts.some(isNaN) || parts.length < 2 || parts.length > 3) return 0
-
-  if (parts.length === 2) return parts[0] * 60 + parts[1]
-  if (parts.length === 3) return parts[0] * 3600 + parts[1] * 60 + parts[2]
-  return 0
 }
 
 function convertViewCountToNumber(viewCount: string): number {
