@@ -32,16 +32,23 @@ function convertDurationToSeconds(duration: string): number {
   if (!duration || duration === 'N/A') return 0
 
   const parts = duration.split(':').map(Number)
+  let totalSeconds = 0
 
   if (parts.length === 2) {
     // MM:SS format
-    return parts[0] * 60 + parts[1]
+    totalSeconds = parts[0] * 60 + parts[1]
   } else if (parts.length === 3) {
     // HH:MM:SS format
-    return parts[0] * 3600 + parts[1] * 60 + parts[2]
+    totalSeconds = parts[0] * 3600 + parts[1] * 60 + parts[2]
   }
 
-  return 0
+  // Validate duration - exclude videos longer than 2 hours (7200 seconds)
+  // Return 0 for invalid durations (negative, NaN, or too long)
+  if (isNaN(totalSeconds) || totalSeconds <= 0 || totalSeconds > 7200) {
+    return 0
+  }
+
+  return totalSeconds
 }
 
 // Helper function to convert view count to number
@@ -99,15 +106,21 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     ${videos
-      .map(
-        (video) => `
+      .map((video) => {
+        const duration = convertDurationToSeconds(video.duration)
+        // Skip videos with invalid durations or longer than 2 hours (0 means invalid)
+        if (duration === 0) {
+          return null
+        }
+
+        return `
     <video:video>
       <video:thumbnail_loc>${escapeXml(video.thumbnail.high || video.thumbnail.medium || `https://img.youtube.com/vi/${video.id}/hqdefault.jpg`)}</video:thumbnail_loc>
       <video:title><![CDATA[${sanitizeForCDATA(video.title)}]]></video:title>
       <video:description><![CDATA[${sanitizeForCDATA(video.description.substring(0, 2048))}]]></video:description>
       <video:content_loc>https://www.youtube.com/watch?v=${video.id}</video:content_loc>
       <video:player_loc>https://www.youtube.com/embed/${video.id}</video:player_loc>
-      <video:duration>${convertDurationToSeconds(video.duration)}</video:duration>
+      <video:duration>${duration}</video:duration>
       <video:publication_date>${video.publishedAt}</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
       <video:view_count>${convertViewCountToNumber(video.viewCount)}</video:view_count>
@@ -117,7 +130,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       <video:tag>creative media</video:tag>
       <video:live>no</video:live>
     </video:video>`
-      )
+      })
+      .filter(Boolean)
       .join('')}
   </url>
 </urlset>`
