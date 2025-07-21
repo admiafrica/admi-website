@@ -64,6 +64,12 @@ export async function GET() {
     }
 
     // Generate video sitemap XML
+    const sanitizeForCDATA = (str: string) => {
+      if (!str) return ''
+      return str.replace(/]]>/g, ']]&gt;')
+    }
+
+    // Generate video sitemap XML
     const videoSitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
@@ -95,8 +101,8 @@ ${coursesWithVideos
     <lastmod>${lastModified}</lastmod>
     <video:video>
       <video:thumbnail_loc>${thumbnailUrl}</video:thumbnail_loc>
-      <video:title><![CDATA[${videoTitle}]]></video:title>
-      <video:description><![CDATA[${videoDescription}]]></video:description>
+      <video:title><![CDATA[${sanitizeForCDATA(videoTitle)}]]></video:title>
+      <video:description><![CDATA[${sanitizeForCDATA(videoDescription)}]]></video:description>
       <video:content_loc>${contentUrl}</video:content_loc>
       <video:player_loc>${playerUrl}</video:player_loc>
       <video:duration>150</video:duration>
