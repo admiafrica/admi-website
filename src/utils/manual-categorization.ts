@@ -169,10 +169,10 @@ export const MANUAL_CATEGORIES: ManualCategory[] = [
 export function categorizeVideoManually(video: YouTubeVideo, playlists?: any[]): string[] {
   const categories: string[] = []
   const searchText = `${video.title} ${video.description}`.toLowerCase()
-  
+
   for (const category of MANUAL_CATEGORIES) {
     let score = 0
-    
+
     // 1. HIGHEST PRIORITY: Playlist-based categorization
     if (playlists) {
       for (const playlist of playlists) {
@@ -186,56 +186,61 @@ export function categorizeVideoManually(video: YouTubeVideo, playlists?: any[]):
         }
       }
     }
-    
+
     // 2. HIGH PRIORITY: Manual keywords/hashtags in description
     for (const keyword of category.manualKeywords) {
       if (video.description.includes(keyword)) {
         score += 15
       }
     }
-    
+
     // 3. HIGH PRIORITY: Hashtag keywords
     for (const hashtag of category.hashtagKeywords) {
       if (searchText.includes(`#${hashtag}`) || searchText.includes(hashtag)) {
         score += 12
       }
     }
-    
+
     // 4. MEDIUM PRIORITY: Title keywords
     for (const keyword of category.titleKeywords) {
       if (video.title.toLowerCase().includes(keyword)) {
         score += 8
       }
     }
-    
+
     // 5. LOW PRIORITY: Description keywords
     for (const keyword of category.descriptionKeywords) {
       if (video.description.toLowerCase().includes(keyword)) {
         score += 3
       }
     }
-    
+
     // Add category if score is high enough
-    if (score >= 8) { // Reduced threshold for manual system
+    if (score >= 8) {
+      // Reduced threshold for manual system
       categories.push(category.id)
     }
   }
-  
+
   // Default category if none found
   if (categories.length === 0) {
     categories.push('course-tutorials') // Default to course content
   }
-  
+
   return categories
 }
 
 // Get videos by manual category
-export function getVideosByManualCategory(videos: YouTubeVideo[], categoryId: string, playlists?: any[]): YouTubeVideo[] {
+export function getVideosByManualCategory(
+  videos: YouTubeVideo[],
+  categoryId: string,
+  playlists?: any[]
+): YouTubeVideo[] {
   if (categoryId === 'all') {
     return videos
   }
-  
-  return videos.filter(video => {
+
+  return videos.filter((video) => {
     const videoCategories = categorizeVideoManually(video, playlists)
     return videoCategories.includes(categoryId)
   })
@@ -244,24 +249,24 @@ export function getVideosByManualCategory(videos: YouTubeVideo[], categoryId: st
 // Get manual category statistics
 export function getManualCategoryStats(videos: YouTubeVideo[], playlists?: any[]): Record<string, number> {
   const stats: Record<string, number> = {}
-  
+
   // Initialize all categories
-  MANUAL_CATEGORIES.forEach(category => {
+  MANUAL_CATEGORIES.forEach((category) => {
     stats[category.id] = 0
   })
-  
+
   // Count videos in each category
-  videos.forEach(video => {
+  videos.forEach((video) => {
     const videoCategories = categorizeVideoManually(video, playlists)
-    videoCategories.forEach(categoryId => {
+    videoCategories.forEach((categoryId) => {
       stats[categoryId] = (stats[categoryId] || 0) + 1
     })
   })
-  
+
   return stats
 }
 
 // Get manual category info
 export function getManualCategoryInfo(categoryId: string): ManualCategory | undefined {
-  return MANUAL_CATEGORIES.find(cat => cat.id === categoryId)
+  return MANUAL_CATEGORIES.find((cat) => cat.id === categoryId)
 }

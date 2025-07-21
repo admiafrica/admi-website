@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { readVideoCache, getCacheStats, writeVideoCache } from '@/utils/video-cache'
+import { readVideoCache, getCacheStats } from '@/utils/video-cache'
 import { fetchAllADMIVideos } from '@/utils/fetch-all-videos'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -13,19 +13,19 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           // Get cache status
           const stats = getCacheStats()
           const cache = readVideoCache()
-          
+
           return res.status(200).json({
             ...stats,
             channelInfo: cache?.channelInfo || null
           })
         }
-        
+
         if (action === 'refresh') {
           // Force refresh cache
           console.log('🔄 Manual cache refresh requested...')
-          
+
           const newCache = await fetchAllADMIVideos()
-          
+
           return res.status(200).json({
             message: 'Cache refreshed successfully',
             totalVideos: newCache.totalVideos,
@@ -33,15 +33,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             channelInfo: newCache.channelInfo
           })
         }
-        
+
         return res.status(400).json({ error: 'Invalid action. Use ?action=status or ?action=refresh' })
 
       case 'POST':
         // Force refresh cache via POST
         console.log('🔄 POST cache refresh requested...')
-        
+
         const newCache = await fetchAllADMIVideos()
-        
+
         return res.status(200).json({
           message: 'Cache refreshed successfully',
           totalVideos: newCache.totalVideos,
@@ -52,15 +52,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       case 'DELETE':
         // Clear cache (for testing)
         try {
-          const fs = require('fs')
-          const path = require('path')
+          const fs = await import('fs')
+          const path = await import('path')
           const cacheFilePath = path.join(process.cwd(), 'data', 'admi-videos-cache.json')
-          
+
           if (fs.existsSync(cacheFilePath)) {
             fs.unlinkSync(cacheFilePath)
             console.log('🗑️ Cache file deleted')
           }
-          
+
           return res.status(200).json({
             message: 'Cache cleared successfully'
           })
@@ -74,10 +74,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       default:
         return res.status(405).json({ message: 'Method not allowed' })
     }
-
   } catch (error) {
     console.error('❌ Cache management error:', error)
-    
+
     return res.status(500).json({
       error: 'Cache operation failed',
       message: (error as Error).message

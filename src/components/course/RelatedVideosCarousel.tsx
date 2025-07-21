@@ -3,6 +3,7 @@ import { Container, Title, Text, Card, Group, Button, Badge } from '@mantine/cor
 import { Carousel } from '@mantine/carousel'
 import { IconPlayerPlay, IconExternalLink, IconEye } from '@tabler/icons-react'
 import Autoplay from 'embla-carousel-autoplay'
+import Image from 'next/image'
 
 interface RelatedVideo {
   id: string
@@ -122,10 +123,11 @@ export function RelatedVideosCarousel({
             >
               <Card.Section>
                 <div className="relative aspect-video w-full overflow-hidden bg-gray-100">
-                  <img
+                  <Image
                     src={video.thumbnail}
                     alt={video.title}
-                    className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
+                    fill
+                    className="object-cover transition-transform duration-300 hover:scale-105"
                   />
 
                   {/* Play Button Overlay */}

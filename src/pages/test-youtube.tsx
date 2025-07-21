@@ -28,12 +28,7 @@ export default function TestYouTubePage() {
       console.log('🔍 Searching for ADMI channels...')
 
       // Try multiple search terms to find the channel
-      const searchQueries = [
-        'Africa Digital Media Institute ADMI',
-        'ADMI Africa',
-        '@ADMIafrica',
-        'ADMIafrica'
-      ]
+      const searchQueries = ['Africa Digital Media Institute ADMI', 'ADMI Africa', '@ADMIafrica', 'ADMIafrica']
 
       let searchData = null
       for (const query of searchQueries) {
@@ -45,7 +40,10 @@ export default function TestYouTubePage() {
           const data = await searchResponse.json()
           if (data.items && data.items.length > 0) {
             searchData = data
-            console.log(`Found channels with query "${query}":`, data.items.map((item: any) => item.snippet.title))
+            console.log(
+              `Found channels with query "${query}":`,
+              data.items.map((item: any) => item.snippet.title)
+            )
             break
           }
         }
@@ -107,7 +105,6 @@ export default function TestYouTubePage() {
         videosFound: videosData?.items?.length || 0
       })
       setStatus('success')
-
     } catch (err: any) {
       setError(err.message)
       setStatus('error')
@@ -121,11 +118,11 @@ export default function TestYouTubePage() {
       </Title>
 
       <Card shadow="sm" padding="lg" radius="md" withBorder mb="xl">
-        <div className="flex items-center gap-3 mb-4">
+        <div className="mb-4 flex items-center gap-3">
           {status === 'loading' && <IconLoader className="animate-spin" />}
           {status === 'success' && <IconCheck color="green" />}
           {status === 'error' && <IconX color="red" />}
-          
+
           <Title order={3}>
             {status === 'loading' && 'Testing YouTube API...'}
             {status === 'success' && 'YouTube API Working!'}
@@ -146,35 +143,57 @@ export default function TestYouTubePage() {
               <Text fw={500}>✅ YouTube API is working correctly!</Text>
             </Alert>
 
-            <Title order={4} mb="md">Search Results for "ADMI" ({result.searchResults.length} found):</Title>
+            <Title order={4} mb="md">
+              Search Results for "ADMI" ({result.searchResults.length} found):
+            </Title>
             {result.searchResults.map((channel: any, index: number) => (
               <Card key={channel.snippet.channelId} withBorder p="md" mb="sm">
-                <Text fw={500}>{index + 1}. {channel.snippet.title}</Text>
-                <Text size="sm" c="dimmed">Channel ID: {channel.snippet.channelId}</Text>
+                <Text fw={500}>
+                  {index + 1}. {channel.snippet.title}
+                </Text>
+                <Text size="sm" c="dimmed">
+                  Channel ID: {channel.snippet.channelId}
+                </Text>
                 <Text size="sm">{channel.snippet.description.substring(0, 100)}...</Text>
                 {channel.snippet.channelId === result.actualChannelId && (
-                  <Text size="sm" c="green" fw={500}>← Using this channel</Text>
+                  <Text size="sm" c="green" fw={500}>
+                    ← Using this channel
+                  </Text>
                 )}
               </Card>
             ))}
 
             {result.channel && (
               <>
-                <Title order={4} mb="md">Channel Information:</Title>
+                <Title order={4} mb="md">
+                  Channel Information:
+                </Title>
                 <Card withBorder p="md" mb="md">
-                  <Text><strong>Name:</strong> {result.channel.snippet.title}</Text>
-                  <Text><strong>Subscribers:</strong> {result.channel.statistics?.subscriberCount || 'N/A'}</Text>
-                  <Text><strong>Total Videos:</strong> {result.channel.statistics?.videoCount || 'N/A'}</Text>
-                  <Text><strong>Total Views:</strong> {result.channel.statistics?.viewCount || 'N/A'}</Text>
+                  <Text>
+                    <strong>Name:</strong> {result.channel.snippet.title}
+                  </Text>
+                  <Text>
+                    <strong>Subscribers:</strong> {result.channel.statistics?.subscriberCount || 'N/A'}
+                  </Text>
+                  <Text>
+                    <strong>Total Videos:</strong> {result.channel.statistics?.videoCount || 'N/A'}
+                  </Text>
+                  <Text>
+                    <strong>Total Views:</strong> {result.channel.statistics?.viewCount || 'N/A'}
+                  </Text>
                 </Card>
               </>
             )}
 
-            <Title order={4} mb="md">Videos from Channel ({result.videos.length}):</Title>
+            <Title order={4} mb="md">
+              Videos from Channel ({result.videos.length}):
+            </Title>
             {result.videos.length > 0 ? (
               result.videos.map((video: any, index: number) => (
                 <Card key={video.id.videoId} withBorder p="md" mb="sm">
-                  <Text fw={500}>{index + 1}. {video.snippet.title}</Text>
+                  <Text fw={500}>
+                    {index + 1}. {video.snippet.title}
+                  </Text>
                   <Text size="sm" c="dimmed">
                     Channel: {video.snippet.channelTitle} (ID: {video.snippet.channelId})
                   </Text>
@@ -192,7 +211,9 @@ export default function TestYouTubePage() {
               <Text c="orange">No videos found for this channel</Text>
             )}
 
-            <Title order={4} mb="md">Debug Information:</Title>
+            <Title order={4} mb="md">
+              Debug Information:
+            </Title>
             <Code block>
               API Key: {result.apiKey}
               {'\n'}Target Channel ID: {result.channelId}
@@ -231,11 +252,21 @@ export default function TestYouTubePage() {
       </Card>
 
       <Card shadow="sm" padding="lg" radius="md" withBorder bg="gray.0">
-        <Title order={4} mb="md">Troubleshooting Tips:</Title>
-        <Text size="sm" mb="xs">• Make sure NEXT_PUBLIC_YOUTUBE_API_KEY is set in your .env file</Text>
-        <Text size="sm" mb="xs">• Verify the API key has YouTube Data API v3 enabled</Text>
-        <Text size="sm" mb="xs">• Check that the API key allows requests from localhost:3000</Text>
-        <Text size="sm" mb="xs">• Ensure the channel ID is correct for ADMI's YouTube channel</Text>
+        <Title order={4} mb="md">
+          Troubleshooting Tips:
+        </Title>
+        <Text size="sm" mb="xs">
+          • Make sure NEXT_PUBLIC_YOUTUBE_API_KEY is set in your .env file
+        </Text>
+        <Text size="sm" mb="xs">
+          • Verify the API key has YouTube Data API v3 enabled
+        </Text>
+        <Text size="sm" mb="xs">
+          • Check that the API key allows requests from localhost:3000
+        </Text>
+        <Text size="sm" mb="xs">
+          • Ensure the channel ID is correct for ADMI's YouTube channel
+        </Text>
       </Card>
     </Container>
   )

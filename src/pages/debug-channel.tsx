@@ -9,27 +9,27 @@ export default function DebugChannelPage() {
   const testChannelId = async () => {
     setLoading(true)
     setResult(null)
-    
+
     try {
       const API_KEY = process.env.NEXT_PUBLIC_YOUTUBE_API_KEY
-      
+
       // Test 1: Get channel info
       console.log('Testing channel ID:', channelId)
       const channelResponse = await fetch(
         `https://www.googleapis.com/youtube/v3/channels?part=snippet,statistics&id=${channelId}&key=${API_KEY}`
       )
-      
+
       const channelData = await channelResponse.json()
       console.log('Channel response:', channelData)
-      
+
       // Test 2: Get videos from this channel
       const videosResponse = await fetch(
         `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&maxResults=5&order=date&type=video&key=${API_KEY}`
       )
-      
+
       const videosData = await videosResponse.json()
       console.log('Videos response:', videosData)
-      
+
       // Test 3: Try different search queries for ADMI
       const searchQueries = [
         'Africa Digital Media Institute',
@@ -50,7 +50,10 @@ export default function DebugChannelPage() {
             const data = await searchResponse.json()
             if (data.items && data.items.length > 0) {
               searchData = data
-              console.log(`Found channels with query "${query}":`, data.items.map(item => item.snippet.title))
+              console.log(
+                `Found channels with query "${query}":`,
+                data.items.map((item: any) => item.snippet.title)
+              )
               break
             }
           }
@@ -60,7 +63,7 @@ export default function DebugChannelPage() {
       }
 
       console.log('Final search response:', searchData)
-      
+
       // Test 4: Try to find channel by handle (this might not work with current API)
       let handleData = null
       try {
@@ -85,10 +88,9 @@ export default function DebugChannelPage() {
         searchFound: searchData.items ? searchData.items.length : 0,
         handleFound: handleData?.items ? handleData.items.length : 0
       })
-      
     } catch (error) {
       console.error('Error:', error)
-      setResult({ error: error.message })
+      setResult({ error: (error as Error).message })
     } finally {
       setLoading(false)
     }
@@ -96,10 +98,14 @@ export default function DebugChannelPage() {
 
   return (
     <Container size="md" py="xl">
-      <Title order={1} mb="xl">Debug ADMI Channel ID</Title>
-      
+      <Title order={1} mb="xl">
+        Debug ADMI Channel ID
+      </Title>
+
       <Card shadow="sm" padding="lg" radius="md" withBorder mb="xl">
-        <Title order={3} mb="md">Test Channel ID</Title>
+        <Title order={3} mb="md">
+          Test Channel ID
+        </Title>
         <TextInput
           label="Channel ID to test"
           value={channelId}
@@ -120,29 +126,54 @@ export default function DebugChannelPage() {
           ) : (
             <div>
               <Card shadow="sm" padding="lg" radius="md" withBorder mb="md">
-                <Title order={4} mb="md">Channel Test Results</Title>
-                <Text><strong>Channel Found:</strong> {result.channelFound ? 'Yes' : 'No'}</Text>
-                <Text><strong>Videos Found:</strong> {result.videosFound}</Text>
-                <Text><strong>Search Results:</strong> {result.searchFound}</Text>
-                
+                <Title order={4} mb="md">
+                  Channel Test Results
+                </Title>
+                <Text>
+                  <strong>Channel Found:</strong> {result.channelFound ? 'Yes' : 'No'}
+                </Text>
+                <Text>
+                  <strong>Videos Found:</strong> {result.videosFound}
+                </Text>
+                <Text>
+                  <strong>Search Results:</strong> {result.searchFound}
+                </Text>
+
                 {result.channelFound && result.channelData.items[0] && (
                   <div>
-                    <Text mt="md"><strong>Channel Name:</strong> {result.channelData.items[0].snippet.title}</Text>
-                    <Text><strong>Description:</strong> {result.channelData.items[0].snippet.description.substring(0, 100)}...</Text>
-                    <Text><strong>Subscribers:</strong> {result.channelData.items[0].statistics?.subscriberCount || 'N/A'}</Text>
-                    <Text><strong>Videos:</strong> {result.channelData.items[0].statistics?.videoCount || 'N/A'}</Text>
+                    <Text mt="md">
+                      <strong>Channel Name:</strong> {result.channelData.items[0].snippet.title}
+                    </Text>
+                    <Text>
+                      <strong>Description:</strong> {result.channelData.items[0].snippet.description.substring(0, 100)}
+                      ...
+                    </Text>
+                    <Text>
+                      <strong>Subscribers:</strong> {result.channelData.items[0].statistics?.subscriberCount || 'N/A'}
+                    </Text>
+                    <Text>
+                      <strong>Videos:</strong> {result.channelData.items[0].statistics?.videoCount || 'N/A'}
+                    </Text>
                   </div>
                 )}
               </Card>
 
               {result.videosFound > 0 && (
                 <Card shadow="sm" padding="lg" radius="md" withBorder mb="md">
-                  <Title order={4} mb="md">Videos from This Channel</Title>
+                  <Title order={4} mb="md">
+                    Videos from This Channel
+                  </Title>
                   {result.videosData.items.map((video: any, index: number) => (
                     <div key={video.id.videoId} style={{ marginBottom: '8px' }}>
-                      <Text fw={500}>{index + 1}. {video.snippet.title}</Text>
-                      <Text size="sm" c="dimmed">Channel: {video.snippet.channelTitle}</Text>
-                      <Text size="sm" c="dimmed">Published: {new Date(video.snippet.publishedAt).toLocaleDateString()}</Text>
+                      <Text fw={500}>
+                        {index + 1}. {video.snippet.title}
+                      </Text>
+                      <Text size="sm" c="dimmed">
+                        Channel: {video.snippet.channelTitle}
+                      </Text>
+                      <Text size="sm" c="dimmed">
+                        Published: {new Date(video.snippet.publishedAt).toLocaleDateString()}
+                      </Text>
                     </div>
                   ))}
                 </Card>
@@ -150,14 +181,22 @@ export default function DebugChannelPage() {
 
               {result.searchFound > 0 && (
                 <Card shadow="sm" padding="lg" radius="md" withBorder mb="md">
-                  <Title order={4} mb="md">ADMI Channels Found in Search</Title>
+                  <Title order={4} mb="md">
+                    ADMI Channels Found in Search
+                  </Title>
                   {result.searchData.items.map((channel: any, index: number) => (
                     <div key={channel.snippet.channelId} style={{ marginBottom: '8px' }}>
-                      <Text fw={500}>{index + 1}. {channel.snippet.title}</Text>
-                      <Text size="sm" c="dimmed">ID: {channel.snippet.channelId}</Text>
+                      <Text fw={500}>
+                        {index + 1}. {channel.snippet.title}
+                      </Text>
+                      <Text size="sm" c="dimmed">
+                        ID: {channel.snippet.channelId}
+                      </Text>
                       <Text size="sm">{channel.snippet.description.substring(0, 100)}...</Text>
                       {channel.snippet.channelId === channelId && (
-                        <Text size="sm" c="green" fw={500}>✅ This matches the test channel ID!</Text>
+                        <Text size="sm" c="green" fw={500}>
+                          ✅ This matches the test channel ID!
+                        </Text>
                       )}
                     </div>
                   ))}
@@ -165,7 +204,9 @@ export default function DebugChannelPage() {
               )}
 
               <Card shadow="sm" padding="lg" radius="md" withBorder>
-                <Title order={4} mb="md">Raw API Responses</Title>
+                <Title order={4} mb="md">
+                  Raw API Responses
+                </Title>
                 <Code block style={{ fontSize: '12px', maxHeight: '300px', overflow: 'auto' }}>
                   {JSON.stringify(result, null, 2)}
                 </Code>
@@ -176,7 +217,9 @@ export default function DebugChannelPage() {
       )}
 
       <Card shadow="sm" padding="lg" radius="md" withBorder mt="xl" bg="gray.0">
-        <Title order={4} mb="md">Channel IDs to Test</Title>
+        <Title order={4} mb="md">
+          Channel IDs to Test
+        </Title>
         <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginBottom: '16px' }}>
           <Button size="xs" variant="light" onClick={() => setChannelId('UCyAYiT5XYUcOaOlzn32qROA')}>
             UCyAYiT5XYUcOaOlzn32qROA (Current)

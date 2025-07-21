@@ -9,14 +9,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   try {
     // Get all cached videos from YouTube channel
     const cache = readVideoCache()
-    
+
     if (!cache || !cache.videos || cache.videos.length === 0) {
       // Return empty sitemap if no videos found
       const emptySitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
 </urlset>`
-      
+
       res.setHeader('Content-Type', 'application/xml')
       res.setHeader('Cache-Control', 'public, s-maxage=86400, stale-while-revalidate=43200')
       return res.status(200).send(emptySitemap)
@@ -34,7 +34,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     <lastmod>${cache.lastUpdated || new Date().toISOString()}</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
-    ${videos.map(video => `
+    ${videos
+      .map(
+        (video) => `
     <video:video>
       <video:thumbnail_loc>${video.thumbnail.high || video.thumbnail.medium || `https://img.youtube.com/vi/${video.id}/hqdefault.jpg`}</video:thumbnail_loc>
       <video:title><![CDATA[${video.title}]]></video:title>
@@ -50,16 +52,17 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       <video:tag>education</video:tag>
       <video:tag>creative media</video:tag>
       <video:live>no</video:live>
-    </video:video>`).join('')}
+    </video:video>`
+      )
+      .join('')}
   </url>
 </urlset>`
 
     // Set appropriate headers
     res.setHeader('Content-Type', 'application/xml')
     res.setHeader('Cache-Control', 'public, s-maxage=86400, stale-while-revalidate=43200') // 24h cache
-    
-    return res.status(200).send(sitemap)
 
+    return res.status(200).send(sitemap)
   } catch (error) {
     console.error('❌ Video sitemap generation error:', error)
     return res.status(500).json({ error: 'Failed to generate video sitemap' })
@@ -69,9 +72,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 // Helper function to convert duration to seconds for sitemap
 function convertDurationToSeconds(duration: string): number {
   if (!duration || duration === 'N/A') return 0
-  
+
   const parts = duration.split(':').map(Number)
-  
+
   if (parts.length === 2) {
     // MM:SS format
     return parts[0] * 60 + parts[1]
@@ -79,22 +82,22 @@ function convertDurationToSeconds(duration: string): number {
     // HH:MM:SS format
     return parts[0] * 3600 + parts[1] * 60 + parts[2]
   }
-  
+
   return 0
 }
 
 // Helper function to convert view count to number
 function convertViewCountToNumber(viewCount: string): number {
   if (!viewCount || viewCount === 'N/A') return 0
-  
+
   const cleanCount = viewCount.replace(/[^\d.]/g, '')
   const num = parseFloat(cleanCount)
-  
+
   if (viewCount.includes('M')) {
     return Math.floor(num * 1000000)
   } else if (viewCount.includes('K')) {
     return Math.floor(num * 1000)
   }
-  
+
   return Math.floor(num) || 0
 }

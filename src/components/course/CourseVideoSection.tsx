@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import { Container, Title, Text, Card, Group, Button, Badge, Grid, Box, Tabs, Loader } from '@mantine/core'
+import { Container, Title, Text, Card, Group, Button, Badge, Grid, Box, Tabs } from '@mantine/core'
 import { IconPlayerPlay, IconEye, IconClock, IconUsers, IconTrendingUp, IconExternalLink } from '@tabler/icons-react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { VideoPlayer } from '@/components/shared/v3'
 import { YouTubeVideo, getVideosForCourse, getYouTubeWatchUrl } from '@/utils/youtube-api'
 
@@ -11,7 +12,7 @@ interface CourseVideoSectionProps {
   youtubeVideos?: YouTubeVideo[]
 }
 
-export function CourseVideoSection({ course, slug, youtubeVideos = [] }: CourseVideoSectionProps) {
+export function CourseVideoSection({ course, slug }: CourseVideoSectionProps) {
   const [activeTab, setActiveTab] = useState<string | null>('preview')
   const [relatedVideos, setRelatedVideos] = useState<YouTubeVideo[]>([])
   const [loading, setLoading] = useState(true)
@@ -195,18 +196,20 @@ export function CourseVideoSection({ course, slug, youtubeVideos = [] }: CourseV
         {/* Related Videos Tab */}
         <Tabs.Panel value="related">
           {loading ? (
-            <div className="text-center py-8">
+            <div className="py-8 text-center">
               <Text>Loading related videos...</Text>
             </div>
           ) : error ? (
-            <div className="text-center py-8">
-              <Text c="red" mb="md">{error}</Text>
+            <div className="py-8 text-center">
+              <Text c="red" mb="md">
+                {error}
+              </Text>
               <Button variant="light" onClick={() => window.location.reload()}>
                 Try Again
               </Button>
             </div>
           ) : relatedVideos.length === 0 ? (
-            <div className="text-center py-8">
+            <div className="py-8 text-center">
               <Text c="dimmed">No related videos found for this course.</Text>
             </div>
           ) : (
@@ -223,10 +226,11 @@ export function CourseVideoSection({ course, slug, youtubeVideos = [] }: CourseV
                   >
                     <Card.Section>
                       <div className="relative aspect-video w-full overflow-hidden bg-gray-100">
-                        <img
+                        <Image
                           src={video.thumbnail.medium || video.thumbnail.default}
                           alt={video.title}
-                          className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
+                          fill
+                          className="object-cover transition-transform duration-300 hover:scale-105"
                         />
 
                         {/* Play Button Overlay */}
@@ -272,31 +276,31 @@ export function CourseVideoSection({ course, slug, youtubeVideos = [] }: CourseV
                 </Grid.Col>
               ))}
             </Grid>
-
-            {/* View More Videos CTA */}
-            <Group justify="center" mt="xl">
-              <Button
-                variant="outline"
-                color="red"
-                size="md"
-                leftSection={<IconExternalLink size={16} />}
-                component="a"
-                href="/videos"
-              >
-                View All Videos
-              </Button>
-              <Button
-                color="red"
-                size="md"
-                component="a"
-                href="https://www.youtube.com/@ADMIafrica/"
-                target="_blank"
-                leftSection={<IconExternalLink size={16} />}
-              >
-                Visit YouTube Channel
-              </Button>
-            </Group>
           )}
+
+          {/* View More Videos CTA */}
+          <Group justify="center" mt="xl">
+            <Button
+              variant="outline"
+              color="red"
+              size="md"
+              leftSection={<IconExternalLink size={16} />}
+              component="a"
+              href="/videos"
+            >
+              View All Videos
+            </Button>
+            <Button
+              color="red"
+              size="md"
+              component="a"
+              href="https://www.youtube.com/@ADMIafrica/"
+              target="_blank"
+              leftSection={<IconExternalLink size={16} />}
+            >
+              Visit YouTube Channel
+            </Button>
+          </Group>
         </Tabs.Panel>
 
         {/* Video Insights Tab */}

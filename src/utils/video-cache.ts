@@ -48,7 +48,7 @@ function ensureCacheDirectory() {
 export function readVideoCache(): VideoCache | null {
   try {
     ensureCacheDirectory()
-    
+
     if (!fs.existsSync(CACHE_FILE_PATH)) {
       console.log('📁 No cache file found')
       return null
@@ -56,19 +56,18 @@ export function readVideoCache(): VideoCache | null {
 
     const cacheData = fs.readFileSync(CACHE_FILE_PATH, 'utf-8')
     const cache: VideoCache = JSON.parse(cacheData)
-    
+
     const lastUpdated = new Date(cache.lastUpdated)
     const now = new Date()
     const timeDiff = now.getTime() - lastUpdated.getTime()
-    
+
     if (timeDiff > CACHE_DURATION) {
       console.log('⏰ Cache expired, needs refresh')
       return null
     }
-    
+
     console.log(`📚 Cache valid, ${cache.videos.length} videos loaded from cache`)
     return cache
-    
   } catch (error) {
     console.error('❌ Error reading cache:', error)
     return null
@@ -79,12 +78,11 @@ export function readVideoCache(): VideoCache | null {
 export function writeVideoCache(cache: VideoCache): void {
   try {
     ensureCacheDirectory()
-    
+
     const cacheData = JSON.stringify(cache, null, 2)
     fs.writeFileSync(CACHE_FILE_PATH, cacheData, 'utf-8')
-    
+
     console.log(`💾 Cache saved with ${cache.videos.length} videos`)
-    
   } catch (error) {
     console.error('❌ Error writing cache:', error)
   }
@@ -99,13 +97,12 @@ export function isCacheValid(): boolean {
 
     const cacheData = fs.readFileSync(CACHE_FILE_PATH, 'utf-8')
     const cache: VideoCache = JSON.parse(cacheData)
-    
+
     const lastUpdated = new Date(cache.lastUpdated)
     const now = new Date()
     const timeDiff = now.getTime() - lastUpdated.getTime()
-    
+
     return timeDiff <= CACHE_DURATION
-    
   } catch (error) {
     console.error('❌ Error checking cache validity:', error)
     return false
@@ -121,19 +118,18 @@ export function getCacheStats(): { exists: boolean; lastUpdated?: string; videoC
 
     const cacheData = fs.readFileSync(CACHE_FILE_PATH, 'utf-8')
     const cache: VideoCache = JSON.parse(cacheData)
-    
+
     const lastUpdated = new Date(cache.lastUpdated)
     const now = new Date()
     const timeDiff = now.getTime() - lastUpdated.getTime()
     const isValid = timeDiff <= CACHE_DURATION
-    
+
     return {
       exists: true,
       lastUpdated: cache.lastUpdated,
       videoCount: cache.videos.length,
       isValid
     }
-    
   } catch (error) {
     console.error('❌ Error getting cache stats:', error)
     return { exists: false }

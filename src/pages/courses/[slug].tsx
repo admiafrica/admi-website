@@ -23,7 +23,7 @@ import { CertificateEnhancedSEO } from '@/components/course/CertificateEnhancedS
 import { EastAfricaLocalSEO } from '@/components/seo/EastAfricaLocalSEO'
 // generateDiplomaKeywords utility available for future enhancements
 import { GENERAL_DIPLOMA_FAQS } from '@/data/diploma-faqs'
-import { YouTubeVideo, fetchADMIChannelVideos } from '@/utils/youtube-api'
+import { YouTubeVideo } from '@/utils/youtube-api'
 import {
   GENERAL_CERTIFICATE_FAQS,
   GRAPHIC_DESIGN_CERTIFICATE_FAQS,
@@ -59,13 +59,11 @@ const getCorrectFAQsForCourse = (slug: string, isDiploma: boolean) => {
 export default function CourseDetailPage({
   course,
   courseAssets,
-  slug,
-  youtubeVideos
+  slug
 }: {
   course: any
   courseAssets: any[]
   slug: string
-  youtubeVideos: YouTubeVideo[]
 }) {
   // Extract rich text content for description
   const getPlainTextFromRichText = (richText: any) => {

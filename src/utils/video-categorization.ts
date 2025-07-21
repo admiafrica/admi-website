@@ -36,13 +36,7 @@ export const VIDEO_CATEGORIES: VideoCategory[] = [
     description: 'Educational content and course materials',
     icon: '📚',
     keywords: ['course', 'lesson', 'tutorial', 'learn', 'education', 'training', 'class'],
-    titlePatterns: [
-      /course.*content/i,
-      /lesson.*\d+/i,
-      /tutorial/i,
-      /how.*to/i,
-      /learn.*\w+/i
-    ],
+    titlePatterns: [/course.*content/i, /lesson.*\d+/i, /tutorial/i, /how.*to/i, /learn.*\w+/i],
     tagPatterns: ['tutorial', 'education', 'course', 'lesson', 'training'],
     priority: 9
   },
@@ -52,13 +46,7 @@ export const VIDEO_CATEGORIES: VideoCategory[] = [
     description: 'Campus tours, facilities, and equipment showcases',
     icon: '🏢',
     keywords: ['tour', 'facilities', 'studio', 'lab', 'equipment', 'campus', 'building'],
-    titlePatterns: [
-      /facilities.*tour/i,
-      /campus.*tour/i,
-      /studio.*tour/i,
-      /lab.*tour/i,
-      /equipment.*showcase/i
-    ],
+    titlePatterns: [/facilities.*tour/i, /campus.*tour/i, /studio.*tour/i, /lab.*tour/i, /equipment.*showcase/i],
     tagPatterns: ['facilities', 'campus tour', 'studio', 'equipment'],
     priority: 8
   },
@@ -85,14 +73,7 @@ export const VIDEO_CATEGORIES: VideoCategory[] = [
     description: 'Campus events, workshops, and activities',
     icon: '🎉',
     keywords: ['event', 'workshop', 'seminar', 'conference', 'activity', 'celebration'],
-    titlePatterns: [
-      /event/i,
-      /workshop/i,
-      /seminar/i,
-      /conference/i,
-      /graduation/i,
-      /open.*day/i
-    ],
+    titlePatterns: [/event/i, /workshop/i, /seminar/i, /conference/i, /graduation/i, /open.*day/i],
     tagPatterns: ['event', 'workshop', 'seminar', 'graduation'],
     priority: 7
   },
@@ -137,14 +118,7 @@ export const VIDEO_CATEGORIES: VideoCategory[] = [
     description: 'Animation, visual effects, and motion graphics',
     icon: '🎭',
     keywords: ['animation', 'vfx', 'visual effects', 'motion graphics', '3d', 'after effects'],
-    titlePatterns: [
-      /animation/i,
-      /vfx/i,
-      /visual.*effects/i,
-      /motion.*graphics/i,
-      /3d.*animation/i,
-      /after.*effects/i
-    ],
+    titlePatterns: [/animation/i, /vfx/i, /visual.*effects/i, /motion.*graphics/i, /3d.*animation/i, /after.*effects/i],
     tagPatterns: ['animation', 'vfx', 'visual effects', 'motion graphics'],
     priority: 8
   },
@@ -154,14 +128,7 @@ export const VIDEO_CATEGORIES: VideoCategory[] = [
     description: 'Graphic design, branding, and visual communication',
     icon: '🎨',
     keywords: ['graphic', 'design', 'branding', 'logo', 'visual', 'photoshop', 'illustrator'],
-    titlePatterns: [
-      /graphic.*design/i,
-      /logo.*design/i,
-      /branding/i,
-      /visual.*design/i,
-      /photoshop/i,
-      /illustrator/i
-    ],
+    titlePatterns: [/graphic.*design/i, /logo.*design/i, /branding/i, /visual.*design/i, /photoshop/i, /illustrator/i],
     tagPatterns: ['graphic design', 'branding', 'logo design', 'visual design'],
     priority: 7
   },
@@ -171,13 +138,7 @@ export const VIDEO_CATEGORIES: VideoCategory[] = [
     description: 'Digital marketing, social media, and content strategy',
     icon: '📱',
     keywords: ['marketing', 'digital marketing', 'social media', 'content', 'strategy', 'seo'],
-    titlePatterns: [
-      /digital.*marketing/i,
-      /social.*media/i,
-      /content.*marketing/i,
-      /marketing.*strategy/i,
-      /seo/i
-    ],
+    titlePatterns: [/digital.*marketing/i, /social.*media/i, /content.*marketing/i, /marketing.*strategy/i, /seo/i],
     tagPatterns: ['digital marketing', 'social media', 'content marketing', 'seo'],
     priority: 7
   },
@@ -218,16 +179,16 @@ export const VIDEO_CATEGORIES: VideoCategory[] = [
 // Smart categorization function
 export function categorizeVideo(video: YouTubeVideo): string[] {
   const categories: string[] = []
-  
+
   // Prepare search text (title + description + tags)
   const searchText = `${video.title} ${video.description} ${video.tags?.join(' ') || ''}`.toLowerCase()
-  
+
   // Sort categories by priority (highest first)
   const sortedCategories = [...VIDEO_CATEGORIES].sort((a, b) => b.priority - a.priority)
-  
+
   for (const category of sortedCategories) {
     let score = 0
-    
+
     // Check title patterns (highest weight)
     for (const pattern of category.titlePatterns) {
       if (pattern.test(video.title)) {
@@ -235,34 +196,32 @@ export function categorizeVideo(video: YouTubeVideo): string[] {
         break // Only count once per category
       }
     }
-    
+
     // Check tag patterns (high weight)
     if (video.tags) {
       for (const tagPattern of category.tagPatterns) {
-        if (video.tags.some(tag => tag.toLowerCase().includes(tagPattern.toLowerCase()))) {
+        if (video.tags.some((tag) => tag.toLowerCase().includes(tagPattern.toLowerCase()))) {
           score += 8
           break
         }
       }
     }
-    
+
     // Check keywords in all text (medium weight)
-    const keywordMatches = category.keywords.filter(keyword => 
-      searchText.includes(keyword.toLowerCase())
-    )
+    const keywordMatches = category.keywords.filter((keyword) => searchText.includes(keyword.toLowerCase()))
     score += keywordMatches.length * 2
-    
+
     // If score is high enough, add to categories
     if (score >= 5) {
       categories.push(category.id)
     }
   }
-  
+
   // Always ensure at least one category
   if (categories.length === 0) {
     categories.push('course-content') // Default category
   }
-  
+
   return categories
 }
 
@@ -271,8 +230,8 @@ export function getVideosBySmartCategory(videos: YouTubeVideo[], categoryId: str
   if (categoryId === 'all') {
     return videos
   }
-  
-  return videos.filter(video => {
+
+  return videos.filter((video) => {
     const videoCategories = categorizeVideo(video)
     return videoCategories.includes(categoryId)
   })
@@ -281,24 +240,24 @@ export function getVideosBySmartCategory(videos: YouTubeVideo[], categoryId: str
 // Get category statistics
 export function getCategoryStats(videos: YouTubeVideo[]): Record<string, number> {
   const stats: Record<string, number> = {}
-  
+
   // Initialize all categories
-  VIDEO_CATEGORIES.forEach(category => {
+  VIDEO_CATEGORIES.forEach((category) => {
     stats[category.id] = 0
   })
-  
+
   // Count videos in each category
-  videos.forEach(video => {
+  videos.forEach((video) => {
     const videoCategories = categorizeVideo(video)
-    videoCategories.forEach(categoryId => {
+    videoCategories.forEach((categoryId) => {
       stats[categoryId] = (stats[categoryId] || 0) + 1
     })
   })
-  
+
   return stats
 }
 
 // Get category info by ID
 export function getCategoryInfo(categoryId: string): VideoCategory | undefined {
-  return VIDEO_CATEGORIES.find(cat => cat.id === categoryId)
+  return VIDEO_CATEGORIES.find((cat) => cat.id === categoryId)
 }

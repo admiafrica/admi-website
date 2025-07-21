@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import { GetServerSideProps } from 'next'
+import React, { useState, useEffect, useCallback } from 'react'
+import Image from 'next/image'
 import {
   Container,
   Title,
@@ -21,21 +21,19 @@ import {
   Divider,
   Stack
 } from '@mantine/core'
-import { IconSearch, IconPlayerPlay, IconExternalLink, IconEye, IconClock, IconX, IconShare, IconThumbUp, IconCalendar, IconTag } from '@tabler/icons-react'
+import {
+  IconSearch,
+  IconPlayerPlay,
+  IconExternalLink,
+  IconEye,
+  IconClock,
+  IconCalendar,
+  IconTag
+} from '@tabler/icons-react'
 import { MainLayout } from '@/layouts/v3/MainLayout'
 import { PageSEO } from '@/components/shared/v3'
-import {
-  YouTubeVideo,
-  searchVideos,
-  getYouTubeWatchUrl
-} from '@/utils/youtube-api'
-import {
-  MANUAL_CATEGORIES,
-  getVideosByManualCategory,
-  getManualCategoryStats,
-  getManualCategoryInfo,
-  categorizeVideoManually
-} from '@/utils/manual-categorization'
+import { YouTubeVideo, searchVideos, getYouTubeWatchUrl } from '@/utils/youtube-api'
+import { getVideosByManualCategory } from '@/utils/manual-categorization'
 
 interface VideoGalleryProps {
   allVideos: YouTubeVideo[] // All videos for SEO
@@ -64,7 +62,7 @@ const formatLargeNumber = (num: string): string => {
   return number.toString()
 }
 
-export default function VideoGallery({ allVideos, initialDisplay, channelInfo }: VideoGalleryProps) {
+export default function VideoGallery({ allVideos, channelInfo }: VideoGalleryProps) {
   // SEO: All videos available for search and filtering
   const [allVideosList] = useState<YouTubeVideo[]>(allVideos)
   const [filteredVideos, setFilteredVideos] = useState<YouTubeVideo[]>(allVideos)
@@ -89,20 +87,19 @@ export default function VideoGallery({ allVideos, initialDisplay, channelInfo }:
     if (!currentVideo) return []
 
     // Find videos with similar tags or from same category
-    const related = allVideosList.filter(video => {
+    const related = allVideosList.filter((video) => {
       if (video.id === currentVideo.id) return false
 
       // Check for common tags
-      const commonTags = currentVideo.tags?.filter(tag =>
-        video.tags?.some(vTag => vTag.toLowerCase().includes(tag.toLowerCase()))
-      ) || []
+      const commonTags =
+        currentVideo.tags?.filter((tag) =>
+          video.tags?.some((vTag) => vTag.toLowerCase().includes(tag.toLowerCase()))
+        ) || []
 
       // Check for similar titles (common keywords)
       const currentWords = currentVideo.title.toLowerCase().split(' ')
       const videoWords = video.title.toLowerCase().split(' ')
-      const commonWords = currentWords.filter(word =>
-        word.length > 3 && videoWords.includes(word)
-      )
+      const commonWords = currentWords.filter((word) => word.length > 3 && videoWords.includes(word))
 
       return commonTags.length > 0 || commonWords.length > 1
     })
@@ -159,9 +156,9 @@ export default function VideoGallery({ allVideos, initialDisplay, channelInfo }:
   }, [allVideosList, searchQuery, selectedCategory, selectedCourse])
 
   // Load more videos function
-  const loadMoreVideos = () => {
-    setDisplayCount(prev => Math.min(prev + 12, filteredVideos.length))
-  }
+  const loadMoreVideos = useCallback(() => {
+    setDisplayCount((prev) => Math.min(prev + 12, filteredVideos.length))
+  }, [filteredVideos.length])
 
   // Infinite scroll for mobile
   useEffect(() => {
@@ -178,7 +175,7 @@ export default function VideoGallery({ allVideos, initialDisplay, channelInfo }:
       window.addEventListener('scroll', handleScroll)
       return () => window.removeEventListener('scroll', handleScroll)
     }
-  }, [displayCount, filteredVideos.length, loading])
+  }, [displayCount, filteredVideos.length, loading, loadMoreVideos])
 
   const handleVideoClick = (video: YouTubeVideo) => {
     setSelectedVideo(video)
@@ -334,8 +331,12 @@ export default function VideoGallery({ allVideos, initialDisplay, channelInfo }:
         ) : error ? (
           <Center py="xl">
             <div style={{ textAlign: 'center' }}>
-              <Text size="lg" fw={500} mb="xs" c="red">Failed to load videos</Text>
-              <Text c="dimmed" mb="md">{error}</Text>
+              <Text size="lg" fw={500} mb="xs" c="red">
+                Failed to load videos
+              </Text>
+              <Text c="dimmed" mb="md">
+                {error}
+              </Text>
               <Button variant="light" onClick={() => window.location.reload()}>
                 Try Again
               </Button>
@@ -365,88 +366,84 @@ export default function VideoGallery({ allVideos, initialDisplay, channelInfo }:
           <>
             <Grid>
               {visibleVideos.map((video) => (
-              <Grid.Col key={video.id} span={{ base: 12, sm: 6, md: 4 }}>
-                <Card
-                  shadow="sm"
-                  padding="lg"
-                  radius="md"
-                  withBorder
-                  className="h-full cursor-pointer transition-shadow hover:shadow-lg"
-                  onClick={() => handleVideoClick(video)}
-                >
-                  <Card.Section>
-                    <div className="relative aspect-video w-full overflow-hidden bg-gray-100">
-                      <img
-                        src={video.thumbnail.medium || video.thumbnail.default}
-                        alt={video.title}
-                        className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
-                      />
+                <Grid.Col key={video.id} span={{ base: 12, sm: 6, md: 4 }}>
+                  <Card
+                    shadow="sm"
+                    padding="lg"
+                    radius="md"
+                    withBorder
+                    className="h-full cursor-pointer transition-shadow hover:shadow-lg"
+                    onClick={() => handleVideoClick(video)}
+                  >
+                    <Card.Section>
+                      <div className="relative aspect-video w-full overflow-hidden bg-gray-100">
+                        <Image
+                          src={video.thumbnail.medium || video.thumbnail.default}
+                          alt={video.title}
+                          fill
+                          className="object-cover transition-transform duration-300 hover:scale-105"
+                        />
 
-                      {/* Play Button Overlay */}
-                      <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30 opacity-0 transition-opacity duration-300 hover:opacity-100">
-                        <div className="rounded-full bg-white bg-opacity-90 p-4">
-                          <IconPlayerPlay size={32} color="#F76335" />
+                        {/* Play Button Overlay */}
+                        <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30 opacity-0 transition-opacity duration-300 hover:opacity-100">
+                          <div className="rounded-full bg-white bg-opacity-90 p-4">
+                            <IconPlayerPlay size={32} color="#F76335" />
+                          </div>
+                        </div>
+
+                        {/* Duration Badge */}
+                        <div className="absolute bottom-2 right-2 rounded bg-black bg-opacity-70 px-2 py-1 text-xs text-white">
+                          {video.duration}
+                        </div>
+
+                        {/* YouTube Badge */}
+                        <div className="absolute left-2 top-2">
+                          <Badge color="red" variant="filled" size="xs">
+                            YouTube
+                          </Badge>
                         </div>
                       </div>
+                    </Card.Section>
 
-                      {/* Duration Badge */}
-                      <div className="absolute bottom-2 right-2 rounded bg-black bg-opacity-70 px-2 py-1 text-xs text-white">
-                        {video.duration}
-                      </div>
+                    <div className="flex h-full flex-col">
+                      <Title order={5} mt="md" lineClamp={2} className="flex-grow">
+                        {video.title}
+                      </Title>
 
-                      {/* YouTube Badge */}
-                      <div className="absolute left-2 top-2">
-                        <Badge color="red" variant="filled" size="xs">
-                          YouTube
-                        </Badge>
-                      </div>
-                    </div>
-                  </Card.Section>
+                      <Text size="sm" c="dimmed" lineClamp={3} mt="xs" className="flex-grow">
+                        {video.description}
+                      </Text>
 
-                  <div className="flex h-full flex-col">
-                    <Title order={5} mt="md" lineClamp={2} className="flex-grow">
-                      {video.title}
-                    </Title>
-
-                    <Text size="sm" c="dimmed" lineClamp={3} mt="xs" className="flex-grow">
-                      {video.description}
-                    </Text>
-
-                    <Group justify="space-between" mt="md" align="center">
-                      <Group gap="xs">
-                        <Group gap={4}>
-                          <IconEye size={14} color="#666" />
-                          <Text size="xs" c="dimmed">
-                            {video.viewCount}
-                          </Text>
+                      <Group justify="space-between" mt="md" align="center">
+                        <Group gap="xs">
+                          <Group gap={4}>
+                            <IconEye size={14} color="#666" />
+                            <Text size="xs" c="dimmed">
+                              {video.viewCount}
+                            </Text>
+                          </Group>
+                          <Group gap={4}>
+                            <IconClock size={14} color="#666" />
+                            <Text size="xs" c="dimmed">
+                              {video.duration}
+                            </Text>
+                          </Group>
                         </Group>
-                        <Group gap={4}>
-                          <IconClock size={14} color="#666" />
-                          <Text size="xs" c="dimmed">
-                            {video.duration}
-                          </Text>
-                        </Group>
+
+                        <Button size="xs" variant="light" color="red" leftSection={<IconPlayerPlay size={12} />}>
+                          Watch
+                        </Button>
                       </Group>
-
-                      <Button size="xs" variant="light" color="red" leftSection={<IconPlayerPlay size={12} />}>
-                        Watch
-                      </Button>
-                    </Group>
-                  </div>
-                </Card>
-              </Grid.Col>
+                    </div>
+                  </Card>
+                </Grid.Col>
               ))}
             </Grid>
 
             {/* Load More Button */}
             {filteredVideos.length > displayCount && (
               <Center mt="xl">
-                <Button
-                  size="lg"
-                  variant="outline"
-                  onClick={loadMoreVideos}
-                  leftSection={<IconPlayerPlay size={16} />}
-                >
+                <Button size="lg" variant="outline" onClick={loadMoreVideos} leftSection={<IconPlayerPlay size={16} />}>
                   Load More Videos ({filteredVideos.length - displayCount} remaining)
                 </Button>
               </Center>
@@ -462,15 +459,16 @@ export default function VideoGallery({ allVideos, initialDisplay, channelInfo }:
                   <span>Duration: {video.duration}</span>
                   <span>Views: {video.viewCount}</span>
                   <span>Channel: {video.channelTitle}</span>
-                  <span>Published: {new Date(video.publishedAt).toLocaleDateString('en-KE', {
-                    timeZone: 'Africa/Nairobi',
-                    year: 'numeric',
-                    month: '2-digit',
-                    day: '2-digit'
-                  })}</span>
-                  {video.tags && video.tags.length > 0 && (
-                    <span>Tags: {video.tags.join(', ')}</span>
-                  )}
+                  <span>
+                    Published:{' '}
+                    {new Date(video.publishedAt).toLocaleDateString('en-KE', {
+                      timeZone: 'Africa/Nairobi',
+                      year: 'numeric',
+                      month: '2-digit',
+                      day: '2-digit'
+                    })}
+                  </span>
+                  {video.tags && video.tags.length > 0 && <span>Tags: {video.tags.join(', ')}</span>}
                 </div>
               ))}
             </div>
@@ -498,15 +496,7 @@ export default function VideoGallery({ allVideos, initialDisplay, channelInfo }:
         </Card>
 
         {/* Video Modal */}
-        <Modal
-          opened={modalOpened}
-          onClose={closeModal}
-          size="xl"
-          title={null}
-          padding={0}
-          radius="md"
-          centered
-        >
+        <Modal opened={modalOpened} onClose={closeModal} size="xl" title={null} padding={0} radius="md" centered>
           {selectedVideo && (
             <div>
               {/* Video Player */}
@@ -529,11 +519,15 @@ export default function VideoGallery({ allVideos, initialDisplay, channelInfo }:
                 <Group mb="md" gap="lg">
                   <Group gap={4}>
                     <IconEye size={16} color="#666" />
-                    <Text size="sm" c="dimmed">{selectedVideo.viewCount} views</Text>
+                    <Text size="sm" c="dimmed">
+                      {selectedVideo.viewCount} views
+                    </Text>
                   </Group>
                   <Group gap={4}>
                     <IconClock size={16} color="#666" />
-                    <Text size="sm" c="dimmed">{selectedVideo.duration}</Text>
+                    <Text size="sm" c="dimmed">
+                      {selectedVideo.duration}
+                    </Text>
                   </Group>
                   <Group gap={4}>
                     <IconCalendar size={16} color="#666" />
@@ -564,7 +558,9 @@ export default function VideoGallery({ allVideos, initialDisplay, channelInfo }:
                         <Box mt="md">
                           <Group gap="xs">
                             <IconTag size={14} />
-                            <Text size="xs" fw={500}>Tags:</Text>
+                            <Text size="xs" fw={500}>
+                              Tags:
+                            </Text>
                           </Group>
                           <Group gap="xs" mt="xs">
                             {selectedVideo.tags.slice(0, 10).map((tag, index) => (
@@ -593,19 +589,27 @@ export default function VideoGallery({ allVideos, initialDisplay, channelInfo }:
                             }}
                           >
                             <Group gap="sm">
-                              <img
+                              <Image
                                 src={relatedVideo.thumbnail.medium}
                                 alt={relatedVideo.title}
-                                style={{ width: 80, height: 60, objectFit: 'cover', borderRadius: 4 }}
+                                width={80}
+                                height={60}
+                                style={{ objectFit: 'cover', borderRadius: 4 }}
                               />
                               <div style={{ flex: 1 }}>
                                 <Text size="sm" fw={500} lineClamp={2}>
                                   {relatedVideo.title}
                                 </Text>
                                 <Group gap="xs" mt={4}>
-                                  <Text size="xs" c="dimmed">{relatedVideo.viewCount} views</Text>
-                                  <Text size="xs" c="dimmed">•</Text>
-                                  <Text size="xs" c="dimmed">{relatedVideo.duration}</Text>
+                                  <Text size="xs" c="dimmed">
+                                    {relatedVideo.viewCount} views
+                                  </Text>
+                                  <Text size="xs" c="dimmed">
+                                    •
+                                  </Text>
+                                  <Text size="xs" c="dimmed">
+                                    {relatedVideo.duration}
+                                  </Text>
                                 </Group>
                               </div>
                             </Group>
@@ -684,7 +688,6 @@ export const getServerSideProps = async () => {
         channelInfo: cache.channelInfo
       }
     }
-
   } catch (error) {
     console.error('❌ SSR Error:', error)
     return {
@@ -696,5 +699,3 @@ export const getServerSideProps = async () => {
     }
   }
 }
-
-
