@@ -27,83 +27,99 @@ const sanitizeForCDATA = (str: string) => {
   return str.replace(/]]>/g, ']]&gt;')
 }
 
-// Helper to convert ISO 8601 duration to seconds
-const convertISO8601ToSeconds = (duration: string): number => {
-  if (!duration || typeof duration !== 'string') return 0
-  const match = duration.match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/)
-  if (!match) return 0
+// Helper function to convert duration to seconds for sitemap
+function convertDurationToSeconds(duration: string): number {
+  if (!duration || duration === 'N/A') return 0
 
-  const hours = parseInt(match[1] || '0')
-  const minutes = parseInt(match[2] || '0')
-  const seconds = parseInt(match[3] || '0')
+  const parts = duration.split(':').map(Number)
 
-  return hours * 3600 + minutes * 60 + seconds
+  if (parts.length === 2) {
+    // MM:SS format
+    return parts[0] * 60 + parts[1]
+  } else if (parts.length === 3) {
+    // HH:MM:SS format
+    return parts[0] * 3600 + parts[1] * 60 + parts[2]
+  }
+
+  return 0
+}
+
+// Helper function to convert view count to number
+function convertViewCountToNumber(viewCount: string): number {
+  if (!viewCount || viewCount === 'N/A') return 0
+
+  const cleanCount = viewCount.replace(/[^\d.]/g, '')
+  const num = parseFloat(cleanCount)
+
+  if (viewCount.includes('M')) {
+    return Math.floor(num * 1000000)
+  } else if (viewCount.includes('K')) {
+    return Math.floor(num * 1000)
+  }
+
+  return Math.floor(num) || 0
 }
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  // Only allow GET requests
   if (req.method !== 'GET') {
     res.setHeader('Allow', ['GET'])
     return res.status(405).end(`Method ${req.method} Not Allowed`)
   }
 
   try {
+    // Set headers first - ensure XML content type
     res.setHeader('Content-Type', 'application/xml; charset=utf-8')
     res.setHeader('Cache-Control', 'public, s-maxage=86400, stale-while-revalidate=43200')
     res.setHeader('X-Content-Type-Options', 'nosniff')
 
+    // Get all cached videos from YouTube channel
     const cache = readVideoCache()
 
     if (!cache || !cache.videos || cache.videos.length === 0) {
+      // Return empty sitemap if no videos found
       const emptySitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
 </urlset>`
+
       return res.status(200).send(emptySitemap)
     }
 
     const baseUrl = 'https://admi.africa'
     const videos = cache.videos
 
+    // Generate video sitemap XML with all YouTube videos
     const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
-${videos
-  .map((video) => {
-    const pageUrl = `${baseUrl}/videos?id=${video.id}`
-    const embedUrl = `https://www.youtube.com/embed/${video.id}`
-    const thumbnailUrl = escapeXml(video.thumbnail.high || video.thumbnail.medium)
-    const duration = convertISO8601ToSeconds(video.duration)
-
-    if (duration === 0) {
-      return null // Skip videos with invalid duration
-    }
-
-    return `  <url>
-    <loc>${escapeXml(pageUrl)}</loc>
-    <lastmod>${new Date(video.publishedAt).toISOString()}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+  <url>
+    <loc>${baseUrl}/videos</loc>
+    <lastmod>${cache.lastUpdated || new Date().toISOString()}</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+    ${videos
+      .map(
+        (video) => `
     <video:video>
-      <video:thumbnail_loc>${thumbnailUrl}</video:thumbnail_loc>
+      <video:thumbnail_loc>${escapeXml(video.thumbnail.high || video.thumbnail.medium || `https://img.youtube.com/vi/${video.id}/hqdefault.jpg`)}</video:thumbnail_loc>
       <video:title><![CDATA[${sanitizeForCDATA(video.title)}]]></video:title>
       <video:description><![CDATA[${sanitizeForCDATA(video.description.substring(0, 2048))}]]></video:description>
       <video:content_loc>https://www.youtube.com/watch?v=${video.id}</video:content_loc>
-      <video:player_loc>${escapeXml(embedUrl)}</video:player_loc>
-      <video:duration>${duration}</video:duration>
+      <video:player_loc>https://www.youtube.com/embed/${video.id}</video:player_loc>
+      <video:duration>${convertDurationToSeconds(video.duration)}</video:duration>
       <video:publication_date>${video.publishedAt}</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
       <video:view_count>${convertViewCountToNumber(video.viewCount)}</video:view_count>
       <video:uploader info="${baseUrl}">Africa Digital Media Institute</video:uploader>
-      ${(video.tags || ['ADMI', 'education', 'creative media'])
-        .slice(0, 32)
-        .map((tag) => `      <video:tag>${escapeXml(tag)}</video:tag>`)
-        .join('\n')}
+      <video:tag>ADMI</video:tag>
+      <video:tag>education</video:tag>
+      <video:tag>creative media</video:tag>
       <video:live>no</video:live>
-    </video:video>
-  </url>`
-  })
-  .filter(Boolean)
-  .join('\n')}
+    </video:video>`
+      )
+      .join('')}
+  </url>
 </urlset>`
 
     return res.status(200).send(sitemap)
@@ -111,13 +127,4 @@ ${videos
     console.error('❌ Video sitemap generation error:', error)
     return res.status(500).json({ error: 'Failed to generate video sitemap' })
   }
-}
-
-function convertViewCountToNumber(viewCount: string): number {
-  if (!viewCount || viewCount === 'N/A') return 0
-  const cleanCount = viewCount.replace(/[^\d.]/g, '')
-  const num = parseFloat(cleanCount)
-  if (viewCount.includes('M')) return Math.floor(num * 1000000)
-  if (viewCount.includes('K')) return Math.floor(num * 1000)
-  return Math.floor(num) || 0
 }
