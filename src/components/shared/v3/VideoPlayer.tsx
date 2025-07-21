@@ -61,7 +61,8 @@ const VideoPlayer = ({ videoUrl, showControls = false }: Props) => {
         controlsList="nofullscreen nodownload noremoteplayback noplaybackrate"
       />
 
-      {isHovering && (
+      {/* Always visible dark overlay when not playing */}
+      {!isPlaying && (
         <div
           className="z-5 absolute inset-0"
           style={{
@@ -70,12 +71,22 @@ const VideoPlayer = ({ videoUrl, showControls = false }: Props) => {
         ></div>
       )}
 
-      {isHovering && (
+      {/* Always visible play button when not playing */}
+      {!isPlaying && (
+        <div className="border-1 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform cursor-pointer rounded-full border-solid border-white bg-none p-4 shadow-lg">
+          <ActionIcon onClick={handlePlayPause} className="my-auto rounded-full text-white" radius="xl" bg="none">
+            <IconPlayerSkipForward size={24} />
+          </ActionIcon>
+        </div>
+      )}
+
+      {/* Hover controls when video is playing */}
+      {isHovering && isPlaying && (
         <>
-          {/* Play/Pause Button */}
+          {/* Pause Button */}
           <div className="border-1 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform cursor-pointer rounded-full border-solid border-white bg-none p-4 shadow-lg">
             <ActionIcon onClick={handlePlayPause} className="my-auto rounded-full text-white" radius="xl" bg="none">
-              {isPlaying ? <IconPlayerPause size={24} /> : <IconPlayerSkipForward size={24} />}
+              <IconPlayerPause size={24} />
             </ActionIcon>
           </div>
 
