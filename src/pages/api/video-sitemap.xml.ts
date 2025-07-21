@@ -2,11 +2,18 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import { readVideoCache } from '@/utils/video-cache'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  // Only allow GET requests
   if (req.method !== 'GET') {
-    return res.status(405).json({ message: 'Method not allowed' })
+    res.setHeader('Allow', ['GET'])
+    return res.status(405).end(`Method ${req.method} Not Allowed`)
   }
 
   try {
+    // Set headers first - ensure XML content type
+    res.setHeader('Content-Type', 'application/xml; charset=utf-8')
+    res.setHeader('Cache-Control', 'public, s-maxage=86400, stale-while-revalidate=43200')
+    res.setHeader('X-Content-Type-Options', 'nosniff')
+
     // Get all cached videos from YouTube channel
     const cache = readVideoCache()
 
@@ -17,8 +24,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
 </urlset>`
 
-      res.setHeader('Content-Type', 'application/xml')
-      res.setHeader('Cache-Control', 'public, s-maxage=86400, stale-while-revalidate=43200')
       return res.status(200).send(emptySitemap)
     }
 
@@ -57,10 +62,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       .join('')}
   </url>
 </urlset>`
-
-    // Set appropriate headers
-    res.setHeader('Content-Type', 'application/xml')
-    res.setHeader('Cache-Control', 'public, s-maxage=86400, stale-while-revalidate=43200') // 24h cache
 
     return res.status(200).send(sitemap)
   } catch (error) {
