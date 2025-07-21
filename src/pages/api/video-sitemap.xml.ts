@@ -102,7 +102,7 @@ ${videos
 function convertDurationToSeconds(duration: string): number {
   if (!duration || typeof duration !== 'string' || duration === 'N/A') return 0
   const parts = duration.split(':').map(Number)
-  if (parts.some(isNaN)) return 0
+  if (parts.some(isNaN) || parts.length < 2 || parts.length > 3) return 0
 
   if (parts.length === 2) return parts[0] * 60 + parts[1]
   if (parts.length === 3) return parts[0] * 3600 + parts[1] * 60 + parts[2]
