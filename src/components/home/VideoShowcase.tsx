@@ -2,6 +2,7 @@ import React from 'react'
 import { Container, Title, Text, Grid, Card, Group, Button, Badge } from '@mantine/core'
 import { IconPlayerPlay, IconEye, IconExternalLink } from '@tabler/icons-react'
 import { YouTubeVideo, getYouTubeWatchUrl } from '@/utils/youtube-api'
+import Image from 'next/image'
 
 interface VideoShowcaseProps {
   videos: YouTubeVideo[]
@@ -46,10 +47,11 @@ export function VideoShowcase({
             >
               <Card.Section>
                 <div className="relative aspect-video w-full overflow-hidden bg-gray-100">
-                  <img
+                  <Image
                     src={video.thumbnail.high || video.thumbnail.medium || video.thumbnail.default}
                     alt={video.title}
-                    className="h-full w-full object-cover transition-transform duration-500 hover:scale-110"
+                    fill
+                    className="object-cover transition-transform duration-500 hover:scale-110"
                   />
 
                   {/* Play Button Overlay */}

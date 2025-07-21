@@ -30,7 +30,7 @@ export interface YouTubePlaylist {
 
 // ADMI YouTube Channel Configuration
 const ADMI_CHANNEL_CONFIG = {
-  channelId: 'UC_x5XG1OV2P6uZZ5FSM9Ttw', // Replace with actual ADMI channel ID
+  channelId: process.env.ADMI_YOUTUBE_CHANNEL_ID || 'UCqLmokG6Req2pHn2p7D8WZQ', // Correct ADMI channel ID from source
   channelHandle: '@ADMIafrica',
   channelUrl: 'https://www.youtube.com/@ADMIafrica/',
   apiKey: process.env.NEXT_PUBLIC_YOUTUBE_API_KEY || process.env.YOUTUBE_API_KEY
@@ -66,63 +66,69 @@ export async function fetchADMIChannelVideos(maxResults: number = 50): Promise<Y
   }
 
   try {
-    // First, get the channel's uploads playlist ID
-    const channelResponse = await fetch(
-      `https://www.googleapis.com/youtube/v3/channels?part=contentDetails&id=${ADMI_CHANNEL_CONFIG.channelId}&key=${ADMI_CHANNEL_CONFIG.apiKey}`
-    )
+    console.log('🔍 Fetching videos for channel:', ADMI_CHANNEL_CONFIG.channelId)
+    console.log('🔧 Environment channel ID:', process.env.ADMI_YOUTUBE_CHANNEL_ID)
+    console.log('🔧 Public environment channel ID:', process.env.NEXT_PUBLIC_ADMI_YOUTUBE_CHANNEL_ID)
+    console.log('🔧 API Key available:', !!ADMI_CHANNEL_CONFIG.apiKey)
 
-    if (!channelResponse.ok) {
-      throw new Error(`Channel API error: ${channelResponse.status}`)
-    }
+    const apiUrl = `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${ADMI_CHANNEL_CONFIG.channelId}&maxResults=${maxResults}&order=date&type=video&key=${ADMI_CHANNEL_CONFIG.apiKey}`
+    console.log('🌐 API URL:', apiUrl.replace(ADMI_CHANNEL_CONFIG.apiKey, 'API_KEY_HIDDEN'))
 
-    const channelData = await channelResponse.json()
-    const uploadsPlaylistId = channelData.items[0]?.contentDetails?.relatedPlaylists?.uploads
-
-    if (!uploadsPlaylistId) {
-      throw new Error('Could not find uploads playlist')
-    }
-
-    // Get videos from uploads playlist
-    const playlistResponse = await fetch(
-      `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${uploadsPlaylistId}&maxResults=${maxResults}&key=${ADMI_CHANNEL_CONFIG.apiKey}`
-    )
-
-    if (!playlistResponse.ok) {
-      throw new Error(`Playlist API error: ${playlistResponse.status}`)
-    }
-
-    const playlistData = await playlistResponse.json()
-    const videoIds = playlistData.items.map((item: any) => item.snippet.resourceId.videoId).join(',')
-
-    // Get detailed video information
-    const videosResponse = await fetch(
-      `https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails,statistics&id=${videoIds}&key=${ADMI_CHANNEL_CONFIG.apiKey}`
-    )
+    // Get videos directly from the ADMI channel using search
+    const videosResponse = await fetch(apiUrl)
 
     if (!videosResponse.ok) {
-      throw new Error(`Videos API error: ${videosResponse.status}`)
+      console.error('❌ Videos search API error:', videosResponse.status)
+      throw new Error(`Videos search API error: ${videosResponse.status}`)
     }
 
     const videosData = await videosResponse.json()
+    console.log('🎥 Found videos:', videosData.items?.length || 0)
+    console.log('📊 Raw API response:', videosData)
 
-    return videosData.items.map((video: any) => ({
-      id: video.id,
-      title: video.snippet.title,
-      description: video.snippet.description,
-      thumbnail: {
-        default: video.snippet.thumbnails.default?.url || '',
-        medium: video.snippet.thumbnails.medium?.url || '',
-        high: video.snippet.thumbnails.high?.url || '',
-        maxres: video.snippet.thumbnails.maxres?.url
-      },
-      publishedAt: video.snippet.publishedAt,
-      duration: formatDuration(video.contentDetails.duration),
-      viewCount: formatViewCount(video.statistics.viewCount),
-      likeCount: video.statistics.likeCount,
-      channelTitle: video.snippet.channelTitle,
-      tags: video.snippet.tags || [],
-      categoryId: video.snippet.categoryId
-    }))
+    // Log each video to verify they're from the correct channel
+    if (videosData.items && videosData.items.length > 0) {
+      console.log('🔍 Video details:')
+      videosData.items.forEach((video: any, index: number) => {
+        console.log(`${index + 1}. "${video.snippet.title}" by ${video.snippet.channelTitle} (ID: ${video.snippet.channelId})`)
+      })
+    }
+
+    if (videosData.items && videosData.items.length > 0) {
+      // Get detailed video information
+      const videoIds = videosData.items.map((item: any) => item.id.videoId).join(',')
+
+      const detailsResponse = await fetch(
+        `https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails,statistics&id=${videoIds}&key=${ADMI_CHANNEL_CONFIG.apiKey}`
+      )
+
+      if (detailsResponse.ok) {
+        const detailsData = await detailsResponse.json()
+
+        return detailsData.items.map((video: any) => ({
+          id: video.id,
+          title: video.snippet.title,
+          description: video.snippet.description,
+          thumbnail: {
+            default: video.snippet.thumbnails.default?.url || '',
+            medium: video.snippet.thumbnails.medium?.url || '',
+            high: video.snippet.thumbnails.high?.url || '',
+            maxres: video.snippet.thumbnails.maxres?.url
+          },
+          publishedAt: video.snippet.publishedAt,
+          duration: formatDuration(video.contentDetails.duration),
+          viewCount: formatViewCount(video.statistics.viewCount),
+          likeCount: video.statistics.likeCount,
+          channelTitle: video.snippet.channelTitle,
+          tags: video.snippet.tags || [],
+          categoryId: video.snippet.categoryId
+        }))
+      }
+    }
+
+    // If no videos found, return empty array
+    console.log('⚠️ No videos found for channel')
+    return []
   } catch (error) {
     console.error('Error fetching ADMI YouTube videos:', error)
     return []

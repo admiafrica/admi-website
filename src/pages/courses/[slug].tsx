@@ -8,7 +8,7 @@ import {
   CourseStudents
 } from '@/components/course'
 import { CMSCourseFAQs } from '@/components/course/CMSCourseFAQs'
-import { CourseVideoSection } from '@/components/course/CourseVideoSection'
+// import { CourseVideoSection } from '@/components/course/CourseVideoSection'
 import {
   GRAPHIC_DESIGN_FAQS,
   ANIMATION_VFX_FAQS,
@@ -23,7 +23,7 @@ import { CertificateEnhancedSEO } from '@/components/course/CertificateEnhancedS
 import { EastAfricaLocalSEO } from '@/components/seo/EastAfricaLocalSEO'
 // generateDiplomaKeywords utility available for future enhancements
 import { GENERAL_DIPLOMA_FAQS } from '@/data/diploma-faqs'
-import { YouTubeVideo, fetchADMIChannelVideos } from '@/utils/youtube-api'
+import { YouTubeVideo } from '@/utils/youtube-api'
 import {
   GENERAL_CERTIFICATE_FAQS,
   GRAPHIC_DESIGN_CERTIFICATE_FAQS,
@@ -59,13 +59,11 @@ const getCorrectFAQsForCourse = (slug: string, isDiploma: boolean) => {
 export default function CourseDetailPage({
   course,
   courseAssets,
-  slug,
-  youtubeVideos
+  slug
 }: {
   course: any
   courseAssets: any[]
   slug: string
-  youtubeVideos: YouTubeVideo[]
 }) {
   // Extract rich text content for description
   const getPlainTextFromRichText = (richText: any) => {
@@ -293,8 +291,8 @@ export default function CourseDetailPage({
       />
       <CourseApplicationProcess processes={course.applicationProcesses || []} />
 
-      {/* Enhanced Video Section with YouTube Integration */}
-      <CourseVideoSection course={course} slug={slug} youtubeVideos={youtubeVideos} />
+      {/* Enhanced Video Section with YouTube Integration - Temporarily disabled */}
+      {/* <CourseVideoSection course={course} slug={slug} youtubeVideos={youtubeVideos} /> */}
 
       <CMSCourseFAQs
         courseSlug={slug}
@@ -317,14 +315,9 @@ export async function getServerSideProps({ params }: { params: { slug: string } 
 
     const data = await response.json()
 
-    // Fetch YouTube videos for enhanced video section
-    let youtubeVideos: YouTubeVideo[] = []
-    try {
-      youtubeVideos = await fetchADMIChannelVideos(30) // Fetch up to 30 videos
-    } catch (videoError) {
-      console.error('Error fetching YouTube videos for course page:', videoError)
-      // Continue without videos if YouTube API fails
-    }
+    // Skip YouTube videos for server-side rendering due to API restrictions
+    // Videos will be loaded client-side in the CourseVideoSection component
+    const youtubeVideos: YouTubeVideo[] = []
 
     return {
       props: {

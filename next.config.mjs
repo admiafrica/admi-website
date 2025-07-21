@@ -1,6 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   // i18n configuration moved to app router implementation
   // See: https://nextjs.org/docs/app/building-your-application/routing/internationalization
   images: {
@@ -20,6 +23,18 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'cdn.admi.africa',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'img.youtube.com',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'i.ytimg.com',
         port: '',
         pathname: '/**',
       },

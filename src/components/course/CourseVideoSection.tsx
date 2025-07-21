@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Container, Title, Text, Card, Group, Button, Badge, Grid, Box, Tabs } from '@mantine/core'
 import { IconPlayerPlay, IconEye, IconClock, IconUsers, IconTrendingUp, IconExternalLink } from '@tabler/icons-react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { VideoPlayer } from '@/components/shared/v3'
 import { YouTubeVideo, getVideosForCourse, getYouTubeWatchUrl } from '@/utils/youtube-api'
 
@@ -11,22 +12,45 @@ interface CourseVideoSectionProps {
   youtubeVideos?: YouTubeVideo[]
 }
 
-export function CourseVideoSection({ course, slug, youtubeVideos = [] }: CourseVideoSectionProps) {
+export function CourseVideoSection({ course, slug }: CourseVideoSectionProps) {
   const [activeTab, setActiveTab] = useState<string | null>('preview')
   const [relatedVideos, setRelatedVideos] = useState<YouTubeVideo[]>([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
 
   const hasMainVideo = course?.courseVideo?.fields?.file?.url
   const hasRelatedVideos = relatedVideos.length > 0
 
-  // Filter YouTube videos for this specific course
+  // Fetch YouTube videos from cached API for this specific course
   useEffect(() => {
-    if (youtubeVideos.length > 0) {
-      const courseRelated = getVideosForCourse(youtubeVideos, slug)
-      setRelatedVideos(courseRelated.slice(0, 6)) // Limit to 6 videos
-    }
-  }, [youtubeVideos, slug])
+    const fetchCourseVideos = async () => {
+      try {
+        setLoading(true)
+        setError(null)
 
-  if (!hasMainVideo && !hasRelatedVideos) {
+        // Use our cached API instead of direct YouTube API
+        const response = await fetch('/api/admi-videos?limit=100')
+        if (!response.ok) {
+          throw new Error('Failed to fetch videos')
+        }
+
+        const data = await response.json()
+        const allVideos = data.videos || []
+        const courseRelated = getVideosForCourse(allVideos, slug)
+        setRelatedVideos(courseRelated.slice(0, 6)) // Limit to 6 videos
+      } catch (error) {
+        console.error('Error fetching course videos:', error)
+        setError('Failed to load related videos')
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchCourseVideos()
+  }, [slug])
+
+  // Only hide the component if we're not loading and have no videos
+  if (!hasMainVideo && !hasRelatedVideos && !loading) {
     return null
   }
 
@@ -50,11 +74,9 @@ export function CourseVideoSection({ course, slug, youtubeVideos = [] }: CourseV
               Course Preview
             </Tabs.Tab>
           )}
-          {hasRelatedVideos && (
-            <Tabs.Tab value="related" leftSection={<IconEye size={16} />}>
-              Related Videos ({relatedVideos.length})
-            </Tabs.Tab>
-          )}
+          <Tabs.Tab value="related" leftSection={<IconEye size={16} />}>
+            Related Videos {loading ? '(Loading...)' : `(${relatedVideos.length})`}
+          </Tabs.Tab>
           <Tabs.Tab value="info" leftSection={<IconTrendingUp size={16} />}>
             Video Insights
           </Tabs.Tab>
@@ -172,8 +194,25 @@ export function CourseVideoSection({ course, slug, youtubeVideos = [] }: CourseV
         )}
 
         {/* Related Videos Tab */}
-        {hasRelatedVideos && (
-          <Tabs.Panel value="related">
+        <Tabs.Panel value="related">
+          {loading ? (
+            <div className="py-8 text-center">
+              <Text>Loading related videos...</Text>
+            </div>
+          ) : error ? (
+            <div className="py-8 text-center">
+              <Text c="red" mb="md">
+                {error}
+              </Text>
+              <Button variant="light" onClick={() => window.location.reload()}>
+                Try Again
+              </Button>
+            </div>
+          ) : relatedVideos.length === 0 ? (
+            <div className="py-8 text-center">
+              <Text c="dimmed">No related videos found for this course.</Text>
+            </div>
+          ) : (
             <Grid>
               {relatedVideos.map((video) => (
                 <Grid.Col key={video.id} span={{ base: 12, sm: 6, md: 4 }}>
@@ -187,10 +226,11 @@ export function CourseVideoSection({ course, slug, youtubeVideos = [] }: CourseV
                   >
                     <Card.Section>
                       <div className="relative aspect-video w-full overflow-hidden bg-gray-100">
-                        <img
+                        <Image
                           src={video.thumbnail.medium || video.thumbnail.default}
                           alt={video.title}
-                          className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
+                          fill
+                          className="object-cover transition-transform duration-300 hover:scale-105"
                         />
 
                         {/* Play Button Overlay */}
@@ -236,32 +276,32 @@ export function CourseVideoSection({ course, slug, youtubeVideos = [] }: CourseV
                 </Grid.Col>
               ))}
             </Grid>
+          )}
 
-            {/* View More Videos CTA */}
-            <Group justify="center" mt="xl">
-              <Button
-                variant="outline"
-                color="red"
-                size="md"
-                leftSection={<IconExternalLink size={16} />}
-                component="a"
-                href="/videos"
-              >
-                View All Videos
-              </Button>
-              <Button
-                color="red"
-                size="md"
-                component="a"
-                href="https://www.youtube.com/@ADMIafrica/"
-                target="_blank"
-                leftSection={<IconExternalLink size={16} />}
-              >
-                Visit YouTube Channel
-              </Button>
-            </Group>
-          </Tabs.Panel>
-        )}
+          {/* View More Videos CTA */}
+          <Group justify="center" mt="xl">
+            <Button
+              variant="outline"
+              color="red"
+              size="md"
+              leftSection={<IconExternalLink size={16} />}
+              component="a"
+              href="/videos"
+            >
+              View All Videos
+            </Button>
+            <Button
+              color="red"
+              size="md"
+              component="a"
+              href="https://www.youtube.com/@ADMIafrica/"
+              target="_blank"
+              leftSection={<IconExternalLink size={16} />}
+            >
+              Visit YouTube Channel
+            </Button>
+          </Group>
+        </Tabs.Panel>
 
         {/* Video Insights Tab */}
         <Tabs.Panel value="info">
