@@ -8,7 +8,7 @@ import {
   CourseStudents
 } from '@/components/course'
 import { CMSCourseFAQs } from '@/components/course/CMSCourseFAQs'
-import { CourseVideoSection } from '@/components/course/CourseVideoSection'
+// import { CourseVideoSection } from '@/components/course/CourseVideoSection'
 import {
   GRAPHIC_DESIGN_FAQS,
   ANIMATION_VFX_FAQS,
@@ -293,8 +293,8 @@ export default function CourseDetailPage({
       />
       <CourseApplicationProcess processes={course.applicationProcesses || []} />
 
-      {/* Enhanced Video Section with YouTube Integration */}
-      <CourseVideoSection course={course} slug={slug} youtubeVideos={youtubeVideos} />
+      {/* Enhanced Video Section with YouTube Integration - Temporarily disabled */}
+      {/* <CourseVideoSection course={course} slug={slug} youtubeVideos={youtubeVideos} /> */}
 
       <CMSCourseFAQs
         courseSlug={slug}
@@ -317,14 +317,9 @@ export async function getServerSideProps({ params }: { params: { slug: string } 
 
     const data = await response.json()
 
-    // Fetch YouTube videos for enhanced video section
-    let youtubeVideos: YouTubeVideo[] = []
-    try {
-      youtubeVideos = await fetchADMIChannelVideos(30) // Fetch up to 30 videos
-    } catch (videoError) {
-      console.error('Error fetching YouTube videos for course page:', videoError)
-      // Continue without videos if YouTube API fails
-    }
+    // Skip YouTube videos for server-side rendering due to API restrictions
+    // Videos will be loaded client-side in the CourseVideoSection component
+    const youtubeVideos: YouTubeVideo[] = []
 
     return {
       props: {
