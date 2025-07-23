@@ -269,67 +269,6 @@ export default function HomePage({ content, courses, featuredNews, featuredResou
             </div>
           </Box>
         </Box>
-        {/* WHAT IS ADMI FAQ */}
-        <Box className="w-full py-16" bg={'white'}>
-          <Box className="mx-auto w-full max-w-screen-xl px-4 2xl:px-0">
-            <Box className="mb-12 text-center">
-              <Title label="What is ADMI?" color="black" size="32px" />
-              <Paragraph fontFamily="font-nexa" className="mx-auto max-w-3xl pt-4">
-                Common questions about Africa Digital Media Institute answered
-              </Paragraph>
-            </Box>
-
-            <div className="mx-auto grid max-w-4xl gap-8 md:grid-cols-2">
-              <Box className="rounded-lg bg-gray-50 p-6">
-                <Title label="What does ADMI stand for?" color="black" size="18px" className="mb-3" />
-                <Paragraph>
-                  ADMI stands for Africa Digital Media Institute. We are the premier and leading training institution in
-                  creative media and technology in the region, located in Nairobi, Kenya.
-                </Paragraph>
-              </Box>
-
-              <Box className="rounded-lg bg-gray-50 p-6">
-                <Title label="What courses does ADMI offer?" color="black" size="18px" className="mb-3" />
-                <Paragraph>
-                  ADMI offers diploma and certificate courses in Digital Marketing, Graphic Design, Film & TV
-                  Production, Music Production & Sound Engineering, Animation, and Photography with state-of-the-art
-                  facilities.
-                </Paragraph>
-              </Box>
-
-              <Box className="rounded-lg bg-gray-50 p-6">
-                <Title label="How much are ADMI fees?" color="black" size="18px" className="mb-3" />
-                <div className="mb-3 rounded border-l-4 border-orange-400 bg-orange-50 p-3">
-                  <Paragraph className="text-sm text-orange-800">
-                    <strong>Fee Verification Required:</strong> Contact fee@admi.ac.ke for current 2025 rates.
-                  </Paragraph>
-                </div>
-                <Paragraph>
-                  ADMI offers competitive fee structures for all diploma and certificate programs. For current rates,
-                  payment options, and detailed fee information, please visit our student support page or contact our
-                  finance office directly.
-                </Paragraph>
-              </Box>
-
-              <Box className="rounded-lg bg-gray-50 p-6">
-                <Title label="Where is ADMI located?" color="black" size="18px" className="mb-3" />
-                <Paragraph>
-                  ADMI is located in Nairobi&apos;s Central Business District, right next to the GPO. Our campus
-                  features state-of-the-art facilities and equipment.
-                </Paragraph>
-              </Box>
-            </div>
-
-            <Box className="mt-8 text-center">
-              <Button
-                size="lg"
-                backgroundColor="admiRed"
-                label="View All Courses & Fees"
-                onClick={() => router.push('/student-support#fees')}
-              />
-            </Box>
-          </Box>
-        </Box>
         {/* IMPACT */}
         <Box className="w-full" bg={'#F5FFFD'}>
           <Box className="mx-auto flex w-full max-w-screen-xl flex-col px-4 py-8 2xl:px-0">
@@ -612,6 +551,62 @@ export default function HomePage({ content, courses, featuredNews, featuredResou
             />
           </Box>
         )}
+        {/* WHAT IS ADMI FAQ */}
+        <Box className="w-full py-16" bg={'white'}>
+          <Box className="mx-auto w-full max-w-screen-xl px-4 2xl:px-0">
+            <Box className="mb-12 text-center">
+              <Title label="What is ADMI?" color="black" size="32px" />
+              <Paragraph fontFamily="font-nexa" className="mx-auto max-w-3xl pt-4">
+                Common questions about Africa Digital Media Institute answered
+              </Paragraph>
+            </Box>
+
+            <div className="mx-auto grid max-w-4xl gap-8 md:grid-cols-2">
+              <Box className="rounded-lg bg-gray-50 p-6">
+                <Title label="What does ADMI stand for?" color="black" size="18px" className="mb-3" />
+                <Paragraph>
+                  ADMI stands for Africa Digital Media Institute. We are the premier and leading training institution in
+                  creative media and technology in the region, located in Nairobi, Kenya.
+                </Paragraph>
+              </Box>
+
+              <Box className="rounded-lg bg-gray-50 p-6">
+                <Title label="What courses does ADMI offer?" color="black" size="18px" className="mb-3" />
+                <Paragraph>
+                  ADMI offers diploma and certificate courses in Digital Marketing, Graphic Design, Film & TV
+                  Production, Music Production & Sound Engineering, Animation, and Photography with state-of-the-art
+                  facilities.
+                </Paragraph>
+              </Box>
+
+              <Box className="rounded-lg bg-gray-50 p-6">
+                <Title label="How much are ADMI fees?" color="black" size="18px" className="mb-3" />
+                <Paragraph>
+                  ADMI offers competitive fee structures for all diploma and certificate programs. For current rates,
+                  payment options, and detailed fee information, please visit our student support page or contact our
+                  finance office directly.
+                </Paragraph>
+              </Box>
+
+              <Box className="rounded-lg bg-gray-50 p-6">
+                <Title label="Where is ADMI located?" color="black" size="18px" className="mb-3" />
+                <Paragraph>
+                  ADMI is located in Nairobi&apos;s Central Business District, right next to the GPO. Our campus
+                  features state-of-the-art facilities and equipment.
+                </Paragraph>
+              </Box>
+            </div>
+
+            <Box className="mt-8 text-center">
+              <Button
+                size="lg"
+                backgroundColor="admiRed"
+                label="View All Courses & Fees"
+                onClick={() => router.push('/student-support#fees')}
+              />
+            </Box>
+          </Box>
+        </Box>
       </div>
     </MainLayout>
   )

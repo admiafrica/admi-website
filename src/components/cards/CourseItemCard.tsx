@@ -36,7 +36,7 @@ export default function CourseItemCard({ course }: Props) {
         <Card.Section>
           <Image
             width={300}
-            height={150}
+            height={169}
             src={
               course.assets
                 ? `https:${getAssetDetails(course.assets, course.fields.coverImage.sys.id)?.fields.file.url}`
@@ -45,7 +45,7 @@ export default function CourseItemCard({ course }: Props) {
             alt={course.fields.name}
           />
         </Card.Section>
-        <Box className="flex h-[60px]">
+        <Box className="flex h-[70px]">
           <Box className="grow pt-4">
             <Title label={course.fields.name} size="18px" color="black" />
           </Box>
