@@ -34,7 +34,7 @@ export interface VideoCache {
 }
 
 const CACHE_FILE_PATH = path.join(process.cwd(), 'data', 'admi-videos-cache.json')
-const CACHE_DURATION = 24 * 60 * 60 * 1000 // 24 hours in milliseconds
+const CACHE_DURATION = 72 * 60 * 60 * 1000 // 72 hours in milliseconds (extended temporarily)
 
 // Ensure cache directory exists
 function ensureCacheDirectory() {
