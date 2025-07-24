@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { readVideoCache } from '@/utils/video-cache'
+import { readVideoCache, readVideoCacheRaw } from '@/utils/video-cache'
 
 // Helper to escape characters for XML
 const escapeXml = (unsafe: string): string => {
@@ -80,8 +80,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     res.setHeader('Cache-Control', 'public, s-maxage=86400, stale-while-revalidate=43200')
     res.setHeader('X-Content-Type-Options', 'nosniff')
 
-    // Get all cached videos from YouTube channel
-    const cache = readVideoCache()
+    // Get all cached videos from YouTube channel (try normal cache first, then raw cache)
+    let cache = readVideoCache()
+
+    if (!cache) {
+      // If normal cache is expired, try raw cache as fallback
+      cache = readVideoCacheRaw()
+    }
 
     if (!cache || !cache.videos || cache.videos.length === 0) {
       // Return empty sitemap if no videos found
