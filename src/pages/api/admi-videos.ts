@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { readVideoCache, getCacheStats } from '@/utils/video-cache'
+import { readVideoCache, readVideoCacheRaw, getCacheStats } from '@/utils/video-cache'
 import { fetchAllADMIVideos } from '@/utils/fetch-all-videos'
 
 // Helper function to convert duration to seconds
@@ -59,7 +59,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         // If we have expired cache, use it as fallback
         if (cacheStats.exists) {
           console.log('📚 Using expired cache as fallback')
-          cache = readVideoCache()
+          cache = readVideoCacheRaw()
         } else {
           throw error
         }

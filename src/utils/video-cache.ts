@@ -74,6 +74,27 @@ export function readVideoCache(): VideoCache | null {
   }
 }
 
+// Read cache from file regardless of expiration (for fallback)
+export function readVideoCacheRaw(): VideoCache | null {
+  try {
+    ensureCacheDirectory()
+
+    if (!fs.existsSync(CACHE_FILE_PATH)) {
+      console.log('📁 No cache file found')
+      return null
+    }
+
+    const cacheData = fs.readFileSync(CACHE_FILE_PATH, 'utf-8')
+    const cache: VideoCache = JSON.parse(cacheData)
+
+    console.log(`📚 Raw cache read, ${cache.videos?.length || 0} videos loaded`)
+    return cache
+  } catch (error) {
+    console.error('❌ Error reading raw cache:', error)
+    return null
+  }
+}
+
 // Write cache to file
 export function writeVideoCache(cache: VideoCache): void {
   try {
