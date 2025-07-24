@@ -8,3 +8,8 @@ create-test-article-with-image.js
 delete-test-article.js
 test-perplexity.js
 setup-cron-jobs.sh
+add-course-relationships.js
+check-content-types.js
+check-course-relationships.js
+create-course-relationships.js
+course-tagging-implementation-guide.md
