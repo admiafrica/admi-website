@@ -36,8 +36,9 @@ import { YouTubeVideo, searchVideos, getYouTubeWatchUrl } from '@/utils/youtube-
 import { getVideosByManualCategory } from '@/utils/manual-categorization'
 
 interface VideoGalleryProps {
-  allVideos: YouTubeVideo[] // All videos for SEO
+  allVideos: any[] // Lightweight SEO data
   initialDisplay: YouTubeVideo[] // First 12 videos for initial display
+  totalVideoCount: number // Total count for pagination
   channelInfo?: {
     title: string
     description: string
@@ -70,12 +71,13 @@ function convertDurationToSeconds(duration: string): number {
   return 0
 }
 
-export default function VideoGallery({ allVideos, channelInfo }: VideoGalleryProps) {
-  // SEO: All videos available for search and filtering
-  const [allVideosList] = useState<YouTubeVideo[]>(allVideos)
-  const [filteredVideos, setFilteredVideos] = useState<YouTubeVideo[]>(allVideos)
+export default function VideoGallery({ allVideos, initialDisplay, channelInfo }: VideoGalleryProps) {
+  // SEO: All videos available for search and filtering (lightweight data)
+  const [allVideosList] = useState<any[]>(allVideos)
+  const [filteredVideos, setFilteredVideos] = useState<any[]>(allVideos)
 
   // UX: Progressive display management
+  const [displayedVideos] = useState<YouTubeVideo[]>(initialDisplay)
   const [displayCount, setDisplayCount] = useState(12) // Start with 12 videos
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedCategory, setSelectedCategory] = useState<string | null>('all')
@@ -88,21 +90,23 @@ export default function VideoGallery({ allVideos, channelInfo }: VideoGalleryPro
   const [modalOpened, setModalOpened] = useState(false)
 
   // Videos currently visible to user (for performance)
-  const visibleVideos = filteredVideos.slice(0, displayCount)
+  const visibleVideos = displayedVideos.slice(0, displayCount)
 
   // Get related videos based on current video
   const getRelatedVideos = (currentVideo: YouTubeVideo): YouTubeVideo[] => {
     if (!currentVideo) return []
 
-    // Find videos with similar tags or from same category
-    const related = allVideosList.filter((video) => {
+    // Find videos with similar tags or from same category using displayed videos (full data)
+    const related = displayedVideos.filter((video) => {
       if (video.id === currentVideo.id) return false
 
-      // Check for common tags
+      // Check for common tags (only if both videos have tags)
       const commonTags =
-        currentVideo.tags?.filter((tag) =>
-          video.tags?.some((vTag) => vTag.toLowerCase().includes(tag.toLowerCase()))
-        ) || []
+        currentVideo.tags && video.tags
+          ? currentVideo.tags.filter((tag: string) =>
+              video.tags?.some((vTag: string) => vTag.toLowerCase().includes(tag.toLowerCase()))
+            )
+          : []
 
       // Check for similar titles (common keywords)
       const currentWords = currentVideo.title.toLowerCase().split(' ')
@@ -683,20 +687,38 @@ export const getServerSideProps = async () => {
       console.log(`📚 SSR: Using cached data (${cache.videos.length} videos)`)
     }
 
-    // SEO Strategy: Load ALL videos for search engines, show 12 initially for UX
-    const allVideos = cache.videos.filter((video) => {
-      const durationInSeconds = convertDurationToSeconds(video.duration)
-      return durationInSeconds > 60
-    })
-    const initialDisplay = allVideos.slice(0, 12) // First 12 for initial display
+    // SEO Strategy: Load videos from last 24 months for relevance, show 12 initially for UX
+    const twentyFourMonthsAgo = new Date()
+    twentyFourMonthsAgo.setMonth(twentyFourMonthsAgo.getMonth() - 24)
 
-    console.log(`📊 SSR: Loaded ${allVideos.length} videos for SEO, displaying ${initialDisplay.length} initially`)
+    const filteredVideos = cache.videos.filter((video) => {
+      const durationInSeconds = convertDurationToSeconds(video.duration)
+      const publishedDate = new Date(video.publishedAt)
+
+      // Filter by duration (>60 seconds) AND published in last 24 months
+      return durationInSeconds > 60 && publishedDate >= twentyFourMonthsAgo
+    })
+
+    // Only send essential data for SEO (title, description, id, publishedAt)
+    const seoVideos = filteredVideos.map((video) => ({
+      id: video.id,
+      title: video.title,
+      description: video.description.substring(0, 160), // Truncate for SEO
+      publishedAt: video.publishedAt,
+      thumbnail: video.thumbnail.medium || video.thumbnail.default
+    }))
+
+    // Send full data only for initial 12 videos
+    const initialDisplay = filteredVideos.slice(0, 12)
+
+    console.log(`📊 SSR: Loaded ${filteredVideos.length} videos for SEO, displaying ${initialDisplay.length} initially`)
 
     return {
       props: {
-        allVideos,
-        initialDisplay,
-        channelInfo: cache.channelInfo
+        allVideos: seoVideos, // Lightweight SEO data
+        initialDisplay, // Full data for first 12
+        channelInfo: cache.channelInfo,
+        totalVideoCount: filteredVideos.length // For pagination
       }
     }
   } catch (error) {
@@ -705,6 +727,7 @@ export const getServerSideProps = async () => {
       props: {
         allVideos: [],
         initialDisplay: [],
+        totalVideoCount: 0,
         channelInfo: null
       }
     }

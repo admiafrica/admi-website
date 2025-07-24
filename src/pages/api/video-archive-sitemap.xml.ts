@@ -95,24 +95,27 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     const baseUrl = 'https://admi.africa'
 
-    // Filter videos to last 24 months for relevance
+    // Video Archive Sitemap: Include ALL videos from the /videos page
+    // Apply the same 24-month filter as the videos page
     const twentyFourMonthsAgo = new Date()
     twentyFourMonthsAgo.setMonth(twentyFourMonthsAgo.getMonth() - 24)
 
     const videos = cache.videos.filter((video) => {
       const publishedDate = new Date(video.publishedAt)
-      return publishedDate >= twentyFourMonthsAgo
+      const durationInSeconds = convertDurationToSeconds(video.duration)
+      // Same filters as videos page: >60 seconds AND within 24 months
+      return durationInSeconds > 60 && publishedDate >= twentyFourMonthsAgo
     })
 
-    // Generate video sitemap XML with all YouTube videos
+    // Generate video archive sitemap XML pointing to the videos gallery page
     const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
   <url>
     <loc>${baseUrl}/videos</loc>
     <lastmod>${cache.lastUpdated || new Date().toISOString()}</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
     ${videos
       .map((video) => {
         const duration = convertDurationToSeconds(video.duration)
@@ -126,7 +129,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       <video:thumbnail_loc>${escapeXml(video.thumbnail.high || video.thumbnail.medium || `https://img.youtube.com/vi/${video.id}/hqdefault.jpg`)}</video:thumbnail_loc>
       <video:title><![CDATA[${sanitizeForCDATA(video.title)}]]></video:title>
       <video:description><![CDATA[${sanitizeForCDATA(video.description.substring(0, 2048))}]]></video:description>
-      <video:content_loc>https://www.youtube.com/watch?v=${video.id}</video:content_loc>
+      <video:content_loc>${baseUrl}/videos?v=${video.id}</video:content_loc>
       <video:player_loc>https://www.youtube.com/embed/${video.id}</video:player_loc>
       <video:duration>${duration}</video:duration>
       <video:publication_date>${video.publishedAt}</video:publication_date>
@@ -146,7 +149,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     return res.status(200).send(sitemap)
   } catch (error) {
-    console.error('❌ Video sitemap generation error:', error)
-    return res.status(500).json({ error: 'Failed to generate video sitemap' })
+    console.error('❌ Video archive sitemap generation error:', error)
+    return res.status(500).json({ error: 'Failed to generate video archive sitemap' })
   }
 }
