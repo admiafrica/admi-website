@@ -9,7 +9,12 @@
     "lint": "next lint",
     "lint:fix": "next lint --fix",
     "type-check": "tsc --noEmit",
-    "prepare": "husky"
+    "prepare": "husky",
+    "blog:generate": "node scripts/blog-generation/blog-scheduler.js",
+    "blog:daily": "node scripts/blog-generation/blog-scheduler.js daily",
+    "blog:weekly": "node scripts/blog-generation/blog-scheduler.js weekly",
+    "blog:stats": "node scripts/blog-generation/blog-scheduler.js stats",
+    "contentful:check": "node scripts/contentful/check-content-types.js"
   },
   "dependencies": {
     "@contentful/rich-text-html-renderer": "^17.0.0",

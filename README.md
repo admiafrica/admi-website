@@ -105,6 +105,29 @@ This command will create an optimized production build in the `/dist` directory.
 
 ---
 
+## **Available Scripts**
+
+### Development Scripts
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run start` - Start production server
+- `npm run lint` - Run ESLint
+- `npm run lint:fix` - Fix ESLint issues
+- `npm run type-check` - Check TypeScript types
+
+### Blog Generation Scripts
+- `npm run blog:daily` - Generate 2 blog articles
+- `npm run blog:weekly` - Generate 7 blog articles
+- `npm run blog:stats` - View blog generation statistics
+- `npm run blog:generate batch 5` - Generate custom number of articles
+
+### Contentful Scripts
+- `npm run contentful:check` - Check Contentful content types
+
+For more detailed information about scripts, see `/scripts/README.md`.
+
+---
+
 ## **Project Structure**
 
 Here's a basic overview of the folder structure:
@@ -121,6 +144,11 @@ Here's a basic overview of the folder structure:
 │   ├── /hooks         # Custom hooks
 │   ├── /utils         # Utility functions
 │   └── main.tsx       # Main React entry point
+├── /scripts           # Utility scripts
+│   ├── /blog-generation  # Automated blog content generation
+│   ├── /contentful      # Contentful CMS management
+│   ├── /setup           # Setup and configuration scripts
+│   └── /tests           # Test scripts (dev only)
 ├── .gitignore         # Git ignore file
 ├── package.json       # npm or yarn dependencies and scripts
 ├── next.config.mjs    # Nextjs configuration
