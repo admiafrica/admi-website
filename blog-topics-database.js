@@ -84,39 +84,77 @@ const blogTopics = {
     }
   ],
 
-  // Tech Economy Topics - Based on Actual ADMI Courses
+  // Creative Tech Economy Topics - Based on ADMI's Creative Technology Focus
   techEconomy: [
     {
-      topic: "Web Development Career Guide: Build Your Future in Kenya's Tech Industry",
-      keywords: ['web development career', 'HTML CSS JavaScript', 'website building', 'programming jobs'],
-      category: 'Web Development',
-      difficulty: 'beginner',
-      targetCourse: 'Web Development',
-      careerPath: 'Web Developer, Frontend Developer, Backend Developer, Full Stack Developer'
-    },
-    {
-      topic: 'Game Programming Fundamentals: Code Your Way Into Gaming',
-      keywords: ['game programming', 'coding for games', 'game development', 'programming skills'],
-      category: 'Game Programming',
+      topic: 'Video Game Development: Building the Next Generation of African Games',
+      keywords: ['video game development', 'game design', 'Unity', 'mobile games', 'African gaming'],
+      category: 'Video Game Development',
       difficulty: 'intermediate',
       targetCourse: 'Video Game Development',
-      careerPath: 'Game Programmer, Gameplay Developer, Engine Programmer, Mobile Game Developer'
+      careerPath: 'Game Developer, Game Designer, Mobile Game Developer, Interactive Media Designer'
     },
     {
-      topic: 'Digital Marketing Analytics: Turn Data Into Business Growth',
-      keywords: ['digital analytics', 'marketing data', 'social media metrics', 'conversion tracking'],
-      category: 'Digital Marketing Analytics',
-      difficulty: 'intermediate',
-      targetCourse: 'Digital Marketing',
-      careerPath: 'Digital Marketing Analyst, Social Media Analyst, Marketing Data Specialist'
+      topic: 'Virtual Film Production: How Technology is Revolutionizing Filmmaking',
+      keywords: ['virtual production', 'digital filmmaking', 'VFX', 'virtual sets', 'film technology'],
+      category: 'Virtual Film Production',
+      difficulty: 'advanced',
+      targetCourse: 'Film Production',
+      careerPath: 'Virtual Production Supervisor, VFX Artist, Digital Cinematographer, Film Tech Specialist'
     },
     {
-      topic: 'UI/UX Design for Mobile Apps: Create Experiences Users Love',
-      keywords: ['mobile UI design', 'app UX', 'user interface', 'mobile design'],
-      category: 'Mobile UI/UX',
+      topic: 'AI in Film and Animation: The Future of Creative Content Production',
+      keywords: ['AI filmmaking', 'AI animation', 'machine learning', 'automated editing', 'creative AI'],
+      category: 'AI Film/Animation',
+      difficulty: 'advanced',
+      targetCourse: 'Animation',
+      careerPath: 'AI Animation Specialist, Digital Content Creator, Tech-Creative Director, Motion Graphics Artist'
+    },
+    {
+      topic: 'Motion Graphics and Visual Effects: Bringing Ideas to Life with Technology',
+      keywords: ['motion graphics', 'VFX', 'After Effects', 'digital compositing', 'visual storytelling'],
+      category: 'Motion Graphics & VFX',
       difficulty: 'intermediate',
+      targetCourse: 'Animation',
+      careerPath: 'Motion Graphics Designer, VFX Artist, Compositor, Digital Effects Specialist'
+    },
+    {
+      topic: 'Interactive Media Design: Creating Immersive Digital Experiences',
+      keywords: ['interactive media', 'digital installations', 'UX design', 'multimedia art', 'creative technology'],
+      category: 'Interactive Media',
+      difficulty: 'advanced',
       targetCourse: 'UI/UX Design',
-      careerPath: 'Mobile App Designer, UX Researcher, Product Designer, Interaction Designer'
+      careerPath: 'Interactive Designer, Experience Designer, Digital Artist, Creative Technologist'
+    },
+    {
+      topic: 'Digital Music Production: Technology Tools for Modern Music Creation',
+      keywords: ['digital music production', 'DAW software', 'music technology', 'electronic music', 'sound design'],
+      category: 'Digital Music Production',
+      difficulty: 'intermediate',
+      targetCourse: 'Music Production',
+      careerPath: 'Digital Music Producer, Sound Designer, Audio Software Specialist, Electronic Music Artist'
+    },
+    {
+      topic: 'Virtual Reality Content Creation: Building Immersive Experiences',
+      keywords: ['VR content creation', 'virtual reality', '360 video', 'immersive media', 'VR storytelling'],
+      category: 'VR Content Creation',
+      difficulty: 'advanced',
+      targetCourse: 'Video Game Development',
+      careerPath: 'VR Developer, Immersive Media Creator, 360 Video Producer, VR Experience Designer'
+    },
+    {
+      topic: 'Live Streaming Technology: Professional Broadcasting for Creative Content',
+      keywords: [
+        'live streaming',
+        'broadcast technology',
+        'streaming setup',
+        'online content creation',
+        'digital media'
+      ],
+      category: 'Live Streaming Tech',
+      difficulty: 'intermediate',
+      targetCourse: 'Film Production',
+      careerPath: 'Live Stream Producer, Broadcast Technician, Digital Content Creator, Online Media Specialist'
     }
   ],
 

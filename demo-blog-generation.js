@@ -12,7 +12,7 @@ async function runDemo() {
     // Show available categories
     console.log('📚 Available topic categories:')
     console.log('  - creativeEconomy: Digital art, film, music, creative business')
-    console.log('  - techEconomy: Fintech, web development, data science, cybersecurity')
+    console.log('  - techEconomy: Video game development, virtual film production, AI film/animation production')
     console.log('  - digitalMarketing: Social media, SEO, content marketing')
     console.log('  - gaming: Game development, VR/AR, mobile games')
     console.log('  - edtech: Online learning, educational content\n')

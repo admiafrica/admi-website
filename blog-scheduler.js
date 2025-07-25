@@ -273,6 +273,11 @@ if (require.main === module) {
       console.log('  node blog-scheduler.js category [name] [count] - Generate articles for specific category')
       console.log('  node blog-scheduler.js stats           - Show generation statistics')
       console.log('')
-      console.log('Available categories: creativeEconomy, techEconomy, digitalMarketing, gaming, edtech')
+      console.log('Available categories:')
+      console.log('  - creativeEconomy: Creative arts, film, music, design careers')
+      console.log('  - techEconomy: Creative technology (VR, AI film, game dev, virtual production)')
+      console.log('  - digitalMarketing: Social media, SEO, content marketing')
+      console.log('  - gaming: Game development, VR/AR, mobile games')
+      console.log('  - edtech: Online learning, educational content')
   }
 }
