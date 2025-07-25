@@ -274,9 +274,10 @@ export function BreadcrumbSchema({ items }: BreadcrumbProps) {
 interface CMSFAQSchemaProps {
   faqs: ICourseFAQ[] | any[]
   courseName?: string
+  schemaId?: string
 }
 
-export function CMSFAQSchema({ faqs, courseName }: CMSFAQSchemaProps) {
+export function CMSFAQSchema({ faqs, courseName, schemaId = 'cms-faq-schema' }: CMSFAQSchemaProps) {
   if (!faqs || faqs.length === 0) {
     return null
   }
@@ -297,7 +298,7 @@ export function CMSFAQSchema({ faqs, courseName }: CMSFAQSchemaProps) {
 
   return (
     <Script
-      id="cms-faq-schema"
+      id={schemaId}
       type="application/ld+json"
       dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
     />

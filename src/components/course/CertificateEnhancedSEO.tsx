@@ -162,7 +162,11 @@ export function CertificateEnhancedSEO({
 
       {/* CMS FAQ Schema */}
       {activeFaqs.length > 0 && (
-        <CMSFAQSchema faqs={activeFaqs} courseName={`${course.name} - Certificate Program Information`} />
+        <CMSFAQSchema
+          faqs={activeFaqs}
+          courseName={`${course.name} - Certificate Program Information`}
+          schemaId="certificate-faq-schema"
+        />
       )}
 
       {/* Course Intake Events Schema */}

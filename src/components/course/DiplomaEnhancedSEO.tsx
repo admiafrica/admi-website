@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import Script from 'next/script'
 import { DiplomaSchema, CMSFAQSchema } from '@/components/shared/StructuredData'
 import { generateDiplomaKeywords } from '@/utils/diploma-seo-config'
-import { generateFAQSchema } from '@/data/diploma-faqs'
 import { ICourseFAQ, IFAQResponse } from '@/types'
 import { CourseIntakeEventSchema } from '@/components/seo/CourseIntakeEventSchema'
 
@@ -65,9 +64,6 @@ export function DiplomaEnhancedSEO({
       ?.map((block: any) => block.content?.map((content: any) => content.value).join(' '))
       .filter(Boolean) || []
 
-  // Generate FAQ schema if FAQs are provided (now using CMS FAQs when available)
-  const faqSchema = activeFaqs.length > 0 ? generateFAQSchema(activeFaqs) : null
-
   return (
     <>
       {/* Enhanced Diploma Schema */}
@@ -97,16 +93,9 @@ export function DiplomaEnhancedSEO({
         courseSlug={slug}
       />
 
-      {/* CMS FAQ Schema for SEO */}
-      <CMSFAQSchema faqs={activeFaqs} courseName={course.name} />
-
-      {/* Fallback FAQ Schema for SEO (if no CMS FAQs) */}
-      {activeFaqs.length === 0 && faqSchema && (
-        <Script
-          id="diploma-faq-schema"
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-        />
+      {/* CMS FAQ Schema for SEO - Only render this, no duplicate schemas */}
+      {activeFaqs.length > 0 && (
+        <CMSFAQSchema faqs={activeFaqs} courseName={course.name} schemaId="diploma-faq-schema" />
       )}
 
       {/* Course Intake Events Schema */}

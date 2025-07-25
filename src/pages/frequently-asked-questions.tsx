@@ -1,6 +1,7 @@
 import React from 'react'
 import { Container, Title, Accordion, Text } from '@mantine/core'
-import PageSEO from '../components/shared/v3/PageSEO'
+import { MainLayout } from '@/layouts/v3/MainLayout'
+import { PageSEO } from '@/components/shared/v3'
 
 const FAQPage = () => {
   const faqSchema = {
@@ -36,7 +37,7 @@ const FAQPage = () => {
         name: 'Which ADMI course has the best job prospects?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Digital Marketing has the highest demand with 95% job placement rate. Film Production and Graphic Design also have excellent prospects with 90% placement rates in Kenya&apos;s growing creative industry.'
+          text: 'All ADMI diploma programs have exceptional job placement rates of 85-90%. Our Graphic Design Diploma, Film & TV Production Diploma, Animation & Motion Graphics Diploma, Music Production Diploma, and Sound Engineering Diploma are all highly sought after in Kenya&apos;s rapidly growing creative economy, with graduates working at leading studios and production companies.'
         }
       },
       {
@@ -75,7 +76,7 @@ const FAQPage = () => {
   }
 
   return (
-    <>
+    <MainLayout>
       <PageSEO
         title="Frequently Asked Questions - ADMI"
         description="Get answers to common questions about ADMI courses, fees, admission requirements, and career prospects in Kenya's leading digital media institute."
@@ -150,8 +151,10 @@ const FAQPage = () => {
             </Accordion.Control>
             <Accordion.Panel>
               <Text>
-                Digital Marketing has the highest demand with 95% job placement rate. Film Production and Graphic Design
-                also have excellent prospects with 90% placement rates in Kenya&apos;s growing creative industry.
+                All ADMI diploma programs have exceptional job placement rates of 85-90%. Our Graphic Design Diploma,
+                Film & TV Production Diploma, Animation & Motion Graphics Diploma, Music Production Diploma, and Sound
+                Engineering Diploma are all highly sought after in Kenya's rapidly growing creative economy, with
+                graduates working at leading companies like Nation Media Group, Royal Media Services, and Safaricom.
               </Text>
             </Accordion.Panel>
           </Accordion.Item>
@@ -202,7 +205,7 @@ const FAQPage = () => {
           </Accordion.Item>
         </Accordion>
       </Container>
-    </>
+    </MainLayout>
   )
 }
 
