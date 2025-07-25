@@ -32,11 +32,18 @@ import {
   PHOTOGRAPHY_CERTIFICATE_FAQS,
   MUSIC_PRODUCTION_CERTIFICATE_FAQS
 } from '@/data/certificate-faqs'
+import { getCourseSpecificFAQs } from '@/data/course-specific-faqs'
 import { generateCourseSpecificMeta } from '@/utils/course-specific-seo'
 
-// Helper function to get correct FAQs based on course slug
+// Helper function to get correct FAQs based on course slug - Updated to use course-specific FAQs
 const getCorrectFAQsForCourse = (slug: string, isDiploma: boolean) => {
-  // Diploma course FAQs
+  // First try to get specific FAQs for the course
+  const specificFAQs = getCourseSpecificFAQs(slug, isDiploma ? 'diploma' : 'certificate')
+  if (specificFAQs.length > 0) {
+    return specificFAQs
+  }
+
+  // Fallback to generic FAQs if no specific ones found
   if (isDiploma) {
     if (slug.includes('graphic-design')) return GRAPHIC_DESIGN_FAQS
     if (slug.includes('animation') || slug.includes('vfx')) return ANIMATION_VFX_FAQS
@@ -46,14 +53,14 @@ const getCorrectFAQsForCourse = (slug: string, isDiploma: boolean) => {
     return GENERAL_DIPLOMA_FAQS.slice(0, 8)
   }
 
-  // Certificate course FAQs
+  // Certificate course FAQs fallback
   if (slug.includes('graphic-design')) return GRAPHIC_DESIGN_CERTIFICATE_FAQS
   if (slug.includes('digital-marketing')) return DIGITAL_MARKETING_CERTIFICATE_FAQS
   if (slug.includes('video-production')) return VIDEO_PRODUCTION_CERTIFICATE_FAQS
   if (slug.includes('photography')) return PHOTOGRAPHY_CERTIFICATE_FAQS
   if (slug.includes('music-production')) return MUSIC_PRODUCTION_CERTIFICATE_FAQS
 
-  return GENERAL_CERTIFICATE_FAQS.slice(0, 6) // Return general certificate FAQs
+  return GENERAL_CERTIFICATE_FAQS.slice(0, 6)
 }
 
 export default function CourseDetailPage({

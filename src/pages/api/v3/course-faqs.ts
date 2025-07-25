@@ -15,7 +15,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       let query = ''
       if (courseId) {
         // Fetch FAQs by course ID reference
-        query = `content_type=courseFaq&fields.course.sys.id=${courseId}&order=fields.displayOrder`
+        query = `content_type=2aEawNi41H2x8BXE8J2I9a&fields.course.sys.id=${courseId}&order=fields.displayOrder`
       } else if (slug) {
         // First get the course by slug, then get its FAQs
         const courseResponse = await axiosContentfulClient.get<IContentfulResponse>(
@@ -27,10 +27,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         }
 
         const courseId = courseResponse.data.items[0].sys.id
-        query = `content_type=courseFaq&fields.course.sys.id=${courseId}&order=fields.displayOrder`
+        query = `content_type=2aEawNi41H2x8BXE8J2I9a&fields.course.sys.id=${courseId}&order=fields.displayOrder`
       } else {
         // Fetch all FAQs if no specific course is requested
-        query = 'content_type=courseFaq&order=fields.displayOrder'
+        query = 'content_type=2aEawNi41H2x8BXE8J2I9a&order=fields.displayOrder'
       }
 
       const response = await axiosContentfulClient.get<IContentfulResponse>(
@@ -59,7 +59,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
       // If content type doesn't exist, return empty array instead of error
       if (error?.response?.status === 400 && error?.response?.data?.message?.includes('content_type')) {
-        console.warn('courseFaq content type not found in Contentful, returning empty array')
+        console.warn('Course FAQ content type not found in Contentful, returning empty array')
         return res.status(200).json({
           items: [],
           total: 0
