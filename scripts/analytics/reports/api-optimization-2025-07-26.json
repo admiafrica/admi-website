@@ -1,0 +1,76 @@
+{
+  "timestamp": "2025-07-26T16:55:25.038Z",
+  "source": "API-driven analytics",
+  "optimizationScore": 72,
+  "faqMetrics": {
+    "pageViews": 2450,
+    "users": 1820,
+    "averageSessionDuration": 185,
+    "bounceRate": 42.3,
+    "conversionFunnel": {
+      "faqPageViews": 2450,
+      "faqUsers": 1820,
+      "coursePageViews": 892,
+      "courseUsers": 673,
+      "faqToCourseConversionRate": "37.0"
+    },
+    "lastUpdated": "2025-07-26T16:55:25.023Z"
+  },
+  "searchInsights": {
+    "totalQueries": 5,
+    "topQueries": [
+      {
+        "query": "admi music production course fees",
+        "pagePath": "/frequently-asked-questions",
+        "sessions": 45,
+        "users": 38
+      },
+      {
+        "query": "film production diploma requirements",
+        "pagePath": "/frequently-asked-questions",
+        "sessions": 32,
+        "users": 29
+      },
+      {
+        "query": "graphic design course duration",
+        "pagePath": "/frequently-asked-questions",
+        "sessions": 28,
+        "users": 24
+      },
+      {
+        "query": "animation course job opportunities",
+        "pagePath": "/frequently-asked-questions",
+        "sessions": 24,
+        "users": 21
+      },
+      {
+        "query": "digital marketing certificate salary",
+        "pagePath": "/frequently-asked-questions",
+        "sessions": 19,
+        "users": 17
+      }
+    ],
+    "topKeywords": ["course", "fees", "requirements", "job", "salary", "duration"]
+  },
+  "recommendations": [
+    {
+      "type": "content",
+      "priority": "high",
+      "title": "Add FAQs for high-search queries",
+      "description": "Create FAQs addressing: music production fees, film requirements, graphic design duration"
+    },
+    {
+      "type": "engagement",
+      "priority": "medium",
+      "title": "Improve FAQ page loading speed",
+      "description": "FAQ page bounce rate is 42.3%. Optimize images and reduce JavaScript bundle size."
+    },
+    {
+      "type": "conversion",
+      "priority": "high",
+      "title": "Add course links in FAQ answers",
+      "description": "Only 37% of FAQ visitors view course pages. Add more course CTAs in FAQ answers."
+    }
+  ],
+  "nextActions": []
+}

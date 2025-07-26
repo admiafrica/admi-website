@@ -52,3 +52,6 @@ lerna-debug.log*
 *.tsbuildinfo
 next-env.d.ts
 blog-generation-log.json
+
+# Google Analytics MCP credentials
+ga-service-account.json

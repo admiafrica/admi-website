@@ -1,0 +1,100 @@
+{
+  "generatedAt": "2025-07-26T16:57:15.065Z",
+  "summary": {
+    "overallScore": 917,
+    "engagementScore": 76,
+    "conversionScore": 1757,
+    "status": "Excellent"
+  },
+  "engagement": {
+    "pageViews": 2450,
+    "uniqueVisitors": 1820,
+    "averageTimeOnPage": "3m 5s",
+    "bounceRate": "42.3%",
+    "totalFAQExpansions": 2365,
+    "expansionRate": "96.5%"
+  },
+  "topPerformingFAQs": [
+    {
+      "rank": 1,
+      "question": "What job opportunities are available for ADMI graduates?",
+      "expansions": 456,
+      "expansionRate": "18.6%"
+    },
+    {
+      "rank": 2,
+      "question": "How much does it cost to study a course at ADMI?",
+      "expansions": 398,
+      "expansionRate": "16.2%"
+    },
+    {
+      "rank": 3,
+      "question": "What are the admission requirements for ADMI courses?",
+      "expansions": 367,
+      "expansionRate": "15.0%"
+    },
+    {
+      "rank": 4,
+      "question": "What are the salary prospects for ADMI graduates in Kenya?",
+      "expansions": 298,
+      "expansionRate": "12.2%"
+    },
+    {
+      "rank": 5,
+      "question": "What is the duration of ADMI courses?",
+      "expansions": 267,
+      "expansionRate": "10.9%"
+    }
+  ],
+  "conversionFunnel": {
+    "faqPageViews": 2450,
+    "coursePageVisits": "892 (36.4%)",
+    "applicationStarts": "147 (6.0%)",
+    "applicationCompletions": "89 (3.6%)"
+  },
+  "courseSpecificPerformance": [
+    {
+      "course": "music-production-diploma",
+      "views": 345,
+      "expansions": 178,
+      "conversions": 23,
+      "conversionRate": "6.7%"
+    },
+    {
+      "course": "graphic-design-diploma",
+      "views": 298,
+      "expansions": 156,
+      "conversions": 19,
+      "conversionRate": "6.4%"
+    },
+    {
+      "course": "film-and-television-production-diploma",
+      "views": 267,
+      "expansions": 134,
+      "conversions": 16,
+      "conversionRate": "6.0%"
+    },
+    {
+      "course": "digital-marketing-certificate",
+      "views": 234,
+      "expansions": 123,
+      "conversions": 15,
+      "conversionRate": "6.4%"
+    },
+    {
+      "course": "animation-and-motion-graphics-diploma",
+      "views": 189,
+      "expansions": 98,
+      "conversions": 12,
+      "conversionRate": "6.3%"
+    }
+  ],
+  "recommendations": [
+    {
+      "type": "content",
+      "priority": "medium",
+      "issue": "3 FAQs have low engagement",
+      "recommendation": "Review and improve FAQ questions that have less than 10% expansion rate"
+    }
+  ]
+}

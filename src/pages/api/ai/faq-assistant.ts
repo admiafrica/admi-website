@@ -3,7 +3,7 @@ import OpenAI from 'openai'
 
 // Initialize OpenAI
 const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY
+  apiKey: process.env.NEXT_OPENAI_API_KEY || process.env.OPENAI_API_KEY
 })
 
 // Course knowledge base
@@ -44,7 +44,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(400).json({ message: 'Question is required' })
   }
 
-  if (!process.env.OPENAI_API_KEY) {
+  if (!process.env.NEXT_OPENAI_API_KEY && !process.env.OPENAI_API_KEY) {
     return res.status(500).json({ message: 'OpenAI API key not configured' })
   }
 

@@ -143,6 +143,49 @@ const VIDEO_PRODUCTION_CERTIFICATE_DETAILED_FAQS = [
   }
 ]
 
+const MUSIC_PRODUCTION_DIPLOMA_DETAILED_FAQS = [
+  {
+    question: "What makes ADMI's Music Production diploma program unique in Kenya?",
+    answer:
+      'ADMI offers the only 2-year Music Production diploma with Pearson accreditation in East Africa. Our studios feature industry-standard equipment including SSL, Neve, and API consoles, Pro Tools HDX systems, and vintage analog gear, providing hands-on experience with the same tools used in top recording studios worldwide.'
+  },
+  {
+    question: 'What genres and styles of music will I learn to produce?',
+    answer:
+      'The program covers diverse genres including Afrobeats, Gospel, Hip-Hop, Electronic Dance Music, Traditional African music, Pop, Rock, and Jazz. You will learn to blend traditional African sounds with contemporary production techniques, preparing you for the global music market.'
+  },
+  {
+    question: 'What software and hardware will I master during the diploma?',
+    answer:
+      'Pro Tools, Logic Pro X, Ableton Live, FL Studio, and Reaper for recording and sequencing. Hardware includes SSL AWS 948, Neve 8816, API Legacy Plus console, vintage compressors and EQs, plus modern plugins from Waves, UAD, and FabFilter.'
+  },
+  {
+    question: 'Can I specialize in specific areas like mixing, mastering, or beat production?',
+    answer:
+      'Yes! In Year 2, you can specialize in Audio Engineering & Mixing, Mastering & Post-Production, Beat Production & Sound Design, or Live Sound Engineering. Each track includes advanced modules and mentorship from industry professionals.'
+  },
+  {
+    question: 'What real projects will I work on during the 2-year program?',
+    answer:
+      'Year 1: Record and mix 6 songs across different genres, create beats for local artists, and complete sound design projects. Year 2: Produce a full 8-track album, master an EP, design sound for a film/game, and complete a live recording project.'
+  },
+  {
+    question: 'How does the program prepare me for the African music industry?',
+    answer:
+      'We focus on the unique aspects of African music production including traditional instrument recording, polyrhythmic programming, cross-cultural collaboration, and understanding African music business models. You will work with local artists and learn about music distribution in African markets.'
+  },
+  {
+    question: 'What career opportunities are available after graduation?',
+    answer:
+      'Graduates work as recording engineers, mixing engineers, mastering engineers, beat producers, sound designers, live sound engineers, and studio owners. Starting salaries range from KES 60,000-150,000 monthly, with freelance opportunities often exceeding this.'
+  },
+  {
+    question: 'Do I get to work with real artists during the program?',
+    answer:
+      'Absolutely! The program includes regular sessions with signed artists, up-and-coming musicians, and established producers. You will build a professional network while completing real commercial projects that go to market.'
+  }
+]
+
 require('dotenv').config()
 
 // Course mapping with their specific FAQs
@@ -167,6 +210,11 @@ const courseFAQMappings = [
   {
     courseSlug: 'film-television-diploma',
     faqs: FILM_TV_DIPLOMA_DETAILED_FAQS,
+    programType: 'diploma'
+  },
+  {
+    courseSlug: 'music-production-diploma',
+    faqs: MUSIC_PRODUCTION_DIPLOMA_DETAILED_FAQS,
     programType: 'diploma'
   }
 ]
