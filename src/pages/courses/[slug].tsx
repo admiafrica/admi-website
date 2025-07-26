@@ -9,59 +9,13 @@ import {
 } from '@/components/course'
 import { CMSCourseFAQs } from '@/components/course/CMSCourseFAQs'
 // import { CourseVideoSection } from '@/components/course/CourseVideoSection'
-import {
-  GRAPHIC_DESIGN_FAQS,
-  ANIMATION_VFX_FAQS,
-  FILM_TELEVISION_FAQS,
-  AUDIO_PRODUCTION_FAQS,
-  PHOTOGRAPHY_FAQS
-} from '@/data/diploma-faqs'
 import { PageSEO } from '@/components/shared/v3'
 import { CourseSchema, BreadcrumbSchema, VideoSchema } from '@/components/shared/StructuredData'
 import { DiplomaEnhancedSEO } from '@/components/course/DiplomaEnhancedSEO'
 import { CertificateEnhancedSEO } from '@/components/course/CertificateEnhancedSEO'
 import { EastAfricaLocalSEO } from '@/components/seo/EastAfricaLocalSEO'
-// generateDiplomaKeywords utility available for future enhancements
-import { GENERAL_DIPLOMA_FAQS } from '@/data/diploma-faqs'
 import { YouTubeVideo } from '@/utils/youtube-api'
-import {
-  GENERAL_CERTIFICATE_FAQS,
-  GRAPHIC_DESIGN_CERTIFICATE_FAQS,
-  DIGITAL_MARKETING_CERTIFICATE_FAQS,
-  VIDEO_PRODUCTION_CERTIFICATE_FAQS,
-  PHOTOGRAPHY_CERTIFICATE_FAQS,
-  MUSIC_PRODUCTION_CERTIFICATE_FAQS
-} from '@/data/certificate-faqs'
-import { getCourseSpecificFAQs } from '@/data/course-specific-faqs'
 import { generateCourseSpecificMeta } from '@/utils/course-specific-seo'
-
-// Helper function to get correct FAQs based on course slug - Updated to use course-specific FAQs
-const getCorrectFAQsForCourse = (slug: string, isDiploma: boolean) => {
-  // First try to get specific FAQs for the course
-  const specificFAQs = getCourseSpecificFAQs(slug, isDiploma ? 'diploma' : 'certificate')
-  if (specificFAQs.length > 0) {
-    return specificFAQs
-  }
-
-  // Fallback to generic FAQs if no specific ones found
-  if (isDiploma) {
-    if (slug.includes('graphic-design')) return GRAPHIC_DESIGN_FAQS
-    if (slug.includes('animation') || slug.includes('vfx')) return ANIMATION_VFX_FAQS
-    if (slug.includes('film') || slug.includes('television')) return FILM_TELEVISION_FAQS
-    if (slug.includes('audio') || slug.includes('sound')) return AUDIO_PRODUCTION_FAQS
-    if (slug.includes('photography')) return PHOTOGRAPHY_FAQS
-    return GENERAL_DIPLOMA_FAQS.slice(0, 8)
-  }
-
-  // Certificate course FAQs fallback
-  if (slug.includes('graphic-design')) return GRAPHIC_DESIGN_CERTIFICATE_FAQS
-  if (slug.includes('digital-marketing')) return DIGITAL_MARKETING_CERTIFICATE_FAQS
-  if (slug.includes('video-production')) return VIDEO_PRODUCTION_CERTIFICATE_FAQS
-  if (slug.includes('photography')) return PHOTOGRAPHY_CERTIFICATE_FAQS
-  if (slug.includes('music-production')) return MUSIC_PRODUCTION_CERTIFICATE_FAQS
-
-  return GENERAL_CERTIFICATE_FAQS.slice(0, 6)
-}
 
 export default function CourseDetailPage({
   course,
@@ -188,7 +142,6 @@ export default function CourseDetailPage({
         <DiplomaEnhancedSEO
           course={course}
           slug={slug}
-          faqs={course.faqs?.length > 0 ? course.faqs : GENERAL_DIPLOMA_FAQS.slice(0, 8)}
           employmentRate={85}
           averageSalary="KES 45,000 - 120,000"
           industryPartners={['Safaricom', 'Nation Media Group', 'Standard Group', 'Royal Media Services']}
@@ -199,7 +152,6 @@ export default function CourseDetailPage({
         <CertificateEnhancedSEO
           course={course}
           slug={slug}
-          faqs={course.faqs?.length > 0 ? course.faqs : getCorrectFAQsForCourse(slug, false)}
           employmentRate={75}
           averageSalary="KES 25,000 - 80,000"
           industryPartners={['Safaricom', 'Nation Media Group', 'Standard Group', 'Royal Media Services']}
@@ -301,11 +253,7 @@ export default function CourseDetailPage({
       {/* Enhanced Video Section with YouTube Integration - Temporarily disabled */}
       {/* <CourseVideoSection course={course} slug={slug} youtubeVideos={youtubeVideos} /> */}
 
-      <CMSCourseFAQs
-        courseSlug={slug}
-        fallbackFAQs={getCorrectFAQsForCourse(slug, isDiploma)}
-        showGeneralFallback={isDiploma}
-      />
+      <CMSCourseFAQs courseSlug={slug} />
     </MainLayout>
   )
 }

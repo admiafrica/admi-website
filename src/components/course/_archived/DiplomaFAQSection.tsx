@@ -8,7 +8,7 @@ import {
   GRAPHIC_DESIGN_FAQS,
   AUDIO_PRODUCTION_FAQS,
   PHOTOGRAPHY_FAQS
-} from '@/data/diploma-faqs'
+} from '@/data/_archived/diploma-faqs'
 
 interface DiplomaFAQSectionProps {
   programType?: 'film-television' | 'animation-vfx' | 'graphic-design' | 'audio-production' | 'photography'

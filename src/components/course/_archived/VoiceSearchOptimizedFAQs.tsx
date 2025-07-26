@@ -4,13 +4,10 @@ import { IconChevronDown, IconAlertCircle, IconMicrophone } from '@tabler/icons-
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer'
 import { ICourseFAQ, IFAQResponse } from '@/types'
 import { createFAQSchemaData, optimizeFAQsForVoiceSearch } from '@/utils/faq-helpers'
-import { GENERAL_DIPLOMA_FAQS } from '@/data/diploma-faqs'
 
 interface VoiceSearchOptimizedFAQsProps {
   courseSlug: string
   courseName?: string
-  fallbackFAQs?: any[]
-  showGeneralFallback?: boolean
   location?: string
   enableVoiceSearchIndicators?: boolean
 }
@@ -49,8 +46,6 @@ const extractPlainText = (richText: any): string => {
 export function VoiceSearchOptimizedFAQs({
   courseSlug,
   courseName,
-  fallbackFAQs = [],
-  showGeneralFallback = true,
   location = 'Kenya',
   enableVoiceSearchIndicators = true
 }: VoiceSearchOptimizedFAQsProps) {
@@ -68,20 +63,16 @@ export function VoiceSearchOptimizedFAQs({
         const response = await fetch(`/api/v3/course-faqs?slug=${courseSlug}`)
 
         if (!response.ok) {
-          // If it's a 404 or content type doesn't exist, silently fall back to hardcoded FAQs
-          if (response.status === 404 || response.status === 500) {
-            console.warn(`CMS FAQs not available for ${courseSlug}, using fallback FAQs`)
-            setFaqs([]) // This will trigger fallback FAQ display
-            return
-          }
-          throw new Error(`Failed to fetch FAQs: ${response.statusText}`)
+          console.warn(`CMS FAQs not available for ${courseSlug}`)
+          setFaqs([])
+          return
         }
 
         const data: IFAQResponse = await response.json()
         setFaqs(data.items || [])
       } catch (err) {
-        console.warn('CMS FAQ system not ready, using fallback FAQs:', err)
-        // Don't set error state, just use fallback FAQs
+        console.error('Error fetching FAQs:', err)
+        setError('Unable to load FAQs')
         setFaqs([])
       } finally {
         setLoading(false)
@@ -93,21 +84,8 @@ export function VoiceSearchOptimizedFAQs({
     }
   }, [courseSlug])
 
-  // Get fallback FAQs if no CMS FAQs are available
-  const getFallbackFAQs = () => {
-    if (fallbackFAQs.length > 0) {
-      return fallbackFAQs
-    }
-
-    if (showGeneralFallback) {
-      return GENERAL_DIPLOMA_FAQS.slice(0, 8) // Show first 8 general FAQs as fallback
-    }
-
-    return []
-  }
-
-  // Use CMS FAQs if available, otherwise use fallback
-  const displayFAQs = faqs.length > 0 ? faqs : getFallbackFAQs()
+  // Use only CMS FAQs
+  const displayFAQs = faqs
 
   // Optimize FAQs for voice search
   useEffect(() => {
@@ -148,12 +126,11 @@ export function VoiceSearchOptimizedFAQs({
     )
   }
 
-  // Only show error if we have a real error AND no fallback FAQs
-  if (error && displayFAQs.length === 0) {
+  if (error) {
     return (
       <Container size="lg" py="xl">
         <Alert icon={<IconAlertCircle size={16} />} title="Unable to load FAQs" color="red" variant="light">
-          {error}. Please try refreshing the page or contact support if the problem persists.
+          {error}
         </Alert>
       </Container>
     )

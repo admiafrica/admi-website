@@ -8,7 +8,6 @@ import { CourseIntakeEventSchema } from '@/components/seo/CourseIntakeEventSchem
 interface DiplomaEnhancedSEOProps {
   course: any
   slug: string
-  faqs?: any[]
   employmentRate?: number
   averageSalary?: string
   industryPartners?: string[]
@@ -18,7 +17,6 @@ interface DiplomaEnhancedSEOProps {
 export function DiplomaEnhancedSEO({
   course,
   slug,
-  faqs = [],
   employmentRate = 85,
   averageSalary = 'KES 45,000 - 120,000',
   industryPartners = ['Safaricom', 'Nation Media Group', 'Standard Group', 'Royal Media Services'],
@@ -45,8 +43,8 @@ export function DiplomaEnhancedSEO({
     }
   }, [slug])
 
-  // Use CMS FAQs if available, otherwise use provided FAQs
-  const activeFaqs = cmsFaqs.length > 0 ? cmsFaqs : faqs
+  // Use only CMS FAQs
+  const activeFaqs = cmsFaqs
 
   // Note: Enhanced keywords are generated via generateDiplomaKeywords utility when needed
 
@@ -93,7 +91,7 @@ export function DiplomaEnhancedSEO({
         courseSlug={slug}
       />
 
-      {/* CMS FAQ Schema for SEO - Only render this, no duplicate schemas */}
+      {/* CMS FAQ Schema for SEO - Only render if CMS FAQs exist */}
       {activeFaqs.length > 0 && (
         <CMSFAQSchema faqs={activeFaqs} courseName={course.name} schemaId="diploma-faq-schema" />
       )}

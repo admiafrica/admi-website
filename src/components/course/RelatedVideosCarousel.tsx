@@ -127,6 +127,7 @@ export function RelatedVideosCarousel({
                     src={video.thumbnail}
                     alt={video.title}
                     fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 300px"
                     className="object-cover transition-transform duration-300 hover:scale-105"
                   />
 

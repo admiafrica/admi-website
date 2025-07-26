@@ -64,7 +64,7 @@ export default function AboutPage() {
       {/* WHO WE ARE */}
       <Box className="relative z-10 w-full bg-[#002A23]">
         <Box className="relative h-[460px] w-full">
-          <Image src={ImageAboutLanding} alt={'background image'} fill objectFit="cover" priority />
+          <Image src={ImageAboutLanding} alt={'background image'} fill sizes="100vw" objectFit="cover" priority />
         </Box>
         <Ribbon />
         <Box className="mx-auto flex w-full max-w-screen-xl flex-col sm:flex-row">

@@ -24,6 +24,7 @@ export default function ProgramListItemCard({ courses, program, filterProgramCou
             src={`https:${getAssetDetails(program.assets, program.fields.icon.sys.id)?.fields.file.url}`}
             alt={program.fields.icon.fields.file.fileName}
             className="my-auto"
+            style={{ width: 'auto', height: 'auto', maxWidth: '36px', maxHeight: '36px' }}
           />
           <div className="my-auto pl-2">
             <Title label={program.fields.name} size="24px" color="admiDarkOrange" />

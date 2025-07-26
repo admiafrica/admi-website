@@ -7,7 +7,6 @@ import { CourseIntakeEventSchema } from '@/components/seo/CourseIntakeEventSchem
 interface CertificateEnhancedSEOProps {
   course: any
   slug: string
-  faqs?: any[]
   employmentRate?: number
   averageSalary?: string
   industryPartners?: string[]
@@ -17,7 +16,6 @@ interface CertificateEnhancedSEOProps {
 export function CertificateEnhancedSEO({
   course,
   slug,
-  faqs = [],
   employmentRate = 75,
   averageSalary = 'KES 25,000 - 80,000',
   industryPartners = ['Safaricom', 'Nation Media Group', 'Standard Group', 'Royal Media Services'],
@@ -44,8 +42,8 @@ export function CertificateEnhancedSEO({
     }
   }, [slug])
 
-  // Use CMS FAQs if available, otherwise use provided FAQs
-  const activeFaqs = cmsFaqs.length > 0 ? cmsFaqs : faqs
+  // Use only CMS FAQs
+  const activeFaqs = cmsFaqs
 
   // Determine certificate type and duration
   const isFoundationCertificate = course.awardLevel?.toLowerCase().includes('foundation')

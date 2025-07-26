@@ -32,7 +32,14 @@ export default function UserProfileCard(props: Props) {
       <Card.Section>
         <Box className="relative grow" h={isMobile ? '150px' : '170px'}>
           {props.user.image ? (
-            <Image fill src={props.user.image} alt="about course" objectFit="cover" priority />
+            <Image
+              fill
+              sizes="(max-width: 768px) 160px, 240px"
+              src={props.user.image}
+              alt="about course"
+              objectFit="cover"
+              priority
+            />
           ) : (
             <Avatar color="admiRed" w={'100%'} h={'100%'} radius={0} size={72}>
               {getInitials(props.user.name)}

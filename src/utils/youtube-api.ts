@@ -90,7 +90,9 @@ export async function fetchADMIChannelVideos(maxResults: number = 50): Promise<Y
     if (videosData.items && videosData.items.length > 0) {
       console.log('🔍 Video details:')
       videosData.items.forEach((video: any, index: number) => {
-        console.log(`${index + 1}. "${video.snippet.title}" by ${video.snippet.channelTitle} (ID: ${video.snippet.channelId})`)
+        console.log(
+          `${index + 1}. "${video.snippet.title}" by ${video.snippet.channelTitle} (ID: ${video.snippet.channelId})`
+        )
       })
     }
 
@@ -110,10 +112,10 @@ export async function fetchADMIChannelVideos(maxResults: number = 50): Promise<Y
           title: video.snippet.title,
           description: video.snippet.description,
           thumbnail: {
-            default: video.snippet.thumbnails.default?.url || '',
-            medium: video.snippet.thumbnails.medium?.url || '',
-            high: video.snippet.thumbnails.high?.url || '',
-            maxres: video.snippet.thumbnails.maxres?.url
+            default: video.snippet.thumbnails.default?.url || `https://img.youtube.com/vi/${video.id}/default.jpg`,
+            medium: video.snippet.thumbnails.medium?.url || `https://img.youtube.com/vi/${video.id}/mqdefault.jpg`,
+            high: video.snippet.thumbnails.high?.url || `https://img.youtube.com/vi/${video.id}/hqdefault.jpg`,
+            maxres: video.snippet.thumbnails.maxres?.url || `https://img.youtube.com/vi/${video.id}/maxresdefault.jpg`
           },
           publishedAt: video.snippet.publishedAt,
           duration: formatDuration(video.contentDetails.duration),
@@ -246,6 +248,29 @@ export function getYouTubeEmbedUrl(videoId: string, autoplay: boolean = false): 
  */
 export function getYouTubeWatchUrl(videoId: string): string {
   return `https://www.youtube.com/watch?v=${videoId}`
+}
+
+/**
+ * Get the best available YouTube thumbnail URL with fallback
+ */
+export function getYouTubeThumbnail(
+  videoId: string,
+  quality: 'default' | 'medium' | 'high' | 'maxres' = 'medium'
+): string {
+  const baseUrl = 'https://img.youtube.com/vi'
+
+  switch (quality) {
+    case 'default':
+      return `${baseUrl}/${videoId}/default.jpg`
+    case 'medium':
+      return `${baseUrl}/${videoId}/mqdefault.jpg`
+    case 'high':
+      return `${baseUrl}/${videoId}/hqdefault.jpg`
+    case 'maxres':
+      return `${baseUrl}/${videoId}/maxresdefault.jpg`
+    default:
+      return `${baseUrl}/${videoId}/mqdefault.jpg`
+  }
 }
 
 /**

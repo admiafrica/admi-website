@@ -32,7 +32,13 @@ export default function NewsArticlePage() {
           </Box>
           <Card className="mb-6 min-h-[80vh] w-full sm:ml-8" withBorder>
             <Box className="relative" h={isMobile ? '200px' : '500px'}>
-              <Image src={ImageSanaraLanding} alt={'sanara'} style={{ borderRadius: 8 }} fill />
+              <Image
+                src={ImageSanaraLanding}
+                alt={'sanara'}
+                style={{ borderRadius: 8 }}
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
             </Box>
             <Paragraph fontFamily="font-nexa" fontWeight={400} size="26px" className="py-6">
               ADMI-Sanara Animation Program

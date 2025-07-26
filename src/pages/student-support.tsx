@@ -200,7 +200,7 @@ export default function StudentSupportPage() {
         {/* ACADEMIC CALENDAR */}
         <Box className="relative z-10 flex w-full flex-col px-4 py-8 sm:flex-row" bg={'#F5FFFD'}>
           <Box className="relative h-[240px] sm:h-[600px] sm:w-[50%]">
-            <Image fill src={ImageCalendar} alt="about course" />
+            <Image fill sizes="(max-width: 768px) 100vw, 400px" src={ImageCalendar} alt="about course" />
           </Box>
           <Box className="sm:w-[50%]">
             <Box className="pt-12">
