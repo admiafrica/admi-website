@@ -144,9 +144,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <style
           dangerouslySetInnerHTML={{
             __html: `
-            /* Hide all Brevo chat widgets */
-            [id*="brevo"],
-            [class*="brevo"],
+            /* Hide only Brevo chat widgets - be very specific */
+            [id*="brevo"]:not([id*="chat"]),
+            [class*="brevo"]:not([class*="chat"]),
             [class*="sib-conversations"],
             [id^="sib-container"],
             [id^="sib-chatbox"],
@@ -161,19 +161,51 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               top: -9999px !important;
             }
             
-            /* Ensure our ADMI widget is always visible */
+            /* Ensure all chat widgets (including custom ones) are visible */
+            [class*="chat"],
+            [id*="chat"],
             .admi-ai-widget,
             #ai-chat-widget,
             #admi-chat-button,
-            #admi-chat-container {
+            #admi-chat-container,
+            [class*="widget"],
+            [id*="widget"] {
               display: block !important;
               visibility: visible !important;
               opacity: 1 !important;
               pointer-events: auto !important;
+              position: relative !important;
+              left: auto !important;
+              top: auto !important;
+              z-index: 9999 !important;
             }
           `
           }}
         />
+
+        {/* Debug chat widgets */}
+        <Script id="debug-chat-widgets" strategy="afterInteractive">
+          {`
+            // Debug chat widget visibility
+            setTimeout(() => {
+              const chatElements = document.querySelectorAll('[class*="chat"], [id*="chat"], [class*="widget"], [id*="widget"]');
+              console.log('Found chat/widget elements:', chatElements.length);
+              chatElements.forEach((el, i) => {
+                const styles = window.getComputedStyle(el);
+                console.log(\`Chat element \${i}:\`, {
+                  element: el,
+                  className: el.className,
+                  id: el.id,
+                  display: styles.display,
+                  visibility: styles.visibility,
+                  opacity: styles.opacity,
+                  position: styles.position,
+                  zIndex: styles.zIndex
+                });
+              });
+            }, 3000);
+          `}
+        </Script>
 
         {/* Web Vitals Monitoring */}
         <Script id="web-vitals" strategy="afterInteractive" type="module">
