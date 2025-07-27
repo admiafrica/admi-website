@@ -1,0 +1,79 @@
+{
+  "digital-marketing": {
+    "nairobi": {
+      "localOpportunity": "Nairobi, the heart of Kenya's largest creative job market, offers unparalleled access to digital marketing careers, especially within tech startups, e-commerce, and corporate marketing departments of major employers like Safaricom. The city's vibrant influencer and video content scene provides a unique landscape for those skilled in social media marketing, SEO/SEM, and analytics.",
+      "transportSolution": "Navigate Nairobi's bustling streets seamlessly with easy matatu and bus connections, ensuring prompt access to classes from CBD, Westlands, Karen, Eastlands, or South B/C.",
+      "faqs": [
+        {
+          "question": "How does Nairobi's tech ecosystem enhance my learning in digital marketing?",
+          "answer": "Nairobi's thriving tech ecosystem, highlighted by numerous startups and tech hubs, provides a real-world laboratory for digital marketing students. You'll get to apply concepts in SEO/SEM and content marketing directly to the city's dynamic online commerce and tech innovation."
+        },
+        {
+          "question": "What kind of local career opportunities can I expect after completing the course in Nairobi?",
+          "answer": "Graduates can look forward to roles in Nairobi's leading tech companies, media houses like Nation Media Group, and in the marketing departments of major corporations such as Safaricom. The city's growing emphasis on AI-powered marketing and e-commerce opens up numerous opportunities."
+        }
+      ],
+      "localSuccess": "A Nairobi-based graduate recently spearheaded a successful influencer marketing campaign for a major e-commerce platform, showcasing the city's dynamic digital marketing potential."
+    },
+    "mombasa": {
+      "localOpportunity": "Mombasa, with its thriving tourism sector and vibrant hospitality brands, presents a fertile ground for digital marketers. The city's demand for engaging digital content to showcase its rich cultural heritage and tourist attractions creates unique opportunities for those skilled in social media marketing, SEO/SEM, and analytics, particularly in leveraging the booming influencer and video content trends.",
+      "transportSolution": "With daily direct flights and SGR train services to Nairobi, Mombasa residents have flexible options for commuting to major digital marketing events or meetings.",
+      "faqs": [
+        {
+          "question": "How relevant is a digital marketing course in Mombasa's tourism-driven economy?",
+          "answer": "In Mombasa's tourism-centric economy, digital marketing skills are invaluable. Businesses seek to capitalize on online platforms to reach a global audience, making skills in social media marketing, SEO/SEM, and content marketing especially relevant for promoting local attractions and services."
+        },
+        {
+          "question": "Are there local career opportunities in digital marketing in Mombasa?",
+          "answer": "Absolutely. Mombasa's growing tourism and hospitality industries are on the lookout for digital marketing professionals. Local coastal media houses and emerging tech startups also offer opportunities for those skilled in the latest digital marketing trends, including AI-powered marketing."
+        }
+      ],
+      "localSuccess": "A Mombasa-based digital marketer recently boosted a local hotel's online visibility, significantly increasing bookings through targeted social media campaigns and SEO tactics."
+    },
+    "kisumu": {
+      "localOpportunity": "Kisumu, emerging as a vibrant tech hub in Western Kenya, offers unique opportunities for digital marketers. With a growing base of tech startups, agricultural tech firms, and international NGOs, the city's lesser competition for creative roles compared to Nairobi opens vast avenues for fresh digital marketing talents. Specializing in skills like SEO/SEM and influencer marketing can position you as a sought-after expert in this burgeoning market.",
+      "transportSolution": "Navigate easily between learning and opportunity; daily buses and flights make commuting from Kisumu to Nairobi seamless for enhanced networking and job prospects.",
+      "faqs": [
+        {
+          "question": "How relevant is a digital marketing course in Kisumu's tech and agricultural sectors?",
+          "answer": "Extremely relevant. Kisumu's growing tech and agricultural sectors are increasingly leveraging digital marketing to scale their operations. Learning cutting-edge skills such as AI-powered marketing and analytics positions you as a valuable asset within these industries."
+        },
+        {
+          "question": "Are there ample career opportunities in Kisumu for digital marketing professionals?",
+          "answer": "Yes. With major employers like Lake Region media, numerous agri-tech firms, and international NGOs, Kisumu offers a rich landscape for digital marketing careers. The local emergence of e-commerce and tech startups further amplifies career options."
+        }
+      ],
+      "localSuccess": "Kisumu's Mamboleo-based agritech startup recently made headlines for its effective use of SEO and content marketing, driving substantial online engagement."
+    },
+    "nakuru": {
+      "localOpportunity": "Nakuru offers a ripe market for digital marketers, with its booming manufacturing, agriculture, and tourism sectors. Its strategic location, bridging Nairobi and Western Kenya, presents a unique advantage for those skilled in digital marketing to carve out niches in both local and regional markets. Leveraging Nakuru's diverse economic landscape, professionals can harness digital platforms to elevate brands across the Rift Valley and beyond.",
+      "transportSolution": "Nakuru residents can easily commute to Nairobi for additional opportunities, with a convenient 2-hour highway drive and frequent shuttle services available.",
+      "faqs": [
+        {
+          "question": "How relevant is a digital marketing course to Nakuru's job market?",
+          "answer": "In Nakuru, the demand for digital marketing skills is surging, particularly within the manufacturing, agribusiness, and tourism sectors. A digital marketing course equips professionals to meet the local and regional market needs, offering strategic insights into consumer behavior and digital trends that are vital for businesses in these industries."
+        },
+        {
+          "question": "Are there local businesses in Nakuru that hire digital marketers?",
+          "answer": "Yes, many of Nakuru's leading businesses, especially within the manufacturing, agricultural, and tourism sectors, actively seek digital marketers. These firms are looking to expand their online presence and engage with both local and international markets more effectively, creating ample opportunities for skilled professionals."
+        }
+      ],
+      "localSuccess": "Nakuru has seen success stories such as local tech startups leveraging digital marketing to expand reach across the Rift Valley, showcasing the city's growing influence in digital entrepreneurship."
+    },
+    "eldoret": {
+      "localOpportunity": "Eldoret's emerging startup ecosystem, particularly in AgriTech and sports innovation, presents unique opportunities for digital marketers to carve out niche expertise. Coupled with its growing e-commerce platforms, professionals can leverage skills in SEO/SEM and social media marketing to drive regional growth.",
+      "transportSolution": "Eldoret residents can easily travel to Nairobi for workshops or meetings via the Eldoret International Airport or reliable road services, facilitating seamless connectivity.",
+      "faqs": [
+        {
+          "question": "How does Eldoret's startup scene influence the digital marketing course content?",
+          "answer": "The course is tailored to address the unique needs of Eldoret's booming startup ecosystem, focusing on AgriTech and sports marketing, and includes case studies and projects from local companies."
+        },
+        {
+          "question": "Are there opportunities in Eldoret for digital marketing professionals?",
+          "answer": "Absolutely. Beyond startups, Eldoret's regional media houses and e-commerce ventures are on the lookout for skilled digital marketers to elevate their online presence and engagement."
+        }
+      ],
+      "localSuccess": "A graduate recently boosted an Eldoret AgriTech startup's online sales by 200% using skills gained from our course."
+    }
+  }
+}

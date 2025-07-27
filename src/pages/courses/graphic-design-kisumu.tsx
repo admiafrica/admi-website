@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Title, Text, Button, Grid, Card, List } from '@mantine/core'
+import { Container, Title, Text, Button, Grid, Card, List, Accordion } from '@mantine/core'
 import PageSEO from '../../components/shared/v3/PageSEO'
 
 const GraphicDesignKisumuPage = () => {
@@ -103,6 +103,38 @@ const GraphicDesignKisumuPage = () => {
                 </Button>
               </Card>
             </Card>
+
+            <Card shadow="sm" padding="lg" radius="md" withBorder mt="md">
+              <Title order={3} mb="md">
+                Frequently Asked Questions - Kisumu Students
+              </Title>
+              <Accordion>
+                <Accordion.Item key={0} value={'faq-0'}>
+                  <Accordion.Control>
+                    How does Kisumu's emerging tech scene influence the graphic design course curriculum?
+                  </Accordion.Control>
+                  <Accordion.Panel>
+                    <Text size="sm">
+                      The curriculum is tailored to meet Kisumu’s unique market needs, focusing on digital-first design
+                      and UI/UX, preparing students for roles in the city's growing tech firms and agricultural
+                      technology companies.
+                    </Text>
+                  </Accordion.Panel>
+                </Accordion.Item>
+                <Accordion.Item key={1} value={'faq-1'}>
+                  <Accordion.Control>
+                    Are there ample opportunities for graphic designers in Kisumu's job market?
+                  </Accordion.Control>
+                  <Accordion.Panel>
+                    <Text size="sm">
+                      Yes, Kisumu's job market is ripe for graphic designers, especially in new media houses, tech
+                      start-ups, and NGOs requiring brand design and digital marketing solutions, thanks to its status
+                      as a budding tech hub.
+                    </Text>
+                  </Accordion.Panel>
+                </Accordion.Item>
+              </Accordion>
+            </Card>
           </Grid.Col>
 
           <Grid.Col span={{ base: 12, md: 4 }}>
@@ -118,12 +150,8 @@ const GraphicDesignKisumuPage = () => {
                 <strong>Fee:</strong> <a href="https://admi.africa/student-support#fees">View current fees</a>
               </Text>
               <Text mb="sm">
-                <strong>Location:</strong> kisumu, Western
+                <strong>Location:</strong> ADMI Nairobi Campus
               </Text>
-              <Text mb="sm">
-                <strong>Population:</strong> 610,000
-              </Text>
-
               <Button component="a" href="/enquiry" fullWidth mt="md" color="blue">
                 Apply Now
               </Button>

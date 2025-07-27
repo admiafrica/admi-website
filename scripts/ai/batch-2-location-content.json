@@ -1,0 +1,79 @@
+{
+  "film-production": {
+    "nairobi": {
+      "localOpportunity": "Nairobi stands as Kenya's creative heart, boasting a vibrant film industry nurtured by leading media houses like Safaricom and Nation Media Group. This city offers unrivaled access to professional networks, cutting-edge studios, and the largest creative job market in the country, making it an ideal place for aspiring filmmakers to learn and grow.",
+      "transportSolution": "Navigating to your film-production courses in Nairobi is hassle-free, thanks to the city's extensive matatu and bus networks, ensuring reliable and convenient travel from any major estate, including CBD, Westlands, and Karen.",
+      "faqs": [
+        {
+          "question": "How does studying film production in Nairobi enhance my career prospects?",
+          "answer": "Nairobi's unique position as a creative hub in Central Kenya provides film production students with direct exposure to industry leaders and the latest trends in streaming, documentary, and commercial video production. This urban setting fosters unparalleled networking and employment opportunities within the local and regional film industries."
+        },
+        {
+          "question": "Are there local internships available for film production students in Nairobi?",
+          "answer": "Yes, Nairobi is home to major employers in the film and media industry, such as Safaricom, Nation Media Group, and Royal Media Services. These companies often offer internships and entry-level positions, giving students practical experience and a foothold in the industry."
+        }
+      ],
+      "localSuccess": "Nairobi has seen the rise of award-winning filmmakers and content creators, many of whom began their careers with the practical skills acquired from local courses."
+    },
+    "mombasa": {
+      "localOpportunity": "Mombasa's vibrant tourism sector creates a unique demand for captivating digital content, offering film-production students a niche in creating promotional videos, documentaries, and content for social media platforms, especially in areas such as Nyali and Bamburi.",
+      "transportSolution": "Ease of travel is guaranteed with daily direct flights and SGR train services to Nairobi, facilitating industry connections and opportunities.",
+      "faqs": [
+        {
+          "question": "How does Mombasa's tourism sector influence the film-production course?",
+          "answer": "Mombasa's thriving tourism industry provides a real-world lab for students, emphasizing skills in creating engaging content that promotes tourist destinations, hotels, and cultural heritage, particularly in storytelling and documentary production."
+        },
+        {
+          "question": "Are there local career opportunities in film production after completing the course in Mombasa?",
+          "answer": "Yes, graduates can find opportunities in local TV stations, coastal media houses, and the advertising sector, especially with brands looking to leverage Mombasa's picturesque locations and the growing demand for digital content in the tourism and hospitality industries."
+        }
+      ],
+      "localSuccess": "A notable success is a Mombasa graduate who recently directed a documentary showcasing Old Town's history, aired on a national TV station, highlighting local talent."
+    },
+    "kisumu": {
+      "localOpportunity": "Kisumu is a burgeoning hub for film production, with its picturesque Lake Victoria shores and vibrant urban scenes in Milimani and Kondele offering unique backdrops. The city's emerging tech scene and the presence of international NGOs provide untapped opportunities for documentary filmmaking and content creation, with less saturation in creative roles compared to Nairobi.",
+      "transportSolution": "Seamlessly connect to Nairobi for broader industry engagement with daily buses and flights, ensuring Kisumu's creatives are well-linked to Kenya's capital.",
+      "faqs": [
+        {
+          "question": "How does Kisumu's emerging tech scene benefit film production students?",
+          "answer": "Kisumu’s tech growth, especially in Milimani and Mamboleo, offers film students unique access to cutting-edge technology and collaboration with tech startups for digital storytelling and innovative content creation."
+        },
+        {
+          "question": "Are there local film production or media companies in Kisumu for internship opportunities?",
+          "answer": "Yes, Kisumu hosts several media companies, including Lake Region Media, and a growing number of content creation startups, providing rich internship and practical experience opportunities for film production students."
+        }
+      ],
+      "localSuccess": "Kisumu's own Lake Region Media has gained acclaim for producing award-winning documentaries, showcasing the city's potential in film production."
+    },
+    "nakuru": {
+      "localOpportunity": "Nakuru provides a unique backdrop for film production with its scenic landscapes in the Rift Valley, serving as an ideal set for documentaries and nature films. Its strategic location attracts both Nairobi's creative talent and Western Kenya's rich stories, making it a vibrant hub for filmmakers and content creators looking to capture untold African narratives.",
+      "transportSolution": "Nakuru is easily accessible for aspiring filmmakers, being just 2 hours away from Nairobi by highway. With frequent shuttle services, commuting for projects or collaborations is convenient.",
+      "faqs": [
+        {
+          "question": "How does Nakuru's location influence the film production course?",
+          "answer": "Nakuru's strategic position offers students unique access to diverse filming locations, from urban settings in the Town Centre and Milimani to natural landscapes around Lanet and Free Area. This variety enriches the course, allowing students to gain hands-on experience in various shooting environments."
+        },
+        {
+          "question": "Are there local career opportunities in film production after completing the course?",
+          "answer": "Yes, Nakuru's growth in tourism and manufacturing has spurred demand for professional video content, opening opportunities in local TV stations, advertising agencies, and content creation for social media and streaming platforms. Graduates can find roles in cinematography, editing, and production management within these industries."
+        }
+      ],
+      "localSuccess": "Nakuru's own 'Rift Valley Studios' has gained recognition for producing award-winning documentaries, showcasing the immense talent and opportunities within the region."
+    },
+    "eldoret": {
+      "localOpportunity": "Eldoret's burgeoning startup ecosystem, particularly in digital content creation, offers ripe opportunities for film production graduates. Coupled with its role as a hub for regional media and the presence of sports organizations, there's a growing demand for professional-quality video production, documentary storytelling, and digital marketing content, making it an ideal setting for an aspiring cinematographer, editor, or director.",
+      "transportSolution": "Eldoret's robust connections to Nairobi, facilitated by efficient road networks and regular air services, ensures seamless travel for industry collaborations or access to broader market opportunities.",
+      "faqs": [
+        {
+          "question": "How does Eldoret's environment contribute to film production learning?",
+          "answer": "Eldoret's unique positioning in the North Rift, combined with its vibrant startup and digital innovation scene, provides an eclectic backdrop for learning and applying film-production skills. From documentary projects capturing athletic training to creating digital content for startups, students can harness a diverse range of local subjects and landscapes."
+        },
+        {
+          "question": "Are there local career opportunities in film production after completing the course?",
+          "answer": "Absolutely. Eldoret is home to several regional media houses, advertising agencies keen on commercial video production, and a burgeoning number of content creators. Moreover, the city's sports organizations frequently seek skilled professionals to produce engaging content, offering a variety of career paths for film production graduates."
+        }
+      ],
+      "localSuccess": "Eldoret has seen local filmmakers gain national recognition, leveraging the scenic North Rift landscapes and vibrant local cultures, showcasing the region's potential."
+    }
+  }
+}

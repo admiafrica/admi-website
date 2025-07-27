@@ -1,5 +1,5 @@
 import React from 'react'
-import { Title, Text, Button, Grid, Card, List } from '@mantine/core'
+import { Title, Text, Button, Grid, Card, List, Accordion } from '@mantine/core'
 import { MainLayout } from '@/layouts/v3/MainLayout'
 import PageSEO from '../../components/shared/v3/PageSEO'
 
@@ -58,7 +58,10 @@ const DigitalMarketingMombasaPage = () => {
         </Title>
 
         <Text size="lg" ta="center" mb="xl" c="dimmed">
-          Professional Digital Marketing training in mombasa with industry experts and guaranteed job placement support
+          Mombasa, with its thriving tourism sector and vibrant hospitality brands, presents a fertile ground for
+          digital marketers. The city's demand for engaging digital content to showcase its rich cultural heritage and
+          tourist attractions creates unique opportunities for those skilled in social media marketing, SEO/SEM, and
+          analytics, particularly in leveraging the booming influencer and video content trends.
         </Text>
 
         <Grid>
@@ -90,6 +93,40 @@ const DigitalMarketingMombasaPage = () => {
                 </Button>
               </Card>
             </Card>
+
+            <Card shadow="sm" padding="lg" radius="md" withBorder mt="md">
+              <Title order={3} mb="md">
+                Frequently Asked Questions - Mombasa Students
+              </Title>
+              <Accordion>
+                <Accordion.Item key={0} value={'faq-0'}>
+                  <Accordion.Control>
+                    How relevant is a digital marketing course in Mombasa's tourism-driven economy?
+                  </Accordion.Control>
+                  <Accordion.Panel>
+                    <Text size="sm">
+                      In Mombasa's tourism-centric economy, digital marketing skills are invaluable. Businesses seek to
+                      capitalize on online platforms to reach a global audience, making skills in social media
+                      marketing, SEO/SEM, and content marketing especially relevant for promoting local attractions and
+                      services.
+                    </Text>
+                  </Accordion.Panel>
+                </Accordion.Item>
+                <Accordion.Item key={1} value={'faq-1'}>
+                  <Accordion.Control>
+                    Are there local career opportunities in digital marketing in Mombasa?
+                  </Accordion.Control>
+                  <Accordion.Panel>
+                    <Text size="sm">
+                      Absolutely. Mombasa's growing tourism and hospitality industries are on the lookout for digital
+                      marketing professionals. Local coastal media houses and emerging tech startups also offer
+                      opportunities for those skilled in the latest digital marketing trends, including AI-powered
+                      marketing.
+                    </Text>
+                  </Accordion.Panel>
+                </Accordion.Item>
+              </Accordion>
+            </Card>
           </Grid.Col>
 
           <Grid.Col span={{ base: 12, md: 4 }}>
@@ -105,12 +142,8 @@ const DigitalMarketingMombasaPage = () => {
                 <strong>Fee:</strong> <a href="https://admi.africa/student-support#fees">View current fees</a>
               </Text>
               <Text mb="sm">
-                <strong>Location:</strong> mombasa, Coast
+                <strong>Location:</strong> ADMI Nairobi Campus
               </Text>
-              <Text mb="sm">
-                <strong>Population:</strong> 1.2 million
-              </Text>
-
               <Button component="a" href="/enquiry" fullWidth mt="md" color="blue">
                 Apply Now
               </Button>

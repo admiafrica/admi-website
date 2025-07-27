@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Title, Text, Button, Grid, Card, List } from '@mantine/core'
+import { Container, Title, Text, Button, Grid, Card, List, Accordion } from '@mantine/core'
 import PageSEO from '../../components/shared/v3/PageSEO'
 
 const FilmProductionEldoretPage = () => {
@@ -91,6 +91,40 @@ const FilmProductionEldoretPage = () => {
                 </Button>
               </Card>
             </Card>
+
+            <Card shadow="sm" padding="lg" radius="md" withBorder mt="md">
+              <Title order={3} mb="md">
+                Frequently Asked Questions - Eldoret Students
+              </Title>
+              <Accordion>
+                <Accordion.Item key={0} value={'faq-0'}>
+                  <Accordion.Control>
+                    How does Eldoret's environment contribute to film production learning?
+                  </Accordion.Control>
+                  <Accordion.Panel>
+                    <Text size="sm">
+                      Eldoret's unique positioning in the North Rift, combined with its vibrant startup and digital
+                      innovation scene, provides an eclectic backdrop for learning and applying film-production skills.
+                      From documentary projects capturing athletic training to creating digital content for startups,
+                      students can harness a diverse range of local subjects and landscapes.
+                    </Text>
+                  </Accordion.Panel>
+                </Accordion.Item>
+                <Accordion.Item key={1} value={'faq-1'}>
+                  <Accordion.Control>
+                    Are there local career opportunities in film production after completing the course?
+                  </Accordion.Control>
+                  <Accordion.Panel>
+                    <Text size="sm">
+                      Absolutely. Eldoret is home to several regional media houses, advertising agencies keen on
+                      commercial video production, and a burgeoning number of content creators. Moreover, the city's
+                      sports organizations frequently seek skilled professionals to produce engaging content, offering a
+                      variety of career paths for film production graduates.
+                    </Text>
+                  </Accordion.Panel>
+                </Accordion.Item>
+              </Accordion>
+            </Card>
           </Grid.Col>
 
           <Grid.Col span={{ base: 12, md: 4 }}>
@@ -106,12 +140,8 @@ const FilmProductionEldoretPage = () => {
                 <strong>Fee:</strong> <a href="https://admi.africa/student-support#fees">View current fees</a>
               </Text>
               <Text mb="sm">
-                <strong>Location:</strong> eldoret, Rift Valley
+                <strong>Location:</strong> ADMI Nairobi Campus
               </Text>
-              <Text mb="sm">
-                <strong>Population:</strong> 475,000
-              </Text>
-
               <Button component="a" href="/enquiry" fullWidth mt="md" color="blue">
                 Apply Now
               </Button>

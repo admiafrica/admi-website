@@ -1,5 +1,5 @@
 import React from 'react'
-import { Title, Text, Button, Grid, Card, List } from '@mantine/core'
+import { Title, Text, Button, Grid, Card, List, Accordion } from '@mantine/core'
 import { MainLayout } from '@/layouts/v3/MainLayout'
 import PageSEO from '../../components/shared/v3/PageSEO'
 
@@ -58,21 +58,44 @@ const DigitalMarketingNairobiPage = () => {
         </Title>
 
         <Text size="lg" ta="center" mb="xl" c="dimmed">
-          Professional Digital Marketing training in nairobi with industry experts and guaranteed job placement support
+          Nairobi, the heart of Kenya's largest creative job market, offers unparalleled access to digital marketing
+          careers, especially within tech startups, e-commerce, and corporate marketing departments of major employers
+          like Safaricom. The city's vibrant influencer and video content scene provides a unique landscape for those
+          skilled in social media marketing, SEO/SEM, and analytics.
         </Text>
 
         <Grid>
           <Grid.Col span={{ base: 12, md: 8 }}>
             <Card shadow="sm" padding="lg" radius="md" withBorder>
               <Title order={2} mb="md">
-                Why Choose Digital Marketing in nairobi?
+                Why Study Digital Marketing for Nairobi?
               </Title>
+
+              <Text mb="md">
+                Nairobi, the heart of Kenya's largest creative job market, offers unparalleled access to digital
+                marketing careers, especially within tech startups, e-commerce, and corporate marketing departments of
+                major employers like Safaricom. The city's vibrant influencer and video content scene provides a unique
+                landscape for those skilled in social media marketing, SEO/SEM, and analytics.
+              </Text>
+
+              <Title order={3} mb="sm">
+                Easy Access from Nairobi
+              </Title>
+              <Text mb="md">
+                Navigate Nairobi's bustling streets seamlessly with easy matatu and bus connections, ensuring prompt
+                access to classes from CBD, Westlands, Karen, Eastlands, or South B/C.
+              </Text>
+
+              <Text size="sm" c="dimmed" mb="md">
+                💫 A Nairobi-based graduate recently spearheaded a successful influencer marketing campaign for a major
+                e-commerce platform, showcasing the city's dynamic digital marketing potential.
+              </Text>
 
               <List spacing="sm" size="sm">
                 <List.Item>Industry-relevant curriculum designed for Nairobi market</List.Item>
-                <List.Item>Experienced instructors with real-world experience</List.Item>
-                <List.Item>State-of-the-art facilities and equipment</List.Item>
-                <List.Item>90% job placement rate in nairobi and surrounding areas</List.Item>
+                <List.Item>Direct networking with Safaricom, Nation Media Group professionals</List.Item>
+                <List.Item>Access to Kenya's largest creative job market</List.Item>
+                <List.Item>90% job placement rate in Nairobi and surrounding areas</List.Item>
                 <List.Item>Flexible payment plans available</List.Item>
                 <List.Item>Career support and internship opportunities</List.Item>
               </List>
@@ -90,6 +113,70 @@ const DigitalMarketingNairobiPage = () => {
                 </Button>
               </Card>
             </Card>
+
+            <Card shadow="sm" padding="lg" radius="md" withBorder mt="md">
+              <Title order={3} mb="md">
+                Frequently Asked Questions - Nairobi Students
+              </Title>
+              <Accordion>
+                <Accordion.Item key={0} value="faq-0">
+                  <Accordion.Control>
+                    How does Nairobi's tech ecosystem enhance my learning in digital marketing?
+                  </Accordion.Control>
+                  <Accordion.Panel>
+                    <Text size="sm">
+                      Nairobi's thriving tech ecosystem, highlighted by numerous startups and tech hubs, provides a
+                      real-world laboratory for digital marketing students. You'll get to apply concepts in SEO/SEM and
+                      content marketing directly to the city's dynamic online commerce and tech innovation.
+                    </Text>
+                  </Accordion.Panel>
+                </Accordion.Item>
+                <Accordion.Item key={1} value="faq-1">
+                  <Accordion.Control>
+                    What kind of local career opportunities can I expect after completing the course in Nairobi?
+                  </Accordion.Control>
+                  <Accordion.Panel>
+                    <Text size="sm">
+                      Graduates can look forward to roles in Nairobi's leading tech companies, media houses like Nation
+                      Media Group, and in the marketing departments of major corporations such as Safaricom. The city's
+                      growing emphasis on AI-powered marketing and e-commerce opens up numerous opportunities.
+                    </Text>
+                  </Accordion.Panel>
+                </Accordion.Item>
+              </Accordion>
+            </Card>
+
+            <Card shadow="sm" padding="lg" radius="md" withBorder mt="md">
+              <Title order={3} mb="md">
+                Frequently Asked Questions - Nairobi Students
+              </Title>
+              <Accordion>
+                <Accordion.Item key={0} value={'faq-0'}>
+                  <Accordion.Control>
+                    How does Nairobi's tech ecosystem enhance my learning in digital marketing?
+                  </Accordion.Control>
+                  <Accordion.Panel>
+                    <Text size="sm">
+                      Nairobi's thriving tech ecosystem, highlighted by numerous startups and tech hubs, provides a
+                      real-world laboratory for digital marketing students. You'll get to apply concepts in SEO/SEM and
+                      content marketing directly to the city's dynamic online commerce and tech innovation.
+                    </Text>
+                  </Accordion.Panel>
+                </Accordion.Item>
+                <Accordion.Item key={1} value={'faq-1'}>
+                  <Accordion.Control>
+                    What kind of local career opportunities can I expect after completing the course in Nairobi?
+                  </Accordion.Control>
+                  <Accordion.Panel>
+                    <Text size="sm">
+                      Graduates can look forward to roles in Nairobi's leading tech companies, media houses like Nation
+                      Media Group, and in the marketing departments of major corporations such as Safaricom. The city's
+                      growing emphasis on AI-powered marketing and e-commerce opens up numerous opportunities.
+                    </Text>
+                  </Accordion.Panel>
+                </Accordion.Item>
+              </Accordion>
+            </Card>
           </Grid.Col>
 
           <Grid.Col span={{ base: 12, md: 4 }}>
@@ -105,10 +192,7 @@ const DigitalMarketingNairobiPage = () => {
                 <strong>Fee:</strong> <a href="https://admi.africa/student-support#fees">View current fees</a>
               </Text>
               <Text mb="sm">
-                <strong>Location:</strong> nairobi, Nairobi
-              </Text>
-              <Text mb="sm">
-                <strong>Population:</strong> 4.4 million
+                <strong>Location:</strong> Nairobi Campus (Central Location)
               </Text>
 
               <Button component="a" href="/enquiry" fullWidth mt="md" color="blue">

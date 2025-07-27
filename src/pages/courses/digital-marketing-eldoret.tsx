@@ -1,5 +1,5 @@
 import React from 'react'
-import { Title, Text, Button, Grid, Card, List } from '@mantine/core'
+import { Title, Text, Button, Grid, Card, List, Accordion } from '@mantine/core'
 import { MainLayout } from '@/layouts/v3/MainLayout'
 import PageSEO from '../../components/shared/v3/PageSEO'
 
@@ -58,7 +58,9 @@ const DigitalMarketingEldoretPage = () => {
         </Title>
 
         <Text size="lg" ta="center" mb="xl" c="dimmed">
-          Professional Digital Marketing training in eldoret with industry experts and guaranteed job placement support
+          Eldoret's emerging startup ecosystem, particularly in AgriTech and sports innovation, presents unique
+          opportunities for digital marketers to carve out niche expertise. Coupled with its growing e-commerce
+          platforms, professionals can leverage skills in SEO/SEM and social media marketing to drive regional growth.
         </Text>
 
         <Grid>
@@ -90,6 +92,37 @@ const DigitalMarketingEldoretPage = () => {
                 </Button>
               </Card>
             </Card>
+
+            <Card shadow="sm" padding="lg" radius="md" withBorder mt="md">
+              <Title order={3} mb="md">
+                Frequently Asked Questions - Eldoret Students
+              </Title>
+              <Accordion>
+                <Accordion.Item key={0} value={'faq-0'}>
+                  <Accordion.Control>
+                    How does Eldoret's startup scene influence the digital marketing course content?
+                  </Accordion.Control>
+                  <Accordion.Panel>
+                    <Text size="sm">
+                      The course is tailored to address the unique needs of Eldoret's booming startup ecosystem,
+                      focusing on AgriTech and sports marketing, and includes case studies and projects from local
+                      companies.
+                    </Text>
+                  </Accordion.Panel>
+                </Accordion.Item>
+                <Accordion.Item key={1} value={'faq-1'}>
+                  <Accordion.Control>
+                    Are there opportunities in Eldoret for digital marketing professionals?
+                  </Accordion.Control>
+                  <Accordion.Panel>
+                    <Text size="sm">
+                      Absolutely. Beyond startups, Eldoret's regional media houses and e-commerce ventures are on the
+                      lookout for skilled digital marketers to elevate their online presence and engagement.
+                    </Text>
+                  </Accordion.Panel>
+                </Accordion.Item>
+              </Accordion>
+            </Card>
           </Grid.Col>
 
           <Grid.Col span={{ base: 12, md: 4 }}>
@@ -105,12 +138,8 @@ const DigitalMarketingEldoretPage = () => {
                 <strong>Fee:</strong> <a href="https://admi.africa/student-support#fees">View current fees</a>
               </Text>
               <Text mb="sm">
-                <strong>Location:</strong> eldoret, Rift Valley
+                <strong>Location:</strong> ADMI Nairobi Campus
               </Text>
-              <Text mb="sm">
-                <strong>Population:</strong> 475,000
-              </Text>
-
               <Button component="a" href="/enquiry" fullWidth mt="md" color="blue">
                 Apply Now
               </Button>

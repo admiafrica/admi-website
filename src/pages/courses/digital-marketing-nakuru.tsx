@@ -1,5 +1,5 @@
 import React from 'react'
-import { Title, Text, Button, Grid, Card, List } from '@mantine/core'
+import { Title, Text, Button, Grid, Card, List, Accordion } from '@mantine/core'
 import { MainLayout } from '@/layouts/v3/MainLayout'
 import PageSEO from '../../components/shared/v3/PageSEO'
 
@@ -58,7 +58,11 @@ const DigitalMarketingNakuruPage = () => {
         </Title>
 
         <Text size="lg" ta="center" mb="xl" c="dimmed">
-          Professional Digital Marketing training in nakuru with industry experts and guaranteed job placement support
+          Nakuru offers a ripe market for digital marketers, with its booming manufacturing, agriculture, and tourism
+          sectors. Its strategic location, bridging Nairobi and Western Kenya, presents a unique advantage for those
+          skilled in digital marketing to carve out niches in both local and regional markets. Leveraging Nakuru's
+          diverse economic landscape, professionals can harness digital platforms to elevate brands across the Rift
+          Valley and beyond.
         </Text>
 
         <Grid>
@@ -90,6 +94,40 @@ const DigitalMarketingNakuruPage = () => {
                 </Button>
               </Card>
             </Card>
+
+            <Card shadow="sm" padding="lg" radius="md" withBorder mt="md">
+              <Title order={3} mb="md">
+                Frequently Asked Questions - Nakuru Students
+              </Title>
+              <Accordion>
+                <Accordion.Item key={0} value={'faq-0'}>
+                  <Accordion.Control>
+                    How relevant is a digital marketing course to Nakuru's job market?
+                  </Accordion.Control>
+                  <Accordion.Panel>
+                    <Text size="sm">
+                      In Nakuru, the demand for digital marketing skills is surging, particularly within the
+                      manufacturing, agribusiness, and tourism sectors. A digital marketing course equips professionals
+                      to meet the local and regional market needs, offering strategic insights into consumer behavior
+                      and digital trends that are vital for businesses in these industries.
+                    </Text>
+                  </Accordion.Panel>
+                </Accordion.Item>
+                <Accordion.Item key={1} value={'faq-1'}>
+                  <Accordion.Control>
+                    Are there local businesses in Nakuru that hire digital marketers?
+                  </Accordion.Control>
+                  <Accordion.Panel>
+                    <Text size="sm">
+                      Yes, many of Nakuru's leading businesses, especially within the manufacturing, agricultural, and
+                      tourism sectors, actively seek digital marketers. These firms are looking to expand their online
+                      presence and engage with both local and international markets more effectively, creating ample
+                      opportunities for skilled professionals.
+                    </Text>
+                  </Accordion.Panel>
+                </Accordion.Item>
+              </Accordion>
+            </Card>
           </Grid.Col>
 
           <Grid.Col span={{ base: 12, md: 4 }}>
@@ -105,12 +143,8 @@ const DigitalMarketingNakuruPage = () => {
                 <strong>Fee:</strong> <a href="https://admi.africa/student-support#fees">View current fees</a>
               </Text>
               <Text mb="sm">
-                <strong>Location:</strong> nakuru, Rift Valley
+                <strong>Location:</strong> ADMI Nairobi Campus
               </Text>
-              <Text mb="sm">
-                <strong>Population:</strong> 570,000
-              </Text>
-
               <Button component="a" href="/enquiry" fullWidth mt="md" color="blue">
                 Apply Now
               </Button>

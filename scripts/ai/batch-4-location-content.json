@@ -1,0 +1,49 @@
+{
+  "graphic-design": {
+    "nairobi": {
+      "localOpportunity": "Nairobi, Kenya, stands at the forefront of the African creative industry, offering unparalleled opportunities in graphic design. With major employers like Safaricom and Nation Media Group, the city's vibrant tech and media landscape offers budding designers direct access to Kenya's largest creative job market, emphasizing digital-first design, motion graphics, and sustainable design.",
+      "transportSolution": "Navigating to your graphic design courses in Nairobi is hassle-free, thanks to easy matatu and bus connections available from all major estates including CBD, Westlands, and Eastlands.",
+      "faqs": [
+        {
+          "question": "How does Nairobi's tech boom impact graphic design students?",
+          "answer": "Nairobi's tech boom offers graphic design students unique opportunities to engage with cutting-edge digital design trends and work alongside leading tech companies and startups, making it an ideal environment for learning and innovation."
+        },
+        {
+          "question": "Are there opportunities for graphic designers in Nairobi's advertising agencies?",
+          "answer": "Absolutely. Nairobi's dynamic advertising scene is on the lookout for skilled graphic designers with fresh ideas, especially those proficient in digital-first design and motion graphics, to cater to an increasingly digital marketplace."
+        }
+      ],
+      "localSuccess": "A Nairobi-based ADMI graduate recently secured a prestigious design role at Safaricom, highlighting the city's rich opportunities for talented graphic designers."
+    },
+    "mombasa": {
+      "localOpportunity": "Mombasa, with its burgeoning tourism sector and hospitality brands, presents a ripe market for graphic designers specializing in digital content creation. The city’s coastal media houses also offer unique opportunities for designers to engage with the vibrant local culture and expanding digital-first design trends in tourism advertising.",
+      "transportSolution": "For Mombasa residents, commuting for industry networking or client meetings is convenient with daily direct flights and SGR train services to Nairobi.",
+      "faqs": [
+        {
+          "question": "How relevant is a graphic design course in Mombasa's job market?",
+          "answer": "Extremely relevant. Mombasa’s economy thrives on tourism and hospitality, sectors that increasingly rely on digital marketing and branding. Graphic designers with skills in UI/UX, brand design, and digital illustration are in high demand to create engaging content for these industries."
+        },
+        {
+          "question": "Are there local Mombasa companies hiring graphic designers?",
+          "answer": "Yes, there are numerous opportunities in Mombasa. Local hospitality brands, advertising agencies, and coastal media houses frequently seek skilled graphic designers. Additionally, the city's growing tech scene offers roles in UI/UX and digital product design, along with freelance projects."
+        }
+      ],
+      "localSuccess": "A Mombasa graphic designer recently gained recognition for their sustainable design project with a major hotel chain, showcasing local talent on a global stage."
+    },
+    "kisumu": {
+      "localOpportunity": "Kisumu, emerging as a tech hub with burgeoning agricultural tech firms and international NGOs, offers graphic designers unique career paths in brand design within these sectors. The city's less competitive yet growing creative landscape, particularly in Milimani and Kondele, presents untapped opportunities for digital illustration and UI/UX design.",
+      "transportSolution": "Leverage the convenience of daily buses and flights for any necessary travel between Kisumu and Nairobi, ensuring seamless connectivity for professionals and students alike.",
+      "faqs": [
+        {
+          "question": "How does Kisumu's emerging tech scene influence the graphic design course curriculum?",
+          "answer": "The curriculum is tailored to meet Kisumu’s unique market needs, focusing on digital-first design and UI/UX, preparing students for roles in the city's growing tech firms and agricultural technology companies."
+        },
+        {
+          "question": "Are there ample opportunities for graphic designers in Kisumu's job market?",
+          "answer": "Yes, Kisumu's job market is ripe for graphic designers, especially in new media houses, tech start-ups, and NGOs requiring brand design and digital marketing solutions, thanks to its status as a budding tech hub."
+        }
+      ],
+      "localSuccess": "A Kisumu-based designer recently garnered national acclaim for sustainable design, highlighting the region's creative potential and opportunities."
+    }
+  }
+}

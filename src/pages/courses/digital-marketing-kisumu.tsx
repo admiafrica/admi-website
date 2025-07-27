@@ -1,5 +1,5 @@
 import React from 'react'
-import { Title, Text, Button, Grid, Card, List } from '@mantine/core'
+import { Title, Text, Button, Grid, Card, List, Accordion } from '@mantine/core'
 import { MainLayout } from '@/layouts/v3/MainLayout'
 import PageSEO from '../../components/shared/v3/PageSEO'
 
@@ -58,7 +58,11 @@ const DigitalMarketingKisumuPage = () => {
         </Title>
 
         <Text size="lg" ta="center" mb="xl" c="dimmed">
-          Professional Digital Marketing training in kisumu with industry experts and guaranteed job placement support
+          Kisumu, emerging as a vibrant tech hub in Western Kenya, offers unique opportunities for digital marketers.
+          With a growing base of tech startups, agricultural tech firms, and international NGOs, the city's lesser
+          competition for creative roles compared to Nairobi opens vast avenues for fresh digital marketing talents.
+          Specializing in skills like SEO/SEM and influencer marketing can position you as a sought-after expert in this
+          burgeoning market.
         </Text>
 
         <Grid>
@@ -90,6 +94,38 @@ const DigitalMarketingKisumuPage = () => {
                 </Button>
               </Card>
             </Card>
+
+            <Card shadow="sm" padding="lg" radius="md" withBorder mt="md">
+              <Title order={3} mb="md">
+                Frequently Asked Questions - Kisumu Students
+              </Title>
+              <Accordion>
+                <Accordion.Item key={0} value={'faq-0'}>
+                  <Accordion.Control>
+                    How relevant is a digital marketing course in Kisumu's tech and agricultural sectors?
+                  </Accordion.Control>
+                  <Accordion.Panel>
+                    <Text size="sm">
+                      Extremely relevant. Kisumu's growing tech and agricultural sectors are increasingly leveraging
+                      digital marketing to scale their operations. Learning cutting-edge skills such as AI-powered
+                      marketing and analytics positions you as a valuable asset within these industries.
+                    </Text>
+                  </Accordion.Panel>
+                </Accordion.Item>
+                <Accordion.Item key={1} value={'faq-1'}>
+                  <Accordion.Control>
+                    Are there ample career opportunities in Kisumu for digital marketing professionals?
+                  </Accordion.Control>
+                  <Accordion.Panel>
+                    <Text size="sm">
+                      Yes. With major employers like Lake Region media, numerous agri-tech firms, and international
+                      NGOs, Kisumu offers a rich landscape for digital marketing careers. The local emergence of
+                      e-commerce and tech startups further amplifies career options.
+                    </Text>
+                  </Accordion.Panel>
+                </Accordion.Item>
+              </Accordion>
+            </Card>
           </Grid.Col>
 
           <Grid.Col span={{ base: 12, md: 4 }}>
@@ -105,12 +141,8 @@ const DigitalMarketingKisumuPage = () => {
                 <strong>Fee:</strong> <a href="https://admi.africa/student-support#fees">View current fees</a>
               </Text>
               <Text mb="sm">
-                <strong>Location:</strong> kisumu, Western
+                <strong>Location:</strong> ADMI Nairobi Campus
               </Text>
-              <Text mb="sm">
-                <strong>Population:</strong> 610,000
-              </Text>
-
               <Button component="a" href="/enquiry" fullWidth mt="md" color="blue">
                 Apply Now
               </Button>
