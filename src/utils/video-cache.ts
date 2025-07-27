@@ -86,7 +86,7 @@ export function readVideoCache(): VideoCache | null {
 }
 
 // Fallback cache data for production when file system fails
-function getProductionFallbackCache(): VideoCache {
+export function getProductionFallbackCache(): VideoCache {
   return {
     videos: [
       {

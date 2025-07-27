@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { readVideoCache } from '@/utils/video-cache'
+import { readVideoCache, readVideoCacheRaw, getCacheStats, getProductionFallbackCache } from '@/utils/video-cache'
 
 // Helper to escape characters for XML
 const escapeXml = (unsafe: string): string => {
@@ -80,10 +80,30 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     res.setHeader('Cache-Control', 'public, s-maxage=86400, stale-while-revalidate=43200')
     res.setHeader('X-Content-Type-Options', 'nosniff')
 
-    // Get all cached videos from YouTube channel
-    const cache = readVideoCache()
+    // Get all cached videos from YouTube channel (try normal cache first, then raw cache)
+    let cache = readVideoCache()
+    const cacheStats = getCacheStats()
+
+    if (!cache) {
+      // If normal cache is expired, try raw cache as fallback
+      console.log('⏰ Cache expired, trying raw cache as fallback for video archive sitemap')
+      cache = readVideoCacheRaw()
+    }
 
     if (!cache || !cache.videos || cache.videos.length === 0) {
+      // As a last resort, use production fallback data
+      console.log('🔄 No cache available, using production fallback for video archive sitemap')
+      cache = getProductionFallbackCache()
+    }
+
+    if (!cache || !cache.videos || cache.videos.length === 0) {
+      // Log detailed information for debugging
+      console.log('❌ No video data available for video archive sitemap (even fallback failed)')
+      console.log('📊 Cache stats:', cacheStats)
+      console.log('🔧 Environment:', process.env.NODE_ENV)
+      console.log('📁 Cache exists:', cacheStats.exists)
+      console.log('⏰ Cache valid:', cacheStats.isValid)
+
       // Return empty sitemap if no videos found
       const emptySitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
@@ -92,6 +112,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
       return res.status(200).send(emptySitemap)
     }
+
+    console.log(
+      `📊 Video archive sitemap: Using cache with ${cache.videos.length} videos (valid: ${cacheStats.isValid})`
+    )
 
     const baseUrl = 'https://admi.africa'
 
