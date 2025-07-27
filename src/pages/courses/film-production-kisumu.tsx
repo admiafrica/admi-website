@@ -123,21 +123,34 @@ const FilmProductionKisumuPage = () => {
                 </Accordion.Item>
               </Accordion>
             </Card>
-          
+
             <Card shadow="sm" padding="lg" radius="md" withBorder mt="md">
-              <Title order={3} mb="md">Frequently Asked Questions - Kisumu Students</Title>
+              <Title order={3} mb="md">
+                Frequently Asked Questions - Kisumu Students
+              </Title>
               <Accordion>
-                
-                <Accordion.Item key={0} value={`faq-0`}>
-                  <Accordion.Control>How does Kisumu's emerging tech scene benefit film production students?</Accordion.Control>
+                <Accordion.Item key={0} value={'faq-0'}>
+                  <Accordion.Control>
+                    How does Kisumu's emerging tech scene benefit film production students?
+                  </Accordion.Control>
                   <Accordion.Panel>
-                    <Text size="sm">Kisumu’s tech growth, especially in Milimani and Mamboleo, offers film students unique access to cutting-edge technology and collaboration with tech startups for digital storytelling and innovative content creation.</Text>
+                    <Text size="sm">
+                      Kisumu’s tech growth, especially in Milimani and Mamboleo, offers film students unique access to
+                      cutting-edge technology and collaboration with tech startups for digital storytelling and
+                      innovative content creation.
+                    </Text>
                   </Accordion.Panel>
                 </Accordion.Item>
-                <Accordion.Item key={1} value={`faq-1`}>
-                  <Accordion.Control>Are there local film production or media companies in Kisumu for internship opportunities?</Accordion.Control>
+                <Accordion.Item key={1} value={'faq-1'}>
+                  <Accordion.Control>
+                    Are there local film production or media companies in Kisumu for internship opportunities?
+                  </Accordion.Control>
                   <Accordion.Panel>
-                    <Text size="sm">Yes, Kisumu hosts several media companies, including Lake Region Media, and a growing number of content creation startups, providing rich internship and practical experience opportunities for film production students.</Text>
+                    <Text size="sm">
+                      Yes, Kisumu hosts several media companies, including Lake Region Media, and a growing number of
+                      content creation startups, providing rich internship and practical experience opportunities for
+                      film production students.
+                    </Text>
                   </Accordion.Panel>
                 </Accordion.Item>
               </Accordion>
@@ -157,7 +170,8 @@ const FilmProductionKisumuPage = () => {
                 <strong>Fee:</strong> <a href="https://admi.africa/student-support#fees">View current fees</a>
               </Text>
               <Text mb="sm">
-                <strong>Location:</strong> Kisumu Campus (Central Location)</Text>
+                <strong>Location:</strong> Kisumu Campus (Central Location)
+              </Text>
               <Button component="a" href="/enquiry" fullWidth mt="md" color="blue">
                 Apply Now
               </Button>

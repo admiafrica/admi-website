@@ -57,7 +57,10 @@ const MusicProductionNairobiPage = () => {
         </Title>
 
         <Text size="lg" ta="center" mb="xl" c="dimmed">
-          Nairobi, as the heart of Kenya's creative job market, offers unparalleled opportunities for music production students. With close proximity to major employers like Safaricom and Royal Media Services, students have direct paths to internships and jobs in recording studios, media houses, and with top-tier artists requiring high-level audio engineering, mixing, and mastering skills.
+          Nairobi, as the heart of Kenya's creative job market, offers unparalleled opportunities for music production
+          students. With close proximity to major employers like Safaricom and Royal Media Services, students have
+          direct paths to internships and jobs in recording studios, media houses, and with top-tier artists requiring
+          high-level audio engineering, mixing, and mastering skills.
         </Text>
 
         <Grid>
@@ -90,21 +93,34 @@ const MusicProductionNairobiPage = () => {
                 </Button>
               </Card>
             </Card>
-          
+
             <Card shadow="sm" padding="lg" radius="md" withBorder mt="md">
-              <Title order={3} mb="md">Frequently Asked Questions - Nairobi Students</Title>
+              <Title order={3} mb="md">
+                Frequently Asked Questions - Nairobi Students
+              </Title>
               <Accordion>
-                
-                <Accordion.Item key={0} value={`faq-0`}>
-                  <Accordion.Control>How does studying music production in Nairobi give me an edge in the job market?</Accordion.Control>
+                <Accordion.Item key={0} value={'faq-0'}>
+                  <Accordion.Control>
+                    How does studying music production in Nairobi give me an edge in the job market?
+                  </Accordion.Control>
                   <Accordion.Panel>
-                    <Text size="sm">Nairobi's vibrant entertainment and media industry, including proximity to major employers like Nation Media Group and event companies, offers music production students immediate exposure and networking opportunities unavailable elsewhere, setting the stage for a thriving career.</Text>
+                    <Text size="sm">
+                      Nairobi's vibrant entertainment and media industry, including proximity to major employers like
+                      Nation Media Group and event companies, offers music production students immediate exposure and
+                      networking opportunities unavailable elsewhere, setting the stage for a thriving career.
+                    </Text>
                   </Accordion.Panel>
                 </Accordion.Item>
-                <Accordion.Item key={1} value={`faq-1`}>
-                  <Accordion.Control>Are there local opportunities for hands-on experience while studying?</Accordion.Control>
+                <Accordion.Item key={1} value={'faq-1'}>
+                  <Accordion.Control>
+                    Are there local opportunities for hands-on experience while studying?
+                  </Accordion.Control>
                   <Accordion.Panel>
-                    <Text size="sm">Absolutely. Nairobi offers a rich tapestry of recording studios, live event companies, and artists keen on new talent. Students often find internships and project collaborations that enhance their learning with practical experience.</Text>
+                    <Text size="sm">
+                      Absolutely. Nairobi offers a rich tapestry of recording studios, live event companies, and artists
+                      keen on new talent. Students often find internships and project collaborations that enhance their
+                      learning with practical experience.
+                    </Text>
                   </Accordion.Panel>
                 </Accordion.Item>
               </Accordion>
@@ -130,7 +146,8 @@ const MusicProductionNairobiPage = () => {
                 </a>
               </Text>
               <Text mb="sm">
-                <strong>Location:</strong> Nairobi Campus (Central Location)</Text>
+                <strong>Location:</strong> Nairobi Campus (Central Location)
+              </Text>
               <Text mb="sm">
                 <strong>Campus:</strong> 25 Kenyatta Avenue, Nairobi
               </Text>

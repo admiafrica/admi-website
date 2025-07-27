@@ -96,21 +96,34 @@ const VideoGameDevelopmentEldoretPage = () => {
                 </Button>
               </Card>
             </Card>
-          
+
             <Card shadow="sm" padding="lg" radius="md" withBorder mt="md">
-              <Title order={3} mb="md">Frequently Asked Questions - Eldoret Students</Title>
+              <Title order={3} mb="md">
+                Frequently Asked Questions - Eldoret Students
+              </Title>
               <Accordion>
-                
-                <Accordion.Item key={0} value={`faq-0`}>
-                  <Accordion.Control>How does Eldoret’s startup culture benefit my learning in video game development?</Accordion.Control>
+                <Accordion.Item key={0} value={'faq-0'}>
+                  <Accordion.Control>
+                    How does Eldoret’s startup culture benefit my learning in video game development?
+                  </Accordion.Control>
                   <Accordion.Panel>
-                    <Text size="sm">Eldoret's growing digital and tech startup scene offers a vibrant community for innovation and creativity, providing students with real-world project opportunities and networking with local entrepreneurs and tech enthusiasts.</Text>
+                    <Text size="sm">
+                      Eldoret's growing digital and tech startup scene offers a vibrant community for innovation and
+                      creativity, providing students with real-world project opportunities and networking with local
+                      entrepreneurs and tech enthusiasts.
+                    </Text>
                   </Accordion.Panel>
                 </Accordion.Item>
-                <Accordion.Item key={1} value={`faq-1`}>
-                  <Accordion.Control>Are there local companies in Eldoret interested in game development skills?</Accordion.Control>
+                <Accordion.Item key={1} value={'faq-1'}>
+                  <Accordion.Control>
+                    Are there local companies in Eldoret interested in game development skills?
+                  </Accordion.Control>
                   <Accordion.Panel>
-                    <Text size="sm">Yes, with Eldoret's tech ecosystem expanding, companies in educational tech and agricultural technology are showing interest in gamified simulations and training tools, thus valuing game development skills more than ever.</Text>
+                    <Text size="sm">
+                      Yes, with Eldoret's tech ecosystem expanding, companies in educational tech and agricultural
+                      technology are showing interest in gamified simulations and training tools, thus valuing game
+                      development skills more than ever.
+                    </Text>
                   </Accordion.Panel>
                 </Accordion.Item>
               </Accordion>
@@ -136,7 +149,8 @@ const VideoGameDevelopmentEldoretPage = () => {
                 </a>
               </Text>
               <Text mb="sm">
-                <strong>Location:</strong> Eldoret Campus (Central Location)</Text>
+                <strong>Location:</strong> Eldoret Campus (Central Location)
+              </Text>
               <Text mb="sm">
                 <strong>Campus:</strong> 25 Kenyatta Avenue, Nairobi
               </Text>

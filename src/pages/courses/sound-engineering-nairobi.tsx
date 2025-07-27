@@ -57,7 +57,11 @@ const SoundEngineeringNairobiPage = () => {
         </Title>
 
         <Text size="lg" ta="center" mb="xl" c="dimmed">
-          Nairobi, as Kenya's creative heartbeat, offers unparalleled opportunities for sound-engineering students. With giants like Safaricom, Nation Media Group, and Royal Media Services centered here, the city's vibrant mix of recording studios, broadcast media, and live event productions is fertile ground for audio professionals. Nairobi's trend towards immersive audio and podcast engineering further distinguishes it as a hub for cutting-edge audio skills development.
+          Nairobi, as Kenya's creative heartbeat, offers unparalleled opportunities for sound-engineering students. With
+          giants like Safaricom, Nation Media Group, and Royal Media Services centered here, the city's vibrant mix of
+          recording studios, broadcast media, and live event productions is fertile ground for audio professionals.
+          Nairobi's trend towards immersive audio and podcast engineering further distinguishes it as a hub for
+          cutting-edge audio skills development.
         </Text>
 
         <Grid>
@@ -90,21 +94,36 @@ const SoundEngineeringNairobiPage = () => {
                 </Button>
               </Card>
             </Card>
-          
+
             <Card shadow="sm" padding="lg" radius="md" withBorder mt="md">
-              <Title order={3} mb="md">Frequently Asked Questions - Nairobi Students</Title>
+              <Title order={3} mb="md">
+                Frequently Asked Questions - Nairobi Students
+              </Title>
               <Accordion>
-                
-                <Accordion.Item key={0} value={`faq-0`}>
-                  <Accordion.Control>How does Nairobi's creative scene enhance my sound-engineering course experience?</Accordion.Control>
+                <Accordion.Item key={0} value={'faq-0'}>
+                  <Accordion.Control>
+                    How does Nairobi's creative scene enhance my sound-engineering course experience?
+                  </Accordion.Control>
                   <Accordion.Panel>
-                    <Text size="sm">Studying in Nairobi places you at the epicenter of East Africa's largest creative market. The city's thriving entertainment, news media, and event production scenes provide a rich context for practical learning, offering students direct exposure to industry-standard practices and networking opportunities with leading professionals.</Text>
+                    <Text size="sm">
+                      Studying in Nairobi places you at the epicenter of East Africa's largest creative market. The
+                      city's thriving entertainment, news media, and event production scenes provide a rich context for
+                      practical learning, offering students direct exposure to industry-standard practices and
+                      networking opportunities with leading professionals.
+                    </Text>
                   </Accordion.Panel>
                 </Accordion.Item>
-                <Accordion.Item key={1} value={`faq-1`}>
-                  <Accordion.Control>What are the career prospects in Nairobi for sound engineering graduates?</Accordion.Control>
+                <Accordion.Item key={1} value={'faq-1'}>
+                  <Accordion.Control>
+                    What are the career prospects in Nairobi for sound engineering graduates?
+                  </Accordion.Control>
                   <Accordion.Panel>
-                    <Text size="sm">Graduates in Nairobi find themselves in a dynamic job market, with opportunities in live sound for concerts, studio recording for both major and independent artists, broadcast audio for television and radio, and emerging fields like podcast production. The presence of major employers such as Safaricom and Royal Media Services ensures a steady demand for skilled audio engineers.</Text>
+                    <Text size="sm">
+                      Graduates in Nairobi find themselves in a dynamic job market, with opportunities in live sound for
+                      concerts, studio recording for both major and independent artists, broadcast audio for television
+                      and radio, and emerging fields like podcast production. The presence of major employers such as
+                      Safaricom and Royal Media Services ensures a steady demand for skilled audio engineers.
+                    </Text>
                   </Accordion.Panel>
                 </Accordion.Item>
               </Accordion>
@@ -130,7 +149,8 @@ const SoundEngineeringNairobiPage = () => {
                 </a>
               </Text>
               <Text mb="sm">
-                <strong>Location:</strong> Nairobi Campus (Central Location)</Text>
+                <strong>Location:</strong> Nairobi Campus (Central Location)
+              </Text>
               <Text mb="sm">
                 <strong>Campus:</strong> 25 Kenyatta Avenue, Nairobi
               </Text>

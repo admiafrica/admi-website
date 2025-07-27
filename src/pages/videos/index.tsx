@@ -691,23 +691,25 @@ export const getServerSideProps = async () => {
           cache = expiredCache
         } else {
           console.log('💥 SSR: No cache available at all')
-          
+
           // Last resort: Return demo/placeholder data to prevent empty page
-          const fallbackVideos = [{
-            id: 'nXVF84Y3PbQ',
-            title: 'This Is ADMI - Student Showcase',
-            description: 'Discover what makes ADMI different through our students\' work and success stories.',
-            thumbnail: {
-              default: 'https://i.ytimg.com/vi/nXVF84Y3PbQ/default.jpg',
-              medium: 'https://i.ytimg.com/vi/nXVF84Y3PbQ/mqdefault.jpg',
-              high: 'https://i.ytimg.com/vi/nXVF84Y3PbQ/hqdefault.jpg'
-            },
-            publishedAt: '2025-07-25T07:05:36Z',
-            duration: '8:13',
-            viewCount: '4',
-            channelTitle: 'Africa Digital Media Institute - ADMI'
-          }]
-          
+          const fallbackVideos = [
+            {
+              id: 'nXVF84Y3PbQ',
+              title: 'This Is ADMI - Student Showcase',
+              description: "Discover what makes ADMI different through our students' work and success stories.",
+              thumbnail: {
+                default: 'https://i.ytimg.com/vi/nXVF84Y3PbQ/default.jpg',
+                medium: 'https://i.ytimg.com/vi/nXVF84Y3PbQ/mqdefault.jpg',
+                high: 'https://i.ytimg.com/vi/nXVF84Y3PbQ/hqdefault.jpg'
+              },
+              publishedAt: '2025-07-25T07:05:36Z',
+              duration: '8:13',
+              viewCount: '4',
+              channelTitle: 'Africa Digital Media Institute - ADMI'
+            }
+          ]
+
           return {
             props: {
               allVideos: fallbackVideos,

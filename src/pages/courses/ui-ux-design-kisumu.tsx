@@ -57,7 +57,10 @@ const UIUXDesignKisumuPage = () => {
         </Title>
 
         <Text size="lg" ta="center" mb="xl" c="dimmed">
-          Kisumu is poised as a burgeoning tech hub in Western Kenya, with its unique positioning offering less competition and a vibrant space for UI/UX designers. With major employers including Lake Region media, agricultural tech firms, and international NGOs, there's a rich landscape for designers to apply user research, wireframing, and prototyping skills in diverse projects aimed at local and global audiences.
+          Kisumu is poised as a burgeoning tech hub in Western Kenya, with its unique positioning offering less
+          competition and a vibrant space for UI/UX designers. With major employers including Lake Region media,
+          agricultural tech firms, and international NGOs, there's a rich landscape for designers to apply user
+          research, wireframing, and prototyping skills in diverse projects aimed at local and global audiences.
         </Text>
 
         <Grid>
@@ -90,21 +93,33 @@ const UIUXDesignKisumuPage = () => {
                 </Button>
               </Card>
             </Card>
-          
+
             <Card shadow="sm" padding="lg" radius="md" withBorder mt="md">
-              <Title order={3} mb="md">Frequently Asked Questions - Kisumu Students</Title>
+              <Title order={3} mb="md">
+                Frequently Asked Questions - Kisumu Students
+              </Title>
               <Accordion>
-                
-                <Accordion.Item key={0} value={`faq-0`}>
+                <Accordion.Item key={0} value={'faq-0'}>
                   <Accordion.Control>How relevant is a UI/UX Design course in Kisumu's job market?</Accordion.Control>
                   <Accordion.Panel>
-                    <Text size="sm">In Kisumu, the demand for UI/UX designers is growing, fueled by an expanding tech ecosystem, including startups and tech-based agricultural initiatives. Skills in user research and mobile-first design are particularly valued, aligning with Kisumu's drive towards becoming an innovative tech hub.</Text>
+                    <Text size="sm">
+                      In Kisumu, the demand for UI/UX designers is growing, fueled by an expanding tech ecosystem,
+                      including startups and tech-based agricultural initiatives. Skills in user research and
+                      mobile-first design are particularly valued, aligning with Kisumu's drive towards becoming an
+                      innovative tech hub.
+                    </Text>
                   </Accordion.Panel>
                 </Accordion.Item>
-                <Accordion.Item key={1} value={`faq-1`}>
-                  <Accordion.Control>Are there any local Kisumu companies actively seeking UI/UX designers?</Accordion.Control>
+                <Accordion.Item key={1} value={'faq-1'}>
+                  <Accordion.Control>
+                    Are there any local Kisumu companies actively seeking UI/UX designers?
+                  </Accordion.Control>
                   <Accordion.Panel>
-                    <Text size="sm">Yes, numerous companies in Kisumu, from Lake Region media houses to agri-tech startups and international NGOs, are on the lookout for skilled UI/UX designers. These firms value innovative design thinking to enhance user experiences, particularly for mobile platforms.</Text>
+                    <Text size="sm">
+                      Yes, numerous companies in Kisumu, from Lake Region media houses to agri-tech startups and
+                      international NGOs, are on the lookout for skilled UI/UX designers. These firms value innovative
+                      design thinking to enhance user experiences, particularly for mobile platforms.
+                    </Text>
                   </Accordion.Panel>
                 </Accordion.Item>
               </Accordion>
@@ -130,7 +145,8 @@ const UIUXDesignKisumuPage = () => {
                 </a>
               </Text>
               <Text mb="sm">
-                <strong>Location:</strong> Kisumu Campus (Central Location)</Text>
+                <strong>Location:</strong> Kisumu Campus (Central Location)
+              </Text>
               <Text mb="sm">
                 <strong>Campus:</strong> 25 Kenyatta Avenue, Nairobi
               </Text>

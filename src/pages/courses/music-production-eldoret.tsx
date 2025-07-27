@@ -57,7 +57,10 @@ const MusicProductionEldoretPage = () => {
         </Title>
 
         <Text size="lg" ta="center" mb="xl" c="dimmed">
-          Eldoret, with its burgeoning startup ecosystem especially in agri-tech and sports, presents a unique avenue for music production students to blend digital skills with local content creation. The diverse cultures and stories within the North Rift region provide rich material for audio storytelling, beat production for local artists, and podcasting about regional developments.
+          Eldoret, with its burgeoning startup ecosystem especially in agri-tech and sports, presents a unique avenue
+          for music production students to blend digital skills with local content creation. The diverse cultures and
+          stories within the North Rift region provide rich material for audio storytelling, beat production for local
+          artists, and podcasting about regional developments.
         </Text>
 
         <Grid>
@@ -90,21 +93,34 @@ const MusicProductionEldoretPage = () => {
                 </Button>
               </Card>
             </Card>
-          
+
             <Card shadow="sm" padding="lg" radius="md" withBorder mt="md">
-              <Title order={3} mb="md">Frequently Asked Questions - Eldoret Students</Title>
+              <Title order={3} mb="md">
+                Frequently Asked Questions - Eldoret Students
+              </Title>
               <Accordion>
-                
-                <Accordion.Item key={0} value={`faq-0`}>
-                  <Accordion.Control>How relevant is a music production course in Eldoret's current economic landscape?</Accordion.Control>
+                <Accordion.Item key={0} value={'faq-0'}>
+                  <Accordion.Control>
+                    How relevant is a music production course in Eldoret's current economic landscape?
+                  </Accordion.Control>
                   <Accordion.Panel>
-                    <Text size="sm">Given Eldoret's growing interest in digital and creative fields, coupled with the regional demand for digital marketing in agri-tech and sports, a music production course is highly relevant. It opens doors to creating digital audio content for local businesses and entertainers.</Text>
+                    <Text size="sm">
+                      Given Eldoret's growing interest in digital and creative fields, coupled with the regional demand
+                      for digital marketing in agri-tech and sports, a music production course is highly relevant. It
+                      opens doors to creating digital audio content for local businesses and entertainers.
+                    </Text>
                   </Accordion.Panel>
                 </Accordion.Item>
-                <Accordion.Item key={1} value={`faq-1`}>
-                  <Accordion.Control>Are there local outlets or platforms in Eldoret where I can showcase my music production skills?</Accordion.Control>
+                <Accordion.Item key={1} value={'faq-1'}>
+                  <Accordion.Control>
+                    Are there local outlets or platforms in Eldoret where I can showcase my music production skills?
+                  </Accordion.Control>
                   <Accordion.Panel>
-                    <Text size="sm">Yes, Eldoret boasts several local media houses, event companies, and a vibrant live music scene. Emerging artists and startups in the city are always on the lookout for fresh talent in audio engineering and beat production to elevate their digital presence.</Text>
+                    <Text size="sm">
+                      Yes, Eldoret boasts several local media houses, event companies, and a vibrant live music scene.
+                      Emerging artists and startups in the city are always on the lookout for fresh talent in audio
+                      engineering and beat production to elevate their digital presence.
+                    </Text>
                   </Accordion.Panel>
                 </Accordion.Item>
               </Accordion>
@@ -130,7 +146,8 @@ const MusicProductionEldoretPage = () => {
                 </a>
               </Text>
               <Text mb="sm">
-                <strong>Location:</strong> Eldoret Campus (Central Location)</Text>
+                <strong>Location:</strong> Eldoret Campus (Central Location)
+              </Text>
               <Text mb="sm">
                 <strong>Campus:</strong> 25 Kenyatta Avenue, Nairobi
               </Text>

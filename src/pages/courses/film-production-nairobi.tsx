@@ -126,21 +126,35 @@ const FilmProductionNairobiPage = () => {
                 </Accordion.Item>
               </Accordion>
             </Card>
-          
+
             <Card shadow="sm" padding="lg" radius="md" withBorder mt="md">
-              <Title order={3} mb="md">Frequently Asked Questions - Nairobi Students</Title>
+              <Title order={3} mb="md">
+                Frequently Asked Questions - Nairobi Students
+              </Title>
               <Accordion>
-                
-                <Accordion.Item key={0} value={`faq-0`}>
-                  <Accordion.Control>How does studying film production in Nairobi enhance my career prospects?</Accordion.Control>
+                <Accordion.Item key={0} value={'faq-0'}>
+                  <Accordion.Control>
+                    How does studying film production in Nairobi enhance my career prospects?
+                  </Accordion.Control>
                   <Accordion.Panel>
-                    <Text size="sm">Nairobi's unique position as a creative hub in Central Kenya provides film production students with direct exposure to industry leaders and the latest trends in streaming, documentary, and commercial video production. This urban setting fosters unparalleled networking and employment opportunities within the local and regional film industries.</Text>
+                    <Text size="sm">
+                      Nairobi's unique position as a creative hub in Central Kenya provides film production students
+                      with direct exposure to industry leaders and the latest trends in streaming, documentary, and
+                      commercial video production. This urban setting fosters unparalleled networking and employment
+                      opportunities within the local and regional film industries.
+                    </Text>
                   </Accordion.Panel>
                 </Accordion.Item>
-                <Accordion.Item key={1} value={`faq-1`}>
-                  <Accordion.Control>Are there local internships available for film production students in Nairobi?</Accordion.Control>
+                <Accordion.Item key={1} value={'faq-1'}>
+                  <Accordion.Control>
+                    Are there local internships available for film production students in Nairobi?
+                  </Accordion.Control>
                   <Accordion.Panel>
-                    <Text size="sm">Yes, Nairobi is home to major employers in the film and media industry, such as Safaricom, Nation Media Group, and Royal Media Services. These companies often offer internships and entry-level positions, giving students practical experience and a foothold in the industry.</Text>
+                    <Text size="sm">
+                      Yes, Nairobi is home to major employers in the film and media industry, such as Safaricom, Nation
+                      Media Group, and Royal Media Services. These companies often offer internships and entry-level
+                      positions, giving students practical experience and a foothold in the industry.
+                    </Text>
                   </Accordion.Panel>
                 </Accordion.Item>
               </Accordion>
@@ -160,7 +174,8 @@ const FilmProductionNairobiPage = () => {
                 <strong>Fee:</strong> <a href="https://admi.africa/student-support#fees">View current fees</a>
               </Text>
               <Text mb="sm">
-                <strong>Location:</strong> Nairobi Campus (Central Location)</Text>
+                <strong>Location:</strong> Nairobi Campus (Central Location)
+              </Text>
               <Button component="a" href="/enquiry" fullWidth mt="md" color="blue">
                 Apply Now
               </Button>

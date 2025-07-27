@@ -57,7 +57,10 @@ const AnimationKisumuPage = () => {
         </Title>
 
         <Text size="lg" ta="center" mb="xl" c="dimmed">
-          In Kisumu, the burgeoning tech hub of Western Kenya, animation professionals have a unique edge due to emerging tech and creative sectors with lower competition. The presence of Lake Region media, agricultural tech firms, and international NGOs opens doors for animation in advertising, educational content, and digital storytelling, making Kisumu an ideal place for budding animators.
+          In Kisumu, the burgeoning tech hub of Western Kenya, animation professionals have a unique edge due to
+          emerging tech and creative sectors with lower competition. The presence of Lake Region media, agricultural
+          tech firms, and international NGOs opens doors for animation in advertising, educational content, and digital
+          storytelling, making Kisumu an ideal place for budding animators.
         </Text>
 
         <Grid>
@@ -89,21 +92,34 @@ const AnimationKisumuPage = () => {
                 </Button>
               </Card>
             </Card>
-          
+
             <Card shadow="sm" padding="lg" radius="md" withBorder mt="md">
-              <Title order={3} mb="md">Frequently Asked Questions - Kisumu Students</Title>
+              <Title order={3} mb="md">
+                Frequently Asked Questions - Kisumu Students
+              </Title>
               <Accordion>
-                
-                <Accordion.Item key={0} value={`faq-0`}>
-                  <Accordion.Control>How does Kisumu's emerging tech hub status benefit animation students?</Accordion.Control>
+                <Accordion.Item key={0} value={'faq-0'}>
+                  <Accordion.Control>
+                    How does Kisumu's emerging tech hub status benefit animation students?
+                  </Accordion.Control>
                   <Accordion.Panel>
-                    <Text size="sm">Kisumu's position as an emerging tech hub means animation students have first-hand access to innovative projects from agricultural tech firms and international NGOs. This unique environment fosters practical learning and networking opportunities with startups seeking fresh, creative content.</Text>
+                    <Text size="sm">
+                      Kisumu's position as an emerging tech hub means animation students have first-hand access to
+                      innovative projects from agricultural tech firms and international NGOs. This unique environment
+                      fosters practical learning and networking opportunities with startups seeking fresh, creative
+                      content.
+                    </Text>
                   </Accordion.Panel>
                 </Accordion.Item>
-                <Accordion.Item key={1} value={`faq-1`}>
+                <Accordion.Item key={1} value={'faq-1'}>
                   <Accordion.Control>Are there local companies in Kisumu that hire animators?</Accordion.Control>
                   <Accordion.Panel>
-                    <Text size="sm">Yes, in Kisumu, animators find opportunities within Lake Region media companies, advertising agencies, and tech startups, particularly those focusing on agricultural technology. These employers are often in search of talent skilled in 2D/3D animation, motion graphics, and VFX to bring their digital content to life.</Text>
+                    <Text size="sm">
+                      Yes, in Kisumu, animators find opportunities within Lake Region media companies, advertising
+                      agencies, and tech startups, particularly those focusing on agricultural technology. These
+                      employers are often in search of talent skilled in 2D/3D animation, motion graphics, and VFX to
+                      bring their digital content to life.
+                    </Text>
                   </Accordion.Panel>
                 </Accordion.Item>
               </Accordion>
@@ -129,7 +145,8 @@ const AnimationKisumuPage = () => {
                 </a>
               </Text>
               <Text mb="sm">
-                <strong>Location:</strong> Kisumu Campus (Central Location)</Text>
+                <strong>Location:</strong> Kisumu Campus (Central Location)
+              </Text>
               <Text mb="sm">
                 <strong>Campus:</strong> 25 Kenyatta Avenue, Nairobi
               </Text>

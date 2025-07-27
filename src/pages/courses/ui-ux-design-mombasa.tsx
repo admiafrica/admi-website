@@ -57,7 +57,10 @@ const UIUXDesignMombasaPage = () => {
         </Title>
 
         <Text size="lg" ta="center" mb="xl" c="dimmed">
-          In Mombasa, the UI/UX Design course taps into the booming tourism and hospitality industries' digital transformation needs. With a unique focus on creating engaging online experiences for coastal resorts, eateries, and travel agencies, graduates are perfectly positioned to lead the digital content revolution in Kenya's premier tourist destination.
+          In Mombasa, the UI/UX Design course taps into the booming tourism and hospitality industries' digital
+          transformation needs. With a unique focus on creating engaging online experiences for coastal resorts,
+          eateries, and travel agencies, graduates are perfectly positioned to lead the digital content revolution in
+          Kenya's premier tourist destination.
         </Text>
 
         <Grid>
@@ -90,21 +93,34 @@ const UIUXDesignMombasaPage = () => {
                 </Button>
               </Card>
             </Card>
-          
+
             <Card shadow="sm" padding="lg" radius="md" withBorder mt="md">
-              <Title order={3} mb="md">Frequently Asked Questions - Mombasa Students</Title>
+              <Title order={3} mb="md">
+                Frequently Asked Questions - Mombasa Students
+              </Title>
               <Accordion>
-                
-                <Accordion.Item key={0} value={`faq-0`}>
-                  <Accordion.Control>How does the Mombasa environment enhance my learning experience in UI/UX Design?</Accordion.Control>
+                <Accordion.Item key={0} value={'faq-0'}>
+                  <Accordion.Control>
+                    How does the Mombasa environment enhance my learning experience in UI/UX Design?
+                  </Accordion.Control>
                   <Accordion.Panel>
-                    <Text size="sm">Mombasa's vibrant tourism and hospitality sectors offer a unique landscape for UI/UX students to apply their skills in real-world scenarios, especially in enhancing digital engagement for businesses in these industries.</Text>
+                    <Text size="sm">
+                      Mombasa's vibrant tourism and hospitality sectors offer a unique landscape for UI/UX students to
+                      apply their skills in real-world scenarios, especially in enhancing digital engagement for
+                      businesses in these industries.
+                    </Text>
                   </Accordion.Panel>
                 </Accordion.Item>
-                <Accordion.Item key={1} value={`faq-1`}>
-                  <Accordion.Control>Are there local internships available in Mombasa for UI/UX Design students?</Accordion.Control>
+                <Accordion.Item key={1} value={'faq-1'}>
+                  <Accordion.Control>
+                    Are there local internships available in Mombasa for UI/UX Design students?
+                  </Accordion.Control>
                   <Accordion.Panel>
-                    <Text size="sm">Yes, numerous opportunities exist with local coastal media houses, tourism agencies, and hospitality brands eager to innovate their digital presence, providing fertile ground for internships and project collaborations.</Text>
+                    <Text size="sm">
+                      Yes, numerous opportunities exist with local coastal media houses, tourism agencies, and
+                      hospitality brands eager to innovate their digital presence, providing fertile ground for
+                      internships and project collaborations.
+                    </Text>
                   </Accordion.Panel>
                 </Accordion.Item>
               </Accordion>
@@ -130,7 +146,8 @@ const UIUXDesignMombasaPage = () => {
                 </a>
               </Text>
               <Text mb="sm">
-                <strong>Location:</strong> Mombasa Campus (Central Location)</Text>
+                <strong>Location:</strong> Mombasa Campus (Central Location)
+              </Text>
               <Text mb="sm">
                 <strong>Campus:</strong> 25 Kenyatta Avenue, Nairobi
               </Text>

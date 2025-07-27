@@ -57,7 +57,10 @@ const PhotographyEldoretPage = () => {
         </Title>
 
         <Text size="lg" ta="center" mb="xl" c="dimmed">
-          Eldoret, with its vibrant startup ecosystem and a strong base in agricultural technology and sports organizations, offers unique opportunities for photographers. The demand for digital skills in capturing the dynamic landscapes of agricultural innovations, sports events, and burgeoning local businesses provides a fertile ground for commercial, event, and portrait photography enthusiasts.
+          Eldoret, with its vibrant startup ecosystem and a strong base in agricultural technology and sports
+          organizations, offers unique opportunities for photographers. The demand for digital skills in capturing the
+          dynamic landscapes of agricultural innovations, sports events, and burgeoning local businesses provides a
+          fertile ground for commercial, event, and portrait photography enthusiasts.
         </Text>
 
         <Grid>
@@ -90,21 +93,35 @@ const PhotographyEldoretPage = () => {
                 </Button>
               </Card>
             </Card>
-          
+
             <Card shadow="sm" padding="lg" radius="md" withBorder mt="md">
-              <Title order={3} mb="md">Frequently Asked Questions - Eldoret Students</Title>
+              <Title order={3} mb="md">
+                Frequently Asked Questions - Eldoret Students
+              </Title>
               <Accordion>
-                
-                <Accordion.Item key={0} value={`faq-0`}>
-                  <Accordion.Control>How does the startup ecosystem in Eldoret enhance my learning in commercial photography?</Accordion.Control>
+                <Accordion.Item key={0} value={'faq-0'}>
+                  <Accordion.Control>
+                    How does the startup ecosystem in Eldoret enhance my learning in commercial photography?
+                  </Accordion.Control>
                   <Accordion.Panel>
-                    <Text size="sm">Studying commercial photography in Eldoret puts you at the forefront of a growing digital market. The city's startup ecosystem is ripe with opportunities for capturing innovative products, creating digital content, and engaging with new businesses in need of professional imagery.</Text>
+                    <Text size="sm">
+                      Studying commercial photography in Eldoret puts you at the forefront of a growing digital market.
+                      The city's startup ecosystem is ripe with opportunities for capturing innovative products,
+                      creating digital content, and engaging with new businesses in need of professional imagery.
+                    </Text>
                   </Accordion.Panel>
                 </Accordion.Item>
-                <Accordion.Item key={1} value={`faq-1`}>
-                  <Accordion.Control>Are there specific career opportunities in photography within Eldoret's major industries?</Accordion.Control>
+                <Accordion.Item key={1} value={'faq-1'}>
+                  <Accordion.Control>
+                    Are there specific career opportunities in photography within Eldoret's major industries?
+                  </Accordion.Control>
                   <Accordion.Panel>
-                    <Text size="sm">Yes, Eldoret's major industries such as agricultural technology, sports organizations, and regional media houses offer diverse career opportunities. Photographers can find roles in documenting agricultural projects, covering sports events, or contributing to media content, not to mention the emerging demand in real estate and tourism photography.</Text>
+                    <Text size="sm">
+                      Yes, Eldoret's major industries such as agricultural technology, sports organizations, and
+                      regional media houses offer diverse career opportunities. Photographers can find roles in
+                      documenting agricultural projects, covering sports events, or contributing to media content, not
+                      to mention the emerging demand in real estate and tourism photography.
+                    </Text>
                   </Accordion.Panel>
                 </Accordion.Item>
               </Accordion>
@@ -130,7 +147,8 @@ const PhotographyEldoretPage = () => {
                 </a>
               </Text>
               <Text mb="sm">
-                <strong>Location:</strong> Eldoret Campus (Central Location)</Text>
+                <strong>Location:</strong> Eldoret Campus (Central Location)
+              </Text>
               <Text mb="sm">
                 <strong>Campus:</strong> 25 Kenyatta Avenue, Nairobi
               </Text>

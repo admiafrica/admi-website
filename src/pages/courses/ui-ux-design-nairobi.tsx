@@ -57,7 +57,10 @@ const UIUXDesignNairobiPage = () => {
         </Title>
 
         <Text size="lg" ta="center" mb="xl" c="dimmed">
-          Nairobi, Kenya’s tech hub, offers unrivaled opportunities for UI/UX designers with its vibrant startup scene, particularly in Westlands and CBD. The city's tech companies, fintech startups, and digital agencies are in constant demand for skilled designers to navigate the competitive digital landscape, making Nairobi a prime location for UI/UX education.
+          Nairobi, Kenya’s tech hub, offers unrivaled opportunities for UI/UX designers with its vibrant startup scene,
+          particularly in Westlands and CBD. The city's tech companies, fintech startups, and digital agencies are in
+          constant demand for skilled designers to navigate the competitive digital landscape, making Nairobi a prime
+          location for UI/UX education.
         </Text>
 
         <Grid>
@@ -90,21 +93,34 @@ const UIUXDesignNairobiPage = () => {
                 </Button>
               </Card>
             </Card>
-          
+
             <Card shadow="sm" padding="lg" radius="md" withBorder mt="md">
-              <Title order={3} mb="md">Frequently Asked Questions - Nairobi Students</Title>
+              <Title order={3} mb="md">
+                Frequently Asked Questions - Nairobi Students
+              </Title>
               <Accordion>
-                
-                <Accordion.Item key={0} value={`faq-0`}>
-                  <Accordion.Control>How relevant is UI/UX design training in Nairobi's tech eco-system?</Accordion.Control>
+                <Accordion.Item key={0} value={'faq-0'}>
+                  <Accordion.Control>
+                    How relevant is UI/UX design training in Nairobi's tech eco-system?
+                  </Accordion.Control>
                   <Accordion.Panel>
-                    <Text size="sm">In Nairobi’s booming tech ecosystem, UI/UX design stands out as a critical skill. With major employers like Safaricom and various tech startups, the demand for designers who can create intuitive and engaging digital experiences is at an all-time high.</Text>
+                    <Text size="sm">
+                      In Nairobi’s booming tech ecosystem, UI/UX design stands out as a critical skill. With major
+                      employers like Safaricom and various tech startups, the demand for designers who can create
+                      intuitive and engaging digital experiences is at an all-time high.
+                    </Text>
                   </Accordion.Panel>
                 </Accordion.Item>
-                <Accordion.Item key={1} value={`faq-1`}>
-                  <Accordion.Control>Are there ample career opportunities in Nairobi for UI/UX design graduates?</Accordion.Control>
+                <Accordion.Item key={1} value={'faq-1'}>
+                  <Accordion.Control>
+                    Are there ample career opportunities in Nairobi for UI/UX design graduates?
+                  </Accordion.Control>
                   <Accordion.Panel>
-                    <Text size="sm">Absolutely. Nairobi's status as East Africa’s technology and innovation hub means graduates have direct access to careers in leading tech companies, fintech, and digital agencies within the CBD, Westlands, and beyond. The city's dynamic market is eager for fresh talent in UI/UX design.</Text>
+                    <Text size="sm">
+                      Absolutely. Nairobi's status as East Africa’s technology and innovation hub means graduates have
+                      direct access to careers in leading tech companies, fintech, and digital agencies within the CBD,
+                      Westlands, and beyond. The city's dynamic market is eager for fresh talent in UI/UX design.
+                    </Text>
                   </Accordion.Panel>
                 </Accordion.Item>
               </Accordion>
@@ -130,7 +146,8 @@ const UIUXDesignNairobiPage = () => {
                 </a>
               </Text>
               <Text mb="sm">
-                <strong>Location:</strong> Nairobi Campus (Central Location)</Text>
+                <strong>Location:</strong> Nairobi Campus (Central Location)
+              </Text>
               <Text mb="sm">
                 <strong>Campus:</strong> 25 Kenyatta Avenue, Nairobi
               </Text>

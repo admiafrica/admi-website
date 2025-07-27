@@ -96,21 +96,36 @@ const VideoGameDevelopmentNairobiPage = () => {
                 </Button>
               </Card>
             </Card>
-          
+
             <Card shadow="sm" padding="lg" radius="md" withBorder mt="md">
-              <Title order={3} mb="md">Frequently Asked Questions - Nairobi Students</Title>
+              <Title order={3} mb="md">
+                Frequently Asked Questions - Nairobi Students
+              </Title>
               <Accordion>
-                
-                <Accordion.Item key={0} value={`faq-0`}>
-                  <Accordion.Control>How does Nairobi's tech ecosystem enhance my learning in video game development?</Accordion.Control>
+                <Accordion.Item key={0} value={'faq-0'}>
+                  <Accordion.Control>
+                    How does Nairobi's tech ecosystem enhance my learning in video game development?
+                  </Accordion.Control>
                   <Accordion.Panel>
-                    <Text size="sm">Nairobi's dynamic tech ecosystem, spearheaded by tech giants and startups in areas like CBD and Westlands, provides a fertile ground for innovation and collaboration. Students can engage with cutting-edge VR/AR projects and mobile gaming startups, gaining real-world insights and networking opportunities.</Text>
+                    <Text size="sm">
+                      Nairobi's dynamic tech ecosystem, spearheaded by tech giants and startups in areas like CBD and
+                      Westlands, provides a fertile ground for innovation and collaboration. Students can engage with
+                      cutting-edge VR/AR projects and mobile gaming startups, gaining real-world insights and networking
+                      opportunities.
+                    </Text>
                   </Accordion.Panel>
                 </Accordion.Item>
-                <Accordion.Item key={1} value={`faq-1`}>
-                  <Accordion.Control>Are there real career opportunities in Nairobi for video game development graduates?</Accordion.Control>
+                <Accordion.Item key={1} value={'faq-1'}>
+                  <Accordion.Control>
+                    Are there real career opportunities in Nairobi for video game development graduates?
+                  </Accordion.Control>
                   <Accordion.Panel>
-                    <Text size="sm">Absolutely. Nairobi's growing gaming industry, bolstered by tech hubs and innovation centers, is on the lookout for skilled graduates in game design, programming, and 3D modeling. Opportunities span gaming studios, edtech companies, and simulation firms, particularly those focusing on mobile and VR/AR games.</Text>
+                    <Text size="sm">
+                      Absolutely. Nairobi's growing gaming industry, bolstered by tech hubs and innovation centers, is
+                      on the lookout for skilled graduates in game design, programming, and 3D modeling. Opportunities
+                      span gaming studios, edtech companies, and simulation firms, particularly those focusing on mobile
+                      and VR/AR games.
+                    </Text>
                   </Accordion.Panel>
                 </Accordion.Item>
               </Accordion>
@@ -136,7 +151,8 @@ const VideoGameDevelopmentNairobiPage = () => {
                 </a>
               </Text>
               <Text mb="sm">
-                <strong>Location:</strong> Nairobi Campus (Central Location)</Text>
+                <strong>Location:</strong> Nairobi Campus (Central Location)
+              </Text>
               <Text mb="sm">
                 <strong>Campus:</strong> 25 Kenyatta Avenue, Nairobi
               </Text>

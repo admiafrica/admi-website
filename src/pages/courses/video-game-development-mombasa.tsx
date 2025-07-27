@@ -96,21 +96,35 @@ const VideoGameDevelopmentMombasaPage = () => {
                 </Button>
               </Card>
             </Card>
-          
+
             <Card shadow="sm" padding="lg" radius="md" withBorder mt="md">
-              <Title order={3} mb="md">Frequently Asked Questions - Mombasa Students</Title>
+              <Title order={3} mb="md">
+                Frequently Asked Questions - Mombasa Students
+              </Title>
               <Accordion>
-                
-                <Accordion.Item key={0} value={`faq-0`}>
-                  <Accordion.Control>How does Mombasa's cultural and touristic appeal influence the video game development course?</Accordion.Control>
+                <Accordion.Item key={0} value={'faq-0'}>
+                  <Accordion.Control>
+                    How does Mombasa's cultural and touristic appeal influence the video game development course?
+                  </Accordion.Control>
                   <Accordion.Panel>
-                    <Text size="sm">Mombasa's rich cultural heritage and status as a tourist hotspot infuse the video game development course with unique content themes, such as historical simulations and tourist experience games, providing an edge in creating culturally immersive and educational games.</Text>
+                    <Text size="sm">
+                      Mombasa's rich cultural heritage and status as a tourist hotspot infuse the video game development
+                      course with unique content themes, such as historical simulations and tourist experience games,
+                      providing an edge in creating culturally immersive and educational games.
+                    </Text>
                   </Accordion.Panel>
                 </Accordion.Item>
-                <Accordion.Item key={1} value={`faq-1`}>
-                  <Accordion.Control>Are there specific opportunities in Mombasa for video game developers after the course?</Accordion.Control>
+                <Accordion.Item key={1} value={'faq-1'}>
+                  <Accordion.Control>
+                    Are there specific opportunities in Mombasa for video game developers after the course?
+                  </Accordion.Control>
                   <Accordion.Panel>
-                    <Text size="sm">Yes, besides the emerging local gaming studios, Mombasa's educational and tourism sectors are increasingly incorporating gamification into their offerings. Graduates also find opportunities in coastal media houses and tech startups focused on enhancing digital experiences for the tourism industry.</Text>
+                    <Text size="sm">
+                      Yes, besides the emerging local gaming studios, Mombasa's educational and tourism sectors are
+                      increasingly incorporating gamification into their offerings. Graduates also find opportunities in
+                      coastal media houses and tech startups focused on enhancing digital experiences for the tourism
+                      industry.
+                    </Text>
                   </Accordion.Panel>
                 </Accordion.Item>
               </Accordion>
@@ -136,7 +150,8 @@ const VideoGameDevelopmentMombasaPage = () => {
                 </a>
               </Text>
               <Text mb="sm">
-                <strong>Location:</strong> Mombasa Campus (Central Location)</Text>
+                <strong>Location:</strong> Mombasa Campus (Central Location)
+              </Text>
               <Text mb="sm">
                 <strong>Campus:</strong> 25 Kenyatta Avenue, Nairobi
               </Text>

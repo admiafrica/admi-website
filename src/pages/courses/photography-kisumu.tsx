@@ -57,7 +57,11 @@ const PhotographyKisumuPage = () => {
         </Title>
 
         <Text size="lg" ta="center" mb="xl" c="dimmed">
-          Kisumu, with its vibrant cultural scene and emerging tech hub status, presents a unique canvas for photographers. The city's natural beauty, from the shores of Lake Victoria to the bustling markets of Kibuye, offers endless material for commercial, event, and portrait photography. Additionally, Kisumu's growth as a tech hub creates a demand for high-quality visual content, from drone photography for agricultural tech firms to virtual tours for real estate and tourism.
+          Kisumu, with its vibrant cultural scene and emerging tech hub status, presents a unique canvas for
+          photographers. The city's natural beauty, from the shores of Lake Victoria to the bustling markets of Kibuye,
+          offers endless material for commercial, event, and portrait photography. Additionally, Kisumu's growth as a
+          tech hub creates a demand for high-quality visual content, from drone photography for agricultural tech firms
+          to virtual tours for real estate and tourism.
         </Text>
 
         <Grid>
@@ -90,21 +94,32 @@ const PhotographyKisumuPage = () => {
                 </Button>
               </Card>
             </Card>
-          
+
             <Card shadow="sm" padding="lg" radius="md" withBorder mt="md">
-              <Title order={3} mb="md">Frequently Asked Questions - Kisumu Students</Title>
+              <Title order={3} mb="md">
+                Frequently Asked Questions - Kisumu Students
+              </Title>
               <Accordion>
-                
-                <Accordion.Item key={0} value={`faq-0`}>
+                <Accordion.Item key={0} value={'faq-0'}>
                   <Accordion.Control>How does Kisumu's tech scene influence the photography course?</Accordion.Control>
                   <Accordion.Panel>
-                    <Text size="sm">Kisumu's burgeoning status as a tech hub uniquely positions our photography course to integrate cutting-edge trends like drone photography and virtual tours, tailoring skills that are in high demand by local tech firms and international NGOs.</Text>
+                    <Text size="sm">
+                      Kisumu's burgeoning status as a tech hub uniquely positions our photography course to integrate
+                      cutting-edge trends like drone photography and virtual tours, tailoring skills that are in high
+                      demand by local tech firms and international NGOs.
+                    </Text>
                   </Accordion.Panel>
                 </Accordion.Item>
-                <Accordion.Item key={1} value={`faq-1`}>
-                  <Accordion.Control>Are there real opportunities for photographers in Kisumu's job market?</Accordion.Control>
+                <Accordion.Item key={1} value={'faq-1'}>
+                  <Accordion.Control>
+                    Are there real opportunities for photographers in Kisumu's job market?
+                  </Accordion.Control>
                   <Accordion.Panel>
-                    <Text size="sm">Absolutely. Beyond traditional opportunities in media houses, Kisumu's growing events scene, international NGO presence, and the local tourism industry are increasingly seeking skilled photographers for commercial work, real estate virtual tours, and social media content.</Text>
+                    <Text size="sm">
+                      Absolutely. Beyond traditional opportunities in media houses, Kisumu's growing events scene,
+                      international NGO presence, and the local tourism industry are increasingly seeking skilled
+                      photographers for commercial work, real estate virtual tours, and social media content.
+                    </Text>
                   </Accordion.Panel>
                 </Accordion.Item>
               </Accordion>
@@ -130,7 +145,8 @@ const PhotographyKisumuPage = () => {
                 </a>
               </Text>
               <Text mb="sm">
-                <strong>Location:</strong> Kisumu Campus (Central Location)</Text>
+                <strong>Location:</strong> Kisumu Campus (Central Location)
+              </Text>
               <Text mb="sm">
                 <strong>Campus:</strong> 25 Kenyatta Avenue, Nairobi
               </Text>

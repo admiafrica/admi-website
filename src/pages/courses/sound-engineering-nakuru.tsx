@@ -57,7 +57,9 @@ const SoundEngineeringNakuruPage = () => {
         </Title>
 
         <Text size="lg" ta="center" mb="xl" c="dimmed">
-          Nakuru, with its mix of manufacturing, agriculture, and tourism sectors, offers unique sound-engineering prospects, especially in immersive audio for tourism experiences, podcast engineering for local stories, and quality streaming for agricultural tutorials.
+          Nakuru, with its mix of manufacturing, agriculture, and tourism sectors, offers unique sound-engineering
+          prospects, especially in immersive audio for tourism experiences, podcast engineering for local stories, and
+          quality streaming for agricultural tutorials.
         </Text>
 
         <Grid>
@@ -90,21 +92,34 @@ const SoundEngineeringNakuruPage = () => {
                 </Button>
               </Card>
             </Card>
-          
+
             <Card shadow="sm" padding="lg" radius="md" withBorder mt="md">
-              <Title order={3} mb="md">Frequently Asked Questions - Nakuru Students</Title>
+              <Title order={3} mb="md">
+                Frequently Asked Questions - Nakuru Students
+              </Title>
               <Accordion>
-                
-                <Accordion.Item key={0} value={`faq-0`}>
-                  <Accordion.Control>How do the sectors in Nakuru enhance my learning experience in sound engineering?</Accordion.Control>
+                <Accordion.Item key={0} value={'faq-0'}>
+                  <Accordion.Control>
+                    How do the sectors in Nakuru enhance my learning experience in sound engineering?
+                  </Accordion.Control>
                   <Accordion.Panel>
-                    <Text size="sm">Nakuru's diverse economy allows students to apply sound engineering across different fields, from creating immersive tourist audio guides in Lake Nakuru National Park to producing high-quality agricultural podcasts, offering a rich, hands-on learning environment.</Text>
+                    <Text size="sm">
+                      Nakuru's diverse economy allows students to apply sound engineering across different fields, from
+                      creating immersive tourist audio guides in Lake Nakuru National Park to producing high-quality
+                      agricultural podcasts, offering a rich, hands-on learning environment.
+                    </Text>
                   </Accordion.Panel>
                 </Accordion.Item>
-                <Accordion.Item key={1} value={`faq-1`}>
-                  <Accordion.Control>Are there local internships available in sound engineering within Nakuru's industries?</Accordion.Control>
+                <Accordion.Item key={1} value={'faq-1'}>
+                  <Accordion.Control>
+                    Are there local internships available in sound engineering within Nakuru's industries?
+                  </Accordion.Control>
                   <Accordion.Panel>
-                    <Text size="sm">Yes, Nakuru’s manufacturing companies, agricultural firms, and tourism businesses often seek skilled sound engineers for product promotions, field recordings, and event productions, providing ample internship opportunities for students.</Text>
+                    <Text size="sm">
+                      Yes, Nakuru’s manufacturing companies, agricultural firms, and tourism businesses often seek
+                      skilled sound engineers for product promotions, field recordings, and event productions, providing
+                      ample internship opportunities for students.
+                    </Text>
                   </Accordion.Panel>
                 </Accordion.Item>
               </Accordion>
@@ -130,7 +145,8 @@ const SoundEngineeringNakuruPage = () => {
                 </a>
               </Text>
               <Text mb="sm">
-                <strong>Location:</strong> Nakuru Campus (Central Location)</Text>
+                <strong>Location:</strong> Nakuru Campus (Central Location)
+              </Text>
               <Text mb="sm">
                 <strong>Campus:</strong> 25 Kenyatta Avenue, Nairobi
               </Text>

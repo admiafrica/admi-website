@@ -57,7 +57,10 @@ const MusicProductionMombasaPage = () => {
         </Title>
 
         <Text size="lg" ta="center" mb="xl" c="dimmed">
-          Mombasa, with its flourishing tourism sector and increasing demand for digital content, presents a unique market for music production. The city's vibrant cultural scene and hospitality brands are continually seeking innovative audio content to captivate visitors, offering an untapped market for audio engineering, mixing, and live streaming audio services.
+          Mombasa, with its flourishing tourism sector and increasing demand for digital content, presents a unique
+          market for music production. The city's vibrant cultural scene and hospitality brands are continually seeking
+          innovative audio content to captivate visitors, offering an untapped market for audio engineering, mixing, and
+          live streaming audio services.
         </Text>
 
         <Grid>
@@ -90,21 +93,34 @@ const MusicProductionMombasaPage = () => {
                 </Button>
               </Card>
             </Card>
-          
+
             <Card shadow="sm" padding="lg" radius="md" withBorder mt="md">
-              <Title order={3} mb="md">Frequently Asked Questions - Mombasa Students</Title>
+              <Title order={3} mb="md">
+                Frequently Asked Questions - Mombasa Students
+              </Title>
               <Accordion>
-                
-                <Accordion.Item key={0} value={`faq-0`}>
-                  <Accordion.Control>How does Mombasa's tourism sector influence the music production course?</Accordion.Control>
+                <Accordion.Item key={0} value={'faq-0'}>
+                  <Accordion.Control>
+                    How does Mombasa's tourism sector influence the music production course?
+                  </Accordion.Control>
                   <Accordion.Panel>
-                    <Text size="sm">The demand for engaging digital content in Mombasa's tourism sector allows students to tailor their music production skills towards creating memorable auditory experiences for visitors, opening up unique internship and employment opportunities within the hospitality industry.</Text>
+                    <Text size="sm">
+                      The demand for engaging digital content in Mombasa's tourism sector allows students to tailor
+                      their music production skills towards creating memorable auditory experiences for visitors,
+                      opening up unique internship and employment opportunities within the hospitality industry.
+                    </Text>
                   </Accordion.Panel>
                 </Accordion.Item>
-                <Accordion.Item key={1} value={`faq-1`}>
-                  <Accordion.Control>Are there local studios or media houses in Mombasa for practical exposure?</Accordion.Control>
+                <Accordion.Item key={1} value={'faq-1'}>
+                  <Accordion.Control>
+                    Are there local studios or media houses in Mombasa for practical exposure?
+                  </Accordion.Control>
                   <Accordion.Panel>
-                    <Text size="sm">Yes, Mombasa is home to several coastal media houses and recording studios, such as those in Nyali and Bamburi, providing ample opportunities for hands-on experience and networking within the local music industry.</Text>
+                    <Text size="sm">
+                      Yes, Mombasa is home to several coastal media houses and recording studios, such as those in Nyali
+                      and Bamburi, providing ample opportunities for hands-on experience and networking within the local
+                      music industry.
+                    </Text>
                   </Accordion.Panel>
                 </Accordion.Item>
               </Accordion>
@@ -130,7 +146,8 @@ const MusicProductionMombasaPage = () => {
                 </a>
               </Text>
               <Text mb="sm">
-                <strong>Location:</strong> Mombasa Campus (Central Location)</Text>
+                <strong>Location:</strong> Mombasa Campus (Central Location)
+              </Text>
               <Text mb="sm">
                 <strong>Campus:</strong> 25 Kenyatta Avenue, Nairobi
               </Text>

@@ -57,7 +57,9 @@ const UIUXDesignEldoretPage = () => {
         </Title>
 
         <Text size="lg" ta="center" mb="xl" c="dimmed">
-          Eldoret's vibrant startup ecosystem and its evolving agricultural technology and sports organizations are increasingly seeking UI/UX designers. With a local demand for digital skills to enhance user experiences, Eldoret offers a unique landscape for budding designers to innovate in tech, fintech, and regional media.
+          Eldoret's vibrant startup ecosystem and its evolving agricultural technology and sports organizations are
+          increasingly seeking UI/UX designers. With a local demand for digital skills to enhance user experiences,
+          Eldoret offers a unique landscape for budding designers to innovate in tech, fintech, and regional media.
         </Text>
 
         <Grid>
@@ -90,21 +92,34 @@ const UIUXDesignEldoretPage = () => {
                 </Button>
               </Card>
             </Card>
-          
+
             <Card shadow="sm" padding="lg" radius="md" withBorder mt="md">
-              <Title order={3} mb="md">Frequently Asked Questions - Eldoret Students</Title>
+              <Title order={3} mb="md">
+                Frequently Asked Questions - Eldoret Students
+              </Title>
               <Accordion>
-                
-                <Accordion.Item key={0} value={`faq-0`}>
-                  <Accordion.Control>How relevant is a UI/UX design course in Eldoret for local startups and tech companies?</Accordion.Control>
+                <Accordion.Item key={0} value={'faq-0'}>
+                  <Accordion.Control>
+                    How relevant is a UI/UX design course in Eldoret for local startups and tech companies?
+                  </Accordion.Control>
                   <Accordion.Panel>
-                    <Text size="sm">In Eldoret, the startup and tech scene is booming, with many companies prioritizing digital presence. A UI/UX design course gears you towards meeting the high demand for creating intuitive and user-friendly digital experiences, crucial for the success of these local businesses.</Text>
+                    <Text size="sm">
+                      In Eldoret, the startup and tech scene is booming, with many companies prioritizing digital
+                      presence. A UI/UX design course gears you towards meeting the high demand for creating intuitive
+                      and user-friendly digital experiences, crucial for the success of these local businesses.
+                    </Text>
                   </Accordion.Panel>
                 </Accordion.Item>
-                <Accordion.Item key={1} value={`faq-1`}>
-                  <Accordion.Control>Are there specific industries in Eldoret that are particularly in need of UI/UX designers?</Accordion.Control>
+                <Accordion.Item key={1} value={'faq-1'}>
+                  <Accordion.Control>
+                    Are there specific industries in Eldoret that are particularly in need of UI/UX designers?
+                  </Accordion.Control>
                   <Accordion.Panel>
-                    <Text size="sm">Yes, the agricultural tech sector and sports organizations in Eldoret are on the lookout for skilled UI/UX designers to enhance their digital tools and platforms, offering unique career paths beyond the traditional tech company roles.</Text>
+                    <Text size="sm">
+                      Yes, the agricultural tech sector and sports organizations in Eldoret are on the lookout for
+                      skilled UI/UX designers to enhance their digital tools and platforms, offering unique career paths
+                      beyond the traditional tech company roles.
+                    </Text>
                   </Accordion.Panel>
                 </Accordion.Item>
               </Accordion>
@@ -130,7 +145,8 @@ const UIUXDesignEldoretPage = () => {
                 </a>
               </Text>
               <Text mb="sm">
-                <strong>Location:</strong> Eldoret Campus (Central Location)</Text>
+                <strong>Location:</strong> Eldoret Campus (Central Location)
+              </Text>
               <Text mb="sm">
                 <strong>Campus:</strong> 25 Kenyatta Avenue, Nairobi
               </Text>

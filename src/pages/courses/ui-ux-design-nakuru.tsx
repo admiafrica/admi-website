@@ -57,7 +57,10 @@ const UIUXDesignNakuruPage = () => {
         </Title>
 
         <Text size="lg" ta="center" mb="xl" c="dimmed">
-          Nakuru's unique positioning as a strategic hub connecting Nairobi and Western Kenya opens unparalleled opportunities for UI/UX designers. With burgeoning tech startups, agricultural firms transitioning to digital platforms, and tourism businesses seeking to enhance online experiences, Nakuru's diverse market demands innovative UI/UX solutions tailored to a wide-ranging audience.
+          Nakuru's unique positioning as a strategic hub connecting Nairobi and Western Kenya opens unparalleled
+          opportunities for UI/UX designers. With burgeoning tech startups, agricultural firms transitioning to digital
+          platforms, and tourism businesses seeking to enhance online experiences, Nakuru's diverse market demands
+          innovative UI/UX solutions tailored to a wide-ranging audience.
         </Text>
 
         <Grid>
@@ -90,21 +93,34 @@ const UIUXDesignNakuruPage = () => {
                 </Button>
               </Card>
             </Card>
-          
+
             <Card shadow="sm" padding="lg" radius="md" withBorder mt="md">
-              <Title order={3} mb="md">Frequently Asked Questions - Nakuru Students</Title>
+              <Title order={3} mb="md">
+                Frequently Asked Questions - Nakuru Students
+              </Title>
               <Accordion>
-                
-                <Accordion.Item key={0} value={`faq-0`}>
-                  <Accordion.Control>How does Nakuru's location influence my learning experience in UI/UX design?</Accordion.Control>
+                <Accordion.Item key={0} value={'faq-0'}>
+                  <Accordion.Control>
+                    How does Nakuru's location influence my learning experience in UI/UX design?
+                  </Accordion.Control>
                   <Accordion.Panel>
-                    <Text size="sm">Nakuru's strategic location offers a unique learning canvas—bridging urban and semi-urban user experiences. This diversity prepares you for a wide range of design challenges, from urban tech startups to rural agricultural apps, enhancing your adaptability and creativity.</Text>
+                    <Text size="sm">
+                      Nakuru's strategic location offers a unique learning canvas—bridging urban and semi-urban user
+                      experiences. This diversity prepares you for a wide range of design challenges, from urban tech
+                      startups to rural agricultural apps, enhancing your adaptability and creativity.
+                    </Text>
                   </Accordion.Panel>
                 </Accordion.Item>
-                <Accordion.Item key={1} value={`faq-1`}>
-                  <Accordion.Control>Are there local career opportunities in UI/UX design after completing the course in Nakuru?</Accordion.Control>
+                <Accordion.Item key={1} value={'faq-1'}>
+                  <Accordion.Control>
+                    Are there local career opportunities in UI/UX design after completing the course in Nakuru?
+                  </Accordion.Control>
                   <Accordion.Panel>
-                    <Text size="sm">Absolutely. Nakuru's economic landscape is rich with opportunities, from manufacturing companies and tech startups to agricultural firms and tourism businesses, all in need of skilled UI/UX designers to enhance their digital interfaces and improve user experiences.</Text>
+                    <Text size="sm">
+                      Absolutely. Nakuru's economic landscape is rich with opportunities, from manufacturing companies
+                      and tech startups to agricultural firms and tourism businesses, all in need of skilled UI/UX
+                      designers to enhance their digital interfaces and improve user experiences.
+                    </Text>
                   </Accordion.Panel>
                 </Accordion.Item>
               </Accordion>
@@ -130,7 +146,8 @@ const UIUXDesignNakuruPage = () => {
                 </a>
               </Text>
               <Text mb="sm">
-                <strong>Location:</strong> Nakuru Campus (Central Location)</Text>
+                <strong>Location:</strong> Nakuru Campus (Central Location)
+              </Text>
               <Text mb="sm">
                 <strong>Campus:</strong> 25 Kenyatta Avenue, Nairobi
               </Text>

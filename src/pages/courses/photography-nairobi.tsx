@@ -57,7 +57,10 @@ const PhotographyNairobiPage = () => {
         </Title>
 
         <Text size="lg" ta="center" mb="xl" c="dimmed">
-          Nairobi's vibrant culture and bustling urban landscapes provide an unmatched canvas for photographers. With the city's thriving fashion scene, numerous events, and a growing real estate market, Nairobi offers diverse opportunities for commercial, portrait, and event photography. The proximity to wildlife and scenic landscapes just outside the city further enhances the potential for tourism and nature photography.
+          Nairobi's vibrant culture and bustling urban landscapes provide an unmatched canvas for photographers. With
+          the city's thriving fashion scene, numerous events, and a growing real estate market, Nairobi offers diverse
+          opportunities for commercial, portrait, and event photography. The proximity to wildlife and scenic landscapes
+          just outside the city further enhances the potential for tourism and nature photography.
         </Text>
 
         <Grid>
@@ -90,21 +93,36 @@ const PhotographyNairobiPage = () => {
                 </Button>
               </Card>
             </Card>
-          
+
             <Card shadow="sm" padding="lg" radius="md" withBorder mt="md">
-              <Title order={3} mb="md">Frequently Asked Questions - Nairobi Students</Title>
+              <Title order={3} mb="md">
+                Frequently Asked Questions - Nairobi Students
+              </Title>
               <Accordion>
-                
-                <Accordion.Item key={0} value={`faq-0`}>
-                  <Accordion.Control>How does Nairobi's dynamic environment enhance my photography learning experience?</Accordion.Control>
+                <Accordion.Item key={0} value={'faq-0'}>
+                  <Accordion.Control>
+                    How does Nairobi's dynamic environment enhance my photography learning experience?
+                  </Accordion.Control>
                   <Accordion.Panel>
-                    <Text size="sm">Nairobi's unique blend of urban and natural landscapes provides a rich learning environment. You'll have the opportunity to practice with a variety of subjects, from cityscapes and bustling street life in areas like Eastlands and South B/C, to serene natural settings, enhancing your versatility and creativity as a photographer.</Text>
+                    <Text size="sm">
+                      Nairobi's unique blend of urban and natural landscapes provides a rich learning environment.
+                      You'll have the opportunity to practice with a variety of subjects, from cityscapes and bustling
+                      street life in areas like Eastlands and South B/C, to serene natural settings, enhancing your
+                      versatility and creativity as a photographer.
+                    </Text>
                   </Accordion.Panel>
                 </Accordion.Item>
-                <Accordion.Item key={1} value={`faq-1`}>
-                  <Accordion.Control>What kind of photography career opportunities can I expect in Nairobi?</Accordion.Control>
+                <Accordion.Item key={1} value={'faq-1'}>
+                  <Accordion.Control>
+                    What kind of photography career opportunities can I expect in Nairobi?
+                  </Accordion.Control>
                   <Accordion.Panel>
-                    <Text size="sm">Nairobi, being Kenya's largest creative job market, offers extensive opportunities in media houses like Nation Media Group and Royal Media Services, fashion photography, events coverage, and the booming real estate market. The city's growing interest in drone photography and virtual tours also opens up new avenues for photographers.</Text>
+                    <Text size="sm">
+                      Nairobi, being Kenya's largest creative job market, offers extensive opportunities in media houses
+                      like Nation Media Group and Royal Media Services, fashion photography, events coverage, and the
+                      booming real estate market. The city's growing interest in drone photography and virtual tours
+                      also opens up new avenues for photographers.
+                    </Text>
                   </Accordion.Panel>
                 </Accordion.Item>
               </Accordion>
@@ -130,7 +148,8 @@ const PhotographyNairobiPage = () => {
                 </a>
               </Text>
               <Text mb="sm">
-                <strong>Location:</strong> Nairobi Campus (Central Location)</Text>
+                <strong>Location:</strong> Nairobi Campus (Central Location)
+              </Text>
               <Text mb="sm">
                 <strong>Campus:</strong> 25 Kenyatta Avenue, Nairobi
               </Text>

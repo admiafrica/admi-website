@@ -126,21 +126,34 @@ const DigitalMarketingKisumuPage = () => {
                 </Accordion.Item>
               </Accordion>
             </Card>
-          
+
             <Card shadow="sm" padding="lg" radius="md" withBorder mt="md">
-              <Title order={3} mb="md">Frequently Asked Questions - Kisumu Students</Title>
+              <Title order={3} mb="md">
+                Frequently Asked Questions - Kisumu Students
+              </Title>
               <Accordion>
-                
-                <Accordion.Item key={0} value={`faq-0`}>
-                  <Accordion.Control>How relevant is a digital marketing course in Kisumu's tech and agricultural sectors?</Accordion.Control>
+                <Accordion.Item key={0} value={'faq-0'}>
+                  <Accordion.Control>
+                    How relevant is a digital marketing course in Kisumu's tech and agricultural sectors?
+                  </Accordion.Control>
                   <Accordion.Panel>
-                    <Text size="sm">Extremely relevant. Kisumu's growing tech and agricultural sectors are increasingly leveraging digital marketing to scale their operations. Learning cutting-edge skills such as AI-powered marketing and analytics positions you as a valuable asset within these industries.</Text>
+                    <Text size="sm">
+                      Extremely relevant. Kisumu's growing tech and agricultural sectors are increasingly leveraging
+                      digital marketing to scale their operations. Learning cutting-edge skills such as AI-powered
+                      marketing and analytics positions you as a valuable asset within these industries.
+                    </Text>
                   </Accordion.Panel>
                 </Accordion.Item>
-                <Accordion.Item key={1} value={`faq-1`}>
-                  <Accordion.Control>Are there ample career opportunities in Kisumu for digital marketing professionals?</Accordion.Control>
+                <Accordion.Item key={1} value={'faq-1'}>
+                  <Accordion.Control>
+                    Are there ample career opportunities in Kisumu for digital marketing professionals?
+                  </Accordion.Control>
                   <Accordion.Panel>
-                    <Text size="sm">Yes. With major employers like Lake Region media, numerous agri-tech firms, and international NGOs, Kisumu offers a rich landscape for digital marketing careers. The local emergence of e-commerce and tech startups further amplifies career options.</Text>
+                    <Text size="sm">
+                      Yes. With major employers like Lake Region media, numerous agri-tech firms, and international
+                      NGOs, Kisumu offers a rich landscape for digital marketing careers. The local emergence of
+                      e-commerce and tech startups further amplifies career options.
+                    </Text>
                   </Accordion.Panel>
                 </Accordion.Item>
               </Accordion>
@@ -160,7 +173,8 @@ const DigitalMarketingKisumuPage = () => {
                 <strong>Fee:</strong> <a href="https://admi.africa/student-support#fees">View current fees</a>
               </Text>
               <Text mb="sm">
-                <strong>Location:</strong> Kisumu Campus (Central Location)</Text>
+                <strong>Location:</strong> Kisumu Campus (Central Location)
+              </Text>
               <Button component="a" href="/enquiry" fullWidth mt="md" color="blue">
                 Apply Now
               </Button>

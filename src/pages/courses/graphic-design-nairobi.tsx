@@ -169,21 +169,32 @@ const GraphicDesignNairobiPage = () => {
                 </Accordion.Item>
               </Accordion>
             </Card>
-          
+
             <Card shadow="sm" padding="lg" radius="md" withBorder mt="md">
-              <Title order={3} mb="md">Frequently Asked Questions - Nairobi Students</Title>
+              <Title order={3} mb="md">
+                Frequently Asked Questions - Nairobi Students
+              </Title>
               <Accordion>
-                
-                <Accordion.Item key={0} value={`faq-0`}>
+                <Accordion.Item key={0} value={'faq-0'}>
                   <Accordion.Control>How does Nairobi's tech boom impact graphic design students?</Accordion.Control>
                   <Accordion.Panel>
-                    <Text size="sm">Nairobi's tech boom offers graphic design students unique opportunities to engage with cutting-edge digital design trends and work alongside leading tech companies and startups, making it an ideal environment for learning and innovation.</Text>
+                    <Text size="sm">
+                      Nairobi's tech boom offers graphic design students unique opportunities to engage with
+                      cutting-edge digital design trends and work alongside leading tech companies and startups, making
+                      it an ideal environment for learning and innovation.
+                    </Text>
                   </Accordion.Panel>
                 </Accordion.Item>
-                <Accordion.Item key={1} value={`faq-1`}>
-                  <Accordion.Control>Are there opportunities for graphic designers in Nairobi's advertising agencies?</Accordion.Control>
+                <Accordion.Item key={1} value={'faq-1'}>
+                  <Accordion.Control>
+                    Are there opportunities for graphic designers in Nairobi's advertising agencies?
+                  </Accordion.Control>
                   <Accordion.Panel>
-                    <Text size="sm">Absolutely. Nairobi's dynamic advertising scene is on the lookout for skilled graphic designers with fresh ideas, especially those proficient in digital-first design and motion graphics, to cater to an increasingly digital marketplace.</Text>
+                    <Text size="sm">
+                      Absolutely. Nairobi's dynamic advertising scene is on the lookout for skilled graphic designers
+                      with fresh ideas, especially those proficient in digital-first design and motion graphics, to
+                      cater to an increasingly digital marketplace.
+                    </Text>
                   </Accordion.Panel>
                 </Accordion.Item>
               </Accordion>
@@ -203,7 +214,8 @@ const GraphicDesignNairobiPage = () => {
                 <strong>Fee:</strong> <a href="https://admi.africa/student-support#fees">View current fees</a>
               </Text>
               <Text mb="sm">
-                <strong>Location:</strong> Nairobi Campus (Central Location)</Text>
+                <strong>Location:</strong> Nairobi Campus (Central Location)
+              </Text>
               <Button component="a" href="/enquiry" fullWidth mt="md" color="blue">
                 Apply Now
               </Button>
