@@ -1,0 +1,41 @@
+{
+  "name": "admi-blog-generation-serverless",
+  "version": "1.0.0",
+  "description": "Serverless blog generation service for ADMI",
+  "main": "handlers/blogGeneration.js",
+  "scripts": {
+    "deploy": "serverless deploy",
+    "deploy:dev": "serverless deploy --stage dev",
+    "deploy:staging": "serverless deploy --stage staging", 
+    "deploy:prod": "serverless deploy --stage prod",
+    "remove": "serverless remove",
+    "logs:daily": "serverless logs -f dailyBlogGeneration",
+    "logs:weekly": "serverless logs -f weeklyBlogGeneration",
+    "invoke:daily": "serverless invoke -f dailyBlogGeneration",
+    "invoke:weekly": "serverless invoke -f weeklyBlogGeneration",
+    "invoke:test": "serverless invoke -f testBlogGeneration",
+    "offline": "serverless offline",
+    "test": "echo \"No tests specified\" && exit 0"
+  },
+  "dependencies": {
+    "node-fetch": "^3.3.2"
+  },
+  "devDependencies": {
+    "serverless": "^3.38.0",
+    "serverless-webpack": "^5.13.0",
+    "serverless-dotenv-plugin": "^6.0.0",
+    "serverless-offline": "^13.3.0",
+    "webpack": "^5.89.0",
+    "webpack-node-externals": "^3.0.0"
+  },
+  "keywords": [
+    "serverless",
+    "aws",
+    "lambda",
+    "blog",
+    "contentful",
+    "automation"
+  ],
+  "author": "ADMI Tech Team",
+  "license": "MIT"
+}

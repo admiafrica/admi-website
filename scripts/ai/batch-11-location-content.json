@@ -1,0 +1,79 @@
+{
+  "entertainment-business": {
+    "nairobi": {
+      "localOpportunity": "Nairobi stands as the heart of Kenya's creative pulse, offering unmatched opportunities in entertainment business. Its vibrant cultural scene and proximity to major media houses like Safaricom, Nation Media Group, and Royal Media Services, provide a rich playground for those skilled in event management, talent management, and digital marketing. The city's dynamic mix of digital and live events, alongside a growing influencer scene, makes it an ideal location for practical learning and immediate application in the entertainment industry.",
+      "transportSolution": "Navigate Nairobi's bustling scene with ease, thanks to reliable matatu and bus connections from all major estates, ensuring timely arrival to classes and internships.",
+      "faqs": [
+        {
+          "question": "How does Nairobi's entertainment scene enhance my learning experience in entertainment business?",
+          "answer": "Nairobi's diverse entertainment scene, from thriving digital events to traditional cultural showcases, offers a live laboratory for students. You can directly apply your coursework in real-world scenarios, network with industry leaders at events in CBD, Westlands, and beyond, and gain firsthand experience in one of Africa's fastest-growing entertainment markets."
+        },
+        {
+          "question": "What are the career prospects in Nairobi after completing this course?",
+          "answer": "Graduates find themselves in a city buzzing with opportunities, from launching careers at top media houses like Nation Media Group to innovating in digital event spaces. Nairobi's unique position as a creative hub not only in Kenya but in East Africa opens doors to roles in event management, talent scouting, and digital marketing within the entertainment sector."
+        }
+      ],
+      "localSuccess": "Nairobi's own H_art the Band, who transitioned from local talent to international stars, exemplify the opportunities awaiting in Nairobi's entertainment scene."
+    },
+    "mombasa": {
+      "localOpportunity": "Mombasa presents a unique blend of cultural heritage and modern tourism, offering vast opportunities in entertainment-business. The city's booming tourism sector and growing demand for digital content creation in the tourism industry provide a fertile ground for event management, talent management, and innovative digital marketing strategies tailored for entertainment companies targeting both local and international audiences.",
+      "transportSolution": "For Mombasa residents, commuting is made easy with daily direct flights and SGR train services to Nairobi, connecting you seamlessly to regional opportunities.",
+      "faqs": [
+        {
+          "question": "How relevant is the entertainment-business course to Mombasa’s tourism and hospitality sector?",
+          "answer": "This course is highly relevant to Mombasa’s market, equipping students with skills in event and talent management, crucial for enhancing the city’s tourism and hospitality offerings. It also covers digital marketing and content monetization, key to tapping into the digital transformation within the tourism sector."
+        },
+        {
+          "question": "Are there ample career opportunities in Mombasa for entertainment-business graduates?",
+          "answer": "Absolutely. Mombasa's entertainment sector is vibrant, with opportunities in coastal media houses, event agencies, and within the tourism and hospitality industry seeking professionals in event management, marketing, and digital content production. The city's unique cultural and tourism landscape offers a dynamic environment for entertainment-business careers."
+        }
+      ],
+      "localSuccess": "A Mombasa-based event agency recently gained international acclaim for their innovative digital events, showcasing the city's growing influence in the digital entertainment space."
+    },
+    "kisumu": {
+      "localOpportunity": "Kisumu, a burgeoning tech hub in Western Kenya, offers unique opportunities for those in the entertainment-business course. With the city's emerging tech scene and less competition for creative roles, students can pioneer innovative entertainment technologies, digital events, and influencer management strategies tailored to the local market. The presence of Lake Region media and various international NGOs provides a ripe environment for event marketing and talent management ventures.",
+      "transportSolution": "With daily buses and flights linking Kisumu to Nairobi, students and professionals can easily access national events, workshops, and industry meetings, fostering nationwide networking.",
+      "faqs": [
+        {
+          "question": "How does Kisumu's emerging tech scene benefit my entertainment-business studies?",
+          "answer": "Kisumu's tech scene fosters a unique learning environment, enabling you to integrate cutting-edge technologies into entertainment and event management. This positions you at the forefront of digital events and content monetization in Western Kenya."
+        },
+        {
+          "question": "Are there ample career opportunities in Kisumu for entertainment-business graduates?",
+          "answer": "Yes, Kisumu offers growing opportunities in the entertainment sector, especially within Lake Region media houses, event agencies, and with agricultural tech firms and NGOs needing event and talent management. The city's tech evolution also opens doors to creating content and managing digital platforms."
+        }
+      ],
+      "localSuccess": "A Kisumu-based event agency recently gained nationwide recognition for seamlessly integrating digital platforms in traditional events, showcasing local talents."
+    },
+    "nakuru": {
+      "localOpportunity": "Nakuru, with its rich blend of manufacturing, agriculture, and burgeoning tourism sectors, offers a unique landscape for entertainment-business students. Its strategic location, serving both Nairobi and Western Kenya, provides an unrivaled platform for event management, talent discovery, and content monetization within the Rift Valley's vibrant cultural scene.",
+      "transportSolution": "Leveraging Nakuru's efficient transport network, students can easily commute from Nairobi in just 2 hours via highway, complemented by regular shuttle services, ensuring seamless access to campus and local industry events.",
+      "faqs": [
+        {
+          "question": "How does Nakuru's strategic location benefit my entertainment-business studies?",
+          "answer": "Studying in Nakuru places you at the crossroads of the Kenyan entertainment industry, with unique access to both the Nairobi market and the untapped potential of Western Kenya. This positions you perfectly for practical learning and networking within the industry's key areas."
+        },
+        {
+          "question": "Are there local firms in Nakuru where I can intern or work after completing my course?",
+          "answer": "Absolutely. Nakuru is home to dynamic sectors including tourism businesses and local media houses that are always on the lookout for fresh talent in event management, digital marketing, and content production. The city's growth in digital events and influencer management also opens up new career paths."
+        }
+      ],
+      "localSuccess": "Nakuru's entertainment scene recently celebrated the Rift Valley Film Festival, showcasing local talent and production skills, highlighting the area's growing industry potential."
+    },
+    "eldoret": {
+      "localOpportunity": "Eldoret's burgeoning startup ecosystem, especially in digital platforms, creates an ideal backdrop for entertainment-business courses. With a focus on sports and agricultural tech, uniquely positioned for events and talent management within these sectors, Eldoret offers a fertile ground for digital events and influencer collaborations.",
+      "transportSolution": "For students in Eldoret, reaching Nairobi for additional networking or events is convenient via Eldoret International Airport or the A104 road, ensuring seamless travel for opportunities.",
+      "faqs": [
+        {
+          "question": "How does Eldoret's startup ecosystem influence the entertainment-business course?",
+          "answer": "Eldoret's growing startup scene, particularly in tech and sports, enriches the course with real-world applications in digital marketing, event management, and content monetization, tapping into the local demand for digital skills."
+        },
+        {
+          "question": "What are the local career opportunities in Eldoret after completing the entertainment-business course?",
+          "answer": "Graduates can leverage opportunities in the region's expanding media houses, sports organizations, and the vibrant event scene, including agricultural expos and cultural festivals, for careers in marketing, production, and talent management."
+        }
+      ],
+      "localSuccess": "A recent graduate spearheaded the digital marketing campaign for Eldoret's prominent sports event, showcasing the practical impact of such courses in the local industry."
+    }
+  }
+}

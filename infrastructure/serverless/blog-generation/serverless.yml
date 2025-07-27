@@ -1,0 +1,150 @@
+service: admi-blog-generation
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: us-east-1
+  stage: ${opt:stage, 'dev'}
+  timeout: 900 # 15 minutes for blog generation
+  memorySize: 512
+  environment:
+    ADMI_CONTENTFUL_SPACE_ID: ${env:ADMI_CONTENTFUL_SPACE_ID}
+    ADMI_CONTENTFUL_ACCESS_TOKEN: ${env:ADMI_CONTENTFUL_ACCESS_TOKEN}
+    ADMI_CONTENTFUL_MANAGEMENT_TOKEN: ${env:ADMI_CONTENTFUL_MANAGEMENT_TOKEN}
+    ADMI_CONTENTFUL_ENVIRONMENT: ${env:ADMI_CONTENTFUL_ENVIRONMENT}
+    OPENAI_API_KEY: ${env:OPENAI_API_KEY}
+    BLOG_GENERATION_WEBHOOK_URL: ${env:BLOG_GENERATION_WEBHOOK_URL, ''}
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - logs:CreateLogGroup
+            - logs:CreateLogStream
+            - logs:PutLogEvents
+          Resource: arn:aws:logs:*:*:*
+        - Effect: Allow
+          Action:
+            - ssm:GetParameter
+            - ssm:GetParameters
+          Resource: arn:aws:ssm:${self:provider.region}:*:parameter/admi/blog/*
+
+functions:
+  dailyBlogGeneration:
+    handler: handlers/blogGeneration.daily
+    description: Generate daily blog articles (2 articles)
+    events:
+      - schedule:
+          rate: cron(0 9 * * ? *)  # Daily at 9:00 AM UTC
+          enabled: true
+          input:
+            type: daily
+            count: 2
+    reservedConcurrency: 1
+
+  weeklyBlogGeneration:
+    handler: handlers/blogGeneration.weekly
+    description: Generate weekly blog articles (7 articles)
+    events:
+      - schedule:
+          rate: cron(0 10 ? * SUN *)  # Weekly on Sunday at 10:00 AM UTC
+          enabled: true
+          input:
+            type: weekly
+            count: 7
+    reservedConcurrency: 1
+
+  testBlogGeneration:
+    handler: handlers/blogGeneration.test
+    description: Test blog generation function (manual trigger)
+    events:
+      - http:
+          path: /test-blog-generation
+          method: post
+          cors: true
+
+  blogStats:
+    handler: handlers/blogGeneration.stats
+    description: Get blog generation statistics
+    events:
+      - http:
+          path: /blog-stats
+          method: get
+          cors: true
+
+plugins:
+  - serverless-webpack
+  - serverless-dotenv-plugin
+  - serverless-offline
+
+custom:
+  webpack:
+    webpackConfig: webpack.config.js
+    includeModules: true
+    packager: npm
+  dotenv:
+    exclude:
+      - AWS_ACCESS_KEY_ID
+      - AWS_SECRET_ACCESS_KEY
+      - AWS_SESSION_TOKEN
+
+package:
+  exclude:
+    - .git/**
+    - .env.example
+    - README.md
+    - tests/**
+    - node_modules/aws-sdk/**
+
+resources:
+  Resources:
+    BlogGenerationLogGroup:
+      Type: AWS::Logs::LogGroup
+      Properties:
+        LogGroupName: /aws/lambda/${self:service}-${self:provider.stage}-dailyBlogGeneration
+        RetentionInDays: 30
+
+    WeeklyBlogGenerationLogGroup:
+      Type: AWS::Logs::LogGroup
+      Properties:
+        LogGroupName: /aws/lambda/${self:service}-${self:provider.stage}-weeklyBlogGeneration
+        RetentionInDays: 30
+
+    BlogGenerationRole:
+      Type: AWS::IAM::Role
+      Properties:
+        RoleName: ${self:service}-${self:provider.stage}-blog-role
+        AssumeRolePolicyDocument:
+          Version: '2012-10-17'
+          Statement:
+            - Effect: Allow
+              Principal:
+                Service:
+                  - lambda.amazonaws.com
+              Action: sts:AssumeRole
+        Policies:
+          - PolicyName: BlogGenerationPolicy
+            PolicyDocument:
+              Version: '2012-10-17'
+              Statement:
+                - Effect: Allow
+                  Action:
+                    - logs:CreateLogGroup
+                    - logs:CreateLogStream
+                    - logs:PutLogEvents
+                  Resource: arn:aws:logs:*:*:*
+
+  Outputs:
+    DailyBlogFunctionArn:
+      Description: ARN of the daily blog generation function
+      Value:
+        Fn::GetAtt: [DailyBlogGenerationLambdaFunction, Arn]
+      Export:
+        Name: ${self:service}-${self:provider.stage}-daily-blog-arn
+
+    WeeklyBlogFunctionArn:
+      Description: ARN of the weekly blog generation function
+      Value:
+        Fn::GetAtt: [WeeklyBlogGenerationLambdaFunction, Arn]
+      Export:
+        Name: ${self:service}-${self:provider.stage}-weekly-blog-arn
