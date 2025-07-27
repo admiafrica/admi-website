@@ -38,7 +38,7 @@ const CACHE_FILE_PATH =
   process.env.NODE_ENV === 'production'
     ? path.join('/tmp', 'admi-videos-cache.json')
     : path.join(process.cwd(), 'data', 'admi-videos-cache.json')
-const CACHE_DURATION = 72 * 60 * 60 * 1000 // 72 hours in milliseconds (extended temporarily)
+const CACHE_DURATION = 7 * 24 * 60 * 60 * 1000 // 7 days in milliseconds (168 hours)
 
 // Ensure cache directory exists
 function ensureCacheDirectory() {
