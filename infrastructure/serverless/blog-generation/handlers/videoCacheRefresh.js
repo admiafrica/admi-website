@@ -12,19 +12,15 @@ exports.refresh = async (event) => {
   const cronSecret = process.env.CRON_SECRET || 'admi-cron-secret-2025'
 
   try {
-    // Import fetch dynamically for Node.js 18
-    const fetch = (await import('node-fetch')).default
-
     console.log(`📡 Calling video cache refresh endpoint: ${appUrl}`)
 
     const response = await fetch(`${appUrl}/api/cron/refresh-video-cache`, {
-      method: 'POST',
+      method: 'GET', // Changed from POST to GET to match the API endpoint
       headers: {
-        'Authorization': `Bearer ${cronSecret}`,
+        Authorization: `Bearer ${cronSecret}`,
         'Content-Type': 'application/json',
         'User-Agent': 'ADMI-Lambda-VideoCacheRefresh/1.0'
-      },
-      timeout: 30000 // 30 second timeout
+      }
     })
 
     if (!response.ok) {
@@ -32,7 +28,7 @@ exports.refresh = async (event) => {
     }
 
     const result = await response.json()
-    
+
     console.log('✅ Video cache refresh completed successfully')
     console.log('Result:', JSON.stringify(result, null, 2))
 
@@ -55,7 +51,6 @@ exports.refresh = async (event) => {
         cacheUpdated: result.cacheUpdated || false
       })
     }
-
   } catch (error) {
     console.error('❌ Video cache refresh failed:', error)
 
@@ -86,10 +81,8 @@ async function sendNotification(type, result) {
   if (!process.env.BLOG_GENERATION_WEBHOOK_URL) return
 
   try {
-    const fetch = (await import('node-fetch')).default
-
     const payload = {
-      text: `✅ Video Cache Refresh Complete`,
+      text: '✅ Video Cache Refresh Complete',
       attachments: [
         {
           color: 'good',
@@ -148,10 +141,8 @@ async function sendErrorNotification(type, error) {
   if (!process.env.BLOG_GENERATION_WEBHOOK_URL) return
 
   try {
-    const fetch = (await import('node-fetch')).default
-
     const payload = {
-      text: `❌ Video Cache Refresh Failed`,
+      text: '❌ Video Cache Refresh Failed',
       attachments: [
         {
           color: 'danger',

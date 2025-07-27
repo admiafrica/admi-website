@@ -675,11 +675,22 @@ export const getServerSideProps = async () => {
         console.log('✅ SSR: Fresh data fetched and cached')
       } catch (error) {
         console.error('❌ SSR: Error fetching videos:', error)
-        return {
-          props: {
-            allVideos: [],
-            initialDisplay: [],
-            channelInfo: null
+
+        // Fallback: Try to use expired cache if available
+        const { readVideoCacheRaw } = await import('@/utils/video-cache')
+        const expiredCache = readVideoCacheRaw()
+
+        if (expiredCache) {
+          console.log('🔄 SSR: Using expired cache as fallback')
+          cache = expiredCache
+        } else {
+          console.log('💥 SSR: No cache available at all')
+          return {
+            props: {
+              allVideos: [],
+              initialDisplay: [],
+              channelInfo: null
+            }
           }
         }
       }

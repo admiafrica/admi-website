@@ -11,8 +11,10 @@
     "remove": "serverless remove",
     "logs:daily": "serverless logs -f dailyBlogGeneration",
     "logs:weekly": "serverless logs -f weeklyBlogGeneration",
+    "logs:cache": "serverless logs -f videoCacheRefresh",
     "invoke:daily": "serverless invoke -f dailyBlogGeneration",
     "invoke:weekly": "serverless invoke -f weeklyBlogGeneration",
+    "invoke:cache": "serverless invoke -f videoCacheRefresh",
     "invoke:test": "serverless invoke -f testBlogGeneration",
     "offline": "serverless offline",
     "test": "echo \"No tests specified\" && exit 0"
