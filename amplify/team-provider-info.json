@@ -1,0 +1,68 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-admi-website-dev-authRole",
+      "UnauthRoleName": "amplify-admi-website-dev-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::123456789012:role/amplify-admi-website-dev-authRole",
+      "UnauthRoleArn": "arn:aws:iam::123456789012:role/amplify-admi-website-dev-unauthRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-admi-website-dev-deployment",
+      "UnauthRolePolicy": "amplify-admi-website-dev-unauthRolePolicy",
+      "StackName": "amplify-admi-website-dev",
+      "StackId": "arn:aws:cloudformation:us-east-1:123456789012:stack/amplify-admi-website-dev/uuid",
+      "AmplifyAppId": "d2yh9rjzagq5ao"
+    },
+    "categories": {
+      "function": {
+        "admiBlogGeneration": {
+          "deploymentBucketName": "amplify-admi-website-dev-deployment",
+          "s3Key": "amplify-builds/admiBlogGeneration-latest-build.zip"
+        }
+      }
+    }
+  },
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-admi-website-staging-authRole",
+      "UnauthRoleName": "amplify-admi-website-staging-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::123456789012:role/amplify-admi-website-staging-authRole",
+      "UnauthRoleArn": "arn:aws:iam::123456789012:role/amplify-admi-website-staging-unauthRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-admi-website-staging-deployment",
+      "UnauthRolePolicy": "amplify-admi-website-staging-unauthRolePolicy",
+      "StackName": "amplify-admi-website-staging",
+      "StackId": "arn:aws:cloudformation:us-east-1:123456789012:stack/amplify-admi-website-staging/uuid",
+      "AmplifyAppId": "d2yh9rjzagq5ao"
+    },
+    "categories": {
+      "function": {
+        "admiBlogGeneration": {
+          "deploymentBucketName": "amplify-admi-website-staging-deployment",
+          "s3Key": "amplify-builds/admiBlogGeneration-latest-build.zip"
+        }
+      }
+    }
+  },
+  "main": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-admi-website-main-authRole",
+      "UnauthRoleName": "amplify-admi-website-main-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::123456789012:role/amplify-admi-website-main-authRole",
+      "UnauthRoleArn": "arn:aws:iam::123456789012:role/amplify-admi-website-main-unauthRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-admi-website-main-deployment",
+      "UnauthRolePolicy": "amplify-admi-website-main-unauthRolePolicy",
+      "StackName": "amplify-admi-website-main",
+      "StackId": "arn:aws:cloudformation:us-east-1:123456789012:stack/amplify-admi-website-main/uuid",
+      "AmplifyAppId": "d2yh9rjzagq5ao"
+    },
+    "categories": {
+      "function": {
+        "admiBlogGeneration": {
+          "deploymentBucketName": "amplify-admi-website-main-deployment", 
+          "s3Key": "amplify-builds/admiBlogGeneration-latest-build.zip"
+        }
+      }
+    }
+  }
+}

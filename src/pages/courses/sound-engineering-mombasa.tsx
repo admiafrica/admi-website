@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Title, Text, Button, Grid, Card, List } from '@mantine/core'
+import { Container, Title, Text, Button, Grid, Card, List, Accordion } from '@mantine/core'
 import PageSEO from '../../components/shared/v3/PageSEO'
 
 const SoundEngineeringMombasaPage = () => {
@@ -57,7 +57,7 @@ const SoundEngineeringMombasaPage = () => {
         </Title>
 
         <Text size="lg" ta="center" mb="xl" c="dimmed">
-          Professional Sound Engineering training in mombasa with industry experts and guaranteed job placement support
+          Mombasa's vibrant tourism sector and its burgeoning media houses offer unique opportunities for sound engineers. The city's demand for high-quality digital content in its hospitality and tourism industries, coupled with an increasing interest in immersive audio experiences, positions Mombasa as a thriving hub for audio professionals specializing in live sound, studio recording, and sound design.
         </Text>
 
         <Grid>
@@ -90,6 +90,25 @@ const SoundEngineeringMombasaPage = () => {
                 </Button>
               </Card>
             </Card>
+          
+            <Card shadow="sm" padding="lg" radius="md" withBorder mt="md">
+              <Title order={3} mb="md">Frequently Asked Questions - Mombasa Students</Title>
+              <Accordion>
+                
+                <Accordion.Item key={0} value={`faq-0`}>
+                  <Accordion.Control>Can I find internship opportunities in sound engineering within Mombasa’s tourism sector?</Accordion.Control>
+                  <Accordion.Panel>
+                    <Text size="sm">Absolutely! Mombasa's booming tourism industry offers numerous internship opportunities for sound engineering students, especially within hospitality brands looking to enhance their on-site entertainment and immersive tour experiences through superior sound design.</Text>
+                  </Accordion.Panel>
+                </Accordion.Item>
+                <Accordion.Item key={1} value={`faq-1`}>
+                  <Accordion.Control>Are there local media houses in Mombasa that employ sound engineers?</Accordion.Control>
+                  <Accordion.Panel>
+                    <Text size="sm">Yes, Mombasa is home to several coastal media houses that are consistently on the lookout for talented sound engineers to support broadcast audio, podcast engineering, and streaming quality improvements in line with current trends.</Text>
+                  </Accordion.Panel>
+                </Accordion.Item>
+              </Accordion>
+            </Card>
           </Grid.Col>
 
           <Grid.Col span={{ base: 12, md: 4 }}>
@@ -111,8 +130,7 @@ const SoundEngineeringMombasaPage = () => {
                 </a>
               </Text>
               <Text mb="sm">
-                <strong>Location:</strong> mombasa, Coast
-              </Text>
+                <strong>Location:</strong> Mombasa Campus (Central Location)</Text>
               <Text mb="sm">
                 <strong>Campus:</strong> 25 Kenyatta Avenue, Nairobi
               </Text>

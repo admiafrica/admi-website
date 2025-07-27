@@ -1,0 +1,8 @@
+{
+  "OpenAIApiKey": "{{resolve:ssm:/admi/openai/api-key}}",
+  "ContentfulSpaceId": "{{resolve:ssm:/admi/contentful/space-id}}",
+  "ContentfulAccessToken": "{{resolve:ssm:/admi/contentful/access-token}}",
+  "ContentfulManagementToken": "{{resolve:ssm:/admi/contentful/management-token}}",
+  "ContentfulEnvironment": "master",
+  "WebhookUrl": "{{resolve:ssm:/admi/webhook/blog-notifications}}"
+}

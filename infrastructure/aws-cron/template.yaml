@@ -1,0 +1,51 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: 'ADMI Video Cache Auto-Refresh - Daily Lambda Function'
+
+Parameters:
+  AppUrl:
+    Type: String
+    Description: 'The URL of your Amplify app'
+    Default: 'https://main.d2yh9rjzagq5ao.amplifyapp.com'
+  CronSecret:
+    Type: String
+    Description: 'Secret for authenticating cron requests'
+    NoEcho: true
+    Default: 'admi-cron-secret-2025'
+
+Resources:
+  VideoCacheRefreshFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: admi-video-cache-refresh
+      CodeUri: src/
+      Handler: refresh-handler.handler
+      Runtime: nodejs18.x
+      Timeout: 300
+      MemorySize: 512
+      Environment:
+        Variables:
+          APP_URL: !Ref AppUrl
+          CRON_SECRET: !Ref CronSecret
+      Events:
+        DailyRefresh:
+          Type: Schedule
+          Properties:
+            Schedule: 'cron(0 1 * * ? *)'  # 1 AM daily (UTC)
+            Description: 'Refresh video cache daily at 1 AM'
+            Enabled: true
+
+  # CloudWatch Log Group for the function
+  VideoCacheLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Sub '/aws/lambda/${VideoCacheRefreshFunction}'
+      RetentionInDays: 30
+
+Outputs:
+  FunctionArn:
+    Description: 'Lambda Function ARN'
+    Value: !GetAtt VideoCacheRefreshFunction.Arn
+  LogGroup:
+    Description: 'CloudWatch Log Group'
+    Value: !Ref VideoCacheLogGroup

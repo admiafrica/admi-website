@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Title, Text, Button, Grid, Card, List } from '@mantine/core'
+import { Container, Title, Text, Button, Grid, Card, List, Accordion } from '@mantine/core'
 import PageSEO from '../../components/shared/v3/PageSEO'
 
 const EntertainmentBusinessMombasaPage = () => {
@@ -91,6 +91,25 @@ const EntertainmentBusinessMombasaPage = () => {
                 </Button>
               </Card>
             </Card>
+          
+            <Card shadow="sm" padding="lg" radius="md" withBorder mt="md">
+              <Title order={3} mb="md">Frequently Asked Questions - Mombasa Students</Title>
+              <Accordion>
+                
+                <Accordion.Item key={0} value={`faq-0`}>
+                  <Accordion.Control>How relevant is the entertainment-business course to Mombasa’s tourism and hospitality sector?</Accordion.Control>
+                  <Accordion.Panel>
+                    <Text size="sm">This course is highly relevant to Mombasa’s market, equipping students with skills in event and talent management, crucial for enhancing the city’s tourism and hospitality offerings. It also covers digital marketing and content monetization, key to tapping into the digital transformation within the tourism sector.</Text>
+                  </Accordion.Panel>
+                </Accordion.Item>
+                <Accordion.Item key={1} value={`faq-1`}>
+                  <Accordion.Control>Are there ample career opportunities in Mombasa for entertainment-business graduates?</Accordion.Control>
+                  <Accordion.Panel>
+                    <Text size="sm">Absolutely. Mombasa's entertainment sector is vibrant, with opportunities in coastal media houses, event agencies, and within the tourism and hospitality industry seeking professionals in event management, marketing, and digital content production. The city's unique cultural and tourism landscape offers a dynamic environment for entertainment-business careers.</Text>
+                  </Accordion.Panel>
+                </Accordion.Item>
+              </Accordion>
+            </Card>
           </Grid.Col>
 
           <Grid.Col span={{ base: 12, md: 4 }}>
@@ -112,8 +131,7 @@ const EntertainmentBusinessMombasaPage = () => {
                 </a>
               </Text>
               <Text mb="sm">
-                <strong>Location:</strong> mombasa, Coast
-              </Text>
+                <strong>Location:</strong> Mombasa Campus (Central Location)</Text>
               <Text mb="sm">
                 <strong>Campus:</strong> 25 Kenyatta Avenue, Nairobi
               </Text>

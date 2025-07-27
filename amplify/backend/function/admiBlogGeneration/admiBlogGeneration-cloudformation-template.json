@@ -1,0 +1,197 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "ADMI Blog Generation Lambda function and EventBridge schedules",
+  "Parameters": {
+    "env": {
+      "Type": "String"
+    },
+    "OpenAIApiKey": {
+      "Type": "String",
+      "NoEcho": true
+    },
+    "ContentfulSpaceId": {
+      "Type": "String"
+    },
+    "ContentfulAccessToken": {
+      "Type": "String",
+      "NoEcho": true
+    },
+    "ContentfulManagementToken": {
+      "Type": "String", 
+      "NoEcho": true
+    },
+    "ContentfulEnvironment": {
+      "Type": "String",
+      "Default": "master"
+    },
+    "WebhookUrl": {
+      "Type": "String",
+      "Default": ""
+    }
+  },
+  "Resources": {
+    "LambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "FunctionName": {
+          "Fn::Sub": "admiBlogGeneration-${env}"
+        },
+        "Runtime": "nodejs18.x",
+        "Handler": "index.handler",
+        "Role": {
+          "Fn::GetAtt": ["LambdaExecutionRole", "Arn"]
+        },
+        "Code": {
+          "ZipFile": "exports.handler = async (event) => { console.log('Blog generation placeholder'); return { statusCode: 200 }; };"
+        },
+        "Timeout": 900,
+        "MemorySize": 512,
+        "Environment": {
+          "Variables": {
+            "OPENAI_API_KEY": {
+              "Ref": "OpenAIApiKey"
+            },
+            "ADMI_CONTENTFUL_SPACE_ID": {
+              "Ref": "ContentfulSpaceId"
+            },
+            "ADMI_CONTENTFUL_ACCESS_TOKEN": {
+              "Ref": "ContentfulAccessToken"
+            },
+            "ADMI_CONTENTFUL_MANAGEMENT_TOKEN": {
+              "Ref": "ContentfulManagementToken"
+            },
+            "ADMI_CONTENTFUL_ENVIRONMENT": {
+              "Ref": "ContentfulEnvironment"
+            },
+            "BLOG_GENERATION_WEBHOOK_URL": {
+              "Ref": "WebhookUrl"
+            },
+            "ENV": {
+              "Ref": "env"
+            }
+          }
+        }
+      }
+    },
+    "LambdaExecutionRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "RoleName": {
+          "Fn::Sub": "admiBlogGeneration-LambdaRole-${env}"
+        },
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com"
+              },
+              "Action": "sts:AssumeRole"
+            }
+          ]
+        },
+        "ManagedPolicyArns": [
+          "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+        ],
+        "Policies": [
+          {
+            "PolicyName": "BlogGenerationPolicy",
+            "PolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "logs:CreateLogGroup",
+                    "logs:CreateLogStream", 
+                    "logs:PutLogEvents"
+                  ],
+                  "Resource": "*"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "DailyBlogSchedule": {
+      "Type": "AWS::Events::Rule",
+      "Properties": {
+        "Name": {
+          "Fn::Sub": "admi-daily-blog-${env}"
+        },
+        "Description": "Daily blog generation at 9 AM UTC",
+        "ScheduleExpression": "cron(0 9 * * ? *)",
+        "State": "ENABLED",
+        "Targets": [
+          {
+            "Arn": {
+              "Fn::GetAtt": ["LambdaFunction", "Arn"]
+            },
+            "Id": "DailyBlogTarget",
+            "Input": "{\"type\": \"daily\", \"count\": 2}"
+          }
+        ]
+      }
+    },
+    "WeeklyBlogSchedule": {
+      "Type": "AWS::Events::Rule", 
+      "Properties": {
+        "Name": {
+          "Fn::Sub": "admi-weekly-blog-${env}"
+        },
+        "Description": "Weekly blog generation on Sunday at 10 AM UTC",
+        "ScheduleExpression": "cron(0 10 ? * SUN *)",
+        "State": "ENABLED",
+        "Targets": [
+          {
+            "Arn": {
+              "Fn::GetAtt": ["LambdaFunction", "Arn"]
+            },
+            "Id": "WeeklyBlogTarget",
+            "Input": "{\"type\": \"weekly\", \"count\": 7}"
+          }
+        ]
+      }
+    },
+    "LambdaInvokePermissionDaily": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "LambdaFunction"
+        },
+        "Action": "lambda:InvokeFunction",
+        "Principal": "events.amazonaws.com",
+        "SourceArn": {
+          "Fn::GetAtt": ["DailyBlogSchedule", "Arn"]
+        }
+      }
+    },
+    "LambdaInvokePermissionWeekly": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "LambdaFunction"
+        },
+        "Action": "lambda:InvokeFunction", 
+        "Principal": "events.amazonaws.com",
+        "SourceArn": {
+          "Fn::GetAtt": ["WeeklyBlogSchedule", "Arn"]
+        }
+      }
+    }
+  },
+  "Outputs": {
+    "LambdaFunctionArn": {
+      "Value": {
+        "Fn::GetAtt": ["LambdaFunction", "Arn"]
+      }
+    },
+    "LambdaFunctionName": {
+      "Value": {
+        "Ref": "LambdaFunction"
+      }
+    }
+  }
+}

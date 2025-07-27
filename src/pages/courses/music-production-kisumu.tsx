@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Title, Text, Button, Grid, Card, List } from '@mantine/core'
+import { Container, Title, Text, Button, Grid, Card, List, Accordion } from '@mantine/core'
 import PageSEO from '../../components/shared/v3/PageSEO'
 
 const MusicProductionKisumuPage = () => {
@@ -57,7 +57,7 @@ const MusicProductionKisumuPage = () => {
         </Title>
 
         <Text size="lg" ta="center" mb="xl" c="dimmed">
-          Professional Music Production training in kisumu with industry experts and guaranteed job placement support
+          In Kisumu, the burgeoning tech and creative scene, particularly in Milimani and Mamboleo, presents a fertile ground for music production graduates. With the city's status as an emerging tech hub, there's a unique advantage for those entering creative roles, including audio engineering and beat production, with less competition and a growing demand for innovative audio content in media houses and among local artists.
         </Text>
 
         <Grid>
@@ -90,6 +90,31 @@ const MusicProductionKisumuPage = () => {
                 </Button>
               </Card>
             </Card>
+          
+            <Card shadow="sm" padding="lg" radius="md" withBorder mt="md">
+              <Title order={3} mb="md">Frequently Asked Questions - Kisumu Students</Title>
+              <Accordion>
+                
+                <Accordion.Item key={0} value={`faq-0`}>
+                  <Accordion.Control>How does Kisumu's emerging tech scene benefit music production students?</Accordion.Control>
+                  <Accordion.Panel>
+                    <Text size="sm">Kisumu's status as an emerging tech hub, especially in areas like Milimani and Mamboleo, offers music production students unique opportunities to collaborate with tech startups and NGOs on innovative projects such as podcasting and live streaming, setting them apart in the creative industry.</Text>
+                  </Accordion.Panel>
+                </Accordion.Item>
+                <Accordion.Item key={1} value={`faq-1`}>
+                  <Accordion.Control>Are there local career opportunities in music production in Kisumu?</Accordion.Control>
+                  <Accordion.Panel>
+                    <Text size="sm">Yes, Kisumu offers diverse career opportunities in music production, from working with local recording studios and media houses like Lake Region Media to collaborating with international NGOs and agricultural tech firms on their audio content needs. The growing trend of home studios and podcast production further opens up freelance and entrepreneurial avenues.</Text>
+                  </Accordion.Panel>
+                </Accordion.Item>
+                <Accordion.Item key={2} value={`faq-2`}>
+                  <Accordion.Control>undefined</Accordion.Control>
+                  <Accordion.Panel>
+                    <Text size="sm">undefined</Text>
+                  </Accordion.Panel>
+                </Accordion.Item>
+              </Accordion>
+            </Card>
           </Grid.Col>
 
           <Grid.Col span={{ base: 12, md: 4 }}>
@@ -111,8 +136,7 @@ const MusicProductionKisumuPage = () => {
                 </a>
               </Text>
               <Text mb="sm">
-                <strong>Location:</strong> kisumu, Western
-              </Text>
+                <strong>Location:</strong> Kisumu Campus (Central Location)</Text>
               <Text mb="sm">
                 <strong>Campus:</strong> 25 Kenyatta Avenue, Nairobi
               </Text>

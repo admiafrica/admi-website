@@ -86,11 +86,6 @@ const COURSE_CONTEXTS = {
     industries: 'media houses, events, fashion, real estate, tourism',
     trends: 'drone photography, social media content, virtual tours'
   },
-  'web-development': {
-    skills: 'front-end, back-end, full-stack, mobile development',
-    industries: 'tech companies, startups, agencies, freelance',
-    trends: 'AI integration, progressive web apps, no-code platforms'
-  },
   'sound-engineering': {
     skills: 'live sound, studio recording, broadcast audio, sound design',
     industries: 'recording studios, broadcast media, event production',

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Title, Text, Button, Grid, Card, List } from '@mantine/core'
+import { Container, Title, Text, Button, Grid, Card, List, Accordion } from '@mantine/core'
 import PageSEO from '../../components/shared/v3/PageSEO'
 
 const MusicProductionNakuruPage = () => {
@@ -57,7 +57,7 @@ const MusicProductionNakuruPage = () => {
         </Title>
 
         <Text size="lg" ta="center" mb="xl" c="dimmed">
-          Professional Music Production training in nakuru with industry experts and guaranteed job placement support
+          Nakuru offers a unique music-production landscape, bridging Nairobi's bustling music scene with Western Kenya's rich cultural heritage. Its strategic position enhances opportunities in both traditional and contemporary music markets, including local recording studios and live event productions, capitalizing on the city's diverse musical influences.
         </Text>
 
         <Grid>
@@ -90,6 +90,25 @@ const MusicProductionNakuruPage = () => {
                 </Button>
               </Card>
             </Card>
+          
+            <Card shadow="sm" padding="lg" radius="md" withBorder mt="md">
+              <Title order={3} mb="md">Frequently Asked Questions - Nakuru Students</Title>
+              <Accordion>
+                
+                <Accordion.Item key={0} value={`faq-0`}>
+                  <Accordion.Control>How does Nakuru's location influence my music production learning experience?</Accordion.Control>
+                  <Accordion.Panel>
+                    <Text size="sm">Studying in Nakuru places you at the crossroads of Kenya's music industry, offering insights into both urban and rural soundscapes. This unique mix provides a broad learning canvas for audio engineering, mastering, and beat production.</Text>
+                  </Accordion.Panel>
+                </Accordion.Item>
+                <Accordion.Item key={1} value={`faq-1`}>
+                  <Accordion.Control>What are the local career opportunities in Nakuru for music production graduates?</Accordion.Control>
+                  <Accordion.Panel>
+                    <Text size="sm">Nakuru's graduates find opportunities in its growing number of recording studios, local media houses, and vibrant event companies. The city's strategic location also offers unique chances to work with artists from both Nairobi and Western Kenya, catering to a diverse audience.</Text>
+                  </Accordion.Panel>
+                </Accordion.Item>
+              </Accordion>
+            </Card>
           </Grid.Col>
 
           <Grid.Col span={{ base: 12, md: 4 }}>
@@ -111,8 +130,7 @@ const MusicProductionNakuruPage = () => {
                 </a>
               </Text>
               <Text mb="sm">
-                <strong>Location:</strong> nakuru, Rift Valley
-              </Text>
+                <strong>Location:</strong> Nakuru Campus (Central Location)</Text>
               <Text mb="sm">
                 <strong>Campus:</strong> 25 Kenyatta Avenue, Nairobi
               </Text>

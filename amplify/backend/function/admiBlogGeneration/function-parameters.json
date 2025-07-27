@@ -1,0 +1,34 @@
+{
+  "permissions": {
+    "lambda": {
+      "enabledForPlatform": "lambda"
+    }
+  },
+  "lambdaLayers": [],
+  "environmentMap": {
+    "OPENAI_API_KEY": {
+      "Ref": "OpenAIApiKey"
+    },
+    "ADMI_CONTENTFUL_SPACE_ID": {
+      "Ref": "ContentfulSpaceId"
+    },
+    "ADMI_CONTENTFUL_ACCESS_TOKEN": {
+      "Ref": "ContentfulAccessToken"
+    },
+    "ADMI_CONTENTFUL_MANAGEMENT_TOKEN": {
+      "Ref": "ContentfulManagementToken"
+    },
+    "ADMI_CONTENTFUL_ENVIRONMENT": {
+      "Ref": "ContentfulEnvironment"
+    },
+    "BLOG_GENERATION_WEBHOOK_URL": {
+      "Ref": "WebhookUrl"
+    }
+  },
+  "mutableParametersState": {
+    "permissions": {},
+    "lambdaLayers": []
+  },
+  "resourceName": "admiBlogGeneration",
+  "skipEdit": false
+}

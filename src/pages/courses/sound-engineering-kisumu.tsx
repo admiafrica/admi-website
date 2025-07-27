@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Title, Text, Button, Grid, Card, List } from '@mantine/core'
+import { Container, Title, Text, Button, Grid, Card, List, Accordion } from '@mantine/core'
 import PageSEO from '../../components/shared/v3/PageSEO'
 
 const SoundEngineeringKisumuPage = () => {
@@ -57,7 +57,7 @@ const SoundEngineeringKisumuPage = () => {
         </Title>
 
         <Text size="lg" ta="center" mb="xl" c="dimmed">
-          Professional Sound Engineering training in kisumu with industry experts and guaranteed job placement support
+          Kisumu, an emerging tech hub with blossoming media and event sectors, offers unique sound-engineering prospects. Its vibrant arts scene and the rise of agricultural tech firms adopting multimedia for marketing create a demand for skilled audio professionals, setting Kisumu apart with diverse opportunities in live sound, studio recording, and immersive audio projects.
         </Text>
 
         <Grid>
@@ -90,6 +90,31 @@ const SoundEngineeringKisumuPage = () => {
                 </Button>
               </Card>
             </Card>
+          
+            <Card shadow="sm" padding="lg" radius="md" withBorder mt="md">
+              <Title order={3} mb="md">Frequently Asked Questions - Kisumu Students</Title>
+              <Accordion>
+                
+                <Accordion.Item key={0} value={`faq-0`}>
+                  <Accordion.Control>How does Kisumu's emerging tech status contribute to a sound-engineering course?</Accordion.Control>
+                  <Accordion.Panel>
+                    <Text size="sm">Kisumu's status as an emerging tech hub means students have the advantage of tapping into a growing market with less saturation. The presence of Lake Region media, alongside international NGOs in need of audio content, provides practical training opportunities directly tied to the city's unique economic landscape.</Text>
+                  </Accordion.Panel>
+                </Accordion.Item>
+                <Accordion.Item key={1} value={`faq-1`}>
+                  <Accordion.Control>Are there local employment opportunities for sound engineers in Kisumu?</Accordion.Control>
+                  <Accordion.Panel>
+                    <Text size="sm">Yes, Kisumu's diverse economy includes recording studios, broadcast media, and a dynamic event production scene. Additionally, the city's agricultural tech firms and international NGOs increasingly require sound engineers for content creation, offering a broad spectrum of career paths for graduates.</Text>
+                  </Accordion.Panel>
+                </Accordion.Item>
+                <Accordion.Item key={2} value={`faq-2`}>
+                  <Accordion.Control>undefined</Accordion.Control>
+                  <Accordion.Panel>
+                    <Text size="sm">undefined</Text>
+                  </Accordion.Panel>
+                </Accordion.Item>
+              </Accordion>
+            </Card>
           </Grid.Col>
 
           <Grid.Col span={{ base: 12, md: 4 }}>
@@ -111,8 +136,7 @@ const SoundEngineeringKisumuPage = () => {
                 </a>
               </Text>
               <Text mb="sm">
-                <strong>Location:</strong> kisumu, Western
-              </Text>
+                <strong>Location:</strong> Kisumu Campus (Central Location)</Text>
               <Text mb="sm">
                 <strong>Campus:</strong> 25 Kenyatta Avenue, Nairobi
               </Text>

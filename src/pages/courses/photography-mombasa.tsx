@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Title, Text, Button, Grid, Card, List } from '@mantine/core'
+import { Container, Title, Text, Button, Grid, Card, List, Accordion } from '@mantine/core'
 import PageSEO from '../../components/shared/v3/PageSEO'
 
 const PhotographyMombasaPage = () => {
@@ -57,7 +57,7 @@ const PhotographyMombasaPage = () => {
         </Title>
 
         <Text size="lg" ta="center" mb="xl" c="dimmed">
-          Professional Photography training in mombasa with industry experts and guaranteed job placement support
+          Mombasa's bustling tourism and hospitality sector creates a vibrant market for photographers. The scenic coastal landscape, from the white sandy beaches of Nyali and Bamburi to the historical richness of the Island, offers unique backdrops for commercial, portrait, and event photography. The city's demand for digital content, especially in tourism, provides an unparalleled opportunity for photographers to showcase their skills in drone photography, virtual tours, and social media content creation.
         </Text>
 
         <Grid>
@@ -90,6 +90,25 @@ const PhotographyMombasaPage = () => {
                 </Button>
               </Card>
             </Card>
+          
+            <Card shadow="sm" padding="lg" radius="md" withBorder mt="md">
+              <Title order={3} mb="md">Frequently Asked Questions - Mombasa Students</Title>
+              <Accordion>
+                
+                <Accordion.Item key={0} value={`faq-0`}>
+                  <Accordion.Control>How does Mombasa's coastal environment enhance the photography course experience?</Accordion.Control>
+                  <Accordion.Panel>
+                    <Text size="sm">Mombasa’s unique coastal environment provides students with real-world experience in capturing diverse landscapes, from stunning beach sunsets in Nyali to the historical architecture of Fort Jesus on the Island. The course emphasizes drone and outdoor photography techniques, making the most of Mombasa’s scenic views.</Text>
+                  </Accordion.Panel>
+                </Accordion.Item>
+                <Accordion.Item key={1} value={`faq-1`}>
+                  <Accordion.Control>What are the local career opportunities for photography graduates in Mombasa?</Accordion.Control>
+                  <Accordion.Panel>
+                    <Text size="sm">Graduates find ample opportunities in Mombasa’s thriving tourism and hospitality industries, coastal media houses, and the burgeoning real estate sector. Skills in commercial, event, and portrait photography are in high demand for creating compelling content for hotels, resorts, and travel agencies, as well as coverage for local events and fashion.</Text>
+                  </Accordion.Panel>
+                </Accordion.Item>
+              </Accordion>
+            </Card>
           </Grid.Col>
 
           <Grid.Col span={{ base: 12, md: 4 }}>
@@ -111,8 +130,7 @@ const PhotographyMombasaPage = () => {
                 </a>
               </Text>
               <Text mb="sm">
-                <strong>Location:</strong> mombasa, Coast
-              </Text>
+                <strong>Location:</strong> Mombasa Campus (Central Location)</Text>
               <Text mb="sm">
                 <strong>Campus:</strong> 25 Kenyatta Avenue, Nairobi
               </Text>

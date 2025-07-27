@@ -1,0 +1,17 @@
+{
+  "function": {
+    "admiBlogGeneration": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": []
+    }
+  },
+  "hosting": {
+    "amplifyhosting": {
+      "service": "amplifyhosting",
+      "type": "cicd",
+      "lastPushTimeStamp": "2025-01-27T12:00:00.000Z"
+    }
+  }
+}

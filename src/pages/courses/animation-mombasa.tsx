@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Title, Text, Button, Grid, Card, List } from '@mantine/core'
+import { Container, Title, Text, Button, Grid, Card, List, Accordion } from '@mantine/core'
 import PageSEO from '../../components/shared/v3/PageSEO'
 
 const AnimationMombasaPage = () => {
@@ -57,7 +57,7 @@ const AnimationMombasaPage = () => {
         </Title>
 
         <Text size="lg" ta="center" mb="xl" c="dimmed">
-          Professional Animation training in mombasa with industry experts and guaranteed job placement support
+          In Mombasa, the animation sector is uniquely poised for growth, driven by the tourism industry's expanding need for innovative digital content. This city, with its picturesque Island, Nyali, and Bamburi areas, offers abundant inspiration for animators specializing in 2D/3D animation, character design, and VFX, catering to the hospitality and tourism brands seeking to captivate visitors with immersive experiences.
         </Text>
 
         <Grid>
@@ -89,6 +89,25 @@ const AnimationMombasaPage = () => {
                 </Button>
               </Card>
             </Card>
+          
+            <Card shadow="sm" padding="lg" radius="md" withBorder mt="md">
+              <Title order={3} mb="md">Frequently Asked Questions - Mombasa Students</Title>
+              <Accordion>
+                
+                <Accordion.Item key={0} value={`faq-0`}>
+                  <Accordion.Control>How does Mombasa's unique setting benefit my animation studies?</Accordion.Control>
+                  <Accordion.Panel>
+                    <Text size="sm">Mombasa's diverse cultural and coastal environment offers a rich tapestry of stories and visuals, providing animation students unique material for character design, motion graphics, and visual effects, enhancing creativity and distinctiveness in their work.</Text>
+                  </Accordion.Panel>
+                </Accordion.Item>
+                <Accordion.Item key={1} value={`faq-1`}>
+                  <Accordion.Control>Are there local career opportunities in animation within Mombasa?</Accordion.Control>
+                  <Accordion.Panel>
+                    <Text size="sm">Yes, Mombasa's animation career opportunities are growing, especially within the tourism and hospitality sectors, coastal media houses, and advertising agencies looking for engaging content to attract both local and international audiences.</Text>
+                  </Accordion.Panel>
+                </Accordion.Item>
+              </Accordion>
+            </Card>
           </Grid.Col>
 
           <Grid.Col span={{ base: 12, md: 4 }}>
@@ -110,8 +129,7 @@ const AnimationMombasaPage = () => {
                 </a>
               </Text>
               <Text mb="sm">
-                <strong>Location:</strong> mombasa, Coast
-              </Text>
+                <strong>Location:</strong> Mombasa Campus (Central Location)</Text>
               <Text mb="sm">
                 <strong>Campus:</strong> 25 Kenyatta Avenue, Nairobi
               </Text>

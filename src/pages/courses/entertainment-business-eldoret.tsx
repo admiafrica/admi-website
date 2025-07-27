@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Title, Text, Button, Grid, Card, List } from '@mantine/core'
+import { Container, Title, Text, Button, Grid, Card, List, Accordion } from '@mantine/core'
 import PageSEO from '../../components/shared/v3/PageSEO'
 
 const EntertainmentBusinessEldoretPage = () => {
@@ -91,6 +91,25 @@ const EntertainmentBusinessEldoretPage = () => {
                 </Button>
               </Card>
             </Card>
+          
+            <Card shadow="sm" padding="lg" radius="md" withBorder mt="md">
+              <Title order={3} mb="md">Frequently Asked Questions - Eldoret Students</Title>
+              <Accordion>
+                
+                <Accordion.Item key={0} value={`faq-0`}>
+                  <Accordion.Control>How does Eldoret's startup ecosystem influence the entertainment-business course?</Accordion.Control>
+                  <Accordion.Panel>
+                    <Text size="sm">Eldoret's growing startup scene, particularly in tech and sports, enriches the course with real-world applications in digital marketing, event management, and content monetization, tapping into the local demand for digital skills.</Text>
+                  </Accordion.Panel>
+                </Accordion.Item>
+                <Accordion.Item key={1} value={`faq-1`}>
+                  <Accordion.Control>What are the local career opportunities in Eldoret after completing the entertainment-business course?</Accordion.Control>
+                  <Accordion.Panel>
+                    <Text size="sm">Graduates can leverage opportunities in the region's expanding media houses, sports organizations, and the vibrant event scene, including agricultural expos and cultural festivals, for careers in marketing, production, and talent management.</Text>
+                  </Accordion.Panel>
+                </Accordion.Item>
+              </Accordion>
+            </Card>
           </Grid.Col>
 
           <Grid.Col span={{ base: 12, md: 4 }}>
@@ -112,8 +131,7 @@ const EntertainmentBusinessEldoretPage = () => {
                 </a>
               </Text>
               <Text mb="sm">
-                <strong>Location:</strong> eldoret, Rift Valley
-              </Text>
+                <strong>Location:</strong> Eldoret Campus (Central Location)</Text>
               <Text mb="sm">
                 <strong>Campus:</strong> 25 Kenyatta Avenue, Nairobi
               </Text>

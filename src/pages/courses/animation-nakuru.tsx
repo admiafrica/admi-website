@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Title, Text, Button, Grid, Card, List } from '@mantine/core'
+import { Container, Title, Text, Button, Grid, Card, List, Accordion } from '@mantine/core'
 import PageSEO from '../../components/shared/v3/PageSEO'
 
 const AnimationNakuruPage = () => {
@@ -57,7 +57,7 @@ const AnimationNakuruPage = () => {
         </Title>
 
         <Text size="lg" ta="center" mb="xl" c="dimmed">
-          Professional Animation training in nakuru with industry experts and guaranteed job placement support
+          Nakuru offers a vibrant market for animators, uniquely benefiting from its strategic position to service both Nairobi's and Western Kenya's burgeoning digital content demand. The city's growing manufacturing, agriculture, and tourism sectors increasingly rely on animated marketing and educational content, presenting a fertile ground for animation professionals.
         </Text>
 
         <Grid>
@@ -89,6 +89,25 @@ const AnimationNakuruPage = () => {
                 </Button>
               </Card>
             </Card>
+          
+            <Card shadow="sm" padding="lg" radius="md" withBorder mt="md">
+              <Title order={3} mb="md">Frequently Asked Questions - Nakuru Students</Title>
+              <Accordion>
+                
+                <Accordion.Item key={0} value={`faq-0`}>
+                  <Accordion.Control>How does Nakuru's location influence the animation course experience?</Accordion.Control>
+                  <Accordion.Panel>
+                    <Text size="sm">Nakuru's strategic location allows for unique cross-market insights in animation, offering students exposure to a diverse range of projects from both Nairobi and Western Kenya, enriching their learning and creative application.</Text>
+                  </Accordion.Panel>
+                </Accordion.Item>
+                <Accordion.Item key={1} value={`faq-1`}>
+                  <Accordion.Control>Are there local animation studios or related industries in Nakuru?</Accordion.Control>
+                  <Accordion.Panel>
+                    <Text size="sm">Yes, Nakuru is home to emerging animation studios, and its proximity to major manufacturing and agricultural firms, as well as tourism businesses, provides ample opportunities for animators in advertising and promotional content creation.</Text>
+                  </Accordion.Panel>
+                </Accordion.Item>
+              </Accordion>
+            </Card>
           </Grid.Col>
 
           <Grid.Col span={{ base: 12, md: 4 }}>
@@ -110,8 +129,7 @@ const AnimationNakuruPage = () => {
                 </a>
               </Text>
               <Text mb="sm">
-                <strong>Location:</strong> nakuru, Rift Valley
-              </Text>
+                <strong>Location:</strong> Nakuru Campus (Central Location)</Text>
               <Text mb="sm">
                 <strong>Campus:</strong> 25 Kenyatta Avenue, Nairobi
               </Text>

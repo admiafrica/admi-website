@@ -14,6 +14,8 @@ provider:
     ADMI_CONTENTFUL_ENVIRONMENT: ${env:ADMI_CONTENTFUL_ENVIRONMENT}
     OPENAI_API_KEY: ${env:OPENAI_API_KEY}
     BLOG_GENERATION_WEBHOOK_URL: ${env:BLOG_GENERATION_WEBHOOK_URL, ''}
+    APP_URL: ${env:APP_URL, 'https://main.d2yh9rjzagq5ao.amplifyapp.com'}
+    CRON_SECRET: ${env:CRON_SECRET, 'admi-cron-secret-2025'}
   iam:
     role:
       statements:
@@ -72,6 +74,18 @@ functions:
           method: get
           cors: true
 
+  videoCacheRefresh:
+    handler: handlers/videoCacheRefresh.refresh
+    description: Refresh video cache daily at 1 AM
+    timeout: 600 # 10 minutes for video API calls
+    events:
+      - schedule:
+          rate: cron(0 1 * * ? *)  # Daily at 1:00 AM UTC
+          enabled: true
+          input:
+            type: cache_refresh
+    reservedConcurrency: 1
+
 plugins:
   - serverless-webpack
   - serverless-dotenv-plugin
@@ -108,6 +122,12 @@ resources:
       Type: AWS::Logs::LogGroup
       Properties:
         LogGroupName: /aws/lambda/${self:service}-${self:provider.stage}-weeklyBlogGeneration
+        RetentionInDays: 30
+
+    VideoCacheRefreshLogGroup:
+      Type: AWS::Logs::LogGroup
+      Properties:
+        LogGroupName: /aws/lambda/${self:service}-${self:provider.stage}-videoCacheRefresh
         RetentionInDays: 30
 
     BlogGenerationRole:
@@ -148,3 +168,10 @@ resources:
         Fn::GetAtt: [WeeklyBlogGenerationLambdaFunction, Arn]
       Export:
         Name: ${self:service}-${self:provider.stage}-weekly-blog-arn
+
+    VideoCacheRefreshFunctionArn:
+      Description: ARN of the video cache refresh function
+      Value:
+        Fn::GetAtt: [VideoCacheRefreshLambdaFunction, Arn]
+      Export:
+        Name: ${self:service}-${self:provider.stage}-video-cache-arn

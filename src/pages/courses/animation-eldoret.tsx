@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Title, Text, Button, Grid, Card, List } from '@mantine/core'
+import { Container, Title, Text, Button, Grid, Card, List, Accordion } from '@mantine/core'
 import PageSEO from '../../components/shared/v3/PageSEO'
 
 const AnimationEldoretPage = () => {
@@ -57,7 +57,7 @@ const AnimationEldoretPage = () => {
         </Title>
 
         <Text size="lg" ta="center" mb="xl" c="dimmed">
-          Professional Animation training in eldoret with industry experts and guaranteed job placement support
+          In Eldoret, the burgeoning startup ecosystem, intertwined with agricultural technology and regional media sectors, presents a fertile ground for animation professionals. The city's unique positioning as a digital skills hub in North Rift offers extensive opportunities in creating animated content for educational purposes, marketing campaigns, and sports organizations.
         </Text>
 
         <Grid>
@@ -89,6 +89,25 @@ const AnimationEldoretPage = () => {
                 </Button>
               </Card>
             </Card>
+          
+            <Card shadow="sm" padding="lg" radius="md" withBorder mt="md">
+              <Title order={3} mb="md">Frequently Asked Questions - Eldoret Students</Title>
+              <Accordion>
+                
+                <Accordion.Item key={0} value={`faq-0`}>
+                  <Accordion.Control>How can the animation course in Eldoret leverage the local startup ecosystem?</Accordion.Control>
+                  <Accordion.Panel>
+                    <Text size="sm">The course is designed to equip students with skills in 2D/3D animation and VFX, tapping into Eldoret’s startup ecosystem which is ripe for digital content creation, especially for agricultural technology, and regional media sectors seeking innovative marketing and educational tools.</Text>
+                  </Accordion.Panel>
+                </Accordion.Item>
+                <Accordion.Item key={1} value={`faq-1`}>
+                  <Accordion.Control>Are there local employment opportunities in Eldoret for animation graduates?</Accordion.Control>
+                  <Accordion.Panel>
+                    <Text size="sm">Yes, Eldoret offers a growing number of opportunities for animation professionals, especially within advertising agencies, regional media houses, and the emerging gaming sector. Additionally, the city’s sports organizations are increasingly incorporating animated content for promotional purposes.</Text>
+                  </Accordion.Panel>
+                </Accordion.Item>
+              </Accordion>
+            </Card>
           </Grid.Col>
 
           <Grid.Col span={{ base: 12, md: 4 }}>
@@ -110,8 +129,7 @@ const AnimationEldoretPage = () => {
                 </a>
               </Text>
               <Text mb="sm">
-                <strong>Location:</strong> eldoret, Rift Valley
-              </Text>
+                <strong>Location:</strong> Eldoret Campus (Central Location)</Text>
               <Text mb="sm">
                 <strong>Campus:</strong> 25 Kenyatta Avenue, Nairobi
               </Text>

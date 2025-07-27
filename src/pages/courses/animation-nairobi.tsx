@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Title, Text, Button, Grid, Card, List } from '@mantine/core'
+import { Container, Title, Text, Button, Grid, Card, List, Accordion } from '@mantine/core'
 import PageSEO from '../../components/shared/v3/PageSEO'
 
 const AnimationNairobiPage = () => {
@@ -57,7 +57,7 @@ const AnimationNairobiPage = () => {
         </Title>
 
         <Text size="lg" ta="center" mb="xl" c="dimmed">
-          Professional Animation training in nairobi with industry experts and guaranteed job placement support
+          In Nairobi, the heart of Kenya's creative economy, our animation course taps directly into the burgeoning markets of advertising, film production, and the innovative realm of AR/VR content development. With Nairobi being a central hub for major media employers like Safaricom and Nation Media Group, students have unparalleled access to internships and job opportunities, making it an ideal launching pad for aspiring animators.
         </Text>
 
         <Grid>
@@ -89,6 +89,25 @@ const AnimationNairobiPage = () => {
                 </Button>
               </Card>
             </Card>
+          
+            <Card shadow="sm" padding="lg" radius="md" withBorder mt="md">
+              <Title order={3} mb="md">Frequently Asked Questions - Nairobi Students</Title>
+              <Accordion>
+                
+                <Accordion.Item key={0} value={`faq-0`}>
+                  <Accordion.Control>How does the Nairobi location enhance my learning experience in animation?</Accordion.Control>
+                  <Accordion.Panel>
+                    <Text size="sm">Our Nairobi campus is at the epicenter of Kenya's creative and tech industries, offering students real-world exposure to animation studios, advertising agencies, and gaming companies. This unique environment fosters practical, hands-on learning, directly linking your coursework with the city's thriving digital content production scene.</Text>
+                  </Accordion.Panel>
+                </Accordion.Item>
+                <Accordion.Item key={1} value={`faq-1`}>
+                  <Accordion.Control>What kind of job prospects can I expect in Nairobi after completing my animation course?</Accordion.Control>
+                  <Accordion.Panel>
+                    <Text size="sm">Graduates from our Nairobi course can look forward to dynamic career opportunities across a range of sectors, including animation studios, film production, advertising agencies, and gaming companies. Additionally, Nairobi's position as a leader in digital marketing and educational content opens up further avenues for animation professionals.</Text>
+                  </Accordion.Panel>
+                </Accordion.Item>
+              </Accordion>
+            </Card>
           </Grid.Col>
 
           <Grid.Col span={{ base: 12, md: 4 }}>
@@ -110,8 +129,7 @@ const AnimationNairobiPage = () => {
                 </a>
               </Text>
               <Text mb="sm">
-                <strong>Location:</strong> nairobi, Nairobi
-              </Text>
+                <strong>Location:</strong> Nairobi Campus (Central Location)</Text>
               <Text mb="sm">
                 <strong>Campus:</strong> 25 Kenyatta Avenue, Nairobi
               </Text>

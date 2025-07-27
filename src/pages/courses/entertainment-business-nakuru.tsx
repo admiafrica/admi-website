@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Title, Text, Button, Grid, Card, List } from '@mantine/core'
+import { Container, Title, Text, Button, Grid, Card, List, Accordion } from '@mantine/core'
 import PageSEO from '../../components/shared/v3/PageSEO'
 
 const EntertainmentBusinessNakuruPage = () => {
@@ -91,6 +91,25 @@ const EntertainmentBusinessNakuruPage = () => {
                 </Button>
               </Card>
             </Card>
+          
+            <Card shadow="sm" padding="lg" radius="md" withBorder mt="md">
+              <Title order={3} mb="md">Frequently Asked Questions - Nakuru Students</Title>
+              <Accordion>
+                
+                <Accordion.Item key={0} value={`faq-0`}>
+                  <Accordion.Control>How does Nakuru's strategic location benefit my entertainment-business studies?</Accordion.Control>
+                  <Accordion.Panel>
+                    <Text size="sm">Studying in Nakuru places you at the crossroads of the Kenyan entertainment industry, with unique access to both the Nairobi market and the untapped potential of Western Kenya. This positions you perfectly for practical learning and networking within the industry's key areas.</Text>
+                  </Accordion.Panel>
+                </Accordion.Item>
+                <Accordion.Item key={1} value={`faq-1`}>
+                  <Accordion.Control>Are there local firms in Nakuru where I can intern or work after completing my course?</Accordion.Control>
+                  <Accordion.Panel>
+                    <Text size="sm">Absolutely. Nakuru is home to dynamic sectors including tourism businesses and local media houses that are always on the lookout for fresh talent in event management, digital marketing, and content production. The city's growth in digital events and influencer management also opens up new career paths.</Text>
+                  </Accordion.Panel>
+                </Accordion.Item>
+              </Accordion>
+            </Card>
           </Grid.Col>
 
           <Grid.Col span={{ base: 12, md: 4 }}>
@@ -112,8 +131,7 @@ const EntertainmentBusinessNakuruPage = () => {
                 </a>
               </Text>
               <Text mb="sm">
-                <strong>Location:</strong> nakuru, Rift Valley
-              </Text>
+                <strong>Location:</strong> Nakuru Campus (Central Location)</Text>
               <Text mb="sm">
                 <strong>Campus:</strong> 25 Kenyatta Avenue, Nairobi
               </Text>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Title, Text, Button, Grid, Card, List } from '@mantine/core'
+import { Container, Title, Text, Button, Grid, Card, List, Accordion } from '@mantine/core'
 import PageSEO from '../../components/shared/v3/PageSEO'
 
 const VideoGameDevelopmentKisumuPage = () => {
@@ -96,6 +96,25 @@ const VideoGameDevelopmentKisumuPage = () => {
                 </Button>
               </Card>
             </Card>
+          
+            <Card shadow="sm" padding="lg" radius="md" withBorder mt="md">
+              <Title order={3} mb="md">Frequently Asked Questions - Kisumu Students</Title>
+              <Accordion>
+                
+                <Accordion.Item key={0} value={`faq-0`}>
+                  <Accordion.Control>How does Kisumu's tech scene influence my learning in video game development?</Accordion.Control>
+                  <Accordion.Panel>
+                    <Text size="sm">Kisumu's growing tech scene, particularly in Milimani and Mamboleo areas, provides a unique ecosystem for immersive learning. Students benefit from local tech meetups, potential internships, and collaboration with tech firms and NGOs on gaming projects.</Text>
+                  </Accordion.Panel>
+                </Accordion.Item>
+                <Accordion.Item key={1} value={`faq-1`}>
+                  <Accordion.Control>Are there local companies in Kisumu that hire video game developers?</Accordion.Control>
+                  <Accordion.Panel>
+                    <Text size="sm">Yes, Kisumu is home to a variety of tech firms and educational technology startups, especially around Kibuye and Nyalenda, looking for skilled game developers. The city's focus on agricultural tech also opens doors for simulation game development for training purposes.</Text>
+                  </Accordion.Panel>
+                </Accordion.Item>
+              </Accordion>
+            </Card>
           </Grid.Col>
 
           <Grid.Col span={{ base: 12, md: 4 }}>
@@ -117,8 +136,7 @@ const VideoGameDevelopmentKisumuPage = () => {
                 </a>
               </Text>
               <Text mb="sm">
-                <strong>Location:</strong> kisumu, Western
-              </Text>
+                <strong>Location:</strong> Kisumu Campus (Central Location)</Text>
               <Text mb="sm">
                 <strong>Campus:</strong> 25 Kenyatta Avenue, Nairobi
               </Text>

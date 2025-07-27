@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Title, Text, Button, Grid, Card, List } from '@mantine/core'
+import { Container, Title, Text, Button, Grid, Card, List, Accordion } from '@mantine/core'
 import PageSEO from '../../components/shared/v3/PageSEO'
 
 const SoundEngineeringEldoretPage = () => {
@@ -57,7 +57,7 @@ const SoundEngineeringEldoretPage = () => {
         </Title>
 
         <Text size="lg" ta="center" mb="xl" c="dimmed">
-          Professional Sound Engineering training in eldoret with industry experts and guaranteed job placement support
+          Eldoret's dynamic mix of agricultural tech firms, burgeoning sports organizations, and regional media outlets presents a fertile ground for sound engineers. The city's growing startup ecosystem, particularly in digital realms, amplifies the demand for skilled professionals in live sound, studio recording, and sound design, uniquely positioning Eldoret as a hub for audio engineering excellence.
         </Text>
 
         <Grid>
@@ -90,6 +90,25 @@ const SoundEngineeringEldoretPage = () => {
                 </Button>
               </Card>
             </Card>
+          
+            <Card shadow="sm" padding="lg" radius="md" withBorder mt="md">
+              <Title order={3} mb="md">Frequently Asked Questions - Eldoret Students</Title>
+              <Accordion>
+                
+                <Accordion.Item key={0} value={`faq-0`}>
+                  <Accordion.Control>How does Eldoret's startup ecosystem enhance my learning experience in sound engineering?</Accordion.Control>
+                  <Accordion.Panel>
+                    <Text size="sm">Eldoret's startup scene, especially in tech and digital media, provides real-world application opportunities for sound engineering students. Engagement with local startups allows for hands-on experience in sound design and audio production, critical for mastering the course.</Text>
+                  </Accordion.Panel>
+                </Accordion.Item>
+                <Accordion.Item key={1} value={`faq-1`}>
+                  <Accordion.Control>Are there local employment opportunities in Eldoret for sound engineering graduates?</Accordion.Control>
+                  <Accordion.Panel>
+                    <Text size="sm">Yes, Eldoret offers diverse employment opportunities, from working with regional media houses and sports organizations requiring broadcast audio professionals to the vibrant event production scene for live sound engineers. The presence of recording studios also supports studio recording careers.</Text>
+                  </Accordion.Panel>
+                </Accordion.Item>
+              </Accordion>
+            </Card>
           </Grid.Col>
 
           <Grid.Col span={{ base: 12, md: 4 }}>
@@ -111,8 +130,7 @@ const SoundEngineeringEldoretPage = () => {
                 </a>
               </Text>
               <Text mb="sm">
-                <strong>Location:</strong> eldoret, Rift Valley
-              </Text>
+                <strong>Location:</strong> Eldoret Campus (Central Location)</Text>
               <Text mb="sm">
                 <strong>Campus:</strong> 25 Kenyatta Avenue, Nairobi
               </Text>

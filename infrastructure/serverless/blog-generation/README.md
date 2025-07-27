@@ -1,10 +1,11 @@
-# ADMI Blog Generation Serverless Service
+# ADMI Serverless Functions - Blog Generation & Video Cache
 
-Automated blog generation service using AWS Lambda and EventBridge for scheduled content creation.
+Automated serverless functions for ADMI using AWS Lambda and EventBridge for scheduled operations.
 
 ## 🚀 Features
 
-- **Automated Scheduling**: Daily (2 articles) and weekly (7 articles) blog generation
+- **Blog Generation**: Daily (2 articles) and weekly (7 articles) blog generation
+- **Video Cache Refresh**: Daily YouTube video cache refresh at 1 AM UTC
 - **Serverless Architecture**: AWS Lambda functions with EventBridge triggers
 - **Content Management**: Automatic publishing to Contentful CMS
 - **Monitoring**: CloudWatch logs and optional webhook notifications
@@ -50,6 +51,10 @@ OPENAI_API_KEY=your_openai_api_key
 
 # Optional: Webhook for notifications
 BLOG_GENERATION_WEBHOOK_URL=https://hooks.slack.com/services/YOUR/WEBHOOK/URL
+
+# Video Cache Configuration
+APP_URL=https://main.d2yh9rjzagq5ao.amplifyapp.com
+CRON_SECRET=your-secure-cron-secret
 ```
 
 ### 3. AWS Permissions
@@ -109,6 +114,11 @@ cp .env .env.prod
 - **Articles**: 7 articles per batch
 - **Function**: `weeklyBlogGeneration`
 
+### Video Cache Refresh
+- **Schedule**: Every day at 1:00 AM UTC
+- **Purpose**: Refresh YouTube video cache to keep content updated
+- **Function**: `videoCacheRefresh`
+
 ## 🧪 Testing
 
 ### Manual Function Invocation
@@ -119,6 +129,9 @@ serverless invoke -f dailyBlogGeneration --stage dev
 
 # Test weekly generation
 serverless invoke -f weeklyBlogGeneration --stage dev
+
+# Test video cache refresh
+serverless invoke -f videoCacheRefresh --stage dev
 
 # Test with custom parameters
 serverless invoke -f testBlogGeneration --stage dev --data '{"count": 1, "category": "techEconomy"}'

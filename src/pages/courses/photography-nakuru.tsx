@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Title, Text, Button, Grid, Card, List } from '@mantine/core'
+import { Container, Title, Text, Button, Grid, Card, List, Accordion } from '@mantine/core'
 import PageSEO from '../../components/shared/v3/PageSEO'
 
 const PhotographyNakuruPage = () => {
@@ -57,7 +57,7 @@ const PhotographyNakuruPage = () => {
         </Title>
 
         <Text size="lg" ta="center" mb="xl" c="dimmed">
-          Professional Photography training in nakuru with industry experts and guaranteed job placement support
+          Nakuru offers a vibrant opportunity for photographers with its thriving tourism sector, including the famous Lake Nakuru National Park, renowned for its flamingo population. Its strategic location also connects photographers with both Nairobi's dynamic market and the untapped Western Kenya, perfect for those looking to capture diverse Kenyan landscapes and cultural events.
         </Text>
 
         <Grid>
@@ -90,6 +90,25 @@ const PhotographyNakuruPage = () => {
                 </Button>
               </Card>
             </Card>
+          
+            <Card shadow="sm" padding="lg" radius="md" withBorder mt="md">
+              <Title order={3} mb="md">Frequently Asked Questions - Nakuru Students</Title>
+              <Accordion>
+                
+                <Accordion.Item key={0} value={`faq-0`}>
+                  <Accordion.Control>How does Nakuru's unique landscape influence the photography course curriculum?</Accordion.Control>
+                  <Accordion.Panel>
+                    <Text size="sm">Our curriculum is tailored to exploit Nakuru's unique geographical and cultural landscape, incorporating outdoor practical sessions at iconic locations like Menengai Crater and Lake Nakuru, focusing on nature, wildlife, and cultural photography.</Text>
+                  </Accordion.Panel>
+                </Accordion.Item>
+                <Accordion.Item key={1} value={`faq-1`}>
+                  <Accordion.Control>Are there local job opportunities for photographers in Nakuru?</Accordion.Control>
+                  <Accordion.Panel>
+                    <Text size="sm">Absolutely, Nakuru's economy supports a growing demand for skilled photographers, especially in the tourism, real estate, and events industries. The presence of manufacturing and agricultural firms also opens doors for commercial photography gigs.</Text>
+                  </Accordion.Panel>
+                </Accordion.Item>
+              </Accordion>
+            </Card>
           </Grid.Col>
 
           <Grid.Col span={{ base: 12, md: 4 }}>
@@ -111,8 +130,7 @@ const PhotographyNakuruPage = () => {
                 </a>
               </Text>
               <Text mb="sm">
-                <strong>Location:</strong> nakuru, Rift Valley
-              </Text>
+                <strong>Location:</strong> Nakuru Campus (Central Location)</Text>
               <Text mb="sm">
                 <strong>Campus:</strong> 25 Kenyatta Avenue, Nairobi
               </Text>

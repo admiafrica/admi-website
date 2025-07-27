@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Title, Text, Button, Grid, Card, List } from '@mantine/core'
+import { Container, Title, Text, Button, Grid, Card, List, Accordion } from '@mantine/core'
 import PageSEO from '../../components/shared/v3/PageSEO'
 
 const EntertainmentBusinessNairobiPage = () => {
@@ -91,6 +91,25 @@ const EntertainmentBusinessNairobiPage = () => {
                 </Button>
               </Card>
             </Card>
+          
+            <Card shadow="sm" padding="lg" radius="md" withBorder mt="md">
+              <Title order={3} mb="md">Frequently Asked Questions - Nairobi Students</Title>
+              <Accordion>
+                
+                <Accordion.Item key={0} value={`faq-0`}>
+                  <Accordion.Control>How does Nairobi's entertainment scene enhance my learning experience in entertainment business?</Accordion.Control>
+                  <Accordion.Panel>
+                    <Text size="sm">Nairobi's diverse entertainment scene, from thriving digital events to traditional cultural showcases, offers a live laboratory for students. You can directly apply your coursework in real-world scenarios, network with industry leaders at events in CBD, Westlands, and beyond, and gain firsthand experience in one of Africa's fastest-growing entertainment markets.</Text>
+                  </Accordion.Panel>
+                </Accordion.Item>
+                <Accordion.Item key={1} value={`faq-1`}>
+                  <Accordion.Control>What are the career prospects in Nairobi after completing this course?</Accordion.Control>
+                  <Accordion.Panel>
+                    <Text size="sm">Graduates find themselves in a city buzzing with opportunities, from launching careers at top media houses like Nation Media Group to innovating in digital event spaces. Nairobi's unique position as a creative hub not only in Kenya but in East Africa opens doors to roles in event management, talent scouting, and digital marketing within the entertainment sector.</Text>
+                  </Accordion.Panel>
+                </Accordion.Item>
+              </Accordion>
+            </Card>
           </Grid.Col>
 
           <Grid.Col span={{ base: 12, md: 4 }}>
@@ -112,8 +131,7 @@ const EntertainmentBusinessNairobiPage = () => {
                 </a>
               </Text>
               <Text mb="sm">
-                <strong>Location:</strong> nairobi, Nairobi
-              </Text>
+                <strong>Location:</strong> Nairobi Campus (Central Location)</Text>
               <Text mb="sm">
                 <strong>Campus:</strong> 25 Kenyatta Avenue, Nairobi
               </Text>

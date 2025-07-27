@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Title, Text, Button, Grid, Card, List } from '@mantine/core'
+import { Container, Title, Text, Button, Grid, Card, List, Accordion } from '@mantine/core'
 import PageSEO from '../../components/shared/v3/PageSEO'
 
 const VideoGameDevelopmentNakuruPage = () => {
@@ -96,6 +96,25 @@ const VideoGameDevelopmentNakuruPage = () => {
                 </Button>
               </Card>
             </Card>
+          
+            <Card shadow="sm" padding="lg" radius="md" withBorder mt="md">
+              <Title order={3} mb="md">Frequently Asked Questions - Nakuru Students</Title>
+              <Accordion>
+                
+                <Accordion.Item key={0} value={`faq-0`}>
+                  <Accordion.Control>How does Nakuru's location influence my learning and networking opportunities in video game development?</Accordion.Control>
+                  <Accordion.Panel>
+                    <Text size="sm">Nakuru's strategic location not only offers access to a wide range of gaming markets but also positions you within a vibrant network of professionals from Nairobi to Western Kenya, enhancing learning and collaboration opportunities.</Text>
+                  </Accordion.Panel>
+                </Accordion.Item>
+                <Accordion.Item key={1} value={`faq-1`}>
+                  <Accordion.Control>Are there any local companies in Nakuru that hire video game developers?</Accordion.Control>
+                  <Accordion.Panel>
+                    <Text size="sm">Yes, Nakuru's growing tech scene, bolstered by manufacturing and educational tech firms, is increasingly in need of skilled video game developers, especially those focused on mobile and VR/AR games, offering numerous career opportunities.</Text>
+                  </Accordion.Panel>
+                </Accordion.Item>
+              </Accordion>
+            </Card>
           </Grid.Col>
 
           <Grid.Col span={{ base: 12, md: 4 }}>
@@ -117,8 +136,7 @@ const VideoGameDevelopmentNakuruPage = () => {
                 </a>
               </Text>
               <Text mb="sm">
-                <strong>Location:</strong> nakuru, Rift Valley
-              </Text>
+                <strong>Location:</strong> Nakuru Campus (Central Location)</Text>
               <Text mb="sm">
                 <strong>Campus:</strong> 25 Kenyatta Avenue, Nairobi
               </Text>

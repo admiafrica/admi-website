@@ -33,7 +33,9 @@
     "faq:api-optimize": "node scripts/analytics/api-driven-faq-optimizer.js",
     "setup-cron": "./scripts/cron/setup-cron.sh",
     "cron-health": "./scripts/cron/cron-health-check.sh",
-    "cron-test": "./scripts/cron/weekly-faq-optimizer.sh"
+    "cron-test": "./scripts/cron/weekly-faq-optimizer.sh",
+    "cache-refresh": "curl -H \"Authorization: Bearer ${CRON_SECRET:-default-secret}\" \"${APP_URL:-http://localhost:3000}/api/cron/refresh-video-cache\"",
+    "deploy-cron": "cd infrastructure/aws-cron && ./deploy.sh"
   },
   "dependencies": {
     "@contentful/rich-text-html-renderer": "^17.0.0",

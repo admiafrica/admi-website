@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Title, Text, Button, Grid, Card, List } from '@mantine/core'
+import { Container, Title, Text, Button, Grid, Card, List, Accordion } from '@mantine/core'
 import PageSEO from '../../components/shared/v3/PageSEO'
 
 const EntertainmentBusinessKisumuPage = () => {
@@ -91,6 +91,25 @@ const EntertainmentBusinessKisumuPage = () => {
                 </Button>
               </Card>
             </Card>
+          
+            <Card shadow="sm" padding="lg" radius="md" withBorder mt="md">
+              <Title order={3} mb="md">Frequently Asked Questions - Kisumu Students</Title>
+              <Accordion>
+                
+                <Accordion.Item key={0} value={`faq-0`}>
+                  <Accordion.Control>How does Kisumu's emerging tech scene benefit my entertainment-business studies?</Accordion.Control>
+                  <Accordion.Panel>
+                    <Text size="sm">Kisumu's tech scene fosters a unique learning environment, enabling you to integrate cutting-edge technologies into entertainment and event management. This positions you at the forefront of digital events and content monetization in Western Kenya.</Text>
+                  </Accordion.Panel>
+                </Accordion.Item>
+                <Accordion.Item key={1} value={`faq-1`}>
+                  <Accordion.Control>Are there ample career opportunities in Kisumu for entertainment-business graduates?</Accordion.Control>
+                  <Accordion.Panel>
+                    <Text size="sm">Yes, Kisumu offers growing opportunities in the entertainment sector, especially within Lake Region media houses, event agencies, and with agricultural tech firms and NGOs needing event and talent management. The city's tech evolution also opens doors to creating content and managing digital platforms.</Text>
+                  </Accordion.Panel>
+                </Accordion.Item>
+              </Accordion>
+            </Card>
           </Grid.Col>
 
           <Grid.Col span={{ base: 12, md: 4 }}>
@@ -112,8 +131,7 @@ const EntertainmentBusinessKisumuPage = () => {
                 </a>
               </Text>
               <Text mb="sm">
-                <strong>Location:</strong> kisumu, Western
-              </Text>
+                <strong>Location:</strong> Kisumu Campus (Central Location)</Text>
               <Text mb="sm">
                 <strong>Campus:</strong> 25 Kenyatta Avenue, Nairobi
               </Text>
