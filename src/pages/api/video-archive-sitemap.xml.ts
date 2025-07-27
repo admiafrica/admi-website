@@ -90,9 +90,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       cache = readVideoCacheRaw()
     }
 
-    if (!cache || !cache.videos || cache.videos.length === 0) {
-      // As a last resort, use production fallback data
-      console.log('🔄 No cache available, using production fallback for video archive sitemap')
+    // If cache is invalid or missing, always use production fallback for sitemap reliability
+    if (!cache || !cache.videos || cache.videos.length === 0 || !cacheStats.isValid) {
+      console.log('🔄 Using production fallback for video archive sitemap (cache invalid or missing)')
+      console.log('📊 Cache stats:', {
+        exists: cacheStats.exists,
+        isValid: cacheStats.isValid,
+        videoCount: cacheStats.videoCount
+      })
       cache = getProductionFallbackCache()
     }
 
