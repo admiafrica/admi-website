@@ -98,7 +98,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         isValid: cacheStats.isValid,
         videoCount: cacheStats.videoCount
       })
+      console.log('🔧 Environment:', process.env.NODE_ENV)
       cache = getProductionFallbackCache()
+      console.log('✅ Production fallback loaded with', cache.videos.length, 'videos')
     }
 
     if (!cache || !cache.videos || cache.videos.length === 0) {
