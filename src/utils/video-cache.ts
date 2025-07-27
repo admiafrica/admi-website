@@ -107,10 +107,45 @@ export function getProductionFallbackCache(): VideoCache {
         channelTitle: 'Africa Digital Media Institute - ADMI',
         tags: ['admi', 'africa digital media institute', 'creative education', 'student showcase'],
         categoryId: '1'
+      },
+      {
+        id: '41MF6Vk0Ku0',
+        title: "S2: EP20: You Don't Get a Do-Over - This Is ADMI ft Ciku Munuku",
+        description: 'Welcome to "This Is ADMI", your inside look into Africa Digital Media Institute.',
+        thumbnail: {
+          default: 'https://i.ytimg.com/vi/41MF6Vk0Ku0/default.jpg',
+          medium: 'https://i.ytimg.com/vi/41MF6Vk0Ku0/mqdefault.jpg',
+          high: 'https://i.ytimg.com/vi/41MF6Vk0Ku0/hqdefault.jpg',
+          maxres: 'https://i.ytimg.com/vi/41MF6Vk0Ku0/maxresdefault.jpg'
+        },
+        publishedAt: '2025-07-25T03:30:06Z',
+        duration: '10:20',
+        viewCount: '12',
+        likeCount: '1',
+        channelTitle: 'Africa Digital Media Institute - ADMI',
+        tags: ['admi', 'africa digital media institute', 'creative education'],
+        categoryId: '1'
+      },
+      {
+        id: 'test-video-3',
+        title: 'ADMI Student Showcase - Creative Media Projects',
+        description: 'Discover amazing creative media projects by ADMI students.',
+        thumbnail: {
+          default: 'https://i.ytimg.com/vi/test-video-3/default.jpg',
+          medium: 'https://i.ytimg.com/vi/test-video-3/mqdefault.jpg',
+          high: 'https://i.ytimg.com/vi/test-video-3/hqdefault.jpg'
+        },
+        publishedAt: '2025-07-20T12:00:00Z',
+        duration: '5:45',
+        viewCount: '150',
+        likeCount: '8',
+        channelTitle: 'Africa Digital Media Institute - ADMI',
+        tags: ['admi', 'student showcase', 'creative media'],
+        categoryId: '1'
       }
     ],
     lastUpdated: new Date().toISOString(),
-    totalVideos: 1,
+    totalVideos: 3,
     channelInfo: {
       title: 'Africa Digital Media Institute - ADMI',
       description: "Africa's premier digital media institute",
