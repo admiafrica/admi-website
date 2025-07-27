@@ -75,13 +75,23 @@ export function readVideoCache(): VideoCache | null {
   } catch (error) {
     console.error('❌ Error reading cache:', error)
 
-    // In production, if cache system fails completely, return hardcoded fallback
-    if (process.env.NODE_ENV === 'production') {
-      console.log('🔄 Using production fallback data')
-      return getProductionFallbackCache()
+    // Try committed cache file as backup
+    try {
+      const committedCachePath = path.join(process.cwd(), 'data', 'admi-videos-cache.json')
+      if (fs.existsSync(committedCachePath)) {
+        console.log('🔄 Fallback to committed cache file after error')
+        const cacheData = fs.readFileSync(committedCachePath, 'utf-8')
+        const cache: VideoCache = JSON.parse(cacheData)
+        console.log(`✅ Committed cache fallback loaded with ${cache.videos?.length || 0} videos`)
+        return cache
+      }
+    } catch (fallbackError) {
+      console.error('❌ Error reading committed cache fallback:', fallbackError)
     }
 
-    return null
+    // Final fallback to production data
+    console.log('🔄 Using production fallback data')
+    return getProductionFallbackCache()
   }
 }
 
@@ -162,15 +172,21 @@ export function readVideoCacheRaw(): VideoCache | null {
     ensureCacheDirectory()
 
     if (!fs.existsSync(CACHE_FILE_PATH)) {
-      console.log('📁 No cache file found')
+      console.log('📁 No cache file found at', CACHE_FILE_PATH)
 
-      // In production, return fallback instead of null
-      if (process.env.NODE_ENV === 'production') {
-        console.log('🔄 Using production fallback for raw cache')
-        return getProductionFallbackCache()
+      // Try to read from committed cache file as backup
+      const committedCachePath = path.join(process.cwd(), 'data', 'admi-videos-cache.json')
+      if (fs.existsSync(committedCachePath)) {
+        console.log('📚 Reading from committed cache file:', committedCachePath)
+        const cacheData = fs.readFileSync(committedCachePath, 'utf-8')
+        const cache: VideoCache = JSON.parse(cacheData)
+        console.log(`✅ Committed cache loaded with ${cache.videos?.length || 0} videos`)
+        return cache
       }
 
-      return null
+      // Fallback to production data
+      console.log('🔄 Using production fallback for raw cache')
+      return getProductionFallbackCache()
     }
 
     const cacheData = fs.readFileSync(CACHE_FILE_PATH, 'utf-8')
@@ -181,13 +197,23 @@ export function readVideoCacheRaw(): VideoCache | null {
   } catch (error) {
     console.error('❌ Error reading raw cache:', error)
 
-    // In production, return fallback instead of null
-    if (process.env.NODE_ENV === 'production') {
-      console.log('🔄 Using production fallback for raw cache (error)')
-      return getProductionFallbackCache()
+    // Try committed cache file as backup
+    try {
+      const committedCachePath = path.join(process.cwd(), 'data', 'admi-videos-cache.json')
+      if (fs.existsSync(committedCachePath)) {
+        console.log('🔄 Fallback to committed cache file after error')
+        const cacheData = fs.readFileSync(committedCachePath, 'utf-8')
+        const cache: VideoCache = JSON.parse(cacheData)
+        console.log(`✅ Committed cache fallback loaded with ${cache.videos?.length || 0} videos`)
+        return cache
+      }
+    } catch (fallbackError) {
+      console.error('❌ Error reading committed cache fallback:', fallbackError)
     }
 
-    return null
+    // Final fallback to production data
+    console.log('🔄 Using production fallback for raw cache (error)')
+    return getProductionFallbackCache()
   }
 }
 
