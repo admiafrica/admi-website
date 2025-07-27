@@ -664,6 +664,12 @@ export const getServerSideProps = async () => {
     const { fetchAllADMIVideos } = await import('@/utils/fetch-all-videos')
 
     console.log('🔍 SSR: Checking for cached videos...')
+    console.log('🔧 Environment:', {
+      NODE_ENV: process.env.NODE_ENV,
+      hasYouTubeKey: !!process.env.YOUTUBE_API_KEY,
+      hasNextYouTubeKey: !!process.env.NEXT_OPENAI_API_KEY,
+      channelId: process.env.ADMI_YOUTUBE_CHANNEL_ID || 'UCqLmokG6Req2pHn2p7D8WZQ'
+    })
 
     // Try to get cached videos first
     let cache = readVideoCache()
@@ -685,11 +691,32 @@ export const getServerSideProps = async () => {
           cache = expiredCache
         } else {
           console.log('💥 SSR: No cache available at all')
+          
+          // Last resort: Return demo/placeholder data to prevent empty page
+          const fallbackVideos = [{
+            id: 'nXVF84Y3PbQ',
+            title: 'This Is ADMI - Student Showcase',
+            description: 'Discover what makes ADMI different through our students\' work and success stories.',
+            thumbnail: {
+              default: 'https://i.ytimg.com/vi/nXVF84Y3PbQ/default.jpg',
+              medium: 'https://i.ytimg.com/vi/nXVF84Y3PbQ/mqdefault.jpg',
+              high: 'https://i.ytimg.com/vi/nXVF84Y3PbQ/hqdefault.jpg'
+            },
+            publishedAt: '2025-07-25T07:05:36Z',
+            duration: '8:13',
+            viewCount: '4',
+            channelTitle: 'Africa Digital Media Institute - ADMI'
+          }]
+          
           return {
             props: {
-              allVideos: [],
-              initialDisplay: [],
-              channelInfo: null
+              allVideos: fallbackVideos,
+              initialDisplay: fallbackVideos,
+              channelInfo: {
+                title: 'Africa Digital Media Institute - ADMI',
+                videoCount: '500+',
+                subscriberCount: '4K+'
+              }
             }
           }
         }
