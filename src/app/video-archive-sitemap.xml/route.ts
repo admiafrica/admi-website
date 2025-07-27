@@ -4,7 +4,7 @@ export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url)
   const protocol = request.headers.get('x-forwarded-proto') || 'https'
   const host = request.headers.get('host') || 'admi.africa'
-  const apiUrl = `${protocol}://${host}/api/video-archive-sitemap.xml?${searchParams.toString()}`
+  const apiUrl = `${protocol}://${host}/api/video-sitemap.xml?${searchParams.toString()}`
 
   try {
     const response = await fetch(apiUrl, {
@@ -32,7 +32,7 @@ export async function GET(request: NextRequest) {
   } catch (error) {
     console.error('Error generating video archive sitemap:', error)
     return new Response(
-      '<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"></urlset>',
+      '<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>https://admi.africa/videos</loc></url></urlset>',
       {
         status: 500,
         headers: {
