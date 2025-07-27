@@ -408,7 +408,7 @@
       },
       "publishedAt": "2025-07-23T07:04:41Z",
       "duration": "8:00",
-      "viewCount": "20",
+      "viewCount": "21",
       "likeCount": "1",
       "channelTitle": "Africa Digital Media Institute - ADMI",
       "tags": [
@@ -3796,33 +3796,6 @@
       "categoryId": "27"
     },
     {
-      "id": "3yAZyqWHBRg",
-      "title": "AI for Africa Tour",
-      "description": "Live from Zimbabwe! 🇿🇼\nThe Founder of Orion AI, tech visionary, investor, and digital marketing guru Alexander Morad is on an African tour this February and currently in Zimbabwe. \n\nFrom meeting industry leaders and governments to inspiring the next wave of African tech entrepreneurs, this tour is a game-changer. \n\nPowered by Orion Ai, ADMI & Jitamani Africa, this journey is just getting started. \n\nGuess which African country he is visiting next? Drop your suggestions below! 😁\n\n#AIinAfrica #AlexanderMorad #TechInnovation #AI #ArtificialIntelligence",
-      "thumbnail": {
-        "default": "https://i.ytimg.com/vi/3yAZyqWHBRg/default.jpg",
-        "medium": "https://i.ytimg.com/vi/3yAZyqWHBRg/mqdefault.jpg",
-        "high": "https://i.ytimg.com/vi/3yAZyqWHBRg/hqdefault.jpg",
-        "maxres": "https://i.ytimg.com/vi/3yAZyqWHBRg/maxresdefault.jpg"
-      },
-      "publishedAt": "2025-02-03T16:51:35Z",
-      "duration": "0:43",
-      "viewCount": "652",
-      "likeCount": "6",
-      "channelTitle": "Africa Digital Media Institute - ADMI",
-      "tags": [
-        "media school",
-        "admi kenya",
-        "admi africa",
-        "africa digital media",
-        "africa digital media institute",
-        "digital media",
-        "ADMI",
-        "ADMI School"
-      ],
-      "categoryId": "27"
-    },
-    {
       "id": "E9ro64oVlrE",
       "title": "ADMI Welcomes a New Wave of Creatives for the Jan 2025 Intake",
       "description": "Meet some of ADMI’s newest #Creatives! From Multimedia to Digital Marketing, Sound Engineering to Animation—our new students are ready to turn their passion into a profession.\n\nHear what inspired them to choose ADMI and what they’re most excited about!\n\nWelcome to the ADMI Community—this is just the beginning! 🚀\n\n#ADMI #Orientation #PassionToProfession #CreativeCareers",
@@ -4713,7 +4686,7 @@
       },
       "publishedAt": "2024-07-12T06:47:49Z",
       "duration": "1:32",
-      "viewCount": "183",
+      "viewCount": "184",
       "likeCount": "8",
       "channelTitle": "Africa Digital Media Institute - ADMI",
       "tags": [
@@ -5258,6 +5231,39 @@
         "arts",
         "fine arts",
         "passion"
+      ],
+      "categoryId": "27"
+    },
+    {
+      "id": "ef-WBIHT5zM",
+      "title": "A Day in the Life of a Sound Engineering Student at ADMI",
+      "description": "Dive into a day in the life of Baron Karanja, a sound engineer and music enthusiast! 🎧 From discovering his passion for music to finding his creative space at ADMI, Baron shares his creative journey.  Hear about how collaborative environments inspire his creative process and a sneak peek at one of his projects.  \n\n#ADMI #SoundEngineering #CreativeJourney #PassionToProfession",
+      "thumbnail": {
+        "default": "https://i.ytimg.com/vi/ef-WBIHT5zM/default.jpg",
+        "medium": "https://i.ytimg.com/vi/ef-WBIHT5zM/mqdefault.jpg",
+        "high": "https://i.ytimg.com/vi/ef-WBIHT5zM/hqdefault.jpg",
+        "maxres": "https://i.ytimg.com/vi/ef-WBIHT5zM/maxresdefault.jpg"
+      },
+      "publishedAt": "2024-02-29T13:15:51Z",
+      "duration": "3:00",
+      "viewCount": "378",
+      "likeCount": "9",
+      "channelTitle": "Africa Digital Media Institute - ADMI",
+      "tags": [
+        "media school",
+        "admi kenya",
+        "admi africa",
+        "africa digital media",
+        "africa digital media institute",
+        "digital media",
+        "ADMI",
+        "ADMI School",
+        "music production",
+        "sound engineering",
+        "music producer",
+        "creatives",
+        "artist",
+        "music"
       ],
       "categoryId": "27"
     },
@@ -10088,7 +10094,13 @@
       "viewCount": "10.0K",
       "likeCount": "25",
       "channelTitle": "Africa Digital Media Institute - ADMI",
-      "tags": ["animation", "2d animation", "rubika", "admi", "africa digital digital media"],
+      "tags": [
+        "animation",
+        "2d animation",
+        "rubika",
+        "admi",
+        "africa digital digital media"
+      ],
       "categoryId": "27"
     },
     {
@@ -10566,7 +10578,14 @@
       "viewCount": "131",
       "likeCount": "2",
       "channelTitle": "Africa Digital Media Institute - ADMI",
-      "tags": ["film production", "tv production", "film and tv production", "filmmaking", "filmstudios", "studyfilm"],
+      "tags": [
+        "film production",
+        "tv production",
+        "film and tv production",
+        "filmmaking",
+        "filmstudios",
+        "studyfilm"
+      ],
       "categoryId": "27"
     },
     {
@@ -10584,7 +10603,14 @@
       "viewCount": "151",
       "likeCount": "1",
       "channelTitle": "Africa Digital Media Institute - ADMI",
-      "tags": ["film production", "tv production", "film and tv production", "filmmaking", "filmstudios", "studyfilm"],
+      "tags": [
+        "film production",
+        "tv production",
+        "film and tv production",
+        "filmmaking",
+        "filmstudios",
+        "studyfilm"
+      ],
       "categoryId": "27"
     },
     {
@@ -10602,7 +10628,14 @@
       "viewCount": "151",
       "likeCount": "2",
       "channelTitle": "Africa Digital Media Institute - ADMI",
-      "tags": ["film production", "tv production", "film and tv production", "filmmaking", "filmstudios", "studyfilm"],
+      "tags": [
+        "film production",
+        "tv production",
+        "film and tv production",
+        "filmmaking",
+        "filmstudios",
+        "studyfilm"
+      ],
       "categoryId": "27"
     },
     {
@@ -10620,7 +10653,14 @@
       "viewCount": "98",
       "likeCount": "3",
       "channelTitle": "Africa Digital Media Institute - ADMI",
-      "tags": ["film production", "tv production", "film and tv production", "filmmaking", "filmstudios", "studyfilm"],
+      "tags": [
+        "film production",
+        "tv production",
+        "film and tv production",
+        "filmmaking",
+        "filmstudios",
+        "studyfilm"
+      ],
       "categoryId": "27"
     },
     {
@@ -10667,7 +10707,14 @@
       "viewCount": "113",
       "likeCount": "6",
       "channelTitle": "Africa Digital Media Institute - ADMI",
-      "tags": ["film production", "tv production", "film and tv production", "filmmaking", "filmstudios", "studyfilm"],
+      "tags": [
+        "film production",
+        "tv production",
+        "film and tv production",
+        "filmmaking",
+        "filmstudios",
+        "studyfilm"
+      ],
       "categoryId": "27"
     },
     {
@@ -10782,7 +10829,14 @@
       "viewCount": "954",
       "likeCount": "28",
       "channelTitle": "Africa Digital Media Institute - ADMI",
-      "tags": ["film", "tv", "film production", "tv production", "film course", "tv production course"],
+      "tags": [
+        "film",
+        "tv",
+        "film production",
+        "tv production",
+        "film course",
+        "tv production course"
+      ],
       "categoryId": "27"
     },
     {
@@ -11042,7 +11096,10 @@
       "viewCount": "141",
       "likeCount": "2",
       "channelTitle": "Africa Digital Media Institute - ADMI",
-      "tags": ["ADMIONline", "Africa Digital Media Institure"],
+      "tags": [
+        "ADMIONline",
+        "Africa Digital Media Institure"
+      ],
       "categoryId": "27"
     },
     {
@@ -11104,7 +11161,12 @@
       "viewCount": "1.7K",
       "likeCount": "56",
       "channelTitle": "Africa Digital Media Institute - ADMI",
-      "tags": ["graphic design", "graphicdesignwebinar", "illustrationwebinar", "illustration"],
+      "tags": [
+        "graphic design",
+        "graphicdesignwebinar",
+        "illustrationwebinar",
+        "illustration"
+      ],
       "categoryId": "27"
     },
     {
@@ -11347,7 +11409,12 @@
       "viewCount": "285",
       "likeCount": "8",
       "channelTitle": "Africa Digital Media Institute - ADMI",
-      "tags": ["King Kaka", "KING KAKA - WAJINGA NYINYI (Official Video)", "KING KAKA", "Wanjinga Nyinyi"],
+      "tags": [
+        "King Kaka",
+        "KING KAKA - WAJINGA NYINYI (Official Video)",
+        "KING KAKA",
+        "Wanjinga Nyinyi"
+      ],
       "categoryId": "27"
     },
     {
@@ -11365,7 +11432,12 @@
       "viewCount": "1.2K",
       "likeCount": "44",
       "channelTitle": "Africa Digital Media Institute - ADMI",
-      "tags": ["Caroline Mutoko", "ADMI", "ADMIAFRICA", "ADMI open day"],
+      "tags": [
+        "Caroline Mutoko",
+        "ADMI",
+        "ADMIAFRICA",
+        "ADMI open day"
+      ],
       "categoryId": "27"
     },
     {
@@ -11581,7 +11653,13 @@
       "viewCount": "724",
       "likeCount": "7",
       "channelTitle": "Africa Digital Media Institute - ADMI",
-      "tags": ["Dr Laila Macharia", "Laila macharia", "ADMI", "admiafrica", "africa digital media institute"],
+      "tags": [
+        "Dr Laila Macharia",
+        "Laila macharia",
+        "ADMI",
+        "admiafrica",
+        "africa digital media institute"
+      ],
       "categoryId": "27"
     },
     {
@@ -11650,7 +11728,13 @@
       "viewCount": "39.9K",
       "likeCount": "8",
       "channelTitle": "Africa Digital Media Institute - ADMI",
-      "tags": ["guilt", "short film", "admi films", "admiafrica", "admi"],
+      "tags": [
+        "guilt",
+        "short film",
+        "admi films",
+        "admiafrica",
+        "admi"
+      ],
       "categoryId": "27"
     },
     {
@@ -11668,7 +11752,11 @@
       "viewCount": "2.2K",
       "likeCount": "15",
       "channelTitle": "Africa Digital Media Institute - ADMI",
-      "tags": ["admi", "admiafrica", "africa digital media institute"],
+      "tags": [
+        "admi",
+        "admiafrica",
+        "africa digital media institute"
+      ],
       "categoryId": "27"
     },
     {
@@ -11686,7 +11774,9 @@
       "viewCount": "337",
       "likeCount": "9",
       "channelTitle": "Africa Digital Media Institute - ADMI",
-      "tags": ["Film and Television Production"],
+      "tags": [
+        "Film and Television Production"
+      ],
       "categoryId": "27"
     },
     {
@@ -11704,7 +11794,10 @@
       "viewCount": "463",
       "likeCount": "11",
       "channelTitle": "Africa Digital Media Institute - ADMI",
-      "tags": ["africananimations", "animations"],
+      "tags": [
+        "africananimations",
+        "animations"
+      ],
       "categoryId": "27"
     },
     {
@@ -12190,7 +12283,10 @@
       "viewCount": "7.8K",
       "likeCount": "13",
       "channelTitle": "Africa Digital Media Institute - ADMI",
-      "tags": ["Adobe training center", "Graphic Design certificate"],
+      "tags": [
+        "Adobe training center",
+        "Graphic Design certificate"
+      ],
       "categoryId": "27"
     },
     {
@@ -12208,7 +12304,11 @@
       "viewCount": "4.3K",
       "likeCount": "13",
       "channelTitle": "Africa Digital Media Institute - ADMI",
-      "tags": ["Adobe training center", "Diploma in Film & TV Production", "film & tv industry"],
+      "tags": [
+        "Adobe training center",
+        "Diploma in Film & TV Production",
+        "film & tv industry"
+      ],
       "categoryId": "27"
     },
     {
@@ -12242,7 +12342,12 @@
       "viewCount": "2.1K",
       "likeCount": "6",
       "channelTitle": "Africa Digital Media Institute - ADMI",
-      "tags": ["Diploma in Graphic Design", "Adobe training center", "internship placement", "study at admi"],
+      "tags": [
+        "Diploma in Graphic Design",
+        "Adobe training center",
+        "internship placement",
+        "study at admi"
+      ],
       "categoryId": "27"
     },
     {
@@ -12286,7 +12391,11 @@
       "viewCount": "398",
       "likeCount": "7",
       "channelTitle": "Africa Digital Media Institute - ADMI",
-      "tags": ["study at admi", "rise of the scarabs", "animated film"],
+      "tags": [
+        "study at admi",
+        "rise of the scarabs",
+        "animated film"
+      ],
       "categoryId": "27"
     },
     {
@@ -12304,7 +12413,10 @@
       "viewCount": "1.4K",
       "likeCount": "7",
       "channelTitle": "Africa Digital Media Institute - ADMI",
-      "tags": ["study at admi", "animation & motion graphics student"],
+      "tags": [
+        "study at admi",
+        "animation & motion graphics student"
+      ],
       "categoryId": "27"
     },
     {
@@ -12890,7 +13002,7 @@
       "categoryId": "1"
     }
   ],
-  "lastUpdated": "2025-07-27T11:33:31.100Z",
+  "lastUpdated": "2025-07-27T11:46:59.980Z",
   "totalVideos": 445,
   "channelInfo": {
     "title": "Africa Digital Media Institute - ADMI",
