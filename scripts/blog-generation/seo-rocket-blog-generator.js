@@ -97,7 +97,7 @@ class SEORocketBlogGenerator {
       return {
         searchVolume: Math.floor(Math.random() * 5000) + 100,
         competition: ['low', 'medium', 'high'][Math.floor(Math.random() * 3)],
-        relatedKeywords: keywords.map((k) => `${k} tips`, `${k} guide`, `${k} trends`).flat()
+        relatedKeywords: keywords.map((k) => [`${k} tips`, `${k} guide`, `${k} trends`]).flat()
       }
     } catch (error) {
       console.error('Error getting SEO insights:', error.message)
