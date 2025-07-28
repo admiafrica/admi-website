@@ -31,8 +31,8 @@ Resources:
         DailyRefresh:
           Type: Schedule
           Properties:
-            Schedule: 'cron(0 1 * * ? *)'  # 1 AM daily (UTC)
-            Description: 'Refresh video cache daily at 1 AM'
+            Schedule: 'cron(0 0 * * ? *)'  # Midnight daily (UTC)
+            Description: 'Refresh video cache daily at midnight'
             Enabled: true
 
   # CloudWatch Log Group for the function
