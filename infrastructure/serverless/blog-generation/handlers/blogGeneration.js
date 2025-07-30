@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const BlogScheduler = require('../../../scripts/blog-generation/blog-scheduler')
+const BlogScheduler = require('../../../../scripts/blog-generation/blog-scheduler')
 
 /**
  * AWS Lambda handler for daily blog generation

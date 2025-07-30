@@ -13,6 +13,7 @@ provider:
     ADMI_CONTENTFUL_MANAGEMENT_TOKEN: ${env:CONTENTFUL_MANAGEMENT_TOKEN}
     ADMI_CONTENTFUL_ENVIRONMENT: ${env:ADMI_CONTENTFUL_ENVIRONMENT}
     OPENAI_API_KEY: ${env:NEXT_OPENAI_API_KEY}
+    YOUTUBE_API_KEY: ${env:YOUTUBE_API_KEY}
     BLOG_GENERATION_WEBHOOK_URL: ${env:BLOG_GENERATION_WEBHOOK_URL, ''}
     APP_URL: ${env:APP_URL, 'https://main.d2yh9rjzagq5ao.amplifyapp.com'}
     CRON_SECRET: ${env:CRON_SECRET, 'admi-cron-secret-2025'}
@@ -97,10 +98,14 @@ custom:
     includeModules: true
     packager: npm
   dotenv:
+    path: .env
     exclude:
       - AWS_ACCESS_KEY_ID
       - AWS_SECRET_ACCESS_KEY
       - AWS_SESSION_TOKEN
+      - AWS_DEFAULT_REGION
+      - AWS_PROFILE
+      - AWS_ACCOUNT
 
 package:
   exclude:
@@ -112,47 +117,6 @@ package:
 
 resources:
   Resources:
-    BlogGenerationLogGroup:
-      Type: AWS::Logs::LogGroup
-      Properties:
-        LogGroupName: /aws/lambda/${self:service}-${self:provider.stage}-dailyBlogGeneration
-        RetentionInDays: 30
-
-    WeeklyBlogGenerationLogGroup:
-      Type: AWS::Logs::LogGroup
-      Properties:
-        LogGroupName: /aws/lambda/${self:service}-${self:provider.stage}-weeklyBlogGeneration
-        RetentionInDays: 30
-
-    VideoCacheRefreshLogGroup:
-      Type: AWS::Logs::LogGroup
-      Properties:
-        LogGroupName: /aws/lambda/${self:service}-${self:provider.stage}-videoCacheRefresh
-        RetentionInDays: 30
-
-    BlogGenerationRole:
-      Type: AWS::IAM::Role
-      Properties:
-        RoleName: ${self:service}-${self:provider.stage}-blog-role
-        AssumeRolePolicyDocument:
-          Version: '2012-10-17'
-          Statement:
-            - Effect: Allow
-              Principal:
-                Service:
-                  - lambda.amazonaws.com
-              Action: sts:AssumeRole
-        Policies:
-          - PolicyName: BlogGenerationPolicy
-            PolicyDocument:
-              Version: '2012-10-17'
-              Statement:
-                - Effect: Allow
-                  Action:
-                    - logs:CreateLogGroup
-                    - logs:CreateLogStream
-                    - logs:PutLogEvents
-                  Resource: arn:aws:logs:*:*:*
 
   Outputs:
     DailyBlogFunctionArn:
