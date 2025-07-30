@@ -3,7 +3,10 @@ const path = require('path')
 const nodeExternals = require('webpack-node-externals')
 
 module.exports = {
-  entry: './handlers/blogGeneration.js',
+  entry: {
+    'handlers/blogGeneration': './handlers/blogGeneration.js',
+    'handlers/videoCacheRefresh': './handlers/videoCacheRefresh.js'
+  },
   target: 'node',
   mode: 'production',
   externals: [nodeExternals()],
@@ -32,7 +35,7 @@ module.exports = {
   output: {
     libraryTarget: 'commonjs2',
     path: path.join(__dirname, '.webpack'),
-    filename: 'blogGeneration.js'
+    filename: '[name].js'
   },
   optimization: {
     minimize: false

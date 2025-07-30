@@ -15,7 +15,7 @@ provider:
     OPENAI_API_KEY: ${env:NEXT_OPENAI_API_KEY}
     YOUTUBE_API_KEY: ${env:YOUTUBE_API_KEY}
     BLOG_GENERATION_WEBHOOK_URL: ${env:BLOG_GENERATION_WEBHOOK_URL, ''}
-    APP_URL: ${env:APP_URL, 'https://main.d2yh9rjzagq5ao.amplifyapp.com'}
+    APP_URL: ${env:APP_URL, 'https://dlm0hjalapt7d.amplifyapp.com'}
     CRON_SECRET: ${env:CRON_SECRET, 'admi-cron-secret-2025'}
   iam:
     role:
