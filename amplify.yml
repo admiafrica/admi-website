@@ -30,6 +30,9 @@ frontend:
     build:
       commands:
         - echo "NODE_ENV=production" >> .env.production
+        - echo "ADMI_CONTENTFUL_SPACE_ID=$ADMI_CONTENTFUL_SPACE_ID" >> .env.production
+        - echo "ADMI_CONTENTFUL_ACCESS_TOKEN=$ADMI_CONTENTFUL_ACCESS_TOKEN" >> .env.production
+        - echo "ADMI_CONTENTFUL_ENVIRONMENT=$ADMI_CONTENTFUL_ENVIRONMENT" >> .env.production
         - npm run build
   artifacts:
     baseDirectory: .next
