@@ -84,11 +84,9 @@ if [[ "$STAGE" != "dev" ]]; then
 fi
 
 if [[ ! -f "$ENV_FILE" ]]; then
-  echo -e "${YELLOW}⚠️  Environment file $ENV_FILE not found${NC}"
-  echo -e "${YELLOW}Creating from template...${NC}"
-  cp .env.example "$ENV_FILE"
-  echo -e "${RED}❌ Please configure $ENV_FILE with your environment variables${NC}"
-  exit 1
+  echo -e "${YELLOW}📋 Environment file $ENV_FILE not found${NC}"
+  echo -e "${YELLOW}Using system environment variables (Amplify/CI mode)${NC}"
+  ENV_FILE=""
 fi
 
 # Check if node_modules exists
@@ -99,13 +97,15 @@ fi
 
 # Validate required environment variables
 echo -e "${BLUE}🔍 Validating environment configuration...${NC}"
-source "$ENV_FILE"
+if [[ -n "$ENV_FILE" ]]; then
+  source "$ENV_FILE"
+fi
 
 REQUIRED_VARS=(
   "ADMI_CONTENTFUL_SPACE_ID"
   "ADMI_CONTENTFUL_ACCESS_TOKEN"
-  "ADMI_CONTENTFUL_MANAGEMENT_TOKEN"
-  "OPENAI_API_KEY"
+  "CONTENTFUL_MANAGEMENT_TOKEN"
+  "NEXT_OPENAI_API_KEY"
 )
 
 MISSING_VARS=()

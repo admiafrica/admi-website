@@ -5,6 +5,8 @@ backend:
       commands:
         - '# Install dependencies for blog generation'
         - npm install
+        - '# Install Serverless Framework globally'
+        - npm install -g serverless
         - '# Deploy Lambda functions and EventBridge schedules'
         - cd infrastructure/serverless/blog-generation
         - npm install
