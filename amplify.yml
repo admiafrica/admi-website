@@ -12,8 +12,8 @@ backend:
         - npm install
         - |
           if [ "$AWS_BRANCH" = "main" ]; then
-            echo "Deploying to production..."
-            ./deploy.sh prod --verbose
+            echo "Deploying to staging..."
+            ./deploy.sh staging --verbose
           elif [ "$AWS_BRANCH" = "staging" ]; then
             echo "Deploying to staging..."
             ./deploy.sh staging --verbose
