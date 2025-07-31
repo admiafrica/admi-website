@@ -86,7 +86,7 @@ export default function AudioPage() {
     const fetchAudio = async () => {
       try {
         setLoading(true)
-        const response = await fetch('/api/media-archive/audio')
+        const response = await fetch('/api/media-archive/audio.json')
         const data = await response.json()
 
         if (data.success) {

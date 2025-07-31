@@ -1,0 +1,47 @@
+{
+  "success": true,
+  "albums": [
+    {
+      "id": "graduation-ceremony-2024",
+      "slug": "graduation-ceremony-2024",
+      "title": "Graduation Ceremony 2024",
+      "description": "Photos from the ADMI graduation ceremony celebrating our Class of 2024",
+      "date": "2024-12-15",
+      "category": "Graduation",
+      "photographer": "ADMI Media Team",
+      "event": "Graduation Ceremony 2024",
+      "thumbnail": "https://d17qqznw1g499t.cloudfront.net/media-archive/images/graduation-ceremony-2024/graduation-01.jpg",
+      "imageCount": 2,
+      "isAlbum": true
+    },
+    {
+      "id": "animation-workshop-2024",
+      "slug": "animation-workshop-2024",
+      "title": "Animation Workshop 2024",
+      "description": "Behind-the-scenes photos from our animation studio workshop with industry professionals",
+      "date": "2024-11-20",
+      "category": "Workshops",
+      "photographer": "Student Documentation Team",
+      "event": "Animation Workshop 2024",
+      "thumbnail": "https://d17qqznw1g499t.cloudfront.net/media-archive/images/animation-workshop-2024/animation-01.jpg",
+      "imageCount": 2,
+      "isAlbum": true
+    },
+    {
+      "id": "open-day-2024",
+      "slug": "open-day-2024",
+      "title": "Open Day 2024",
+      "description": "Photos from ADMI's annual open day showcasing our facilities and student work",
+      "date": "2024-10-15",
+      "category": "Open Day",
+      "photographer": "ADMI Media Team",
+      "event": "Open Day 2024",
+      "thumbnail": "https://d17qqznw1g499t.cloudfront.net/media-archive/images/open-day-2024/openday-01.jpg",
+      "imageCount": 2,
+      "isAlbum": true
+    }
+  ],
+  "count": 3,
+  "generated": "2025-07-31T21:04:21.892Z",
+  "source": "static"
+}

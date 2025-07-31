@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "node scripts/generate-media-manifest.js && next build",
     "start": "next start",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
@@ -35,6 +35,7 @@
     "cron-health": "./scripts/cron/cron-health-check.sh",
     "cron-test": "./scripts/cron/weekly-faq-optimizer.sh",
     "cache-refresh": "curl -H \"Authorization: Bearer ${CRON_SECRET:-default-secret}\" \"${APP_URL:-http://localhost:3000}/api/cron/refresh-video-cache\"",
+    "media:generate": "node scripts/generate-media-manifest.js",
     "deploy-cron": "cd infrastructure/aws-cron && ./deploy.sh"
   },
   "dependencies": {

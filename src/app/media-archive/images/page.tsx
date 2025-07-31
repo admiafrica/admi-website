@@ -64,7 +64,7 @@ export default function ImagesPage() {
     const fetchAlbums = async () => {
       try {
         setLoading(true)
-        const response = await fetch('/api/media-archive/albums')
+        const response = await fetch('/api/media-archive/albums.json')
         const data = await response.json()
 
         if (data.success) {
