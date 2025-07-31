@@ -39,6 +39,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const forceRefresh = refresh === 'true'
 
     console.log('📡 ADMI Videos API called - limit:', maxResults, 'refresh:', forceRefresh)
+    console.log('🔧 Environment check:', {
+      hasYouTubeKey: !!process.env.YOUTUBE_API_KEY,
+      hasChannelId: !!process.env.ADMI_YOUTUBE_CHANNEL_ID,
+      nodeEnv: process.env.NODE_ENV,
+      cwd: process.cwd()
+    })
 
     // Check cache first
     let cache = readVideoCache()
@@ -99,11 +105,22 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   } catch (error) {
     console.error('❌ Error in ADMI Videos API handler:', error)
 
+    // Enhanced error details for debugging
+    const errorDetails = {
+      message: (error as Error).message,
+      stack: process.env.NODE_ENV === 'development' ? (error as Error).stack : undefined,
+      hasYouTubeKey: !!process.env.YOUTUBE_API_KEY,
+      hasChannelId: !!process.env.ADMI_YOUTUBE_CHANNEL_ID,
+      nodeEnv: process.env.NODE_ENV
+    }
+
+    console.error('📋 Error details:', errorDetails)
+
     return res.status(500).json({
       message: 'Failed to fetch videos',
       videos: [],
       total: 0,
-      error: process.env.NODE_ENV === 'development' ? (error as Error).message : 'Internal server error'
+      error: process.env.NODE_ENV === 'development' ? errorDetails : 'Internal server error'
     })
   }
 }
