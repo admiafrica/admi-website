@@ -12,13 +12,12 @@ import {
   TextInput,
   Select,
   Image,
-  Modal,
   Button,
   MantineProvider,
   Loader,
   Alert
 } from '@mantine/core'
-import { IconSearch, IconDownload, IconCalendar, IconCamera, IconPhoto, IconAlertCircle } from '@tabler/icons-react'
+import { IconSearch, IconCalendar, IconCamera, IconPhoto, IconAlertCircle } from '@tabler/icons-react'
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { MainLayout } from '@/layouts/v3/MainLayout'
@@ -54,7 +53,6 @@ const categories = [
 export default function ImagesPage() {
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedCategory, setSelectedCategory] = useState('All')
-  const [modalOpened, setModalOpened] = useState(false)
   const [albums, setAlbums] = useState<AlbumItem[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
@@ -215,7 +213,6 @@ export default function ImagesPage() {
             </Group>
           </Stack>
         </Container>
-
       </MainLayout>
     </MantineProvider>
   )

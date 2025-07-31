@@ -1,3 +1,5 @@
+'use client'
+
 import {
   Container,
   Title,
@@ -45,7 +47,6 @@ interface Album {
 }
 
 // Client component that handles params
-'use client'
 function AlbumPageClient({ slug }: { slug: string }) {
   const [album, setAlbum] = useState<Album | null>(null)
   const [loading, setLoading] = useState(true)
