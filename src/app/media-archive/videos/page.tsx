@@ -433,7 +433,7 @@ export default function VideoGallery() {
                           {/* Play Button Overlay */}
                           <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30 opacity-0 transition-opacity duration-300 hover:opacity-100">
                             <div className="rounded-full bg-white bg-opacity-90 p-4">
-                              <IconPlayerPlay size={32} color="#F76335" />
+                              <IconPlayerPlay size={32} style={{ color: '#F76335' }} />
                             </div>
                           </div>
 
@@ -463,13 +463,13 @@ export default function VideoGallery() {
                         <Group justify="space-between" mt="md" align="center">
                           <Group gap="xs">
                             <Group gap={4}>
-                              <IconEye size={14} color="#666" />
+                              <IconEye size={14} style={{ color: '#666' }} />
                               <Text size="xs" c="dimmed">
                                 {video.viewCount}
                               </Text>
                             </Group>
                             <Group gap={4}>
-                              <IconClock size={14} color="#666" />
+                              <IconClock size={14} style={{ color: '#666' }} />
                               <Text size="xs" c="dimmed">
                                 {video.duration}
                               </Text>
@@ -569,19 +569,19 @@ export default function VideoGallery() {
 
                   <Group mb="md" gap="lg">
                     <Group gap={4}>
-                      <IconEye size={16} color="#666" />
+                      <IconEye size={16} style={{ color: '#666' }} />
                       <Text size="sm" c="dimmed">
                         {selectedVideo.viewCount} views
                       </Text>
                     </Group>
                     <Group gap={4}>
-                      <IconClock size={16} color="#666" />
+                      <IconClock size={16} style={{ color: '#666' }} />
                       <Text size="sm" c="dimmed">
                         {selectedVideo.duration}
                       </Text>
                     </Group>
                     <Group gap={4}>
-                      <IconCalendar size={16} color="#666" />
+                      <IconCalendar size={16} style={{ color: '#666' }} />
                       <Text size="sm" c="dimmed">
                         {new Date(selectedVideo.publishedAt).toLocaleDateString('en-KE', {
                           timeZone: 'Africa/Nairobi',
