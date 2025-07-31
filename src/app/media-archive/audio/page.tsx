@@ -157,19 +157,33 @@ export default function AudioPage() {
           console.error('Audio URL:', audioItem.audioUrl)
           console.error('Audio readyState:', audio.readyState)
           console.error('Audio networkState:', audio.networkState)
+          console.error('Audio error code:', (audio.error as any)?.code)
+          console.error('Audio error message:', (audio.error as any)?.message)
           setPlayingId(null)
-          // Optionally show user-friendly error
           setError('Unable to play audio file. Please try again later.')
+        })
+
+        audio.addEventListener('canplaythrough', () => {
+          console.log('Audio can play through:', audioItem.audioUrl)
+        })
+
+        audio.addEventListener('loadstart', () => {
+          console.log('Audio load started:', audioItem.audioUrl)
         })
       }
 
       // Try to play with error handling
+      setPlayingId(audioId)
       audioRefs.current[audioId].play().catch((error) => {
         console.error('Play failed:', error)
-        setError('Unable to play audio. Please check your internet connection.')
+        console.error('Play error details:', {
+          name: error.name,
+          message: error.message,
+          code: (error as any).code
+        })
+        setError('Unable to play audio. Please try again.')
         setPlayingId(null)
       })
-      setPlayingId(audioId)
     }
   }
 

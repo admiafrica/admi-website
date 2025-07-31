@@ -9,6 +9,17 @@ export async function GET() {
     const fileContent = readFileSync(filePath, 'utf8')
     const data = JSON.parse(fileContent)
 
+    // Convert CloudFront URLs to proxy URLs to fix CORS issues
+    if (data.audio) {
+      data.audio = data.audio.map((audioItem: any) => {
+        if (audioItem.audioUrl && audioItem.audioUrl.includes('cloudfront.net')) {
+          const filename = audioItem.filename || audioItem.audioUrl.split('/').pop()
+          audioItem.audioUrl = `/api/media-archive/audio-proxy/${filename}`
+        }
+        return audioItem
+      })
+    }
+
     return NextResponse.json(data, {
       headers: {
         'Content-Type': 'application/json',
