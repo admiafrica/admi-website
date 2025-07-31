@@ -1,18 +1,21 @@
 import { Card, Text } from '@mantine/core'
 import { Button } from '../ui'
-import { useRouter } from 'next/router'
 
 export default function CourseEnrollCard() {
-  const router = useRouter()
-
   const handleEnquiry = () => {
-    const { utm_source, utm_medium, utm_campaign, utm_term, utm_content } = router.query
-    const query = utm_source ? { utm_source, utm_medium, utm_campaign, utm_term, utm_content } : undefined
+    const urlParams = new URLSearchParams(window.location.search)
+    const utmParams = new URLSearchParams()
 
-    router.push({
-      pathname: '/enquiry',
-      query
+    const utmKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content']
+    utmKeys.forEach((key) => {
+      const value = urlParams.get(key)
+      if (value) utmParams.append(key, value)
     })
+
+    const queryString = utmParams.toString()
+    const enquiryUrl = queryString ? `/enquiry?${queryString}` : '/enquiry'
+
+    window.location.href = enquiryUrl
   }
 
   return (

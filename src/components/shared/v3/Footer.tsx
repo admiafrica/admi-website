@@ -1,6 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/navigation'
 import { Group, Text, Anchor, Stack, Divider } from '@mantine/core'
 import { useMediaQuery } from '@mantine/hooks'
 
