@@ -130,8 +130,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               if (window.fetch) {
                 const originalFetch = window.fetch;
                 window.fetch = function(...args) {
-                  if (args[0] && (args[0].includes('brevo') || args[0].includes('sendinblue'))) {
-                    console.log('Blocked Brevo fetch:', args[0]);
+                  const url = typeof args[0] === 'string' ? args[0] : (args[0] && args[0].url) ? args[0].url : '';
+                  if (url && (url.includes('brevo') || url.includes('sendinblue'))) {
+                    console.log('Blocked Brevo fetch:', url);
                     return Promise.reject(new Error('Blocked Brevo request'));
                   }
                   return originalFetch.apply(this, args);

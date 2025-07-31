@@ -146,19 +146,30 @@ export default function VideoGallery() {
     const loadVideos = async () => {
       try {
         setLoading(true)
-        // For now, we'll use the existing API endpoint from Pages Router
+        // Try to use the existing API endpoint from Pages Router
         const response = await fetch('/api/admi-videos')
+
+        if (!response.ok) {
+          throw new Error(`API Error: ${response.status}`)
+        }
+
         const data = await response.json()
 
-        if (data.videos) {
+        if (data.videos && data.videos.length > 0) {
           setAllVideosList(data.videos)
           setFilteredVideos(data.videos)
           setDisplayedVideos(data.videos.slice(0, 12))
           setChannelInfo(data.channelInfo)
+        } else {
+          // Fallback: Set a message for when API works but returns no videos
+          setError('No videos available at this time. Please check back later.')
         }
       } catch (err) {
         console.error('Error loading videos:', err)
-        setError('Failed to load videos')
+        // Provide a more informative error message
+        setError(
+          'Videos are temporarily unavailable. The video service may be updating. Please try again later or visit our YouTube channel directly.'
+        )
       } finally {
         setLoading(false)
       }
