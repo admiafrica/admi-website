@@ -33,14 +33,14 @@ export async function GET() {
         const metadataKey = `${S3_CONFIG.MEDIA_ARCHIVE_PREFIX}audio/metadata/${nameWithoutExt}.json`
         let metadata = {
           title,
-          description: `Audio recording: ${title}`,
-          category: 'Audio',
-          speaker: 'ADMI Team',
+          description: '',
+          category: '',
+          speaker: '',
           student: null,
           course: null,
           genre: null,
           duration: 'Unknown',
-          type: 'Recording'
+          type: ''
         }
 
         try {
@@ -59,8 +59,8 @@ export async function GET() {
           console.log(`No metadata found for ${fileName}, using defaults`)
         }
 
-        // Generate direct S3 URL for audio streaming
-        const audioUrl = `https://${S3_CONFIG.BUCKET_NAME}.s3.${S3_CONFIG.REGION}.amazonaws.com/${obj.Key}`
+        // Generate CloudFront URL for audio streaming
+        const audioUrl = `https://d17qqznw1g499t.cloudfront.net/${obj.Key}`
         const fileExtension = obj.Key?.split('.').pop()?.toLowerCase()
 
         // Determine audio type/category based on filename or metadata
@@ -91,11 +91,11 @@ export async function GET() {
           duration: metadata.duration || 'Unknown',
           date: obj.LastModified?.toISOString().split('T')[0] || new Date().toISOString().split('T')[0],
           category: audioType,
-          speaker: metadata.student || metadata.speaker || 'ADMI Team',
+          speaker: metadata.student || metadata.speaker || '',
           student: metadata.student || null,
           course: metadata.course || null,
           genre: metadata.genre || null,
-          plays: Math.floor(Math.random() * 1000), // In real app, this would be tracked
+          plays: 0,
           size: obj.Size || 0,
           format: fileExtension?.toUpperCase() || 'UNKNOWN',
           lastModified: obj.LastModified?.toISOString() || new Date().toISOString()

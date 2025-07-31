@@ -1,10 +1,21 @@
 import { S3Client } from '@aws-sdk/client-s3'
 
-// AWS S3 Configuration - Use default credential chain in Amplify serverless environment
+// AWS S3 Configuration - Explicit configuration for Amplify environment
+const region = process.env.S3_REGION || process.env.AWS_REGION || 'us-east-1'
+
+// Check if we're in AWS Lambda/Amplify environment
+const isAmplifyEnv = !!(process.env.AWS_EXECUTION_ENV || process.env.AWS_LAMBDA_FUNCTION_NAME)
+
 export const s3Client = new S3Client({
-  region: process.env.S3_REGION || process.env.AWS_REGION || 'us-east-1'
-  // Let AWS SDK use default credential chain (IAM roles for Amplify)
-  // In Amplify serverless functions, this should automatically use the service role
+  region,
+  // In Amplify, explicitly try to use the execution role
+  ...(isAmplifyEnv && {
+    credentials: {
+      accessKeyId: process.env.AWS_ACCESS_KEY_ID || '',
+      secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY || '',
+      sessionToken: process.env.AWS_SESSION_TOKEN
+    }
+  })
 })
 
 export const S3_CONFIG = {
