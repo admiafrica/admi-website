@@ -1,17 +1,23 @@
 import { S3Client } from '@aws-sdk/client-s3'
 
 // AWS S3 Configuration
-export const s3Client = new S3Client({
-  region: process.env.AWS_REGION || 'us-east-1',
-  credentials: {
-    accessKeyId: process.env.AWS_ACCESS_KEY_ID || '',
-    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY || ''
+const s3Config: any = {
+  region: process.env.S3_REGION || process.env.AWS_REGION || 'us-east-1'
+}
+
+// Only add credentials if they're available (Amplify may use IAM roles)
+if (process.env.AWS_ACCESS_KEY_ID && process.env.AWS_SECRET_ACCESS_KEY) {
+  s3Config.credentials = {
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
   }
-})
+}
+
+export const s3Client = new S3Client(s3Config)
 
 export const S3_CONFIG = {
-  BUCKET_NAME: process.env.AWS_S3_BUCKET_NAME || 'admi-media-archive-381492234121',
-  REGION: process.env.AWS_REGION || 'us-east-1',
+  BUCKET_NAME: process.env.S3_BUCKET_NAME || process.env.S3_ARCHIVE_BUCKET || 'admi-media-archive-381492234121',
+  REGION: process.env.S3_REGION || process.env.AWS_REGION || 'us-east-1',
   MEDIA_ARCHIVE_PREFIX: 'media-archive/' // S3 prefix for media archive folders
 }
 

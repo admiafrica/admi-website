@@ -15,6 +15,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       hasChannelId: !!process.env.ADMI_YOUTUBE_CHANNEL_ID,
       youtubeApiKeyLength: process.env.YOUTUBE_API_KEY?.length || 0,
       channelId: process.env.ADMI_YOUTUBE_CHANNEL_ID,
+      // S3 configuration
+      hasS3BucketName: !!(process.env.S3_BUCKET_NAME || process.env.S3_ARCHIVE_BUCKET),
+      s3BucketName: process.env.S3_BUCKET_NAME || process.env.S3_ARCHIVE_BUCKET,
+      hasS3Region: !!(process.env.S3_REGION || process.env.AWS_REGION),
+      s3Region: process.env.S3_REGION || process.env.AWS_REGION,
+      hasAwsCredentials: !!(process.env.AWS_ACCESS_KEY_ID && process.env.AWS_SECRET_ACCESS_KEY),
+      // File system
       tmpDirExists: fs.existsSync('/tmp'),
       tmpCacheExists: fs.existsSync('/tmp/admi-videos-cache.json'),
       dataDirExists: fs.existsSync(path.join(process.cwd(), 'data')),
