@@ -2,7 +2,8 @@ import { NextResponse } from 'next/server'
 import { readFileSync } from 'fs'
 import { join } from 'path'
 
-export async function GET(request: Request, { params }: { params: { slug: string } }) {
+export async function GET(request: Request, context: { params: Promise<{ slug: string }> }) {
+  const params = await context.params
   try {
     // Read the albums manifest to find the requested album
     const filePath = join(process.cwd(), 'public', 'api', 'media-archive', 'albums.json')
