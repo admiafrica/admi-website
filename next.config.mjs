@@ -49,6 +49,20 @@ const nextConfig = {
   },
   async headers() {
     return [
+      // Add specific headers for API JSON files
+      {
+        source: '/api/media-archive/:path*.json',
+        headers: [
+          {
+            key: 'Content-Type',
+            value: 'application/json',
+          },
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=3600',
+          },
+        ],
+      },
       {
         source: '/(.*)',
         headers: [
