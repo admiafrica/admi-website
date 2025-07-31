@@ -1,0 +1,49 @@
+import { NextResponse } from 'next/server'
+
+export async function GET(request: Request, context: { params: Promise<{ filename: string }> }) {
+  const params = await context.params
+
+  try {
+    // Construct the CloudFront URL
+    const audioUrl = `https://d17qqznw1g499t.cloudfront.net/media-archive/audio/${params.filename}`
+
+    // Fetch the audio file from CloudFront
+    const audioResponse = await fetch(audioUrl)
+
+    if (!audioResponse.ok) {
+      return NextResponse.json({ error: 'Audio file not found' }, { status: 404 })
+    }
+
+    // Get the audio data
+    const audioBuffer = await audioResponse.arrayBuffer()
+
+    // Return the audio with proper CORS headers
+    return new NextResponse(audioBuffer, {
+      status: 200,
+      headers: {
+        'Content-Type': audioResponse.headers.get('content-type') || 'audio/mpeg',
+        'Content-Length': audioResponse.headers.get('content-length') || '',
+        'Accept-Ranges': 'bytes',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Headers': 'Range',
+        'Access-Control-Allow-Methods': 'GET, HEAD, OPTIONS',
+        'Cache-Control': 'public, max-age=31536000' // 1 year cache
+      }
+    })
+  } catch (error) {
+    console.error('Error proxying audio file:', error)
+    return NextResponse.json({ error: 'Failed to load audio file' }, { status: 500 })
+  }
+}
+
+// Handle OPTIONS requests for CORS preflight
+export async function OPTIONS() {
+  return new NextResponse(null, {
+    status: 200,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Headers': 'Range',
+      'Access-Control-Allow-Methods': 'GET, HEAD, OPTIONS'
+    }
+  })
+}

@@ -210,7 +210,8 @@ async function generateAudioManifest() {
         console.log('    No metadata found, using defaults')
       }
 
-      const audioUrl = `https://${S3_CONFIG.CLOUDFRONT_DOMAIN}/${obj.Key}`
+      // Use proxy URL to avoid CORS issues
+      const audioUrl = `/api/media-archive/audio-proxy/${fileName}`
       const fileExtension = obj.Key?.split('.').pop()?.toLowerCase()
 
       // Determine category from filename

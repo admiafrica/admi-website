@@ -136,7 +136,6 @@ export default function AudioPage() {
       if (!audioRefs.current[audioId]) {
         // Create new audio element
         const audio = new Audio()
-        audio.crossOrigin = 'anonymous'
         audio.preload = 'metadata'
         audio.src = audioItem.audioUrl
         audioRefs.current[audioId] = audio
