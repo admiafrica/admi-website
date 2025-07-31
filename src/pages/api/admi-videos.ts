@@ -46,32 +46,46 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       cwd: process.cwd()
     })
 
-    // Check cache first
-    let cache = readVideoCache()
-    const cacheStats = getCacheStats()
+    // Check for environment variables first
+    const hasYouTubeCredentials = !!(process.env.YOUTUBE_API_KEY && process.env.ADMI_YOUTUBE_CHANNEL_ID)
+    let cache: any
+    let cacheStats: any
 
-    console.log('📊 Cache stats:', cacheStats)
-
-    // If no valid cache or force refresh, fetch from YouTube
-    if (!cache || forceRefresh) {
-      console.log('🔄 Cache miss or refresh requested, fetching from YouTube...')
-
-      try {
-        cache = await fetchAllADMIVideos()
-        console.log('✅ Fresh data fetched and cached')
-      } catch (error) {
-        console.error('❌ Error fetching fresh data:', error)
-
-        // If we have expired cache, use it as fallback
-        if (cacheStats.exists) {
-          console.log('📚 Using expired cache as fallback')
-          cache = readVideoCacheRaw()
-        } else {
-          throw error
-        }
+    if (!hasYouTubeCredentials) {
+      console.log('⚠️ YouTube API credentials not available, using committed cache')
+      cache = readVideoCacheRaw()
+      if (!cache) {
+        console.log('❌ No committed cache available either')
+        throw new Error('No YouTube API credentials and no cache available')
       }
     } else {
-      console.log('📚 Using cached data')
+      // Check cache first
+      cache = readVideoCache()
+      cacheStats = getCacheStats()
+
+      console.log('📊 Cache stats:', cacheStats)
+
+      // If no valid cache or force refresh, fetch from YouTube
+      if (!cache || forceRefresh) {
+        console.log('🔄 Cache miss or refresh requested, fetching from YouTube...')
+
+        try {
+          cache = await fetchAllADMIVideos()
+          console.log('✅ Fresh data fetched and cached')
+        } catch (error) {
+          console.error('❌ Error fetching fresh data:', error)
+
+          // If we have expired cache, use it as fallback
+          if (cacheStats.exists) {
+            console.log('📚 Using expired cache as fallback')
+            cache = readVideoCacheRaw()
+          } else {
+            throw error
+          }
+        }
+      } else {
+        console.log('📚 Using cached data')
+      }
     }
 
     if (!cache || !cache.videos) {
