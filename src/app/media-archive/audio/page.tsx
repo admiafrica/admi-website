@@ -135,7 +135,10 @@ export default function AudioPage() {
       // Play new audio
       if (!audioRefs.current[audioId]) {
         // Create new audio element
-        const audio = new Audio(audioItem.audioUrl)
+        const audio = new Audio()
+        audio.crossOrigin = 'anonymous'
+        audio.preload = 'metadata'
+        audio.src = audioItem.audioUrl
         audioRefs.current[audioId] = audio
 
         // Set up event listeners
@@ -152,11 +155,21 @@ export default function AudioPage() {
 
         audio.addEventListener('error', (e) => {
           console.error('Audio playback error:', e)
+          console.error('Audio URL:', audioItem.audioUrl)
+          console.error('Audio readyState:', audio.readyState)
+          console.error('Audio networkState:', audio.networkState)
           setPlayingId(null)
+          // Optionally show user-friendly error
+          setError('Unable to play audio file. Please try again later.')
         })
       }
 
-      audioRefs.current[audioId].play()
+      // Try to play with error handling
+      audioRefs.current[audioId].play().catch((error) => {
+        console.error('Play failed:', error)
+        setError('Unable to play audio. Please check your internet connection.')
+        setPlayingId(null)
+      })
       setPlayingId(audioId)
     }
   }
