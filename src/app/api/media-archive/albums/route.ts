@@ -48,10 +48,10 @@ export async function GET() {
 
             let metadata = {
               title: folderName.replace(/-/g, ' ').replace(/\b\w/g, (l) => l.toUpperCase()),
-              description: `Photos from ${folderName.replace(/-/g, ' ')}`,
+              description: '',
               date: new Date().toISOString().split('T')[0],
-              category: 'Event',
-              photographer: 'ADMI Team'
+              category: '',
+              photographer: ''
             }
 
             try {
@@ -95,9 +95,13 @@ export async function GET() {
                   obj.Key.endsWith('.webp'))
             )?.Key
 
-            const thumbnailUrl = firstImageKey
-              ? `https://${S3_CONFIG.BUCKET_NAME}.s3.${S3_CONFIG.REGION}.amazonaws.com/${firstImageKey}`
-              : `https://via.placeholder.com/400x300/4C6EF5/ffffff?text=${encodeURIComponent(metadata.title)}`
+            // Only return albums that have actual images - no placeholder thumbnails
+            if (!firstImageKey) {
+              console.log(`No images found for album ${folderName}, skipping`)
+              return null
+            }
+
+            const thumbnailUrl = `https://d17qqznw1g499t.cloudfront.net/${firstImageKey}`
 
             return {
               id: folderName,
