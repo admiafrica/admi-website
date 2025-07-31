@@ -287,7 +287,7 @@ export function CourseVideoSection({ course, slug }: CourseVideoSectionProps) {
               size="md"
               leftSection={<IconExternalLink size={16} />}
               component="a"
-              href="/videos"
+              href="/media-archive/videos"
             >
               View All Videos
             </Button>

@@ -22,7 +22,7 @@ const mediaCategories = [
     title: 'Videos',
     description: 'Browse our collection of event videos, documentaries, and highlights',
     icon: IconVideo,
-    href: '/videos',
+    href: '/media-archive/videos',
     color: 'blue',
     stats: 'Available Now'
   },

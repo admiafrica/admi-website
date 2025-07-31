@@ -242,7 +242,7 @@ export default function TestYouTubePage() {
           <Button onClick={testYouTubeAPI} loading={status === 'loading'}>
             Test Again
           </Button>
-          <Button variant="outline" component="a" href="/videos">
+          <Button variant="outline" component="a" href="/media-archive/videos">
             Go to Video Gallery
           </Button>
           <Button variant="outline" component="a" href="/courses/film-and-television-production-diploma">

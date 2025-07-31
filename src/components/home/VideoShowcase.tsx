@@ -111,7 +111,7 @@ export function VideoShowcase({
           size="lg"
           leftSection={<IconExternalLink size={20} />}
           component="a"
-          href="/videos"
+          href="/media-archive/videos"
         >
           View All Videos
         </Button>

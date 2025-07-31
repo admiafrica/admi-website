@@ -235,6 +235,12 @@ const nextConfig = {
         destination: '/news/:slug',
         permanent: true,
       },
+      // Redirect old videos URL to media-archive structure
+      {
+        source: '/videos',
+        destination: '/media-archive/videos',
+        permanent: true,
+      },
     ];
   },
 };
