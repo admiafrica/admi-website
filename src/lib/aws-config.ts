@@ -1,14 +1,10 @@
 import { S3Client } from '@aws-sdk/client-s3'
-import { fromNodeProviderChain } from '@aws-sdk/credential-providers'
 
-// AWS S3 Configuration - Use Node.js provider chain for serverless environments
+// AWS S3 Configuration - Use default credential chain in Amplify serverless environment
 export const s3Client = new S3Client({
-  region: process.env.S3_REGION || process.env.AWS_REGION || 'us-east-1',
-  credentials: fromNodeProviderChain({
-    // This will try IAM roles, environment variables, etc. in order
-    timeout: 3000,
-    maxRetries: 2
-  })
+  region: process.env.S3_REGION || process.env.AWS_REGION || 'us-east-1'
+  // Let AWS SDK use default credential chain (IAM roles for Amplify)
+  // In Amplify serverless functions, this should automatically use the service role
 })
 
 export const S3_CONFIG = {
