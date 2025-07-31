@@ -17,11 +17,21 @@ export async function GET(request: Request, context: { params: Promise<{ filenam
     // Get the audio data
     const audioBuffer = await audioResponse.arrayBuffer()
 
+    // Detect if this is actually an MP4 file despite .mp3 extension
+    const buffer = new Uint8Array(audioBuffer)
+    const isMP4 =
+      buffer.length > 8 && buffer[4] === 0x66 && buffer[5] === 0x74 && buffer[6] === 0x79 && buffer[7] === 0x70 // 'ftyp' signature
+
+    // Set correct content type based on actual file format
+    const contentType = isMP4 ? 'audio/mp4' : audioResponse.headers.get('content-type') || 'audio/mpeg'
+
+    console.log(`Audio proxy serving ${params.filename}: detected ${isMP4 ? 'MP4' : 'MP3'} format`)
+
     // Return the audio with proper CORS headers
     return new NextResponse(audioBuffer, {
       status: 200,
       headers: {
-        'Content-Type': audioResponse.headers.get('content-type') || 'audio/mpeg',
+        'Content-Type': contentType,
         'Content-Length': audioResponse.headers.get('content-length') || '',
         'Accept-Ranges': 'bytes',
         'Access-Control-Allow-Origin': '*',
