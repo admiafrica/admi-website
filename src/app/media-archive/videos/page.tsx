@@ -18,6 +18,8 @@ import {
   Box,
   Modal,
   AspectRatio,
+  Tabs,
+  ScrollArea,
   Divider,
   Stack,
   Breadcrumbs,
@@ -37,147 +39,139 @@ import Link from 'next/link'
 import { MainLayout } from '@/layouts/v3/MainLayout'
 import '@mantine/core/styles.css'
 
-// For now, we'll use the existing video utilities and API calls
-// These would need to be adapted for App Router if needed
-const videoData = [
-  {
-    id: '1',
-    title: 'ADMI Graduation Ceremony 2024',
-    thumbnail: {
-      default: 'https://via.placeholder.com/400x225/4C6EF5/ffffff?text=Graduation+2024',
-      medium: 'https://via.placeholder.com/400x225/4C6EF5/ffffff?text=Graduation+2024',
-      high: 'https://via.placeholder.com/400x225/4C6EF5/ffffff?text=Graduation+2024'
-    },
-    duration: '45:30',
-    viewCount: '1,200',
-    publishedAt: '2024-12-15T10:00:00Z',
-    description:
-      'Highlights from the 2024 graduation ceremony celebrating our talented graduates and their achievements in digital media.',
-    channelTitle: 'ADMI Africa',
-    tags: ['graduation', 'ceremony', 'students', 'celebration']
-  },
-  {
-    id: '2',
-    title: 'Student Showcase: Animation Projects',
-    thumbnail: {
-      default: 'https://via.placeholder.com/400x225/12B886/ffffff?text=Animation+Showcase',
-      medium: 'https://via.placeholder.com/400x225/12B886/ffffff?text=Animation+Showcase',
-      high: 'https://via.placeholder.com/400x225/12B886/ffffff?text=Animation+Showcase'
-    },
-    duration: '12:45',
-    viewCount: '856',
-    publishedAt: '2024-11-20T14:30:00Z',
-    description:
-      'Amazing animation projects by our talented students showcasing their creativity and technical skills.',
-    channelTitle: 'ADMI Africa',
-    tags: ['animation', 'student work', 'showcase', 'creative']
-  },
-  {
-    id: '3',
-    title: 'Tech Workshop: AI in Creative Media',
-    thumbnail: {
-      default: 'https://via.placeholder.com/400x225/FD7E14/ffffff?text=AI+Workshop',
-      medium: 'https://via.placeholder.com/400x225/FD7E14/ffffff?text=AI+Workshop',
-      high: 'https://via.placeholder.com/400x225/FD7E14/ffffff?text=AI+Workshop'
-    },
-    duration: '1:20:15',
-    viewCount: '2,300',
-    publishedAt: '2024-10-10T09:15:00Z',
-    description:
-      'Learn about AI applications in creative media and how artificial intelligence is transforming the industry.',
-    channelTitle: 'ADMI Africa',
-    tags: ['AI', 'workshop', 'technology', 'creative media']
-  },
-  {
-    id: '4',
-    title: 'ADMI Open Day 2024',
-    thumbnail: {
-      default: 'https://via.placeholder.com/400x225/7950F2/ffffff?text=Open+Day',
-      medium: 'https://via.placeholder.com/400x225/7950F2/ffffff?text=Open+Day',
-      high: 'https://via.placeholder.com/400x225/7950F2/ffffff?text=Open+Day'
-    },
-    duration: '25:00',
-    viewCount: '1,500',
-    publishedAt: '2024-09-05T11:00:00Z',
-    description: 'Tour our campus and meet our faculty during our annual open day event.',
-    channelTitle: 'ADMI Africa',
-    tags: ['open day', 'campus tour', 'faculty', 'facilities']
-  },
-  {
-    id: '5',
-    title: 'Film Production Masterclass',
-    thumbnail: {
-      default: 'https://via.placeholder.com/400x225/E64980/ffffff?text=Film+Masterclass',
-      medium: 'https://via.placeholder.com/400x225/E64980/ffffff?text=Film+Masterclass',
-      high: 'https://via.placeholder.com/400x225/E64980/ffffff?text=Film+Masterclass'
-    },
-    duration: '55:30',
-    viewCount: '3,100',
-    publishedAt: '2024-08-15T16:45:00Z',
-    description: 'Industry professionals share their expertise in film production techniques and best practices.',
-    channelTitle: 'ADMI Africa',
-    tags: ['film production', 'masterclass', 'industry professionals']
-  },
-  {
-    id: '6',
-    title: 'Digital Design Exhibition',
-    thumbnail: {
-      default: 'https://via.placeholder.com/400x225/1098AD/ffffff?text=Design+Exhibition',
-      medium: 'https://via.placeholder.com/400x225/1098AD/ffffff?text=Design+Exhibition',
-      high: 'https://via.placeholder.com/400x225/1098AD/ffffff?text=Design+Exhibition'
-    },
-    duration: '18:20',
-    viewCount: '945',
-    publishedAt: '2024-07-20T13:20:00Z',
-    description: 'Showcasing the best of student digital design work from various courses and programs.',
-    channelTitle: 'ADMI Africa',
-    tags: ['digital design', 'exhibition', 'student work', 'creative']
+// We'll need to adapt this for App Router - for now using client-side data loading
+// In a full implementation, this would use proper App Router data fetching
+
+// Helper function to format large numbers
+const formatLargeNumber = (num: string): string => {
+  const number = parseInt(num)
+
+  if (number >= 1000000) {
+    return `${(number / 1000000).toFixed(1)}M`
   }
-]
 
-// Simple category filters
-const categories = [
-  { value: 'all', label: 'All Videos' },
-  { value: 'student-showcase', label: 'Student Showcase' },
-  { value: 'facilities-tour', label: 'Facilities Tour' },
-  { value: 'testimonials', label: 'Testimonials' },
-  { value: 'course-tutorials', label: 'Tutorials' },
-  { value: 'events', label: 'Events' }
-]
+  if (number >= 1000) {
+    return `${(number / 1000).toFixed(1)}K`
+  }
 
-// Course filters
-const courses = [
-  { value: 'all', label: 'All Courses' },
-  { value: 'music-production', label: 'Music Production' },
-  { value: 'film-tv', label: 'Film & TV Production' },
-  { value: 'animation-vfx', label: 'Animation & VFX' },
-  { value: 'graphic-design', label: 'Graphic Design' },
-  { value: 'digital-marketing', label: 'Digital Marketing' },
-  { value: 'photography', label: 'Photography' }
-]
+  return number.toString()
+}
 
-export default function VideosPage() {
-  const [allVideosList] = useState(videoData)
-  const [filteredVideos, setFilteredVideos] = useState(videoData)
+interface YouTubeVideo {
+  id: string
+  title: string
+  description: string
+  thumbnail: {
+    default: string
+    medium: string
+    high: string
+  }
+  publishedAt: string
+  duration: string
+  viewCount: string
+  channelTitle: string
+  tags?: string[]
+}
+
+export default function VideoGallery() {
+  // State for video data - in full implementation this would come from server-side data
+  const [allVideosList, setAllVideosList] = useState<any[]>([])
+  const [filteredVideos, setFilteredVideos] = useState<any[]>([])
+  const [displayedVideos, setDisplayedVideos] = useState<YouTubeVideo[]>([])
   const [displayCount, setDisplayCount] = useState(12)
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedCategory, setSelectedCategory] = useState<string | null>('all')
   const [selectedCourse, setSelectedCourse] = useState<string | null>('all')
-  const [loading] = useState(false)
-  const [error] = useState<string | null>(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+  const [channelInfo, setChannelInfo] = useState<any>(null)
 
   // Video Modal State
-  const [selectedVideo, setSelectedVideo] = useState<any>(null)
+  const [selectedVideo, setSelectedVideo] = useState<YouTubeVideo | null>(null)
   const [modalOpened, setModalOpened] = useState(false)
 
-  // Videos currently visible to user
-  const visibleVideos = filteredVideos.slice(0, displayCount)
+  // Videos currently visible to user (for performance)
+  const visibleVideos = displayedVideos.slice(0, displayCount)
 
-  // Filter videos based on search, category, and course
+  // Get related videos based on current video
+  const getRelatedVideos = (currentVideo: YouTubeVideo): YouTubeVideo[] => {
+    if (!currentVideo) return []
+
+    // Find videos with similar tags or from same category using displayed videos (full data)
+    const related = displayedVideos.filter((video) => {
+      if (video.id === currentVideo.id) return false
+
+      // Check for common tags (only if both videos have tags)
+      const commonTags =
+        currentVideo.tags && video.tags
+          ? currentVideo.tags.filter((tag: string) =>
+              video.tags?.some((vTag: string) => vTag.toLowerCase().includes(tag.toLowerCase()))
+            )
+          : []
+
+      // Check for similar titles (common keywords)
+      const currentWords = currentVideo.title.toLowerCase().split(' ')
+      const videoWords = video.title.toLowerCase().split(' ')
+      const commonWords = currentWords.filter((word) => word.length > 3 && videoWords.includes(word))
+
+      return commonTags.length > 0 || commonWords.length > 1
+    })
+
+    return related.slice(0, 6) // Return top 6 related videos
+  }
+
+  // Simple category filters
+  const categories = [
+    { value: 'all', label: 'All Videos' },
+    { value: 'student-showcase', label: 'Student Showcase' },
+    { value: 'facilities-tour', label: 'Facilities Tour' },
+    { value: 'testimonials', label: 'Testimonials' },
+    { value: 'course-tutorials', label: 'Tutorials' },
+    { value: 'events', label: 'Events' }
+  ]
+
+  // Course filters
+  const courses = [
+    { value: 'all', label: 'All Courses' },
+    { value: 'music-production', label: 'Music Production' },
+    { value: 'film-tv', label: 'Film & TV Production' },
+    { value: 'animation-vfx', label: 'Animation & VFX' },
+    { value: 'graphic-design', label: 'Graphic Design' },
+    { value: 'digital-marketing', label: 'Digital Marketing' },
+    { value: 'photography', label: 'Photography' }
+  ]
+
+  // Load videos on component mount
+  useEffect(() => {
+    const loadVideos = async () => {
+      try {
+        setLoading(true)
+        // For now, we'll use the existing API endpoint from Pages Router
+        const response = await fetch('/api/admi-videos')
+        const data = await response.json()
+
+        if (data.videos) {
+          setAllVideosList(data.videos)
+          setFilteredVideos(data.videos)
+          setDisplayedVideos(data.videos.slice(0, 12))
+          setChannelInfo(data.channelInfo)
+        }
+      } catch (err) {
+        console.error('Error loading videos:', err)
+        setError('Failed to load videos')
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    loadVideos()
+  }, [])
+
+  // Filter ALL videos based on search, category, and course
   useEffect(() => {
     let filtered = allVideosList
 
-    // Apply search filter
+    // Apply search filter to ALL videos
     if (searchQuery.trim()) {
       filtered = filtered.filter(
         (video) =>
@@ -186,19 +180,22 @@ export default function VideosPage() {
       )
     }
 
-    // Apply category filter (simplified for now)
+    // Apply category filter - would use actual categorization logic
     if (selectedCategory && selectedCategory !== 'all') {
-      // This would use the actual categorization logic from the original
+      // This would use the actual manual categorization from utils
       filtered = filtered
     }
 
-    // Apply course filter (simplified for now)
+    // Apply course filter - would use actual categorization logic
     if (selectedCourse && selectedCourse !== 'all') {
-      // This would use the actual categorization logic from the original
+      // This would use the actual manual categorization from utils
       filtered = filtered
     }
 
     setFilteredVideos(filtered)
+    setDisplayedVideos(filtered.slice(0, 12))
+
+    // Reset display count when filters change for better UX
     setDisplayCount(12)
   }, [allVideosList, searchQuery, selectedCategory, selectedCourse])
 
@@ -207,7 +204,24 @@ export default function VideosPage() {
     setDisplayCount((prev) => Math.min(prev + 12, filteredVideos.length))
   }, [filteredVideos.length])
 
-  const handleVideoClick = (video: any) => {
+  // Infinite scroll for mobile
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.innerHeight + document.documentElement.scrollTop >= document.documentElement.offsetHeight - 1000) {
+        if (displayCount < filteredVideos.length && !loading) {
+          loadMoreVideos()
+        }
+      }
+    }
+
+    // Only enable infinite scroll on mobile
+    if (window.innerWidth <= 768) {
+      window.addEventListener('scroll', handleScroll)
+      return () => window.removeEventListener('scroll', handleScroll)
+    }
+  }, [displayCount, filteredVideos.length, loading, loadMoreVideos])
+
+  const handleVideoClick = (video: YouTubeVideo) => {
     setSelectedVideo(video)
     setModalOpened(true)
   }
@@ -217,406 +231,467 @@ export default function VideosPage() {
     setSelectedVideo(null)
   }
 
+  const refreshVideos = async () => {
+    setLoading(true)
+    try {
+      // Refresh by reloading the page to get fresh server-side data
+      window.location.reload()
+    } catch (error) {
+      console.error('Error refreshing videos:', error)
+      setError('Failed to refresh videos. Please try again later.')
+      setLoading(false)
+    }
+  }
+
   return (
     <MantineProvider>
       <MainLayout>
-        <Container size="xl" py={80}>
-          <Stack gap={40}>
-            <Breadcrumbs mb={20}>
-              <Link href="/media-archive" passHref legacyBehavior>
-                <Anchor>Media Archive</Anchor>
-              </Link>
-              <Anchor>Videos</Anchor>
-            </Breadcrumbs>
+        <Container size="xl" py="xl">
+          {/* Breadcrumbs */}
+          <Breadcrumbs mb="xl">
+            <Link href="/media-archive" passHref legacyBehavior>
+              <Anchor>Media Archive</Anchor>
+            </Link>
+            <Anchor>Videos</Anchor>
+          </Breadcrumbs>
 
-            {/* Header Section */}
-            <div>
-              <Title order={1} size={48} fw={700} ta="center" mb={20}>
-                Video Gallery
-              </Title>
-              <Text ta="center" size="xl" c="dimmed" maw={800} mx="auto">
-                Discover the ADMI experience through our video collection featuring student work, facility tours,
-                success stories, and insights into creative media education.
-              </Text>
-            </div>
+          {/* Header Section */}
+          <Box ta="center" mb="xl">
+            <Title order={1} size="h1" mb="md">
+              ADMI Video Gallery
+            </Title>
+            <Text size="lg" c="dimmed" maw={600} mx="auto">
+              Discover the ADMI experience through our video collection featuring student work, facility tours, success
+              stories, and insights into creative media education.
+            </Text>
+          </Box>
 
-            {/* Stats Card */}
-            <Card shadow="sm" padding="lg" radius="md" withBorder bg="gray.0">
-              <Group justify="space-between" align="center">
-                <div>
-                  <Group gap="xl">
-                    <div>
-                      <Text fw={700} size="xl" c="red">
-                        500+
-                      </Text>
-                      <Text size="sm" c="dimmed">
-                        Videos
-                      </Text>
-                    </div>
-                    <div>
-                      <Text fw={700} size="xl" c="blue">
-                        10M+
-                      </Text>
-                      <Text size="sm" c="dimmed">
-                        Total Views
-                      </Text>
-                    </div>
-                    <div>
-                      <Text fw={700} size="xl" c="green">
-                        4K+
-                      </Text>
-                      <Text size="sm" c="dimmed">
-                        Subscribers
-                      </Text>
-                    </div>
-                  </Group>
-                </div>
-                <Group>
-                  <Button
-                    variant="outline"
-                    color="red"
-                    leftSection={<IconExternalLink size={16} />}
-                    component="a"
-                    href="https://www.youtube.com/@ADMIafrica/"
-                    target="_blank"
-                  >
-                    Visit YouTube Channel
-                  </Button>
-                  <Button color="blue" component="a" href="/enquiry">
-                    Enquire Now
-                  </Button>
+          {/* Stats and CTA */}
+          <Card shadow="sm" padding="lg" radius="md" withBorder mb="xl" bg="gray.0">
+            <Group justify="space-between" align="center">
+              <div>
+                <Group gap="xl">
+                  <div>
+                    <Text fw={700} size="xl" c="red">
+                      {channelInfo?.videoCount ? formatLargeNumber(channelInfo.videoCount) : `${allVideosList.length}+`}
+                    </Text>
+                    <Text size="sm" c="dimmed">
+                      Videos
+                    </Text>
+                  </div>
+                  <div>
+                    <Text fw={700} size="xl" c="blue">
+                      {channelInfo?.viewCount ? formatLargeNumber(channelInfo.viewCount) : '10M+'}
+                    </Text>
+                    <Text size="sm" c="dimmed">
+                      Total Views
+                    </Text>
+                  </div>
+                  <div>
+                    <Text fw={700} size="xl" c="green">
+                      {channelInfo?.subscriberCount ? formatLargeNumber(channelInfo.subscriberCount) : '4K+'}
+                    </Text>
+                    <Text size="sm" c="dimmed">
+                      Subscribers
+                    </Text>
+                  </div>
                 </Group>
+              </div>
+              <Group>
+                <Button
+                  variant="outline"
+                  color="red"
+                  leftSection={<IconExternalLink size={16} />}
+                  component="a"
+                  href="https://www.youtube.com/@ADMIafrica/"
+                  target="_blank"
+                >
+                  Visit YouTube Channel
+                </Button>
+                <Button color="blue" component="a" href="/enquiry">
+                  Enquire Now
+                </Button>
               </Group>
-            </Card>
-
-            {/* Search and Filter Controls */}
-            <Card shadow="sm" padding="lg" radius="md" withBorder>
-              <Group justify="space-between" align="end" wrap="wrap" gap="md">
-                <TextInput
-                  placeholder="Search videos..."
-                  leftSection={<IconSearch size={16} />}
-                  value={searchQuery}
-                  onChange={(event) => setSearchQuery(event.currentTarget.value)}
-                  style={{ flex: 1, minWidth: 250 }}
-                  size="md"
-                />
-                <Select
-                  placeholder="Category"
-                  data={categories}
-                  value={selectedCategory}
-                  onChange={setSelectedCategory}
-                  w={180}
-                  size="md"
-                  clearable
-                />
-                <Select
-                  placeholder="Course"
-                  data={courses}
-                  value={selectedCourse}
-                  onChange={setSelectedCourse}
-                  w={180}
-                  size="md"
-                  clearable
-                />
-              </Group>
-            </Card>
-
-            {/* Results Info */}
-            <Group justify="space-between">
-              <Text c="dimmed">
-                Showing {Math.min(displayCount, filteredVideos.length)} of {filteredVideos.length} videos
-                {searchQuery && ` for "${searchQuery}"`}
-              </Text>
-              {filteredVideos.length > displayCount && (
-                <Text size="sm" c="blue">
-                  {filteredVideos.length - displayCount} more available
-                </Text>
-              )}
             </Group>
+          </Card>
 
-            {/* Video Grid */}
-            {loading ? (
-              <Center py="xl">
-                <div style={{ textAlign: 'center' }}>
-                  <Loader size="lg" mb="md" />
-                  <Text>Loading ADMI videos...</Text>
-                </div>
-              </Center>
-            ) : error ? (
-              <Center py="xl">
-                <div style={{ textAlign: 'center' }}>
-                  <Text size="lg" fw={500} mb="xs" c="red">
-                    Failed to load videos
-                  </Text>
-                  <Text c="dimmed" mb="md">
-                    {error}
-                  </Text>
-                  <Button variant="light" onClick={() => window.location.reload()}>
-                    Try Again
-                  </Button>
-                </div>
-              </Center>
-            ) : filteredVideos.length === 0 ? (
-              <Center py="xl">
-                <div style={{ textAlign: 'center' }}>
-                  <Text size="lg" fw={500} mb="xs">
-                    No videos found
-                  </Text>
-                  <Text c="dimmed" mb="md">
-                    Try adjusting your search terms or category filter
-                  </Text>
-                  <Button
-                    variant="light"
-                    onClick={() => {
-                      setSearchQuery('')
-                      setSelectedCategory('all')
-                    }}
-                  >
-                    Clear Filters
-                  </Button>
-                </div>
-              </Center>
-            ) : (
-              <>
-                <Grid>
-                  {visibleVideos.map((video) => (
-                    <Grid.Col key={video.id} span={{ base: 12, sm: 6, md: 4 }}>
-                      <Card
-                        shadow="sm"
-                        padding="lg"
-                        radius="md"
-                        withBorder
-                        style={{ cursor: 'pointer', height: '100%' }}
-                        onClick={() => handleVideoClick(video)}
-                      >
-                        <Card.Section>
-                          <div
-                            style={{
-                              position: 'relative',
-                              aspectRatio: '16/9',
-                              overflow: 'hidden',
-                              backgroundColor: '#f1f3f4'
-                            }}
-                          >
-                            <Image
-                              src={video.thumbnail.medium || video.thumbnail.default}
-                              alt={video.title}
-                              fill
-                              style={{ objectFit: 'cover' }}
-                            />
+          {/* Search and Filter Controls */}
+          <Card shadow="sm" padding="lg" radius="md" withBorder mb="xl">
+            <Group justify="space-between" align="end" wrap="wrap" gap="md">
+              <TextInput
+                placeholder="Search videos..."
+                leftSection={<IconSearch size={16} />}
+                value={searchQuery}
+                onChange={(event) => setSearchQuery(event.currentTarget.value)}
+                style={{ flex: 1, minWidth: 250 }}
+                size="md"
+              />
+              <Select
+                placeholder="Category"
+                data={categories}
+                value={selectedCategory}
+                onChange={setSelectedCategory}
+                w={180}
+                size="md"
+                clearable
+              />
+              <Select
+                placeholder="Course"
+                data={courses}
+                value={selectedCourse}
+                onChange={setSelectedCourse}
+                w={180}
+                size="md"
+                clearable
+              />
+              <Button variant="light" onClick={refreshVideos} loading={loading} size="md">
+                Refresh
+              </Button>
+            </Group>
+          </Card>
 
-                            {/* Play Button Overlay */}
-                            <div
-                              style={{
-                                position: 'absolute',
-                                inset: 0,
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                backgroundColor: 'rgba(0, 0, 0, 0.3)',
-                                opacity: 0,
-                                transition: 'opacity 0.3s'
-                              }}
-                              className="hover:opacity-100"
-                            >
-                              <div
-                                style={{
-                                  borderRadius: '50%',
-                                  backgroundColor: 'rgba(255, 255, 255, 0.9)',
-                                  padding: '16px'
-                                }}
-                              >
-                                <IconPlayerPlay size={32} color="#F76335" />
-                              </div>
-                            </div>
+          {/* Results Info */}
+          <Group justify="space-between" mb="md">
+            <Text c="dimmed">
+              Showing {Math.min(displayCount, filteredVideos.length)} of {filteredVideos.length} videos
+              {searchQuery && ` for "${searchQuery}"`}
+              {selectedCategory &&
+                selectedCategory !== 'all' &&
+                ` in ${categories.find((c) => c.value === selectedCategory)?.label}`}
+            </Text>
+            {filteredVideos.length > displayCount && (
+              <Text size="sm" c="blue">
+                {filteredVideos.length - displayCount} more available
+              </Text>
+            )}
+          </Group>
 
-                            {/* Duration Badge */}
-                            <div
-                              style={{
-                                position: 'absolute',
-                                bottom: 8,
-                                right: 8,
-                                borderRadius: '4px',
-                                backgroundColor: 'rgba(0, 0, 0, 0.7)',
-                                padding: '4px 8px',
-                                fontSize: '12px',
-                                color: 'white'
-                              }}
-                            >
-                              {video.duration}
-                            </div>
+          {/* Video Grid */}
+          {loading ? (
+            <Center py="xl">
+              <div style={{ textAlign: 'center' }}>
+                <Loader size="lg" mb="md" />
+                <Text>Loading ADMI videos...</Text>
+              </div>
+            </Center>
+          ) : error ? (
+            <Center py="xl">
+              <div style={{ textAlign: 'center' }}>
+                <Text size="lg" fw={500} mb="xs" c="red">
+                  Failed to load videos
+                </Text>
+                <Text c="dimmed" mb="md">
+                  {error}
+                </Text>
+                <Button variant="light" onClick={() => window.location.reload()}>
+                  Try Again
+                </Button>
+              </div>
+            </Center>
+          ) : filteredVideos.length === 0 ? (
+            <Center py="xl">
+              <div style={{ textAlign: 'center' }}>
+                <Text size="lg" fw={500} mb="xs">
+                  No videos found
+                </Text>
+                <Text c="dimmed" mb="md">
+                  Try adjusting your search terms or category filter
+                </Text>
+                <Button
+                  variant="light"
+                  onClick={() => {
+                    setSearchQuery('')
+                    setSelectedCategory('all')
+                  }}
+                >
+                  Clear Filters
+                </Button>
+              </div>
+            </Center>
+          ) : (
+            <>
+              <Grid>
+                {visibleVideos.map((video) => (
+                  <Grid.Col key={video.id} span={{ base: 12, sm: 6, md: 4 }}>
+                    <Card
+                      shadow="sm"
+                      padding="lg"
+                      radius="md"
+                      withBorder
+                      className="h-full cursor-pointer transition-shadow hover:shadow-lg"
+                      onClick={() => handleVideoClick(video)}
+                    >
+                      <Card.Section>
+                        <div className="relative aspect-video w-full overflow-hidden bg-gray-100">
+                          <Image
+                            src={video.thumbnail.medium || video.thumbnail.default}
+                            alt={video.title}
+                            fill
+                            className="object-cover transition-transform duration-300 hover:scale-105"
+                          />
 
-                            {/* YouTube Badge */}
-                            <div style={{ position: 'absolute', left: 8, top: 8 }}>
-                              <Badge color="red" variant="filled" size="xs">
-                                YouTube
-                              </Badge>
+                          {/* Play Button Overlay */}
+                          <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30 opacity-0 transition-opacity duration-300 hover:opacity-100">
+                            <div className="rounded-full bg-white bg-opacity-90 p-4">
+                              <IconPlayerPlay size={32} color="#F76335" />
                             </div>
                           </div>
-                        </Card.Section>
 
-                        <Stack gap="xs" mt="md" style={{ height: 'calc(100% - 200px)' }}>
-                          <Title order={5} lineClamp={2} style={{ flexGrow: 1 }}>
-                            {video.title}
-                          </Title>
+                          {/* Duration Badge */}
+                          <div className="absolute bottom-2 right-2 rounded bg-black bg-opacity-70 px-2 py-1 text-xs text-white">
+                            {video.duration}
+                          </div>
 
-                          <Text size="sm" c="dimmed" lineClamp={3} style={{ flexGrow: 1 }}>
-                            {video.description}
-                          </Text>
+                          {/* YouTube Badge */}
+                          <div className="absolute left-2 top-2">
+                            <Badge color="red" variant="filled" size="xs">
+                              YouTube
+                            </Badge>
+                          </div>
+                        </div>
+                      </Card.Section>
 
-                          <Group justify="space-between" align="center">
-                            <Group gap="xs">
-                              <Group gap={4}>
-                                <IconEye size={14} color="#666" />
-                                <Text size="xs" c="dimmed">
-                                  {video.viewCount}
-                                </Text>
-                              </Group>
-                              <Group gap={4}>
-                                <IconClock size={14} color="#666" />
-                                <Text size="xs" c="dimmed">
-                                  {video.duration}
-                                </Text>
-                              </Group>
+                      <div className="flex h-full flex-col">
+                        <Title order={5} mt="md" lineClamp={2} className="flex-grow">
+                          {video.title}
+                        </Title>
+
+                        <Text size="sm" c="dimmed" lineClamp={3} mt="xs" className="flex-grow">
+                          {video.description}
+                        </Text>
+
+                        <Group justify="space-between" mt="md" align="center">
+                          <Group gap="xs">
+                            <Group gap={4}>
+                              <IconEye size={14} color="#666" />
+                              <Text size="xs" c="dimmed">
+                                {video.viewCount}
+                              </Text>
                             </Group>
-
-                            <Button size="xs" variant="light" color="red" leftSection={<IconPlayerPlay size={12} />}>
-                              Watch
-                            </Button>
+                            <Group gap={4}>
+                              <IconClock size={14} color="#666" />
+                              <Text size="xs" c="dimmed">
+                                {video.duration}
+                              </Text>
+                            </Group>
                           </Group>
-                        </Stack>
-                      </Card>
-                    </Grid.Col>
-                  ))}
-                </Grid>
 
-                {/* Load More Button */}
-                {filteredVideos.length > displayCount && (
-                  <Center mt="xl">
-                    <Button
-                      size="lg"
-                      variant="outline"
-                      onClick={loadMoreVideos}
-                      leftSection={<IconPlayerPlay size={16} />}
-                    >
-                      Load More Videos ({filteredVideos.length - displayCount} remaining)
-                    </Button>
-                  </Center>
-                )}
-              </>
-            )}
+                          <Button size="xs" variant="light" color="red" leftSection={<IconPlayerPlay size={12} />}>
+                            Watch
+                          </Button>
+                        </Group>
+                      </div>
+                    </Card>
+                  </Grid.Col>
+                ))}
+              </Grid>
 
-            {/* Call to Action */}
-            <Card shadow="sm" padding="lg" radius="md" withBorder bg="red.0">
-              <Group justify="space-between" align="center">
-                <div>
-                  <Title order={3}>Ready to Create Your Own Content?</Title>
-                  <Text c="dimmed" mt="xs">
-                    Join ADMI and learn to create professional videos, animations, and digital content
-                  </Text>
-                </div>
-                <Group>
-                  <Button variant="outline" color="blue" component="a" href="/courses">
-                    View Courses
+              {/* Load More Button */}
+              {filteredVideos.length > displayCount && (
+                <Center mt="xl">
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    onClick={loadMoreVideos}
+                    leftSection={<IconPlayerPlay size={16} />}
+                  >
+                    Load More Videos ({filteredVideos.length - displayCount} remaining)
                   </Button>
-                  <Button color="red" component="a" href="/enquiry">
-                    Apply Today
-                  </Button>
-                </Group>
-              </Group>
-            </Card>
-          </Stack>
-        </Container>
+                </Center>
+              )}
 
-        {/* Video Modal */}
-        <Modal opened={modalOpened} onClose={closeModal} size="xl" title={null} padding={0} radius="md" centered>
-          {selectedVideo && (
-            <div>
-              {/* Video Player */}
-              <AspectRatio ratio={16 / 9}>
-                <iframe
-                  src={`https://www.youtube.com/embed/${selectedVideo.id}?autoplay=1&rel=0`}
-                  title={selectedVideo.title}
-                  style={{ border: 'none' }}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                />
-              </AspectRatio>
-
-              {/* Video Details */}
-              <Box p="lg">
-                <Title order={3} mb="sm">
-                  {selectedVideo.title}
-                </Title>
-
-                <Group mb="md" gap="lg">
-                  <Group gap={4}>
-                    <IconEye size={16} color="#666" />
-                    <Text size="sm" c="dimmed">
-                      {selectedVideo.viewCount} views
-                    </Text>
-                  </Group>
-                  <Group gap={4}>
-                    <IconClock size={16} color="#666" />
-                    <Text size="sm" c="dimmed">
-                      {selectedVideo.duration}
-                    </Text>
-                  </Group>
-                  <Group gap={4}>
-                    <IconCalendar size={16} color="#666" />
-                    <Text size="sm" c="dimmed">
-                      {new Date(selectedVideo.publishedAt).toLocaleDateString('en-KE', {
+              {/* SEO: Hidden video list for search engines */}
+              <div style={{ display: 'none' }} className="seo-video-catalog">
+                <h2>Complete ADMI Video Catalog</h2>
+                {allVideosList.map((video) => (
+                  <div key={`seo-${video.id}`} className="seo-video-item">
+                    <h3>{video.title}</h3>
+                    <p>{video.description}</p>
+                    <span>Duration: {video.duration}</span>
+                    <span>Views: {video.viewCount}</span>
+                    <span>Channel: {video.channelTitle}</span>
+                    <span>
+                      Published:{' '}
+                      {new Date(video.publishedAt).toLocaleDateString('en-KE', {
                         timeZone: 'Africa/Nairobi',
                         year: 'numeric',
-                        month: 'long',
-                        day: 'numeric'
+                        month: '2-digit',
+                        day: '2-digit'
                       })}
-                    </Text>
-                  </Group>
-                </Group>
+                    </span>
+                    {video.tags && video.tags.length > 0 && <span>Tags: {video.tags.join(', ')}</span>}
+                  </div>
+                ))}
+              </div>
+            </>
+          )}
 
-                <Text size="sm" style={{ whiteSpace: 'pre-wrap' }}>
-                  {selectedVideo.description}
+          {/* Call to Action */}
+          <Card shadow="sm" padding="lg" radius="md" withBorder mt="xl" bg="red.0">
+            <Group justify="space-between" align="center">
+              <div>
+                <Title order={3}>Ready to Create Your Own Content?</Title>
+                <Text c="dimmed" mt="xs">
+                  Join ADMI and learn to create professional videos, animations, and digital content
                 </Text>
+              </div>
+              <Group>
+                <Button variant="outline" color="blue" component="a" href="/courses">
+                  View Courses
+                </Button>
+                <Button color="red" component="a" href="/enquiry">
+                  Apply Today
+                </Button>
+              </Group>
+            </Group>
+          </Card>
 
-                {selectedVideo.tags && selectedVideo.tags.length > 0 && (
-                  <Box mt="md">
-                    <Group gap="xs">
-                      <IconTag size={14} />
-                      <Text size="xs" fw={500}>
-                        Tags:
+          {/* Video Modal */}
+          <Modal opened={modalOpened} onClose={closeModal} size="xl" title={null} padding={0} radius="md" centered>
+            {selectedVideo && (
+              <div>
+                {/* Video Player */}
+                <AspectRatio ratio={16 / 9}>
+                  <iframe
+                    src={`https://www.youtube.com/embed/${selectedVideo.id}?autoplay=1&rel=0`}
+                    title={selectedVideo.title}
+                    style={{ border: 'none' }}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
+                </AspectRatio>
+
+                {/* Video Details */}
+                <Box p="lg">
+                  <Title order={3} mb="sm">
+                    {selectedVideo.title}
+                  </Title>
+
+                  <Group mb="md" gap="lg">
+                    <Group gap={4}>
+                      <IconEye size={16} color="#666" />
+                      <Text size="sm" c="dimmed">
+                        {selectedVideo.viewCount} views
                       </Text>
                     </Group>
-                    <Group gap="xs" mt="xs">
-                      {selectedVideo.tags.slice(0, 10).map((tag: string, index: number) => (
-                        <Badge key={index} size="xs" variant="light">
-                          {tag}
-                        </Badge>
-                      ))}
+                    <Group gap={4}>
+                      <IconClock size={16} color="#666" />
+                      <Text size="sm" c="dimmed">
+                        {selectedVideo.duration}
+                      </Text>
                     </Group>
-                  </Box>
-                )}
+                    <Group gap={4}>
+                      <IconCalendar size={16} color="#666" />
+                      <Text size="sm" c="dimmed">
+                        {new Date(selectedVideo.publishedAt).toLocaleDateString('en-KE', {
+                          timeZone: 'Africa/Nairobi',
+                          year: 'numeric',
+                          month: 'long',
+                          day: 'numeric'
+                        })}
+                      </Text>
+                    </Group>
+                  </Group>
 
-                <Divider my="md" />
+                  <Tabs defaultValue="description">
+                    <Tabs.List>
+                      <Tabs.Tab value="description">Description</Tabs.Tab>
+                      <Tabs.Tab value="related">Related Videos</Tabs.Tab>
+                    </Tabs.List>
 
-                <Group justify="space-between">
-                  <Button
-                    variant="light"
-                    leftSection={<IconExternalLink size={16} />}
-                    component="a"
-                    href={`https://www.youtube.com/watch?v=${selectedVideo.id}`}
-                    target="_blank"
-                  >
-                    Watch on YouTube
-                  </Button>
-                  <Button variant="outline" onClick={closeModal}>
-                    Close
-                  </Button>
-                </Group>
-              </Box>
-            </div>
-          )}
-        </Modal>
+                    <Tabs.Panel value="description" pt="md">
+                      <ScrollArea h={200}>
+                        <Text size="sm" style={{ whiteSpace: 'pre-wrap' }}>
+                          {selectedVideo.description}
+                        </Text>
+
+                        {selectedVideo.tags && selectedVideo.tags.length > 0 && (
+                          <Box mt="md">
+                            <Group gap="xs">
+                              <IconTag size={14} />
+                              <Text size="xs" fw={500}>
+                                Tags:
+                              </Text>
+                            </Group>
+                            <Group gap="xs" mt="xs">
+                              {selectedVideo.tags.slice(0, 10).map((tag, index) => (
+                                <Badge key={index} size="xs" variant="light">
+                                  {tag}
+                                </Badge>
+                              ))}
+                            </Group>
+                          </Box>
+                        )}
+                      </ScrollArea>
+                    </Tabs.Panel>
+
+                    <Tabs.Panel value="related" pt="md">
+                      <ScrollArea h={300}>
+                        <Stack gap="sm">
+                          {getRelatedVideos(selectedVideo).map((relatedVideo) => (
+                            <Card
+                              key={relatedVideo.id}
+                              padding="sm"
+                              radius="md"
+                              withBorder
+                              style={{ cursor: 'pointer' }}
+                              onClick={() => {
+                                setSelectedVideo(relatedVideo)
+                              }}
+                            >
+                              <Group gap="sm">
+                                <Image
+                                  src={relatedVideo.thumbnail.medium}
+                                  alt={relatedVideo.title}
+                                  width={80}
+                                  height={60}
+                                  style={{ objectFit: 'cover', borderRadius: 4 }}
+                                />
+                                <div style={{ flex: 1 }}>
+                                  <Text size="sm" fw={500} lineClamp={2}>
+                                    {relatedVideo.title}
+                                  </Text>
+                                  <Group gap="xs" mt={4}>
+                                    <Text size="xs" c="dimmed">
+                                      {relatedVideo.viewCount} views
+                                    </Text>
+                                    <Text size="xs" c="dimmed">
+                                      •
+                                    </Text>
+                                    <Text size="xs" c="dimmed">
+                                      {relatedVideo.duration}
+                                    </Text>
+                                  </Group>
+                                </div>
+                              </Group>
+                            </Card>
+                          ))}
+                        </Stack>
+                      </ScrollArea>
+                    </Tabs.Panel>
+                  </Tabs>
+
+                  <Divider my="md" />
+
+                  <Group justify="space-between">
+                    <Button
+                      variant="light"
+                      leftSection={<IconExternalLink size={16} />}
+                      component="a"
+                      href={`https://www.youtube.com/watch?v=${selectedVideo.id}`}
+                      target="_blank"
+                    >
+                      Watch on YouTube
+                    </Button>
+                    <Button variant="outline" onClick={closeModal}>
+                      Close
+                    </Button>
+                  </Group>
+                </Box>
+              </div>
+            )}
+          </Modal>
+        </Container>
       </MainLayout>
     </MantineProvider>
   )
