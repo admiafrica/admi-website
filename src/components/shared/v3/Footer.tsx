@@ -136,7 +136,7 @@ export default function Footer({ bgColor }: Props) {
             <Anchor c="white" fw={600} onClick={() => navigateToPage('fellowship')}>
               Fellowship
             </Anchor>
-            <Anchor c="white" fw={600} onClick={() => navigateToPage('videos')}>
+            <Anchor c="white" fw={600} onClick={() => navigateToPage('media-archive')}>
               Media
             </Anchor>
           </Stack>
