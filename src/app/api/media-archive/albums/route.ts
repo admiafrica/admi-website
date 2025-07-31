@@ -2,54 +2,17 @@ import { NextResponse } from 'next/server'
 import { ListObjectsV2Command, GetObjectCommand } from '@aws-sdk/client-s3'
 import { s3Client, S3_CONFIG } from '@/lib/aws-config'
 
-// Fallback album data when S3 is not accessible
-const getFallbackAlbums = () => {
-  return [
-    {
-      id: 'admi-graduation-2024',
-      slug: 'admi-graduation-2024',
-      title: 'ADMI Graduation 2024',
-      description: 'Celebrating our 2024 graduates and their creative achievements',
-      date: '2024-12-15',
-      category: 'Graduation',
-      photographer: 'ADMI Team',
-      event: 'ADMI Graduation 2024',
-      thumbnail: 'https://via.placeholder.com/400x300/4C6EF5/ffffff?text=ADMI+Graduation+2024',
-      imageCount: 45,
-      isAlbum: true
-    },
-    {
-      id: 'creative-showcase-2024',
-      slug: 'creative-showcase-2024',
-      title: 'Creative Showcase 2024',
-      description: 'Student work exhibitions and creative presentations',
-      date: '2024-11-20',
-      category: 'Showcase',
-      photographer: 'ADMI Team',
-      event: 'Creative Showcase 2024',
-      thumbnail: 'https://via.placeholder.com/400x300/10B981/ffffff?text=Creative+Showcase',
-      imageCount: 38,
-      isAlbum: true
-    },
-    {
-      id: 'facility-tour-2024',
-      slug: 'facility-tour-2024',
-      title: 'ADMI Facilities Tour',
-      description: 'Behind the scenes look at ADMI studios and workshops',
-      date: '2024-10-10',
-      category: 'Campus',
-      photographer: 'ADMI Team',
-      event: 'ADMI Facilities Tour',
-      thumbnail: 'https://via.placeholder.com/400x300/F59E0B/ffffff?text=Facilities+Tour',
-      imageCount: 52,
-      isAlbum: true
-    }
-  ]
-}
-
 export async function GET() {
   try {
-    console.log('🔧 S3 Albums API - Bucket:', S3_CONFIG.BUCKET_NAME, 'Region:', S3_CONFIG.REGION)
+    console.log('🔧 S3 Albums API Debug:', {
+      bucketName: S3_CONFIG.BUCKET_NAME,
+      region: S3_CONFIG.REGION,
+      prefix: S3_CONFIG.MEDIA_ARCHIVE_PREFIX,
+      s3BucketEnv: process.env.S3_BUCKET_NAME,
+      s3ArchiveEnv: process.env.S3_ARCHIVE_BUCKET,
+      s3RegionEnv: process.env.S3_REGION,
+      awsRegionEnv: process.env.AWS_REGION
+    })
 
     // Try to access S3, fall back if it fails
     try {
@@ -60,7 +23,9 @@ export async function GET() {
         Delimiter: '/'
       })
 
+      console.log('📡 Sending S3 ListObjects command...')
       const response = await s3Client.send(listCommand)
+      console.log('✅ S3 ListObjects response received:', response.CommonPrefixes?.length || 0, 'folders found')
 
       // Extract album folders from common prefixes
       const albumFolders =
@@ -166,14 +131,31 @@ export async function GET() {
         source: 's3'
       })
     } catch (s3Error) {
-      console.error('S3 access failed, using fallback albums:', s3Error)
-      const fallbackAlbums = getFallbackAlbums()
-      return NextResponse.json({
-        success: true,
-        albums: fallbackAlbums,
-        count: fallbackAlbums.length,
-        source: 'fallback'
+      console.error('❌ S3 access failed:', {
+        error: s3Error,
+        message: s3Error instanceof Error ? s3Error.message : 'Unknown error',
+        name: s3Error instanceof Error ? s3Error.name : 'Unknown',
+        code: (s3Error as any)?.Code || 'Unknown',
+        statusCode: (s3Error as any)?.$metadata?.httpStatusCode || 'Unknown'
       })
+
+      // For now, return the error details to help debug
+      return NextResponse.json(
+        {
+          success: false,
+          error: 'S3 access failed',
+          details: {
+            message: s3Error instanceof Error ? s3Error.message : 'Unknown error',
+            name: s3Error instanceof Error ? s3Error.name : 'Unknown',
+            code: (s3Error as any)?.Code || 'Unknown',
+            bucketName: S3_CONFIG.BUCKET_NAME,
+            region: S3_CONFIG.REGION
+          },
+          albums: [],
+          count: 0
+        },
+        { status: 500 }
+      )
     }
   } catch (error) {
     console.error('Error fetching albums from S3:', error)
