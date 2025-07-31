@@ -134,9 +134,21 @@ export default function AudioPage() {
     } else {
       // Play new audio
       if (!audioRefs.current[audioId]) {
-        // Create new audio element
+        // Create new audio element - use direct URL for better compatibility
         const audio = new Audio()
         audio.preload = 'metadata'
+
+        // Check if browser can play the format
+        const canPlayMp4 = audio.canPlayType('audio/mp4')
+        const canPlayMp3 = audio.canPlayType('audio/mpeg')
+
+        console.log('Browser audio support:', {
+          mp4: canPlayMp4,
+          mp3: canPlayMp3,
+          filename: audioItem.filename,
+          format: audioItem.format
+        })
+
         audio.src = audioItem.audioUrl
         audioRefs.current[audioId] = audio
 
