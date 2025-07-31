@@ -118,11 +118,11 @@ export async function GET() {
     return NextResponse.json(
       {
         success: false,
-        error: 'Failed to fetch audio content',
+        error: 'Unable to load audio content. Please try again later.',
         audio: [],
         count: 0
       },
-      { status: 500 }
+      { status: 503 }
     )
   }
 }

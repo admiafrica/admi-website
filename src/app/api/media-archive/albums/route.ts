@@ -143,22 +143,15 @@ export async function GET() {
         statusCode: (s3Error as any)?.$metadata?.httpStatusCode || 'Unknown'
       })
 
-      // For now, return the error details to help debug
+      // Return user-friendly error message
       return NextResponse.json(
         {
           success: false,
-          error: 'S3 access failed',
-          details: {
-            message: s3Error instanceof Error ? s3Error.message : 'Unknown error',
-            name: s3Error instanceof Error ? s3Error.name : 'Unknown',
-            code: (s3Error as any)?.Code || 'Unknown',
-            bucketName: S3_CONFIG.BUCKET_NAME,
-            region: S3_CONFIG.REGION
-          },
+          error: 'Unable to load albums. Please try again later.',
           albums: [],
           count: 0
         },
-        { status: 500 }
+        { status: 503 }
       )
     }
   } catch (error) {
@@ -166,11 +159,11 @@ export async function GET() {
     return NextResponse.json(
       {
         success: false,
-        error: 'Failed to fetch albums',
+        error: 'Unable to load albums. Please try again later.',
         albums: [],
         count: 0
       },
-      { status: 500 }
+      { status: 503 }
     )
   }
 }
