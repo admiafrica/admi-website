@@ -13,6 +13,8 @@ import {
   Select,
   Image,
   Button,
+  Breadcrumbs,
+  Anchor,
   MantineProvider,
   Loader,
   Alert
@@ -97,6 +99,13 @@ export default function ImagesPage() {
       <MainLayout>
         <Container size="xl" py={80}>
           <Stack gap={40}>
+            <Breadcrumbs mb={20}>
+              <Link href="/media-archive" passHref legacyBehavior>
+                <Anchor>Media Archive</Anchor>
+              </Link>
+              <Anchor>Images</Anchor>
+            </Breadcrumbs>
+
             <div>
               <Title order={1} size={40} fw={700} ta="center" mb={16}>
                 Photo Gallery
