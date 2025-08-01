@@ -9,23 +9,10 @@ export async function GET() {
     const fileContent = readFileSync(filePath, 'utf8')
     const data = JSON.parse(fileContent)
 
-    // Force URL updates to ensure proxy URLs are used
-    if (data.audio) {
-      data.audio = data.audio.map((audioItem: any) => {
-        // Always use proxy URLs with proper filename detection
-        const filename = audioItem.filename || audioItem.audioUrl.split('/').pop()
-        audioItem.audioUrl = `/api/media-archive/audio-proxy/${filename}`
-        return audioItem
-      })
-      // Add cache-busting timestamp
-      data.generated = new Date().toISOString()
-      data.version = '2.0' // Force update
-    }
-
     return NextResponse.json(data, {
       headers: {
         'Content-Type': 'application/json',
-        'Cache-Control': 'no-cache, must-revalidate' // Disable caching temporarily
+        'Cache-Control': 'public, max-age=3600'
       }
     })
   } catch (error) {
