@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { Box } from '@mantine/core'
@@ -10,6 +10,7 @@ import { MainLayout } from '@/layouts/v3/MainLayout'
 
 import { PageSEO, Ribbon, Timeline } from '@/components/shared/v3'
 import { FacilityItemCard, SectorItemCard, CompanyValuesCard, UserProfileCard } from '@/components/cards'
+import FacilityItemCardMobile from '@/components/cards/FacilityItemCardMobile'
 import {
   ADMI_ABOUT_SECTORS,
   ADMI_ACADEMIC_TEAM_SUMMARY,
@@ -27,6 +28,18 @@ import IconArrowTipRight from '@/assets/icons/ArrowTipRight'
 export default function AboutPage() {
   const router = useRouter()
   const autoplayFacilities = useRef(Autoplay({ delay: 4000 }))
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
 
   const handleViewCourses = () => {
     router.push('/courses')
@@ -199,7 +212,7 @@ export default function AboutPage() {
         <Box className="w-full pb-16">
           <Carousel
             slideSize={{ base: '95%', sm: '80%', md: '70%', lg: 700 }}
-            height={300}
+            height={isMobile ? 'auto' : 300}
             slideGap={{ base: 'md', sm: 'xl' }}
             loop
             align="start"
@@ -211,7 +224,7 @@ export default function AboutPage() {
           >
             {ADMI_FACILITIES.map((facility) => (
               <Carousel.Slide key={facility.name}>
-                <FacilityItemCard facility={facility} />
+                {isMobile ? <FacilityItemCardMobile facility={facility} /> : <FacilityItemCard facility={facility} />}
               </Carousel.Slide>
             ))}
           </Carousel>
