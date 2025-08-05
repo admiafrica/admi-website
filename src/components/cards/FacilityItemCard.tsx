@@ -22,7 +22,7 @@ export default function FacilityItemCard({ facility }: Props) {
             sizes="(max-width: 768px) 100vw, 600px"
             src={facility.image || 'https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png'}
             alt={facility.name}
-            style={{ objectFit: 'contain', objectPosition: 'center' }}
+            style={{ objectFit: 'cover', objectPosition: 'center' }}
             priority={false}
             quality={90}
           />
