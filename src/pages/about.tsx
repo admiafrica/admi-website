@@ -155,9 +155,9 @@ export default function AboutPage() {
               <Title label="Academic Team" color="white" />
             </Box>
           </Box>
-          <Box className="flex w-full flex-col flex-wrap py-8 sm:flex-row">
+          <Box className="flex w-full flex-row flex-wrap py-8">
             {ADMI_ACADEMIC_TEAM_SUMMARY.map((member, index) => (
-              <div className="mb-4 w-fit sm:mr-4" key={`academic-member-${index}`}>
+              <div className="mb-4 mr-4 w-fit" key={`academic-member-${index}`}>
                 <UserProfileCard user={member} />
               </div>
             ))}
