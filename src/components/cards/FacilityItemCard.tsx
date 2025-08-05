@@ -13,21 +13,23 @@ export default function FacilityItemCard({ facility }: Props) {
       padding="lg"
       radius="md"
       withBorder
-      className="hover:border-1 h-[360px] h-full cursor-pointer bg-white hover:border-solid hover:border-admiRed"
+      className="hover:border-1 h-[420px] h-full cursor-pointer bg-white hover:border-solid hover:border-admiRed"
     >
-      <Box className="flex h-full">
-        <Box className="flex h-full w-[60%] flex-col pt-4">
-          <Title label={facility.name || 'The Studios'} size="24px" color="black" />
-          <Paragraph className="mb-0 mt-auto h-[160px] pr-2">{facility.description}</Paragraph>
-        </Box>
-        <Box className="relative h-full w-[40%]">
+      <Box className="flex h-full flex-col">
+        <Box className="relative h-[60%] w-full overflow-hidden rounded-lg">
           <Image
             fill
-            sizes="(max-width: 768px) 100vw, 40vw"
+            sizes="(max-width: 768px) 100vw, 600px"
             src={facility.image || 'https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png'}
             alt={facility.name}
-            style={{ borderRadius: 8, objectFit: 'cover' }}
+            style={{ objectFit: 'contain', objectPosition: 'center' }}
+            priority={false}
+            quality={90}
           />
+        </Box>
+        <Box className="flex h-[40%] w-full flex-col p-4">
+          <Title label={facility.name || 'The Studios'} size="20px" color="black" />
+          <Paragraph className="mt-2 text-sm">{facility.description}</Paragraph>
         </Box>
       </Box>
     </Card>

@@ -199,7 +199,7 @@ export default function AboutPage() {
         <Box className="w-full overflow-hidden">
           <Carousel
             slideSize={{ base: '90%', sm: '70%', md: 600 }}
-            height={360}
+            height={420}
             slideGap="md"
             loop
             align="start"
