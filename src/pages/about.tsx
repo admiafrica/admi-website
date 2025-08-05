@@ -198,9 +198,9 @@ export default function AboutPage() {
         </Box>
         <Box className="w-full pb-16">
           <Carousel
-            slideSize={{ base: '90%', sm: '70%', md: 600 }}
-            height={500}
-            slideGap="md"
+            slideSize={{ base: '95%', sm: '80%', md: '70%', lg: 700 }}
+            height={300}
+            slideGap={{ base: 'md', sm: 'xl' }}
             loop
             align="start"
             slidesToScroll={1}
