@@ -13,10 +13,10 @@ export default function FacilityItemCard({ facility }: Props) {
       padding="lg"
       radius="md"
       withBorder
-      className="hover:border-1 h-auto w-full cursor-pointer bg-white hover:border-solid hover:border-admiRed sm:h-[280px]"
+      className="hover:border-1 h-[280px] w-full cursor-pointer bg-white hover:border-solid hover:border-admiRed"
     >
-      <Box className="flex h-full flex-col gap-4 sm:flex-row">
-        <Box className="relative h-[200px] w-full overflow-hidden rounded-lg sm:h-full sm:w-[40%]">
+      <Box className="flex h-full flex-row gap-4">
+        <Box className="relative h-full w-[40%] overflow-hidden rounded-lg">
           <Image
             fill
             sizes="(max-width: 768px) 40vw, 300px"
@@ -27,7 +27,7 @@ export default function FacilityItemCard({ facility }: Props) {
             quality={90}
           />
         </Box>
-        <Box className="flex h-full w-full flex-col justify-center py-4 sm:w-[60%] sm:py-2">
+        <Box className="flex h-full w-[60%] flex-col justify-center py-2">
           <Title label={facility.name || 'The Studios'} size="20px" color="black" className="mb-3" />
           <Paragraph className="text-sm leading-relaxed text-gray-700">{facility.description}</Paragraph>
         </Box>
