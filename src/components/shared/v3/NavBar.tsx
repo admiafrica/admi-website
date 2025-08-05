@@ -99,7 +99,7 @@ export default function NavBar({ mode, isMinimal = false }: Props) {
 
   const getMenuMobile = (mode: string) => {
     return (
-      <div className="ml-auto w-fit pr-6">
+      <div className="w-fit">
         <Group c={mode == 'dark' ? 'white' : 'black'}>
           <Menu trigger="hover" openDelay={100} closeDelay={400}>
             <Menu.Target>
@@ -165,13 +165,13 @@ export default function NavBar({ mode, isMinimal = false }: Props) {
   return (
     <div className="mx-auto w-full max-w-screen-xl px-4">
       <Group>
-        <div className="flex w-full flex-row-reverse font-nexa md:flex-row">
-          <Link href="/" style={{ textDecoration: 'none' }} className="pt-4 md:mr-auto">
+        <div className="flex w-full font-nexa">
+          <Link href="/" style={{ textDecoration: 'none' }} className="pt-4">
             {mode == 'dark' && (
               <Image src={IconLogoLight} width={80} height={60} alt="Africa Digital Media Institute" />
             )}
           </Link>
-          <div className="hidden grow md:block"></div>
+          <div className="grow"></div>
           {isSmallScreen ? getMenuMobile(mode) : getMenuWideScreen(mode)}
         </div>
       </Group>
