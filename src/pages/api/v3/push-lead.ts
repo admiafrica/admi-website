@@ -35,6 +35,18 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const API_KEY = process.env.BREVO_API_KEY as string
   const LIST_ID = process.env.BREVO_LIST_ID as string
 
+  // Debug logging for environment variables
+  console.log('Environment check:', {
+    NODE_ENV: process.env.NODE_ENV,
+    hasBrevoApiKey: !!API_KEY,
+    hasBrevoListId: !!LIST_ID,
+    brevoApiKeyPrefix: API_KEY ? API_KEY.substring(0, 10) + '...' : 'undefined',
+    brevoListId: LIST_ID || 'undefined',
+    allEnvKeys: Object.keys(process.env)
+      .filter((key) => key.includes('BREVO'))
+      .join(', ')
+  })
+
   if (!API_KEY || !LIST_ID) {
     console.error('Missing Brevo configuration:', { API_KEY: !!API_KEY, LIST_ID: !!LIST_ID })
     return res.status(500).json({ error: 'Server configuration error' })
