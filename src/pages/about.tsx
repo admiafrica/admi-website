@@ -180,7 +180,7 @@ export default function AboutPage() {
         </Box>
       </Box>
       {/* FACILITIES */}
-      <Box className="1xl:px-0 w-full px-4 py-8" bg={'#F5FFFD'}>
+      <Box className="1xl:px-0 w-full px-4 py-16" bg={'#F5FFFD'}>
         <Box className="mx-auto w-full max-w-screen-xl">
           <Box className="flex w-full flex-col pb-12 sm:flex-row">
             <Box className="sm:w-[30%]">
@@ -196,10 +196,10 @@ export default function AboutPage() {
             </Box>
           </Box>
         </Box>
-        <Box className="w-full overflow-hidden">
+        <Box className="w-full pb-16">
           <Carousel
             slideSize={{ base: '90%', sm: '70%', md: 600 }}
-            height={480}
+            height={500}
             slideGap="md"
             loop
             align="start"
