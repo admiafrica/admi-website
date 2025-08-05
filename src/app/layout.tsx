@@ -1,5 +1,6 @@
 import Script from 'next/script'
 import { Metadata } from 'next'
+import { Providers } from './providers'
 import '@/styles/globals.css'
 
 export const metadata: Metadata = {
@@ -117,14 +118,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               getFID(sendToAnalytics);
               getLCP(sendToAnalytics);
               getFCP(sendToAnalytics);
-              getTTFB(sendToAnalytics);
             } catch (error) {
               console.warn('Web Vitals could not be loaded:', error);
             }
           `}
         </Script>
       </head>
-      <body>{children}</body>
+      <body>
+        <Providers>{children}</Providers>
+      </body>
     </html>
   )
 }
