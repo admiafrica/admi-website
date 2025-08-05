@@ -99,11 +99,11 @@ export default function NavBar({ mode, isMinimal = false }: Props) {
 
   const getMenuMobile = (mode: string) => {
     return (
-      <div className="w-fit">
+      <div className="flex w-fit items-center">
         <Group c={mode == 'dark' ? 'white' : 'black'}>
           <Menu trigger="hover" openDelay={100} closeDelay={400}>
             <Menu.Target>
-              <IconMenu />
+              <IconMenu className="cursor-pointer" />
             </Menu.Target>
             <Menu.Dropdown style={menuDrawer}>
               <Menu.Item style={menuItemStyle} className="cursor-pointer" onClick={() => navigateToPage('')}>
@@ -146,13 +146,13 @@ export default function NavBar({ mode, isMinimal = false }: Props) {
     return (
       <div className="mx-auto w-full max-w-screen-xl px-4">
         <Group>
-          <div className="flex grow font-nexa sm:flex-row-reverse md:flex-row">
-            <Link href="/" style={{ textDecoration: 'none' }} className="my-auto h-fit pt-4">
+          <div className="flex grow items-center py-2 font-nexa">
+            <Link href="/" style={{ textDecoration: 'none' }}>
               {mode == 'dark' && <Image src={IconLogoLight} width={80} alt="Africa Digital Media Institute" />}
             </Link>
             <div className="grow"></div>
             {!hiddenCTA && (
-              <div className="my-auto">
+              <div>
                 <Button size="lg" backgroundColor="admiRed" label="Get In Touch" />
               </div>
             )}
@@ -165,8 +165,8 @@ export default function NavBar({ mode, isMinimal = false }: Props) {
   return (
     <div className="mx-auto w-full max-w-screen-xl px-4">
       <Group>
-        <div className="flex w-full font-nexa">
-          <Link href="/" style={{ textDecoration: 'none' }} className="pt-4">
+        <div className="flex w-full items-center py-2 font-nexa">
+          <Link href="/" style={{ textDecoration: 'none' }}>
             {mode == 'dark' && (
               <Image src={IconLogoLight} width={80} height={60} alt="Africa Digital Media Institute" />
             )}
