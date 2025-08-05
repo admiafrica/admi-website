@@ -86,16 +86,16 @@ export default function ResourcesPage({ initialResources, initialFeatured, initi
       {/* Academic FAQ Schema for resources page */}
       <InstitutionalFAQSchema faqType="academic" />
       <Box className="w-full overflow-x-hidden">
-        <div className="h-[16em] w-full bg-[#002A23]">
+        <div className="relative h-[16em] w-full overflow-hidden bg-[#002A23]">
           {/* BACKGROUND IMAGES */}
-          <div className="absolute left-[62%] top-[20vh] z-0 h-fit w-full -translate-x-1/2 transform">
-            <div className="flex w-full justify-end pr-[10%]">
+          <div className="absolute left-[62%] top-[20vh] z-0 h-fit w-fit -translate-x-1/2 transform">
+            <div className="flex justify-end">
               <Image src={IconBgImageYellow} alt={'background image'} />
             </div>
           </div>
 
-          <div className="absolute left-1/2 top-[5vh] z-0 h-fit w-full -translate-x-1/2 transform">
-            <div className="flex w-full">
+          <div className="absolute left-1/2 top-[5vh] z-0 h-fit w-fit -translate-x-1/2 transform">
+            <div className="flex">
               <Image src={IconBgImageRed} alt={'background image'} />
             </div>
           </div>
