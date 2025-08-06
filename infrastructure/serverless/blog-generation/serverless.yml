@@ -25,8 +25,7 @@ provider:
     CONTENTFUL_ENVIRONMENT: ${env:CONTENTFUL_ENVIRONMENT, 'master'}
     CONTENTFUL_ACCESS_TOKEN: ${env:CONTENTFUL_ACCESS_TOKEN, ''}
     CONTENTFUL_MANAGEMENT_TOKEN: ${env:CONTENTFUL_MANAGEMENT_TOKEN, ''}
-    S3_BLOG_IMAGES_BUCKET:
-      Ref: BlogImagesBucket
+    S3_BLOG_IMAGES_BUCKET: admi-blog-images-${self:provider.stage}
   iam:
     role:
       statements:
@@ -47,12 +46,7 @@ provider:
             - s3:PutObjectAcl
             - s3:GetObject
             - s3:DeleteObject
-          Resource:
-            - Fn::Join:
-              - ''
-              - - 'arn:aws:s3:::'
-                - Ref: BlogImagesBucket
-                - '/*'
+          Resource: 'arn:aws:s3:::admi-blog-images-${self:provider.stage}/*'
 
 functions:
   dailyBlogGeneration:
@@ -139,33 +133,10 @@ package:
 
 resources:
   Resources:
-    BlogImagesBucket:
-      Type: AWS::S3::Bucket
-      Properties:
-        BucketName: admi-blog-images-${self:provider.stage}
-        PublicAccessBlockConfiguration:
-          BlockPublicAcls: false
-          BlockPublicPolicy: false
-          IgnorePublicAcls: false
-          RestrictPublicBuckets: false
-        CorsConfiguration:
-          CorsRules:
-            - AllowedHeaders:
-                - '*'
-              AllowedMethods:
-                - GET
-                - HEAD
-              AllowedOrigins:
-                - '*'
-              MaxAge: 3000
-        VersioningConfiguration:
-          Status: Enabled
-
     BlogImagesBucketPolicy:
       Type: AWS::S3::BucketPolicy
       Properties:
-        Bucket:
-          Ref: BlogImagesBucket
+        Bucket: admi-blog-images-${self:provider.stage}
         PolicyDocument:
           Statement:
             - Sid: PublicReadGetObject
@@ -173,18 +144,12 @@ resources:
               Principal: '*'
               Action:
                 - s3:GetObject
-              Resource:
-                Fn::Join:
-                  - ''
-                  - - 'arn:aws:s3:::'
-                    - Ref: BlogImagesBucket
-                    - '/blog-images/*'
+              Resource: 'arn:aws:s3:::admi-blog-images-${self:provider.stage}/blog-images/*'
 
   Outputs:
     BlogImagesBucketName:
       Description: Name of the S3 bucket for blog images
-      Value:
-        Ref: BlogImagesBucket
+      Value: admi-blog-images-${self:provider.stage}
       Export:
         Name: ${self:service}-${self:provider.stage}-blog-images-bucket
     DailyBlogFunctionArn:
