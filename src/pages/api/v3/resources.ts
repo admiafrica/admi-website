@@ -8,7 +8,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   // Check if preview mode is requested
   const isPreview = req.query.preview === 'true'
   const accessToken = isPreview
-    ? process.env.CONTENTFUL_PREEVIEW_API_TOKEN // Preview API token shows drafts
+    ? process.env.CONTENTFUL_PREVIEW_API_TOKEN // Preview API token shows drafts
     : process.env.ADMI_CONTENTFUL_ACCESS_TOKEN // Regular token shows published only
 
   if (req.method === 'GET') {
