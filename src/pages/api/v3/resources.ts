@@ -1,12 +1,15 @@
-import { IContentfulResponse } from '@/types'
 import { resolveReferences } from '@/utils'
-import axiosContentfulClient from '@/utils/axiosContentfulClient'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const spaceId = process.env.ADMI_CONTENTFUL_SPACE_ID
-  const accessToken = process.env.ADMI_CONTENTFUL_ACCESS_TOKEN
   const environment = process.env.ADMI_CONTENTFUL_ENVIRONMENT
+
+  // Check if preview mode is requested
+  const isPreview = req.query.preview === 'true'
+  const accessToken = isPreview
+    ? process.env.CONTENTFUL_PREEVIEW_API_TOKEN // Preview API token shows drafts
+    : process.env.ADMI_CONTENTFUL_ACCESS_TOKEN // Regular token shows published only
 
   if (req.method === 'GET') {
     try {
@@ -20,10 +23,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         const actualLimit = limit || 9
         const skip = (actualPage - 1) * actualLimit
 
-        const response = await axiosContentfulClient.get<IContentfulResponse>(
-          `/spaces/${spaceId}/environments/${environment}/entries?access_token=${accessToken}&content_type=article&fields.category=Resources&order=-sys.createdAt&limit=${actualLimit}&skip=${skip}`
+        // Use preview.contentful.com for drafts, cdn.contentful.com for published
+        const baseUrl = isPreview ? 'https://preview.contentful.com' : 'https://cdn.contentful.com'
+        const response = await fetch(
+          `${baseUrl}/spaces/${spaceId}/environments/${environment}/entries?access_token=${accessToken}&content_type=article&fields.category=Resources&order=-sys.createdAt&limit=${actualLimit}&skip=${skip}&include=2`
         )
-        const data = response.data
+        const data = await response.json()
 
         const resources = data.items
         const assets = data.includes?.Asset || []
@@ -38,15 +43,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         })
 
         // Get total count for pagination
-        const totalResponse = await axiosContentfulClient.get<IContentfulResponse>(
-          `/spaces/${spaceId}/environments/${environment}/entries?access_token=${accessToken}&content_type=article&fields.category=Resources&limit=0`
+        const totalResponse = await fetch(
+          `${baseUrl}/spaces/${spaceId}/environments/${environment}/entries?access_token=${accessToken}&content_type=article&fields.category=Resources&limit=0`
         )
-
-        const totalCount = (totalResponse.data as any).total || 0
+        const totalData = await totalResponse.json()
+        const totalCount = totalData.total || 0
         const totalPages = Math.ceil(totalCount / actualLimit)
 
         res.status(200).json({
           resources: resolvedResources,
+          isPreview,
           pagination: {
             page: actualPage,
             limit: actualLimit,
@@ -58,10 +64,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         })
       } else {
         // OLD MODE - return all resources (for backward compatibility)
-        const response = await axiosContentfulClient.get<IContentfulResponse>(
-          `/spaces/${spaceId}/environments/${environment}/entries?access_token=${accessToken}&content_type=article&fields.category=Resources&order=-sys.createdAt`
+        const baseUrl = isPreview ? 'https://preview.contentful.com' : 'https://cdn.contentful.com'
+        const response = await fetch(
+          `${baseUrl}/spaces/${spaceId}/environments/${environment}/entries?access_token=${accessToken}&content_type=article&fields.category=Resources&order=-sys.createdAt&include=2`
         )
-        const data = response.data
+        const data = await response.json()
 
         const resources = data.items
         const assets = data.includes?.Asset || []
@@ -75,7 +82,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           }
         })
 
-        res.status(200).json(resolvedResources)
+        res.status(200).json({ resources: resolvedResources, isPreview })
       }
     } catch (error) {
       console.error('Failed to get resources', error)

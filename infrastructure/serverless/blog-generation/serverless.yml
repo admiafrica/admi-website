@@ -8,23 +8,25 @@ provider:
   timeout: 900 # 15 minutes for blog generation
   memorySize: 512
   environment:
-    ADMI_CONTENTFUL_SPACE_ID: ${env:ADMI_CONTENTFUL_SPACE_ID}
-    ADMI_CONTENTFUL_ACCESS_TOKEN: ${env:ADMI_CONTENTFUL_ACCESS_TOKEN}
-    ADMI_CONTENTFUL_MANAGEMENT_TOKEN: ${env:CONTENTFUL_MANAGEMENT_TOKEN}
-    ADMI_CONTENTFUL_ENVIRONMENT: ${env:ADMI_CONTENTFUL_ENVIRONMENT}
-    OPENAI_API_KEY: ${env:NEXT_OPENAI_API_KEY}
-    YOUTUBE_API_KEY: ${env:YOUTUBE_API_KEY}
+    ADMI_CONTENTFUL_SPACE_ID: ${env:ADMI_CONTENTFUL_SPACE_ID, ''}
+    ADMI_CONTENTFUL_ACCESS_TOKEN: ${env:ADMI_CONTENTFUL_ACCESS_TOKEN, ''}
+    ADMI_CONTENTFUL_MANAGEMENT_TOKEN: ${env:CONTENTFUL_MANAGEMENT_TOKEN, ''}
+    ADMI_CONTENTFUL_ENVIRONMENT: ${env:ADMI_CONTENTFUL_ENVIRONMENT, 'master'}
+    OPENAI_API_KEY: ${env:NEXT_OPENAI_API_KEY, ''}
+    YOUTUBE_API_KEY: ${env:YOUTUBE_API_KEY, ''}
     BLOG_GENERATION_WEBHOOK_URL: ${env:BLOG_GENERATION_WEBHOOK_URL, ''}
     APP_URL: ${env:APP_URL, 'https://dlm0hjalapt7d.amplifyapp.com'}
     CRON_SECRET: ${env:CRON_SECRET, 'admi-cron-secret-2025'}
-    PERPLEXITY_API_KEY: ${env:PERPLEXITY_API_KEY}
-    FIRECRAWL_API_KEY: ${env:FIRECRAWL_API_KEY}
-    DATAFORSEO_LOGIN: ${env:DATAFORSEO_LOGIN}
-    DATAFORSEO_PASSWORD: ${env:DATAFORSEO_PASSWORD}
-    CONTENTFUL_SPACE_ID: ${env:CONTENTFUL_SPACE_ID}
-    CONTENTFUL_ENVIRONMENT: ${env:CONTENTFUL_ENVIRONMENT}
-    CONTENTFUL_ACCESS_TOKEN: ${env:CONTENTFUL_ACCESS_TOKEN}
-    CONTENTFUL_MANAGEMENT_TOKEN: ${env:CONTENTFUL_MANAGEMENT_TOKEN}
+    PERPLEXITY_API_KEY: ${env:PERPLEXITY_API_KEY, ''}
+    FIRECRAWL_API_KEY: ${env:FIRECRAWL_API_KEY, ''}
+    DATAFORSEO_LOGIN: ${env:DATAFORSEO_LOGIN, ''}
+    DATAFORSEO_PASSWORD: ${env:DATAFORSEO_PASSWORD, ''}
+    CONTENTFUL_SPACE_ID: ${env:CONTENTFUL_SPACE_ID, ''}
+    CONTENTFUL_ENVIRONMENT: ${env:CONTENTFUL_ENVIRONMENT, 'master'}
+    CONTENTFUL_ACCESS_TOKEN: ${env:CONTENTFUL_ACCESS_TOKEN, ''}
+    CONTENTFUL_MANAGEMENT_TOKEN: ${env:CONTENTFUL_MANAGEMENT_TOKEN, ''}
+    S3_BLOG_IMAGES_BUCKET:
+      Ref: BlogImagesBucket
   iam:
     role:
       statements:
@@ -39,6 +41,18 @@ provider:
             - ssm:GetParameter
             - ssm:GetParameters
           Resource: arn:aws:ssm:${self:provider.region}:*:parameter/admi/blog/*
+        - Effect: Allow
+          Action:
+            - s3:PutObject
+            - s3:PutObjectAcl
+            - s3:GetObject
+            - s3:DeleteObject
+          Resource:
+            - Fn::Join:
+              - ''
+              - - 'arn:aws:s3:::'
+                - Ref: BlogImagesBucket
+                - '/*'
 
 functions:
   dailyBlogGeneration:
@@ -125,8 +139,54 @@ package:
 
 resources:
   Resources:
+    BlogImagesBucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: admi-blog-images-${self:provider.stage}
+        PublicAccessBlockConfiguration:
+          BlockPublicAcls: false
+          BlockPublicPolicy: false
+          IgnorePublicAcls: false
+          RestrictPublicBuckets: false
+        CorsConfiguration:
+          CorsRules:
+            - AllowedHeaders:
+                - '*'
+              AllowedMethods:
+                - GET
+                - HEAD
+              AllowedOrigins:
+                - '*'
+              MaxAge: 3000
+        VersioningConfiguration:
+          Status: Enabled
+
+    BlogImagesBucketPolicy:
+      Type: AWS::S3::BucketPolicy
+      Properties:
+        Bucket:
+          Ref: BlogImagesBucket
+        PolicyDocument:
+          Statement:
+            - Sid: PublicReadGetObject
+              Effect: Allow
+              Principal: '*'
+              Action:
+                - s3:GetObject
+              Resource:
+                Fn::Join:
+                  - ''
+                  - - 'arn:aws:s3:::'
+                    - Ref: BlogImagesBucket
+                    - '/blog-images/*'
 
   Outputs:
+    BlogImagesBucketName:
+      Description: Name of the S3 bucket for blog images
+      Value:
+        Ref: BlogImagesBucket
+      Export:
+        Name: ${self:service}-${self:provider.stage}-blog-images-bucket
     DailyBlogFunctionArn:
       Description: ARN of the daily blog generation function
       Value:
