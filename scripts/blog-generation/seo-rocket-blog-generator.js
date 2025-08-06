@@ -458,7 +458,7 @@ Write as a career advisor who wants to help readers achieve their dreams while c
             'en-US': new Date().toISOString()
           },
           category: {
-            'en-US': 'tech-creative-economy'
+            'en-US': 'Resources'
           },
           featured: {
             'en-US': false
