@@ -25,9 +25,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
         // Use preview.contentful.com for drafts, cdn.contentful.com for published
         const baseUrl = isPreview ? 'https://preview.contentful.com' : 'https://cdn.contentful.com'
-        const response = await fetch(
-          `${baseUrl}/spaces/${spaceId}/environments/${environment}/entries?access_token=${accessToken}&content_type=article&fields.category=Resources&order=-sys.createdAt&limit=${actualLimit}&skip=${skip}&include=2`
-        )
+
+        // When in preview mode, only show unpublished draft articles
+        let apiUrl = `${baseUrl}/spaces/${spaceId}/environments/${environment}/entries?access_token=${accessToken}&content_type=article&fields.category=Resources&order=-sys.createdAt&limit=${actualLimit}&skip=${skip}&include=2`
+        if (isPreview) {
+          // Add filter to show only unpublished entries (drafts only)
+          apiUrl += '&sys.publishedAt[exists]=false'
+        }
+
+        const response = await fetch(apiUrl)
         const data = await response.json()
 
         const resources = data.items
@@ -43,9 +49,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         })
 
         // Get total count for pagination
-        const totalResponse = await fetch(
-          `${baseUrl}/spaces/${spaceId}/environments/${environment}/entries?access_token=${accessToken}&content_type=article&fields.category=Resources&limit=0`
-        )
+        let totalUrl = `${baseUrl}/spaces/${spaceId}/environments/${environment}/entries?access_token=${accessToken}&content_type=article&fields.category=Resources&limit=0`
+        if (isPreview) {
+          // Add filter to show only unpublished entries (drafts only) for total count
+          totalUrl += '&sys.publishedAt[exists]=false'
+        }
+
+        const totalResponse = await fetch(totalUrl)
         const totalData = await totalResponse.json()
         const totalCount = totalData.total || 0
         const totalPages = Math.ceil(totalCount / actualLimit)
@@ -65,9 +75,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       } else {
         // OLD MODE - return all resources (for backward compatibility)
         const baseUrl = isPreview ? 'https://preview.contentful.com' : 'https://cdn.contentful.com'
-        const response = await fetch(
-          `${baseUrl}/spaces/${spaceId}/environments/${environment}/entries?access_token=${accessToken}&content_type=article&fields.category=Resources&order=-sys.createdAt&include=2`
-        )
+
+        // When in preview mode, only show unpublished draft articles
+        let apiUrl = `${baseUrl}/spaces/${spaceId}/environments/${environment}/entries?access_token=${accessToken}&content_type=article&fields.category=Resources&order=-sys.createdAt&include=2`
+        if (isPreview) {
+          // Add filter to show only unpublished entries (drafts only)
+          apiUrl += '&sys.publishedAt[exists]=false'
+        }
+
+        const response = await fetch(apiUrl)
         const data = await response.json()
 
         const resources = data.items
