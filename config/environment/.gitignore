@@ -1,0 +1,9 @@
+# Ignore actual environment variable files with sensitive data
+amplify-*.json
+
+# But include example templates
+!amplify-*.json.example
+
+# Keep backup directory structure but not the actual backups
+backup/*.json
+!backup/.gitkeep

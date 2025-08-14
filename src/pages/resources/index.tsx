@@ -41,27 +41,32 @@ export default function ResourcesPage({ initialResources, initialFeatured, initi
   const [pagination, setPagination] = useState(initialPagination)
   const [loading, setLoading] = useState(false)
 
-  // Use router query for initial page to ensure consistency
+  // Use router query for initial page and preview mode
   const pageFromUrl = parseInt(router.query.page as string) || 1
+  const isPreview = router.query.preview === 'true'
   const [currentPage, setCurrentPage] = useState(pageFromUrl)
 
-  const fetchPage = useCallback(async (page: number) => {
-    setLoading(true)
-    try {
-      const response = await fetch(`/api/v3/resources?page=${page}&limit=9`)
-      const data = await response.json()
+  const fetchPage = useCallback(
+    async (page: number) => {
+      setLoading(true)
+      try {
+        const previewParam = isPreview ? '&preview=true' : ''
+        const response = await fetch(`/api/v3/resources?page=${page}&limit=9${previewParam}`)
+        const data = await response.json()
 
-      setResources(data.resources || [])
-      setPagination(data.pagination)
-      setCurrentPage(page)
+        setResources(data.resources || [])
+        setPagination(data.pagination)
+        setCurrentPage(page)
 
-      // Scroll to top of resources section
-      document.getElementById('resources-section')?.scrollIntoView({ behavior: 'smooth' })
-    } catch (error) {
-      console.error('Error fetching page:', error)
-    }
-    setLoading(false)
-  }, [])
+        // Scroll to top of resources section
+        document.getElementById('resources-section')?.scrollIntoView({ behavior: 'smooth' })
+      } catch (error) {
+        console.error('Error fetching page:', error)
+      }
+      setLoading(false)
+    },
+    [isPreview]
+  )
 
   // Handle URL changes (back/forward navigation)
   useEffect(() => {
@@ -111,6 +116,28 @@ export default function ResourcesPage({ initialResources, initialFeatured, initi
 
         <Box className="relative w-full" bg={'#F5FFFD'} id="resources-section">
           <Box className="mx-auto w-full max-w-screen-xl">
+            {/* PREVIEW MODE INDICATOR */}
+            {isPreview && (
+              <Box className="mx-4 mt-4 border-l-4 border-orange-500 bg-orange-100 p-4 text-orange-700 xl:mx-0">
+                <div className="flex">
+                  <div className="flex-shrink-0">
+                    <svg className="h-5 w-5 text-orange-500" viewBox="0 0 20 20" fill="currentColor">
+                      <path
+                        fillRule="evenodd"
+                        d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                  </div>
+                  <div className="ml-3">
+                    <p className="text-sm">
+                      <strong>Preview Mode:</strong> You are viewing draft articles that are not yet published.
+                    </p>
+                  </div>
+                </div>
+              </Box>
+            )}
+
             {/* HEADLINE */}
             <Box className="w-full px-4 py-16 xl:px-0">
               {featured && (
@@ -194,7 +221,8 @@ export async function getServerSideProps(context: any) {
 
     // Use localhost for server-side requests
     const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:3000'
-    const apiUrl = `${baseUrl}/api/v3/resources?page=${page}&limit=${limit}`
+    const previewQuery = context.query.preview === 'true' ? '&preview=true' : ''
+    const apiUrl = `${baseUrl}/api/v3/resources?page=${page}&limit=${limit}${previewQuery}`
 
     // Fetch paginated resources
     const paginatedRes = await fetch(apiUrl)
@@ -227,7 +255,8 @@ export async function getServerSideProps(context: any) {
     }
 
     // Fetch only featured resource separately to avoid loading all data
-    const featuredRes = await fetch(`${baseUrl}/api/v3/resources?page=1&limit=50`)
+    const featuredPreviewQuery = context.query.preview === 'true' ? '&preview=true' : ''
+    const featuredRes = await fetch(`${baseUrl}/api/v3/resources?page=1&limit=50${featuredPreviewQuery}`)
 
     if (!featuredRes.ok) throw new Error('Failed to fetch featured resource')
 
