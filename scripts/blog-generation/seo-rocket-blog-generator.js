@@ -17,11 +17,21 @@ class SEORocketBlogGenerator {
     this.spaceId = process.env.CONTENTFUL_SPACE_ID
     this.environmentId = process.env.CONTENTFUL_ENVIRONMENT || 'master'
 
-    // OpenAI setup for DALL-E 3
-    this.openaiApiKey = process.env.OPENAI_API_KEY || process.env.NEXT_OPENAI_API_KEY
-    this.openai = new OpenAI({
-      apiKey: this.openaiApiKey
-    })
+    // Image generation settings
+    this.imageProvider = process.env.IMAGE_PROVIDER || 'disabled' // 'dalle', 'replicate', or 'disabled'
+
+    // OpenAI setup for DALL-E 3 (if enabled)
+    if (this.imageProvider === 'dalle') {
+      this.openaiApiKey = process.env.OPENAI_API_KEY || process.env.NEXT_OPENAI_API_KEY
+      this.openai = new OpenAI({
+        apiKey: this.openaiApiKey
+      })
+    }
+
+    // Replicate setup (if enabled)
+    if (this.imageProvider === 'replicate') {
+      this.replicateApiKey = process.env.REPLICATE_API_TOKEN
+    }
 
     // AWS S3 setup
     this.s3 = new AWS.S3({
@@ -288,15 +298,116 @@ Write as a career advisor who wants to help readers achieve their dreams while c
     )
   }
 
-  // Generate images using DALL-E 3
+  // Generate images using the configured provider
   async generateImages(contentBrief, blogContent) {
     const images = {
       featured: null,
       inArticle: []
     }
 
+    // Check if image generation is disabled
+    if (this.imageProvider === 'disabled') {
+      console.log('🚫 Image generation is disabled (IMAGE_PROVIDER=disabled)')
+      return images
+    }
+
     try {
-      console.log('🎨 Generating images with DALL-E 3...')
+      if (this.imageProvider === 'dalle') {
+        return await this.generateImagesWithDallE(contentBrief, blogContent)
+      } else if (this.imageProvider === 'replicate') {
+        return await this.generateImagesWithReplicate(contentBrief, blogContent)
+      } else {
+        console.log('⚠️ Unknown image provider, skipping image generation')
+        return images
+      }
+    } catch (error) {
+      console.error('❌ Error generating images:', error.message)
+      // Return null images but don't fail the entire process
+      return images
+    }
+  }
+
+  // Generate images using DALL-E 3
+  async generateImagesWithDallE(contentBrief, blogContent) {
+    const images = {
+      featured: null,
+      inArticle: []
+    }
+
+    if (!this.openai) {
+      console.error('❌ OpenAI client not initialized')
+      return images
+    }
+
+    console.log('🎨 Generating images with DALL-E 3...')
+
+    // Generate featured header image
+    const featuredPrompt = `Professional blog header image for an article about ${contentBrief.title}. 
+    Show African students or professionals engaged in ${contentBrief.category} activities in a modern, 
+    well-equipped learning environment. The image should be vibrant, inspiring, and aspirational, 
+    featuring modern technology and creative tools. Style: professional photography, bright and optimistic, 
+    showcasing diversity and innovation in African tech/creative education.`
+
+    console.log('  📸 Generating featured header image...')
+    const featuredResponse = await this.openai.images.generate({
+      model: 'dall-e-3',
+      prompt: featuredPrompt,
+      size: '1792x1024',
+      quality: 'standard',
+      n: 1
+    })
+
+    images.featured = featuredResponse.data[0].url
+    console.log('  ✅ Featured image generated')
+
+    // Extract key concepts from blog content for in-article images
+    const contentSections = blogContent.split('## ').slice(1, 4) // Get first 3 main sections
+
+    // Generate 2-3 in-article images based on content sections
+    for (let i = 0; i < Math.min(3, contentSections.length); i++) {
+      const sectionTitle = contentSections[i].split('\n')[0]
+      const inArticlePrompt = `Educational infographic or illustration for a blog section about "${sectionTitle}" 
+      in the context of ${contentBrief.category}. Show practical examples, tools, or concepts being taught. 
+      Include visual elements that help explain the concept clearly. African context preferred. 
+      Style: clean, modern, educational illustration or diagram.`
+
+      console.log(`  📸 Generating in-article image ${i + 1}...`)
+      const inArticleResponse = await this.openai.images.generate({
+        model: 'dall-e-3',
+        prompt: inArticlePrompt,
+        size: '1024x1024',
+        quality: 'standard',
+        n: 1
+      })
+
+      images.inArticle.push({
+        url: inArticleResponse.data[0].url,
+        caption: `Illustration: ${sectionTitle}`,
+        position: i + 1
+      })
+      console.log(`  ✅ In-article image ${i + 1} generated`)
+    }
+
+    console.log(`✅ Generated ${images.inArticle.length + 1} images total`)
+    return images
+  }
+
+  // Generate images using Replicate
+  async generateImagesWithReplicate(contentBrief, blogContent) {
+    const images = {
+      featured: null,
+      inArticle: []
+    }
+
+    if (!this.replicateApiKey) {
+      console.error('❌ Replicate API key not configured')
+      return images
+    }
+
+    console.log('🎨 Generating images with Replicate...')
+
+    try {
+      const axios = require('axios')
 
       // Generate featured header image
       const featuredPrompt = `Professional blog header image for an article about ${contentBrief.title}. 
@@ -306,51 +417,108 @@ Write as a career advisor who wants to help readers achieve their dreams while c
       showcasing diversity and innovation in African tech/creative education.`
 
       console.log('  📸 Generating featured header image...')
-      const featuredResponse = await this.openai.images.generate({
-        model: 'dall-e-3',
-        prompt: featuredPrompt,
-        size: '1792x1024',
-        quality: 'standard',
-        n: 1
-      })
+      const featuredResponse = await this.callReplicateAPI(featuredPrompt, '1792x1024')
 
-      images.featured = featuredResponse.data[0].url
-      console.log('  ✅ Featured image generated')
+      if (featuredResponse) {
+        images.featured = featuredResponse
+        console.log('  ✅ Featured image generated')
 
-      // Extract key concepts from blog content for in-article images
-      const contentSections = blogContent.split('## ').slice(1, 4) // Get first 3 main sections
+        // Extract key concepts from blog content for in-article images
+        const contentSections = blogContent.split('## ').slice(1, 3) // Get first 2 main sections (fewer for Replicate to avoid rate limits)
 
-      // Generate 2-3 in-article images based on content sections
-      for (let i = 0; i < Math.min(3, contentSections.length); i++) {
-        const sectionTitle = contentSections[i].split('\n')[0]
-        const inArticlePrompt = `Educational infographic or illustration for a blog section about "${sectionTitle}" 
-        in the context of ${contentBrief.category}. Show practical examples, tools, or concepts being taught. 
-        Include visual elements that help explain the concept clearly. African context preferred. 
-        Style: clean, modern, educational illustration or diagram.`
+        // Generate 1-2 in-article images based on content sections
+        for (let i = 0; i < Math.min(2, contentSections.length); i++) {
+          const sectionTitle = contentSections[i].split('\n')[0]
+          const inArticlePrompt = `Educational infographic or illustration for a blog section about "${sectionTitle}" 
+          in the context of ${contentBrief.category}. Show practical examples, tools, or concepts being taught. 
+          Include visual elements that help explain the concept clearly. African context preferred. 
+          Style: clean, modern, educational illustration or diagram.`
 
-        console.log(`  📸 Generating in-article image ${i + 1}...`)
-        const inArticleResponse = await this.openai.images.generate({
-          model: 'dall-e-3',
-          prompt: inArticlePrompt,
-          size: '1024x1024',
-          quality: 'standard',
-          n: 1
-        })
+          console.log(`  📸 Generating in-article image ${i + 1}...`)
+          const inArticleResponse = await this.callReplicateAPI(inArticlePrompt, '1024x1024')
 
-        images.inArticle.push({
-          url: inArticleResponse.data[0].url,
-          caption: `Illustration: ${sectionTitle}`,
-          position: i + 1
-        })
-        console.log(`  ✅ In-article image ${i + 1} generated`)
+          if (inArticleResponse) {
+            images.inArticle.push({
+              url: inArticleResponse,
+              caption: `Illustration: ${sectionTitle}`,
+              position: i + 1
+            })
+            console.log(`  ✅ In-article image ${i + 1} generated`)
+          }
+
+          // Add delay between Replicate calls to respect rate limits
+          if (i < Math.min(2, contentSections.length) - 1) {
+            console.log('  ⏱️ Waiting 10 seconds for Replicate rate limit...')
+            await new Promise((resolve) => setTimeout(resolve, 10000))
+          }
+        }
       }
 
-      console.log(`✅ Generated ${images.inArticle.length + 1} images total`)
+      console.log(`✅ Generated ${images.inArticle.length + (images.featured ? 1 : 0)} images total`)
       return images
     } catch (error) {
-      console.error('❌ Error generating images:', error.message)
-      // Return null images but don't fail the entire process
+      console.error('❌ Error with Replicate image generation:', error.message)
       return images
+    }
+  }
+
+  // Call Replicate API for image generation
+  async callReplicateAPI(prompt, size) {
+    try {
+      const axios = require('axios')
+
+      // Using FLUX.1 [schnell] model on Replicate (faster and cheaper than DALL-E)
+      const response = await axios.post(
+        'https://api.replicate.com/v1/predictions',
+        {
+          version: 'f2ab8a5569070d258f8e460bf6c2c0c4071c7619', // FLUX.1 [schnell] model
+          input: {
+            prompt: prompt,
+            width: size.split('x')[0],
+            height: size.split('x')[1],
+            num_outputs: 1,
+            guidance_scale: 3.5,
+            num_inference_steps: 4
+          }
+        },
+        {
+          headers: {
+            Authorization: `Token ${this.replicateApiKey}`,
+            'Content-Type': 'application/json'
+          }
+        }
+      )
+
+      const predictionId = response.data.id
+
+      // Poll for completion
+      let prediction = response.data
+      let attempts = 0
+      const maxAttempts = 30 // 5 minutes max wait time
+
+      while (prediction.status !== 'succeeded' && prediction.status !== 'failed' && attempts < maxAttempts) {
+        console.log(`    ⏳ Waiting for image generation (${prediction.status})...`)
+        await new Promise((resolve) => setTimeout(resolve, 10000)) // Wait 10 seconds
+
+        const pollResponse = await axios.get(`https://api.replicate.com/v1/predictions/${predictionId}`, {
+          headers: {
+            Authorization: `Token ${this.replicateApiKey}`
+          }
+        })
+
+        prediction = pollResponse.data
+        attempts++
+      }
+
+      if (prediction.status === 'succeeded' && prediction.output && prediction.output.length > 0) {
+        return prediction.output[0]
+      } else {
+        console.error('❌ Replicate prediction failed or timed out:', prediction.status)
+        return null
+      }
+    } catch (error) {
+      console.error('❌ Replicate API error:', error.message)
+      return null
     }
   }
 
@@ -597,8 +765,9 @@ Write as a career advisor who wants to help readers achieve their dreams while c
         throw new Error('Failed to generate blog content')
       }
 
-      // Step 5: Generate images with DALL-E 3
-      const images = await this.generateImages(contentBrief, blogContent)
+      // Step 5: Generate images with DALL-E 3 (DISABLED - editors will add manually)
+      // const images = await this.generateImages(contentBrief, blogContent)
+      const images = null
 
       // Step 6: Save as draft in Contentful with images
       const draftResult = await this.saveToDrafts(contentBrief, blogContent, researchData, images)

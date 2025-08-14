@@ -148,7 +148,7 @@ export default function NavBar({ mode, isMinimal = false }: Props) {
         <Group>
           <div className="flex grow items-center py-2 font-nexa">
             <Link href="/" style={{ textDecoration: 'none' }}>
-              {mode == 'dark' && <Image src={IconLogoLight} width={80} alt="Africa Digital Media Institute" />}
+              {mode == 'dark' && <Image src={IconLogoLight} width={80} alt="Africa Digital Media Institute" priority />}
             </Link>
             <div className="grow"></div>
             {!hiddenCTA && (
@@ -168,7 +168,7 @@ export default function NavBar({ mode, isMinimal = false }: Props) {
         <div className="flex w-full items-center py-2 font-nexa">
           <Link href="/" style={{ textDecoration: 'none' }}>
             {mode == 'dark' && (
-              <Image src={IconLogoLight} width={80} height={60} alt="Africa Digital Media Institute" />
+              <Image src={IconLogoLight} width={80} height={60} alt="Africa Digital Media Institute" priority />
             )}
           </Link>
           <div className="grow"></div>

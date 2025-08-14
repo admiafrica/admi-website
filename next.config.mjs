@@ -43,10 +43,18 @@ const nextConfig = {
     formats: ['image/avif', 'image/webp'],
     minimumCacheTTL: 60,
   },
-  // Enable experimental webVitalsAttribution
+  // Performance optimizations
   experimental: {
     webVitalsAttribution: ['CLS', 'LCP', 'FID', 'INP'],
+    optimizeCss: true, // Enable CSS optimization
+    gzipSize: true, // Show gzip sizes in build output
   },
+  // Enable compression
+  compress: true,
+  // Optimize bundle analyzer
+  poweredByHeader: false, // Remove X-Powered-By header
+  // Enable SWC minification for better performance
+  swcMinify: true,
   async headers() {
     return [
       // Add specific headers for API JSON files
@@ -97,6 +105,15 @@ const nextConfig = {
           {
             key: 'X-Robots-Tag',
             value: 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1',
+          },
+          // Performance optimization headers
+          {
+            key: 'Accept-CH',
+            value: 'DPR, Width, Viewport-Width',
+          },
+          {
+            key: 'Vary',
+            value: 'Accept-Encoding, Accept-CH',
           },
         ],
       },

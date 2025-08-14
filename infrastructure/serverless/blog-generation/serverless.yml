@@ -26,6 +26,8 @@ provider:
     CONTENTFUL_ACCESS_TOKEN: ${env:CONTENTFUL_ACCESS_TOKEN, ''}
     CONTENTFUL_MANAGEMENT_TOKEN: ${env:CONTENTFUL_MANAGEMENT_TOKEN, ''}
     S3_BLOG_IMAGES_BUCKET: admi-blog-images-${self:provider.stage}
+    IMAGE_PROVIDER: ${env:IMAGE_PROVIDER, 'disabled'}
+    REPLICATE_API_TOKEN: ${env:REPLICATE_API_TOKEN, ''}
   iam:
     role:
       statements:
