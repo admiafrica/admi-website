@@ -46,7 +46,6 @@ const nextConfig = {
   // Performance optimizations
   experimental: {
     webVitalsAttribution: ['CLS', 'LCP', 'FID', 'INP'],
-    optimizeCss: true, // Enable CSS optimization
     gzipSize: true, // Show gzip sizes in build output
   },
   // Enable compression

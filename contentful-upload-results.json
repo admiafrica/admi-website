@@ -1,0 +1,39 @@
+{
+  "uploadedAt": "2025-08-14T18:15:53.024Z",
+  "totalFAQs": 5,
+  "successful": 5,
+  "failed": 0,
+  "results": [
+    {
+      "id": "5fRbsa7es9nJWtekEyZ1Zd",
+      "question": "What are the fees for the Music Production course at ADMI?",
+      "status": "draft",
+      "createdAt": "2025-08-14T18:15:46.779Z"
+    },
+    {
+      "id": "3xDSTZojbBbQPNjchvKbgA",
+      "question": "What are the requirements for the Film Production Diploma at ADMI?",
+      "status": "draft",
+      "createdAt": "2025-08-14T18:15:48.110Z"
+    },
+    {
+      "id": "3zpx5lSvMM5oX4TgH2969W",
+      "question": "What is the duration of the Graphic Design course at ADMI?",
+      "status": "draft",
+      "createdAt": "2025-08-14T18:15:49.380Z"
+    },
+    {
+      "id": "4Shw8m0pZDoZH3eDf5UToH",
+      "question": "What job opportunities are available after completing the Animation & Motion Graphics Diploma at ADMI?",
+      "status": "draft",
+      "createdAt": "2025-08-14T18:15:50.726Z"
+    },
+    {
+      "id": "4kgzjRvHZ5CXm4OXqtCdhN",
+      "question": "What is the salary range for a Digital Marketing Certificate holder from ADMI?",
+      "status": "draft",
+      "createdAt": "2025-08-14T18:15:51.966Z"
+    }
+  ],
+  "status": "draft"
+}
