@@ -174,8 +174,8 @@ export default function HomePage({ content, courses, featuredNews, featuredResou
             }
 
             // Use CloudFront as primary, Contentful as fallback
-            const heroImageSrc = cloudFrontUrl
-            const fallbackSrc = contentfulUrl
+            const heroImageSrc = cloudFrontUrl || contentfulUrl
+            const fallbackSrc = cloudFrontUrl ? contentfulUrl : null
 
             if (heroImageSrc) {
               return (
