@@ -13,6 +13,7 @@ import { CMSFAQSchema } from '@/components/shared/StructuredData'
 import { EastAfricaLocalSEO } from '@/components/seo/EastAfricaLocalSEO'
 import { EnhancedTestimonialSchema, AggregateTestimonialSchema } from '@/components/seo/EnhancedTestimonialSchema'
 import { MusicProductionSEOBoost } from '@/components/seo/MusicProductionSEOBoost'
+import LazySection from '@/components/shared/LazySection'
 import {
   AnnouncementCard,
   CourseItemCard,
@@ -158,9 +159,10 @@ export default function HomePage({ content, courses, featuredNews, featuredResou
         <Box className="relative w-full">
           {content?.assets && content?.fields?.coverImage?.sys?.id && (
             <Image
-              src={`https:${getAssetDetails(content.assets, content.fields.coverImage.sys.id)?.fields.file.url}`}
-              placeholder="empty"
-              alt="Course Banner"
+              src={`https:${getAssetDetails(content.assets, content.fields.coverImage.sys.id)?.fields.file.url}?w=1920&fm=webp&q=75`}
+              placeholder="blur"
+              blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
+              alt="ADMI Hero - Creative Media Training"
               fill
               priority
               sizes="100vw"
@@ -270,173 +272,175 @@ export default function HomePage({ content, courses, featuredNews, featuredResou
           </Box>
         </Box>
         {/* IMPACT */}
-        <Box className="w-full" bg={'#F5FFFD'}>
-          <Box className="mx-auto flex w-full max-w-screen-xl flex-col px-4 py-8 2xl:px-0">
-            <Box className="flex w-full flex-col sm:flex-row">
-              <Box className="sm:w-[30%]">
-                <Title label="Our Impact" color="black" />
-              </Box>
-              <Box className="sm:w-[70%]">
-                <Paragraph fontFamily="font-nexa" className="pt-4">
-                  Through our innovative programs and industry-focused training, we empower students to turn their
-                  creative passions into successful careers. ADMI&apos;s impact extends beyond the classroom, fostering
-                  a new generation of professionals ready to lead in the digital media industry.
-                </Paragraph>
-                <Box className="w-full">
-                  {!isMobile && <Divider color="admiShamrok" mt="xl"></Divider>}
-                  {content &&
-                    (isMobile ? (
-                      <Box className="flex flex-col">
-                        <div className="my-auto flex py-6">
-                          <Paragraph className="my-auto grow" size="18px" fontFamily="font-nexa">
-                            Student Satisfaction
-                          </Paragraph>
-                          <div className="my-auto">
-                            <Paragraph size="48px" fontFamily="font-nexa">
-                              {content.fields?.studentSatisfactionRating || 'N/A'}
+        <LazySection fallbackHeight="400px" skeletonType="card">
+          <Box className="w-full" bg={'#F5FFFD'}>
+            <Box className="mx-auto flex w-full max-w-screen-xl flex-col px-4 py-8 2xl:px-0">
+              <Box className="flex w-full flex-col sm:flex-row">
+                <Box className="sm:w-[30%]">
+                  <Title label="Our Impact" color="black" />
+                </Box>
+                <Box className="sm:w-[70%]">
+                  <Paragraph fontFamily="font-nexa" className="pt-4">
+                    Through our innovative programs and industry-focused training, we empower students to turn their
+                    creative passions into successful careers. ADMI&apos;s impact extends beyond the classroom,
+                    fostering a new generation of professionals ready to lead in the digital media industry.
+                  </Paragraph>
+                  <Box className="w-full">
+                    {!isMobile && <Divider color="admiShamrok" mt="xl"></Divider>}
+                    {content &&
+                      (isMobile ? (
+                        <Box className="flex flex-col">
+                          <div className="my-auto flex py-6">
+                            <Paragraph className="my-auto grow" size="18px" fontFamily="font-nexa">
+                              Student Satisfaction
                             </Paragraph>
-                          </div>
-                        </div>
-                        <Divider color="admiShamrok" orientation="horizontal"></Divider>
-                        <div className="my-auto flex py-6">
-                          <Paragraph className="my-auto grow" size="18px" fontFamily="font-nexa">
-                            Enrolled Students
-                          </Paragraph>
-                          <div className="my-auto">
-                            <Indicator
-                              color="admiShamrok"
-                              inline
-                              label={<IconPlus size={16} color="black" />}
-                              size={24}
-                              offset={4}
-                            >
+                            <div className="my-auto">
                               <Paragraph size="48px" fontFamily="font-nexa">
-                                <NumberFormatter
-                                  value={content.fields?.numberOfEnrolledStudents || 0}
-                                  thousandSeparator
-                                />
+                                {content.fields?.studentSatisfactionRating || 'N/A'}
                               </Paragraph>
-                            </Indicator>
+                            </div>
                           </div>
-                        </div>
-                        <Divider color="admiShamrok" orientation="horizontal"></Divider>
-                        <div className="my-auto flex py-6">
-                          <Paragraph className="my-auto grow pr-4" size="18px" fontFamily="font-nexa">
-                            Employment Rate within 6 months of graduation
-                          </Paragraph>
-                          <div className="my-auto">
-                            <Indicator
-                              color="admiShamrok"
-                              inline
-                              label={<IconPlus size={16} color="black" />}
-                              size={24}
-                              offset={4}
-                            >
-                              <Paragraph size="48px" fontFamily="font-nexa">
-                                {content.fields?.employmentRate || 'N/A'}
-                              </Paragraph>
-                            </Indicator>
-                          </div>
-                        </div>
-                      </Box>
-                    ) : (
-                      <Box className="flex">
-                        <div className="my-auto flex w-[30%] pr-4 font-proxima">
-                          <Paragraph className="w-1/2" size="18px" fontFamily="font-nexa">
-                            Student Satisfaction
-                          </Paragraph>
-                          <div className="my-auto">
-                            <Paragraph size="48px" fontFamily="font-nexa">
-                              {content.fields?.studentSatisfactionRating || 'N/A'}
+                          <Divider color="admiShamrok" orientation="horizontal"></Divider>
+                          <div className="my-auto flex py-6">
+                            <Paragraph className="my-auto grow" size="18px" fontFamily="font-nexa">
+                              Enrolled Students
                             </Paragraph>
+                            <div className="my-auto">
+                              <Indicator
+                                color="admiShamrok"
+                                inline
+                                label={<IconPlus size={16} color="black" />}
+                                size={24}
+                                offset={4}
+                              >
+                                <Paragraph size="48px" fontFamily="font-nexa">
+                                  <NumberFormatter
+                                    value={content.fields?.numberOfEnrolledStudents || 0}
+                                    thousandSeparator
+                                  />
+                                </Paragraph>
+                              </Indicator>
+                            </div>
                           </div>
-                        </div>
-                        <Divider color="admiShamrok" orientation="vertical" h={100}></Divider>
-                        <div className="my-auto flex w-[30%] px-4 font-proxima">
-                          <Paragraph className="w-1/2" size="18px" fontFamily="font-nexa">
-                            Enrolled Students
-                          </Paragraph>
-                          <div className="my-auto">
-                            <Indicator
-                              color="admiShamrok"
-                              inline
-                              label={<IconPlus size={16} color="black" />}
-                              size={24}
-                              offset={4}
-                            >
+                          <Divider color="admiShamrok" orientation="horizontal"></Divider>
+                          <div className="my-auto flex py-6">
+                            <Paragraph className="my-auto grow pr-4" size="18px" fontFamily="font-nexa">
+                              Employment Rate within 6 months of graduation
+                            </Paragraph>
+                            <div className="my-auto">
+                              <Indicator
+                                color="admiShamrok"
+                                inline
+                                label={<IconPlus size={16} color="black" />}
+                                size={24}
+                                offset={4}
+                              >
+                                <Paragraph size="48px" fontFamily="font-nexa">
+                                  {content.fields?.employmentRate || 'N/A'}
+                                </Paragraph>
+                              </Indicator>
+                            </div>
+                          </div>
+                        </Box>
+                      ) : (
+                        <Box className="flex">
+                          <div className="my-auto flex w-[30%] pr-4 font-proxima">
+                            <Paragraph className="w-1/2" size="18px" fontFamily="font-nexa">
+                              Student Satisfaction
+                            </Paragraph>
+                            <div className="my-auto">
                               <Paragraph size="48px" fontFamily="font-nexa">
-                                <NumberFormatter
-                                  value={content.fields?.numberOfEnrolledStudents || 0}
-                                  thousandSeparator
-                                />
+                                {content.fields?.studentSatisfactionRating || 'N/A'}
                               </Paragraph>
-                            </Indicator>
+                            </div>
                           </div>
-                        </div>
-                        <Divider color="admiShamrok" orientation="vertical"></Divider>
-                        <div className="my-auto flex w-[30%] px-4 font-proxima">
-                          <Paragraph className="w-2/3 pr-4" size="18px" fontFamily="font-nexa">
-                            Employment Rate within 6 months of graduation
-                          </Paragraph>
-                          <div className="my-auto">
-                            <Indicator
-                              color="admiShamrok"
-                              inline
-                              label={<IconPlus size={16} color="black" />}
-                              size={24}
-                              offset={4}
-                            >
-                              <Paragraph size="48px" fontFamily="font-nexa">
-                                {content.fields?.employmentRate || 'N/A'}
-                              </Paragraph>
-                            </Indicator>
+                          <Divider color="admiShamrok" orientation="vertical" h={100}></Divider>
+                          <div className="my-auto flex w-[30%] px-4 font-proxima">
+                            <Paragraph className="w-1/2" size="18px" fontFamily="font-nexa">
+                              Enrolled Students
+                            </Paragraph>
+                            <div className="my-auto">
+                              <Indicator
+                                color="admiShamrok"
+                                inline
+                                label={<IconPlus size={16} color="black" />}
+                                size={24}
+                                offset={4}
+                              >
+                                <Paragraph size="48px" fontFamily="font-nexa">
+                                  <NumberFormatter
+                                    value={content.fields?.numberOfEnrolledStudents || 0}
+                                    thousandSeparator
+                                  />
+                                </Paragraph>
+                              </Indicator>
+                            </div>
                           </div>
-                        </div>
-                      </Box>
-                    ))}
-                  <Divider color="admiShamrok" mb={'md'}></Divider>
+                          <Divider color="admiShamrok" orientation="vertical"></Divider>
+                          <div className="my-auto flex w-[30%] px-4 font-proxima">
+                            <Paragraph className="w-2/3 pr-4" size="18px" fontFamily="font-nexa">
+                              Employment Rate within 6 months of graduation
+                            </Paragraph>
+                            <div className="my-auto">
+                              <Indicator
+                                color="admiShamrok"
+                                inline
+                                label={<IconPlus size={16} color="black" />}
+                                size={24}
+                                offset={4}
+                              >
+                                <Paragraph size="48px" fontFamily="font-nexa">
+                                  {content.fields?.employmentRate || 'N/A'}
+                                </Paragraph>
+                              </Indicator>
+                            </div>
+                          </div>
+                        </Box>
+                      ))}
+                    <Divider color="admiShamrok" mb={'md'}></Divider>
+                  </Box>
                 </Box>
               </Box>
-            </Box>
 
-            <Box className="flex w-full flex-col py-8 sm:flex-row">
-              <Box className="sm:w-[30%]">
-                <Title label="Testimonials" color="black" />
+              <Box className="flex w-full flex-col py-8 sm:flex-row">
+                <Box className="sm:w-[30%]">
+                  <Title label="Testimonials" color="black" />
+                </Box>
+                <Box className="sm:w-[70%]">
+                  <Paragraph fontFamily="font-nexa" className="pt-4">
+                    Discover how ADMI has transformed the careers of our students through their own stories of success
+                    and growth. Hear firsthand how our hands-on training and industry connections have helped them
+                    achieve their creative dreams.
+                  </Paragraph>
+                </Box>
               </Box>
-              <Box className="sm:w-[70%]">
-                <Paragraph fontFamily="font-nexa" className="pt-4">
-                  Discover how ADMI has transformed the careers of our students through their own stories of success and
-                  growth. Hear firsthand how our hands-on training and industry connections have helped them achieve
-                  their creative dreams.
-                </Paragraph>
+              <Box className="w-full">
+                <Carousel
+                  slideSize={360}
+                  slideGap="md"
+                  loop
+                  align="start"
+                  slidesToScroll={1}
+                  withControls={false}
+                  plugins={[autoplayTestimonials]}
+                  onMouseEnter={autoplayTestimonials.stop}
+                  onMouseLeave={autoplayTestimonials.reset}
+                >
+                  {content &&
+                    content.fields?.testimonials?.map((testimonial: any, index: number) => (
+                      <Carousel.Slide key={`testimonial-${index}`}>
+                        <UserTestimonialCard
+                          user={testimonial.user}
+                          testimonial={testimonial}
+                          assets={content.assets || []}
+                        />
+                      </Carousel.Slide>
+                    ))}
+                </Carousel>
               </Box>
-            </Box>
-            <Box className="w-full">
-              <Carousel
-                slideSize={360}
-                slideGap="md"
-                loop
-                align="start"
-                slidesToScroll={1}
-                withControls={false}
-                plugins={[autoplayTestimonials]}
-                onMouseEnter={autoplayTestimonials.stop}
-                onMouseLeave={autoplayTestimonials.reset}
-              >
-                {content &&
-                  content.fields?.testimonials?.map((testimonial: any, index: number) => (
-                    <Carousel.Slide key={`testimonial-${index}`}>
-                      <UserTestimonialCard
-                        user={testimonial.user}
-                        testimonial={testimonial}
-                        assets={content.assets || []}
-                      />
-                    </Carousel.Slide>
-                  ))}
-              </Carousel>
             </Box>
           </Box>
-        </Box>
+        </LazySection>
         {/* ANNOUNCEMENTS */}
         {featuredResource && (
           <Box className="w-full px-4 py-16 xl:px-0" bg={'admiOrangeDark'}>
@@ -450,44 +454,46 @@ export default function HomePage({ content, courses, featuredNews, featuredResou
           </Box>
         )}
         {/* FACILITIES */}
-        <Box className="1xl:px-0 w-full px-4 py-16" bg={'#F5FFFD'}>
-          <Box className="mx-auto w-full max-w-screen-xl">
-            <Box className="flex w-full flex-col pb-12 sm:flex-row">
-              <Box className="sm:w-[30%]">
-                <Title label="Facilities" color="black" />
-              </Box>
-              <Box className="sm:w-[70%]">
-                <Paragraph fontFamily="font-nexa" className="pt-4">
-                  ADMI&apos;s campus is a vibrant, creatively designed workspace conveniently located right next to the
-                  GPO in Nairobi&apos;s Central Business District. The campus boasts extensive facilities including
-                  classrooms, animation and graphics labs, TV and sound production studios, Mac and PC labs, and a film
-                  equipment vault.
-                </Paragraph>
+        <LazySection fallbackHeight="500px" skeletonType="card">
+          <Box className="1xl:px-0 w-full px-4 py-16" bg={'#F5FFFD'}>
+            <Box className="mx-auto w-full max-w-screen-xl">
+              <Box className="flex w-full flex-col pb-12 sm:flex-row">
+                <Box className="sm:w-[30%]">
+                  <Title label="Facilities" color="black" />
+                </Box>
+                <Box className="sm:w-[70%]">
+                  <Paragraph fontFamily="font-nexa" className="pt-4">
+                    ADMI&apos;s campus is a vibrant, creatively designed workspace conveniently located right next to
+                    the GPO in Nairobi&apos;s Central Business District. The campus boasts extensive facilities
+                    including classrooms, animation and graphics labs, TV and sound production studios, Mac and PC labs,
+                    and a film equipment vault.
+                  </Paragraph>
+                </Box>
               </Box>
             </Box>
+            <Box className="w-full">
+              <Carousel
+                slideSize={600}
+                height={360}
+                slideGap="md"
+                loop
+                align="start"
+                slidesToScroll={1}
+                controlsOffset={0}
+                withControls={false}
+                plugins={[autoplayFacilities]}
+                onMouseEnter={autoplayFacilities.stop}
+                onMouseLeave={autoplayFacilities.reset}
+              >
+                {facilities.map((facility) => (
+                  <Carousel.Slide key={facility.name}>
+                    <FacilityItemCard facility={facility} />
+                  </Carousel.Slide>
+                ))}
+              </Carousel>
+            </Box>
           </Box>
-          <Box className="w-full">
-            <Carousel
-              slideSize={600}
-              height={360}
-              slideGap="md"
-              loop
-              align="start"
-              slidesToScroll={1}
-              controlsOffset={0}
-              withControls={false}
-              plugins={[autoplayFacilities]}
-              onMouseEnter={autoplayFacilities.stop}
-              onMouseLeave={autoplayFacilities.reset}
-            >
-              {facilities.map((facility) => (
-                <Carousel.Slide key={facility.name}>
-                  <FacilityItemCard facility={facility} />
-                </Carousel.Slide>
-              ))}
-            </Carousel>
-          </Box>
-        </Box>
+        </LazySection>
         {/* NEWS */}
         {featuredNews && (
           <Box className="w-full px-4 py-16 xl:px-0" bg={'#01C6A5'}>
@@ -502,43 +508,51 @@ export default function HomePage({ content, courses, featuredNews, featuredResou
           </Box>
         )}
         {/* COURSES */}
-        <Box className="1xl:px-0 w-full px-4 py-16" bg={'#F5FFFD'}>
-          <Box className="mx-auto w-full max-w-screen-xl">
-            <Box className="flex w-full flex-col pb-12 sm:flex-row">
-              <Box className="sm:w-[30%]">
-                <Title label="Our Courses" color="black" />
+        <LazySection fallbackHeight="600px" skeletonType="card">
+          <Box className="1xl:px-0 w-full px-4 py-16" bg={'#F5FFFD'}>
+            <Box className="mx-auto w-full max-w-screen-xl">
+              <Box className="flex w-full flex-col pb-12 sm:flex-row">
+                <Box className="sm:w-[30%]">
+                  <Title label="Our Courses" color="black" />
+                </Box>
+                <Box className="sm:w-[70%]">
+                  <Paragraph fontFamily="font-nexa" className="pt-4">
+                    Explore ADMI&apos;s diverse range of courses designed to equip you with the skills and knowledge
+                    needed to excel in the creative industries. Whether you&apos;re passionate about film, design,
+                    music, or digital content, our programs offer hands-on training and expert guidance to help you
+                    succeed.
+                  </Paragraph>
+                </Box>
               </Box>
-              <Box className="sm:w-[70%]">
-                <Paragraph fontFamily="font-nexa" className="pt-4">
-                  Explore ADMI&apos;s diverse range of courses designed to equip you with the skills and knowledge
-                  needed to excel in the creative industries. Whether you&apos;re passionate about film, design, music,
-                  or digital content, our programs offer hands-on training and expert guidance to help you succeed.
-                </Paragraph>
+              <Box className="w-full">
+                <Carousel
+                  slideSize={260}
+                  slideGap="md"
+                  loop
+                  align="start"
+                  slidesToScroll={1}
+                  plugins={[autoplayCourses]}
+                  onMouseEnter={autoplayCourses.stop}
+                  onMouseLeave={autoplayCourses.reset}
+                >
+                  {courses.map((course) => (
+                    <Carousel.Slide key={course.sys.id}>
+                      <CourseItemCard course={course} />
+                    </Carousel.Slide>
+                  ))}
+                </Carousel>
               </Box>
-            </Box>
-            <Box className="w-full">
-              <Carousel
-                slideSize={260}
-                slideGap="md"
-                loop
-                align="start"
-                slidesToScroll={1}
-                plugins={[autoplayCourses]}
-                onMouseEnter={autoplayCourses.stop}
-                onMouseLeave={autoplayCourses.reset}
-              >
-                {courses.map((course) => (
-                  <Carousel.Slide key={course.sys.id}>
-                    <CourseItemCard course={course} />
-                  </Carousel.Slide>
-                ))}
-              </Carousel>
-            </Box>
-            <Box className="w-[200px] pt-8">
-              <Button size="lg" backgroundColor="admiRed" label="Explore Courses" onClick={() => handleViewCourses()} />
+              <Box className="w-[200px] pt-8">
+                <Button
+                  size="lg"
+                  backgroundColor="admiRed"
+                  label="Explore Courses"
+                  onClick={() => handleViewCourses()}
+                />
+              </Box>
             </Box>
           </Box>
-        </Box>
+        </LazySection>
         {/* AWARDS */}
         {featuredAward && (
           <Box className="w-full px-4 py-16 xl:px-0" bg={'#E6F608'}>
@@ -552,61 +566,63 @@ export default function HomePage({ content, courses, featuredNews, featuredResou
           </Box>
         )}
         {/* WHAT IS ADMI FAQ */}
-        <Box className="w-full py-16" bg={'white'}>
-          <Box className="mx-auto w-full max-w-screen-xl px-4 2xl:px-0">
-            <Box className="mb-12 text-center">
-              <Title label="What is ADMI?" color="black" size="32px" />
-              <Paragraph fontFamily="font-nexa" className="mx-auto max-w-3xl pt-4">
-                Common questions about Africa Digital Media Institute answered
-              </Paragraph>
-            </Box>
-
-            <div className="mx-auto grid max-w-4xl gap-8 md:grid-cols-2">
-              <Box className="rounded-lg bg-gray-50 p-6">
-                <Title label="What does ADMI stand for?" color="black" size="18px" className="mb-3" />
-                <Paragraph>
-                  ADMI stands for Africa Digital Media Institute. We are the premier and leading training institution in
-                  creative media and technology in the region, located in Nairobi, Kenya.
+        <LazySection fallbackHeight="600px" skeletonType="text">
+          <Box className="w-full py-16" bg={'white'}>
+            <Box className="mx-auto w-full max-w-screen-xl px-4 2xl:px-0">
+              <Box className="mb-12 text-center">
+                <Title label="What is ADMI?" color="black" size="32px" />
+                <Paragraph fontFamily="font-nexa" className="mx-auto max-w-3xl pt-4">
+                  Common questions about Africa Digital Media Institute answered
                 </Paragraph>
               </Box>
 
-              <Box className="rounded-lg bg-gray-50 p-6">
-                <Title label="What courses does ADMI offer?" color="black" size="18px" className="mb-3" />
-                <Paragraph>
-                  ADMI offers diploma and certificate courses in Digital Marketing, Graphic Design, Film & TV
-                  Production, Music Production & Sound Engineering, Animation, and Photography with state-of-the-art
-                  facilities.
-                </Paragraph>
-              </Box>
+              <div className="mx-auto grid max-w-4xl gap-8 md:grid-cols-2">
+                <Box className="rounded-lg bg-gray-50 p-6">
+                  <Title label="What does ADMI stand for?" color="black" size="18px" className="mb-3" />
+                  <Paragraph>
+                    ADMI stands for Africa Digital Media Institute. We are the premier and leading training institution
+                    in creative media and technology in the region, located in Nairobi, Kenya.
+                  </Paragraph>
+                </Box>
 
-              <Box className="rounded-lg bg-gray-50 p-6">
-                <Title label="How much are ADMI fees?" color="black" size="18px" className="mb-3" />
-                <Paragraph>
-                  ADMI offers competitive fee structures for all diploma and certificate programs. For current rates,
-                  payment options, and detailed fee information, please visit our student support page or contact our
-                  finance office directly.
-                </Paragraph>
-              </Box>
+                <Box className="rounded-lg bg-gray-50 p-6">
+                  <Title label="What courses does ADMI offer?" color="black" size="18px" className="mb-3" />
+                  <Paragraph>
+                    ADMI offers diploma and certificate courses in Digital Marketing, Graphic Design, Film & TV
+                    Production, Music Production & Sound Engineering, Animation, and Photography with state-of-the-art
+                    facilities.
+                  </Paragraph>
+                </Box>
 
-              <Box className="rounded-lg bg-gray-50 p-6">
-                <Title label="Where is ADMI located?" color="black" size="18px" className="mb-3" />
-                <Paragraph>
-                  ADMI is located in Nairobi&apos;s Central Business District, right next to the GPO. Our campus
-                  features state-of-the-art facilities and equipment.
-                </Paragraph>
-              </Box>
-            </div>
+                <Box className="rounded-lg bg-gray-50 p-6">
+                  <Title label="How much are ADMI fees?" color="black" size="18px" className="mb-3" />
+                  <Paragraph>
+                    ADMI offers competitive fee structures for all diploma and certificate programs. For current rates,
+                    payment options, and detailed fee information, please visit our student support page or contact our
+                    finance office directly.
+                  </Paragraph>
+                </Box>
 
-            <Box className="mt-8 text-center">
-              <Button
-                size="lg"
-                backgroundColor="admiRed"
-                label="View All Courses & Fees"
-                onClick={() => router.push('/student-support#fees')}
-              />
+                <Box className="rounded-lg bg-gray-50 p-6">
+                  <Title label="Where is ADMI located?" color="black" size="18px" className="mb-3" />
+                  <Paragraph>
+                    ADMI is located in Nairobi&apos;s Central Business District, right next to the GPO. Our campus
+                    features state-of-the-art facilities and equipment.
+                  </Paragraph>
+                </Box>
+              </div>
+
+              <Box className="mt-8 text-center">
+                <Button
+                  size="lg"
+                  backgroundColor="admiRed"
+                  label="View All Courses & Fees"
+                  onClick={() => router.push('/student-support#fees')}
+                />
+              </Box>
             </Box>
           </Box>
-        </Box>
+        </LazySection>
       </div>
     </MainLayout>
   )

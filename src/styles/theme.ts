@@ -4,7 +4,7 @@ import { createTheme } from '@mantine/core'
 
 import { generateColors } from '@mantine/colors-generator'
 
-// Import your fonts
+// Import your fonts with optimized loading
 export const nexaFont = localFont({
   src: [
     {
@@ -23,7 +23,9 @@ export const nexaFont = localFont({
       style: 'bold'
     }
   ],
-  variable: '--font-nexa'
+  variable: '--font-nexa',
+  display: 'swap',
+  preload: true
 })
 
 export const proximaNovaFont = localFont({
@@ -44,7 +46,9 @@ export const proximaNovaFont = localFont({
       style: 'semibold'
     }
   ],
-  variable: '--font-proxima'
+  variable: '--font-proxima',
+  display: 'swap',
+  preload: true
 })
 
 export const defaultTheme = createTheme({

@@ -100,6 +100,23 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="preconnect" href="https://cdn.contentful.com" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
 
+        {/* Preload critical fonts */}
+        <link rel="preload" href="/fonts/nexa/nexa.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+        <link
+          rel="preload"
+          href="/fonts/proxima-nova/proximanova-regular.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+
+        {/* Preload critical CSS */}
+        <link rel="preload" href="/_next/static/css/app.css" as="style" />
+
+        {/* Optimize font loading */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+
         {/* LLM-friendly content discovery */}
         <link rel="alternate" type="text/plain" href="/llm.txt" title="LLM Information" />
 
