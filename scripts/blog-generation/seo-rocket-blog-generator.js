@@ -1,6 +1,8 @@
 const { createClient } = require('contentful-management')
 const axios = require('axios')
 const { getRandomTopic, generateContentBrief } = require('./blog-topics-database')
+const AWS = require('aws-sdk')
+const OpenAI = require('openai')
 require('dotenv').config()
 
 class SEORocketBlogGenerator {
@@ -14,6 +16,18 @@ class SEORocketBlogGenerator {
     this.contentfulToken = process.env.CONTENTFUL_MANAGEMENT_TOKEN
     this.spaceId = process.env.CONTENTFUL_SPACE_ID
     this.environmentId = process.env.CONTENTFUL_ENVIRONMENT || 'master'
+
+    // OpenAI setup for DALL-E 3
+    this.openaiApiKey = process.env.OPENAI_API_KEY || process.env.NEXT_OPENAI_API_KEY
+    this.openai = new OpenAI({
+      apiKey: this.openaiApiKey
+    })
+
+    // AWS S3 setup
+    this.s3 = new AWS.S3({
+      region: process.env.AWS_REGION || 'us-east-1'
+    })
+    this.s3BucketName = process.env.S3_BLOG_IMAGES_BUCKET || 'admi-blog-images'
 
     this.contentfulClient = null
     this.initializeContentful()
@@ -274,8 +288,143 @@ Write as a career advisor who wants to help readers achieve their dreams while c
     )
   }
 
+  // Generate images using DALL-E 3
+  async generateImages(contentBrief, blogContent) {
+    const images = {
+      featured: null,
+      inArticle: []
+    }
+
+    try {
+      console.log('🎨 Generating images with DALL-E 3...')
+
+      // Generate featured header image
+      const featuredPrompt = `Professional blog header image for an article about ${contentBrief.title}. 
+      Show African students or professionals engaged in ${contentBrief.category} activities in a modern, 
+      well-equipped learning environment. The image should be vibrant, inspiring, and aspirational, 
+      featuring modern technology and creative tools. Style: professional photography, bright and optimistic, 
+      showcasing diversity and innovation in African tech/creative education.`
+
+      console.log('  📸 Generating featured header image...')
+      const featuredResponse = await this.openai.images.generate({
+        model: 'dall-e-3',
+        prompt: featuredPrompt,
+        size: '1792x1024',
+        quality: 'standard',
+        n: 1
+      })
+
+      images.featured = featuredResponse.data[0].url
+      console.log('  ✅ Featured image generated')
+
+      // Extract key concepts from blog content for in-article images
+      const contentSections = blogContent.split('## ').slice(1, 4) // Get first 3 main sections
+
+      // Generate 2-3 in-article images based on content sections
+      for (let i = 0; i < Math.min(3, contentSections.length); i++) {
+        const sectionTitle = contentSections[i].split('\n')[0]
+        const inArticlePrompt = `Educational infographic or illustration for a blog section about "${sectionTitle}" 
+        in the context of ${contentBrief.category}. Show practical examples, tools, or concepts being taught. 
+        Include visual elements that help explain the concept clearly. African context preferred. 
+        Style: clean, modern, educational illustration or diagram.`
+
+        console.log(`  📸 Generating in-article image ${i + 1}...`)
+        const inArticleResponse = await this.openai.images.generate({
+          model: 'dall-e-3',
+          prompt: inArticlePrompt,
+          size: '1024x1024',
+          quality: 'standard',
+          n: 1
+        })
+
+        images.inArticle.push({
+          url: inArticleResponse.data[0].url,
+          caption: `Illustration: ${sectionTitle}`,
+          position: i + 1
+        })
+        console.log(`  ✅ In-article image ${i + 1} generated`)
+      }
+
+      console.log(`✅ Generated ${images.inArticle.length + 1} images total`)
+      return images
+    } catch (error) {
+      console.error('❌ Error generating images:', error.message)
+      // Return null images but don't fail the entire process
+      return images
+    }
+  }
+
+  // Upload image to S3
+  async uploadImageToS3(imageUrl, fileName) {
+    try {
+      // Download image from URL
+      const response = await axios.get(imageUrl, {
+        responseType: 'arraybuffer'
+      })
+      const buffer = Buffer.from(response.data, 'binary')
+
+      // Upload to S3
+      const s3Params = {
+        Bucket: this.s3BucketName,
+        Key: `blog-images/${fileName}`,
+        Body: buffer,
+        ContentType: 'image/png'
+        // ACL removed - bucket policy handles public access
+      }
+
+      const uploadResult = await this.s3.upload(s3Params).promise()
+      return uploadResult.Location
+    } catch (error) {
+      console.error('Error uploading to S3:', error.message)
+      return null
+    }
+  }
+
+  // Create Contentful asset from image URL
+  async createContentfulAsset(imageUrl, title, description) {
+    try {
+      const asset = await this.contentfulClient.createAsset({
+        fields: {
+          title: {
+            'en-US': title
+          },
+          description: {
+            'en-US': description
+          },
+          file: {
+            'en-US': {
+              contentType: 'image/png',
+              fileName: `${title.toLowerCase().replace(/\s+/g, '-')}.png`,
+              upload: imageUrl
+            }
+          }
+        }
+      })
+
+      // Process the asset
+      await asset.processForAllLocales()
+
+      // Wait for processing to complete
+      let processedAsset = await this.contentfulClient.getAsset(asset.sys.id)
+      let attempts = 0
+      while (processedAsset.fields.file['en-US'].url === undefined && attempts < 10) {
+        await new Promise((resolve) => setTimeout(resolve, 2000))
+        processedAsset = await this.contentfulClient.getAsset(asset.sys.id)
+        attempts++
+      }
+
+      // Publish the asset
+      await processedAsset.publish()
+
+      return processedAsset
+    } catch (error) {
+      console.error('Error creating Contentful asset:', error.message)
+      return null
+    }
+  }
+
   // Save article as draft in Contentful
-  async saveToDrafts(contentBrief, blogContent, researchData) {
+  async saveToDrafts(contentBrief, blogContent, researchData, images = null) {
     try {
       if (!this.contentfulClient) {
         console.error('❌ Contentful client not initialized')
@@ -309,12 +458,83 @@ Write as a career advisor who wants to help readers achieve their dreams while c
             'en-US': new Date().toISOString()
           },
           category: {
-            'en-US': 'tech-creative-economy'
+            'en-US': 'Resources'
           },
           featured: {
             'en-US': false
           }
-          // Note: coverImage is required but will be left empty for manual addition
+        }
+      }
+
+      // Add featured image if available
+      if (images && images.featured) {
+        console.log('📤 Uploading featured image to S3...')
+        const featuredS3Url = await this.uploadImageToS3(images.featured, `featured-${slug}.png`)
+
+        if (featuredS3Url) {
+          console.log('🖼️ Creating Contentful asset for featured image...')
+          const featuredAsset = await this.createContentfulAsset(
+            featuredS3Url,
+            `Featured: ${contentBrief.title}`,
+            `Featured header image for ${contentBrief.title}`
+          )
+
+          if (featuredAsset) {
+            articleData.fields.coverImage = {
+              'en-US': {
+                sys: {
+                  type: 'Link',
+                  linkType: 'Asset',
+                  id: featuredAsset.sys.id
+                }
+              }
+            }
+            console.log('✅ Featured image added to article')
+          }
+        }
+      }
+
+      // Insert in-article images into the rich text content
+      if (images && images.inArticle.length > 0) {
+        const contentNodes = richTextContent.content
+
+        for (const inArticleImage of images.inArticle) {
+          console.log(`📤 Uploading in-article image ${inArticleImage.position} to S3...`)
+          const inArticleS3Url = await this.uploadImageToS3(
+            inArticleImage.url,
+            `article-${slug}-img${inArticleImage.position}.png`
+          )
+
+          if (inArticleS3Url) {
+            console.log(`🖼️ Creating Contentful asset for in-article image ${inArticleImage.position}...`)
+            const inArticleAsset = await this.createContentfulAsset(
+              inArticleS3Url,
+              inArticleImage.caption,
+              `In-article image: ${inArticleImage.caption}`
+            )
+
+            if (inArticleAsset) {
+              // Insert embedded asset into the content at appropriate positions
+              const insertPosition = Math.min(inArticleImage.position * 3 + 1, contentNodes.length - 1)
+
+              const embeddedAsset = {
+                nodeType: 'embedded-asset-block',
+                data: {
+                  target: {
+                    sys: {
+                      type: 'Link',
+                      linkType: 'Asset',
+                      id: inArticleAsset.sys.id
+                    }
+                  }
+                },
+                content: []
+              }
+
+              contentNodes.splice(insertPosition, 0, embeddedAsset)
+              console.log(`✅ In-article image ${inArticleImage.position} embedded`)
+            }
+          }
         }
       }
 
@@ -326,13 +546,15 @@ Write as a career advisor who wants to help readers achieve their dreams while c
       console.log(`🆔 Entry ID: ${entry.sys.id}`)
       console.log(`🔗 Slug: ${slug}`)
       console.log('📋 Status: Draft (ready for review and cover image)')
+      console.log(`👁️  Preview at: https://campaigns-staging.admi.africa/resources?preview=true`)
 
       return {
         entryId: entry.sys.id,
         title: contentBrief.title,
         slug: slug,
         status: 'draft',
-        createdAt: entry.sys.createdAt
+        createdAt: entry.sys.createdAt,
+        previewUrl: `https://campaigns-staging.admi.africa/resources?preview=true`
       }
     } catch (error) {
       console.error('Error saving to Contentful:', error.message)
@@ -375,8 +597,11 @@ Write as a career advisor who wants to help readers achieve their dreams while c
         throw new Error('Failed to generate blog content')
       }
 
-      // Step 5: Save as draft in Contentful
-      const draftResult = await this.saveToDrafts(contentBrief, blogContent, researchData)
+      // Step 5: Generate images with DALL-E 3
+      const images = await this.generateImages(contentBrief, blogContent)
+
+      // Step 6: Save as draft in Contentful with images
+      const draftResult = await this.saveToDrafts(contentBrief, blogContent, researchData, images)
 
       if (!draftResult) {
         throw new Error('Failed to save draft to Contentful')

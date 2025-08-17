@@ -33,6 +33,10 @@ frontend:
         - echo "ADMI_CONTENTFUL_SPACE_ID=$ADMI_CONTENTFUL_SPACE_ID" >> .env.production
         - echo "ADMI_CONTENTFUL_ACCESS_TOKEN=$ADMI_CONTENTFUL_ACCESS_TOKEN" >> .env.production
         - echo "ADMI_CONTENTFUL_ENVIRONMENT=$ADMI_CONTENTFUL_ENVIRONMENT" >> .env.production
+        - echo "CONTENTFUL_SPACE_ID=$CONTENTFUL_SPACE_ID" >> .env.production
+        - echo "CONTENTFUL_ENVIRONMENT=$CONTENTFUL_ENVIRONMENT" >> .env.production
+        - echo "CONTENTFUL_ACCESS_TOKEN=$CONTENTFUL_ACCESS_TOKEN" >> .env.production
+        - echo "CONTENTFUL_PREVIEW_API_TOKEN=$CONTENTFUL_PREVIEW_API_TOKEN" >> .env.production
         - echo "BREVO_API_KEY=$BREVO_API_KEY" >> .env.production
         - echo "BREVO_LIST_ID=$BREVO_LIST_ID" >> .env.production
         - npm run build
