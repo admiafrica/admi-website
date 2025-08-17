@@ -167,7 +167,8 @@ class ContentOptimizationDashboard {
       console.log('-'.repeat(25))
 
       // Try to get latest analytics data
-      const analyticsEndpoint = process.env.ANALYTICS_API_BASE_URL || 'http://localhost:3003'
+      const analyticsEndpoint =
+        process.env.ANALYTICS_API_BASE_URL || process.env.NEXT_PUBLIC_API_BASE_URL || 'https://admi.africa'
 
       console.log(`Analytics Endpoint: ${analyticsEndpoint}`)
       console.log('Note: Start dev server (npm run dev) for live metrics')

@@ -28,8 +28,8 @@ class IntelligentContentOptimizer {
     this.spaceId = process.env.CONTENTFUL_SPACE_ID
     this.environmentId = process.env.CONTENTFUL_ENVIRONMENT || 'master'
 
-    // Analytics API setup
-    this.baseUrl = process.env.ANALYTICS_API_BASE_URL || 'http://localhost:3003'
+    // Analytics API setup - use Next.js server
+    this.baseUrl = process.env.ANALYTICS_API_BASE_URL || process.env.NEXT_PUBLIC_API_BASE_URL || 'https://admi.africa'
 
     this.contentfulClient = null
 
@@ -192,6 +192,12 @@ class IntelligentContentOptimizer {
       // Create a thread for this conversation
       const thread = await this.openai.beta.threads.create()
 
+      if (!thread || !thread.id) {
+        throw new Error('Failed to create OpenAI thread')
+      }
+
+      console.log(`  ✅ Thread created: ${thread.id}`)
+
       // Create a message with the search query
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const message = await this.openai.beta.threads.messages.create(thread.id, {
@@ -213,27 +219,33 @@ The response should directly address what the student is searching for and guide
       })
 
       // Run the assistant
+      console.log(`  🚀 Creating run with thread ID: ${thread.id}`)
+      console.log(`  🤖 Assistant ID: ${this.assistantId}`)
+
       const run = await this.openai.beta.threads.runs.create(thread.id, {
         assistant_id: this.assistantId,
         instructions:
           "You are ADMI's educational advisor. Use the comprehensive course information in your knowledge base to create accurate, helpful FAQ responses that encourage enrollment while providing genuine value to prospective students."
       })
 
+      console.log(`  ✅ Run created: ${run.id}`)
+
       // Wait for completion
-      let runStatus = await this.openai.beta.threads.runs.retrieve(thread.id, run.id)
+      console.log(`  ⏳ Checking run status with thread ID: ${thread.id}, run ID: ${run.id}`)
+      let runStatus = await this.openai.beta.threads.runs.retrieve(run.thread_id, run.id)
 
       let attempts = 0
       const maxAttempts = 30
 
       while ((runStatus.status === 'queued' || runStatus.status === 'in_progress') && attempts < maxAttempts) {
         await new Promise((resolve) => setTimeout(resolve, 2000))
-        runStatus = await this.openai.beta.threads.runs.retrieve(thread.id, run.id)
+        runStatus = await this.openai.beta.threads.runs.retrieve(run.thread_id, run.id)
         attempts++
       }
 
       if (runStatus.status === 'completed') {
         // Retrieve the assistant's response
-        const messages = await this.openai.beta.threads.messages.list(thread.id)
+        const messages = await this.openai.beta.threads.messages.list(run.thread_id)
         const assistantMessage = messages.data.find((msg) => msg.role === 'assistant')
 
         if (assistantMessage && assistantMessage.content[0] && assistantMessage.content[0].text) {
@@ -283,6 +295,12 @@ The response should directly address what the student is searching for and guide
 
       // Create a thread for this conversation
       const thread = await this.openai.beta.threads.create()
+
+      if (!thread || !thread.id) {
+        throw new Error('Failed to create OpenAI thread for article')
+      }
+
+      console.log(`  ✅ Thread created: ${thread.id}`)
 
       // Create a message with the search query
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
