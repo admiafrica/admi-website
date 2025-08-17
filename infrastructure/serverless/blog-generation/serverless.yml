@@ -48,7 +48,13 @@ provider:
             - s3:PutObjectAcl
             - s3:GetObject
             - s3:DeleteObject
-          Resource: 'arn:aws:s3:::admi-blog-images-${self:provider.stage}/*'
+          Resource: 
+            - 'arn:aws:s3:::admi-blog-images-${self:provider.stage}/*'
+            - 'arn:aws:s3:::admi-hero-images-${self:provider.stage}/*'
+        - Effect: Allow
+          Action:
+            - cloudfront:CreateInvalidation
+          Resource: '*'
 
 functions:
   dailyBlogGeneration:
@@ -105,6 +111,25 @@ functions:
             type: cache_refresh
     reservedConcurrency: 1
 
+  heroImageSync:
+    handler: handlers/heroImageSync.sync
+    description: Sync hero images from Contentful to S3/CloudFront
+    timeout: 300 # 5 minutes
+    environment:
+      HERO_IMAGES_BUCKET: !Ref HeroImagesBucket
+      CLOUDFRONT_DISTRIBUTION_ID: !Ref HeroImagesCloudFrontDistribution
+    events:
+      - http:
+          path: /sync-hero-images
+          method: post
+          cors: true
+      - schedule:
+          rate: cron(0 6 * * ? *)  # Daily at 6:00 AM UTC
+          enabled: true
+          input:
+            type: auto_sync
+    reservedConcurrency: 1
+
 plugins:
   - serverless-webpack
   - serverless-dotenv-plugin
@@ -135,6 +160,66 @@ package:
 
 resources:
   Resources:
+    # Hero Images S3 Bucket
+    HeroImagesBucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: admi-hero-images-${self:provider.stage}
+        PublicAccessBlockConfiguration:
+          BlockPublicAcls: false
+          BlockPublicPolicy: false
+          IgnorePublicAcls: false
+          RestrictPublicBuckets: false
+        CorsConfiguration:
+          CorsRules:
+            - AllowedHeaders: ['*']
+              AllowedMethods: [GET, HEAD]
+              AllowedOrigins: ['*']
+              MaxAge: 3600
+
+    # Hero Images S3 Bucket Policy
+    HeroImagesBucketPolicy:
+      Type: AWS::S3::BucketPolicy
+      Properties:
+        Bucket: !Ref HeroImagesBucket
+        PolicyDocument:
+          Statement:
+            - Sid: PublicReadGetObject
+              Effect: Allow
+              Principal: '*'
+              Action:
+                - s3:GetObject
+              Resource: !Sub '${HeroImagesBucket}/*'
+
+    # CloudFront Distribution for Hero Images
+    HeroImagesCloudFrontDistribution:
+      Type: AWS::CloudFront::Distribution
+      Properties:
+        DistributionConfig:
+          Origins:
+            - Id: HeroImagesS3Origin
+              DomainName: !GetAtt HeroImagesBucket.RegionalDomainName
+              S3OriginConfig:
+                OriginAccessIdentity: ''
+          DefaultCacheBehavior:
+            TargetOriginId: HeroImagesS3Origin
+            ViewerProtocolPolicy: redirect-to-https
+            CachePolicyId: 4135ea2d-6df8-44a3-9df3-4b5a84be39ad  # Managed-CachingOptimized
+            OriginRequestPolicyId: 88a5eaf4-2fd4-4709-b370-b4c650ea3fcf  # Managed-CORS-S3Origin
+            ResponseHeadersPolicyId: 5cc3b908-e619-4b99-88e5-2cf7f45965bd  # Managed-SimpleCORS
+          Enabled: true
+          HttpVersion: http2
+          PriceClass: PriceClass_100
+          ViewerCertificate:
+            CloudFrontDefaultCertificate: true
+          CustomErrorResponses:
+            - ErrorCode: 403
+              ResponseCode: 404
+              ResponsePagePath: /404.html
+            - ErrorCode: 404
+              ResponseCode: 404
+              ResponsePagePath: /404.html
+
     BlogImagesBucketPolicy:
       Type: AWS::S3::BucketPolicy
       Properties:
@@ -149,6 +234,24 @@ resources:
               Resource: 'arn:aws:s3:::admi-blog-images-${self:provider.stage}/blog-images/*'
 
   Outputs:
+    HeroImagesBucketName:
+      Description: Name of the S3 bucket for hero images
+      Value: !Ref HeroImagesBucket
+      Export:
+        Name: ${self:service}-${self:provider.stage}-hero-images-bucket
+    
+    HeroImagesCloudFrontDomain:
+      Description: CloudFront domain for hero images
+      Value: !GetAtt HeroImagesCloudFrontDistribution.DomainName
+      Export:
+        Name: ${self:service}-${self:provider.stage}-hero-images-cloudfront-domain
+    
+    HeroImagesCloudFrontDistributionId:
+      Description: CloudFront distribution ID for hero images
+      Value: !Ref HeroImagesCloudFrontDistribution
+      Export:
+        Name: ${self:service}-${self:provider.stage}-hero-images-cloudfront-id
+
     BlogImagesBucketName:
       Description: Name of the S3 bucket for blog images
       Value: admi-blog-images-${self:provider.stage}

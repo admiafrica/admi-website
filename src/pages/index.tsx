@@ -158,30 +158,51 @@ export default function HomePage({ content, courses, featuredNews, featuredResou
         {/* HERO */}
         <Box className="relative w-full">
           {(() => {
-            // Try to get hero image from Contentful
+            // Priority 1: Try CloudFront CDN first (faster, more reliable)
+            // Note: This will be dynamically set after CloudFront deployment
+            const cloudFrontUrl = process.env.NEXT_PUBLIC_HERO_IMAGES_CDN_URL
+              ? `${process.env.NEXT_PUBLIC_HERO_IMAGES_CDN_URL}/hero-image.jpg`
+              : null
+
+            // Priority 2: Try Contentful as fallback
+            let contentfulUrl = null
             if (content?.assets && content?.fields?.coverImage?.sys?.id) {
               const assetDetails = getAssetDetails(content.assets, content.fields.coverImage.sys.id)
-
               if (assetDetails?.fields?.file?.url) {
-                const baseUrl = `https:${assetDetails.fields.file.url}`
-
-                return (
-                  <Image
-                    src={baseUrl}
-                    placeholder="blur"
-                    blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
-                    alt="ADMI Hero - Creative Media Training"
-                    fill
-                    priority
-                    sizes="100vw"
-                    className="absolute inset-0 z-0"
-                    style={{ objectFit: 'cover', objectPosition: '50% 20%' }}
-                  />
-                )
+                contentfulUrl = `https:${assetDetails.fields.file.url}`
               }
             }
 
-            // Fallback: Use local hero image or gradient background
+            // Use CloudFront as primary, Contentful as fallback
+            const heroImageSrc = cloudFrontUrl
+            const fallbackSrc = contentfulUrl
+
+            if (heroImageSrc) {
+              return (
+                <Image
+                  src={heroImageSrc}
+                  placeholder="blur"
+                  blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
+                  alt="ADMI Hero - Creative Media Training"
+                  fill
+                  priority
+                  sizes="100vw"
+                  className="absolute inset-0 z-0"
+                  style={{ objectFit: 'cover', objectPosition: '50% 20%' }}
+                  onError={(e) => {
+                    // If CloudFront fails, try Contentful fallback
+                    if (fallbackSrc && e.currentTarget.src !== fallbackSrc) {
+                      console.log('CloudFront hero image failed, falling back to Contentful')
+                      e.currentTarget.src = fallbackSrc
+                    } else {
+                      console.warn('Both CloudFront and Contentful hero images failed to load')
+                    }
+                  }}
+                />
+              )
+            }
+
+            // Final fallback: Use gradient background
             return (
               <div
                 className="absolute inset-0 z-0"
