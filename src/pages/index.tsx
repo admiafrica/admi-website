@@ -21,7 +21,7 @@ import {
   SectorItemCard,
   UserTestimonialCard
 } from '@/components/cards'
-import { ADMI_FACILITIES, ADMI_HOMEPAGE_SECTORS, getAssetDetails } from '@/utils'
+import { ADMI_FACILITIES, ADMI_HOMEPAGE_SECTORS } from '@/utils'
 import { IContentfulEntry } from '@/types'
 import { useIsMobile } from '@/hooks/useIsMobile'
 
@@ -158,24 +158,10 @@ export default function HomePage({ content, courses, featuredNews, featuredResou
         {/* HERO */}
         <Box className="relative w-full">
           {(() => {
-            // Priority 1: Try CloudFront CDN first (faster, more reliable)
-            // Note: This will be dynamically set after CloudFront deployment
-            const cloudFrontUrl = process.env.NEXT_PUBLIC_HERO_IMAGES_CDN_URL
-              ? `${process.env.NEXT_PUBLIC_HERO_IMAGES_CDN_URL}/hero-image.jpg`
-              : null
-
-            // Priority 2: Try Contentful as fallback
-            let contentfulUrl = null
-            if (content?.assets && content?.fields?.coverImage?.sys?.id) {
-              const assetDetails = getAssetDetails(content.assets, content.fields.coverImage.sys.id)
-              if (assetDetails?.fields?.file?.url) {
-                contentfulUrl = `https:${assetDetails.fields.file.url}`
-              }
-            }
-
-            // Use CloudFront as primary, Contentful as fallback
-            const heroImageSrc = cloudFrontUrl || contentfulUrl
-            const fallbackSrc = cloudFrontUrl ? contentfulUrl : null
+            // Use known working Contentful URL temporarily for testing
+            const heroImageSrc =
+              'https://images.ctfassets.net/qtu3mga6n6gc/6Mhj8yvqGYUNbHN9RZq6vD/4de22785a3034c1e768c12b8f11e95d7/homepage-hero-bg.png'
+            const fallbackSrc = null
 
             if (heroImageSrc) {
               return (
