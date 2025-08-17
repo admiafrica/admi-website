@@ -43,10 +43,16 @@ const nextConfig = {
     formats: ['image/avif', 'image/webp'],
     minimumCacheTTL: 60,
   },
-  // Enable experimental webVitalsAttribution
+  // Performance optimizations
   experimental: {
     webVitalsAttribution: ['CLS', 'LCP', 'FID', 'INP'],
+    gzipSize: true, // Show gzip sizes in build output
   },
+  // Enable compression
+  compress: true,
+  // Optimize bundle analyzer
+  poweredByHeader: false, // Remove X-Powered-By header
+  // SWC minification is now default in Next.js 15
   async headers() {
     return [
       // Add specific headers for API JSON files
@@ -98,6 +104,15 @@ const nextConfig = {
             key: 'X-Robots-Tag',
             value: 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1',
           },
+          // Performance optimization headers
+          {
+            key: 'Accept-CH',
+            value: 'DPR, Width, Viewport-Width',
+          },
+          {
+            key: 'Vary',
+            value: 'Accept-Encoding, Accept-CH',
+          },
         ],
       },
       // Cache static assets
@@ -144,18 +159,7 @@ const nextConfig = {
         destination: 'https://admi.africa/:path*',
         permanent: true,
       },
-      // Block and redirect spam URLs with WordPress search parameters
-      {
-        source: '/',
-        has: [
-          {
-            type: 'query',
-            key: 's',
-          },
-        ],
-        destination: '/404',
-        permanent: false,
-      },
+      // Note: Removed 's' parameter blocking - can be legitimate search traffic
       // Block URLs with gambling/casino parameters
       {
         source: '/:path*',
@@ -190,18 +194,7 @@ const nextConfig = {
         destination: '/404',
         permanent: false,
       },
-      // Block Facebook tracking parameters that are being abused
-      {
-        source: '/:path*',
-        has: [
-          {
-            type: 'query',
-            key: 'fbclid',
-          },
-        ],
-        destination: '/404',
-        permanent: false,
-      },
+      // Note: Removed fbclid blocking - it's legitimate Facebook traffic
       // Block image optimization abuse
       {
         source: '/:path*',

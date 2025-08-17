@@ -12,10 +12,13 @@ Disallow: /api/
 Disallow: /student-portal/login
 Allow: /youtube-video-sitemap.xml
 
+Sitemap: https://admi.africa/sitemap-index.xml
 Sitemap: https://admi.africa/sitemap.xml
 Sitemap: https://admi.africa/youtube-video-sitemap.xml
 Sitemap: https://admi.africa/video-sitemap.xml
 Sitemap: https://admi.africa/news-sitemap.xml
+Sitemap: https://admi.africa/resources-sitemap.xml
+Sitemap: https://admi.africa/video-archive-sitemap.xml
 `
 
   res.setHeader('Content-Type', 'text/plain')

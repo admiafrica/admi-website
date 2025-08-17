@@ -107,19 +107,63 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Script id="web-vitals" strategy="afterInteractive" type="module">
           {`
             function sendToAnalytics(metric) {
-              const body = JSON.stringify(metric);
-              (navigator.sendBeacon && navigator.sendBeacon('/api/vitals', body)) ||
-                fetch('/api/vitals', {body, method: 'POST', keepalive: true});
+              const data = {
+                ...metric,
+                timestamp: Date.now(),
+                pathname: window.location.pathname,
+                connectionType: navigator.connection?.effectiveType || 'unknown'
+              };
+              
+              // Send to Google Analytics via GTM (primary tracking)
+              if (typeof gtag !== 'undefined') {
+                gtag('event', 'web_vitals', {
+                  metric_name: metric.name,
+                  metric_value: Math.round(metric.value),
+                  metric_rating: metric.rating,
+                  page_location: window.location.href,
+                  page_title: document.title,
+                  connection_type: data.connectionType,
+                  custom_map: {
+                    'metric_name': 'metric_name',
+                    'metric_value': 'metric_value', 
+                    'metric_rating': 'metric_rating'
+                  }
+                });
+                console.log('📈 Web Vital sent to GA4:', metric.name, Math.round(metric.value), metric.rating);
+              }
+              
+              // Backup server-side logging
+              const body = JSON.stringify(data);
+              if (navigator.sendBeacon) {
+                navigator.sendBeacon('/api/vitals', body);
+              } else {
+                fetch('/api/vitals', {
+                  body, 
+                  method: 'POST', 
+                  keepalive: true,
+                  headers: {'Content-Type': 'application/json'}
+                }).catch(err => console.warn('Vitals backup logging failed:', err));
+              }
             }
 
             try {
-              const { getCLS, getFID, getLCP, getFCP, getTTFB } = await import('web-vitals');
-              getCLS(sendToAnalytics);
-              getFID(sendToAnalytics);
-              getLCP(sendToAnalytics);
-              getFCP(sendToAnalytics);
+              const { getCLS, getFID, getLCP, getFCP, getTTFB, onINP } = await import('web-vitals');
+              
+              // Core Web Vitals (Google ranking factors)
+              getCLS(sendToAnalytics);    // Cumulative Layout Shift
+              getLCP(sendToAnalytics);    // Largest Contentful Paint
+              getFID(sendToAnalytics);    // First Input Delay (deprecated but still tracked)
+              
+              // New Core Web Vital (replacing FID)
+              onINP(sendToAnalytics);     // Interaction to Next Paint
+              
+              // Additional helpful metrics
+              getFCP(sendToAnalytics);    // First Contentful Paint
+              getTTFB(sendToAnalytics);   // Time to First Byte
+              
+              console.log('✅ Web Vitals monitoring initialized');
             } catch (error) {
-              console.warn('Web Vitals could not be loaded:', error);
+              console.warn('❌ Web Vitals could not be loaded:', error);
             }
           `}
         </Script>

@@ -38,6 +38,8 @@
   "NEXT_PUBLIC_SITE_KEYWORDS": "digital media, film school, animation school, music production, graphic design, digital marketing, Kenya, Africa",
   "NEXT_PUBLIC_SITE_NAME": "Africa Digital Media Institute",
   "NEXT_PUBLIC_YOUTUBE_API_KEY": "AIzaSyAVZo0ViS2LyHUqt-4OfnaMivci7m3yQxg",
+  "OPENAI_API_KEY": "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",
+  "OPENAI_ASSISTANT_ID": "asst_0OjBfvO64gzZaQIz21SzY23D",
   "PERPLEXITY_API_KEY": "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",
   "S3_ARCHIVE_BUCKET": "admi-media-archive-381492234121",
   "S3_BUCKET_NAME": "admi-media-archive-381492234121",

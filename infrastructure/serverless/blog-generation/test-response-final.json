@@ -1,0 +1,10 @@
+{
+  "statusCode": 200,
+  "headers": {
+    "Content-Type": "application/json",
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Headers": "Content-Type",
+    "Access-Control-Allow-Methods": "POST, OPTIONS"
+  },
+  "body": "{\"success\":true,\"type\":\"test\",\"articlesGenerated\":1,\"totalGenerated\":1,\"timestamp\":\"2025-08-14T14:23:50.830Z\",\"articles\":[{\"title\":\"Music Production Mastery: Launch Your Career in Africa's Music Scene\",\"id\":\"2VKpsSWap73j6I0JBe86vI\",\"category\":\"Music Production\"}]}"
+}

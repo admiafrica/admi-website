@@ -38,10 +38,9 @@ export function middleware(request: NextRequest) {
 
   // List of spam/malicious query parameters to block
   const spamParams = [
-    's=', // WordPress search parameter often used in spam
+    // Only block 's=' when it contains spam patterns, not all search queries
     'ch=', // Channel parameter used in gambling spam
     'ak.bet', // Gambling domain
-    'gaming', // Gaming can be confused with gambling in Kenya
     'bet-nigeria.com', // Nigerian betting spam
     'ajccom.com', // Gambling domain
     'ak9ja.bet', // Nigerian betting spam
@@ -149,7 +148,8 @@ export function middleware(request: NextRequest) {
     'category', // Filtering
     'search', // Search queries
     'q', // Query
-    'slug' // Dynamic routes
+    'slug', // Dynamic routes
+    's' // WordPress-style search (keep but sanitize)
   ]
 
   const searchParams = new URLSearchParams(search)
