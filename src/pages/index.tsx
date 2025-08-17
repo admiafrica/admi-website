@@ -157,26 +157,40 @@ export default function HomePage({ content, courses, featuredNews, featuredResou
       <div className="w-full">
         {/* HERO */}
         <Box className="relative w-full">
-          {content?.assets &&
-            content?.fields?.coverImage?.sys?.id &&
-            (() => {
+          {(() => {
+            // Try to get hero image from Contentful
+            if (content?.assets && content?.fields?.coverImage?.sys?.id) {
               const assetDetails = getAssetDetails(content.assets, content.fields.coverImage.sys.id)
-              const baseUrl = `https:${assetDetails?.fields.file.url}`
 
-              return (
-                <Image
-                  src={baseUrl}
-                  placeholder="blur"
-                  blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
-                  alt="ADMI Hero - Creative Media Training"
-                  fill
-                  priority
-                  sizes="100vw"
-                  className="absolute inset-0 z-0"
-                  style={{ objectFit: 'cover', objectPosition: '50% 20%' }}
-                />
-              )
-            })()}
+              if (assetDetails?.fields?.file?.url) {
+                const baseUrl = `https:${assetDetails.fields.file.url}`
+
+                return (
+                  <Image
+                    src={baseUrl}
+                    placeholder="blur"
+                    blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
+                    alt="ADMI Hero - Creative Media Training"
+                    fill
+                    priority
+                    sizes="100vw"
+                    className="absolute inset-0 z-0"
+                    style={{ objectFit: 'cover', objectPosition: '50% 20%' }}
+                  />
+                )
+              }
+            }
+
+            // Fallback: Use local hero image or gradient background
+            return (
+              <div
+                className="absolute inset-0 z-0"
+                style={{
+                  background: 'linear-gradient(135deg, #1a202c 0%, #2d3748 50%, #4a5568 100%)'
+                }}
+              />
+            )
+          })()}
           {/* Radial Gradient Overlay */}
           <div
             className="z-5 absolute inset-0"
