@@ -20,11 +20,33 @@ function convertDurationToSeconds(duration: string): number {
   return totalSeconds
 }
 
-// Filter out videos longer than 2 hours (7200 seconds)
-function filterLongVideos(videos: any[]) {
+// Filter videos by duration and publish date (consistent with sitemap filtering)
+function filterVideos(videos: any[]) {
+  const twentyFourMonthsAgo = new Date()
+  twentyFourMonthsAgo.setMonth(twentyFourMonthsAgo.getMonth() - 24)
+
   return videos.filter((video) => {
     const durationInSeconds = convertDurationToSeconds(video.duration)
-    return durationInSeconds > 0 && durationInSeconds <= 7200
+    const publishedDate = new Date(video.publishedAt)
+
+    // Filter out videos that might be private or problematic
+    const viewCount = parseInt(video.viewCount) || 0
+    const hasValidThumbnail = video.thumbnail?.high || video.thumbnail?.medium
+
+    // Exclude videos that show signs of being private/unavailable:
+    // - Very low view counts (< 5 views) combined with recent publish dates
+    // - Missing or invalid thumbnails
+    const recentlyPublished = Date.now() - publishedDate.getTime() < 30 * 24 * 60 * 60 * 1000 // 30 days
+    const suspiciouslyLowViews = viewCount < 5 && recentlyPublished
+
+    // Same filters as sitemap: >60 seconds AND within 24 months AND not private
+    return (
+      durationInSeconds >= 60 &&
+      durationInSeconds <= 7200 &&
+      publishedDate >= twentyFourMonthsAgo &&
+      !suspiciouslyLowViews &&
+      hasValidThumbnail
+    )
   })
 }
 
@@ -92,9 +114,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       throw new Error('No video data available')
     }
 
-    // Filter out videos longer than 2 hours first
-    const filteredVideos = filterLongVideos(cache.videos)
-    console.log(`🎬 Filtered ${cache.videos.length - filteredVideos.length} long videos (>${2} hours)`)
+    // Filter videos by duration, publish date, and quality (consistent with sitemap)
+    const filteredVideos = filterVideos(cache.videos)
+    console.log(
+      `🎬 Filtered ${cache.videos.length - filteredVideos.length} videos (keeping 60s-2hrs, 24 months, quality filtered)`
+    )
 
     // Apply limit to filtered videos
     const limitedVideos = filteredVideos.slice(0, maxResults)
