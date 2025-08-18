@@ -134,8 +134,28 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const videos = cache.videos.filter((video) => {
       const publishedDate = new Date(video.publishedAt)
       const durationInSeconds = convertDurationToSeconds(video.duration)
-      // Same filters as videos page: >60 seconds AND within 24 months
-      return durationInSeconds > 60 && publishedDate >= twentyFourMonthsAgo
+
+      // Filter out videos that might be private or problematic
+      // Private videos often have very low view counts or suspicious patterns
+      const viewCount = parseInt(video.viewCount) || 0
+      const hasValidThumbnail = video.thumbnail?.high || video.thumbnail?.medium
+
+      // Exclude videos that show signs of being private/unavailable:
+      // - Very low view counts (< 5 views) combined with recent publish dates
+      // - Missing or invalid thumbnails
+      // - Known problematic video IDs
+      const recentlyPublished = Date.now() - publishedDate.getTime() < 30 * 24 * 60 * 60 * 1000 // 30 days
+      const suspiciouslyLowViews = viewCount < 5 && recentlyPublished
+      const knownPrivateIds = ['nXVF84Y3PbQ'] // Add known private video IDs here
+
+      // Same filters as videos page: >60 seconds AND within 24 months AND not private
+      return (
+        durationInSeconds > 60 &&
+        publishedDate >= twentyFourMonthsAgo &&
+        !suspiciouslyLowViews &&
+        hasValidThumbnail &&
+        !knownPrivateIds.includes(video.id)
+      )
     })
 
     // Generate video archive sitemap XML pointing to the videos gallery page

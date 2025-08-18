@@ -4,6 +4,11 @@
 # Runs first day of each month at 3:00 AM
 # Comprehensive analysis and strategic content planning
 
+# Set up proper PATH for cron environment
+export PATH="/Users/wilfred/.nvm/versions/node/v22.17.1/bin:/usr/local/bin:/usr/bin:/bin:$PATH"
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
 PROJECT_DIR="/Users/wilfred/admi-website"
 LOGS_DIR="$PROJECT_DIR/logs/content-optimization" 
 TIMESTAMP=$(date +"%Y-%m-%d_%H-%M-%S")

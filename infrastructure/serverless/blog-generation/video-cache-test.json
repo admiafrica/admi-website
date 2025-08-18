@@ -1,5 +1,0 @@
-{
-  "statusCode": 500,
-  "headers": { "Content-Type": "application/json" },
-  "body": "{\"success\":false,\"error\":\"fetch failed\",\"type\":\"video-cache-refresh\",\"timestamp\":\"2025-07-30T15:42:08.086Z\"}"
-}

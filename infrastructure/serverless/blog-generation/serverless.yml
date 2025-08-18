@@ -111,24 +111,6 @@ functions:
             type: cache_refresh
     reservedConcurrency: 1
 
-  heroImageSync:
-    handler: handlers/heroImageSync.sync
-    description: Sync hero images from Contentful to S3/CloudFront
-    timeout: 300 # 5 minutes
-    environment:
-      HERO_IMAGES_BUCKET: cdn.admi.africa
-      CLOUDFRONT_DISTRIBUTION_ID: E1H4RMIPAUBAI5
-    events:
-      - http:
-          path: /sync-hero-images
-          method: post
-          cors: true
-      - schedule:
-          rate: cron(0 6 * * ? *)  # Daily at 6:00 AM UTC
-          enabled: true
-          input:
-            type: auto_sync
-    reservedConcurrency: 1
 
 plugins:
   - serverless-webpack

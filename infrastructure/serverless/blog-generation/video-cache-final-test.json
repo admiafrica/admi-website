@@ -1,5 +1,0 @@
-{
-  "statusCode": 500,
-  "headers": { "Content-Type": "application/json" },
-  "body": "{\"success\":false,\"error\":\"HTTP 404: Not Found\",\"type\":\"video-cache-refresh\",\"timestamp\":\"2025-07-30T15:46:17.012Z\"}"
-}
