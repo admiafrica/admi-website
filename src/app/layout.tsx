@@ -120,6 +120,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* LLM-friendly content discovery */}
         <link rel="alternate" type="text/plain" href="/llm.txt" title="LLM Information" />
 
+        {/* Permissions Policy for Voice Chat - Allow microphone access for GTM widget */}
+        <meta httpEquiv="Permissions-Policy" content="microphone=*" />
+
         {/* Web Vitals Monitoring */}
         <Script id="web-vitals" strategy="afterInteractive" type="module">
           {`
