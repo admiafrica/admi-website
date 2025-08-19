@@ -4,8 +4,17 @@ const RobotsTxt = () => {
   return null
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ res }) => {
-  const robotsTxt = `User-agent: *
+export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
+  const host = req.headers.host || ''
+  const isStaging = host.includes('staging') || host.includes('campaigns-staging')
+
+  const robotsTxt = isStaging
+    ? `User-agent: *
+Disallow: /
+
+# Staging environment - no crawling allowed
+`
+    : `User-agent: *
 Allow: /
 Disallow: /admin/
 Disallow: /api/
