@@ -51,6 +51,34 @@ const SoundEngineeringKisumuPage = () => {
         }}
       />
 
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            mainEntity: [
+              {
+                '@type': 'Question',
+                name: "How does Kisumu's emerging tech status contribute to a sound-engineering course?",
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: "Kisumu's status as an emerging tech hub means students have the advantage of tapping into a growing market with less saturation. The presence of Lake Region media, alongside international NGOs in need of audio content, provides practical training opportunities directly tied to the city's unique economic landscape."
+                }
+              },
+              {
+                '@type': 'Question',
+                name: 'Are there local employment opportunities for sound engineers in Kisumu?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: "Yes, Kisumu's diverse economy includes recording studios, broadcast media, and a dynamic event production scene. Additionally, the city's agricultural tech firms and international NGOs increasingly require sound engineers for content creation, offering a broad spectrum of career paths for graduates."
+                }
+              }
+            ]
+          })
+        }}
+      />
+
       <Container size="lg" py="xl">
         <Title order={1} ta="center" mb="md">
           Sound Engineering Course in Western
@@ -154,7 +182,7 @@ const SoundEngineeringKisumuPage = () => {
                 </a>
               </Text>
               <Text mb="sm">
-                <strong>Location:</strong> Kisumu Campus (Central Location)
+                <strong>Location:</strong> ADMI Nairobi Campus
               </Text>
               <Text mb="sm">
                 <strong>Campus:</strong> 25 Kenyatta Avenue, Nairobi

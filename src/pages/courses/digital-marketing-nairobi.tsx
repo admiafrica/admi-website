@@ -52,6 +52,34 @@ const DigitalMarketingNairobiPage = () => {
         }}
       />
 
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            mainEntity: [
+              {
+                '@type': 'Question',
+                name: "How does Nairobi's tech ecosystem enhance my learning in digital marketing?",
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: "Nairobi's thriving tech ecosystem, highlighted by numerous startups and tech hubs, provides a real-world laboratory for digital marketing students. You'll get to apply concepts in SEO/SEM and content marketing directly to the city's dynamic online commerce and tech innovation."
+                }
+              },
+              {
+                '@type': 'Question',
+                name: 'What kind of local career opportunities can I expect after completing the course in Nairobi?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: "Graduates can look forward to roles in Nairobi's leading tech companies, media houses like Nation Media Group, and in the marketing departments of major corporations such as Safaricom. The city's growing emphasis on AI-powered marketing and e-commerce opens up numerous opportunities."
+                }
+              }
+            ]
+          })
+        }}
+      />
+
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <Title order={1} ta="center" mb="md">
           Digital Marketing Course in Nairobi
@@ -145,70 +173,6 @@ const DigitalMarketingNairobiPage = () => {
                 </Accordion.Item>
               </Accordion>
             </Card>
-
-            <Card shadow="sm" padding="lg" radius="md" withBorder mt="md">
-              <Title order={3} mb="md">
-                Frequently Asked Questions - Nairobi Students
-              </Title>
-              <Accordion>
-                <Accordion.Item key={0} value={'faq-0'}>
-                  <Accordion.Control>
-                    How does Nairobi's tech ecosystem enhance my learning in digital marketing?
-                  </Accordion.Control>
-                  <Accordion.Panel>
-                    <Text size="sm">
-                      Nairobi's thriving tech ecosystem, highlighted by numerous startups and tech hubs, provides a
-                      real-world laboratory for digital marketing students. You'll get to apply concepts in SEO/SEM and
-                      content marketing directly to the city's dynamic online commerce and tech innovation.
-                    </Text>
-                  </Accordion.Panel>
-                </Accordion.Item>
-                <Accordion.Item key={1} value={'faq-1'}>
-                  <Accordion.Control>
-                    What kind of local career opportunities can I expect after completing the course in Nairobi?
-                  </Accordion.Control>
-                  <Accordion.Panel>
-                    <Text size="sm">
-                      Graduates can look forward to roles in Nairobi's leading tech companies, media houses like Nation
-                      Media Group, and in the marketing departments of major corporations such as Safaricom. The city's
-                      growing emphasis on AI-powered marketing and e-commerce opens up numerous opportunities.
-                    </Text>
-                  </Accordion.Panel>
-                </Accordion.Item>
-              </Accordion>
-            </Card>
-
-            <Card shadow="sm" padding="lg" radius="md" withBorder mt="md">
-              <Title order={3} mb="md">
-                Frequently Asked Questions - Nairobi Students
-              </Title>
-              <Accordion>
-                <Accordion.Item key={0} value={'faq-0'}>
-                  <Accordion.Control>
-                    How does Nairobi's tech ecosystem enhance my learning in digital marketing?
-                  </Accordion.Control>
-                  <Accordion.Panel>
-                    <Text size="sm">
-                      Nairobi's thriving tech ecosystem, highlighted by numerous startups and tech hubs, provides a
-                      real-world laboratory for digital marketing students. You'll get to apply concepts in SEO/SEM and
-                      content marketing directly to the city's dynamic online commerce and tech innovation.
-                    </Text>
-                  </Accordion.Panel>
-                </Accordion.Item>
-                <Accordion.Item key={1} value={'faq-1'}>
-                  <Accordion.Control>
-                    What kind of local career opportunities can I expect after completing the course in Nairobi?
-                  </Accordion.Control>
-                  <Accordion.Panel>
-                    <Text size="sm">
-                      Graduates can look forward to roles in Nairobi's leading tech companies, media houses like Nation
-                      Media Group, and in the marketing departments of major corporations such as Safaricom. The city's
-                      growing emphasis on AI-powered marketing and e-commerce opens up numerous opportunities.
-                    </Text>
-                  </Accordion.Panel>
-                </Accordion.Item>
-              </Accordion>
-            </Card>
           </Grid.Col>
 
           <Grid.Col span={{ base: 12, md: 4 }}>
@@ -224,7 +188,7 @@ const DigitalMarketingNairobiPage = () => {
                 <strong>Fee:</strong> <a href="https://admi.africa/student-support#fees">View current fees</a>
               </Text>
               <Text mb="sm">
-                <strong>Location:</strong> Nairobi Campus (Central Location)
+                <strong>Location:</strong> ADMI Nairobi Campus
               </Text>
 
               <Button component="a" href="/enquiry" fullWidth mt="md" color="blue">

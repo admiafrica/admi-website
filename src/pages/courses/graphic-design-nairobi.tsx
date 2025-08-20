@@ -51,6 +51,34 @@ const GraphicDesignNairobiPage = () => {
         }}
       />
 
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            mainEntity: [
+              {
+                '@type': 'Question',
+                name: "How does Nairobi's tech boom impact graphic design students?",
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: "Nairobi's tech boom offers graphic design students unique opportunities to engage with cutting-edge digital design trends and work alongside leading tech companies and startups, making it an ideal environment for learning and innovation."
+                }
+              },
+              {
+                '@type': 'Question',
+                name: "Are there opportunities for graphic designers in Nairobi's advertising agencies?",
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: "Absolutely. Nairobi's dynamic advertising scene is on the lookout for skilled graphic designers with fresh ideas, especially those proficient in digital-first design and motion graphics, to cater to an increasingly digital marketplace."
+                }
+              }
+            ]
+          })
+        }}
+      />
+
       <Container size="lg" py="xl">
         <Title order={1} ta="center" mb="md">
           Kenya&apos;s Most Sought-After Graphic Design Course
@@ -139,66 +167,6 @@ const GraphicDesignNairobiPage = () => {
                 </Accordion.Item>
               </Accordion>
             </Card>
-
-            <Card shadow="sm" padding="lg" radius="md" withBorder mt="md">
-              <Title order={3} mb="md">
-                Frequently Asked Questions - Nairobi Students
-              </Title>
-              <Accordion>
-                <Accordion.Item key={0} value={'faq-0'}>
-                  <Accordion.Control>How does Nairobi's tech boom impact graphic design students?</Accordion.Control>
-                  <Accordion.Panel>
-                    <Text size="sm">
-                      Nairobi's tech boom offers graphic design students unique opportunities to engage with
-                      cutting-edge digital design trends and work alongside leading tech companies and startups, making
-                      it an ideal environment for learning and innovation.
-                    </Text>
-                  </Accordion.Panel>
-                </Accordion.Item>
-                <Accordion.Item key={1} value={'faq-1'}>
-                  <Accordion.Control>
-                    Are there opportunities for graphic designers in Nairobi's advertising agencies?
-                  </Accordion.Control>
-                  <Accordion.Panel>
-                    <Text size="sm">
-                      Absolutely. Nairobi's dynamic advertising scene is on the lookout for skilled graphic designers
-                      with fresh ideas, especially those proficient in digital-first design and motion graphics, to
-                      cater to an increasingly digital marketplace.
-                    </Text>
-                  </Accordion.Panel>
-                </Accordion.Item>
-              </Accordion>
-            </Card>
-
-            <Card shadow="sm" padding="lg" radius="md" withBorder mt="md">
-              <Title order={3} mb="md">
-                Frequently Asked Questions - Nairobi Students
-              </Title>
-              <Accordion>
-                <Accordion.Item key={0} value={'faq-0'}>
-                  <Accordion.Control>How does Nairobi's tech boom impact graphic design students?</Accordion.Control>
-                  <Accordion.Panel>
-                    <Text size="sm">
-                      Nairobi's tech boom offers graphic design students unique opportunities to engage with
-                      cutting-edge digital design trends and work alongside leading tech companies and startups, making
-                      it an ideal environment for learning and innovation.
-                    </Text>
-                  </Accordion.Panel>
-                </Accordion.Item>
-                <Accordion.Item key={1} value={'faq-1'}>
-                  <Accordion.Control>
-                    Are there opportunities for graphic designers in Nairobi's advertising agencies?
-                  </Accordion.Control>
-                  <Accordion.Panel>
-                    <Text size="sm">
-                      Absolutely. Nairobi's dynamic advertising scene is on the lookout for skilled graphic designers
-                      with fresh ideas, especially those proficient in digital-first design and motion graphics, to
-                      cater to an increasingly digital marketplace.
-                    </Text>
-                  </Accordion.Panel>
-                </Accordion.Item>
-              </Accordion>
-            </Card>
           </Grid.Col>
 
           <Grid.Col span={{ base: 12, md: 4 }}>
@@ -214,7 +182,7 @@ const GraphicDesignNairobiPage = () => {
                 <strong>Fee:</strong> <a href="https://admi.africa/student-support#fees">View current fees</a>
               </Text>
               <Text mb="sm">
-                <strong>Location:</strong> Nairobi Campus (Central Location)
+                <strong>Location:</strong> ADMI Nairobi Campus
               </Text>
               <Button component="a" href="/enquiry" fullWidth mt="md" color="blue">
                 Apply Now

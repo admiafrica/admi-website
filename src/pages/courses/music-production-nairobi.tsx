@@ -51,6 +51,34 @@ const MusicProductionNairobiPage = () => {
         }}
       />
 
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            mainEntity: [
+              {
+                '@type': 'Question',
+                name: 'How does studying music production in Nairobi give me an edge in the job market?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: "Nairobi's vibrant entertainment and media industry, including proximity to major employers like Nation Media Group and event companies, offers music production students immediate exposure and networking opportunities unavailable elsewhere, setting the stage for a thriving career."
+                }
+              },
+              {
+                '@type': 'Question',
+                name: 'Are there local opportunities for hands-on experience while studying?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: 'Absolutely. Nairobi offers a rich tapestry of recording studios, live event companies, and artists keen on new talent. Students often find internships and project collaborations that enhance their learning with practical experience.'
+                }
+              }
+            ]
+          })
+        }}
+      />
+
       <Container size="lg" py="xl">
         <Title order={1} ta="center" mb="md">
           Music Production Course in Nairobi
@@ -146,7 +174,7 @@ const MusicProductionNairobiPage = () => {
                 </a>
               </Text>
               <Text mb="sm">
-                <strong>Location:</strong> Nairobi Campus (Central Location)
+                <strong>Location:</strong> ADMI Nairobi Campus
               </Text>
               <Text mb="sm">
                 <strong>Campus:</strong> 25 Kenyatta Avenue, Nairobi

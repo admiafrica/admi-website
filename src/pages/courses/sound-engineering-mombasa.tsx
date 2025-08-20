@@ -51,6 +51,34 @@ const SoundEngineeringMombasaPage = () => {
         }}
       />
 
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            mainEntity: [
+              {
+                '@type': 'Question',
+                name: "Can I find internship opportunities in sound engineering within Mombasa's tourism sector?",
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: "Absolutely! Mombasa's booming tourism industry offers numerous internship opportunities for sound engineering students, especially within hospitality brands looking to enhance their on-site entertainment and immersive tour experiences through superior sound design."
+                }
+              },
+              {
+                '@type': 'Question',
+                name: 'Are there local media houses in Mombasa that employ sound engineers?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: 'Yes, Mombasa is home to several coastal media houses that are consistently on the lookout for talented sound engineers to support broadcast audio, podcast engineering, and streaming quality improvements in line with current trends.'
+                }
+              }
+            ]
+          })
+        }}
+      />
+
       <Container size="lg" py="xl">
         <Title order={1} ta="center" mb="md">
           Sound Engineering Course in Coast
@@ -146,7 +174,7 @@ const SoundEngineeringMombasaPage = () => {
                 </a>
               </Text>
               <Text mb="sm">
-                <strong>Location:</strong> Mombasa Campus (Central Location)
+                <strong>Location:</strong> ADMI Nairobi Campus
               </Text>
               <Text mb="sm">
                 <strong>Campus:</strong> 25 Kenyatta Avenue, Nairobi

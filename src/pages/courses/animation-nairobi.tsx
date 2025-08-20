@@ -51,6 +51,34 @@ const AnimationNairobiPage = () => {
         }}
       />
 
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            mainEntity: [
+              {
+                '@type': 'Question',
+                name: 'How does the Nairobi location enhance my learning experience in animation?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: "Our Nairobi campus is at the epicenter of Kenya's creative and tech industries, offering students real-world exposure to animation studios, advertising agencies, and gaming companies. This unique environment fosters practical, hands-on learning, directly linking your coursework with the city's thriving digital content production scene."
+                }
+              },
+              {
+                '@type': 'Question',
+                name: 'What kind of job prospects can I expect in Nairobi after completing my animation course?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: "Graduates from our Nairobi course can look forward to dynamic career opportunities across a range of sectors, including animation studios, film production, advertising agencies, and gaming companies. Additionally, Nairobi's position as a leader in digital marketing and educational content opens up further avenues for animation professionals."
+                }
+              }
+            ]
+          })
+        }}
+      />
+
       <Container size="lg" py="xl">
         <Title order={1} ta="center" mb="md">
           Animation Course in Nairobi
@@ -88,7 +116,7 @@ const AnimationNairobiPage = () => {
                 <Text size="sm" mb="md">
                   Get detailed curriculum, admission requirements, and enrollment information for our Animation program.
                 </Text>
-                <Button component="a" href="/courses/animation-diploma" variant="light" fullWidth>
+                <Button component="a" href="/courses/animation-and-motion-graphics-diploma" variant="light" fullWidth>
                   View Full Animation Course Details
                 </Button>
               </Card>
@@ -148,7 +176,7 @@ const AnimationNairobiPage = () => {
                 </a>
               </Text>
               <Text mb="sm">
-                <strong>Location:</strong> Nairobi Campus (Central Location)
+                <strong>Location:</strong> ADMI Nairobi Campus
               </Text>
               <Text mb="sm">
                 <strong>Campus:</strong> 25 Kenyatta Avenue, Nairobi
@@ -179,7 +207,7 @@ const AnimationNairobiPage = () => {
             Take the next step towards your creative career. Explore our comprehensive Animation program with detailed
             curriculum, career outcomes, and admission process.
           </Text>
-          <Button component="a" href="/courses/animation-diploma" size="lg" fullWidth>
+          <Button component="a" href="/courses/animation-and-motion-graphics-diploma" size="lg" fullWidth>
             Explore Full Animation Program Details
           </Button>
         </Card>

@@ -3,6 +3,7 @@ import { Accordion, Container, Title, Text, Group, Loader, Alert } from '@mantin
 import { IconChevronDown, IconAlertCircle } from '@tabler/icons-react'
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer'
 import { ICourseFAQ, IFAQResponse } from '@/types'
+import Script from 'next/script'
 
 interface CMSCourseFAQsProps {
   courseSlug: string
@@ -120,8 +121,32 @@ export function CMSCourseFAQs({ courseSlug }: CMSCourseFAQsProps) {
     return null // Don't render anything if no FAQs are available
   }
 
+  // Generate FAQ structured data
+  const faqStructuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    name: `Course FAQs - ${courseSlug}`,
+    mainEntity: filteredFAQs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.isRichText ? faq.answer.replace(/<[^>]*>/g, '') : faq.answer // Strip HTML for structured data
+      }
+    }))
+  }
+
   return (
     <Container size="lg" py="xl">
+      {/* FAQ Structured Data */}
+      {filteredFAQs.length > 0 && (
+        <Script
+          id={`cms-faq-structured-data-${courseSlug}`}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqStructuredData) }}
+        />
+      )}
+
       <div className="mb-8 text-center">
         <Title order={2} size="h1" mb="md">
           Frequently Asked Questions

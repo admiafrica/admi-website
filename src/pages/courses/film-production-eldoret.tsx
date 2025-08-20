@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Title, Text, Button, Grid, Card, List, Accordion } from '@mantine/core'
+import { Container, Title, Text, Button, Grid, Card, List } from '@mantine/core'
 import PageSEO from '../../components/shared/v3/PageSEO'
 
 const FilmProductionEldoretPage = () => {
@@ -86,78 +86,10 @@ const FilmProductionEldoretPage = () => {
                   Get detailed curriculum, admission requirements, and enrollment information for our Film Production
                   program.
                 </Text>
-                <Button component="a" href="/courses/film-production-diploma" variant="light" fullWidth>
+                <Button component="a" href="/courses/film-and-television-production-diploma" variant="light" fullWidth>
                   View Full Film Production Course Details
                 </Button>
               </Card>
-            </Card>
-
-            <Card shadow="sm" padding="lg" radius="md" withBorder mt="md">
-              <Title order={3} mb="md">
-                Frequently Asked Questions - Eldoret Students
-              </Title>
-              <Accordion>
-                <Accordion.Item key={0} value={'faq-0'}>
-                  <Accordion.Control>
-                    How does Eldoret's environment contribute to film production learning?
-                  </Accordion.Control>
-                  <Accordion.Panel>
-                    <Text size="sm">
-                      Eldoret's unique positioning in the North Rift, combined with its vibrant startup and digital
-                      innovation scene, provides an eclectic backdrop for learning and applying film-production skills.
-                      From documentary projects capturing athletic training to creating digital content for startups,
-                      students can harness a diverse range of local subjects and landscapes.
-                    </Text>
-                  </Accordion.Panel>
-                </Accordion.Item>
-                <Accordion.Item key={1} value={'faq-1'}>
-                  <Accordion.Control>
-                    Are there local career opportunities in film production after completing the course?
-                  </Accordion.Control>
-                  <Accordion.Panel>
-                    <Text size="sm">
-                      Absolutely. Eldoret is home to several regional media houses, advertising agencies keen on
-                      commercial video production, and a burgeoning number of content creators. Moreover, the city's
-                      sports organizations frequently seek skilled professionals to produce engaging content, offering a
-                      variety of career paths for film production graduates.
-                    </Text>
-                  </Accordion.Panel>
-                </Accordion.Item>
-              </Accordion>
-            </Card>
-
-            <Card shadow="sm" padding="lg" radius="md" withBorder mt="md">
-              <Title order={3} mb="md">
-                Frequently Asked Questions - Eldoret Students
-              </Title>
-              <Accordion>
-                <Accordion.Item key={0} value={'faq-0'}>
-                  <Accordion.Control>
-                    How does Eldoret's environment contribute to film production learning?
-                  </Accordion.Control>
-                  <Accordion.Panel>
-                    <Text size="sm">
-                      Eldoret's unique positioning in the North Rift, combined with its vibrant startup and digital
-                      innovation scene, provides an eclectic backdrop for learning and applying film-production skills.
-                      From documentary projects capturing athletic training to creating digital content for startups,
-                      students can harness a diverse range of local subjects and landscapes.
-                    </Text>
-                  </Accordion.Panel>
-                </Accordion.Item>
-                <Accordion.Item key={1} value={'faq-1'}>
-                  <Accordion.Control>
-                    Are there local career opportunities in film production after completing the course?
-                  </Accordion.Control>
-                  <Accordion.Panel>
-                    <Text size="sm">
-                      Absolutely. Eldoret is home to several regional media houses, advertising agencies keen on
-                      commercial video production, and a burgeoning number of content creators. Moreover, the city's
-                      sports organizations frequently seek skilled professionals to produce engaging content, offering a
-                      variety of career paths for film production graduates.
-                    </Text>
-                  </Accordion.Panel>
-                </Accordion.Item>
-              </Accordion>
             </Card>
           </Grid.Col>
 
@@ -174,7 +106,7 @@ const FilmProductionEldoretPage = () => {
                 <strong>Fee:</strong> <a href="https://admi.africa/student-support#fees">View current fees</a>
               </Text>
               <Text mb="sm">
-                <strong>Location:</strong> Eldoret Campus (Central Location)
+                <strong>Location:</strong> ADMI Nairobi Campus
               </Text>
               <Button component="a" href="/enquiry" fullWidth mt="md" color="blue">
                 Apply Now
@@ -188,9 +120,10 @@ const FilmProductionEldoretPage = () => {
         </Title>
 
         <Text>
-          eldoret is a growing hub for creative industries in Kenya. As Kenya&apos;s capital,000, the ADMI offers
-          excellent opportunities for Film Production graduates. The creative sector in Rift Valley is expanding
-          rapidly, creating numerous job opportunities for skilled professionals.
+          Eldoret is a growing hub for creative industries in the Rift Valley region. ADMI welcomes students from
+          Eldoret and the Rift Valley, with all classes conducted at our state-of-the-art Nairobi campus. The creative
+          sector in Kenya is expanding rapidly, creating numerous job opportunities for skilled film production
+          professionals.
         </Text>
         <Card mt="xl" shadow="sm" padding="lg" radius="md" withBorder>
           <Title order={3} mb="md">
@@ -200,7 +133,7 @@ const FilmProductionEldoretPage = () => {
             Take the next step towards your creative career. Explore our comprehensive Film Production program with
             detailed curriculum, career outcomes, and admission process.
           </Text>
-          <Button component="a" href="/courses/film-production-diploma" size="lg" fullWidth>
+          <Button component="a" href="/courses/film-and-television-production-diploma" size="lg" fullWidth>
             Explore Full Film Production Program Details
           </Button>
         </Card>

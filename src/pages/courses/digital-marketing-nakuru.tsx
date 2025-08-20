@@ -52,6 +52,34 @@ const DigitalMarketingNakuruPage = () => {
         }}
       />
 
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            mainEntity: [
+              {
+                '@type': 'Question',
+                name: "How relevant is a digital marketing course to Nakuru's job market?",
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: 'In Nakuru, the demand for digital marketing skills is surging, particularly within the manufacturing, agribusiness, and tourism sectors. A digital marketing course equips professionals to meet the local and regional market needs, offering strategic insights into consumer behavior and digital trends that are vital for businesses in these industries.'
+                }
+              },
+              {
+                '@type': 'Question',
+                name: 'Are there local businesses in Nakuru that hire digital marketers?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: "Yes, many of Nakuru's leading businesses, especially within the manufacturing, agricultural, and tourism sectors, actively seek digital marketers. These firms are looking to expand their online presence and engage with both local and international markets more effectively, creating ample opportunities for skilled professionals."
+                }
+              }
+            ]
+          })
+        }}
+      />
+
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <Title order={1} ta="center" mb="md">
           Digital Marketing Course in Rift Valley
@@ -128,40 +156,6 @@ const DigitalMarketingNakuruPage = () => {
                 </Accordion.Item>
               </Accordion>
             </Card>
-
-            <Card shadow="sm" padding="lg" radius="md" withBorder mt="md">
-              <Title order={3} mb="md">
-                Frequently Asked Questions - Nakuru Students
-              </Title>
-              <Accordion>
-                <Accordion.Item key={0} value={'faq-0'}>
-                  <Accordion.Control>
-                    How relevant is a digital marketing course to Nakuru's job market?
-                  </Accordion.Control>
-                  <Accordion.Panel>
-                    <Text size="sm">
-                      In Nakuru, the demand for digital marketing skills is surging, particularly within the
-                      manufacturing, agribusiness, and tourism sectors. A digital marketing course equips professionals
-                      to meet the local and regional market needs, offering strategic insights into consumer behavior
-                      and digital trends that are vital for businesses in these industries.
-                    </Text>
-                  </Accordion.Panel>
-                </Accordion.Item>
-                <Accordion.Item key={1} value={'faq-1'}>
-                  <Accordion.Control>
-                    Are there local businesses in Nakuru that hire digital marketers?
-                  </Accordion.Control>
-                  <Accordion.Panel>
-                    <Text size="sm">
-                      Yes, many of Nakuru's leading businesses, especially within the manufacturing, agricultural, and
-                      tourism sectors, actively seek digital marketers. These firms are looking to expand their online
-                      presence and engage with both local and international markets more effectively, creating ample
-                      opportunities for skilled professionals.
-                    </Text>
-                  </Accordion.Panel>
-                </Accordion.Item>
-              </Accordion>
-            </Card>
           </Grid.Col>
 
           <Grid.Col span={{ base: 12, md: 4 }}>
@@ -177,7 +171,7 @@ const DigitalMarketingNakuruPage = () => {
                 <strong>Fee:</strong> <a href="https://admi.africa/student-support#fees">View current fees</a>
               </Text>
               <Text mb="sm">
-                <strong>Location:</strong> Nakuru Campus (Central Location)
+                <strong>Location:</strong> ADMI Nairobi Campus
               </Text>
               <Button component="a" href="/enquiry" fullWidth mt="md" color="blue">
                 Apply Now

@@ -51,6 +51,34 @@ const AnimationMombasaPage = () => {
         }}
       />
 
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            mainEntity: [
+              {
+                '@type': 'Question',
+                name: "How does Mombasa's unique setting benefit my animation studies?",
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: "Mombasa's diverse cultural and coastal environment offers a rich tapestry of stories and visuals, providing animation students unique material for character design, motion graphics, and visual effects, enhancing creativity and distinctiveness in their work."
+                }
+              },
+              {
+                '@type': 'Question',
+                name: 'Are there local career opportunities in animation within Mombasa?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: "Yes, Mombasa's animation career opportunities are growing, especially within the tourism and hospitality sectors, coastal media houses, and advertising agencies looking for engaging content to attract both local and international audiences."
+                }
+              }
+            ]
+          })
+        }}
+      />
+
       <Container size="lg" py="xl">
         <Title order={1} ta="center" mb="md">
           Animation Course in Coast
@@ -87,7 +115,7 @@ const AnimationMombasaPage = () => {
                 <Text size="sm" mb="md">
                   Get detailed curriculum, admission requirements, and enrollment information for our Animation program.
                 </Text>
-                <Button component="a" href="/courses/animation-diploma" variant="light" fullWidth>
+                <Button component="a" href="/courses/animation-and-motion-graphics-diploma" variant="light" fullWidth>
                   View Full Animation Course Details
                 </Button>
               </Card>
@@ -143,7 +171,7 @@ const AnimationMombasaPage = () => {
                 </a>
               </Text>
               <Text mb="sm">
-                <strong>Location:</strong> Mombasa Campus (Central Location)
+                <strong>Location:</strong> ADMI Nairobi Campus
               </Text>
               <Text mb="sm">
                 <strong>Campus:</strong> 25 Kenyatta Avenue, Nairobi
@@ -174,7 +202,7 @@ const AnimationMombasaPage = () => {
             Take the next step towards your creative career. Explore our comprehensive Animation program with detailed
             curriculum, career outcomes, and admission process.
           </Text>
-          <Button component="a" href="/courses/animation-diploma" size="lg" fullWidth>
+          <Button component="a" href="/courses/animation-and-motion-graphics-diploma" size="lg" fullWidth>
             Explore Full Animation Program Details
           </Button>
         </Card>

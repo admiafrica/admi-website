@@ -52,6 +52,34 @@ const DigitalMarketingMombasaPage = () => {
         }}
       />
 
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            mainEntity: [
+              {
+                '@type': 'Question',
+                name: "How relevant is a digital marketing course in Mombasa's tourism-driven economy?",
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: "In Mombasa's tourism-centric economy, digital marketing skills are invaluable. Businesses seek to capitalize on online platforms to reach a global audience, making skills in social media marketing, SEO/SEM, and content marketing especially relevant for promoting local attractions and services."
+                }
+              },
+              {
+                '@type': 'Question',
+                name: 'Are there local career opportunities in digital marketing in Mombasa?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: "Absolutely. Mombasa's growing tourism and hospitality industries are on the lookout for digital marketing professionals. Local coastal media houses and emerging tech startups also offer opportunities for those skilled in the latest digital marketing trends, including AI-powered marketing."
+                }
+              }
+            ]
+          })
+        }}
+      />
+
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <Title order={1} ta="center" mb="md">
           Digital Marketing Course in Coast
@@ -127,40 +155,6 @@ const DigitalMarketingMombasaPage = () => {
                 </Accordion.Item>
               </Accordion>
             </Card>
-
-            <Card shadow="sm" padding="lg" radius="md" withBorder mt="md">
-              <Title order={3} mb="md">
-                Frequently Asked Questions - Mombasa Students
-              </Title>
-              <Accordion>
-                <Accordion.Item key={0} value={'faq-0'}>
-                  <Accordion.Control>
-                    How relevant is a digital marketing course in Mombasa's tourism-driven economy?
-                  </Accordion.Control>
-                  <Accordion.Panel>
-                    <Text size="sm">
-                      In Mombasa's tourism-centric economy, digital marketing skills are invaluable. Businesses seek to
-                      capitalize on online platforms to reach a global audience, making skills in social media
-                      marketing, SEO/SEM, and content marketing especially relevant for promoting local attractions and
-                      services.
-                    </Text>
-                  </Accordion.Panel>
-                </Accordion.Item>
-                <Accordion.Item key={1} value={'faq-1'}>
-                  <Accordion.Control>
-                    Are there local career opportunities in digital marketing in Mombasa?
-                  </Accordion.Control>
-                  <Accordion.Panel>
-                    <Text size="sm">
-                      Absolutely. Mombasa's growing tourism and hospitality industries are on the lookout for digital
-                      marketing professionals. Local coastal media houses and emerging tech startups also offer
-                      opportunities for those skilled in the latest digital marketing trends, including AI-powered
-                      marketing.
-                    </Text>
-                  </Accordion.Panel>
-                </Accordion.Item>
-              </Accordion>
-            </Card>
           </Grid.Col>
 
           <Grid.Col span={{ base: 12, md: 4 }}>
@@ -176,7 +170,7 @@ const DigitalMarketingMombasaPage = () => {
                 <strong>Fee:</strong> <a href="https://admi.africa/student-support#fees">View current fees</a>
               </Text>
               <Text mb="sm">
-                <strong>Location:</strong> Mombasa Campus (Central Location)
+                <strong>Location:</strong> ADMI Nairobi Campus
               </Text>
               <Button component="a" href="/enquiry" fullWidth mt="md" color="blue">
                 Apply Now

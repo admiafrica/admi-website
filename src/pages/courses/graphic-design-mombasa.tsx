@@ -135,70 +135,6 @@ const GraphicDesignMombasaPage = () => {
                 </Accordion.Item>
               </Accordion>
             </Card>
-
-            <Card shadow="sm" padding="lg" radius="md" withBorder mt="md">
-              <Title order={3} mb="md">
-                Frequently Asked Questions - Mombasa Students
-              </Title>
-              <Accordion>
-                <Accordion.Item key={0} value={'faq-0'}>
-                  <Accordion.Control>
-                    How relevant is a graphic design course in Mombasa's job market?
-                  </Accordion.Control>
-                  <Accordion.Panel>
-                    <Text size="sm">
-                      Extremely relevant. Mombasa’s economy thrives on tourism and hospitality, sectors that
-                      increasingly rely on digital marketing and branding. Graphic designers with skills in UI/UX, brand
-                      design, and digital illustration are in high demand to create engaging content for these
-                      industries.
-                    </Text>
-                  </Accordion.Panel>
-                </Accordion.Item>
-                <Accordion.Item key={1} value={'faq-1'}>
-                  <Accordion.Control>Are there local Mombasa companies hiring graphic designers?</Accordion.Control>
-                  <Accordion.Panel>
-                    <Text size="sm">
-                      Yes, there are numerous opportunities in Mombasa. Local hospitality brands, advertising agencies,
-                      and coastal media houses frequently seek skilled graphic designers. Additionally, the city's
-                      growing tech scene offers roles in UI/UX and digital product design, along with freelance
-                      projects.
-                    </Text>
-                  </Accordion.Panel>
-                </Accordion.Item>
-              </Accordion>
-            </Card>
-
-            <Card shadow="sm" padding="lg" radius="md" withBorder mt="md">
-              <Title order={3} mb="md">
-                Frequently Asked Questions - Mombasa Students
-              </Title>
-              <Accordion>
-                <Accordion.Item key={0} value={'faq-0'}>
-                  <Accordion.Control>
-                    How relevant is a graphic design course in Mombasa's job market?
-                  </Accordion.Control>
-                  <Accordion.Panel>
-                    <Text size="sm">
-                      Extremely relevant. Mombasa’s economy thrives on tourism and hospitality, sectors that
-                      increasingly rely on digital marketing and branding. Graphic designers with skills in UI/UX, brand
-                      design, and digital illustration are in high demand to create engaging content for these
-                      industries.
-                    </Text>
-                  </Accordion.Panel>
-                </Accordion.Item>
-                <Accordion.Item key={1} value={'faq-1'}>
-                  <Accordion.Control>Are there local Mombasa companies hiring graphic designers?</Accordion.Control>
-                  <Accordion.Panel>
-                    <Text size="sm">
-                      Yes, there are numerous opportunities in Mombasa. Local hospitality brands, advertising agencies,
-                      and coastal media houses frequently seek skilled graphic designers. Additionally, the city's
-                      growing tech scene offers roles in UI/UX and digital product design, along with freelance
-                      projects.
-                    </Text>
-                  </Accordion.Panel>
-                </Accordion.Item>
-              </Accordion>
-            </Card>
           </Grid.Col>
 
           <Grid.Col span={{ base: 12, md: 4 }}>
@@ -214,7 +150,7 @@ const GraphicDesignMombasaPage = () => {
                 <strong>Fee:</strong> <a href="https://admi.africa/student-support#fees">View current fees</a>
               </Text>
               <Text mb="sm">
-                <strong>Location:</strong> Mombasa Campus (Central Location)
+                <strong>Location:</strong> ADMI Nairobi Campus
               </Text>
               <Button component="a" href="/enquiry" fullWidth mt="md" color="blue">
                 Apply Now

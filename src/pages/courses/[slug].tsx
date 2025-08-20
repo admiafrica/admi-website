@@ -14,6 +14,7 @@ import { CourseSchema, BreadcrumbSchema, VideoSchema } from '@/components/shared
 import { DiplomaEnhancedSEO } from '@/components/course/DiplomaEnhancedSEO'
 import { CertificateEnhancedSEO } from '@/components/course/CertificateEnhancedSEO'
 import { EastAfricaLocalSEO } from '@/components/seo/EastAfricaLocalSEO'
+import { CMSCourseFAQSchemaWrapper } from '@/components/course/CMSCourseFAQSchemaWrapper'
 import { YouTubeVideo } from '@/utils/youtube-api'
 import { generateCourseSpecificMeta } from '@/utils/course-specific-seo'
 
@@ -158,26 +159,30 @@ export default function CourseDetailPage({
           accreditation="Pearson Assured"
         />
       ) : (
-        /* Basic Course Structured Data */
-        <CourseSchema
-          name={course.name}
-          description={courseDescription}
-          provider={{
-            name: 'Africa Digital Media Institute',
-            url: 'https://admi.africa'
-          }}
-          url={`${process.env.NEXT_PUBLIC_API_BASE_URL || 'https://admi.africa'}/courses/${slug}`}
-          image={course.coverImage?.fields?.file?.url ? `https:${course.coverImage.fields.file.url}` : undefined}
-          awardLevel={course.awardLevel}
-          tuitionFees={course.tuitionFees}
-          duration={course.programType?.fields?.duration}
-          deliveryMode={course.programType?.fields?.deliveryMode}
-          educationalLevel={course.educationalLevel}
-          learningOutcomes={learningOutcomes}
-          careerOptions={careerOptions}
-          courseVideo={course.courseVideo}
-          courseSlug={slug}
-        />
+        /* Basic Course Structured Data with FAQ Schema */
+        <>
+          <CourseSchema
+            name={course.name}
+            description={courseDescription}
+            provider={{
+              name: 'Africa Digital Media Institute',
+              url: 'https://admi.africa'
+            }}
+            url={`${process.env.NEXT_PUBLIC_API_BASE_URL || 'https://admi.africa'}/courses/${slug}`}
+            image={course.coverImage?.fields?.file?.url ? `https:${course.coverImage.fields.file.url}` : undefined}
+            awardLevel={course.awardLevel}
+            tuitionFees={course.tuitionFees}
+            duration={course.programType?.fields?.duration}
+            deliveryMode={course.programType?.fields?.deliveryMode}
+            educationalLevel={course.educationalLevel}
+            learningOutcomes={learningOutcomes}
+            careerOptions={careerOptions}
+            courseVideo={course.courseVideo}
+            courseSlug={slug}
+          />
+          {/* Add FAQ Schema for basic courses too */}
+          <CMSCourseFAQSchemaWrapper courseSlug={slug} courseName={course.name} />
+        </>
       )}
 
       {/* Breadcrumb Structured Data */}

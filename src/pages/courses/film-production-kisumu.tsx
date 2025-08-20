@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Title, Text, Button, Grid, Card, List, Accordion } from '@mantine/core'
+import { Container, Title, Text, Button, Grid, Card, List } from '@mantine/core'
 import PageSEO from '../../components/shared/v3/PageSEO'
 
 const FilmProductionKisumuPage = () => {
@@ -86,74 +86,10 @@ const FilmProductionKisumuPage = () => {
                   Get detailed curriculum, admission requirements, and enrollment information for our Film Production
                   program.
                 </Text>
-                <Button component="a" href="/courses/film-production-diploma" variant="light" fullWidth>
+                <Button component="a" href="/courses/film-and-television-production-diploma" variant="light" fullWidth>
                   View Full Film Production Course Details
                 </Button>
               </Card>
-            </Card>
-
-            <Card shadow="sm" padding="lg" radius="md" withBorder mt="md">
-              <Title order={3} mb="md">
-                Frequently Asked Questions - Kisumu Students
-              </Title>
-              <Accordion>
-                <Accordion.Item key={0} value={'faq-0'}>
-                  <Accordion.Control>
-                    How does Kisumu's emerging tech scene benefit film production students?
-                  </Accordion.Control>
-                  <Accordion.Panel>
-                    <Text size="sm">
-                      Kisumu’s tech growth, especially in Milimani and Mamboleo, offers film students unique access to
-                      cutting-edge technology and collaboration with tech startups for digital storytelling and
-                      innovative content creation.
-                    </Text>
-                  </Accordion.Panel>
-                </Accordion.Item>
-                <Accordion.Item key={1} value={'faq-1'}>
-                  <Accordion.Control>
-                    Are there local film production or media companies in Kisumu for internship opportunities?
-                  </Accordion.Control>
-                  <Accordion.Panel>
-                    <Text size="sm">
-                      Yes, Kisumu hosts several media companies, including Lake Region Media, and a growing number of
-                      content creation startups, providing rich internship and practical experience opportunities for
-                      film production students.
-                    </Text>
-                  </Accordion.Panel>
-                </Accordion.Item>
-              </Accordion>
-            </Card>
-
-            <Card shadow="sm" padding="lg" radius="md" withBorder mt="md">
-              <Title order={3} mb="md">
-                Frequently Asked Questions - Kisumu Students
-              </Title>
-              <Accordion>
-                <Accordion.Item key={0} value={'faq-0'}>
-                  <Accordion.Control>
-                    How does Kisumu's emerging tech scene benefit film production students?
-                  </Accordion.Control>
-                  <Accordion.Panel>
-                    <Text size="sm">
-                      Kisumu’s tech growth, especially in Milimani and Mamboleo, offers film students unique access to
-                      cutting-edge technology and collaboration with tech startups for digital storytelling and
-                      innovative content creation.
-                    </Text>
-                  </Accordion.Panel>
-                </Accordion.Item>
-                <Accordion.Item key={1} value={'faq-1'}>
-                  <Accordion.Control>
-                    Are there local film production or media companies in Kisumu for internship opportunities?
-                  </Accordion.Control>
-                  <Accordion.Panel>
-                    <Text size="sm">
-                      Yes, Kisumu hosts several media companies, including Lake Region Media, and a growing number of
-                      content creation startups, providing rich internship and practical experience opportunities for
-                      film production students.
-                    </Text>
-                  </Accordion.Panel>
-                </Accordion.Item>
-              </Accordion>
             </Card>
           </Grid.Col>
 
@@ -170,7 +106,7 @@ const FilmProductionKisumuPage = () => {
                 <strong>Fee:</strong> <a href="https://admi.africa/student-support#fees">View current fees</a>
               </Text>
               <Text mb="sm">
-                <strong>Location:</strong> Kisumu Campus (Central Location)
+                <strong>Location:</strong> ADMI Nairobi Campus
               </Text>
               <Button component="a" href="/enquiry" fullWidth mt="md" color="blue">
                 Apply Now
@@ -184,9 +120,9 @@ const FilmProductionKisumuPage = () => {
         </Title>
 
         <Text>
-          kisumu is a growing hub for creative industries in Kenya. As Kenya&apos;s capital,000, the ADMI offers
-          excellent opportunities for Film Production graduates. The creative sector in Western is expanding rapidly,
-          creating numerous job opportunities for skilled professionals.
+          Kisumu is a growing hub for creative industries in Western Kenya. ADMI welcomes students from Kisumu and the
+          Western region, with all classes conducted at our state-of-the-art Nairobi campus. The creative sector in
+          Kenya is expanding rapidly, creating numerous job opportunities for skilled film production professionals.
         </Text>
         <Card mt="xl" shadow="sm" padding="lg" radius="md" withBorder>
           <Title order={3} mb="md">
@@ -196,7 +132,7 @@ const FilmProductionKisumuPage = () => {
             Take the next step towards your creative career. Explore our comprehensive Film Production program with
             detailed curriculum, career outcomes, and admission process.
           </Text>
-          <Button component="a" href="/courses/film-production-diploma" size="lg" fullWidth>
+          <Button component="a" href="/courses/film-and-television-production-diploma" size="lg" fullWidth>
             Explore Full Film Production Program Details
           </Button>
         </Card>

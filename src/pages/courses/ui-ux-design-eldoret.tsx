@@ -84,11 +84,11 @@ const UIUXDesignEldoretPage = () => {
                   📚 Complete Course Information
                 </Text>
                 <Text size="sm" mb="md">
-                  Get detailed curriculum, admission requirements, and enrollment information for our UI/UX Design
-                  program.
+                  Get detailed curriculum, admission requirements, and enrollment information for our Graphic Design
+                  Certificate program.
                 </Text>
-                <Button component="a" href="/courses/ui-ux-design-certificate" variant="light" fullWidth>
-                  View Full UI/UX Design Course Details
+                <Button component="a" href="/courses/graphic-design-certificate" variant="light" fullWidth>
+                  View Full Graphic Design Certificate Details
                 </Button>
               </Card>
             </Card>
@@ -145,7 +145,7 @@ const UIUXDesignEldoretPage = () => {
                 </a>
               </Text>
               <Text mb="sm">
-                <strong>Location:</strong> Eldoret Campus (Central Location)
+                <strong>Location:</strong> ADMI Nairobi Campus
               </Text>
               <Text mb="sm">
                 <strong>Campus:</strong> 25 Kenyatta Avenue, Nairobi
@@ -173,11 +173,11 @@ const UIUXDesignEldoretPage = () => {
             🎯 Ready to Start Your UI/UX Design Journey?
           </Title>
           <Text mb="md">
-            Take the next step towards your creative career. Explore our comprehensive UI/UX Design program with
-            detailed curriculum, career outcomes, and admission process.
+            Take the next step towards your creative career. Explore our comprehensive Graphic Design Certificate
+            program with detailed curriculum, career outcomes, and admission process.
           </Text>
-          <Button component="a" href="/courses/ui-ux-design-certificate" size="lg" fullWidth>
-            Explore Full UI/UX Design Program Details
+          <Button component="a" href="/courses/graphic-design-certificate" size="lg" fullWidth>
+            Explore Full Graphic Design Certificate Program Details
           </Button>
         </Card>
       </Container>

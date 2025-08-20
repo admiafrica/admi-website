@@ -51,6 +51,34 @@ const AnimationEldoretPage = () => {
         }}
       />
 
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            mainEntity: [
+              {
+                '@type': 'Question',
+                name: 'How can the animation course in Eldoret leverage the local startup ecosystem?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: "The course is designed to equip students with skills in 2D/3D animation and VFX, tapping into Eldoret's startup ecosystem which is ripe for digital content creation, especially for agricultural technology, and regional media sectors seeking innovative marketing and educational tools."
+                }
+              },
+              {
+                '@type': 'Question',
+                name: 'Are there local employment opportunities in Eldoret for animation graduates?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: "Yes, Eldoret offers a growing number of opportunities for animation professionals, especially within advertising agencies, regional media houses, and the emerging gaming sector. Additionally, the city's sports organizations are increasingly incorporating animated content for promotional purposes."
+                }
+              }
+            ]
+          })
+        }}
+      />
+
       <Container size="lg" py="xl">
         <Title order={1} ta="center" mb="md">
           Animation Course in Rift Valley
@@ -87,7 +115,7 @@ const AnimationEldoretPage = () => {
                 <Text size="sm" mb="md">
                   Get detailed curriculum, admission requirements, and enrollment information for our Animation program.
                 </Text>
-                <Button component="a" href="/courses/animation-diploma" variant="light" fullWidth>
+                <Button component="a" href="/courses/animation-and-motion-graphics-diploma" variant="light" fullWidth>
                   View Full Animation Course Details
                 </Button>
               </Card>
@@ -147,7 +175,7 @@ const AnimationEldoretPage = () => {
                 </a>
               </Text>
               <Text mb="sm">
-                <strong>Location:</strong> Eldoret Campus (Central Location)
+                <strong>Location:</strong> ADMI Nairobi Campus
               </Text>
               <Text mb="sm">
                 <strong>Campus:</strong> 25 Kenyatta Avenue, Nairobi
@@ -178,7 +206,7 @@ const AnimationEldoretPage = () => {
             Take the next step towards your creative career. Explore our comprehensive Animation program with detailed
             curriculum, career outcomes, and admission process.
           </Text>
-          <Button component="a" href="/courses/animation-diploma" size="lg" fullWidth>
+          <Button component="a" href="/courses/animation-and-motion-graphics-diploma" size="lg" fullWidth>
             Explore Full Animation Program Details
           </Button>
         </Card>

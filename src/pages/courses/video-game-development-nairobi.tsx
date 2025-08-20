@@ -51,6 +51,34 @@ const VideoGameDevelopmentNairobiPage = () => {
         }}
       />
 
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            mainEntity: [
+              {
+                '@type': 'Question',
+                name: "How does Nairobi's tech ecosystem enhance my learning in video game development?",
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: "Nairobi's dynamic tech ecosystem, spearheaded by tech giants and startups in areas like CBD and Westlands, provides a fertile ground for innovation and collaboration. Students can engage with cutting-edge VR/AR projects and mobile gaming startups, gaining real-world insights and networking opportunities."
+                }
+              },
+              {
+                '@type': 'Question',
+                name: 'Are there real career opportunities in Nairobi for video game development graduates?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: "Absolutely. Nairobi's growing gaming industry, bolstered by tech hubs and innovation centers, is on the lookout for skilled graduates in game design, programming, and 3D modeling. Opportunities span gaming studios, edtech companies, and simulation firms, particularly those focusing on mobile and VR/AR games."
+                }
+              }
+            ]
+          })
+        }}
+      />
+
       <Container size="lg" py="xl">
         <Title order={1} ta="center" mb="md">
           Video Game Development Course in Nairobi
@@ -151,7 +179,7 @@ const VideoGameDevelopmentNairobiPage = () => {
                 </a>
               </Text>
               <Text mb="sm">
-                <strong>Location:</strong> Nairobi Campus (Central Location)
+                <strong>Location:</strong> ADMI Nairobi Campus
               </Text>
               <Text mb="sm">
                 <strong>Campus:</strong> 25 Kenyatta Avenue, Nairobi

@@ -51,6 +51,34 @@ const AnimationNakuruPage = () => {
         }}
       />
 
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            mainEntity: [
+              {
+                '@type': 'Question',
+                name: "How does Nakuru's location influence the animation course experience?",
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: "Nakuru's strategic location allows for unique cross-market insights in animation, offering students exposure to a diverse range of projects from both Nairobi and Western Kenya, enriching their learning and creative application."
+                }
+              },
+              {
+                '@type': 'Question',
+                name: 'Are there local animation studios or related industries in Nakuru?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: 'Yes, Nakuru is home to emerging animation studios, and its proximity to major manufacturing and agricultural firms, as well as tourism businesses, provides ample opportunities for animators in advertising and promotional content creation.'
+                }
+              }
+            ]
+          })
+        }}
+      />
+
       <Container size="lg" py="xl">
         <Title order={1} ta="center" mb="md">
           Animation Course in Rift Valley
@@ -87,7 +115,7 @@ const AnimationNakuruPage = () => {
                 <Text size="sm" mb="md">
                   Get detailed curriculum, admission requirements, and enrollment information for our Animation program.
                 </Text>
-                <Button component="a" href="/courses/animation-diploma" variant="light" fullWidth>
+                <Button component="a" href="/courses/animation-and-motion-graphics-diploma" variant="light" fullWidth>
                   View Full Animation Course Details
                 </Button>
               </Card>
@@ -145,7 +173,7 @@ const AnimationNakuruPage = () => {
                 </a>
               </Text>
               <Text mb="sm">
-                <strong>Location:</strong> Nakuru Campus (Central Location)
+                <strong>Location:</strong> ADMI Nairobi Campus
               </Text>
               <Text mb="sm">
                 <strong>Campus:</strong> 25 Kenyatta Avenue, Nairobi
@@ -176,7 +204,7 @@ const AnimationNakuruPage = () => {
             Take the next step towards your creative career. Explore our comprehensive Animation program with detailed
             curriculum, career outcomes, and admission process.
           </Text>
-          <Button component="a" href="/courses/animation-diploma" size="lg" fullWidth>
+          <Button component="a" href="/courses/animation-and-motion-graphics-diploma" size="lg" fullWidth>
             Explore Full Animation Program Details
           </Button>
         </Card>

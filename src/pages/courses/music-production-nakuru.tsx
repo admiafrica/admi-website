@@ -51,6 +51,34 @@ const MusicProductionNakuruPage = () => {
         }}
       />
 
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            mainEntity: [
+              {
+                '@type': 'Question',
+                name: "How does Nakuru's location influence my music production learning experience?",
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: "Studying in Nakuru places you at the crossroads of Kenya's music industry, offering insights into both urban and rural soundscapes. This unique mix provides a broad learning canvas for audio engineering, mastering, and beat production."
+                }
+              },
+              {
+                '@type': 'Question',
+                name: 'What are the local career opportunities in Nakuru for music production graduates?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: "Nakuru's graduates find opportunities in its growing number of recording studios, local media houses, and vibrant event companies. The city's strategic location also offers unique chances to work with artists from both Nairobi and Western Kenya, catering to a diverse audience."
+                }
+              }
+            ]
+          })
+        }}
+      />
+
       <Container size="lg" py="xl">
         <Title order={1} ta="center" mb="md">
           Music Production Course in Rift Valley
@@ -146,7 +174,7 @@ const MusicProductionNakuruPage = () => {
                 </a>
               </Text>
               <Text mb="sm">
-                <strong>Location:</strong> Nakuru Campus (Central Location)
+                <strong>Location:</strong> ADMI Nairobi Campus
               </Text>
               <Text mb="sm">
                 <strong>Campus:</strong> 25 Kenyatta Avenue, Nairobi

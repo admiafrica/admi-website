@@ -51,6 +51,34 @@ const PhotographyNairobiPage = () => {
         }}
       />
 
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            mainEntity: [
+              {
+                '@type': 'Question',
+                name: "How does Nairobi's dynamic environment enhance my photography learning experience?",
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: "Nairobi's unique blend of urban and natural landscapes provides a rich learning environment. You'll have the opportunity to practice with a variety of subjects, from cityscapes and bustling street life in areas like Eastlands and South B/C, to serene natural settings, enhancing your versatility and creativity as a photographer."
+                }
+              },
+              {
+                '@type': 'Question',
+                name: 'What kind of photography career opportunities can I expect in Nairobi?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: "Nairobi, being Kenya's largest creative job market, offers extensive opportunities in media houses like Nation Media Group and Royal Media Services, fashion photography, events coverage, and the booming real estate market. The city's growing interest in drone photography and virtual tours also opens up new avenues for photographers."
+                }
+              }
+            ]
+          })
+        }}
+      />
+
       <Container size="lg" py="xl">
         <Title order={1} ta="center" mb="md">
           Photography Course in Nairobi
@@ -148,7 +176,7 @@ const PhotographyNairobiPage = () => {
                 </a>
               </Text>
               <Text mb="sm">
-                <strong>Location:</strong> Nairobi Campus (Central Location)
+                <strong>Location:</strong> ADMI Nairobi Campus
               </Text>
               <Text mb="sm">
                 <strong>Campus:</strong> 25 Kenyatta Avenue, Nairobi

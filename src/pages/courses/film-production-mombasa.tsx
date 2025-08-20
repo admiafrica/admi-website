@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Title, Text, Button, Grid, Card, List, Accordion } from '@mantine/core'
+import { Container, Title, Text, Button, Grid, Card, List } from '@mantine/core'
 import PageSEO from '../../components/shared/v3/PageSEO'
 
 const FilmProductionMombasaPage = () => {
@@ -86,106 +86,10 @@ const FilmProductionMombasaPage = () => {
                   Get detailed curriculum, admission requirements, and enrollment information for our Film Production
                   program.
                 </Text>
-                <Button component="a" href="/courses/film-production-diploma" variant="light" fullWidth>
+                <Button component="a" href="/courses/film-and-television-production-diploma" variant="light" fullWidth>
                   View Full Film Production Course Details
                 </Button>
               </Card>
-            </Card>
-
-            <Card shadow="sm" padding="lg" radius="md" withBorder mt="md">
-              <Title order={3} mb="md">
-                Frequently Asked Questions - Mombasa Students
-              </Title>
-              <Accordion>
-                <Accordion.Item key={0} value={'faq-0'}>
-                  <Accordion.Control>
-                    How does Mombasa's tourism sector influence the film-production course?
-                  </Accordion.Control>
-                  <Accordion.Panel>
-                    <Text size="sm">
-                      Mombasa's thriving tourism industry provides a real-world lab for students, emphasizing skills in
-                      creating engaging content that promotes tourist destinations, hotels, and cultural heritage,
-                      particularly in storytelling and documentary production.
-                    </Text>
-                  </Accordion.Panel>
-                </Accordion.Item>
-                <Accordion.Item key={1} value={'faq-1'}>
-                  <Accordion.Control>
-                    Are there local career opportunities in film production after completing the course in Mombasa?
-                  </Accordion.Control>
-                  <Accordion.Panel>
-                    <Text size="sm">
-                      Yes, graduates can find opportunities in local TV stations, coastal media houses, and the
-                      advertising sector, especially with brands looking to leverage Mombasa's picturesque locations and
-                      the growing demand for digital content in the tourism and hospitality industries.
-                    </Text>
-                  </Accordion.Panel>
-                </Accordion.Item>
-              </Accordion>
-            </Card>
-
-            <Card shadow="sm" padding="lg" radius="md" withBorder mt="md">
-              <Title order={3} mb="md">
-                Frequently Asked Questions - Mombasa Students
-              </Title>
-              <Accordion>
-                <Accordion.Item key={0} value={'faq-0'}>
-                  <Accordion.Control>
-                    How does Mombasa's tourism sector influence the film-production course?
-                  </Accordion.Control>
-                  <Accordion.Panel>
-                    <Text size="sm">
-                      Mombasa's thriving tourism industry provides a real-world lab for students, emphasizing skills in
-                      creating engaging content that promotes tourist destinations, hotels, and cultural heritage,
-                      particularly in storytelling and documentary production.
-                    </Text>
-                  </Accordion.Panel>
-                </Accordion.Item>
-                <Accordion.Item key={1} value={'faq-1'}>
-                  <Accordion.Control>
-                    Are there local career opportunities in film production after completing the course in Mombasa?
-                  </Accordion.Control>
-                  <Accordion.Panel>
-                    <Text size="sm">
-                      Yes, graduates can find opportunities in local TV stations, coastal media houses, and the
-                      advertising sector, especially with brands looking to leverage Mombasa's picturesque locations and
-                      the growing demand for digital content in the tourism and hospitality industries.
-                    </Text>
-                  </Accordion.Panel>
-                </Accordion.Item>
-              </Accordion>
-            </Card>
-
-            <Card shadow="sm" padding="lg" radius="md" withBorder mt="md">
-              <Title order={3} mb="md">
-                Frequently Asked Questions - Mombasa Students
-              </Title>
-              <Accordion>
-                <Accordion.Item key={0} value={'faq-0'}>
-                  <Accordion.Control>
-                    How does Mombasa's tourism sector influence the film-production course?
-                  </Accordion.Control>
-                  <Accordion.Panel>
-                    <Text size="sm">
-                      Mombasa's thriving tourism industry provides a real-world lab for students, emphasizing skills in
-                      creating engaging content that promotes tourist destinations, hotels, and cultural heritage,
-                      particularly in storytelling and documentary production.
-                    </Text>
-                  </Accordion.Panel>
-                </Accordion.Item>
-                <Accordion.Item key={1} value={'faq-1'}>
-                  <Accordion.Control>
-                    Are there local career opportunities in film production after completing the course in Mombasa?
-                  </Accordion.Control>
-                  <Accordion.Panel>
-                    <Text size="sm">
-                      Yes, graduates can find opportunities in local TV stations, coastal media houses, and the
-                      advertising sector, especially with brands looking to leverage Mombasa's picturesque locations and
-                      the growing demand for digital content in the tourism and hospitality industries.
-                    </Text>
-                  </Accordion.Panel>
-                </Accordion.Item>
-              </Accordion>
             </Card>
           </Grid.Col>
 
@@ -202,7 +106,7 @@ const FilmProductionMombasaPage = () => {
                 <strong>Fee:</strong> <a href="https://admi.africa/student-support#fees">View current fees</a>
               </Text>
               <Text mb="sm">
-                <strong>Location:</strong> Mombasa Campus (Central Location)
+                <strong>Location:</strong> ADMI Nairobi Campus
               </Text>
               <Button component="a" href="/enquiry" fullWidth mt="md" color="blue">
                 Apply Now
@@ -228,7 +132,7 @@ const FilmProductionMombasaPage = () => {
             Take the next step towards your creative career. Explore our comprehensive Film Production program with
             detailed curriculum, career outcomes, and admission process.
           </Text>
-          <Button component="a" href="/courses/film-production-diploma" size="lg" fullWidth>
+          <Button component="a" href="/courses/film-and-television-production-diploma" size="lg" fullWidth>
             Explore Full Film Production Program Details
           </Button>
         </Card>

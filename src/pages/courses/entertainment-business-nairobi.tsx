@@ -51,6 +51,34 @@ const EntertainmentBusinessNairobiPage = () => {
         }}
       />
 
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            mainEntity: [
+              {
+                '@type': 'Question',
+                name: "How does Nairobi's entertainment scene enhance my learning experience in entertainment business?",
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: "Nairobi's diverse entertainment scene, from thriving digital events to traditional cultural showcases, offers a live laboratory for students. You can directly apply your coursework in real-world scenarios, network with industry leaders at events in CBD, Westlands, and beyond, and gain firsthand experience in one of Africa's fastest-growing entertainment markets."
+                }
+              },
+              {
+                '@type': 'Question',
+                name: 'What are the career prospects in Nairobi after completing this course?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: "Graduates find themselves in a city buzzing with opportunities, from launching careers at top media houses like Nation Media Group to innovating in digital event spaces. Nairobi's unique position as a creative hub not only in Kenya but in East Africa opens doors to roles in event management, talent scouting, and digital marketing within the entertainment sector."
+                }
+              }
+            ]
+          })
+        }}
+      />
+
       <Container size="lg" py="xl">
         <Title order={1} ta="center" mb="md">
           Entertainment Business Course in Nairobi
@@ -146,7 +174,7 @@ const EntertainmentBusinessNairobiPage = () => {
                 </a>
               </Text>
               <Text mb="sm">
-                <strong>Location:</strong> Nairobi Campus (Central Location)
+                <strong>Location:</strong> ADMI Nairobi Campus
               </Text>
               <Text mb="sm">
                 <strong>Campus:</strong> 25 Kenyatta Avenue, Nairobi

@@ -51,6 +51,34 @@ const SoundEngineeringNakuruPage = () => {
         }}
       />
 
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            mainEntity: [
+              {
+                '@type': 'Question',
+                name: 'How do the sectors in Nakuru enhance my learning experience in sound engineering?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: "Nakuru's diverse economy allows students to apply sound engineering across different fields, from creating immersive tourist audio guides in Lake Nakuru National Park to producing high-quality agricultural podcasts, offering a rich, hands-on learning environment."
+                }
+              },
+              {
+                '@type': 'Question',
+                name: "Are there local internships available in sound engineering within Nakuru's industries?",
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: "Yes, Nakuru's manufacturing companies, agricultural firms, and tourism businesses often seek skilled sound engineers for product promotions, field recordings, and event productions, providing ample internship opportunities for students."
+                }
+              }
+            ]
+          })
+        }}
+      />
+
       <Container size="lg" py="xl">
         <Title order={1} ta="center" mb="md">
           Sound Engineering Course in Rift Valley
@@ -145,7 +173,7 @@ const SoundEngineeringNakuruPage = () => {
                 </a>
               </Text>
               <Text mb="sm">
-                <strong>Location:</strong> Nakuru Campus (Central Location)
+                <strong>Location:</strong> ADMI Nairobi Campus
               </Text>
               <Text mb="sm">
                 <strong>Campus:</strong> 25 Kenyatta Avenue, Nairobi
