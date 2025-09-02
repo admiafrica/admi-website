@@ -147,6 +147,18 @@ const nextConfig = {
   },
   async redirects() {
     return [
+      // Redirect www subdomain to naked domain
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: 'www.admi.africa',
+          },
+        ],
+        destination: 'https://admi.africa/:path*',
+        permanent: true,
+      },
       // Redirect old domain to new domain
       {
         source: '/:path*',
