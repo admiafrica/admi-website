@@ -1,6 +1,7 @@
 import Script from 'next/script'
 import { Metadata } from 'next'
 import { Providers } from './providers'
+import { getBaseUrl } from '@/utils/url'
 import '@/styles/globals.css'
 
 export const metadata: Metadata = {
@@ -43,7 +44,7 @@ export const metadata: Metadata = {
   authors: [{ name: 'Africa Digital Media Institute' }],
   creator: 'Africa Digital Media Institute',
   publisher: 'Africa Digital Media Institute',
-  metadataBase: new URL(process.env.NEXT_PUBLIC_API_BASE_URL || 'https://admi.africa'),
+  metadataBase: new URL(getBaseUrl()),
   alternates: {
     canonical: '/',
     languages: {

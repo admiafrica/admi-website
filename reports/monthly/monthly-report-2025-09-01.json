@@ -1,0 +1,81 @@
+{
+  "title": "ADMI Website Analytics & Content Optimization Report - September 2025",
+  "generatedAt": "2025-09-01T02:00:17.191Z",
+  "period": "September 2025",
+  "executiveSummary": {
+    "totalPageViews": 2450,
+    "totalUsers": 1820,
+    "bounceRate": 42.3,
+    "conversionRate": "37.0",
+    "contentGenerated": 0
+  },
+  "searchAnalytics": {
+    "totalQueries": 5,
+    "topQueries": [
+      {
+        "query": "admi music production course fees",
+        "pagePath": "/frequently-asked-questions",
+        "sessions": 45,
+        "users": 38
+      },
+      {
+        "query": "film production diploma requirements",
+        "pagePath": "/frequently-asked-questions",
+        "sessions": 32,
+        "users": 29
+      },
+      {
+        "query": "graphic design course duration",
+        "pagePath": "/frequently-asked-questions",
+        "sessions": 28,
+        "users": 24
+      },
+      {
+        "query": "animation course job opportunities",
+        "pagePath": "/frequently-asked-questions",
+        "sessions": 24,
+        "users": 21
+      },
+      {
+        "query": "digital marketing certificate salary",
+        "pagePath": "/frequently-asked-questions",
+        "sessions": 19,
+        "users": 17
+      }
+    ],
+    "averageSessionsPerQuery": 30
+  },
+  "contentOptimization": {
+    "optimizationsRun": 7,
+    "faqsGenerated": 0,
+    "articlesGenerated": 0,
+    "contentfulUploads": 0,
+    "automationEffectiveness": "Needs Review"
+  },
+  "performanceMetrics": {
+    "userEngagement": {
+      "avgSessionDuration": 185,
+      "bounceRate": 42.3,
+      "pagesPerSession": "N/A"
+    },
+    "conversionMetrics": {
+      "faqToCoursePage": "37.0",
+      "totalConversions": 673
+    }
+  },
+  "insights": "1. Key Performance Insights:\n   - The site had 1820 users in the last month, out of which 42.3% bounced back without any interaction. This indicates there is room for improvement in the website's user experience or content relevance.\n   - The conversion rate is 37.0%, which is a good performance indicator, as this means over one-third of users conducted some meaningful action (like filling out a form, buying a product, etc.).\n   - There were only 5 total search queries, which is relatively low and suggests that users could be facing difficulty with the search functionality or the content is not well indexed.\n\n2. Content Optimization Effectiveness:\n   - Despite running 7 optimizations, there were no new FAQs, articles, or content uploaded. This indicates the optimization efforts are not yielding any tangible output and need to be revisited.\n\n3. User Behavior Trends:\n   - The top search queries indicate that users are primarily interested in course fees, diploma requirements, course duration, job opportunities, and salaries related to the courses. This can be used to understand what information users are seeking.\n\n4. Specific Recommendations for Next Month:\n   - Improve the search functionality or better index the content to aid in user searches.\n   - Make sure the information related to course fees, diploma requirements, course duration, job opportunities, and salaries is easily accessible and prominently displayed.\n   - Based on the bounce rate, conduct a website UX review to identify areas of improvement and implement changes to keep users engaged.\n   - Realign content optimization efforts to focus on generating FAQs and articles that address the top search queries.\n\n5. Areas Needing Attention:\n   - Bounce Rate: A high bounce rate indicates that users aren't finding what they're looking for or the website is difficult to navigate. This needs immediate attention.\n   - Search Functionality: The low number of search queries suggests possible issues with the search functionality.\n   - Content Optimization: None of the 7 optimizations run generated any new content. This needs to be reviewed and addressed.",
+  "recommendations": [
+    {
+      "priority": "Medium",
+      "area": "Content Automation",
+      "recommendation": "Increase automated content generation frequency",
+      "action": "Review search query thresholds and adjust automation settings"
+    }
+  ],
+  "nextMonthGoals": [
+    "Increase FAQ to course conversion rate by 5%",
+    "Reduce bounce rate by 3%",
+    "Generate content for 20+ new search queries",
+    "Improve average session duration by 15 seconds"
+  ]
+}

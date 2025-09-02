@@ -1,7 +1,10 @@
 import { NextResponse } from 'next/server'
 
+import { getBaseUrl } from '@/utils/url'
+
 export async function GET() {
-  const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'https://admi.africa'
+  // Use utility function to ensure consistent naked domain
+  const baseUrl = getBaseUrl()
 
   const llmContent = `# Africa Digital Media Institute (ADMI) - LLM Information
 

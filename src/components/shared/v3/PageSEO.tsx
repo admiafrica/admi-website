@@ -2,6 +2,7 @@ import React from 'react'
 import Head from 'next/head'
 import { StaticImageData } from 'next/image'
 import ImageLogo from '@/assets/logo.svg'
+import { getBaseUrl, createFullUrl, ensureNakedDomain } from '@/utils/url'
 
 interface PageSEOProps {
   title?: string
@@ -13,9 +14,10 @@ interface PageSEOProps {
 }
 
 const PageSEO: React.FC<PageSEOProps> = ({ title, description, image, url, keywords, canonical }) => {
-  const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'https://admi.africa'
-  const fullUrl = url ? `${baseUrl}${url}` : baseUrl
-  const canonicalUrl = canonical || fullUrl
+  // Use utility functions to ensure consistent naked domain usage
+  const baseUrl = getBaseUrl()
+  const fullUrl = url ? createFullUrl(url) : baseUrl
+  const canonicalUrl = canonical ? ensureNakedDomain(canonical) : fullUrl
 
   const pageTitle = `ADMI${title ? ` - ${title}` : ''}`
   const pageDescription =

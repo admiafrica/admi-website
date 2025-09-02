@@ -1,13 +1,10 @@
 import { NextResponse } from 'next/server'
+import { getBaseUrl } from '@/utils/url'
 
 export async function GET() {
   try {
-    // Base URL from environment variable
-    let baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'https://admi.africa'
-    baseUrl = baseUrl.replace(/\/$/, '')
-    if (!baseUrl.startsWith('http')) {
-      baseUrl = `https://${baseUrl}`
-    }
+    // Use utility function to ensure consistent naked domain
+    const baseUrl = getBaseUrl()
 
     console.log('Resources sitemap baseUrl:', baseUrl)
 

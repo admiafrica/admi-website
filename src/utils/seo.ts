@@ -1,4 +1,5 @@
 import { Metadata } from 'next'
+import { getBaseUrl, createFullUrl } from './url'
 
 interface SEOProps {
   title: string
@@ -25,8 +26,9 @@ export function generateSEO({
   authors = [],
   section
 }: SEOProps): Metadata {
-  const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'https://admi.africa'
-  const fullUrl = url ? `${baseUrl}${url}` : baseUrl
+  // Use utility functions to ensure consistent naked domain usage
+  const baseUrl = getBaseUrl()
+  const fullUrl = url ? createFullUrl(url) : baseUrl
   const defaultDescription =
     'Africa Digital Media Institute - Leading Creative Media and Technology Training Institution across Africa. Empowering creative professionals through industry-relevant education and training.'
   const defaultImage = `${baseUrl}/logo.png`

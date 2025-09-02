@@ -88,7 +88,7 @@ export default function Footer({ bgColor }: Props) {
               <Text fw="bold" ml={10}>
                 Email:
               </Text>
-              <Text>info@admi.ac.ke</Text>
+              <Text>info@admi.africa</Text>
             </Group>
 
             <Group gap={4} className="px-4">

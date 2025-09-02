@@ -35,16 +35,16 @@ export default function CustomFooter() {
       {/* Quick Links and Social Media */}
       <Stack style={sectionStyle} gap={4} h={isMobile ? 'fit-content' : '100%'}>
         <Title order={3}>Quick Links</Title>
-        <Anchor href="https://admi.africa/contact-us" fw={'bold'}>
+        <Anchor href="/contact-us" fw={'bold'}>
           Contact Us
         </Anchor>
-        <Anchor href="https://admi.africa/about/academic-team" fw={'bold'}>
+        <Anchor href="/about/academic-team" fw={'bold'}>
           Academic Team
         </Anchor>
-        <Anchor href="https://admi.africa/fellowship" fw={'bold'}>
+        <Anchor href="/fellowship" fw={'bold'}>
           Fellowship
         </Anchor>
-        <Anchor href="https://admi.africa/privacy-policy" fw={'bold'}>
+        <Anchor href="/privacy-policy" fw={'bold'}>
           Privacy Policy
         </Anchor>
 
