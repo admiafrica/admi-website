@@ -4,6 +4,7 @@ import type { AppProps } from 'next/app'
 import { MantineProvider } from '@mantine/core'
 import { Notifications } from '@mantine/notifications'
 import { GoogleTagManager } from '@/components/analytics/GoogleTagManager'
+import { WebVitals } from '@/components/shared/WebVitals'
 
 // mantine components
 import { defaultTheme } from '@/styles/theme'
@@ -20,6 +21,9 @@ export default function App({ Component, pageProps }: AppProps) {
     <MantineProvider theme={defaultTheme}>
       {/* Google Tag Manager */}
       {gtmId && <GoogleTagManager gtmId={gtmId} />}
+
+      {/* Web Vitals Monitoring */}
+      <WebVitals />
 
       <Notifications />
       <Component {...pageProps} />

@@ -186,11 +186,12 @@ class IntelligentContentOptimizer {
    * Generate FAQ content using OpenAI Assistant with vector store
    */
   async generateFAQ(queryData) {
+    let thread, run
     try {
       console.log(`🤖 Generating FAQ for: "${queryData.query}" using vector store`)
 
       // Create a thread for this conversation
-      const thread = await this.openai.beta.threads.create()
+      thread = await this.openai.beta.threads.create()
 
       if (!thread || !thread.id) {
         throw new Error('Failed to create OpenAI thread')
@@ -222,7 +223,7 @@ The response should directly address what the student is searching for and guide
       console.log(`  🚀 Creating run with thread ID: ${thread.id}`)
       console.log(`  🤖 Assistant ID: ${this.assistantId}`)
 
-      const run = await this.openai.beta.threads.runs.create(thread.id, {
+      run = await this.openai.beta.threads.runs.create(thread.id, {
         assistant_id: this.assistantId,
         instructions:
           "You are ADMI's educational advisor. Use the comprehensive course information in your knowledge base to create accurate, helpful FAQ responses that encourage enrollment while providing genuine value to prospective students."
@@ -232,20 +233,20 @@ The response should directly address what the student is searching for and guide
 
       // Wait for completion
       console.log(`  ⏳ Checking run status with thread ID: ${thread.id}, run ID: ${run.id}`)
-      let runStatus = await this.openai.beta.threads.runs.retrieve(run.thread_id, run.id)
+      let runStatus = await this.openai.beta.threads.runs.retrieve(thread.id, run.id)
 
       let attempts = 0
       const maxAttempts = 30
 
       while ((runStatus.status === 'queued' || runStatus.status === 'in_progress') && attempts < maxAttempts) {
         await new Promise((resolve) => setTimeout(resolve, 2000))
-        runStatus = await this.openai.beta.threads.runs.retrieve(run.thread_id, run.id)
+        runStatus = await this.openai.beta.threads.runs.retrieve(thread.id, run.id)
         attempts++
       }
 
       if (runStatus.status === 'completed') {
         // Retrieve the assistant's response
-        const messages = await this.openai.beta.threads.messages.list(run.thread_id)
+        const messages = await this.openai.beta.threads.messages.list(thread.id)
         const assistantMessage = messages.data.find((msg) => msg.role === 'assistant')
 
         if (assistantMessage && assistantMessage.content[0] && assistantMessage.content[0].text) {
@@ -282,6 +283,7 @@ The response should directly address what the student is searching for and guide
       return null
     } catch (error) {
       console.error('❌ Error generating FAQ with vector store:', error.message)
+      console.error('❌ Error details - thread.id:', thread?.id, 'run.id:', run?.id)
       return null
     }
   }

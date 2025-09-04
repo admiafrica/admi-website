@@ -1,5 +1,3 @@
-import '@mantine/carousel/styles.css'
-
 import { AppShell, rem } from '@mantine/core'
 import { useHeadroom } from '@mantine/hooks'
 

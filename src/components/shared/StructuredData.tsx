@@ -835,8 +835,11 @@ export function VideoSchema({
     name,
     description,
     thumbnailUrl,
-    contentUrl,
-    embedUrl,
+    // Priority: Use embedUrl (watch page) as primary contentUrl, direct video file as secondary
+    contentUrl: embedUrl || contentUrl,
+    embedUrl: embedUrl,
+    // Add the direct video file URL as alternate/fallback
+    ...(contentUrl && contentUrl !== embedUrl && { url: contentUrl }),
     uploadDate,
     ...(duration && { duration }),
     publisher: {

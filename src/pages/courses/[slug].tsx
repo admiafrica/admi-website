@@ -212,6 +212,7 @@ export default function CourseDetailPage({
               ? `https:${course.coverImage.fields.file.url}`
               : 'https://admi.africa/logo.png'
           }
+          // Swap: embedUrl (watch page) becomes primary, direct video file becomes secondary
           contentUrl={`https:${course.courseVideo.fields.file.url}`}
           embedUrl={`${process.env.NEXT_PUBLIC_API_BASE_URL || 'https://admi.africa'}/watch/${slug}`}
           uploadDate={course.sys?.updatedAt || new Date().toISOString()}
