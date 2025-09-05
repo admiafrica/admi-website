@@ -1,6 +1,12 @@
 import Image from 'next/image'
-import { Box, Divider, Modal } from '@mantine/core'
+import dynamic from 'next/dynamic'
+import { Box, Divider } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
+
+// Dynamic import for heavy Modal component
+const Modal = dynamic(() => import('@mantine/core').then((mod) => ({ default: mod.Modal })), {
+  ssr: false
+})
 
 import { MainLayout } from '@/layouts/v3/MainLayout'
 import { Paragraph, Title } from '@/components/ui'

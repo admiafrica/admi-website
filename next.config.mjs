@@ -47,6 +47,40 @@ const nextConfig = {
   experimental: {
     webVitalsAttribution: ['CLS', 'LCP', 'FID', 'INP'],
     gzipSize: true, // Show gzip sizes in build output
+    optimizePackageImports: ['@mantine/core', '@mantine/dates', '@mantine/hooks', 'framer-motion'],
+    turbo: {
+      rules: {
+        '*.svg': {
+          loaders: ['@svgr/webpack'],
+          as: '*.js',
+        },
+      },
+    },
+  },
+  // Bundle optimization
+  webpack: (config, { dev, isServer }) => {
+    // Optimize chunks
+    if (!dev && !isServer) {
+      config.optimization.splitChunks.cacheGroups.mantine = {
+        name: 'mantine',
+        test: /[\\/]node_modules[\\/]@mantine[\\/]/,
+        priority: 30,
+        enforce: true,
+      };
+      config.optimization.splitChunks.cacheGroups.framer = {
+        name: 'framer-motion',
+        test: /[\\/]node_modules[\\/]framer-motion[\\/]/,
+        priority: 25,
+        enforce: true,
+      };
+      config.optimization.splitChunks.cacheGroups.vendor = {
+        name: 'vendor',
+        test: /[\\/]node_modules[\\/](?!@mantine|framer-motion)[\\/]/,
+        priority: 20,
+        enforce: true,
+      };
+    }
+    return config;
   },
   // Enable compression
   compress: true,

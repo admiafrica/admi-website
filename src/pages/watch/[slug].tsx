@@ -69,6 +69,7 @@ export default function VideoWatchPage({ course, slug }: VideoWatchPageProps) {
             ? `https:${course.resolvedCoverImage?.fields?.file?.url || course.coverImage?.fields?.file?.url}`
             : 'https://admi.africa/logo.png'
         }
+        // Swap: embedUrl (watch page) becomes primary, direct video file becomes secondary
         contentUrl={`https:${course.resolvedVideo?.fields?.file?.url || course.courseVideo?.fields?.file?.url}`}
         embedUrl={`https://admi.africa/watch/${slug}`}
         uploadDate={course.sys?.updatedAt || new Date().toISOString()}
