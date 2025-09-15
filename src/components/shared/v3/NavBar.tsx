@@ -88,6 +88,18 @@ export default function NavBar({ mode, isMinimal = false }: Props) {
 
         <Menu trigger="hover" openDelay={100} closeDelay={400}>
           <Menu.Target>
+            <Text
+              style={menuItemStyle}
+              className="cursor-pointer"
+              onClick={() => navigateToPage('impact-alumni-success')}
+            >
+              Alumni Success
+            </Text>
+          </Menu.Target>
+        </Menu>
+
+        <Menu trigger="hover" openDelay={100} closeDelay={400}>
+          <Menu.Target>
             <Text style={menuItemStyle} className="cursor-pointer" onClick={() => navigateToPage('about')}>
               About ADMI
             </Text>
@@ -131,6 +143,13 @@ export default function NavBar({ mode, isMinimal = false }: Props) {
               </Menu.Item>
               <Menu.Item style={menuItemStyle} className="cursor-pointer" onClick={() => navigateToPage('news-events')}>
                 News & Events
+              </Menu.Item>
+              <Menu.Item
+                style={menuItemStyle}
+                className="cursor-pointer"
+                onClick={() => navigateToPage('impact-alumni-success')}
+              >
+                Alumni Success
               </Menu.Item>
               <Menu.Item style={menuItemStyle} className="cursor-pointer" onClick={() => navigateToPage('about')}>
                 About

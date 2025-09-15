@@ -252,8 +252,8 @@ export default function HomePage({ content, courses, featuredNews, featuredResou
           </Box>
         </Box>
         {/* OFFERINGS */}
-        <Box className="w-full">
-          <Box className="w-full pt-20">
+        <Box className="w-full py-8 md:py-12">
+          <Box className="w-full pt-8">
             <div className="mx-auto w-fit max-w-screen-md px-4 text-center">
               <Paragraph fontFamily="font-nexa">
                 It is an innovative career accelerator where creatives and techies receive training, mentorship and a
@@ -301,7 +301,7 @@ export default function HomePage({ content, courses, featuredNews, featuredResou
         </Box>
         {/* IMPACT */}
         <LazySection fallbackHeight="400px" skeletonType="card">
-          <Box className="w-full" bg={'#F5FFFD'}>
+          <Box className="w-full py-8 md:py-12" bg={'#F5FFFD'}>
             <Box className="mx-auto flex w-full max-w-screen-xl flex-col px-4 py-8 2xl:px-0">
               <Box className="flex w-full flex-col sm:flex-row">
                 <Box className="sm:w-[30%]">
@@ -430,7 +430,7 @@ export default function HomePage({ content, courses, featuredNews, featuredResou
                 </Box>
               </Box>
 
-              <Box className="flex w-full flex-col py-8 sm:flex-row">
+              <Box className="flex w-full flex-col py-16 sm:flex-row">
                 <Box className="sm:w-[30%]">
                   <Title label="Testimonials" color="black" />
                 </Box>
@@ -471,7 +471,7 @@ export default function HomePage({ content, courses, featuredNews, featuredResou
         </LazySection>
         {/* ANNOUNCEMENTS */}
         {featuredResource && (
-          <Box className="w-full px-4 py-16 xl:px-0" bg={'admiOrangeDark'}>
+          <Box className="w-full px-4 py-8 md:py-12 xl:px-0" bg={'admiOrangeDark'}>
             <AnnouncementCard
               destination="resources"
               announcement={featuredResource.fields}
@@ -483,7 +483,7 @@ export default function HomePage({ content, courses, featuredNews, featuredResou
         )}
         {/* FACILITIES */}
         <LazySection fallbackHeight="500px" skeletonType="card">
-          <Box className="1xl:px-0 w-full px-4 py-16" bg={'#F5FFFD'}>
+          <Box className="1xl:px-0 w-full px-4 py-8 md:py-12" bg={'#F5FFFD'}>
             <Box className="mx-auto w-full max-w-screen-xl">
               <Box className="flex w-full flex-col pb-12 sm:flex-row">
                 <Box className="sm:w-[30%]">
@@ -524,7 +524,7 @@ export default function HomePage({ content, courses, featuredNews, featuredResou
         </LazySection>
         {/* NEWS */}
         {featuredNews && (
-          <Box className="w-full px-4 py-16 xl:px-0" bg={'#01C6A5'}>
+          <Box className="w-full px-4 py-8 md:py-12 xl:px-0" bg={'#01C6A5'}>
             <AnnouncementCard
               destination="news-events/news"
               announcement={featuredNews.fields}
@@ -537,7 +537,7 @@ export default function HomePage({ content, courses, featuredNews, featuredResou
         )}
         {/* COURSES */}
         <LazySection fallbackHeight="600px" skeletonType="card">
-          <Box className="1xl:px-0 w-full px-4 py-16" bg={'#F5FFFD'}>
+          <Box className="1xl:px-0 w-full px-4 py-8 md:py-12" bg={'#F5FFFD'}>
             <Box className="mx-auto w-full max-w-screen-xl">
               <Box className="flex w-full flex-col pb-12 sm:flex-row">
                 <Box className="sm:w-[30%]">
@@ -583,7 +583,7 @@ export default function HomePage({ content, courses, featuredNews, featuredResou
         </LazySection>
         {/* AWARDS */}
         {featuredAward && (
-          <Box className="w-full px-4 py-16 xl:px-0" bg={'#E6F608'}>
+          <Box className="w-full px-4 py-8 md:py-12 xl:px-0" bg={'#E6F608'}>
             <AnnouncementCard
               destination="news-events/news"
               announcement={featuredAward.fields}
@@ -595,7 +595,7 @@ export default function HomePage({ content, courses, featuredNews, featuredResou
         )}
         {/* WHAT IS ADMI FAQ */}
         <LazySection fallbackHeight="600px" skeletonType="text">
-          <Box className="w-full py-16" bg={'white'}>
+          <Box className="w-full py-8 md:py-12" bg={'white'}>
             <Box className="mx-auto w-full max-w-screen-xl px-4 2xl:px-0">
               <Box className="mb-12 text-center">
                 <Title label="What is ADMI?" color="black" size="32px" />
@@ -678,9 +678,17 @@ export const getServerSideProps: GetServerSideProps = async () => {
       props: {
         content: contentData[0] || null,
         courses: coursesData || [],
-        featuredNews: newsData.find((article: IContentfulEntry) => article.fields.featured) || null,
-        featuredResource: resourcesData.find((article: IContentfulEntry) => article.fields.featured) || null,
-        featuredAward: awardsData.find((article: IContentfulEntry) => article.fields.featured) || null
+        featuredNews:
+          (Array.isArray(newsData) ? newsData.find((article: IContentfulEntry) => article.fields.featured) : null) ||
+          null,
+        featuredResource:
+          (Array.isArray(resourcesData)
+            ? resourcesData.find((article: IContentfulEntry) => article.fields.featured)
+            : null) || null,
+        featuredAward:
+          (Array.isArray(awardsData)
+            ? awardsData.find((article: IContentfulEntry) => article.fields.featured)
+            : null) || null
       }
     }
   } catch (error) {

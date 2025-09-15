@@ -37,9 +37,9 @@ export default function AnimatedWordDisplay({ words, size, fontFamily, fontWeigh
   }
 
   const wordTransition = {
-    type: 'tween',
+    type: 'tween' as const,
     duration: 0.5,
-    ease: 'easeInOut'
+    ease: 'easeInOut' as const
   }
 
   return (
