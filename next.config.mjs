@@ -47,7 +47,8 @@ const nextConfig = {
   experimental: {
     webVitalsAttribution: ['CLS', 'LCP', 'FID', 'INP'],
     gzipSize: true, // Show gzip sizes in build output
-    optimizePackageImports: ['@mantine/core', '@mantine/dates', '@mantine/hooks', 'framer-motion'],
+    // DISABLED: optimizePackageImports breaks Mantine Context Provider in Next.js 15.5.3
+    // optimizePackageImports: ['@mantine/core', '@mantine/dates', '@mantine/hooks', 'framer-motion'],
     turbo: {
       rules: {
         '*.svg': {

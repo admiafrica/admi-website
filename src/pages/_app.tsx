@@ -9,6 +9,7 @@ import { WebVitals } from '@/components/shared/WebVitals'
 // mantine components
 import { defaultTheme } from '@/styles/theme'
 import '@mantine/core/styles.css'
+import '@mantine/carousel/styles.css'
 // font family
 import '@fontsource/inter/400.css'
 import '@fontsource/inter/500.css'
