@@ -11,6 +11,51 @@ import IconBgImageYellow from '@/assets/icons/ellipse-yellow.svg'
 import IconBgImageRed from '@/assets/icons/ellipse-red.svg'
 import { useEffect, useState } from 'react'
 
+// Course categorization mapping to fix CMS inconsistencies
+const correctCourseMapping = (course: any): string => {
+  const courseName = course.fields.name
+
+  // Fix misplaced courses
+  if (courseName === 'Digital Content Creation Certificate') {
+    return 'Professional Certificate'
+  }
+  if (courseName === 'Video Production Certificate (Professional)' || courseName === 'Video Production Certificate') {
+    return 'Professional Certificate'
+  }
+  if (courseName === 'Video Game Development Certificate (Rubika)') {
+    return 'Rubika Programs'
+  }
+  if (courseName === '2D Animation Certificate (Rubika)') {
+    return 'Rubika Programs'
+  }
+
+  // Use original programType for correctly placed courses
+  return course.fields.programType.fields.name
+}
+
+// Clean course names by removing unnecessary text in parentheses and adding consistency
+const cleanCourseName = (course: any): any => {
+  if (course.fields.name === 'Video Production Certificate (Professional)') {
+    return {
+      ...course,
+      fields: {
+        ...course.fields,
+        name: 'Video Production Certificate'
+      }
+    }
+  }
+  if (course.fields.name === 'Entertainment Business') {
+    return {
+      ...course,
+      fields: {
+        ...course.fields,
+        name: 'Entertainment Business Diploma'
+      }
+    }
+  }
+  return course
+}
+
 export default function CoursesPage({
   programs,
   courses,
@@ -71,7 +116,7 @@ export default function CoursesPage({
         <div className="relative z-10 mx-auto w-full max-w-screen-lg px-4 pt-24 2xl:px-0">
           <SearchDropdown
             destination="courses"
-            items={courses}
+            items={courses.map(cleanCourseName)}
             buttonLabel="Search"
             placeholder={isMobile ? 'Search for course' : 'Search for course e.g Graphic Design, Content Creation'}
           />
@@ -105,17 +150,28 @@ export default function CoursesPage({
           </div>
         </div>
         <div className="relative mx-auto min-h-[60vh] w-full max-w-screen-xl px-4 2xl:px-0">
-          {filteredPrograms.map((program) => (
-            <Box key={program.sys.id}>
-              <ProgramListItemCard
-                program={program}
-                courses={courses}
-                filterProgramCourses={(programType: string, courses: any[]) =>
-                  courses.filter((course) => course.fields.programType.fields.name === programType)
-                }
-              />
-            </Box>
-          ))}
+          {filteredPrograms.map((program) => {
+            // Clean course names and filter courses for this program
+            const cleanedCourses = courses.map(cleanCourseName)
+            const programCourses = cleanedCourses.filter(
+              (course) => correctCourseMapping(course) === program.fields.name
+            )
+
+            // Only render if program has courses
+            if (programCourses.length === 0) return null
+
+            return (
+              <Box key={program.sys.id}>
+                <ProgramListItemCard
+                  program={program}
+                  courses={cleanedCourses}
+                  filterProgramCourses={(programType: string, courses: any[]) =>
+                    courses.filter((course) => correctCourseMapping(course) === programType)
+                  }
+                />
+              </Box>
+            )
+          })}
         </div>
       </div>
     </MainLayout>
@@ -137,11 +193,25 @@ export async function getServerSideProps() {
     const sortedPrograms = programs.reverse()
     const sortedCourses = courses.reverse()
 
+    // Add Rubika Programs section if not exists
+    const rubikaProgram = {
+      sys: { id: 'rubika-programs' },
+      fields: {
+        name: 'Rubika Programs',
+        duration: '1-2 years',
+        deliveryMode: 'In-person',
+        icon: programs.find((p: any) => p.fields.name.includes('Rubika'))?.fields.icon || null
+      },
+      assets: programs[0]?.assets || []
+    }
+
+    const enhancedPrograms = [...sortedPrograms, rubikaProgram]
+
     return {
       props: {
-        programs: sortedPrograms,
+        programs: enhancedPrograms,
         courses: sortedCourses,
-        filterOptions: ['All Courses', ...sortedPrograms.map((program: any) => program.fields.name)]
+        filterOptions: ['All Courses', ...enhancedPrograms.map((program: any) => program.fields.name)]
       }
     }
   } catch (error) {
