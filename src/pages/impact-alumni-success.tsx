@@ -446,6 +446,49 @@ export default function ImpactAlumniSuccessPage() {
           </Box>
         </Box>
 
+        {/* EMPLOYER PREFERENCE - 60% White space */}
+        <Box className="mb-8 w-full py-16 md:mb-12 md:py-20" bg="white">
+          <Box className="mx-auto max-w-4xl px-6 md:px-8">
+            <Title
+              label="What Employers Say About ADMI Graduates"
+              color="#002A23"
+              size={isMobile ? '28px' : '36px'}
+              className="mb-12 text-center"
+            />
+
+            <Box className="mb-16 rounded-2xl border border-gray-200 bg-gradient-to-r from-green-50 to-blue-50 p-8 shadow-lg md:p-12">
+              <Paragraph fontFamily="font-nexa" className="mb-6 text-center text-xl font-semibold text-gray-800">
+                "We have a clear preference for ADMI graduates"
+              </Paragraph>
+              <Paragraph
+                fontFamily="font-nexa"
+                className="mb-6 leading-relaxed text-gray-700"
+                size={isMobile ? '16px' : '18px'}
+              >
+                Industry employers consistently report a strong preference for hiring ADMI graduates. When we
+                interviewed 8 employers across the creative sector, they highlighted ADMI graduates' practical skills,
+                work-ready attitude, and professional approach as key differentiators.
+              </Paragraph>
+              <Paragraph
+                fontFamily="font-nexa"
+                className="mb-6 leading-relaxed text-gray-700"
+                size={isMobile ? '16px' : '18px'}
+              >
+                "ADMI graduates come to us with real-world experience and a portfolio that demonstrates their
+                capabilities. They understand client needs and can hit the ground running," reported one creative agency
+                director.
+              </Paragraph>
+              <Paragraph
+                fontFamily="font-nexa"
+                className="text-center italic text-gray-600"
+                size={isMobile ? '14px' : '15px'}
+              >
+                — Consistent feedback from industry employers, ADMI Alumni Survey 2024
+              </Paragraph>
+            </Box>
+          </Box>
+        </Box>
+
         {/* METHODOLOGY & TRANSPARENCY - 30% Accent */}
         <Box className="mb-8 w-full py-16 md:mb-12 md:py-20" bg="#F0F9FF">
           <Box className="mx-auto max-w-4xl px-6 md:px-8">
