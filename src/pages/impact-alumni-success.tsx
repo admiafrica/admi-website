@@ -290,14 +290,14 @@ export default function ImpactAlumniSuccessPage() {
                       Typical progression:
                     </Paragraph>
                     <Box className="space-y-2">
-                      <Paragraph className="text-gray-600" size={isMobile ? '13px' : '14px'}>
-                        Year 1: KES 15-25K
+                      <Paragraph className="font-semibold text-gray-600" size={isMobile ? '13px' : '14px'}>
+                        Year 1: <span className="font-bold">KES 15-25K</span>
                       </Paragraph>
-                      <Paragraph className="text-gray-600" size={isMobile ? '13px' : '14px'}>
-                        Year 2: KES 30-50K
+                      <Paragraph className="font-semibold text-gray-600" size={isMobile ? '13px' : '14px'}>
+                        Year 2: <span className="font-bold">KES 30-50K</span>
                       </Paragraph>
-                      <Paragraph className="text-gray-600" size={isMobile ? '13px' : '14px'}>
-                        Year 3+: KES 60-120K
+                      <Paragraph className="font-semibold text-gray-600" size={isMobile ? '13px' : '14px'}>
+                        Year 3+: <span className="font-bold">KES 60-120K</span>
                       </Paragraph>
                     </Box>
                   </Box>
@@ -327,14 +327,14 @@ export default function ImpactAlumniSuccessPage() {
                       Typical progression:
                     </Paragraph>
                     <Box className="space-y-2">
-                      <Paragraph className="text-gray-600" size={isMobile ? '13px' : '14px'}>
-                        Year 1: KES 20-30K
+                      <Paragraph className="font-semibold text-gray-600" size={isMobile ? '13px' : '14px'}>
+                        Year 1: <span className="font-bold">KES 20-30K</span>
                       </Paragraph>
-                      <Paragraph className="text-gray-600" size={isMobile ? '13px' : '14px'}>
-                        Year 2: KES 35-55K
+                      <Paragraph className="font-semibold text-gray-600" size={isMobile ? '13px' : '14px'}>
+                        Year 2: <span className="font-bold">KES 35-55K</span>
                       </Paragraph>
-                      <Paragraph className="text-gray-600" size={isMobile ? '13px' : '14px'}>
-                        Year 3+: KES 50-90K
+                      <Paragraph className="font-semibold text-gray-600" size={isMobile ? '13px' : '14px'}>
+                        Year 3+: <span className="font-bold">KES 50-90K</span>
                       </Paragraph>
                     </Box>
                   </Box>
@@ -443,6 +443,81 @@ export default function ImpactAlumniSuccessPage() {
                 </Box>
               </Grid.Col>
             </Grid>
+          </Box>
+        </Box>
+
+        {/* COMPETITIVE CONTEXT - 30% Accent */}
+        <Box className="mb-8 w-full py-16 md:mb-12 md:py-20" bg="#F0F9FF">
+          <Box className="mx-auto max-w-4xl px-6 md:px-8">
+            <Title
+              label="Leading the Industry in Graduate Outcomes"
+              color="#002A23"
+              size={isMobile ? '28px' : '36px'}
+              className="mb-12 text-center"
+            />
+
+            <Box className="mb-16 rounded-2xl border border-gray-200 bg-white p-8 shadow-lg md:p-12">
+              <Paragraph fontFamily="font-nexa" className="mb-6 text-center text-xl font-semibold text-gray-800">
+                ADMI graduates achieve earnings that surpass industry benchmarks by significant margins
+              </Paragraph>
+
+              <Grid gutter={isMobile ? 'lg' : 'xl'} className="mb-8">
+                <Grid.Col span={{ base: 12, md: 6 }}>
+                  <Box className="rounded-xl border border-gray-200 bg-gradient-to-r from-red-50 to-orange-50 p-6 text-center">
+                    <Paragraph
+                      size={isMobile ? '28px' : '32px'}
+                      fontFamily="font-nexa"
+                      className="mb-2 font-black text-[#F60834]"
+                    >
+                      KSh 24-30K
+                    </Paragraph>
+                    <Paragraph className="mb-3 font-semibold text-gray-800" size={isMobile ? '16px' : '18px'}>
+                      Industry "Success" Benchmark
+                    </Paragraph>
+                    <Paragraph className="text-sm text-gray-600">
+                      What peers in skilling programs and large scholarship initiatives consider a "thriving wage" for
+                      graduates
+                    </Paragraph>
+                  </Box>
+                </Grid.Col>
+
+                <Grid.Col span={{ base: 12, md: 6 }}>
+                  <Box className="rounded-xl border border-gray-200 bg-gradient-to-r from-green-50 to-blue-50 p-6 text-center">
+                    <Paragraph
+                      size={isMobile ? '28px' : '32px'}
+                      fontFamily="font-nexa"
+                      className="mb-2 font-black text-[#01C6A5]"
+                    >
+                      KSh 50-100K+
+                    </Paragraph>
+                    <Paragraph className="mb-3 font-semibold text-gray-800" size={isMobile ? '16px' : '18px'}>
+                      ADMI Graduate Reality
+                    </Paragraph>
+                    <Paragraph className="text-sm text-gray-600">
+                      What our graduates actually achieve by Year 3 - consistently exceeding industry expectations
+                    </Paragraph>
+                  </Box>
+                </Grid.Col>
+              </Grid>
+
+              <Paragraph
+                fontFamily="font-nexa"
+                className="mb-6 leading-relaxed text-gray-700"
+                size={isMobile ? '16px' : '18px'}
+              >
+                While industry programs celebrate reaching KSh 24-30K as significant achievements for their graduates,
+                ADMI alumni routinely surpass these benchmarks by 65-230%. This isn't just success—it's transformation
+                at a scale that sets new standards for creative education outcomes in Kenya.
+              </Paragraph>
+
+              <Paragraph
+                fontFamily="font-nexa"
+                className="text-center italic text-gray-600"
+                size={isMobile ? '14px' : '15px'}
+              >
+                — ADMI: Setting new standards for creative career outcomes in East Africa
+              </Paragraph>
+            </Box>
           </Box>
         </Box>
 
