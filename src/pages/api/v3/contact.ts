@@ -217,6 +217,7 @@ This message was sent from the ADMI website contact form.
       try {
         errorData = await response.json()
       } catch (e) {
+        console.error('Error parsing Brevo API response:', e)
         errorData = { message: 'Unknown error from Brevo API' }
       }
 

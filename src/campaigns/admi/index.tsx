@@ -67,6 +67,7 @@ export function CampaignsPage() {
 
         setLoading(false)
       } catch (error) {
+        console.error('Campaign data fetch error:', error)
         setStatus(0)
         setCourseBanner(courseImage.src)
       } finally {

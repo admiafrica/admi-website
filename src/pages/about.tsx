@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useRef, useState, useEffect } from 'react'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
@@ -177,8 +178,8 @@ export default function AboutPage() {
           </Box>
         </Box>
       </Box>
-      {/* BOARD OF DIRECTORS */}
-      <Box className="1xl:px-0 w-full px-4 py-8" bg={'#F5FFFD'}>
+      {/* BOARD OF DIRECTORS - HIDDEN */}
+      {/* <Box className="1xl:px-0 w-full px-4 py-8" bg={'#F5FFFD'}>
         <Box className="mx-auto w-full max-w-screen-xl">
           <Box className="flex w-full flex-col sm:flex-row">
             <Title label="Board of Directors" color="black" />
@@ -191,7 +192,7 @@ export default function AboutPage() {
             ))}
           </Box>
         </Box>
-      </Box>
+      </Box> */}
       {/* FACILITIES */}
       <Box className="1xl:px-0 w-full px-4 py-16" bg={'#F5FFFD'}>
         <Box className="mx-auto w-full max-w-screen-xl">

@@ -88,6 +88,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       try {
         errorData = await response.json()
       } catch (e) {
+        console.error('Error parsing Brevo API response:', e)
         errorData = { message: 'Unknown error from Brevo API' }
       }
 

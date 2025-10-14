@@ -91,6 +91,7 @@ export default function EnquiryForm() {
         try {
           errorMessage = typeof responseData.error === 'string' ? responseData.error : errorMessage
         } catch (e) {
+          console.error('Error parsing response:', e)
           // If we can't parse the error response, use default message
         }
         setAlert({ type: 'error', message: errorMessage })
