@@ -85,7 +85,7 @@ export default function EnhancedEnquiryForm() {
       setCoursesLoading(true)
       const response = await fetch('/api/v3/courses')
       const data = await response.json()
-      console.log('Fetched courses:', data) // Debug log
+
       setCourses(data)
     } catch (error) {
       console.error('Error fetching courses:', error)
@@ -150,7 +150,7 @@ export default function EnhancedEnquiryForm() {
 
     // Calculate lead score
     const leadScore = calculateLeadScore(values)
-    console.log('Calculated lead score:', leadScore, 'for values:', values)
+
 
     // Format phone number - remove leading zeros and ensure proper format
     const cleanPhone = values.phone.replace(/\D/g, '') // Remove non-digits
@@ -202,10 +202,10 @@ export default function EnhancedEnquiryForm() {
         return
       }
 
-      // Show success message with lead score
+      // Show success message
       setAlert({
         type: 'success',
-        message: `Enquiry submitted successfully! Lead Score: ${leadScore}/20. Redirecting...`
+        message: 'Enquiry submitted successfully! Redirecting...'
       })
 
       // Redirect after a short delay
@@ -619,17 +619,7 @@ export default function EnhancedEnquiryForm() {
         </Alert>
       )}
 
-      {/* Debug Information */}
-      <div className="mt-6 rounded-lg bg-blue-50 border border-blue-200 p-4">
-        <div className="font-bold text-blue-800 text-sm mb-2">🔍 Debug Info:</div>
-        <ul className="text-blue-700 text-xs space-y-1">
-          <li>Courses Loading: {coursesLoading ? 'Yes' : 'No'}</li>
-          <li>Courses Count: {courses.length}</li>
-          <li>Course Options: {courseOptions.length}</li>
-          <li>Sample Course: {courseOptions[0]?.label || 'None'}</li>
-          <li>Raw Courses: {JSON.stringify(courses.slice(0, 2), null, 2)}</li>
-        </ul>
-      </div>
+
     </div>
   )
 }
