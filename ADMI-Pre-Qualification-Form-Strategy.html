@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADMI Pre-Qualification Form Strategy</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        .header {
+            background: linear-gradient(135deg, #4caf50 0%, #2e7d32 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 28px;
+        }
+        .header p {
+            margin: 10px 0 0 0;
+            opacity: 0.9;
+        }
+        .strategy-box {
+            background: linear-gradient(135deg, #e8f5e8 0%, #c8e6c9 100%);
+            border: 2px solid #4caf50;
+            border-left: 5px solid #2e7d32;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        .strategy-box h2 {
+            color: #2e7d32;
+            margin: 0 0 15px 0;
+            font-size: 24px;
+        }
+        .strategy-box .big-number {
+            font-size: 48px;
+            font-weight: bold;
+            margin: 15px 0;
+            color: #2e7d32;
+        }
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        .comparison-card {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .comparison-card.before {
+            border-color: #f44336;
+            background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
+        }
+        .comparison-card.after {
+            border-color: #4caf50;
+            background: linear-gradient(135deg, #e8f5e8 0%, #c8e6c9 100%);
+        }
+        .comparison-card h3 {
+            margin: 0 0 20px 0;
+            font-size: 20px;
+            text-align: center;
+        }
+        .before h3 { color: #d32f2f; }
+        .after h3 { color: #2e7d32; }
+        .metric-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+        .metric-row:last-child {
+            border-bottom: none;
+        }
+        .metric-label {
+            font-weight: bold;
+        }
+        .metric-value {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .metric-value.bad { color: #f44336; }
+        .metric-value.good { color: #4caf50; }
+        .form-example {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            border: 1px solid #e0e0e0;
+        }
+        .form-example h2 {
+            margin: 0 0 20px 0;
+            color: #2c3e50;
+            border-bottom: 2px solid #1976d2;
+            padding-bottom: 5px;
+        }
+        .form-step {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #2196f3;
+        }
+        .form-step h4 {
+            color: #1976d2;
+            margin: 0 0 15px 0;
+        }
+        .question-example {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-style: italic;
+        }
+        .scoring-system {
+            background: #fff3e0;
+            border: 1px solid #ff9800;
+            border-left: 5px solid #f57c00;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 30px 0;
+        }
+        .scoring-system h3 {
+            color: #f57c00;
+            margin: 0 0 20px 0;
+        }
+        .score-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .score-table th {
+            background: #f57c00;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+        .score-table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #eee;
+        }
+        .score-table tr:hover {
+            background: #f8f9fa;
+        }
+        .implementation {
+            background: #e8f5e8;
+            border: 1px solid #4caf50;
+            border-left: 5px solid #2e7d32;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 30px 0;
+        }
+        .implementation h3 {
+            color: #2e7d32;
+            margin: 0 0 20px 0;
+        }
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            margin: 15px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            border-left: 4px solid #2196f3;
+        }
+        .timeline-date {
+            font-weight: bold;
+            color: #1976d2;
+            min-width: 120px;
+        }
+        @media (max-width: 768px) {
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>ADMI Pre-Qualification Form Strategy</h1>
+    <p>Quality Gates: Reduce Volume, Increase Conversion</p>
+    <p>Target: 5,000-8,000 Qualified Leads with 5-7% Conversion Rate</p>
+</div>
+
+<div class="strategy-box">
+    <h2>🎯 THE SOLUTION: PRE-QUALIFICATION FORMS</h2>
+    <div class="big-number">5-7%</div>
+    <p><strong>Target conversion rate with qualified leads</strong></p>
+    <p>Better to have 5,000 serious prospects than 39,647 random contacts</p>
+</div>
+
+<div class="comparison-grid">
+    <div class="comparison-card before">
+        <h3>❌ CURRENT APPROACH</h3>
+        <div class="metric-row">
+            <span class="metric-label">Form Type:</span>
+            <span class="metric-value">Simple "Name + Email"</span>
+        </div>
+        <div class="metric-row">
+            <span class="metric-label">Qualification:</span>
+            <span class="metric-value bad">None</span>
+        </div>
+        <div class="metric-row">
+            <span class="metric-label">Total Leads:</span>
+            <span class="metric-value">39,647</span>
+        </div>
+        <div class="metric-row">
+            <span class="metric-label">Applications:</span>
+            <span class="metric-value bad">48</span>
+        </div>
+        <div class="metric-row">
+            <span class="metric-label">Conversion Rate:</span>
+            <span class="metric-value bad">0.2%</span>
+        </div>
+        <div class="metric-row">
+            <span class="metric-label">Course Intent Known:</span>
+            <span class="metric-value bad">20%</span>
+        </div>
+        <div class="metric-row">
+            <span class="metric-label">Sales Efficiency:</span>
+            <span class="metric-value bad">Very Low</span>
+        </div>
+    </div>
+
+    <div class="comparison-card after">
+        <h3>✅ PRE-QUALIFICATION APPROACH</h3>
+        <div class="metric-row">
+            <span class="metric-label">Form Type:</span>
+            <span class="metric-value">Multi-step Qualification</span>
+        </div>
+        <div class="metric-row">
+            <span class="metric-label">Qualification:</span>
+            <span class="metric-value good">6 Key Questions</span>
+        </div>
+        <div class="metric-row">
+            <span class="metric-label">Target Leads:</span>
+            <span class="metric-value">5,000-8,000</span>
+        </div>
+        <div class="metric-row">
+            <span class="metric-label">Expected Applications:</span>
+            <span class="metric-value good">350-560</span>
+        </div>
+        <div class="metric-row">
+            <span class="metric-label">Target Conversion:</span>
+            <span class="metric-value good">5-7%</span>
+        </div>
+        <div class="metric-row">
+            <span class="metric-label">Course Intent Known:</span>
+            <span class="metric-value good">90%+</span>
+        </div>
+        <div class="metric-row">
+            <span class="metric-label">Sales Efficiency:</span>
+            <span class="metric-value good">Very High</span>
+        </div>
+    </div>
+</div>
+
+<div class="form-example">
+    <h2>📝 Pre-Qualification Form Structure</h2>
+    
+    <div class="form-step">
+        <h4>Step 1: Course Interest (Required)</h4>
+        <div class="question-example">
+            "Which creative field interests you most?"<br>
+            • Film & Television Production<br>
+            • Music Production & Audio Engineering<br>
+            • Digital Media & Animation<br>
+            • Photography & Visual Arts<br>
+            • Just exploring options
+        </div>
+        <p><strong>Purpose:</strong> Eliminates random inquiries, identifies specific course interest</p>
+    </div>
+    
+    <div class="form-step">
+        <h4>Step 2: Timeline & Commitment (Required)</h4>
+        <div class="question-example">
+            "When are you planning to start your studies?"<br>
+            • January 2026 intake (immediate)<br>
+            • May 2026 intake (planning ahead)<br>
+            • September 2026 intake (long-term planning)<br>
+            • Just researching for future
+        </div>
+        <p><strong>Purpose:</strong> Identifies serious prospects vs casual browsers</p>
+    </div>
+    
+    <div class="form-step">
+        <h4>Step 3: Study Mode Preference (Required)</h4>
+        <div class="question-example">
+            "What type of program are you looking for?"<br>
+            • Full-time Diploma (2 years)<br>
+            • Professional Certificate (6-12 months)<br>
+            • Foundation Certificate (3-6 months)<br>
+            • Weekend/Part-time classes<br>
+            • Online/Remote learning
+        </div>
+        <p><strong>Purpose:</strong> Matches expectations with available programs</p>
+    </div>
+    
+    <div class="form-step">
+        <h4>Step 4: Budget Awareness (Optional but Recommended)</h4>
+        <div class="question-example">
+            "What's your expected investment range for creative education?"<br>
+            • Under 100,000 KES<br>
+            • 100,000 - 300,000 KES<br>
+            • 300,000 - 500,000 KES<br>
+            • 500,000+ KES<br>
+            • Need to discuss payment options
+        </div>
+        <p><strong>Purpose:</strong> Qualifies financial readiness, sets expectations</p>
+    </div>
+    
+    <div class="form-step">
+        <h4>Step 5: Career Goals (Required)</h4>
+        <div class="question-example">
+            "What's your main goal with creative education?"<br>
+            • Career change to creative industry<br>
+            • Upgrade skills in current role<br>
+            • Start my own creative business<br>
+            • Personal interest/hobby<br>
+            • Prepare for university studies
+        </div>
+        <p><strong>Purpose:</strong> Identifies motivation level and career seriousness</p>
+    </div>
+    
+    <div class="form-step">
+        <h4>Step 6: Experience Level (Required)</h4>
+        <div class="question-example">
+            "Your current experience in creative media?"<br>
+            • Complete beginner<br>
+            • Some basic experience<br>
+            • Intermediate level<br>
+            • Professional looking to upgrade<br>
+            • Have formal training elsewhere
+        </div>
+        <p><strong>Purpose:</strong> Helps match to appropriate program level</p>
+    </div>
+</div>
+
+<div class="scoring-system">
+    <h3>🏆 Lead Scoring System</h3>
+    
+    <table class="score-table">
+        <thead>
+            <tr>
+                <th>Response Category</th>
+                <th>High Score (Hot Lead)</th>
+                <th>Medium Score (Warm Lead)</th>
+                <th>Low Score (Cold Lead)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Timeline</strong></td>
+                <td>January/May 2026</td>
+                <td>September 2026</td>
+                <td>Just researching</td>
+            </tr>
+            <tr>
+                <td><strong>Program Type</strong></td>
+                <td>Full-time Diploma</td>
+                <td>Professional Certificate</td>
+                <td>Weekend/Online only</td>
+            </tr>
+            <tr>
+                <td><strong>Budget Range</strong></td>
+                <td>300K+ KES</td>
+                <td>100-300K KES</td>
+                <td>Under 100K KES</td>
+            </tr>
+            <tr>
+                <td><strong>Career Goals</strong></td>
+                <td>Career change/Business</td>
+                <td>Skill upgrade</td>
+                <td>Personal interest</td>
+            </tr>
+            <tr>
+                <td><strong>Course Interest</strong></td>
+                <td>Specific field chosen</td>
+                <td>2-3 fields interested</td>
+                <td>Just exploring</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <h4>Lead Prioritization:</h4>
+    <ul>
+        <li><strong>Hot Leads (Score 15-20):</strong> Immediate personal outreach</li>
+        <li><strong>Warm Leads (Score 10-14):</strong> Targeted email nurturing</li>
+        <li><strong>Cold Leads (Score 5-9):</strong> General newsletter, future follow-up</li>
+        <li><strong>Unqualified (Score 0-4):</strong> Remove from active campaigns</li>
+    </ul>
+</div>
+
+<div class="implementation">
+    <h3>🚀 Implementation Timeline</h3>
+    
+    <div class="timeline-item">
+        <div class="timeline-date">Week 1:</div>
+        <div>Design and build pre-qualification forms for website</div>
+    </div>
+    <div class="timeline-item">
+        <div class="timeline-date">Week 2:</div>
+        <div>Implement lead scoring system in CRM (Brevo)</div>
+    </div>
+    <div class="timeline-item">
+        <div class="timeline-date">Week 3:</div>
+        <div>Launch forms on high-traffic pages, test conversion rates</div>
+    </div>
+    <div class="timeline-item">
+        <div class="timeline-date">Week 4:</div>
+        <div>Analyze results, optimize questions based on data</div>
+    </div>
+    <div class="timeline-item">
+        <div class="timeline-date">Month 2:</div>
+        <div>Scale successful forms across all marketing channels</div>
+    </div>
+    
+    <h4>Expected Results After Implementation:</h4>
+    <ul>
+        <li><strong>Lead Volume:</strong> Reduce to 5,000-8,000 qualified prospects</li>
+        <li><strong>Conversion Rate:</strong> Increase from 0.2% to 5-7%</li>
+        <li><strong>Applications:</strong> Increase from 48 to 350-560 per intake</li>
+        <li><strong>Sales Efficiency:</strong> Focus on serious prospects only</li>
+        <li><strong>Enrollment Success:</strong> Achieve 1,050 annual target</li>
+    </ul>
+</div>
+
+<div style="text-align: center; margin-top: 40px; padding: 25px; background: #f8f9fa; border-radius: 10px;">
+    <p><strong>Strategy Created:</strong> November 4, 2025</p>
+    <p><strong>Key Principle:</strong> Quality gates reduce volume but increase conversion</p>
+    <p><strong>Target:</strong> 5,000-8,000 qualified leads → 350-560 applications → 1,050 enrollments</p>
+    <p><strong>Implementation:</strong> Multi-step forms with 6 key qualification questions</p>
+    <p><strong>Expected Impact:</strong> 25x improvement in conversion rate (0.2% → 5-7%)</p>
+</div>
+
+</body>
+</html>

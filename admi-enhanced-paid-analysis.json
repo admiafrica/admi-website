@@ -1,0 +1,5080 @@
+{
+  "generatedAt": "2025-11-04T08:50:42.996Z",
+  "propertyId": "250948607",
+  "periods": {
+    "2024 Full Year": {
+      "period": {
+        "name": "2024 Full Year",
+        "startDate": "2024-01-01",
+        "endDate": "2024-12-31"
+      },
+      "paidAnalysis": {
+        "totalSessions": 267577,
+        "totalUsers": 184930,
+        "totalPageViews": 1549456,
+        "totalConversions": 408222,
+        "campaigns": [
+          {
+            "name": "1",
+            "source": "1",
+            "medium": "adwords",
+            "sessions": 129197,
+            "users": 85073,
+            "pageViews": 1006914,
+            "conversions": 36931,
+            "avgDuration": 119.2365650020036,
+            "bounceRate": 0.012935238929249856,
+            "records": 167
+          },
+          {
+            "name": "sep2024",
+            "source": "meta",
+            "medium": "cpc",
+            "sessions": 48205,
+            "users": 47136,
+            "pageViews": 132775,
+            "conversions": 132838,
+            "avgDuration": 23.15755900670126,
+            "bounceRate": 0.0060292698269684974,
+            "records": 58
+          },
+          {
+            "name": "(organic)",
+            "source": "google",
+            "medium": "organic",
+            "sessions": 32614,
+            "users": 21267,
+            "pageViews": 268717,
+            "conversions": 107663,
+            "avgDuration": 197.29038555924183,
+            "bounceRate": 0.03754939614917898,
+            "records": 304
+          },
+          {
+            "name": "Creative Media and Tech | New Landing Page",
+            "source": "google",
+            "medium": "cpc",
+            "sessions": 10475,
+            "users": 3331,
+            "pageViews": 25175,
+            "conversions": 25175,
+            "avgDuration": 123.83702900518584,
+            "bounceRate": 0.021649110367001116,
+            "records": 57
+          },
+          {
+            "name": "6257819206187",
+            "source": "an",
+            "medium": "paid",
+            "sessions": 7452,
+            "users": 7233,
+            "pageViews": 29850,
+            "conversions": 24352,
+            "avgDuration": 55.65583171458018,
+            "bounceRate": 0.01962089552312425,
+            "records": 41
+          },
+          {
+            "name": "[DIS] Digital Content Creation Cert-Traffic-Jan25 | New Landing Page",
+            "source": "google",
+            "medium": "cpc",
+            "sessions": 6656,
+            "users": 1078,
+            "pageViews": 15757,
+            "conversions": 15757,
+            "avgDuration": 72.39196216782014,
+            "bounceRate": 0.01070214967945037,
+            "records": 25
+          },
+          {
+            "name": "[DIS] Data Analysis Cert-Traffic-Jan25 | New Landing Page",
+            "source": "google",
+            "medium": "cpc",
+            "sessions": 5617,
+            "users": 1939,
+            "pageViews": 11608,
+            "conversions": 11608,
+            "avgDuration": 144.8759760132793,
+            "bounceRate": 0.006873811235089979,
+            "records": 26
+          },
+          {
+            "name": "[DIS] Animation & Motion Graphics -Traffic-Jan 2025 | New Landing Page",
+            "source": "google",
+            "medium": "cpc",
+            "sessions": 4733,
+            "users": 1958,
+            "pageViews": 9324,
+            "conversions": 9324,
+            "avgDuration": 90.28115295958791,
+            "bounceRate": 0.018444928637597145,
+            "records": 21
+          },
+          {
+            "name": "july2024",
+            "source": "meta",
+            "medium": "cpc",
+            "sessions": 4630,
+            "users": 4460,
+            "pageViews": 20950,
+            "conversions": 20933,
+            "avgDuration": 55.3020275743778,
+            "bounceRate": 0.027105247805914476,
+            "records": 11
+          },
+          {
+            "name": "GDS - Hop - FTV",
+            "source": "google",
+            "medium": "cpc",
+            "sessions": 2993,
+            "users": 1919,
+            "pageViews": 3392,
+            "conversions": 3392,
+            "avgDuration": 75.98225617001684,
+            "bounceRate": 0.022040990923567844,
+            "records": 21
+          },
+          {
+            "name": "[DIS] Graphic Design Certificate-Traffic-Jan2025 | Graphic Design | New Landing Page",
+            "source": "google",
+            "medium": "cpc",
+            "sessions": 1524,
+            "users": 959,
+            "pageViews": 1695,
+            "conversions": 1695,
+            "avgDuration": 67.61467974487319,
+            "bounceRate": 0.008838513186128806,
+            "records": 18
+          },
+          {
+            "name": "[DIS] Graphic Design Diploma - Traffic-Jan 2025 | New Landing Page",
+            "source": "google",
+            "medium": "cpc",
+            "sessions": 1435,
+            "users": 1303,
+            "pageViews": 413,
+            "conversions": 413,
+            "avgDuration": 55.805418881711944,
+            "bounceRate": 0.008912289178884057,
+            "records": 16
+          },
+          {
+            "name": "[DIS] Music Production Diploma-Traffic-Jan 2025 | New Landing Page",
+            "source": "google",
+            "medium": "cpc",
+            "sessions": 1365,
+            "users": 1077,
+            "pageViews": 865,
+            "conversions": 865,
+            "avgDuration": 69.56102441287598,
+            "bounceRate": 0.011105314902880555,
+            "records": 17
+          },
+          {
+            "name": "[DIS] Multimedia Certificate-Traffic-Jan2025 | New Landing Page",
+            "source": "google",
+            "medium": "cpc",
+            "sessions": 1265,
+            "users": 602,
+            "pageViews": 2274,
+            "conversions": 2274,
+            "avgDuration": 83.6903801877768,
+            "bounceRate": 0.029627560313324464,
+            "records": 24
+          },
+          {
+            "name": "(not set)",
+            "source": "google",
+            "medium": "cpc",
+            "sessions": 1190,
+            "users": 247,
+            "pageViews": 3715,
+            "conversions": 2952,
+            "avgDuration": 45.71807546618879,
+            "bounceRate": 0.04609689361017222,
+            "records": 19
+          },
+          {
+            "name": "Drive Walkins-Performance Max-2 | Updated",
+            "source": "google",
+            "medium": "cpc",
+            "sessions": 1111,
+            "users": 548,
+            "pageViews": 1585,
+            "conversions": 1585,
+            "avgDuration": 78.38915354203033,
+            "bounceRate": 0.023389728160415995,
+            "records": 12
+          },
+          {
+            "name": "(referral)",
+            "source": "storage.googleapis.com",
+            "medium": "referral",
+            "sessions": 1055,
+            "users": 968,
+            "pageViews": 3755,
+            "conversions": 3102,
+            "avgDuration": 46.262306048316646,
+            "bounceRate": 0.0020585797181541863,
+            "records": 28
+          },
+          {
+            "name": "[DIS] Sound Engineering Diploma-Traffic-Jan 2025 | New Landing Page",
+            "source": "google",
+            "medium": "cpc",
+            "sessions": 939,
+            "users": 743,
+            "pageViews": 643,
+            "conversions": 643,
+            "avgDuration": 111.33905759026476,
+            "bounceRate": 0.008170616411110665,
+            "records": 15
+          },
+          {
+            "name": "[DIS] Photography Certifcate-Traffic-Jan2025 | New Landing Page",
+            "source": "google",
+            "medium": "cpc",
+            "sessions": 809,
+            "users": 556,
+            "pageViews": 748,
+            "conversions": 748,
+            "avgDuration": 72.68854277389569,
+            "bounceRate": 0.04029764534689684,
+            "records": 18
+          },
+          {
+            "name": "[DIS] Video Production -Traffic-Jan2025 | New Landing Page",
+            "source": "google",
+            "medium": "cpc",
+            "sessions": 749,
+            "users": 437,
+            "pageViews": 1104,
+            "conversions": 1104,
+            "avgDuration": 79.64978611153438,
+            "bounceRate": 0.013609331626840955,
+            "records": 17
+          },
+          {
+            "name": "[DIS] Data Analysis Diploma-Traffic-Jan25 | New Landing Page",
+            "source": "google",
+            "medium": "cpc",
+            "sessions": 680,
+            "users": 495,
+            "pageViews": 640,
+            "conversions": 640,
+            "avgDuration": 65.71187727321929,
+            "bounceRate": 0.004856292593140757,
+            "records": 9
+          },
+          {
+            "name": "Entertainment Business Diploma-Traffic-Jan25",
+            "source": "google",
+            "medium": "cpc",
+            "sessions": 561,
+            "users": 412,
+            "pageViews": 510,
+            "conversions": 510,
+            "avgDuration": 156.42979583128135,
+            "bounceRate": 0.006092483015559939,
+            "records": 13
+          },
+          {
+            "name": "[DIS] Digital Marketing Certificate-Traffic-Jan2025 | New Landing Page",
+            "source": "google",
+            "medium": "cpc",
+            "sessions": 401,
+            "users": 99,
+            "pageViews": 1160,
+            "conversions": 1160,
+            "avgDuration": 100.77612812111755,
+            "bounceRate": 0.016433717015112363,
+            "records": 9
+          },
+          {
+            "name": "May_2024",
+            "source": "google",
+            "medium": "Display",
+            "sessions": 363,
+            "users": 325,
+            "pageViews": 1769,
+            "conversions": 473,
+            "avgDuration": 72.95478334386937,
+            "bounceRate": 0.0054466230936819175,
+            "records": 9
+          },
+          {
+            "name": "scholarships-sept2024",
+            "source": "meta",
+            "medium": "cpc",
+            "sessions": 340,
+            "users": 7,
+            "pageViews": 984,
+            "conversions": 984,
+            "avgDuration": 92.7452174066644,
+            "bounceRate": 0,
+            "records": 7
+          },
+          {
+            "name": "[DIS] Sports Business Diploma-Traffic-Jan25 | New Landing Page",
+            "source": "google",
+            "medium": "cpc",
+            "sessions": 312,
+            "users": 224,
+            "pageViews": 290,
+            "conversions": 290,
+            "avgDuration": 91.82877195663967,
+            "bounceRate": 0.02265873015873016,
+            "records": 10
+          },
+          {
+            "name": "[DIS] Music & Sound Certificate-Traffic-Jan2025 | New Landing Page",
+            "source": "google",
+            "medium": "cpc",
+            "sessions": 282,
+            "users": 211,
+            "pageViews": 234,
+            "conversions": 234,
+            "avgDuration": 74.07535962949125,
+            "bounceRate": 0.03509574556225274,
+            "records": 11
+          },
+          {
+            "name": "Drawing Fundamentals Cert-Traffic-Jan25",
+            "source": "google",
+            "medium": "cpc",
+            "sessions": 246,
+            "users": 156,
+            "pageViews": 313,
+            "conversions": 313,
+            "avgDuration": 88.09014882872754,
+            "bounceRate": 0.02575167669507292,
+            "records": 3
+          },
+          {
+            "name": "ADMI Website Traffic-Search-Aug 2023",
+            "source": "google",
+            "medium": "cpc",
+            "sessions": 152,
+            "users": 82,
+            "pageViews": 883,
+            "conversions": 6,
+            "avgDuration": 178.33337859582167,
+            "bounceRate": 0.10075008950948801,
+            "records": 7
+          },
+          {
+            "name": "sept2024",
+            "source": "meta",
+            "medium": "cpc",
+            "sessions": 128,
+            "users": 25,
+            "pageViews": 248,
+            "conversions": 248,
+            "avgDuration": 79.991103078125,
+            "bounceRate": 0.0390625,
+            "records": 1
+          },
+          {
+            "name": "Search - May 2024",
+            "source": "google",
+            "medium": "cpc",
+            "sessions": 49,
+            "users": 39,
+            "pageViews": 599,
+            "conversions": 0,
+            "avgDuration": 294.9404775777778,
+            "bounceRate": 0.0392156862745098,
+            "records": 3
+          },
+          {
+            "name": "ADMI traffic-Search-(KCSE 24)",
+            "source": "google",
+            "medium": "cpc",
+            "sessions": 18,
+            "users": 10,
+            "pageViews": 229,
+            "conversions": 0,
+            "avgDuration": 133.35006244444446,
+            "bounceRate": 0.05555555555555555,
+            "records": 1
+          },
+          {
+            "name": "Competitors-Search",
+            "source": "google",
+            "medium": "cpc",
+            "sessions": 16,
+            "users": 9,
+            "pageViews": 94,
+            "conversions": 0,
+            "avgDuration": 216.144191125,
+            "bounceRate": 0.1875,
+            "records": 1
+          },
+          {
+            "name": "campaign",
+            "source": "adgroup",
+            "medium": "adwords",
+            "sessions": 15,
+            "users": 2,
+            "pageViews": 244,
+            "conversions": 10,
+            "avgDuration": 280.4572251333333,
+            "bounceRate": 0,
+            "records": 1
+          }
+        ],
+        "sources": [
+          {
+            "source": "1",
+            "medium": "adwords",
+            "sessions": 129197,
+            "users": 85073,
+            "conversions": 36931
+          },
+          {
+            "source": "meta",
+            "medium": "cpc",
+            "sessions": 53303,
+            "users": 51628,
+            "conversions": 155003
+          },
+          {
+            "source": "google",
+            "medium": "cpc",
+            "sessions": 43518,
+            "users": 18311,
+            "conversions": 80932
+          },
+          {
+            "source": "google",
+            "medium": "organic",
+            "sessions": 32595,
+            "users": 21260,
+            "conversions": 107624
+          },
+          {
+            "source": "an",
+            "medium": "paid",
+            "sessions": 7434,
+            "users": 7215,
+            "conversions": 24352
+          },
+          {
+            "source": "googleads.g.doubleclick.net",
+            "medium": "referral",
+            "sessions": 564,
+            "users": 541,
+            "conversions": 2087
+          },
+          {
+            "source": "storage.googleapis.com",
+            "medium": "referral",
+            "sessions": 405,
+            "users": 405,
+            "conversions": 810
+          },
+          {
+            "source": "google",
+            "medium": "Display",
+            "sessions": 363,
+            "users": 325,
+            "conversions": 473
+          },
+          {
+            "source": "(not set)",
+            "medium": "adwords",
+            "sessions": 165,
+            "users": 152,
+            "conversions": 0
+          },
+          {
+            "source": "fb",
+            "medium": "paid",
+            "sessions": 18,
+            "users": 18,
+            "conversions": 0
+          },
+          {
+            "source": "adgroup",
+            "medium": "adwords",
+            "sessions": 15,
+            "users": 2,
+            "conversions": 10
+          }
+        ],
+        "monthlyBreakdown": {
+          "2024010": {
+            "sessions": 7798,
+            "users": 3242,
+            "conversions": 548
+          },
+          "2024011": {
+            "sessions": 10359,
+            "users": 5310,
+            "conversions": 482
+          },
+          "2024012": {
+            "sessions": 20557,
+            "users": 8177,
+            "conversions": 1394
+          },
+          "2024013": {
+            "sessions": 2310,
+            "users": 1332,
+            "conversions": 185
+          },
+          "2024020": {
+            "sessions": 4534,
+            "users": 2177,
+            "conversions": 305
+          },
+          "2024021": {
+            "sessions": 9285,
+            "users": 3903,
+            "conversions": 1052
+          },
+          "2024022": {
+            "sessions": 15018,
+            "users": 5940,
+            "conversions": 1348
+          },
+          "2024030": {
+            "sessions": 6578,
+            "users": 5217,
+            "conversions": 660
+          },
+          "2024031": {
+            "sessions": 14728,
+            "users": 12863,
+            "conversions": 787
+          },
+          "2024032": {
+            "sessions": 11733,
+            "users": 10415,
+            "conversions": 206
+          },
+          "2024033": {
+            "sessions": 1237,
+            "users": 1110,
+            "conversions": 29
+          },
+          "2024040": {
+            "sessions": 23769,
+            "users": 20239,
+            "conversions": 349
+          },
+          "2024041": {
+            "sessions": 14803,
+            "users": 12894,
+            "conversions": 11560
+          },
+          "2024042": {
+            "sessions": 6870,
+            "users": 6155,
+            "conversions": 36354
+          },
+          "2024043": {
+            "sessions": 588,
+            "users": 480,
+            "conversions": 3472
+          },
+          "2024050": {
+            "sessions": 5032,
+            "users": 4472,
+            "conversions": 28797
+          },
+          "2024051": {
+            "sessions": 609,
+            "users": 522,
+            "conversions": 4438
+          },
+          "2024052": {
+            "sessions": 2342,
+            "users": 2027,
+            "conversions": 16801
+          },
+          "2024053": {
+            "sessions": 1172,
+            "users": 1104,
+            "conversions": 6401
+          },
+          "2024060": {
+            "sessions": 12073,
+            "users": 11547,
+            "conversions": 58140
+          },
+          "2024061": {
+            "sessions": 5328,
+            "users": 5039,
+            "conversions": 25648
+          },
+          "2024062": {
+            "sessions": 781,
+            "users": 722,
+            "conversions": 5338
+          },
+          "2024063": {
+            "sessions": 76,
+            "users": 63,
+            "conversions": 756
+          },
+          "2024070": {
+            "sessions": 948,
+            "users": 773,
+            "conversions": 8890
+          },
+          "2024071": {
+            "sessions": 990,
+            "users": 794,
+            "conversions": 10161
+          },
+          "2024072": {
+            "sessions": 597,
+            "users": 502,
+            "conversions": 1598
+          },
+          "2024073": {
+            "sessions": 164,
+            "users": 142,
+            "conversions": 400
+          },
+          "2024080": {
+            "sessions": 3852,
+            "users": 3700,
+            "conversions": 8898
+          },
+          "2024081": {
+            "sessions": 5620,
+            "users": 5404,
+            "conversions": 12577
+          },
+          "2024082": {
+            "sessions": 10232,
+            "users": 9626,
+            "conversions": 23057
+          },
+          "2024083": {
+            "sessions": 1918,
+            "users": 1875,
+            "conversions": 4184
+          },
+          "2024090": {
+            "sessions": 10510,
+            "users": 10272,
+            "conversions": 22694
+          },
+          "2024091": {
+            "sessions": 6297,
+            "users": 6181,
+            "conversions": 13698
+          },
+          "2024092": {
+            "sessions": 1896,
+            "users": 1030,
+            "conversions": 5362
+          },
+          "2024093": {
+            "sessions": 321,
+            "users": 69,
+            "conversions": 968
+          },
+          "2024100": {
+            "sessions": 2153,
+            "users": 529,
+            "conversions": 6178
+          },
+          "2024101": {
+            "sessions": 3396,
+            "users": 941,
+            "conversions": 9457
+          },
+          "2024102": {
+            "sessions": 3371,
+            "users": 1041,
+            "conversions": 9510
+          },
+          "2024103": {
+            "sessions": 2894,
+            "users": 609,
+            "conversions": 7120
+          },
+          "2024110": {
+            "sessions": 13855,
+            "users": 4214,
+            "conversions": 29317
+          },
+          "2024111": {
+            "sessions": 10516,
+            "users": 8068,
+            "conversions": 7925
+          },
+          "2024112": {
+            "sessions": 10467,
+            "users": 4210,
+            "conversions": 21178
+          }
+        },
+        "summary": "Found 267,577 paid sessions across 34 campaigns"
+      },
+      "sourceAnalysis": {
+        "totalSessions": 539674,
+        "allSources": [
+          {
+            "source": "1",
+            "medium": "adwords",
+            "trafficType": "Paid",
+            "sessions": 129394,
+            "users": 67534,
+            "conversions": 40413,
+            "percentage": "23.98"
+          },
+          {
+            "source": "(direct)",
+            "medium": "(none)",
+            "trafficType": "Direct",
+            "sessions": 101226,
+            "users": 66911,
+            "conversions": 289534,
+            "percentage": "18.76"
+          },
+          {
+            "source": "(not set)",
+            "medium": "(not set)",
+            "trafficType": "Other",
+            "sessions": 55513,
+            "users": 3416,
+            "conversions": 183149,
+            "percentage": "10.29"
+          },
+          {
+            "source": "meta",
+            "medium": "cpc",
+            "trafficType": "Paid",
+            "sessions": 52105,
+            "users": 48053,
+            "conversions": 156003,
+            "percentage": "9.65"
+          },
+          {
+            "source": "google",
+            "medium": "cpc",
+            "trafficType": "Paid",
+            "sessions": 45651,
+            "users": 17143,
+            "conversions": 84808,
+            "percentage": "8.46"
+          },
+          {
+            "source": "an",
+            "medium": "Social",
+            "trafficType": "Other",
+            "sessions": 38252,
+            "users": 34428,
+            "conversions": 123327,
+            "percentage": "7.09"
+          },
+          {
+            "source": "google",
+            "medium": "organic",
+            "trafficType": "Organic",
+            "sessions": 33199,
+            "users": 17533,
+            "conversions": 108437,
+            "percentage": "6.15"
+          },
+          {
+            "source": "m.facebook.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 13195,
+            "users": 6430,
+            "conversions": 2835,
+            "percentage": "2.44"
+          },
+          {
+            "source": "meta",
+            "medium": "social",
+            "trafficType": "Social",
+            "sessions": 11070,
+            "users": 8308,
+            "conversions": 48696,
+            "percentage": "2.05"
+          },
+          {
+            "source": "l.facebook.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 8889,
+            "users": 5265,
+            "conversions": 11299,
+            "percentage": "1.65"
+          },
+          {
+            "source": "fb",
+            "medium": "Social",
+            "trafficType": "Other",
+            "sessions": 8793,
+            "users": 8065,
+            "conversions": 21453,
+            "percentage": "1.63"
+          },
+          {
+            "source": "an",
+            "medium": "paid",
+            "trafficType": "Paid",
+            "sessions": 7375,
+            "users": 6871,
+            "conversions": 24456,
+            "percentage": "1.37"
+          },
+          {
+            "source": "(not set)",
+            "medium": "Social",
+            "trafficType": "Other",
+            "sessions": 5265,
+            "users": 4680,
+            "conversions": 51,
+            "percentage": "0.98"
+          },
+          {
+            "source": "l.facebook.com",
+            "medium": "Social",
+            "trafficType": "Other",
+            "sessions": 4657,
+            "users": 4411,
+            "conversions": 82,
+            "percentage": "0.86"
+          },
+          {
+            "source": "instagram.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 3848,
+            "users": 863,
+            "conversions": 564,
+            "percentage": "0.71"
+          },
+          {
+            "source": "m.facebook.com",
+            "medium": "Social",
+            "trafficType": "Other",
+            "sessions": 1927,
+            "users": 1827,
+            "conversions": 54,
+            "percentage": "0.36"
+          },
+          {
+            "source": "bing",
+            "medium": "organic",
+            "trafficType": "Organic",
+            "sessions": 1551,
+            "users": 842,
+            "conversions": 6100,
+            "percentage": "0.29"
+          },
+          {
+            "source": "https://admi.ac.ke/course/?final_url",
+            "medium": "Google",
+            "trafficType": "Other",
+            "sessions": 1364,
+            "users": 1034,
+            "conversions": 263,
+            "percentage": "0.25"
+          },
+          {
+            "source": "admi.ac.ke",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 1274,
+            "users": 1196,
+            "conversions": 4,
+            "percentage": "0.24"
+          },
+          {
+            "source": "youtube.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 1189,
+            "users": 974,
+            "conversions": 3778,
+            "percentage": "0.22"
+          },
+          {
+            "source": "linktr.ee",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 917,
+            "users": 433,
+            "conversions": 3477,
+            "percentage": "0.17"
+          },
+          {
+            "source": "mailchimp",
+            "medium": "page",
+            "trafficType": "Other",
+            "sessions": 867,
+            "users": 73,
+            "conversions": 161,
+            "percentage": "0.16"
+          },
+          {
+            "source": "facebook.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 755,
+            "users": 615,
+            "conversions": 1267,
+            "percentage": "0.14"
+          },
+          {
+            "source": "pwa-app",
+            "medium": "pwa-app",
+            "trafficType": "Other",
+            "sessions": 727,
+            "users": 522,
+            "conversions": 1227,
+            "percentage": "0.13"
+          },
+          {
+            "source": "brevo",
+            "medium": "email",
+            "trafficType": "Email",
+            "sessions": 701,
+            "users": 396,
+            "conversions": 2176,
+            "percentage": "0.13"
+          },
+          {
+            "source": "googleads.g.doubleclick.net",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 682,
+            "users": 632,
+            "conversions": 2593,
+            "percentage": "0.13"
+          },
+          {
+            "source": "(not set)",
+            "medium": "adwords",
+            "trafficType": "Paid",
+            "sessions": 609,
+            "users": 528,
+            "conversions": 219,
+            "percentage": "0.11"
+          },
+          {
+            "source": "social-media",
+            "medium": "social",
+            "trafficType": "Social",
+            "sessions": 590,
+            "users": 292,
+            "conversions": 3577,
+            "percentage": "0.11"
+          },
+          {
+            "source": "lm.facebook.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 550,
+            "users": 352,
+            "conversions": 377,
+            "percentage": "0.10"
+          },
+          {
+            "source": "l.instagram.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 547,
+            "users": 154,
+            "conversions": 277,
+            "percentage": "0.10"
+          },
+          {
+            "source": "storage.googleapis.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 509,
+            "users": 508,
+            "conversions": 1016,
+            "percentage": "0.09"
+          },
+          {
+            "source": "google",
+            "medium": "Display",
+            "trafficType": "Other",
+            "sessions": 477,
+            "users": 328,
+            "conversions": 823,
+            "percentage": "0.09"
+          },
+          {
+            "source": "teams.microsoft.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 436,
+            "users": 33,
+            "conversions": 2046,
+            "percentage": "0.08"
+          },
+          {
+            "source": "adsensecustomsearchads.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 402,
+            "users": 368,
+            "conversions": 3305,
+            "percentage": "0.07"
+          },
+          {
+            "source": "lnkd.in",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 376,
+            "users": 369,
+            "conversions": 948,
+            "percentage": "0.07"
+          },
+          {
+            "source": "instagram",
+            "medium": "social",
+            "trafficType": "Social",
+            "sessions": 335,
+            "users": 163,
+            "conversions": 175,
+            "percentage": "0.06"
+          },
+          {
+            "source": "standard",
+            "medium": "website",
+            "trafficType": "Other",
+            "sessions": 316,
+            "users": 260,
+            "conversions": 2043,
+            "percentage": "0.06"
+          },
+          {
+            "source": "meta",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 260,
+            "users": 208,
+            "conversions": 688,
+            "percentage": "0.05"
+          },
+          {
+            "source": "baidu",
+            "medium": "organic",
+            "trafficType": "Organic",
+            "sessions": 242,
+            "users": 226,
+            "conversions": 203,
+            "percentage": "0.04"
+          },
+          {
+            "source": "linkedin.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 221,
+            "users": 187,
+            "conversions": 596,
+            "percentage": "0.04"
+          },
+          {
+            "source": "social",
+            "medium": "social",
+            "trafficType": "Social",
+            "sessions": 216,
+            "users": 113,
+            "conversions": 215,
+            "percentage": "0.04"
+          },
+          {
+            "source": "brevo",
+            "medium": "sms",
+            "trafficType": "Other",
+            "sessions": 144,
+            "users": 103,
+            "conversions": 64,
+            "percentage": "0.03"
+          },
+          {
+            "source": "t.co",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 140,
+            "users": 106,
+            "conversions": 507,
+            "percentage": "0.03"
+          },
+          {
+            "source": "ig",
+            "medium": "Social",
+            "trafficType": "Other",
+            "sessions": 138,
+            "users": 121,
+            "conversions": 697,
+            "percentage": "0.03"
+          },
+          {
+            "source": "newsletter",
+            "medium": "email",
+            "trafficType": "Email",
+            "sessions": 135,
+            "users": 99,
+            "conversions": 172,
+            "percentage": "0.03"
+          },
+          {
+            "source": "login.microsoftonline.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 123,
+            "users": 12,
+            "conversions": 2039,
+            "percentage": "0.02"
+          },
+          {
+            "source": "yahoo",
+            "medium": "organic",
+            "trafficType": "Organic",
+            "sessions": 117,
+            "users": 58,
+            "conversions": 358,
+            "percentage": "0.02"
+          },
+          {
+            "source": "tagassistant.google.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 113,
+            "users": 8,
+            "conversions": 325,
+            "percentage": "0.02"
+          },
+          {
+            "source": "mail.google.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 112,
+            "users": 33,
+            "conversions": 97,
+            "percentage": "0.02"
+          },
+          {
+            "source": "ig",
+            "medium": "cpc",
+            "trafficType": "Paid",
+            "sessions": 110,
+            "users": 87,
+            "conversions": 1181,
+            "percentage": "0.02"
+          },
+          {
+            "source": "kampusville.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 104,
+            "users": 69,
+            "conversions": 348,
+            "percentage": "0.02"
+          },
+          {
+            "source": "fb",
+            "medium": "paid",
+            "trafficType": "Paid",
+            "sessions": 101,
+            "users": 100,
+            "conversions": 95,
+            "percentage": "0.02"
+          },
+          {
+            "source": "ft-ui-development.d2o40i3uz0jh0d.amplifyapp.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 101,
+            "users": 2,
+            "conversions": 498,
+            "percentage": "0.02"
+          },
+          {
+            "source": "fb",
+            "medium": "cpc",
+            "trafficType": "Paid",
+            "sessions": 98,
+            "users": 75,
+            "conversions": 697,
+            "percentage": "0.02"
+          },
+          {
+            "source": "tdsf.doubleclick.net",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 92,
+            "users": 56,
+            "conversions": 192,
+            "percentage": "0.02"
+          },
+          {
+            "source": "duckduckgo",
+            "medium": "organic",
+            "trafficType": "Organic",
+            "sessions": 87,
+            "users": 78,
+            "conversions": 295,
+            "percentage": "0.02"
+          },
+          {
+            "source": "facebook",
+            "medium": "paid-social",
+            "trafficType": "Other",
+            "sessions": 78,
+            "users": 74,
+            "conversions": 0,
+            "percentage": "0.01"
+          },
+          {
+            "source": "l.wl.co",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 77,
+            "users": 39,
+            "conversions": 398,
+            "percentage": "0.01"
+          },
+          {
+            "source": "joinaccelerated.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 70,
+            "users": 13,
+            "conversions": 64,
+            "percentage": "0.01"
+          },
+          {
+            "source": "instagram.com",
+            "medium": "Social",
+            "trafficType": "Other",
+            "sessions": 69,
+            "users": 66,
+            "conversions": 15,
+            "percentage": "0.01"
+          },
+          {
+            "source": "organic",
+            "medium": "social",
+            "trafficType": "Social",
+            "sessions": 63,
+            "users": 50,
+            "conversions": 242,
+            "percentage": "0.01"
+          },
+          {
+            "source": "localhost:3000",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 59,
+            "users": 6,
+            "conversions": 398,
+            "percentage": "0.01"
+          },
+          {
+            "source": "admikenya",
+            "medium": "email",
+            "trafficType": "Email",
+            "sessions": 58,
+            "users": 41,
+            "conversions": 73,
+            "percentage": "0.01"
+          },
+          {
+            "source": "blog.spectrumfilmschool.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 57,
+            "users": 45,
+            "conversions": 590,
+            "percentage": "0.01"
+          },
+          {
+            "source": "lm.facebook.com",
+            "medium": "Social",
+            "trafficType": "Other",
+            "sessions": 53,
+            "users": 51,
+            "conversions": 2,
+            "percentage": "0.01"
+          },
+          {
+            "source": "kenya.dotrust.org",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 50,
+            "users": 40,
+            "conversions": 31,
+            "percentage": "0.01"
+          },
+          {
+            "source": "social-media-karumba",
+            "medium": "social",
+            "trafficType": "Social",
+            "sessions": 48,
+            "users": 23,
+            "conversions": 444,
+            "percentage": "0.01"
+          },
+          {
+            "source": "msg",
+            "medium": "Social",
+            "trafficType": "Other",
+            "sessions": 47,
+            "users": 45,
+            "conversions": 98,
+            "percentage": "0.01"
+          },
+          {
+            "source": "game.bliscanemon.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 36,
+            "users": 26,
+            "conversions": 122,
+            "percentage": "0.01"
+          },
+          {
+            "source": "Meta",
+            "medium": "Social",
+            "trafficType": "Other",
+            "sessions": 35,
+            "users": 24,
+            "conversions": 134,
+            "percentage": "0.01"
+          },
+          {
+            "source": "syndicatedsearch.goog",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 35,
+            "users": 10,
+            "conversions": 75,
+            "percentage": "0.01"
+          },
+          {
+            "source": "search.google.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 34,
+            "users": 5,
+            "conversions": 36,
+            "percentage": "0.01"
+          },
+          {
+            "source": "ADMI Faculty",
+            "medium": "email",
+            "trafficType": "Email",
+            "sessions": 33,
+            "users": 2,
+            "conversions": 0,
+            "percentage": "0.01"
+          },
+          {
+            "source": "m.youtube.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 33,
+            "users": 28,
+            "conversions": 70,
+            "percentage": "0.01"
+          },
+          {
+            "source": "facebook.com",
+            "medium": "Social",
+            "trafficType": "Other",
+            "sessions": 32,
+            "users": 32,
+            "conversions": 6,
+            "percentage": "0.01"
+          },
+          {
+            "source": "standardmedia.co.ke",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 32,
+            "users": 30,
+            "conversions": 178,
+            "percentage": "0.01"
+          },
+          {
+            "source": "adgroup",
+            "medium": "adwords",
+            "trafficType": "Paid",
+            "sessions": 31,
+            "users": 10,
+            "conversions": 14,
+            "percentage": "0.01"
+          },
+          {
+            "source": "ads.google.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 27,
+            "users": 4,
+            "conversions": 62,
+            "percentage": "0.01"
+          },
+          {
+            "source": "chatgpt.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 27,
+            "users": 22,
+            "conversions": 105,
+            "percentage": "0.01"
+          },
+          {
+            "source": "mailchi.mp",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 26,
+            "users": 3,
+            "conversions": 0,
+            "percentage": "0.00"
+          },
+          {
+            "source": "tuko.co.ke",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 26,
+            "users": 20,
+            "conversions": 95,
+            "percentage": "0.00"
+          },
+          {
+            "source": "us1.admin.mailchimp.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 26,
+            "users": 2,
+            "conversions": 0,
+            "percentage": "0.00"
+          },
+          {
+            "source": "onetag-sys.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 25,
+            "users": 25,
+            "conversions": 50,
+            "percentage": "0.00"
+          },
+          {
+            "source": "rubika-edu.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 22,
+            "users": 17,
+            "conversions": 16,
+            "percentage": "0.00"
+          },
+          {
+            "source": "cms.54.175.177.237.nip.io",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 21,
+            "users": 2,
+            "conversions": 178,
+            "percentage": "0.00"
+          },
+          {
+            "source": "ft-cms-integration.d2o40i3uz0jh0d.amplifyapp.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 21,
+            "users": 1,
+            "conversions": 74,
+            "percentage": "0.00"
+          },
+          {
+            "source": "gamesindustryafrica.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 21,
+            "users": 13,
+            "conversions": 60,
+            "percentage": "0.00"
+          },
+          {
+            "source": "uk.search.yahoo.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 20,
+            "users": 7,
+            "conversions": 28,
+            "percentage": "0.00"
+          },
+          {
+            "source": "https://admi.ac.ke/course/?final_url={Ipurl}",
+            "medium": "Google",
+            "trafficType": "Other",
+            "sessions": 19,
+            "users": 18,
+            "conversions": 0,
+            "percentage": "0.00"
+          },
+          {
+            "source": "m.gsearch.co",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 19,
+            "users": 9,
+            "conversions": 19,
+            "percentage": "0.00"
+          },
+          {
+            "source": "meta",
+            "medium": "(not set)",
+            "trafficType": "Other",
+            "sessions": 18,
+            "users": 16,
+            "conversions": 56,
+            "percentage": "0.00"
+          },
+          {
+            "source": "142.4.14.1:2087",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 17,
+            "users": 2,
+            "conversions": 2,
+            "percentage": "0.00"
+          },
+          {
+            "source": "bb7a4cd4.sibforms.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 17,
+            "users": 2,
+            "conversions": 126,
+            "percentage": "0.00"
+          },
+          {
+            "source": "churchill",
+            "medium": "social",
+            "trafficType": "Social",
+            "sessions": 17,
+            "users": 16,
+            "conversions": 74,
+            "percentage": "0.00"
+          },
+          {
+            "source": "brianmugo.framer.website",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 16,
+            "users": 5,
+            "conversions": 29,
+            "percentage": "0.00"
+          },
+          {
+            "source": "sionah.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 15,
+            "users": 14,
+            "conversions": 84,
+            "percentage": "0.00"
+          },
+          {
+            "source": "{adgroup}",
+            "medium": "adwords",
+            "trafficType": "Paid",
+            "sessions": 15,
+            "users": 8,
+            "conversions": 2,
+            "percentage": "0.00"
+          },
+          {
+            "source": "assignments.onenote.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 14,
+            "users": 8,
+            "conversions": 60,
+            "percentage": "0.00"
+          },
+          {
+            "source": "ft-ui-development--v2-admi-ac-ke.netlify.app",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 14,
+            "users": 2,
+            "conversions": 74,
+            "percentage": "0.00"
+          },
+          {
+            "source": "googleadservices.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 14,
+            "users": 6,
+            "conversions": 28,
+            "percentage": "0.00"
+          }
+        ],
+        "trafficTypesSummary": {
+          "Paid": {
+            "sessions": 235489,
+            "users": 140409,
+            "conversions": 307888,
+            "percentage": "43.64"
+          },
+          "Direct": {
+            "sessions": 101226,
+            "users": 66911,
+            "conversions": 289534,
+            "percentage": "18.76"
+          },
+          "Other": {
+            "sessions": 118791,
+            "users": 59594,
+            "conversions": 333705,
+            "percentage": "22.01"
+          },
+          "Organic": {
+            "sessions": 35196,
+            "users": 18737,
+            "conversions": 115393,
+            "percentage": "6.52"
+          },
+          "Referral": {
+            "sessions": 35706,
+            "users": 19279,
+            "conversions": 42128,
+            "percentage": "6.62"
+          },
+          "Social": {
+            "sessions": 12339,
+            "users": 8965,
+            "conversions": 53423,
+            "percentage": "2.29"
+          },
+          "Email": {
+            "sessions": 927,
+            "users": 538,
+            "conversions": 2421,
+            "percentage": "0.17"
+          }
+        },
+        "paidTrafficSources": [
+          {
+            "source": "1",
+            "medium": "adwords",
+            "trafficType": "Paid",
+            "sessions": 129394,
+            "users": 67534,
+            "conversions": 40413,
+            "percentage": "23.98"
+          },
+          {
+            "source": "meta",
+            "medium": "cpc",
+            "trafficType": "Paid",
+            "sessions": 52105,
+            "users": 48053,
+            "conversions": 156003,
+            "percentage": "9.65"
+          },
+          {
+            "source": "google",
+            "medium": "cpc",
+            "trafficType": "Paid",
+            "sessions": 45651,
+            "users": 17143,
+            "conversions": 84808,
+            "percentage": "8.46"
+          },
+          {
+            "source": "an",
+            "medium": "paid",
+            "trafficType": "Paid",
+            "sessions": 7375,
+            "users": 6871,
+            "conversions": 24456,
+            "percentage": "1.37"
+          },
+          {
+            "source": "(not set)",
+            "medium": "adwords",
+            "trafficType": "Paid",
+            "sessions": 609,
+            "users": 528,
+            "conversions": 219,
+            "percentage": "0.11"
+          },
+          {
+            "source": "ig",
+            "medium": "cpc",
+            "trafficType": "Paid",
+            "sessions": 110,
+            "users": 87,
+            "conversions": 1181,
+            "percentage": "0.02"
+          },
+          {
+            "source": "fb",
+            "medium": "paid",
+            "trafficType": "Paid",
+            "sessions": 101,
+            "users": 100,
+            "conversions": 95,
+            "percentage": "0.02"
+          },
+          {
+            "source": "fb",
+            "medium": "cpc",
+            "trafficType": "Paid",
+            "sessions": 98,
+            "users": 75,
+            "conversions": 697,
+            "percentage": "0.02"
+          },
+          {
+            "source": "adgroup",
+            "medium": "adwords",
+            "trafficType": "Paid",
+            "sessions": 31,
+            "users": 10,
+            "conversions": 14,
+            "percentage": "0.01"
+          },
+          {
+            "source": "{adgroup}",
+            "medium": "adwords",
+            "trafficType": "Paid",
+            "sessions": 15,
+            "users": 8,
+            "conversions": 2,
+            "percentage": "0.00"
+          }
+        ]
+      },
+      "insights": [
+        "Found 267,577 paid sessions",
+        "Top paid campaign: 1",
+        "Paid conversion rate: 152.56%",
+        "Paid traffic represents 43.64% of total traffic",
+        "Organic traffic represents 6.52% of total traffic"
+      ]
+    },
+    "2025 Current": {
+      "period": {
+        "name": "2025 Current",
+        "startDate": "2025-01-01",
+        "endDate": "2025-11-03"
+      },
+      "paidAnalysis": {
+        "totalSessions": 20624,
+        "totalUsers": 9568,
+        "totalPageViews": 67423,
+        "totalConversions": 70444,
+        "campaigns": [
+          {
+            "name": "(organic)",
+            "source": "google",
+            "medium": "organic",
+            "sessions": 18704,
+            "users": 8468,
+            "pageViews": 61061,
+            "conversions": 63084,
+            "avgDuration": 238.2260339762191,
+            "bounceRate": 0.06475283624860098,
+            "records": 233
+          },
+          {
+            "name": "(not set)",
+            "source": "google",
+            "medium": "cpc",
+            "sessions": 819,
+            "users": 401,
+            "pageViews": 2055,
+            "conversions": 2063,
+            "avgDuration": 58.87268366501561,
+            "bounceRate": 0.006079365079365079,
+            "records": 225
+          },
+          {
+            "name": "Search-September-2025",
+            "source": "google",
+            "medium": "cpc",
+            "sessions": 446,
+            "users": 343,
+            "pageViews": 1309,
+            "conversions": 2296,
+            "avgDuration": 89.66604011596688,
+            "bounceRate": 0.05653235653235653,
+            "records": 7
+          },
+          {
+            "name": "(referral)",
+            "source": "tagassistant.google.com",
+            "medium": "referral",
+            "sessions": 358,
+            "users": 137,
+            "pageViews": 2324,
+            "conversions": 2357,
+            "avgDuration": 524.9006835013475,
+            "bounceRate": 0.11864686468646865,
+            "records": 101
+          },
+          {
+            "name": "1",
+            "source": "1",
+            "medium": "adwords",
+            "sessions": 201,
+            "users": 140,
+            "pageViews": 473,
+            "conversions": 445,
+            "avgDuration": 16.808485661818846,
+            "bounceRate": 0,
+            "records": 97
+          },
+          {
+            "name": "{campaign}",
+            "source": "{adgroup}",
+            "medium": "adwords",
+            "sessions": 19,
+            "users": 19,
+            "pageViews": 38,
+            "conversions": 36,
+            "avgDuration": 5.320944701388889,
+            "bounceRate": 0,
+            "records": 12
+          },
+          {
+            "name": "Hop - GS - Generic",
+            "source": "google",
+            "medium": "cpc",
+            "sessions": 16,
+            "users": 12,
+            "pageViews": 32,
+            "conversions": 32,
+            "avgDuration": 10.36892164,
+            "bounceRate": 0.05,
+            "records": 10
+          },
+          {
+            "name": "Hop - Pmax - FTV",
+            "source": "google",
+            "medium": "cpc",
+            "sessions": 15,
+            "users": 12,
+            "pageViews": 28,
+            "conversions": 28,
+            "avgDuration": 2.031344318181818,
+            "bounceRate": 0.09090909090909091,
+            "records": 11
+          },
+          {
+            "name": "sep2024",
+            "source": "meta",
+            "medium": "cpc",
+            "sessions": 10,
+            "users": 9,
+            "pageViews": 18,
+            "conversions": 18,
+            "avgDuration": 10.392558214285714,
+            "bounceRate": 0,
+            "records": 7
+          },
+          {
+            "name": "Google Display Ads",
+            "source": "adwords",
+            "medium": "ppc",
+            "sessions": 6,
+            "users": 1,
+            "pageViews": 18,
+            "conversions": 18,
+            "avgDuration": 86.35899683333334,
+            "bounceRate": 0,
+            "records": 1
+          },
+          {
+            "name": "22069596954",
+            "source": "google",
+            "medium": "cpc",
+            "sessions": 6,
+            "users": 5,
+            "pageViews": 12,
+            "conversions": 12,
+            "avgDuration": 7.265252833333332,
+            "bounceRate": 0.1111111111111111,
+            "records": 3
+          },
+          {
+            "name": "Hop - GS - Brand",
+            "source": "google",
+            "medium": "cpc",
+            "sessions": 6,
+            "users": 5,
+            "pageViews": 3,
+            "conversions": 3,
+            "avgDuration": 124.60474725,
+            "bounceRate": 0.125,
+            "records": 4
+          },
+          {
+            "name": "scholarships-sept2024",
+            "source": "meta",
+            "medium": "cpc",
+            "sessions": 4,
+            "users": 2,
+            "pageViews": 6,
+            "conversions": 6,
+            "avgDuration": 8.282308500000001,
+            "bounceRate": 0,
+            "records": 1
+          },
+          {
+            "name": "hop_video_game_development_certificate_lead_application_submission",
+            "source": "meta",
+            "medium": "paid_social",
+            "sessions": 2,
+            "users": 2,
+            "pageViews": 4,
+            "conversions": 4,
+            "avgDuration": 14.8813395,
+            "bounceRate": 0,
+            "records": 1
+          },
+          {
+            "name": "May_2024",
+            "source": "google",
+            "medium": "Display",
+            "sessions": 2,
+            "users": 2,
+            "pageViews": 4,
+            "conversions": 4,
+            "avgDuration": 0.011757,
+            "bounceRate": 0,
+            "records": 2
+          },
+          {
+            "name": "Music Production",
+            "source": "google",
+            "medium": "cpc",
+            "sessions": 2,
+            "users": 2,
+            "pageViews": 4,
+            "conversions": 4,
+            "avgDuration": 0.011633000000000001,
+            "bounceRate": 0,
+            "records": 2
+          },
+          {
+            "name": "campaign",
+            "source": "adgroup",
+            "medium": "adwords",
+            "sessions": 1,
+            "users": 1,
+            "pageViews": 2,
+            "conversions": 2,
+            "avgDuration": 0.005112,
+            "bounceRate": 0,
+            "records": 1
+          },
+          {
+            "name": "(direct)",
+            "source": "google",
+            "medium": "cpc",
+            "sessions": 1,
+            "users": 1,
+            "pageViews": 24,
+            "conversions": 24,
+            "avgDuration": 9231.627235,
+            "bounceRate": 0,
+            "records": 1
+          },
+          {
+            "name": "22069324923",
+            "source": "google",
+            "medium": "cpc",
+            "sessions": 1,
+            "users": 1,
+            "pageViews": 2,
+            "conversions": 2,
+            "avgDuration": 0.000076,
+            "bounceRate": 0,
+            "records": 1
+          },
+          {
+            "name": "Brand Awareness",
+            "source": "google",
+            "medium": "cpc",
+            "sessions": 1,
+            "users": 1,
+            "pageViews": 2,
+            "conversions": 2,
+            "avgDuration": 0.011034,
+            "bounceRate": 0,
+            "records": 1
+          },
+          {
+            "name": "Creative Media and Tech | New Landing Page",
+            "source": "google",
+            "medium": "cpc",
+            "sessions": 1,
+            "users": 1,
+            "pageViews": 0,
+            "conversions": 0,
+            "avgDuration": 370.01728,
+            "bounceRate": 0,
+            "records": 1
+          },
+          {
+            "name": "[DIS] Graphic Design Certificate-Traffic-Jan2025 | Graphic Design | New Landing Page",
+            "source": "google",
+            "medium": "cpc",
+            "sessions": 1,
+            "users": 1,
+            "pageViews": 0,
+            "conversions": 0,
+            "avgDuration": 21.607154,
+            "bounceRate": 0,
+            "records": 1
+          },
+          {
+            "name": "hop_2d_animation_certificate_rubika_lead_application_submission",
+            "source": "meta",
+            "medium": "paid_social",
+            "sessions": 1,
+            "users": 1,
+            "pageViews": 2,
+            "conversions": 2,
+            "avgDuration": 22.394713,
+            "bounceRate": 0,
+            "records": 1
+          },
+          {
+            "name": "hop_film_and_television_production_diploma_lead_application_submission",
+            "source": "meta",
+            "medium": "paid_social",
+            "sessions": 1,
+            "users": 1,
+            "pageViews": 2,
+            "conversions": 2,
+            "avgDuration": 38.35992,
+            "bounceRate": 0,
+            "records": 1
+          }
+        ],
+        "sources": [
+          {
+            "source": "google",
+            "medium": "organic",
+            "sessions": 18701,
+            "users": 8466,
+            "conversions": 63080
+          },
+          {
+            "source": "google",
+            "medium": "cpc",
+            "sessions": 1290,
+            "users": 775,
+            "conversions": 4399
+          },
+          {
+            "source": "tagassistant.google.com",
+            "medium": "referral",
+            "sessions": 201,
+            "users": 75,
+            "conversions": 1053
+          },
+          {
+            "source": "1",
+            "medium": "adwords",
+            "sessions": 201,
+            "users": 140,
+            "conversions": 445
+          },
+          {
+            "source": "search.google.com",
+            "medium": "referral",
+            "sessions": 125,
+            "users": 36,
+            "conversions": 1228
+          },
+          {
+            "source": "(not set)",
+            "medium": "adwords",
+            "sessions": 26,
+            "users": 18,
+            "conversions": 58
+          },
+          {
+            "source": "adwords",
+            "medium": "ppc",
+            "sessions": 17,
+            "users": 5,
+            "conversions": 44
+          },
+          {
+            "source": "meta",
+            "medium": "cpc",
+            "sessions": 14,
+            "users": 11,
+            "conversions": 24
+          },
+          {
+            "source": "mail.google.com",
+            "medium": "referral",
+            "sessions": 12,
+            "users": 10,
+            "conversions": 25
+          },
+          {
+            "source": "{adgroup}",
+            "medium": "adwords",
+            "sessions": 11,
+            "users": 11,
+            "conversions": 22
+          },
+          {
+            "source": "gemini.google.com",
+            "medium": "referral",
+            "sessions": 9,
+            "users": 6,
+            "conversions": 23
+          },
+          {
+            "source": "google",
+            "medium": "adwords",
+            "sessions": 6,
+            "users": 4,
+            "conversions": 12
+          },
+          {
+            "source": "meta",
+            "medium": "paid_social",
+            "sessions": 4,
+            "users": 4,
+            "conversions": 8
+          },
+          {
+            "source": "googleads.g.doubleclick.net",
+            "medium": "referral",
+            "sessions": 3,
+            "users": 3,
+            "conversions": 17
+          },
+          {
+            "source": "docs.google.com",
+            "medium": "referral",
+            "sessions": 2,
+            "users": 2,
+            "conversions": 2
+          },
+          {
+            "source": "adgroup",
+            "medium": "adwords",
+            "sessions": 1,
+            "users": 1,
+            "conversions": 2
+          },
+          {
+            "source": "google",
+            "medium": "Display",
+            "sessions": 1,
+            "users": 1,
+            "conversions": 2
+          }
+        ],
+        "monthlyBreakdown": {
+          "2025010": {
+            "sessions": 57,
+            "users": 48,
+            "conversions": 222
+          },
+          "2025011": {
+            "sessions": 91,
+            "users": 80,
+            "conversions": 311
+          },
+          "2025012": {
+            "sessions": 241,
+            "users": 198,
+            "conversions": 1077
+          },
+          "2025013": {
+            "sessions": 21,
+            "users": 12,
+            "conversions": 108
+          },
+          "2025020": {
+            "sessions": 63,
+            "users": 53,
+            "conversions": 251
+          },
+          "2025021": {
+            "sessions": 83,
+            "users": 68,
+            "conversions": 243
+          },
+          "2025022": {
+            "sessions": 90,
+            "users": 67,
+            "conversions": 412
+          },
+          "2025030": {
+            "sessions": 291,
+            "users": 228,
+            "conversions": 1498
+          },
+          "2025031": {
+            "sessions": 2,
+            "users": 1,
+            "conversions": 0
+          },
+          "2025032": {
+            "sessions": 10,
+            "users": 7,
+            "conversions": 19
+          },
+          "2025033": {
+            "sessions": 2,
+            "users": 2,
+            "conversions": 4
+          },
+          "2025040": {
+            "sessions": 8,
+            "users": 6,
+            "conversions": 28
+          },
+          "2025041": {
+            "sessions": 3,
+            "users": 3,
+            "conversions": 4
+          },
+          "2025042": {
+            "sessions": 2,
+            "users": 1,
+            "conversions": 4
+          },
+          "2025050": {
+            "sessions": 4,
+            "users": 2,
+            "conversions": 8
+          },
+          "2025052": {
+            "sessions": 529,
+            "users": 178,
+            "conversions": 1392
+          },
+          "2025053": {
+            "sessions": 182,
+            "users": 58,
+            "conversions": 473
+          },
+          "2025060": {
+            "sessions": 1089,
+            "users": 337,
+            "conversions": 3596
+          },
+          "2025061": {
+            "sessions": 1177,
+            "users": 384,
+            "conversions": 3701
+          },
+          "2025062": {
+            "sessions": 1044,
+            "users": 346,
+            "conversions": 2863
+          },
+          "2025063": {
+            "sessions": 138,
+            "users": 50,
+            "conversions": 442
+          },
+          "2025070": {
+            "sessions": 1241,
+            "users": 423,
+            "conversions": 3429
+          },
+          "2025071": {
+            "sessions": 1336,
+            "users": 445,
+            "conversions": 4083
+          },
+          "2025072": {
+            "sessions": 1599,
+            "users": 539,
+            "conversions": 5948
+          },
+          "2025073": {
+            "sessions": 413,
+            "users": 139,
+            "conversions": 1412
+          },
+          "2025080": {
+            "sessions": 1773,
+            "users": 715,
+            "conversions": 5831
+          },
+          "2025081": {
+            "sessions": 1833,
+            "users": 724,
+            "conversions": 6143
+          },
+          "2025082": {
+            "sessions": 1806,
+            "users": 619,
+            "conversions": 5602
+          },
+          "2025083": {
+            "sessions": 211,
+            "users": 76,
+            "conversions": 587
+          },
+          "2025090": {
+            "sessions": 1078,
+            "users": 632,
+            "conversions": 4013
+          },
+          "2025091": {
+            "sessions": 904,
+            "users": 631,
+            "conversions": 3851
+          },
+          "2025092": {
+            "sessions": 761,
+            "users": 557,
+            "conversions": 2963
+          },
+          "2025093": {
+            "sessions": 69,
+            "users": 54,
+            "conversions": 256
+          },
+          "2025100": {
+            "sessions": 646,
+            "users": 497,
+            "conversions": 2556
+          },
+          "2025101": {
+            "sessions": 739,
+            "users": 558,
+            "conversions": 2662
+          },
+          "2025102": {
+            "sessions": 760,
+            "users": 567,
+            "conversions": 3048
+          },
+          "2025103": {
+            "sessions": 133,
+            "users": 104,
+            "conversions": 566
+          },
+          "2025110": {
+            "sessions": 195,
+            "users": 159,
+            "conversions": 838
+          }
+        },
+        "summary": "Found 20,624 paid sessions across 24 campaigns"
+      },
+      "sourceAnalysis": {
+        "totalSessions": 28610,
+        "allSources": [
+          {
+            "source": "google",
+            "medium": "organic",
+            "trafficType": "Organic",
+            "sessions": 18597,
+            "users": 6602,
+            "conversions": 63080,
+            "percentage": "65.00"
+          },
+          {
+            "source": "(direct)",
+            "medium": "(none)",
+            "trafficType": "Direct",
+            "sessions": 4208,
+            "users": 3163,
+            "conversions": 12253,
+            "percentage": "14.71"
+          },
+          {
+            "source": "google",
+            "medium": "cpc",
+            "trafficType": "Paid",
+            "sessions": 1288,
+            "users": 502,
+            "conversions": 4399,
+            "percentage": "4.50"
+          },
+          {
+            "source": "bing",
+            "medium": "organic",
+            "trafficType": "Organic",
+            "sessions": 958,
+            "users": 373,
+            "conversions": 3305,
+            "percentage": "3.35"
+          },
+          {
+            "source": "linktr.ee",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 469,
+            "users": 156,
+            "conversions": 1703,
+            "percentage": "1.64"
+          },
+          {
+            "source": "pwa-app",
+            "medium": "pwa-app",
+            "trafficType": "Other",
+            "sessions": 299,
+            "users": 159,
+            "conversions": 607,
+            "percentage": "1.05"
+          },
+          {
+            "source": "(not set)",
+            "medium": "(not set)",
+            "trafficType": "Other",
+            "sessions": 282,
+            "users": 580,
+            "conversions": 342,
+            "percentage": "0.99"
+          },
+          {
+            "source": "chatgpt.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 227,
+            "users": 95,
+            "conversions": 751,
+            "percentage": "0.79"
+          },
+          {
+            "source": "1",
+            "medium": "adwords",
+            "trafficType": "Paid",
+            "sessions": 201,
+            "users": 79,
+            "conversions": 445,
+            "percentage": "0.70"
+          },
+          {
+            "source": "tagassistant.google.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 198,
+            "users": 5,
+            "conversions": 1053,
+            "percentage": "0.69"
+          },
+          {
+            "source": "facebook.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 158,
+            "users": 64,
+            "conversions": 367,
+            "percentage": "0.55"
+          },
+          {
+            "source": "l.facebook.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 158,
+            "users": 123,
+            "conversions": 746,
+            "percentage": "0.55"
+          },
+          {
+            "source": "chatgpt.com",
+            "medium": "(not set)",
+            "trafficType": "Other",
+            "sessions": 127,
+            "users": 64,
+            "conversions": 487,
+            "percentage": "0.44"
+          },
+          {
+            "source": "search.google.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 124,
+            "users": 2,
+            "conversions": 1228,
+            "percentage": "0.43"
+          },
+          {
+            "source": "instagram",
+            "medium": "social",
+            "trafficType": "Social",
+            "sessions": 95,
+            "users": 26,
+            "conversions": 263,
+            "percentage": "0.33"
+          },
+          {
+            "source": "l.wl.co",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 84,
+            "users": 23,
+            "conversions": 315,
+            "percentage": "0.29"
+          },
+          {
+            "source": "m.facebook.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 60,
+            "users": 41,
+            "conversions": 192,
+            "percentage": "0.21"
+          },
+          {
+            "source": "yahoo",
+            "medium": "organic",
+            "trafficType": "Organic",
+            "sessions": 60,
+            "users": 34,
+            "conversions": 327,
+            "percentage": "0.21"
+          },
+          {
+            "source": "youtube.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 56,
+            "users": 24,
+            "conversions": 229,
+            "percentage": "0.20"
+          },
+          {
+            "source": "newsuk1.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 50,
+            "users": 6,
+            "conversions": 107,
+            "percentage": "0.17"
+          },
+          {
+            "source": "brevo",
+            "medium": "email",
+            "trafficType": "Email",
+            "sessions": 49,
+            "users": 32,
+            "conversions": 116,
+            "percentage": "0.17"
+          },
+          {
+            "source": "visualdo.ac.ke",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 43,
+            "users": 16,
+            "conversions": 150,
+            "percentage": "0.15"
+          },
+          {
+            "source": "duckduckgo",
+            "medium": "organic",
+            "trafficType": "Organic",
+            "sessions": 39,
+            "users": 22,
+            "conversions": 130,
+            "percentage": "0.14"
+          },
+          {
+            "source": "blog.spectrumfilmschool.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 35,
+            "users": 20,
+            "conversions": 135,
+            "percentage": "0.12"
+          },
+          {
+            "source": "l.instagram.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 31,
+            "users": 20,
+            "conversions": 114,
+            "percentage": "0.11"
+          },
+          {
+            "source": "linkedin.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 30,
+            "users": 10,
+            "conversions": 91,
+            "percentage": "0.10"
+          },
+          {
+            "source": "localhost:3001",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 29,
+            "users": 2,
+            "conversions": 1301,
+            "percentage": "0.10"
+          },
+          {
+            "source": "amaniinstitute.org",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 27,
+            "users": 11,
+            "conversions": 79,
+            "percentage": "0.09"
+          },
+          {
+            "source": "(not set)",
+            "medium": "adwords",
+            "trafficType": "Paid",
+            "sessions": 26,
+            "users": 11,
+            "conversions": 58,
+            "percentage": "0.09"
+          },
+          {
+            "source": "ams.woolf.university",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 22,
+            "users": 3,
+            "conversions": 75,
+            "percentage": "0.08"
+          },
+          {
+            "source": "statics.teams.cdn.office.net",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 22,
+            "users": 6,
+            "conversions": 44,
+            "percentage": "0.08"
+          },
+          {
+            "source": "admikenya",
+            "medium": "email",
+            "trafficType": "Email",
+            "sessions": 20,
+            "users": 10,
+            "conversions": 42,
+            "percentage": "0.07"
+          },
+          {
+            "source": "ascendesigns.co.ke",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 19,
+            "users": 10,
+            "conversions": 71,
+            "percentage": "0.07"
+          },
+          {
+            "source": "globalgoodamani.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 19,
+            "users": 9,
+            "conversions": 44,
+            "percentage": "0.07"
+          },
+          {
+            "source": "(data not available)",
+            "medium": "(data not available)",
+            "trafficType": "Other",
+            "sessions": 17,
+            "users": 10,
+            "conversions": 40,
+            "percentage": "0.06"
+          },
+          {
+            "source": "adwords",
+            "medium": "ppc",
+            "trafficType": "Paid",
+            "sessions": 17,
+            "users": 1,
+            "conversions": 44,
+            "percentage": "0.06"
+          },
+          {
+            "source": "lnkd.in",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 16,
+            "users": 5,
+            "conversions": 66,
+            "percentage": "0.06"
+          },
+          {
+            "source": "perplexity.ai",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 15,
+            "users": 9,
+            "conversions": 41,
+            "percentage": "0.05"
+          },
+          {
+            "source": "teams.microsoft.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 15,
+            "users": 3,
+            "conversions": 72,
+            "percentage": "0.05"
+          },
+          {
+            "source": "askvoid.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 14,
+            "users": 2,
+            "conversions": 35,
+            "percentage": "0.05"
+          },
+          {
+            "source": "facebook",
+            "medium": "social",
+            "trafficType": "Social",
+            "sessions": 14,
+            "users": 7,
+            "conversions": 52,
+            "percentage": "0.05"
+          },
+          {
+            "source": "meta",
+            "medium": "cpc",
+            "trafficType": "Paid",
+            "sessions": 14,
+            "users": 9,
+            "conversions": 24,
+            "percentage": "0.05"
+          },
+          {
+            "source": "cn.bing.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 13,
+            "users": 7,
+            "conversions": 37,
+            "percentage": "0.05"
+          },
+          {
+            "source": "tuko.co.ke",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 13,
+            "users": 9,
+            "conversions": 43,
+            "percentage": "0.05"
+          },
+          {
+            "source": "worthytutors.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 13,
+            "users": 6,
+            "conversions": 44,
+            "percentage": "0.05"
+          },
+          {
+            "source": "mail.google.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 12,
+            "users": 5,
+            "conversions": 25,
+            "percentage": "0.04"
+          },
+          {
+            "source": "nzilanisimu.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 12,
+            "users": 7,
+            "conversions": 23,
+            "percentage": "0.04"
+          },
+          {
+            "source": "cms.craydel.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 11,
+            "users": 4,
+            "conversions": 27,
+            "percentage": "0.04"
+          },
+          {
+            "source": "social",
+            "medium": "social",
+            "trafficType": "Social",
+            "sessions": 11,
+            "users": 7,
+            "conversions": 22,
+            "percentage": "0.04"
+          },
+          {
+            "source": "us-east-1.console.aws.amazon.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 11,
+            "users": 2,
+            "conversions": 23,
+            "percentage": "0.04"
+          },
+          {
+            "source": "{adgroup}",
+            "medium": "adwords",
+            "trafficType": "Paid",
+            "sessions": 11,
+            "users": 11,
+            "conversions": 22,
+            "percentage": "0.04"
+          },
+          {
+            "source": "dcbconsulting.co.ke",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 10,
+            "users": 6,
+            "conversions": 18,
+            "percentage": "0.03"
+          },
+          {
+            "source": "ecosia.org",
+            "medium": "organic",
+            "trafficType": "Organic",
+            "sessions": 10,
+            "users": 7,
+            "conversions": 26,
+            "percentage": "0.03"
+          },
+          {
+            "source": "qwant.com",
+            "medium": "organic",
+            "trafficType": "Organic",
+            "sessions": 10,
+            "users": 6,
+            "conversions": 56,
+            "percentage": "0.03"
+          },
+          {
+            "source": "syndicatedsearch.goog",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 10,
+            "users": 2,
+            "conversions": 96,
+            "percentage": "0.03"
+          },
+          {
+            "source": "tiktok.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 10,
+            "users": 5,
+            "conversions": 42,
+            "percentage": "0.03"
+          },
+          {
+            "source": "gemini.google.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 9,
+            "users": 2,
+            "conversions": 23,
+            "percentage": "0.03"
+          },
+          {
+            "source": "social-media",
+            "medium": "social",
+            "trafficType": "Social",
+            "sessions": 9,
+            "users": 6,
+            "conversions": 35,
+            "percentage": "0.03"
+          },
+          {
+            "source": "uk.search.yahoo.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 9,
+            "users": 1,
+            "conversions": 17,
+            "percentage": "0.03"
+          },
+          {
+            "source": "bb7a4cd4.sibforms.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 8,
+            "users": 1,
+            "conversions": 2,
+            "percentage": "0.03"
+          },
+          {
+            "source": "kramail.kra.go.ke",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 8,
+            "users": 2,
+            "conversions": 15,
+            "percentage": "0.03"
+          },
+          {
+            "source": "localhost:3000",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 8,
+            "users": 1,
+            "conversions": 1408,
+            "percentage": "0.03"
+          },
+          {
+            "source": "m.baidu.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 8,
+            "users": 8,
+            "conversions": 16,
+            "percentage": "0.03"
+          },
+          {
+            "source": "ec2-3-139-236-146.us-east-2.compute.amazonaws.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 7,
+            "users": 2,
+            "conversions": 13,
+            "percentage": "0.02"
+          },
+          {
+            "source": "kenapco.org",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 7,
+            "users": 4,
+            "conversions": 21,
+            "percentage": "0.02"
+          },
+          {
+            "source": "perplexity",
+            "medium": "(not set)",
+            "trafficType": "Other",
+            "sessions": 7,
+            "users": 6,
+            "conversions": 19,
+            "percentage": "0.02"
+          },
+          {
+            "source": "search.brave.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 7,
+            "users": 4,
+            "conversions": 16,
+            "percentage": "0.02"
+          },
+          {
+            "source": "admi.africa",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 6,
+            "users": 6,
+            "conversions": 34,
+            "percentage": "0.02"
+          },
+          {
+            "source": "copilot.microsoft.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 6,
+            "users": 5,
+            "conversions": 15,
+            "percentage": "0.02"
+          },
+          {
+            "source": "digiaskcollege.ac.ke",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 6,
+            "users": 5,
+            "conversions": 30,
+            "percentage": "0.02"
+          },
+          {
+            "source": "google",
+            "medium": "adwords",
+            "trafficType": "Paid",
+            "sessions": 6,
+            "users": 1,
+            "conversions": 12,
+            "percentage": "0.02"
+          },
+          {
+            "source": "youtube",
+            "medium": "social",
+            "trafficType": "Social",
+            "sessions": 6,
+            "users": 3,
+            "conversions": 12,
+            "percentage": "0.02"
+          },
+          {
+            "source": "embedded-bia.bcorporation.net",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 5,
+            "users": 3,
+            "conversions": 22,
+            "percentage": "0.02"
+          },
+          {
+            "source": "en.wikipedia.org",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 5,
+            "users": 3,
+            "conversions": 12,
+            "percentage": "0.02"
+          },
+          {
+            "source": "fuzu.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 5,
+            "users": 1,
+            "conversions": 81,
+            "percentage": "0.02"
+          },
+          {
+            "source": "iwlafrica.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 5,
+            "users": 3,
+            "conversions": 7,
+            "percentage": "0.02"
+          },
+          {
+            "source": "kampusville.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 5,
+            "users": 3,
+            "conversions": 11,
+            "percentage": "0.02"
+          },
+          {
+            "source": "kenya.dotrust.org",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 5,
+            "users": 5,
+            "conversions": 10,
+            "percentage": "0.02"
+          },
+          {
+            "source": "leeds-art.ac.uk",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 5,
+            "users": 4,
+            "conversions": 18,
+            "percentage": "0.02"
+          },
+          {
+            "source": "artstation.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 4,
+            "users": 4,
+            "conversions": 17,
+            "percentage": "0.01"
+          },
+          {
+            "source": "linkedin",
+            "medium": "social",
+            "trafficType": "Social",
+            "sessions": 4,
+            "users": 2,
+            "conversions": 8,
+            "percentage": "0.01"
+          },
+          {
+            "source": "m.nearbyme.io",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 4,
+            "users": 2,
+            "conversions": 17,
+            "percentage": "0.01"
+          },
+          {
+            "source": "meta",
+            "medium": "paid_social",
+            "trafficType": "Other",
+            "sessions": 4,
+            "users": 4,
+            "conversions": 8,
+            "percentage": "0.01"
+          },
+          {
+            "source": "pwa-users",
+            "medium": "pwa-users",
+            "trafficType": "Other",
+            "sessions": 4,
+            "users": 2,
+            "conversions": 10,
+            "percentage": "0.01"
+          },
+          {
+            "source": "thestar.co.ke",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 4,
+            "users": 1,
+            "conversions": 14,
+            "percentage": "0.01"
+          },
+          {
+            "source": "yandex.ru",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 4,
+            "users": 2,
+            "conversions": 27,
+            "percentage": "0.01"
+          },
+          {
+            "source": "admi.ac.ke",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 3,
+            "users": 2,
+            "conversions": 4,
+            "percentage": "0.01"
+          },
+          {
+            "source": "aspeninitiative.africa",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 3,
+            "users": 2,
+            "conversions": 4,
+            "percentage": "0.01"
+          },
+          {
+            "source": "b-lab.lightning.force.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 3,
+            "users": 3,
+            "conversions": 6,
+            "percentage": "0.01"
+          },
+          {
+            "source": "blog.prepareknec.co.ke",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 3,
+            "users": 2,
+            "conversions": 19,
+            "percentage": "0.01"
+          },
+          {
+            "source": "canva.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 3,
+            "users": 2,
+            "conversions": 2,
+            "percentage": "0.01"
+          },
+          {
+            "source": "churchill",
+            "medium": "social",
+            "trafficType": "Social",
+            "sessions": 3,
+            "users": 2,
+            "conversions": 11,
+            "percentage": "0.01"
+          },
+          {
+            "source": "digital4africa.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 3,
+            "users": 3,
+            "conversions": 6,
+            "percentage": "0.01"
+          },
+          {
+            "source": "glassdoor.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 3,
+            "users": 2,
+            "conversions": 10,
+            "percentage": "0.01"
+          },
+          {
+            "source": "googleads.g.doubleclick.net",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 3,
+            "users": 3,
+            "conversions": 17,
+            "percentage": "0.01"
+          },
+          {
+            "source": "hpanel.hostinger.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 3,
+            "users": 2,
+            "conversions": 52,
+            "percentage": "0.01"
+          },
+          {
+            "source": "kenyaeducationguide.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 3,
+            "users": 2,
+            "conversions": 4,
+            "percentage": "0.01"
+          },
+          {
+            "source": "kululagoods.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 3,
+            "users": 3,
+            "conversions": 6,
+            "percentage": "0.01"
+          },
+          {
+            "source": "t.co",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 3,
+            "users": 2,
+            "conversions": 15,
+            "percentage": "0.01"
+          },
+          {
+            "source": "admiacke.sharepoint.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 2,
+            "users": 2,
+            "conversions": 4,
+            "percentage": "0.01"
+          }
+        ],
+        "trafficTypesSummary": {
+          "Organic": {
+            "sessions": 19674,
+            "users": 7044,
+            "conversions": 66924,
+            "percentage": "68.77"
+          },
+          "Direct": {
+            "sessions": 4208,
+            "users": 3163,
+            "conversions": 12253,
+            "percentage": "14.71"
+          },
+          "Paid": {
+            "sessions": 1563,
+            "users": 614,
+            "conversions": 5004,
+            "percentage": "5.46"
+          },
+          "Referral": {
+            "sessions": 2214,
+            "users": 820,
+            "conversions": 11382,
+            "percentage": "7.74"
+          },
+          "Other": {
+            "sessions": 740,
+            "users": 825,
+            "conversions": 1513,
+            "percentage": "2.59"
+          },
+          "Social": {
+            "sessions": 142,
+            "users": 53,
+            "conversions": 403,
+            "percentage": "0.50"
+          },
+          "Email": {
+            "sessions": 69,
+            "users": 42,
+            "conversions": 158,
+            "percentage": "0.24"
+          }
+        },
+        "paidTrafficSources": [
+          {
+            "source": "google",
+            "medium": "cpc",
+            "trafficType": "Paid",
+            "sessions": 1288,
+            "users": 502,
+            "conversions": 4399,
+            "percentage": "4.50"
+          },
+          {
+            "source": "1",
+            "medium": "adwords",
+            "trafficType": "Paid",
+            "sessions": 201,
+            "users": 79,
+            "conversions": 445,
+            "percentage": "0.70"
+          },
+          {
+            "source": "(not set)",
+            "medium": "adwords",
+            "trafficType": "Paid",
+            "sessions": 26,
+            "users": 11,
+            "conversions": 58,
+            "percentage": "0.09"
+          },
+          {
+            "source": "adwords",
+            "medium": "ppc",
+            "trafficType": "Paid",
+            "sessions": 17,
+            "users": 1,
+            "conversions": 44,
+            "percentage": "0.06"
+          },
+          {
+            "source": "meta",
+            "medium": "cpc",
+            "trafficType": "Paid",
+            "sessions": 14,
+            "users": 9,
+            "conversions": 24,
+            "percentage": "0.05"
+          },
+          {
+            "source": "{adgroup}",
+            "medium": "adwords",
+            "trafficType": "Paid",
+            "sessions": 11,
+            "users": 11,
+            "conversions": 22,
+            "percentage": "0.04"
+          },
+          {
+            "source": "google",
+            "medium": "adwords",
+            "trafficType": "Paid",
+            "sessions": 6,
+            "users": 1,
+            "conversions": 12,
+            "percentage": "0.02"
+          }
+        ]
+      },
+      "insights": [
+        "Found 20,624 paid sessions",
+        "Top paid campaign: (organic)",
+        "Paid conversion rate: 341.56%",
+        "Paid traffic represents 5.46% of total traffic",
+        "Organic traffic represents 68.77% of total traffic"
+      ]
+    },
+    "June-July 2025": {
+      "period": {
+        "name": "June-July 2025",
+        "startDate": "2025-06-01",
+        "endDate": "2025-07-03"
+      },
+      "paidAnalysis": {
+        "totalSessions": 3945,
+        "totalUsers": 1299,
+        "totalPageViews": 12106,
+        "totalConversions": 12106,
+        "campaigns": [
+          {
+            "name": "(organic)",
+            "source": "google",
+            "medium": "organic",
+            "sessions": 3547,
+            "users": 1166,
+            "pageViews": 10687,
+            "conversions": 10687,
+            "avgDuration": 195.1746326393703,
+            "bounceRate": 0.04437867771023221,
+            "records": 33
+          },
+          {
+            "name": "(not set)",
+            "source": "google",
+            "medium": "cpc",
+            "sessions": 248,
+            "users": 62,
+            "pageViews": 715,
+            "conversions": 715,
+            "avgDuration": 67.80957553700112,
+            "bounceRate": 0.002777777777777778,
+            "records": 36
+          },
+          {
+            "name": "(referral)",
+            "source": "tagassistant.google.com",
+            "medium": "referral",
+            "sessions": 95,
+            "users": 37,
+            "pageViews": 607,
+            "conversions": 607,
+            "avgDuration": 681.8751235118755,
+            "bounceRate": 0.12314814814814816,
+            "records": 27
+          },
+          {
+            "name": "1",
+            "source": "1",
+            "medium": "adwords",
+            "sessions": 23,
+            "users": 10,
+            "pageViews": 48,
+            "conversions": 48,
+            "avgDuration": 0.6041144399999999,
+            "bounceRate": 0,
+            "records": 10
+          },
+          {
+            "name": "Hop - Pmax - FTV",
+            "source": "google",
+            "medium": "cpc",
+            "sessions": 10,
+            "users": 7,
+            "pageViews": 18,
+            "conversions": 18,
+            "avgDuration": 2.2424124285714284,
+            "bounceRate": 0.14285714285714285,
+            "records": 7
+          },
+          {
+            "name": "Hop - GS - Generic",
+            "source": "google",
+            "medium": "cpc",
+            "sessions": 9,
+            "users": 8,
+            "pageViews": 16,
+            "conversions": 16,
+            "avgDuration": 1.6400138571428573,
+            "bounceRate": 0.07142857142857142,
+            "records": 7
+          },
+          {
+            "name": "scholarships-sept2024",
+            "source": "meta",
+            "medium": "cpc",
+            "sessions": 4,
+            "users": 2,
+            "pageViews": 6,
+            "conversions": 6,
+            "avgDuration": 8.282308500000001,
+            "bounceRate": 0,
+            "records": 1
+          },
+          {
+            "name": "sep2024",
+            "source": "meta",
+            "medium": "cpc",
+            "sessions": 4,
+            "users": 3,
+            "pageViews": 4,
+            "conversions": 4,
+            "avgDuration": 14.9888215,
+            "bounceRate": 0,
+            "records": 1
+          },
+          {
+            "name": "Hop - GS - Brand",
+            "source": "google",
+            "medium": "cpc",
+            "sessions": 3,
+            "users": 2,
+            "pageViews": 1,
+            "conversions": 1,
+            "avgDuration": 18.97341775,
+            "bounceRate": 0.25,
+            "records": 2
+          },
+          {
+            "name": "22069596954",
+            "source": "google",
+            "medium": "cpc",
+            "sessions": 1,
+            "users": 1,
+            "pageViews": 2,
+            "conversions": 2,
+            "avgDuration": 0.009211,
+            "bounceRate": 0,
+            "records": 1
+          },
+          {
+            "name": "hop_film_and_television_production_diploma_lead_application_submission",
+            "source": "meta",
+            "medium": "paid_social",
+            "sessions": 1,
+            "users": 1,
+            "pageViews": 2,
+            "conversions": 2,
+            "avgDuration": 38.35992,
+            "bounceRate": 0,
+            "records": 1
+          }
+        ],
+        "sources": [
+          {
+            "source": "google",
+            "medium": "organic",
+            "sessions": 3547,
+            "users": 1166,
+            "conversions": 10687
+          },
+          {
+            "source": "google",
+            "medium": "cpc",
+            "sessions": 261,
+            "users": 76,
+            "conversions": 728
+          },
+          {
+            "source": "tagassistant.google.com",
+            "medium": "referral",
+            "sessions": 49,
+            "users": 19,
+            "conversions": 258
+          },
+          {
+            "source": "search.google.com",
+            "medium": "referral",
+            "sessions": 43,
+            "users": 15,
+            "conversions": 345
+          },
+          {
+            "source": "1",
+            "medium": "adwords",
+            "sessions": 23,
+            "users": 10,
+            "conversions": 48
+          },
+          {
+            "source": "meta",
+            "medium": "cpc",
+            "sessions": 8,
+            "users": 5,
+            "conversions": 10
+          },
+          {
+            "source": "(not set)",
+            "medium": "adwords",
+            "sessions": 6,
+            "users": 2,
+            "conversions": 16
+          },
+          {
+            "source": "google",
+            "medium": "adwords",
+            "sessions": 4,
+            "users": 2,
+            "conversions": 8
+          },
+          {
+            "source": "docs.google.com",
+            "medium": "referral",
+            "sessions": 2,
+            "users": 2,
+            "conversions": 2
+          },
+          {
+            "source": "googleads.g.doubleclick.net",
+            "medium": "referral",
+            "sessions": 1,
+            "users": 1,
+            "conversions": 2
+          },
+          {
+            "source": "meta",
+            "medium": "paid_social",
+            "sessions": 1,
+            "users": 1,
+            "conversions": 2
+          }
+        ],
+        "monthlyBreakdown": {
+          "2025060": {
+            "sessions": 1089,
+            "users": 337,
+            "conversions": 3596
+          },
+          "2025061": {
+            "sessions": 1177,
+            "users": 384,
+            "conversions": 3701
+          },
+          "2025062": {
+            "sessions": 1044,
+            "users": 346,
+            "conversions": 2863
+          },
+          "2025063": {
+            "sessions": 138,
+            "users": 50,
+            "conversions": 442
+          },
+          "2025070": {
+            "sessions": 497,
+            "users": 182,
+            "conversions": 1504
+          }
+        },
+        "summary": "Found 3,945 paid sessions across 11 campaigns"
+      },
+      "sourceAnalysis": {
+        "totalSessions": 5258,
+        "allSources": [
+          {
+            "source": "google",
+            "medium": "organic",
+            "trafficType": "Organic",
+            "sessions": 3570,
+            "users": 961,
+            "conversions": 10687,
+            "percentage": "67.90"
+          },
+          {
+            "source": "(direct)",
+            "medium": "(none)",
+            "trafficType": "Direct",
+            "sessions": 517,
+            "users": 385,
+            "conversions": 1196,
+            "percentage": "9.83"
+          },
+          {
+            "source": "google",
+            "medium": "cpc",
+            "trafficType": "Paid",
+            "sessions": 260,
+            "users": 33,
+            "conversions": 728,
+            "percentage": "4.94"
+          },
+          {
+            "source": "bing",
+            "medium": "organic",
+            "trafficType": "Organic",
+            "sessions": 150,
+            "users": 37,
+            "conversions": 505,
+            "percentage": "2.85"
+          },
+          {
+            "source": "linktr.ee",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 94,
+            "users": 29,
+            "conversions": 355,
+            "percentage": "1.79"
+          },
+          {
+            "source": "facebook.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 76,
+            "users": 26,
+            "conversions": 182,
+            "percentage": "1.45"
+          },
+          {
+            "source": "(not set)",
+            "medium": "(not set)",
+            "trafficType": "Other",
+            "sessions": 69,
+            "users": 58,
+            "conversions": 63,
+            "percentage": "1.31"
+          },
+          {
+            "source": "instagram",
+            "medium": "social",
+            "trafficType": "Social",
+            "sessions": 48,
+            "users": 12,
+            "conversions": 113,
+            "percentage": "0.91"
+          },
+          {
+            "source": "tagassistant.google.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 48,
+            "users": 4,
+            "conversions": 258,
+            "percentage": "0.91"
+          },
+          {
+            "source": "search.google.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 43,
+            "users": 2,
+            "conversions": 345,
+            "percentage": "0.82"
+          },
+          {
+            "source": "chatgpt.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 40,
+            "users": 15,
+            "conversions": 91,
+            "percentage": "0.76"
+          },
+          {
+            "source": "pwa-app",
+            "medium": "pwa-app",
+            "trafficType": "Other",
+            "sessions": 24,
+            "users": 7,
+            "conversions": 48,
+            "percentage": "0.46"
+          },
+          {
+            "source": "1",
+            "medium": "adwords",
+            "trafficType": "Paid",
+            "sessions": 23,
+            "users": 1,
+            "conversions": 48,
+            "percentage": "0.44"
+          },
+          {
+            "source": "m.facebook.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 17,
+            "users": 7,
+            "conversions": 22,
+            "percentage": "0.32"
+          },
+          {
+            "source": "visualdo.ac.ke",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 15,
+            "users": 5,
+            "conversions": 71,
+            "percentage": "0.29"
+          },
+          {
+            "source": "askvoid.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 13,
+            "users": 2,
+            "conversions": 35,
+            "percentage": "0.25"
+          },
+          {
+            "source": "lnkd.in",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 12,
+            "users": 4,
+            "conversions": 60,
+            "percentage": "0.23"
+          },
+          {
+            "source": "admikenya",
+            "medium": "email",
+            "trafficType": "Email",
+            "sessions": 11,
+            "users": 5,
+            "conversions": 19,
+            "percentage": "0.21"
+          },
+          {
+            "source": "brevo",
+            "medium": "email",
+            "trafficType": "Email",
+            "sessions": 11,
+            "users": 4,
+            "conversions": 24,
+            "percentage": "0.21"
+          },
+          {
+            "source": "yahoo",
+            "medium": "organic",
+            "trafficType": "Organic",
+            "sessions": 11,
+            "users": 4,
+            "conversions": 45,
+            "percentage": "0.21"
+          },
+          {
+            "source": "duckduckgo",
+            "medium": "organic",
+            "trafficType": "Organic",
+            "sessions": 10,
+            "users": 2,
+            "conversions": 35,
+            "percentage": "0.19"
+          },
+          {
+            "source": "l.instagram.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 10,
+            "users": 5,
+            "conversions": 17,
+            "percentage": "0.19"
+          },
+          {
+            "source": "l.wl.co",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 10,
+            "users": 2,
+            "conversions": 31,
+            "percentage": "0.19"
+          },
+          {
+            "source": "blog.spectrumfilmschool.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 9,
+            "users": 4,
+            "conversions": 23,
+            "percentage": "0.17"
+          },
+          {
+            "source": "facebook",
+            "medium": "social",
+            "trafficType": "Social",
+            "sessions": 9,
+            "users": 4,
+            "conversions": 40,
+            "percentage": "0.17"
+          },
+          {
+            "source": "uk.search.yahoo.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 9,
+            "users": 1,
+            "conversions": 17,
+            "percentage": "0.17"
+          },
+          {
+            "source": "meta",
+            "medium": "cpc",
+            "trafficType": "Paid",
+            "sessions": 8,
+            "users": 4,
+            "conversions": 10,
+            "percentage": "0.15"
+          },
+          {
+            "source": "chatgpt.com",
+            "medium": "(not set)",
+            "trafficType": "Other",
+            "sessions": 7,
+            "users": 3,
+            "conversions": 14,
+            "percentage": "0.13"
+          },
+          {
+            "source": "globalgoodamani.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 7,
+            "users": 3,
+            "conversions": 14,
+            "percentage": "0.13"
+          },
+          {
+            "source": "localhost:3000",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 7,
+            "users": 1,
+            "conversions": 1408,
+            "percentage": "0.13"
+          },
+          {
+            "source": "newsuk1.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 7,
+            "users": 3,
+            "conversions": 14,
+            "percentage": "0.13"
+          },
+          {
+            "source": "(not set)",
+            "medium": "adwords",
+            "trafficType": "Paid",
+            "sessions": 6,
+            "users": 1,
+            "conversions": 16,
+            "percentage": "0.11"
+          },
+          {
+            "source": "cn.bing.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 6,
+            "users": 2,
+            "conversions": 25,
+            "percentage": "0.11"
+          },
+          {
+            "source": "nzilanisimu.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 6,
+            "users": 3,
+            "conversions": 8,
+            "percentage": "0.11"
+          },
+          {
+            "source": "statics.teams.cdn.office.net",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 6,
+            "users": 2,
+            "conversions": 12,
+            "percentage": "0.11"
+          },
+          {
+            "source": "youtube",
+            "medium": "social",
+            "trafficType": "Social",
+            "sessions": 6,
+            "users": 3,
+            "conversions": 12,
+            "percentage": "0.11"
+          },
+          {
+            "source": "youtube.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 6,
+            "users": 3,
+            "conversions": 15,
+            "percentage": "0.11"
+          },
+          {
+            "source": "fuzu.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 5,
+            "users": 1,
+            "conversions": 81,
+            "percentage": "0.10"
+          },
+          {
+            "source": "tuko.co.ke",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 5,
+            "users": 3,
+            "conversions": 13,
+            "percentage": "0.10"
+          },
+          {
+            "source": "us-east-1.console.aws.amazon.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 5,
+            "users": 1,
+            "conversions": 6,
+            "percentage": "0.10"
+          },
+          {
+            "source": "google",
+            "medium": "adwords",
+            "trafficType": "Paid",
+            "sessions": 4,
+            "users": 1,
+            "conversions": 8,
+            "percentage": "0.08"
+          },
+          {
+            "source": "kenapco.org",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 4,
+            "users": 3,
+            "conversions": 10,
+            "percentage": "0.08"
+          },
+          {
+            "source": "thestar.co.ke",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 4,
+            "users": 1,
+            "conversions": 14,
+            "percentage": "0.08"
+          },
+          {
+            "source": "worthytutors.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 4,
+            "users": 2,
+            "conversions": 26,
+            "percentage": "0.08"
+          },
+          {
+            "source": "bb7a4cd4.sibforms.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 3,
+            "users": 1,
+            "conversions": 2,
+            "percentage": "0.06"
+          },
+          {
+            "source": "canva.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 3,
+            "users": 2,
+            "conversions": 2,
+            "percentage": "0.06"
+          },
+          {
+            "source": "cms.craydel.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 3,
+            "users": 2,
+            "conversions": 6,
+            "percentage": "0.06"
+          },
+          {
+            "source": "dcbconsulting.co.ke",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 3,
+            "users": 2,
+            "conversions": 4,
+            "percentage": "0.06"
+          },
+          {
+            "source": "kenyaeducationguide.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 3,
+            "users": 2,
+            "conversions": 4,
+            "percentage": "0.06"
+          },
+          {
+            "source": "l.facebook.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 3,
+            "users": 3,
+            "conversions": 23,
+            "percentage": "0.06"
+          },
+          {
+            "source": "perplexity.ai",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 3,
+            "users": 2,
+            "conversions": 10,
+            "percentage": "0.06"
+          },
+          {
+            "source": "ascendesigns.co.ke",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 2,
+            "users": 2,
+            "conversions": 16,
+            "percentage": "0.04"
+          },
+          {
+            "source": "digital4africa.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 2,
+            "users": 2,
+            "conversions": 4,
+            "percentage": "0.04"
+          },
+          {
+            "source": "docs.google.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 2,
+            "users": 2,
+            "conversions": 2,
+            "percentage": "0.04"
+          },
+          {
+            "source": "eafajbd.r.tsp1-brevo.net",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 2,
+            "users": 2,
+            "conversions": 2,
+            "percentage": "0.04"
+          },
+          {
+            "source": "filmmaking.net",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 2,
+            "users": 2,
+            "conversions": 2,
+            "percentage": "0.04"
+          },
+          {
+            "source": "iwlafrica.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 2,
+            "users": 2,
+            "conversions": 2,
+            "percentage": "0.04"
+          },
+          {
+            "source": "linkedin.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 2,
+            "users": 1,
+            "conversions": 6,
+            "percentage": "0.04"
+          },
+          {
+            "source": "oceanhero.today",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 2,
+            "users": 2,
+            "conversions": 8,
+            "percentage": "0.04"
+          },
+          {
+            "source": "(data not available)",
+            "medium": "(data not available)",
+            "trafficType": "Other",
+            "sessions": 1,
+            "users": 1,
+            "conversions": 0,
+            "percentage": "0.02"
+          },
+          {
+            "source": "Data_Analysis_And_Visualization_Certificate_2024",
+            "medium": "(not set)",
+            "trafficType": "Other",
+            "sessions": 1,
+            "users": 1,
+            "conversions": 2,
+            "percentage": "0.02"
+          },
+          {
+            "source": "ecosia.org",
+            "medium": "organic",
+            "trafficType": "Organic",
+            "sessions": 1,
+            "users": 1,
+            "conversions": 2,
+            "percentage": "0.02"
+          },
+          {
+            "source": "facebook.com",
+            "medium": "Social",
+            "trafficType": "Other",
+            "sessions": 1,
+            "users": 1,
+            "conversions": 2,
+            "percentage": "0.02"
+          },
+          {
+            "source": "googleads.g.doubleclick.net",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 1,
+            "users": 1,
+            "conversions": 2,
+            "percentage": "0.02"
+          },
+          {
+            "source": "laurynsheri.my.canva.site",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 1,
+            "users": 1,
+            "conversions": 3,
+            "percentage": "0.02"
+          },
+          {
+            "source": "localhost:3002",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 1,
+            "users": 1,
+            "conversions": 2,
+            "percentage": "0.02"
+          },
+          {
+            "source": "malaysia.search.yahoo.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 1,
+            "users": 1,
+            "conversions": 2,
+            "percentage": "0.02"
+          },
+          {
+            "source": "meta",
+            "medium": "paid_social",
+            "trafficType": "Other",
+            "sessions": 1,
+            "users": 1,
+            "conversions": 2,
+            "percentage": "0.02"
+          }
+        ],
+        "trafficTypesSummary": {
+          "Organic": {
+            "sessions": 3742,
+            "users": 1005,
+            "conversions": 11274,
+            "percentage": "71.17"
+          },
+          "Direct": {
+            "sessions": 517,
+            "users": 385,
+            "conversions": 1196,
+            "percentage": "9.83"
+          },
+          "Paid": {
+            "sessions": 301,
+            "users": 40,
+            "conversions": 810,
+            "percentage": "5.72"
+          },
+          "Referral": {
+            "sessions": 509,
+            "users": 167,
+            "conversions": 3255,
+            "percentage": "9.68"
+          },
+          "Other": {
+            "sessions": 104,
+            "users": 72,
+            "conversions": 131,
+            "percentage": "1.98"
+          },
+          "Social": {
+            "sessions": 63,
+            "users": 19,
+            "conversions": 165,
+            "percentage": "1.20"
+          },
+          "Email": {
+            "sessions": 22,
+            "users": 9,
+            "conversions": 43,
+            "percentage": "0.42"
+          }
+        },
+        "paidTrafficSources": [
+          {
+            "source": "google",
+            "medium": "cpc",
+            "trafficType": "Paid",
+            "sessions": 260,
+            "users": 33,
+            "conversions": 728,
+            "percentage": "4.94"
+          },
+          {
+            "source": "1",
+            "medium": "adwords",
+            "trafficType": "Paid",
+            "sessions": 23,
+            "users": 1,
+            "conversions": 48,
+            "percentage": "0.44"
+          },
+          {
+            "source": "meta",
+            "medium": "cpc",
+            "trafficType": "Paid",
+            "sessions": 8,
+            "users": 4,
+            "conversions": 10,
+            "percentage": "0.15"
+          },
+          {
+            "source": "(not set)",
+            "medium": "adwords",
+            "trafficType": "Paid",
+            "sessions": 6,
+            "users": 1,
+            "conversions": 16,
+            "percentage": "0.11"
+          },
+          {
+            "source": "google",
+            "medium": "adwords",
+            "trafficType": "Paid",
+            "sessions": 4,
+            "users": 1,
+            "conversions": 8,
+            "percentage": "0.08"
+          }
+        ]
+      },
+      "insights": [
+        "Found 3,945 paid sessions",
+        "Top paid campaign: (organic)",
+        "Paid conversion rate: 306.87%",
+        "Paid traffic represents 5.72% of total traffic",
+        "Organic traffic represents 71.17% of total traffic"
+      ]
+    },
+    "Oct-Nov 2025": {
+      "period": {
+        "name": "Oct-Nov 2025",
+        "startDate": "2025-10-01",
+        "endDate": "2025-11-03"
+      },
+      "paidAnalysis": {
+        "totalSessions": 2473,
+        "totalUsers": 1885,
+        "totalPageViews": 9256,
+        "totalConversions": 9670,
+        "campaigns": [
+          {
+            "name": "(organic)",
+            "source": "google",
+            "medium": "organic",
+            "sessions": 2380,
+            "users": 1798,
+            "pageViews": 9064,
+            "conversions": 9478,
+            "avgDuration": 263.5850203932489,
+            "bounceRate": 0.07185768809289925,
+            "records": 34
+          },
+          {
+            "name": "(not set)",
+            "source": "google",
+            "medium": "cpc",
+            "sessions": 75,
+            "users": 70,
+            "pageViews": 151,
+            "conversions": 151,
+            "avgDuration": 16.37348096437075,
+            "bounceRate": 0.00510204081632653,
+            "records": 28
+          },
+          {
+            "name": "{campaign}",
+            "source": "{adgroup}",
+            "medium": "adwords",
+            "sessions": 8,
+            "users": 8,
+            "pageViews": 16,
+            "conversions": 16,
+            "avgDuration": 1.0349994722222222,
+            "bounceRate": 0,
+            "records": 3
+          },
+          {
+            "name": "1",
+            "source": "1",
+            "medium": "adwords",
+            "sessions": 5,
+            "users": 5,
+            "pageViews": 10,
+            "conversions": 10,
+            "avgDuration": 3.0354678,
+            "bounceRate": 0,
+            "records": 5
+          },
+          {
+            "name": "(referral)",
+            "source": "tagassistant.google.com",
+            "medium": "referral",
+            "sessions": 4,
+            "users": 3,
+            "pageViews": 13,
+            "conversions": 13,
+            "avgDuration": 142.65627266666667,
+            "bounceRate": 0.16666666666666666,
+            "records": 3
+          },
+          {
+            "name": "May_2024",
+            "source": "google",
+            "medium": "Display",
+            "sessions": 1,
+            "users": 1,
+            "pageViews": 2,
+            "conversions": 2,
+            "avgDuration": 0.0227,
+            "bounceRate": 0,
+            "records": 1
+          }
+        ],
+        "sources": [
+          {
+            "source": "google",
+            "medium": "organic",
+            "sessions": 2380,
+            "users": 1798,
+            "conversions": 9478
+          },
+          {
+            "source": "google",
+            "medium": "cpc",
+            "sessions": 76,
+            "users": 71,
+            "conversions": 153
+          },
+          {
+            "source": "{adgroup}",
+            "medium": "adwords",
+            "sessions": 7,
+            "users": 7,
+            "conversions": 14
+          },
+          {
+            "source": "1",
+            "medium": "adwords",
+            "sessions": 5,
+            "users": 5,
+            "conversions": 10
+          },
+          {
+            "source": "tagassistant.google.com",
+            "medium": "referral",
+            "sessions": 3,
+            "users": 2,
+            "conversions": 11
+          },
+          {
+            "source": "google",
+            "medium": "Display",
+            "sessions": 1,
+            "users": 1,
+            "conversions": 2
+          },
+          {
+            "source": "googleads.g.doubleclick.net",
+            "medium": "referral",
+            "sessions": 1,
+            "users": 1,
+            "conversions": 2
+          }
+        ],
+        "monthlyBreakdown": {
+          "2025100": {
+            "sessions": 646,
+            "users": 497,
+            "conversions": 2556
+          },
+          "2025101": {
+            "sessions": 739,
+            "users": 558,
+            "conversions": 2662
+          },
+          "2025102": {
+            "sessions": 760,
+            "users": 567,
+            "conversions": 3048
+          },
+          "2025103": {
+            "sessions": 133,
+            "users": 104,
+            "conversions": 566
+          },
+          "2025110": {
+            "sessions": 195,
+            "users": 159,
+            "conversions": 838
+          }
+        },
+        "summary": "Found 2,473 paid sessions across 6 campaigns"
+      },
+      "sourceAnalysis": {
+        "totalSessions": 3635,
+        "allSources": [
+          {
+            "source": "google",
+            "medium": "organic",
+            "trafficType": "Organic",
+            "sessions": 2378,
+            "users": 1492,
+            "conversions": 9478,
+            "percentage": "65.42"
+          },
+          {
+            "source": "(direct)",
+            "medium": "(none)",
+            "trafficType": "Direct",
+            "sessions": 886,
+            "users": 783,
+            "conversions": 2619,
+            "percentage": "24.37"
+          },
+          {
+            "source": "bing",
+            "medium": "organic",
+            "trafficType": "Organic",
+            "sessions": 77,
+            "users": 50,
+            "conversions": 248,
+            "percentage": "2.12"
+          },
+          {
+            "source": "google",
+            "medium": "cpc",
+            "trafficType": "Paid",
+            "sessions": 76,
+            "users": 37,
+            "conversions": 153,
+            "percentage": "2.09"
+          },
+          {
+            "source": "chatgpt.com",
+            "medium": "(not set)",
+            "trafficType": "Other",
+            "sessions": 48,
+            "users": 27,
+            "conversions": 239,
+            "percentage": "1.32"
+          },
+          {
+            "source": "chatgpt.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 46,
+            "users": 24,
+            "conversions": 223,
+            "percentage": "1.27"
+          },
+          {
+            "source": "pwa-app",
+            "medium": "pwa-app",
+            "trafficType": "Other",
+            "sessions": 22,
+            "users": 22,
+            "conversions": 44,
+            "percentage": "0.61"
+          },
+          {
+            "source": "(not set)",
+            "medium": "(not set)",
+            "trafficType": "Other",
+            "sessions": 9,
+            "users": 9,
+            "conversions": 9,
+            "percentage": "0.25"
+          },
+          {
+            "source": "yahoo",
+            "medium": "organic",
+            "trafficType": "Organic",
+            "sessions": 8,
+            "users": 6,
+            "conversions": 46,
+            "percentage": "0.22"
+          },
+          {
+            "source": "linktr.ee",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 7,
+            "users": 2,
+            "conversions": 25,
+            "percentage": "0.19"
+          },
+          {
+            "source": "{adgroup}",
+            "medium": "adwords",
+            "trafficType": "Paid",
+            "sessions": 7,
+            "users": 7,
+            "conversions": 14,
+            "percentage": "0.19"
+          },
+          {
+            "source": "1",
+            "medium": "adwords",
+            "trafficType": "Paid",
+            "sessions": 5,
+            "users": 5,
+            "conversions": 10,
+            "percentage": "0.14"
+          },
+          {
+            "source": "blog.spectrumfilmschool.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 4,
+            "users": 3,
+            "conversions": 34,
+            "percentage": "0.11"
+          },
+          {
+            "source": "duckduckgo",
+            "medium": "organic",
+            "trafficType": "Organic",
+            "sessions": 4,
+            "users": 3,
+            "conversions": 13,
+            "percentage": "0.11"
+          },
+          {
+            "source": "l.wl.co",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 4,
+            "users": 2,
+            "conversions": 18,
+            "percentage": "0.11"
+          },
+          {
+            "source": "search.brave.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 4,
+            "users": 3,
+            "conversions": 9,
+            "percentage": "0.11"
+          },
+          {
+            "source": "social-media",
+            "medium": "social",
+            "trafficType": "Social",
+            "sessions": 4,
+            "users": 3,
+            "conversions": 11,
+            "percentage": "0.11"
+          },
+          {
+            "source": "m.facebook.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 3,
+            "users": 3,
+            "conversions": 9,
+            "percentage": "0.08"
+          },
+          {
+            "source": "perplexity",
+            "medium": "(not set)",
+            "trafficType": "Other",
+            "sessions": 3,
+            "users": 3,
+            "conversions": 13,
+            "percentage": "0.08"
+          },
+          {
+            "source": "tagassistant.google.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 3,
+            "users": 1,
+            "conversions": 11,
+            "percentage": "0.08"
+          },
+          {
+            "source": "visualdo.ac.ke",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 3,
+            "users": 3,
+            "conversions": 13,
+            "percentage": "0.08"
+          },
+          {
+            "source": "admikenya",
+            "medium": "email",
+            "trafficType": "Email",
+            "sessions": 2,
+            "users": 2,
+            "conversions": 8,
+            "percentage": "0.06"
+          },
+          {
+            "source": "churchill",
+            "medium": "social",
+            "trafficType": "Social",
+            "sessions": 2,
+            "users": 1,
+            "conversions": 9,
+            "percentage": "0.06"
+          },
+          {
+            "source": "dcbconsulting.co.ke",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 2,
+            "users": 2,
+            "conversions": 2,
+            "percentage": "0.06"
+          },
+          {
+            "source": "ecosia.org",
+            "medium": "organic",
+            "trafficType": "Organic",
+            "sessions": 2,
+            "users": 2,
+            "conversions": 6,
+            "percentage": "0.06"
+          },
+          {
+            "source": "instagram",
+            "medium": "social",
+            "trafficType": "Social",
+            "sessions": 2,
+            "users": 1,
+            "conversions": 17,
+            "percentage": "0.06"
+          },
+          {
+            "source": "kenet.or.ke",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 2,
+            "users": 1,
+            "conversions": 2,
+            "percentage": "0.06"
+          },
+          {
+            "source": "leeds-art.ac.uk",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 2,
+            "users": 2,
+            "conversions": 4,
+            "percentage": "0.06"
+          },
+          {
+            "source": "perplexity.ai",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 2,
+            "users": 2,
+            "conversions": 4,
+            "percentage": "0.06"
+          },
+          {
+            "source": "tuko.co.ke",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 2,
+            "users": 1,
+            "conversions": 6,
+            "percentage": "0.06"
+          },
+          {
+            "source": "ams.woolf.university",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 1,
+            "users": 1,
+            "conversions": 2,
+            "percentage": "0.03"
+          },
+          {
+            "source": "artstation.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 1,
+            "users": 1,
+            "conversions": 2,
+            "percentage": "0.03"
+          },
+          {
+            "source": "chatgpt.com",
+            "medium": "(none)",
+            "trafficType": "Other",
+            "sessions": 1,
+            "users": 1,
+            "conversions": 6,
+            "percentage": "0.03"
+          },
+          {
+            "source": "digiaskcollege.ac.ke",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 1,
+            "users": 1,
+            "conversions": 2,
+            "percentage": "0.03"
+          },
+          {
+            "source": "google",
+            "medium": "Display",
+            "trafficType": "Other",
+            "sessions": 1,
+            "users": 1,
+            "conversions": 2,
+            "percentage": "0.03"
+          },
+          {
+            "source": "googleads.g.doubleclick.net",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 1,
+            "users": 1,
+            "conversions": 2,
+            "percentage": "0.03"
+          },
+          {
+            "source": "limmobiliere-des-moulins.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 1,
+            "users": 1,
+            "conversions": 2,
+            "percentage": "0.03"
+          },
+          {
+            "source": "linkedin.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 1,
+            "users": 1,
+            "conversions": 4,
+            "percentage": "0.03"
+          },
+          {
+            "source": "m.nearbyme.io",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 1,
+            "users": 1,
+            "conversions": 2,
+            "percentage": "0.03"
+          },
+          {
+            "source": "newsuk1.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 1,
+            "users": 1,
+            "conversions": 2,
+            "percentage": "0.03"
+          },
+          {
+            "source": "nzilanisimu.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 1,
+            "users": 1,
+            "conversions": 6,
+            "percentage": "0.03"
+          },
+          {
+            "source": "polycola.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 1,
+            "users": 1,
+            "conversions": 2,
+            "percentage": "0.03"
+          },
+          {
+            "source": "pwa-users",
+            "medium": "pwa-users",
+            "trafficType": "Other",
+            "sessions": 1,
+            "users": 1,
+            "conversions": 2,
+            "percentage": "0.03"
+          },
+          {
+            "source": "social",
+            "medium": "social",
+            "trafficType": "Social",
+            "sessions": 1,
+            "users": 1,
+            "conversions": 2,
+            "percentage": "0.03"
+          },
+          {
+            "source": "t.co",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 1,
+            "users": 1,
+            "conversions": 2,
+            "percentage": "0.03"
+          },
+          {
+            "source": "youtube.com",
+            "medium": "referral",
+            "trafficType": "Referral",
+            "sessions": 1,
+            "users": 1,
+            "conversions": 8,
+            "percentage": "0.03"
+          }
+        ],
+        "trafficTypesSummary": {
+          "Organic": {
+            "sessions": 2469,
+            "users": 1553,
+            "conversions": 9791,
+            "percentage": "67.92"
+          },
+          "Direct": {
+            "sessions": 886,
+            "users": 783,
+            "conversions": 2619,
+            "percentage": "24.37"
+          },
+          "Paid": {
+            "sessions": 88,
+            "users": 49,
+            "conversions": 177,
+            "percentage": "2.42"
+          },
+          "Other": {
+            "sessions": 85,
+            "users": 64,
+            "conversions": 315,
+            "percentage": "2.34"
+          },
+          "Referral": {
+            "sessions": 96,
+            "users": 61,
+            "conversions": 396,
+            "percentage": "2.64"
+          },
+          "Social": {
+            "sessions": 9,
+            "users": 6,
+            "conversions": 39,
+            "percentage": "0.25"
+          },
+          "Email": {
+            "sessions": 2,
+            "users": 2,
+            "conversions": 8,
+            "percentage": "0.06"
+          }
+        },
+        "paidTrafficSources": [
+          {
+            "source": "google",
+            "medium": "cpc",
+            "trafficType": "Paid",
+            "sessions": 76,
+            "users": 37,
+            "conversions": 153,
+            "percentage": "2.09"
+          },
+          {
+            "source": "{adgroup}",
+            "medium": "adwords",
+            "trafficType": "Paid",
+            "sessions": 7,
+            "users": 7,
+            "conversions": 14,
+            "percentage": "0.19"
+          },
+          {
+            "source": "1",
+            "medium": "adwords",
+            "trafficType": "Paid",
+            "sessions": 5,
+            "users": 5,
+            "conversions": 10,
+            "percentage": "0.14"
+          }
+        ]
+      },
+      "insights": [
+        "Found 2,473 paid sessions",
+        "Top paid campaign: (organic)",
+        "Paid conversion rate: 391.02%",
+        "Paid traffic represents 2.42% of total traffic",
+        "Organic traffic represents 67.92% of total traffic"
+      ]
+    }
+  },
+  "comparativeAnalysis": {
+    "paidTrafficTrends": {
+      "2024 Full Year": 43.64,
+      "2025 Current": 5.46,
+      "June-July 2025": 5.72,
+      "Oct-Nov 2025": 2.42
+    },
+    "organicVsPaidShift": {
+      "2024 Full Year": {
+        "paid": 43.64,
+        "organic": 6.52
+      },
+      "2025 Current": {
+        "paid": 5.46,
+        "organic": 68.77
+      },
+      "June-July 2025": {
+        "paid": 5.72,
+        "organic": 71.17
+      },
+      "Oct-Nov 2025": {
+        "paid": 2.42,
+        "organic": 67.92
+      }
+    },
+    "campaignPerformanceChanges": {}
+  },
+  "recommendations": [
+    {
+      "priority": "HIGH",
+      "action": "Implement balanced traffic strategy",
+      "reason": "Current paid traffic too low for sustainable volume growth"
+    },
+    {
+      "priority": "MEDIUM",
+      "action": "Set up Google Ads API integration",
+      "reason": "Need detailed campaign data for optimization"
+    }
+  ]
+}
