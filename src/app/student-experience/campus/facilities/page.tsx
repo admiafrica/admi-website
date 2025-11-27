@@ -1,11 +1,6 @@
-import { Metadata } from 'next'
-import { FacilitiesContent } from '@/components/student-experience/FacilitiesContent'
+'use client'
 
-export const metadata: Metadata = {
-  title: 'Campus Facilities | ADMI',
-  description:
-    "Explore ADMI's comprehensive campus facilities designed to support creative learning and student wellbeing."
-}
+import { FacilitiesContent } from '@/components/student-experience/FacilitiesContent'
 
 export default function StudentExperienceFacilitiesPage() {
   return <FacilitiesContent />

@@ -2,7 +2,6 @@ import { ReactNode } from 'react'
 import { Box } from '@mantine/core'
 
 import { MainLayout } from '@/layouts/v3/MainLayout'
-import { PageSEO } from '@/components/shared/v3'
 import { Paragraph, Title } from '@/components/ui'
 
 type Section = {
@@ -12,8 +11,6 @@ type Section = {
 }
 
 type StudentExperienceLayoutProps = {
-  seoTitle: string
-  seoDescription: string
   heroTitle: string
   heroKicker?: string | null
   intro: ReactNode
@@ -23,8 +20,6 @@ type StudentExperienceLayoutProps = {
 }
 
 export function StudentExperienceLayout({
-  seoTitle,
-  seoDescription,
   heroTitle,
   heroKicker = 'Student Experience',
   intro,
@@ -34,7 +29,6 @@ export function StudentExperienceLayout({
 }: StudentExperienceLayoutProps) {
   return (
     <MainLayout footerBgColor={footerBgColor}>
-      <PageSEO title={seoTitle} description={seoDescription} />
       <Box className="bg-[#002A23] text-white">
         <Box className="mx-auto max-w-screen-xl px-4 py-16 2xl:px-0">
           <p className="text-xs uppercase tracking-[0.3em] text-admiShamrok">{heroKicker}</p>

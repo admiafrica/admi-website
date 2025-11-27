@@ -67,6 +67,12 @@ export default function NavBar({ mode, isMinimal = false }: Props) {
             <Menu.Item component={Link} href="/student-experience/campus">
               Campus Tour
             </Menu.Item>
+            <Menu.Item component={Link} href="/student-experience/campus/facilities">
+              Facilities
+            </Menu.Item>
+            <Menu.Item component={Link} href="/student-experience/campus/the-labs">
+              The Labs
+            </Menu.Item>
             <Menu.Item component={Link} href="/student-experience/studios">
               Studios
             </Menu.Item>
@@ -148,6 +154,12 @@ export default function NavBar({ mode, isMinimal = false }: Props) {
               </Menu.Item>
               <Menu.Item style={{ ...menuItemStyle, paddingLeft: '2rem' }} className="cursor-pointer">
                 <Link href="/student-experience/campus">📍 Campus Tour</Link>
+              </Menu.Item>
+              <Menu.Item style={{ ...menuItemStyle, paddingLeft: '2rem' }} className="cursor-pointer">
+                <Link href="/student-experience/campus/facilities">🏢 Facilities</Link>
+              </Menu.Item>
+              <Menu.Item style={{ ...menuItemStyle, paddingLeft: '2rem' }} className="cursor-pointer">
+                <Link href="/student-experience/campus/the-labs">🔬 The Labs</Link>
               </Menu.Item>
               <Menu.Item style={{ ...menuItemStyle, paddingLeft: '2rem' }} className="cursor-pointer">
                 <Link href="/student-experience/studios">🎬 Studios</Link>
