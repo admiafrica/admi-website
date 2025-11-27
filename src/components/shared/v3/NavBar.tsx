@@ -59,6 +59,25 @@ export default function NavBar({ mode, isMinimal = false }: Props) {
         </Menu>*/}
         <Menu trigger="hover" openDelay={100} closeDelay={400}>
           <Menu.Target>
+            <Text style={menuItemStyle} className="cursor-pointer">
+              Student Experience
+            </Text>
+          </Menu.Target>
+          <Menu.Dropdown>
+            <Menu.Item component={Link} href="/student-experience/campus">
+              Campus Tour
+            </Menu.Item>
+            <Menu.Item component={Link} href="/student-experience/studios">
+              Studios
+            </Menu.Item>
+            <Menu.Item component={Link} href="/student-experience/equipment">
+              Equipment
+            </Menu.Item>
+          </Menu.Dropdown>
+        </Menu>
+
+        <Menu trigger="hover" openDelay={100} closeDelay={400}>
+          <Menu.Target>
             <Text style={menuItemStyle} className="cursor-pointer" onClick={() => navigateToPage('student-support')}>
               Student Support
             </Text>
@@ -123,6 +142,18 @@ export default function NavBar({ mode, isMinimal = false }: Props) {
               </Menu.Item>
               <Menu.Item style={menuItemStyle} className="cursor-pointer" onClick={() => navigateToPage('courses')}>
                 Courses
+              </Menu.Item>
+              <Menu.Item style={menuItemStyle} className="cursor-pointer">
+                <Link href="/student-experience/campus">Student Experience</Link>
+              </Menu.Item>
+              <Menu.Item style={{ ...menuItemStyle, paddingLeft: '2rem' }} className="cursor-pointer">
+                <Link href="/student-experience/campus">📍 Campus Tour</Link>
+              </Menu.Item>
+              <Menu.Item style={{ ...menuItemStyle, paddingLeft: '2rem' }} className="cursor-pointer">
+                <Link href="/student-experience/studios">🎬 Studios</Link>
+              </Menu.Item>
+              <Menu.Item style={{ ...menuItemStyle, paddingLeft: '2rem' }} className="cursor-pointer">
+                <Link href="/student-experience/equipment">🔧 Equipment</Link>
               </Menu.Item>
               <Menu.Item
                 style={menuItemStyle}
