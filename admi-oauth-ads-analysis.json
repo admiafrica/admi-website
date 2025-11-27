@@ -1,0 +1,17 @@
+{
+  "customerId": "3929355931",
+  "authMethod": "oauth",
+  "campaignStatus": {
+    "enabled": [],
+    "paused": [],
+    "removed": [],
+    "total": 148
+  },
+  "historicalData": null,
+  "generatedAt": "2025-11-24T12:39:40.672Z",
+  "recoveryRecommendations": {
+    "immediate": [],
+    "shortTerm": [],
+    "longTerm": []
+  }
+}

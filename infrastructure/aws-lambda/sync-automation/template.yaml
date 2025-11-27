@@ -1,0 +1,137 @@
+# AWS Lambda Function for Daily Brevo → Google Ads Sync
+
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Daily sync of Brevo customers to Google Ads Customer Match
+
+Resources:
+  BrevoGoogleAdsSyncFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: admi-brevo-google-ads-sync
+      Description: Syncs qualified customers from Brevo to Google Ads Customer Match
+      Runtime: nodejs18.x
+      Handler: index.handler
+      MemorySize: 512
+      Timeout: 300
+      Environment:
+        Variables:
+          BREVO_API_KEY: !Ref BrevoApiKey
+          GOOGLE_ADS_CLIENT_ID: !Ref GoogleAdsClientId
+          GOOGLE_ADS_CLIENT_SECRET: !Ref GoogleAdsClientSecret
+          GOOGLE_ADS_DEVELOPER_TOKEN: !Ref GoogleAdsDeveloperToken
+          GOOGLE_ADS_CUSTOMER_ID: !Ref GoogleAdsCustomerId
+          GOOGLE_ADS_REFRESH_TOKEN: !Ref GoogleAdsRefreshToken
+      Events:
+        DailySync:
+          Type: Schedule
+          Properties:
+            Schedule: cron(0 2 * * ? *)  # 2 AM UTC daily
+            Description: Daily sync at 2 AM UTC
+            Enabled: true
+      Policies:
+        - Statement:
+          - Effect: Allow
+            Action:
+              - logs:CreateLogGroup
+              - logs:CreateLogStream
+              - logs:PutLogEvents
+            Resource: '*'
+
+  WeeklyFullSyncFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: admi-brevo-google-ads-full-sync
+      Description: Weekly full sync of all customers
+      Runtime: nodejs18.x
+      Handler: index.handlerFullSync
+      MemorySize: 1024
+      Timeout: 900
+      Environment:
+        Variables:
+          BREVO_API_KEY: !Ref BrevoApiKey
+          GOOGLE_ADS_CLIENT_ID: !Ref GoogleAdsClientId
+          GOOGLE_ADS_CLIENT_SECRET: !Ref GoogleAdsClientSecret
+          GOOGLE_ADS_DEVELOPER_TOKEN: !Ref GoogleAdsDeveloperToken
+          GOOGLE_ADS_CUSTOMER_ID: !Ref GoogleAdsCustomerId
+          GOOGLE_ADS_REFRESH_TOKEN: !Ref GoogleAdsRefreshToken
+      Events:
+        WeeklySync:
+          Type: Schedule
+          Properties:
+            Schedule: cron(0 3 ? * SUN *)  # 3 AM UTC every Sunday
+            Description: Weekly full sync on Sundays
+            Enabled: true
+
+  DailyPerformanceMonitorFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: admi-google-ads-performance-monitor
+      Description: Daily Google Ads performance monitoring and optimization alerts
+      Runtime: nodejs18.x
+      Handler: monitor.handler
+      MemorySize: 256
+      Timeout: 120
+      Environment:
+        Variables:
+          GOOGLE_ADS_CLIENT_ID: !Ref GoogleAdsClientId
+          GOOGLE_ADS_CLIENT_SECRET: !Ref GoogleAdsClientSecret
+          GOOGLE_ADS_DEVELOPER_TOKEN: !Ref GoogleAdsDeveloperToken
+          GOOGLE_ADS_CUSTOMER_ID: !Ref GoogleAdsCustomerId
+          GOOGLE_ADS_REFRESH_TOKEN: !Ref GoogleAdsRefreshToken
+          SLACK_WEBHOOK_URL: !Ref SlackWebhookUrl
+      Events:
+        MorningReport:
+          Type: Schedule
+          Properties:
+            Schedule: cron(0 6 * * ? *)  # 6 AM UTC daily (9 AM Nairobi)
+            Description: Daily performance report at 9 AM Nairobi time
+            Enabled: true
+
+Parameters:
+  BrevoApiKey:
+    Type: String
+    Description: Brevo API Key
+    NoEcho: true
+  
+  GoogleAdsClientId:
+    Type: String
+    Description: Google Ads OAuth Client ID
+    NoEcho: true
+  
+  GoogleAdsClientSecret:
+    Type: String
+    Description: Google Ads OAuth Client Secret
+    NoEcho: true
+  
+  GoogleAdsDeveloperToken:
+    Type: String
+    Description: Google Ads Developer Token
+    NoEcho: true
+  
+  GoogleAdsCustomerId:
+    Type: String
+    Description: Google Ads Customer ID
+  
+  GoogleAdsRefreshToken:
+    Type: String
+    Description: Google Ads Refresh Token
+    NoEcho: true
+  
+  SlackWebhookUrl:
+    Type: String
+    Description: Slack Webhook URL for alerts (optional)
+    Default: ""
+
+Outputs:
+  SyncFunctionArn:
+    Description: ARN of the daily sync function
+    Value: !GetAtt BrevoGoogleAdsSyncFunction.Arn
+  
+  FullSyncFunctionArn:
+    Description: ARN of the weekly full sync function
+    Value: !GetAtt WeeklyFullSyncFunction.Arn
+  
+  MonitorFunctionArn:
+    Description: ARN of the performance monitor function
+    Value: !GetAtt DailyPerformanceMonitorFunction.Arn

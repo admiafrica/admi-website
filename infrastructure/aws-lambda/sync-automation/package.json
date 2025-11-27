@@ -1,0 +1,11 @@
+{
+  "name": "admi-google-ads-sync-lambda",
+  "version": "1.0.0",
+  "description": "AWS Lambda functions for automated Brevo to Google Ads sync",
+  "main": "index.js",
+  "dependencies": {
+    "google-ads-api": "^21.0.1",
+    "axios": "^1.6.0",
+    "dotenv": "^16.3.1"
+  }
+}

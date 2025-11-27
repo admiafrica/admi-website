@@ -1,0 +1,26 @@
+{
+  "campaignId": "23282289054",
+  "period": "January 2026",
+  "timestamp": "2025-11-25T20:25:56.724Z",
+  "campaign": {
+    "id": 23282289054,
+    "name": "Website traffic-Performance Max-Jan",
+    "status": "ENABLED",
+    "dailyBudget": 20,
+    "startDate": "2025-11-21"
+  },
+  "performance": {
+    "january": {
+      "error": "No data available"
+    },
+    "december": {
+      "impressions": 0,
+      "clicks": 0,
+      "cost": 0,
+      "conversions": 0
+    },
+    "comparison": {}
+  },
+  "dailyBreakdown": [],
+  "recommendations": []
+}
