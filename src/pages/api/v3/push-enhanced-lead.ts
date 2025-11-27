@@ -27,45 +27,91 @@ function calculateLeadScore(data: EnhancedLeadData): number {
 
   // Timeline scoring (0-5 points)
   switch (data.studyTimeline) {
-    case 'january-2026': score += 5; break
-    case 'may-2026': score += 4; break
-    case 'september-2026': score += 3; break
-    case 'researching': score += 1; break
+    case 'january-2026':
+      score += 5
+      break
+    case 'may-2026':
+      score += 4
+      break
+    case 'september-2026':
+      score += 3
+      break
+    case 'researching':
+      score += 1
+      break
   }
 
   // Program type scoring (0-4 points)
   switch (data.programType) {
-    case 'full-time-diploma': score += 4; break
-    case 'professional-certificate': score += 3; break
-    case 'foundation-certificate': score += 2; break
-    case 'weekend-parttime': score += 1; break
+    case 'full-time-diploma':
+      score += 4
+      break
+    case 'professional-certificate':
+      score += 3
+      break
+    case 'foundation-certificate':
+      score += 2
+      break
+    case 'weekend-parttime':
+      score += 1
+      break
   }
 
   // Investment range scoring (0-4 points)
   switch (data.investmentRange) {
-    case '500k-plus': score += 4; break
-    case '300k-500k': score += 3; break
-    case '100k-300k': score += 2; break
-    case 'under-100k': score += 1; break
-    case 'need-discussion': score += 2; break
+    case '500k-plus':
+      score += 4
+      break
+    case '300k-500k':
+      score += 3
+      break
+    case '100k-300k':
+      score += 2
+      break
+    case 'under-100k':
+      score += 1
+      break
+    case 'need-discussion':
+      score += 2
+      break
   }
 
   // Career goals scoring (0-4 points)
   switch (data.careerGoals) {
-    case 'career-change': score += 4; break
-    case 'start-business': score += 4; break
-    case 'skill-upgrade': score += 3; break
-    case 'university-prep': score += 2; break
-    case 'personal-interest': score += 1; break
+    case 'career-change':
+      score += 4
+      break
+    case 'start-business':
+      score += 4
+      break
+    case 'skill-upgrade':
+      score += 3
+      break
+    case 'university-prep':
+      score += 2
+      break
+    case 'personal-interest':
+      score += 1
+      break
   }
 
   // Experience level scoring (0-3 points)
   switch (data.experienceLevel) {
-    case 'professional-upgrade': score += 3; break
-    case 'intermediate': score += 2; break
-    case 'some-experience': score += 2; break
-    case 'complete-beginner': score += 1; break
-    case 'formal-training': score += 2; break
+    case 'professional-upgrade':
+      score += 3
+      break
+    case 'intermediate':
+      score += 2
+      break
+    case 'some-experience':
+      score += 2
+      break
+    case 'complete-beginner':
+      score += 1
+      break
+    case 'formal-training':
+      score += 2
+      break
   }
 
   return Math.min(score, 20) // Cap at 20 points
@@ -102,7 +148,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     'january-2026': 'January 2026 intake',
     'may-2026': 'May 2026 intake',
     'september-2026': 'September 2026 intake',
-    'researching': 'Just researching'
+    researching: 'Just researching'
   }
 
   const programLabels: { [key: string]: string } = {
@@ -131,17 +177,31 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const experienceLabels: { [key: string]: string } = {
     'complete-beginner': 'Complete beginner',
     'some-experience': 'Some basic experience',
-    'intermediate': 'Intermediate level',
+    intermediate: 'Intermediate level',
     'professional-upgrade': 'Professional looking to upgrade',
     'formal-training': 'Have formal training elsewhere'
   }
 
   // Recalculate lead score on server side for security
   const leadScore = calculateLeadScore({
-    firstName, lastName, email, phone, courseName,
-    studyTimeline, programType, investmentRange, careerGoals, experienceLevel,
-    utm_source, utm_medium, utm_campaign, utm_term, utm_content,
-    leadScore: clientLeadScore, formType, submissionDate
+    firstName,
+    lastName,
+    email,
+    phone,
+    courseName,
+    studyTimeline,
+    programType,
+    investmentRange,
+    careerGoals,
+    experienceLevel,
+    utm_source,
+    utm_medium,
+    utm_campaign,
+    utm_term,
+    utm_content,
+    leadScore: clientLeadScore,
+    formType,
+    submissionDate
   })
 
   // Validate required fields
@@ -190,7 +250,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         qualificationData: {
           studyTimeline: timelineLabels[studyTimeline] || studyTimeline,
           programType: programLabels[programType] || programType,
-          investmentRange: investmentRange ? (investmentLabels[investmentRange] || investmentRange) : 'Not specified',
+          investmentRange: investmentRange ? investmentLabels[investmentRange] || investmentRange : 'Not specified',
           careerGoals: goalLabels[careerGoals] || careerGoals,
           experienceLevel: experienceLabels[experienceLevel] || experienceLevel
         }
@@ -200,7 +260,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     // Determine lead category based on score
     let leadCategory = 'Cold Lead'
     let leadPriority = 'Low'
-    
+
     if (leadScore >= 15) {
       leadCategory = 'Hot Lead'
       leadPriority = 'High'
@@ -215,8 +275,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       leadPriority = 'Very Low'
     }
 
-
-
     // Create contact in Brevo with enhanced data
     const contactPayload = {
       email: email.trim(),
@@ -224,27 +282,27 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         FIRSTNAME: firstName.trim(),
         LASTNAME: lastName.trim(),
         PHONE: phone.trim(), // Changed from SMS to PHONE to avoid conflicts
-        
+
         // Course and program details
         PREFERRED_COURSE: courseName.trim(),
         STUDY_TIMELINE: timelineLabels[studyTimeline] || studyTimeline,
         PROGRAM_TYPE: programLabels[programType] || programType,
-        INVESTMENT_RANGE: investmentRange ? (investmentLabels[investmentRange] || investmentRange) : 'Not specified',
+        INVESTMENT_RANGE: investmentRange ? investmentLabels[investmentRange] || investmentRange : 'Not specified',
         CAREER_GOALS: goalLabels[careerGoals] || careerGoals,
         EXPERIENCE_LEVEL: experienceLabels[experienceLevel] || experienceLevel,
-        
+
         // Lead scoring and categorization
         LEAD_SCORE: leadScore,
         LEAD_CATEGORY: leadCategory,
         LEAD_PRIORITY: leadPriority,
-        
+
         // Tracking and attribution
         UTM_SOURCE: utm_source,
         UTM_MEDIUM: utm_medium,
         UTM_CAMPAIGN: utm_campaign,
         UTM_TERM: utm_term,
         UTM_CONTENT: utm_content,
-        
+
         // Form metadata
         FORM_TYPE: formType,
         SUBMISSION_DATE: submissionDate,
@@ -271,7 +329,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     // Create a deal in the appropriate pipeline based on timeline
     let pipelineId = '68e60a790c87b5f2cbfec788' // Default to January 2026 Pipeline
-    
+
     switch (studyTimeline) {
       case 'january-2026':
         pipelineId = '68e60a790c87b5f2cbfec788' // January 2026 Pipeline
@@ -289,12 +347,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     // Estimate deal value based on program type and investment range
     let dealValue = 150000 // Default value in KES
-    
+
     if (investmentRange === '500k-plus') dealValue = 500000
     else if (investmentRange === '300k-500k') dealValue = 400000
     else if (investmentRange === '100k-300k') dealValue = 200000
     else if (investmentRange === 'under-100k') dealValue = 80000
-    
+
     if (programType === 'full-time-diploma') dealValue *= 1.5
     else if (programType === 'foundation-certificate') dealValue *= 0.6
 
@@ -302,7 +360,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       name: `${firstName} ${lastName} - ${courseName}`,
       attributes: {
         deal_value: dealValue,
-        pipeline: pipelineId,
+        pipeline: pipelineId
         // Remove invalid attributes that Brevo doesn't recognize
         // Only include basic deal attributes
       }
@@ -358,7 +416,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 <p><strong>Course:</strong> ${courseName}</p>
                 <p><strong>Timeline:</strong> ${timelineLabels[studyTimeline] || studyTimeline}</p>
                 <p><strong>Program Type:</strong> ${programLabels[programType] || programType}</p>
-                <p><strong>Investment Range:</strong> ${investmentRange ? (investmentLabels[investmentRange] || investmentRange) : 'Not specified'}</p>
+                <p><strong>Investment Range:</strong> ${investmentRange ? investmentLabels[investmentRange] || investmentRange : 'Not specified'}</p>
               </div>
               
               <div style="background: white; padding: 15px; border-radius: 8px; margin: 15px 0;">
@@ -393,7 +451,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       })
     }
 
-    return res.status(200).json({ 
+    return res.status(200).json({
       message: 'success',
       leadScore,
       leadCategory,
@@ -401,12 +459,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       qualificationData: {
         studyTimeline: timelineLabels[studyTimeline] || studyTimeline,
         programType: programLabels[programType] || programType,
-        investmentRange: investmentRange ? (investmentLabels[investmentRange] || investmentRange) : 'Not specified',
+        investmentRange: investmentRange ? investmentLabels[investmentRange] || investmentRange : 'Not specified',
         careerGoals: goalLabels[careerGoals] || careerGoals,
         experienceLevel: experienceLabels[experienceLevel] || experienceLevel
       }
     })
-
   } catch (error) {
     console.error('Enhanced lead submission error:', error)
     return res.status(500).json({ error: 'Internal server error' })
