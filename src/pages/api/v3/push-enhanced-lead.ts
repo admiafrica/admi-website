@@ -281,33 +281,25 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       attributes: {
         FIRSTNAME: firstName.trim(),
         LASTNAME: lastName.trim(),
-        SMS: phone.trim(), // Use SMS field which is standard in Brevo for phone numbers
-        PHONE: phone.trim(), // Also include PHONE as backup
+        SMS: phone.trim(), // Phone number field
 
         // Course and program details
         PREFERRED_COURSE: courseName.trim(),
-        STUDY_TIMELINE: timelineLabels[studyTimeline] || studyTimeline,
-        PROGRAM_TYPE: programLabels[programType] || programType,
-        INVESTMENT_RANGE: investmentRange ? investmentLabels[investmentRange] || investmentRange : 'Not specified',
-        CAREER_GOALS: goalLabels[careerGoals] || careerGoals,
-        EXPERIENCE_LEVEL: experienceLabels[experienceLevel] || experienceLevel,
+        COURSE_INTERESTED_IN: courseName.trim(),
 
         // Lead scoring and categorization
-        LEAD_SCORE: leadScore,
-        LEAD_CATEGORY: leadCategory,
-        LEAD_PRIORITY: leadPriority,
+        QUALIFICATION_SCORE: leadScore, // Maps to QUALIFICATION_SCORE field in Brevo
+        SCORE: leadScore, // Also map to SCORE field
+        QUALIFICATION_STATUS: leadCategory, // Hot Lead / Warm Lead / Cold Lead / Unqualified
+        LEAD_STATUS: leadPriority, // High / Medium / Low / Very Low
 
         // Tracking and attribution
-        UTM_SOURCE: utm_source,
-        UTM_MEDIUM: utm_medium,
-        UTM_CAMPAIGN: utm_campaign,
-        UTM_TERM: utm_term,
-        UTM_CONTENT: utm_content,
+        UTM_SOURCE: utm_source || '',
+        UTM_MEDIUM: utm_medium || '',
+        UTM_CAMPAIGN: utm_campaign || '',
 
-        // Form metadata
-        FORM_TYPE: formType,
-        SUBMISSION_DATE: submissionDate,
-        LAST_ACTIVITY: new Date().toISOString()
+        // Summary of pre-qualification responses
+        CONVERSATION_SUMMARY: `Timeline: ${timelineLabels[studyTimeline] || studyTimeline} | Program: ${programLabels[programType] || programType} | Investment: ${investmentRange ? investmentLabels[investmentRange] : 'Not specified'} | Goals: ${goalLabels[careerGoals] || careerGoals} | Experience: ${experienceLabels[experienceLevel] || experienceLevel}`
       },
       listIds: [2], // Add to main contact list (adjust ID as needed)
       updateEnabled: true
