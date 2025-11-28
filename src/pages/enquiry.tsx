@@ -2,7 +2,7 @@ import { Box } from '@mantine/core'
 import Image from 'next/image'
 
 import { MainLayout } from '@/layouts/v3/MainLayout'
-import { EnquiryForm } from '@/components/forms'
+import EnhancedEnquiryForm from '@/components/forms/EnhancedEnquiryForm'
 import { Title } from '@/components/ui'
 import { PageSEO } from '@/components/shared/v3'
 import { useIsMobile } from '@/hooks/useIsMobile'
@@ -100,7 +100,7 @@ export default function EnquiryPage() {
           </div>
           <div className="sm:w-1/2">
             <div className="mx-auto max-w-xl py-12">
-              <EnquiryForm />
+              <EnhancedEnquiryForm />
             </div>
           </div>
         </div>
