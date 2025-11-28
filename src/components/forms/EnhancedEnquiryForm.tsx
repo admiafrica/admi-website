@@ -1,7 +1,17 @@
-
 import { useRouter } from 'next/router'
 import { useCallback, useEffect, useState, useMemo } from 'react'
-import { Alert, Box, Group, Select, Text, TextInput, Radio, Stack, Stepper, Button as MantineButton } from '@mantine/core'
+import {
+  Alert,
+  Box,
+  Group,
+  Select,
+  Text,
+  TextInput,
+  Radio,
+  Stack,
+  Stepper,
+  Button as MantineButton
+} from '@mantine/core'
 import { useForm } from '@mantine/form'
 import { Button, Paragraph, Title } from '../ui'
 import PhoneInput from 'react-phone-input-2'
@@ -100,45 +110,91 @@ export default function EnhancedEnquiryForm() {
 
     // Timeline scoring (0-5 points)
     switch (values.studyTimeline) {
-      case 'january-2026': score += 5; break
-      case 'may-2026': score += 4; break
-      case 'september-2026': score += 3; break
-      case 'researching': score += 1; break
+      case 'january-2026':
+        score += 5
+        break
+      case 'may-2026':
+        score += 4
+        break
+      case 'september-2026':
+        score += 3
+        break
+      case 'researching':
+        score += 1
+        break
     }
 
     // Program type scoring (0-4 points)
     switch (values.programType) {
-      case 'full-time-diploma': score += 4; break
-      case 'professional-certificate': score += 3; break
-      case 'foundation-certificate': score += 2; break
-      case 'weekend-parttime': score += 1; break
+      case 'full-time-diploma':
+        score += 4
+        break
+      case 'professional-certificate':
+        score += 3
+        break
+      case 'foundation-certificate':
+        score += 2
+        break
+      case 'weekend-parttime':
+        score += 1
+        break
     }
 
     // Investment range scoring (0-4 points)
     switch (values.investmentRange) {
-      case '500k-plus': score += 4; break
-      case '300k-500k': score += 3; break
-      case '100k-300k': score += 2; break
-      case 'under-100k': score += 1; break
-      case 'need-discussion': score += 2; break
+      case '500k-plus':
+        score += 4
+        break
+      case '300k-500k':
+        score += 3
+        break
+      case '100k-300k':
+        score += 2
+        break
+      case 'under-100k':
+        score += 1
+        break
+      case 'need-discussion':
+        score += 2
+        break
     }
 
     // Career goals scoring (0-4 points)
     switch (values.careerGoals) {
-      case 'career-change': score += 4; break
-      case 'start-business': score += 4; break
-      case 'skill-upgrade': score += 3; break
-      case 'university-prep': score += 2; break
-      case 'personal-interest': score += 1; break
+      case 'career-change':
+        score += 4
+        break
+      case 'start-business':
+        score += 4
+        break
+      case 'skill-upgrade':
+        score += 3
+        break
+      case 'university-prep':
+        score += 2
+        break
+      case 'personal-interest':
+        score += 1
+        break
     }
 
     // Experience level scoring (0-3 points)
     switch (values.experienceLevel) {
-      case 'professional-upgrade': score += 3; break
-      case 'intermediate': score += 2; break
-      case 'some-experience': score += 2; break
-      case 'complete-beginner': score += 1; break
-      case 'formal-training': score += 2; break
+      case 'professional-upgrade':
+        score += 3
+        break
+      case 'intermediate':
+        score += 2
+        break
+      case 'some-experience':
+        score += 2
+        break
+      case 'complete-beginner':
+        score += 1
+        break
+      case 'formal-training':
+        score += 2
+        break
     }
 
     return Math.min(score, 20) // Cap at 20 points
@@ -150,7 +206,6 @@ export default function EnhancedEnquiryForm() {
 
     // Calculate lead score
     const leadScore = calculateLeadScore(values)
-
 
     // Format phone number - remove leading zeros and ensure proper format
     const cleanPhone = values.phone.replace(/\D/g, '') // Remove non-digits
@@ -250,26 +305,28 @@ export default function EnhancedEnquiryForm() {
   useEffect(() => {
     if (router.isReady) {
       const { utm_source, utm_medium, utm_campaign, utm_term, utm_content } = router.query
-      form.setFieldValue('utm_source', utm_source as string || 'direct')
-      form.setFieldValue('utm_medium', utm_medium as string || 'none')
-      form.setFieldValue('utm_campaign', utm_campaign as string || 'organic')
-      form.setFieldValue('utm_term', utm_term as string || '')
-      form.setFieldValue('utm_content', utm_content as string || '')
+      form.setFieldValue('utm_source', (utm_source as string) || 'direct')
+      form.setFieldValue('utm_medium', (utm_medium as string) || 'none')
+      form.setFieldValue('utm_campaign', (utm_campaign as string) || 'organic')
+      form.setFieldValue('utm_term', (utm_term as string) || '')
+      form.setFieldValue('utm_content', (utm_content as string) || '')
     }
   }, [router.isReady, router.query, form]) // Include all dependencies to prevent re-renders
 
   // Memoize course options to prevent re-renders
   const courseOptions = useMemo(() => {
-    return courses?.map((course) => ({
-      value: course.fields?.name || course.name || 'Unknown Course',
-      label: course.fields?.name || course.name || 'Unknown Course'
-    })) || []
+    return (
+      courses?.map((course) => ({
+        value: course.fields?.name || course.name || 'Unknown Course',
+        label: course.fields?.name || course.name || 'Unknown Course'
+      })) || []
+    )
   }, [courses])
 
   return (
-    <div className="w-full max-w-full sm:max-w-4xl mx-auto rounded-lg bg-white p-3 sm:p-6 lg:p-8 overflow-hidden">
-      <div className="font-nexa mb-4 sm:mb-6 lg:mb-8">
-        <Title label="Enhanced Enquiry Form" color="black" className="text-lg sm:text-xl lg:text-2xl" />
+    <div className="mx-auto w-full max-w-full overflow-hidden rounded-lg bg-white p-3 sm:max-w-4xl sm:p-6 lg:p-8">
+      <div className="mb-4 font-nexa sm:mb-6 lg:mb-8">
+        <Title label="Enquiry Form" color="black" className="text-lg sm:text-xl lg:text-2xl" />
         <Text size="sm" c="dimmed" mt={2} className="text-xs sm:text-sm lg:text-base">
           Help us understand your needs better with a few quick questions
         </Text>
@@ -278,7 +335,7 @@ export default function EnhancedEnquiryForm() {
       <Stepper
         active={activeStep}
         onStepClick={setActiveStep}
-        className="mb-4 sm:mb-6 lg:mb-8 overflow-x-auto"
+        className="mb-4 overflow-x-auto sm:mb-6 lg:mb-8"
         orientation="horizontal"
         size="xs"
         allowNextStepsSelect={false}
@@ -298,12 +355,12 @@ export default function EnhancedEnquiryForm() {
         }}
       >
         <Stepper.Step label="Course Interest" description="What you want to study">
-          <div className="mt-3 sm:mt-4 lg:mt-6 space-y-3 sm:space-y-4">
+          <div className="mt-3 space-y-3 sm:mt-4 sm:space-y-4 lg:mt-6">
             <Select
               label={
                 <div className="flex items-center">
                   <Title label="Select Course" color="black" className="text-sm sm:text-base lg:text-lg" />
-                  <IconAsterisk size={6} className="mt-0.5 sm:mt-1 text-admiRed ml-1" />
+                  <IconAsterisk size={6} className="ml-1 mt-0.5 text-admiRed sm:mt-1" />
                 </div>
               }
               placeholder={coursesLoading ? 'Loading courses...' : "Select a course you're interested in"}
@@ -322,7 +379,11 @@ export default function EnhancedEnquiryForm() {
             />
 
             <div>
-              <Title label="When are you planning to start?" color="black" className="mb-2 sm:mb-3 text-sm sm:text-base lg:text-lg" />
+              <Title
+                label="When are you planning to start?"
+                color="black"
+                className="mb-2 text-sm sm:mb-3 sm:text-base lg:text-lg"
+              />
               <Radio.Group {...form.getInputProps('studyTimeline')}>
                 <Stack gap="xs">
                   <Radio
@@ -423,12 +484,12 @@ export default function EnhancedEnquiryForm() {
         </Stepper.Step>
 
         <Stepper.Step label="Contact Info" description="How to reach you">
-          <div className="mt-3 sm:mt-4 lg:mt-6 space-y-3 sm:space-y-4">
+          <div className="mt-3 space-y-3 sm:mt-4 sm:space-y-4 lg:mt-6">
             <TextInput
               label={
                 <div className="flex items-center">
                   <Title label="First Name" color="black" className="text-sm sm:text-base" />
-                  <IconAsterisk size={6} className="mt-0.5 text-admiRed ml-1" />
+                  <IconAsterisk size={6} className="ml-1 mt-0.5 text-admiRed" />
                 </div>
               }
               placeholder="Enter first name"
@@ -446,7 +507,7 @@ export default function EnhancedEnquiryForm() {
               label={
                 <div className="flex items-center">
                   <Title label="Last Name" color="black" className="text-sm sm:text-base" />
-                  <IconAsterisk size={6} className="mt-0.5 text-admiRed ml-1" />
+                  <IconAsterisk size={6} className="ml-1 mt-0.5 text-admiRed" />
                 </div>
               }
               placeholder="Enter last name"
@@ -464,7 +525,7 @@ export default function EnhancedEnquiryForm() {
               label={
                 <div className="flex items-center">
                   <Title label="Email Address" color="black" className="text-sm sm:text-base" />
-                  <IconAsterisk size={6} className="mt-0.5 text-admiRed ml-1" />
+                  <IconAsterisk size={6} className="ml-1 mt-0.5 text-admiRed" />
                 </div>
               }
               placeholder="your@email.com"
@@ -481,7 +542,7 @@ export default function EnhancedEnquiryForm() {
             <Box className="border-1 rounded-lg border-solid border-gray-200 px-2 py-2 sm:px-4 sm:py-3">
               <div className="flex items-center">
                 <Title label="Phone Number" color="black" className="text-sm sm:text-base" />
-                <IconAsterisk size={6} className="mt-0.5 text-admiRed ml-1" />
+                <IconAsterisk size={6} className="ml-1 mt-0.5 text-admiRed" />
               </div>
               <Text size="sm" color="gray" className="pb-1 text-xs sm:text-sm">
                 Kenya mobile number (without country code)
@@ -550,14 +611,14 @@ export default function EnhancedEnquiryForm() {
         <input {...form.getInputProps('utm_term')} type="hidden" />
         <input {...form.getInputProps('utm_content')} type="hidden" />
 
-        <Group justify="space-between" mt="xl" className="flex-col sm:flex-row gap-3 sm:gap-0">
+        <Group justify="space-between" mt="xl" className="flex-col gap-3 sm:flex-row sm:gap-0">
           {activeStep > 0 && (
             <MantineButton
               variant="default"
               onClick={prevStep}
               leftSection={<IconArrowLeft size={14} />}
               size="md"
-              className="w-full sm:w-auto order-2 sm:order-1"
+              className="order-2 w-full sm:order-1 sm:w-auto"
             >
               Back
             </MantineButton>
@@ -569,12 +630,12 @@ export default function EnhancedEnquiryForm() {
               rightSection={<IconArrowRight size={14} />}
               disabled={!validateCurrentStep()}
               size="md"
-              className="w-full sm:w-auto order-1 sm:order-2 sm:ml-auto"
+              className="order-1 w-full sm:order-2 sm:ml-auto sm:w-auto"
             >
               Next
             </MantineButton>
           ) : (
-            <div className="w-full sm:w-auto order-1 sm:order-2 sm:ml-auto">
+            <div className="order-1 w-full sm:order-2 sm:ml-auto sm:w-auto">
               <Button
                 size="lg"
                 backgroundColor="admiRed"
@@ -618,8 +679,6 @@ export default function EnhancedEnquiryForm() {
           )}
         </Alert>
       )}
-
-
     </div>
   )
 }
