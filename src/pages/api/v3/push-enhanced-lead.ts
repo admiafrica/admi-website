@@ -281,7 +281,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       attributes: {
         FIRSTNAME: firstName.trim(),
         LASTNAME: lastName.trim(),
-        PHONE: phone.trim(), // Changed from SMS to PHONE to avoid conflicts
+        SMS: phone.trim(), // Use SMS field which is standard in Brevo for phone numbers
+        PHONE: phone.trim(), // Also include PHONE as backup
 
         // Course and program details
         PREFERRED_COURSE: courseName.trim(),
