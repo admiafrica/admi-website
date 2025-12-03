@@ -1,0 +1,491 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model AcademyUser {
+  id                 String    @id @default(cuid())
+  email              String    @unique
+  firstName          String
+  lastName           String
+  avatar             String?
+  role               Role      @default(STUDENT)
+  bio                String?
+  profession         String?
+  experience         String?
+  goals              String[]
+  xp                 Int       @default(0)
+  level              Int       @default(1)
+  streak             Int       @default(0)
+  subscriptionStatus String    @default("free")
+  subscriptionTier   String?
+  subscriptionEndsAt DateTime?
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+  lastActiveAt       DateTime  @default(now())
+
+  enrolledPaths       EnrolledPath[]
+  completedCourses    String[]
+  certificates        Certificate[]
+  portfolio           Portfolio?
+  resume              Resume?
+  careerPreferences   CareerPreferences?
+  lessonProgresses    LessonProgress[]
+  projectSubmissions  ProjectSubmission[]
+  applicationTrackers ApplicationTracker[]
+  userAnalytics       UserAnalytics[]
+}
+
+model LearningPath {
+  id                   String     @id @default(cuid())
+  slug                 String     @unique
+  title                String
+  description          String
+  tagline              String
+  outcomes             String[]
+  prerequisites        String[]
+  targetPersonas       String[]
+  duration             Int // weeks
+  estimatedHours       Int
+  price                Float
+  currency             String
+  subscriptionIncluded Boolean
+  difficulty           Difficulty
+  category             String
+  tags                 String[]
+  enrollmentCount      Int        @default(0)
+  rating               Float      @default(0)
+  reviewCount          Int        @default(0)
+  status               Status     @default(DRAFT)
+  publishedAt          DateTime?
+  createdAt            DateTime   @default(now())
+  updatedAt            DateTime   @updatedAt
+
+  modules       Course[]
+  projects      Project[]
+  assessments   Assessment[]
+  enrolledBy    EnrolledPath[]
+  instructors   Instructor[]
+  pathAnalytics PathAnalytics[]
+  certificates  Certificate[]
+}
+
+model Course {
+  id          String   @id @default(cuid())
+  pathId      String
+  slug        String   @unique
+  title       String
+  description String
+  order       Int
+  duration    Int // minutes
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  path      LearningPath @relation(fields: [pathId], references: [id])
+  lessons   Lesson[]
+  resources Resource[]
+  tools     Tool[]
+}
+
+model Lesson {
+  id          String     @id @default(cuid())
+  courseId    String
+  title       String
+  description String
+  order       Int
+  type        LessonType
+  videoUrl    String?
+  duration    Int?
+  content     String? // Markdown or HTML
+  isFree      Boolean    @default(false)
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+
+  course       Course           @relation(fields: [courseId], references: [id])
+  quiz         Quiz?
+  codeExercise CodeExercise?
+  progress     LessonProgress[]
+}
+
+model EnrolledPath {
+  userId            String
+  pathId            String
+  status            String    @default("not_started")
+  enrolledAt        DateTime  @default(now())
+  startedAt         DateTime?
+  completedAt       DateTime?
+  currentCourseId   String?
+  currentLessonId   String?
+  overallProgress   Int       @default(0)
+  coursesCompleted  Int       @default(0)
+  projectsCompleted Int       @default(0)
+  quizzesPassed     Int       @default(0)
+  averageScore      Float     @default(0)
+  totalTimeSpent    Int       @default(0) // minutes
+  lastAccessedAt    DateTime  @default(now())
+
+  user AcademyUser  @relation(fields: [userId], references: [id])
+  path LearningPath @relation(fields: [pathId], references: [id])
+
+  @@id([userId, pathId])
+}
+
+model LessonProgress {
+  userId         String
+  lessonId       String
+  status         String    @default("not_started")
+  completedAt    DateTime?
+  videoProgress  Int? // seconds
+  videoCompleted Boolean?
+  notes          String?
+  timeSpent      Int       @default(0) // minutes
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  user   AcademyUser @relation(fields: [userId], references: [id])
+  lesson Lesson      @relation(fields: [lessonId], references: [id])
+
+  @@id([userId, lessonId])
+}
+
+model Project {
+  id             String     @id @default(cuid())
+  pathId         String
+  courseId       String?
+  title          String
+  description    String
+  brief          String
+  order          Int
+  objectives     String[]
+  deliverables   String[]
+  estimatedHours Int
+  difficulty     Difficulty
+  isRequired     Boolean
+  createdAt      DateTime   @default(now())
+  updatedAt      DateTime   @updatedAt
+
+  path        LearningPath        @relation(fields: [pathId], references: [id])
+  submissions ProjectSubmission[]
+  rubric      RubricCriteria[]
+  resources   Resource[]
+  tools       Tool[]
+}
+
+model ProjectSubmission {
+  id          String    @id @default(cuid())
+  projectId   String
+  userId      String
+  description String
+  demoUrl     String?
+  githubUrl   String?
+  status      String    @default("submitted")
+  score       Float?
+  feedback    String?
+  reviewedBy  String?
+  reviewedAt  DateTime?
+  submittedAt DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  project Project          @relation(fields: [projectId], references: [id])
+  user    AcademyUser      @relation(fields: [userId], references: [id])
+  files   SubmissionFile[]
+}
+
+model Portfolio {
+  id           String    @id @default(cuid())
+  userId       String    @unique
+  headline     String
+  summary      String
+  isPublic     Boolean   @default(false)
+  customUrl    String?
+  theme        String
+  views        Int       @default(0)
+  lastViewedAt DateTime?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  user         AcademyUser        @relation(fields: [userId], references: [id])
+  projects     PortfolioProject[]
+  achievements Achievement[]
+  testimonials Testimonial[]
+  skills       Skill[]
+}
+
+model JobMatch {
+  id                  String               @id @default(cuid())
+  title               String
+  company             String
+  description         String
+  requirements        String[]
+  location            String
+  remote              Boolean
+  matchScore          Float
+  matchReasons        String[]
+  missingSkills       String[]
+  source              String
+  postedAt            DateTime
+  expiresAt           DateTime?
+  createdAt           DateTime             @default(now())
+  updatedAt           DateTime             @updatedAt
+  applicationTrackers ApplicationTracker[]
+}
+
+model ApplicationTracker {
+  id        String    @id @default(cuid())
+  userId    String
+  jobId     String
+  status    String
+  appliedAt DateTime?
+  notes     String?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  user AcademyUser @relation(fields: [userId], references: [id])
+  job  JobMatch    @relation(fields: [jobId], references: [id])
+}
+
+model UserAnalytics {
+  id               String   @id @default(cuid())
+  userId           String
+  date             DateTime
+  sessionsCount    Int
+  totalTimeSpent   Int // minutes
+  lessonsCompleted Int
+  quizzesTaken     Int
+  projectsWorkedOn Int
+  forumPosts       Int
+  comments         Int
+  upvotes          Int
+  avgQuizScore     Float
+  streakDays       Int
+  xpGained         Int
+
+  user AcademyUser @relation(fields: [userId], references: [id])
+}
+
+model PathAnalytics {
+  id                String   @id @default(cuid())
+  pathId            String
+  date              DateTime
+  newEnrollments    Int
+  activeStudents    Int
+  completions       Int
+  avgCompletionTime Int // days
+  avgProgress       Float
+  avgSessionTime    Int // minutes
+  avgQuizScore      Float
+  avgProjectScore   Float
+  careerPlacements  Int
+  avgSalaryIncrease Float
+  npsScore          Float
+
+  path LearningPath @relation(fields: [pathId], references: [id])
+}
+
+model Certificate {
+  id        String   @id @default(cuid())
+  userId    String
+  pathId    String
+  issuedAt  DateTime
+  url       String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user AcademyUser  @relation(fields: [userId], references: [id])
+  path LearningPath @relation(fields: [pathId], references: [id])
+}
+
+model Resume {
+  id        String   @id @default(cuid())
+  userId    String   @unique
+  url       String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user AcademyUser @relation(fields: [userId], references: [id])
+}
+
+model CareerPreferences {
+  id        String   @id @default(cuid())
+  userId    String   @unique
+  roles     String[]
+  locations String[]
+  salary    Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user AcademyUser @relation(fields: [userId], references: [id])
+}
+
+model Assessment {
+  id        String   @id @default(cuid())
+  pathId    String
+  title     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  path LearningPath @relation(fields: [pathId], references: [id])
+}
+
+model Instructor {
+  id        String   @id @default(cuid())
+  name      String
+  bio       String
+  avatar    String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  paths LearningPath[]
+}
+
+model Resource {
+  id        String       @id @default(cuid())
+  courseId  String?
+  projectId String?
+  title     String
+  url       String
+  type      ResourceType
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+
+  course  Course?  @relation(fields: [courseId], references: [id])
+  project Project? @relation(fields: [projectId], references: [id])
+}
+
+model Tool {
+  id        String   @id @default(cuid())
+  courseId  String
+  name      String
+  url       String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  course    Course   @relation(fields: [courseId], references: [id])
+  project   Project? @relation(fields: [projectId], references: [id])
+  projectId String?
+}
+
+model Quiz {
+  id        String   @id @default(cuid())
+  lessonId  String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  lesson Lesson @relation(fields: [lessonId], references: [id])
+}
+
+model CodeExercise {
+  id        String   @id @default(cuid())
+  lessonId  String   @unique
+  template  String
+  solution  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  lesson Lesson @relation(fields: [lessonId], references: [id])
+}
+
+model RubricCriteria {
+  id        String   @id @default(cuid())
+  projectId String
+  criteria  String
+  points    Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  project Project @relation(fields: [projectId], references: [id])
+}
+
+model SubmissionFile {
+  id           String   @id @default(cuid())
+  submissionId String
+  url          String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  submission ProjectSubmission @relation(fields: [submissionId], references: [id])
+}
+
+model PortfolioProject {
+  id          String   @id @default(cuid())
+  portfolioId String
+  title       String
+  description String
+  url         String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  portfolio Portfolio @relation(fields: [portfolioId], references: [id])
+}
+
+model Achievement {
+  id          String   @id @default(cuid())
+  portfolioId String
+  title       String
+  description String
+  date        DateTime
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  portfolio Portfolio @relation(fields: [portfolioId], references: [id])
+}
+
+model Testimonial {
+  id          String   @id @default(cuid())
+  portfolioId String
+  author      String
+  text        String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  portfolio Portfolio @relation(fields: [portfolioId], references: [id])
+}
+
+model Skill {
+  id          String   @id @default(cuid())
+  portfolioId String
+  name        String
+  level       String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  portfolio Portfolio @relation(fields: [portfolioId], references: [id])
+}
+
+enum Role {
+  STUDENT
+  INSTRUCTOR
+  MENTOR
+  ADMIN
+}
+
+enum Difficulty {
+  BEGINNER
+  INTERMEDIATE
+  ADVANCED
+}
+
+enum Status {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+enum LessonType {
+  VIDEO
+  READING
+  INTERACTIVE
+  QUIZ
+}
+
+enum ResourceType {
+  TEMPLATE
+  EXAMPLE
+  GENERAL
+}

@@ -37,7 +37,15 @@
     "cron-test": "./scripts/cron/weekly-faq-optimizer.sh",
     "cache-refresh": "curl -H \"Authorization: Bearer ${CRON_SECRET:-default-secret}\" \"${APP_URL:-http://localhost:3000}/api/cron/refresh-video-cache\"",
     "media:generate": "node scripts/generate-media-manifest.js",
-    "deploy-cron": "cd infrastructure/aws-cron && ./deploy.sh"
+    "deploy-cron": "cd infrastructure/aws-cron && ./deploy.sh",
+    "meta:setup": "node scripts/analytics/meta-ads-oauth-setup.js",
+    "meta:token": "node scripts/analytics/meta-ads-manual-token.js",
+    "meta:test": "node scripts/analytics/meta-test-api.js",
+    "meta:analyze": "node scripts/analytics/meta-ads-analysis.js",
+    "meta:monitor": "node scripts/analytics/meta-ads-monitor.js",
+    "meta:pixel-setup": "node scripts/analytics/meta-pixel-setup.js",
+    "meta:status": "node scripts/analytics/meta-ads-monitor.js 60000",
+    "ads:journey": "node scripts/analytics/brevo-google-ads-journey-analysis.js"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.857.0",
@@ -95,6 +103,7 @@
     "postcss": "^8",
     "prettier": "^3.4.2",
     "prettier-plugin-tailwindcss": "^0.6.9",
+    "prisma": "^7.0.1",
     "tailwindcss": "^3.4.1",
     "ts-node": "^10.9.2",
     "typescript": "^5"

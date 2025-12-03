@@ -56,3 +56,6 @@ blog-generation-log.json
 # Google Analytics MCP credentials
 ga-service-account.json
 infrastructure/aws-lambda/sync-automation/.aws-sam/
+
+/src/generated/prisma
+.env
