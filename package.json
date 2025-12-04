@@ -45,7 +45,10 @@
     "meta:monitor": "node scripts/analytics/meta-ads-monitor.js",
     "meta:pixel-setup": "node scripts/analytics/meta-pixel-setup.js",
     "meta:status": "node scripts/analytics/meta-ads-monitor.js 60000",
-    "ads:journey": "node scripts/analytics/brevo-google-ads-journey-analysis.js"
+    "ads:journey": "node scripts/analytics/brevo-google-ads-journey-analysis.js",
+    "academic-pathways:setup": "node scripts/contentful/create-academic-pathways.js",
+    "academic-pathways:setup-entries": "node scripts/contentful/setup-academic-pathways-entries.js",
+    "academic-pathways:setup-simple": "node scripts/contentful/setup-academic-pathways-simple.js"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.857.0",

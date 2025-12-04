@@ -1,23 +1,37 @@
 import Image from 'next/image'
-import { Box } from '@mantine/core'
+import { Box, Grid } from '@mantine/core'
+import { GetStaticProps } from 'next'
 
 import { MainLayout } from '@/layouts/v3/MainLayout'
 import { Paragraph, Title } from '@/components/ui'
 import { PageSEO } from '@/components/shared/v3'
 import { InfoCard, PlainCard } from '@/components/cards'
+import { useIsMobile } from '@/hooks/useIsMobile'
+import { getAcademicPathwaysBySlug, getAllPartners } from '@/utils/academic-pathways'
+import { AcademicPathwaysPage as IAcademicPathwaysPage, AcademicPathwaysPartner } from '@/types/academic-pathways'
 import { ADMI_ACADEMIC_PATHWAYS } from '@/utils'
 
 import ImagePathwaysLanding from '@/assets/images/academic-pathways-landing.jpeg'
-import { useIsMobile } from '@/hooks/useIsMobile'
 
-export default function AcademicPathwaysPage() {
+interface AcademicPathwaysPageProps {
+  pathways: IAcademicPathwaysPage | null
+  partners: AcademicPathwaysPartner[]
+}
+
+export default function AcademicPathwaysPage({ pathways, partners }: AcademicPathwaysPageProps) {
   const isMobile = useIsMobile()
+  
+  // Contentful response structure
+  const title = pathways?.fields?.title || 'Academic Pathways'
+  const description = pathways?.fields?.description || "Explore ADMI's academic pathways and strategic partnerships with leading institutions. Discover seamless transitions for further studies and career opportunities in digital media and creative technology."
+  
+  const woolfPartner = partners.find(p => p.fields.name?.includes('Woolf'))
 
   return (
     <MainLayout footerBgColor="white">
       <PageSEO
-        title="Academic Pathways"
-        description="Explore ADMI's academic pathways and strategic partnerships with leading institutions. Discover seamless transitions for further studies and career opportunities in digital media and creative technology."
+        title={title}
+        description={description}
         keywords="ADMI academic pathways, university partnerships, further studies, career opportunities, digital media education progression, international partnerships, student transitions"
       />
       <div className="w-full">
@@ -70,6 +84,50 @@ export default function AcademicPathwaysPage() {
             </Box>
           </Box>
         </Box>
+
+        {/* Woolf University Partnership Section */}
+        {woolfPartner && (
+          <Box className="relative w-full bg-white py-12">
+            <Box className="mx-auto flex w-full max-w-screen-xl flex-col px-4 2xl:px-0">
+              <Box className="pb-12">
+                <Title label="Our Strategic Partners" color="black" size={isMobile ? '28px' : '40px'} />
+              </Box>
+              <Grid>
+                <Grid.Col span={{ base: 12, md: 6 }}>
+                  <Box className="flex flex-col">
+                    <Box className="relative h-[200px] w-full">
+                      {woolfPartner.fields.logo && (
+                        <Image
+                          fill
+                          src={typeof woolfPartner.fields.logo === 'string' ? woolfPartner.fields.logo : (woolfPartner.fields.logo as any)?.fields?.file?.url || ''}
+                          alt={woolfPartner.fields.name}
+                          style={{ objectFit: 'contain' }}
+                        />
+                      )}
+                    </Box>
+                    <Title label={woolfPartner.fields.name} color="black" size="24px" className="mt-6" />
+                  </Box>
+                </Grid.Col>
+                <Grid.Col span={{ base: 12, md: 6 }}>
+                  <Paragraph fontFamily="font-nexa" className="py-4">
+                    {woolfPartner.fields.description}
+                  </Paragraph>
+                  {woolfPartner.fields.website && (
+                    <a
+                      href={woolfPartner.fields.website}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-4 inline-block bg-[#F1FE37] px-6 py-2 text-black font-bold rounded hover:opacity-80"
+                    >
+                      Visit {woolfPartner.fields.name}
+                    </a>
+                  )}
+                </Grid.Col>
+              </Grid>
+            </Box>
+          </Box>
+        )}
+        
         {/* Floating Card */}
         <div className="relative h-[400px] w-full px-4 2xl:px-0">
           <div className="absolute left-1/2 top-[-10vh] z-10 w-full max-w-screen-xl -translate-x-1/2 transform px-4 sm:top-[-8vh] 2xl:px-0">
@@ -82,7 +140,7 @@ export default function AcademicPathwaysPage() {
                 foundation for their future careers.
               </Paragraph>
               <Paragraph className="py-4" fontFamily="font-nexa">
-                At ADMI, we believe that education is the key to unlocking one’s potential. By aligning our programs
+                At ADMI, we believe that education is the key to unlocking one's potential. By aligning our programs
                 with international standards and forging strategic partnerships with leading institutions, we aim to
                 provide our students with the tools and opportunities they need to succeed in a rapidly evolving world.
               </Paragraph>
@@ -92,4 +150,29 @@ export default function AcademicPathwaysPage() {
       </div>
     </MainLayout>
   )
+}
+
+export const getStaticProps: GetStaticProps<AcademicPathwaysPageProps> = async () => {
+  try {
+    // Fetch academic pathways content from Contentful
+    const pathways = await getAcademicPathwaysBySlug('main')
+    const partners = await getAllPartners()
+
+    return {
+      props: {
+        pathways: pathways || null,
+        partners: partners || [],
+      },
+      revalidate: 3600, // Revalidate every hour
+    }
+  } catch (error) {
+    console.error('Error fetching academic pathways data:', error)
+    return {
+      props: {
+        pathways: null,
+        partners: [],
+      },
+      revalidate: 300, // Retry after 5 minutes on error
+    }
+  }
 }
