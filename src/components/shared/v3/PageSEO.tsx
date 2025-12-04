@@ -112,13 +112,7 @@ const PageSEO: React.FC<PageSEOProps> = ({
             </>
           )}
           <meta property="product:availability" content={productAvailability} />
-          {productCategory && (
-            <>
-              <meta property="product:category" content={productCategory} />
-              {/* Google Product Category - required for Facebook catalog */}
-              <meta name="google_product_category" content={productCategory} />
-            </>
-          )}
+          {productCategory && <meta property="product:category" content={productCategory} />}
           <meta property="product:condition" content="new" />
 
           {/* Alternative format for Facebook catalog - CRITICAL */}
