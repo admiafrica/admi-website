@@ -4,6 +4,7 @@ import { generateDiplomaKeywords } from '@/utils/diploma-seo-config'
 import { ICourseFAQ, IFAQResponse } from '@/types'
 import { CourseIntakeEventSchema } from '@/components/seo/CourseIntakeEventSchema'
 import { getCoursePricing } from '@/utils/course-pricing'
+import { FacebookProductMeta } from '@/components/seo/FacebookProductMeta'
 
 interface DiplomaEnhancedSEOProps {
   course: any
@@ -65,8 +66,27 @@ export function DiplomaEnhancedSEO({
   // Get pricing information for this course
   const pricing = getCoursePricing(slug, course.awardLevel)
 
+  const courseUrl = `${process.env.NEXT_PUBLIC_API_BASE_URL || 'https://admi.africa'}/courses/${slug}`
+  const courseImage = course.coverImage?.fields?.file?.url ? `https:${course.coverImage.fields.file.url}` : undefined
+
   return (
     <>
+      {/* Facebook Product Meta Tags for Catalog */}
+      {pricing && (
+        <FacebookProductMeta
+          id={`admi-diploma-${slug}`}
+          title={course.name}
+          description={enhancedDescription}
+          url={courseUrl}
+          image={courseImage}
+          price={pricing.price}
+          currency={pricing.currency}
+          availability="in stock"
+          brand="ADMI"
+          category="Education & Training > Higher Education > Diploma Programs"
+        />
+      )}
+
       {/* Enhanced Diploma Schema */}
       <DiplomaSchema
         name={course.name}
@@ -75,8 +95,8 @@ export function DiplomaEnhancedSEO({
           name: 'Africa Digital Media Institute',
           url: 'https://admi.africa'
         }}
-        url={`${process.env.NEXT_PUBLIC_API_BASE_URL || 'https://admi.africa'}/courses/${slug}`}
-        image={course.coverImage?.fields?.file?.url ? `https:${course.coverImage.fields.file.url}` : undefined}
+        url={courseUrl}
+        image={courseImage}
         awardLevel={course.awardLevel}
         // Remove creditHours as it's not supported by Course schema
         tuitionFees={course.tuitionFees}

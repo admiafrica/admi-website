@@ -3,6 +3,7 @@ import { CourseSchema, CMSFAQSchema } from '@/components/shared/StructuredData'
 import { ICourseFAQ, IFAQResponse } from '@/types'
 import { CourseIntakeEventSchema } from '@/components/seo/CourseIntakeEventSchema'
 import { getCoursePricing } from '@/utils/course-pricing'
+import { FacebookProductMeta } from '@/components/seo/FacebookProductMeta'
 
 interface CertificateEnhancedSEOProps {
   course: any
@@ -72,8 +73,27 @@ export function CertificateEnhancedSEO({
   // Get pricing information for this course
   const pricing = getCoursePricing(slug, course.awardLevel)
 
+  const courseUrl = `${process.env.NEXT_PUBLIC_API_BASE_URL || 'https://admi.africa'}/courses/${slug}`
+  const courseImage = course.coverImage?.fields?.file?.url ? `https:${course.coverImage.fields.file.url}` : undefined
+
   return (
     <>
+      {/* Facebook Product Meta Tags for Catalog */}
+      {pricing && (
+        <FacebookProductMeta
+          id={`admi-certificate-${slug}`}
+          title={course.name}
+          description={enhancedDescription}
+          url={courseUrl}
+          image={courseImage}
+          price={pricing.price}
+          currency={pricing.currency}
+          availability="in stock"
+          brand="ADMI"
+          category="Education & Training > Professional Development"
+        />
+      )}
+
       {/* Enhanced Certificate Schema */}
       <CourseSchema
         name={course.name}
