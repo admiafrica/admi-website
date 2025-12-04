@@ -144,7 +144,11 @@ export default function CourseDetailPage({
         productPrice={pricing?.price}
         productCurrency={pricing?.currency || 'KES'}
         productAvailability="in stock"
-        productCategory="Education & Training > Professional Development"
+        productCategory={
+          isDiploma
+            ? 'Education & Training > Higher Education > Diploma'
+            : 'Education & Training > Schools & Instruction > Certificate Programs'
+        }
       />
 
       {/* Enhanced SEO for Different Program Types - Only ONE Course Schema per page */}

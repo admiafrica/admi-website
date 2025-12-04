@@ -112,12 +112,24 @@ const PageSEO: React.FC<PageSEOProps> = ({
             </>
           )}
           <meta property="product:availability" content={productAvailability} />
-          {productCategory && <meta property="product:category" content={productCategory} />}
+          {productCategory && (
+            <>
+              <meta property="product:category" content={productCategory} />
+              {/* Google Product Category - required for Facebook catalog */}
+              <meta name="google_product_category" content={productCategory} />
+            </>
+          )}
           <meta property="product:condition" content="new" />
 
           {/* Alternative format for Facebook catalog - CRITICAL */}
           <meta name="id" content={productId} />
-          {productPrice && <meta name="price" content={`${productPrice} ${productCurrency}`} />}
+          {productPrice && (
+            <>
+              {/* Price in multiple formats for compatibility */}
+              <meta name="price" content={`${productPrice} ${productCurrency}`} />
+              <meta property="product:price" content={`${productPrice} ${productCurrency}`} />
+            </>
+          )}
           <meta name="availability" content={productAvailability} />
           <meta property="product:brand" content="ADMI" />
         </>
