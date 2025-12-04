@@ -25,7 +25,7 @@ export default function AcademicPathwaysPage({ pathways, partners }: AcademicPat
   const title = pathways?.fields?.title || 'Academic Pathways'
   const description =
     pathways?.fields?.description ||
-    "Explore ADMI's academic pathways and strategic partnerships with leading institutions. Discover seamless transitions for further studies and career opportunities in digital media and creative technology."
+    "As an accredited member college of Woolf, ADMI offers students seamless academic pathways to internationally recognized degrees. Discover how ADMI and Woolf's global collegiate model creates opportunities for further studies and career advancement in digital media and creative technology."
   const woolfPartner = partners.find((p) => p.fields.name?.includes('Woolf'))
 
   return (
@@ -33,7 +33,7 @@ export default function AcademicPathwaysPage({ pathways, partners }: AcademicPat
       <PageSEO
         title={title}
         description={description}
-        keywords="ADMI academic pathways, university partnerships, further studies, career opportunities, digital media education progression, international partnerships, student transitions"
+        keywords="ADMI Woolf accreditation, academic pathways, collegiate education, further studies, career opportunities, digital media education, international partnerships, student transitions"
       />
       <div className="w-full">
         {/* HEADER */}
@@ -48,13 +48,13 @@ export default function AcademicPathwaysPage({ pathways, partners }: AcademicPat
               <Box className="flex w-full flex-col pt-12 sm:flex-row">
                 <Box className="flex flex-col sm:w-[50%]">
                   <Paragraph fontFamily="font-nexa" className="pb-4 text-white sm:pr-4" size="26px" fontWeight={400}>
-                    At Africa Digital Media Institute (ADMI), we are committed to providing our students with a
-                    world-class education that opens doors to endless possibilities.
+                    As an accredited member of Woolf—a globally recognized collegiate Higher Education Institution—ADMI
+                    provides students with world-class education that is recognized across 50+ countries.
                   </Paragraph>
                   <Paragraph fontFamily="font-nexa" className="py-4 text-white sm:pr-4">
-                    Through our strategic partnerships with leading institutions both locally and internationally, we
-                    offer seamless academic pathways that allow our graduates to transition smoothly to further their
-                    studies or pursue their careers.
+                    Through our membership with Woolf, ADMI graduates receive degrees recognized by treaty obligation in
+                    the European Higher Education Area, the United States, Canada, and beyond. Our academic pathways
+                    enable seamless transitions to further studies or careers in digital media and creative technology.
                   </Paragraph>
                 </Box>
                 <Box className="relative h-[360px] sm:w-[50%]">
@@ -91,7 +91,7 @@ export default function AcademicPathwaysPage({ pathways, partners }: AcademicPat
           <Box className="relative w-full bg-white py-12">
             <Box className="mx-auto flex w-full max-w-screen-xl flex-col px-4 2xl:px-0">
               <Box className="pb-12">
-                <Title label="Our Strategic Partners" color="black" size={isMobile ? '28px' : '40px'} />
+                <Title label="Woolf Membership" color="black" size={isMobile ? '28px' : '40px'} />
               </Box>
               <Grid>
                 <Grid.Col span={{ base: 12, md: 6 }}>
@@ -115,7 +115,14 @@ export default function AcademicPathwaysPage({ pathways, partners }: AcademicPat
                 </Grid.Col>
                 <Grid.Col span={{ base: 12, md: 6 }}>
                   <Paragraph fontFamily="font-nexa" className="py-4">
-                    {woolfPartner.fields.description}
+                    Woolf is a fully accredited collegiate Higher Education Institution modeled on Oxford, Delhi
+                    University, and University of California. As a member college, ADMI benefits from Woolf's advanced
+                    Accreditation Management System and commitment to European Standards and Guidelines 2015.
+                  </Paragraph>
+                  <Paragraph fontFamily="font-nexa" className="py-4">
+                    Our students graduate with degrees recognized across the European Qualifications Framework, and
+                    verified for immigration, residency, and professional licensing in Canada, the United States, and
+                    beyond.
                   </Paragraph>
                   {woolfPartner.fields.website && (
                     <a
@@ -124,7 +131,7 @@ export default function AcademicPathwaysPage({ pathways, partners }: AcademicPat
                       rel="noopener noreferrer"
                       className="mt-4 inline-block rounded bg-[#F1FE37] px-6 py-2 font-bold text-black hover:opacity-80"
                     >
-                      Visit {woolfPartner.fields.name}
+                      Learn more about Woolf
                     </a>
                   )}
                 </Grid.Col>
@@ -137,17 +144,17 @@ export default function AcademicPathwaysPage({ pathways, partners }: AcademicPat
         <div className="relative h-[400px] w-full px-4 2xl:px-0">
           <div className="absolute left-1/2 top-[-10vh] z-10 w-full max-w-screen-xl -translate-x-1/2 transform px-4 sm:top-[-8vh] 2xl:px-0">
             <PlainCard>
-              <Title label="Career Opportunities" size="20px" color="black" />
+              <Title label="Global Opportunities" size="20px" color="black" />
               <Paragraph className="py-4" fontFamily="font-nexa">
-                In addition to academic pathways, our programs are tailored to equip our students with the skills and
-                knowledge needed to thrive in the digital media industry. Through our industry-focused curriculum,
-                hands-on learning experiences, and career development services, we help our students build a strong
-                foundation for their future careers.
+                As a Woolf member college, ADMI offers students industry-focused curricula combined with internationally
+                recognized accreditation. Our graduates earn degrees that facilitate immigration, professional
+                licensing, and educational advancement worldwide.
               </Paragraph>
               <Paragraph className="py-4" fontFamily="font-nexa">
-                At ADMI, we believe that education is the key to unlocking one's potential. By aligning our programs
-                with international standards and forging strategic partnerships with leading institutions, we aim to
-                provide our students with the tools and opportunities they need to succeed in a rapidly evolving world.
+                Whether pursuing careers in digital media or transitioning to further studies at leading institutions
+                globally, ADMI students benefit from Woolf's commitment to academic excellence and the global
+                recognition that comes with European Higher Education standards. Education should be world-class,
+                accessible, and globally transferable— and that's exactly what Woolf and ADMI deliver.
               </Paragraph>
             </PlainCard>
           </div>
