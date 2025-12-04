@@ -144,11 +144,7 @@ export default function CourseDetailPage({
         productPrice={pricing?.price}
         productCurrency={pricing?.currency || 'KES'}
         productAvailability="in stock"
-        productCategory={
-          isDiploma
-            ? 'Education & Training > Higher Education > Diploma'
-            : 'Education & Training > Schools & Instruction > Certificate Programs'
-        }
+        productCategory={isDiploma ? 'Education > Instruction & Training Services' : 'Education > Online Courses'}
       />
 
       {/* Enhanced SEO for Different Program Types - Only ONE Course Schema per page */}
