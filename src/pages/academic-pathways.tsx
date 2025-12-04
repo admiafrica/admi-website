@@ -20,12 +20,13 @@ interface AcademicPathwaysPageProps {
 
 export default function AcademicPathwaysPage({ pathways, partners }: AcademicPathwaysPageProps) {
   const isMobile = useIsMobile()
-  
+
   // Contentful response structure
   const title = pathways?.fields?.title || 'Academic Pathways'
-  const description = pathways?.fields?.description || "Explore ADMI's academic pathways and strategic partnerships with leading institutions. Discover seamless transitions for further studies and career opportunities in digital media and creative technology."
-  
-  const woolfPartner = partners.find(p => p.fields.name?.includes('Woolf'))
+  const description =
+    pathways?.fields?.description ||
+    "Explore ADMI's academic pathways and strategic partnerships with leading institutions. Discover seamless transitions for further studies and career opportunities in digital media and creative technology."
+  const woolfPartner = partners.find((p) => p.fields.name?.includes('Woolf'))
 
   return (
     <MainLayout footerBgColor="white">
@@ -99,7 +100,11 @@ export default function AcademicPathwaysPage({ pathways, partners }: AcademicPat
                       {woolfPartner.fields.logo && (
                         <Image
                           fill
-                          src={typeof woolfPartner.fields.logo === 'string' ? woolfPartner.fields.logo : (woolfPartner.fields.logo as any)?.fields?.file?.url || ''}
+                          src={
+                            typeof woolfPartner.fields.logo === 'string'
+                              ? woolfPartner.fields.logo
+                              : (woolfPartner.fields.logo as any)?.fields?.file?.url || ''
+                          }
                           alt={woolfPartner.fields.name}
                           style={{ objectFit: 'contain' }}
                         />
@@ -117,7 +122,7 @@ export default function AcademicPathwaysPage({ pathways, partners }: AcademicPat
                       href={woolfPartner.fields.website}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="mt-4 inline-block bg-[#F1FE37] px-6 py-2 text-black font-bold rounded hover:opacity-80"
+                      className="mt-4 inline-block rounded bg-[#F1FE37] px-6 py-2 font-bold text-black hover:opacity-80"
                     >
                       Visit {woolfPartner.fields.name}
                     </a>
@@ -127,7 +132,7 @@ export default function AcademicPathwaysPage({ pathways, partners }: AcademicPat
             </Box>
           </Box>
         )}
-        
+
         {/* Floating Card */}
         <div className="relative h-[400px] w-full px-4 2xl:px-0">
           <div className="absolute left-1/2 top-[-10vh] z-10 w-full max-w-screen-xl -translate-x-1/2 transform px-4 sm:top-[-8vh] 2xl:px-0">
@@ -161,18 +166,18 @@ export const getStaticProps: GetStaticProps<AcademicPathwaysPageProps> = async (
     return {
       props: {
         pathways: pathways || null,
-        partners: partners || [],
+        partners: partners || []
       },
-      revalidate: 3600, // Revalidate every hour
+      revalidate: 3600 // Revalidate every hour
     }
   } catch (error) {
     console.error('Error fetching academic pathways data:', error)
     return {
       props: {
         pathways: null,
-        partners: [],
+        partners: []
       },
-      revalidate: 300, // Retry after 5 minutes on error
+      revalidate: 300 // Retry after 5 minutes on error
     }
   }
 }

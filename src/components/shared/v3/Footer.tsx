@@ -136,6 +136,9 @@ export default function Footer({ bgColor }: Props) {
             <Anchor c="white" fw={600} onClick={() => navigateToPage('fellowship')}>
               Fellowship
             </Anchor>
+            <Anchor c="white" fw={600} onClick={() => navigateToPage('academic-pathways')}>
+              Academic Pathways
+            </Anchor>
             <Anchor c="white" fw={600} onClick={() => navigateToPage('media-archive')}>
               Media
             </Anchor>
