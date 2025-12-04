@@ -5,6 +5,7 @@ import { ICourseFAQ, IFAQResponse } from '@/types'
 import { CourseIntakeEventSchema } from '@/components/seo/CourseIntakeEventSchema'
 import { getCoursePricing } from '@/utils/course-pricing'
 import { FacebookProductMeta } from '@/components/seo/FacebookProductMeta'
+import { CourseViewEvent } from '@/components/analytics/MetaPixelEvents'
 
 interface DiplomaEnhancedSEOProps {
   course: any
@@ -123,6 +124,17 @@ export function DiplomaEnhancedSEO({
 
       {/* Course Intake Events Schema */}
       <CourseIntakeEventSchema courseName={course.name} courseType="diploma" targetIntake="all" />
+
+      {/* Meta Pixel ViewContent Event for Remarketing */}
+      {pricing && (
+        <CourseViewEvent
+          courseId={`admi-diploma-${slug}`}
+          courseName={course.name}
+          price={pricing.price}
+          currency={pricing.currency}
+          category="Education & Training > Higher Education > Diploma Programs"
+        />
+      )}
 
       {/* Enhanced meta tags for diploma programs */}
       <script

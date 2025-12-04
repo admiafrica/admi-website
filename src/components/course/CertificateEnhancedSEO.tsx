@@ -4,6 +4,7 @@ import { ICourseFAQ, IFAQResponse } from '@/types'
 import { CourseIntakeEventSchema } from '@/components/seo/CourseIntakeEventSchema'
 import { getCoursePricing } from '@/utils/course-pricing'
 import { FacebookProductMeta } from '@/components/seo/FacebookProductMeta'
+import { CourseViewEvent } from '@/components/analytics/MetaPixelEvents'
 
 interface CertificateEnhancedSEOProps {
   course: any
@@ -194,6 +195,17 @@ export function CertificateEnhancedSEO({
 
       {/* Course Intake Events Schema */}
       <CourseIntakeEventSchema courseName={course.name} courseType="certificate" targetIntake="all" />
+
+      {/* Meta Pixel ViewContent Event for Remarketing */}
+      {pricing && (
+        <CourseViewEvent
+          courseId={`admi-certificate-${slug}`}
+          courseName={course.name}
+          price={pricing.price}
+          currency={pricing.currency}
+          category="Education & Training > Professional Development"
+        />
+      )}
 
       {/* Video Schema for Certificate Course Preview */}
       {course.courseVideo && (
