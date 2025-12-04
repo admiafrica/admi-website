@@ -35,11 +35,11 @@ export const COURSE_PRICING: Record<string, CoursePricing> = {
   'entertainment-business': { price: 145000, currency: 'KES' },
   'digital-content-creation': { price: 145000, currency: 'KES' },
 
-  // Professional Certificates (1 term) - 93,100 KES
-  'digital-marketing-certificate': { price: 50000, currency: 'KES' },
-  'graphic-design-certificate': { price: 50000, currency: 'KES' },
-  'sports-business': { price: 50000, currency: 'KES' },
-  'data-analysis-presentation': { price: 50000, currency: 'KES' },
+  // Professional Certificates (1 term) - Varies by course
+  'digital-marketing-certificate': { price: 47500, currency: 'KES' },
+  'graphic-design-certificate': { price: 47500, currency: 'KES' },
+  'sports-business': { price: 47500, currency: 'KES' },
+  'data-analysis-presentation': { price: 47500, currency: 'KES' },
   'video-production-certificate': { price: 93100, currency: 'KES' },
 
   // Foundational Certificates (1 term) - 93,100 KES
