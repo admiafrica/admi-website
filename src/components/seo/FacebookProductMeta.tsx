@@ -47,12 +47,15 @@ export function FacebookProductMeta({
       {image && <meta property="og:image" content={image} />}
 
       {/* Facebook Catalog Required Fields - Using exact property names */}
+      <meta property="og:id" content={id} />
       <meta property="product:retailer_item_id" content={id} />
+      <meta property="product:item_group_id" content={id} />
       <meta property="product:price:amount" content={price.toString()} />
       <meta property="product:price:currency" content={currency} />
       <meta property="product:availability" content={availability} />
 
-      {/* Alternative format that Facebook also reads */}
+      {/* Alternative format that Facebook also reads - CRITICAL for catalog */}
+      <meta name="id" content={id} />
       <meta name="price" content={priceWithCurrency} />
       <meta name="availability" content={availability} />
 
