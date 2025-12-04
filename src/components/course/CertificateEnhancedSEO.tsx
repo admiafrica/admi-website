@@ -3,6 +3,7 @@ import Script from 'next/script'
 import { CourseSchema, CMSFAQSchema } from '@/components/shared/StructuredData'
 import { ICourseFAQ, IFAQResponse } from '@/types'
 import { CourseIntakeEventSchema } from '@/components/seo/CourseIntakeEventSchema'
+import { getCoursePricing } from '@/utils/course-pricing'
 
 interface CertificateEnhancedSEOProps {
   course: any
@@ -69,6 +70,9 @@ export function CertificateEnhancedSEO({
       ?.map((block: any) => block.content?.map((content: any) => content.value).join(' '))
       .filter(Boolean) || []
 
+  // Get pricing information for this course
+  const pricing = getCoursePricing(slug, course.awardLevel)
+
   return (
     <>
       {/* Enhanced Certificate Schema */}
@@ -90,6 +94,8 @@ export function CertificateEnhancedSEO({
         careerOptions={careerOptions}
         courseVideo={course.courseVideo}
         courseSlug={slug}
+        price={pricing?.price}
+        currency={pricing?.currency}
       />
 
       {/* Certificate Program Structured Data */}

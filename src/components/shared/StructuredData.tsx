@@ -317,6 +317,8 @@ interface CourseProps {
   awardLevel?: string
   creditHours?: number
   tuitionFees?: string
+  price?: number
+  currency?: string
   duration?: string
   deliveryMode?: string
   educationalLevel?: string
@@ -356,7 +358,9 @@ export function DiplomaSchema({
   industryPartners = [],
   accreditation,
   courseVideo,
-  courseSlug
+  courseSlug,
+  price,
+  currency = 'KES'
 }: Omit<DiplomaProps, 'creditHours'> & {
   courseVideo?: any
   courseSlug?: string
@@ -553,8 +557,8 @@ export function DiplomaSchema({
     offers: {
       '@type': 'Offer',
       category: 'Educational',
-      price: 'Contact for pricing',
-      priceCurrency: 'KES',
+      price: price || 'Contact for pricing',
+      priceCurrency: currency,
       availability: 'https://schema.org/InStock',
       url: url,
       validFrom: `${new Date().getFullYear()}-01-01`,
@@ -567,12 +571,48 @@ export function DiplomaSchema({
     }
   }
 
+  // Add Product schema for Facebook/Meta catalog compatibility
+  const productData = price
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'Product',
+        name,
+        description: diplomaDescription,
+        image: image || 'https://admi.africa/logo.png',
+        brand: {
+          '@type': 'Brand',
+          name: 'ADMI'
+        },
+        offers: {
+          '@type': 'Offer',
+          url,
+          priceCurrency: currency,
+          price,
+          availability: 'https://schema.org/InStock',
+          itemCondition: 'https://schema.org/NewCondition',
+          priceValidUntil: new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString().split('T')[0]
+        },
+        sku: courseCode || `admi-${name.toLowerCase().replace(/\s+/g, '-')}`,
+        mpn: courseCode || `ADMI-${name.toUpperCase().substring(0, 10)}`,
+        category: 'Education & Training > Higher Education > Diploma Programs'
+      }
+    : null
+
   return (
-    <Script
-      id="diploma-schema"
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-    />
+    <>
+      <Script
+        id="diploma-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+      {productData && (
+        <Script
+          id="diploma-product-schema"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(productData) }}
+        />
+      )}
+    </>
   )
 }
 
@@ -595,7 +635,9 @@ export function CourseSchema({
   courseCode,
   prerequisites = [],
   courseVideo,
-  courseSlug
+  courseSlug,
+  price,
+  currency = 'KES'
 }: Omit<CourseProps, 'creditHours'> & {
   courseVideo?: any
   courseSlug?: string
@@ -778,8 +820,8 @@ export function CourseSchema({
     offers: {
       '@type': 'Offer',
       category: 'Educational',
-      price: 'Contact for pricing',
-      priceCurrency: 'KES',
+      price: price || 'Contact for pricing',
+      priceCurrency: currency,
       availability: 'https://schema.org/InStock',
       url: url,
       validFrom: `${new Date().getFullYear()}-01-01`,
@@ -792,12 +834,48 @@ export function CourseSchema({
     }
   }
 
+  // Add Product schema for Facebook/Meta catalog compatibility
+  const productData = price
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'Product',
+        name,
+        description: courseDescription,
+        image: image || 'https://admi.africa/logo.png',
+        brand: {
+          '@type': 'Brand',
+          name: 'ADMI'
+        },
+        offers: {
+          '@type': 'Offer',
+          url,
+          priceCurrency: currency,
+          price,
+          availability: 'https://schema.org/InStock',
+          itemCondition: 'https://schema.org/NewCondition',
+          priceValidUntil: new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString().split('T')[0]
+        },
+        sku: courseCode || `admi-${name.toLowerCase().replace(/\s+/g, '-')}`,
+        mpn: courseCode || `ADMI-${name.toUpperCase().substring(0, 10)}`,
+        category: 'Education & Training > Professional Development'
+      }
+    : null
+
   return (
-    <Script
-      id="course-schema"
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-    />
+    <>
+      <Script
+        id="course-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+      {productData && (
+        <Script
+          id="course-product-schema"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(productData) }}
+        />
+      )}
+    </>
   )
 }
 

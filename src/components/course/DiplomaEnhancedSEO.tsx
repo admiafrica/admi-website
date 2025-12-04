@@ -4,6 +4,7 @@ import { DiplomaSchema, CMSFAQSchema } from '@/components/shared/StructuredData'
 import { generateDiplomaKeywords } from '@/utils/diploma-seo-config'
 import { ICourseFAQ, IFAQResponse } from '@/types'
 import { CourseIntakeEventSchema } from '@/components/seo/CourseIntakeEventSchema'
+import { getCoursePricing } from '@/utils/course-pricing'
 
 interface DiplomaEnhancedSEOProps {
   course: any
@@ -62,6 +63,9 @@ export function DiplomaEnhancedSEO({
       ?.map((block: any) => block.content?.map((content: any) => content.value).join(' '))
       .filter(Boolean) || []
 
+  // Get pricing information for this course
+  const pricing = getCoursePricing(slug, course.awardLevel)
+
   return (
     <>
       {/* Enhanced Diploma Schema */}
@@ -89,6 +93,8 @@ export function DiplomaEnhancedSEO({
         transferCredits={true}
         courseVideo={course.courseVideo}
         courseSlug={slug}
+        price={pricing?.price}
+        currency={pricing?.currency}
       />
 
       {/* CMS FAQ Schema for SEO - Only render if CMS FAQs exist */}
