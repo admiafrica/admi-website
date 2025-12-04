@@ -3,7 +3,6 @@ import { Accordion, Container, Title, Text, Group, Loader, Alert } from '@mantin
 import { IconChevronDown, IconAlertCircle } from '@tabler/icons-react'
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer'
 import { ICourseFAQ, IFAQResponse } from '@/types'
-import Script from 'next/script'
 
 interface CMSCourseFAQsProps {
   courseSlug: string
@@ -140,7 +139,7 @@ export function CMSCourseFAQs({ courseSlug }: CMSCourseFAQsProps) {
     <Container size="lg" py="xl">
       {/* FAQ Structured Data */}
       {filteredFAQs.length > 0 && (
-        <Script
+        <script
           id={`cms-faq-structured-data-${courseSlug}`}
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(faqStructuredData) }}

@@ -1,6 +1,5 @@
 import React from 'react'
 import Head from 'next/head'
-import Script from 'next/script'
 import { AFRICAN_COUNTRIES, AFRICAN_SEO_KEYWORDS, generateAfricanStructuredData } from '@/utils/africa-seo-config'
 
 interface AfricaSEOProps {
@@ -88,7 +87,7 @@ export function AfricaSEO({
       </Head>
 
       {/* African market structured data */}
-      <Script
+      <script
         id="africa-structured-data"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}

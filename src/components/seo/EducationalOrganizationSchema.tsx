@@ -1,5 +1,4 @@
 import React from 'react'
-import Script from 'next/script'
 
 interface EducationalOrganizationSchemaProps {
   includePrograms?: boolean
@@ -229,7 +228,7 @@ export function EducationalOrganizationSchema({ includePrograms = true }: Educat
   }
 
   return (
-    <Script
+    <script
       id="educational-organization-schema"
       type="application/ld+json"
       dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}

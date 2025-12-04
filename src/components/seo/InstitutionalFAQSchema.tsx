@@ -1,5 +1,4 @@
 import React from 'react'
-import Script from 'next/script'
 
 interface InstitutionalFAQSchemaProps {
   faqType?: 'general' | 'admissions' | 'academic' | 'financial' | 'career'
@@ -197,7 +196,7 @@ export function InstitutionalFAQSchema({ faqType = 'general', includeAll = false
   }
 
   return (
-    <Script
+    <script
       id={`institutional-faq-${faqType}-schema`}
       type="application/ld+json"
       dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}

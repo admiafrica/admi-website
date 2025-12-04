@@ -1,5 +1,4 @@
 import React from 'react'
-import Script from 'next/script'
 import { ICourseFAQ } from '@/types'
 
 interface OrganizationProps {
@@ -76,7 +75,7 @@ export function OrganizationSchema({
   }
 
   return (
-    <Script
+    <script
       id="organization-schema"
       type="application/ld+json"
       dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
@@ -160,7 +159,7 @@ export function LocalBusinessSchema({
   }
 
   return (
-    <Script
+    <script
       id="local-business-schema"
       type="application/ld+json"
       dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
@@ -232,7 +231,7 @@ export function ArticleSchema({
   }
 
   return (
-    <Script
+    <script
       id="article-schema"
       type="application/ld+json"
       dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
@@ -262,7 +261,7 @@ export function BreadcrumbSchema({ items }: BreadcrumbProps) {
   }
 
   return (
-    <Script
+    <script
       id="breadcrumb-schema"
       type="application/ld+json"
       dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
@@ -297,7 +296,7 @@ export function CMSFAQSchema({ faqs, courseName, schemaId = 'cms-faq-schema' }: 
   }
 
   return (
-    <Script
+    <script
       id={schemaId}
       type="application/ld+json"
       dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
@@ -600,13 +599,13 @@ export function DiplomaSchema({
 
   return (
     <>
-      <Script
+      <script
         id="diploma-schema"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
       {productData && (
-        <Script
+        <script
           id="diploma-product-schema"
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(productData) }}
@@ -863,13 +862,13 @@ export function CourseSchema({
 
   return (
     <>
-      <Script
+      <script
         id="course-schema"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
       {productData && (
-        <Script
+        <script
           id="course-product-schema"
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(productData) }}
@@ -931,7 +930,7 @@ export function VideoSchema({
   }
 
   return (
-    <Script
+    <script
       id="video-schema"
       type="application/ld+json"
       dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
@@ -996,7 +995,7 @@ export function TestimonialSchema({
   }
 
   return (
-    <Script
+    <script
       id="testimonial-schema"
       type="application/ld+json"
       dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
@@ -1150,7 +1149,7 @@ export function MultiCityLocalBusinessSchema({
   }
 
   return (
-    <Script
+    <script
       id={`local-business-${city.toLowerCase()}`}
       type="application/ld+json"
       dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}

@@ -1,5 +1,4 @@
 import React from 'react'
-import Script from 'next/script'
 
 interface CourseIntakeEventSchemaProps {
   courseName?: string
@@ -233,7 +232,7 @@ export function CourseIntakeEventSchema({
   }
 
   return (
-    <Script
+    <script
       id={`course-intake-events-${targetIntake}-${courseName?.replace(/\s+/g, '-').toLowerCase() || 'all'}`}
       type="application/ld+json"
       dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}

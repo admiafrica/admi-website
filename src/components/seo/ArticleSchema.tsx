@@ -1,5 +1,4 @@
 import React from 'react'
-import Script from 'next/script'
 
 interface ArticleSchemaProps {
   title: string
@@ -201,7 +200,7 @@ export function ArticleSchema({
   }
 
   return (
-    <Script
+    <script
       id={`article-schema-${title.replace(/\s+/g, '-').toLowerCase()}`}
       type="application/ld+json"
       dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import Script from 'next/script'
 import { DiplomaSchema, CMSFAQSchema } from '@/components/shared/StructuredData'
 import { generateDiplomaKeywords } from '@/utils/diploma-seo-config'
 import { ICourseFAQ, IFAQResponse } from '@/types'
@@ -106,7 +105,7 @@ export function DiplomaEnhancedSEO({
       <CourseIntakeEventSchema courseName={course.name} courseType="diploma" targetIntake="all" />
 
       {/* Enhanced meta tags for diploma programs */}
-      <Script
+      <script
         id="diploma-enhanced-meta"
         dangerouslySetInnerHTML={{
           __html: `

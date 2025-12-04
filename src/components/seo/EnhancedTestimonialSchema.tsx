@@ -1,5 +1,4 @@
 import React from 'react'
-import Script from 'next/script'
 
 interface EnhancedTestimonialSchemaProps {
   author: {
@@ -229,7 +228,7 @@ export function EnhancedTestimonialSchema({
   }
 
   return (
-    <Script
+    <script
       id={`enhanced-testimonial-${author.name.replace(/\s+/g, '-').toLowerCase()}`}
       type="application/ld+json"
       dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
@@ -279,7 +278,7 @@ export function AggregateTestimonialSchema({
   }
 
   return (
-    <Script
+    <script
       id="aggregate-testimonial-schema"
       type="application/ld+json"
       dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}

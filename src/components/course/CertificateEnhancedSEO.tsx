@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import Script from 'next/script'
 import { CourseSchema, CMSFAQSchema } from '@/components/shared/StructuredData'
 import { ICourseFAQ, IFAQResponse } from '@/types'
 import { CourseIntakeEventSchema } from '@/components/seo/CourseIntakeEventSchema'
@@ -99,7 +98,7 @@ export function CertificateEnhancedSEO({
       />
 
       {/* Certificate Program Structured Data */}
-      <Script
+      <script
         id="certificate-program-schema"
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -178,7 +177,7 @@ export function CertificateEnhancedSEO({
 
       {/* Video Schema for Certificate Course Preview */}
       {course.courseVideo && (
-        <Script
+        <script
           id="certificate-video-schema"
           type="application/ld+json"
           dangerouslySetInnerHTML={{
