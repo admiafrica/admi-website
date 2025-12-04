@@ -13,27 +13,41 @@ export interface CoursePricing {
 
 // Default pricing by program type
 export const DEFAULT_PRICING = {
-  DIPLOMA: { price: 450000, currency: 'KES' },
-  CERTIFICATE: { price: 250000, currency: 'KES' },
+  DIPLOMA: { price: 145000, currency: 'KES' },
+  CERTIFICATE_PROFESSIONAL: { price: 93100, currency: 'KES' },
+  CERTIFICATE_FOUNDATIONAL: { price: 93100, currency: 'KES' },
   SHORT_COURSE: { price: 75000, currency: 'KES' }
 }
 
 // Specific course pricing (overrides defaults)
 export const COURSE_PRICING: Record<string, CoursePricing> = {
-  // Diploma Programs (2 year)
-  'film-production': { price: 450000, currency: 'KES' },
-  animation: { price: 450000, currency: 'KES' },
-  'graphic-design': { price: 450000, currency: 'KES' },
-  'music-production': { price: 450000, currency: 'KES' },
-  'sound-engineering': { price: 450000, currency: 'KES' },
-  photography: { price: 450000, currency: 'KES' },
-  'digital-marketing': { price: 450000, currency: 'KES' },
-  'ui-ux-design': { price: 450000, currency: 'KES' },
-  'video-game-development': { price: 450000, currency: 'KES' },
-  'entertainment-business': { price: 450000, currency: 'KES' }
+  // Diploma Programs (2 year / 5-6 terms + internship) - 145,000 KES per term
+  'film-production': { price: 145000, currency: 'KES' },
+  'film-and-television-production': { price: 145000, currency: 'KES' },
+  'animation-and-motion-graphics': { price: 145000, currency: 'KES' },
+  'graphic-design': { price: 145000, currency: 'KES' },
+  'music-production': { price: 145000, currency: 'KES' },
+  'sound-engineering': { price: 145000, currency: 'KES' },
+  photography: { price: 145000, currency: 'KES' },
+  'digital-marketing': { price: 145000, currency: 'KES' },
+  'ui-ux-design': { price: 145000, currency: 'KES' },
+  'video-game-development': { price: 145000, currency: 'KES' },
+  'entertainment-business': { price: 145000, currency: 'KES' },
+  'digital-content-creation': { price: 145000, currency: 'KES' },
 
-  // Certificate Programs (1 year)
-  // Add certificate course slugs here with pricing
+  // Professional Certificates (1 term) - 93,100 KES
+  'digital-marketing-certificate': { price: 50000, currency: 'KES' },
+  'graphic-design-certificate': { price: 50000, currency: 'KES' },
+  'sports-business': { price: 50000, currency: 'KES' },
+  'data-analysis-presentation': { price: 50000, currency: 'KES' },
+  'video-production-certificate': { price: 93100, currency: 'KES' },
+
+  // Foundational Certificates (1 term) - 93,100 KES
+  'multimedia-certificate': { price: 93100, currency: 'KES' },
+  'photography-certificate': { price: 93100, currency: 'KES' },
+  'music-sound-certificate': { price: 93100, currency: 'KES' },
+  '2d-animation-certificate-rubika': { price: 93100, currency: 'KES' },
+  'drawing-fundamentals-certificate': { price: 93100, currency: 'KES' }
 }
 
 /**
@@ -55,8 +69,13 @@ export function getCoursePricing(courseSlug: string, awardLevel?: string): Cours
     const level = awardLevel.toLowerCase()
     if (level.includes('diploma')) {
       return DEFAULT_PRICING.DIPLOMA
+    } else if (level.includes('foundational') || level.includes('foundation')) {
+      return DEFAULT_PRICING.CERTIFICATE_FOUNDATIONAL
+    } else if (level.includes('professional')) {
+      return DEFAULT_PRICING.CERTIFICATE_PROFESSIONAL
     } else if (level.includes('certificate')) {
-      return DEFAULT_PRICING.CERTIFICATE
+      // Default to professional if no type specified
+      return DEFAULT_PRICING.CERTIFICATE_PROFESSIONAL
     }
   }
 
