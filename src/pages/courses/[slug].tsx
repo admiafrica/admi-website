@@ -17,6 +17,7 @@ import { EastAfricaLocalSEO } from '@/components/seo/EastAfricaLocalSEO'
 import { CMSCourseFAQSchemaWrapper } from '@/components/course/CMSCourseFAQSchemaWrapper'
 import { YouTubeVideo } from '@/utils/youtube-api'
 import { generateCourseSpecificMeta } from '@/utils/course-specific-seo'
+import { getCoursePricing } from '@/utils/course-pricing'
 
 export default function CourseDetailPage({
   course,
@@ -128,6 +129,9 @@ export default function CourseDetailPage({
 
   const keywords = courseSpecificSEO?.keywords || baseKeywords.filter(Boolean).join(', ')
 
+  // Get course pricing for Facebook catalog
+  const pricing = getCoursePricing(slug, course.awardLevel)
+
   return (
     <MainLayout>
       <PageSEO
@@ -136,6 +140,11 @@ export default function CourseDetailPage({
         keywords={keywords}
         image={course.coverImage?.fields?.file?.url ? `https:${course.coverImage.fields.file.url}` : undefined}
         url={`/courses/${slug}`}
+        productId={`admi-${course.awardLevel?.toLowerCase().replace(' ', '-') || 'course'}-${slug}`}
+        productPrice={pricing?.price}
+        productCurrency={pricing?.currency || 'KES'}
+        productAvailability="in stock"
+        productCategory="Education & Training > Professional Development"
       />
 
       {/* Enhanced SEO for Different Program Types - Only ONE Course Schema per page */}

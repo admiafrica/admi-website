@@ -11,9 +11,27 @@ interface PageSEOProps {
   url?: string
   keywords?: string
   canonical?: string
+  // Facebook Product Catalog fields
+  productId?: string
+  productPrice?: number
+  productCurrency?: string
+  productAvailability?: 'in stock' | 'out of stock' | 'preorder' | 'available for order'
+  productCategory?: string
 }
 
-const PageSEO: React.FC<PageSEOProps> = ({ title, description, image, url, keywords, canonical }) => {
+const PageSEO: React.FC<PageSEOProps> = ({
+  title,
+  description,
+  image,
+  url,
+  keywords,
+  canonical,
+  productId,
+  productPrice,
+  productCurrency = 'KES',
+  productAvailability = 'in stock',
+  productCategory
+}) => {
   // Use utility functions to ensure consistent naked domain usage
   const baseUrl = getBaseUrl()
   const fullUrl = url ? createFullUrl(url) : baseUrl
@@ -78,6 +96,32 @@ const PageSEO: React.FC<PageSEOProps> = ({ title, description, image, url, keywo
       {/* Theme Color */}
       <meta name="theme-color" content="#002A23" />
       <meta name="msapplication-TileColor" content="#002A23" />
+
+      {/* Facebook Product Catalog Meta Tags - Required for catalog integration */}
+      {productId && (
+        <>
+          {/* OpenGraph Product Tags */}
+          <meta property="og:type" content="product" />
+          <meta property="og:id" content={productId} />
+          <meta property="product:retailer_item_id" content={productId} />
+          <meta property="product:item_group_id" content={productId} />
+          {productPrice && (
+            <>
+              <meta property="product:price:amount" content={productPrice.toString()} />
+              <meta property="product:price:currency" content={productCurrency} />
+            </>
+          )}
+          <meta property="product:availability" content={productAvailability} />
+          {productCategory && <meta property="product:category" content={productCategory} />}
+          <meta property="product:condition" content="new" />
+
+          {/* Alternative format for Facebook catalog - CRITICAL */}
+          <meta name="id" content={productId} />
+          {productPrice && <meta name="price" content={`${productPrice} ${productCurrency}`} />}
+          <meta name="availability" content={productAvailability} />
+          <meta property="product:brand" content="ADMI" />
+        </>
+      )}
     </Head>
   )
 }

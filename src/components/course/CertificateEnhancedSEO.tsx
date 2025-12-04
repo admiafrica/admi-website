@@ -3,7 +3,6 @@ import { CourseSchema, CMSFAQSchema } from '@/components/shared/StructuredData'
 import { ICourseFAQ, IFAQResponse } from '@/types'
 import { CourseIntakeEventSchema } from '@/components/seo/CourseIntakeEventSchema'
 import { getCoursePricing } from '@/utils/course-pricing'
-import { FacebookProductMeta } from '@/components/seo/FacebookProductMeta'
 import { CourseViewEvent } from '@/components/analytics/MetaPixelEvents'
 
 interface CertificateEnhancedSEOProps {
@@ -71,7 +70,7 @@ export function CertificateEnhancedSEO({
       ?.map((block: any) => block.content?.map((content: any) => content.value).join(' '))
       .filter(Boolean) || []
 
-  // Get pricing information for this course
+  // Get pricing information for this course (used for analytics tracking only)
   const pricing = getCoursePricing(slug, course.awardLevel)
 
   const courseUrl = `${process.env.NEXT_PUBLIC_API_BASE_URL || 'https://admi.africa'}/courses/${slug}`
@@ -79,22 +78,6 @@ export function CertificateEnhancedSEO({
 
   return (
     <>
-      {/* Facebook Product Meta Tags for Catalog */}
-      {pricing && (
-        <FacebookProductMeta
-          id={`admi-certificate-${slug}`}
-          title={course.name}
-          description={enhancedDescription}
-          url={courseUrl}
-          image={courseImage}
-          price={pricing.price}
-          currency={pricing.currency}
-          availability="in stock"
-          brand="ADMI"
-          category="Education & Training > Professional Development"
-        />
-      )}
-
       {/* Enhanced Certificate Schema */}
       <CourseSchema
         name={course.name}
@@ -103,8 +86,8 @@ export function CertificateEnhancedSEO({
           name: 'Africa Digital Media Institute',
           url: 'https://admi.africa'
         }}
-        url={`${process.env.NEXT_PUBLIC_API_BASE_URL || 'https://admi.africa'}/courses/${slug}`}
-        image={course.coverImage?.fields?.file?.url ? `https:${course.coverImage.fields.file.url}` : undefined}
+        url={courseUrl}
+        image={courseImage}
         awardLevel={course.awardLevel}
         tuitionFees={course.tuitionFees}
         duration={duration}
