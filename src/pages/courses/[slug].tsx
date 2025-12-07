@@ -5,7 +5,8 @@ import {
   CourseDetails,
   CourseHero,
   CourseMentors,
-  CourseStudents
+  CourseStudents,
+  CourseArticles
 } from '@/components/course'
 import { CMSCourseFAQs } from '@/components/course/CMSCourseFAQs'
 // import { CourseVideoSection } from '@/components/course/CourseVideoSection'
@@ -22,11 +23,13 @@ import { getCoursePricing } from '@/utils/course-pricing'
 export default function CourseDetailPage({
   course,
   courseAssets,
-  slug
+  slug,
+  courseArticles = []
 }: {
   course: any
   courseAssets: any[]
   slug: string
+  courseArticles?: any[]
 }) {
   // Extract rich text content for description
   const getPlainTextFromRichText = (richText: any) => {
@@ -265,6 +268,13 @@ export default function CourseDetailPage({
       />
       <CourseApplicationProcess processes={course.applicationProcesses || []} />
 
+      {/* Related Articles Section - Improves Engagement */}
+      {courseArticles && courseArticles.length > 0 && (
+        <div className="mx-auto w-full max-w-screen-xl px-4 py-16 xl:px-0">
+          <CourseArticles courseName={course.name} courseTags={course.tags || []} articles={courseArticles} />
+        </div>
+      )}
+
       {/* Enhanced Video Section with YouTube Integration - Temporarily disabled */}
       {/* <CourseVideoSection course={course} slug={slug} youtubeVideos={youtubeVideos} /> */}
 
@@ -275,15 +285,34 @@ export default function CourseDetailPage({
 
 export async function getServerSideProps({ params }: { params: { slug: string } }) {
   const { slug } = params
+  const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'https://admi.africa'
 
   try {
     // Fetch course details
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v3/course-details?slug=${slug}`)
+    const response = await fetch(`${baseUrl}/api/v3/course-details?slug=${slug}`)
     if (!response.ok) {
       return { notFound: true } // Redirect to 404 if course is not found
     }
 
     const data = await response.json()
+
+    // Fetch related articles based on course tags
+    let courseArticles = []
+    try {
+      const courseTagsParam = (data.fields.tags || []).join(',')
+      if (courseTagsParam) {
+        const articlesResponse = await fetch(
+          `${baseUrl}/api/v3/course-articles?tags=${encodeURIComponent(courseTagsParam)}&limit=3`
+        )
+        if (articlesResponse.ok) {
+          const articlesData = await articlesResponse.json()
+          courseArticles = articlesData.items || []
+        }
+      }
+    } catch (articlesError) {
+      console.error('Error fetching course articles:', articlesError)
+      // Continue without articles if fetch fails
+    }
 
     // Skip YouTube videos for server-side rendering due to API restrictions
     // Videos will be loaded client-side in the CourseVideoSection component
@@ -294,7 +323,8 @@ export async function getServerSideProps({ params }: { params: { slug: string } 
         course: data.fields,
         courseAssets: data.assets || [],
         slug,
-        youtubeVideos
+        youtubeVideos,
+        courseArticles
       }
     }
   } catch (error) {

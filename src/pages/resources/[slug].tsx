@@ -6,6 +6,8 @@ import { MainLayout } from '@/layouts/v3/MainLayout'
 import { PageSEO, SocialShare } from '@/components/shared/v3'
 import { EducationalResourceSchema } from '@/components/seo/ArticleSchema'
 import { BreadcrumbSchema } from '@/components/seo/BreadcrumbSchema'
+import { FAQSchema } from '@/components/seo/FAQSchema'
+import { VideoObjectSchema } from '@/components/seo/VideoObjectSchema'
 import { Button, Paragraph, ParagraphContentful } from '@/components/ui'
 import { ArticleMetadata, RelatedArticles } from '@/components/articles/ArticleMetadata'
 import { useIsMobile } from '@/hooks/useIsMobile'
@@ -43,11 +45,15 @@ function calculateReadingTime(richText: any): number {
 export default function ResourceArticlePage({
   article,
   slug,
-  relatedArticles = []
+  relatedArticles = [],
+  faqItems = [],
+  hasVideo = false
 }: {
   article: any
   slug: string
   relatedArticles?: any[]
+  faqItems?: any[]
+  hasVideo?: boolean
 }) {
   const isMobile = useIsMobile()
   const router = useRouter()
@@ -73,6 +79,17 @@ export default function ResourceArticlePage({
             image={`https://${article.coverImage?.fields.file.url}`}
           />
           <BreadcrumbSchema title={article.title} slug={slug} category={article.category} />
+          {faqItems.length > 0 && <FAQSchema questions={faqItems} />}
+          {hasVideo && (
+            <VideoObjectSchema
+              title={`${article.title} - Video Guide`}
+              description={article.summary || `Video guide: ${article.title}`}
+              thumbnailUrl={`https:${article.coverImage?.fields.file.url}`}
+              uploadDate={article.publishDate || article.sys?.createdAt}
+              duration="PT3M00S"
+              embedUrl={`https://admi.africa/resources/${slug}`}
+            />
+          )}
           <EducationalResourceSchema
             title={article.title}
             description={
@@ -179,8 +196,25 @@ export async function getServerSideProps(context: any) {
       relatedArticles = relatedData.items || []
     }
 
+    // Extract FAQ data from article body if it's a How-To article
+    let faqItems: any[] = []
+    let hasVideo: boolean = false
+
+    try {
+      const { extractFAQFromArticle, isHowToArticle, hasVideoEmbed } = await import('@/utils/faq-schema-helper')
+
+      if (isHowToArticle(article)) {
+        faqItems = extractFAQFromArticle(article.body, article.title)
+      }
+
+      hasVideo = hasVideoEmbed(article.body)
+    } catch (schemaError) {
+      console.error('Error extracting schema data:', schemaError)
+      // Continue without FAQ schema if extraction fails
+    }
+
     return {
-      props: { article, slug, relatedArticles }
+      props: { article, slug, relatedArticles, faqItems, hasVideo }
     }
   } catch (error) {
     console.error('Error fetching resource:', error)

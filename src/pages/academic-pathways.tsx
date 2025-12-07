@@ -249,7 +249,7 @@ export default function AcademicPathwaysPage({ pathways, partners, assets }: Aca
 export const getStaticProps: GetStaticProps<AcademicPathwaysPageProps> = async () => {
   try {
     // Fetch academic pathways content from Contentful
-    const pathways = await getAcademicPathwaysBySlug('main')
+    const pathways = await getAcademicPathwaysBySlug('academic-pathways')
     const partnersData = await getAllPartners()
 
     return {
