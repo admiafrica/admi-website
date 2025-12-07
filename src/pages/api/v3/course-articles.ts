@@ -15,8 +15,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return res.status(400).json({ message: 'Either tags or category parameter is required' })
       }
 
-      // Build query for articles in Resources category
-      let query = `/spaces/${spaceId}/environments/${environment}/entries?access_token=${accessToken}&content_type=article&fields.category=Resources&include=2`
+      // Build query for articles in Resources category with higher include to resolve assets
+      let query = `/spaces/${spaceId}/environments/${environment}/entries?access_token=${accessToken}&content_type=article&fields.category=Resources&include=10`
 
       // If category provided, filter by it
       if (category && category !== 'all') {
@@ -30,7 +30,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return res.status(200).json({ items: [] })
       }
 
-      // Resolve all articles
+      // Resolve all articles with proper asset reference resolution
       const resolvedArticles = data.items.map((item) => {
         let readingTime = 0
         if (item.fields.body?.content) {
@@ -43,14 +43,25 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           readingTime = Math.ceil(wordCount / 200)
         }
 
+        // Extract cover image - handle both direct file URL and asset reference
+        let coverImage: string | undefined
+        if (item.fields.coverImage?.sys?.id && data.includes?.Asset) {
+          // Asset is referenced by ID, find it in includes
+          const asset = data.includes.Asset.find((a: any) => a.sys.id === item.fields.coverImage.sys.id)
+          if (asset?.fields?.file?.url) {
+            coverImage = `https:${asset.fields.file.url}`
+          }
+        } else if (item.fields.coverImage?.fields?.file?.url) {
+          // Asset is directly embedded (shouldn't happen with include=10, but handle just in case)
+          coverImage = `https:${item.fields.coverImage.fields.file.url}`
+        }
+
         return {
           id: item.sys.id,
           slug: item.fields.slug,
           title: item.fields.title,
           summary: item.fields.summary || item.fields.excerpt || '',
-          coverImage: item.fields.coverImage?.fields?.file?.url
-            ? `https:${item.fields.coverImage.fields.file.url}`
-            : undefined,
+          coverImage,
           tags: item.fields.tags || [],
           category: item.fields.category,
           readingTime

@@ -1,6 +1,5 @@
 import React, { useMemo } from 'react'
 import { Box, Badge, Group, Stack, Text, Card, SimpleGrid } from '@mantine/core'
-import Link from 'next/link'
 
 interface ArticleMetadataProps {
   tags?: string[]
@@ -129,51 +128,46 @@ export function RelatedArticles({ currentArticleTags = [], currentArticleId, art
 
       <SimpleGrid cols={{ base: 1, sm: 2, md: 3 }} spacing="md">
         {scoredArticles.map((article) => (
-          <Link key={article.id} href={`/resources/${article.slug}`} style={{ textDecoration: 'none' }}>
-            <Card
-              component="a"
-              p="md"
-              radius="md"
-              className="h-full transition-shadow hover:shadow-md"
-              style={{ cursor: 'pointer' }}
-            >
-              {article.coverImage && (
-                <div
-                  style={{
-                    height: '150px',
-                    backgroundImage: `url(${article.coverImage})`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                    borderRadius: '8px',
-                    marginBottom: '12px'
-                  }}
-                />
-              )}
+          <Card
+            key={article.id}
+            component="a"
+            href={`/resources/${article.slug}`}
+            p="md"
+            radius="md"
+            className="h-full transition-shadow hover:shadow-md"
+            style={{ cursor: 'pointer', textDecoration: 'none' }}
+          >
+            {article.coverImage && (
+              <div
+                style={{
+                  height: '150px',
+                  backgroundImage: `url(${article.coverImage})`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                  borderRadius: '8px',
+                  marginBottom: '12px'
+                }}
+              />
+            )}
 
-              <Text fw={600} size="sm" lineClamp={2} className="mb-2">
-                {article.title}
-              </Text>
+            <Text fw={600} size="sm" lineClamp={2} className="mb-2">
+              {article.title}
+            </Text>
 
-              <Text size="xs" c="dimmed" lineClamp={2} mb="md">
-                {article.summary}
-              </Text>
+            <Text size="xs" c="dimmed" lineClamp={2} mb="md">
+              {article.summary}
+            </Text>
 
-              <Group gap="xs" justify="space-between">
-                <Group gap="xs">
-                  {article.readingTime && (
-                    <Text size="xs" c="dimmed">
-                      {article.readingTime} min
-                    </Text>
-                  )}
-                </Group>
-                {article.matchedTags.length > 0 && (
-                  <Badge size="xs" variant="dot">
-                    {article.matchedTags.length} shared
-                  </Badge>
+            <Group gap="xs" justify="space-between">
+              <Group gap="xs">
+                {article.readingTime && (
+                  <Text size="xs" c="dimmed">
+                    {article.readingTime} min
+                  </Text>
                 )}
               </Group>
-            </Card>
-          </Link>
+            </Group>
+          </Card>
         ))}
       </SimpleGrid>
     </Box>
