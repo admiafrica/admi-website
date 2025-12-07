@@ -5,8 +5,9 @@ import { useRouter } from 'next/router'
 import { MainLayout } from '@/layouts/v3/MainLayout'
 import { PageSEO, SocialShare } from '@/components/shared/v3'
 import { EducationalResourceSchema } from '@/components/seo/ArticleSchema'
+import { BreadcrumbSchema } from '@/components/seo/BreadcrumbSchema'
 import { Button, Paragraph, ParagraphContentful } from '@/components/ui'
-import { ArticleMetadata } from '@/components/articles/ArticleMetadata'
+import { ArticleMetadata, RelatedArticles } from '@/components/articles/ArticleMetadata'
 import { useIsMobile } from '@/hooks/useIsMobile'
 
 import IconBgImageYellow from '@/assets/icons/ellipse-yellow.svg'
@@ -41,7 +42,8 @@ function calculateReadingTime(richText: any): number {
 
 export default function ResourceArticlePage({
   article,
-  slug
+  slug,
+  relatedArticles = []
 }: {
   article: any
   slug: string
@@ -70,6 +72,7 @@ export default function ResourceArticlePage({
             url={`/resources/${slug}`}
             image={`https://${article.coverImage?.fields.file.url}`}
           />
+          <BreadcrumbSchema title={article.title} slug={slug} category={article.category} />
           <EducationalResourceSchema
             title={article.title}
             description={
@@ -136,6 +139,15 @@ export default function ResourceArticlePage({
                 {article.title}
               </Paragraph>
               <ParagraphContentful fontFamily="font-nexa">{article.body}</ParagraphContentful>
+
+              {/* Related Articles Widget */}
+              {relatedArticles.length > 0 && (
+                <RelatedArticles
+                  currentArticleId={article.sys?.id}
+                  currentArticleTags={article.tags || []}
+                  articles={relatedArticles}
+                />
+              )}
             </Card>
           )}
         </Box>
@@ -149,13 +161,26 @@ export async function getServerSideProps(context: any) {
   const baseUrl = `http://${context.req.headers.host}`
 
   try {
+    // Fetch main article
     const response = await fetch(`${baseUrl}/api/v3/resource-details?slug=${slug}`)
     if (!response.ok) throw new Error('Failed to fetch article')
 
     const data = await response.json()
+    const article = data.fields
+
+    // Fetch related articles based on tags and category
+    const relatedResponse = await fetch(
+      `${baseUrl}/api/v3/related-articles?tags=${encodeURIComponent((article.tags || []).join(','))}&category=${encodeURIComponent(article.category || '')}&excludeId=${data.sys.id}&limit=3`
+    )
+
+    let relatedArticles = []
+    if (relatedResponse.ok) {
+      const relatedData = await relatedResponse.json()
+      relatedArticles = relatedData.items || []
+    }
 
     return {
-      props: { article: data.fields, slug }
+      props: { article, slug, relatedArticles }
     }
   } catch (error) {
     console.error('Error fetching resource:', error)
