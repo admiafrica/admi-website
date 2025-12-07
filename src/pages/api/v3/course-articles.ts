@@ -31,42 +31,54 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       }
 
       // Resolve all articles
-      const resolvedArticles = data.items.map((item) => ({
-        id: item.sys.id,
-        slug: item.fields.slug,
-        title: item.fields.title,
-        summary: item.fields.summary || item.fields.excerpt || '',
-        coverImage: item.fields.coverImage?.fields?.file?.url
-          ? `https:${item.fields.coverImage.fields.file.url}`
-          : undefined,
-        tags: item.fields.tags || [],
-        category: item.fields.category,
-        readingTime: Math.ceil(
-          (item.fields.body?.content?.reduce((acc: number, node: any) => {
+      const resolvedArticles = data.items.map((item) => {
+        let readingTime = 0
+        if (item.fields.body?.content) {
+          const wordCount = item.fields.body.content.reduce((acc: number, node: any) => {
             if (node.nodeType === 'text' && node.value) {
               return acc + node.value.trim().split(/\s+/).length
             }
             return acc
-          }, 0) || 0) / 200
-        )
-      }))
+          }, 0)
+          readingTime = Math.ceil(wordCount / 200)
+        }
+
+        return {
+          id: item.sys.id,
+          slug: item.fields.slug,
+          title: item.fields.title,
+          summary: item.fields.summary || item.fields.excerpt || '',
+          coverImage: item.fields.coverImage?.fields?.file?.url
+            ? `https:${item.fields.coverImage.fields.file.url}`
+            : undefined,
+          tags: item.fields.tags || [],
+          category: item.fields.category,
+          readingTime
+        }
+      })
 
       // Score by tag overlap if tags provided
       let filtered = resolvedArticles
       if (tags) {
-        const tagsArray = (typeof tags === 'string' ? tags.split(',') : tags).map((t: string) => t.trim())
+        const tagsArray = (typeof tags === 'string' ? tags.split(',') : tags).map((t: string) => t.trim().toLowerCase())
 
-        filtered = resolvedArticles
-          .map((article) => {
-            const matchedTags = article.tags.filter((tag: string) => tagsArray.includes(tag))
-            return {
-              ...article,
-              relevanceScore: matchedTags.length,
-              matchedTags
-            }
-          })
-          .filter((a) => a.relevanceScore > 0)
-          .sort((a, b) => b.relevanceScore - a.relevanceScore)
+        const scoredArticles = resolvedArticles.map((article) => {
+          const matchedTags = article.tags.filter((tag: string) => tagsArray.includes(tag.toLowerCase()))
+          return {
+            ...article,
+            relevanceScore: matchedTags.length,
+            matchedTags
+          }
+        })
+
+        // First, try to return articles with tag matches
+        const withTagMatches = scoredArticles.filter((a) => a.relevanceScore > 0)
+        if (withTagMatches.length > 0) {
+          filtered = withTagMatches.sort((a, b) => b.relevanceScore - a.relevanceScore)
+        } else {
+          // If no tag matches, return all articles (fallback to category-only results)
+          filtered = scoredArticles.sort(() => Math.random() - 0.5) // Random order as fallback
+        }
       }
 
       // Limit results
