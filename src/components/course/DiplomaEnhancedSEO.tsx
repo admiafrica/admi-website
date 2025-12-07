@@ -66,6 +66,17 @@ export function DiplomaEnhancedSEO({
   // Get pricing information for this course (used for analytics tracking only)
   const pricing = getCoursePricing(slug, course.awardLevel)
 
+  // Extract numeric price from tuitionFees string (e.g., "KES 145,000" -> 145000)
+  const extractPriceFromString = (priceString: string): number | undefined => {
+    if (!priceString) return undefined
+    const match = priceString.match(/[\d,]+/)
+    if (!match) return undefined
+    return parseInt(match[0].replace(/,/g, ''), 10)
+  }
+
+  const tuitionFeesPrice = extractPriceFromString(course.tuitionFees)
+  const finalPrice = tuitionFeesPrice || pricing?.price
+
   const courseUrl = `${process.env.NEXT_PUBLIC_API_BASE_URL || 'https://admi.africa'}/courses/${slug}`
   const courseImage = course.coverImage?.fields?.file?.url ? `https:${course.coverImage.fields.file.url}` : undefined
 
@@ -96,8 +107,8 @@ export function DiplomaEnhancedSEO({
         transferCredits={true}
         courseVideo={course.courseVideo}
         courseSlug={slug}
-        price={pricing?.price}
-        currency={pricing?.currency}
+        price={finalPrice}
+        currency={pricing?.currency || 'KES'}
       />
 
       {/* CMS FAQ Schema for SEO - Only render if CMS FAQs exist */}
