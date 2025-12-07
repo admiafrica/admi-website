@@ -131,7 +131,7 @@ export default function AcademicPathwaysPage({ pathways, partners, assets }: Aca
 
         {/* Academic Partners Section */}
         {partnersWithLogos.length > 0 && (
-          <Box className="relative z-20 w-full bg-white py-12 pb-32">
+          <Box className="relative z-20 w-full bg-white py-12">
             <Box className="mx-auto flex w-full max-w-screen-xl flex-col px-4 2xl:px-0">
               <Box className="pb-12">
                 <Title
@@ -227,9 +227,9 @@ export default function AcademicPathwaysPage({ pathways, partners, assets }: Aca
           </Box>
         )}
 
-        {/* Floating Card */}
-        <div className="relative min-h-[300px] w-full px-4 pb-16 2xl:px-0">
-          <div className="absolute left-1/2 top-[-200px] z-10 w-full max-w-screen-xl -translate-x-1/2 transform px-4 2xl:px-0">
+        {/* Global Opportunities Section */}
+        <Box className="relative w-full bg-white pb-16">
+          <Box className="mx-auto w-full max-w-screen-xl px-4 2xl:px-0">
             <PlainCard>
               <Title label={globalOpportunitiesTitle} size="20px" color="black" />
               <Paragraph className="py-4" fontFamily="font-nexa">
@@ -239,8 +239,8 @@ export default function AcademicPathwaysPage({ pathways, partners, assets }: Aca
                 {globalOpportunitiesSecondDescription}
               </Paragraph>
             </PlainCard>
-          </div>
-        </div>
+          </Box>
+        </Box>
       </div>
     </MainLayout>
   )
