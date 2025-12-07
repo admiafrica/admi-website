@@ -16,24 +16,70 @@ import ImagePathwaysLanding from '@/assets/images/academic-pathways-landing.jpeg
 interface AcademicPathwaysPageProps {
   pathways: IAcademicPathwaysPage | null
   partners: AcademicPathwaysPartner[]
+  assets: Array<{
+    sys: { id: string }
+    fields: {
+      file: {
+        url: string
+        details: {
+          size: number
+          image?: {
+            width: number
+            height: number
+          }
+        }
+      }
+      title?: string
+    }
+  }>
 }
 
-export default function AcademicPathwaysPage({ pathways, partners }: AcademicPathwaysPageProps) {
+export default function AcademicPathwaysPage({ pathways, partners, assets }: AcademicPathwaysPageProps) {
   const isMobile = useIsMobile()
 
   // Contentful response structure
   const title = pathways?.fields?.title || 'Academic Pathways'
-  const description =
-    pathways?.fields?.description ||
-    "As an accredited member college of Woolf, ADMI offers students seamless academic pathways to internationally recognized degrees. Discover how ADMI and Woolf's global collegiate model creates opportunities for further studies and career advancement in digital media and creative technology."
-  const woolfPartner = partners.find((p) => p.fields.name?.includes('Woolf'))
+  const description = pathways?.fields?.description || ''
+  const heroTitle = pathways?.fields?.heroTitle || 'Academic Pathways'
+  const heroDescription = pathways?.fields?.heroDescription || ''
+  const benefitsTitle = pathways?.fields?.benefitsTitle || 'Why Work at ADMI?'
+  const woolfMembershipTitle = pathways?.fields?.woolfMembershipTitle || 'Woolf Membership'
+  const woolfMembershipDescription = pathways?.fields?.woolfMembershipDescription || ''
+  const woolfMembershipSecondDescription = pathways?.fields?.woolfMembershipSecondDescription || ''
+  const globalOpportunitiesTitle = pathways?.fields?.globalOpportunitiesTitle || 'Global Opportunities'
+  const globalOpportunitiesDescription = pathways?.fields?.globalOpportunitiesDescription || ''
+  const globalOpportunitiesSecondDescription = pathways?.fields?.globalOpportunitiesSecondDescription || ''
+
+  // Filter partners with logos only
+  const partnersWithLogos = partners.filter((p) => p.fields.logo)
+  const woolfPartner = partnersWithLogos.find((p) => (p.fields.partnerName || p.fields.name)?.includes('Woolf'))
+
+  // Helper function to get logo URL from assets
+  const getLogoUrl = (partner: AcademicPathwaysPartner): string | null => {
+    if (!partner.fields.logo?.sys?.id) return null
+    const asset = assets.find((a) => a.sys.id === partner.fields.logo?.sys?.id)
+    return asset ? `https:${asset.fields.file.url}` : null
+  }
+
+  // Helper function to get partner name
+  const getPartnerName = (partner: AcademicPathwaysPartner): string => {
+    return partner.fields.partnerName || partner.fields.name || 'Partner'
+  }
+
+  // Helper function to get partner website
+  const getPartnerWebsite = (partner: AcademicPathwaysPartner): string | undefined => {
+    return partner.fields.websiteUrl || partner.fields.website
+  }
 
   return (
     <MainLayout footerBgColor="white">
       <PageSEO
         title={title}
         description={description}
-        keywords="ADMI Woolf accreditation, academic pathways, collegiate education, further studies, career opportunities, digital media education, international partnerships, student transitions"
+        keywords={
+          pathways?.fields?.metadata?.keywords ||
+          'ADMI Woolf accreditation, academic pathways, collegiate education, further studies, career opportunities, digital media education, international partnerships, student transitions'
+        }
       />
       <div className="w-full">
         {/* HEADER */}
@@ -48,13 +94,10 @@ export default function AcademicPathwaysPage({ pathways, partners }: AcademicPat
               <Box className="flex w-full flex-col pt-12 sm:flex-row">
                 <Box className="flex flex-col sm:w-[50%]">
                   <Paragraph fontFamily="font-nexa" className="pb-4 text-white sm:pr-4" size="26px" fontWeight={400}>
-                    As an accredited member of Woolf—a globally recognized collegiate Higher Education Institution—ADMI
-                    provides students with world-class education that is recognized across 50+ countries.
+                    {heroTitle}
                   </Paragraph>
                   <Paragraph fontFamily="font-nexa" className="py-4 text-white sm:pr-4">
-                    Through our membership with Woolf, ADMI graduates receive degrees recognized by treaty obligation in
-                    the European Higher Education Area, the United States, Canada, and beyond. Our academic pathways
-                    enable seamless transitions to further studies or careers in digital media and creative technology.
+                    {heroDescription}
                   </Paragraph>
                 </Box>
                 <Box className="relative h-[360px] sm:w-[50%]">
@@ -74,7 +117,7 @@ export default function AcademicPathwaysPage({ pathways, partners }: AcademicPat
         <Box className="relative z-10 w-full bg-[#002A23] pb-48 pt-8">
           <Box className="mx-auto flex w-full max-w-screen-xl flex-col">
             <Box className="w-full px-4 py-6 text-white xl:px-0">
-              <Title label="Why Work at ADMI?" color="white" />
+              <Title label={benefitsTitle} color="white" />
             </Box>
             <Box className="flex w-full flex-col justify-between px-4 sm:flex-row sm:px-0">
               {ADMI_ACADEMIC_PATHWAYS.map((pathway, index) => (
@@ -86,56 +129,100 @@ export default function AcademicPathwaysPage({ pathways, partners }: AcademicPat
           </Box>
         </Box>
 
-        {/* Woolf University Partnership Section */}
-        {woolfPartner && (
+        {/* Academic Partners Section */}
+        {partnersWithLogos.length > 0 && (
           <Box className="relative w-full bg-white py-12">
             <Box className="mx-auto flex w-full max-w-screen-xl flex-col px-4 2xl:px-0">
               <Box className="pb-12">
-                <Title label="Woolf Membership" color="black" size={isMobile ? '28px' : '40px'} />
+                <Title
+                  label={partnersWithLogos.length === 1 ? woolfMembershipTitle : 'Our Academic Partners'}
+                  color="black"
+                  size={isMobile ? '28px' : '40px'}
+                />
               </Box>
-              <Grid>
-                <Grid.Col span={{ base: 12, md: 6 }}>
-                  <Box className="flex flex-col">
-                    <Box className="relative h-[200px] w-full">
-                      {woolfPartner.fields.logo && (
-                        <Image
-                          fill
-                          src={
-                            typeof woolfPartner.fields.logo === 'string'
-                              ? woolfPartner.fields.logo
-                              : (woolfPartner.fields.logo as any)?.fields?.file?.url || ''
-                          }
-                          alt={woolfPartner.fields.name}
-                          style={{ objectFit: 'contain' }}
-                        />
+
+              {/* Show Woolf partner prominently if exists */}
+              {woolfPartner && (
+                <>
+                  <Grid>
+                    <Grid.Col span={{ base: 12, md: 6 }}>
+                      <Box className="flex flex-col">
+                        <Box className="relative h-[200px] w-full">
+                          {getLogoUrl(woolfPartner) && (
+                            <Image
+                              fill
+                              src={getLogoUrl(woolfPartner) || ''}
+                              alt={getPartnerName(woolfPartner)}
+                              style={{ objectFit: 'contain' }}
+                            />
+                          )}
+                        </Box>
+                        <Title label={getPartnerName(woolfPartner)} color="black" size="24px" className="mt-6" />
+                      </Box>
+                    </Grid.Col>
+                    <Grid.Col span={{ base: 12, md: 6 }}>
+                      <Paragraph fontFamily="font-nexa" className="py-4">
+                        {woolfMembershipDescription}
+                      </Paragraph>
+                      <Paragraph fontFamily="font-nexa" className="py-4">
+                        {woolfMembershipSecondDescription}
+                      </Paragraph>
+                      {getPartnerWebsite(woolfPartner) && (
+                        <a
+                          href={getPartnerWebsite(woolfPartner)}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="mt-4 inline-block rounded bg-[#F1FE37] px-6 py-2 font-bold text-black hover:opacity-80"
+                        >
+                          Learn more about {getPartnerName(woolfPartner)}
+                        </a>
                       )}
+                    </Grid.Col>
+                  </Grid>
+
+                  {/* Show other partners if any */}
+                  {partnersWithLogos.length > 1 && (
+                    <Box className="mt-12">
+                      <Grid>
+                        {partnersWithLogos
+                          .filter((p) => p.sys.id !== woolfPartner.sys.id)
+                          .map((partner) => (
+                            <Grid.Col key={partner.sys.id} span={{ base: 12, sm: 6, md: 4 }}>
+                              <Box className="flex flex-col items-center p-4">
+                                <Box className="relative h-[150px] w-full">
+                                  {getLogoUrl(partner) && (
+                                    <Image
+                                      fill
+                                      src={getLogoUrl(partner) || ''}
+                                      alt={getPartnerName(partner)}
+                                      style={{ objectFit: 'contain' }}
+                                    />
+                                  )}
+                                </Box>
+                                <Title
+                                  label={getPartnerName(partner)}
+                                  color="black"
+                                  size="18px"
+                                  className="mt-4 text-center"
+                                />
+                                {getPartnerWebsite(partner) && (
+                                  <a
+                                    href={getPartnerWebsite(partner)}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="mt-2 text-sm text-[#002A23] underline hover:opacity-80"
+                                  >
+                                    Visit website
+                                  </a>
+                                )}
+                              </Box>
+                            </Grid.Col>
+                          ))}
+                      </Grid>
                     </Box>
-                    <Title label={woolfPartner.fields.name} color="black" size="24px" className="mt-6" />
-                  </Box>
-                </Grid.Col>
-                <Grid.Col span={{ base: 12, md: 6 }}>
-                  <Paragraph fontFamily="font-nexa" className="py-4">
-                    Woolf is a fully accredited collegiate Higher Education Institution modeled on Oxford, Delhi
-                    University, and University of California. As a member college, ADMI benefits from Woolf's advanced
-                    Accreditation Management System and commitment to European Standards and Guidelines 2015.
-                  </Paragraph>
-                  <Paragraph fontFamily="font-nexa" className="py-4">
-                    Our students graduate with degrees recognized across the European Qualifications Framework, and
-                    verified for immigration, residency, and professional licensing in Canada, the United States, and
-                    beyond.
-                  </Paragraph>
-                  {woolfPartner.fields.website && (
-                    <a
-                      href={woolfPartner.fields.website}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-4 inline-block rounded bg-[#F1FE37] px-6 py-2 font-bold text-black hover:opacity-80"
-                    >
-                      Learn more about Woolf
-                    </a>
                   )}
-                </Grid.Col>
-              </Grid>
+                </>
+              )}
             </Box>
           </Box>
         )}
@@ -144,17 +231,12 @@ export default function AcademicPathwaysPage({ pathways, partners }: AcademicPat
         <div className="relative h-[400px] w-full px-4 2xl:px-0">
           <div className="absolute left-1/2 top-[-10vh] z-10 w-full max-w-screen-xl -translate-x-1/2 transform px-4 sm:top-[-8vh] 2xl:px-0">
             <PlainCard>
-              <Title label="Global Opportunities" size="20px" color="black" />
+              <Title label={globalOpportunitiesTitle} size="20px" color="black" />
               <Paragraph className="py-4" fontFamily="font-nexa">
-                As a Woolf member college, ADMI offers students industry-focused curricula combined with internationally
-                recognized accreditation. Our graduates earn degrees that facilitate immigration, professional
-                licensing, and educational advancement worldwide.
+                {globalOpportunitiesDescription}
               </Paragraph>
               <Paragraph className="py-4" fontFamily="font-nexa">
-                Whether pursuing careers in digital media or transitioning to further studies at leading institutions
-                globally, ADMI students benefit from Woolf's commitment to academic excellence and the global
-                recognition that comes with European Higher Education standards. Education should be world-class,
-                accessible, and globally transferable— and that's exactly what Woolf and ADMI deliver.
+                {globalOpportunitiesSecondDescription}
               </Paragraph>
             </PlainCard>
           </div>
@@ -168,12 +250,13 @@ export const getStaticProps: GetStaticProps<AcademicPathwaysPageProps> = async (
   try {
     // Fetch academic pathways content from Contentful
     const pathways = await getAcademicPathwaysBySlug('main')
-    const partners = await getAllPartners()
+    const partnersData = await getAllPartners()
 
     return {
       props: {
         pathways: pathways || null,
-        partners: partners || []
+        partners: partnersData.items || [],
+        assets: partnersData.assets || []
       },
       revalidate: 3600 // Revalidate every hour
     }
@@ -182,7 +265,8 @@ export const getStaticProps: GetStaticProps<AcademicPathwaysPageProps> = async (
     return {
       props: {
         pathways: null,
-        partners: []
+        partners: [],
+        assets: []
       },
       revalidate: 300 // Retry after 5 minutes on error
     }

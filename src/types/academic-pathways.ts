@@ -14,17 +14,18 @@ export interface AcademicPathwaysPartner {
     type: string
   }
   fields: {
-    name: string
+    partnerName?: string
+    name?: string // Fallback for compatibility
     description?: string
     logo?: {
-      fields: {
-        file: {
-          url: string
-        }
+      sys: {
+        id: string
       }
     }
-    website?: string
-    type?: string
+    websiteUrl?: string
+    website?: string // Fallback for compatibility
+    partnerType?: string
+    type?: string // Fallback for compatibility
   }
 }
 
@@ -55,6 +56,13 @@ export interface AcademicPathwaysPage {
       metaDescription: string
       keywords: string
     }
+    benefitsTitle: string
+    woolfMembershipTitle: string
+    woolfMembershipDescription: string
+    woolfMembershipSecondDescription: string
+    globalOpportunitiesTitle: string
+    globalOpportunitiesDescription: string
+    globalOpportunitiesSecondDescription: string
   }
 }
 

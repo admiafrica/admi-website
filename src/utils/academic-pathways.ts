@@ -9,7 +9,9 @@ import { AcademicPathwaysResponse, AcademicPathwaysPage } from '@/types/academic
 /**
  * Fetch Academic Pathways page by slug
  */
-export async function getAcademicPathwaysBySlug(slug: string = 'academic-pathways'): Promise<AcademicPathwaysPage | null> {
+export async function getAcademicPathwaysBySlug(
+  slug: string = 'academic-pathways'
+): Promise<AcademicPathwaysPage | null> {
   try {
     const response = await axiosContentfulClient.get<AcademicPathwaysResponse>('/entries', {
       params: {
@@ -65,21 +67,33 @@ export async function getPartnerById(partnerId: string) {
 
 /**
  * Get all education partners (content type: partner)
+ * Returns both partners and assets for logo resolution
  */
 export async function getAllPartners() {
+  const spaceId = process.env.ADMI_CONTENTFUL_SPACE_ID
+  const accessToken = process.env.ADMI_CONTENTFUL_ACCESS_TOKEN
+  const environment = process.env.ADMI_CONTENTFUL_ENVIRONMENT || 'master'
+
   try {
-    const response = await axiosContentfulClient.get('/entries', {
+    const response = await axiosContentfulClient.get(`/spaces/${spaceId}/environments/${environment}/entries`, {
       params: {
-        content_type: 'partner',
+        access_token: accessToken,
+        content_type: '11GIFlaTgpnZEWEr6AElPr', // Partner content type ID
         limit: 100,
-        include: 1
+        include: 2
       }
     })
 
-    return response.data.items || []
+    return {
+      items: response.data.items || [],
+      assets: response.data.includes?.Asset || []
+    }
   } catch (error) {
     console.error('Error fetching all partners:', error)
-    return []
+    return {
+      items: [],
+      assets: []
+    }
   }
 }
 
