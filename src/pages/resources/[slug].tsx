@@ -6,14 +6,54 @@ import { MainLayout } from '@/layouts/v3/MainLayout'
 import { PageSEO, SocialShare } from '@/components/shared/v3'
 import { EducationalResourceSchema } from '@/components/seo/ArticleSchema'
 import { Button, Paragraph, ParagraphContentful } from '@/components/ui'
+import { ArticleMetadata } from '@/components/articles/ArticleMetadata'
 import { useIsMobile } from '@/hooks/useIsMobile'
 
 import IconBgImageYellow from '@/assets/icons/ellipse-yellow.svg'
 import IconBgImageRed from '@/assets/icons/ellipse-red.svg'
 
-export default function ResourceArticlePage({ article, slug }: { article: any; slug: string }) {
+// Helper: Extract plain text from Contentful rich text
+function extractPlainText(richText: any): string {
+  if (!richText || !richText.content) return ''
+  const text: string[] = []
+
+  const walkContent = (nodes: any[]) => {
+    nodes.forEach((node) => {
+      if (node.nodeType === 'text' && node.value) {
+        text.push(node.value)
+      } else if (node.content) {
+        walkContent(node.content)
+      }
+    })
+  }
+
+  walkContent(richText.content)
+  return text.join(' ')
+}
+
+// Helper: Calculate reading time (200 words per minute)
+function calculateReadingTime(richText: any): number {
+  const plainText = extractPlainText(richText)
+  if (!plainText) return 0
+  const wordCount = plainText.trim().split(/\s+/).length
+  return Math.ceil(wordCount / 200)
+}
+
+export default function ResourceArticlePage({
+  article,
+  slug
+}: {
+  article: any
+  slug: string
+  relatedArticles?: any[]
+}) {
   const isMobile = useIsMobile()
   const router = useRouter()
+
+  // Calculate article metrics
+  const readingTime = calculateReadingTime(article?.body)
+  const wordCount = extractPlainText(article?.body).trim().split(/\s+/).length
+  const tagKeywords = article?.tags?.join(', ') || ''
 
   const navigateToResources = () => {
     router.push('/resources')
@@ -24,7 +64,9 @@ export default function ResourceArticlePage({ article, slug }: { article: any; s
       {article && (
         <>
           <PageSEO
-            title={`Resources - ${article.title}`}
+            title={`${article.title} - Resources | ADMI Kenya`}
+            description={article.summary || article.excerpt}
+            keywords={`${article.category}, ${tagKeywords}, ADMI, Kenya, career guide`}
             url={`/resources/${slug}`}
             image={`https://${article.coverImage?.fields.file.url}`}
           />
@@ -37,16 +79,10 @@ export default function ResourceArticlePage({ article, slug }: { article: any; s
             publishedDate={article.publishDate || article.sys?.createdAt}
             modifiedDate={article.sys?.updatedAt}
             url={`https://admi.africa/resources/${slug}`}
-            category="Educational Resources"
-            tags={[
-              'ADMI',
-              'Africa Digital Media Institute',
-              'creative media',
-              'technology training',
-              'digital media education',
-              'Kenya',
-              'Africa'
-            ]}
+            category={article.category || 'Educational Resources'}
+            tags={article.tags || []}
+            readingTime={readingTime}
+            wordCount={wordCount}
           />
         </>
       )}
@@ -85,6 +121,17 @@ export default function ResourceArticlePage({ article, slug }: { article: any; s
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
                 />
               </Box>
+
+              {/* Article Metadata: Author, Date, Category, Tags */}
+              <ArticleMetadata
+                tags={article.tags}
+                readingTime={readingTime}
+                publishedDate={article.publishDate || article.sys?.createdAt}
+                modifiedDate={article.sys?.updatedAt}
+                category={article.category}
+                author="ADMI Editorial Team"
+              />
+
               <Paragraph fontFamily="font-nexa" fontWeight={400} size="26px" className="py-6">
                 {article.title}
               </Paragraph>
