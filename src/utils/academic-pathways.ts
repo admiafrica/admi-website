@@ -12,14 +12,22 @@ import { AcademicPathwaysResponse, AcademicPathwaysPage } from '@/types/academic
 export async function getAcademicPathwaysBySlug(
   slug: string = 'academic-pathways'
 ): Promise<AcademicPathwaysPage | null> {
+  const spaceId = process.env.ADMI_CONTENTFUL_SPACE_ID
+  const accessToken = process.env.ADMI_CONTENTFUL_ACCESS_TOKEN
+  const environment = process.env.ADMI_CONTENTFUL_ENVIRONMENT || 'master'
+
   try {
-    const response = await axiosContentfulClient.get<AcademicPathwaysResponse>('/entries', {
-      params: {
-        content_type: 'academicPathways',
-        'fields.slug': slug,
-        include: 3
+    const response = await axiosContentfulClient.get<AcademicPathwaysResponse>(
+      `/spaces/${spaceId}/environments/${environment}/entries`,
+      {
+        params: {
+          access_token: accessToken,
+          content_type: '7hj7s6Ixd6yXVG9PrDodkX', // Academic Pathways content type ID
+          'fields.slug': slug,
+          include: 3
+        }
       }
-    })
+    )
 
     if (response.data.items.length === 0) {
       return null
