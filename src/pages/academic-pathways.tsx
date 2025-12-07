@@ -228,7 +228,7 @@ export default function AcademicPathwaysPage({ pathways, partners, assets }: Aca
         )}
 
         {/* Floating Card */}
-        <div className="relative h-[400px] w-full px-4 2xl:px-0">
+        <div className="relative min-h-[300px] w-full px-4 pb-16 2xl:px-0">
           <div className="absolute left-1/2 top-[-200px] z-10 w-full max-w-screen-xl -translate-x-1/2 transform px-4 2xl:px-0">
             <PlainCard>
               <Title label={globalOpportunitiesTitle} size="20px" color="black" />
