@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const BlogScheduler = require('../../../../scripts/blog-generation/blog-scheduler')
+const { sendErrorNotification: sendEmailNotification } = require('../../../../scripts/utils/error-notifications')
 
 /**
  * AWS Lambda handler for daily blog generation
@@ -43,7 +44,21 @@ exports.daily = async (event) => {
   } catch (error) {
     console.error('❌ Daily blog generation failed:', error)
 
-    // Send error notification
+    // Send error notification via email
+    await sendEmailNotification({
+      subject: 'Daily Blog Generation Failed (Lambda)',
+      automationType: 'Blog Generation (Daily)',
+      error: error.message,
+      context: {
+        lambdaFunction: 'dailyBlogGeneration',
+        event: JSON.stringify(event),
+        stack: error.stack,
+        timestamp: new Date().toISOString()
+      },
+      severity: 'high'
+    })
+
+    // Send webhook notification if configured
     if (process.env.BLOG_GENERATION_WEBHOOK_URL) {
       await sendErrorNotification('daily', error)
     }
@@ -105,7 +120,21 @@ exports.weekly = async (event) => {
   } catch (error) {
     console.error('❌ Weekly blog generation failed:', error)
 
-    // Send error notification
+    // Send error notification via email
+    await sendEmailNotification({
+      subject: 'Weekly Blog Generation Failed (Lambda)',
+      automationType: 'Blog Generation (Weekly)',
+      error: error.message,
+      context: {
+        lambdaFunction: 'weeklyBlogGeneration',
+        event: JSON.stringify(event),
+        stack: error.stack,
+        timestamp: new Date().toISOString()
+      },
+      severity: 'high'
+    })
+
+    // Send webhook notification if configured
     if (process.env.BLOG_GENERATION_WEBHOOK_URL) {
       await sendErrorNotification('weekly', error)
     }

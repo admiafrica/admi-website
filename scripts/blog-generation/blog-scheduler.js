@@ -1,5 +1,6 @@
 const SEORocketBlogGenerator = require('./seo-rocket-blog-generator')
 const { getTopicsByCategory, getRandomTopic } = require('./blog-topics-database')
+const { sendErrorNotification } = require('../utils/error-notifications')
 const fs = require('fs').promises
 const path = require('path')
 
@@ -48,6 +49,7 @@ class BlogScheduler {
     const count = articlesToGenerate || this.scheduleConfig.articlesPerBatch
     const log = await this.loadLog()
     const batchResults = []
+    const errors = []
 
     console.log(`🚀 Starting batch generation of ${count} articles...\n`)
 
@@ -94,27 +96,27 @@ class BlogScheduler {
           })
 
           console.log(`✅ Article ${i + 1} completed: ${result.title}\n`)
-
-          // Add delay between generations to avoid rate limiting
-          if (i < count - 1) {
-            console.log('⏱️  Waiting 30 seconds before next generation...\n')
-            await new Promise((resolve) => setTimeout(resolve, 30000))
-          }
         } else {
-          console.error(`❌ Failed to generate article ${i + 1}\n`)
-          log.errors.push({
-            timestamp: new Date().toISOString(),
-            error: `Failed to generate article ${i + 1}`,
-            topic: selectedTopic?.topic || 'Unknown'
+          errors.push({
+            article: i + 1,
+            topic: selectedTopic.topic,
+            error: 'Generation returned null result'
           })
+          console.error(`❌ Failed to generate article ${i + 1}\n`)
+        }
+
+        // Add delay between generations to avoid rate limiting
+        if (i < count - 1) {
+          console.log('⏱️  Waiting 30 seconds before next generation...\n')
+          await new Promise((resolve) => setTimeout(resolve, 30000))
         }
       } catch (error) {
-        console.error(`❌ Error generating article ${i + 1}:`, error.message)
-        log.errors.push({
-          timestamp: new Date().toISOString(),
-          error: error.message,
-          articleIndex: i + 1
+        errors.push({
+          article: i + 1,
+          topic: selectedTopic?.topic || 'Unknown',
+          error: error.message
         })
+        console.error(`❌ Error generating article ${i + 1}:`, error.message)
       }
     }
 
@@ -189,17 +191,21 @@ class BlogScheduler {
 
     const results = []
     for (let i = 0; i < Math.min(count, categoryTopics.length); i++) {
-      const topic = categoryTopics[i]
-      const result = await this.generator.generateBlogArticle(topic)
+      try {
+        const topic = categoryTopics[i]
+        const result = await this.generator.generateBlogArticle(topic)
 
-      if (result) {
-        results.push(result)
-        console.log(`✅ Generated: ${result.title}`)
+        if (result) {
+          results.push(result)
+          console.log(`✅ Generated: ${result.title}`)
 
-        // Add delay between generations
-        if (i < count - 1) {
-          await new Promise((resolve) => setTimeout(resolve, 30000))
+          // Add delay between generations
+          if (i < count - 1) {
+            await new Promise((resolve) => setTimeout(resolve, 30000))
+          }
         }
+      } catch (error) {
+        console.error(`❌ Error generating article ${i + 1}:`, error.message)
       }
     }
 

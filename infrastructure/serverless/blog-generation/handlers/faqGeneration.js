@@ -6,6 +6,7 @@
 
 const { spawn } = require('child_process')
 const path = require('path')
+const { sendErrorNotification } = require('../../../../scripts/utils/error-notifications')
 
 /**
  * Execute a Node.js script
@@ -85,6 +86,19 @@ exports.weeklyOptimize = async (event) => {
   } catch (error) {
     console.error('❌ Weekly FAQ optimization failed:', error)
 
+    // Send error notification
+    await sendErrorNotification({
+      subject: 'Weekly FAQ Optimization Failed (Lambda)',
+      automationType: 'FAQ Optimization (Weekly)',
+      error: error.message,
+      context: {
+        lambdaFunction: 'weeklyFaqOptimization',
+        event: JSON.stringify(event),
+        timestamp: new Date().toISOString()
+      },
+      severity: 'high'
+    })
+
     return {
       statusCode: 500,
       headers: {
@@ -136,6 +150,19 @@ exports.dailyGenerate = async (event) => {
     }
   } catch (error) {
     console.error('❌ Daily FAQ generation failed:', error)
+
+    // Send error notification
+    await sendErrorNotification({
+      subject: 'Daily FAQ Generation Failed (Lambda)',
+      automationType: 'FAQ Generation (Daily)',
+      error: error.message,
+      context: {
+        lambdaFunction: 'dailyFaqGeneration',
+        event: JSON.stringify(event),
+        timestamp: new Date().toISOString()
+      },
+      severity: 'high'
+    })
 
     return {
       statusCode: 500,

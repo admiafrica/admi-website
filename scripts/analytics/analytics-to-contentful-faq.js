@@ -20,6 +20,7 @@ const OpenAI = require('openai')
 const axios = require('axios')
 const fs = require('fs')
 const path = require('path')
+const { sendErrorNotification } = require('../utils/error-notifications')
 require('dotenv').config()
 
 // Configuration
@@ -241,7 +242,8 @@ Important:
       logger.warn(`Failed to parse FAQ JSON, creating manual entry for: ${query}`)
       faqData = {
         question: query,
-        answer: 'This is an important question for prospective ADMI students. Please contact our admissions team for detailed information.',
+        answer:
+          'This is an important question for prospective ADMI students. Please contact our admissions team for detailed information.',
         searchQuery: query,
         keywords: [query]
       }
@@ -394,7 +396,7 @@ async function runAutomation() {
     for (let i = 0; i < Math.min(CONFIG.maxFAQsPerRun, searchQueries.length); i++) {
       const queryData = searchQueries[i]
       const query = typeof queryData === 'string' ? queryData : queryData.query
-      const volume = typeof queryData === 'string' ? 1 : (queryData.volume || 1)
+      const volume = typeof queryData === 'string' ? 1 : queryData.volume || 1
 
       // Skip low-volume queries
       if (volume < CONFIG.minSearchVolume) {
@@ -516,8 +518,22 @@ LOGS:
 
 // Run if executed directly
 if (require.main === module) {
-  main().catch((error) => {
+  main().catch(async (error) => {
     console.error('Fatal error:', error)
+
+    // Send error notification to admin
+    await sendErrorNotification({
+      subject: 'FAQ Generation Automation Failed',
+      automationType: 'FAQ Generation',
+      error: error.message || error.toString(),
+      context: {
+        stack: error.stack,
+        timestamp: new Date().toISOString(),
+        command: process.argv.slice(2).join(' ') || 'run'
+      },
+      severity: 'high'
+    })
+
     process.exit(1)
   })
 }
