@@ -1,0 +1,20 @@
+{
+  "Name": "admi-weekly-organic-traffic-report",
+  "Description": "Generates and sends weekly organic traffic reports via GA4 API",
+  "Schedule": "cron(0 9 ? * MON *)",
+  "Timezone": "UTC",
+  "State": "ENABLED",
+  "Targets": [
+    {
+      "Arn": "arn:aws:lambda:us-east-1:ACCOUNT_ID:function:admi-analytics-weekly-report",
+      "RoleArn": "arn:aws:iam::ACCOUNT_ID:role/service-role/admi-analytics-lambda-role",
+      "DeadLetterConfig": {
+        "Arn": "arn:aws:sqs:us-east-1:ACCOUNT_ID:admi-dlq"
+      },
+      "RetryPolicy": {
+        "MaximumEventAge": 3600,
+        "MaximumRetryAttempts": 2
+      }
+    }
+  ]
+}
