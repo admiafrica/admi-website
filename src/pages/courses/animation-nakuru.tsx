@@ -51,34 +51,6 @@ const AnimationNakuruPage = () => {
         }}
       />
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'FAQPage',
-            mainEntity: [
-              {
-                '@type': 'Question',
-                name: "How does Nakuru's location influence the animation course experience?",
-                acceptedAnswer: {
-                  '@type': 'Answer',
-                  text: "Nakuru's strategic location allows for unique cross-market insights in animation, offering students exposure to a diverse range of projects from both Nairobi and Western Kenya, enriching their learning and creative application."
-                }
-              },
-              {
-                '@type': 'Question',
-                name: 'Are there local animation studios or related industries in Nakuru?',
-                acceptedAnswer: {
-                  '@type': 'Answer',
-                  text: 'Yes, Nakuru is home to emerging animation studios, and its proximity to major manufacturing and agricultural firms, as well as tourism businesses, provides ample opportunities for animators in advertising and promotional content creation.'
-                }
-              }
-            ]
-          })
-        }}
-      />
-
       <Container size="lg" py="xl">
         <Title order={1} ta="center" mb="md">
           Animation Course in Rift Valley

@@ -52,34 +52,6 @@ const DigitalMarketingEldoretPage = () => {
         }}
       />
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'FAQPage',
-            mainEntity: [
-              {
-                '@type': 'Question',
-                name: "How does Eldoret's startup scene influence the digital marketing course content?",
-                acceptedAnswer: {
-                  '@type': 'Answer',
-                  text: "The course is tailored to address the unique needs of Eldoret's booming startup ecosystem, focusing on AgriTech and sports marketing, and includes case studies and projects from local companies."
-                }
-              },
-              {
-                '@type': 'Question',
-                name: 'Are there opportunities in Eldoret for digital marketing professionals?',
-                acceptedAnswer: {
-                  '@type': 'Answer',
-                  text: "Absolutely. Beyond startups, Eldoret's regional media houses and e-commerce ventures are on the lookout for skilled digital marketers to elevate their online presence and engagement."
-                }
-              }
-            ]
-          })
-        }}
-      />
-
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <Title order={1} ta="center" mb="md">
           Digital Marketing Course in Rift Valley

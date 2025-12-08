@@ -1,0 +1,18 @@
+{
+  "timestamp": "2025-12-07T12:59:35.396Z",
+  "liveMode": true,
+  "campaignId": "23293961952",
+  "results": {
+    "adGroupsCreated": [],
+    "keywordsAdded": [],
+    "keywordsPaused": [],
+    "errors": [
+      "Film Production - Tier 1: API Error 404",
+      "Music Production - Tier 1: API Error 404",
+      "Graphic Design - Tier 1: API Error 404",
+      "Photography - Tier 1: API Error 404",
+      "Creative Media - Tier 1: API Error 404",
+      "Pause operation: API Error 404"
+    ]
+  }
+}

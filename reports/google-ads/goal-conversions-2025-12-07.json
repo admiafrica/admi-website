@@ -1,0 +1,34 @@
+{
+  "summary": {
+    "totalGoalConversions": 52,
+    "dataRange": "2025-12-01 to 2025-12-07",
+    "property": "GA4 Property 250948607"
+  },
+  "campaigns": {
+    "performanceMax": {
+      "name": "Performance Max",
+      "sources": [
+        "pmax",
+        "pmax-jan2026",
+        "performance-max",
+        "23282289054"
+      ],
+      "goals": 32,
+      "sessions": 184,
+      "conversionRate": 17.4,
+      "avgConversionValue": 0
+    },
+    "search": {
+      "name": "Search Campaign",
+      "sources": [
+        "search",
+        "search-jan2026",
+        "google-search"
+      ],
+      "goals": 20,
+      "sessions": 156,
+      "conversionRate": 12.8,
+      "avgConversionValue": 0
+    }
+  }
+}

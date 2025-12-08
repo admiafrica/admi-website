@@ -52,34 +52,6 @@ const DigitalMarketingNairobiPage = () => {
         }}
       />
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'FAQPage',
-            mainEntity: [
-              {
-                '@type': 'Question',
-                name: "How does Nairobi's tech ecosystem enhance my learning in digital marketing?",
-                acceptedAnswer: {
-                  '@type': 'Answer',
-                  text: "Nairobi's thriving tech ecosystem, highlighted by numerous startups and tech hubs, provides a real-world laboratory for digital marketing students. You'll get to apply concepts in SEO/SEM and content marketing directly to the city's dynamic online commerce and tech innovation."
-                }
-              },
-              {
-                '@type': 'Question',
-                name: 'What kind of local career opportunities can I expect after completing the course in Nairobi?',
-                acceptedAnswer: {
-                  '@type': 'Answer',
-                  text: "Graduates can look forward to roles in Nairobi's leading tech companies, media houses like Nation Media Group, and in the marketing departments of major corporations such as Safaricom. The city's growing emphasis on AI-powered marketing and e-commerce opens up numerous opportunities."
-                }
-              }
-            ]
-          })
-        }}
-      />
-
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <Title order={1} ta="center" mb="md">
           Digital Marketing Course in Nairobi

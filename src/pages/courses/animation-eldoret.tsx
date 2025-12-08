@@ -51,34 +51,6 @@ const AnimationEldoretPage = () => {
         }}
       />
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'FAQPage',
-            mainEntity: [
-              {
-                '@type': 'Question',
-                name: 'How can the animation course in Eldoret leverage the local startup ecosystem?',
-                acceptedAnswer: {
-                  '@type': 'Answer',
-                  text: "The course is designed to equip students with skills in 2D/3D animation and VFX, tapping into Eldoret's startup ecosystem which is ripe for digital content creation, especially for agricultural technology, and regional media sectors seeking innovative marketing and educational tools."
-                }
-              },
-              {
-                '@type': 'Question',
-                name: 'Are there local employment opportunities in Eldoret for animation graduates?',
-                acceptedAnswer: {
-                  '@type': 'Answer',
-                  text: "Yes, Eldoret offers a growing number of opportunities for animation professionals, especially within advertising agencies, regional media houses, and the emerging gaming sector. Additionally, the city's sports organizations are increasingly incorporating animated content for promotional purposes."
-                }
-              }
-            ]
-          })
-        }}
-      />
-
       <Container size="lg" py="xl">
         <Title order={1} ta="center" mb="md">
           Animation Course in Rift Valley

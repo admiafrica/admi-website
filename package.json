@@ -32,6 +32,7 @@
     "faq:test-analytics": "node scripts/analytics/secure-analytics-integration.js test",
     "faq:analytics-report": "node scripts/analytics/secure-analytics-integration.js report",
     "faq:api-optimize": "node scripts/analytics/api-driven-faq-optimizer.js",
+    "faq:analytics-to-contentful": "node scripts/analytics/analytics-to-contentful-faq.js",
     "setup-cron": "./scripts/cron/setup-cron.sh",
     "cron-health": "./scripts/cron/cron-health-check.sh",
     "cron-test": "./scripts/cron/weekly-faq-optimizer.sh",

@@ -52,34 +52,6 @@ const DigitalMarketingMombasaPage = () => {
         }}
       />
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'FAQPage',
-            mainEntity: [
-              {
-                '@type': 'Question',
-                name: "How relevant is a digital marketing course in Mombasa's tourism-driven economy?",
-                acceptedAnswer: {
-                  '@type': 'Answer',
-                  text: "In Mombasa's tourism-centric economy, digital marketing skills are invaluable. Businesses seek to capitalize on online platforms to reach a global audience, making skills in social media marketing, SEO/SEM, and content marketing especially relevant for promoting local attractions and services."
-                }
-              },
-              {
-                '@type': 'Question',
-                name: 'Are there local career opportunities in digital marketing in Mombasa?',
-                acceptedAnswer: {
-                  '@type': 'Answer',
-                  text: "Absolutely. Mombasa's growing tourism and hospitality industries are on the lookout for digital marketing professionals. Local coastal media houses and emerging tech startups also offer opportunities for those skilled in the latest digital marketing trends, including AI-powered marketing."
-                }
-              }
-            ]
-          })
-        }}
-      />
-
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <Title order={1} ta="center" mb="md">
           Digital Marketing Course in Coast

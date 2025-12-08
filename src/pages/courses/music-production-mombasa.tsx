@@ -51,34 +51,6 @@ const MusicProductionMombasaPage = () => {
         }}
       />
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'FAQPage',
-            mainEntity: [
-              {
-                '@type': 'Question',
-                name: "How does Mombasa's tourism sector influence the music production course?",
-                acceptedAnswer: {
-                  '@type': 'Answer',
-                  text: "The demand for engaging digital content in Mombasa's tourism sector allows students to tailor their music production skills towards creating memorable auditory experiences for visitors, opening up unique internship and employment opportunities within the hospitality industry."
-                }
-              },
-              {
-                '@type': 'Question',
-                name: 'Are there local studios or media houses in Mombasa for practical exposure?',
-                acceptedAnswer: {
-                  '@type': 'Answer',
-                  text: 'Yes, Mombasa is home to several coastal media houses and recording studios, such as those in Nyali and Bamburi, providing ample opportunities for hands-on experience and networking within the local music industry.'
-                }
-              }
-            ]
-          })
-        }}
-      />
-
       <Container size="lg" py="xl">
         <Title order={1} ta="center" mb="md">
           Music Production Course in Coast

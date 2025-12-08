@@ -51,34 +51,6 @@ const AnimationKisumuPage = () => {
         }}
       />
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'FAQPage',
-            mainEntity: [
-              {
-                '@type': 'Question',
-                name: "How does Kisumu's emerging tech hub status benefit animation students?",
-                acceptedAnswer: {
-                  '@type': 'Answer',
-                  text: "Kisumu's position as an emerging tech hub means animation students have first-hand access to innovative projects from agricultural tech firms and international NGOs. This unique environment fosters practical learning and networking opportunities with startups seeking fresh, creative content."
-                }
-              },
-              {
-                '@type': 'Question',
-                name: 'Are there local companies in Kisumu that hire animators?',
-                acceptedAnswer: {
-                  '@type': 'Answer',
-                  text: 'Yes, in Kisumu, animators find opportunities within Lake Region media companies, advertising agencies, and tech startups, particularly those focusing on agricultural technology. These employers are often in search of talent skilled in 2D/3D animation, motion graphics, and VFX to bring their digital content to life.'
-                }
-              }
-            ]
-          })
-        }}
-      />
-
       <Container size="lg" py="xl">
         <Title order={1} ta="center" mb="md">
           Animation Course in Western

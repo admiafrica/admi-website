@@ -51,34 +51,6 @@ const SoundEngineeringNairobiPage = () => {
         }}
       />
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'FAQPage',
-            mainEntity: [
-              {
-                '@type': 'Question',
-                name: "How does Nairobi's creative scene enhance my sound-engineering course experience?",
-                acceptedAnswer: {
-                  '@type': 'Answer',
-                  text: "Studying in Nairobi places you at the epicenter of East Africa's largest creative market. The city's thriving entertainment, news media, and event production scenes provide a rich context for practical learning, offering students direct exposure to industry-standard practices and networking opportunities with leading professionals."
-                }
-              },
-              {
-                '@type': 'Question',
-                name: 'What are the career prospects in Nairobi for sound engineering graduates?',
-                acceptedAnswer: {
-                  '@type': 'Answer',
-                  text: 'Graduates in Nairobi find themselves in a dynamic job market, with opportunities in live sound for concerts, studio recording for both major and independent artists, broadcast audio for television and radio, and emerging fields like podcast production. The presence of major employers such as Safaricom and Royal Media Services ensures a steady demand for skilled audio engineers.'
-                }
-              }
-            ]
-          })
-        }}
-      />
-
       <Container size="lg" py="xl">
         <Title order={1} ta="center" mb="md">
           Sound Engineering Course in Nairobi

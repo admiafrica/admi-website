@@ -51,34 +51,6 @@ const UIUXDesignNairobiPage = () => {
         }}
       />
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'FAQPage',
-            mainEntity: [
-              {
-                '@type': 'Question',
-                name: "How relevant is UI/UX design training in Nairobi's tech eco-system?",
-                acceptedAnswer: {
-                  '@type': 'Answer',
-                  text: "In Nairobi's booming tech ecosystem, UI/UX design stands out as a critical skill. With major employers like Safaricom and various tech startups, the demand for designers who can create intuitive and engaging digital experiences is at an all-time high."
-                }
-              },
-              {
-                '@type': 'Question',
-                name: 'Are there ample career opportunities in Nairobi for UI/UX design graduates?',
-                acceptedAnswer: {
-                  '@type': 'Answer',
-                  text: "Absolutely. Nairobi's status as East Africa's technology and innovation hub means graduates have direct access to careers in leading tech companies, fintech, and digital agencies within the CBD, Westlands, and beyond. The city's dynamic market is eager for fresh talent in UI/UX design."
-                }
-              }
-            ]
-          })
-        }}
-      />
-
       <Container size="lg" py="xl">
         <Title order={1} ta="center" mb="md">
           UI/UX Design Course in Nairobi

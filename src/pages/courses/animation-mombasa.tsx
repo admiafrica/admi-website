@@ -51,34 +51,6 @@ const AnimationMombasaPage = () => {
         }}
       />
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'FAQPage',
-            mainEntity: [
-              {
-                '@type': 'Question',
-                name: "How does Mombasa's unique setting benefit my animation studies?",
-                acceptedAnswer: {
-                  '@type': 'Answer',
-                  text: "Mombasa's diverse cultural and coastal environment offers a rich tapestry of stories and visuals, providing animation students unique material for character design, motion graphics, and visual effects, enhancing creativity and distinctiveness in their work."
-                }
-              },
-              {
-                '@type': 'Question',
-                name: 'Are there local career opportunities in animation within Mombasa?',
-                acceptedAnswer: {
-                  '@type': 'Answer',
-                  text: "Yes, Mombasa's animation career opportunities are growing, especially within the tourism and hospitality sectors, coastal media houses, and advertising agencies looking for engaging content to attract both local and international audiences."
-                }
-              }
-            ]
-          })
-        }}
-      />
-
       <Container size="lg" py="xl">
         <Title order={1} ta="center" mb="md">
           Animation Course in Coast

@@ -51,34 +51,6 @@ const SoundEngineeringEldoretPage = () => {
         }}
       />
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'FAQPage',
-            mainEntity: [
-              {
-                '@type': 'Question',
-                name: "How does Eldoret's startup ecosystem enhance my learning experience in sound engineering?",
-                acceptedAnswer: {
-                  '@type': 'Answer',
-                  text: "Eldoret's startup scene, especially in tech and digital media, provides real-world application opportunities for sound engineering students. Engagement with local startups allows for hands-on experience in sound design and audio production, critical for mastering the course."
-                }
-              },
-              {
-                '@type': 'Question',
-                name: 'Are there local employment opportunities in Eldoret for sound engineering graduates?',
-                acceptedAnswer: {
-                  '@type': 'Answer',
-                  text: 'Yes, Eldoret offers diverse employment opportunities, from working with regional media houses and sports organizations requiring broadcast audio professionals to the vibrant event production scene for live sound engineers. The presence of recording studios also supports studio recording careers.'
-                }
-              }
-            ]
-          })
-        }}
-      />
-
       <Container size="lg" py="xl">
         <Title order={1} ta="center" mb="md">
           Sound Engineering Course in Rift Valley

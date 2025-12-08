@@ -51,34 +51,6 @@ const MusicProductionEldoretPage = () => {
         }}
       />
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'FAQPage',
-            mainEntity: [
-              {
-                '@type': 'Question',
-                name: "How relevant is a music production course in Eldoret's current economic landscape?",
-                acceptedAnswer: {
-                  '@type': 'Answer',
-                  text: "Given Eldoret's growing interest in digital and creative fields, coupled with the regional demand for digital marketing in agri-tech and sports, a music production course is highly relevant. It opens doors to creating digital audio content for local businesses and entertainers."
-                }
-              },
-              {
-                '@type': 'Question',
-                name: 'Are there local outlets or platforms in Eldoret where I can showcase my music production skills?',
-                acceptedAnswer: {
-                  '@type': 'Answer',
-                  text: 'Yes, Eldoret boasts several local media houses, event companies, and a vibrant live music scene. Emerging artists and startups in the city are always on the lookout for fresh talent in audio engineering and beat production to elevate their digital presence.'
-                }
-              }
-            ]
-          })
-        }}
-      />
-
       <Container size="lg" py="xl">
         <Title order={1} ta="center" mb="md">
           Music Production Course in Rift Valley

@@ -51,34 +51,6 @@ const PhotographyKisumuPage = () => {
         }}
       />
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'FAQPage',
-            mainEntity: [
-              {
-                '@type': 'Question',
-                name: "How does Kisumu's tech scene influence the photography course?",
-                acceptedAnswer: {
-                  '@type': 'Answer',
-                  text: "Kisumu's burgeoning status as a tech hub uniquely positions our photography course to integrate cutting-edge trends like drone photography and virtual tours, tailoring skills that are in high demand by local tech firms and international NGOs."
-                }
-              },
-              {
-                '@type': 'Question',
-                name: "Are there real opportunities for photographers in Kisumu's job market?",
-                acceptedAnswer: {
-                  '@type': 'Answer',
-                  text: "Absolutely. Beyond traditional opportunities in media houses, Kisumu's growing events scene, international NGO presence, and the local tourism industry are increasingly seeking skilled photographers for commercial work, real estate virtual tours, and social media content."
-                }
-              }
-            ]
-          })
-        }}
-      />
-
       <Container size="lg" py="xl">
         <Title order={1} ta="center" mb="md">
           Photography Course in Western

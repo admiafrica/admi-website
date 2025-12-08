@@ -19,12 +19,26 @@ cd "$PROJECT_DIR"
 echo "$(date): Starting weekly comprehensive optimization..." >> "$LOG_FILE"
 
 # Run comprehensive optimization
-node scripts/automation/intelligent-content-optimizer.js \
-  --max-faqs 5 \
-  --max-articles 2 \
+# Phase 1: Update FAQs with analytics data using new system
+npm run faq:analytics-to-contentful run \
   >> "$LOG_FILE" 2>&1
 
-EXIT_CODE=$?
+FAQ_EXIT=$?
+
+# Phase 2: Generate blog articles
+npm run blog:weekly \
+  >> "$LOG_FILE" 2>&1
+
+BLOG_EXIT=$?
+
+# Combine exit codes - fail if either failed
+EXIT_CODE=0
+if [ $FAQ_EXIT -ne 0 ]; then
+  EXIT_CODE=1
+fi
+if [ $BLOG_EXIT -ne 0 ]; then
+  EXIT_CODE=1
+fi
 
 if [ $EXIT_CODE -eq 0 ]; then
     echo "$(date): Weekly optimization completed successfully" >> "$LOG_FILE"

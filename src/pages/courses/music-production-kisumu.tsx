@@ -51,34 +51,6 @@ const MusicProductionKisumuPage = () => {
         }}
       />
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'FAQPage',
-            mainEntity: [
-              {
-                '@type': 'Question',
-                name: "How does Kisumu's emerging tech scene benefit music production students?",
-                acceptedAnswer: {
-                  '@type': 'Answer',
-                  text: "Kisumu's status as an emerging tech hub, especially in areas like Milimani and Mamboleo, offers music production students unique opportunities to collaborate with tech startups and NGOs on innovative projects such as podcasting and live streaming, setting them apart in the creative industry."
-                }
-              },
-              {
-                '@type': 'Question',
-                name: 'Are there local career opportunities in music production in Kisumu?',
-                acceptedAnswer: {
-                  '@type': 'Answer',
-                  text: 'Yes, Kisumu offers diverse career opportunities in music production, from working with local recording studios and media houses like Lake Region Media to collaborating with international NGOs and agricultural tech firms on their audio content needs. The growing trend of home studios and podcast production further opens up freelance and entrepreneurial avenues.'
-                }
-              }
-            ]
-          })
-        }}
-      />
-
       <Container size="lg" py="xl">
         <Title order={1} ta="center" mb="md">
           Music Production Course in Western

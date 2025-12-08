@@ -1,0 +1,170 @@
+{
+  "googleAdsLeads": 12,
+  "campaigns": {
+    "performanceMax": {
+      "name": "Performance Max",
+      "campaignIds": [
+        "pmax-jan2026-traffic",
+        "23282289054"
+      ],
+      "leads": [
+        {
+          "email": "syme.mwangi@gmail.com",
+          "name": "Syme Mwangi",
+          "course": "Digital Marketing Certificate",
+          "score": 14,
+          "status": "Warm Lead",
+          "converted": false,
+          "createdAt": "2025-12-06T16:23:38.805+03:00",
+          "modifiedAt": "2025-12-07T09:26:14.160+03:00",
+          "utm_campaign": "pmax-jan2026-traffic"
+        },
+        {
+          "email": "yusufmukoya@gmail.com",
+          "name": "Yussuf Imoh Mukoya",
+          "course": "Sports Business Certificate",
+          "score": 13,
+          "status": "Warm Lead",
+          "converted": false,
+          "createdAt": "2025-12-06T13:38:15.623+03:00",
+          "modifiedAt": "2025-12-07T09:26:43.273+03:00",
+          "utm_campaign": "pmax-jan2026-traffic"
+        },
+        {
+          "email": "madollermcutemgaza@gmail.com",
+          "name": "Ephantus Mbugua",
+          "course": "Music Production Diploma",
+          "score": 15,
+          "status": "Hot Lead",
+          "converted": false,
+          "createdAt": "2025-12-05T16:09:07.484+03:00",
+          "modifiedAt": "2025-12-06T09:26:32.121+03:00",
+          "utm_campaign": "pmax-jan2026-traffic"
+        },
+        {
+          "email": "willyotash@gmail.com",
+          "name": "Wildon Otieno",
+          "course": "Music Production and Sound Engineering Certificate",
+          "score": 8,
+          "status": "Cold Lead",
+          "converted": false,
+          "createdAt": "2025-12-05T10:58:04.659+03:00",
+          "modifiedAt": "2025-12-06T09:26:26.169+03:00",
+          "utm_campaign": "pmax-jan2026-traffic"
+        },
+        {
+          "email": "mercysimua072@gmail.com",
+          "name": "Mercy Simwa",
+          "course": "Film and Television Production Diploma",
+          "score": 9,
+          "status": "Cold Lead",
+          "converted": false,
+          "createdAt": "2025-12-05T09:48:38.927+03:00",
+          "modifiedAt": "2025-12-06T09:26:30.607+03:00",
+          "utm_campaign": "pmax-jan2026-traffic"
+        },
+        {
+          "email": "lukuicynthia14@gmail.com",
+          "name": "Cynthia Lukui",
+          "course": "Video Production Certificate (Professional)",
+          "score": 16,
+          "status": "Hot Lead",
+          "converted": false,
+          "createdAt": "2025-11-30T15:00:17.092+03:00",
+          "modifiedAt": "2025-12-01T10:56:23.692+03:00",
+          "utm_campaign": "23282289054"
+        },
+        {
+          "email": "njokir455@gmail.com",
+          "name": "Regina George",
+          "course": "Film and Television Production Diploma",
+          "score": 11,
+          "status": "Warm Lead",
+          "converted": false,
+          "createdAt": "2025-11-30T12:48:26.466+03:00",
+          "modifiedAt": "2025-12-01T10:56:23.692+03:00",
+          "utm_campaign": "23282289054"
+        },
+        {
+          "email": "joycewgitura@gmail.com",
+          "name": "Joyce Gitura",
+          "course": "Digital Marketing Certificate",
+          "score": 13,
+          "status": "Warm Lead",
+          "converted": false,
+          "createdAt": "2025-11-29T07:56:18.733+03:00",
+          "modifiedAt": "2025-12-01T10:56:23.692+03:00",
+          "utm_campaign": "23282289054"
+        }
+      ],
+      "converted": [],
+      "conversions": 0,
+      "conversionRate": "0.0",
+      "avgLeadScore": "12.38",
+      "totalLeadScore": 99
+    },
+    "search": {
+      "name": "Search Campaign",
+      "campaignIds": [
+        "search-jan2026-admi",
+        "search"
+      ],
+      "leads": [
+        {
+          "email": "martooti123@gmail.com",
+          "name": "Martin Opundo",
+          "course": "Digital Marketing Certificate",
+          "score": 13,
+          "status": "Warm Lead",
+          "converted": false,
+          "createdAt": "2025-12-05T22:54:13.911+03:00",
+          "modifiedAt": "2025-12-06T09:26:29.558+03:00",
+          "utm_campaign": "search-jan2026-admi"
+        },
+        {
+          "email": "gigy4230@gmail.com",
+          "name": "Daniel Githinji",
+          "course": "Digital Content Creation Certificate",
+          "score": 8,
+          "status": "Cold Lead",
+          "converted": false,
+          "createdAt": "2025-12-03T08:34:32.996+03:00",
+          "modifiedAt": "2025-12-04T12:24:05.293+03:00",
+          "utm_campaign": "search-jan2026-admi"
+        },
+        {
+          "email": "mogenisammy935@gmail.com",
+          "name": "Sammy Daudi",
+          "course": "Video Production Certificate (Professional)",
+          "score": 13,
+          "status": "Warm Lead",
+          "converted": false,
+          "createdAt": "2025-12-02T12:03:06.542+03:00",
+          "modifiedAt": "2025-12-05T10:03:37.953+03:00",
+          "utm_campaign": "search-jan2026-admi"
+        },
+        {
+          "email": "muchemicynthia96@gmail.com",
+          "name": "Cynthia Muchemi",
+          "course": "Digital Content Creation Certificate",
+          "score": 12,
+          "status": "Warm Lead",
+          "converted": false,
+          "createdAt": "2025-12-02T10:23:37.736+03:00",
+          "modifiedAt": "2025-12-03T09:26:29.174+03:00",
+          "utm_campaign": "search-jan2026-admi"
+        }
+      ],
+      "converted": [],
+      "conversions": 0,
+      "conversionRate": "0.0",
+      "avgLeadScore": "11.50",
+      "totalLeadScore": 46
+    }
+  },
+  "summary": {
+    "totalLeads": 12,
+    "totalConverted": 0,
+    "overallConversionRate": "0.0"
+  }
+}

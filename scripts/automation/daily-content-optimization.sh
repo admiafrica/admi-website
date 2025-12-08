@@ -19,9 +19,8 @@ cd "$PROJECT_DIR"
 echo "$(date): Starting daily content optimization..." >> "$LOG_FILE"
 
 # Run optimization with limited scope for daily runs
-node scripts/automation/intelligent-content-optimizer.js \
-  --max-faqs 2 \
-  --max-articles 0 \
+# Uses new analytics-to-contentful-faq.js for enhanced FAQ generation
+npm run faq:analytics-to-contentful run \
   >> "$LOG_FILE" 2>&1
 
 EXIT_CODE=$?

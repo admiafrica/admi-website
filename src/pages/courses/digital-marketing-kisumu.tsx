@@ -52,34 +52,6 @@ const DigitalMarketingKisumuPage = () => {
         }}
       />
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'FAQPage',
-            mainEntity: [
-              {
-                '@type': 'Question',
-                name: "How relevant is a digital marketing course in Kisumu's tech and agricultural sectors?",
-                acceptedAnswer: {
-                  '@type': 'Answer',
-                  text: "Extremely relevant. Kisumu's growing tech and agricultural sectors are increasingly leveraging digital marketing to scale their operations. Learning cutting-edge skills such as AI-powered marketing and analytics positions you as a valuable asset within these industries."
-                }
-              },
-              {
-                '@type': 'Question',
-                name: 'Are there ample career opportunities in Kisumu for digital marketing professionals?',
-                acceptedAnswer: {
-                  '@type': 'Answer',
-                  text: 'Yes. With major employers like Lake Region media, numerous agri-tech firms, and international NGOs, Kisumu offers a rich landscape for digital marketing careers. The local emergence of e-commerce and tech startups further amplifies career options.'
-                }
-              }
-            ]
-          })
-        }}
-      />
-
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <Title order={1} ta="center" mb="md">
           Digital Marketing Course in Western

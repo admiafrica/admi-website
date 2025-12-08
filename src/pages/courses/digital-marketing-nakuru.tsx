@@ -52,34 +52,6 @@ const DigitalMarketingNakuruPage = () => {
         }}
       />
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'FAQPage',
-            mainEntity: [
-              {
-                '@type': 'Question',
-                name: "How relevant is a digital marketing course to Nakuru's job market?",
-                acceptedAnswer: {
-                  '@type': 'Answer',
-                  text: 'In Nakuru, the demand for digital marketing skills is surging, particularly within the manufacturing, agribusiness, and tourism sectors. A digital marketing course equips professionals to meet the local and regional market needs, offering strategic insights into consumer behavior and digital trends that are vital for businesses in these industries.'
-                }
-              },
-              {
-                '@type': 'Question',
-                name: 'Are there local businesses in Nakuru that hire digital marketers?',
-                acceptedAnswer: {
-                  '@type': 'Answer',
-                  text: "Yes, many of Nakuru's leading businesses, especially within the manufacturing, agricultural, and tourism sectors, actively seek digital marketers. These firms are looking to expand their online presence and engage with both local and international markets more effectively, creating ample opportunities for skilled professionals."
-                }
-              }
-            ]
-          })
-        }}
-      />
-
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <Title order={1} ta="center" mb="md">
           Digital Marketing Course in Rift Valley
