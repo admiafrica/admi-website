@@ -267,6 +267,19 @@ export default function EnhancedEnquiryForm() {
               ? 10 // Cold lead
               : 1 // Unqualified
 
+      // Store conversion data in sessionStorage for thank-you page
+      const conversionData = {
+        value: conversionValue,
+        transaction_id: `lead_${Date.now()}_${leadScore}`,
+        lead_score: leadScore,
+        course_name: values.courseName,
+        study_timeline: values.studyTimeline,
+        quality_tier: leadScore >= 15 ? 'hot' : leadScore >= 10 ? 'warm' : leadScore >= 5 ? 'cold' : 'unqualified'
+      }
+
+      sessionStorage.setItem('admi_conversion_data', JSON.stringify(conversionData))
+      console.log('💾 Stored conversion data for thank-you page:', conversionData)
+
       // Debug logging
       console.log('🎯 Lead Score:', leadScore)
       console.log('💰 Conversion Value:', conversionValue)

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Image from 'next/image'
 import { Box, Card } from '@mantine/core'
 
@@ -14,6 +14,62 @@ import IconBgImageYellow from '@/assets/icons/ellipse-yellow.svg'
 import IconBgImageRed from '@/assets/icons/ellipse-red.svg'
 
 export default function EnquiryThanksPage() {
+  useEffect(() => {
+    // Fire conversion tracking on page load
+    const conversionDataStr = sessionStorage.getItem('admi_conversion_data')
+
+    if (conversionDataStr) {
+      try {
+        const conversionData = JSON.parse(conversionDataStr)
+        console.log('📊 Retrieved conversion data:', conversionData)
+
+        // Fire conversion event via dataLayer
+        if (typeof window !== 'undefined' && window.dataLayer) {
+          console.log('✅ Firing conversion event on thank-you page...')
+
+          window.dataLayer.push({
+            event: 'conversion',
+            send_to: 'AW-16679471170/F0GVCJjHwNQZEMKQspE-',
+            value: conversionData.value,
+            currency: 'USD',
+            transaction_id: conversionData.transaction_id,
+            event_category: 'Lead Generation',
+            event_label:
+              conversionData.lead_score >= 15
+                ? 'Hot Lead'
+                : conversionData.lead_score >= 10
+                  ? 'Warm Lead'
+                  : conversionData.lead_score >= 5
+                    ? 'Cold Lead'
+                    : 'Unqualified',
+            lead_score: conversionData.lead_score,
+            course_name: conversionData.course_name,
+            study_timeline: conversionData.study_timeline
+          })
+
+          // Also send generate_lead event for GA4
+          window.dataLayer.push({
+            event: 'generate_lead',
+            value: conversionData.value,
+            currency: 'USD',
+            lead_score: conversionData.lead_score,
+            course: conversionData.course_name,
+            quality_tier: conversionData.quality_tier
+          })
+
+          console.log('✅ Conversion events sent successfully')
+        }
+
+        // Clear the data after sending
+        sessionStorage.removeItem('admi_conversion_data')
+      } catch (error) {
+        console.error('❌ Error parsing conversion data:', error)
+      }
+    } else {
+      console.log('ℹ️ No conversion data found (direct page visit)')
+    }
+  }, [])
+
   return (
     <MainLayout footerBgColor="#002A23" minimizeFooter>
       <PageSEO title="Enquiry Submitted" />
