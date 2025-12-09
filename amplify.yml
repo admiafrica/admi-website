@@ -3,25 +3,27 @@ backend:
   phases:
     build:
       commands:
-        - '# Install dependencies for blog generation'
-        - npm install
-        - '# Install Serverless Framework globally'
-        - npm install -g serverless
-        - '# Deploy Lambda functions and EventBridge schedules'
-        - cd infrastructure/serverless/blog-generation
-        - npm install
-        - |
-          if [ "$AWS_BRANCH" = "main" ]; then
-            echo "Deploying to staging..."
-            ./deploy.sh staging --verbose
-          elif [ "$AWS_BRANCH" = "staging" ]; then
-            echo "Deploying to staging..."
-            ./deploy.sh staging --verbose
-          else
-            echo "Deploying to development..."
-            ./deploy.sh dev --verbose
-          fi
-        - cd ../../..
+        - echo "Skipping serverless deployment temporarily - CloudFormation cleanup in progress"
+        - echo "Will re-enable after stack cleanup completes"
+        # - '# Install dependencies for blog generation'
+        # - npm install
+        # - '# Install Serverless Framework globally'
+        # - npm install -g serverless
+        # - '# Deploy Lambda functions and EventBridge schedules'
+        # - cd infrastructure/serverless/blog-generation
+        # - npm install
+        # - |
+        #   if [ "$AWS_BRANCH" = "main" ]; then
+        #     echo "Deploying to staging..."
+        #     ./deploy.sh staging --verbose
+        #   elif [ "$AWS_BRANCH" = "staging" ]; then
+        #     echo "Deploying to staging..."
+        #     ./deploy.sh staging --verbose
+        #   else
+        #     echo "Deploying to development..."
+        #     ./deploy.sh dev --verbose
+        #   fi
+        # - cd ../../..
 frontend:
   phases:
     preBuild:
