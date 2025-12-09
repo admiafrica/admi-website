@@ -535,7 +535,7 @@ export default function EnhancedEnquiryForm() {
               <Radio.Group {...form.getInputProps('programType')}>
                 <Stack gap="xs">
                   <Radio value="full-time-diploma" label="Full-time Diploma (2 years)" />
-                  <Radio value="professional-certificate" label="Professional Certificate (6-12 months)" />
+                  <Radio value="professional-certificate" label="Professional Certificate (3-6 months)" />
                   <Radio value="foundation-certificate" label="Foundation Certificate (3-6 months)" />
                   <Radio value="weekend-parttime" label="Weekend/Part-time classes" />
                 </Stack>
