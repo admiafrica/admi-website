@@ -72,10 +72,4 @@ export function WebVitals() {
   return null // This component doesn't render anything
 }
 
-// Extend Window type for analytics
-declare global {
-  interface Window {
-    gtag?: (...args: any[]) => void
-    va?: (event: string, name: string, data?: any) => void
-  }
-}
+// Note: Window.gtag type is defined in src/types/gtag.d.ts

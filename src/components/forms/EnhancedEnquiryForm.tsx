@@ -257,6 +257,41 @@ export default function EnhancedEnquiryForm() {
         return
       }
 
+      // Calculate conversion value based on lead score
+      const conversionValue =
+        leadScore >= 15
+          ? 100 // Hot lead
+          : leadScore >= 10
+            ? 30 // Warm lead
+            : leadScore >= 5
+              ? 10 // Cold lead
+              : 1 // Unqualified
+
+      // Send conversion event to Google Ads with dynamic value
+      if (typeof window !== 'undefined' && typeof window.gtag !== 'undefined') {
+        window.gtag('event', 'conversion', {
+          send_to: 'AW-16679471170/F0GVCJjHwNQZEMKQspE-',
+          value: conversionValue,
+          currency: 'USD',
+          transaction_id: `lead_${Date.now()}_${leadScore}`,
+          event_category: 'Lead Generation',
+          event_label:
+            leadScore >= 15 ? 'Hot Lead' : leadScore >= 10 ? 'Warm Lead' : leadScore >= 5 ? 'Cold Lead' : 'Unqualified',
+          lead_score: leadScore,
+          course_name: values.courseName,
+          study_timeline: values.studyTimeline
+        })
+
+        // Also send to GA4 for analytics tracking
+        window.gtag('event', 'generate_lead', {
+          value: conversionValue,
+          currency: 'USD',
+          lead_score: leadScore,
+          course: values.courseName,
+          quality_tier: leadScore >= 15 ? 'hot' : leadScore >= 10 ? 'warm' : leadScore >= 5 ? 'cold' : 'unqualified'
+        })
+      }
+
       // Show success message
       setAlert({
         type: 'success',
