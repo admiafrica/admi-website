@@ -267,29 +267,81 @@ export default function EnhancedEnquiryForm() {
               ? 10 // Cold lead
               : 1 // Unqualified
 
-      // Send conversion event to Google Ads with dynamic value
-      if (typeof window !== 'undefined' && typeof window.gtag !== 'undefined') {
-        window.gtag('event', 'conversion', {
-          send_to: 'AW-16679471170/F0GVCJjHwNQZEMKQspE-',
-          value: conversionValue,
-          currency: 'USD',
-          transaction_id: `lead_${Date.now()}_${leadScore}`,
-          event_category: 'Lead Generation',
-          event_label:
-            leadScore >= 15 ? 'Hot Lead' : leadScore >= 10 ? 'Warm Lead' : leadScore >= 5 ? 'Cold Lead' : 'Unqualified',
-          lead_score: leadScore,
-          course_name: values.courseName,
-          study_timeline: values.studyTimeline
-        })
+      // Debug logging
+      console.log('🎯 Lead Score:', leadScore)
+      console.log('💰 Conversion Value:', conversionValue)
+      console.log('📊 dataLayer available:', typeof window.dataLayer !== 'undefined')
+      console.log('📊 gtag available:', typeof window.gtag !== 'undefined')
 
-        // Also send to GA4 for analytics tracking
-        window.gtag('event', 'generate_lead', {
-          value: conversionValue,
-          currency: 'USD',
-          lead_score: leadScore,
-          course: values.courseName,
-          quality_tier: leadScore >= 15 ? 'hot' : leadScore >= 10 ? 'warm' : leadScore >= 5 ? 'cold' : 'unqualified'
-        })
+      // Send conversion event via dataLayer (GTM) or gtag (if available)
+      if (typeof window !== 'undefined') {
+        // Try GTM dataLayer first (preferred for this site)
+        if (window.dataLayer) {
+          console.log('✅ Sending via GTM dataLayer...')
+
+          window.dataLayer.push({
+            event: 'conversion',
+            send_to: 'AW-16679471170/F0GVCJjHwNQZEMKQspE-',
+            value: conversionValue,
+            currency: 'USD',
+            transaction_id: `lead_${Date.now()}_${leadScore}`,
+            event_category: 'Lead Generation',
+            event_label:
+              leadScore >= 15
+                ? 'Hot Lead'
+                : leadScore >= 10
+                  ? 'Warm Lead'
+                  : leadScore >= 5
+                    ? 'Cold Lead'
+                    : 'Unqualified',
+            lead_score: leadScore,
+            course_name: values.courseName,
+            study_timeline: values.studyTimeline
+          })
+
+          // Also send generate_lead event for GA4
+          window.dataLayer.push({
+            event: 'generate_lead',
+            value: conversionValue,
+            currency: 'USD',
+            lead_score: leadScore,
+            course: values.courseName,
+            quality_tier: leadScore >= 15 ? 'hot' : leadScore >= 10 ? 'warm' : leadScore >= 5 ? 'cold' : 'unqualified'
+          })
+        }
+        // Fallback to gtag if available
+        else if (typeof window.gtag !== 'undefined') {
+          console.log('✅ Sending via gtag...')
+
+          window.gtag('event', 'conversion', {
+            send_to: 'AW-16679471170/F0GVCJjHwNQZEMKQspE-',
+            value: conversionValue,
+            currency: 'USD',
+            transaction_id: `lead_${Date.now()}_${leadScore}`,
+            event_category: 'Lead Generation',
+            event_label:
+              leadScore >= 15
+                ? 'Hot Lead'
+                : leadScore >= 10
+                  ? 'Warm Lead'
+                  : leadScore >= 5
+                    ? 'Cold Lead'
+                    : 'Unqualified',
+            lead_score: leadScore,
+            course_name: values.courseName,
+            study_timeline: values.studyTimeline
+          })
+
+          window.gtag('event', 'generate_lead', {
+            value: conversionValue,
+            currency: 'USD',
+            lead_score: leadScore,
+            course: values.courseName,
+            quality_tier: leadScore >= 15 ? 'hot' : leadScore >= 10 ? 'warm' : leadScore >= 5 ? 'cold' : 'unqualified'
+          })
+        } else {
+          console.warn('⚠️ Neither dataLayer nor gtag found - conversion tracking may not work')
+        }
       }
 
       // Show success message
