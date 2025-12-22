@@ -1,14 +1,13 @@
 /**
  * UTM Tracking Utility
  * Captures, stores, and retrieves UTM parameters to persist across multi-page journeys
- * 
+ *
  * Issue: Only 45.3% of contacts have proper UTM tracking (232/512)
  * Solution: Use sessionStorage to preserve UTM parameters from landing page to form submission
  */
 
 // UTM parameter names
 const UTM_PARAMS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'] as const
-type UTMParam = typeof UTM_PARAMS[number]
 
 // Storage keys
 const STORAGE_KEYS = {
@@ -40,7 +39,7 @@ export function captureUTMsFromURL(): UTMData {
     const utmData: UTMData = {}
 
     // Capture UTM parameters from URL
-    UTM_PARAMS.forEach(param => {
+    UTM_PARAMS.forEach((param) => {
       const value = urlParams.get(param)
       if (value) {
         utmData[param] = value
@@ -69,6 +68,11 @@ export function captureUTMsFromURL(): UTMData {
       utmData.first_visit = timestamp
     }
 
+    // Debug log - will be removed after testing
+    if (Object.keys(utmData).length > 0) {
+      console.log('✅ UTM Parameters Captured:', utmData)
+    }
+
     return utmData
   } catch (error) {
     console.error('Error capturing UTM parameters:', error)
@@ -87,7 +91,7 @@ export function getStoredUTMs(): UTMData {
     const utmData: UTMData = {}
 
     // Retrieve stored UTM parameters
-    UTM_PARAMS.forEach(param => {
+    UTM_PARAMS.forEach((param) => {
       const value = sessionStorage.getItem(param)
       if (value) {
         utmData[param] = value
@@ -144,7 +148,7 @@ export function clearStoredUTMs(): void {
   if (typeof window === 'undefined') return
 
   try {
-    UTM_PARAMS.forEach(param => {
+    UTM_PARAMS.forEach((param) => {
       sessionStorage.removeItem(param)
     })
     sessionStorage.removeItem(STORAGE_KEYS.LANDING_PAGE)
@@ -175,7 +179,7 @@ export function createWhatsAppAttribution(): UTMData {
  */
 export function enrichUTMData(utmData: UTMData): Required<Omit<UTMData, 'first_visit'>> {
   const pageInfo = getCurrentPageInfo()
-  
+
   return {
     utm_source: utmData.utm_source || 'direct',
     utm_medium: utmData.utm_medium || 'none',
@@ -196,7 +200,7 @@ export function debugUTMState(): void {
 
   const stored = getStoredUTMs()
   const current = getCurrentPageInfo()
-  
+
   console.log('🔍 UTM Tracking Debug:', {
     stored_utms: stored,
     current_page_info: current,
