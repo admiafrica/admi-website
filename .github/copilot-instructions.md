@@ -5,6 +5,7 @@
 Next.js 15 marketing website for Africa Digital Media Institute (ADMI) with **App Router**, **Mantine UI**, **Contentful CMS**, **YouTube integration**, and **AI-powered content optimization**. Deployed on AWS Amplify with serverless Lambda functions for automated tasks.
 
 ### Business Context (Critical for AI Agents)
+
 - **Traffic Recovery Success**: Achieved 7x organic traffic increase (9.2% → 67%) in 34 days (Oct-Nov 2025)
 - **Lead Quality Crisis**: 39,647 contacts but only 0.2% convert to applications - **quality over quantity is the strategic priority**
 - **African Market Reality**: Easy to collect contacts, hard to convert - focus on pre-qualification and lead scoring
@@ -14,6 +15,7 @@ Next.js 15 marketing website for Africa Digital Media Institute (ADMI) with **Ap
 ## Architecture & Key Components
 
 ### Frontend Stack
+
 - **Next.js 15** (App Router) with TypeScript
 - **Mantine v7** UI library (`@mantine/core`, `@mantine/hooks`, `@mantine/carousel`)
   - Theme: `src/styles/theme` (imported in `src/app/providers.tsx`)
@@ -23,6 +25,7 @@ Next.js 15 marketing website for Africa Digital Media Institute (ADMI) with **Ap
 - **Middleware**: Two middleware files - root `middleware.ts` (redirect logic) and `src/middleware.ts` (spam filtering, rate limiting)
 
 ### Content Management
+
 - **Contentful CMS** with two space configurations:
   - Main content: `CONTENTFUL_SPACE_ID` / `CONTENTFUL_ACCESS_TOKEN`
   - ADMI-specific: `ADMI_CONTENTFUL_SPACE_ID` / `ADMI_CONTENTFUL_ACCESS_TOKEN`
@@ -31,6 +34,7 @@ Next.js 15 marketing website for Africa Digital Media Institute (ADMI) with **Ap
 - Client: `src/utils/axiosContentfulClient.ts` (axios-based, not SDK)
 
 ### External Integrations
+
 - **YouTube**: Channel videos auto-categorized by course keywords (`src/utils/youtube-api.ts`, `src/utils/video-categorization.ts`)
   - Cache refreshed via cron: `npm run cache-refresh` or AWS Lambda (`infrastructure/aws-cron/`)
   - Manual categorization overrides: `src/utils/manual-categorization.ts`
@@ -41,6 +45,7 @@ Next.js 15 marketing website for Africa Digital Media Institute (ADMI) with **Ap
 ## Critical Development Workflows
 
 ### Build & Development
+
 ```bash
 # Development (runs on port 3000)
 npm run dev
@@ -54,6 +59,7 @@ npm run type-check
 ```
 
 ### Lead Quality & Conversion Optimization (NEW - Top Priority)
+
 ```bash
 # Test enhanced pre-qualification form
 node scripts/test-enhanced-form.js
@@ -70,6 +76,7 @@ npm run ads:performance # Historical performance only
 ```
 
 **Critical Context**:
+
 - Current conversion rate: 0.2% (39,647 contacts → 95 applications)
 - Target: 5-7% conversion with pre-qualified leads
 - Strategy: Reduce volume (5,000-8,000 leads), increase quality
@@ -77,18 +84,21 @@ npm run ads:performance # Historical performance only
 - Lead scoring system: Categorize as Hot (7-10), Warm (4-6), Cold (0-3)
 
 **Google Ads Recovery**:
+
 - 2024: 267,577 paid sessions → 2025: 1,563 sessions (99.4% drop)
 - Target campaigns: "Campaign 1" (129K sessions), "Creative Media and Tech" (10K sessions)
 - Analysis outputs: `reports/google-ads/*.json` (status, performance, recommendations)
 - Recovery goal: Restore 60-80% of 2024 paid traffic levels
 
 ### SEO & Canonical URLs
+
 - **All canonical tags point to naked domain**: `https://admi.africa` (NOT www)
 - **WWW redirect**: Permanent 301 from `www.admi.africa/*` to `admi.africa/*` (in `next.config.mjs`)
 - **Internal links**: Use relative paths or naked domain only
 - See: `docs/seo-canonical-implementation.md`
 
 ### FAQ System (AI-Powered)
+
 ```bash
 # Setup OpenAI Assistant with ADMI knowledge base
 npm run faq:setup-assistant
@@ -101,10 +111,12 @@ npm run faq:optimize-main
 npm run faq:analyze-queries
 npm run faq:optimize-with-real-data
 ```
+
 - Location: `scripts/ai/` and `scripts/analytics/`
 - See: `scripts/ai/README.md`, `docs/contentful-faq-setup.md`
 
 ### Blog Generation
+
 ```bash
 # Daily batch (2 articles)
 npm run blog:daily
@@ -115,11 +127,13 @@ npm run blog:weekly
 # Custom batch
 npm run blog:generate
 ```
+
 - Uses Perplexity AI for research-driven content
 - Creates drafts in Contentful for manual review
 - Topic database: `scripts/blog-generation/blog-topics-database.js`
 
 ### Media Management
+
 ```bash
 # Generate media manifest (before builds)
 npm run media:generate
@@ -131,6 +145,7 @@ npm run cache-refresh  # Requires CRON_SECRET and APP_URL env vars
 ## Project-Specific Conventions
 
 ### Component Organization
+
 - **App Router pages**: `src/app/[route]/page.tsx`
 - **Reusable components**: `src/components/{feature}/{ComponentName}.tsx`
   - Categories: `analytics/`, `cards/`, `course/`, `forms/`, `home/`, `seo/`, `shared/`, `student-support/`, `ui/`
@@ -138,6 +153,7 @@ npm run cache-refresh  # Requires CRON_SECRET and APP_URL env vars
 - **Legacy pages**: `src/pages/` (Pages Router - being migrated)
 
 ### Data Fetching Pattern
+
 ```typescript
 // Contentful queries via axios client
 import axiosContentfulClient from '@/utils/axiosContentfulClient'
@@ -146,14 +162,16 @@ const response = await axiosContentfulClient.get('/entries', {
   params: {
     content_type: 'course',
     'fields.slug': courseSlug,
-    include: 2  // Include linked entries
+    include: 2 // Include linked entries
   }
 })
 ```
+
 - Helper: `src/utils/course-content-fetcher.ts` for course-specific queries
 - Entry resolution: `src/utils/index.ts` (`resolveEntryReferences()`)
 
 ### Environment Variables Required
+
 ```env
 # Contentful (two configurations)
 CONTENTFUL_SPACE_ID=
@@ -175,6 +193,7 @@ GOOGLE_ADS_DEVELOPER_TOKEN=
 ```
 
 ### Spam Protection
+
 - **Middleware layers**: `middleware.ts` (redirects) + `src/middleware.ts` (security)
 - **Rate limiting**: 100 requests/minute per IP (in-memory, basic protection)
 - **Spam patterns**: Extensive gambling/betting detection in `src/middleware.ts` lines 1-100
@@ -183,13 +202,49 @@ GOOGLE_ADS_DEVELOPER_TOKEN=
 ## Deployment & Infrastructure
 
 ### AWS Amplify
+
 - **Config**: `amplify.yml` (builds frontend + deploys serverless functions)
-- **Branches**: `main` → production, `staging` → staging environment
+- **Branches**: `staging` → staging environment, `main` → production
 - **Build phases**:
   1. Backend: Deploy Lambda functions (`infrastructure/serverless/blog-generation/`)
   2. Frontend: Generate media files → Next.js build
 
+### Git Workflow (CRITICAL - Always Follow This Order)
+
+**REQUIRED DEPLOYMENT PROCESS:**
+
+```bash
+# 1. ALWAYS test and deploy to staging first
+git checkout staging
+git pull origin staging
+# Make changes, test locally
+npm run type-check
+npm run build
+git add -A
+git commit -m "feat: description"
+git push origin staging
+
+# 2. Test on staging environment
+# Visit https://staging.admi.africa
+# Verify changes work correctly
+# Run any necessary validation scripts
+
+# 3. Only after staging validation, merge to production
+git checkout main
+git pull origin main
+git merge staging
+git push origin main
+
+# 4. Monitor production deployment
+# Visit https://admi.africa
+# Check AWS Amplify console for build status
+```
+
+**❌ NEVER push directly to main without staging validation**
+**✅ ALWAYS use staging → main workflow for all changes**
+
 ### Serverless Functions
+
 ```bash
 # Deploy cron Lambda (video cache refresh)
 npm run deploy-cron
@@ -198,10 +253,12 @@ npm run deploy-cron
 cd infrastructure/serverless/blog-generation
 ./deploy.sh [staging|dev]
 ```
+
 - **Video cache**: Daily refresh at 1 AM UTC via EventBridge
 - **Blog generation**: Weekly schedule (adjust in Lambda config)
 
 ### Environment Management
+
 ```bash
 # Deploy env vars to Amplify
 ./config/environment/scripts/deploy-env-vars.sh [staging|production]
@@ -213,6 +270,7 @@ cd infrastructure/serverless/blog-generation
 ## Testing & Debugging
 
 ### Useful Scripts
+
 ```bash
 # Check Contentful content types
 npm run contentful:check
@@ -234,6 +292,7 @@ node scripts/analytics/lead-quality-analysis.js
 ```
 
 ### Common Patterns
+
 - **Dynamic imports**: Use for heavy components (Modals, etc.) to reduce bundle size
 - **Image optimization**: All images via Next.js `<Image>` with `remotePatterns` in `next.config.mjs`
 - **Chunk optimization**: Custom webpack config splits Mantine, Framer Motion, and vendor chunks
@@ -241,7 +300,8 @@ node scripts/analytics/lead-quality-analysis.js
 - **Lead scoring**: Client-side scoring before submission to reduce low-quality leads
 
 ## Key Documentation
-- **Lead quality crisis**: Analysis documents in workspace root (ADMI-Lead-Quality-*.html)
+
+- **Lead quality crisis**: Analysis documents in workspace root (ADMI-Lead-Quality-\*.html)
 - **Pre-qualification strategy**: `ADMI-Pre-Qualification-Form-Strategy.html`
 - **Google Ads API**: `ADMI-Google-Ads-API-Design-Documentation.md`
 - **Traffic recovery**: `ADMI-SEO-Updated-Recommendations-2025.md`
@@ -254,9 +314,10 @@ node scripts/analytics/lead-quality-analysis.js
 
 ## Common Pitfalls
 
-1. **Mantine imports**: Never enable `optimizePackageImports` for Mantine in Next.js config
-2. **Middleware files**: Two separate files with different purposes - don't confuse them
-3. **Build order**: Media scripts MUST run before `next build` (automated in package.json)
-4. **Contentful spaces**: Check which space ID to use - main vs ADMI-specific
-5. **Canonical URLs**: All canonical tags use `https://admi.africa` (naked domain only)
-6. **Rate limiting**: In-memory store - resets on deployment (upgrade to Redis for production-grade)
+1. **Deployment workflow**: ALWAYS push to `staging` first, test, then merge to `main` - never push directly to production
+2. **Mantine imports**: Never enable `optimizePackageImports` for Mantine in Next.js config
+3. **Middleware files**: Two separate files with different purposes - don't confuse them
+4. **Build order**: Media scripts MUST run before `next build` (automated in package.json)
+5. **Contentful spaces**: Check which space ID to use - main vs ADMI-specific
+6. **Canonical URLs**: All canonical tags use `https://admi.africa` (naked domain only)
+7. **Rate limiting**: In-memory store - resets on deployment (upgrade to Redis for production-grade)
