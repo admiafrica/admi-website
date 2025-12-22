@@ -16,6 +16,9 @@ interface EnhancedLeadData {
   utm_campaign?: string
   utm_term?: string
   utm_content?: string
+  landing_page?: string
+  referrer?: string
+  current_page?: string
   leadScore: number
   formType: string
   submissionDate: string
@@ -138,6 +141,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     utm_campaign = 'organic',
     utm_term = '',
     utm_content = '',
+    landing_page = '',
+    referrer = '',
+    current_page = '',
     leadScore: clientLeadScore,
     formType,
     submissionDate
@@ -297,6 +303,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         UTM_SOURCE: utm_source || '',
         UTM_MEDIUM: utm_medium || '',
         UTM_CAMPAIGN: utm_campaign || '',
+        UTM_TERM: utm_term || '',
+        UTM_CONTENT: utm_content || '',
+        PAGE: current_page || landing_page, // Current page where form was submitted
+        REFERRER: referrer, // Original referrer
+        LANDING_PAGE: landing_page, // First page visited
 
         // Summary of pre-qualification responses
         CONVERSATION_SUMMARY: `Timeline: ${timelineLabels[studyTimeline] || studyTimeline} | Program: ${programLabels[programType] || programType} | Investment: ${investmentRange ? investmentLabels[investmentRange] : 'Not specified'} | Goals: ${goalLabels[careerGoals] || careerGoals} | Experience: ${experienceLabels[experienceLevel] || experienceLevel}`

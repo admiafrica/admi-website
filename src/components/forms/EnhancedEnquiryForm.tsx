@@ -18,6 +18,7 @@ import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
 
 import { IconAsterisk, IconArrowRight, IconArrowLeft } from '@tabler/icons-react'
+import { getStoredUTMs, getCurrentPageInfo } from '@/utils/utm-tracking'
 
 interface FormData {
   // Basic contact info
@@ -207,6 +208,10 @@ export default function EnhancedEnquiryForm() {
     // Calculate lead score
     const leadScore = calculateLeadScore(values)
 
+    // Get stored UTM parameters and current page info
+    const storedUTMs = getStoredUTMs()
+    const pageInfo = getCurrentPageInfo()
+
     // Format phone number - remove leading zeros and ensure proper format
     const cleanPhone = values.phone.replace(/\D/g, '') // Remove non-digits
     const formattedPhone = cleanPhone.replace(/^0+/, '') // Remove leading zeros
@@ -220,7 +225,17 @@ export default function EnhancedEnquiryForm() {
       courseName: values.courseName.trim(),
       leadScore,
       formType: 'enhanced-enquiry',
-      submissionDate: new Date().toISOString()
+      submissionDate: new Date().toISOString(),
+      // Include stored UTM parameters (prioritize stored over form values)
+      utm_source: storedUTMs.utm_source || values.utm_source || 'direct',
+      utm_medium: storedUTMs.utm_medium || values.utm_medium || 'none',
+      utm_campaign: storedUTMs.utm_campaign || values.utm_campaign || 'organic',
+      utm_term: storedUTMs.utm_term || values.utm_term || '',
+      utm_content: storedUTMs.utm_content || values.utm_content || '',
+      // Include page tracking
+      landing_page: storedUTMs.landing_page || pageInfo.current_page,
+      referrer: storedUTMs.referrer || pageInfo.current_referrer,
+      current_page: pageInfo.current_page
     }
 
     try {

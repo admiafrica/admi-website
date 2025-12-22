@@ -1,8 +1,10 @@
 import { AppShell, rem } from '@mantine/core'
 import { useHeadroom } from '@mantine/hooks'
+import { useEffect } from 'react'
 
 import { Footer, FooterMini, NavBar } from '@/components/shared/v3'
 import { nexaFont, proximaNovaFont } from '@/styles/theme'
+import { captureUTMsFromURL } from '@/utils/utm-tracking'
 
 type LayoutProps = {
   children: React.ReactNode
@@ -14,6 +16,11 @@ type LayoutProps = {
 export function MainLayout({ children, minimizeFooter = false, minimizeHeader = false, footerBgColor }: LayoutProps) {
   const pinned = useHeadroom({ fixedAt: 120 })
   const mode = 'dark'
+
+  // Capture UTM parameters on mount
+  useEffect(() => {
+    captureUTMsFromURL()
+  }, [])
 
   return (
     <div className={`${proximaNovaFont.variable} ${nexaFont.variable}`}>
