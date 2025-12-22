@@ -1,6 +1,8 @@
 import { AppShell, rem } from '@mantine/core'
 import { useHeadroom } from '@mantine/hooks'
+import { useEffect } from 'react'
 import { Footer, Header } from '../components/shared'
+import { captureUTMsFromURL } from '@/utils/utm-tracking'
 
 type LayoutProps = {
   children: React.ReactNode
@@ -8,6 +10,11 @@ type LayoutProps = {
 
 export function MainLayout({ children }: LayoutProps) {
   const pinned = useHeadroom({ fixedAt: 120 })
+
+  // Capture UTM parameters on mount
+  useEffect(() => {
+    captureUTMsFromURL()
+  }, [])
 
   return (
     <AppShell header={{ height: 81, collapsed: !pinned, offset: false }} padding="md">

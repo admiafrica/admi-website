@@ -8,6 +8,7 @@ import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
 
 import { IconAsterisk } from '@tabler/icons-react'
+import { getStoredUTMs, getCurrentPageInfo } from '@/utils/utm-tracking'
 
 export default function EnquiryForm() {
   const router = useRouter()
@@ -64,6 +65,10 @@ export default function EnquiryForm() {
       return
     }
 
+    // Get stored UTM parameters and current page info
+    const storedUTMs = getStoredUTMs()
+    const pageInfo = getCurrentPageInfo()
+
     // always remove leading zero from phone incase included
     const formattedPhone = values.phone.replace(/^0+/, '')
     const data = {
@@ -72,7 +77,17 @@ export default function EnquiryForm() {
       lastName: values.lastName.trim(),
       email: values.email.trim(),
       phone: `${countryCode}${formattedPhone}`,
-      courseName: values.courseName.trim()
+      courseName: values.courseName.trim(),
+      // Include stored UTM parameters (prioritize stored over form values)
+      utm_source: storedUTMs.utm_source || values.utm_source || 'direct',
+      utm_medium: storedUTMs.utm_medium || values.utm_medium || 'none',
+      utm_campaign: storedUTMs.utm_campaign || values.utm_campaign || 'organic',
+      utm_term: storedUTMs.utm_term || values.utm_term || '',
+      utm_content: storedUTMs.utm_content || values.utm_content || '',
+      // Include page tracking
+      landing_page: storedUTMs.landing_page || pageInfo.current_page,
+      referrer: storedUTMs.referrer || pageInfo.current_referrer,
+      current_page: pageInfo.current_page
     }
 
     try {

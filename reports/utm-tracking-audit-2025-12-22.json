@@ -1,0 +1,336 @@
+{
+  "total": 512,
+  "withUTM": 232,
+  "noUTM": 280,
+  "partialUTM": 0,
+  "sources": {
+    "google": 50,
+    "meta": 46,
+    "direct": 132,
+    "facebook": 4
+  },
+  "mediums": {
+    "cpc": 50,
+    "paid-social": 50,
+    "none": 132
+  },
+  "campaigns": {
+    "search-jan2026-admi": 18,
+    "leads-remarketing-catalog": 50,
+    "organic": 132,
+    "pmax-jan2026-traffic": 29,
+    "23282289054": 3
+  },
+  "pages": {},
+  "referrers": {},
+  "noUTMSamples": [
+    {
+      "email": "254112050346@mailin-wa.com",
+      "name": "John Miracle",
+      "page": "",
+      "referrer": "",
+      "createdAt": "2025-12-21T23:22:42.911+03:00",
+      "attributes": [
+        "WHATSAPP",
+        "FIRSTNAME",
+        "SCORE"
+      ]
+    },
+    {
+      "email": "254797408373@mailin-wa.com",
+      "name": "TERER SAFAR",
+      "page": "",
+      "referrer": "",
+      "createdAt": "2025-12-21T21:32:19.614+03:00",
+      "attributes": [
+        "WHATSAPP",
+        "FIRSTNAME",
+        "SCORE"
+      ]
+    },
+    {
+      "email": "254790370705@mailin-wa.com",
+      "name": "Yvonne",
+      "page": "",
+      "referrer": "",
+      "createdAt": "2025-12-21T16:44:30.941+03:00",
+      "attributes": [
+        "WHATSAPP",
+        "FIRSTNAME",
+        "SCORE"
+      ]
+    },
+    {
+      "email": "nonykingz984@gmail.com",
+      "name": "Jerry Otieno I",
+      "page": "",
+      "referrer": "",
+      "createdAt": "2025-12-21T15:43:23.379+03:00",
+      "attributes": [
+        "LASTNAME",
+        "FIRSTNAME",
+        "SMS",
+        "QUALIFICATION_SCORE",
+        "TENANT_ID",
+        "LEAD_SOURCE",
+        "QUALIFICATION_STATUS",
+        "CONVERSATION_SUMMARY",
+        "SCORE"
+      ]
+    },
+    {
+      "email": "theoneyahayaissa@gmail.com",
+      "name": "",
+      "page": "",
+      "referrer": "",
+      "createdAt": "2025-12-21T15:34:21.151+03:00",
+      "attributes": [
+        "PREFERRED_COURSE",
+        "QUALIFICATION_SCORE",
+        "TENANT_ID",
+        "LEAD_SOURCE",
+        "QUALIFICATION_STATUS",
+        "CONVERSATION_SUMMARY",
+        "SCORE"
+      ]
+    },
+    {
+      "email": "joe14robertson@gmail.com",
+      "name": "Joseph",
+      "page": "",
+      "referrer": "",
+      "createdAt": "2025-12-21T12:37:33.926+03:00",
+      "attributes": [
+        "FIRSTNAME",
+        "PREFERRED_COURSE",
+        "QUALIFICATION_SCORE",
+        "TENANT_ID",
+        "LEAD_SOURCE",
+        "QUALIFICATION_STATUS",
+        "CONVERSATION_SUMMARY",
+        "SCORE"
+      ]
+    },
+    {
+      "email": "254115806264@mailin-wa.com",
+      "name": "Dj AnToNiO🇰🇪©~✓Producer",
+      "page": "",
+      "referrer": "",
+      "createdAt": "2025-12-21T10:23:02.036+03:00",
+      "attributes": [
+        "WHATSAPP",
+        "FIRSTNAME",
+        "SCORE"
+      ]
+    },
+    {
+      "email": "nomedoop@gmail.com",
+      "name": "",
+      "page": "",
+      "referrer": "",
+      "createdAt": "2025-12-21T09:37:34.773+03:00",
+      "attributes": [
+        "PREFERRED_COURSE",
+        "QUALIFICATION_SCORE",
+        "TENANT_ID",
+        "LEAD_SOURCE",
+        "QUALIFICATION_STATUS",
+        "CONVERSATION_SUMMARY",
+        "SCORE"
+      ]
+    },
+    {
+      "email": "ochiengdickens878@gmail.com",
+      "name": "Dickens and my",
+      "page": "",
+      "referrer": "",
+      "createdAt": "2025-12-21T09:25:57.710+03:00",
+      "attributes": [
+        "LASTNAME",
+        "FIRSTNAME",
+        "QUALIFICATION_SCORE",
+        "TENANT_ID",
+        "LEAD_SOURCE",
+        "QUALIFICATION_STATUS",
+        "CONVERSATION_SUMMARY",
+        "SCORE"
+      ]
+    },
+    {
+      "name": "",
+      "page": "",
+      "referrer": "",
+      "createdAt": "2025-12-21T06:07:30.557+03:00",
+      "attributes": []
+    }
+  ],
+  "report": {
+    "summary": {
+      "total": 512,
+      "withUTM": 232,
+      "noUTM": 280,
+      "utmCoveragePercent": "45.3"
+    },
+    "sources": {
+      "google": 50,
+      "meta": 46,
+      "direct": 132,
+      "facebook": 4
+    },
+    "mediums": {
+      "cpc": 50,
+      "paid-social": 50,
+      "none": 132
+    },
+    "campaigns": {
+      "search-jan2026-admi": 18,
+      "leads-remarketing-catalog": 50,
+      "organic": 132,
+      "pmax-jan2026-traffic": 29,
+      "23282289054": 3
+    },
+    "pages": {},
+    "referrers": {},
+    "noUTMSamples": [
+      {
+        "email": "254112050346@mailin-wa.com",
+        "name": "John Miracle",
+        "page": "",
+        "referrer": "",
+        "createdAt": "2025-12-21T23:22:42.911+03:00",
+        "attributes": [
+          "WHATSAPP",
+          "FIRSTNAME",
+          "SCORE"
+        ]
+      },
+      {
+        "email": "254797408373@mailin-wa.com",
+        "name": "TERER SAFAR",
+        "page": "",
+        "referrer": "",
+        "createdAt": "2025-12-21T21:32:19.614+03:00",
+        "attributes": [
+          "WHATSAPP",
+          "FIRSTNAME",
+          "SCORE"
+        ]
+      },
+      {
+        "email": "254790370705@mailin-wa.com",
+        "name": "Yvonne",
+        "page": "",
+        "referrer": "",
+        "createdAt": "2025-12-21T16:44:30.941+03:00",
+        "attributes": [
+          "WHATSAPP",
+          "FIRSTNAME",
+          "SCORE"
+        ]
+      },
+      {
+        "email": "nonykingz984@gmail.com",
+        "name": "Jerry Otieno I",
+        "page": "",
+        "referrer": "",
+        "createdAt": "2025-12-21T15:43:23.379+03:00",
+        "attributes": [
+          "LASTNAME",
+          "FIRSTNAME",
+          "SMS",
+          "QUALIFICATION_SCORE",
+          "TENANT_ID",
+          "LEAD_SOURCE",
+          "QUALIFICATION_STATUS",
+          "CONVERSATION_SUMMARY",
+          "SCORE"
+        ]
+      },
+      {
+        "email": "theoneyahayaissa@gmail.com",
+        "name": "",
+        "page": "",
+        "referrer": "",
+        "createdAt": "2025-12-21T15:34:21.151+03:00",
+        "attributes": [
+          "PREFERRED_COURSE",
+          "QUALIFICATION_SCORE",
+          "TENANT_ID",
+          "LEAD_SOURCE",
+          "QUALIFICATION_STATUS",
+          "CONVERSATION_SUMMARY",
+          "SCORE"
+        ]
+      },
+      {
+        "email": "joe14robertson@gmail.com",
+        "name": "Joseph",
+        "page": "",
+        "referrer": "",
+        "createdAt": "2025-12-21T12:37:33.926+03:00",
+        "attributes": [
+          "FIRSTNAME",
+          "PREFERRED_COURSE",
+          "QUALIFICATION_SCORE",
+          "TENANT_ID",
+          "LEAD_SOURCE",
+          "QUALIFICATION_STATUS",
+          "CONVERSATION_SUMMARY",
+          "SCORE"
+        ]
+      },
+      {
+        "email": "254115806264@mailin-wa.com",
+        "name": "Dj AnToNiO🇰🇪©~✓Producer",
+        "page": "",
+        "referrer": "",
+        "createdAt": "2025-12-21T10:23:02.036+03:00",
+        "attributes": [
+          "WHATSAPP",
+          "FIRSTNAME",
+          "SCORE"
+        ]
+      },
+      {
+        "email": "nomedoop@gmail.com",
+        "name": "",
+        "page": "",
+        "referrer": "",
+        "createdAt": "2025-12-21T09:37:34.773+03:00",
+        "attributes": [
+          "PREFERRED_COURSE",
+          "QUALIFICATION_SCORE",
+          "TENANT_ID",
+          "LEAD_SOURCE",
+          "QUALIFICATION_STATUS",
+          "CONVERSATION_SUMMARY",
+          "SCORE"
+        ]
+      },
+      {
+        "email": "ochiengdickens878@gmail.com",
+        "name": "Dickens and my",
+        "page": "",
+        "referrer": "",
+        "createdAt": "2025-12-21T09:25:57.710+03:00",
+        "attributes": [
+          "LASTNAME",
+          "FIRSTNAME",
+          "QUALIFICATION_SCORE",
+          "TENANT_ID",
+          "LEAD_SOURCE",
+          "QUALIFICATION_STATUS",
+          "CONVERSATION_SUMMARY",
+          "SCORE"
+        ]
+      },
+      {
+        "name": "",
+        "page": "",
+        "referrer": "",
+        "createdAt": "2025-12-21T06:07:30.557+03:00",
+        "attributes": []
+      }
+    ]
+  }
+}
