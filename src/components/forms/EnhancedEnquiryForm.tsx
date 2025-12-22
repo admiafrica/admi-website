@@ -403,15 +403,35 @@ export default function EnhancedEnquiryForm() {
   }, [fetchCourses]) // Include fetchCourses dependency
 
   useEffect(() => {
-    if (router.isReady) {
-      const { utm_source, utm_medium, utm_campaign, utm_term, utm_content } = router.query
-      form.setFieldValue('utm_source', (utm_source as string) || 'direct')
-      form.setFieldValue('utm_medium', (utm_medium as string) || 'none')
-      form.setFieldValue('utm_campaign', (utm_campaign as string) || 'organic')
-      form.setFieldValue('utm_term', (utm_term as string) || '')
-      form.setFieldValue('utm_content', (utm_content as string) || '')
+    if (!router.isReady) return
+    const utmKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content']
+    const utmFromStorage: Record<string, string> = {}
+    let foundInStorage = false
+    if (typeof window !== 'undefined') {
+      utmKeys.forEach((key) => {
+        const val = sessionStorage.getItem(key)
+        if (val) {
+          utmFromStorage[key] = val
+          foundInStorage = true
+        }
+      })
     }
-  }, [router.isReady, router.query, form]) // Include all dependencies to prevent re-renders
+    if (!foundInStorage) {
+      utmKeys.forEach((key) => {
+        const val = router.query[key]
+        if (typeof val === 'string' && typeof window !== 'undefined') {
+          sessionStorage.setItem(key, val)
+          utmFromStorage[key] = val
+        }
+      })
+    }
+    // Prefill with fallback defaults
+    form.setFieldValue('utm_source', utmFromStorage['utm_source'] || 'direct')
+    form.setFieldValue('utm_medium', utmFromStorage['utm_medium'] || 'none')
+    form.setFieldValue('utm_campaign', utmFromStorage['utm_campaign'] || 'organic')
+    form.setFieldValue('utm_term', utmFromStorage['utm_term'] || '')
+    form.setFieldValue('utm_content', utmFromStorage['utm_content'] || '')
+  }, [router.isReady, router.query, form])
 
   // Memoize course options to prevent re-renders
   const courseOptions = useMemo(() => {

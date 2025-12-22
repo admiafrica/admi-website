@@ -57,16 +57,20 @@ function makeRequest(options, postData = null) {
   })
 }
 
-// Fetch all contacts from Brevo with pagination (last 5 days only)
-async function fetchAllBrevoContacts() {
-  console.log('📥 Fetching contacts from Brevo (last 5 days)...\n')
+// Fetch all contacts from Brevo with pagination and filter by createdAt (custom date range)
+async function fetchAllBrevoContacts(startDate, endDate) {
+  const start = startDate
+    ? new Date(startDate)
+    : (() => {
+        const d = new Date()
+        d.setDate(d.getDate() - 5)
+        return d
+      })()
+  const end = endDate ? new Date(endDate) : new Date()
+  const modifiedSince = start.toISOString()
 
-  // Calculate date 5 days ago in ISO format
-  const fiveDaysAgo = new Date()
-  fiveDaysAgo.setDate(fiveDaysAgo.getDate() - 5)
-  const modifiedSince = fiveDaysAgo.toISOString()
-
-  console.log(`   Filtering contacts modified since: ${modifiedSince}\n`)
+  console.log(`📥 Fetching contacts from Brevo (custom range)...\n`)
+  console.log(`   Filtering contacts created from: ${start.toISOString()} to ${end.toISOString()}\n`)
 
   let allContacts = []
   let offset = 0
@@ -112,8 +116,14 @@ async function fetchAllBrevoContacts() {
     }
   }
 
-  console.log(`\n✅ Total contacts fetched: ${allContacts.length}\n`)
-  return allContacts
+  // Filter contacts by createdAt within the range
+  const filteredContacts = allContacts.filter((c) => {
+    const created = c.createdAt ? new Date(c.createdAt) : null
+    return created && created >= start && created <= end
+  })
+  console.log(`\n✅ Total contacts fetched: ${allContacts.length}`)
+  console.log(`✅ Contacts in date range: ${filteredContacts.length}\n`)
+  return filteredContacts
 }
 
 // Analyze contacts and map to Google Ads campaigns
@@ -465,11 +475,18 @@ function saveDetailedReport(analysis) {
 // Main execution
 async function main() {
   try {
+    // Accept start and end date from CLI args or env
+    const argv = process.argv.slice(2)
+    let startDate = process.env.START_DATE
+    let endDate = process.env.END_DATE
+    if (argv[0]) startDate = argv[0]
+    if (argv[1]) endDate = argv[1]
+
     console.log('🚀 Starting Brevo to Google Ads Journey Analysis\n')
     console.log('='.repeat(80) + '\n')
 
     // Fetch contacts
-    const contacts = await fetchAllBrevoContacts()
+    const contacts = await fetchAllBrevoContacts(startDate, endDate)
 
     // Analyze journey
     const analysis = analyzeLeadJourney(contacts)

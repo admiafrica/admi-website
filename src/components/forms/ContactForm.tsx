@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Alert, Box, Text, TextInput, Textarea, Select } from '@mantine/core'
 import { useForm } from '@mantine/form'
 import { Button, Paragraph, Title } from '../ui'
@@ -50,6 +50,33 @@ export default function ContactForm() {
     { value: 'Other', label: 'Other' }
   ]
 
+  // UTM persistence: on mount, store from URL if not in sessionStorage, always prefill from sessionStorage
+  useEffect(() => {
+    const utmKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content']
+    let foundInStorage = false
+    const utmFromStorage: Record<string, string> = {}
+    if (typeof window !== 'undefined') {
+      utmKeys.forEach((key) => {
+        const val = sessionStorage.getItem(key)
+        if (val) {
+          utmFromStorage[key] = val
+          foundInStorage = true
+        }
+      })
+      if (!foundInStorage) {
+        const urlParams = new URLSearchParams(window.location.search)
+        utmKeys.forEach((key) => {
+          const val = urlParams.get(key)
+          if (val) {
+            sessionStorage.setItem(key, val)
+            utmFromStorage[key] = val
+          }
+        })
+      }
+    }
+    // Prefill form fields if you want to display them (not needed for hidden fields)
+  }, [])
+
   const handleSubmit = async (values: ContactFormData) => {
     setAlert(null)
     setIsSubmitting(true)
@@ -58,14 +85,22 @@ export default function ContactForm() {
     const formattedPhone = values.phone.replace(/^0+/, '')
     const fullPhone = values.phone ? `${countryCode}${formattedPhone}` : ''
 
-    // Get UTM parameters from URL
-    const urlParams = new URLSearchParams(window.location.search)
-    const utmData = {
-      utm_source: urlParams.get('utm_source') || undefined,
-      utm_medium: urlParams.get('utm_medium') || undefined,
-      utm_campaign: urlParams.get('utm_campaign') || undefined,
-      utm_term: urlParams.get('utm_term') || undefined,
-      utm_content: urlParams.get('utm_content') || undefined
+    // Get UTM parameters from sessionStorage (preferred) or URL
+    const utmKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content']
+    const utmData: Record<string, string> = {}
+    if (typeof window !== 'undefined') {
+      utmKeys.forEach((key) => {
+        const val = sessionStorage.getItem(key)
+        if (val) utmData[key] = val
+      })
+      // Fallback to URL if not in storage
+      if (Object.keys(utmData).length === 0) {
+        const urlParams = new URLSearchParams(window.location.search)
+        utmKeys.forEach((key) => {
+          const val = urlParams.get(key)
+          if (val) utmData[key] = val
+        })
+      }
     }
 
     const data = {

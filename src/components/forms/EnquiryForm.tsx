@@ -126,14 +126,34 @@ export default function EnquiryForm() {
   }, [fetchCourses])
 
   useEffect(() => {
-    if (router.isReady) {
-      const { utm_source, utm_medium, utm_campaign, utm_term, utm_content } = router.query
-      form.setFieldValue('utm_source', utm_source as string)
-      form.setFieldValue('utm_medium', utm_medium as string)
-      form.setFieldValue('utm_campaign', utm_campaign as string)
-      form.setFieldValue('utm_term', utm_term as string)
-      form.setFieldValue('utm_content', utm_content as string)
+    if (!router.isReady) return
+    // Helper to get UTM from URL or sessionStorage
+    const utmKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content']
+    const utmFromStorage: Record<string, string> = {}
+    let foundInStorage = false
+    if (typeof window !== 'undefined') {
+      utmKeys.forEach((key) => {
+        const val = sessionStorage.getItem(key)
+        if (val) {
+          utmFromStorage[key] = val
+          foundInStorage = true
+        }
+      })
     }
+    // If not in storage, get from URL and store
+    if (!foundInStorage) {
+      utmKeys.forEach((key) => {
+        const val = router.query[key]
+        if (typeof val === 'string' && typeof window !== 'undefined') {
+          sessionStorage.setItem(key, val)
+          utmFromStorage[key] = val
+        }
+      })
+    }
+    // Prefill form fields from storage or URL
+    utmKeys.forEach((key) => {
+      form.setFieldValue(key, utmFromStorage[key] || '')
+    })
   }, [router.isReady, router.query, form])
 
   return (
