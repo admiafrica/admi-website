@@ -11,6 +11,7 @@ interface EnhancedLeadData {
   investmentRange?: string
   careerGoals: string
   experienceLevel: string
+  // Last-touch attribution
   utm_source?: string
   utm_medium?: string
   utm_campaign?: string
@@ -19,6 +20,16 @@ interface EnhancedLeadData {
   landing_page?: string
   referrer?: string
   current_page?: string
+  // First-touch attribution (NEW!)
+  first_touch_source?: string
+  first_touch_medium?: string
+  first_touch_campaign?: string
+  first_touch_term?: string
+  first_touch_content?: string
+  first_touch_timestamp?: string
+  // GA Client ID for cross-session tracking (NEW!)
+  ga_client_id?: string
+  // Lead scoring
   leadScore: number
   formType: string
   submissionDate: string
@@ -136,6 +147,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     investmentRange = '',
     careerGoals,
     experienceLevel,
+    // Last-touch attribution
     utm_source = 'direct',
     utm_medium = 'none',
     utm_campaign = 'organic',
@@ -144,6 +156,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     landing_page = '',
     referrer = '',
     current_page = '',
+    // First-touch attribution (NEW!)
+    first_touch_source = '',
+    first_touch_medium = '',
+    first_touch_campaign = '',
+    first_touch_term = '',
+    first_touch_content = '',
+    first_touch_timestamp = '',
+    // GA Client ID (NEW!)
+    ga_client_id = '',
+    // Lead scoring
     leadScore: clientLeadScore,
     formType,
     submissionDate
@@ -299,7 +321,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         QUALIFICATION_STATUS: leadCategory, // Hot Lead / Warm Lead / Cold Lead / Unqualified
         LEAD_STATUS: leadPriority, // High / Medium / Low / Very Low
 
-        // Tracking and attribution
+        // Last-touch attribution (what converted them)
         UTM_SOURCE: utm_source || '',
         UTM_MEDIUM: utm_medium || '',
         UTM_CAMPAIGN: utm_campaign || '',
@@ -308,6 +330,17 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         PAGE: current_page || landing_page, // Current page where form was submitted
         REFERRER: referrer, // Original referrer
         LANDING_PAGE: landing_page, // First page visited
+
+        // First-touch attribution (what originally brought them) - NEW!
+        FIRST_TOUCH_SOURCE: first_touch_source || utm_source || 'direct',
+        FIRST_TOUCH_MEDIUM: first_touch_medium || utm_medium || 'none',
+        FIRST_TOUCH_CAMPAIGN: first_touch_campaign || utm_campaign || 'organic',
+        FIRST_TOUCH_TERM: first_touch_term || '',
+        FIRST_TOUCH_CONTENT: first_touch_content || '',
+        FIRST_TOUCH_TIMESTAMP: first_touch_timestamp || '',
+
+        // GA Client ID for cross-session tracking - NEW!
+        GA_CLIENT_ID: ga_client_id || '',
 
         // Summary of pre-qualification responses
         CONVERSATION_SUMMARY: `Timeline: ${timelineLabels[studyTimeline] || studyTimeline} | Program: ${programLabels[programType] || programType} | Investment: ${investmentRange ? investmentLabels[investmentRange] : 'Not specified'} | Goals: ${goalLabels[careerGoals] || careerGoals} | Experience: ${experienceLabels[experienceLevel] || experienceLevel}`

@@ -13,10 +13,19 @@ const UTM_PARAMS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm
 const STORAGE_KEYS = {
   LANDING_PAGE: 'admi_landing_page',
   REFERRER: 'admi_referrer',
-  FIRST_VISIT: 'admi_first_visit'
+  FIRST_VISIT: 'admi_first_visit',
+  // First-touch attribution (persists across sessions)
+  FIRST_TOUCH_SOURCE: 'admi_first_touch_source',
+  FIRST_TOUCH_MEDIUM: 'admi_first_touch_medium',
+  FIRST_TOUCH_CAMPAIGN: 'admi_first_touch_campaign',
+  FIRST_TOUCH_TERM: 'admi_first_touch_term',
+  FIRST_TOUCH_CONTENT: 'admi_first_touch_content',
+  FIRST_TOUCH_TIMESTAMP: 'admi_first_touch_timestamp',
+  GA_CLIENT_ID: 'admi_ga_client_id'
 }
 
 export interface UTMData {
+  // Last-touch (current session)
   utm_source?: string
   utm_medium?: string
   utm_campaign?: string
@@ -25,10 +34,57 @@ export interface UTMData {
   landing_page?: string
   referrer?: string
   first_visit?: string
+  // First-touch attribution
+  first_touch_source?: string
+  first_touch_medium?: string
+  first_touch_campaign?: string
+  first_touch_term?: string
+  first_touch_content?: string
+  first_touch_timestamp?: string
+  // GA4 Client ID for cross-session tracking
+  ga_client_id?: string
+}
+
+/**
+ * Get GA4 Client ID from cookies
+ * Format: _ga=GA1.1.{client_id} or _ga_XXXXXXXXXX=GS1.1.{client_id}
+ */
+function getGA4ClientID(): string | null {
+  if (typeof document === 'undefined') return null
+
+  try {
+    const cookies = document.cookie.split(';')
+
+    // Try to find GA4 measurement ID cookie first (more accurate)
+    const ga4Cookie = cookies.find((c) => c.trim().startsWith('_ga_'))
+    if (ga4Cookie) {
+      const value = ga4Cookie.split('=')[1]
+      const parts = value.split('.')
+      if (parts.length >= 3) {
+        return `${parts[2]}.${parts[3]}`
+      }
+    }
+
+    // Fallback to _ga cookie
+    const gaCookie = cookies.find((c) => c.trim().startsWith('_ga='))
+    if (gaCookie) {
+      const value = gaCookie.split('=')[1]
+      const parts = value.split('.')
+      if (parts.length >= 4) {
+        return `${parts[2]}.${parts[3]}`
+      }
+    }
+
+    return null
+  } catch (error) {
+    console.error('Error extracting GA Client ID:', error)
+    return null
+  }
 }
 
 /**
  * Capture UTM parameters from current URL and store in sessionStorage
+ * Also captures first-touch attribution in localStorage
  * Call this on initial page load (in layout or _app)
  */
 export function captureUTMsFromURL(): UTMData {
@@ -38,7 +94,7 @@ export function captureUTMsFromURL(): UTMData {
     const urlParams = new URLSearchParams(window.location.search)
     const utmData: UTMData = {}
 
-    // Capture UTM parameters from URL
+    // Capture UTM parameters from URL (LAST TOUCH)
     UTM_PARAMS.forEach((param) => {
       const value = urlParams.get(param)
       if (value) {
@@ -46,6 +102,39 @@ export function captureUTMsFromURL(): UTMData {
         sessionStorage.setItem(param, value)
       }
     })
+
+    // Capture FIRST TOUCH attribution in localStorage (persists across sessions)
+    // Only set if not already set (i.e., this is truly the first visit)
+    const hasFirstTouch = localStorage.getItem(STORAGE_KEYS.FIRST_TOUCH_TIMESTAMP)
+    if (!hasFirstTouch) {
+      const firstTouchTimestamp = new Date().toISOString()
+      localStorage.setItem(STORAGE_KEYS.FIRST_TOUCH_TIMESTAMP, firstTouchTimestamp)
+
+      // Store first-touch UTMs
+      const source = urlParams.get('utm_source') || 'direct'
+      const medium = urlParams.get('utm_medium') || (document.referrer ? 'referral' : 'none')
+      const campaign = urlParams.get('utm_campaign') || 'organic'
+
+      localStorage.setItem(STORAGE_KEYS.FIRST_TOUCH_SOURCE, source)
+      localStorage.setItem(STORAGE_KEYS.FIRST_TOUCH_MEDIUM, medium)
+      localStorage.setItem(STORAGE_KEYS.FIRST_TOUCH_CAMPAIGN, campaign)
+
+      if (urlParams.get('utm_term')) {
+        localStorage.setItem(STORAGE_KEYS.FIRST_TOUCH_TERM, urlParams.get('utm_term')!)
+      }
+      if (urlParams.get('utm_content')) {
+        localStorage.setItem(STORAGE_KEYS.FIRST_TOUCH_CONTENT, urlParams.get('utm_content')!)
+      }
+
+      utmData.first_touch_timestamp = firstTouchTimestamp
+    }
+
+    // Capture GA4 Client ID
+    const gaClientId = getGA4ClientID()
+    if (gaClientId) {
+      localStorage.setItem(STORAGE_KEYS.GA_CLIENT_ID, gaClientId)
+      utmData.ga_client_id = gaClientId
+    }
 
     // Capture landing page on first visit
     if (!sessionStorage.getItem(STORAGE_KEYS.LANDING_PAGE)) {
@@ -82,6 +171,7 @@ export function captureUTMsFromURL(): UTMData {
 
 /**
  * Retrieve stored UTM parameters for form submission
+ * Returns BOTH first-touch (original source) and last-touch (current session) attribution
  * Call this when user submits a form
  */
 export function getStoredUTMs(): UTMData {
@@ -90,13 +180,34 @@ export function getStoredUTMs(): UTMData {
   try {
     const utmData: UTMData = {}
 
-    // Retrieve stored UTM parameters
+    // Retrieve LAST TOUCH UTM parameters (current session)
     UTM_PARAMS.forEach((param) => {
       const value = sessionStorage.getItem(param)
       if (value) {
         utmData[param] = value
       }
     })
+
+    // Retrieve FIRST TOUCH attribution (persisted across sessions)
+    const firstTouchSource = localStorage.getItem(STORAGE_KEYS.FIRST_TOUCH_SOURCE)
+    const firstTouchMedium = localStorage.getItem(STORAGE_KEYS.FIRST_TOUCH_MEDIUM)
+    const firstTouchCampaign = localStorage.getItem(STORAGE_KEYS.FIRST_TOUCH_CAMPAIGN)
+    const firstTouchTerm = localStorage.getItem(STORAGE_KEYS.FIRST_TOUCH_TERM)
+    const firstTouchContent = localStorage.getItem(STORAGE_KEYS.FIRST_TOUCH_CONTENT)
+    const firstTouchTimestamp = localStorage.getItem(STORAGE_KEYS.FIRST_TOUCH_TIMESTAMP)
+
+    if (firstTouchSource) utmData.first_touch_source = firstTouchSource
+    if (firstTouchMedium) utmData.first_touch_medium = firstTouchMedium
+    if (firstTouchCampaign) utmData.first_touch_campaign = firstTouchCampaign
+    if (firstTouchTerm) utmData.first_touch_term = firstTouchTerm
+    if (firstTouchContent) utmData.first_touch_content = firstTouchContent
+    if (firstTouchTimestamp) utmData.first_touch_timestamp = firstTouchTimestamp
+
+    // Retrieve GA Client ID
+    const gaClientId = localStorage.getItem(STORAGE_KEYS.GA_CLIENT_ID) || getGA4ClientID()
+    if (gaClientId) {
+      utmData.ga_client_id = gaClientId
+    }
 
     // Retrieve landing page
     const landingPage = sessionStorage.getItem(STORAGE_KEYS.LANDING_PAGE)
@@ -187,7 +298,16 @@ export function enrichUTMData(utmData: UTMData): Required<Omit<UTMData, 'first_v
     utm_term: utmData.utm_term || '',
     utm_content: utmData.utm_content || '',
     landing_page: utmData.landing_page || pageInfo.current_page,
-    referrer: utmData.referrer || pageInfo.current_referrer
+    referrer: utmData.referrer || pageInfo.current_referrer,
+    // First-touch attribution fields
+    first_touch_source: utmData.first_touch_source || '',
+    first_touch_medium: utmData.first_touch_medium || '',
+    first_touch_campaign: utmData.first_touch_campaign || '',
+    first_touch_term: utmData.first_touch_term || '',
+    first_touch_content: utmData.first_touch_content || '',
+    first_touch_timestamp: utmData.first_touch_timestamp || '',
+    // GA Client ID
+    ga_client_id: utmData.ga_client_id || ''
   }
 }
 

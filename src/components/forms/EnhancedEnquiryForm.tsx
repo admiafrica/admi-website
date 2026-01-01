@@ -226,12 +226,21 @@ export default function EnhancedEnquiryForm() {
       leadScore,
       formType: 'enhanced-enquiry',
       submissionDate: new Date().toISOString(),
-      // Include stored UTM parameters (prioritize stored over form values)
+      // Last-touch attribution (what converted them)
       utm_source: storedUTMs.utm_source || values.utm_source || 'direct',
       utm_medium: storedUTMs.utm_medium || values.utm_medium || 'none',
       utm_campaign: storedUTMs.utm_campaign || values.utm_campaign || 'organic',
       utm_term: storedUTMs.utm_term || values.utm_term || '',
       utm_content: storedUTMs.utm_content || values.utm_content || '',
+      // First-touch attribution (what originally brought them) - NEW!
+      first_touch_source: storedUTMs.first_touch_source || '',
+      first_touch_medium: storedUTMs.first_touch_medium || '',
+      first_touch_campaign: storedUTMs.first_touch_campaign || '',
+      first_touch_term: storedUTMs.first_touch_term || '',
+      first_touch_content: storedUTMs.first_touch_content || '',
+      first_touch_timestamp: storedUTMs.first_touch_timestamp || '',
+      // GA Client ID for cross-session tracking - NEW!
+      ga_client_id: storedUTMs.ga_client_id || '',
       // Include page tracking
       landing_page: storedUTMs.landing_page || pageInfo.current_page,
       referrer: storedUTMs.referrer || pageInfo.current_referrer,
@@ -307,12 +316,19 @@ export default function EnhancedEnquiryForm() {
         if (window.dataLayer) {
           console.log('✅ Sending via GTM dataLayer...')
 
+          // Send Enhanced Conversion with user data for Google Ads
           window.dataLayer.push({
             event: 'conversion',
             send_to: 'AW-16679471170/F0GVCJjHwNQZEMKQspE-',
             value: conversionValue,
             currency: 'USD',
-            transaction_id: `lead_${Date.now()}_${leadScore}`,
+            transaction_id: storedUTMs.ga_client_id || `lead_${Date.now()}_${leadScore}`,
+            // Enhanced Conversion user data (Google will hash these automatically)
+            email: values.email.trim().toLowerCase(),
+            phone_number: `+${countryCode}${formattedPhone}`,
+            first_name: values.firstName.trim(),
+            last_name: values.lastName.trim(),
+            // Additional tracking data
             event_category: 'Lead Generation',
             event_label:
               leadScore >= 15
@@ -327,25 +343,47 @@ export default function EnhancedEnquiryForm() {
             study_timeline: values.studyTimeline
           })
 
-          // Also send generate_lead event for GA4
+          // Also send generate_lead event for GA4 with user data
           window.dataLayer.push({
             event: 'generate_lead',
             value: conversionValue,
             currency: 'USD',
+            // Enhanced Conversion user data
+            user_data: {
+              email_address: values.email.trim().toLowerCase(),
+              phone_number: `+${countryCode}${formattedPhone}`,
+              address: {
+                first_name: values.firstName.trim(),
+                last_name: values.lastName.trim()
+              }
+            },
             lead_score: leadScore,
             course: values.courseName,
             quality_tier: leadScore >= 15 ? 'hot' : leadScore >= 10 ? 'warm' : leadScore >= 5 ? 'cold' : 'unqualified'
+          })
+
+          console.log('📧 Enhanced Conversion data sent:', {
+            email: values.email.trim().toLowerCase(),
+            phone: `+${countryCode}${formattedPhone}`,
+            name: `${values.firstName} ${values.lastName}`,
+            transaction_id: storedUTMs.ga_client_id || `lead_${Date.now()}_${leadScore}`
           })
         }
         // Fallback to gtag if available
         else if (typeof window.gtag !== 'undefined') {
           console.log('✅ Sending via gtag...')
 
+          // Send Enhanced Conversion with user data
           window.gtag('event', 'conversion', {
             send_to: 'AW-16679471170/F0GVCJjHwNQZEMKQspE-',
             value: conversionValue,
             currency: 'USD',
-            transaction_id: `lead_${Date.now()}_${leadScore}`,
+            transaction_id: storedUTMs.ga_client_id || `lead_${Date.now()}_${leadScore}`,
+            // Enhanced Conversion user data (Google will hash these automatically)
+            email: values.email.trim().toLowerCase(),
+            phone_number: `+${countryCode}${formattedPhone}`,
+            first_name: values.firstName.trim(),
+            last_name: values.lastName.trim(),
             event_category: 'Lead Generation',
             event_label:
               leadScore >= 15
@@ -363,6 +401,11 @@ export default function EnhancedEnquiryForm() {
           window.gtag('event', 'generate_lead', {
             value: conversionValue,
             currency: 'USD',
+            // Enhanced Conversion user data
+            email: values.email.trim().toLowerCase(),
+            phone_number: `+${countryCode}${formattedPhone}`,
+            first_name: values.firstName.trim(),
+            last_name: values.lastName.trim(),
             lead_score: leadScore,
             course: values.courseName,
             quality_tier: leadScore >= 15 ? 'hot' : leadScore >= 10 ? 'warm' : leadScore >= 5 ? 'cold' : 'unqualified'
