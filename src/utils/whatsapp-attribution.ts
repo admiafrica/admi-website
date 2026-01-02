@@ -82,7 +82,8 @@ export function createMultiTouchWhatsAppAttribution(existingContact: {
 
     // Journey info
     landing_page: attrs.LANDING_PAGE || 'WhatsApp Chat',
-    referrer: 'WhatsApp Business'
+    referrer: 'WhatsApp Business', // Last-touch referrer
+    first_touch_referrer: attrs.REFERRER || attrs.FIRST_TOUCH_REFERRER || '' // Preserve original
   }
 }
 
@@ -222,13 +223,14 @@ export async function updateWhatsAppContact(
         FIRST_TOUCH_TERM: attributionData.first_touch_term || '',
         FIRST_TOUCH_CONTENT: attributionData.first_touch_content || '',
         FIRST_TOUCH_TIMESTAMP: attributionData.first_touch_timestamp || '',
+        FIRST_TOUCH_REFERRER: attributionData.first_touch_referrer || '', // Preserve original referrer
 
         // Preserve GA tracking
         GA_CLIENT_ID: attributionData.ga_client_id || '',
 
         // Journey tracking
         LANDING_PAGE: attributionData.landing_page || 'WhatsApp Chat',
-        REFERRER: attributionData.referrer || 'WhatsApp Business'
+        REFERRER: attributionData.referrer || 'WhatsApp Business' // Last-touch referrer
       },
       updateEnabled: true
     }
