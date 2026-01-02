@@ -47,7 +47,8 @@ export interface UTMData {
 
 /**
  * Get GA4 Client ID from cookies
- * Format: _ga=GA1.1.{client_id} or _ga_XXXXXXXXXX=GS1.1.{client_id}
+ * Format: _ga=GA1.1.{client_id_part1}.{client_id_part2}
+ * Returns: {client_id_part1}.{client_id_part2}
  */
 function getGA4ClientID(): string | null {
   if (typeof document === 'undefined') return null
@@ -55,23 +56,43 @@ function getGA4ClientID(): string | null {
   try {
     const cookies = document.cookie.split(';')
 
-    // Try to find GA4 measurement ID cookie first (more accurate)
-    const ga4Cookie = cookies.find((c) => c.trim().startsWith('_ga_'))
-    if (ga4Cookie) {
-      const value = ga4Cookie.split('=')[1]
+    // Try to find _ga cookie (standard Google Analytics cookie)
+    const gaCookie = cookies.find((c) => {
+      const trimmed = c.trim()
+      return trimmed.startsWith('_ga=') && !trimmed.includes('_ga_')
+    })
+
+    if (gaCookie) {
+      // Format: _ga=GA1.1.{client_id_part1}.{client_id_part2}
+      const value = gaCookie.split('=')[1]?.trim()
+      if (!value) return null
+
       const parts = value.split('.')
-      if (parts.length >= 3) {
-        return `${parts[2]}.${parts[3]}`
+      // GA1.1.{part1}.{part2} -> we want {part1}.{part2}
+      if (parts.length >= 4) {
+        const clientId = `${parts[2]}.${parts[3]}`
+        // Validate format (should be numbers.numbers)
+        if (/^\d+\.\d+$/.test(clientId)) {
+          return clientId
+        }
       }
     }
 
-    // Fallback to _ga cookie
-    const gaCookie = cookies.find((c) => c.trim().startsWith('_ga='))
-    if (gaCookie) {
-      const value = gaCookie.split('=')[1]
+    // Try measurement ID cookies as fallback (newer GA4 format)
+    const ga4Cookie = cookies.find((c) => {
+      const trimmed = c.trim()
+      return trimmed.startsWith('_ga_')
+    })
+
+    if (ga4Cookie) {
+      // Format: _ga_XXXXXXXXXX=GS1.1.{timestamp}.{session_id}
+      const value = ga4Cookie.split('=')[1]?.trim()
+      if (!value) return null
+
       const parts = value.split('.')
-      if (parts.length >= 4) {
-        return `${parts[2]}.${parts[3]}`
+      // GS1.1.{timestamp}.{session_id} -> return full value if valid
+      if (parts.length >= 3 && /^\d+\.\d+$/.test(`${parts[2]}.${parts[3] || ''}`)) {
+        return `${parts[2]}.${parts[3] || ''}`
       }
     }
 
@@ -80,6 +101,27 @@ function getGA4ClientID(): string | null {
     console.error('Error extracting GA Client ID:', error)
     return null
   }
+}
+
+/**
+ * Sanitize UTM parameter values to prevent test data contamination
+ * Removes any text after common delimiters like " Expected" or special patterns
+ */
+function sanitizeUTMValue(value: string): string {
+  if (!value || typeof value !== 'string') return ''
+
+  // Remove any text after common test indicators
+  let sanitized = value.split(/\s+Expected/i)[0] // Remove "Expected First-Touch:" patterns
+  sanitized = sanitized.split(/\s+Test/i)[0] // Remove test patterns
+  sanitized = sanitized.trim()
+
+  // Remove any excessively long values (UTM params should be < 200 chars)
+  if (sanitized.length > 200) {
+    console.warn(`⚠️ UTM value exceeded 200 characters, truncating: ${value.substring(0, 50)}...`)
+    sanitized = sanitized.substring(0, 200)
+  }
+
+  return sanitized
 }
 
 /**
@@ -96,10 +138,13 @@ export function captureUTMsFromURL(): UTMData {
 
     // Capture UTM parameters from URL (LAST TOUCH)
     UTM_PARAMS.forEach((param) => {
-      const value = urlParams.get(param)
-      if (value) {
-        utmData[param] = value
-        sessionStorage.setItem(param, value)
+      const rawValue = urlParams.get(param)
+      if (rawValue) {
+        const value = sanitizeUTMValue(rawValue)
+        if (value) {
+          utmData[param] = value
+          sessionStorage.setItem(param, value)
+        }
       }
     })
 
@@ -110,20 +155,23 @@ export function captureUTMsFromURL(): UTMData {
       const firstTouchTimestamp = new Date().toISOString()
       localStorage.setItem(STORAGE_KEYS.FIRST_TOUCH_TIMESTAMP, firstTouchTimestamp)
 
-      // Store first-touch UTMs
-      const source = urlParams.get('utm_source') || 'direct'
-      const medium = urlParams.get('utm_medium') || (document.referrer ? 'referral' : 'none')
-      const campaign = urlParams.get('utm_campaign') || 'organic'
+      // Store first-touch UTMs (with sanitization)
+      const source = sanitizeUTMValue(urlParams.get('utm_source') || '') || 'direct'
+      const medium = sanitizeUTMValue(urlParams.get('utm_medium') || '') || (document.referrer ? 'referral' : 'none')
+      const campaign = sanitizeUTMValue(urlParams.get('utm_campaign') || '') || 'organic'
 
       localStorage.setItem(STORAGE_KEYS.FIRST_TOUCH_SOURCE, source)
       localStorage.setItem(STORAGE_KEYS.FIRST_TOUCH_MEDIUM, medium)
       localStorage.setItem(STORAGE_KEYS.FIRST_TOUCH_CAMPAIGN, campaign)
 
-      if (urlParams.get('utm_term')) {
-        localStorage.setItem(STORAGE_KEYS.FIRST_TOUCH_TERM, urlParams.get('utm_term')!)
+      const utmTerm = sanitizeUTMValue(urlParams.get('utm_term') || '')
+      if (utmTerm) {
+        localStorage.setItem(STORAGE_KEYS.FIRST_TOUCH_TERM, utmTerm)
       }
-      if (urlParams.get('utm_content')) {
-        localStorage.setItem(STORAGE_KEYS.FIRST_TOUCH_CONTENT, urlParams.get('utm_content')!)
+
+      const utmContent = sanitizeUTMValue(urlParams.get('utm_content') || '')
+      if (utmContent) {
+        localStorage.setItem(STORAGE_KEYS.FIRST_TOUCH_CONTENT, utmContent)
       }
 
       utmData.first_touch_timestamp = firstTouchTimestamp

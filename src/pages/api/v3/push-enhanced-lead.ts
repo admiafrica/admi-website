@@ -131,6 +131,27 @@ function calculateLeadScore(data: EnhancedLeadData): number {
   return Math.min(score, 20) // Cap at 20 points
 }
 
+/**
+ * Sanitize UTM parameter values to prevent test data contamination
+ * Removes any text after common delimiters like " Expected" or special patterns
+ */
+function sanitizeUTMValue(value: string): string {
+  if (!value || typeof value !== 'string') return ''
+
+  // Remove any text after common test indicators
+  let sanitized = value.split(/\s+Expected/i)[0] // Remove "Expected First-Touch:" patterns
+  sanitized = sanitized.split(/\s+Test/i)[0] // Remove test patterns
+  sanitized = sanitized.trim()
+
+  // Remove any excessively long values (UTM params should be < 200 chars)
+  if (sanitized.length > 200) {
+    console.warn(`⚠️ UTM value exceeded 200 characters, truncating: ${value.substring(0, 50)}...`)
+    sanitized = sanitized.substring(0, 200)
+  }
+
+  return sanitized
+}
+
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method Not Allowed' })
@@ -170,6 +191,21 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     formType,
     submissionDate
   }: EnhancedLeadData = req.body
+
+  // Sanitize all UTM values to prevent test data contamination
+  const sanitizedUTMs = {
+    utm_source: sanitizeUTMValue(utm_source),
+    utm_medium: sanitizeUTMValue(utm_medium),
+    utm_campaign: sanitizeUTMValue(utm_campaign),
+    utm_term: sanitizeUTMValue(utm_term),
+    utm_content: sanitizeUTMValue(utm_content),
+    first_touch_source: sanitizeUTMValue(first_touch_source),
+    first_touch_medium: sanitizeUTMValue(first_touch_medium),
+    first_touch_campaign: sanitizeUTMValue(first_touch_campaign),
+    first_touch_term: sanitizeUTMValue(first_touch_term),
+    first_touch_content: sanitizeUTMValue(first_touch_content),
+    ga_client_id: sanitizeUTMValue(ga_client_id)
+  }
 
   // Map form values to human-readable labels
   const timelineLabels: { [key: string]: string } = {
@@ -222,11 +258,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     investmentRange,
     careerGoals,
     experienceLevel,
-    utm_source,
-    utm_medium,
-    utm_campaign,
-    utm_term,
-    utm_content,
+    utm_source: sanitizedUTMs.utm_source || 'direct',
+    utm_medium: sanitizedUTMs.utm_medium || 'none',
+    utm_campaign: sanitizedUTMs.utm_campaign || 'organic',
+    utm_term: sanitizedUTMs.utm_term || '',
+    utm_content: sanitizedUTMs.utm_content || '',
     leadScore: clientLeadScore,
     formType,
     submissionDate
@@ -321,26 +357,26 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         QUALIFICATION_STATUS: leadCategory, // Hot Lead / Warm Lead / Cold Lead / Unqualified
         LEAD_STATUS: leadPriority, // High / Medium / Low / Very Low
 
-        // Last-touch attribution (what converted them)
-        UTM_SOURCE: utm_source || '',
-        UTM_MEDIUM: utm_medium || '',
-        UTM_CAMPAIGN: utm_campaign || '',
-        UTM_TERM: utm_term || '',
-        UTM_CONTENT: utm_content || '',
+        // Last-touch attribution (what converted them) - SANITIZED
+        UTM_SOURCE: sanitizedUTMs.utm_source || 'direct',
+        UTM_MEDIUM: sanitizedUTMs.utm_medium || 'none',
+        UTM_CAMPAIGN: sanitizedUTMs.utm_campaign || 'organic',
+        UTM_TERM: sanitizedUTMs.utm_term || '',
+        UTM_CONTENT: sanitizedUTMs.utm_content || '',
         PAGE: current_page || landing_page, // Current page where form was submitted
         REFERRER: referrer, // Original referrer
         LANDING_PAGE: landing_page, // First page visited
 
-        // First-touch attribution (what originally brought them) - NEW!
-        FIRST_TOUCH_SOURCE: first_touch_source || utm_source || 'direct',
-        FIRST_TOUCH_MEDIUM: first_touch_medium || utm_medium || 'none',
-        FIRST_TOUCH_CAMPAIGN: first_touch_campaign || utm_campaign || 'organic',
-        FIRST_TOUCH_TERM: first_touch_term || '',
-        FIRST_TOUCH_CONTENT: first_touch_content || '',
+        // First-touch attribution (what originally brought them) - SANITIZED & NEW!
+        FIRST_TOUCH_SOURCE: sanitizedUTMs.first_touch_source || sanitizedUTMs.utm_source || 'direct',
+        FIRST_TOUCH_MEDIUM: sanitizedUTMs.first_touch_medium || sanitizedUTMs.utm_medium || 'none',
+        FIRST_TOUCH_CAMPAIGN: sanitizedUTMs.first_touch_campaign || sanitizedUTMs.utm_campaign || 'organic',
+        FIRST_TOUCH_TERM: sanitizedUTMs.first_touch_term || '',
+        FIRST_TOUCH_CONTENT: sanitizedUTMs.first_touch_content || '',
         FIRST_TOUCH_TIMESTAMP: first_touch_timestamp || '',
 
-        // GA Client ID for cross-session tracking - NEW!
-        GA_CLIENT_ID: ga_client_id || '',
+        // GA Client ID for cross-session tracking - SANITIZED & NEW!
+        GA_CLIENT_ID: sanitizedUTMs.ga_client_id || '',
 
         // Summary of pre-qualification responses
         CONVERSATION_SUMMARY: `Timeline: ${timelineLabels[studyTimeline] || studyTimeline} | Program: ${programLabels[programType] || programType} | Investment: ${investmentRange ? investmentLabels[investmentRange] : 'Not specified'} | Goals: ${goalLabels[careerGoals] || careerGoals} | Experience: ${experienceLabels[experienceLevel] || experienceLevel}`
