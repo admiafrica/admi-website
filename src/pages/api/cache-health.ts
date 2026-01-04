@@ -8,7 +8,7 @@
  */
 
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { getCacheHealth, getCacheStats, checkS3Connection } from '@/utils/contentful-cached'
+import { getCacheHealth } from '@/utils/contentful-cached'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'GET') {

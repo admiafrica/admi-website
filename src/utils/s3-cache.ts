@@ -149,7 +149,7 @@ export async function checkS3Connection(): Promise<boolean> {
     }
     return true
   } catch (error: any) {
-    console.warn(`[S3 Cache] Connection check failed:`, error.message)
+    console.warn('[S3 Cache] Connection check failed:', error.message)
     return false
   }
 }
@@ -219,7 +219,7 @@ export async function getCached<T>(
 
   if (useS3) {
     // Don't await S3 save - do it in background
-    saveToS3(cacheKey, entry).catch((err) => console.warn(`[S3 Cache] Background save failed:`, err))
+    saveToS3(cacheKey, entry).catch((err) => console.warn('[S3 Cache] Background save failed:', err))
   }
 
   return {

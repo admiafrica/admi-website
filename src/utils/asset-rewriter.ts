@@ -26,7 +26,12 @@ const S3_REGION = process.env.AWS_REGION || 'us-east-1'
 const CLOUDFRONT_DOMAIN = process.env.CLOUDFRONT_ASSETS_DOMAIN
 
 // Contentful asset domains to rewrite
-const CONTENTFUL_ASSET_DOMAINS = ['images.ctfassets.net', 'assets.ctfassets.net', 'videos.ctfassets.net', 'downloads.ctfassets.net']
+const CONTENTFUL_ASSET_DOMAINS = [
+  'images.ctfassets.net',
+  'assets.ctfassets.net',
+  'videos.ctfassets.net',
+  'downloads.ctfassets.net'
+]
 
 /**
  * Load asset URL mapping from file
@@ -38,8 +43,11 @@ function loadAssetMapping(): Record<string, string> {
 
   try {
     // Try to load from data directory
-    const mappingPath = require('path').join(process.cwd(), 'data', 'asset-url-mapping.json')
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const path = require('path')
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
     const fs = require('fs')
+    const mappingPath = path.join(process.cwd(), 'data', 'asset-url-mapping.json')
 
     if (fs.existsSync(mappingPath)) {
       assetMapping = JSON.parse(fs.readFileSync(mappingPath, 'utf-8'))
