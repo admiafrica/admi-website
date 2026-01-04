@@ -1,0 +1,122 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'Scheduled daily deployment to production at midnight EAT'
+
+Parameters:
+  AmplifyAppId:
+    Type: String
+    Default: 'dlm0hjalapt7d'
+    Description: 'Amplify App ID'
+
+  BranchName:
+    Type: String
+    Default: 'main'
+    Description: 'Branch to deploy'
+
+  ScheduleExpression:
+    Type: String
+    Default: 'cron(0 21 * * ? *)'
+    Description: 'Schedule in UTC (21:00 UTC = 00:00 EAT)'
+
+Resources:
+  ProductionDeployFunction:
+    Type: 'AWS::Lambda::Function'
+    Properties:
+      FunctionName: 'admi-website-production-deploy'
+      Runtime: nodejs20.x
+      Handler: index.handler
+      Role: !GetAtt ProductionDeployRole.Arn
+      Timeout: 60
+      Code:
+        ZipFile: |
+          const { AmplifyClient, StartJobCommand } = require('@aws-sdk/client-amplify');
+
+          exports.handler = async (event) => {
+            const client = new AmplifyClient({ region: 'us-east-1' });
+
+            try {
+              console.log('🚀 Triggering daily production deployment...');
+
+              const command = new StartJobCommand({
+                appId: process.env.AMPLIFY_APP_ID,
+                branchName: process.env.BRANCH_NAME,
+                jobType: 'RELEASE',
+                jobReason: 'Scheduled daily deployment'
+              });
+
+              const response = await client.send(command);
+
+              console.log('✅ Deployment triggered!');
+              console.log(`Job ID: ${response.jobSummary.jobId}`);
+
+              return {
+                statusCode: 200,
+                body: JSON.stringify({
+                  message: 'Deployment triggered',
+                  jobId: response.jobSummary.jobId
+                })
+              };
+            } catch (error) {
+              console.error('❌ Error:', error);
+              throw error;
+            }
+          };
+      Environment:
+        Variables:
+          AMPLIFY_APP_ID: !Ref AmplifyAppId
+          BRANCH_NAME: !Ref BranchName
+
+  ProductionDeployRole:
+    Type: 'AWS::IAM::Role'
+    Properties:
+      RoleName: 'admi-website-production-deploy-role'
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+            Action: 'sts:AssumeRole'
+      ManagedPolicyArns:
+        - 'arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole'
+      Policies:
+        - PolicyName: AmplifyStartJobPolicy
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - 'amplify:StartJob'
+                  - 'amplify:GetJob'
+                Resource: !Sub 'arn:aws:amplify:us-east-1:${AWS::AccountId}:apps/${AmplifyAppId}/*'
+
+  DailyDeploySchedule:
+    Type: 'AWS::Events::Rule'
+    Properties:
+      Name: 'admi-website-daily-production-deploy'
+      Description: 'Trigger production deployment daily at midnight EAT (21:00 UTC)'
+      ScheduleExpression: !Ref ScheduleExpression
+      State: ENABLED
+      Targets:
+        - Arn: !GetAtt ProductionDeployFunction.Arn
+          Id: 'ProductionDeployTarget'
+
+  PermissionForEventsToInvokeLambda:
+    Type: 'AWS::Lambda::Permission'
+    Properties:
+      FunctionName: !Ref ProductionDeployFunction
+      Action: 'lambda:InvokeFunction'
+      Principal: events.amazonaws.com
+      SourceArn: !GetAtt DailyDeploySchedule.Arn
+
+Outputs:
+  LambdaFunctionArn:
+    Description: 'Lambda Function ARN'
+    Value: !GetAtt ProductionDeployFunction.Arn
+
+  ScheduleRuleArn:
+    Description: 'EventBridge Rule ARN'
+    Value: !GetAtt DailyDeploySchedule.Arn
+
+  NextDeployment:
+    Description: 'Next deployment time'
+    Value: 'Daily at 00:00 EAT (21:00 UTC)'

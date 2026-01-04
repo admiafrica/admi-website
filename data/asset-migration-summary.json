@@ -1,0 +1,14 @@
+{
+  "migratedAt": "2026-01-04T10:09:29.767Z",
+  "bucket": "admi-contentful-assets",
+  "region": "us-east-1",
+  "cloudfrontDomain": null,
+  "stats": {
+    "total": 432,
+    "migrated": 432,
+    "skipped": 0,
+    "failed": 0,
+    "totalSize": 541771454,
+    "totalSizeMB": "516.67"
+  }
+}

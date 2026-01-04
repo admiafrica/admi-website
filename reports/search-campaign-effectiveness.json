@@ -1,0 +1,2806 @@
+{
+  "analysisDate": "2025-12-24T08:11:16.846Z",
+  "campaign": "search-jan2026-admi",
+  "totalContacts": 32,
+  "qualityMetrics": {
+    "hotLeads": {
+      "count": 23,
+      "percent": 71.9
+    },
+    "warmLeads": {
+      "count": 8,
+      "percent": 25
+    },
+    "coldLeads": {
+      "count": 1,
+      "percent": 3.1
+    },
+    "averageScore": 13.1
+  },
+  "statusDistribution": {
+    "Cold Lead": [
+      {
+        "id": 50773,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-24T10:48:10.581+03:00",
+        "modifiedAt": "2025-12-24T10:48:10.581+03:00",
+        "email": "edwinkariuki324@gmail.com",
+        "listIds": [],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "Maina",
+          "FIRSTNAME": "Edwin",
+          "SMS": "254796553916",
+          "COURSE_INTERESTED_IN": "30",
+          "SCORE": 9,
+          "PREFERRED_COURSE": "Photography Certificate",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "UTM_TERM": "digital content creator course",
+          "UTM_CONTENT": "785791042053",
+          "QUALIFICATION_SCORE": 9,
+          "LEAD_STATUS": "Low",
+          "QUALIFICATION_STATUS": "Cold Lead",
+          "CONVERSATION_SUMMARY": "Timeline: Just researching | Program: Full-time Diploma (2 years) | Investment: Need to discuss payment options | Goals: Personal interest/hobby | Experience: Complete beginner"
+        }
+      },
+      {
+        "id": 50191,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-03T08:34:32.996+03:00",
+        "modifiedAt": "2025-12-16T07:59:15.458+03:00",
+        "email": "gigy4230@gmail.com",
+        "listIds": [
+          10,
+          31,
+          9
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "Githinji",
+          "FIRSTNAME": "Daniel",
+          "SMS": "254768405152",
+          "COURSE_INTERESTED_IN": "27",
+          "SCORE": 18,
+          "PREFERRED_COURSE": "Digital Content Creation Certificate",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "QUALIFICATION_SCORE": 8,
+          "LEAD_STATUS": "Low",
+          "QUALIFICATION_STATUS": "Cold Lead",
+          "CONVERSATION_SUMMARY": "Timeline: Just researching | Program: Weekend/Part-time classes | Investment: Under 100,000 KES | Goals: Start my own creative business | Experience: Complete beginner"
+        }
+      }
+    ],
+    "Hot Lead": [
+      {
+        "id": 50768,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-24T09:41:37.798+03:00",
+        "modifiedAt": "2025-12-24T09:41:37.798+03:00",
+        "email": "wilsonokombo05@gmail.com",
+        "listIds": [],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "Okombo",
+          "FIRSTNAME": "Wilson",
+          "SMS": "254793531879",
+          "SCORE": 15,
+          "PREFERRED_COURSE": "Video Production Certificate (Professional)",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "UTM_TERM": "animation certificate",
+          "UTM_CONTENT": "785554766283",
+          "QUALIFICATION_SCORE": 15,
+          "LEAD_STATUS": "High",
+          "QUALIFICATION_STATUS": "Hot Lead",
+          "CONVERSATION_SUMMARY": "Timeline: January 2026 intake | Program: Full-time Diploma (2 years) | Investment: Under 100,000 KES | Goals: Career change to creative industry | Experience: Complete beginner"
+        }
+      },
+      {
+        "id": 50767,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-24T09:34:40.630+03:00",
+        "modifiedAt": "2025-12-24T09:34:40.630+03:00",
+        "email": "sadumaphilo@gmail.com",
+        "listIds": [],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "Saduma",
+          "FIRSTNAME": "Philomena",
+          "SMS": "254702225481",
+          "COURSE_INTERESTED_IN": "28",
+          "SCORE": 15,
+          "PREFERRED_COURSE": "Graphic Design Diploma",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "UTM_TERM": "graphic design diploma",
+          "UTM_CONTENT": "785825705038",
+          "QUALIFICATION_SCORE": 15,
+          "LEAD_STATUS": "High",
+          "QUALIFICATION_STATUS": "Hot Lead",
+          "CONVERSATION_SUMMARY": "Timeline: January 2026 intake | Program: Full-time Diploma (2 years) | Investment: Not specified | Goals: Start my own creative business | Experience: Have formal training elsewhere"
+        }
+      },
+      {
+        "id": 50729,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-23T11:42:01.838+03:00",
+        "modifiedAt": "2025-12-24T07:59:10.744+03:00",
+        "email": "fahatadan505@gmail.com",
+        "listIds": [
+          9
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "Adan",
+          "FIRSTNAME": "Fahat",
+          "SMS": "254716770679",
+          "COURSE_INTERESTED_IN": "28",
+          "SCORE": 25,
+          "PREFERRED_COURSE": "Graphic Design Diploma",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "UTM_CONTENT": "785825705038",
+          "QUALIFICATION_SCORE": 15,
+          "LEAD_STATUS": "High",
+          "QUALIFICATION_STATUS": "Hot Lead",
+          "CONVERSATION_SUMMARY": "Timeline: January 2026 intake | Program: Professional Certificate (6-12 months) | Investment: Need to discuss payment options | Goals: Start my own creative business | Experience: Complete beginner"
+        }
+      },
+      {
+        "id": 50713,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-23T07:55:08.064+03:00",
+        "modifiedAt": "2025-12-23T16:31:51.571+03:00",
+        "email": "vickyshaz42@gmail.com",
+        "listIds": [
+          9
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "Malia",
+          "FIRSTNAME": "Sharon",
+          "SMS": "254117687785",
+          "COURSE_INTERESTED_IN": "31",
+          "SCORE": 26,
+          "PREFERRED_COURSE": "Multimedia Certificate",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "UTM_TERM": "content creation course",
+          "UTM_CONTENT": "785791042053",
+          "QUALIFICATION_SCORE": 16,
+          "LEAD_STATUS": "High",
+          "QUALIFICATION_STATUS": "Hot Lead",
+          "CONVERSATION_SUMMARY": "Timeline: January 2026 intake | Program: Full-time Diploma (2 years) | Investment: 100,000 - 300,000 KES | Goals: Start my own creative business | Experience: Complete beginner"
+        }
+      },
+      {
+        "id": 50712,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-23T02:42:19.442+03:00",
+        "modifiedAt": "2025-12-23T16:31:51.571+03:00",
+        "email": "bernardgitonga94@gmail.com",
+        "listIds": [
+          9
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "Gitonga",
+          "FIRSTNAME": "Bernard",
+          "SMS": "254714634060",
+          "COURSE_INTERESTED_IN": "32",
+          "SCORE": 25,
+          "PREFERRED_COURSE": "Music Production and Sound Engineering Certificate",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "UTM_TERM": "professional courses nairobi",
+          "UTM_CONTENT": "785554766283",
+          "QUALIFICATION_SCORE": 15,
+          "LEAD_STATUS": "High",
+          "QUALIFICATION_STATUS": "Hot Lead",
+          "CONVERSATION_SUMMARY": "Timeline: May 2026 intake | Program: Professional Certificate (6-12 months) | Investment: Under 100,000 KES | Goals: Start my own creative business | Experience: Professional looking to upgrade"
+        }
+      },
+      {
+        "id": 50709,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-22T23:40:29.515+03:00",
+        "modifiedAt": "2025-12-23T16:31:51.571+03:00",
+        "email": "c2283147@gmail.com",
+        "listIds": [
+          9
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "Ryan",
+          "FIRSTNAME": "Christiano",
+          "SMS": "254798034217",
+          "COURSE_INTERESTED_IN": "23",
+          "SCORE": 25,
+          "PREFERRED_COURSE": "Digital Marketing Certificate",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "UTM_TERM": "data/ai courses",
+          "UTM_CONTENT": "785554766283",
+          "QUALIFICATION_SCORE": 15,
+          "LEAD_STATUS": "High",
+          "QUALIFICATION_STATUS": "Hot Lead",
+          "CONVERSATION_SUMMARY": "Timeline: January 2026 intake | Program: Professional Certificate (6-12 months) | Investment: 100,000 - 300,000 KES | Goals: Start my own creative business | Experience: Complete beginner"
+        }
+      },
+      {
+        "id": 50699,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-22T17:18:36.518+03:00",
+        "modifiedAt": "2025-12-23T16:31:51.571+03:00",
+        "email": "frankcelestine46@gmail.com",
+        "listIds": [
+          9
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "Wambua",
+          "FIRSTNAME": "Francis",
+          "SMS": "254791427948",
+          "SCORE": 27,
+          "PREFERRED_COURSE": "Digital Content Creation Diploma",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "UTM_TERM": "data analysis course kenya",
+          "UTM_CONTENT": "785554766283",
+          "QUALIFICATION_SCORE": 17,
+          "LEAD_STATUS": "High",
+          "QUALIFICATION_STATUS": "Hot Lead",
+          "CONVERSATION_SUMMARY": "Timeline: January 2026 intake | Program: Full-time Diploma (2 years) | Investment: 300,000 - 500,000 KES | Goals: Career change to creative industry | Experience: Complete beginner"
+        }
+      },
+      {
+        "id": 50676,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-22T02:46:35.827+03:00",
+        "modifiedAt": "2025-12-22T11:56:49.859+03:00",
+        "email": "fridahshikuku@gmail.com",
+        "listIds": [
+          9
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "Shikuku",
+          "FIRSTNAME": "Fridah",
+          "SMS": "254719435900",
+          "COURSE_INTERESTED_IN": "22",
+          "SCORE": 25,
+          "PREFERRED_COURSE": "Graphic Design Certificate",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "QUALIFICATION_SCORE": 15,
+          "LEAD_STATUS": "High",
+          "QUALIFICATION_STATUS": "Hot Lead",
+          "CONVERSATION_SUMMARY": "Timeline: January 2026 intake | Program: Professional Certificate (6-12 months) | Investment: Need to discuss payment options | Goals: Start my own creative business | Experience: Complete beginner"
+        }
+      },
+      {
+        "id": 50621,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-19T20:43:40.683+03:00",
+        "modifiedAt": "2025-12-22T11:56:49.859+03:00",
+        "email": "ibrahimbashirhachow@gmail.com",
+        "listIds": [
+          9
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "Hachow",
+          "FIRSTNAME": "Ibrahim  Bashir",
+          "SMS": "254723565639",
+          "COURSE_INTERESTED_IN": "29",
+          "SCORE": 27,
+          "PREFERRED_COURSE": "Animation & Motion Graphics Diploma",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "QUALIFICATION_SCORE": 17,
+          "LEAD_STATUS": "High",
+          "QUALIFICATION_STATUS": "Hot Lead",
+          "CONVERSATION_SUMMARY": "Timeline: January 2026 intake | Program: Professional Certificate (6-12 months) | Investment: 500,000+ KES | Goals: Start my own creative business | Experience: Complete beginner"
+        }
+      },
+      {
+        "id": 50549,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-17T01:19:57.060+03:00",
+        "modifiedAt": "2025-12-17T14:41:27.592+03:00",
+        "email": "kabakabenghazi41@gmail.com",
+        "listIds": [
+          9
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "trevis",
+          "FIRSTNAME": "De",
+          "SMS": "256740508023",
+          "SCORE": 25,
+          "PREFERRED_COURSE": "Video Production Certificate (Professional)",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "QUALIFICATION_SCORE": 15,
+          "LEAD_STATUS": "High",
+          "QUALIFICATION_STATUS": "Hot Lead",
+          "CONVERSATION_SUMMARY": "Timeline: January 2026 intake | Program: Full-time Diploma (2 years) | Investment: Under 100,000 KES | Goals: Start my own creative business | Experience: Complete beginner"
+        }
+      },
+      {
+        "id": 50460,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-15T00:10:24.172+03:00",
+        "modifiedAt": "2025-12-16T07:59:20.127+03:00",
+        "email": "godwinbaron4@gmail.com",
+        "listIds": [
+          10,
+          31,
+          9
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "Odede",
+          "FIRSTNAME": "Godwin",
+          "SMS": "254706903600",
+          "COURSE_INTERESTED_IN": "23",
+          "SCORE": 25,
+          "PREFERRED_COURSE": "Digital Marketing Certificate",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "QUALIFICATION_SCORE": 15,
+          "LEAD_STATUS": "High",
+          "QUALIFICATION_STATUS": "Hot Lead",
+          "CONVERSATION_SUMMARY": "Timeline: January 2026 intake | Program: Full-time Diploma (2 years) | Investment: Under 100,000 KES | Goals: Career change to creative industry | Experience: Complete beginner"
+        }
+      },
+      {
+        "id": 50399,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-12T13:16:37.522+03:00",
+        "modifiedAt": "2025-12-16T07:59:23.829+03:00",
+        "email": "twizenepo250@gmail.com",
+        "listIds": [
+          9
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "Jean Nepomuscene",
+          "FIRSTNAME": "Twizerimana",
+          "SMS": "254786178789",
+          "SCORE": 25,
+          "PREFERRED_COURSE": "Certificate in AI Adoption & Digital Transformation",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "QUALIFICATION_SCORE": 15,
+          "LEAD_STATUS": "High",
+          "QUALIFICATION_STATUS": "Hot Lead",
+          "CONVERSATION_SUMMARY": "Timeline: January 2026 intake | Program: Professional Certificate (6-12 months) | Investment: 100,000 - 300,000 KES | Goals: Upgrade skills in current role | Experience: Some basic experience"
+        }
+      }
+    ],
+    "Warm Lead": [
+      {
+        "id": 50759,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-23T21:51:45.578+03:00",
+        "modifiedAt": "2025-12-24T07:59:13.917+03:00",
+        "email": "ochiengkevink543@gmail.com",
+        "listIds": [
+          9
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "Ochieng",
+          "FIRSTNAME": "Kevin",
+          "SMS": "254712227029",
+          "SCORE": 20,
+          "PREFERRED_COURSE": "Data Analytics and Visualisation",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "UTM_TERM": "professional courses nairobi",
+          "UTM_CONTENT": "785554766283",
+          "QUALIFICATION_SCORE": 10,
+          "LEAD_STATUS": "Medium",
+          "QUALIFICATION_STATUS": "Warm Lead",
+          "CONVERSATION_SUMMARY": "Timeline: May 2026 intake | Program: Weekend/Part-time classes | Investment: Not specified | Goals: Career change to creative industry | Experience: Complete beginner"
+        }
+      },
+      {
+        "id": 50745,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-23T16:14:04.650+03:00",
+        "modifiedAt": "2025-12-24T07:59:15.736+03:00",
+        "email": "kevinkipchumba991@gmail.com",
+        "listIds": [
+          9
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "Kipchumba",
+          "FIRSTNAME": "Kevin",
+          "SMS": "254721129588",
+          "COURSE_INTERESTED_IN": "23",
+          "SCORE": 23,
+          "PREFERRED_COURSE": "Digital Marketing Certificate",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "UTM_TERM": "content creator courses",
+          "UTM_CONTENT": "785554766283",
+          "QUALIFICATION_SCORE": 13,
+          "LEAD_STATUS": "Medium",
+          "QUALIFICATION_STATUS": "Warm Lead",
+          "CONVERSATION_SUMMARY": "Timeline: January 2026 intake | Program: Professional Certificate (6-12 months) | Investment: Need to discuss payment options | Goals: Personal interest/hobby | Experience: Intermediate level"
+        }
+      },
+      {
+        "id": 50723,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-23T10:37:11.852+03:00",
+        "modifiedAt": "2025-12-24T07:59:15.942+03:00",
+        "email": "otienoalfonce969@gmail.com",
+        "listIds": [
+          9
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "OTIENO",
+          "FIRSTNAME": "ALFONCE",
+          "SMS": "254712474578",
+          "SCORE": 24,
+          "PREFERRED_COURSE": "Video Production Certificate (Professional)",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "UTM_TERM": "certificate courses nairobi",
+          "UTM_CONTENT": "785791042053",
+          "QUALIFICATION_SCORE": 14,
+          "LEAD_STATUS": "Medium",
+          "QUALIFICATION_STATUS": "Warm Lead",
+          "CONVERSATION_SUMMARY": "Timeline: January 2026 intake | Program: Weekend/Part-time classes | Investment: 300,000 - 500,000 KES | Goals: Career change to creative industry | Experience: Complete beginner"
+        }
+      },
+      {
+        "id": 50695,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-22T16:53:01.471+03:00",
+        "modifiedAt": "2025-12-23T16:31:51.571+03:00",
+        "email": "lmajor332@gmail.com",
+        "listIds": [
+          9
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "Kiniaru",
+          "FIRSTNAME": "Nelson",
+          "SMS": "254758718123",
+          "SCORE": 23,
+          "PREFERRED_COURSE": "Video Production Certificate (Professional)",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "UTM_TERM": "digital creation course",
+          "UTM_CONTENT": "785554766283",
+          "QUALIFICATION_SCORE": 13,
+          "LEAD_STATUS": "Medium",
+          "QUALIFICATION_STATUS": "Warm Lead",
+          "CONVERSATION_SUMMARY": "Timeline: January 2026 intake | Program: Professional Certificate (6-12 months) | Investment: Not specified | Goals: Start my own creative business | Experience: Complete beginner"
+        }
+      },
+      {
+        "id": 50673,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-21T22:27:05.489+03:00",
+        "modifiedAt": "2025-12-22T13:47:01.983+03:00",
+        "email": "kariznyakz@gmail.com",
+        "listIds": [
+          9
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "gicobi",
+          "FIRSTNAME": "ian",
+          "SMS": "254799392668",
+          "COURSE_INTERESTED_IN": "23",
+          "SCORE": 22,
+          "PREFERRED_COURSE": "Digital Marketing Certificate",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "QUALIFICATION_SCORE": 12,
+          "LEAD_STATUS": "Medium",
+          "QUALIFICATION_STATUS": "Warm Lead",
+          "CONVERSATION_SUMMARY": "Timeline: January 2026 intake | Program: Foundation Certificate (3-6 months) | Investment: Under 100,000 KES | Goals: Upgrade skills in current role | Experience: Complete beginner"
+        }
+      },
+      {
+        "id": 50637,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-20T13:37:25.630+03:00",
+        "modifiedAt": "2025-12-22T16:30:12.574+03:00",
+        "email": "ouma@59221.com",
+        "listIds": [
+          9
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "Sijenyi",
+          "FIRSTNAME": "James",
+          "SMS": "254768138799",
+          "COURSE_INTERESTED_IN": "22",
+          "SCORE": 24,
+          "PREFERRED_COURSE": "Graphic Design Certificate",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "QUALIFICATION_SCORE": 14,
+          "LEAD_STATUS": "Medium",
+          "QUALIFICATION_STATUS": "Warm Lead",
+          "CONVERSATION_SUMMARY": "Timeline: January 2026 intake | Program: Professional Certificate (6-12 months) | Investment: Under 100,000 KES | Goals: Career change to creative industry | Experience: Complete beginner"
+        }
+      },
+      {
+        "id": 50564,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-17T14:30:30.881+03:00",
+        "modifiedAt": "2025-12-18T11:22:51.513+03:00",
+        "email": "cyndiaatio456@gmail.com",
+        "listIds": [
+          9
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "Odoyo",
+          "FIRSTNAME": "Cynthia",
+          "SMS": "254716577500",
+          "COURSE_INTERESTED_IN": "23",
+          "SCORE": 24,
+          "PREFERRED_COURSE": "Digital Marketing Certificate",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "QUALIFICATION_SCORE": 14,
+          "LEAD_STATUS": "Medium",
+          "QUALIFICATION_STATUS": "Warm Lead",
+          "CONVERSATION_SUMMARY": "Timeline: January 2026 intake | Program: Professional Certificate (6-12 months) | Investment: Need to discuss payment options | Goals: Upgrade skills in current role | Experience: Complete beginner"
+        }
+      },
+      {
+        "id": 50515,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-16T10:16:51.842+03:00",
+        "modifiedAt": "2025-12-17T07:59:11.413+03:00",
+        "email": "vinvincent939@gmail.com",
+        "listIds": [
+          9
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "waswa",
+          "FIRSTNAME": "Vincent",
+          "SMS": "254794810337",
+          "SCORE": 23,
+          "PREFERRED_COURSE": "Certificate in AI Adoption & Digital Transformation",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "QUALIFICATION_SCORE": 13,
+          "LEAD_STATUS": "Medium",
+          "QUALIFICATION_STATUS": "Warm Lead",
+          "CONVERSATION_SUMMARY": "Timeline: January 2026 intake | Program: Weekend/Part-time classes | Investment: Need to discuss payment options | Goals: Career change to creative industry | Experience: Complete beginner"
+        }
+      },
+      {
+        "id": 50476,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-15T11:01:36.611+03:00",
+        "modifiedAt": "2025-12-16T09:26:24.010+03:00",
+        "email": "ogadafred340@gmail.com",
+        "listIds": [
+          9,
+          10,
+          33
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "Ogada",
+          "FIRSTNAME": "Frederick otieno",
+          "SMS": "254114288761",
+          "COURSE_INTERESTED_IN": "32",
+          "SCORE": 21,
+          "PREFERRED_COURSE": "Music Production and Sound Engineering Certificate",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "QUALIFICATION_SCORE": 11,
+          "LEAD_STATUS": "Medium",
+          "QUALIFICATION_STATUS": "Warm Lead",
+          "CONVERSATION_SUMMARY": "Timeline: Just researching | Program: Full-time Diploma (2 years) | Investment: Need to discuss payment options | Goals: Prepare for university studies | Experience: Have formal training elsewhere"
+        }
+      },
+      {
+        "id": 50473,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-15T10:37:48.190+03:00",
+        "modifiedAt": "2025-12-16T09:26:23.231+03:00",
+        "email": "rabdi5838@gmail.com",
+        "listIds": [
+          9,
+          10,
+          33
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "Osman",
+          "FIRSTNAME": "Abdirazaq",
+          "SMS": "254797933025",
+          "COURSE_INTERESTED_IN": "27",
+          "SCORE": 23,
+          "PREFERRED_COURSE": "Digital Content Creation Certificate",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "QUALIFICATION_SCORE": 13,
+          "LEAD_STATUS": "Medium",
+          "QUALIFICATION_STATUS": "Warm Lead",
+          "CONVERSATION_SUMMARY": "Timeline: May 2026 intake | Program: Foundation Certificate (3-6 months) | Investment: 100,000 - 300,000 KES | Goals: Start my own creative business | Experience: Complete beginner"
+        }
+      },
+      {
+        "id": 50470,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-15T10:03:20.063+03:00",
+        "modifiedAt": "2025-12-16T09:24:35.398+03:00",
+        "email": "koangtotyual@gmail.com",
+        "listIds": [
+          9,
+          10,
+          33
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "Yual",
+          "FIRSTNAME": "Koang",
+          "SMS": "254701148019",
+          "COURSE_INTERESTED_IN": "35",
+          "SCORE": 24,
+          "PREFERRED_COURSE": "Sports Business Certificate",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "QUALIFICATION_SCORE": 14,
+          "LEAD_STATUS": "Medium",
+          "QUALIFICATION_STATUS": "Warm Lead",
+          "CONVERSATION_SUMMARY": "Timeline: January 2026 intake | Program: Full-time Diploma (2 years) | Investment: Under 100,000 KES | Goals: Prepare for university studies | Experience: Some basic experience"
+        }
+      },
+      {
+        "id": 50413,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-13T09:35:34.218+03:00",
+        "modifiedAt": "2025-12-16T07:59:16.062+03:00",
+        "email": "radrahgift@gmail.com",
+        "listIds": [
+          10,
+          31,
+          9
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "Gift",
+          "FIRSTNAME": "Radrah",
+          "SMS": "254707012916",
+          "COURSE_INTERESTED_IN": "29",
+          "SCORE": 21,
+          "PREFERRED_COURSE": "Animation & Motion Graphics Diploma",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "QUALIFICATION_SCORE": 11,
+          "LEAD_STATUS": "Medium",
+          "QUALIFICATION_STATUS": "Warm Lead",
+          "CONVERSATION_SUMMARY": "Timeline: Just researching | Program: Full-time Diploma (2 years) | Investment: Under 100,000 KES | Goals: Career change to creative industry | Experience: Complete beginner"
+        }
+      },
+      {
+        "id": 50334,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-10T11:02:40.855+03:00",
+        "modifiedAt": "2025-12-16T07:59:19.987+03:00",
+        "email": "emayotelly@gmail.com",
+        "listIds": [
+          9
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "Elly",
+          "FIRSTNAME": "Emash",
+          "SMS": "254759162070",
+          "SCORE": 24,
+          "PREFERRED_COURSE": "Entertainment Business",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "QUALIFICATION_SCORE": 14,
+          "LEAD_STATUS": "Medium",
+          "QUALIFICATION_STATUS": "Warm Lead",
+          "CONVERSATION_SUMMARY": "Timeline: January 2026 intake | Program: Professional Certificate (6-12 months) | Investment: Under 100,000 KES | Goals: Career change to creative industry | Experience: Complete beginner"
+        }
+      },
+      {
+        "id": 50242,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-05T22:54:13.911+03:00",
+        "modifiedAt": "2025-12-16T07:59:14.735+03:00",
+        "email": "martooti123@gmail.com",
+        "listIds": [
+          10,
+          31,
+          9
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "Opundo",
+          "FIRSTNAME": "Martin",
+          "SMS": "254743946858",
+          "COURSE_INTERESTED_IN": "23",
+          "SCORE": 23,
+          "PREFERRED_COURSE": "Digital Marketing Certificate",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "QUALIFICATION_SCORE": 13,
+          "LEAD_STATUS": "Medium",
+          "QUALIFICATION_STATUS": "Warm Lead",
+          "CONVERSATION_SUMMARY": "Timeline: January 2026 intake | Program: Professional Certificate (6-12 months) | Investment: Not specified | Goals: Upgrade skills in current role | Experience: Intermediate level"
+        }
+      },
+      {
+        "id": 50177,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-02T12:03:06.542+03:00",
+        "modifiedAt": "2025-12-16T07:59:31.276+03:00",
+        "email": "mogenisammy935@gmail.com",
+        "listIds": [
+          9
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "Daudi",
+          "FIRSTNAME": "Sammy",
+          "SMS": "254797584288",
+          "SCORE": 23,
+          "PREFERRED_COURSE": "Video Production Certificate (Professional)",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "QUALIFICATION_SCORE": 13,
+          "LEAD_STATUS": "Medium",
+          "QUALIFICATION_STATUS": "Warm Lead",
+          "CONVERSATION_SUMMARY": "Timeline: January 2026 intake | Program: Professional Certificate (6-12 months) | Investment: Not specified | Goals: Start my own creative business | Experience: Complete beginner"
+        }
+      },
+      {
+        "id": 50174,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-02T10:23:37.736+03:00",
+        "modifiedAt": "2025-12-16T07:59:15.555+03:00",
+        "email": "muchemicynthia96@gmail.com",
+        "listIds": [
+          10,
+          31,
+          9
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "Muchemi",
+          "FIRSTNAME": "Cynthia",
+          "SMS": "254746330835",
+          "COURSE_INTERESTED_IN": "27",
+          "SCORE": 22,
+          "PREFERRED_COURSE": "Digital Content Creation Certificate",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "QUALIFICATION_SCORE": 12,
+          "LEAD_STATUS": "Medium",
+          "QUALIFICATION_STATUS": "Warm Lead",
+          "CONVERSATION_SUMMARY": "Timeline: January 2026 intake | Program: Weekend/Part-time classes | Investment: Under 100,000 KES | Goals: Start my own creative business | Experience: Complete beginner"
+        }
+      }
+    ],
+    "Unknown": [
+      {
+        "id": 50757,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-23T21:21:03.823+03:00",
+        "modifiedAt": "2025-12-24T07:59:15.503+03:00",
+        "email": "waswainnocent331@gmail.com",
+        "listIds": [
+          106,
+          9
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "INNOCENT",
+          "FIRSTNAME": "WASWA",
+          "SMS": "256762428215",
+          "COURSE_INTERESTED_IN": "26",
+          "PREFERRED_COURSE": "Film and Television Production Diploma",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "UTM_TERM": "content creator courses",
+          "UTM_CONTENT": "785825705038",
+          "SCORE": 10
+        }
+      }
+    ],
+    "qualified": [
+      {
+        "id": 50716,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-23T09:47:31.908+03:00",
+        "modifiedAt": "2025-12-24T07:59:12.700+03:00",
+        "email": "mwendwajuston@gmail.com",
+        "listIds": [
+          110,
+          9
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "Mwendwa",
+          "FIRSTNAME": "Joshua",
+          "SMS": "254769594021",
+          "SCORE": 24,
+          "PREFERRED_COURSE": "Digital Content Creation Course",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "UTM_TERM": "short courses nairobi",
+          "UTM_CONTENT": "785554766283",
+          "QUALIFICATION_SCORE": 12.4,
+          "LEAD_STATUS": "Medium",
+          "QUALIFICATION_STATUS": "qualified",
+          "CONVERSATION_SUMMARY": "Extended consultation - Moderate interest shown",
+          "LEAD_SOURCE": "AI-Chatbot",
+          "TENANT_ID": "admi.africa"
+        }
+      }
+    ]
+  },
+  "courseInterests": {
+    "Photography Certificate": [
+      {
+        "id": 50773,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-24T10:48:10.581+03:00",
+        "modifiedAt": "2025-12-24T10:48:10.581+03:00",
+        "email": "edwinkariuki324@gmail.com",
+        "listIds": [],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "Maina",
+          "FIRSTNAME": "Edwin",
+          "SMS": "254796553916",
+          "COURSE_INTERESTED_IN": "30",
+          "SCORE": 9,
+          "PREFERRED_COURSE": "Photography Certificate",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "UTM_TERM": "digital content creator course",
+          "UTM_CONTENT": "785791042053",
+          "QUALIFICATION_SCORE": 9,
+          "LEAD_STATUS": "Low",
+          "QUALIFICATION_STATUS": "Cold Lead",
+          "CONVERSATION_SUMMARY": "Timeline: Just researching | Program: Full-time Diploma (2 years) | Investment: Need to discuss payment options | Goals: Personal interest/hobby | Experience: Complete beginner"
+        }
+      }
+    ],
+    "Video Production Certificate (Professional)": [
+      {
+        "id": 50768,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-24T09:41:37.798+03:00",
+        "modifiedAt": "2025-12-24T09:41:37.798+03:00",
+        "email": "wilsonokombo05@gmail.com",
+        "listIds": [],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "Okombo",
+          "FIRSTNAME": "Wilson",
+          "SMS": "254793531879",
+          "SCORE": 15,
+          "PREFERRED_COURSE": "Video Production Certificate (Professional)",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "UTM_TERM": "animation certificate",
+          "UTM_CONTENT": "785554766283",
+          "QUALIFICATION_SCORE": 15,
+          "LEAD_STATUS": "High",
+          "QUALIFICATION_STATUS": "Hot Lead",
+          "CONVERSATION_SUMMARY": "Timeline: January 2026 intake | Program: Full-time Diploma (2 years) | Investment: Under 100,000 KES | Goals: Career change to creative industry | Experience: Complete beginner"
+        }
+      },
+      {
+        "id": 50723,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-23T10:37:11.852+03:00",
+        "modifiedAt": "2025-12-24T07:59:15.942+03:00",
+        "email": "otienoalfonce969@gmail.com",
+        "listIds": [
+          9
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "OTIENO",
+          "FIRSTNAME": "ALFONCE",
+          "SMS": "254712474578",
+          "SCORE": 24,
+          "PREFERRED_COURSE": "Video Production Certificate (Professional)",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "UTM_TERM": "certificate courses nairobi",
+          "UTM_CONTENT": "785791042053",
+          "QUALIFICATION_SCORE": 14,
+          "LEAD_STATUS": "Medium",
+          "QUALIFICATION_STATUS": "Warm Lead",
+          "CONVERSATION_SUMMARY": "Timeline: January 2026 intake | Program: Weekend/Part-time classes | Investment: 300,000 - 500,000 KES | Goals: Career change to creative industry | Experience: Complete beginner"
+        }
+      },
+      {
+        "id": 50695,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-22T16:53:01.471+03:00",
+        "modifiedAt": "2025-12-23T16:31:51.571+03:00",
+        "email": "lmajor332@gmail.com",
+        "listIds": [
+          9
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "Kiniaru",
+          "FIRSTNAME": "Nelson",
+          "SMS": "254758718123",
+          "SCORE": 23,
+          "PREFERRED_COURSE": "Video Production Certificate (Professional)",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "UTM_TERM": "digital creation course",
+          "UTM_CONTENT": "785554766283",
+          "QUALIFICATION_SCORE": 13,
+          "LEAD_STATUS": "Medium",
+          "QUALIFICATION_STATUS": "Warm Lead",
+          "CONVERSATION_SUMMARY": "Timeline: January 2026 intake | Program: Professional Certificate (6-12 months) | Investment: Not specified | Goals: Start my own creative business | Experience: Complete beginner"
+        }
+      },
+      {
+        "id": 50549,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-17T01:19:57.060+03:00",
+        "modifiedAt": "2025-12-17T14:41:27.592+03:00",
+        "email": "kabakabenghazi41@gmail.com",
+        "listIds": [
+          9
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "trevis",
+          "FIRSTNAME": "De",
+          "SMS": "256740508023",
+          "SCORE": 25,
+          "PREFERRED_COURSE": "Video Production Certificate (Professional)",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "QUALIFICATION_SCORE": 15,
+          "LEAD_STATUS": "High",
+          "QUALIFICATION_STATUS": "Hot Lead",
+          "CONVERSATION_SUMMARY": "Timeline: January 2026 intake | Program: Full-time Diploma (2 years) | Investment: Under 100,000 KES | Goals: Start my own creative business | Experience: Complete beginner"
+        }
+      },
+      {
+        "id": 50177,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-02T12:03:06.542+03:00",
+        "modifiedAt": "2025-12-16T07:59:31.276+03:00",
+        "email": "mogenisammy935@gmail.com",
+        "listIds": [
+          9
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "Daudi",
+          "FIRSTNAME": "Sammy",
+          "SMS": "254797584288",
+          "SCORE": 23,
+          "PREFERRED_COURSE": "Video Production Certificate (Professional)",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "QUALIFICATION_SCORE": 13,
+          "LEAD_STATUS": "Medium",
+          "QUALIFICATION_STATUS": "Warm Lead",
+          "CONVERSATION_SUMMARY": "Timeline: January 2026 intake | Program: Professional Certificate (6-12 months) | Investment: Not specified | Goals: Start my own creative business | Experience: Complete beginner"
+        }
+      }
+    ],
+    "Graphic Design Diploma": [
+      {
+        "id": 50767,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-24T09:34:40.630+03:00",
+        "modifiedAt": "2025-12-24T09:34:40.630+03:00",
+        "email": "sadumaphilo@gmail.com",
+        "listIds": [],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "Saduma",
+          "FIRSTNAME": "Philomena",
+          "SMS": "254702225481",
+          "COURSE_INTERESTED_IN": "28",
+          "SCORE": 15,
+          "PREFERRED_COURSE": "Graphic Design Diploma",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "UTM_TERM": "graphic design diploma",
+          "UTM_CONTENT": "785825705038",
+          "QUALIFICATION_SCORE": 15,
+          "LEAD_STATUS": "High",
+          "QUALIFICATION_STATUS": "Hot Lead",
+          "CONVERSATION_SUMMARY": "Timeline: January 2026 intake | Program: Full-time Diploma (2 years) | Investment: Not specified | Goals: Start my own creative business | Experience: Have formal training elsewhere"
+        }
+      },
+      {
+        "id": 50729,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-23T11:42:01.838+03:00",
+        "modifiedAt": "2025-12-24T07:59:10.744+03:00",
+        "email": "fahatadan505@gmail.com",
+        "listIds": [
+          9
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "Adan",
+          "FIRSTNAME": "Fahat",
+          "SMS": "254716770679",
+          "COURSE_INTERESTED_IN": "28",
+          "SCORE": 25,
+          "PREFERRED_COURSE": "Graphic Design Diploma",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "UTM_CONTENT": "785825705038",
+          "QUALIFICATION_SCORE": 15,
+          "LEAD_STATUS": "High",
+          "QUALIFICATION_STATUS": "Hot Lead",
+          "CONVERSATION_SUMMARY": "Timeline: January 2026 intake | Program: Professional Certificate (6-12 months) | Investment: Need to discuss payment options | Goals: Start my own creative business | Experience: Complete beginner"
+        }
+      }
+    ],
+    "Data Analytics and Visualisation": [
+      {
+        "id": 50759,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-23T21:51:45.578+03:00",
+        "modifiedAt": "2025-12-24T07:59:13.917+03:00",
+        "email": "ochiengkevink543@gmail.com",
+        "listIds": [
+          9
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "Ochieng",
+          "FIRSTNAME": "Kevin",
+          "SMS": "254712227029",
+          "SCORE": 20,
+          "PREFERRED_COURSE": "Data Analytics and Visualisation",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "UTM_TERM": "professional courses nairobi",
+          "UTM_CONTENT": "785554766283",
+          "QUALIFICATION_SCORE": 10,
+          "LEAD_STATUS": "Medium",
+          "QUALIFICATION_STATUS": "Warm Lead",
+          "CONVERSATION_SUMMARY": "Timeline: May 2026 intake | Program: Weekend/Part-time classes | Investment: Not specified | Goals: Career change to creative industry | Experience: Complete beginner"
+        }
+      }
+    ],
+    "Film and Television Production Diploma": [
+      {
+        "id": 50757,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-23T21:21:03.823+03:00",
+        "modifiedAt": "2025-12-24T07:59:15.503+03:00",
+        "email": "waswainnocent331@gmail.com",
+        "listIds": [
+          106,
+          9
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "INNOCENT",
+          "FIRSTNAME": "WASWA",
+          "SMS": "256762428215",
+          "COURSE_INTERESTED_IN": "26",
+          "PREFERRED_COURSE": "Film and Television Production Diploma",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "UTM_TERM": "content creator courses",
+          "UTM_CONTENT": "785825705038",
+          "SCORE": 10
+        }
+      }
+    ],
+    "Digital Marketing Certificate": [
+      {
+        "id": 50745,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-23T16:14:04.650+03:00",
+        "modifiedAt": "2025-12-24T07:59:15.736+03:00",
+        "email": "kevinkipchumba991@gmail.com",
+        "listIds": [
+          9
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "Kipchumba",
+          "FIRSTNAME": "Kevin",
+          "SMS": "254721129588",
+          "COURSE_INTERESTED_IN": "23",
+          "SCORE": 23,
+          "PREFERRED_COURSE": "Digital Marketing Certificate",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "UTM_TERM": "content creator courses",
+          "UTM_CONTENT": "785554766283",
+          "QUALIFICATION_SCORE": 13,
+          "LEAD_STATUS": "Medium",
+          "QUALIFICATION_STATUS": "Warm Lead",
+          "CONVERSATION_SUMMARY": "Timeline: January 2026 intake | Program: Professional Certificate (6-12 months) | Investment: Need to discuss payment options | Goals: Personal interest/hobby | Experience: Intermediate level"
+        }
+      },
+      {
+        "id": 50709,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-22T23:40:29.515+03:00",
+        "modifiedAt": "2025-12-23T16:31:51.571+03:00",
+        "email": "c2283147@gmail.com",
+        "listIds": [
+          9
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "Ryan",
+          "FIRSTNAME": "Christiano",
+          "SMS": "254798034217",
+          "COURSE_INTERESTED_IN": "23",
+          "SCORE": 25,
+          "PREFERRED_COURSE": "Digital Marketing Certificate",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "UTM_TERM": "data/ai courses",
+          "UTM_CONTENT": "785554766283",
+          "QUALIFICATION_SCORE": 15,
+          "LEAD_STATUS": "High",
+          "QUALIFICATION_STATUS": "Hot Lead",
+          "CONVERSATION_SUMMARY": "Timeline: January 2026 intake | Program: Professional Certificate (6-12 months) | Investment: 100,000 - 300,000 KES | Goals: Start my own creative business | Experience: Complete beginner"
+        }
+      },
+      {
+        "id": 50673,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-21T22:27:05.489+03:00",
+        "modifiedAt": "2025-12-22T13:47:01.983+03:00",
+        "email": "kariznyakz@gmail.com",
+        "listIds": [
+          9
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "gicobi",
+          "FIRSTNAME": "ian",
+          "SMS": "254799392668",
+          "COURSE_INTERESTED_IN": "23",
+          "SCORE": 22,
+          "PREFERRED_COURSE": "Digital Marketing Certificate",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "QUALIFICATION_SCORE": 12,
+          "LEAD_STATUS": "Medium",
+          "QUALIFICATION_STATUS": "Warm Lead",
+          "CONVERSATION_SUMMARY": "Timeline: January 2026 intake | Program: Foundation Certificate (3-6 months) | Investment: Under 100,000 KES | Goals: Upgrade skills in current role | Experience: Complete beginner"
+        }
+      },
+      {
+        "id": 50564,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-17T14:30:30.881+03:00",
+        "modifiedAt": "2025-12-18T11:22:51.513+03:00",
+        "email": "cyndiaatio456@gmail.com",
+        "listIds": [
+          9
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "Odoyo",
+          "FIRSTNAME": "Cynthia",
+          "SMS": "254716577500",
+          "COURSE_INTERESTED_IN": "23",
+          "SCORE": 24,
+          "PREFERRED_COURSE": "Digital Marketing Certificate",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "QUALIFICATION_SCORE": 14,
+          "LEAD_STATUS": "Medium",
+          "QUALIFICATION_STATUS": "Warm Lead",
+          "CONVERSATION_SUMMARY": "Timeline: January 2026 intake | Program: Professional Certificate (6-12 months) | Investment: Need to discuss payment options | Goals: Upgrade skills in current role | Experience: Complete beginner"
+        }
+      },
+      {
+        "id": 50460,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-15T00:10:24.172+03:00",
+        "modifiedAt": "2025-12-16T07:59:20.127+03:00",
+        "email": "godwinbaron4@gmail.com",
+        "listIds": [
+          10,
+          31,
+          9
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "Odede",
+          "FIRSTNAME": "Godwin",
+          "SMS": "254706903600",
+          "COURSE_INTERESTED_IN": "23",
+          "SCORE": 25,
+          "PREFERRED_COURSE": "Digital Marketing Certificate",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "QUALIFICATION_SCORE": 15,
+          "LEAD_STATUS": "High",
+          "QUALIFICATION_STATUS": "Hot Lead",
+          "CONVERSATION_SUMMARY": "Timeline: January 2026 intake | Program: Full-time Diploma (2 years) | Investment: Under 100,000 KES | Goals: Career change to creative industry | Experience: Complete beginner"
+        }
+      },
+      {
+        "id": 50242,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-05T22:54:13.911+03:00",
+        "modifiedAt": "2025-12-16T07:59:14.735+03:00",
+        "email": "martooti123@gmail.com",
+        "listIds": [
+          10,
+          31,
+          9
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "Opundo",
+          "FIRSTNAME": "Martin",
+          "SMS": "254743946858",
+          "COURSE_INTERESTED_IN": "23",
+          "SCORE": 23,
+          "PREFERRED_COURSE": "Digital Marketing Certificate",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "QUALIFICATION_SCORE": 13,
+          "LEAD_STATUS": "Medium",
+          "QUALIFICATION_STATUS": "Warm Lead",
+          "CONVERSATION_SUMMARY": "Timeline: January 2026 intake | Program: Professional Certificate (6-12 months) | Investment: Not specified | Goals: Upgrade skills in current role | Experience: Intermediate level"
+        }
+      }
+    ],
+    "Digital Content Creation Course": [
+      {
+        "id": 50716,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-23T09:47:31.908+03:00",
+        "modifiedAt": "2025-12-24T07:59:12.700+03:00",
+        "email": "mwendwajuston@gmail.com",
+        "listIds": [
+          110,
+          9
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "Mwendwa",
+          "FIRSTNAME": "Joshua",
+          "SMS": "254769594021",
+          "SCORE": 24,
+          "PREFERRED_COURSE": "Digital Content Creation Course",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "UTM_TERM": "short courses nairobi",
+          "UTM_CONTENT": "785554766283",
+          "QUALIFICATION_SCORE": 12.4,
+          "LEAD_STATUS": "Medium",
+          "QUALIFICATION_STATUS": "qualified",
+          "CONVERSATION_SUMMARY": "Extended consultation - Moderate interest shown",
+          "LEAD_SOURCE": "AI-Chatbot",
+          "TENANT_ID": "admi.africa"
+        }
+      }
+    ],
+    "Multimedia Certificate": [
+      {
+        "id": 50713,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-23T07:55:08.064+03:00",
+        "modifiedAt": "2025-12-23T16:31:51.571+03:00",
+        "email": "vickyshaz42@gmail.com",
+        "listIds": [
+          9
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "Malia",
+          "FIRSTNAME": "Sharon",
+          "SMS": "254117687785",
+          "COURSE_INTERESTED_IN": "31",
+          "SCORE": 26,
+          "PREFERRED_COURSE": "Multimedia Certificate",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "UTM_TERM": "content creation course",
+          "UTM_CONTENT": "785791042053",
+          "QUALIFICATION_SCORE": 16,
+          "LEAD_STATUS": "High",
+          "QUALIFICATION_STATUS": "Hot Lead",
+          "CONVERSATION_SUMMARY": "Timeline: January 2026 intake | Program: Full-time Diploma (2 years) | Investment: 100,000 - 300,000 KES | Goals: Start my own creative business | Experience: Complete beginner"
+        }
+      }
+    ],
+    "Music Production and Sound Engineering Certificate": [
+      {
+        "id": 50712,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-23T02:42:19.442+03:00",
+        "modifiedAt": "2025-12-23T16:31:51.571+03:00",
+        "email": "bernardgitonga94@gmail.com",
+        "listIds": [
+          9
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "Gitonga",
+          "FIRSTNAME": "Bernard",
+          "SMS": "254714634060",
+          "COURSE_INTERESTED_IN": "32",
+          "SCORE": 25,
+          "PREFERRED_COURSE": "Music Production and Sound Engineering Certificate",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "UTM_TERM": "professional courses nairobi",
+          "UTM_CONTENT": "785554766283",
+          "QUALIFICATION_SCORE": 15,
+          "LEAD_STATUS": "High",
+          "QUALIFICATION_STATUS": "Hot Lead",
+          "CONVERSATION_SUMMARY": "Timeline: May 2026 intake | Program: Professional Certificate (6-12 months) | Investment: Under 100,000 KES | Goals: Start my own creative business | Experience: Professional looking to upgrade"
+        }
+      },
+      {
+        "id": 50476,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-15T11:01:36.611+03:00",
+        "modifiedAt": "2025-12-16T09:26:24.010+03:00",
+        "email": "ogadafred340@gmail.com",
+        "listIds": [
+          9,
+          10,
+          33
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "Ogada",
+          "FIRSTNAME": "Frederick otieno",
+          "SMS": "254114288761",
+          "COURSE_INTERESTED_IN": "32",
+          "SCORE": 21,
+          "PREFERRED_COURSE": "Music Production and Sound Engineering Certificate",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "QUALIFICATION_SCORE": 11,
+          "LEAD_STATUS": "Medium",
+          "QUALIFICATION_STATUS": "Warm Lead",
+          "CONVERSATION_SUMMARY": "Timeline: Just researching | Program: Full-time Diploma (2 years) | Investment: Need to discuss payment options | Goals: Prepare for university studies | Experience: Have formal training elsewhere"
+        }
+      }
+    ],
+    "Digital Content Creation Diploma": [
+      {
+        "id": 50699,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-22T17:18:36.518+03:00",
+        "modifiedAt": "2025-12-23T16:31:51.571+03:00",
+        "email": "frankcelestine46@gmail.com",
+        "listIds": [
+          9
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "Wambua",
+          "FIRSTNAME": "Francis",
+          "SMS": "254791427948",
+          "SCORE": 27,
+          "PREFERRED_COURSE": "Digital Content Creation Diploma",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "UTM_TERM": "data analysis course kenya",
+          "UTM_CONTENT": "785554766283",
+          "QUALIFICATION_SCORE": 17,
+          "LEAD_STATUS": "High",
+          "QUALIFICATION_STATUS": "Hot Lead",
+          "CONVERSATION_SUMMARY": "Timeline: January 2026 intake | Program: Full-time Diploma (2 years) | Investment: 300,000 - 500,000 KES | Goals: Career change to creative industry | Experience: Complete beginner"
+        }
+      }
+    ],
+    "Graphic Design Certificate": [
+      {
+        "id": 50676,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-22T02:46:35.827+03:00",
+        "modifiedAt": "2025-12-22T11:56:49.859+03:00",
+        "email": "fridahshikuku@gmail.com",
+        "listIds": [
+          9
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "Shikuku",
+          "FIRSTNAME": "Fridah",
+          "SMS": "254719435900",
+          "COURSE_INTERESTED_IN": "22",
+          "SCORE": 25,
+          "PREFERRED_COURSE": "Graphic Design Certificate",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "QUALIFICATION_SCORE": 15,
+          "LEAD_STATUS": "High",
+          "QUALIFICATION_STATUS": "Hot Lead",
+          "CONVERSATION_SUMMARY": "Timeline: January 2026 intake | Program: Professional Certificate (6-12 months) | Investment: Need to discuss payment options | Goals: Start my own creative business | Experience: Complete beginner"
+        }
+      },
+      {
+        "id": 50637,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-20T13:37:25.630+03:00",
+        "modifiedAt": "2025-12-22T16:30:12.574+03:00",
+        "email": "ouma@59221.com",
+        "listIds": [
+          9
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "Sijenyi",
+          "FIRSTNAME": "James",
+          "SMS": "254768138799",
+          "COURSE_INTERESTED_IN": "22",
+          "SCORE": 24,
+          "PREFERRED_COURSE": "Graphic Design Certificate",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "QUALIFICATION_SCORE": 14,
+          "LEAD_STATUS": "Medium",
+          "QUALIFICATION_STATUS": "Warm Lead",
+          "CONVERSATION_SUMMARY": "Timeline: January 2026 intake | Program: Professional Certificate (6-12 months) | Investment: Under 100,000 KES | Goals: Career change to creative industry | Experience: Complete beginner"
+        }
+      }
+    ],
+    "Animation & Motion Graphics Diploma": [
+      {
+        "id": 50621,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-19T20:43:40.683+03:00",
+        "modifiedAt": "2025-12-22T11:56:49.859+03:00",
+        "email": "ibrahimbashirhachow@gmail.com",
+        "listIds": [
+          9
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "Hachow",
+          "FIRSTNAME": "Ibrahim  Bashir",
+          "SMS": "254723565639",
+          "COURSE_INTERESTED_IN": "29",
+          "SCORE": 27,
+          "PREFERRED_COURSE": "Animation & Motion Graphics Diploma",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "QUALIFICATION_SCORE": 17,
+          "LEAD_STATUS": "High",
+          "QUALIFICATION_STATUS": "Hot Lead",
+          "CONVERSATION_SUMMARY": "Timeline: January 2026 intake | Program: Professional Certificate (6-12 months) | Investment: 500,000+ KES | Goals: Start my own creative business | Experience: Complete beginner"
+        }
+      },
+      {
+        "id": 50413,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-13T09:35:34.218+03:00",
+        "modifiedAt": "2025-12-16T07:59:16.062+03:00",
+        "email": "radrahgift@gmail.com",
+        "listIds": [
+          10,
+          31,
+          9
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "Gift",
+          "FIRSTNAME": "Radrah",
+          "SMS": "254707012916",
+          "COURSE_INTERESTED_IN": "29",
+          "SCORE": 21,
+          "PREFERRED_COURSE": "Animation & Motion Graphics Diploma",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "QUALIFICATION_SCORE": 11,
+          "LEAD_STATUS": "Medium",
+          "QUALIFICATION_STATUS": "Warm Lead",
+          "CONVERSATION_SUMMARY": "Timeline: Just researching | Program: Full-time Diploma (2 years) | Investment: Under 100,000 KES | Goals: Career change to creative industry | Experience: Complete beginner"
+        }
+      }
+    ],
+    "Certificate in AI Adoption & Digital Transformation": [
+      {
+        "id": 50515,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-16T10:16:51.842+03:00",
+        "modifiedAt": "2025-12-17T07:59:11.413+03:00",
+        "email": "vinvincent939@gmail.com",
+        "listIds": [
+          9
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "waswa",
+          "FIRSTNAME": "Vincent",
+          "SMS": "254794810337",
+          "SCORE": 23,
+          "PREFERRED_COURSE": "Certificate in AI Adoption & Digital Transformation",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "QUALIFICATION_SCORE": 13,
+          "LEAD_STATUS": "Medium",
+          "QUALIFICATION_STATUS": "Warm Lead",
+          "CONVERSATION_SUMMARY": "Timeline: January 2026 intake | Program: Weekend/Part-time classes | Investment: Need to discuss payment options | Goals: Career change to creative industry | Experience: Complete beginner"
+        }
+      },
+      {
+        "id": 50399,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-12T13:16:37.522+03:00",
+        "modifiedAt": "2025-12-16T07:59:23.829+03:00",
+        "email": "twizenepo250@gmail.com",
+        "listIds": [
+          9
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "Jean Nepomuscene",
+          "FIRSTNAME": "Twizerimana",
+          "SMS": "254786178789",
+          "SCORE": 25,
+          "PREFERRED_COURSE": "Certificate in AI Adoption & Digital Transformation",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "QUALIFICATION_SCORE": 15,
+          "LEAD_STATUS": "High",
+          "QUALIFICATION_STATUS": "Hot Lead",
+          "CONVERSATION_SUMMARY": "Timeline: January 2026 intake | Program: Professional Certificate (6-12 months) | Investment: 100,000 - 300,000 KES | Goals: Upgrade skills in current role | Experience: Some basic experience"
+        }
+      }
+    ],
+    "Digital Content Creation Certificate": [
+      {
+        "id": 50473,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-15T10:37:48.190+03:00",
+        "modifiedAt": "2025-12-16T09:26:23.231+03:00",
+        "email": "rabdi5838@gmail.com",
+        "listIds": [
+          9,
+          10,
+          33
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "Osman",
+          "FIRSTNAME": "Abdirazaq",
+          "SMS": "254797933025",
+          "COURSE_INTERESTED_IN": "27",
+          "SCORE": 23,
+          "PREFERRED_COURSE": "Digital Content Creation Certificate",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "QUALIFICATION_SCORE": 13,
+          "LEAD_STATUS": "Medium",
+          "QUALIFICATION_STATUS": "Warm Lead",
+          "CONVERSATION_SUMMARY": "Timeline: May 2026 intake | Program: Foundation Certificate (3-6 months) | Investment: 100,000 - 300,000 KES | Goals: Start my own creative business | Experience: Complete beginner"
+        }
+      },
+      {
+        "id": 50191,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-03T08:34:32.996+03:00",
+        "modifiedAt": "2025-12-16T07:59:15.458+03:00",
+        "email": "gigy4230@gmail.com",
+        "listIds": [
+          10,
+          31,
+          9
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "Githinji",
+          "FIRSTNAME": "Daniel",
+          "SMS": "254768405152",
+          "COURSE_INTERESTED_IN": "27",
+          "SCORE": 18,
+          "PREFERRED_COURSE": "Digital Content Creation Certificate",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "QUALIFICATION_SCORE": 8,
+          "LEAD_STATUS": "Low",
+          "QUALIFICATION_STATUS": "Cold Lead",
+          "CONVERSATION_SUMMARY": "Timeline: Just researching | Program: Weekend/Part-time classes | Investment: Under 100,000 KES | Goals: Start my own creative business | Experience: Complete beginner"
+        }
+      },
+      {
+        "id": 50174,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-02T10:23:37.736+03:00",
+        "modifiedAt": "2025-12-16T07:59:15.555+03:00",
+        "email": "muchemicynthia96@gmail.com",
+        "listIds": [
+          10,
+          31,
+          9
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "Muchemi",
+          "FIRSTNAME": "Cynthia",
+          "SMS": "254746330835",
+          "COURSE_INTERESTED_IN": "27",
+          "SCORE": 22,
+          "PREFERRED_COURSE": "Digital Content Creation Certificate",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "QUALIFICATION_SCORE": 12,
+          "LEAD_STATUS": "Medium",
+          "QUALIFICATION_STATUS": "Warm Lead",
+          "CONVERSATION_SUMMARY": "Timeline: January 2026 intake | Program: Weekend/Part-time classes | Investment: Under 100,000 KES | Goals: Start my own creative business | Experience: Complete beginner"
+        }
+      }
+    ],
+    "Sports Business Certificate": [
+      {
+        "id": 50470,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-15T10:03:20.063+03:00",
+        "modifiedAt": "2025-12-16T09:24:35.398+03:00",
+        "email": "koangtotyual@gmail.com",
+        "listIds": [
+          9,
+          10,
+          33
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "Yual",
+          "FIRSTNAME": "Koang",
+          "SMS": "254701148019",
+          "COURSE_INTERESTED_IN": "35",
+          "SCORE": 24,
+          "PREFERRED_COURSE": "Sports Business Certificate",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "QUALIFICATION_SCORE": 14,
+          "LEAD_STATUS": "Medium",
+          "QUALIFICATION_STATUS": "Warm Lead",
+          "CONVERSATION_SUMMARY": "Timeline: January 2026 intake | Program: Full-time Diploma (2 years) | Investment: Under 100,000 KES | Goals: Prepare for university studies | Experience: Some basic experience"
+        }
+      }
+    ],
+    "Entertainment Business": [
+      {
+        "id": 50334,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-10T11:02:40.855+03:00",
+        "modifiedAt": "2025-12-16T07:59:19.987+03:00",
+        "email": "emayotelly@gmail.com",
+        "listIds": [
+          9
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "Elly",
+          "FIRSTNAME": "Emash",
+          "SMS": "254759162070",
+          "SCORE": 24,
+          "PREFERRED_COURSE": "Entertainment Business",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "QUALIFICATION_SCORE": 14,
+          "LEAD_STATUS": "Medium",
+          "QUALIFICATION_STATUS": "Warm Lead",
+          "CONVERSATION_SUMMARY": "Timeline: January 2026 intake | Program: Professional Certificate (6-12 months) | Investment: Under 100,000 KES | Goals: Career change to creative industry | Experience: Complete beginner"
+        }
+      }
+    ]
+  },
+  "timelineDistribution": {
+    "Researching": [
+      {
+        "id": 50773,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-24T10:48:10.581+03:00",
+        "modifiedAt": "2025-12-24T10:48:10.581+03:00",
+        "email": "edwinkariuki324@gmail.com",
+        "listIds": [],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "Maina",
+          "FIRSTNAME": "Edwin",
+          "SMS": "254796553916",
+          "COURSE_INTERESTED_IN": "30",
+          "SCORE": 9,
+          "PREFERRED_COURSE": "Photography Certificate",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "UTM_TERM": "digital content creator course",
+          "UTM_CONTENT": "785791042053",
+          "QUALIFICATION_SCORE": 9,
+          "LEAD_STATUS": "Low",
+          "QUALIFICATION_STATUS": "Cold Lead",
+          "CONVERSATION_SUMMARY": "Timeline: Just researching | Program: Full-time Diploma (2 years) | Investment: Need to discuss payment options | Goals: Personal interest/hobby | Experience: Complete beginner"
+        }
+      },
+      {
+        "id": 50476,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-15T11:01:36.611+03:00",
+        "modifiedAt": "2025-12-16T09:26:24.010+03:00",
+        "email": "ogadafred340@gmail.com",
+        "listIds": [
+          9,
+          10,
+          33
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "Ogada",
+          "FIRSTNAME": "Frederick otieno",
+          "SMS": "254114288761",
+          "COURSE_INTERESTED_IN": "32",
+          "SCORE": 21,
+          "PREFERRED_COURSE": "Music Production and Sound Engineering Certificate",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "QUALIFICATION_SCORE": 11,
+          "LEAD_STATUS": "Medium",
+          "QUALIFICATION_STATUS": "Warm Lead",
+          "CONVERSATION_SUMMARY": "Timeline: Just researching | Program: Full-time Diploma (2 years) | Investment: Need to discuss payment options | Goals: Prepare for university studies | Experience: Have formal training elsewhere"
+        }
+      },
+      {
+        "id": 50413,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-13T09:35:34.218+03:00",
+        "modifiedAt": "2025-12-16T07:59:16.062+03:00",
+        "email": "radrahgift@gmail.com",
+        "listIds": [
+          10,
+          31,
+          9
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "Gift",
+          "FIRSTNAME": "Radrah",
+          "SMS": "254707012916",
+          "COURSE_INTERESTED_IN": "29",
+          "SCORE": 21,
+          "PREFERRED_COURSE": "Animation & Motion Graphics Diploma",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "QUALIFICATION_SCORE": 11,
+          "LEAD_STATUS": "Medium",
+          "QUALIFICATION_STATUS": "Warm Lead",
+          "CONVERSATION_SUMMARY": "Timeline: Just researching | Program: Full-time Diploma (2 years) | Investment: Under 100,000 KES | Goals: Career change to creative industry | Experience: Complete beginner"
+        }
+      },
+      {
+        "id": 50191,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-03T08:34:32.996+03:00",
+        "modifiedAt": "2025-12-16T07:59:15.458+03:00",
+        "email": "gigy4230@gmail.com",
+        "listIds": [
+          10,
+          31,
+          9
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "Githinji",
+          "FIRSTNAME": "Daniel",
+          "SMS": "254768405152",
+          "COURSE_INTERESTED_IN": "27",
+          "SCORE": 18,
+          "PREFERRED_COURSE": "Digital Content Creation Certificate",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "QUALIFICATION_SCORE": 8,
+          "LEAD_STATUS": "Low",
+          "QUALIFICATION_STATUS": "Cold Lead",
+          "CONVERSATION_SUMMARY": "Timeline: Just researching | Program: Weekend/Part-time classes | Investment: Under 100,000 KES | Goals: Start my own creative business | Experience: Complete beginner"
+        }
+      }
+    ],
+    "January 2026": [
+      {
+        "id": 50768,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-24T09:41:37.798+03:00",
+        "modifiedAt": "2025-12-24T09:41:37.798+03:00",
+        "email": "wilsonokombo05@gmail.com",
+        "listIds": [],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "Okombo",
+          "FIRSTNAME": "Wilson",
+          "SMS": "254793531879",
+          "SCORE": 15,
+          "PREFERRED_COURSE": "Video Production Certificate (Professional)",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "UTM_TERM": "animation certificate",
+          "UTM_CONTENT": "785554766283",
+          "QUALIFICATION_SCORE": 15,
+          "LEAD_STATUS": "High",
+          "QUALIFICATION_STATUS": "Hot Lead",
+          "CONVERSATION_SUMMARY": "Timeline: January 2026 intake | Program: Full-time Diploma (2 years) | Investment: Under 100,000 KES | Goals: Career change to creative industry | Experience: Complete beginner"
+        }
+      },
+      {
+        "id": 50767,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-24T09:34:40.630+03:00",
+        "modifiedAt": "2025-12-24T09:34:40.630+03:00",
+        "email": "sadumaphilo@gmail.com",
+        "listIds": [],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "Saduma",
+          "FIRSTNAME": "Philomena",
+          "SMS": "254702225481",
+          "COURSE_INTERESTED_IN": "28",
+          "SCORE": 15,
+          "PREFERRED_COURSE": "Graphic Design Diploma",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "UTM_TERM": "graphic design diploma",
+          "UTM_CONTENT": "785825705038",
+          "QUALIFICATION_SCORE": 15,
+          "LEAD_STATUS": "High",
+          "QUALIFICATION_STATUS": "Hot Lead",
+          "CONVERSATION_SUMMARY": "Timeline: January 2026 intake | Program: Full-time Diploma (2 years) | Investment: Not specified | Goals: Start my own creative business | Experience: Have formal training elsewhere"
+        }
+      },
+      {
+        "id": 50745,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-23T16:14:04.650+03:00",
+        "modifiedAt": "2025-12-24T07:59:15.736+03:00",
+        "email": "kevinkipchumba991@gmail.com",
+        "listIds": [
+          9
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "Kipchumba",
+          "FIRSTNAME": "Kevin",
+          "SMS": "254721129588",
+          "COURSE_INTERESTED_IN": "23",
+          "SCORE": 23,
+          "PREFERRED_COURSE": "Digital Marketing Certificate",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "UTM_TERM": "content creator courses",
+          "UTM_CONTENT": "785554766283",
+          "QUALIFICATION_SCORE": 13,
+          "LEAD_STATUS": "Medium",
+          "QUALIFICATION_STATUS": "Warm Lead",
+          "CONVERSATION_SUMMARY": "Timeline: January 2026 intake | Program: Professional Certificate (6-12 months) | Investment: Need to discuss payment options | Goals: Personal interest/hobby | Experience: Intermediate level"
+        }
+      },
+      {
+        "id": 50729,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-23T11:42:01.838+03:00",
+        "modifiedAt": "2025-12-24T07:59:10.744+03:00",
+        "email": "fahatadan505@gmail.com",
+        "listIds": [
+          9
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "Adan",
+          "FIRSTNAME": "Fahat",
+          "SMS": "254716770679",
+          "COURSE_INTERESTED_IN": "28",
+          "SCORE": 25,
+          "PREFERRED_COURSE": "Graphic Design Diploma",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "UTM_CONTENT": "785825705038",
+          "QUALIFICATION_SCORE": 15,
+          "LEAD_STATUS": "High",
+          "QUALIFICATION_STATUS": "Hot Lead",
+          "CONVERSATION_SUMMARY": "Timeline: January 2026 intake | Program: Professional Certificate (6-12 months) | Investment: Need to discuss payment options | Goals: Start my own creative business | Experience: Complete beginner"
+        }
+      },
+      {
+        "id": 50723,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-23T10:37:11.852+03:00",
+        "modifiedAt": "2025-12-24T07:59:15.942+03:00",
+        "email": "otienoalfonce969@gmail.com",
+        "listIds": [
+          9
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "OTIENO",
+          "FIRSTNAME": "ALFONCE",
+          "SMS": "254712474578",
+          "SCORE": 24,
+          "PREFERRED_COURSE": "Video Production Certificate (Professional)",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "UTM_TERM": "certificate courses nairobi",
+          "UTM_CONTENT": "785791042053",
+          "QUALIFICATION_SCORE": 14,
+          "LEAD_STATUS": "Medium",
+          "QUALIFICATION_STATUS": "Warm Lead",
+          "CONVERSATION_SUMMARY": "Timeline: January 2026 intake | Program: Weekend/Part-time classes | Investment: 300,000 - 500,000 KES | Goals: Career change to creative industry | Experience: Complete beginner"
+        }
+      },
+      {
+        "id": 50713,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-23T07:55:08.064+03:00",
+        "modifiedAt": "2025-12-23T16:31:51.571+03:00",
+        "email": "vickyshaz42@gmail.com",
+        "listIds": [
+          9
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "Malia",
+          "FIRSTNAME": "Sharon",
+          "SMS": "254117687785",
+          "COURSE_INTERESTED_IN": "31",
+          "SCORE": 26,
+          "PREFERRED_COURSE": "Multimedia Certificate",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "UTM_TERM": "content creation course",
+          "UTM_CONTENT": "785791042053",
+          "QUALIFICATION_SCORE": 16,
+          "LEAD_STATUS": "High",
+          "QUALIFICATION_STATUS": "Hot Lead",
+          "CONVERSATION_SUMMARY": "Timeline: January 2026 intake | Program: Full-time Diploma (2 years) | Investment: 100,000 - 300,000 KES | Goals: Start my own creative business | Experience: Complete beginner"
+        }
+      },
+      {
+        "id": 50709,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-22T23:40:29.515+03:00",
+        "modifiedAt": "2025-12-23T16:31:51.571+03:00",
+        "email": "c2283147@gmail.com",
+        "listIds": [
+          9
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "Ryan",
+          "FIRSTNAME": "Christiano",
+          "SMS": "254798034217",
+          "COURSE_INTERESTED_IN": "23",
+          "SCORE": 25,
+          "PREFERRED_COURSE": "Digital Marketing Certificate",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "UTM_TERM": "data/ai courses",
+          "UTM_CONTENT": "785554766283",
+          "QUALIFICATION_SCORE": 15,
+          "LEAD_STATUS": "High",
+          "QUALIFICATION_STATUS": "Hot Lead",
+          "CONVERSATION_SUMMARY": "Timeline: January 2026 intake | Program: Professional Certificate (6-12 months) | Investment: 100,000 - 300,000 KES | Goals: Start my own creative business | Experience: Complete beginner"
+        }
+      },
+      {
+        "id": 50699,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-22T17:18:36.518+03:00",
+        "modifiedAt": "2025-12-23T16:31:51.571+03:00",
+        "email": "frankcelestine46@gmail.com",
+        "listIds": [
+          9
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "Wambua",
+          "FIRSTNAME": "Francis",
+          "SMS": "254791427948",
+          "SCORE": 27,
+          "PREFERRED_COURSE": "Digital Content Creation Diploma",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "UTM_TERM": "data analysis course kenya",
+          "UTM_CONTENT": "785554766283",
+          "QUALIFICATION_SCORE": 17,
+          "LEAD_STATUS": "High",
+          "QUALIFICATION_STATUS": "Hot Lead",
+          "CONVERSATION_SUMMARY": "Timeline: January 2026 intake | Program: Full-time Diploma (2 years) | Investment: 300,000 - 500,000 KES | Goals: Career change to creative industry | Experience: Complete beginner"
+        }
+      },
+      {
+        "id": 50695,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-22T16:53:01.471+03:00",
+        "modifiedAt": "2025-12-23T16:31:51.571+03:00",
+        "email": "lmajor332@gmail.com",
+        "listIds": [
+          9
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "Kiniaru",
+          "FIRSTNAME": "Nelson",
+          "SMS": "254758718123",
+          "SCORE": 23,
+          "PREFERRED_COURSE": "Video Production Certificate (Professional)",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "UTM_TERM": "digital creation course",
+          "UTM_CONTENT": "785554766283",
+          "QUALIFICATION_SCORE": 13,
+          "LEAD_STATUS": "Medium",
+          "QUALIFICATION_STATUS": "Warm Lead",
+          "CONVERSATION_SUMMARY": "Timeline: January 2026 intake | Program: Professional Certificate (6-12 months) | Investment: Not specified | Goals: Start my own creative business | Experience: Complete beginner"
+        }
+      },
+      {
+        "id": 50676,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-22T02:46:35.827+03:00",
+        "modifiedAt": "2025-12-22T11:56:49.859+03:00",
+        "email": "fridahshikuku@gmail.com",
+        "listIds": [
+          9
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "Shikuku",
+          "FIRSTNAME": "Fridah",
+          "SMS": "254719435900",
+          "COURSE_INTERESTED_IN": "22",
+          "SCORE": 25,
+          "PREFERRED_COURSE": "Graphic Design Certificate",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "QUALIFICATION_SCORE": 15,
+          "LEAD_STATUS": "High",
+          "QUALIFICATION_STATUS": "Hot Lead",
+          "CONVERSATION_SUMMARY": "Timeline: January 2026 intake | Program: Professional Certificate (6-12 months) | Investment: Need to discuss payment options | Goals: Start my own creative business | Experience: Complete beginner"
+        }
+      },
+      {
+        "id": 50673,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-21T22:27:05.489+03:00",
+        "modifiedAt": "2025-12-22T13:47:01.983+03:00",
+        "email": "kariznyakz@gmail.com",
+        "listIds": [
+          9
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "gicobi",
+          "FIRSTNAME": "ian",
+          "SMS": "254799392668",
+          "COURSE_INTERESTED_IN": "23",
+          "SCORE": 22,
+          "PREFERRED_COURSE": "Digital Marketing Certificate",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "QUALIFICATION_SCORE": 12,
+          "LEAD_STATUS": "Medium",
+          "QUALIFICATION_STATUS": "Warm Lead",
+          "CONVERSATION_SUMMARY": "Timeline: January 2026 intake | Program: Foundation Certificate (3-6 months) | Investment: Under 100,000 KES | Goals: Upgrade skills in current role | Experience: Complete beginner"
+        }
+      },
+      {
+        "id": 50637,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-20T13:37:25.630+03:00",
+        "modifiedAt": "2025-12-22T16:30:12.574+03:00",
+        "email": "ouma@59221.com",
+        "listIds": [
+          9
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "Sijenyi",
+          "FIRSTNAME": "James",
+          "SMS": "254768138799",
+          "COURSE_INTERESTED_IN": "22",
+          "SCORE": 24,
+          "PREFERRED_COURSE": "Graphic Design Certificate",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "QUALIFICATION_SCORE": 14,
+          "LEAD_STATUS": "Medium",
+          "QUALIFICATION_STATUS": "Warm Lead",
+          "CONVERSATION_SUMMARY": "Timeline: January 2026 intake | Program: Professional Certificate (6-12 months) | Investment: Under 100,000 KES | Goals: Career change to creative industry | Experience: Complete beginner"
+        }
+      },
+      {
+        "id": 50621,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-19T20:43:40.683+03:00",
+        "modifiedAt": "2025-12-22T11:56:49.859+03:00",
+        "email": "ibrahimbashirhachow@gmail.com",
+        "listIds": [
+          9
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "Hachow",
+          "FIRSTNAME": "Ibrahim  Bashir",
+          "SMS": "254723565639",
+          "COURSE_INTERESTED_IN": "29",
+          "SCORE": 27,
+          "PREFERRED_COURSE": "Animation & Motion Graphics Diploma",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "QUALIFICATION_SCORE": 17,
+          "LEAD_STATUS": "High",
+          "QUALIFICATION_STATUS": "Hot Lead",
+          "CONVERSATION_SUMMARY": "Timeline: January 2026 intake | Program: Professional Certificate (6-12 months) | Investment: 500,000+ KES | Goals: Start my own creative business | Experience: Complete beginner"
+        }
+      },
+      {
+        "id": 50564,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-17T14:30:30.881+03:00",
+        "modifiedAt": "2025-12-18T11:22:51.513+03:00",
+        "email": "cyndiaatio456@gmail.com",
+        "listIds": [
+          9
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "Odoyo",
+          "FIRSTNAME": "Cynthia",
+          "SMS": "254716577500",
+          "COURSE_INTERESTED_IN": "23",
+          "SCORE": 24,
+          "PREFERRED_COURSE": "Digital Marketing Certificate",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "QUALIFICATION_SCORE": 14,
+          "LEAD_STATUS": "Medium",
+          "QUALIFICATION_STATUS": "Warm Lead",
+          "CONVERSATION_SUMMARY": "Timeline: January 2026 intake | Program: Professional Certificate (6-12 months) | Investment: Need to discuss payment options | Goals: Upgrade skills in current role | Experience: Complete beginner"
+        }
+      },
+      {
+        "id": 50549,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-17T01:19:57.060+03:00",
+        "modifiedAt": "2025-12-17T14:41:27.592+03:00",
+        "email": "kabakabenghazi41@gmail.com",
+        "listIds": [
+          9
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "trevis",
+          "FIRSTNAME": "De",
+          "SMS": "256740508023",
+          "SCORE": 25,
+          "PREFERRED_COURSE": "Video Production Certificate (Professional)",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "QUALIFICATION_SCORE": 15,
+          "LEAD_STATUS": "High",
+          "QUALIFICATION_STATUS": "Hot Lead",
+          "CONVERSATION_SUMMARY": "Timeline: January 2026 intake | Program: Full-time Diploma (2 years) | Investment: Under 100,000 KES | Goals: Start my own creative business | Experience: Complete beginner"
+        }
+      },
+      {
+        "id": 50515,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-16T10:16:51.842+03:00",
+        "modifiedAt": "2025-12-17T07:59:11.413+03:00",
+        "email": "vinvincent939@gmail.com",
+        "listIds": [
+          9
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "waswa",
+          "FIRSTNAME": "Vincent",
+          "SMS": "254794810337",
+          "SCORE": 23,
+          "PREFERRED_COURSE": "Certificate in AI Adoption & Digital Transformation",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "QUALIFICATION_SCORE": 13,
+          "LEAD_STATUS": "Medium",
+          "QUALIFICATION_STATUS": "Warm Lead",
+          "CONVERSATION_SUMMARY": "Timeline: January 2026 intake | Program: Weekend/Part-time classes | Investment: Need to discuss payment options | Goals: Career change to creative industry | Experience: Complete beginner"
+        }
+      },
+      {
+        "id": 50470,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-15T10:03:20.063+03:00",
+        "modifiedAt": "2025-12-16T09:24:35.398+03:00",
+        "email": "koangtotyual@gmail.com",
+        "listIds": [
+          9,
+          10,
+          33
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "Yual",
+          "FIRSTNAME": "Koang",
+          "SMS": "254701148019",
+          "COURSE_INTERESTED_IN": "35",
+          "SCORE": 24,
+          "PREFERRED_COURSE": "Sports Business Certificate",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "QUALIFICATION_SCORE": 14,
+          "LEAD_STATUS": "Medium",
+          "QUALIFICATION_STATUS": "Warm Lead",
+          "CONVERSATION_SUMMARY": "Timeline: January 2026 intake | Program: Full-time Diploma (2 years) | Investment: Under 100,000 KES | Goals: Prepare for university studies | Experience: Some basic experience"
+        }
+      },
+      {
+        "id": 50460,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-15T00:10:24.172+03:00",
+        "modifiedAt": "2025-12-16T07:59:20.127+03:00",
+        "email": "godwinbaron4@gmail.com",
+        "listIds": [
+          10,
+          31,
+          9
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "Odede",
+          "FIRSTNAME": "Godwin",
+          "SMS": "254706903600",
+          "COURSE_INTERESTED_IN": "23",
+          "SCORE": 25,
+          "PREFERRED_COURSE": "Digital Marketing Certificate",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "QUALIFICATION_SCORE": 15,
+          "LEAD_STATUS": "High",
+          "QUALIFICATION_STATUS": "Hot Lead",
+          "CONVERSATION_SUMMARY": "Timeline: January 2026 intake | Program: Full-time Diploma (2 years) | Investment: Under 100,000 KES | Goals: Career change to creative industry | Experience: Complete beginner"
+        }
+      },
+      {
+        "id": 50399,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-12T13:16:37.522+03:00",
+        "modifiedAt": "2025-12-16T07:59:23.829+03:00",
+        "email": "twizenepo250@gmail.com",
+        "listIds": [
+          9
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "Jean Nepomuscene",
+          "FIRSTNAME": "Twizerimana",
+          "SMS": "254786178789",
+          "SCORE": 25,
+          "PREFERRED_COURSE": "Certificate in AI Adoption & Digital Transformation",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "QUALIFICATION_SCORE": 15,
+          "LEAD_STATUS": "High",
+          "QUALIFICATION_STATUS": "Hot Lead",
+          "CONVERSATION_SUMMARY": "Timeline: January 2026 intake | Program: Professional Certificate (6-12 months) | Investment: 100,000 - 300,000 KES | Goals: Upgrade skills in current role | Experience: Some basic experience"
+        }
+      },
+      {
+        "id": 50334,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-10T11:02:40.855+03:00",
+        "modifiedAt": "2025-12-16T07:59:19.987+03:00",
+        "email": "emayotelly@gmail.com",
+        "listIds": [
+          9
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "Elly",
+          "FIRSTNAME": "Emash",
+          "SMS": "254759162070",
+          "SCORE": 24,
+          "PREFERRED_COURSE": "Entertainment Business",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "QUALIFICATION_SCORE": 14,
+          "LEAD_STATUS": "Medium",
+          "QUALIFICATION_STATUS": "Warm Lead",
+          "CONVERSATION_SUMMARY": "Timeline: January 2026 intake | Program: Professional Certificate (6-12 months) | Investment: Under 100,000 KES | Goals: Career change to creative industry | Experience: Complete beginner"
+        }
+      },
+      {
+        "id": 50242,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-05T22:54:13.911+03:00",
+        "modifiedAt": "2025-12-16T07:59:14.735+03:00",
+        "email": "martooti123@gmail.com",
+        "listIds": [
+          10,
+          31,
+          9
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "Opundo",
+          "FIRSTNAME": "Martin",
+          "SMS": "254743946858",
+          "COURSE_INTERESTED_IN": "23",
+          "SCORE": 23,
+          "PREFERRED_COURSE": "Digital Marketing Certificate",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "QUALIFICATION_SCORE": 13,
+          "LEAD_STATUS": "Medium",
+          "QUALIFICATION_STATUS": "Warm Lead",
+          "CONVERSATION_SUMMARY": "Timeline: January 2026 intake | Program: Professional Certificate (6-12 months) | Investment: Not specified | Goals: Upgrade skills in current role | Experience: Intermediate level"
+        }
+      },
+      {
+        "id": 50177,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-02T12:03:06.542+03:00",
+        "modifiedAt": "2025-12-16T07:59:31.276+03:00",
+        "email": "mogenisammy935@gmail.com",
+        "listIds": [
+          9
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "Daudi",
+          "FIRSTNAME": "Sammy",
+          "SMS": "254797584288",
+          "SCORE": 23,
+          "PREFERRED_COURSE": "Video Production Certificate (Professional)",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "QUALIFICATION_SCORE": 13,
+          "LEAD_STATUS": "Medium",
+          "QUALIFICATION_STATUS": "Warm Lead",
+          "CONVERSATION_SUMMARY": "Timeline: January 2026 intake | Program: Professional Certificate (6-12 months) | Investment: Not specified | Goals: Start my own creative business | Experience: Complete beginner"
+        }
+      },
+      {
+        "id": 50174,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-02T10:23:37.736+03:00",
+        "modifiedAt": "2025-12-16T07:59:15.555+03:00",
+        "email": "muchemicynthia96@gmail.com",
+        "listIds": [
+          10,
+          31,
+          9
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "Muchemi",
+          "FIRSTNAME": "Cynthia",
+          "SMS": "254746330835",
+          "COURSE_INTERESTED_IN": "27",
+          "SCORE": 22,
+          "PREFERRED_COURSE": "Digital Content Creation Certificate",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "QUALIFICATION_SCORE": 12,
+          "LEAD_STATUS": "Medium",
+          "QUALIFICATION_STATUS": "Warm Lead",
+          "CONVERSATION_SUMMARY": "Timeline: January 2026 intake | Program: Weekend/Part-time classes | Investment: Under 100,000 KES | Goals: Start my own creative business | Experience: Complete beginner"
+        }
+      }
+    ],
+    "Unknown": [
+      {
+        "id": 50759,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-23T21:51:45.578+03:00",
+        "modifiedAt": "2025-12-24T07:59:13.917+03:00",
+        "email": "ochiengkevink543@gmail.com",
+        "listIds": [
+          9
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "Ochieng",
+          "FIRSTNAME": "Kevin",
+          "SMS": "254712227029",
+          "SCORE": 20,
+          "PREFERRED_COURSE": "Data Analytics and Visualisation",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "UTM_TERM": "professional courses nairobi",
+          "UTM_CONTENT": "785554766283",
+          "QUALIFICATION_SCORE": 10,
+          "LEAD_STATUS": "Medium",
+          "QUALIFICATION_STATUS": "Warm Lead",
+          "CONVERSATION_SUMMARY": "Timeline: May 2026 intake | Program: Weekend/Part-time classes | Investment: Not specified | Goals: Career change to creative industry | Experience: Complete beginner"
+        }
+      },
+      {
+        "id": 50757,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-23T21:21:03.823+03:00",
+        "modifiedAt": "2025-12-24T07:59:15.503+03:00",
+        "email": "waswainnocent331@gmail.com",
+        "listIds": [
+          106,
+          9
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "INNOCENT",
+          "FIRSTNAME": "WASWA",
+          "SMS": "256762428215",
+          "COURSE_INTERESTED_IN": "26",
+          "PREFERRED_COURSE": "Film and Television Production Diploma",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "UTM_TERM": "content creator courses",
+          "UTM_CONTENT": "785825705038",
+          "SCORE": 10
+        }
+      },
+      {
+        "id": 50716,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-23T09:47:31.908+03:00",
+        "modifiedAt": "2025-12-24T07:59:12.700+03:00",
+        "email": "mwendwajuston@gmail.com",
+        "listIds": [
+          110,
+          9
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "Mwendwa",
+          "FIRSTNAME": "Joshua",
+          "SMS": "254769594021",
+          "SCORE": 24,
+          "PREFERRED_COURSE": "Digital Content Creation Course",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "UTM_TERM": "short courses nairobi",
+          "UTM_CONTENT": "785554766283",
+          "QUALIFICATION_SCORE": 12.4,
+          "LEAD_STATUS": "Medium",
+          "QUALIFICATION_STATUS": "qualified",
+          "CONVERSATION_SUMMARY": "Extended consultation - Moderate interest shown",
+          "LEAD_SOURCE": "AI-Chatbot",
+          "TENANT_ID": "admi.africa"
+        }
+      },
+      {
+        "id": 50712,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-23T02:42:19.442+03:00",
+        "modifiedAt": "2025-12-23T16:31:51.571+03:00",
+        "email": "bernardgitonga94@gmail.com",
+        "listIds": [
+          9
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "Gitonga",
+          "FIRSTNAME": "Bernard",
+          "SMS": "254714634060",
+          "COURSE_INTERESTED_IN": "32",
+          "SCORE": 25,
+          "PREFERRED_COURSE": "Music Production and Sound Engineering Certificate",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "UTM_TERM": "professional courses nairobi",
+          "UTM_CONTENT": "785554766283",
+          "QUALIFICATION_SCORE": 15,
+          "LEAD_STATUS": "High",
+          "QUALIFICATION_STATUS": "Hot Lead",
+          "CONVERSATION_SUMMARY": "Timeline: May 2026 intake | Program: Professional Certificate (6-12 months) | Investment: Under 100,000 KES | Goals: Start my own creative business | Experience: Professional looking to upgrade"
+        }
+      }
+    ],
+    "3-6 months": [
+      {
+        "id": 50473,
+        "emailBlacklisted": false,
+        "smsBlacklisted": false,
+        "createdAt": "2025-12-15T10:37:48.190+03:00",
+        "modifiedAt": "2025-12-16T09:26:23.231+03:00",
+        "email": "rabdi5838@gmail.com",
+        "listIds": [
+          9,
+          10,
+          33
+        ],
+        "listUnsubscribed": null,
+        "attributes": {
+          "LASTNAME": "Osman",
+          "FIRSTNAME": "Abdirazaq",
+          "SMS": "254797933025",
+          "COURSE_INTERESTED_IN": "27",
+          "SCORE": 23,
+          "PREFERRED_COURSE": "Digital Content Creation Certificate",
+          "UTM_SOURCE": "google",
+          "UTM_MEDIUM": "cpc",
+          "UTM_CAMPAIGN": "search-jan2026-admi",
+          "QUALIFICATION_SCORE": 13,
+          "LEAD_STATUS": "Medium",
+          "QUALIFICATION_STATUS": "Warm Lead",
+          "CONVERSATION_SUMMARY": "Timeline: May 2026 intake | Program: Foundation Certificate (3-6 months) | Investment: 100,000 - 300,000 KES | Goals: Start my own creative business | Experience: Complete beginner"
+        }
+      }
+    ]
+  },
+  "expectedApplications": 3,
+  "comparison": {
+    "search": {
+      "contacts": 32,
+      "hotPercent": 71.9,
+      "avgScore": 13.1
+    },
+    "pmax": {
+      "contacts": 34,
+      "hotPercent": 55.9,
+      "avgScore": 12.4
+    }
+  },
+  "topCourses": {
+    "Digital Marketing Certificate": 6,
+    "Video Production Certificate (Professional)": 5,
+    "Digital Content Creation Certificate": 3,
+    "Graphic Design Diploma": 2,
+    "Music Production and Sound Engineering Certificate": 2,
+    "Graphic Design Certificate": 2,
+    "Animation & Motion Graphics Diploma": 2,
+    "Certificate in AI Adoption & Digital Transformation": 2,
+    "Photography Certificate": 1,
+    "Data Analytics and Visualisation": 1
+  },
+  "sampleContacts": [
+    {
+      "email": "edwinkariuki324@gmail.com",
+      "firstName": "Edwin",
+      "course": "Photography Certificate",
+      "qualificationScore": 9,
+      "status": "Cold Lead"
+    },
+    {
+      "email": "wilsonokombo05@gmail.com",
+      "firstName": "Wilson",
+      "course": "Video Production Certificate (Professional)",
+      "qualificationScore": 15,
+      "status": "Hot Lead"
+    },
+    {
+      "email": "sadumaphilo@gmail.com",
+      "firstName": "Philomena",
+      "course": "Graphic Design Diploma",
+      "qualificationScore": 15,
+      "status": "Hot Lead"
+    },
+    {
+      "email": "ochiengkevink543@gmail.com",
+      "firstName": "Kevin",
+      "course": "Data Analytics and Visualisation",
+      "qualificationScore": 10,
+      "status": "Warm Lead"
+    },
+    {
+      "email": "waswainnocent331@gmail.com",
+      "firstName": "WASWA",
+      "course": "Film and Television Production Diploma"
+    }
+  ]
+}

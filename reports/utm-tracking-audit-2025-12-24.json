@@ -1,0 +1,326 @@
+{
+  "total": 585,
+  "withUTM": 270,
+  "noUTM": 315,
+  "partialUTM": 0,
+  "sources": {
+    "direct": 147,
+    "google": 66,
+    "chatgpt.com": 1,
+    "meta": 52,
+    "facebook": 4
+  },
+  "mediums": {
+    "none": 148,
+    "cpc": 66,
+    "paid-social": 56
+  },
+  "campaigns": {
+    "organic": 148,
+    "search-jan2026-admi": 29,
+    "leads-remarketing-catalog": 56,
+    "pmax-jan2026-traffic": 34,
+    "23282289054": 3
+  },
+  "pages": {},
+  "referrers": {},
+  "noUTMSamples": [
+    {
+      "email": "akenidarshni@gmail.com",
+      "name": "Yes",
+      "page": "",
+      "referrer": "",
+      "createdAt": "2025-12-24T02:23:58.633+03:00",
+      "attributes": [
+        "FIRSTNAME",
+        "QUALIFICATION_SCORE",
+        "TENANT_ID",
+        "LEAD_SOURCE",
+        "QUALIFICATION_STATUS",
+        "CONVERSATION_SUMMARY",
+        "SCORE"
+      ]
+    },
+    {
+      "email": "254797708325@mailin-wa.com",
+      "name": "eddidazz",
+      "page": "",
+      "referrer": "",
+      "createdAt": "2025-12-24T02:09:20.857+03:00",
+      "attributes": [
+        "WHATSAPP",
+        "FIRSTNAME",
+        "SCORE"
+      ]
+    },
+    {
+      "email": "nyamaijohn230@gmail.com",
+      "name": "John",
+      "page": "",
+      "referrer": "",
+      "createdAt": "2025-12-23T22:12:22.472+03:00",
+      "attributes": [
+        "FIRSTNAME",
+        "PREFERRED_COURSE",
+        "QUALIFICATION_SCORE",
+        "TENANT_ID",
+        "LEAD_SOURCE",
+        "QUALIFICATION_STATUS",
+        "CONVERSATION_SUMMARY",
+        "SCORE"
+      ]
+    },
+    {
+      "email": "nyamaijohn@230.gmail.com",
+      "name": "John",
+      "page": "",
+      "referrer": "",
+      "createdAt": "2025-12-23T22:11:04.047+03:00",
+      "attributes": [
+        "FIRSTNAME",
+        "PREFERRED_COURSE",
+        "QUALIFICATION_SCORE",
+        "TENANT_ID",
+        "LEAD_SOURCE",
+        "QUALIFICATION_STATUS",
+        "CONVERSATION_SUMMARY",
+        "SCORE"
+      ]
+    },
+    {
+      "email": "254782239172@mailin-wa.com",
+      "name": "Tiswedi😉🫰🏾",
+      "page": "",
+      "referrer": "",
+      "createdAt": "2025-12-23T22:03:12.419+03:00",
+      "attributes": [
+        "WHATSAPP",
+        "FIRSTNAME",
+        "SCORE"
+      ]
+    },
+    {
+      "email": "256741239605@mailin-wa.com",
+      "name": "Waswa Innocent",
+      "page": "",
+      "referrer": "",
+      "createdAt": "2025-12-23T21:26:19.031+03:00",
+      "attributes": [
+        "WHATSAPP",
+        "FIRSTNAME",
+        "SCORE"
+      ]
+    },
+    {
+      "email": "254711667785@mailin-wa.com",
+      "name": "Maureen",
+      "page": "",
+      "referrer": "",
+      "createdAt": "2025-12-23T21:09:39.647+03:00",
+      "attributes": [
+        "WHATSAPP",
+        "FIRSTNAME",
+        "SCORE"
+      ]
+    },
+    {
+      "email": "254740186032@mailin-wa.com",
+      "name": "Asher",
+      "page": "",
+      "referrer": "",
+      "createdAt": "2025-12-23T18:26:01.877+03:00",
+      "attributes": [
+        "WHATSAPP",
+        "FIRSTNAME",
+        "SCORE"
+      ]
+    },
+    {
+      "email": "254790197644@mailin-wa.com",
+      "name": "~ Karish Gadafi",
+      "page": "",
+      "referrer": "",
+      "createdAt": "2025-12-23T17:55:49.024+03:00",
+      "attributes": [
+        "WHATSAPP",
+        "FIRSTNAME",
+        "SCORE"
+      ]
+    },
+    {
+      "email": "noreply@admi.africa",
+      "name": "ADMI Enhanced Enquiry System",
+      "page": "",
+      "referrer": "",
+      "createdAt": "2025-12-23T17:19:00.826+03:00",
+      "attributes": [
+        "FIRSTNAME",
+        "SCORE"
+      ]
+    }
+  ],
+  "report": {
+    "summary": {
+      "total": 585,
+      "withUTM": 270,
+      "noUTM": 315,
+      "utmCoveragePercent": "46.2"
+    },
+    "sources": {
+      "direct": 147,
+      "google": 66,
+      "chatgpt.com": 1,
+      "meta": 52,
+      "facebook": 4
+    },
+    "mediums": {
+      "none": 148,
+      "cpc": 66,
+      "paid-social": 56
+    },
+    "campaigns": {
+      "organic": 148,
+      "search-jan2026-admi": 29,
+      "leads-remarketing-catalog": 56,
+      "pmax-jan2026-traffic": 34,
+      "23282289054": 3
+    },
+    "pages": {},
+    "referrers": {},
+    "noUTMSamples": [
+      {
+        "email": "akenidarshni@gmail.com",
+        "name": "Yes",
+        "page": "",
+        "referrer": "",
+        "createdAt": "2025-12-24T02:23:58.633+03:00",
+        "attributes": [
+          "FIRSTNAME",
+          "QUALIFICATION_SCORE",
+          "TENANT_ID",
+          "LEAD_SOURCE",
+          "QUALIFICATION_STATUS",
+          "CONVERSATION_SUMMARY",
+          "SCORE"
+        ]
+      },
+      {
+        "email": "254797708325@mailin-wa.com",
+        "name": "eddidazz",
+        "page": "",
+        "referrer": "",
+        "createdAt": "2025-12-24T02:09:20.857+03:00",
+        "attributes": [
+          "WHATSAPP",
+          "FIRSTNAME",
+          "SCORE"
+        ]
+      },
+      {
+        "email": "nyamaijohn230@gmail.com",
+        "name": "John",
+        "page": "",
+        "referrer": "",
+        "createdAt": "2025-12-23T22:12:22.472+03:00",
+        "attributes": [
+          "FIRSTNAME",
+          "PREFERRED_COURSE",
+          "QUALIFICATION_SCORE",
+          "TENANT_ID",
+          "LEAD_SOURCE",
+          "QUALIFICATION_STATUS",
+          "CONVERSATION_SUMMARY",
+          "SCORE"
+        ]
+      },
+      {
+        "email": "nyamaijohn@230.gmail.com",
+        "name": "John",
+        "page": "",
+        "referrer": "",
+        "createdAt": "2025-12-23T22:11:04.047+03:00",
+        "attributes": [
+          "FIRSTNAME",
+          "PREFERRED_COURSE",
+          "QUALIFICATION_SCORE",
+          "TENANT_ID",
+          "LEAD_SOURCE",
+          "QUALIFICATION_STATUS",
+          "CONVERSATION_SUMMARY",
+          "SCORE"
+        ]
+      },
+      {
+        "email": "254782239172@mailin-wa.com",
+        "name": "Tiswedi😉🫰🏾",
+        "page": "",
+        "referrer": "",
+        "createdAt": "2025-12-23T22:03:12.419+03:00",
+        "attributes": [
+          "WHATSAPP",
+          "FIRSTNAME",
+          "SCORE"
+        ]
+      },
+      {
+        "email": "256741239605@mailin-wa.com",
+        "name": "Waswa Innocent",
+        "page": "",
+        "referrer": "",
+        "createdAt": "2025-12-23T21:26:19.031+03:00",
+        "attributes": [
+          "WHATSAPP",
+          "FIRSTNAME",
+          "SCORE"
+        ]
+      },
+      {
+        "email": "254711667785@mailin-wa.com",
+        "name": "Maureen",
+        "page": "",
+        "referrer": "",
+        "createdAt": "2025-12-23T21:09:39.647+03:00",
+        "attributes": [
+          "WHATSAPP",
+          "FIRSTNAME",
+          "SCORE"
+        ]
+      },
+      {
+        "email": "254740186032@mailin-wa.com",
+        "name": "Asher",
+        "page": "",
+        "referrer": "",
+        "createdAt": "2025-12-23T18:26:01.877+03:00",
+        "attributes": [
+          "WHATSAPP",
+          "FIRSTNAME",
+          "SCORE"
+        ]
+      },
+      {
+        "email": "254790197644@mailin-wa.com",
+        "name": "~ Karish Gadafi",
+        "page": "",
+        "referrer": "",
+        "createdAt": "2025-12-23T17:55:49.024+03:00",
+        "attributes": [
+          "WHATSAPP",
+          "FIRSTNAME",
+          "SCORE"
+        ]
+      },
+      {
+        "email": "noreply@admi.africa",
+        "name": "ADMI Enhanced Enquiry System",
+        "page": "",
+        "referrer": "",
+        "createdAt": "2025-12-23T17:19:00.826+03:00",
+        "attributes": [
+          "FIRSTNAME",
+          "SCORE"
+        ]
+      }
+    ]
+  }
+}

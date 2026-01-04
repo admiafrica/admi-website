@@ -41,6 +41,7 @@ export interface UTMData {
   first_touch_term?: string
   first_touch_content?: string
   first_touch_timestamp?: string
+  first_touch_referrer?: string // Original referrer source
   // GA4 Client ID for cross-session tracking
   ga_client_id?: string
 }
@@ -354,6 +355,7 @@ export function enrichUTMData(utmData: UTMData): Required<Omit<UTMData, 'first_v
     first_touch_term: utmData.first_touch_term || '',
     first_touch_content: utmData.first_touch_content || '',
     first_touch_timestamp: utmData.first_touch_timestamp || '',
+    first_touch_referrer: utmData.first_touch_referrer || '',
     // GA Client ID
     ga_client_id: utmData.ga_client_id || ''
   }

@@ -15,3 +15,4 @@ create-course-relationships.js
 course-tagging-implementation-guide.md
 scripts/analytics/*.js
 infrastructure/serverless/**/*.jsscripts/contentful/**
+infrastructure/

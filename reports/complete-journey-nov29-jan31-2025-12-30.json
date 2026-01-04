@@ -1,0 +1,381 @@
+{
+  "generatedAt": "2025-12-30T06:21:05.246Z",
+  "period": {
+    "start": "2025-11-29",
+    "end": "2026-01-31",
+    "days": 63
+  },
+  "adPerformance": {
+    "estimatedAdSpend": 7749,
+    "googleAnalytics": {
+      "Google Performance Max": {
+        "sessions": 5333,
+        "users": 4828,
+        "newUsers": 4756,
+        "conversions": 32754,
+        "engagementRate": 0,
+        "bounceRate": 0
+      },
+      "Meta Ads (Facebook)": {
+        "sessions": 2227,
+        "users": 2072,
+        "newUsers": 2039,
+        "conversions": 12605,
+        "engagementRate": 0,
+        "bounceRate": 0
+      },
+      "Other": {
+        "sessions": 3010,
+        "users": 2778,
+        "newUsers": 2279,
+        "conversions": 12245,
+        "engagementRate": 0,
+        "bounceRate": 0
+      },
+      "Organic Search": {
+        "sessions": 1757,
+        "users": 1238,
+        "newUsers": 992,
+        "conversions": 21941,
+        "engagementRate": 0,
+        "bounceRate": 0
+      },
+      "Google Search Ads": {
+        "sessions": 1544,
+        "users": 1488,
+        "newUsers": 1466,
+        "conversions": 15659,
+        "engagementRate": 0,
+        "bounceRate": 0
+      },
+      "Direct": {
+        "sessions": 1454,
+        "users": 1268,
+        "newUsers": 1237,
+        "conversions": 8578,
+        "engagementRate": 0,
+        "bounceRate": 0
+      },
+      "Google Ads (Other)": {
+        "sessions": 329,
+        "users": 266,
+        "newUsers": 214,
+        "conversions": 2566,
+        "engagementRate": 0,
+        "bounceRate": 0
+      }
+    },
+    "summary": {
+      "totalSessions": 15654,
+      "totalUsers": 13938,
+      "totalConversions": 106348
+    }
+  },
+  "leadGeneration": {
+    "totalLeads": 693,
+    "bySource": {
+      "Direct": {
+        "count": 515,
+        "avgLeadScore": "18.72",
+        "hot": 123,
+        "warm": 150,
+        "cold": 47,
+        "unqualified": 195,
+        "hotPercent": "23.9",
+        "warmPercent": "29.1"
+      },
+      "Meta Ads (Facebook)": {
+        "count": 84,
+        "avgLeadScore": "12.99",
+        "hot": 24,
+        "warm": 53,
+        "cold": 7,
+        "unqualified": 0,
+        "hotPercent": "28.6",
+        "warmPercent": "63.1"
+      },
+      "Google Search Ads": {
+        "count": 39,
+        "avgLeadScore": "12.96",
+        "hot": 12,
+        "warm": 24,
+        "cold": 3,
+        "unqualified": 0,
+        "hotPercent": "30.8",
+        "warmPercent": "61.5"
+      },
+      "Google Performance Max": {
+        "count": 36,
+        "avgLeadScore": "12.44",
+        "hot": 8,
+        "warm": 25,
+        "cold": 3,
+        "unqualified": 0,
+        "hotPercent": "22.2",
+        "warmPercent": "69.4"
+      },
+      "Other": {
+        "count": 16,
+        "avgLeadScore": "3.00",
+        "hot": 1,
+        "warm": 1,
+        "cold": 2,
+        "unqualified": 12,
+        "hotPercent": "6.3",
+        "warmPercent": "6.3"
+      },
+      "Google Ads (Other)": {
+        "count": 3,
+        "avgLeadScore": "13.33",
+        "hot": 1,
+        "warm": 2,
+        "cold": 0,
+        "unqualified": 0,
+        "hotPercent": "33.3",
+        "warmPercent": "66.7"
+      }
+    }
+  },
+  "pipelineConversion": {
+    "totalDeals": 740,
+    "funnelBySource": {
+      "Google Performance Max": {
+        "Unqualified Leads": 35,
+        "Qualified / Program Selected": 2,
+        "Enrolled": 2,
+        "Paid": 0
+      },
+      "Direct": {
+        "Unqualified Leads": 481,
+        "Qualified / Program Selected": 27,
+        "Enrolled": 15,
+        "Paid": 8,
+        "Unknown": null
+      },
+      "Meta Ads (Facebook)": {
+        "Unqualified Leads": 83,
+        "Qualified / Program Selected": 1,
+        "Enrolled": 5,
+        "Paid": 0
+      },
+      "Google Search Ads": {
+        "Unqualified Leads": 38,
+        "Qualified / Program Selected": 2,
+        "Enrolled": 1,
+        "Paid": 1
+      },
+      "Other": {
+        "Unqualified Leads": 16,
+        "Qualified / Program Selected": 0,
+        "Enrolled": 0,
+        "Paid": 0
+      },
+      "Unknown Source": {
+        "Unqualified Leads": 9,
+        "Qualified / Program Selected": 0,
+        "Enrolled": 0,
+        "Paid": 0
+      },
+      "Google Ads (Other)": {
+        "Unqualified Leads": 2,
+        "Qualified / Program Selected": 0,
+        "Enrolled": 0,
+        "Paid": 0
+      }
+    },
+    "conversionRates": {
+      "Google Search Ads": {
+        "unqualified": 38,
+        "qualified": 2,
+        "enrolled": 1,
+        "paid": 1,
+        "unqualifiedToQualified": "5.3",
+        "qualifiedToEnrolled": "50.0",
+        "enrolledToPaid": "100.0",
+        "overallConversion": "2.63"
+      },
+      "Direct": {
+        "unqualified": 481,
+        "qualified": 27,
+        "enrolled": 15,
+        "paid": 8,
+        "unqualifiedToQualified": "5.6",
+        "qualifiedToEnrolled": "55.6",
+        "enrolledToPaid": "53.3",
+        "overallConversion": "1.66"
+      },
+      "Google Performance Max": {
+        "unqualified": 35,
+        "qualified": 2,
+        "enrolled": 2,
+        "paid": 0,
+        "unqualifiedToQualified": "5.7",
+        "qualifiedToEnrolled": "100.0",
+        "enrolledToPaid": "0.0",
+        "overallConversion": "0.00"
+      },
+      "Meta Ads (Facebook)": {
+        "unqualified": 83,
+        "qualified": 1,
+        "enrolled": 5,
+        "paid": 0,
+        "unqualifiedToQualified": "1.2",
+        "qualifiedToEnrolled": "500.0",
+        "enrolledToPaid": "0.0",
+        "overallConversion": "0.00"
+      },
+      "Other": {
+        "unqualified": 16,
+        "qualified": 0,
+        "enrolled": 0,
+        "paid": 0,
+        "unqualifiedToQualified": "0.0",
+        "qualifiedToEnrolled": "0.0",
+        "enrolledToPaid": "0.0",
+        "overallConversion": "0.00"
+      },
+      "Unknown Source": {
+        "unqualified": 9,
+        "qualified": 0,
+        "enrolled": 0,
+        "paid": 0,
+        "unqualifiedToQualified": "0.0",
+        "qualifiedToEnrolled": "0.0",
+        "enrolledToPaid": "0.0",
+        "overallConversion": "0.00"
+      },
+      "Google Ads (Other)": {
+        "unqualified": 2,
+        "qualified": 0,
+        "enrolled": 0,
+        "paid": 0,
+        "unqualifiedToQualified": "0.0",
+        "qualifiedToEnrolled": "0.0",
+        "enrolledToPaid": "0.0",
+        "overallConversion": "0.00"
+      }
+    }
+  },
+  "completeJourney": {
+    "bySource": {
+      "Direct": {
+        "sessions": 1454,
+        "leads": 515,
+        "paidStudents": 8,
+        "revenue": 400000,
+        "adSpend": 0,
+        "costPerLead": null,
+        "sessionToLeadRate": "35.42",
+        "overallConversion": "1.55",
+        "roi": null,
+        "avgLeadScore": "18.72",
+        "hotLeadPercent": "23.9"
+      },
+      "Google Search Ads": {
+        "sessions": 1544,
+        "leads": 39,
+        "paidStudents": 1,
+        "revenue": 50000,
+        "adSpend": 1866,
+        "costPerLead": 48,
+        "sessionToLeadRate": "2.53",
+        "overallConversion": "2.56",
+        "roi": "2580.2",
+        "avgLeadScore": "12.96",
+        "hotLeadPercent": "30.8"
+      },
+      "Google Performance Max": {
+        "sessions": 5333,
+        "leads": 36,
+        "paidStudents": 0,
+        "revenue": 0,
+        "adSpend": 1722,
+        "costPerLead": 48,
+        "sessionToLeadRate": "0.68",
+        "overallConversion": "0.00",
+        "roi": "-100.0",
+        "avgLeadScore": "12.44",
+        "hotLeadPercent": "22.2"
+      },
+      "Meta Ads (Facebook)": {
+        "sessions": 2227,
+        "leads": 84,
+        "paidStudents": 0,
+        "revenue": 0,
+        "adSpend": 4018,
+        "costPerLead": 48,
+        "sessionToLeadRate": "3.77",
+        "overallConversion": "0.00",
+        "roi": "-100.0",
+        "avgLeadScore": "12.99",
+        "hotLeadPercent": "28.6"
+      },
+      "Other": {
+        "sessions": 3010,
+        "leads": 16,
+        "paidStudents": 0,
+        "revenue": 0,
+        "adSpend": 0,
+        "costPerLead": null,
+        "sessionToLeadRate": "0.53",
+        "overallConversion": "0.00",
+        "roi": null,
+        "avgLeadScore": "3.00",
+        "hotLeadPercent": "6.3"
+      },
+      "Organic Search": {
+        "sessions": 1757,
+        "leads": 0,
+        "paidStudents": 0,
+        "revenue": 0,
+        "adSpend": 0,
+        "costPerLead": null,
+        "sessionToLeadRate": "0.00",
+        "overallConversion": "0.00",
+        "roi": null,
+        "avgLeadScore": "0.00",
+        "hotLeadPercent": "0.0"
+      },
+      "Google Ads (Other)": {
+        "sessions": 329,
+        "leads": 3,
+        "paidStudents": 0,
+        "revenue": 0,
+        "adSpend": 144,
+        "costPerLead": 48,
+        "sessionToLeadRate": "0.91",
+        "overallConversion": "0.00",
+        "roi": "-100.0",
+        "avgLeadScore": "13.33",
+        "hotLeadPercent": "33.3"
+      },
+      "Unknown Source": {
+        "sessions": 0,
+        "leads": 0,
+        "paidStudents": 0,
+        "revenue": 0,
+        "adSpend": 0,
+        "costPerLead": null,
+        "sessionToLeadRate": "0.00",
+        "overallConversion": "0.00",
+        "roi": null,
+        "avgLeadScore": "0.00",
+        "hotLeadPercent": "0.0"
+      }
+    },
+    "insights": [
+      "✅ Best ROI: Google Search Ads (2580.2% ROI, 1 paid students, KES 50,000 revenue)",
+      "✅ Best Conversion Rate: Google Search Ads (2.56% Lead → Paid)",
+      "✅ Highest Lead Quality: Direct (Avg Score: 18.72, 23.9% Hot)",
+      "💰 Total: 693 leads → 9 paid students → KES 450,000 revenue (5707.2% ROI)"
+    ],
+    "totals": {
+      "adSpend": 7749,
+      "sessions": 15654,
+      "leads": 693,
+      "paidStudents": 9,
+      "revenue": 450000,
+      "overallROI": "5707.2"
+    }
+  }
+}
