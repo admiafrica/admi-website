@@ -97,9 +97,16 @@ export default function EnhancedEnquiryForm() {
       const response = await fetch('/api/v3/courses')
       const data = await response.json()
 
-      setCourses(data)
+      // Only set courses if data is an array
+      if (Array.isArray(data)) {
+        setCourses(data)
+      } else {
+        console.error('Courses API returned non-array data:', data)
+        setCourses([])
+      }
     } catch (error) {
       console.error('Error fetching courses:', error)
+      setCourses([])
     } finally {
       setCoursesLoading(false)
     }
