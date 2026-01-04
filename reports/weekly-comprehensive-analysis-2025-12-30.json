@@ -1,0 +1,689 @@
+{
+  "generatedAt": "2025-12-30T06:08:18.772Z",
+  "period": {
+    "start": "2025-12-23",
+    "end": "2025-12-30",
+    "days": 7
+  },
+  "googleAnalytics": {
+    "totalSessions": 2586,
+    "totalUsers": 2369,
+    "totalConversions": 18195,
+    "trafficDetails": [
+      {
+        "dimension0": "meta",
+        "dimension1": "paid-social",
+        "dimension2": "leads-remarketing-catalog",
+        "metric0": "668",
+        "metric1": "642",
+        "metric2": "611",
+        "metric3": "1",
+        "metric4": "183.29984132485029",
+        "metric5": "0",
+        "metric6": "3545"
+      },
+      {
+        "dimension0": "google",
+        "dimension1": "cpc",
+        "dimension2": "Website traffic-Performance Max-Jan",
+        "metric0": "497",
+        "metric1": "448",
+        "metric2": "419",
+        "metric3": "0.98792756539235416",
+        "metric4": "115.40991678068411",
+        "metric5": "0.012072434607645875",
+        "metric6": "2460"
+      },
+      {
+        "dimension0": "(not set)",
+        "dimension1": "(not set)",
+        "dimension2": "(not set)",
+        "metric0": "383",
+        "metric1": "369",
+        "metric2": "1",
+        "metric3": "0.0026109660574412533",
+        "metric4": "319.64208003655358",
+        "metric5": "0.99738903394255873",
+        "metric6": "1819"
+      },
+      {
+        "dimension0": "google",
+        "dimension1": "organic",
+        "dimension2": "(organic)",
+        "metric0": "355",
+        "metric1": "281",
+        "metric2": "225",
+        "metric3": "1",
+        "metric4": "322.80946847887327",
+        "metric5": "0",
+        "metric6": "4914"
+      },
+      {
+        "dimension0": "(direct)",
+        "dimension1": "(none)",
+        "dimension2": "(direct)",
+        "metric0": "241",
+        "metric1": "222",
+        "metric2": "211",
+        "metric3": "1",
+        "metric4": "136.40396832780084",
+        "metric5": "0",
+        "metric6": "1459"
+      },
+      {
+        "dimension0": "google",
+        "dimension1": "cpc",
+        "dimension2": "ADMI Search Jan 2026",
+        "metric0": "197",
+        "metric1": "191",
+        "metric2": "186",
+        "metric3": "1",
+        "metric4": "226.05903990862944",
+        "metric5": "0",
+        "metric6": "2471"
+      },
+      {
+        "dimension0": "(data not available)",
+        "dimension1": "(data not available)",
+        "dimension2": "(cross-network)",
+        "metric0": "151",
+        "metric1": "151",
+        "metric2": "151",
+        "metric3": "1",
+        "metric4": "201.76644153642386",
+        "metric5": "0",
+        "metric6": "648"
+      },
+      {
+        "dimension0": "bing",
+        "dimension1": "organic",
+        "dimension2": "(organic)",
+        "metric0": "14",
+        "metric1": "9",
+        "metric2": "6",
+        "metric3": "1",
+        "metric4": "401.6269435",
+        "metric5": "0",
+        "metric6": "207"
+      },
+      {
+        "dimension0": "instagram.com",
+        "dimension1": "referral",
+        "dimension2": "(referral)",
+        "metric0": "14",
+        "metric1": "1",
+        "metric2": "0",
+        "metric3": "1",
+        "metric4": "131.41483214285714",
+        "metric5": "0",
+        "metric6": "34"
+      },
+      {
+        "dimension0": "google",
+        "dimension1": "cpc",
+        "dimension2": "search-jan2026-admi",
+        "metric0": "9",
+        "metric1": "9",
+        "metric2": "9",
+        "metric3": "1",
+        "metric4": "24.554623444444445",
+        "metric5": "0",
+        "metric6": "27"
+      },
+      {
+        "dimension0": "youtube.com",
+        "dimension1": "referral",
+        "dimension2": "(referral)",
+        "metric0": "8",
+        "metric1": "5",
+        "metric2": "0",
+        "metric3": "1",
+        "metric4": "21.14045975",
+        "metric5": "0",
+        "metric6": "32"
+      },
+      {
+        "dimension0": "m.facebook.com",
+        "dimension1": "referral",
+        "dimension2": "(referral)",
+        "metric0": "7",
+        "metric1": "7",
+        "metric2": "6",
+        "metric3": "1",
+        "metric4": "18.602476857142857",
+        "metric5": "0",
+        "metric6": "14"
+      },
+      {
+        "dimension0": "google",
+        "dimension1": "cpc",
+        "dimension2": "pmax-jan2026-traffic",
+        "metric0": "6",
+        "metric1": "5",
+        "metric2": "3",
+        "metric3": "1",
+        "metric4": "17.620631166666666",
+        "metric5": "0",
+        "metric6": "21"
+      },
+      {
+        "dimension0": "google",
+        "dimension1": "cpc",
+        "dimension2": "(not set)",
+        "metric0": "5",
+        "metric1": "5",
+        "metric2": "3",
+        "metric3": "1",
+        "metric4": "28.494256200000002",
+        "metric5": "0",
+        "metric6": "16"
+      },
+      {
+        "dimension0": "chatgpt.com",
+        "dimension1": "(not set)",
+        "dimension2": "(not set)",
+        "metric0": "4",
+        "metric1": "4",
+        "metric2": "2",
+        "metric3": "1",
+        "metric4": "1795.5662467500001",
+        "metric5": "0",
+        "metric6": "185"
+      },
+      {
+        "dimension0": "test",
+        "dimension1": "cpc",
+        "dimension2": "production-test",
+        "metric0": "4",
+        "metric1": "1",
+        "metric2": "0",
+        "metric3": "0.75",
+        "metric4": "1046.47457575",
+        "metric5": "0.25",
+        "metric6": "94"
+      },
+      {
+        "dimension0": "yahoo",
+        "dimension1": "organic",
+        "dimension2": "(organic)",
+        "metric0": "4",
+        "metric1": "3",
+        "metric2": "3",
+        "metric3": "1",
+        "metric4": "358.6559085",
+        "metric5": "0",
+        "metric6": "66"
+      },
+      {
+        "dimension0": "facebook.com",
+        "dimension1": "referral",
+        "dimension2": "(referral)",
+        "metric0": "3",
+        "metric1": "3",
+        "metric2": "3",
+        "metric3": "1",
+        "metric4": "28.93484033333333",
+        "metric5": "0",
+        "metric6": "9"
+      },
+      {
+        "dimension0": "t.co",
+        "dimension1": "referral",
+        "dimension2": "(referral)",
+        "metric0": "3",
+        "metric1": "2",
+        "metric2": "1",
+        "metric3": "1",
+        "metric4": "726.53493366666669",
+        "metric5": "0",
+        "metric6": "29"
+      },
+      {
+        "dimension0": "chatgpt.com",
+        "dimension1": "referral",
+        "dimension2": "(referral)",
+        "metric0": "2",
+        "metric1": "2",
+        "metric2": "2",
+        "metric3": "1",
+        "metric4": "562.1888345",
+        "metric5": "0",
+        "metric6": "33"
+      },
+      {
+        "dimension0": "google",
+        "dimension1": "cpc",
+        "dimension2": "23282289054",
+        "metric0": "2",
+        "metric1": "2",
+        "metric2": "2",
+        "metric3": "1",
+        "metric4": "4.8759225",
+        "metric5": "0",
+        "metric6": "4"
+      },
+      {
+        "dimension0": "notebooklm.google.com",
+        "dimension1": "referral",
+        "dimension2": "(referral)",
+        "metric0": "2",
+        "metric1": "1",
+        "metric2": "0",
+        "metric3": "1",
+        "metric4": "696.007172",
+        "metric5": "0",
+        "metric6": "6"
+      },
+      {
+        "dimension0": "pwa-app",
+        "dimension1": "pwa-app",
+        "dimension2": "pwa-campaign",
+        "metric0": "2",
+        "metric1": "1",
+        "metric2": "0",
+        "metric3": "1",
+        "metric4": "71.344839",
+        "metric5": "0",
+        "metric6": "4"
+      },
+      {
+        "dimension0": "1",
+        "dimension1": "adwords",
+        "dimension2": "1",
+        "metric0": "1",
+        "metric1": "1",
+        "metric2": "1",
+        "metric3": "1",
+        "metric4": "6.184048",
+        "metric5": "0",
+        "metric6": "3"
+      },
+      {
+        "dimension0": "ascendesigns.co.ke",
+        "dimension1": "referral",
+        "dimension2": "(referral)",
+        "metric0": "1",
+        "metric1": "1",
+        "metric2": "1",
+        "metric3": "1",
+        "metric4": "609.554941",
+        "metric5": "0",
+        "metric6": "64"
+      },
+      {
+        "dimension0": "chatgpt.com",
+        "dimension1": "(none)",
+        "dimension2": "(direct)",
+        "metric0": "1",
+        "metric1": "1",
+        "metric2": "0",
+        "metric3": "1",
+        "metric4": "694.509255",
+        "metric5": "0",
+        "metric6": "11"
+      },
+      {
+        "dimension0": "euc-word-view.officeapps.live.com",
+        "dimension1": "referral",
+        "dimension2": "(referral)",
+        "metric0": "1",
+        "metric1": "1",
+        "metric2": "0",
+        "metric3": "1",
+        "metric4": "1237.985731",
+        "metric5": "0",
+        "metric6": "17"
+      },
+      {
+        "dimension0": "newsuk1.com",
+        "dimension1": "referral",
+        "dimension2": "(referral)",
+        "metric0": "1",
+        "metric1": "1",
+        "metric2": "1",
+        "metric3": "1",
+        "metric4": "17.530133",
+        "metric5": "0",
+        "metric6": "3"
+      }
+    ]
+  },
+  "weeklyLeads": {
+    "total": 145,
+    "bySource": {
+      "Direct": {
+        "count": 79,
+        "avgLeadScore": "4.65",
+        "hot": 5,
+        "warm": 14,
+        "cold": 12,
+        "unqualified": 48,
+        "hotPercent": "6.3",
+        "warmPercent": "17.7",
+        "topLeads": [
+          {
+            "email": "benbrengle2000@gmail.com",
+            "name": "Ben Kioko",
+            "score": 17,
+            "status": "Hot Lead"
+          },
+          {
+            "email": "clintoh084@gmail.com",
+            "name": "Clinton",
+            "score": 15.2,
+            "status": "Hot Lead"
+          },
+          {
+            "email": "brightonomondi006@gmail.com",
+            "name": "Brighton Auko",
+            "score": 15,
+            "status": "Hot Lead"
+          },
+          {
+            "email": "joekash136@gmail.com",
+            "name": "JOHN KARANJA",
+            "score": 15,
+            "status": "Hot Lead"
+          },
+          {
+            "email": "rachaelkim943@gmail.com",
+            "name": "RACHAEL KIOKO",
+            "score": 15,
+            "status": "Hot Lead"
+          }
+        ]
+      },
+      "Meta Ads (Facebook)": {
+        "count": 30,
+        "avgLeadScore": "13.20",
+        "hot": 8,
+        "warm": 20,
+        "cold": 2,
+        "unqualified": 0,
+        "hotPercent": "26.7",
+        "warmPercent": "66.7",
+        "topLeads": [
+          {
+            "email": "giddstardancer@gmail.com",
+            "name": "Gideon Khatera",
+            "score": 17,
+            "status": "Hot Lead"
+          },
+          {
+            "email": "nyakundijoel328@gmail.com",
+            "name": "Joel Nyaky",
+            "score": 16,
+            "status": "Hot Lead"
+          },
+          {
+            "email": "saintclinton001@gmail.com",
+            "name": "Clinton Otuke",
+            "score": 16,
+            "status": "Hot Lead"
+          },
+          {
+            "email": "davidokwach508@gmail.com",
+            "name": "David Okwach",
+            "score": 15,
+            "status": "Hot Lead"
+          },
+          {
+            "email": "malkiapatcoh@gmail.com",
+            "name": "Patricia Aloo",
+            "score": 15,
+            "status": "Hot Lead"
+          }
+        ]
+      },
+      "Google Search Ads": {
+        "count": 16,
+        "avgLeadScore": "12.28",
+        "hot": 4,
+        "warm": 10,
+        "cold": 2,
+        "unqualified": 0,
+        "hotPercent": "25.0",
+        "warmPercent": "62.5",
+        "topLeads": [
+          {
+            "email": "vickyshaz42@gmail.com",
+            "name": "Sharon Malia",
+            "score": 16,
+            "status": "Hot Lead"
+          },
+          {
+            "email": "wilsonokombo05@gmail.com",
+            "name": "Wilson Okombo",
+            "score": 15,
+            "status": "Hot Lead"
+          },
+          {
+            "email": "sadumaphilo@gmail.com",
+            "name": "Philomena Saduma",
+            "score": 15,
+            "status": "Hot Lead"
+          },
+          {
+            "email": "fahatadan505@gmail.com",
+            "name": "Fahat Adan",
+            "score": 15,
+            "status": "Hot Lead"
+          },
+          {
+            "email": "shaline@andayi.com",
+            "name": "Wicliffe Juma",
+            "score": 14,
+            "status": "Warm Lead"
+          }
+        ]
+      },
+      "Other": {
+        "count": 16,
+        "avgLeadScore": "3.00",
+        "hot": 1,
+        "warm": 1,
+        "cold": 2,
+        "unqualified": 12,
+        "hotPercent": "6.3",
+        "warmPercent": "6.3",
+        "topLeads": [
+          {
+            "email": "naserden66@gmail.com",
+            "name": "abdinasir mursal",
+            "score": 17,
+            "status": "Hot Lead"
+          },
+          {
+            "email": "akenidarshni@gmail.com",
+            "name": "Yes",
+            "score": 12.2,
+            "status": "Warm Lead"
+          },
+          {
+            "email": "nyamaijohn230@gmail.com",
+            "name": "John",
+            "score": 9.4,
+            "status": "Cold Lead"
+          },
+          {
+            "email": "nyamaijohn@230.gmail.com",
+            "name": "John",
+            "score": 9.4,
+            "status": "Cold Lead"
+          },
+          {
+            "email": "254793833355@mailin-wa.com",
+            "name": "9",
+            "score": 0,
+            "status": "Unqualified"
+          }
+        ]
+      },
+      "Google Performance Max": {
+        "count": 4,
+        "avgLeadScore": "12.00",
+        "hot": 1,
+        "warm": 3,
+        "cold": 0,
+        "unqualified": 0,
+        "hotPercent": "25.0",
+        "warmPercent": "75.0",
+        "topLeads": [
+          {
+            "email": "aeeynet24@gmail.com",
+            "name": "Alex Muthua",
+            "score": 15,
+            "status": "Hot Lead"
+          },
+          {
+            "email": "kashatake4@gmail.com",
+            "name": "Johnstone Okwayo",
+            "score": 11,
+            "status": "Warm Lead"
+          },
+          {
+            "email": "morganmulomi@gmail.com",
+            "name": "Morgan Mulomi",
+            "score": 11,
+            "status": "Warm Lead"
+          },
+          {
+            "email": "ngurecollins20@gmail.com",
+            "name": "Collins Njure",
+            "score": 11,
+            "status": "Warm Lead"
+          }
+        ]
+      }
+    }
+  },
+  "january2026Pipeline": {
+    "totalDeals": 740,
+    "funnelBySource": {
+      "Google Performance Max": {
+        "Unqualified Leads": 35,
+        "Qualified / Program Selected": 2,
+        "Enrolled": 2,
+        "Paid": 0
+      },
+      "Direct": {
+        "Unqualified Leads": 481,
+        "Qualified / Program Selected": 27,
+        "Enrolled": 15,
+        "Paid": 8,
+        "Unknown": null
+      },
+      "Meta Ads (Facebook)": {
+        "Unqualified Leads": 83,
+        "Qualified / Program Selected": 1,
+        "Enrolled": 5,
+        "Paid": 0
+      },
+      "Google Search Ads": {
+        "Unqualified Leads": 38,
+        "Qualified / Program Selected": 2,
+        "Enrolled": 1,
+        "Paid": 1
+      },
+      "Other": {
+        "Unqualified Leads": 16,
+        "Qualified / Program Selected": 0,
+        "Enrolled": 0,
+        "Paid": 0
+      },
+      "Unknown Source": {
+        "Unqualified Leads": 9,
+        "Qualified / Program Selected": 0,
+        "Enrolled": 0,
+        "Paid": 0
+      },
+      "Google Ads (Other)": {
+        "Unqualified Leads": 2,
+        "Qualified / Program Selected": 0,
+        "Enrolled": 0,
+        "Paid": 0
+      }
+    },
+    "conversionRates": {
+      "Google Search Ads": {
+        "unqualified": 38,
+        "qualified": 2,
+        "enrolled": 1,
+        "paid": 1,
+        "unqualifiedToQualified": "5.3",
+        "qualifiedToEnrolled": "50.0",
+        "enrolledToPaid": "100.0",
+        "overallConversion": "2.63"
+      },
+      "Direct": {
+        "unqualified": 481,
+        "qualified": 27,
+        "enrolled": 15,
+        "paid": 8,
+        "unqualifiedToQualified": "5.6",
+        "qualifiedToEnrolled": "55.6",
+        "enrolledToPaid": "53.3",
+        "overallConversion": "1.66"
+      },
+      "Google Performance Max": {
+        "unqualified": 35,
+        "qualified": 2,
+        "enrolled": 2,
+        "paid": 0,
+        "unqualifiedToQualified": "5.7",
+        "qualifiedToEnrolled": "100.0",
+        "enrolledToPaid": "0.0",
+        "overallConversion": "0.00"
+      },
+      "Meta Ads (Facebook)": {
+        "unqualified": 83,
+        "qualified": 1,
+        "enrolled": 5,
+        "paid": 0,
+        "unqualifiedToQualified": "1.2",
+        "qualifiedToEnrolled": "500.0",
+        "enrolledToPaid": "0.0",
+        "overallConversion": "0.00"
+      },
+      "Other": {
+        "unqualified": 16,
+        "qualified": 0,
+        "enrolled": 0,
+        "paid": 0,
+        "unqualifiedToQualified": "0.0",
+        "qualifiedToEnrolled": "0.0",
+        "enrolledToPaid": "0.0",
+        "overallConversion": "0.00"
+      },
+      "Unknown Source": {
+        "unqualified": 9,
+        "qualified": 0,
+        "enrolled": 0,
+        "paid": 0,
+        "unqualifiedToQualified": "0.0",
+        "qualifiedToEnrolled": "0.0",
+        "enrolledToPaid": "0.0",
+        "overallConversion": "0.00"
+      },
+      "Google Ads (Other)": {
+        "unqualified": 2,
+        "qualified": 0,
+        "enrolled": 0,
+        "paid": 0,
+        "unqualifiedToQualified": "0.0",
+        "qualifiedToEnrolled": "0.0",
+        "enrolledToPaid": "0.0",
+        "overallConversion": "0.00"
+      }
+    }
+  },
+  "customerJourney": {
+    "insights": [
+      "✅ Highest quality leads: Meta Ads (Facebook) (Avg Score: 13.2, 26.7% Hot)",
+      "✅ Best pipeline conversion: Google Search Ads (2.63% overall conversion to Paid)",
+      "📊 Lead distribution: Google Ads 13.8%, Meta Ads 20.7%"
+    ],
+    "bestPerformingSource": "Meta Ads (Facebook)",
+    "bestConversionSource": "Google Search Ads"
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "analysisDate": "2025-12-24T08:24:01.621Z",
+  "period": {
+    "start": "2025-11-29",
+    "end": "2025-12-24",
+    "days": 26
+  },
+  "searchCampaign": {
+    "totalLeads": 32,
+    "hotLeads": 23,
+    "warmLeads": 8,
+    "coldLeads": 1,
+    "averageScore": 13.1,
+    "hotLeadPercent": "71.9"
+  },
+  "costAnalysis": {
+    "estimatedCPC": 3.5,
+    "estimatedImpressions": 11429,
+    "estimatedClicks": 914,
+    "estimatedTotalCost": 3199,
+    "costPerLead": 99.96875,
+    "costPerHotLead": "139.09",
+    "costPerApplication": "639.80",
+    "costPerEnrollment": "1599.50"
+  },
+  "roiProjection": {
+    "potentialApplications": 5,
+    "potentialEnrollments": 2,
+    "potentialRevenue": 3000,
+    "roi": "-6.2",
+    "roas": "0.94"
+  },
+  "comparison": {
+    "search": {
+      "leads": 32,
+      "hotPercent": "71.9",
+      "avgScore": "13.1"
+    },
+    "pmax": {
+      "leads": 34,
+      "hotPercent": "55.9",
+      "avgScore": "12.4"
+    },
+    "meta": {
+      "leads": 56,
+      "hotPercent": "57.1",
+      "avgScore": "12.9"
+    }
+  },
+  "rating": {
+    "score": "183.1",
+    "assessment": "EXCELLENT",
+    "recommendation": "HIGHLY EFFECTIVE - Increase budget allocation"
+  }
+}

@@ -1,0 +1,512 @@
+{
+  "generatedAt": "2026-01-01T06:47:15.711Z",
+  "period": {
+    "start": "2025-11-29",
+    "end": "2026-01-31",
+    "days": 63
+  },
+  "adPerformance": {
+    "totalAdSpend": 354938.714616,
+    "googleAdsData": {
+      "totalSpendUSD": 2019.552904,
+      "totalSpendKES": 260522.324616,
+      "exchangeRate": 129,
+      "campaigns": [
+        {
+          "name": "Website traffic-Performance Max-Jan",
+          "id": 23282289054,
+          "spend": 1254.990906,
+          "impressions": 779447,
+          "clicks": 12534,
+          "conversions": 146.949344
+        },
+        {
+          "name": "ADMI Search Jan 2026",
+          "id": 23293961952,
+          "spend": 764.561998,
+          "impressions": 31283,
+          "clicks": 2597,
+          "conversions": 160
+        }
+      ],
+      "totalImpressions": 810730,
+      "totalClicks": 15131,
+      "totalConversions": 306.949344
+    },
+    "metaAdsData": {
+      "totalSpendUSD": 731.91,
+      "totalSpendKES": 94416.39,
+      "exchangeRate": 129,
+      "campaigns": [
+        {
+          "name": "Leads - Re-marketing",
+          "id": "6861785054787",
+          "status": "ACTIVE",
+          "spend": 599.43,
+          "impressions": 1003198,
+          "clicks": 16029,
+          "conversions": 107
+        },
+        {
+          "name": "Course Catalog - Remarketing",
+          "id": "6860035969187",
+          "status": "PAUSED",
+          "spend": 132.48,
+          "impressions": 233970,
+          "clicks": 3724,
+          "conversions": 0
+        }
+      ],
+      "totalImpressions": 1237168,
+      "totalClicks": 19753,
+      "totalConversions": 107
+    },
+    "hasActualSpend": true,
+    "googleAnalytics": {
+      "Google Performance Max": {
+        "sessions": 5633,
+        "users": 5114,
+        "newUsers": 5042,
+        "conversions": 34694,
+        "engagementRate": 0,
+        "bounceRate": 0
+      },
+      "Meta Ads (Facebook)": {
+        "sessions": 2412,
+        "users": 2240,
+        "newUsers": 2204,
+        "conversions": 13867,
+        "engagementRate": 0,
+        "bounceRate": 0
+      },
+      "Organic Search": {
+        "sessions": 1866,
+        "users": 1307,
+        "newUsers": 1049,
+        "conversions": 23384,
+        "engagementRate": 0,
+        "bounceRate": 0
+      },
+      "Other": {
+        "sessions": 3121,
+        "users": 2889,
+        "newUsers": 2371,
+        "conversions": 12700,
+        "engagementRate": 0,
+        "bounceRate": 0
+      },
+      "Google Search Ads": {
+        "sessions": 1723,
+        "users": 1654,
+        "newUsers": 1628,
+        "conversions": 17675,
+        "engagementRate": 0,
+        "bounceRate": 0
+      },
+      "Direct": {
+        "sessions": 1521,
+        "users": 1324,
+        "newUsers": 1289,
+        "conversions": 9124,
+        "engagementRate": 0,
+        "bounceRate": 0
+      },
+      "Google Ads (Other)": {
+        "sessions": 332,
+        "users": 267,
+        "newUsers": 215,
+        "conversions": 2642,
+        "engagementRate": 0,
+        "bounceRate": 0
+      }
+    },
+    "summary": {
+      "totalSessions": 16608,
+      "totalUsers": 14795,
+      "totalConversions": 114086
+    }
+  },
+  "leadGeneration": {
+    "totalLeads": 750,
+    "bySource": {
+      "Direct": {
+        "count": 550,
+        "avgLeadScore": "17.91",
+        "hot": 124,
+        "warm": 164,
+        "cold": 49,
+        "unqualified": 213,
+        "hotPercent": "22.5",
+        "warmPercent": "29.8"
+      },
+      "Meta Ads (Facebook)": {
+        "count": 90,
+        "avgLeadScore": "12.91",
+        "hot": 26,
+        "warm": 55,
+        "cold": 9,
+        "unqualified": 0,
+        "hotPercent": "28.9",
+        "warmPercent": "61.1"
+      },
+      "Google Search Ads": {
+        "count": 46,
+        "avgLeadScore": "12.94",
+        "hot": 12,
+        "warm": 31,
+        "cold": 3,
+        "unqualified": 0,
+        "hotPercent": "26.1",
+        "warmPercent": "67.4"
+      },
+      "Google Performance Max": {
+        "count": 46,
+        "avgLeadScore": "12.59",
+        "hot": 11,
+        "warm": 31,
+        "cold": 4,
+        "unqualified": 0,
+        "hotPercent": "23.9",
+        "warmPercent": "67.4"
+      },
+      "Other": {
+        "count": 15,
+        "avgLeadScore": "2.57",
+        "hot": 1,
+        "warm": 1,
+        "cold": 1,
+        "unqualified": 12,
+        "hotPercent": "6.7",
+        "warmPercent": "6.7"
+      },
+      "Google Ads (Other)": {
+        "count": 3,
+        "avgLeadScore": "13.33",
+        "hot": 1,
+        "warm": 2,
+        "cold": 0,
+        "unqualified": 0,
+        "hotPercent": "33.3",
+        "warmPercent": "66.7"
+      }
+    }
+  },
+  "pipelineConversion": {
+    "totalDeals": 803,
+    "funnelBySource": {
+      "Direct": {
+        "Unqualified": 515,
+        "MQL": 27,
+        "SQL": 8,
+        "Applied": 12,
+        "Decision Making": 15
+      },
+      "Google Performance Max": {
+        "Unqualified": 45,
+        "MQL": 2,
+        "SQL": 0,
+        "Applied": 0,
+        "Decision Making": 2
+      },
+      "Google Search Ads": {
+        "Unqualified": 45,
+        "MQL": 2,
+        "SQL": 0,
+        "Applied": 1,
+        "Decision Making": 1
+      },
+      "Meta Ads (Facebook)": {
+        "Unqualified": 89,
+        "MQL": 1,
+        "SQL": 0,
+        "Applied": 0,
+        "Decision Making": 5
+      },
+      "Unknown Source": {
+        "Unqualified": 16,
+        "MQL": 0,
+        "SQL": 0,
+        "Applied": 0,
+        "Decision Making": 0
+      },
+      "Other": {
+        "Unqualified": 15,
+        "MQL": 0,
+        "SQL": 0,
+        "Applied": 0,
+        "Decision Making": 0
+      },
+      "Google Ads (Other)": {
+        "Unqualified": 2,
+        "MQL": 0,
+        "SQL": 0,
+        "Applied": 0,
+        "Decision Making": 0
+      }
+    },
+    "conversionRates": {
+      "Meta Ads (Facebook)": {
+        "unqualified": 89,
+        "mql": 1,
+        "sql": 0,
+        "applied": 0,
+        "decisionMaking": 5,
+        "enrolled": 0,
+        "paid": 0,
+        "unqualifiedToMQL": "1.1",
+        "mqlToSQL": "0.0",
+        "sqlToApplied": "0.0",
+        "appliedToDecisionMaking": "0.0",
+        "overallConversion": "5.62"
+      },
+      "Google Performance Max": {
+        "unqualified": 45,
+        "mql": 2,
+        "sql": 0,
+        "applied": 0,
+        "decisionMaking": 2,
+        "enrolled": 0,
+        "paid": 0,
+        "unqualifiedToMQL": "4.4",
+        "mqlToSQL": "0.0",
+        "sqlToApplied": "0.0",
+        "appliedToDecisionMaking": "0.0",
+        "overallConversion": "4.44"
+      },
+      "Direct": {
+        "unqualified": 515,
+        "mql": 27,
+        "sql": 8,
+        "applied": 12,
+        "decisionMaking": 15,
+        "enrolled": 0,
+        "paid": 0,
+        "unqualifiedToMQL": "5.2",
+        "mqlToSQL": "29.6",
+        "sqlToApplied": "150.0",
+        "appliedToDecisionMaking": "125.0",
+        "overallConversion": "2.91"
+      },
+      "Google Search Ads": {
+        "unqualified": 45,
+        "mql": 2,
+        "sql": 0,
+        "applied": 1,
+        "decisionMaking": 1,
+        "enrolled": 0,
+        "paid": 0,
+        "unqualifiedToMQL": "4.4",
+        "mqlToSQL": "0.0",
+        "sqlToApplied": "0.0",
+        "appliedToDecisionMaking": "100.0",
+        "overallConversion": "2.22"
+      },
+      "Unknown Source": {
+        "unqualified": 16,
+        "mql": 0,
+        "sql": 0,
+        "applied": 0,
+        "decisionMaking": 0,
+        "enrolled": 0,
+        "paid": 0,
+        "unqualifiedToMQL": "0.0",
+        "mqlToSQL": "0.0",
+        "sqlToApplied": "0.0",
+        "appliedToDecisionMaking": "0.0",
+        "overallConversion": "0.00"
+      },
+      "Other": {
+        "unqualified": 15,
+        "mql": 0,
+        "sql": 0,
+        "applied": 0,
+        "decisionMaking": 0,
+        "enrolled": 0,
+        "paid": 0,
+        "unqualifiedToMQL": "0.0",
+        "mqlToSQL": "0.0",
+        "sqlToApplied": "0.0",
+        "appliedToDecisionMaking": "0.0",
+        "overallConversion": "0.00"
+      },
+      "Google Ads (Other)": {
+        "unqualified": 2,
+        "mql": 0,
+        "sql": 0,
+        "applied": 0,
+        "decisionMaking": 0,
+        "enrolled": 0,
+        "paid": 0,
+        "unqualifiedToMQL": "0.0",
+        "mqlToSQL": "0.0",
+        "sqlToApplied": "0.0",
+        "appliedToDecisionMaking": "0.0",
+        "overallConversion": "0.00"
+      }
+    }
+  },
+  "completeJourney": {
+    "bySource": {
+      "Direct": {
+        "sessions": 1521,
+        "leads": 550,
+        "mql": 27,
+        "sql": 8,
+        "applied": 12,
+        "decisionMaking": 15,
+        "paidStudents": 0,
+        "revenue": 0,
+        "adSpend": 0,
+        "costPerLead": null,
+        "sessionToLeadRate": "36.16",
+        "overallConversion": "2.73",
+        "roi": null,
+        "avgLeadScore": "17.91",
+        "hotLeadPercent": "22.5"
+      },
+      "Meta Ads (Facebook)": {
+        "sessions": 2412,
+        "leads": 90,
+        "mql": 1,
+        "sql": 0,
+        "applied": 0,
+        "decisionMaking": 5,
+        "paidStudents": 0,
+        "revenue": 0,
+        "adSpend": 172673,
+        "costPerLead": 1919,
+        "sessionToLeadRate": "3.73",
+        "overallConversion": "5.56",
+        "roi": "-100.0",
+        "avgLeadScore": "12.91",
+        "hotLeadPercent": "28.9"
+      },
+      "Google Performance Max": {
+        "sessions": 5633,
+        "leads": 46,
+        "mql": 2,
+        "sql": 0,
+        "applied": 0,
+        "decisionMaking": 2,
+        "paidStudents": 0,
+        "revenue": 0,
+        "adSpend": 88255,
+        "costPerLead": 1919,
+        "sessionToLeadRate": "0.82",
+        "overallConversion": "4.35",
+        "roi": "-100.0",
+        "avgLeadScore": "12.59",
+        "hotLeadPercent": "23.9"
+      },
+      "Google Search Ads": {
+        "sessions": 1723,
+        "leads": 46,
+        "mql": 2,
+        "sql": 0,
+        "applied": 1,
+        "decisionMaking": 1,
+        "paidStudents": 0,
+        "revenue": 0,
+        "adSpend": 88255,
+        "costPerLead": 1919,
+        "sessionToLeadRate": "2.67",
+        "overallConversion": "2.17",
+        "roi": "-100.0",
+        "avgLeadScore": "12.94",
+        "hotLeadPercent": "26.1"
+      },
+      "Organic Search": {
+        "sessions": 1866,
+        "leads": 0,
+        "mql": 0,
+        "sql": 0,
+        "applied": 0,
+        "decisionMaking": 0,
+        "paidStudents": 0,
+        "revenue": 0,
+        "adSpend": 0,
+        "costPerLead": null,
+        "sessionToLeadRate": "0.00",
+        "overallConversion": "0.00",
+        "roi": null,
+        "avgLeadScore": "0.00",
+        "hotLeadPercent": "0.0"
+      },
+      "Other": {
+        "sessions": 3121,
+        "leads": 15,
+        "mql": 0,
+        "sql": 0,
+        "applied": 0,
+        "decisionMaking": 0,
+        "paidStudents": 0,
+        "revenue": 0,
+        "adSpend": 0,
+        "costPerLead": null,
+        "sessionToLeadRate": "0.48",
+        "overallConversion": "0.00",
+        "roi": null,
+        "avgLeadScore": "2.57",
+        "hotLeadPercent": "6.7"
+      },
+      "Google Ads (Other)": {
+        "sessions": 332,
+        "leads": 3,
+        "mql": 0,
+        "sql": 0,
+        "applied": 0,
+        "decisionMaking": 0,
+        "paidStudents": 0,
+        "revenue": 0,
+        "adSpend": 5756,
+        "costPerLead": 1919,
+        "sessionToLeadRate": "0.90",
+        "overallConversion": "0.00",
+        "roi": "-100.0",
+        "avgLeadScore": "13.33",
+        "hotLeadPercent": "33.3"
+      },
+      "Unknown Source": {
+        "sessions": 0,
+        "leads": 0,
+        "mql": 0,
+        "sql": 0,
+        "applied": 0,
+        "decisionMaking": 0,
+        "paidStudents": 0,
+        "revenue": 0,
+        "adSpend": 0,
+        "costPerLead": null,
+        "sessionToLeadRate": "0.00",
+        "overallConversion": "0.00",
+        "roi": null,
+        "avgLeadScore": "0.00",
+        "hotLeadPercent": "0.0"
+      }
+    },
+    "insights": [
+      "⏰ CAMPAIGN IN PROGRESS: 30 days remaining until Jan 31, 2026 enrollment deadline",
+      "⚠️  EARLY DATA: Most conversions typically occur in the final 2 weeks of the campaign",
+      "📊 Pipeline Status: 8 leads in Decision Making stage (final stage before enrollment)",
+      "📈 Best Pipeline Progress (may change): Meta Ads (Facebook) - 5.56% reaching Decision Making, 5 in final stage",
+      "✅ Highest Lead Quality: Direct (Avg Score: 17.91, 22.5% Hot)",
+      "💰 Current Pipeline: 750 leads → 32 MQL → 8 SQL → 13 Applied → 23 Decision Making"
+    ],
+    "campaignStatus": {
+      "isInProgress": true,
+      "daysRemaining": 30,
+      "enrollmentDeadline": "2026-01-31"
+    },
+    "totals": {
+      "adSpend": 354938.714616,
+      "sessions": 16608,
+      "leads": 750,
+      "mql": 32,
+      "sql": 8,
+      "applied": 13,
+      "decisionMaking": 23,
+      "paidStudents": 0,
+      "revenue": 0
+    }
+  }
+}

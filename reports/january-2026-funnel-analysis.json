@@ -1,0 +1,95 @@
+{
+  "period": "January 2026 Enrollment",
+  "totalDeals": 641,
+  "uniqueContacts": 596,
+  "stages": {
+    "Unqualified Leads": {
+      "total": 565,
+      "bySource": {
+        "Google Pmax": 33,
+        "Organic/Direct": 422,
+        "Other": 15,
+        "Google Search": 28,
+        "Meta Ads": 56,
+        "Unknown Source": 9,
+        "Google Ads": 2
+      }
+    },
+    "Qualified / Program Selected": {
+      "total": 32,
+      "bySource": {
+        "Organic/Direct": 27,
+        "Google Search": 2,
+        "Google Pmax": 2,
+        "Meta Ads": 1
+      }
+    },
+    "Enrolled": {
+      "total": 23,
+      "bySource": {
+        "Meta Ads": 5,
+        "Google Pmax": 2,
+        "Google Search": 1,
+        "Organic/Direct": 15
+      }
+    },
+    "Paid": {
+      "total": 9,
+      "bySource": {
+        "Google Search": 1,
+        "Organic/Direct": 8
+      }
+    }
+  },
+  "sourceSummary": {
+    "Organic/Direct": {
+      "total": 484,
+      "unqualified": 422,
+      "qualified": 27,
+      "enrolled": 15,
+      "paid": 8
+    },
+    "Meta Ads": {
+      "total": 62,
+      "unqualified": 56,
+      "qualified": 1,
+      "enrolled": 5,
+      "paid": 0
+    },
+    "Google Pmax": {
+      "total": 37,
+      "unqualified": 33,
+      "qualified": 2,
+      "enrolled": 2,
+      "paid": 0
+    },
+    "Google Search": {
+      "total": 32,
+      "unqualified": 28,
+      "qualified": 2,
+      "enrolled": 1,
+      "paid": 1
+    },
+    "Other": {
+      "total": 15,
+      "unqualified": 15,
+      "qualified": 0,
+      "enrolled": 0,
+      "paid": 0
+    },
+    "Unknown Source": {
+      "total": 9,
+      "unqualified": 9,
+      "qualified": 0,
+      "enrolled": 0,
+      "paid": 0
+    },
+    "Google Ads": {
+      "total": 2,
+      "unqualified": 2,
+      "qualified": 0,
+      "enrolled": 0,
+      "paid": 0
+    }
+  }
+}

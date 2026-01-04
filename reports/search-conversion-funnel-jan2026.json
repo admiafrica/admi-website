@@ -1,0 +1,29 @@
+{
+  "period": "Nov 29, 2025 - Jan 31, 2026",
+  "analysis": {
+    "totalLeads": 78,
+    "applications": 0,
+    "applicationRate": 0,
+    "enrollments": 0,
+    "enrollmentRate": null,
+    "enrollmentRateFromLeads": 0,
+    "paid": 0,
+    "paymentRate": null,
+    "paymentRateFromLeads": 0,
+    "estimatedAdSpend": 3199,
+    "costPerLead": 41.01,
+    "costPerApplication": null,
+    "costPerEnrollment": null,
+    "costPerPaidStudent": 3199,
+    "totalRevenue": 0,
+    "revenuePerLead": 0,
+    "netProfit": -3199,
+    "roi": -100,
+    "hotLeads": 47,
+    "warmLeads": 29,
+    "coldLeads": 2
+  },
+  "pipelineStages": [],
+  "matchedCount": 0,
+  "unmatchedCount": 78
+}

@@ -1,0 +1,347 @@
+{
+  "period": "Nov 29, 2025 - Jan 31, 2026",
+  "daysAnalyzed": 64,
+  "analysisDate": "2025-12-31T04:24:12.235Z",
+  "totalContacts": 716,
+  "campaigns": {
+    "google_search": {
+      "name": "Google Search",
+      "metrics": {
+        "total": 43,
+        "qualified": 43,
+        "avgScore": "12.81",
+        "inPipeline": 0,
+        "enrolled": 0,
+        "paid": 0
+      },
+      "sampleLeads": [
+        {
+          "id": 50699,
+          "email": "frankcelestine46@gmail.com",
+          "name": "Francis Wambua",
+          "score": 17,
+          "created": "2025-12-22T17:18:36.518+03:00"
+        },
+        {
+          "id": 50621,
+          "email": "ibrahimbashirhachow@gmail.com",
+          "name": "Ibrahim  Bashir Hachow",
+          "score": 17,
+          "created": "2025-12-19T20:43:40.683+03:00"
+        },
+        {
+          "id": 50713,
+          "email": "vickyshaz42@gmail.com",
+          "name": "Sharon Malia",
+          "score": 16,
+          "created": "2025-12-23T07:55:08.064+03:00"
+        },
+        {
+          "id": 50768,
+          "email": "wilsonokombo05@gmail.com",
+          "name": "Wilson Okombo",
+          "score": 15,
+          "created": "2025-12-24T09:41:37.798+03:00"
+        },
+        {
+          "id": 50767,
+          "email": "sadumaphilo@gmail.com",
+          "name": "Philomena Saduma",
+          "score": 15,
+          "created": "2025-12-24T09:34:40.630+03:00"
+        },
+        {
+          "id": 50729,
+          "email": "fahatadan505@gmail.com",
+          "name": "Fahat Adan",
+          "score": 15,
+          "created": "2025-12-23T11:42:01.838+03:00"
+        },
+        {
+          "id": 50712,
+          "email": "bernardgitonga94@gmail.com",
+          "name": "Bernard Gitonga",
+          "score": 15,
+          "created": "2025-12-23T02:42:19.442+03:00"
+        },
+        {
+          "id": 50709,
+          "email": "c2283147@gmail.com",
+          "name": "Christiano Ryan",
+          "score": 15,
+          "created": "2025-12-22T23:40:29.515+03:00"
+        },
+        {
+          "id": 50676,
+          "email": "fridahshikuku@gmail.com",
+          "name": "Fridah Shikuku",
+          "score": 15,
+          "created": "2025-12-22T02:46:35.827+03:00"
+        },
+        {
+          "id": 50549,
+          "email": "kabakabenghazi41@gmail.com",
+          "name": "De trevis",
+          "score": 15,
+          "created": "2025-12-17T01:19:57.060+03:00"
+        }
+      ]
+    },
+    "google_pmax": {
+      "name": "Google Performance Max",
+      "metrics": {
+        "total": 42,
+        "qualified": 42,
+        "avgScore": "12.55",
+        "inPipeline": 0,
+        "enrolled": 0,
+        "paid": 0
+      },
+      "sampleLeads": [
+        {
+          "id": 50882,
+          "email": "g46761492@gmail.com",
+          "name": "Samuel Mwangi",
+          "score": 17,
+          "created": "2025-12-30T14:48:47.142+03:00"
+        },
+        {
+          "id": 50562,
+          "email": "garangakumleen@gmail.com",
+          "name": "David Garang Deng",
+          "score": 16,
+          "created": "2025-12-17T13:27:06.814+03:00"
+        },
+        {
+          "id": 50403,
+          "email": "akinyiscalet@gmail.com",
+          "name": "Scarlet Odhiambo",
+          "score": 16,
+          "created": "2025-12-12T19:41:36.425+03:00"
+        },
+        {
+          "id": 50888,
+          "email": "mwangigerald288@gmail.com",
+          "name": "Mwangi Gikera",
+          "score": 15,
+          "created": "2025-12-30T15:40:05.367+03:00"
+        },
+        {
+          "id": 50862,
+          "email": "aeeynet24@gmail.com",
+          "name": "Alex Muthua",
+          "score": 15,
+          "created": "2025-12-29T17:52:53.162+03:00"
+        },
+        {
+          "id": 50707,
+          "email": "your@email.com",
+          "name": "Natalia Wambui",
+          "score": 15,
+          "created": "2025-12-22T21:12:36.800+03:00"
+        },
+        {
+          "id": 50703,
+          "email": "dennismuange001@gmail.com",
+          "name": "dennis muange",
+          "score": 15,
+          "created": "2025-12-22T19:35:36.729+03:00"
+        },
+        {
+          "id": 50593,
+          "email": "kipropk797@gmail.com",
+          "name": "Kevin Kiprop",
+          "score": 15,
+          "created": "2025-12-18T15:47:17.220+03:00"
+        },
+        {
+          "id": 50467,
+          "email": "bravineolengo95@gmail.com",
+          "name": "bravine olengo",
+          "score": 15,
+          "created": "2025-12-15T09:15:43.164+03:00"
+        },
+        {
+          "id": 50233,
+          "email": "madollermcutemgaza@gmail.com",
+          "name": "Ephantus Mbugua",
+          "score": 15,
+          "created": "2025-12-05T16:09:07.484+03:00"
+        }
+      ]
+    },
+    "meta_catalog": {
+      "name": "Meta Catalog Remarketing",
+      "metrics": {
+        "total": 89,
+        "qualified": 89,
+        "avgScore": "12.94",
+        "inPipeline": 0,
+        "enrolled": 0,
+        "paid": 0
+      },
+      "sampleLeads": [
+        {
+          "id": 50856,
+          "email": "giddstardancer@gmail.com",
+          "name": "Gideon Khatera",
+          "score": 17,
+          "created": "2025-12-29T13:41:09.970+03:00"
+        },
+        {
+          "id": 50711,
+          "email": "brianotienoonyango6@gmail.com",
+          "name": "Veejay Brian",
+          "score": 17,
+          "created": "2025-12-23T00:20:58.691+03:00"
+        },
+        {
+          "id": 50565,
+          "email": "davidasai692@gmail.com",
+          "name": "David Asai Otim Victor",
+          "score": 17,
+          "created": "2025-12-17T15:34:52.812+03:00"
+        },
+        {
+          "id": 50507,
+          "email": "desmondgiro03@gmail.com",
+          "name": "Desmond Aloo",
+          "score": 17,
+          "created": "2025-12-16T08:15:15.310+03:00"
+        },
+        {
+          "id": 50749,
+          "email": "nyakundijoel328@gmail.com",
+          "name": "Joel Nyaky",
+          "score": 16,
+          "created": "2025-12-23T16:38:33.973+03:00"
+        },
+        {
+          "id": 50728,
+          "email": "saintclinton001@gmail.com",
+          "name": "Clinton Otuke",
+          "score": 16,
+          "created": "2025-12-23T11:03:49.291+03:00"
+        },
+        {
+          "id": 50544,
+          "email": "elizabethwangui295@gmail.com",
+          "name": "Elizabeth Ngugi",
+          "score": 16,
+          "created": "2025-12-16T22:04:11.241+03:00"
+        },
+        {
+          "id": 50500,
+          "email": "kinaniijohniie@gmail.com",
+          "name": "John Juma",
+          "score": 16,
+          "created": "2025-12-15T21:11:04.315+03:00"
+        },
+        {
+          "id": 50440,
+          "email": "duncangakono18@gmail.com",
+          "name": "Duncan Gakono",
+          "score": 16,
+          "created": "2025-12-14T14:12:50.346+03:00"
+        },
+        {
+          "id": 50891,
+          "email": "newtonouma685@gmail.com",
+          "name": "Isaac Newton",
+          "score": 15,
+          "created": "2025-12-30T18:20:44.118+03:00"
+        }
+      ]
+    },
+    "unclassified": {
+      "name": "Unclassified",
+      "metrics": {
+        "total": 542,
+        "qualified": 353,
+        "avgScore": "18.58",
+        "inPipeline": 0,
+        "enrolled": 0,
+        "paid": 0
+      },
+      "sampleLeads": [
+        {
+          "id": 50375,
+          "email": "drivesnetwork@gmail.com",
+          "name": " ",
+          "score": 80,
+          "created": "2025-12-11T13:58:48.954+03:00"
+        },
+        {
+          "id": 50374,
+          "email": "hillaryelisha078@gmail.com",
+          "name": "Yes ",
+          "score": 80,
+          "created": "2025-12-11T13:56:03.401+03:00"
+        },
+        {
+          "id": 50373,
+          "email": "lovelyikrandahir123@gmail.com",
+          "name": " ",
+          "score": 80,
+          "created": "2025-12-11T13:20:51.657+03:00"
+        },
+        {
+          "id": 50366,
+          "email": "alvinbyrd40@gmail.com",
+          "name": "Alvin ",
+          "score": 80,
+          "created": "2025-12-11T09:36:12.637+03:00"
+        },
+        {
+          "id": 50365,
+          "email": "info.veenzenttv@gmail.com",
+          "name": " ",
+          "score": 80,
+          "created": "2025-12-11T09:07:07.869+03:00"
+        },
+        {
+          "id": 50364,
+          "email": "bryanotieno40@gmail.com",
+          "name": " ",
+          "score": 80,
+          "created": "2025-12-11T08:38:35.351+03:00"
+        },
+        {
+          "id": 50360,
+          "email": "najima.edin@gmail.com",
+          "name": " ",
+          "score": 80,
+          "created": "2025-12-11T06:45:00.371+03:00"
+        },
+        {
+          "id": 50359,
+          "email": "dripertommylee@gmail.com",
+          "name": " ",
+          "score": 80,
+          "created": "2025-12-11T06:14:09.222+03:00"
+        },
+        {
+          "id": 50356,
+          "email": "kutohchristine@gmail.com",
+          "name": "Christine Kuto",
+          "score": 80,
+          "created": "2025-12-11T00:05:56.597+03:00"
+        },
+        {
+          "id": 50353,
+          "email": "kampajon6@gmail.com",
+          "name": "Jon kampa an",
+          "score": 80,
+          "created": "2025-12-10T22:54:50.716+03:00"
+        }
+      ]
+    }
+  },
+  "totals": {
+    "totalLeads": 716,
+    "totalQualified": 527,
+    "totalInPipeline": 0,
+    "totalEnrolled": 0,
+    "totalPaid": 0
+  }
+}

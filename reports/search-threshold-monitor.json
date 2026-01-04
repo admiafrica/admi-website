@@ -1,0 +1,65 @@
+{
+  "timestamp": "2025-12-24T11:25:38.119Z",
+  "date": "12/24/2025",
+  "thresholdRule": "DO NOT INCREASE BUDGET until 10+ paid students from Google Search",
+  "currentThreshold": 10,
+  "currentProgress": {
+    "paidStudents": 1,
+    "percentToThreshold": 10,
+    "remaining": 9,
+    "status": "WAITING_TO_SCALE"
+  },
+  "googleSearchMetrics": {
+    "totalLeads": 32,
+    "unqualified": 28,
+    "qualified": 2,
+    "enrolled": 1,
+    "paid": 1,
+    "qualificationRate": 7.1,
+    "enrollmentRate": 50,
+    "paymentRate": 100,
+    "overallConversion": 3.57
+  },
+  "budgetDecision": {
+    "currentDaily": 123,
+    "proposedDaily": 250,
+    "recommendedAction": "HOLD_AND_MONITOR"
+  },
+  "allSources": {
+    "Google Search": {
+      "total": 32,
+      "paid": 1,
+      "conversionPercent": 3.57
+    },
+    "Organic/Direct": {
+      "total": 484,
+      "paid": 8,
+      "conversionPercent": 1.9
+    },
+    "Meta Ads": {
+      "total": 62,
+      "paid": 0,
+      "conversionPercent": 0
+    },
+    "Google Pmax": {
+      "total": 37,
+      "paid": 0,
+      "conversionPercent": 0
+    },
+    "Other": {
+      "total": 15,
+      "paid": 0,
+      "conversionPercent": 0
+    },
+    "Unknown Source": {
+      "total": 9,
+      "paid": 0,
+      "conversionPercent": 0
+    },
+    "Google Ads": {
+      "total": 2,
+      "paid": 0,
+      "conversionPercent": 0
+    }
+  }
+}
