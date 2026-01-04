@@ -3,7 +3,7 @@ import Image from 'next/image'
 import { Avatar, Box, Card, Rating, ScrollArea } from '@mantine/core'
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer'
 
-import { getAssetDetails } from '@/utils'
+import { getAssetDetails, ensureProtocol } from '@/utils'
 import { IContentfulAsset, IContentfulEntry } from '@/types'
 
 import ImageKenyanFlag from '@/assets/images/kenyan-flag.svg'
@@ -36,13 +36,15 @@ export default function UserTestimonialCard(props: Props) {
       <div className="mt-8 flex px-2">
         {props.testimonial.fields.authorImage ? (
           <Avatar
-            src={`https:${getAssetDetails(props.assets, props.testimonial.fields.authorImage.sys.id)?.fields.file.url}`}
+            src={ensureProtocol(
+              getAssetDetails(props.assets, props.testimonial.fields.authorImage.sys.id)?.fields.file.url
+            )}
             variant="transparent"
             size={56}
           />
         ) : (
           <Avatar
-            src={`https:${getAssetDetails(props.assets, props.testimonial.fields.image.sys.id)?.fields.file.url}`}
+            src={ensureProtocol(getAssetDetails(props.assets, props.testimonial.fields.image.sys.id)?.fields.file.url)}
             variant="transparent"
             size={56}
           />

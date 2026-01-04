@@ -16,7 +16,7 @@ import {
 import styles from '@/assets/css/main.module.css'
 import { useRouter } from 'next/router'
 import { Skeleton } from '@mantine/core'
-import { getCourseFormUrl } from '@/utils'
+import { getCourseFormUrl, ensureProtocol } from '@/utils'
 
 export function CampaignsPage() {
   const [status, setStatus] = useState(1)
@@ -47,7 +47,7 @@ export function CampaignsPage() {
 
         if (data) {
           setStatus(1)
-          setCourseBanner(`https:${data.fields.banner.fields.file.url}`)
+          setCourseBanner(ensureProtocol(data.fields.banner.fields.file.url))
           setCourseName(data.fields.name)
           setCourseOverview(data.fields.description)
           setCourseUsps(data.fields.usp)
