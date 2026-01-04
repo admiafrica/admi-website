@@ -1,0 +1,21 @@
+{
+  "name": "admi-asset-sync",
+  "version": "1.0.0",
+  "description": "Sync Contentful assets to S3/CloudFront via webhook",
+  "main": "handler.js",
+  "scripts": {
+    "deploy": "AWS_PROFILE=admi-website serverless deploy --stage staging",
+    "deploy:prod": "AWS_PROFILE=admi-website serverless deploy --stage production",
+    "remove": "AWS_PROFILE=admi-website serverless remove --stage staging",
+    "logs": "AWS_PROFILE=admi-website serverless logs -f assetSync --stage staging -t",
+    "invoke": "AWS_PROFILE=admi-website serverless invoke -f assetSync --stage staging",
+    "offline": "serverless offline"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.400.0"
+  },
+  "devDependencies": {
+    "serverless": "^3.38.0",
+    "serverless-offline": "^13.3.0"
+  }
+}

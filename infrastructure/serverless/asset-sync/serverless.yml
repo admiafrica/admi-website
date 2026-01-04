@@ -1,0 +1,58 @@
+service: admi-asset-sync
+
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: us-east-1
+  stage: ${opt:stage, 'staging'}
+  memorySize: 512
+  timeout: 60
+  
+  environment:
+    S3_BUCKET: admi-contentful-assets
+    CLOUDFRONT_DOMAIN: dq7z35wn8dhiz.cloudfront.net
+    CONTENTFUL_WEBHOOK_SECRET: ${env:CONTENTFUL_WEBHOOK_SECRET, ''}
+  
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - s3:PutObject
+            - s3:DeleteObject
+            - s3:GetObject
+          Resource:
+            - arn:aws:s3:::admi-contentful-assets/*
+
+functions:
+  assetSync:
+    handler: handler.handler
+    description: Sync Contentful assets to S3/CloudFront on publish
+    events:
+      - http:
+          path: webhook/asset-sync
+          method: post
+          cors: true
+    
+  healthCheck:
+    handler: handler.healthCheck
+    description: Health check for asset sync service
+    events:
+      - http:
+          path: webhook/health
+          method: get
+
+custom:
+  # Webhook URL will be: https://{api-id}.execute-api.us-east-1.amazonaws.com/{stage}/webhook/asset-sync
+
+plugins:
+  - serverless-offline
+
+package:
+  patterns:
+    - '!node_modules/**'
+    - '!.git/**'
+    - '!tests/**'
+    - 'handler.js'
