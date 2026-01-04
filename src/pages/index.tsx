@@ -77,9 +77,7 @@ export default function HomePage({ content, courses, featuredNews, featuredResou
             key={`enhanced-testimonial-schema-${index}`}
             author={{
               name: testimonial.user?.fields?.name || 'ADMI Graduate',
-              image: testimonial.user?.fields?.profileImage?.fields?.file?.url
-                ? `https:${testimonial.user.fields.profileImage.fields.file.url}`
-                : undefined,
+              image: testimonial.user?.fields?.profileImage?.fields?.file?.url || undefined,
               jobTitle: testimonial.user?.fields?.jobTitle,
               worksFor: testimonial.user?.fields?.workplace,
               graduationDate: testimonial.user?.fields?.graduationDate,
