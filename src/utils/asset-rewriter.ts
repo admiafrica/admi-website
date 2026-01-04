@@ -212,3 +212,27 @@ export function getAssetBaseUrl(): string {
 export function isS3AssetsEnabled(): boolean {
   return process.env.ENABLE_S3_ASSETS !== 'false' && (!!CLOUDFRONT_DOMAIN || !!S3_ASSETS_BUCKET)
 }
+
+/**
+ * Ensure asset URL has proper protocol
+ * Handles both protocol-relative URLs (//domain.com) and absolute URLs (https://domain.com)
+ *
+ * @param url - Asset URL from Contentful or CloudFront
+ * @returns URL with https: protocol
+ */
+export function ensureProtocol(url: string | undefined): string {
+  if (!url) return ''
+
+  // If already has protocol, return as-is
+  if (url.startsWith('http://') || url.startsWith('https://')) {
+    return url
+  }
+
+  // If protocol-relative, add https:
+  if (url.startsWith('//')) {
+    return `https:${url}`
+  }
+
+  // Otherwise return as-is (might be relative path)
+  return url
+}

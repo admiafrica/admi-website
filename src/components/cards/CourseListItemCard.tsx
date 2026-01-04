@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { Box, Card } from '@mantine/core'
 import { ParagraphContentful, Title } from '@/components/ui'
-import { getAssetDetails } from '@/utils'
+import { getAssetDetails, ensureProtocol } from '@/utils'
 import { useRouter } from 'next/router'
 import { motion } from 'framer-motion'
 
@@ -51,7 +51,7 @@ export default function CourseListItemCard({ course }: Props) {
             <Image
               fill
               sizes="(max-width: 640px) 33vw, 300px"
-              src={getAssetDetails(course.assets, course.fields.coverImage.sys.id)?.fields.file.url || ''}
+              src={ensureProtocol(getAssetDetails(course.assets, course.fields.coverImage.sys.id)?.fields.file.url)}
               alt={course.fields.name}
               style={{ objectFit: 'cover', height: '100%', width: '100%' }}
             />
