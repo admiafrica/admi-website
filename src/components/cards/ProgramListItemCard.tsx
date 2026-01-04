@@ -21,7 +21,7 @@ export default function ProgramListItemCard({ courses, program, filterProgramCou
           <Image
             width={36}
             height={36}
-            src={`https:${getAssetDetails(program.assets, program.fields.icon.sys.id)?.fields.file.url}`}
+            src={getAssetDetails(program.assets, program.fields.icon.sys.id)?.fields.file.url || ''}
             alt={program.fields.icon.fields.file.fileName}
             className="my-auto"
             style={{ width: 'auto', height: 'auto', maxWidth: '36px', maxHeight: '36px' }}

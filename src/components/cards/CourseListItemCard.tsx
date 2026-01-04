@@ -51,7 +51,7 @@ export default function CourseListItemCard({ course }: Props) {
             <Image
               fill
               sizes="(max-width: 640px) 33vw, 300px"
-              src={`https:${getAssetDetails(course.assets, course.fields.coverImage.sys.id)?.fields.file.url}`}
+              src={getAssetDetails(course.assets, course.fields.coverImage.sys.id)?.fields.file.url || ''}
               alt={course.fields.name}
               style={{ objectFit: 'cover', height: '100%', width: '100%' }}
             />
