@@ -178,7 +178,7 @@ export default function CoursesPage({
   )
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   try {
     const [programsRes, coursesRes] = await Promise.all([
       fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v3/course-programs`),
@@ -212,10 +212,14 @@ export async function getServerSideProps() {
         programs: enhancedPrograms,
         courses: sortedCourses,
         filterOptions: ['All Courses', ...enhancedPrograms.map((program: any) => program.fields.name)]
-      }
+      },
+      revalidate: 3600 // Regenerate every hour
     }
   } catch (error) {
     console.error('Error fetching courses:', error)
-    return { props: { programs: [], courses: [], filterOptions: ['All Courses'] } }
+    return {
+      props: { programs: [], courses: [], filterOptions: ['All Courses'] },
+      revalidate: 300 // Retry in 5 minutes if error
+    }
   }
 }

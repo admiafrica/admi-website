@@ -1,4 +1,3 @@
-import { GetServerSideProps } from 'next'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
 import { Box, Indicator, Divider, NumberFormatter } from '@mantine/core'
@@ -656,7 +655,8 @@ export default function HomePage({ content, courses, featuredNews, featuredResou
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async () => {
+// ISR: Pre-render at build time, revalidate every hour
+export async function getStaticProps() {
   try {
     const [contentRes, coursesRes, newsRes, resourcesRes, awardsRes] = await Promise.all([
       fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v3/homepage`),
@@ -689,7 +689,8 @@ export const getServerSideProps: GetServerSideProps = async () => {
           (Array.isArray(awardsData)
             ? awardsData.find((article: IContentfulEntry) => article.fields.featured)
             : null) || null
-      }
+      },
+      revalidate: 3600 // Regenerate page every 1 hour (3600 seconds)
     }
   } catch (error) {
     console.error('Error fetching homepage data:', error)
@@ -700,7 +701,8 @@ export const getServerSideProps: GetServerSideProps = async () => {
         featuredNews: null,
         featuredResource: null,
         featuredAward: null
-      }
+      },
+      revalidate: 300 // Retry in 5 minutes if there was an error
     }
   }
 }
