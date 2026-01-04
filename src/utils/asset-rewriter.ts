@@ -121,6 +121,11 @@ export function rewriteAssetUrl(url: string): string {
     return url
   }
 
+  // If URL is already a CloudFront URL, return as-is
+  if (CLOUDFRONT_DOMAIN && url.includes(CLOUDFRONT_DOMAIN)) {
+    return url
+  }
+
   // Normalize URL for lookup
   const normalizedUrl = url.replace(/^https?:/, '').replace(/^\/\//, '')
 
