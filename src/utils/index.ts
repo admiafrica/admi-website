@@ -2,6 +2,7 @@ import { format } from 'date-fns'
 import { IContentfulAsset, IContentfulEntry } from '@/types'
 
 export * from './constants'
+export { ensureProtocol } from './asset-rewriter'
 
 export const getCourseFormUrl = () => {
   return 'https://airtable.com/app0kRJindIHzHTM2/pagmXFb9WKJbimfFa/form'

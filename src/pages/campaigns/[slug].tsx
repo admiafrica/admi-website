@@ -1,3 +1,4 @@
+import { ensureProtocol } from '@/utils'
 import { GetServerSideProps } from 'next'
 import { MainLayout } from '@/layouts/v3/MainLayout'
 import { CourseHero, CourseAbout, CourseDetails, CourseApplicationProcess, CourseFAQs } from '@/components/course'
@@ -16,7 +17,7 @@ export default function CourseDetailPage({ course, courseAssets }: CourseDetailP
       <PageSEO
         title={course.name}
         description={`${course.programType.fields.duration}, ${course.programType.fields.deliveryMode}`}
-        image={`https:${course.coverImage?.fields.file.url}`}
+        image={ensureProtocol(course.coverImage?.fields.file.url)}
       />
       <CourseHero
         name={course.name}

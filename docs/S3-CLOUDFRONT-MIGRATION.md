@@ -310,6 +310,51 @@ Your website now has:
 
 The next production deploy will activate all S3/CloudFront features.
 
+## � Automatic Asset Sync (Webhook)
+
+New Contentful assets are automatically synced to S3/CloudFront via webhook.
+
+### How It Works
+
+```
+Upload image to Contentful
+    ↓
+Publish asset
+    ↓
+Contentful fires webhook
+    ↓
+Lambda downloads from Contentful
+    ↓
+Uploads to S3
+    ↓
+Available on CloudFront immediately ✅
+```
+
+### Deploy the Lambda
+
+```bash
+cd infrastructure/serverless/asset-sync
+./deploy.sh staging
+```
+
+### Configure Contentful Webhook
+
+1. Go to **Contentful** → **Settings** → **Webhooks**
+2. Click **Add Webhook**
+3. Configure:
+   - **Name**: `S3 Asset Sync`
+   - **URL**: `https://<api-id>.execute-api.us-east-1.amazonaws.com/staging/webhook/asset-sync`
+   - **Triggers**: Asset → Publish, Unpublish
+4. Save
+
+### Verify
+
+1. Upload and publish a new image in Contentful
+2. Check Lambda logs: `cd infrastructure/serverless/asset-sync && npm run logs`
+3. New image is now available via CloudFront!
+
+See full documentation: [infrastructure/serverless/asset-sync/README.md](../infrastructure/serverless/asset-sync/README.md)
+
 ## 📝 Future Optimizations (Optional)
 
 1. **Convert news-events to ISR** - Further reduce API calls
@@ -317,4 +362,3 @@ The next production deploy will activate all S3/CloudFront features.
 3. **Add custom CloudFront domain** - Use `assets.admi.africa`
 4. **Implement cache invalidation** - Webhook from Contentful to clear cache
 5. **Add DynamoDB cache** - Alternative to S3 for faster cache reads
-6. **Migrate videos to S3** - Reduce Contentful video bandwidth

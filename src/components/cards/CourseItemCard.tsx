@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { Box, Card } from '@mantine/core'
 import { Title } from '@/components/ui'
-import { getAssetDetails } from '@/utils'
+import { getAssetDetails, ensureProtocol } from '@/utils'
 import { useRouter } from 'next/router'
 import { motion } from 'framer-motion'
 
@@ -39,7 +39,7 @@ export default function CourseItemCard({ course }: Props) {
             height={169}
             src={
               course.assets
-                ? `https:${getAssetDetails(course.assets, course.fields.coverImage.sys.id)?.fields.file.url}`
+                ? ensureProtocol(getAssetDetails(course.assets, course.fields.coverImage.sys.id)?.fields.file.url)
                 : 'https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png'
             }
             alt={course.fields.name}

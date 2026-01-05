@@ -16,7 +16,8 @@ import {
   ADMI_STUDENT_COUNCIL,
   ADMI_STUDENT_SUPPORT,
   CALENDAR_DOWNLOAD_LINK,
-  CALENDAR_DOWNLOAD_NAME
+  CALENDAR_DOWNLOAD_NAME,
+  ensureProtocol
 } from '@/utils'
 
 import { IconDownload } from '@tabler/icons-react'
@@ -82,7 +83,7 @@ export default function StudentSupportPage() {
             author={{
               name: testimonial.user?.fields?.name || 'ADMI Graduate',
               image: testimonial.user?.fields?.profileImage?.fields?.file?.url
-                ? `https:${testimonial.user.fields.profileImage.fields.file.url}`
+                ? ensureProtocol(testimonial.user.fields.profileImage.fields.file.url)
                 : undefined,
               jobTitle: testimonial.user?.fields?.jobTitle,
               worksFor: testimonial.user?.fields?.workplace,
