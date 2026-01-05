@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server'
+import { ensureProtocol } from '@/utils'
 
 export async function GET() {
   try {
@@ -77,9 +78,9 @@ export async function GET() {
               const coverImageAsset = resolveAsset(item.fields.coverImage)
 
               const imageUrl = featuredImageAsset?.fields?.file?.url
-                ? `https:${featuredImageAsset.fields.file.url}`
+                ? ensureProtocol(featuredImageAsset.fields.file.url)
                 : coverImageAsset?.fields?.file?.url
-                  ? `https:${coverImageAsset.fields.file.url}`
+                  ? ensureProtocol(coverImageAsset.fields.file.url)
                   : `${baseUrl}/logo.png`
 
               return `  <url>

@@ -1,4 +1,5 @@
 import React from 'react'
+import { ensureProtocol } from '@/utils'
 import { Box, Card, Pill } from '@mantine/core'
 import { Paragraph, Title } from '../ui'
 import { motion } from 'framer-motion'
@@ -114,7 +115,7 @@ export default function AnnouncementCard(props: Props) {
                 <Image
                   fill
                   sizes="(max-width: 768px) 100vw, 56vw"
-                  src={`https:${props.announcement.coverImage.fields.file.url}`}
+                  src={ensureProtocol(props.announcement.coverImage.fields.file.url)}
                   alt={props.announcement.title}
                   style={{ borderRadius: 8, objectFit: 'cover' }}
                 />
@@ -143,7 +144,7 @@ export default function AnnouncementCard(props: Props) {
                 <Image
                   fill
                   sizes="(max-width: 768px) 100vw, 56vw"
-                  src={`https:${props.announcement.coverImage.fields.file.url}`}
+                  src={ensureProtocol(props.announcement.coverImage.fields.file.url)}
                   alt={props.announcement.title}
                   style={{ borderRadius: 8, objectFit: 'cover' }}
                 />

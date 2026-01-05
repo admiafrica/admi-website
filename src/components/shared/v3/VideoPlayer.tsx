@@ -1,4 +1,5 @@
 import { ActionIcon } from '@mantine/core'
+import { ensureProtocol } from '@/utils'
 import { IconMaximize, IconPlayerPause, IconPlayerSkipForward } from '@tabler/icons-react'
 import React, { useState, useRef } from 'react'
 
@@ -53,7 +54,7 @@ const VideoPlayer = ({ videoUrl, showControls = false }: Props) => {
     <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className="relative">
       <video
         ref={videoRef}
-        src={`https:${videoUrl}`}
+        src={ensureProtocol(videoUrl)}
         className="w-full"
         onPlay={() => setIsPlaying(true)}
         onPause={() => setIsPlaying(false)}

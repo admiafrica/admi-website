@@ -7,7 +7,7 @@ import { motion } from 'framer-motion'
 import { IContentfulEntry } from '@/types'
 
 import IconArrowTipRight from '@/assets/icons/ArrowTipRight'
-import { formatDate } from '@/utils'
+import { formatDate, ensureProtocol } from '@/utils'
 
 type Props = {
   item: IContentfulEntry
@@ -88,7 +88,7 @@ export default function NewsItemCard({ item, isEvent = false }: Props) {
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               src={
                 item.fields.coverImage?.fields?.file?.url || item.fields.flyer?.fields?.file?.url
-                  ? `https:${item.fields.coverImage?.fields.file.url || item.fields.flyer?.fields.file.url}`
+                  ? ensureProtocol(item.fields.coverImage?.fields.file.url || item.fields.flyer?.fields.file.url)
                   : 'https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png'
               }
               alt={item.fields.title}

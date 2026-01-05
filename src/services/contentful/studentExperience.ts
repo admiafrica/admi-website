@@ -1,3 +1,5 @@
+import { ensureProtocol } from '@/utils'
+
 /**
  * Contentful service for Student Experience pages
  */
@@ -80,7 +82,7 @@ export async function getStudentExperiencePage(slug: string): Promise<StudentExp
       const asset = includes.Asset?.find((asset: any) => asset.sys.id === ref.sys.id)
       if (!asset?.fields?.file?.url) return null
       return {
-        url: asset.fields.file.url.startsWith('//') ? `https:${asset.fields.file.url}` : asset.fields.file.url,
+        url: asset.fields.file.url.startsWith('//') ? ensureProtocol(asset.fields.file.url) : asset.fields.file.url,
         title: asset.fields.title || ''
       }
     }

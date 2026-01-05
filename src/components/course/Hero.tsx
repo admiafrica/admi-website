@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import { ensureProtocol } from '@/utils'
 import { Badge, Box, Group } from '@mantine/core'
 import { CourseSummaryCard } from '../cards'
 
@@ -27,7 +28,7 @@ export default function CourseHero(props: Props) {
     <div className="relative h-[56vh] w-full px-4 sm:h-[50vh]">
       {/* Background Image */}
       <Image
-        src={`https:${props.coverImage.fields.file.url}`}
+        src={ensureProtocol(props.coverImage.fields.file.url)}
         placeholder="empty"
         alt="Course Banner"
         fill

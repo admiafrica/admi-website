@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { ensureProtocol } from '@/utils'
 import { DiplomaSchema, CMSFAQSchema } from '@/components/shared/StructuredData'
 import { generateDiplomaKeywords } from '@/utils/diploma-seo-config'
 import { ICourseFAQ, IFAQResponse } from '@/types'
@@ -78,7 +79,9 @@ export function DiplomaEnhancedSEO({
   const finalPrice = tuitionFeesPrice || pricing?.price
 
   const courseUrl = `${process.env.NEXT_PUBLIC_API_BASE_URL || 'https://admi.africa'}/courses/${slug}`
-  const courseImage = course.coverImage?.fields?.file?.url ? `https:${course.coverImage.fields.file.url}` : undefined
+  const courseImage = course.coverImage?.fields?.file?.url
+    ? ensureProtocol(course.coverImage.fields.file.url)
+    : undefined
 
   return (
     <>

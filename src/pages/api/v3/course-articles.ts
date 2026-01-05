@@ -1,4 +1,5 @@
 import { IContentfulResponse } from '@/types'
+import { ensureProtocol } from '@/utils'
 import axiosContentfulClient from '@/utils/axiosContentfulClient'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
@@ -9,17 +10,21 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   if (req.method === 'GET') {
     try {
-      const { tags, category, limit = 10 } = req.query
+      const { tags, category, topic, limit = 10 } = req.query
 
-      if (!tags && !category) {
-        return res.status(400).json({ message: 'Either tags or category parameter is required' })
+      if (!tags && !category && !topic) {
+        return res.status(400).json({ message: 'Either tags, category, or topic parameter is required' })
       }
 
       // Build query for articles in Resources category with higher include to resolve assets
       let query = `/spaces/${spaceId}/environments/${environment}/entries?access_token=${accessToken}&content_type=article&fields.category=Resources&include=10`
 
-      // If category provided, filter by it
-      if (category && category !== 'all') {
+      // If topic provided, filter by it (NEW - preferred method)
+      if (topic && topic !== 'all') {
+        query += `&fields.topic=${topic}`
+      }
+      // If category provided, filter by it (LEGACY - for backward compatibility)
+      else if (category && category !== 'all') {
         query += `&fields.category=${category}`
       }
 
@@ -49,11 +54,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           // Asset is referenced by ID, find it in includes
           const asset = data.includes.Asset.find((a: any) => a.sys.id === item.fields.coverImage.sys.id)
           if (asset?.fields?.file?.url) {
-            coverImage = `https:${asset.fields.file.url}`
+            coverImage = ensureProtocol(asset.fields.file.url)
           }
         } else if (item.fields.coverImage?.fields?.file?.url) {
           // Asset is directly embedded (shouldn't happen with include=10, but handle just in case)
-          coverImage = `https:${item.fields.coverImage.fields.file.url}`
+          coverImage = ensureProtocol(item.fields.coverImage.fields.file.url)
         }
 
         return {
@@ -64,6 +69,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           coverImage,
           tags: item.fields.tags || [],
           category: item.fields.category,
+          topic: item.fields.topic, // NEW - include topic for SEO/display
           readingTime
         }
       })

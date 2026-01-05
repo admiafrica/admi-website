@@ -1,4 +1,5 @@
 import { GetStaticPaths, GetStaticProps } from 'next'
+import { ensureProtocol } from '@/utils'
 import { useRouter } from 'next/router'
 import { MainLayout } from '@/layouts/v3/MainLayout'
 import { PageSEO } from '@/components/shared/v3'
@@ -56,7 +57,7 @@ export default function VideoWatchPage({ course, slug }: VideoWatchPageProps) {
       <PageSEO
         title={videoTitle}
         description={videoDescription}
-        image={course.coverImage?.fields?.file?.url ? `https:${course.coverImage.fields.file.url}` : undefined}
+        image={course.coverImage?.fields?.file?.url ? ensureProtocol(course.coverImage.fields.file.url) : undefined}
         canonical={`https://admi.africa/watch/${slug}`}
       />
 
@@ -66,11 +67,11 @@ export default function VideoWatchPage({ course, slug }: VideoWatchPageProps) {
         description={videoDescription}
         thumbnailUrl={
           course.resolvedCoverImage?.fields?.file?.url || course.coverImage?.fields?.file?.url
-            ? `https:${course.resolvedCoverImage?.fields?.file?.url || course.coverImage?.fields?.file?.url}`
+            ? ensureProtocol(course.resolvedCoverImage?.fields?.file?.url || course.coverImage?.fields?.file?.url)
             : 'https://admi.africa/logo.png'
         }
         // Swap: embedUrl (watch page) becomes primary, direct video file becomes secondary
-        contentUrl={`https:${course.resolvedVideo?.fields?.file?.url || course.courseVideo?.fields?.file?.url}`}
+        contentUrl={ensureProtocol(course.resolvedVideo?.fields?.file?.url || course.courseVideo?.fields?.file?.url)}
         embedUrl={`https://admi.africa/watch/${slug}`}
         uploadDate={course.sys?.updatedAt || new Date().toISOString()}
         duration="PT2M30S"

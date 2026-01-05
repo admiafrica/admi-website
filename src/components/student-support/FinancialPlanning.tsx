@@ -1,4 +1,5 @@
 import { Anchor, Box, Accordion } from '@mantine/core'
+import { ensureProtocol } from '@/utils'
 
 import { Paragraph, Title } from '../ui'
 import { CollapsibleContent } from '../shared/v3'
@@ -57,7 +58,7 @@ export default function FinancialPlanning() {
 
   const handleDocumentDownload = async (feeDocument: any) => {
     try {
-      const response = await fetch(`https:${feeDocument.url}`)
+      const response = await fetch(ensureProtocol(feeDocument.url))
       if (!response.ok) throw new Error('Failed to fetch file')
 
       const blob = await response.blob()

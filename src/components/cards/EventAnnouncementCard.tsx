@@ -5,7 +5,7 @@ import Image from 'next/image'
 
 import { Button, Paragraph, ParagraphContentful, Title } from '../ui'
 import { useIsMobile } from '@/hooks/useIsMobile'
-import { formatDate } from '@/utils'
+import { formatDate, ensureProtocol } from '@/utils'
 
 import IconLocation from '@/assets/icons/map-marker-3-black.svg'
 import IconCall from '@/assets/icons/call-black.svg'
@@ -55,7 +55,7 @@ export default function EventAnnouncementCard(props: Props) {
                   <Image
                     fill
                     sizes="200px"
-                    src={`https:${props.announcement.logo?.fields.file.url}`}
+                    src={ensureProtocol(props.announcement.logo?.fields.file.url)}
                     alt={props.announcement.title}
                     style={{ objectFit: 'contain' }}
                   />
@@ -134,7 +134,7 @@ export default function EventAnnouncementCard(props: Props) {
                 <Image
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
-                  src={`https:${props.announcement.flyer?.fields.file.url}`}
+                  src={ensureProtocol(props.announcement.flyer?.fields.file.url)}
                   alt={props.announcement.title}
                   style={{ objectFit: 'contain', borderRadius: 8 }}
                 />

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { ensureProtocol } from '@/utils'
 import { CourseSchema, CMSFAQSchema } from '@/components/shared/StructuredData'
 import { ICourseFAQ, IFAQResponse } from '@/types'
 import { CourseIntakeEventSchema } from '@/components/seo/CourseIntakeEventSchema'
@@ -85,7 +86,9 @@ export function CertificateEnhancedSEO({
   const finalPrice = tuitionFeesPrice || pricing?.price
 
   const courseUrl = `${process.env.NEXT_PUBLIC_API_BASE_URL || 'https://admi.africa'}/courses/${slug}`
-  const courseImage = course.coverImage?.fields?.file?.url ? `https:${course.coverImage.fields.file.url}` : undefined
+  const courseImage = course.coverImage?.fields?.file?.url
+    ? ensureProtocol(course.coverImage.fields.file.url)
+    : undefined
 
   return (
     <>
@@ -213,9 +216,9 @@ export function CertificateEnhancedSEO({
               name: `${course.name} - Course Preview`,
               description: `Watch this comprehensive preview of ${course.name} at Africa Digital Media Institute. Learn about the curriculum, facilities, career opportunities, and what makes this ${certificateType.toLowerCase()} program special.`,
               thumbnailUrl: course.coverImage?.fields?.file?.url
-                ? `https:${course.coverImage.fields.file.url}`
+                ? ensureProtocol(course.coverImage.fields.file.url)
                 : 'https://admi.africa/logo.png',
-              contentUrl: `https:${course.courseVideo.fields.file.url}`,
+              contentUrl: ensureProtocol(course.courseVideo.fields.file.url),
               embedUrl: `${process.env.NEXT_PUBLIC_API_BASE_URL || 'https://admi.africa'}/watch/${slug}`,
               uploadDate: course.sys?.updatedAt || new Date().toISOString(),
               duration: 'PT2M30S',

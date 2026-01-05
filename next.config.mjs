@@ -301,6 +301,94 @@ const nextConfig = {
         destination: '/media-archive/videos',
         permanent: true,
       },
+      // ===== BROKEN BACKLINK FIXES (SEO Authority Recovery) =====
+      // These redirects fix common URLs that external sites link to
+      // Fixing these preserves backlink value and improves website authority
+      {
+        source: '/about-us',
+        destination: '/about',
+        permanent: true,
+      },
+      {
+        source: '/blog',
+        destination: '/resources',
+        permanent: true,
+      },
+      {
+        source: '/blog/:slug',
+        destination: '/resources/:slug',
+        permanent: true,
+      },
+      {
+        source: '/news',
+        destination: '/resources',
+        permanent: true,
+      },
+      {
+        source: '/news/:slug',
+        destination: '/resources/:slug',
+        permanent: true,
+      },
+      {
+        source: '/admissions',
+        destination: '/enquiry',
+        permanent: true,
+      },
+      {
+        source: '/apply',
+        destination: '/enquiry',
+        permanent: true,
+      },
+      {
+        source: '/enroll',
+        destination: '/enquiry',
+        permanent: true,
+      },
+      {
+        source: '/registration',
+        destination: '/enquiry',
+        permanent: true,
+      },
+      {
+        source: '/faq',
+        destination: '/frequently-asked-questions',
+        permanent: true,
+      },
+      {
+        source: '/faqs',
+        destination: '/frequently-asked-questions',
+        permanent: true,
+      },
+      {
+        source: '/gallery',
+        destination: '/media-archive',
+        permanent: true,
+      },
+      {
+        source: '/media',
+        destination: '/media-archive',
+        permanent: true,
+      },
+      {
+        source: '/programs',
+        destination: '/courses',
+        permanent: true,
+      },
+      {
+        source: '/programs/:slug',
+        destination: '/courses/:slug',
+        permanent: true,
+      },
+      {
+        source: '/fees',
+        destination: '/courses',
+        permanent: true,
+      },
+      {
+        source: '/tuition',
+        destination: '/courses',
+        permanent: true,
+      },
     ];
   },
 };

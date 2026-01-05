@@ -1,4 +1,6 @@
 import { MainLayout } from '@/layouts/v3/MainLayout'
+import { ensureProtocol } from '@/utils'
+import { extractCourseTopic } from '@/utils/course-topic-mapper'
 import {
   CourseAbout,
   CourseApplicationProcess,
@@ -141,7 +143,7 @@ export default function CourseDetailPage({
         title={course.name}
         description={courseDescription}
         keywords={keywords}
-        image={course.coverImage?.fields?.file?.url ? `https:${course.coverImage.fields.file.url}` : undefined}
+        image={course.coverImage?.fields?.file?.url ? ensureProtocol(course.coverImage.fields.file.url) : undefined}
         url={`/courses/${slug}`}
         productId={`admi-${course.awardLevel?.toLowerCase().replace(' ', '-') || 'course'}-${slug}`}
         productPrice={pricing?.price}
@@ -181,7 +183,7 @@ export default function CourseDetailPage({
               url: 'https://admi.africa'
             }}
             url={`${process.env.NEXT_PUBLIC_API_BASE_URL || 'https://admi.africa'}/courses/${slug}`}
-            image={course.coverImage?.fields?.file?.url ? `https:${course.coverImage.fields.file.url}` : undefined}
+            image={course.coverImage?.fields?.file?.url ? ensureProtocol(course.coverImage.fields.file.url) : undefined}
             awardLevel={course.awardLevel}
             tuitionFees={course.tuitionFees}
             duration={course.programType?.fields?.duration}
@@ -221,11 +223,11 @@ export default function CourseDetailPage({
           description={`Watch this comprehensive preview of ${course.name} at Africa Digital Media Institute. Learn about the curriculum, facilities, career opportunities, and what makes this ${course.awardLevel || 'course'} program special.`}
           thumbnailUrl={
             course.coverImage?.fields?.file?.url
-              ? `https:${course.coverImage.fields.file.url}`
+              ? ensureProtocol(course.coverImage.fields.file.url)
               : 'https://admi.africa/logo.png'
           }
           // Swap: embedUrl (watch page) becomes primary, direct video file becomes secondary
-          contentUrl={`https:${course.courseVideo.fields.file.url}`}
+          contentUrl={ensureProtocol(course.courseVideo.fields.file.url)}
           embedUrl={`${process.env.NEXT_PUBLIC_API_BASE_URL || 'https://admi.africa'}/watch/${slug}`}
           uploadDate={course.sys?.updatedAt || new Date().toISOString()}
           duration="PT2M30S"
@@ -296,17 +298,32 @@ export async function getServerSideProps({ params }: { params: { slug: string } 
 
     const data = await response.json()
 
-    // Fetch related articles based on course tags
+    // Fetch related articles based on course topic (NEW - preferred) or tags (fallback)
     let courseArticles = []
     try {
-      const courseTagsParam = (data.fields.tags || []).join(',')
-      if (courseTagsParam) {
+      // Extract topic from course name or use category field if available
+      const courseTopic = extractCourseTopic(data.fields.name, data.fields.category)
+
+      if (courseTopic) {
+        // NEW: Use topic-based filtering for better matching
         const articlesResponse = await fetch(
-          `${baseUrl}/api/v3/course-articles?tags=${encodeURIComponent(courseTagsParam)}&limit=3`
+          `${baseUrl}/api/v3/course-articles?topic=${encodeURIComponent(courseTopic)}&limit=3`
         )
         if (articlesResponse.ok) {
           const articlesData = await articlesResponse.json()
           courseArticles = articlesData.items || []
+        }
+      } else {
+        // FALLBACK: Use tag-based filtering if topic can't be determined
+        const courseTagsParam = (data.fields.tags || []).join(',')
+        if (courseTagsParam) {
+          const articlesResponse = await fetch(
+            `${baseUrl}/api/v3/course-articles?tags=${encodeURIComponent(courseTagsParam)}&limit=3`
+          )
+          if (articlesResponse.ok) {
+            const articlesData = await articlesResponse.json()
+            courseArticles = articlesData.items || []
+          }
         }
       }
     } catch (articlesError) {

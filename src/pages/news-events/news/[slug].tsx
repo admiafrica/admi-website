@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import { ensureProtocol } from '@/utils'
 import { useRouter } from 'next/router'
 import { Box, Card, Tabs } from '@mantine/core'
 
@@ -42,7 +43,7 @@ export default function NewsArticlePage({ article, slug }: { article: any; slug:
         <BlogPostSchema
           title={article.title}
           description={article.summary || article.excerpt || 'Latest news from Africa Digital Media Institute'}
-          image={`https:${article.coverImage?.fields.file.url}`}
+          image={ensureProtocol(article.coverImage?.fields.file.url)}
           publishedDate={article.publishDate || article.sys?.createdAt}
           modifiedDate={article.sys?.updatedAt}
           url={`https://admi.africa/news-events/news/${slug}`}
@@ -96,7 +97,7 @@ export default function NewsArticlePage({ article, slug }: { article: any; slug:
               <Card className="mb-6 min-h-[80vh] w-full sm:ml-8" withBorder>
                 <Box className="relative" h={isMobile ? '200px' : '540px'}>
                   <Image
-                    src={`https:${article.coverImage.fields.file.url}`}
+                    src={ensureProtocol(article.coverImage.fields.file.url)}
                     alt={article.title}
                     style={{ borderRadius: 8 }}
                     fill
