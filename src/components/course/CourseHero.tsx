@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import { ensureProtocol } from '@/utils'
 
 interface CourseHeroProps {
   name: string
@@ -60,7 +61,7 @@ export function CourseHero({ name, coverImage, programType, awardLevel, creditHo
         {coverImage && (
           <figure className="course-hero__image">
             <Image
-              src={`https:${coverImage.fields.file.url}`}
+              src={ensureProtocol(coverImage.fields.file.url)}
               alt={`${name} - Course Cover Image`}
               width={coverImage.fields.file.details.image.width}
               height={coverImage.fields.file.details.image.height}

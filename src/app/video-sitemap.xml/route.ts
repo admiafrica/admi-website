@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server'
+import { ensureProtocol } from '@/utils'
 
 export async function GET() {
   const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'https://admi.africa'
@@ -87,9 +88,9 @@ ${coursesWithVideos
     const videoDescription = `Watch this comprehensive preview of ${courseName} at Africa Digital Media Institute. Learn about the curriculum, facilities, career opportunities, and what makes this ${awardLevel} program special.`
 
     const thumbnailUrl = coverImageAsset?.fields?.file?.url
-      ? `https:${coverImageAsset.fields.file.url}`
+      ? ensureProtocol(coverImageAsset.fields.file.url)
       : `${baseUrl}/logo.png`
-    const contentUrl = `https:${videoAsset.fields.file.url}`
+    const contentUrl = ensureProtocol(videoAsset.fields.file.url)
     const watchPageUrl = `${baseUrl}/watch/${slug}`
     // For player_loc, we'll use an embed-style URL that points to the video player
     // This should be different from the HTML landing page URL

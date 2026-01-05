@@ -1,4 +1,5 @@
 import React from 'react'
+import { ensureProtocol } from '@/utils'
 import { ICourseFAQ } from '@/types'
 
 interface OrganizationProps {
@@ -506,7 +507,7 @@ export function DiplomaSchema({
           `Watch this comprehensive preview of ${name} at Africa Digital Media Institute. Learn about the curriculum, facilities, career opportunities, and what makes this diploma program special.`,
         thumbnailUrl: image || 'https://admi.africa/logo.png',
         embedUrl: courseSlug ? `https://admi.africa/watch/${courseSlug}` : `${url}/watch`,
-        contentUrl: courseVideo.fields?.file?.url ? `https:${courseVideo.fields.file.url}` : undefined,
+        contentUrl: courseVideo.fields?.file?.url ? ensureProtocol(courseVideo.fields.file.url) : undefined,
         uploadDate: courseVideo.fields?.publishDate || new Date().toISOString(),
         duration: courseVideo.fields?.duration || 'PT2M30S',
         publisher: {
@@ -790,7 +791,7 @@ export function CourseSchema({
           `Watch this comprehensive preview of ${name} at Africa Digital Media Institute. Learn about the curriculum, facilities, career opportunities, and what makes this ${awardLevel || 'course'} program special.`,
         thumbnailUrl: image || 'https://admi.africa/logo.png',
         embedUrl: courseSlug ? `https://admi.africa/watch/${courseSlug}` : `${url}/watch`,
-        contentUrl: courseVideo.fields?.file?.url ? `https:${courseVideo.fields.file.url}` : undefined,
+        contentUrl: courseVideo.fields?.file?.url ? ensureProtocol(courseVideo.fields.file.url) : undefined,
         uploadDate: courseVideo.fields?.publishDate || new Date().toISOString(),
         duration: courseVideo.fields?.duration || 'PT2M30S',
         publisher: {

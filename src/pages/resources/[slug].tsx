@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import { ensureProtocol } from '@/utils'
 import { Box, Card } from '@mantine/core'
 import { useRouter } from 'next/router'
 
@@ -84,7 +85,7 @@ export default function ResourceArticlePage({
             <VideoObjectSchema
               title={`${article.title} - Video Guide`}
               description={article.summary || `Video guide: ${article.title}`}
-              thumbnailUrl={`https:${article.coverImage?.fields.file.url}`}
+              thumbnailUrl={ensureProtocol(article.coverImage?.fields.file.url)}
               uploadDate={article.publishDate || article.sys?.createdAt}
               duration="PT3M00S"
               embedUrl={`https://admi.africa/resources/${slug}`}
@@ -95,7 +96,7 @@ export default function ResourceArticlePage({
             description={
               article.summary || article.excerpt || 'Educational resource from Africa Digital Media Institute'
             }
-            image={`https:${article.coverImage?.fields.file.url}`}
+            image={ensureProtocol(article.coverImage?.fields.file.url)}
             publishedDate={article.publishDate || article.sys?.createdAt}
             modifiedDate={article.sys?.updatedAt}
             url={`https://admi.africa/resources/${slug}`}
@@ -134,7 +135,7 @@ export default function ResourceArticlePage({
             <Card className="mb-6 min-h-[80vh] w-full sm:ml-8" withBorder>
               <Box className="relative" h={isMobile ? '200px' : '540px'}>
                 <Image
-                  src={`https:${article.coverImage.fields.file.url}`}
+                  src={ensureProtocol(article.coverImage.fields.file.url)}
                   alt={article.title}
                   style={{ borderRadius: 8 }}
                   fill

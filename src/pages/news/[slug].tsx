@@ -1,4 +1,5 @@
 import { MainLayout } from '@/layouts/v3/MainLayout'
+import { ensureProtocol } from '@/utils'
 import { PageSEO } from '@/components/shared/v3'
 import { ArticleSchema, BreadcrumbSchema } from '@/components/shared/StructuredData'
 
@@ -38,7 +39,9 @@ export default function NewsDetailPage({ article, slug }: { article: any; slug: 
     <MainLayout>
       <PageSEO
         title={article.title || 'News Article'}
-        image={article.featuredImage?.fields?.file?.url ? `https:${article.featuredImage.fields.file.url}` : undefined}
+        image={
+          article.featuredImage?.fields?.file?.url ? ensureProtocol(article.featuredImage.fields.file.url) : undefined
+        }
         url={`/news/${slug}`}
         description={description}
       />
@@ -47,7 +50,9 @@ export default function NewsDetailPage({ article, slug }: { article: any; slug: 
       <ArticleSchema
         headline={article.title || 'News Article'}
         description={description}
-        image={article.featuredImage?.fields?.file?.url ? `https:${article.featuredImage.fields.file.url}` : undefined}
+        image={
+          article.featuredImage?.fields?.file?.url ? ensureProtocol(article.featuredImage.fields.file.url) : undefined
+        }
         url={`${process.env.NEXT_PUBLIC_API_BASE_URL || 'https://admi.africa'}/news/${slug}`}
         datePublished={formatDate(article.publishDate || article.sys?.createdAt)}
         dateModified={formatDate(article.sys?.updatedAt)}

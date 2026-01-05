@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { Card, ScrollArea } from '@mantine/core'
 
-import { getAssetDetails } from '@/utils'
+import { getAssetDetails, ensureProtocol } from '@/utils'
 import { CollapsibleContent } from '../shared/v3'
 import { Paragraph, ParagraphContentful, Title } from '../ui'
 import { CourseEnquiryCard } from '../cards'
@@ -55,7 +55,7 @@ export default function CourseDetails(props: Props) {
             >
               <div className="flex px-4 pt-4">
                 <Image
-                  src={`https:${getAssetDetails(props.assets, benefit.fields.icon.sys.id)?.fields.file.url}`}
+                  src={ensureProtocol(getAssetDetails(props.assets, benefit.fields.icon.sys.id)?.fields.file.url)}
                   alt={benefit.fields.icon.sys.id}
                   width={32}
                   height={32}

@@ -1,4 +1,5 @@
 import { MainLayout } from '@/layouts/v3/MainLayout'
+import { ensureProtocol } from '@/utils'
 import {
   CourseAbout,
   CourseApplicationProcess,
@@ -141,7 +142,7 @@ export default function CourseDetailPage({
         title={course.name}
         description={courseDescription}
         keywords={keywords}
-        image={course.coverImage?.fields?.file?.url ? `https:${course.coverImage.fields.file.url}` : undefined}
+        image={course.coverImage?.fields?.file?.url ? ensureProtocol(course.coverImage.fields.file.url) : undefined}
         url={`/courses/${slug}`}
         productId={`admi-${course.awardLevel?.toLowerCase().replace(' ', '-') || 'course'}-${slug}`}
         productPrice={pricing?.price}
@@ -181,7 +182,7 @@ export default function CourseDetailPage({
               url: 'https://admi.africa'
             }}
             url={`${process.env.NEXT_PUBLIC_API_BASE_URL || 'https://admi.africa'}/courses/${slug}`}
-            image={course.coverImage?.fields?.file?.url ? `https:${course.coverImage.fields.file.url}` : undefined}
+            image={course.coverImage?.fields?.file?.url ? ensureProtocol(course.coverImage.fields.file.url) : undefined}
             awardLevel={course.awardLevel}
             tuitionFees={course.tuitionFees}
             duration={course.programType?.fields?.duration}
@@ -221,11 +222,11 @@ export default function CourseDetailPage({
           description={`Watch this comprehensive preview of ${course.name} at Africa Digital Media Institute. Learn about the curriculum, facilities, career opportunities, and what makes this ${course.awardLevel || 'course'} program special.`}
           thumbnailUrl={
             course.coverImage?.fields?.file?.url
-              ? `https:${course.coverImage.fields.file.url}`
+              ? ensureProtocol(course.coverImage.fields.file.url)
               : 'https://admi.africa/logo.png'
           }
           // Swap: embedUrl (watch page) becomes primary, direct video file becomes secondary
-          contentUrl={`https:${course.courseVideo.fields.file.url}`}
+          contentUrl={ensureProtocol(course.courseVideo.fields.file.url)}
           embedUrl={`${process.env.NEXT_PUBLIC_API_BASE_URL || 'https://admi.africa'}/watch/${slug}`}
           uploadDate={course.sys?.updatedAt || new Date().toISOString()}
           duration="PT2M30S"

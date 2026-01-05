@@ -1,4 +1,5 @@
 import { IContentfulResponse } from '@/types'
+import { ensureProtocol } from '@/utils'
 import axiosContentfulClient from '@/utils/axiosContentfulClient'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
@@ -49,11 +50,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           // Asset is referenced by ID, find it in includes
           const asset = data.includes.Asset.find((a: any) => a.sys.id === item.fields.coverImage.sys.id)
           if (asset?.fields?.file?.url) {
-            coverImage = `https:${asset.fields.file.url}`
+            coverImage = ensureProtocol(asset.fields.file.url)
           }
         } else if (item.fields.coverImage?.fields?.file?.url) {
           // Asset is directly embedded (shouldn't happen with include=10, but handle just in case)
-          coverImage = `https:${item.fields.coverImage.fields.file.url}`
+          coverImage = ensureProtocol(item.fields.coverImage.fields.file.url)
         }
 
         return {

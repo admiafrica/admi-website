@@ -9,7 +9,7 @@ import { InfoCard, PlainCard } from '@/components/cards'
 import { useIsMobile } from '@/hooks/useIsMobile'
 import { getAcademicPathwaysBySlug, getAllPartners } from '@/utils/academic-pathways'
 import { AcademicPathwaysPage as IAcademicPathwaysPage, AcademicPathwaysPartner } from '@/types/academic-pathways'
-import { ADMI_ACADEMIC_PATHWAYS } from '@/utils'
+import { ADMI_ACADEMIC_PATHWAYS, ensureProtocol } from '@/utils'
 
 import ImagePathwaysLanding from '@/assets/images/academic-pathways-landing.jpeg'
 
@@ -58,7 +58,7 @@ export default function AcademicPathwaysPage({ pathways, partners, assets }: Aca
   const getLogoUrl = (partner: AcademicPathwaysPartner): string | null => {
     if (!partner.fields.logo?.sys?.id) return null
     const asset = assets.find((a) => a.sys.id === partner.fields.logo?.sys?.id)
-    return asset ? `https:${asset.fields.file.url}` : null
+    return asset ? ensureProtocol(asset.fields.file.url) : null
   }
 
   // Helper function to get partner name

@@ -4,7 +4,7 @@ import Autoplay from 'embla-carousel-autoplay'
 import { Avatar, Box, Card, Group } from '@mantine/core'
 import { Carousel } from '@mantine/carousel'
 
-import { getAssetDetails } from '@/utils'
+import { getAssetDetails, ensureProtocol } from '@/utils'
 import { UserTestimonialCard } from '../cards'
 
 import { IconArrowLeft, IconArrowRight, IconChecks } from '@tabler/icons-react'
@@ -80,7 +80,9 @@ export default function CourseStudents(props: Props) {
                             {portfolio.fields.assets.map((portfolioAsset: any) => (
                               <Carousel.Slide key={portfolioAsset.sys.id}>
                                 <Image
-                                  src={`https:${getAssetDetails(props.assets, portfolioAsset.sys.id)?.fields.file.url}`}
+                                  src={ensureProtocol(
+                                    getAssetDetails(props.assets, portfolioAsset.sys.id)?.fields.file.url
+                                  )}
                                   fill
                                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                   alt={`Student portfolio work - ${portfolio.fields.name || 'ADMI Student'}`}
@@ -98,7 +100,9 @@ export default function CourseStudents(props: Props) {
                       <Card.Section>
                         <Group py={16} bg={'#871F00'} c={'white'}>
                           <Avatar
-                            src={`https:${getAssetDetails(props.assets, portfolio.fields.profilePicture.sys.id)?.fields.file.url}`}
+                            src={ensureProtocol(
+                              getAssetDetails(props.assets, portfolio.fields.profilePicture.sys.id)?.fields.file.url
+                            )}
                             variant="transparent"
                             size={48}
                             ml={16}

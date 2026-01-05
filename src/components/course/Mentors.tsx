@@ -1,6 +1,6 @@
 import { Group } from '@mantine/core'
 import { CollapsibleContent } from '../shared/v3'
-import { getAssetDetails } from '@/utils'
+import { getAssetDetails, ensureProtocol } from '@/utils'
 import Image from 'next/image'
 import { ParagraphContentful, Title } from '../ui'
 import { useIsMobile } from '@/hooks/useIsMobile'
@@ -30,7 +30,7 @@ export default function CourseMentors(props: Props) {
                 <Image
                   height={98}
                   width={98}
-                  src={`https:${getAssetDetails(props.assets, mentor.fields.image.sys.id)?.fields.file.url}`}
+                  src={ensureProtocol(getAssetDetails(props.assets, mentor.fields.image.sys.id)?.fields.file.url)}
                   alt={mentor.fields.name}
                   style={{ objectFit: 'cover' }}
                 />

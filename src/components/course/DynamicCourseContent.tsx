@@ -1,4 +1,5 @@
 import React from 'react'
+import { ensureProtocol } from '@/utils'
 import Image from 'next/image'
 import { Box, Grid, Loader, Text, Title } from '@mantine/core'
 import { useCourseContent } from '@/hooks/useCourseContent'
@@ -82,7 +83,7 @@ export default function DynamicCourseContent({ courseSlug, courseName }: Dynamic
                   <Box className="flex items-center space-x-3">
                     {review.fields.authorImage && (
                       <Image
-                        src={`https:${review.fields.authorImage.fields.file.url}`}
+                        src={ensureProtocol(review.fields.authorImage.fields.file.url)}
                         alt={review.fields.authorName}
                         width={48}
                         height={48}
@@ -119,7 +120,7 @@ export default function DynamicCourseContent({ courseSlug, courseName }: Dynamic
                 <Box className="overflow-hidden rounded-lg border bg-white shadow-sm">
                   {portfolio.fields.profilePicture && (
                     <Image
-                      src={`https:${portfolio.fields.profilePicture.fields.file.url}`}
+                      src={ensureProtocol(portfolio.fields.profilePicture.fields.file.url)}
                       alt={portfolio.fields.studentName}
                       width={400}
                       height={192}
