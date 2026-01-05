@@ -16,6 +16,8 @@
     "blog:weekly": "node scripts/blog-generation/blog-scheduler.js weekly",
     "blog:stats": "node scripts/blog-generation/blog-scheduler.js stats",
     "contentful:check": "node scripts/contentful/check-content-types.js",
+    "contentful:add-categories": "node scripts/contentful/add-category-fields.js",
+    "contentful:set-article-category": "node scripts/contentful/set-article-category.js",
     "faq:setup-assistant": "node scripts/ai/assistant-faq-verification.js setup",
     "faq:verify-all": "node scripts/ai/assistant-faq-verification.js verify",
     "faq:generate": "node scripts/ai/assistant-faq-manager.js",
