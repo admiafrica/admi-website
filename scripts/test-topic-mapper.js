@@ -1,9 +1,10 @@
+#!/usr/bin/env node
+
 /**
- * Maps course names to topic categories for article filtering
- * This ensures articles with matching topics appear on course pages
+ * Test the course-topic mapper to ensure all courses map to a topic
  */
 
-const COURSE_TOPIC_MAPPING: Record<string, string> = {
+const COURSE_TOPIC_MAPPING = {
   // Animation
   animation: 'Animation',
   '2d animation': 'Animation',
@@ -13,9 +14,9 @@ const COURSE_TOPIC_MAPPING: Record<string, string> = {
   film: 'Film Production',
   'video production': 'Film Production',
   television: 'Film Production',
-  'digital content': 'Film Production', // Digital Content Creation is video/multimedia focused
+  'digital content': 'Film Production',
   'content creation': 'Film Production',
-  multimedia: 'Film Production', // Multimedia is video/content focused
+  multimedia: 'Film Production',
 
   // Music Production
   music: 'Music Production',
@@ -54,35 +55,44 @@ const COURSE_TOPIC_MAPPING: Record<string, string> = {
   design: 'Graphic Design'
 }
 
-/**
- * Extracts topic from course name or category field
- * @param courseName - The course name (e.g., "Animation - Nairobi", "Music Production Certificate")
- * @param courseCategory - Optional category field from Contentful
- * @returns Topic string (e.g., "Animation", "Music Production") or undefined
- */
-export function extractCourseTopic(courseName: string, courseCategory?: string): string | undefined {
-  // If course has category field set, use it directly
-  if (courseCategory) {
-    return courseCategory
-  }
-
-  // Otherwise, extract from course name
+function extractCourseTopic(courseName, courseCategory) {
+  if (courseCategory) return courseCategory
   const normalizedName = courseName.toLowerCase()
-
-  // Check each mapping
   for (const [keyword, topic] of Object.entries(COURSE_TOPIC_MAPPING)) {
     if (normalizedName.includes(keyword)) {
       return topic
     }
   }
-
-  // No match found
   return undefined
 }
 
-/**
- * Gets all available topics
- */
-export function getAllTopics(): string[] {
-  return Array.from(new Set(Object.values(COURSE_TOPIC_MAPPING)))
-}
+const courses = [
+  'Data Analytics and Visualisation',
+  'Graphic Design Certificate',
+  'Digital Marketing Certificate',
+  'Digital Content Creation Diploma',
+  'Graphic Design Diploma',
+  'Sound Engineering Diploma',
+  'Music Production and Sound Engineering Certificate',
+  'Photography Certificate',
+  'Film and Television Production Diploma',
+  'Video Production Certificate (Professional)',
+  'Certificate in AI Adoption & Digital Transformation',
+  'Multimedia Certificate',
+  '2D Animation Certificate (Rubika)'
+]
+
+console.log('Testing topic extraction for all courses:')
+console.log('='.repeat(70))
+
+let allMatched = true
+courses.forEach((c) => {
+  const topic = extractCourseTopic(c)
+  const status = topic ? '✅' : '❌'
+  if (!topic) allMatched = false
+  console.log(`${status} ${c.padEnd(50)} -> ${topic || 'NO MATCH'}`)
+})
+
+console.log('='.repeat(70))
+console.log(allMatched ? '✅ All courses matched!' : '❌ Some courses have no match!')
+process.exit(allMatched ? 0 : 1)
