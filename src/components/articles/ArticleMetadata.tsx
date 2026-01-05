@@ -101,12 +101,14 @@ interface RelatedArticlesProps {
  * Improves internal linking and reduces bounce rate
  */
 export function RelatedArticles({ currentArticleTags = [], currentArticleId, articles = [] }: RelatedArticlesProps) {
-  // Calculate relevance score based on tag overlap
+  // Calculate relevance score based on tag overlap (case-insensitive)
   const scoredArticles = useMemo(() => {
+    const normalizedCurrentTags = currentArticleTags.map((tag) => tag.toLowerCase())
+
     return articles
       .filter((a) => a.id !== currentArticleId)
       .map((article) => {
-        const matchedTags = (article.tags || []).filter((tag) => currentArticleTags.includes(tag))
+        const matchedTags = (article.tags || []).filter((tag) => normalizedCurrentTags.includes(tag.toLowerCase()))
         return {
           ...article,
           relevanceScore: matchedTags.length,
