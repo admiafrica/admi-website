@@ -7,6 +7,7 @@ import { Title, Paragraph } from '@/components/ui'
 import { PageSEO } from '@/components/shared/v3'
 import { useIsMobile } from '@/hooks/useIsMobile'
 import { InstitutionalFAQSchema } from '@/components/seo/InstitutionalFAQSchema'
+import { WhatsAppLinkPlain } from '@/components/shared/WhatsAppLink'
 
 import IconBgImageYellow from '@/assets/icons/ellipse-yellow.svg'
 import IconBgImageRed from '@/assets/icons/ellipse-red.svg'
@@ -110,20 +111,15 @@ export default function ContactPage() {
                   <div>
                     <Title label="Call or WhatsApp" color="black" size="18px" />
                     <Paragraph className="mt-1 text-black">
-                      <a href="tel:+254711486581" className="text-[#01C6A5] hover:underline">
-                        +254 711 486 581
+                      <a href="tel:+254741132751" className="text-[#01C6A5] hover:underline">
+                        +254 741 132 751
                       </a>
                     </Paragraph>
                     <div className="mt-2 flex items-center">
                       <IconBrandWhatsapp size={20} className="mr-2 text-green-400" />
-                      <a
-                        href="https://wa.me/254711486581"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-green-400 hover:underline"
-                      >
+                      <WhatsAppLinkPlain trackingLocation="contact_page" className="text-green-400 hover:underline">
                         WhatsApp Us
-                      </a>
+                      </WhatsAppLinkPlain>
                     </div>
                   </div>
                 </div>

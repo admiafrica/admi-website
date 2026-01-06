@@ -383,3 +383,64 @@ export function debugUTMState(): void {
     }
   })
 }
+
+/**
+ * Track WhatsApp click event to GA4
+ * Captures the current page context before user leaves to WhatsApp
+ * This allows attribution analysis of WhatsApp-originated leads
+ */
+export function trackWhatsAppClick(phoneNumber: string, location?: string): void {
+  if (typeof window === 'undefined') return
+
+  try {
+    const storedUTMs = getStoredUTMs()
+    const pageInfo = getCurrentPageInfo()
+
+    // Send event to Google Analytics
+    if (window.gtag) {
+      window.gtag('event', 'whatsapp_click', {
+        event_category: 'engagement',
+        event_label: location || 'whatsapp_link',
+        phone_number: phoneNumber,
+        // Current session attribution (last-touch)
+        utm_source: storedUTMs.utm_source || 'direct',
+        utm_medium: storedUTMs.utm_medium || 'none',
+        utm_campaign: storedUTMs.utm_campaign || 'organic',
+        // First-touch attribution (original source)
+        first_touch_source: storedUTMs.first_touch_source || '',
+        first_touch_medium: storedUTMs.first_touch_medium || '',
+        first_touch_campaign: storedUTMs.first_touch_campaign || '',
+        // Page context
+        page_location: pageInfo.current_page,
+        page_referrer: pageInfo.current_referrer,
+        landing_page: storedUTMs.landing_page || '',
+        // GA Client ID for cross-session tracking
+        ga_client_id: storedUTMs.ga_client_id || ''
+      })
+    }
+
+    // Also push to dataLayer for GTM
+    if (window.dataLayer) {
+      window.dataLayer.push({
+        event: 'whatsapp_click',
+        phone_number: phoneNumber,
+        click_location: location || 'whatsapp_link',
+        utm_source: storedUTMs.utm_source || 'direct',
+        first_touch_source: storedUTMs.first_touch_source || '',
+        page_location: pageInfo.current_page
+      })
+    }
+
+    // Debug log in development
+    if (process.env.NODE_ENV === 'development') {
+      console.log('📱 WhatsApp Click Tracked:', {
+        phoneNumber,
+        location,
+        storedUTMs,
+        pageInfo
+      })
+    }
+  } catch (error) {
+    console.error('Error tracking WhatsApp click:', error)
+  }
+}

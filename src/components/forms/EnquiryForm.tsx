@@ -8,7 +8,8 @@ import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
 
 import { IconAsterisk } from '@tabler/icons-react'
-import { getStoredUTMs, getCurrentPageInfo } from '@/utils/utm-tracking'
+import { getStoredUTMs, getCurrentPageInfo, trackWhatsAppClick } from '@/utils/utm-tracking'
+import { ADMI_WHATSAPP_NUMBER } from '@/utils/whatsapp-attribution'
 
 export default function EnquiryForm() {
   const router = useRouter()
@@ -315,9 +316,10 @@ export default function EnquiryForm() {
               </div>
               <div>
                 <a
-                  href="https://wa.me/254711486581"
+                  href={`https://wa.me/${ADMI_WHATSAPP_NUMBER}`}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => trackWhatsAppClick(ADMI_WHATSAPP_NUMBER, 'enquiry_form')}
                   className="inline-block rounded bg-green-600 px-4 py-2 text-sm font-medium text-white hover:bg-green-700"
                 >
                   WhatsApp Us
