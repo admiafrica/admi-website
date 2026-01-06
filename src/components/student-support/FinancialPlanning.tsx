@@ -86,7 +86,7 @@ export default function FinancialPlanning() {
 
       <CollapsibleContent
         key={'finance-plan-1'}
-        title="ADMI Fee Structure 2025"
+        title="ADMI Fee Structure 2026"
         content={
           <Box>
             {/* Downloadable fee structures */}
