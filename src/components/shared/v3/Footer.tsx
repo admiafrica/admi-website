@@ -6,6 +6,7 @@ import { useMediaQuery } from '@mantine/hooks'
 
 import { CourseEnrollCard } from '@/components/cards'
 import { SOCIAL_LINKS } from '@/utils'
+import { WhatsAppLink } from '@/components/shared/WhatsAppLink'
 
 import { IconCopyright } from '@tabler/icons-react'
 import IconLogoWhite from '@/assets/logo-light.svg'
@@ -107,9 +108,9 @@ export default function Footer({ bgColor }: Props) {
               <Text fw="bold" ml={10}>
                 WhatsApp:
               </Text>
-              <Anchor href="https://wa.me/254711486581" target="_blank" c="admiShamrok" fw="bold">
-                (+254) 711 486 581
-              </Anchor>
+              <WhatsAppLink trackingLocation="footer_v3" c="admiShamrok" fw="bold">
+                (+254) 741 132 751
+              </WhatsAppLink>
             </Group>
 
             <Group gap={4} className="px-4">

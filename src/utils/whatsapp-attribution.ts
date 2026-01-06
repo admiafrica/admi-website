@@ -12,11 +12,11 @@
 import type { UTMData } from './utm-tracking'
 
 // ADMI WhatsApp number (from footer)
-export const ADMI_WHATSAPP_NUMBER = '254711486581'
+export const ADMI_WHATSAPP_NUMBER = '254741132751'
 
 /**
  * Clean and normalize phone number for matching
- * Handles various formats: +254711486581, 254711486581, 0711486581
+ * Handles various formats: +254741132751, 254741132751, 0741132751
  */
 export function normalizePhoneNumber(phone: string): string {
   if (!phone) return ''

@@ -10,6 +10,7 @@ import {
   IconBrandX
 } from '@tabler/icons-react'
 import { SOCIAL_LINKS } from '@/utils'
+import { WhatsAppLink } from '@/components/shared/WhatsAppLink'
 import LogoIcon from '../../assets/logo.svg'
 
 export default function CustomFooter() {
@@ -23,10 +24,10 @@ export default function CustomFooter() {
         <Text>P. O. Box 35447 - 00100 Nairobi, Kenya.</Text>
 
         <Text pt={20}>Email: info@admi.ac.ke</Text>
-        <Text>Phone: (+254) 706 349 696, (+254) 711 486 581</Text>
-        <Anchor href="https://wa.me/254711486581" target="_blank" c="green" fw="bold">
-          WhatsApp: (+254) 711 486 581
-        </Anchor>
+        <Text>Phone: (+254) 706 349 696, (+254) 741 132 751</Text>
+        <WhatsAppLink trackingLocation="footer_legacy" c="green" fw="bold">
+          WhatsApp: (+254) 741 132 751
+        </WhatsAppLink>
         <Text>Hours: Mon-Fri 8:00am - 5:00pm / Sat: 8:00am to 2:00pm</Text>
 
         <Image width={isMobile ? 80 : 140} src={LogoIcon} alt="logo" />
