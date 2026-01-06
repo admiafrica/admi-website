@@ -9,7 +9,7 @@ import { CMSFAQSchema } from '@/components/shared/StructuredData'
 
 const FEE_FAQS = [
   {
-    question: 'What is the ADMI fee structure for 2025?',
+    question: 'What is the ADMI fee structure for 2026?',
     answer:
       'For the most current and accurate fee information for all ADMI programs, please visit our official student support page at https://admi.africa/student-support#fees. This page contains up-to-date fee structures for both East African and International students, payment plans, and course-specific costs.'
   },
