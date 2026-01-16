@@ -239,7 +239,7 @@ export default function HomePage({
                   size={isMobile ? '30px' : '48px'}
                   className="text-white"
                 >
-                  {heroContent.heroTitle}
+                  Launch your career in
                 </Paragraph>
                 <Box className="flex">
                   <Paragraph
