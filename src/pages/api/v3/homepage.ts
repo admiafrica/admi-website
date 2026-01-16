@@ -9,7 +9,7 @@ const FALLBACK_DATA = [
       title: 'Africa Digital Media Institute',
       heroTitle: 'Launch your career in Creative Media & Technology',
       heroDescription:
-        'ADMI stands for Africa Digital Media Institute - based in Nairobi, Kenya, we are the premier and leading training institution in creative media and technology in the region, offering diploma and certificate courses.',
+        'ADMI (Africa Digital Media Institute) is a leading creative media and technology training institution based in Nairobi, Kenya. Our programmes are delivered through a flexible hybrid model that combines online learning with in person sessions, so you can study in a format that works for you. Explore our diploma and certificate courses and get started today.',
       testimonials: []
     }
   }

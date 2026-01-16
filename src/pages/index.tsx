@@ -29,15 +29,41 @@ import AnnouncementImage from '@/assets/images/announcement.svg'
 import NewsImage from '@/assets/images/featured-news.svg'
 import AwardsImage from '@/assets/images/awards.svg'
 
+// Hardcoded fallback hero content - used when Contentful is unavailable
+const FALLBACK_HERO = {
+  heroTitle: 'Launch your career in Creative',
+  heroHighlightWord: 'Media & Technology',
+  heroDescription:
+    'ADMI (Africa Digital Media Institute) is a leading creative media and technology training institution based in Nairobi, Kenya. Our programmes are delivered through a flexible hybrid model that combines online learning with in person sessions, so you can study in a format that works for you. Explore our diploma and certificate courses and get started today.',
+  ctaButtonText: 'Learn More',
+  searchPlaceholder: 'What are you looking for?'
+}
+
+interface HeroContent {
+  heroTitle: string
+  heroHighlightWord?: string
+  heroDescription: string
+  ctaButtonText?: string
+  searchPlaceholder?: string
+}
+
 interface HomePageProps {
   content: any
   courses: Array<any>
   featuredNews: IContentfulEntry | null
   featuredResource: IContentfulEntry | null
   featuredAward: IContentfulEntry | null
+  heroContent: HeroContent
 }
 
-export default function HomePage({ content, courses, featuredNews, featuredResource, featuredAward }: HomePageProps) {
+export default function HomePage({
+  content,
+  courses,
+  featuredNews,
+  featuredResource,
+  featuredAward,
+  heroContent
+}: HomePageProps) {
   const router = useRouter()
   const isMobile = useIsMobile()
 
@@ -133,7 +159,7 @@ export default function HomePage({ content, courses, featuredNews, featuredResou
           {
             question: 'What is ADMI (Africa Digital Media Institute)?',
             answer:
-              "ADMI stands for Africa Digital Media Institute. We are Eastern Africa's premier creative media and technology training institution located in Nairobi, Kenya. Founded in 2012, ADMI offers diploma and certificate programs in Digital Marketing, Graphic Design, Film & TV Production, Music Production & Sound Engineering, Animation, and Photography with industry-standard training and career placement support."
+              'ADMI (Africa Digital Media Institute) is a leading creative media and technology training institution based in Nairobi, Kenya. Our programmes are delivered through a flexible hybrid model that combines online learning with in person sessions, so you can study in a format that works for you. We offer diploma and certificate courses in Digital Marketing, Graphic Design, Film & TV Production, Music Production & Sound Engineering, Animation, and Photography.'
           },
           {
             question: 'What courses does ADMI offer?',
@@ -213,7 +239,7 @@ export default function HomePage({ content, courses, featuredNews, featuredResou
                   size={isMobile ? '30px' : '48px'}
                   className="text-white"
                 >
-                  Launch your career in
+                  {heroContent.heroTitle}
                 </Paragraph>
                 <Box className="flex">
                   <Paragraph
@@ -233,16 +259,15 @@ export default function HomePage({ content, courses, featuredNews, featuredResou
                 </Box>
               </Box>
               <Paragraph className="py-6 text-white">
-                <strong>ADMI stands for Africa Digital Media Institute</strong> - based in Nairobi, Kenya, we are the
-                premier and leading training institution in creative media and technology in the region, offering
-                diploma and certificate courses.
+                <strong>ADMI (Africa Digital Media Institute)</strong>{' '}
+                {heroContent.heroDescription.replace(/^ADMI \(Africa Digital Media Institute\)\s*/i, '')}
               </Paragraph>
 
               <SearchDropdown
                 destination="courses"
                 items={courses}
-                buttonLabel="Learn More"
-                placeholder="What are you looking for?"
+                buttonLabel={heroContent.ctaButtonText || 'Learn More'}
+                placeholder={heroContent.searchPlaceholder || 'What are you looking for?'}
                 bg="#414438"
               />
             </Box>
@@ -605,8 +630,9 @@ export default function HomePage({ content, courses, featuredNews, featuredResou
                 <Box className="rounded-lg bg-gray-50 p-6">
                   <Title label="What does ADMI stand for?" color="black" size="18px" className="mb-3" />
                   <Paragraph>
-                    ADMI stands for Africa Digital Media Institute. We are the premier and leading training institution
-                    in creative media and technology in the region, located in Nairobi, Kenya.
+                    ADMI (Africa Digital Media Institute) is a leading creative media and technology training
+                    institution based in Nairobi, Kenya. Our programmes are delivered through a flexible hybrid model
+                    that combines online learning with in person sessions.
                   </Paragraph>
                 </Box>
 
@@ -656,21 +682,26 @@ export default function HomePage({ content, courses, featuredNews, featuredResou
 // ISR: Pre-render at build time, revalidate every hour
 export async function getStaticProps() {
   try {
-    const [contentRes, coursesRes, newsRes, resourcesRes, awardsRes] = await Promise.all([
+    const [contentRes, coursesRes, newsRes, resourcesRes, awardsRes, heroRes] = await Promise.all([
       fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v3/homepage`),
       fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v3/courses`),
       fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v3/news`),
       fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v3/resources`),
-      fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v3/awards`)
+      fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v3/awards`),
+      fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v3/homepage-hero`)
     ])
 
-    const [contentData, coursesData, newsData, resourcesData, awardsData] = await Promise.all([
+    const [contentData, coursesData, newsData, resourcesData, awardsData, heroData] = await Promise.all([
       contentRes.json(),
       coursesRes.json(),
       newsRes.json(),
       resourcesRes.json(),
-      awardsRes.json()
+      awardsRes.json(),
+      heroRes.json()
     ])
+
+    // Extract hero content from Contentful response or use fallback
+    const heroContent = heroData?.fields || FALLBACK_HERO
 
     return {
       props: {
@@ -686,7 +717,8 @@ export async function getStaticProps() {
         featuredAward:
           (Array.isArray(awardsData)
             ? awardsData.find((article: IContentfulEntry) => article.fields.featured)
-            : null) || null
+            : null) || null,
+        heroContent
       },
       revalidate: 3600 // Regenerate page every 1 hour (3600 seconds)
     }
@@ -698,7 +730,8 @@ export async function getStaticProps() {
         courses: [],
         featuredNews: null,
         featuredResource: null,
-        featuredAward: null
+        featuredAward: null,
+        heroContent: FALLBACK_HERO
       },
       revalidate: 300 // Retry in 5 minutes if there was an error
     }
