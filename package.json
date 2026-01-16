@@ -16,6 +16,7 @@
     "blog:weekly": "node scripts/blog-generation/blog-scheduler.js weekly",
     "blog:stats": "node scripts/blog-generation/blog-scheduler.js stats",
     "contentful:check": "node scripts/contentful/check-content-types.js",
+    "contentful:create-hero": "node scripts/contentful/create-homepage-hero-content-type.js",
     "contentful:add-categories": "node scripts/contentful/add-category-fields.js",
     "contentful:set-article-category": "node scripts/contentful/set-article-category.js",
     "contentful:add-topic": "node scripts/contentful/add-topic-field.js",

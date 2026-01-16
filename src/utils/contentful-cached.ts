@@ -260,6 +260,33 @@ export async function queryCached<T>(
 }
 
 /**
+ * Fetch homepage hero content with caching
+ * Returns the active hero content or null if not found
+ */
+export async function getHomepageHeroCached(): Promise<any | null> {
+  const result = await getCached(
+    'homepage-hero',
+    async () => {
+      const response = await axiosContentfulClient.get<IContentfulResponse>(
+        `/spaces/${spaceId}/environments/${environment}/entries?access_token=${accessToken}&content_type=homepageHero&fields.isActive=true&limit=1`
+      )
+      const data = response.data
+      const items = data.items
+
+      if (!items || items.length === 0) {
+        return null
+      }
+
+      // Return the first active hero content
+      return items[0]
+    },
+    { duration: CACHE_DURATIONS.homepage, useS3: USE_S3_CACHE }
+  )
+
+  return result.data
+}
+
+/**
  * Health check for the caching system
  */
 export async function getCacheHealth(): Promise<{
