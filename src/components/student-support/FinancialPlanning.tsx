@@ -7,6 +7,8 @@ import { useCallback, useEffect, useState } from 'react'
 import { IContentfulEntry } from '@/types'
 import { CMSFAQSchema } from '@/components/shared/StructuredData'
 
+const SHOW_INTERNATIONAL_FEES = false
+
 const FEE_FAQS = [
   {
     question: 'What is the ADMI fee structure for 2026?',
@@ -123,6 +125,7 @@ export default function FinancialPlanning() {
               </ul>
             </div>
 
+          {SHOW_INTERNATIONAL_FEES && (
             <div>
               <Title label="International Students" color="black" size="16px" />
               <ul>
@@ -143,6 +146,7 @@ export default function FinancialPlanning() {
                 ))}
               </ul>
             </div>
+           )}
           </Box>
         }
       />
