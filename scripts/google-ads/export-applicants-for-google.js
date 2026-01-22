@@ -362,12 +362,12 @@ Files Generated:
    → SHA256 hashed emails and phones
 
 3. ${offlinePath}
-   → Upload to: Google Ads > Tools > Conversions > Uploads
+   → Upload to: Google Ads > Goals > Conversions > Uploads
    → Use for: ROAS optimization (tells Google which clicks converted)
    → Note: Only ${applicantsWithGclid.length} applicants have GCLID
 
 4. ${enhancedPath}
-   → Upload to: Google Ads > Tools > Conversions > Uploads
+   → Upload to: Google Ads > Goals > Conversions > Uploads
    → Use for: Enhanced Conversions (email/phone matching)
 `)
 

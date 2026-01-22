@@ -224,10 +224,12 @@ async function syncEnhancedConversions() {
   if (!conversionActionId) {
     console.error(`❌ Conversion action "${CONVERSION_ACTION_NAME}" not found in Google Ads`)
     console.log('\n💡 To create it:')
-    console.log('   1. Go to Google Ads > Tools > Conversions')
+    console.log('   1. Go to Google Ads > Goals > Conversions > Summary')
     console.log('   2. Click "+ New conversion action"')
-    console.log('   3. Select "Import" > "Other data sources"')
-    console.log(`   4. Name it exactly: "${CONVERSION_ACTION_NAME}"`)
+    console.log('   3. Select "Import" > "CRMs, files, or other data sources"')
+    console.log('   4. Choose "Track conversions from clicks"')
+    console.log(`   5. Name it exactly: "${CONVERSION_ACTION_NAME}"`)
+    console.log('   6. Set value: KES 300,000 (or use different values)')
     return
   }
   console.log(`   ✅ Found conversion action ID: ${conversionActionId}`)
