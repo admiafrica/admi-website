@@ -21,7 +21,14 @@ const STORAGE_KEYS = {
   FIRST_TOUCH_TERM: 'admi_first_touch_term',
   FIRST_TOUCH_CONTENT: 'admi_first_touch_content',
   FIRST_TOUCH_TIMESTAMP: 'admi_first_touch_timestamp',
-  GA_CLIENT_ID: 'admi_ga_client_id'
+  GA_CLIENT_ID: 'admi_ga_client_id',
+  // Click IDs for Google/Meta attribution
+  GCLID: 'admi_gclid',
+  FIRST_GCLID: 'admi_first_gclid',
+  FBCLID: 'admi_fbclid',
+  FIRST_FBCLID: 'admi_first_fbclid',
+  GBRAID: 'admi_gbraid',
+  WBRAID: 'admi_wbraid'
 }
 
 export interface UTMData {
@@ -44,6 +51,13 @@ export interface UTMData {
   first_touch_referrer?: string // Original referrer source
   // GA4 Client ID for cross-session tracking
   ga_client_id?: string
+  // Click IDs for Google/Meta Ads attribution (CRITICAL for offline conversions)
+  gclid?: string // Google Click ID (last touch)
+  first_gclid?: string // Google Click ID (first touch)
+  fbclid?: string // Facebook/Meta Click ID (last touch)
+  first_fbclid?: string // Facebook/Meta Click ID (first touch)
+  gbraid?: string // Google App campaigns
+  wbraid?: string // Google Web-to-App
 }
 
 /**
@@ -185,6 +199,43 @@ export function captureUTMsFromURL(): UTMData {
       utmData.ga_client_id = gaClientId
     }
 
+    // CRITICAL: Capture Click IDs for Google/Meta Ads offline conversion attribution
+    // GCLID (Google Click ID) - most important for Google Ads attribution
+    const gclid = urlParams.get('gclid')
+    if (gclid) {
+      sessionStorage.setItem(STORAGE_KEYS.GCLID, gclid)
+      utmData.gclid = gclid
+      // Store first-touch GCLID if not already set
+      if (!localStorage.getItem(STORAGE_KEYS.FIRST_GCLID)) {
+        localStorage.setItem(STORAGE_KEYS.FIRST_GCLID, gclid)
+      }
+      console.log('✅ GCLID captured:', gclid)
+    }
+
+    // FBCLID (Facebook/Meta Click ID) - for Meta Ads attribution
+    const fbclid = urlParams.get('fbclid')
+    if (fbclid) {
+      sessionStorage.setItem(STORAGE_KEYS.FBCLID, fbclid)
+      utmData.fbclid = fbclid
+      // Store first-touch FBCLID if not already set
+      if (!localStorage.getItem(STORAGE_KEYS.FIRST_FBCLID)) {
+        localStorage.setItem(STORAGE_KEYS.FIRST_FBCLID, fbclid)
+      }
+      console.log('✅ FBCLID captured:', fbclid)
+    }
+
+    // GBRAID (Google App campaigns) and WBRAID (Web-to-App)
+    const gbraid = urlParams.get('gbraid')
+    if (gbraid) {
+      sessionStorage.setItem(STORAGE_KEYS.GBRAID, gbraid)
+      utmData.gbraid = gbraid
+    }
+    const wbraid = urlParams.get('wbraid')
+    if (wbraid) {
+      sessionStorage.setItem(STORAGE_KEYS.WBRAID, wbraid)
+      utmData.wbraid = wbraid
+    }
+
     // Capture landing page on first visit
     if (!sessionStorage.getItem(STORAGE_KEYS.LANDING_PAGE)) {
       const landingPage = window.location.href
@@ -256,6 +307,39 @@ export function getStoredUTMs(): UTMData {
     const gaClientId = localStorage.getItem(STORAGE_KEYS.GA_CLIENT_ID) || getGA4ClientID()
     if (gaClientId) {
       utmData.ga_client_id = gaClientId
+    }
+
+    // CRITICAL: Retrieve Click IDs for Google/Meta Ads offline conversion attribution
+    // GCLID - last touch (current session)
+    const gclid = sessionStorage.getItem(STORAGE_KEYS.GCLID)
+    if (gclid) {
+      utmData.gclid = gclid
+    }
+    // GCLID - first touch (original Google Ads click)
+    const firstGclid = localStorage.getItem(STORAGE_KEYS.FIRST_GCLID)
+    if (firstGclid) {
+      utmData.first_gclid = firstGclid
+    }
+
+    // FBCLID - last touch (current session)
+    const fbclid = sessionStorage.getItem(STORAGE_KEYS.FBCLID)
+    if (fbclid) {
+      utmData.fbclid = fbclid
+    }
+    // FBCLID - first touch (original Meta click)
+    const firstFbclid = localStorage.getItem(STORAGE_KEYS.FIRST_FBCLID)
+    if (firstFbclid) {
+      utmData.first_fbclid = firstFbclid
+    }
+
+    // GBRAID/WBRAID for app campaigns
+    const gbraid = sessionStorage.getItem(STORAGE_KEYS.GBRAID)
+    if (gbraid) {
+      utmData.gbraid = gbraid
+    }
+    const wbraid = sessionStorage.getItem(STORAGE_KEYS.WBRAID)
+    if (wbraid) {
+      utmData.wbraid = wbraid
     }
 
     // Retrieve landing page

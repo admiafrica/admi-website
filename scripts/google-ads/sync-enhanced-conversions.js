@@ -34,7 +34,7 @@ const CUSTOMER_ID = process.env.GOOGLE_ADS_CUSTOMER_ID
 const START_DATE = '2025-11-29'
 
 // Conversion action name in Google Ads (must match exactly)
-const CONVERSION_ACTION_NAME = 'Application Submitted'
+const CONVERSION_ACTION_NAME = 'offline (Upload)'
 
 // Conversion value in KES (average tuition)
 const CONVERSION_VALUE = 300000
@@ -160,7 +160,8 @@ async function getConversionActionId(customer) {
 }
 
 /**
- * Upload Enhanced Conversions to Google Ads
+ * Upload Offline Click Conversions to Google Ads
+ * Uses uploadClickConversions for NEW offline conversions (Enhanced Conversions for Leads)
  */
 async function uploadEnhancedConversions(customer, conversions, conversionActionId) {
   if (!conversions.length) {
@@ -168,32 +169,60 @@ async function uploadEnhancedConversions(customer, conversions, conversionAction
     return { success: 0, failed: 0 }
   }
 
-  const conversionAdjustments = conversions.map((conv) => ({
+  // Build ClickConversion objects for offline import
+  // Using user_identifiers for Enhanced Conversions for Leads (no GCLID required)
+  const clickConversions = conversions.map((conv) => ({
     conversion_action: `customers/${CUSTOMER_ID}/conversionActions/${conversionActionId}`,
-    adjustment_type: 'ENHANCEMENT',
-    adjustment_date_time: conv.conversionTime,
+    conversion_date_time: conv.conversionTime,
+    conversion_value: conv.value,
+    currency_code: conv.currency,
+    order_id: conv.orderId,
+    // User identifiers for matching (Enhanced Conversions for Leads)
     user_identifiers: [
       conv.hashedEmail ? { hashed_email: conv.hashedEmail } : null,
       conv.hashedPhone ? { hashed_phone_number: conv.hashedPhone } : null
     ].filter(Boolean),
-    user_agent: 'Mozilla/5.0', // Generic user agent
-    conversion_date_time: conv.conversionTime,
-    order_id: conv.orderId
+    // Consent (required for Enhanced Conversions)
+    consent: {
+      ad_user_data: 'GRANTED',
+      ad_personalization: 'GRANTED'
+    }
   }))
 
   try {
-    const response = await customer.conversionAdjustmentUploads.uploadConversionAdjustments({
+    // Use ConversionUploadService.uploadClickConversions for offline imports
+    const response = await customer.conversionUploads.uploadClickConversions({
       customer_id: CUSTOMER_ID,
-      conversions: conversionAdjustments,
+      conversions: clickConversions,
       partial_failure: true
     })
 
-    const successCount = conversionAdjustments.length - (response.partial_failure_error?.errors?.length || 0)
-    const failedCount = response.partial_failure_error?.errors?.length || 0
+    // Check for partial failures
+    let successCount = clickConversions.length
+    let failedCount = 0
+
+    if (response.partial_failure_error) {
+      const errors = response.partial_failure_error.errors || []
+      failedCount = errors.length
+      successCount = clickConversions.length - failedCount
+      
+      if (errors.length > 0) {
+        console.log(`\n   ⚠️  ${errors.length} conversions had issues:`)
+        errors.slice(0, 5).forEach((err, i) => {
+          console.log(`      ${i + 1}. ${err.message || JSON.stringify(err)}`)
+        })
+        if (errors.length > 5) {
+          console.log(`      ... and ${errors.length - 5} more`)
+        }
+      }
+    }
 
     return { success: successCount, failed: failedCount }
   } catch (error) {
     console.error('Error uploading conversions:', error.message)
+    if (error.errors) {
+      error.errors.slice(0, 3).forEach((e) => console.error('  -', e.message))
+    }
     return { success: 0, failed: conversions.length }
   }
 }

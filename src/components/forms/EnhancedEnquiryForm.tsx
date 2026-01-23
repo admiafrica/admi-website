@@ -249,6 +249,13 @@ export default function EnhancedEnquiryForm() {
       first_touch_timestamp: storedUTMs.first_touch_timestamp || '',
       // GA Client ID for cross-session tracking - NEW!
       ga_client_id: storedUTMs.ga_client_id || '',
+      // CRITICAL: Click IDs for Google/Meta Ads offline conversion attribution
+      gclid: storedUTMs.gclid || storedUTMs.first_gclid || '', // Prefer last-touch, fallback to first-touch
+      first_gclid: storedUTMs.first_gclid || '',
+      fbclid: storedUTMs.fbclid || storedUTMs.first_fbclid || '',
+      first_fbclid: storedUTMs.first_fbclid || '',
+      gbraid: storedUTMs.gbraid || '',
+      wbraid: storedUTMs.wbraid || '',
       // Include page tracking
       landing_page: storedUTMs.landing_page || pageInfo.current_page,
       referrer: storedUTMs.referrer || pageInfo.current_referrer,

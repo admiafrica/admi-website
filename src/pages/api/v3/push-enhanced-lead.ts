@@ -29,6 +29,13 @@ interface EnhancedLeadData {
   first_touch_timestamp?: string
   // GA Client ID for cross-session tracking (NEW!)
   ga_client_id?: string
+  // CRITICAL: Click IDs for Google/Meta Ads offline conversion attribution
+  gclid?: string
+  first_gclid?: string
+  fbclid?: string
+  first_fbclid?: string
+  gbraid?: string
+  wbraid?: string
   // Lead scoring
   leadScore: number
   formType: string
@@ -186,6 +193,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     first_touch_timestamp = '',
     // GA Client ID (NEW!)
     ga_client_id = '',
+    // CRITICAL: Click IDs for Google/Meta Ads offline conversion attribution
+    gclid = '',
+    first_gclid = '',
+    fbclid = '',
+    first_fbclid = '',
+    gbraid = '',
+    wbraid = '',
     // Lead scoring
     leadScore: clientLeadScore,
     formType,
@@ -377,6 +391,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
         // GA Client ID for cross-session tracking - SANITIZED & NEW!
         GA_CLIENT_ID: sanitizedUTMs.ga_client_id || '',
+
+        // CRITICAL: Click IDs for Google/Meta Ads offline conversion attribution
+        // These are essential for attributing offline conversions back to ad clicks
+        GCLID: gclid || '', // Google Click ID (last touch) - PRIMARY for Google Ads attribution
+        FIRST_GCLID: first_gclid || gclid || '', // Original Google click (first touch)
+        FBCLID: fbclid || '', // Facebook/Meta Click ID (last touch)
+        FIRST_FBCLID: first_fbclid || fbclid || '', // Original Meta click (first touch)
+        GBRAID: gbraid || '', // Google App campaigns
+        WBRAID: wbraid || '', // Google Web-to-App
 
         // Summary of pre-qualification responses
         CONVERSATION_SUMMARY: `Timeline: ${timelineLabels[studyTimeline] || studyTimeline} | Program: ${programLabels[programType] || programType} | Investment: ${investmentRange ? investmentLabels[investmentRange] : 'Not specified'} | Goals: ${goalLabels[careerGoals] || careerGoals} | Experience: ${experienceLabels[experienceLevel] || experienceLevel}`

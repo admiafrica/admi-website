@@ -18,7 +18,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     utm_content = '',
     landing_page = '',
     referrer = '',
-    current_page = ''
+    current_page = '',
+    // CRITICAL: Click IDs for Google/Meta Ads offline conversion attribution
+    gclid = '',
+    first_gclid = '',
+    fbclid = '',
+    first_fbclid = '',
+    gbraid = '',
+    wbraid = ''
   } = req.body
 
   // Validate required fields with more specific error messages
@@ -72,7 +79,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       UTM_CONTENT: utm_content,
       PAGE: current_page || landing_page, // Current page where form was submitted
       REFERRER: referrer, // Original referrer
-      LANDING_PAGE: landing_page // First page visited
+      LANDING_PAGE: landing_page, // First page visited
+      // CRITICAL: Click IDs for Google/Meta Ads offline conversion attribution
+      GCLID: gclid || '', // Google Click ID (last touch)
+      FIRST_GCLID: first_gclid || gclid || '', // Original Google click (first touch)
+      FBCLID: fbclid || '', // Facebook/Meta Click ID
+      FIRST_FBCLID: first_fbclid || fbclid || '', // Original Meta click
+      GBRAID: gbraid || '', // Google App campaigns
+      WBRAID: wbraid || '' // Google Web-to-App
     },
     listIds: [parseInt(LIST_ID)],
     updateEnabled: true

@@ -85,6 +85,13 @@ export default function EnquiryForm() {
       utm_campaign: storedUTMs.utm_campaign || values.utm_campaign || 'organic',
       utm_term: storedUTMs.utm_term || values.utm_term || '',
       utm_content: storedUTMs.utm_content || values.utm_content || '',
+      // CRITICAL: Click IDs for Google/Meta Ads offline conversion attribution
+      gclid: storedUTMs.gclid || storedUTMs.first_gclid || '',
+      first_gclid: storedUTMs.first_gclid || '',
+      fbclid: storedUTMs.fbclid || storedUTMs.first_fbclid || '',
+      first_fbclid: storedUTMs.first_fbclid || '',
+      gbraid: storedUTMs.gbraid || '',
+      wbraid: storedUTMs.wbraid || '',
       // Include page tracking
       landing_page: storedUTMs.landing_page || pageInfo.current_page,
       referrer: storedUTMs.referrer || pageInfo.current_referrer,
