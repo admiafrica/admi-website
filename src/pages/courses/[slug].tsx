@@ -22,6 +22,13 @@ import { YouTubeVideo } from '@/utils/youtube-api'
 import { generateCourseSpecificMeta } from '@/utils/course-specific-seo'
 import { getCoursePricing } from '@/utils/course-pricing'
 
+// New conversion-focused components
+import IntakeBanner from '@/components/course/IntakeBanner'
+import PaymentCalculator from '@/components/course/PaymentCalculator'
+import GraduateOutcomes from '@/components/course/GraduateOutcomes'
+import CertificateUpgrade from '@/components/course/CertificateUpgrade'
+import ProgramComparison from '@/components/course/ProgramComparison'
+
 export default function CourseDetailPage({
   course,
   courseAssets,
@@ -237,6 +244,15 @@ export default function CourseDetailPage({
           }}
         />
       )}
+
+      {/* NEW: Intake Banner with Deadline Countdown - Shows at top of page */}
+      <IntakeBanner
+        intakeDate="May 19, 2026"
+        earlyBirdDeadline="April 15, 2026"
+        earlyBirdDiscount={10}
+        isDiploma={isDiploma}
+      />
+
       <CourseHero
         name={course.name}
         coverImage={course.coverImage}
@@ -251,6 +267,15 @@ export default function CourseDetailPage({
         educationalLevel={course.educationalLevel}
         courseSlug={slug}
       />
+
+      {/* NEW: Graduate Outcomes - Employment stats, salary ranges, employer logos */}
+      <GraduateOutcomes
+        isDiploma={isDiploma}
+        employmentRate={isDiploma ? 85 : 75}
+        averageSalaryRange={isDiploma ? 'KES 45,000 - 120,000' : 'KES 25,000 - 80,000'}
+        timeToEmployment={isDiploma ? '3-6 months' : '1-3 months'}
+      />
+
       <CourseDetails
         benefits={course.courseBenefits || []}
         assets={courseAssets || []}
@@ -261,6 +286,16 @@ export default function CourseDetailPage({
         careerOptions={course.careerOptions}
         learningOutcomes={course.learningOutcomes}
       />
+
+      {/* NEW: Payment Calculator - 50/30/20 split, 10% upfront discount */}
+      <div className="mx-auto w-full max-w-screen-xl px-4 py-8">
+        <PaymentCalculator
+          tuitionFees={course.tuitionFees || (isDiploma ? 'KES 100,000' : 'KES 48,000')}
+          isDiploma={isDiploma}
+          totalSemesters={isDiploma ? 4 : 1}
+        />
+      </div>
+
       <CourseMentors mentors={course.courseLeadersMentors} assets={courseAssets || []} />
       <CourseStudents
         portfolios={course.studentPortfolio || []}
@@ -268,6 +303,20 @@ export default function CourseDetailPage({
         testimonials={course.studentReviews || []}
         totalHistoricalEnrollment={course.totalHistoricalEnrollment}
       />
+
+      {/* NEW: Certificate-to-Diploma Upsell - Only shows on certificate pages */}
+      {!isDiploma && (
+        <div className="mx-auto w-full max-w-screen-xl px-4 py-8">
+          <CertificateUpgrade certificateName={course.name} certificateFee={48000} diplomaFee={100000} />
+        </div>
+      )}
+
+      {/* NEW: Program Comparison Table - Helps undecided visitors */}
+      <ProgramComparison
+        certificateSlug={isDiploma ? slug.replace('diploma', 'certificate') : slug}
+        diplomaSlug={isDiploma ? slug : slug.replace('certificate', 'diploma')}
+      />
+
       <CourseApplicationProcess processes={course.applicationProcesses || []} />
 
       {/* Related Articles Section - Improves Engagement */}

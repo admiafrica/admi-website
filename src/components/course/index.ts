@@ -6,3 +6,10 @@ export { default as CourseStudents } from './Students'
 export { default as CourseApplicationProcess } from './ApplicationProcess'
 export { default as CourseFAQs } from './Faqs'
 export { CourseArticles } from './CourseArticles'
+
+// New conversion-focused components (Jan 2026)
+export { default as IntakeBanner } from './IntakeBanner'
+export { default as PaymentCalculator } from './PaymentCalculator'
+export { default as GraduateOutcomes } from './GraduateOutcomes'
+export { default as CertificateUpgrade } from './CertificateUpgrade'
+export { default as ProgramComparison } from './ProgramComparison'
