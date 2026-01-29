@@ -19,7 +19,8 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
     '/news-events',
     '/resources',
     '/sanara',
-    '/privacy-policy'
+    '/privacy-policy',
+    '/terms-and-conditions'
   ]
 
   // Location-based course pages
