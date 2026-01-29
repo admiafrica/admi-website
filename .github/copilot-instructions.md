@@ -42,6 +42,15 @@ Next.js 15 marketing website for Africa Digital Media Institute (ADMI) with **Ap
 - **Brevo**: Email marketing integration (`BREVO_API_KEY`, `BREVO_LIST_ID`)
 - **OpenAI**: FAQ generation/optimization using Assistants API (`scripts/ai/`)
 
+### Application Portal (Separate Project)
+
+- **URL**: `apply.admi.africa` (standalone Next.js app)
+- **Repository**: `admi-application-portal/` (separate from this repo)
+- **Purpose**: Student application forms, document uploads, application tracking
+- **Tech Stack**: Next.js 15, shadcn/ui, AWS Cognito, Aurora Serverless v2, S3
+- **Integration**: This website links to the portal from course pages and enquiry CTAs
+- **Why Separate?**: Security (handles PII), authentication required, independent scaling
+
 ## Critical Development Workflows
 
 ### Build & Development

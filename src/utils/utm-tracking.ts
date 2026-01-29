@@ -441,7 +441,14 @@ export function enrichUTMData(utmData: UTMData): Required<Omit<UTMData, 'first_v
     first_touch_timestamp: utmData.first_touch_timestamp || '',
     first_touch_referrer: utmData.first_touch_referrer || '',
     // GA Client ID
-    ga_client_id: utmData.ga_client_id || ''
+    ga_client_id: utmData.ga_client_id || '',
+    // Click IDs for Google/Meta Ads attribution
+    gclid: utmData.gclid || '',
+    first_gclid: utmData.first_gclid || '',
+    fbclid: utmData.fbclid || '',
+    first_fbclid: utmData.first_fbclid || '',
+    gbraid: utmData.gbraid || '',
+    wbraid: utmData.wbraid || ''
   }
 }
 
