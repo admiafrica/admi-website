@@ -38,7 +38,9 @@ export default function NewsArticlePage({ article, slug }: { article: any; slug:
         <PageSEO
           title={`News - ${article.title}`}
           url={`/news-events/news/${slug}`}
-          image={`https://${article.coverImage?.fields.file.url}`}
+          image={article.coverImage?.fields.file.url?.startsWith('http')
+            ? article.coverImage.fields.file.url
+            : `https://${article.coverImage?.fields.file.url}`}
         />
         <BlogPostSchema
           title={article.title}

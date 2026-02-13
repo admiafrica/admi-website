@@ -174,7 +174,9 @@ export default function CoursesPage({
             duration: course.fields.programType?.fields?.duration || '18 months',
             deliveryMode: course.fields.programType?.fields?.deliveryMode || 'In-person',
             imageUrl: course.fields.coverImage?.fields?.file?.url
-              ? `https:${course.fields.coverImage.fields.file.url}`
+              ? course.fields.coverImage.fields.file.url.startsWith('http')
+                ? course.fields.coverImage.fields.file.url
+                : `https:${course.fields.coverImage.fields.file.url}`
               : undefined,
           })),
         }
