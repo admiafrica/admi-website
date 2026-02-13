@@ -25,18 +25,18 @@ export function CourseCard({
   return (
     <Link
       href={`/courses/${slug}`}
-      className="group flex h-[430px] w-full flex-col overflow-hidden rounded-xl bg-white shadow-[0_2px_12px_rgba(0,0,0,0.08)] transition-shadow duration-200 hover:shadow-[0_4px_24px_rgba(0,0,0,0.12)]"
+      className="group flex h-[440px] w-full flex-col overflow-hidden rounded-xl bg-white shadow-[0_2px_12px_rgba(0,0,0,0.08)] transition-shadow duration-200 hover:shadow-[0_4px_24px_rgba(0,0,0,0.12)]"
       aria-label={`View ${name} programme`}
     >
       {/* Image Section */}
-      <div className="relative h-[200px] w-full shrink-0 bg-[#1a1a1a]">
+      <div className="relative h-[150px] w-full shrink-0 bg-[#1a1a1a]">
         {imageUrl ? (
           <Image
             src={imageUrl}
             alt={name}
             fill
             className="object-cover"
-            sizes="(max-width: 768px) 100vw, 390px"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           />
         ) : (
           <div className="flex h-full w-full items-center justify-center">
@@ -46,26 +46,26 @@ export function CourseCard({
       </div>
 
       {/* Body */}
-      <div className="flex flex-1 flex-col gap-3 px-6 py-5">
+      <div className="flex flex-1 flex-col gap-2 px-5 py-4">
         {/* Title */}
-        <h3 className="font-proxima text-[17px] font-bold leading-snug text-[#171717]">
+        <h3 className="font-proxima text-[15px] font-bold leading-snug text-[#171717]">
           {name}
         </h3>
 
         {/* Description */}
-        <p className="line-clamp-3 font-proxima text-sm leading-relaxed text-[#666]">
+        <p className="line-clamp-2 font-proxima text-[13px] leading-relaxed text-[#666]">
           {description}
         </p>
 
         {/* Tags */}
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-1.5">
           <span
-            className="rounded-full px-3 py-1.5 font-proxima text-xs font-semibold"
+            className="rounded-full px-2.5 py-1 font-proxima text-[11px] font-semibold"
             style={{ color: accentColor, backgroundColor: accentBg }}
           >
             {duration}
           </span>
-          <span className="rounded-full bg-[#f0f0f0] px-3 py-1.5 font-proxima text-xs font-semibold text-[#666]">
+          <span className="rounded-full bg-[#f0f0f0] px-2.5 py-1 font-proxima text-[11px] font-semibold text-[#666]">
             {deliveryMode}
           </span>
         </div>
@@ -76,7 +76,7 @@ export function CourseCard({
         {/* CTA Button */}
         <button
           type="button"
-          className="w-full rounded-lg border-[1.5px] py-2.5 font-proxima text-sm font-bold transition-colors duration-200"
+          className="w-full rounded-lg border-[1.5px] py-2 font-proxima text-[13px] font-bold transition-colors duration-200"
           style={{
             borderColor: accentColor,
             color: accentColor,
