@@ -4,20 +4,18 @@ import { CMSFAQSchema } from '@/components/shared/StructuredData'
 import { EastAfricaLocalSEO } from '@/components/seo/EastAfricaLocalSEO'
 import { EnhancedTestimonialSchema, AggregateTestimonialSchema } from '@/components/seo/EnhancedTestimonialSchema'
 import { MusicProductionSEOBoost } from '@/components/seo/MusicProductionSEOBoost'
-import {
-  HeroSection,
-  StatsBar,
-  AccreditationTrust,
-  ProgramCategories,
-  DegreePathway,
-  WhyADMI,
-  StudentShowcase,
-  AlumniStories,
-  EventsIntakes,
-  IndustryPartners,
-  TestimonialsSection,
-  FinalCTA
-} from '@/components/homepage'
+import HeroSection from '@/components/homepage/HeroSection'
+import StatsBar from '@/components/homepage/StatsBar'
+import AccreditationTrust from '@/components/homepage/AccreditationTrust'
+import ProgramCategories from '@/components/homepage/ProgramCategories'
+import DegreePathway from '@/components/homepage/DegreePathway'
+import WhyADMI from '@/components/homepage/WhyADMI'
+import StudentShowcase from '@/components/homepage/StudentShowcase'
+import AlumniStories from '@/components/homepage/AlumniStories'
+import EventsIntakes from '@/components/homepage/EventsIntakes'
+import IndustryPartners from '@/components/homepage/IndustryPartners'
+import TestimonialsSection from '@/components/homepage/TestimonialsSection'
+import FinalCTA from '@/components/homepage/FinalCTA'
 import { IContentfulEntry } from '@/types'
 
 // Hardcoded fallback hero content - used when Contentful is unavailable
@@ -133,7 +131,7 @@ export default function HomePage({ content, courses }: HomePageProps) {
       <MusicProductionSEOBoost />
 
       {/* Visual Sections */}
-      <HeroSection courses={courses} />
+      <HeroSection />
       <StatsBar />
       <AccreditationTrust />
       <ProgramCategories />

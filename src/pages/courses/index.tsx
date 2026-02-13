@@ -1,29 +1,21 @@
-import Image from 'next/image'
-import { Box, Text, Select } from '@mantine/core'
-import { useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
+import { useEffect, useState, useMemo } from 'react'
 
 import { MainLayout } from '@/layouts/v3/MainLayout'
-import { Paragraph, Title, SearchDropdown } from '@/components/ui'
-import { ProgramListItemCard } from '@/components/cards'
 import { PageSEO } from '@/components/shared/v3'
-import { useIsMobile } from '@/hooks/useIsMobile'
-import {
-  FastConverterCTA,
-  FinancingCalculator,
-  TrustBadges,
-  ResearcherCTA,
-  LongTermPlannerCTA,
-  FAQSection
-} from '@/components/course'
-
-import IconBgImageYellow from '@/assets/icons/ellipse-yellow.svg'
-import IconBgImageRed from '@/assets/icons/ellipse-red.svg'
+import CoursesHero from '@/components/courses/CoursesHero'
+import CoursesAccreditationBar from '@/components/courses/CoursesAccreditationBar'
+import CoursesTabs from '@/components/courses/CoursesTabs'
+import CoursesFilter from '@/components/courses/CoursesFilter'
+import ProgramSection from '@/components/courses/ProgramSection'
+import CoursesFAQ from '@/components/courses/CoursesFAQ'
+import { CoursesFinalCTA } from '@/components/courses/CoursesFinalCTA'
+import { IContentfulEntry } from '@/types'
 
 // Course categorization mapping to fix CMS inconsistencies
 const correctCourseMapping = (course: any): string => {
   const courseName = course.fields.name
 
-  // Fix misplaced courses
   if (courseName === 'Digital Content Creation Certificate') {
     return 'Professional Certificate'
   }
@@ -37,170 +29,250 @@ const correctCourseMapping = (course: any): string => {
     return 'Rubika Programs'
   }
 
-  // Use original programType for correctly placed courses
   return course.fields.programType.fields.name
 }
 
-// Clean course names by removing unnecessary text in parentheses and adding consistency
+// Clean course names
 const cleanCourseName = (course: any): any => {
   if (course.fields.name === 'Video Production Certificate (Professional)') {
     return {
       ...course,
-      fields: {
-        ...course.fields,
-        name: 'Video Production Certificate'
-      }
+      fields: { ...course.fields, name: 'Video Production Certificate' },
     }
   }
   if (course.fields.name === 'Entertainment Business') {
     return {
       ...course,
-      fields: {
-        ...course.fields,
-        name: 'Entertainment Business Diploma'
-      }
+      fields: { ...course.fields, name: 'Entertainment Business Diploma' },
     }
   }
   return course
 }
 
+// Extract plain text from Contentful rich text for course descriptions
+const getPlainTextFromRichText = (richText: any, maxLength = 120): string => {
+  if (!richText?.content) return ''
+  const text = richText.content
+    .map((block: any) =>
+      block.content?.map((node: any) => node.value || '').join('') || ''
+    )
+    .join(' ')
+    .trim()
+  return text.length > maxLength ? text.slice(0, maxLength) + '...' : text
+}
+
+// Program section styling config
+const PROGRAM_CONFIG: Record<string, {
+  iconLetter: string
+  iconBgColor: string
+  iconTextColor: string
+  accentColor: string
+  accentBg: string
+  bgColor: string
+  meta: string
+  tabName: string
+}> = {
+  'Diploma': {
+    iconLetter: 'D',
+    iconBgColor: '#BA2E36',
+    iconTextColor: '#FFFFFF',
+    accentColor: '#BA2E36',
+    accentBg: '#FFF0F0',
+    bgColor: 'bg-white',
+    meta: '18 months  •  In-person  •  EU-Accredited via Woolf  •  From KES 15,000/month',
+    tabName: 'Diploma Programmes',
+  },
+  'Professional Certificate': {
+    iconLetter: 'P',
+    iconBgColor: '#0A3D3D',
+    iconTextColor: '#08F6CF',
+    accentColor: '#0A3D3D',
+    accentBg: '#EEF9F7',
+    bgColor: 'bg-[#f9f9f9]',
+    meta: '6 months  •  In-person / Online  •  Pearson BTEC Certified  •  From KES 8,500/month',
+    tabName: 'Professional Certificates',
+  },
+  'Foundation Certificate': {
+    iconLetter: 'F',
+    iconBgColor: '#3A1F0B',
+    iconTextColor: '#F76335',
+    accentColor: '#F76335',
+    accentBg: '#FFF8F0',
+    bgColor: 'bg-white',
+    meta: '3 months  •  In-person  •  ADMI Certified  •  From KES 5,000/month',
+    tabName: 'Foundation Certificates',
+  },
+  'Rubika Programs': {
+    iconLetter: 'R',
+    iconBgColor: '#1a1a4e',
+    iconTextColor: '#08F6CF',
+    accentColor: '#1a1a4e',
+    accentBg: '#EEF0FF',
+    bgColor: 'bg-[#f9f9f9]',
+    meta: '1-2 years  •  In-person  •  Rubika International',
+    tabName: 'Rubika Programmes',
+  },
+}
+
+// Match a program name to the config key
+const getConfigKey = (programName: string): string => {
+  const lower = programName.toLowerCase()
+  if (lower.includes('diploma')) return 'Diploma'
+  if (lower.includes('professional')) return 'Professional Certificate'
+  if (lower.includes('foundation')) return 'Foundation Certificate'
+  if (lower.includes('rubika')) return 'Rubika Programs'
+  return 'Diploma' // default fallback
+}
+
+const TAB_OPTIONS = [
+  'All Programmes',
+  'Diploma Programmes',
+  'Professional Certificates',
+  'Foundation Certificates',
+  'Rubika Programmes',
+]
+
 export default function CoursesPage({
   programs,
   courses,
-  filterOptions
 }: {
   programs: any[]
   courses: any[]
   filterOptions: string[]
 }) {
-  const isMobile = useIsMobile()
-  const [activeOption, setActiveOption] = useState<string>('All Courses')
-  const [filteredPrograms, setFilteredPrograms] = useState<any[]>(programs)
+  const router = useRouter()
+  const [activeTab, setActiveTab] = useState('All Programmes')
+  const [sortValue, setSortValue] = useState('All Programmes')
+  const [searchQuery, setSearchQuery] = useState('')
 
+  // Clean all course names once
+  const cleanedCourses = useMemo(() => courses.map(cleanCourseName), [courses])
+
+  // Group courses by program type
+  const programSections = useMemo(() => {
+    return programs
+      .map((program) => {
+        const programName = program.fields.name
+        const configKey = getConfigKey(programName)
+        const config = PROGRAM_CONFIG[configKey]
+        if (!config) return null
+
+        const programCourses = cleanedCourses.filter(
+          (course) => correctCourseMapping(course) === programName
+        )
+
+        if (programCourses.length === 0) return null
+
+        return {
+          key: program.sys.id,
+          title: programName,
+          config,
+          courses: programCourses.map((course: any) => ({
+            name: course.fields.name,
+            slug: course.fields.slug,
+            description: getPlainTextFromRichText(course.fields.description),
+            duration: course.fields.programType?.fields?.duration || '18 months',
+            deliveryMode: course.fields.programType?.fields?.deliveryMode || 'In-person',
+            imageUrl: course.fields.coverImage?.fields?.file?.url
+              ? `https:${course.fields.coverImage.fields.file.url}`
+              : undefined,
+          })),
+        }
+      })
+      .filter(Boolean) as Array<{
+      key: string
+      title: string
+      config: (typeof PROGRAM_CONFIG)[string]
+      courses: Array<{
+        name: string
+        slug: string
+        description: string
+        duration: string
+        deliveryMode: string
+        imageUrl?: string
+      }>
+    }>
+  }, [programs, cleanedCourses])
+
+  // Filter sections based on active tab
+  const filteredSections = useMemo(() => {
+    if (activeTab === 'All Programmes') return programSections
+    return programSections.filter((section) => section.config.tabName === activeTab)
+  }, [activeTab, programSections])
+
+  // Handle search
+  const handleSearch = () => {
+    if (searchQuery.trim()) {
+      router.push(`/courses?q=${encodeURIComponent(searchQuery.trim())}`)
+    }
+  }
+
+  // Handle sort change
+  const handleSortChange = (value: string) => {
+    setSortValue(value)
+    // Map sort options to tabs
+    const tabMap: Record<string, string> = {
+      'All Programmes': 'All Programmes',
+      'Diploma Programmes': 'Diploma Programmes',
+      'Professional Certificates': 'Professional Certificates',
+      'Foundation Certificates': 'Foundation Certificates',
+      'Rubika Programmes': 'Rubika Programmes',
+    }
+    if (tabMap[value]) setActiveTab(tabMap[value])
+  }
+
+  // Sync tab with sort
   useEffect(() => {
-    setFilteredPrograms(
-      activeOption !== 'All Courses'
-        ? programs.filter((program) => program.fields.name.includes(activeOption))
-        : programs
-    )
-  }, [activeOption, programs])
+    setSortValue(activeTab)
+  }, [activeTab])
 
   return (
     <MainLayout footerBgColor="#F5FFFD">
       <PageSEO
-        title="Courses"
+        title="Courses | ADMI - Africa Digital Media Institute"
         description="Explore ADMI's comprehensive range of digital media and creative courses in Kenya. From certificate to diploma programs, find the perfect course to advance your creative career in Nairobi."
         keywords="ADMI courses, digital media courses Kenya, creative education Nairobi, certificate programs, diploma courses, Africa Digital Media Institute"
         url="/courses"
       />
-      <div
-        className="relative h-[16em] w-full overflow-hidden bg-[#002A23]"
-        style={{ minHeight: '16em', contain: 'layout' }}
-      >
-        {/* BACKGROUND IMAGES - Fixed positioning to prevent layout shifts */}
-        <div className="absolute left-[62%] top-[3rem] z-0 h-fit w-full -translate-x-1/2 transform will-change-transform">
-          <div className="flex w-full justify-end pr-[10%]">
-            <Image
-              src={IconBgImageYellow}
-              alt="background image"
-              priority
-              style={{ maxWidth: '100%', height: 'auto' }}
-              sizes="(max-width: 768px) 100vw, 50vw"
-            />
-          </div>
-        </div>
 
-        <div className="absolute left-1/2 top-[1rem] z-0 h-fit w-full -translate-x-1/2 transform will-change-transform">
-          <div className="flex w-full pl-[5%]">
-            <Image
-              src={IconBgImageRed}
-              alt="background image"
-              priority
-              style={{ maxWidth: '100%', height: 'auto' }}
-              sizes="(max-width: 768px) 100vw, 50vw"
-            />
-          </div>
-        </div>
-        <div className="relative z-10 mx-auto w-full max-w-screen-lg px-4 pt-24 2xl:px-0">
-          <SearchDropdown
-            destination="courses"
-            items={courses.map(cleanCourseName)}
-            buttonLabel="Search"
-            placeholder={isMobile ? 'Search for course' : 'Search for course e.g Graphic Design, Content Creation'}
-          />
-        </div>
-      </div>
-      <div className="relative z-10 w-full bg-[#F5FFFD]">
-        <div className="mx-auto w-full max-w-screen-xl bg-[#F5FFFD] px-4 2xl:px-0">
-          {/* Fast Converter CTA - Segment A (25% of visitors) */}
-          <FastConverterCTA />
+      <CoursesHero
+        searchQuery={searchQuery}
+        onSearchChange={setSearchQuery}
+        onSearch={handleSearch}
+      />
 
-          <div className="flex h-fit w-full flex-col pt-12 sm:flex-row">
-            <div className="flex grow flex-col pb-4">
-              <Title label="Courses" size="24px" color="black" />
-              <Paragraph fontFamily="font-nexa" className="py-2">
-                <strong>Diploma programs</strong> hone your skills for career transformation (15K/month). Or capture
-                quick wins with our certificate courses.
-              </Paragraph>
-            </div>
-            <div className="flex items-center bg-white pl-4 font-proxima">
-              <Text>Sort By:</Text>
-              <Select
-                className="grow border-none font-proxima font-bold sm:w-[220px]"
-                placeholder="Select Program"
-                allowDeselect={false}
-                nothingFoundMessage="No programs found"
-                data={filterOptions}
-                onChange={(value) => setActiveOption(value as string)}
-                renderOption={(value) => (
-                  <div className="font-proxima">
-                    <Text size="16px">{value.option.value}</Text>
-                  </div>
-                )}
-              />
-            </div>
-          </div>
+      <CoursesAccreditationBar />
 
-          {/* Interactive Financing Calculator */}
-          <FinancingCalculator />
+      <CoursesTabs
+        activeTab={activeTab}
+        onTabChange={setActiveTab}
+        tabs={TAB_OPTIONS}
+      />
 
-          {/* Trust & Social Proof */}
-          <TrustBadges />
+      <CoursesFilter
+        sortValue={sortValue}
+        onSortChange={handleSortChange}
+        sortOptions={TAB_OPTIONS}
+      />
 
-          {/* Researcher CTA - Segment C (18% of visitors) */}
-          <ResearcherCTA />
+      {/* Program Sections */}
+      {filteredSections.map((section) => (
+        <ProgramSection
+          key={section.key}
+          title={section.title}
+          iconLetter={section.config.iconLetter}
+          iconBgColor={section.config.iconBgColor}
+          iconTextColor={section.config.iconTextColor}
+          meta={section.config.meta}
+          bgColor={section.config.bgColor}
+          accentColor={section.config.accentColor}
+          accentBg={section.config.accentBg}
+          courses={section.courses}
+        />
+      ))}
 
-          {/* Long-Term Planner CTA - Segment D (31% of visitors) */}
-          <LongTermPlannerCTA />
-        </div>
-        <div className="relative mx-auto min-h-[60vh] w-full max-w-screen-xl px-4 2xl:px-0">
-          {filteredPrograms.map((program) => {
-            // Clean course names and filter courses for this program
-            const cleanedCourses = courses.map(cleanCourseName)
-            const programCourses = cleanedCourses.filter(
-              (course) => correctCourseMapping(course) === program.fields.name
-            )
-
-            // Only render if program has courses
-            if (programCourses.length === 0) return null
-
-            return (
-              <Box key={program.sys.id}>
-                <ProgramListItemCard
-                  program={program}
-                  courses={cleanedCourses}
-                  filterProgramCourses={(programType: string, courses: any[]) =>
-                    courses.filter((course) => correctCourseMapping(course) === programType)
-                  }
-                />
-              </Box>
-            )
-          })}
-        </div>
-
-        {/* Comprehensive FAQ Section */}
-        <FAQSection />
-      </div>
+      <CoursesFAQ />
+      <CoursesFinalCTA />
     </MainLayout>
   )
 }
@@ -209,7 +281,7 @@ export async function getStaticProps() {
   try {
     const [programsRes, coursesRes] = await Promise.all([
       fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v3/course-programs`),
-      fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v3/courses`)
+      fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v3/courses`),
     ])
 
     if (!programsRes.ok || !coursesRes.ok) throw new Error('Failed to fetch data')
@@ -217,20 +289,12 @@ export async function getStaticProps() {
     const programs = await programsRes.json()
     const courses = await coursesRes.json()
 
-    // Sort programs to prioritize diplomas first, then certificates
-    // This aligns with the diploma-first enrollment strategy
+    // Sort programs to prioritize diplomas first
     const sortedPrograms = programs.sort((a: any, b: any) => {
-      const aName = a.fields.name.toLowerCase()
-      const bName = b.fields.name.toLowerCase()
-
-      // Diploma programs come first
-      const aIsDiploma = aName.includes('diploma')
-      const bIsDiploma = bName.includes('diploma')
-
-      if (aIsDiploma && !bIsDiploma) return -1 // a (diploma) before b (not diploma)
-      if (!aIsDiploma && bIsDiploma) return 1 // b (diploma) before a (not diploma)
-
-      // Within same category (both diplomas or both certificates), maintain original order
+      const aIsDiploma = a.fields.name.toLowerCase().includes('diploma')
+      const bIsDiploma = b.fields.name.toLowerCase().includes('diploma')
+      if (aIsDiploma && !bIsDiploma) return -1
+      if (!aIsDiploma && bIsDiploma) return 1
       return 0
     })
 
@@ -243,9 +307,9 @@ export async function getStaticProps() {
         name: 'Rubika Programs',
         duration: '1-2 years',
         deliveryMode: 'In-person',
-        icon: programs.find((p: any) => p.fields.name.includes('Rubika'))?.fields.icon || null
+        icon: programs.find((p: any) => p.fields.name.includes('Rubika'))?.fields.icon || null,
       },
-      assets: programs[0]?.assets || []
+      assets: programs[0]?.assets || [],
     }
 
     const enhancedPrograms = [...sortedPrograms, rubikaProgram]
@@ -254,15 +318,15 @@ export async function getStaticProps() {
       props: {
         programs: enhancedPrograms,
         courses: sortedCourses,
-        filterOptions: ['All Courses', ...enhancedPrograms.map((program: any) => program.fields.name)]
+        filterOptions: ['All Courses', ...enhancedPrograms.map((program: any) => program.fields.name)],
       },
-      revalidate: 3600 // Regenerate every hour
+      revalidate: 3600,
     }
   } catch (error) {
     console.error('Error fetching courses:', error)
     return {
       props: { programs: [], courses: [], filterOptions: ['All Courses'] },
-      revalidate: 300 // Retry in 5 minutes if error
+      revalidate: 300,
     }
   }
 }
