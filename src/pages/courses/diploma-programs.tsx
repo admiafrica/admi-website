@@ -48,7 +48,7 @@ const advantages = [
       'Earn internationally recognized EU-accredited credits towards a degree. Our partnership with Woolf University means your diploma carries weight globally - a credential parents and employers trust.',
     features: [
       'Credits transferable to degree programs worldwide',
-      'Pearson BTEC internationally recognized qualification',
+      'TVETA Kenya registered qualification',
       'Pathway from diploma to full university degree'
     ]
   },

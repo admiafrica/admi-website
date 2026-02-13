@@ -14,7 +14,7 @@ export const GENERAL_CERTIFICATE_FAQS = [
   {
     question: 'Are certificate programs recognized by employers?',
     answer:
-      'Yes, ADMI certificate programs are industry-recognized and Pearson Assured. Our graduates are employed by leading companies across Africa including Safaricom, Nation Media Group, and Standard Group.'
+      'Yes, ADMI certificate programs are industry-recognized and TVETA Kenya registered. Our graduates are employed by leading companies across Africa including Safaricom, Nation Media Group, and Standard Group.'
   },
   {
     question: 'Can I upgrade from a certificate to a diploma program?',

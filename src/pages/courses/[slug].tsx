@@ -139,7 +139,7 @@ export default function CourseDetailPage({
           employmentRate={85}
           averageSalary="KES 45,000 - 120,000"
           industryPartners={['Safaricom', 'Nation Media Group', 'Standard Group', 'Royal Media Services']}
-          accreditation="Pearson Assured & Woolf University"
+          accreditation="Woolf University & TVETA Kenya"
         />
       ) : course.awardLevel?.toLowerCase().includes('certificate') ? (
         /* Enhanced Certificate Structured Data */
@@ -149,7 +149,7 @@ export default function CourseDetailPage({
           employmentRate={75}
           averageSalary="KES 25,000 - 80,000"
           industryPartners={['Safaricom', 'Nation Media Group', 'Standard Group', 'Royal Media Services']}
-          accreditation="Pearson Assured"
+          accreditation="TVETA Kenya"
         />
       ) : (
         /* Basic Course Structured Data with FAQ Schema */

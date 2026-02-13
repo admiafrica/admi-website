@@ -39,7 +39,7 @@ interface HomePageProps {
 
 export default function HomePage({ content, courses }: HomePageProps) {
   return (
-    <MainLayout footerBgColor="#E6F608">
+    <MainLayout footerBgColor="#0A0A0A">
       <PageSEO
         title="ADMI - Africa Digital Media Institute | Leading Creative Media & Technology Training in East Africa"
         description="ADMI (Africa Digital Media Institute) - The premier creative media and technology training institution in East Africa. Digital Marketing, Graphic Design, Film Production, Music Production & Sound Engineering courses in Nairobi, Kenya. Competitive fee structure available. Apply for 2025 intake!"

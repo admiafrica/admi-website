@@ -53,7 +53,7 @@ const FAQPage = () => {
         name: 'Is ADMI accredited and recognized internationally?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Yes, ADMI is accredited by Pearson, which ensures that our qualifications are recognized globally. This accreditation affirms that our curriculum meets international standards, providing our students with a competitive edge in the global job market.'
+          text: 'Yes, ADMI is accredited through Woolf University (EU) and registered with TVETA Kenya, ensuring our qualifications are recognised internationally. This accreditation affirms that our curriculum meets international standards, providing our students with a competitive edge in the global job market.'
         }
       },
       {

@@ -49,7 +49,7 @@ export const GRAPHIC_DESIGN_CERTIFICATE_DETAILED_FAQS = [
   {
     question: "What makes ADMI's Graphic Design program different from other schools in Kenya?",
     answer:
-      'ADMI offers the only Pearson-assured graphic design program in East Africa with a curriculum that balances creative excellence with commercial viability. Our labs feature the latest Mac workstations, Wacom tablets, and large format printers. Plus, you learn from instructors who are active industry professionals.'
+      'ADMI offers a leading graphic design program in East Africa with a curriculum that balances creative excellence with commercial viability. Our labs feature the latest Mac workstations, Wacom tablets, and large format printers. Plus, you learn from instructors who are active industry professionals.'
   },
   {
     question: 'Will I build a portfolio strong enough to compete internationally?',

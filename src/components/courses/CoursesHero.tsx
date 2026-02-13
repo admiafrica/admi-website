@@ -40,7 +40,7 @@ export default function CoursesHero({
 
         {/* Search Bar */}
         <div className="mt-8 w-full max-w-[700px] md:mt-10">
-          <div className="flex items-center rounded-xl bg-white p-1 pl-4 md:pl-6">
+          <div className="flex items-center rounded-xl border-0 bg-white p-1 pl-4 shadow-lg shadow-black/10 md:pl-6">
             <IconSearch
               size={20}
               className="mr-2 shrink-0 text-[#999]"
@@ -56,7 +56,7 @@ export default function CoursesHero({
               onChange={(e) => onSearchChange(e.target.value)}
               onKeyDown={handleKeyDown}
               placeholder="Search for course e.g. Graphic Design, Content Creation"
-              className="font-proxima min-w-0 flex-1 bg-transparent text-[15px] text-[#333] placeholder-[#999] outline-none"
+              className="font-proxima min-w-0 flex-1 border-0 bg-transparent text-[15px] text-[#333] placeholder-[#999] outline-none"
             />
             <button
               type="button"

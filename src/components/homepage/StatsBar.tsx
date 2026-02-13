@@ -9,7 +9,7 @@ export default function StatsBar() {
   return (
     <section className="w-full bg-[#1a1a2e]">
       {/* Desktop Layout */}
-      <div className="hidden items-center justify-around px-20 py-10 md:flex">
+      <div className="mx-auto hidden max-w-[1280px] items-center justify-around px-8 py-10 md:flex">
         {STATS.map((stat, index) => (
           <div key={stat.label} className="flex items-center">
             {/* Stat */}
@@ -27,7 +27,7 @@ export default function StatsBar() {
       </div>
 
       {/* Mobile Layout */}
-      <div className="grid grid-cols-2 gap-6 px-4 py-8 md:hidden">
+      <div className="mx-auto grid max-w-[1280px] grid-cols-2 gap-6 px-6 py-8 md:hidden">
         {STATS.map((stat) => (
           <div key={stat.label} className="flex flex-col items-center gap-1 text-center">
             <span className="font-nexa text-[28px] font-black leading-none text-white sm:text-[32px]">

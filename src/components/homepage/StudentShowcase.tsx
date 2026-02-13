@@ -29,6 +29,7 @@ const showcaseItems: ShowcaseItem[] = [
 export default function StudentShowcase() {
   return (
     <section className="section-padding bg-white">
+      <div className="section-container">
       {/* Header */}
       <div className="mb-10 md:mb-12">
         <span className="section-label-light">STUDENT WORK</span>
@@ -40,7 +41,7 @@ export default function StudentShowcase() {
       </div>
 
       {/* Cards */}
-      <div className="mx-auto flex max-w-[1200px] flex-col gap-5 md:flex-row">
+      <div className="flex flex-col gap-5 md:flex-row">
         {showcaseItems.map((item) => (
           <div key={item.label} className="flex flex-1 flex-col overflow-hidden rounded-xl">
             {/* Image */}
@@ -71,6 +72,7 @@ export default function StudentShowcase() {
           View Student Showcase
           <IconArrowRight size={16} />
         </Link>
+      </div>
       </div>
     </section>
   )

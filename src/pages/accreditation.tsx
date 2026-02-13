@@ -19,8 +19,8 @@ export default function AccreditationPage() {
     <MainLayout footerBgColor="white">
       <PageSEO
         title="Accreditation"
-        description="ADMI is a Pearson Assured institution maintaining the highest standards of educational excellence. Learn about our accreditation partnerships and globally recognized qualifications."
-        keywords="ADMI accreditation, Pearson Assured, educational excellence, quality education, globally recognized qualifications, accredited institution Kenya"
+        description="ADMI is accredited through Woolf University (EU) and registered with TVETA Kenya, maintaining the highest standards of educational excellence. Learn about our accreditation partnerships and globally recognized qualifications."
+        keywords="ADMI accreditation, Woolf University, TVETA Kenya, educational excellence, quality education, globally recognized qualifications, accredited institution Kenya"
       />
       <Modal radius="lg" opened={opened} onClose={close} size={'72rem'}>
         <LearnMoreCard />
@@ -53,8 +53,8 @@ export default function AccreditationPage() {
               <Box className="flex w-full flex-col pt-12 sm:h-[180px] sm:flex-row">
                 <Paragraph fontFamily="font-nexa" className="my-auto pr-6 text-white sm:w-1/2">
                   At Africa Digital Media Institute (ADMI), we pride ourselves on maintaining the highest standards of
-                  educational excellence through our accreditation partnerships. Currently, we are recognized as a
-                  Pearson Assured institution, which signifies our commitment to quality education and training.
+                  educational excellence through our accreditation partnerships. We are accredited through Woolf University (EU)
+                  and registered with TVETA Kenya, signifying our commitment to quality education and training.
                 </Paragraph>
                 <Divider
                   orientation={isMobile ? 'horizontal' : 'vertical'}
@@ -63,7 +63,7 @@ export default function AccreditationPage() {
                   opacity={'20%'}
                 />
                 <Paragraph fontFamily="font-nexa" className="my-auto text-white sm:w-1/2 sm:pl-6">
-                  This independent benchmark from Pearson ensures that we meet rigorous quality criteria, providing you
+                  Our accreditation through Woolf University and TVETA Kenya ensures that we meet rigorous quality criteria, providing you
                   with a reliable and respected qualification that is recognized globally.
                 </Paragraph>
               </Box>

@@ -7,13 +7,6 @@ const BADGES = [
     details: ['EU-Accredited Credits', 'ECTS Transfer System', 'Degree Pathway Partner']
   },
   {
-    letter: 'P',
-    bgColor: 'bg-[#003057]',
-    borderColor: 'border-[#003057]/25',
-    name: 'Pearson BTEC',
-    details: ['Internationally Recognized', 'Quality Assured Programs', 'Global Standard Curriculum']
-  },
-  {
     letter: 'K',
     bgColor: 'bg-[#006B3F]',
     borderColor: 'border-[#006B3F]/25',
@@ -25,7 +18,7 @@ const BADGES = [
 export default function AccreditationTrust() {
   return (
     <section className="w-full border-y border-[#e8e0d8] bg-[#f7f5f2]">
-      <div className="px-4 py-12 md:px-20 md:py-[60px]">
+      <div className="mx-auto max-w-[1280px] px-6 py-12 md:px-8 md:py-[60px]">
         {/* Header */}
         <div className="mx-auto mb-12 flex max-w-[800px] flex-col items-center text-center">
           <span className="section-label-light">Accreditation &amp; Recognition</span>
@@ -33,7 +26,7 @@ export default function AccreditationTrust() {
             Internationally Recognised Qualifications
           </h2>
           <p className="max-w-[700px] font-proxima text-base leading-relaxed text-[#666]">
-            ADMI is accredited through Woolf University (EU), Pearson BTEC (UK), and registered with TVETA Kenya. Your
+            ADMI is accredited through Woolf University (EU) and registered with TVETA Kenya. Your
             qualification is recognised by employers and universities worldwide.
           </p>
         </div>

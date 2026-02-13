@@ -22,7 +22,7 @@ export default function HeroSection() {
       <div className="absolute inset-0 bg-gradient-to-t from-[rgba(11,11,15,0.85)] via-[rgba(11,11,15,0.5)] to-[rgba(11,11,15,0.2)]" />
 
       {/* Content */}
-      <div className="relative flex min-h-[500px] w-full items-end px-6 pb-16 pt-32 md:h-[660px] md:items-center md:pb-0 md:pl-20 md:pr-20 md:pt-[100px]">
+      <div className="relative mx-auto flex min-h-[500px] w-full max-w-[1280px] items-end px-6 pb-16 pt-32 md:h-[660px] md:items-center md:px-8 md:pb-0 md:pt-[100px]">
         <div className="flex max-w-[700px] flex-col">
           {/* Badge Pill */}
           <div className="mb-6 flex">

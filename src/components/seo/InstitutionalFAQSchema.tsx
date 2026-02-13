@@ -21,7 +21,7 @@ export function InstitutionalFAQSchema({ faqType = 'general', includeAll = false
     {
       question: 'Is ADMI accredited?',
       answer:
-        'Yes, ADMI is accredited by Pearson Assured and partnered with Woolf University. Our programs are industry-recognized and meet international standards for creative media education.'
+        'Yes, ADMI is accredited through Woolf University (EU) and registered with TVETA Kenya. Our programs are industry-recognized and meet international standards for creative media education.'
     },
     {
       question: 'What makes ADMI different from other media schools?',

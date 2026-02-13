@@ -209,7 +209,7 @@ export const filmProductionData: CoursePageData = {
     {
       title: 'EU-Accredited Qualification',
       description:
-        'Pearson BTEC + Woolf University credits give your diploma international recognition and a degree pathway.',
+        'Woolf University credits give your diploma international recognition and a degree pathway.',
       icon: '🌍'
     },
     {
@@ -230,7 +230,7 @@ export const filmProductionData: CoursePageData = {
     }
   ],
   degreeSteps: [
-    { step: 1, title: 'ADMI Diploma', description: '2 Years · Pearson BTEC', duration: '2 Years' },
+    { step: 1, title: 'ADMI Diploma', description: '2 Years · TVETA Registered', duration: '2 Years' },
     { step: 2, title: 'Woolf Credits', description: 'EU-Accredited Transfer', duration: 'Transfer' },
     { step: 3, title: "Bachelor's Degree", description: 'Complete While Working', duration: '1 Year' }
   ],
@@ -358,7 +358,7 @@ export const filmProductionData: CoursePageData = {
     {
       question: 'Is the diploma internationally recognized?',
       answer:
-        'Yes. Our diplomas are Pearson BTEC certified and through our Woolf University partnership, you earn EU-accredited credits that count towards an international degree.'
+        'Yes. Through our Woolf University partnership, you earn EU-accredited credits that count towards an international degree. Our programmes are also registered with TVETA Kenya.'
     },
     {
       question: 'Do I get an internship placement?',
@@ -386,7 +386,7 @@ export const filmProductionData: CoursePageData = {
     { title: 'Producer', description: 'Manage budgets, schedules & teams to bring productions to life' }
   ],
   programDetails: [
-    { label: 'Awarding Body', value: 'Pearson BTEC / TVET CDACC' },
+    { label: 'Awarding Body', value: 'Woolf University / TVET CDACC' },
     { label: 'Level', value: 'Level 5 Diploma' },
     { label: 'Credits', value: '240 Credits' },
     { label: 'Duration', value: '2 Years (4 Semesters)' },

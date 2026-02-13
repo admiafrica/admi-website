@@ -44,6 +44,7 @@ const alumni: AlumniCard[] = [
 export default function AlumniStories() {
   return (
     <section className="section-padding bg-[#f9f9f9]">
+      <div className="section-container">
       {/* Header */}
       <div className="mb-10 flex flex-col items-start gap-4 md:mb-12 md:flex-row md:items-end md:justify-between">
         <div>
@@ -65,7 +66,7 @@ export default function AlumniStories() {
       </div>
 
       {/* Alumni Cards */}
-      <div className="mx-auto flex max-w-[1200px] flex-col gap-6 md:flex-row">
+      <div className="flex flex-col gap-6 md:flex-row">
         {alumni.map((person) => (
           <div
             key={person.name}
@@ -93,6 +94,7 @@ export default function AlumniStories() {
             </div>
           </div>
         ))}
+      </div>
       </div>
     </section>
   )

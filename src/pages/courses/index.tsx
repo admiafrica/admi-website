@@ -89,7 +89,7 @@ const PROGRAM_CONFIG: Record<string, {
     accentColor: '#0A3D3D',
     accentBg: '#EEF9F7',
     bgColor: 'bg-[#f9f9f9]',
-    meta: '6 months  •  In-person / Online  •  Pearson BTEC Certified  •  From KES 8,500/month',
+    meta: '6 months  •  In-person / Online  •  From KES 8,500/month',
     tabName: 'Professional Certificates',
   },
   'Foundation Certificate': {

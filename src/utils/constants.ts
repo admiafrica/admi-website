@@ -806,7 +806,7 @@ export const ADMI_ACCREDITATION_VALUES = [
     name: 'Global Recognition',
     icon: IconDrawSquare,
     description: [
-      'With Pearson Assured and Woolf University accreditation, your qualifications will be recognized by employers and educational institutions around the world, opening doors to further studies and career opportunities.'
+      'With Woolf University accreditation and TVETA Kenya registration, your qualifications will be recognized by employers and educational institutions around the world, opening doors to further studies and career opportunities.'
     ]
   },
   {
@@ -822,12 +822,12 @@ export const ADMI_ACCREDITATION_VALUES = [
 export const ADMI_FELLOWSHIPS = [
   {
     id: 'global',
-    name: 'Pearson Assured Status',
+    name: 'TVETA Kenya Registration',
     icon: IconBook,
     iconColor: '#F76335',
     description: [
-      'Achieving Pearson Assured status means that ADMI has undergone a thorough evaluation of our quality management systems. This independent verification process ensures that our programs deliver consistent, high-quality education to all learners.',
-      'As a Pearson Assured institution, we are able to offer certificates that carry the Pearson logo, enhancing the credibility of your qualifications and providing assurance to employers and educational institutions worldwide'
+      'ADMI is registered with the Technical and Vocational Education and Training Authority (TVETA) of Kenya. This government registration ensures that our programmes meet national standards for quality technical education.',
+      'As a TVETA-registered institution, our qualifications are nationally recognised, giving graduates confidence in their credentials across Kenya and East Africa.'
     ]
   },
   {
@@ -836,8 +836,8 @@ export const ADMI_FELLOWSHIPS = [
     icon: IconSearch,
     iconColor: '#03C6A4',
     description: [
-      'In addition to our Pearson Assured status, we are excited to announce our new partnership with Woolf University, which serves as our accreditation partner. ',
-      'This collaboration strengthens our commitment to providing a world-class education and ensures that our programs align with international standards. Woolf University’s accreditation will further enhance the recognition of our qualifications, allowing our graduates to pursue opportunities both locally and abroad.'
+      'ADMI partners with Woolf University, which serves as our accreditation partner for EU-accredited degree pathways.',
+      'This collaboration strengthens our commitment to providing a world-class education and ensures that our programs align with international standards. Woolf University\'s accreditation allows our graduates to pursue opportunities both locally and abroad.'
     ]
   }
 ]

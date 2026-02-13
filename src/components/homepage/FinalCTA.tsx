@@ -3,8 +3,8 @@ import { IconArrowRight, IconCalendar } from '@tabler/icons-react'
 
 export default function FinalCTA() {
   return (
-    <section className="w-full bg-gradient-to-br from-[#BA2E36] via-[#8B1A24] to-[#0A0A0A] px-4 py-16 md:px-20 md:py-[100px]">
-      <div className="flex flex-col items-center gap-8">
+    <section className="w-full bg-gradient-to-br from-[#BA2E36] via-[#8B1A24] to-[#0A0A0A]">
+      <div className="mx-auto flex max-w-[1280px] flex-col items-center gap-8 px-6 py-16 md:px-8 md:py-[100px]">
         {/* Title */}
         <h2 className="max-w-[800px] text-center font-nexa text-3xl font-black text-white md:text-[44px] md:leading-[1.15]">
           Begin Your Application Today

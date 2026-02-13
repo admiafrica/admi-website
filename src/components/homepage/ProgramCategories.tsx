@@ -21,7 +21,7 @@ const programs: ProgramCard[] = [
   {
     title: 'Diploma Programmes',
     description:
-      '18-month comprehensive programmes with mandatory internship placement. Earn EU-accredited credits through Woolf University. Pearson BTEC certified.',
+      '18-month comprehensive programmes with mandatory internship placement. Earn EU-accredited credits through Woolf University. TVETA Kenya registered.',
     price: '18 Months \u00b7 From KES 15,000/month',
     buttonLabel: 'View Diploma Programmes',
     href: '/courses/diploma-programs',
@@ -67,6 +67,7 @@ const programs: ProgramCard[] = [
 export default function ProgramCategories() {
   return (
     <section className="section-padding bg-white">
+      <div className="section-container">
       {/* Header */}
       <div className="mx-auto mb-12 max-w-[600px] text-center">
         <span className="mb-3 inline-block font-proxima text-[13px] font-bold uppercase tracking-[2px] text-[#8B1A1A]">
@@ -79,7 +80,7 @@ export default function ProgramCategories() {
       </div>
 
       {/* Cards */}
-      <div className="mx-auto flex max-w-[1200px] flex-col gap-6 lg:flex-row">
+      <div className="flex flex-col gap-6 lg:flex-row">
         {programs.map((program) => (
           <div key={program.title} className={`${program.bg} flex flex-1 flex-col overflow-hidden rounded-2xl`}>
             {/* Image */}
@@ -119,6 +120,7 @@ export default function ProgramCategories() {
             </div>
           </div>
         ))}
+      </div>
       </div>
     </section>
   )

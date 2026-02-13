@@ -48,7 +48,8 @@ const EVENTS: EventCard[] = [
 
 export default function EventsIntakes() {
   return (
-    <section className="w-full bg-white px-4 py-16 md:px-20 md:py-20">
+    <section className="w-full bg-white">
+      <div className="section-container section-padding">
       {/* Header */}
       <div className="mb-10">
         <span className="section-label-light font-semibold">WHAT&apos;S ON</span>
@@ -87,6 +88,7 @@ export default function EventsIntakes() {
             </div>
           </div>
         ))}
+      </div>
       </div>
     </section>
   )

@@ -1,6 +1,5 @@
 const BADGES = [
   { letter: 'W', bg: 'bg-[#08F6CF]', text: 'text-[#1a1a2e]', label: 'Woolf University Accredited', labelColor: 'text-white' },
-  { letter: 'P', bg: 'bg-[#F76335]', text: 'text-white', label: 'Pearson BTEC Certified', labelColor: 'text-white/80' },
   { letter: 'K', bg: 'bg-[#BA2E36]', text: 'text-white', label: 'TVETA Kenya Registered', labelColor: 'text-white/80' },
 ] as const
 

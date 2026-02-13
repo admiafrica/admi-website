@@ -36,7 +36,7 @@ const STEPS = [
 export default function DegreePathway() {
   return (
     <section className="w-full bg-[#0A0A0A]">
-      <div className="px-4 py-16 md:px-20 md:py-20">
+      <div className="mx-auto max-w-[1280px] px-6 py-16 md:px-8 md:py-20">
         {/* Header */}
         <div className="mx-auto mb-14 flex max-w-[750px] flex-col items-center text-center">
           <span className="section-label-dark">Degree Pathway</span>

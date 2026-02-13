@@ -15,7 +15,7 @@ const benefits: Benefit[] = [
     iconBg: 'bg-[#BA2E36]/10',
     title: 'Internationally Accredited',
     description:
-      'Earn EU-accredited credits through Woolf University. Pearson BTEC certified. Recognised by employers and institutions worldwide.'
+      'Earn EU-accredited credits through Woolf University. TVETA Kenya registered. Recognised by employers and institutions worldwide.'
   },
   {
     icon: IconBriefcase,
@@ -46,6 +46,7 @@ const benefits: Benefit[] = [
 export default function WhyADMI() {
   return (
     <section className="section-padding bg-[#f9f9f9]">
+      <div className="section-container">
       {/* Header */}
       <div className="mb-10 flex flex-col items-start gap-2 md:mb-12 md:flex-row md:items-end md:justify-between">
         <div>
@@ -55,7 +56,7 @@ export default function WhyADMI() {
       </div>
 
       {/* Grid */}
-      <div className="mx-auto grid max-w-[1200px] grid-cols-1 gap-6 md:grid-cols-2">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
         {benefits.map((benefit) => {
           const Icon = benefit.icon
           return (
@@ -70,6 +71,7 @@ export default function WhyADMI() {
             </div>
           )
         })}
+      </div>
       </div>
     </section>
   )

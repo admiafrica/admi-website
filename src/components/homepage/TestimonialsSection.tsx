@@ -33,7 +33,8 @@ const TESTIMONIALS: Testimonial[] = [
 
 export default function TestimonialsSection() {
   return (
-    <section className="w-full bg-[#0A0A0A] px-4 py-16 md:px-20 md:py-20">
+    <section className="w-full bg-[#0A0A0A]">
+      <div className="section-container section-padding">
       {/* Header */}
       <div className="mx-auto mb-12 flex flex-col items-center text-center">
         <span className="section-label-dark">STUDENT TESTIMONIALS</span>
@@ -75,6 +76,7 @@ export default function TestimonialsSection() {
             </div>
           </div>
         ))}
+      </div>
       </div>
     </section>
   )
