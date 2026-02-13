@@ -1,11 +1,14 @@
 import { Html, Head, Main, NextScript } from 'next/document'
+import { ColorSchemeScript } from '@mantine/core'
 
 export default function Document() {
   const gtmId = process.env.NEXT_PUBLIC_ADMI_GTM_ID
 
   return (
     <Html lang="en">
-      <Head>{/* GTM script moved to _app.tsx using next/script */}</Head>
+      <Head>
+        <ColorSchemeScript />
+      </Head>
       <body className="antialiased">
         {/* Google Tag Manager (noscript) */}
         {gtmId && (

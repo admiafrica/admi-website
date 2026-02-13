@@ -1,17 +1,7 @@
 import { MainLayout } from '@/layouts/v3/MainLayout'
-import { ensureProtocol } from '@/utils'
+import { ensureProtocol, getPlainTextFromRichText } from '@/utils'
 import { extractCourseTopic } from '@/utils/course-topic-mapper'
-import {
-  CourseAbout,
-  CourseApplicationProcess,
-  CourseDetails,
-  CourseHero,
-  CourseMentors,
-  CourseStudents,
-  CourseArticles
-} from '@/components/course'
-import { CMSCourseFAQs } from '@/components/course/CMSCourseFAQs'
-// import { CourseVideoSection } from '@/components/course/CourseVideoSection'
+import CoursePageLayout from '@/components/course/CoursePageLayout'
 import { PageSEO } from '@/components/shared/v3'
 import { CourseSchema, BreadcrumbSchema, VideoSchema } from '@/components/shared/StructuredData'
 import { DiplomaEnhancedSEO } from '@/components/course/DiplomaEnhancedSEO'
@@ -33,23 +23,11 @@ export default function CourseDetailPage({
   slug: string
   courseArticles?: any[]
 }) {
-  // Extract rich text content for description
-  const getPlainTextFromRichText = (richText: any) => {
-    if (!richText || !richText.content) return ''
-
-    return (
-      richText.content
-        .map((block: any) => block.content?.map((content: any) => content.value).join(' '))
-        .join(' ')
-        .substring(0, 160) + '...'
-    )
-  }
-
   // Create comprehensive course description for SEO with enrollment focus
   const baseDescription = course.description
-    ? getPlainTextFromRichText(course.description)
+    ? getPlainTextFromRichText(course.description, 160)
     : course.aboutTheCourse
-      ? getPlainTextFromRichText(course.aboutTheCourse)
+      ? getPlainTextFromRichText(course.aboutTheCourse, 160)
       : `${course.name} - ${course.programType?.fields?.duration || ''} ${course.programType?.fields?.deliveryMode || ''} course at ADMI. ${course.awardLevel || ''} level program.`
 
   // Check if this is a diploma program (moved before usage)
@@ -117,6 +95,7 @@ export default function CourseDetailPage({
     'distance learning',
     'African students',
     'pan-African education',
+    'global certification',
     ...enrollmentKeywords,
     ...(isDiploma
       ? [
@@ -229,7 +208,7 @@ export default function CourseDetailPage({
           // Swap: embedUrl (watch page) becomes primary, direct video file becomes secondary
           contentUrl={ensureProtocol(course.courseVideo.fields.file.url)}
           embedUrl={`${process.env.NEXT_PUBLIC_API_BASE_URL || 'https://admi.africa'}/watch/${slug}`}
-          uploadDate={course.sys?.updatedAt || new Date().toISOString()}
+          uploadDate={course.sys?.updatedAt || `${new Date().getFullYear()}-01-01T00:00:00.000Z`}
           duration="PT2M30S"
           publisher={{
             name: 'Africa Digital Media Institute',
@@ -237,50 +216,8 @@ export default function CourseDetailPage({
           }}
         />
       )}
-      <CourseHero
-        name={course.name}
-        coverImage={course.coverImage}
-        programType={course.programType}
-        awardLevel={course.awardLevel}
-        creditHours={course.creditHours}
-      />
-      <CourseAbout
-        description={course.aboutTheCourse}
-        intakes={course.intakes}
-        courseVideo={course.courseVideo}
-        educationalLevel={course.educationalLevel}
-        courseSlug={slug}
-      />
-      <CourseDetails
-        benefits={course.courseBenefits || []}
-        assets={courseAssets || []}
-        programType={course.programType}
-        creditHours={course.creditHours}
-        tuitionFees={course.tuitionFees}
-        courseDescription={course.description}
-        careerOptions={course.careerOptions}
-        learningOutcomes={course.learningOutcomes}
-      />
-      <CourseMentors mentors={course.courseLeadersMentors} assets={courseAssets || []} />
-      <CourseStudents
-        portfolios={course.studentPortfolio || []}
-        assets={courseAssets}
-        testimonials={course.studentReviews || []}
-        totalHistoricalEnrollment={course.totalHistoricalEnrollment}
-      />
-      <CourseApplicationProcess processes={course.applicationProcesses || []} />
 
-      {/* Related Articles Section - Improves Engagement */}
-      {courseArticles && courseArticles.length > 0 && (
-        <div className="mx-auto w-full max-w-screen-xl px-4 py-16 xl:px-0">
-          <CourseArticles courseName={course.name} courseTags={course.tags || []} articles={courseArticles} />
-        </div>
-      )}
-
-      {/* Enhanced Video Section with YouTube Integration - Temporarily disabled */}
-      {/* <CourseVideoSection course={course} slug={slug} youtubeVideos={youtubeVideos} /> */}
-
-      <CMSCourseFAQs courseSlug={slug} />
+      <CoursePageLayout course={course} courseAssets={courseAssets} slug={slug} courseArticles={courseArticles} />
     </MainLayout>
   )
 }

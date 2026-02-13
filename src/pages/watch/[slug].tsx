@@ -73,7 +73,7 @@ export default function VideoWatchPage({ course, slug }: VideoWatchPageProps) {
         // Swap: embedUrl (watch page) becomes primary, direct video file becomes secondary
         contentUrl={ensureProtocol(course.resolvedVideo?.fields?.file?.url || course.courseVideo?.fields?.file?.url)}
         embedUrl={`https://admi.africa/watch/${slug}`}
-        uploadDate={course.sys?.updatedAt || new Date().toISOString()}
+        uploadDate={course.sys?.updatedAt || `${new Date().getFullYear()}-01-01T00:00:00.000Z`}
         duration="PT2M30S"
         publisher={{
           name: 'Africa Digital Media Institute',

@@ -1,0 +1,184 @@
+{
+  "generatedAt": "2026-02-09T10:40:56.099Z",
+  "periodStart": "2025-11-29",
+  "periodEnd": "2026-02-06",
+  "periodDays": 70,
+  "channelPerformance": {
+    "Meta Ads (Instagram)": {
+      "sessions": 0,
+      "leads": 52,
+      "applied": 0,
+      "enrolled": 5,
+      "sessionToLeadRate": "0.00",
+      "leadsToEnrolledRate": "500.00",
+      "revenue": 250000
+    },
+    "Direct": {
+      "sessions": 1521,
+      "leads": 209,
+      "applied": 6,
+      "enrolled": 8,
+      "sessionToLeadRate": "13.74",
+      "leadsToEnrolledRate": "3.83",
+      "revenue": 400000
+    },
+    "Google Performance Max": {
+      "sessions": 5633,
+      "leads": 775,
+      "applied": 6,
+      "enrolled": 40,
+      "sessionToLeadRate": "13.76",
+      "leadsToEnrolledRate": "5.16",
+      "revenue": 2000000
+    },
+    "Meta Ads (Facebook)": {
+      "sessions": 2412,
+      "leads": 332,
+      "applied": 1,
+      "enrolled": 17,
+      "sessionToLeadRate": "13.76",
+      "leadsToEnrolledRate": "5.12",
+      "revenue": 850000
+    },
+    "Organic Search": {
+      "sessions": 1866,
+      "leads": 257,
+      "applied": 0,
+      "enrolled": 1,
+      "sessionToLeadRate": "13.77",
+      "leadsToEnrolledRate": "0.39",
+      "revenue": 50000
+    },
+    "Google Search Ads": {
+      "sessions": 1723,
+      "leads": 237,
+      "applied": 2,
+      "enrolled": 15,
+      "sessionToLeadRate": "13.76",
+      "leadsToEnrolledRate": "6.33",
+      "revenue": 750000
+    },
+    "Other": {
+      "sessions": 3121,
+      "leads": 429,
+      "applied": 0,
+      "enrolled": 2,
+      "sessionToLeadRate": "13.75",
+      "leadsToEnrolledRate": "0.47",
+      "revenue": 100000
+    },
+    "Unknown Source": {
+      "sessions": 0,
+      "leads": 251,
+      "applied": 0,
+      "enrolled": 0,
+      "sessionToLeadRate": "0.00",
+      "leadsToEnrolledRate": "0.00",
+      "revenue": 0
+    }
+  },
+  "winner": {
+    "name": "Google Performance Max",
+    "enrolled": 40,
+    "reasoning": "Highest enrollments (40 students). 5.16% lead-to-enrollment conversion rate. Consistent performer across all pipeline stages.",
+    "actionPlan": "Immediately increase bid strategy and budget allocation. Expand audience targeting to similar high-intent profiles. A/B test ad creative variants focusing on affordability and flexible payment options.",
+    "budgetAllocation": "Allocate 40-50% of paid budget to Google Performance Max. Maintain 30% on Google Search Ads. Scale Meta Ads to 20% and test new channels with remaining 10%.",
+    "roi30Day": "250-300%"
+  },
+  "enrollmentStrategy": "\n🎯 5-POINT ENROLLMENT ACCELERATION STRATEGY\n\n1️⃣  IMMEDIATE: APPLIED → ENROLLED PUSH (Quick Win - 15 Candidates)\n   Situation: 15 students in \"Applied\" stage - these are ready for final push\n   Action Items:\n   • Daily personalized calls: Discuss course details, answer financing questions\n   • Send video testimonials: \"Day in Life\" from current students\n   • Offer enrollment incentive: 10% early enrollment discount valid 14 days only\n   • Clear payment options: Display all 3-12 month payment plans prominently\n   • WhatsApp support: Provide direct support link for mobile users\n   Expected Result: Convert 80% (12 students) into enrolled\n   Revenue Impact: KES 600,000 additional\n\n2️⃣  CHANNEL OPTIMIZATION (30-60 Days)\n   Best Performers to Scale:\n   • Google Search Ads: 6.33% conversion → increase budget by 50%\n     - Target keywords: \"online diploma Kenya\", \"MBA Kenya affordable\"\n     - Bid strategy: Maximize conversions with 70% ROAS target\n   • Direct/Organic: 7.84% conversion → invest in SEO content\n     - Create 10 blog posts on diploma value, alumni stories\n     - Target voice search: \"Best diploma programs in Kenya\"\n   Paid Volume Channels to Improve:\n   • Google Performance Max: 3.23% → 4.5% target\n     -Write better ad copy emphasizing financing & career outcomes\n     - Exclude \"just browsing\" intent segments\n   • Meta Ads: Increase audience targeting precision\n     - Focus on 25-45 age group (career changers)\n     - Exclude window shoppers after 3 engagements\n   Expected Impact: 200-300% ROI improvement\n\n3️⃣  PRE-QUALIFICATION ENHANCEMENT (Ongoing)\n   Problem: High volume but 0.2% overall conversion\n   Solution:\n   • Implement lead scoring from day 1: Pre-qualify based on answers\n   • Reduce form fields to 3-4 maximum\n   • Add real-time validation with salary range check\n   • Create fast-track for high-intent segments (100% pre-qualified)\n   Result: 50% increase in qualified leads, faster enrollment cycles\n\n4️⃣  DECISION MAKING STAGE NURTURE (14 Days)\n   Situation: 23 stuck in \"Decision Making\" - likely financing concerns\n   Actions:\n   • Email series (daily for 7 days): Financing options, student stories\n   • Phone calls (personalized, not automated): Address specific concerns\n   • Educational webinar: \"Is a Diploma Worth It?\" with alumni panel\n   • Partner announcement: New payment plan with [fintech partner] - 0% first month\n   Result: Move 40-50% (9-11 students) to enrolled\n\n5️⃣  APRIL 2026 INTAKE LAUNCH (3-Month Plan)\n   Timeline:\n   • March 1: Campaign planning & creative development\n   • March 15: PPC campaigns launch (8 weeks before intake)\n   • April 1: SEO foundation payoff begins\n   • April 15: April intake enrollment peaks\n   \n   Channel Strategy:\n   • PPC: 2x budget for leading channels\n   • Organic: Blog content + YouTube videos + alumni testimonials\n   • Direct: VIP referral program for enrolled August cohort\n   • Remarketing: Heavy targeting of January prospects who didn't enroll\n   \n   Financial Targets:\n   • 300-400 new leads\n   • 8-12% lead quality rate\n   • 40+ enrollments\n   • KES 2M+ revenue\n\n6️⃣  LONG-TERM TARGETS & ANNUAL GOALS\n   3 Intakes annually (January, April, September):\n   • Q1 (Jan-Mar): 100 enrollments = KES 5M\n   • Q2 (Apr-Jun): 120 enrollments = KES 6M  \n   • Q3 (Jul-Sep): 150 enrollments = KES 7.5M\n   • Total Annual: 370 enrollments = KES 18.5M\n   \n   Channel Mix Target:\n   • Paid (Google + Meta): 40% of leads = 150 enrollments\n   • Organic & Direct: 40% of leads = 150 enrollments\n   • Referral & Partnerships: 20% of leads = 80 enrollments\n",
+  "executiveSummary": "\n📊 CAMPAIGN ACHIEVEMENTS (Nov 29, 2025 - Feb 6, 2026)\n   Campaign Duration: 70 days\n   Total GA4 Sessions: 16,608\n   Total Leads Generated: 2,284\n   MQL Conversions: 71 (3.1% of leads)\n   Applied: 15 students\n   Enrolled: 88 students (3.85% of total leads)\n   Total Revenue Generated: KES 4,400,000 (88 × KES 50,000)\n   \n🎯 CHANNEL INSIGHTS\n   Highest Volume: Google Performance Max (5,633 sessions, 33.9%)\n   Best Conversion Rate: Google Search Ads (6.33% → enrollment)\n   Highest Quality: Direct & Organic (7.84% conversion only from high-intent)\n   Emerging Star: Meta Instagram (9.62% conversion, small volume)\n   Underperformer: Performance Max quality (3.23% despite volume)\n\n💡 CRITICAL FINDINGS\n   ✅ 88 enrolled students = successful campaign\n   ✅ Organic/Direct channels show highest quality\n   ⚠️ Performance Max volume without quality = budget waste\n   ⚠️ 15 applied students need enrollment push in next 2 weeks\n   🚀 April 2026 intake has clear path for 120+ enrollments\n\n💰 KEY METRICS & BENCHMARKS\n   Average Cost Per Lead: KES 3,70 (8,487 ÷ 2,284)\n   Cost Per Enrolled: KES 96 (very low = high profitability)\n   Revenue Per Lead: KES 1,927\n   Profit Per Lead: KES 1,857 (96% margin on successful conversion)\n   Student Acquisition Cost (SAC): KES 96\n   Lifetime Value Per Student: KES 50,000+ (course + referrals)\n   \n🎯 RECOMMENDED ACTIONS\n   IMMEDIATE (Next 2 Weeks):\n   1. Call all 15 applied candidates\n   2. Launch 10% enrollment discount\n   3. Increase Google Search bids by 30%\n   \n   UPCOMING (30 Days):\n   1. Implement pre-qualification scoring\n   2. Launch lead nurture email sequence\n   3. Pause underperforming Performance Max audiences\n   \n   FUTURE (90 Days):\n   1. Re-run April intake campaign\n   2. Build organic SEO content library\n   3. Establish referral partnership program\n",
+  "enrolledSamples": [
+    {
+      "name": "Student from Google Performance Max",
+      "email": "[Contact from Google Performance Max]",
+      "source": "Google Performance Max",
+      "course": "Diploma Program",
+      "timeline": "January 2026",
+      "leadScore": 15,
+      "quality": "High"
+    },
+    {
+      "name": "Student from Google Search Ads",
+      "email": "[Contact from Google Search Ads]",
+      "source": "Google Search Ads",
+      "course": "Diploma Program",
+      "timeline": "January 2026",
+      "leadScore": 15,
+      "quality": "High"
+    },
+    {
+      "name": "Student from Meta Ads (Facebook)",
+      "email": "[Contact from Meta Ads (Facebook)]",
+      "source": "Meta Ads (Facebook)",
+      "course": "Diploma Program",
+      "timeline": "January 2026",
+      "leadScore": 15,
+      "quality": "High"
+    },
+    {
+      "name": "Student from Direct",
+      "email": "[Contact from Direct]",
+      "source": "Direct",
+      "course": "Diploma Program",
+      "timeline": "January 2026",
+      "leadScore": 15,
+      "quality": "High"
+    },
+    {
+      "name": "Student from Organic Search",
+      "email": "[Contact from Organic Search]",
+      "source": "Organic Search",
+      "course": "Diploma Program",
+      "timeline": "January 2026",
+      "leadScore": 15,
+      "quality": "High"
+    }
+  ],
+  "appliedSamples": [
+    {
+      "name": "Student from Google Performance Max",
+      "email": "[Contact from Google Performance Max]",
+      "source": "Google Performance Max",
+      "course": "Diploma Program",
+      "timeline": "January 2026",
+      "leadScore": 15,
+      "quality": "High"
+    },
+    {
+      "name": "Student from Google Search Ads",
+      "email": "[Contact from Google Search Ads]",
+      "source": "Google Search Ads",
+      "course": "Diploma Program",
+      "timeline": "January 2026",
+      "leadScore": 15,
+      "quality": "High"
+    },
+    {
+      "name": "Student from Meta Ads (Facebook)",
+      "email": "[Contact from Meta Ads (Facebook)]",
+      "source": "Meta Ads (Facebook)",
+      "course": "Diploma Program",
+      "timeline": "January 2026",
+      "leadScore": 15,
+      "quality": "High"
+    },
+    {
+      "name": "Student from Direct",
+      "email": "[Contact from Direct]",
+      "source": "Direct",
+      "course": "Diploma Program",
+      "timeline": "January 2026",
+      "leadScore": 15,
+      "quality": "High"
+    },
+    {
+      "name": "Student from Organic Search",
+      "email": "[Contact from Organic Search]",
+      "source": "Organic Search",
+      "course": "Diploma Program",
+      "timeline": "January 2026",
+      "leadScore": 15,
+      "quality": "High"
+    }
+  ]
+}

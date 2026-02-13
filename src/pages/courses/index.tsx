@@ -1,15 +1,23 @@
 import Image from 'next/image'
 import { Box, Text, Select } from '@mantine/core'
+import { useEffect, useState } from 'react'
 
 import { MainLayout } from '@/layouts/v3/MainLayout'
 import { Paragraph, Title, SearchDropdown } from '@/components/ui'
 import { ProgramListItemCard } from '@/components/cards'
 import { PageSEO } from '@/components/shared/v3'
 import { useIsMobile } from '@/hooks/useIsMobile'
+import {
+  FastConverterCTA,
+  FinancingCalculator,
+  TrustBadges,
+  ResearcherCTA,
+  LongTermPlannerCTA,
+  FAQSection
+} from '@/components/course'
 
 import IconBgImageYellow from '@/assets/icons/ellipse-yellow.svg'
 import IconBgImageRed from '@/assets/icons/ellipse-red.svg'
-import { useEffect, useState } from 'react'
 
 // Course categorization mapping to fix CMS inconsistencies
 const correctCourseMapping = (course: any): string => {
@@ -124,11 +132,15 @@ export default function CoursesPage({
       </div>
       <div className="relative z-10 w-full bg-[#F5FFFD]">
         <div className="mx-auto w-full max-w-screen-xl bg-[#F5FFFD] px-4 2xl:px-0">
-          <div className="flex h-fit w-full flex-col pt-24 sm:flex-row">
+          {/* Fast Converter CTA - Segment A (25% of visitors) */}
+          <FastConverterCTA />
+
+          <div className="flex h-fit w-full flex-col pt-12 sm:flex-row">
             <div className="flex grow flex-col pb-4">
               <Title label="Courses" size="24px" color="black" />
               <Paragraph fontFamily="font-nexa" className="py-2">
-                Explore our variety of courses across various topics that suit you!
+                <strong>Diploma programs</strong> hone your skills for career transformation (15K/month). Or capture
+                quick wins with our certificate courses.
               </Paragraph>
             </div>
             <div className="flex items-center bg-white pl-4 font-proxima">
@@ -148,6 +160,18 @@ export default function CoursesPage({
               />
             </div>
           </div>
+
+          {/* Interactive Financing Calculator */}
+          <FinancingCalculator />
+
+          {/* Trust & Social Proof */}
+          <TrustBadges />
+
+          {/* Researcher CTA - Segment C (18% of visitors) */}
+          <ResearcherCTA />
+
+          {/* Long-Term Planner CTA - Segment D (31% of visitors) */}
+          <LongTermPlannerCTA />
         </div>
         <div className="relative mx-auto min-h-[60vh] w-full max-w-screen-xl px-4 2xl:px-0">
           {filteredPrograms.map((program) => {
@@ -173,6 +197,9 @@ export default function CoursesPage({
             )
           })}
         </div>
+
+        {/* Comprehensive FAQ Section */}
+        <FAQSection />
       </div>
     </MainLayout>
   )
@@ -190,7 +217,23 @@ export async function getStaticProps() {
     const programs = await programsRes.json()
     const courses = await coursesRes.json()
 
-    const sortedPrograms = programs.reverse()
+    // Sort programs to prioritize diplomas first, then certificates
+    // This aligns with the diploma-first enrollment strategy
+    const sortedPrograms = programs.sort((a: any, b: any) => {
+      const aName = a.fields.name.toLowerCase()
+      const bName = b.fields.name.toLowerCase()
+
+      // Diploma programs come first
+      const aIsDiploma = aName.includes('diploma')
+      const bIsDiploma = bName.includes('diploma')
+
+      if (aIsDiploma && !bIsDiploma) return -1 // a (diploma) before b (not diploma)
+      if (!aIsDiploma && bIsDiploma) return 1 // b (diploma) before a (not diploma)
+
+      // Within same category (both diplomas or both certificates), maintain original order
+      return 0
+    })
+
     const sortedCourses = courses.reverse()
 
     // Add Rubika Programs section if not exists

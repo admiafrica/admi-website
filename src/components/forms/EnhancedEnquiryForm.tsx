@@ -133,38 +133,38 @@ export default function EnhancedEnquiryForm() {
         break
     }
 
-    // Program type scoring (0-4 points)
+    // Program type scoring (0-8 points) - PRIORITIZE DIPLOMA STUDENTS
     switch (values.programType) {
       case 'full-time-diploma':
-        score += 4
+        score += 8 // DOUBLED: Diploma students are high-value (100K × 4 terms + 48K internship = 450K lifetime)
         break
       case 'professional-certificate':
-        score += 3
+        score += 2 // REDUCED: Lower revenue potential (48K one-time)
         break
       case 'foundation-certificate':
-        score += 2
+        score += 2 // REDUCED: Lower revenue potential (48K one-time)
         break
       case 'weekend-parttime':
         score += 1
         break
     }
 
-    // Investment range scoring (0-4 points)
+    // Investment range scoring (0-6 points) - PRIORITIZE DIPLOMA-LEVEL BUDGET
     switch (values.investmentRange) {
       case '500k-plus':
-        score += 4
+        score += 6 // INCREASED: Can afford full diploma program comfortably (450K)
         break
       case '300k-500k':
-        score += 3
+        score += 6 // INCREASED: Perfect diploma budget range (320-450K)
         break
       case '100k-300k':
-        score += 2
+        score += 2 // REDUCED: Certificate-level budget or needs financing
         break
       case 'under-100k':
-        score += 1
+        score += 1 // LOW VALUE: Likely certificate or short course
         break
       case 'need-discussion':
-        score += 2
+        score += 3 // NEUTRAL: Requires financial counseling
         break
     }
 
@@ -206,7 +206,7 @@ export default function EnhancedEnquiryForm() {
         break
     }
 
-    return Math.min(score, 20) // Cap at 20 points
+    return Math.min(score, 30) // Cap at 30 points (increased to accommodate diploma priority)
   }
 
   const handleSubmit = async (values: FormData) => {
@@ -289,15 +289,20 @@ export default function EnhancedEnquiryForm() {
         return
       }
 
-      // Calculate conversion value based on lead score
+      // Calculate conversion value based on lead score and program type
+      // Diploma students have 7-9x lifetime value vs certificates (320-450K vs 48K)
       const conversionValue =
-        leadScore >= 15
-          ? 100 // Hot lead
-          : leadScore >= 10
-            ? 30 // Warm lead
-            : leadScore >= 5
-              ? 10 // Cold lead
-              : 1 // Unqualified
+        leadScore >= 20 && values.programType === 'full-time-diploma'
+          ? 200 // HOT DIPLOMA LEAD: High score + diploma = 450K lifetime value
+          : leadScore >= 15 && values.programType === 'full-time-diploma'
+            ? 100 // WARM DIPLOMA LEAD: Medium score + diploma = 450K lifetime value
+            : leadScore >= 15 && values.programType !== 'full-time-diploma'
+              ? 50 // High score but certificate only = 48K value
+              : leadScore >= 10
+                ? 30 // Warm lead (mixed signals)
+                : leadScore >= 5
+                  ? 10 // Cold lead (certificate likely)
+                  : 1 // Unqualified
 
       // Store conversion data in sessionStorage for thank-you page
       const conversionData = {
@@ -305,8 +310,20 @@ export default function EnhancedEnquiryForm() {
         transaction_id: `lead_${Date.now()}_${leadScore}`,
         lead_score: leadScore,
         course_name: values.courseName,
+        program_type: values.programType,
         study_timeline: values.studyTimeline,
-        quality_tier: leadScore >= 15 ? 'hot' : leadScore >= 10 ? 'warm' : leadScore >= 5 ? 'cold' : 'unqualified'
+        quality_tier:
+          leadScore >= 20 && values.programType === 'full-time-diploma'
+            ? 'hot_diploma'
+            : leadScore >= 15 && values.programType === 'full-time-diploma'
+              ? 'warm_diploma'
+              : leadScore >= 15
+                ? 'hot_certificate'
+                : leadScore >= 10
+                  ? 'warm'
+                  : leadScore >= 5
+                    ? 'cold'
+                    : 'unqualified'
       }
 
       sessionStorage.setItem('admi_conversion_data', JSON.stringify(conversionData))
@@ -339,14 +356,19 @@ export default function EnhancedEnquiryForm() {
             // Additional tracking data
             event_category: 'Lead Generation',
             event_label:
-              leadScore >= 15
-                ? 'Hot Lead'
-                : leadScore >= 10
-                  ? 'Warm Lead'
-                  : leadScore >= 5
-                    ? 'Cold Lead'
-                    : 'Unqualified',
+              leadScore >= 20 && values.programType === 'full-time-diploma'
+                ? 'Hot Diploma Lead'
+                : leadScore >= 15 && values.programType === 'full-time-diploma'
+                  ? 'Warm Diploma Lead'
+                  : leadScore >= 15
+                    ? 'Hot Certificate Lead'
+                    : leadScore >= 10
+                      ? 'Warm Lead'
+                      : leadScore >= 5
+                        ? 'Cold Lead'
+                        : 'Unqualified',
             lead_score: leadScore,
+            program_type: values.programType,
             course_name: values.courseName,
             study_timeline: values.studyTimeline
           })

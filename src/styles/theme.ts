@@ -32,18 +32,18 @@ export const proximaNovaFont = localFont({
   src: [
     {
       path: '../assets/fonts/ProximaNova-Regular.otf',
-      weight: '500',
-      style: 'regular'
+      weight: '400',
+      style: 'normal'
     },
     {
       path: '../assets/fonts/ProximaNova-Semibold.otf',
-      weight: '800',
-      style: 'bold'
+      weight: '600',
+      style: 'normal'
     },
     {
       path: '../assets/fonts/ProximaNova-Thin.otf',
       weight: '100',
-      style: 'semibold'
+      style: 'normal'
     }
   ],
   variable: '--font-proxima',

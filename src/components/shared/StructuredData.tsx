@@ -365,6 +365,11 @@ export function DiplomaSchema({
   courseVideo?: any
   courseSlug?: string
 }) {
+  // Use a stable current year to avoid hydration mismatches between server and client
+  const currentYear = new Date().getFullYear()
+  // Use a stable ISO date string (date only, no time component) to avoid hydration mismatches
+  const stableISODate = `${currentYear}-01-01T00:00:00.000Z`
+
   // Ensure description is never empty
   const diplomaDescription =
     description ||
@@ -419,9 +424,8 @@ export function DiplomaSchema({
           : deliveryMode?.toLowerCase().includes('hybrid')
             ? 'blended'
             : 'onsite',
-        startDate: `${new Date().getFullYear()}-01-15`,
-        endDate:
-          duration === '2 years' ? `${new Date().getFullYear() + 2}-01-15` : `${new Date().getFullYear() + 1}-01-15`,
+        startDate: `${currentYear}-01-15`,
+        endDate: duration === '2 years' ? `${currentYear + 2}-01-15` : `${currentYear + 1}-01-15`,
         courseWorkload: convertToISO8601Duration(duration),
         location: {
           '@type': 'Place',
@@ -444,9 +448,8 @@ export function DiplomaSchema({
           : deliveryMode?.toLowerCase().includes('hybrid')
             ? 'blended'
             : 'onsite',
-        startDate: `${new Date().getFullYear()}-05-15`,
-        endDate:
-          duration === '2 years' ? `${new Date().getFullYear() + 2}-05-15` : `${new Date().getFullYear() + 1}-05-15`,
+        startDate: `${currentYear}-05-15`,
+        endDate: duration === '2 years' ? `${currentYear + 2}-05-15` : `${currentYear + 1}-05-15`,
         courseWorkload: convertToISO8601Duration(duration),
         location: {
           '@type': 'Place',
@@ -469,9 +472,8 @@ export function DiplomaSchema({
           : deliveryMode?.toLowerCase().includes('hybrid')
             ? 'blended'
             : 'onsite',
-        startDate: `${new Date().getFullYear()}-09-15`,
-        endDate:
-          duration === '2 years' ? `${new Date().getFullYear() + 2}-09-15` : `${new Date().getFullYear() + 1}-09-15`,
+        startDate: `${currentYear}-09-15`,
+        endDate: duration === '2 years' ? `${currentYear + 2}-09-15` : `${currentYear + 1}-09-15`,
         courseWorkload: convertToISO8601Duration(duration),
         location: {
           '@type': 'Place',
@@ -508,7 +510,7 @@ export function DiplomaSchema({
         thumbnailUrl: image || 'https://admi.africa/logo.png',
         embedUrl: courseSlug ? `https://admi.africa/watch/${courseSlug}` : `${url}/watch`,
         contentUrl: courseVideo.fields?.file?.url ? ensureProtocol(courseVideo.fields.file.url) : undefined,
-        uploadDate: courseVideo.fields?.publishDate || new Date().toISOString(),
+        uploadDate: courseVideo.fields?.publishDate || stableISODate,
         duration: courseVideo.fields?.duration || 'PT2M30S',
         publisher: {
           '@type': 'Organization',
@@ -561,8 +563,8 @@ export function DiplomaSchema({
       priceCurrency: currency,
       availability: 'https://schema.org/InStock',
       url: url,
-      validFrom: `${new Date().getFullYear()}-01-01`,
-      validThrough: `${new Date().getFullYear() + 1}-12-31`,
+      validFrom: `${currentYear}-01-01`,
+      validThrough: `${currentYear + 1}-12-31`,
       seller: {
         '@type': 'EducationalOrganization',
         name: provider.name,
@@ -590,7 +592,7 @@ export function DiplomaSchema({
           price,
           availability: 'https://schema.org/InStock',
           itemCondition: 'https://schema.org/NewCondition',
-          priceValidUntil: new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString().split('T')[0]
+          priceValidUntil: `${currentYear + 1}-01-01`
         },
         sku: courseCode || `admi-${name.toLowerCase().replace(/\s+/g, '-')}`,
         mpn: courseCode || `ADMI-${name.toUpperCase().substring(0, 10)}`,
@@ -642,6 +644,10 @@ export function CourseSchema({
   courseVideo?: any
   courseSlug?: string
 }) {
+  // Use a stable current year to avoid hydration mismatches between server and client
+  const currentYear = new Date().getFullYear()
+  const stableISODate = `${currentYear}-01-01T00:00:00.000Z`
+
   // Ensure description is never empty
   const courseDescription =
     description ||
@@ -690,11 +696,11 @@ export function CourseSchema({
           : deliveryMode?.toLowerCase().includes('hybrid')
             ? 'blended'
             : 'onsite',
-        startDate: `${new Date().getFullYear()}-01-15`,
+        startDate: `${currentYear}-01-15`,
         endDate:
           duration?.includes('2 year') || duration?.includes('diploma')
-            ? `${new Date().getFullYear() + 2}-01-15`
-            : `${new Date().getFullYear() + 1}-01-15`,
+            ? `${currentYear + 2}-01-15`
+            : `${currentYear + 1}-01-15`,
         courseWorkload: convertToISO8601Duration(duration),
         location: {
           '@type': 'Place',
@@ -717,11 +723,11 @@ export function CourseSchema({
           : deliveryMode?.toLowerCase().includes('hybrid')
             ? 'blended'
             : 'onsite',
-        startDate: `${new Date().getFullYear()}-05-15`,
+        startDate: `${currentYear}-05-15`,
         endDate:
           duration?.includes('2 year') || duration?.includes('diploma')
-            ? `${new Date().getFullYear() + 2}-05-15`
-            : `${new Date().getFullYear() + 1}-05-15`,
+            ? `${currentYear + 2}-05-15`
+            : `${currentYear + 1}-05-15`,
         courseWorkload: convertToISO8601Duration(duration),
         location: {
           '@type': 'Place',
@@ -744,11 +750,11 @@ export function CourseSchema({
           : deliveryMode?.toLowerCase().includes('hybrid')
             ? 'blended'
             : 'onsite',
-        startDate: `${new Date().getFullYear()}-09-15`,
+        startDate: `${currentYear}-09-15`,
         endDate:
           duration?.includes('2 year') || duration?.includes('diploma')
-            ? `${new Date().getFullYear() + 2}-09-15`
-            : `${new Date().getFullYear() + 1}-09-15`,
+            ? `${currentYear + 2}-09-15`
+            : `${currentYear + 1}-09-15`,
         courseWorkload: convertToISO8601Duration(duration),
         location: {
           '@type': 'Place',
@@ -792,7 +798,7 @@ export function CourseSchema({
         thumbnailUrl: image || 'https://admi.africa/logo.png',
         embedUrl: courseSlug ? `https://admi.africa/watch/${courseSlug}` : `${url}/watch`,
         contentUrl: courseVideo.fields?.file?.url ? ensureProtocol(courseVideo.fields.file.url) : undefined,
-        uploadDate: courseVideo.fields?.publishDate || new Date().toISOString(),
+        uploadDate: courseVideo.fields?.publishDate || stableISODate,
         duration: courseVideo.fields?.duration || 'PT2M30S',
         publisher: {
           '@type': 'Organization',
@@ -824,8 +830,8 @@ export function CourseSchema({
       priceCurrency: currency,
       availability: 'https://schema.org/InStock',
       url: url,
-      validFrom: `${new Date().getFullYear()}-01-01`,
-      validThrough: `${new Date().getFullYear() + 1}-12-31`,
+      validFrom: `${currentYear}-01-01`,
+      validThrough: `${currentYear + 1}-12-31`,
       seller: {
         '@type': 'EducationalOrganization',
         name: provider.name,
@@ -853,7 +859,7 @@ export function CourseSchema({
           price,
           availability: 'https://schema.org/InStock',
           itemCondition: 'https://schema.org/NewCondition',
-          priceValidUntil: new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString().split('T')[0]
+          priceValidUntil: `${currentYear + 1}-01-01`
         },
         sku: courseCode || `admi-${name.toLowerCase().replace(/\s+/g, '-')}`,
         mpn: courseCode || `ADMI-${name.toUpperCase().substring(0, 10)}`,
@@ -1090,6 +1096,8 @@ export function MultiCityLocalBusinessSchema({
   serviceArea = [],
   courses = []
 }: MultiCityLocalBusinessProps) {
+  const currentYear = new Date().getFullYear()
+
   const structuredData = {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
@@ -1128,8 +1136,8 @@ export function MultiCityLocalBusinessSchema({
           priceCurrency: 'KES',
           price: course.includes('Diploma') ? '150000' : '75000',
           availability: 'https://schema.org/InStock',
-          validFrom: `${new Date().getFullYear()}-01-01`,
-          validThrough: `${new Date().getFullYear()}-12-31`,
+          validFrom: `${currentYear}-01-01`,
+          validThrough: `${currentYear}-12-31`,
           url: `https://admi.africa/courses/${course.toLowerCase().replace(/\s+/g, '-').replace(/&/g, 'and')}`,
           seller: {
             '@type': 'EducationalOrganization',

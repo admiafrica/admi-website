@@ -9,15 +9,11 @@ export default function AboutCourse({ description, accreditation }: AboutCourseP
   return (
     <section className="w-full bg-white px-4 py-20 md:px-20">
       <div className="mx-auto max-w-screen-xl">
-        <div className="flex flex-col gap-12 lg:flex-row lg:items-start lg:gap-16">
+        <div className="flex flex-col gap-12 lg:flex-row lg:items-center lg:gap-16">
           {/* Left Column - Text Content */}
           <div className="flex-1">
-            <span className="mb-3 inline-block font-nexa text-sm font-black uppercase tracking-widest text-admiDarkOrange">
-              About This Course
-            </span>
-            <h2 className="mb-6 font-nexa text-3xl font-black leading-tight text-gray-900 md:text-4xl lg:text-5xl">
-              Tell Stories That Move The World
-            </h2>
+            <span className="section-label-light">About This Course</span>
+            <h2 className="section-heading-light mb-6 lg:text-5xl">Tell Stories That Move The World</h2>
             <div className="mb-6 font-proxima text-lg leading-relaxed text-gray-700">{description}</div>
             {accreditation && (
               <p className="rounded-lg border-l-4 border-admiDarkOrange bg-gray-50 p-4 font-proxima text-base leading-relaxed text-gray-600">

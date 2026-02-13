@@ -6,3 +6,11 @@ export { default as CourseStudents } from './Students'
 export { default as CourseApplicationProcess } from './ApplicationProcess'
 export { default as CourseFAQs } from './Faqs'
 export { CourseArticles } from './CourseArticles'
+
+// Courses page conversion components
+export { FastConverterCTA } from './FastConverterCTA'
+export { FinancingCalculator } from './FinancingCalculator'
+export { TrustBadges } from './TrustBadges'
+export { ResearcherCTA } from './ResearcherCTA'
+export { LongTermPlannerCTA } from './LongTermPlannerCTA'
+export { FAQSection } from './FAQSection'
