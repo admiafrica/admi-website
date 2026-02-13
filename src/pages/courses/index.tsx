@@ -132,6 +132,45 @@ const TAB_OPTIONS = [
   'Rubika Programmes',
 ]
 
+// Industry keyword mapping for search
+const INDUSTRY_KEYWORDS: Record<string, string[]> = {
+  'film': ['film', 'cinema', 'movie', 'television', 'tv', 'video', 'documentary', 'directing', 'screenwriting'],
+  'music': ['music', 'sound', 'audio', 'recording', 'mixing', 'mastering', 'producer', 'dj'],
+  'design': ['design', 'graphic', 'branding', 'visual', 'ui', 'ux', 'creative'],
+  'animation': ['animation', 'animate', '2d', '3d', 'motion', 'vfx', 'effects'],
+  'photography': ['photo', 'photography', 'camera', 'portrait', 'landscape'],
+  'digital': ['digital', 'content', 'social media', 'marketing', 'online'],
+  'gaming': ['game', 'gaming', 'video game', 'game development', 'esports'],
+  'entertainment': ['entertainment', 'business', 'events', 'media'],
+}
+
+const matchesSearch = (course: { name: string; description: string }, programType: string, query: string): boolean => {
+  const q = query.toLowerCase()
+  const name = course.name.toLowerCase()
+  const desc = course.description.toLowerCase()
+  const pType = programType.toLowerCase()
+
+  // Direct match on name, description, or program type
+  if (name.includes(q) || desc.includes(q) || pType.includes(q)) return true
+
+  // Industry keyword matching
+  for (const [, keywords] of Object.entries(INDUSTRY_KEYWORDS)) {
+    if (keywords.some(k => q.includes(k))) {
+      // Check if the course matches any keyword in the same industry
+      if (keywords.some(k => name.includes(k) || desc.includes(k))) return true
+    }
+  }
+
+  // Word-level matching (match if all search words appear somewhere)
+  const words = q.split(/\s+/).filter(w => w.length > 1)
+  if (words.length > 1) {
+    const combined = `${name} ${desc} ${pType}`
+    return words.every(w => combined.includes(w))
+  }
+
+  return false
+}
+
 export default function CoursesPage({
   programs,
   courses,
@@ -144,6 +183,17 @@ export default function CoursesPage({
   const [activeTab, setActiveTab] = useState('All Programmes')
   const [sortValue, setSortValue] = useState('All Programmes')
   const [searchQuery, setSearchQuery] = useState('')
+  const [isSearching, setIsSearching] = useState(false)
+
+  // Read ?q= param from URL on mount
+  useEffect(() => {
+    const q = router.query.q
+    if (typeof q === 'string' && q.trim()) {
+      setSearchQuery(q.trim())
+      setIsSearching(true)
+      setActiveTab('All Programmes')
+    }
+  }, [router.query.q])
 
   // Clean all course names once
   const cleanedCourses = useMemo(() => courses.map(cleanCourseName), [courses])
@@ -196,23 +246,56 @@ export default function CoursesPage({
     }>
   }, [programs, cleanedCourses])
 
-  // Filter sections based on active tab
+  // Filter sections based on active tab AND search query
   const filteredSections = useMemo(() => {
-    if (activeTab === 'All Programmes') return programSections
-    return programSections.filter((section) => section.config.tabName === activeTab)
-  }, [activeTab, programSections])
+    let sections = programSections
+
+    // Apply tab filter
+    if (activeTab !== 'All Programmes') {
+      sections = sections.filter((section) => section.config.tabName === activeTab)
+    }
+
+    // Apply search filter
+    if (isSearching && searchQuery.trim()) {
+      const query = searchQuery.trim()
+      sections = sections
+        .map((section) => ({
+          ...section,
+          courses: section.courses.filter((course) =>
+            matchesSearch(course, section.title, query)
+          ),
+        }))
+        .filter((section) => section.courses.length > 0)
+    }
+
+    return sections
+  }, [activeTab, programSections, isSearching, searchQuery])
+
+  // Total results count
+  const totalResults = useMemo(() =>
+    filteredSections.reduce((sum, section) => sum + section.courses.length, 0),
+    [filteredSections]
+  )
 
   // Handle search
   const handleSearch = () => {
     if (searchQuery.trim()) {
-      router.push(`/courses?q=${encodeURIComponent(searchQuery.trim())}`)
+      setIsSearching(true)
+      setActiveTab('All Programmes')
+      router.push(`/courses?q=${encodeURIComponent(searchQuery.trim())}`, undefined, { shallow: true })
     }
+  }
+
+  // Clear search
+  const handleClearSearch = () => {
+    setSearchQuery('')
+    setIsSearching(false)
+    router.push('/courses', undefined, { shallow: true })
   }
 
   // Handle sort change
   const handleSortChange = (value: string) => {
     setSortValue(value)
-    // Map sort options to tabs
     const tabMap: Record<string, string> = {
       'All Programmes': 'All Programmes',
       'Diploma Programmes': 'Diploma Programmes',
@@ -239,17 +322,49 @@ export default function CoursesPage({
 
       <CoursesHero
         searchQuery={searchQuery}
-        onSearchChange={setSearchQuery}
+        onSearchChange={(q) => {
+          setSearchQuery(q)
+          if (!q.trim()) handleClearSearch()
+        }}
         onSearch={handleSearch}
       />
 
       <CoursesAccreditationBar />
 
-      <CoursesTabs
-        activeTab={activeTab}
-        onTabChange={setActiveTab}
-        tabs={TAB_OPTIONS}
-      />
+      {/* Search Results Banner */}
+      {isSearching && (
+        <div className="w-full bg-[#FFF8F0] px-4 py-4 md:px-20">
+          <div className="mx-auto flex max-w-[1280px] items-center justify-between">
+            <p className="font-proxima text-sm text-[#666]">
+              {totalResults > 0 ? (
+                <>
+                  Showing <span className="font-bold text-[#171717]">{totalResults}</span> result{totalResults !== 1 ? 's' : ''} for{' '}
+                  <span className="font-bold text-[#BA2E36]">&ldquo;{searchQuery}&rdquo;</span>
+                </>
+              ) : (
+                <>
+                  No results found for <span className="font-bold text-[#BA2E36]">&ldquo;{searchQuery}&rdquo;</span>
+                </>
+              )}
+            </p>
+            <button
+              type="button"
+              onClick={handleClearSearch}
+              className="font-proxima text-sm font-semibold text-[#BA2E36] underline-offset-2 hover:underline"
+            >
+              Clear search
+            </button>
+          </div>
+        </div>
+      )}
+
+      {!isSearching && (
+        <CoursesTabs
+          activeTab={activeTab}
+          onTabChange={setActiveTab}
+          tabs={TAB_OPTIONS}
+        />
+      )}
 
       <CoursesFilter
         sortValue={sortValue}
@@ -272,6 +387,31 @@ export default function CoursesPage({
           courses={section.courses}
         />
       ))}
+
+      {/* No Results State */}
+      {isSearching && totalResults === 0 && (
+        <section className="w-full bg-white px-4 py-16 text-center md:px-20 md:py-24">
+          <p className="font-proxima text-lg text-[#999]">
+            Try searching for a course name, programme type, or industry like
+          </p>
+          <div className="mx-auto mt-4 flex max-w-[500px] flex-wrap justify-center gap-2">
+            {['Film Production', 'Graphic Design', 'Music', 'Animation', 'Diploma'].map((term) => (
+              <button
+                key={term}
+                type="button"
+                onClick={() => {
+                  setSearchQuery(term)
+                  setIsSearching(true)
+                  router.push(`/courses?q=${encodeURIComponent(term)}`, undefined, { shallow: true })
+                }}
+                className="rounded-full border border-[#e0e0e0] bg-white px-4 py-2 font-proxima text-sm text-[#666] transition-colors hover:border-[#BA2E36] hover:text-[#BA2E36]"
+              >
+                {term}
+              </button>
+            ))}
+          </div>
+        </section>
+      )}
 
       <CoursesFAQ />
       <CoursesFinalCTA />

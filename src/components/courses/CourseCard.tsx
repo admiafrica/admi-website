@@ -25,7 +25,7 @@ export function CourseCard({
   return (
     <Link
       href={`/courses/${slug}`}
-      className="group flex min-h-[430px] w-full flex-col overflow-hidden rounded-xl bg-white shadow-sm transition-shadow duration-200 hover:shadow-md md:w-[390px] md:flex-1"
+      className="group flex h-[430px] w-full flex-col overflow-hidden rounded-xl bg-white shadow-[0_2px_12px_rgba(0,0,0,0.08)] transition-shadow duration-200 hover:shadow-[0_4px_24px_rgba(0,0,0,0.12)]"
       aria-label={`View ${name} programme`}
     >
       {/* Image Section */}
