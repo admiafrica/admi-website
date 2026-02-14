@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import Link from 'next/link'
-import { Box, TextInput, Select, Textarea, Checkbox, Button as MantineButton } from '@mantine/core'
 import {
   IconCircleCheck,
   IconCalendar,
@@ -12,19 +11,9 @@ import {
 
 import { MainLayout } from '@/layouts/v3/MainLayout'
 import { PageSEO } from '@/components/shared/v3'
+import type { ApplicationFormData, SelectOption, KeyDate } from '@/types/apply'
 
-interface ApplicationFormData {
-  firstName: string
-  lastName: string
-  email: string
-  phone: string
-  programme: string
-  intake: string
-  additionalInfo: string
-  consent: boolean
-}
-
-const PROGRAMME_OPTIONS = [
+const PROGRAMME_OPTIONS: SelectOption[] = [
   { value: 'Film Production Diploma', label: 'Film Production Diploma' },
   { value: 'Music Production Diploma', label: 'Music Production Diploma' },
   { value: 'Animation Diploma', label: 'Animation Diploma' },
@@ -35,7 +24,7 @@ const PROGRAMME_OPTIONS = [
   { value: 'UI/UX Design Professional Certificate', label: 'UI/UX Design Professional Certificate' }
 ]
 
-const INTAKE_OPTIONS = [
+const INTAKE_OPTIONS: SelectOption[] = [
   { value: 'May 2026', label: 'May 2026' },
   { value: 'September 2026', label: 'September 2026' },
   { value: 'January 2027', label: 'January 2027' }
@@ -48,7 +37,7 @@ const HERO_CHECKLIST = [
   '3 intake windows per year'
 ]
 
-const KEY_DATES = [
+const KEY_DATES: KeyDate[] = [
   { intake: 'May 2026 Intake', deadline: 'Applications close: March 15' },
   { intake: 'September 2026 Intake', deadline: 'Applications close: July 23' },
   { intake: 'January 2027 Intake', deadline: 'Opens: Aug 2026' }
@@ -197,172 +186,143 @@ export default function ApplyPage() {
                 <form onSubmit={handleSubmit} className="mt-10">
                   {/* Row 1: First Name + Last Name */}
                   <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-                    <TextInput
-                      label="First Name *"
-                      placeholder="Enter your first name"
-                      required
-                      size="md"
-                      radius={8}
-                      value={formData.firstName}
-                      onChange={(e) => updateField('firstName', e.currentTarget.value)}
-                      classNames={{
-                        label: 'font-nexa text-[14px] font-semibold text-[#333] mb-1.5',
-                        input: 'font-nexa border-[#D9D9D9] focus:border-[#BA2E36] h-[48px]'
-                      }}
-                    />
-                    <TextInput
-                      label="Last Name *"
-                      placeholder="Enter your last name"
-                      required
-                      size="md"
-                      radius={8}
-                      value={formData.lastName}
-                      onChange={(e) => updateField('lastName', e.currentTarget.value)}
-                      classNames={{
-                        label: 'font-nexa text-[14px] font-semibold text-[#333] mb-1.5',
-                        input: 'font-nexa border-[#D9D9D9] focus:border-[#BA2E36] h-[48px]'
-                      }}
-                    />
+                    <label className="flex flex-col">
+                      <span className="mb-1.5 font-nexa text-[14px] font-semibold text-[#333]">First Name *</span>
+                      <input
+                        type="text"
+                        placeholder="Enter your first name"
+                        required
+                        value={formData.firstName}
+                        onChange={(e) => updateField('firstName', e.currentTarget.value)}
+                        className="h-[48px] rounded-lg border border-[#D9D9D9] px-3 font-nexa text-[14px] text-[#171717] focus:border-[#BA2E36] focus:outline-none"
+                      />
+                    </label>
+                    <label className="flex flex-col">
+                      <span className="mb-1.5 font-nexa text-[14px] font-semibold text-[#333]">Last Name *</span>
+                      <input
+                        type="text"
+                        placeholder="Enter your last name"
+                        required
+                        value={formData.lastName}
+                        onChange={(e) => updateField('lastName', e.currentTarget.value)}
+                        className="h-[48px] rounded-lg border border-[#D9D9D9] px-3 font-nexa text-[14px] text-[#171717] focus:border-[#BA2E36] focus:outline-none"
+                      />
+                    </label>
                   </div>
 
                   {/* Row 2: Email + Phone */}
                   <div className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2">
-                    <TextInput
-                      label="Email Address *"
-                      placeholder="you@example.com"
-                      type="email"
-                      required
-                      size="md"
-                      radius={8}
-                      value={formData.email}
-                      onChange={(e) => updateField('email', e.currentTarget.value)}
-                      classNames={{
-                        label: 'font-nexa text-[14px] font-semibold text-[#333] mb-1.5',
-                        input: 'font-nexa border-[#D9D9D9] focus:border-[#BA2E36] h-[48px]'
-                      }}
-                    />
-                    <TextInput
-                      label="Phone Number *"
-                      placeholder="712 345 678"
-                      required
-                      size="md"
-                      radius={8}
-                      leftSection={
-                        <span className="font-nexa text-[14px] text-[#555]">+254</span>
-                      }
-                      leftSectionWidth={56}
-                      value={formData.phone}
-                      onChange={(e) => {
-                        const digits = e.currentTarget.value.replace(/\D/g, '')
-                        updateField('phone', digits)
-                      }}
-                      classNames={{
-                        label: 'font-nexa text-[14px] font-semibold text-[#333] mb-1.5',
-                        input: 'font-nexa border-[#D9D9D9] focus:border-[#BA2E36] h-[48px]'
-                      }}
-                    />
+                    <label className="flex flex-col">
+                      <span className="mb-1.5 font-nexa text-[14px] font-semibold text-[#333]">Email Address *</span>
+                      <input
+                        type="email"
+                        placeholder="you@example.com"
+                        required
+                        value={formData.email}
+                        onChange={(e) => updateField('email', e.currentTarget.value)}
+                        className="h-[48px] rounded-lg border border-[#D9D9D9] px-3 font-nexa text-[14px] text-[#171717] focus:border-[#BA2E36] focus:outline-none"
+                      />
+                    </label>
+                    <label className="flex flex-col">
+                      <span className="mb-1.5 font-nexa text-[14px] font-semibold text-[#333]">Phone Number *</span>
+                      <div className="flex h-[48px] rounded-lg border border-[#D9D9D9] focus-within:border-[#BA2E36]">
+                        <span className="flex items-center border-r border-[#E8E8E8] px-3 font-nexa text-[14px] text-[#555]">+254</span>
+                        <input
+                          type="tel"
+                          placeholder="712 345 678"
+                          required
+                          value={formData.phone}
+                          onChange={(e) => {
+                            const digits = e.currentTarget.value.replace(/\D/g, '')
+                            updateField('phone', digits)
+                          }}
+                          className="w-full px-3 font-nexa text-[14px] text-[#171717] outline-none"
+                        />
+                      </div>
+                    </label>
                   </div>
 
                   {/* Row 3: Programme + Intake */}
                   <div className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2">
-                    <Select
-                      label="Programme of Interest *"
-                      placeholder="Select a programme"
-                      data={PROGRAMME_OPTIONS}
-                      required
-                      searchable
-                      size="md"
-                      radius={8}
-                      value={formData.programme}
-                      onChange={(val) => updateField('programme', val || '')}
-                      classNames={{
-                        label: 'font-nexa text-[14px] font-semibold text-[#333] mb-1.5',
-                        input: 'font-nexa border-[#D9D9D9] focus:border-[#BA2E36] h-[48px]'
-                      }}
-                    />
-                    <Select
-                      label="Preferred Intake *"
-                      placeholder="Select an intake"
-                      data={INTAKE_OPTIONS}
-                      required
-                      size="md"
-                      radius={8}
-                      value={formData.intake}
-                      onChange={(val) => updateField('intake', val || '')}
-                      classNames={{
-                        label: 'font-nexa text-[14px] font-semibold text-[#333] mb-1.5',
-                        input: 'font-nexa border-[#D9D9D9] focus:border-[#BA2E36] h-[48px]'
-                      }}
-                    />
+                    <label className="flex flex-col">
+                      <span className="mb-1.5 font-nexa text-[14px] font-semibold text-[#333]">Programme of Interest *</span>
+                      <select
+                        required
+                        value={formData.programme}
+                        onChange={(e) => updateField('programme', e.currentTarget.value)}
+                        className="h-[48px] rounded-lg border border-[#D9D9D9] bg-white px-3 font-nexa text-[14px] text-[#171717] focus:border-[#BA2E36] focus:outline-none"
+                      >
+                        <option value="">Select a programme</option>
+                        {PROGRAMME_OPTIONS.map((option) => (
+                          <option key={option.value} value={option.value}>
+                            {option.label}
+                          </option>
+                        ))}
+                      </select>
+                    </label>
+                    <label className="flex flex-col">
+                      <span className="mb-1.5 font-nexa text-[14px] font-semibold text-[#333]">Preferred Intake *</span>
+                      <select
+                        required
+                        value={formData.intake}
+                        onChange={(e) => updateField('intake', e.currentTarget.value)}
+                        className="h-[48px] rounded-lg border border-[#D9D9D9] bg-white px-3 font-nexa text-[14px] text-[#171717] focus:border-[#BA2E36] focus:outline-none"
+                      >
+                        <option value="">Select an intake</option>
+                        {INTAKE_OPTIONS.map((option) => (
+                          <option key={option.value} value={option.value}>
+                            {option.label}
+                          </option>
+                        ))}
+                      </select>
+                    </label>
                   </div>
 
                   {/* Row 4: Additional Information */}
                   <div className="mt-5">
-                    <Textarea
-                      label="Additional Information"
-                      placeholder="Tell us about your background, interests, or any questions you may have..."
-                      size="md"
-                      radius={8}
-                      minRows={4}
-                      autosize
-                      value={formData.additionalInfo}
-                      onChange={(e) => updateField('additionalInfo', e.currentTarget.value)}
-                      classNames={{
-                        label: 'font-nexa text-[14px] font-semibold text-[#333] mb-1.5',
-                        input: 'font-nexa border-[#D9D9D9] focus:border-[#BA2E36]'
-                      }}
-                    />
+                    <label className="flex flex-col">
+                      <span className="mb-1.5 font-nexa text-[14px] font-semibold text-[#333]">Additional Information</span>
+                      <textarea
+                        placeholder="Tell us about your background, interests, or any questions you may have..."
+                        rows={4}
+                        value={formData.additionalInfo}
+                        onChange={(e) => updateField('additionalInfo', e.currentTarget.value)}
+                        className="rounded-lg border border-[#D9D9D9] px-3 py-2.5 font-nexa text-[14px] text-[#171717] focus:border-[#BA2E36] focus:outline-none"
+                      />
+                    </label>
                   </div>
 
                   {/* Consent */}
                   <div className="mt-6">
-                    <Checkbox
-                      label={
-                        <span className="font-nexa text-[14px] text-[#555]">
-                          I agree to the{' '}
-                          <Link href="/privacy-policy" className="text-[#BA2E36] underline hover:text-[#8B1A24]">
-                            Terms &amp; Conditions
-                          </Link>{' '}
-                          and{' '}
-                          <Link href="/privacy-policy" className="text-[#BA2E36] underline hover:text-[#8B1A24]">
-                            Privacy Policy
-                          </Link>{' '}
-                          *
-                        </span>
-                      }
-                      checked={formData.consent}
-                      onChange={(e) => updateField('consent', e.currentTarget.checked)}
-                      color="#BA2E36"
-                      radius={4}
-                      size="md"
-                    />
+                    <label className="flex items-start gap-3">
+                      <input
+                        type="checkbox"
+                        checked={formData.consent}
+                        onChange={(e) => updateField('consent', e.currentTarget.checked)}
+                        className="mt-0.5 h-4 w-4 rounded border-[#D9D9D9] text-[#BA2E36] focus:ring-[#BA2E36]"
+                      />
+                      <span className="font-nexa text-[14px] text-[#555]">
+                        I agree to the{' '}
+                        <Link href="/privacy-policy" className="text-[#BA2E36] underline hover:text-[#8B1A24]">
+                          Terms &amp; Conditions
+                        </Link>{' '}
+                        and{' '}
+                        <Link href="/privacy-policy" className="text-[#BA2E36] underline hover:text-[#8B1A24]">
+                          Privacy Policy
+                        </Link>{' '}
+                        *
+                      </span>
+                    </label>
                   </div>
 
                   {/* Submit */}
-                  <MantineButton
+                  <button
                     type="submit"
-                    fullWidth
-                    size="lg"
-                    radius={8}
-                    loading={isSubmitting}
                     disabled={!isFormValid}
-                    className="mt-8 font-nexa text-[16px] font-semibold tracking-wide"
-                    styles={{
-                      root: {
-                        backgroundColor: '#BA2E36',
-                        height: 56,
-                        '&:hover': {
-                          backgroundColor: '#a12730'
-                        },
-                        '&[data-disabled]': {
-                          backgroundColor: '#D9D9D9',
-                          color: '#999'
-                        }
-                      }
-                    }}
+                    className="mt-8 h-14 w-full rounded-lg bg-[#BA2E36] font-nexa text-[16px] font-semibold tracking-wide text-white transition hover:bg-[#a12730] disabled:cursor-not-allowed disabled:bg-[#D9D9D9] disabled:text-[#999]"
                   >
-                    Submit Application
-                  </MantineButton>
+                    {isSubmitting ? 'Submitting...' : 'Submit Application'}
+                  </button>
                 </form>
               )}
             </div>

@@ -8,7 +8,6 @@ import { NewsItemCard } from '@/components/cards'
 import { InstitutionalFAQSchema } from '@/components/seo/InstitutionalFAQSchema'
 import { IContentfulEntry } from '@/types'
 
-import ImageNews from '@/assets/images/featured-news.svg'
 
 const RESOURCE_TABS = ['Free Resources', 'Premium', 'Guides', 'Templates', 'Case Studies']
 

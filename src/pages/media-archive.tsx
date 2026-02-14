@@ -1,15 +1,15 @@
 import { useState } from 'react'
 import Link from 'next/link'
-import { Box } from '@mantine/core'
-import { IconDownload, IconCamera, IconVideo, IconCalendarEvent, IconPhoto, IconFileText } from '@tabler/icons-react'
+import { IconDownload, IconCamera, IconPhoto, IconFileText } from '@tabler/icons-react'
 
 import { MainLayout } from '@/layouts/v3/MainLayout'
 import { PageSEO } from '@/components/shared/v3'
+import type { GalleryItemLarge, GalleryItemSmall, PressKitItem } from '@/types/media-archive'
 
 const TABS = ['All Media', 'Campus Photos', 'Student Work', 'Events', 'Videos', 'Press Kit'] as const
 type TabValue = (typeof TABS)[number]
 
-const GALLERY_ITEMS_ROW_1 = [
+const GALLERY_ITEMS_ROW_1: GalleryItemLarge[] = [
   {
     category: 'CAMPUS LIFE',
     title: 'Behind the Scenes at ADMI Studios',
@@ -22,7 +22,7 @@ const GALLERY_ITEMS_ROW_1 = [
   }
 ]
 
-const GALLERY_ITEMS_ROW_2 = [
+const GALLERY_ITEMS_ROW_2: GalleryItemSmall[] = [
   {
     label: 'Student Film Screening',
     gradient: 'from-[#2d1b69] to-[#1a1a2e]'
@@ -37,7 +37,7 @@ const GALLERY_ITEMS_ROW_2 = [
   }
 ]
 
-const PRESS_KIT_ITEMS = [
+const PRESS_KIT_ITEMS: PressKitItem[] = [
   {
     icon: IconPhoto,
     iconBg: 'bg-[#BA2E3615]',

@@ -1,4 +1,3 @@
-import { Box } from '@mantine/core'
 import Link from 'next/link'
 import {
   IconArrowRight,
@@ -12,12 +11,13 @@ import {
 
 import { MainLayout } from '@/layouts/v3/MainLayout'
 import { PageSEO } from '@/components/shared/v3'
+import type { FacultyMember, JobOpening, WorkBenefit, TeamMember } from '@/types/work-with-us'
 
 /* ------------------------------------------------------------------ */
 /*  Data                                                               */
 /* ------------------------------------------------------------------ */
 
-const faculty = [
+const faculty: FacultyMember[] = [
   {
     name: 'Prof. Michael Otieno',
     title: 'Head of Film & TV',
@@ -41,7 +41,7 @@ const faculty = [
   }
 ]
 
-const openings = [
+const openings: JobOpening[] = [
   {
     title: 'Film Production Lecturer',
     type: 'Full-time',
@@ -76,7 +76,7 @@ const openings = [
   }
 ]
 
-const benefits = [
+const benefits: WorkBenefit[] = [
   {
     icon: IconBulb,
     title: 'Creative Environment',
@@ -99,7 +99,7 @@ const benefits = [
   }
 ]
 
-const teamMembers = [
+const teamMembers: TeamMember[] = [
   { name: 'Angela Ndegwa', role: 'Director of Admissions', image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=600&q=80' },
   { name: 'David Ochieng', role: 'Head of Student Affairs', image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=600&q=80' },
   { name: 'Fatima Hassan', role: 'HR & People Lead', image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=600&q=80' },

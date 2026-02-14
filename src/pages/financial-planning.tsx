@@ -1,15 +1,15 @@
-import { Accordion, Box } from '@mantine/core'
 import Link from 'next/link'
 import { IconDownload, IconCheck, IconStar, IconHeart, IconUsers, IconBriefcase } from '@tabler/icons-react'
 
 import { MainLayout } from '@/layouts/v3/MainLayout'
 import { PageSEO } from '@/components/shared/v3'
+import type { FeeCard, PaymentPlan, Scholarship, FinancialFaqItem } from '@/types/financial-planning'
 
 /* ------------------------------------------------------------------ */
 /*  Data                                                               */
 /* ------------------------------------------------------------------ */
 
-const feeCards = [
+const feeCards: FeeCard[] = [
   {
     title: 'Diploma Programmes',
     price: 'From KES 15,000/month',
@@ -50,7 +50,7 @@ const feeCards = [
     ]
   },
   {
-    title: "Bachelor\u2019s Programme",
+    title: 'Bachelor\u2019s Programme',
     price: 'Contact for Pricing',
     duration: '1\u20132 years',
     badge: 'Rubika International',
@@ -64,7 +64,7 @@ const feeCards = [
   }
 ]
 
-const paymentPlans = [
+const paymentPlans: PaymentPlan[] = [
   {
     title: 'Monthly Instalments',
     subtitle: 'From KES 5,000/mo',
@@ -91,7 +91,7 @@ const paymentPlans = [
   }
 ]
 
-const scholarships = [
+const scholarships: Scholarship[] = [
   {
     title: 'Merit-Based Scholarships',
     description:
@@ -121,7 +121,7 @@ const scholarships = [
   }
 ]
 
-const faqItems = [
+const faqItems: FinancialFaqItem[] = [
   {
     q: 'What is included in the tuition fees?',
     a: 'Tuition fees cover all teaching and instruction, access to studio facilities and equipment, learning materials and software licences, portfolio development support, and career services. Some programmes may have additional costs for specialised materials or external certification fees, which are outlined in the programme-specific fee structure.'
@@ -378,19 +378,15 @@ export default function FinancialPlanningPage() {
               </p>
             </div>
 
-            <div className="mx-auto mt-12 max-w-[840px]">
-              <Accordion variant="separated" radius="md">
-                {faqItems.map((item) => (
-                  <Accordion.Item key={item.q} value={item.q}>
-                    <Accordion.Control className="font-nexa text-[16px] font-bold text-[#171717]">
-                      {item.q}
-                    </Accordion.Control>
-                    <Accordion.Panel>
-                      <p className="font-proxima text-[15px] leading-[1.65] text-[#555]">{item.a}</p>
-                    </Accordion.Panel>
-                  </Accordion.Item>
-                ))}
-              </Accordion>
+            <div className="mx-auto mt-12 max-w-[840px] space-y-3">
+              {faqItems.map((item) => (
+                <details key={item.q} className="rounded-xl border border-[#E8E8E8] bg-white p-5">
+                  <summary className="cursor-pointer list-none pr-4 font-nexa text-[16px] font-bold text-[#171717]">
+                    {item.q}
+                  </summary>
+                  <p className="pt-3 font-proxima text-[15px] leading-[1.65] text-[#555]">{item.a}</p>
+                </details>
+              ))}
             </div>
           </div>
         </section>
