@@ -1,14 +1,21 @@
-import { Box, Pagination } from '@mantine/core'
 import { useState, useEffect, useCallback } from 'react'
 import { useRouter } from 'next/router'
+import { IconSearch, IconX, IconChevronDown } from '@tabler/icons-react'
 
 import { PageSEO } from '@/components/shared/v3'
 import { MainLayout } from '@/layouts/v3/MainLayout'
-import { AnnouncementCard, NewsItemCard } from '@/components/cards'
+import { NewsItemCard } from '@/components/cards'
 import { InstitutionalFAQSchema } from '@/components/seo/InstitutionalFAQSchema'
 import { IContentfulEntry } from '@/types'
 
 import ImageNews from '@/assets/images/featured-news.svg'
+
+const RESOURCE_TABS = ['Free Resources', 'Premium', 'Guides', 'Templates', 'Case Studies']
+
+const INDUSTRY_OPTIONS = ['All Industries', 'Film & TV', 'Music', 'Design', 'Animation', 'Gaming', 'Photography', 'Digital Marketing']
+const TOPIC_OPTIONS = ['All Topics', 'Career Guides', 'Tutorials', 'Industry Insights', 'Student Life', 'Portfolio Tips']
+const COURSE_OPTIONS = ['All Courses', 'Film Production', 'Music Production', 'Graphic Design', 'Animation', 'Photography', 'Digital Marketing', 'Sound Engineering', 'UI/UX Design']
+const TAG_OPTIONS = ['All Tags', 'Beginner', 'Intermediate', 'Advanced', 'Hybrid Learning', 'Freelancing', 'Portfolio']
 
 interface PaginationData {
   page: number
@@ -31,10 +38,20 @@ export default function ResourcesPage({ initialResources, initialFeatured, initi
   const [featured] = useState(initialFeatured)
   const [pagination, setPagination] = useState(initialPagination)
   const [loading, setLoading] = useState(false)
+  const [activeTab, setActiveTab] = useState('Free Resources')
+  const [searchQuery, setSearchQuery] = useState('')
+  const [filters, setFilters] = useState({ industry: '', topic: '', course: '', tag: '' })
 
   const pageFromUrl = parseInt(router.query.page as string) || 1
   const isPreview = router.query.preview === 'true'
   const [currentPage, setCurrentPage] = useState(pageFromUrl)
+
+  const hasActiveFilters = Object.values(filters).some(v => v !== '') || searchQuery.length > 0
+
+  const clearFilters = () => {
+    setFilters({ industry: '', topic: '', course: '', tag: '' })
+    setSearchQuery('')
+  }
 
   const fetchPage = useCallback(
     async (page: number) => {
@@ -65,8 +82,13 @@ export default function ResourcesPage({ initialResources, initialFeatured, initi
     router.push(`/resources?page=${page}`, undefined, { shallow: true })
   }
 
+  const featuredFields = featured?.fields as any
+  const featuredImage = featuredFields?.featuredImage?.fields?.file?.url
+    || featuredFields?.image?.fields?.file?.url
+    || featuredFields?.thumbnail?.fields?.file?.url
+
   return (
-    <MainLayout footerBgColor="white">
+    <MainLayout footerBgColor="#1a1a1a">
       <PageSEO
         title="Resources"
         description="Featured resources, guides, and insights for hybrid creative learners at ADMI."
@@ -74,110 +96,177 @@ export default function ResourcesPage({ initialResources, initialFeatured, initi
       />
       <InstitutionalFAQSchema faqType="academic" />
 
-      <Box className="w-full">
-        <Box className="bg-[#0F2E2A] px-4 py-16 text-white xl:px-0">
-          <Box className="mx-auto w-full max-w-screen-xl">
-            <p className="font-nexa text-[14px] uppercase tracking-[0.15em] text-[#B7D8CF]">/resources</p>
-            <h1 className="pt-4 font-fraunces text-[46px] font-bold leading-[1.15]">
-              Featured Resources for Hybrid Learners
-            </h1>
-            <p className="pt-4 font-nexa text-[18px] text-white/80">
-              Explore practical toolkits, career guides, and learning resources built for creative students.
-            </p>
+      <div className="w-full">
+        {/* Hero with Featured Resource */}
+        <div
+          className="px-4 py-16 xl:px-0"
+          style={{
+            background: 'linear-gradient(142deg, #0F2E2A 0%, #0A1F1D 55%, #091110 100%)'
+          }}
+        >
+          <div className="mx-auto flex w-full max-w-screen-xl flex-col gap-10 lg:flex-row lg:items-center">
+            <div className="flex-1">
+              <p className="text-[14px] font-bold uppercase tracking-[0.1em] text-[#B7D8CF]">/resources</p>
+              <h1 className="mt-4 font-fraunces text-[36px] font-bold leading-[1.15] text-white sm:text-[46px]">
+                {featuredFields?.title || 'How Hybrid Creative Education Is Reshaping Media Careers in Africa'}
+              </h1>
+              <p className="mt-4 text-[16px] leading-[1.7] text-white/70">
+                {featuredFields?.description || featuredFields?.excerpt || 'Explore practical toolkits, career guides, and learning resources built for creative students.'}
+              </p>
+              <a href="#resources" className="mt-4 inline-block text-[14px] font-bold text-[#08F6CF] hover:underline">
+                Explore Resources →
+              </a>
+            </div>
+            <div className="w-full lg:w-[430px]">
+              {featuredImage ? (
+                <div
+                  className="h-[270px] w-full rounded-2xl bg-cover bg-center"
+                  style={{ backgroundImage: `url(${featuredImage.startsWith('//') ? `https:${featuredImage}` : featuredImage})` }}
+                />
+              ) : (
+                <div className="h-[270px] w-full rounded-2xl bg-gradient-to-br from-[#1a3d36] to-[#0A1F1D]" />
+              )}
+            </div>
+          </div>
+        </div>
 
-            <Box className="mt-8 flex flex-wrap gap-2">
-              <span className="rounded-full border border-white/30 px-3 py-1 text-[13px]">Industry: All</span>
-              <span className="rounded-full border border-white/30 px-3 py-1 text-[13px]">Course: All</span>
-              <span className="rounded-full border border-white/30 px-3 py-1 text-[13px]">Topic: All</span>
-            </Box>
-          </Box>
-        </Box>
-
-        <Box className="border-y border-[#E8E8E8] bg-white">
-          <Box className="mx-auto flex w-full max-w-screen-xl items-center justify-around px-4 py-6 xl:px-0">
-            <Box className="text-center">
-              <p className="font-fraunces text-[34px] font-bold text-[#171717]">120+</p>
-              <p className="font-nexa text-[14px] text-[#666]">Learning Resources</p>
-            </Box>
-            <Box className="h-[44px] w-px bg-[#DADADA]" />
-            <Box className="text-center">
-              <p className="font-fraunces text-[34px] font-bold text-[#171717]">26</p>
-              <p className="font-nexa text-[14px] text-[#666]">Hybrid Learning Guides</p>
-            </Box>
-            <Box className="h-[44px] w-px bg-[#DADADA]" />
-            <Box className="text-center">
-              <p className="font-fraunces text-[34px] font-bold text-[#171717]">Weekly</p>
-              <p className="font-nexa text-[14px] text-[#666]">Fresh Resources</p>
-            </Box>
-          </Box>
-        </Box>
-
-        <Box className="border-b border-[#E8E8E8] bg-white">
-          <Box className="mx-auto flex w-full max-w-screen-xl items-center gap-2 px-4 xl:px-0">
-            {['#industry', '#course', '#topic', '#format'].map((tab, idx) => (
-              <span
+        {/* Resource Tabs */}
+        <div className="border-b border-[#E8E8E8] bg-white">
+          <div className="mx-auto flex w-full max-w-screen-xl items-center gap-0 overflow-x-auto px-4 xl:px-0">
+            {RESOURCE_TABS.map((tab) => (
+              <button
                 key={tab}
-                className={`px-4 py-4 font-nexa text-[14px] font-bold ${idx === 0 ? 'border-b-[3px] border-[#BA2E36] text-[#171717]' : 'text-[#666]'}`}
+                onClick={() => setActiveTab(tab)}
+                className={`whitespace-nowrap px-5 py-4 text-[14px] font-bold transition-colors ${
+                  activeTab === tab
+                    ? 'border-b-[3px] border-[#BA2E36] text-[#BA2E36]'
+                    : 'text-[#666] hover:text-[#333]'
+                }`}
               >
                 {tab}
-              </span>
+              </button>
             ))}
-          </Box>
-        </Box>
+          </div>
+        </div>
 
-        <Box className="mx-auto w-full max-w-screen-xl px-4 py-16 xl:px-0">
-          {featured && (
-            <AnnouncementCard
-              destination="resources"
-              announcement={featured.fields}
-              bgColor="#0A3D3D"
-              textColor="white"
-              arrowColor="white"
-              image={ImageNews}
-              featured
-            />
-          )}
-        </Box>
+        {/* Filter & Search Section */}
+        <div className="border-b border-[#E8E8E8] bg-[#F9F9F9] px-4 py-6 xl:px-0" id="resources">
+          <div className="mx-auto w-full max-w-screen-xl">
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+              <p className="text-[15px] font-bold text-[#333]">Filter Resources</p>
+              <div className="flex items-center gap-2 rounded-lg border border-[#d0d0d0] bg-white px-4 py-2.5">
+                <IconSearch size={16} className="text-[#999]" />
+                <input
+                  type="text"
+                  placeholder="Search resources..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-[200px] border-none bg-transparent text-[14px] text-[#333] outline-none placeholder:text-[#999] sm:w-[260px]"
+                />
+              </div>
+            </div>
+            <div className="mt-4 flex flex-wrap items-center gap-3">
+              {([
+                { key: 'industry', label: 'Industry', options: INDUSTRY_OPTIONS },
+                { key: 'topic', label: 'Topic', options: TOPIC_OPTIONS },
+                { key: 'course', label: 'Course', options: COURSE_OPTIONS },
+                { key: 'tag', label: 'Tag', options: TAG_OPTIONS }
+              ] as const).map(({ key, label, options }) => (
+                <div key={key} className="relative">
+                  <select
+                    value={filters[key]}
+                    onChange={(e) => setFilters(prev => ({ ...prev, [key]: e.target.value }))}
+                    className="appearance-none rounded-lg border border-[#d0d0d0] bg-white py-2.5 pl-4 pr-8 text-[13px] font-medium text-[#333] outline-none focus:border-[#BA2E36]"
+                  >
+                    <option value="">{label}</option>
+                    {options.map(opt => (
+                      <option key={opt} value={opt}>{opt}</option>
+                    ))}
+                  </select>
+                  <IconChevronDown size={14} className="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 text-[#999]" />
+                </div>
+              ))}
+              {hasActiveFilters && (
+                <button
+                  onClick={clearFilters}
+                  className="flex items-center gap-1 px-4 py-2 text-[13px] font-medium text-[#BA2E36] hover:underline"
+                >
+                  <IconX size={14} /> Clear All
+                </button>
+              )}
+            </div>
+          </div>
+        </div>
 
-        <Box className="mx-auto grid w-full max-w-screen-xl grid-cols-1 gap-6 px-4 pb-6 sm:grid-cols-2 lg:grid-cols-3 xl:px-0">
+        {/* Featured Resources Header */}
+        <div className="mx-auto w-full max-w-screen-xl px-4 pt-14 xl:px-0">
+          <p className="text-[13px] font-bold uppercase tracking-[0.2em] text-[#BA2E36]">
+            POPULAR RIGHT NOW
+          </p>
+          <h2 className="mt-2 font-fraunces text-[36px] font-bold text-[#171717]">
+            Featured Resources for Hybrid Learners
+          </h2>
+        </div>
+
+        {/* Resources Grid */}
+        <div className="mx-auto grid w-full max-w-screen-xl grid-cols-1 gap-6 px-4 py-10 sm:grid-cols-2 lg:grid-cols-3 xl:px-0">
           {resources && resources.length > 0 ? (
             resources
               .filter((article) => article?.fields)
               .map((article) => (
-                <Box key={article.sys.id} className="mb-6 h-[400px]">
+                <div key={article.sys.id} className="h-[400px]">
                   <NewsItemCard item={article} />
-                </Box>
+                </div>
               ))
           ) : (
-            <Box className="col-span-full py-12 text-center">
+            <div className="col-span-full py-12 text-center">
               <h3 className="mb-2 text-xl font-semibold text-gray-600">No resources available</h3>
               <p className="text-gray-500">{loading ? 'Loading resources...' : 'Check back later for new resources.'}</p>
-            </Box>
+            </div>
           )}
-        </Box>
+        </div>
 
+        {/* Pagination */}
         {pagination.totalPages > 1 && (
-          <Box className="flex justify-center pb-16 pt-8">
-            <Pagination value={currentPage} onChange={handlePageChange} total={pagination.totalPages} size="lg" withEdges />
-          </Box>
+          <div className="flex justify-center gap-2 pb-16 pt-4">
+            {Array.from({ length: Math.min(pagination.totalPages, 10) }, (_, i) => i + 1).map((page) => (
+              <button
+                key={page}
+                onClick={() => handlePageChange(page)}
+                className={`h-10 w-10 rounded-lg text-[14px] font-bold transition-colors ${
+                  currentPage === page
+                    ? 'bg-[#BA2E36] text-white'
+                    : 'border border-[#E8E8E8] bg-white text-[#333] hover:border-[#BA2E36]'
+                }`}
+              >
+                {page}
+              </button>
+            ))}
+          </div>
         )}
 
-        <Box className="bg-[#F9F9F9] px-4 py-16 xl:px-0">
-          <Box className="mx-auto w-full max-w-screen-xl">
+        {/* Toolkit Collections */}
+        <div className="bg-[#F9F9F9] px-4 py-16 xl:px-0">
+          <div className="mx-auto w-full max-w-screen-xl">
             <h2 className="font-fraunces text-[38px] font-bold text-[#171717]">Hybrid Toolkit Collections</h2>
-            <Box className="grid grid-cols-2 gap-3 pt-6 md:grid-cols-4">
-              {['Production Toolkit', 'Hybrid Lab Guide', 'Industry Briefs', 'Student Playbook'].map((item, idx) => (
+            <div className="grid grid-cols-2 gap-3 pt-6 md:grid-cols-4">
+              {[
+                { label: 'Production Toolkit', color: 'text-[#BA2E36]' },
+                { label: 'Portfolio Guide', color: 'text-[#0A3D3D]' },
+                { label: 'Industry Toolkit', color: 'text-[#BA2E36]' },
+                { label: 'Career Playbook', color: 'text-[#0A3D3D]' }
+              ].map((item) => (
                 <span
-                  key={item}
-                  className={`rounded-md border border-[#E8E8E8] bg-white px-4 py-2 font-nexa text-[13px] font-bold ${idx % 2 === 0 ? 'text-[#BA2E36]' : 'text-[#444]'}`}
+                  key={item.label}
+                  className={`rounded-lg border border-[#E8E8E8] bg-white px-4 py-3 text-[13px] font-bold ${item.color}`}
                 >
-                  {item}
+                  {item.label}
                 </span>
               ))}
-            </Box>
-          </Box>
-        </Box>
-      </Box>
+            </div>
+          </div>
+        </div>
+      </div>
     </MainLayout>
   )
 }

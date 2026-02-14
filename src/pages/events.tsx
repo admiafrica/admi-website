@@ -1,5 +1,3 @@
-import { Box } from '@mantine/core'
-
 import { MainLayout } from '@/layouts/v3/MainLayout'
 import { PageSEO } from '@/components/shared/v3'
 import { Paragraph, Title } from '@/components/ui'
@@ -31,9 +29,9 @@ export default function EventsPage({ currentEvents, upcomingEvents, pastEvents }
       />
       <InstitutionalFAQSchema faqType="general" />
 
-      <Box className="w-full">
-        <Box className="bg-[#0F2E2A] px-4 py-16 text-white xl:px-0">
-          <Box className="mx-auto w-full max-w-screen-xl">
+      <div className="w-full">
+        <div className="bg-[#0F2E2A] px-4 py-16 text-white xl:px-0">
+          <div className="mx-auto w-full max-w-screen-xl">
             <Paragraph className="uppercase tracking-[0.15em] text-[#B7D8CF]" fontFamily="font-nexa" size="14px">
               /events
             </Paragraph>
@@ -41,30 +39,30 @@ export default function EventsPage({ currentEvents, upcomingEvents, pastEvents }
             <Paragraph className="pt-4 text-white/80" fontFamily="font-nexa" size="18px">
               Follow what is happening now, what is coming next, and highlights from recent ADMI events.
             </Paragraph>
-          </Box>
-        </Box>
+          </div>
+        </div>
 
-        <Box className="border-y border-[#E8E8E8] bg-white">
-          <Box className="mx-auto flex w-full max-w-screen-xl items-center justify-around px-4 py-6 xl:px-0">
-            <Box className="text-center">
+        <div className="border-y border-[#E8E8E8] bg-white">
+          <div className="mx-auto flex w-full max-w-screen-xl items-center justify-around px-4 py-6 xl:px-0">
+            <div className="text-center">
               <p className="font-fraunces text-[34px] font-bold text-[#171717]">{currentEvents.length || 6}</p>
               <p className="font-nexa text-[14px] text-[#666]">Current Events</p>
-            </Box>
-            <Box className="h-[44px] w-px bg-[#DADADA]" />
-            <Box className="text-center">
+            </div>
+            <div className="h-[44px] w-px bg-[#DADADA]" />
+            <div className="text-center">
               <p className="font-fraunces text-[34px] font-bold text-[#171717]">{upcomingEvents.length || 12}</p>
               <p className="font-nexa text-[14px] text-[#666]">Upcoming Events</p>
-            </Box>
-            <Box className="h-[44px] w-px bg-[#DADADA]" />
-            <Box className="text-center">
+            </div>
+            <div className="h-[44px] w-px bg-[#DADADA]" />
+            <div className="text-center">
               <p className="font-fraunces text-[34px] font-bold text-[#171717]">{pastEvents.length || 34}</p>
               <p className="font-nexa text-[14px] text-[#666]">Past Events</p>
-            </Box>
-          </Box>
-        </Box>
+            </div>
+          </div>
+        </div>
 
-        <Box className="border-b border-[#E8E8E8] bg-white">
-          <Box className="mx-auto flex w-full max-w-screen-xl items-center gap-2 px-4 xl:px-0">
+        <div className="border-b border-[#E8E8E8] bg-white">
+          <div className="mx-auto flex w-full max-w-screen-xl items-center gap-2 px-4 xl:px-0">
             {['#current-events', '#upcoming-events', '#past-events'].map((tab, idx) => (
               <a
                 key={tab}
@@ -74,12 +72,12 @@ export default function EventsPage({ currentEvents, upcomingEvents, pastEvents }
                 {tab}
               </a>
             ))}
-          </Box>
-        </Box>
+          </div>
+        </div>
 
-        <Box id="current-events" className="mx-auto w-full max-w-screen-xl px-4 py-12 xl:px-0">
+        <div id="current-events" className="mx-auto w-full max-w-screen-xl px-4 py-12 xl:px-0">
           <Title label="Happening Now" color="black" size="32px" />
-          <Box className="pt-6">
+          <div className="pt-6">
             {currentEvents.length === 0 ? (
               <Paragraph>No current events available.</Paragraph>
             ) : (
@@ -87,13 +85,13 @@ export default function EventsPage({ currentEvents, upcomingEvents, pastEvents }
                 <EventAnnouncementCard key={event.sys.id} announcement={event.fields} bgColor="white" />
               ))
             )}
-          </Box>
-        </Box>
+          </div>
+        </div>
 
-        <Box id="upcoming-events" className="bg-[#F9F9F9]">
-          <Box className="mx-auto w-full max-w-screen-xl px-4 py-12 xl:px-0">
+        <div id="upcoming-events" className="bg-[#F9F9F9]">
+          <div className="mx-auto w-full max-w-screen-xl px-4 py-12 xl:px-0">
             <Title label="Upcoming Events" color="black" size="32px" />
-            <Box className="pt-6">
+            <div className="pt-6">
               {upcomingEvents.length === 0 ? (
                 <Paragraph>No upcoming events available.</Paragraph>
               ) : (
@@ -101,21 +99,21 @@ export default function EventsPage({ currentEvents, upcomingEvents, pastEvents }
                   <EventAnnouncementCard key={event.sys.id} announcement={event.fields} bgColor="white" />
                 ))
               )}
-            </Box>
-          </Box>
-        </Box>
+            </div>
+          </div>
+        </div>
 
-        <Box id="past-events" className="mx-auto w-full max-w-screen-xl px-4 py-12 xl:px-0">
+        <div id="past-events" className="mx-auto w-full max-w-screen-xl px-4 py-12 xl:px-0">
           <Title label="Past Events" color="black" size="32px" />
-          <Box className="pt-6">
+          <div className="pt-6">
             {pastEvents.length === 0 ? (
               <Paragraph>No past events available.</Paragraph>
             ) : (
               pastEvents.map((event) => <EventAnnouncementCard key={event.sys.id} announcement={event.fields} bgColor="white" />)
             )}
-          </Box>
-        </Box>
-      </Box>
+          </div>
+        </div>
+      </div>
     </MainLayout>
   )
 }
