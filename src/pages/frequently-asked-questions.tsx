@@ -2,16 +2,11 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import {
-  IconPlus,
-  IconMinus,
-  IconMessageCircle,
-  IconMail
-} from '@tabler/icons-react'
+import { IconPlus, IconMinus, IconMessageCircle, IconMail } from '@tabler/icons-react'
 
 import { MainLayout } from '@/layouts/v3/MainLayout'
 import { PageSEO } from '@/components/shared/v3'
-import type { FaqItem, FaqCategory, FaqData } from '@/types/frequently-asked-questions'
+import type { FaqCategory, FaqData } from '@/types/frequently-asked-questions'
 
 /* ------------------------------------------------------------------ */
 /*  Data                                                               */
@@ -121,15 +116,13 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
 
   return (
     <div className="border-b border-[#e8e8e8]">
-      <button
-        onClick={() => setOpen(!open)}
-        className="flex w-full items-center justify-between py-5 text-left"
-      >
+      <button onClick={() => setOpen(!open)} className="flex w-full items-center justify-between py-5 text-left">
         <span className="font-proxima text-[16px] font-medium text-[#0A0A0A]">{question}</span>
-        {open
-          ? <IconMinus size={20} className="flex-shrink-0 text-[#999]" />
-          : <IconPlus size={20} className="flex-shrink-0 text-[#999]" />
-        }
+        {open ? (
+          <IconMinus size={20} className="flex-shrink-0 text-[#999]" />
+        ) : (
+          <IconPlus size={20} className="flex-shrink-0 text-[#999]" />
+        )}
       </button>
       {open && (
         <div className="pb-5">
@@ -160,9 +153,11 @@ export default function FAQPage() {
           <div className="mx-auto w-full max-w-screen-xl">
             <div className="flex items-center justify-center gap-2.5">
               <span className="h-[3px] w-8 bg-[#08F6CF]" />
-              <span className="font-proxima text-[13px] font-semibold uppercase tracking-[2px] text-[#08F6CF]">FAQ</span>
+              <span className="font-proxima text-[13px] font-semibold uppercase tracking-[2px] text-[#08F6CF]">
+                FAQ
+              </span>
             </div>
-            <h1 className="mt-5 font-fraunces text-[48px] font-bold">Frequently Asked Questions</h1>
+            <h1 className="font-fraunces mt-5 text-[48px] font-bold">Frequently Asked Questions</h1>
             <p className="mx-auto mt-4 max-w-[600px] font-proxima text-[18px] leading-[1.6] text-white/80">
               Find answers to common questions about ADMI programmes, admissions, fees and student life.
             </p>
@@ -193,24 +188,34 @@ export default function FAQPage() {
           <div className="mx-auto w-full max-w-screen-xl">
             {activeCategory === 'General' ? (
               /* Show all categories when on General */
-              Object.entries(FAQ_DATA).filter(([key]) => key === 'General' || key === 'Admissions' || key === 'Fees & Payment').map(([category, items]) => (
-                <div key={category} className="mb-12">
-                  <div className="mb-4 flex items-center gap-2.5">
-                    <span className="h-[3px] w-6" style={{
-                      backgroundColor: category === 'General' ? '#08F6CF' : category === 'Admissions' ? '#BA2E36' : '#F76335'
-                    }} />
-                    <span className="font-proxima text-[13px] font-bold uppercase tracking-[2px] text-[#0A3D3D]">{category.toUpperCase()}</span>
+              Object.entries(FAQ_DATA)
+                .filter(([key]) => key === 'General' || key === 'Admissions' || key === 'Fees & Payment')
+                .map(([category, items]) => (
+                  <div key={category} className="mb-12">
+                    <div className="mb-4 flex items-center gap-2.5">
+                      <span
+                        className="h-[3px] w-6"
+                        style={{
+                          backgroundColor:
+                            category === 'General' ? '#08F6CF' : category === 'Admissions' ? '#BA2E36' : '#F76335'
+                        }}
+                      />
+                      <span className="font-proxima text-[13px] font-bold uppercase tracking-[2px] text-[#0A3D3D]">
+                        {category.toUpperCase()}
+                      </span>
+                    </div>
+                    {items.map((item) => (
+                      <FAQItem key={item.q} question={item.q} answer={item.a} />
+                    ))}
                   </div>
-                  {items.map((item) => (
-                    <FAQItem key={item.q} question={item.q} answer={item.a} />
-                  ))}
-                </div>
-              ))
+                ))
             ) : (
               <div>
                 <div className="mb-4 flex items-center gap-2.5">
                   <span className="h-[3px] w-6 bg-[#BA2E36]" />
-                  <span className="font-proxima text-[13px] font-bold uppercase tracking-[2px] text-[#0A3D3D]">{activeCategory.toUpperCase()}</span>
+                  <span className="font-proxima text-[13px] font-bold uppercase tracking-[2px] text-[#0A3D3D]">
+                    {activeCategory.toUpperCase()}
+                  </span>
                 </div>
                 {FAQ_DATA[activeCategory].map((item) => (
                   <FAQItem key={item.q} question={item.q} answer={item.a} />
@@ -224,7 +229,9 @@ export default function FAQPage() {
         <section className="bg-[#F9F9F9] px-4 py-16 text-center xl:px-20">
           <div className="mx-auto w-full max-w-screen-xl">
             <h2 className="font-fraunces text-[32px] font-bold text-[#0A0A0A]">Still have questions?</h2>
-            <p className="mt-2 font-proxima text-[16px] text-[#666]">Talk to our admissions team &mdash; we are happy to help.</p>
+            <p className="mt-2 font-proxima text-[16px] text-[#666]">
+              Talk to our admissions team &mdash; we are happy to help.
+            </p>
             <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
               <Link
                 href="https://wa.me/254741132751"

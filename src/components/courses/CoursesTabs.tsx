@@ -6,11 +6,7 @@ interface CoursesTabsProps {
   tabs: string[]
 }
 
-export default function CoursesTabs({
-  activeTab,
-  onTabChange,
-  tabs,
-}: CoursesTabsProps) {
+export default function CoursesTabs({ activeTab, onTabChange, tabs }: CoursesTabsProps) {
   const tabsContainerRef = useRef<HTMLDivElement>(null)
   const activeTabRef = useRef<HTMLButtonElement>(null)
 
@@ -23,14 +19,11 @@ export default function CoursesTabs({
       const tabRect = tab.getBoundingClientRect()
 
       // Only scroll if the active tab is not fully visible
-      if (
-        tabRect.left < containerRect.left ||
-        tabRect.right > containerRect.right
-      ) {
+      if (tabRect.left < containerRect.left || tabRect.right > containerRect.right) {
         tab.scrollIntoView({
           behavior: 'smooth',
           block: 'nearest',
-          inline: 'center',
+          inline: 'center'
         })
       }
     }
@@ -58,9 +51,7 @@ export default function CoursesTabs({
       // Focus the new tab button
       const container = tabsContainerRef.current
       if (container) {
-        const buttons = container.querySelectorAll<HTMLButtonElement>(
-          '[role="tab"]'
-        )
+        const buttons = container.querySelectorAll<HTMLButtonElement>('[role="tab"]')
         buttons[nextIndex]?.focus()
       }
     }
@@ -89,15 +80,11 @@ export default function CoursesTabs({
               tabIndex={isActive ? 0 : -1}
               onClick={() => onTabChange(tab)}
               onKeyDown={(e) => handleKeyDown(e, index)}
-              className={`
-                font-proxima shrink-0 whitespace-nowrap border-0 px-6 py-4 text-sm outline-none transition-colors
-                focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#BA2E36] focus-visible:ring-inset
-                ${
-                  isActive
-                    ? 'border-b-[3px] border-b-[#BA2E36] font-bold text-[#BA2E36]'
-                    : 'border-b-[3px] border-b-transparent font-normal text-[#666] hover:text-[#333]'
-                }
-              `}
+              className={`shrink-0 whitespace-nowrap border-0 px-6 py-4 font-proxima text-sm outline-none transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#BA2E36] ${
+                isActive
+                  ? 'border-b-[3px] border-b-[#BA2E36] font-bold text-[#BA2E36]'
+                  : 'border-b-[3px] border-b-transparent font-normal text-[#666] hover:text-[#333]'
+              } `}
             >
               {tab}
             </button>

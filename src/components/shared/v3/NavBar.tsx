@@ -61,8 +61,8 @@ export default function NavBar({ mode, isMinimal = false }: Props) {
         </Menu>*/}
         <Menu trigger="hover" openDelay={100} closeDelay={400}>
           <Menu.Target>
-            <Text style={menuItemStyle} className="cursor-pointer">
-              Student Experience
+            <Text style={menuItemStyle} className="cursor-pointer" onClick={() => navigateToPage('student-life')}>
+              Student Life
             </Text>
           </Menu.Target>
           <Menu.Dropdown>
@@ -72,15 +72,14 @@ export default function NavBar({ mode, isMinimal = false }: Props) {
             <Menu.Item component={Link} href="/student-experience/campus/facilities">
               Facilities
             </Menu.Item>
-            <Menu.Item component={Link} href="/student-experience/campus/the-labs">
-              The Labs
-            </Menu.Item>
             <Menu.Item component={Link} href="/student-experience/studios">
               Studios
             </Menu.Item>
             <Menu.Item component={Link} href="/student-experience/equipment">
               Equipment
             </Menu.Item>
+            <Menu.Item onClick={() => navigateToPage('student-showcase')}>Student Showcase</Menu.Item>
+            <Menu.Item onClick={() => navigateToPage('accommodation')}>Accommodation</Menu.Item>
           </Menu.Dropdown>
         </Menu>
 
@@ -91,9 +90,26 @@ export default function NavBar({ mode, isMinimal = false }: Props) {
             </Text>
           </Menu.Target>
           <Menu.Dropdown>
-            <Menu.Item onClick={() => navigateToPage('student-support#fees')}>Fee Structure & Payment Plans</Menu.Item>
+            <Menu.Item onClick={() => navigateToPage('financial-planning')}>Fees & Financial Planning</Menu.Item>
             <Menu.Item onClick={() => navigateToPage('student-support')}>Academic Support</Menu.Item>
             <Menu.Item onClick={() => navigateToPage('student-portal')}>Student Portal</Menu.Item>
+          </Menu.Dropdown>
+        </Menu>
+
+        <Menu trigger="hover" openDelay={100} closeDelay={400}>
+          <Menu.Target>
+            <Text style={menuItemStyle} className="cursor-pointer" onClick={() => navigateToPage('about')}>
+              About
+            </Text>
+          </Menu.Target>
+          <Menu.Dropdown>
+            <Menu.Item onClick={() => navigateToPage('about')}>About ADMI</Menu.Item>
+            <Menu.Item onClick={() => navigateToPage('accreditation')}>Accreditation</Menu.Item>
+            <Menu.Item onClick={() => navigateToPage('academic-pathways')}>Academic Pathways</Menu.Item>
+            <Menu.Item onClick={() => navigateToPage('fellowship')}>Fellowship</Menu.Item>
+            <Menu.Item onClick={() => navigateToPage('our-alumni')}>Our Alumni</Menu.Item>
+            <Menu.Item onClick={() => navigateToPage('our-impact')}>Our Impact</Menu.Item>
+            <Menu.Item onClick={() => navigateToPage('work-with-us')}>Work With Us</Menu.Item>
           </Menu.Dropdown>
         </Menu>
 
@@ -103,42 +119,13 @@ export default function NavBar({ mode, isMinimal = false }: Props) {
               Resources
             </Text>
           </Menu.Target>
-        </Menu>
-
-        <Menu trigger="hover" openDelay={100} closeDelay={400}>
-          <Menu.Target>
-            <Text style={menuItemStyle} className="cursor-pointer" onClick={() => navigateToPage('news')}>
-              News
-            </Text>
-          </Menu.Target>
-        </Menu>
-
-        <Menu trigger="hover" openDelay={100} closeDelay={400}>
-          <Menu.Target>
-            <Text style={menuItemStyle} className="cursor-pointer" onClick={() => navigateToPage('events')}>
-              Events
-            </Text>
-          </Menu.Target>
-        </Menu>
-
-        {/* <Menu trigger="hover" openDelay={100} closeDelay={400}>
-          <Menu.Target>
-            <Text
-              style={menuItemStyle}
-              className="cursor-pointer"
-              onClick={() => navigateToPage('impact-alumni-success')}
-            >
-              Alumni Success
-            </Text>
-          </Menu.Target>
-        </Menu> */}
-
-        <Menu trigger="hover" openDelay={100} closeDelay={400}>
-          <Menu.Target>
-            <Text style={menuItemStyle} className="cursor-pointer" onClick={() => navigateToPage('about')}>
-              About ADMI
-            </Text>
-          </Menu.Target>
+          <Menu.Dropdown>
+            <Menu.Item onClick={() => navigateToPage('resources')}>Resources</Menu.Item>
+            <Menu.Item onClick={() => navigateToPage('news')}>News</Menu.Item>
+            <Menu.Item onClick={() => navigateToPage('events')}>Events</Menu.Item>
+            <Menu.Item onClick={() => navigateToPage('media-archive')}>Media Archive</Menu.Item>
+            <Menu.Item onClick={() => navigateToPage('frequently-asked-questions')}>FAQs</Menu.Item>
+          </Menu.Dropdown>
         </Menu>
       </Group>
     )
@@ -159,23 +146,35 @@ export default function NavBar({ mode, isMinimal = false }: Props) {
               <Menu.Item style={menuItemStyle} className="cursor-pointer" onClick={() => navigateToPage('courses')}>
                 Courses
               </Menu.Item>
-              <Menu.Item style={menuItemStyle} className="cursor-pointer">
-                <Link href="/student-experience/campus">Student Experience</Link>
+              <Menu.Item
+                style={menuItemStyle}
+                className="cursor-pointer"
+                onClick={() => navigateToPage('student-life')}
+              >
+                Student Life
               </Menu.Item>
               <Menu.Item style={{ ...menuItemStyle, paddingLeft: '2rem' }} className="cursor-pointer">
-                <Link href="/student-experience/campus">📍 Campus Tour</Link>
+                <Link href="/student-experience/campus">Campus Tour</Link>
               </Menu.Item>
               <Menu.Item style={{ ...menuItemStyle, paddingLeft: '2rem' }} className="cursor-pointer">
-                <Link href="/student-experience/campus/facilities">🏢 Facilities</Link>
+                <Link href="/student-experience/campus/facilities">Facilities</Link>
               </Menu.Item>
               <Menu.Item style={{ ...menuItemStyle, paddingLeft: '2rem' }} className="cursor-pointer">
-                <Link href="/student-experience/campus/the-labs">🔬 The Labs</Link>
+                <Link href="/student-experience/studios">Studios</Link>
               </Menu.Item>
-              <Menu.Item style={{ ...menuItemStyle, paddingLeft: '2rem' }} className="cursor-pointer">
-                <Link href="/student-experience/studios">🎬 Studios</Link>
+              <Menu.Item
+                style={{ ...menuItemStyle, paddingLeft: '2rem' }}
+                className="cursor-pointer"
+                onClick={() => navigateToPage('student-showcase')}
+              >
+                Student Showcase
               </Menu.Item>
-              <Menu.Item style={{ ...menuItemStyle, paddingLeft: '2rem' }} className="cursor-pointer">
-                <Link href="/student-experience/equipment">🔧 Equipment</Link>
+              <Menu.Item
+                style={{ ...menuItemStyle, paddingLeft: '2rem' }}
+                className="cursor-pointer"
+                onClick={() => navigateToPage('accommodation')}
+              >
+                Accommodation
               </Menu.Item>
               <Menu.Item
                 style={menuItemStyle}
@@ -187,28 +186,92 @@ export default function NavBar({ mode, isMinimal = false }: Props) {
               <Menu.Item
                 style={{ ...menuItemStyle, paddingLeft: '2rem' }}
                 className="cursor-pointer"
-                onClick={() => navigateToPage('student-support#fees')}
+                onClick={() => navigateToPage('financial-planning')}
               >
-                📋 Fee Structure & Payments
+                Fees & Financial Planning
               </Menu.Item>
-              <Menu.Item style={menuItemStyle} onClick={() => navigateToPage('resources')}>
-                Resources
-              </Menu.Item>
-              <Menu.Item style={menuItemStyle} className="cursor-pointer" onClick={() => navigateToPage('news')}>
-                News
-              </Menu.Item>
-              <Menu.Item style={menuItemStyle} className="cursor-pointer" onClick={() => navigateToPage('events')}>
-                Events
-              </Menu.Item>
-              {/* <Menu.Item
-                style={menuItemStyle}
+              <Menu.Item
+                style={{ ...menuItemStyle, paddingLeft: '2rem' }}
                 className="cursor-pointer"
-                onClick={() => navigateToPage('impact-alumni-success')}
+                onClick={() => navigateToPage('student-portal')}
               >
-                Alumni Success
-              </Menu.Item> */}
+                Student Portal
+              </Menu.Item>
               <Menu.Item style={menuItemStyle} className="cursor-pointer" onClick={() => navigateToPage('about')}>
                 About
+              </Menu.Item>
+              <Menu.Item
+                style={{ ...menuItemStyle, paddingLeft: '2rem' }}
+                className="cursor-pointer"
+                onClick={() => navigateToPage('accreditation')}
+              >
+                Accreditation
+              </Menu.Item>
+              <Menu.Item
+                style={{ ...menuItemStyle, paddingLeft: '2rem' }}
+                className="cursor-pointer"
+                onClick={() => navigateToPage('academic-pathways')}
+              >
+                Academic Pathways
+              </Menu.Item>
+              <Menu.Item
+                style={{ ...menuItemStyle, paddingLeft: '2rem' }}
+                className="cursor-pointer"
+                onClick={() => navigateToPage('fellowship')}
+              >
+                Fellowship
+              </Menu.Item>
+              <Menu.Item
+                style={{ ...menuItemStyle, paddingLeft: '2rem' }}
+                className="cursor-pointer"
+                onClick={() => navigateToPage('our-alumni')}
+              >
+                Our Alumni
+              </Menu.Item>
+              <Menu.Item
+                style={{ ...menuItemStyle, paddingLeft: '2rem' }}
+                className="cursor-pointer"
+                onClick={() => navigateToPage('our-impact')}
+              >
+                Our Impact
+              </Menu.Item>
+              <Menu.Item
+                style={{ ...menuItemStyle, paddingLeft: '2rem' }}
+                className="cursor-pointer"
+                onClick={() => navigateToPage('work-with-us')}
+              >
+                Work With Us
+              </Menu.Item>
+              <Menu.Item style={menuItemStyle} className="cursor-pointer" onClick={() => navigateToPage('resources')}>
+                Resources
+              </Menu.Item>
+              <Menu.Item
+                style={{ ...menuItemStyle, paddingLeft: '2rem' }}
+                className="cursor-pointer"
+                onClick={() => navigateToPage('news')}
+              >
+                News
+              </Menu.Item>
+              <Menu.Item
+                style={{ ...menuItemStyle, paddingLeft: '2rem' }}
+                className="cursor-pointer"
+                onClick={() => navigateToPage('events')}
+              >
+                Events
+              </Menu.Item>
+              <Menu.Item
+                style={{ ...menuItemStyle, paddingLeft: '2rem' }}
+                className="cursor-pointer"
+                onClick={() => navigateToPage('media-archive')}
+              >
+                Media Archive
+              </Menu.Item>
+              <Menu.Item
+                style={{ ...menuItemStyle, paddingLeft: '2rem' }}
+                className="cursor-pointer"
+                onClick={() => navigateToPage('frequently-asked-questions')}
+              >
+                FAQs
               </Menu.Item>
             </Menu.Dropdown>
           </Menu>

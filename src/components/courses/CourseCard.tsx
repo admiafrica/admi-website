@@ -20,7 +20,7 @@ export function CourseCard({
   deliveryMode,
   imageUrl,
   accentColor = '#BA2E36',
-  accentBg = '#FFF0F0',
+  accentBg = '#FFF0F0'
 }: CourseCardProps) {
   return (
     <Link
@@ -48,14 +48,10 @@ export function CourseCard({
       {/* Body */}
       <div className="flex flex-1 flex-col gap-2 px-5 py-4">
         {/* Title */}
-        <h3 className="font-proxima text-[15px] font-bold leading-snug text-[#171717]">
-          {name}
-        </h3>
+        <h3 className="font-proxima text-[15px] font-bold leading-snug text-[#171717]">{name}</h3>
 
         {/* Description */}
-        <p className="line-clamp-2 font-proxima text-[13px] leading-relaxed text-[#666]">
-          {description}
-        </p>
+        <p className="line-clamp-2 font-proxima text-[13px] leading-relaxed text-[#666]">{description}</p>
 
         {/* Tags */}
         <div className="flex flex-wrap gap-1.5">
@@ -79,7 +75,7 @@ export function CourseCard({
           className="w-full rounded-lg border-[1.5px] py-2 font-proxima text-[13px] font-bold transition-colors duration-200"
           style={{
             borderColor: accentColor,
-            color: accentColor,
+            color: accentColor
           }}
           onMouseEnter={(e) => {
             const target = e.currentTarget

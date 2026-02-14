@@ -37,7 +37,7 @@ interface HomePageProps {
   heroContent: any
 }
 
-export default function HomePage({ content, courses }: HomePageProps) {
+export default function HomePage({ content }: HomePageProps) {
   return (
     <MainLayout footerBgColor="#0A0A0A">
       <PageSEO

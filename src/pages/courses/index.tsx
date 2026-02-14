@@ -10,7 +10,6 @@ import CoursesFilter from '@/components/courses/CoursesFilter'
 import ProgramSection from '@/components/courses/ProgramSection'
 import CoursesFAQ from '@/components/courses/CoursesFAQ'
 import { CoursesFinalCTA } from '@/components/courses/CoursesFinalCTA'
-import { IContentfulEntry } from '@/types'
 
 // Course categorization mapping to fix CMS inconsistencies
 const correctCourseMapping = (course: any): string => {
@@ -37,13 +36,13 @@ const cleanCourseName = (course: any): any => {
   if (course.fields.name === 'Video Production Certificate (Professional)') {
     return {
       ...course,
-      fields: { ...course.fields, name: 'Video Production Certificate' },
+      fields: { ...course.fields, name: 'Video Production Certificate' }
     }
   }
   if (course.fields.name === 'Entertainment Business') {
     return {
       ...course,
-      fields: { ...course.fields, name: 'Entertainment Business Diploma' },
+      fields: { ...course.fields, name: 'Entertainment Business Diploma' }
     }
   }
   return course
@@ -53,26 +52,27 @@ const cleanCourseName = (course: any): any => {
 const getPlainTextFromRichText = (richText: any, maxLength = 120): string => {
   if (!richText?.content) return ''
   const text = richText.content
-    .map((block: any) =>
-      block.content?.map((node: any) => node.value || '').join('') || ''
-    )
+    .map((block: any) => block.content?.map((node: any) => node.value || '').join('') || '')
     .join(' ')
     .trim()
   return text.length > maxLength ? text.slice(0, maxLength) + '...' : text
 }
 
 // Program section styling config
-const PROGRAM_CONFIG: Record<string, {
-  iconLetter: string
-  iconBgColor: string
-  iconTextColor: string
-  accentColor: string
-  accentBg: string
-  bgColor: string
-  meta: string
-  tabName: string
-}> = {
-  'Diploma': {
+const PROGRAM_CONFIG: Record<
+  string,
+  {
+    iconLetter: string
+    iconBgColor: string
+    iconTextColor: string
+    accentColor: string
+    accentBg: string
+    bgColor: string
+    meta: string
+    tabName: string
+  }
+> = {
+  Diploma: {
     iconLetter: 'D',
     iconBgColor: '#BA2E36',
     iconTextColor: '#FFFFFF',
@@ -80,7 +80,7 @@ const PROGRAM_CONFIG: Record<string, {
     accentBg: '#FFF0F0',
     bgColor: 'bg-white',
     meta: '18 months  •  In-person  •  EU-Accredited via Woolf  •  From KES 15,000/month',
-    tabName: 'Diploma Programmes',
+    tabName: 'Diploma Programmes'
   },
   'Professional Certificate': {
     iconLetter: 'P',
@@ -90,7 +90,7 @@ const PROGRAM_CONFIG: Record<string, {
     accentBg: '#EEF9F7',
     bgColor: 'bg-[#f9f9f9]',
     meta: '6 months  •  In-person / Online  •  From KES 8,500/month',
-    tabName: 'Professional Certificates',
+    tabName: 'Professional Certificates'
   },
   'Foundation Certificate': {
     iconLetter: 'F',
@@ -100,7 +100,7 @@ const PROGRAM_CONFIG: Record<string, {
     accentBg: '#FFF8F0',
     bgColor: 'bg-white',
     meta: '3 months  •  In-person  •  ADMI Certified  •  From KES 5,000/month',
-    tabName: 'Foundation Certificates',
+    tabName: 'Foundation Certificates'
   },
   'Rubika Programs': {
     iconLetter: 'R',
@@ -110,8 +110,8 @@ const PROGRAM_CONFIG: Record<string, {
     accentBg: '#EEF0FF',
     bgColor: 'bg-[#f9f9f9]',
     meta: '1-2 years  •  In-person  •  Rubika International',
-    tabName: 'Rubika Programmes',
-  },
+    tabName: 'Rubika Programmes'
+  }
 }
 
 // Match a program name to the config key
@@ -129,19 +129,19 @@ const TAB_OPTIONS = [
   'Diploma Programmes',
   'Professional Certificates',
   'Foundation Certificates',
-  'Rubika Programmes',
+  'Rubika Programmes'
 ]
 
 // Industry keyword mapping for search
 const INDUSTRY_KEYWORDS: Record<string, string[]> = {
-  'film': ['film', 'cinema', 'movie', 'television', 'tv', 'video', 'documentary', 'directing', 'screenwriting'],
-  'music': ['music', 'sound', 'audio', 'recording', 'mixing', 'mastering', 'producer', 'dj'],
-  'design': ['design', 'graphic', 'branding', 'visual', 'ui', 'ux', 'creative'],
-  'animation': ['animation', 'animate', '2d', '3d', 'motion', 'vfx', 'effects'],
-  'photography': ['photo', 'photography', 'camera', 'portrait', 'landscape'],
-  'digital': ['digital', 'content', 'social media', 'marketing', 'online'],
-  'gaming': ['game', 'gaming', 'video game', 'game development', 'esports'],
-  'entertainment': ['entertainment', 'business', 'events', 'media'],
+  film: ['film', 'cinema', 'movie', 'television', 'tv', 'video', 'documentary', 'directing', 'screenwriting'],
+  music: ['music', 'sound', 'audio', 'recording', 'mixing', 'mastering', 'producer', 'dj'],
+  design: ['design', 'graphic', 'branding', 'visual', 'ui', 'ux', 'creative'],
+  animation: ['animation', 'animate', '2d', '3d', 'motion', 'vfx', 'effects'],
+  photography: ['photo', 'photography', 'camera', 'portrait', 'landscape'],
+  digital: ['digital', 'content', 'social media', 'marketing', 'online'],
+  gaming: ['game', 'gaming', 'video game', 'game development', 'esports'],
+  entertainment: ['entertainment', 'business', 'events', 'media']
 }
 
 const matchesSearch = (course: { name: string; description: string }, programType: string, query: string): boolean => {
@@ -155,17 +155,17 @@ const matchesSearch = (course: { name: string; description: string }, programTyp
 
   // Industry keyword matching
   for (const [, keywords] of Object.entries(INDUSTRY_KEYWORDS)) {
-    if (keywords.some(k => q.includes(k))) {
+    if (keywords.some((k) => q.includes(k))) {
       // Check if the course matches any keyword in the same industry
-      if (keywords.some(k => name.includes(k) || desc.includes(k))) return true
+      if (keywords.some((k) => name.includes(k) || desc.includes(k))) return true
     }
   }
 
   // Word-level matching (match if all search words appear somewhere)
-  const words = q.split(/\s+/).filter(w => w.length > 1)
+  const words = q.split(/\s+/).filter((w) => w.length > 1)
   if (words.length > 1) {
     const combined = `${name} ${desc} ${pType}`
-    return words.every(w => combined.includes(w))
+    return words.every((w) => combined.includes(w))
   }
 
   return false
@@ -173,7 +173,7 @@ const matchesSearch = (course: { name: string; description: string }, programTyp
 
 export default function CoursesPage({
   programs,
-  courses,
+  courses
 }: {
   programs: any[]
   courses: any[]
@@ -207,9 +207,7 @@ export default function CoursesPage({
         const config = PROGRAM_CONFIG[configKey]
         if (!config) return null
 
-        const programCourses = cleanedCourses.filter(
-          (course) => correctCourseMapping(course) === programName
-        )
+        const programCourses = cleanedCourses.filter((course) => correctCourseMapping(course) === programName)
 
         if (programCourses.length === 0) return null
 
@@ -227,8 +225,8 @@ export default function CoursesPage({
               ? course.fields.coverImage.fields.file.url.startsWith('http')
                 ? course.fields.coverImage.fields.file.url
                 : `https:${course.fields.coverImage.fields.file.url}`
-              : undefined,
-          })),
+              : undefined
+          }))
         }
       })
       .filter(Boolean) as Array<{
@@ -261,9 +259,7 @@ export default function CoursesPage({
       sections = sections
         .map((section) => ({
           ...section,
-          courses: section.courses.filter((course) =>
-            matchesSearch(course, section.title, query)
-          ),
+          courses: section.courses.filter((course) => matchesSearch(course, section.title, query))
         }))
         .filter((section) => section.courses.length > 0)
     }
@@ -272,8 +268,8 @@ export default function CoursesPage({
   }, [activeTab, programSections, isSearching, searchQuery])
 
   // Total results count
-  const totalResults = useMemo(() =>
-    filteredSections.reduce((sum, section) => sum + section.courses.length, 0),
+  const totalResults = useMemo(
+    () => filteredSections.reduce((sum, section) => sum + section.courses.length, 0),
     [filteredSections]
   )
 
@@ -301,7 +297,7 @@ export default function CoursesPage({
       'Diploma Programmes': 'Diploma Programmes',
       'Professional Certificates': 'Professional Certificates',
       'Foundation Certificates': 'Foundation Certificates',
-      'Rubika Programmes': 'Rubika Programmes',
+      'Rubika Programmes': 'Rubika Programmes'
     }
     if (tabMap[value]) setActiveTab(tabMap[value])
   }
@@ -338,7 +334,8 @@ export default function CoursesPage({
             <p className="font-proxima text-sm text-[#666]">
               {totalResults > 0 ? (
                 <>
-                  Showing <span className="font-bold text-[#171717]">{totalResults}</span> result{totalResults !== 1 ? 's' : ''} for{' '}
+                  Showing <span className="font-bold text-[#171717]">{totalResults}</span> result
+                  {totalResults !== 1 ? 's' : ''} for{' '}
                   <span className="font-bold text-[#BA2E36]">&ldquo;{searchQuery}&rdquo;</span>
                 </>
               ) : (
@@ -358,19 +355,9 @@ export default function CoursesPage({
         </div>
       )}
 
-      {!isSearching && (
-        <CoursesTabs
-          activeTab={activeTab}
-          onTabChange={setActiveTab}
-          tabs={TAB_OPTIONS}
-        />
-      )}
+      {!isSearching && <CoursesTabs activeTab={activeTab} onTabChange={setActiveTab} tabs={TAB_OPTIONS} />}
 
-      <CoursesFilter
-        sortValue={sortValue}
-        onSortChange={handleSortChange}
-        sortOptions={TAB_OPTIONS}
-      />
+      <CoursesFilter sortValue={sortValue} onSortChange={handleSortChange} sortOptions={TAB_OPTIONS} />
 
       {/* Program Sections */}
       {filteredSections.map((section) => (
@@ -423,7 +410,7 @@ export async function getStaticProps() {
   try {
     const [programsRes, coursesRes] = await Promise.all([
       fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v3/course-programs`),
-      fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v3/courses`),
+      fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v3/courses`)
     ])
 
     if (!programsRes.ok || !coursesRes.ok) throw new Error('Failed to fetch data')
@@ -449,9 +436,9 @@ export async function getStaticProps() {
         name: 'Rubika Programs',
         duration: '1-2 years',
         deliveryMode: 'In-person',
-        icon: programs.find((p: any) => p.fields.name.includes('Rubika'))?.fields.icon || null,
+        icon: programs.find((p: any) => p.fields.name.includes('Rubika'))?.fields.icon || null
       },
-      assets: programs[0]?.assets || [],
+      assets: programs[0]?.assets || []
     }
 
     const enhancedPrograms = [...sortedPrograms, rubikaProgram]
@@ -460,15 +447,15 @@ export async function getStaticProps() {
       props: {
         programs: enhancedPrograms,
         courses: sortedCourses,
-        filterOptions: ['All Courses', ...enhancedPrograms.map((program: any) => program.fields.name)],
+        filterOptions: ['All Courses', ...enhancedPrograms.map((program: any) => program.fields.name)]
       },
-      revalidate: 3600,
+      revalidate: 3600
     }
   } catch (error) {
     console.error('Error fetching courses:', error)
     return {
       props: { programs: [], courses: [], filterOptions: ['All Courses'] },
-      revalidate: 300,
+      revalidate: 300
     }
   }
 }

@@ -1,11 +1,5 @@
 import Link from 'next/link'
-import {
-  IconArrowDown,
-  IconSchool,
-  IconShieldCheck,
-  IconAward,
-  IconArrowRight
-} from '@tabler/icons-react'
+import { IconArrowDown, IconSchool, IconShieldCheck, IconAward, IconArrowRight } from '@tabler/icons-react'
 
 import { MainLayout } from '@/layouts/v3/MainLayout'
 import { PageSEO } from '@/components/shared/v3'
@@ -54,7 +48,7 @@ const pathwaySteps = [
   {
     step: 4,
     duration: 'DEGREE PATHWAY',
-    title: "Bachelor\u2019s Degree via Woolf University",
+    title: 'Bachelor\u2019s Degree via Woolf University',
     description:
       'Articulate your ADMI credits into a full EU-accredited bachelor\u2019s degree through Woolf University. Study online with international recognition and ECTS credit transfer.',
     credits: '180 ECTS Credits  \u00b7  EU Accredited',
@@ -118,10 +112,7 @@ function SectionLabel({ color, children }: { color: string; children: React.Reac
   return (
     <div className="flex items-center gap-3">
       <span className="block h-[3px] w-10 rounded-full" style={{ backgroundColor: color }} />
-      <span
-        className="font-proxima text-[13px] font-bold uppercase tracking-[3px]"
-        style={{ color }}
-      >
+      <span className="font-proxima text-[13px] font-bold uppercase tracking-[3px]" style={{ color }}>
         {children}
       </span>
     </div>
@@ -155,14 +146,13 @@ export default function AcademicPathwaysPage() {
                 </span>
               </div>
 
-              <h1 className="max-w-[700px] font-fraunces text-[36px] font-bold leading-[1.15] text-white md:text-[48px]">
+              <h1 className="font-fraunces max-w-[700px] text-[36px] font-bold leading-[1.15] text-white md:text-[48px]">
                 Academic Pathways and Progression
               </h1>
 
               <p className="max-w-[700px] font-proxima text-[17px] leading-[1.6] text-white/80 md:text-[18px]">
-                ADMI offers an accredited academic pathway from foundation courses through to an
-                internationally recognised bachelor&rsquo;s degree, ensuring every step of your
-                journey counts.
+                ADMI offers an accredited academic pathway from foundation courses through to an internationally
+                recognised bachelor&rsquo;s degree, ensuring every step of your journey counts.
               </p>
             </div>
           </div>
@@ -174,7 +164,7 @@ export default function AcademicPathwaysPage() {
         <section className="w-full bg-white">
           <div className="section-container section-padding">
             <SectionLabel color="#0A3D3D">Your Journey</SectionLabel>
-            <h2 className="mt-4 font-fraunces text-[30px] font-bold leading-[1.15] text-[#0A0A0A] md:text-[36px]">
+            <h2 className="font-fraunces mt-4 text-[30px] font-bold leading-[1.15] text-[#0A0A0A] md:text-[36px]">
               From Foundation to Degree
             </h2>
 
@@ -191,10 +181,7 @@ export default function AcademicPathwaysPage() {
                     }}
                   >
                     {/* Left colour accent */}
-                    <div
-                      className="w-1.5 shrink-0 rounded-l-xl"
-                      style={{ backgroundColor: step.borderColor }}
-                    />
+                    <div className="w-1.5 shrink-0 rounded-l-xl" style={{ backgroundColor: step.borderColor }} />
 
                     {/* Content */}
                     <div className="flex flex-1 flex-col gap-2 px-5 py-5 md:px-7 md:py-6">
@@ -223,15 +210,11 @@ export default function AcademicPathwaysPage() {
                         {step.price && (
                           <>
                             <span className="text-[#ccc]">&middot;</span>
-                            <span className="font-proxima text-[13px] text-[#888]">
-                              {step.price}
-                            </span>
+                            <span className="font-proxima text-[13px] text-[#888]">{step.price}</span>
                           </>
                         )}
                         <span className="text-[#ccc]">&middot;</span>
-                        <span className="font-proxima text-[13px] text-[#888]">
-                          {step.certification}
-                        </span>
+                        <span className="font-proxima text-[13px] text-[#888]">{step.certification}</span>
                       </div>
                     </div>
                   </div>
@@ -254,29 +237,20 @@ export default function AcademicPathwaysPage() {
         <section className="w-full bg-[#F5F5F5]">
           <div className="section-container section-padding">
             <SectionLabel color="#BA2E36">Partnerships</SectionLabel>
-            <h2 className="mt-4 font-fraunces text-[30px] font-bold leading-[1.15] text-[#0A0A0A] md:text-[36px]">
+            <h2 className="font-fraunces mt-4 text-[30px] font-bold leading-[1.15] text-[#0A0A0A] md:text-[36px]">
               Articulation Agreements
             </h2>
 
             <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
               {articulationCards.map((card) => (
-                <div
-                  key={card.title}
-                  className="flex flex-col gap-4 rounded-xl border border-[#E5E5E5] bg-white p-8"
-                >
-                  <div
-                    className={`flex h-14 w-14 items-center justify-center rounded-full ${card.iconBg}`}
-                  >
+                <div key={card.title} className="flex flex-col gap-4 rounded-xl border border-[#E5E5E5] bg-white p-8">
+                  <div className={`flex h-14 w-14 items-center justify-center rounded-full ${card.iconBg}`}>
                     <card.Icon size={28} style={{ color: card.iconColor }} />
                   </div>
 
-                  <h3 className="font-fraunces text-[20px] font-bold text-[#0A0A0A]">
-                    {card.title}
-                  </h3>
+                  <h3 className="font-fraunces text-[20px] font-bold text-[#0A0A0A]">{card.title}</h3>
 
-                  <p className="font-proxima text-[15px] leading-[1.6] text-[#555]">
-                    {card.description}
-                  </p>
+                  <p className="font-proxima text-[15px] leading-[1.6] text-[#555]">{card.description}</p>
                 </div>
               ))}
             </div>
@@ -289,31 +263,23 @@ export default function AcademicPathwaysPage() {
         <section className="w-full bg-white">
           <div className="section-container section-padding">
             <SectionLabel color="#08F6CF">Credit Transfer</SectionLabel>
-            <h2 className="mt-4 font-fraunces text-[30px] font-bold leading-[1.15] text-[#0A0A0A] md:text-[36px]">
+            <h2 className="font-fraunces mt-4 text-[30px] font-bold leading-[1.15] text-[#0A0A0A] md:text-[36px]">
               How Credits Transfer
             </h2>
             <p className="mt-4 max-w-[900px] font-proxima text-[16px] leading-[1.7] text-[#555]">
-              Every programme at ADMI is designed with credit articulation in mind. Your foundation
-              credits count towards your professional certificate, your professional credits towards
-              your diploma, and your diploma credits towards a full degree.
+              Every programme at ADMI is designed with credit articulation in mind. Your foundation credits count
+              towards your professional certificate, your professional credits towards your diploma, and your diploma
+              credits towards a full degree.
             </p>
 
             <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-3">
               {creditCards.map((card) => (
-                <div
-                  key={card.value}
-                  className="flex flex-col gap-3 rounded-xl bg-[#F9FAFB] p-7"
-                >
-                  <span
-                    className="font-fraunces text-[32px] font-bold"
-                    style={{ color: card.valueColor }}
-                  >
+                <div key={card.value} className="flex flex-col gap-3 rounded-xl bg-[#F9FAFB] p-7">
+                  <span className="font-fraunces text-[32px] font-bold" style={{ color: card.valueColor }}>
                     {card.value}
                   </span>
 
-                  <p className="font-proxima text-[14px] leading-[1.5] text-[#555]">
-                    {card.description}
-                  </p>
+                  <p className="font-proxima text-[14px] leading-[1.5] text-[#555]">{card.description}</p>
                 </div>
               ))}
             </div>

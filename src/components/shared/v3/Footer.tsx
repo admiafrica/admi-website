@@ -130,20 +130,29 @@ export default function Footer({ bgColor }: Props) {
           {/* Quick Links and Social Media */}
           <Stack className="grow pl-4">
             <Title size={'1.4em'} label="Quick Links" color="admiShamrok" />
-            <Anchor c="white" fw={600} href="https://africadigitalmedia.ed-space.net/onlineenquiry.cfm" target="_blank">
-              Contact Us
+            <Anchor c="white" fw={600} onClick={() => navigateToPage('enquiry')}>
+              Enquire Now
             </Anchor>
-            <Anchor c="white" fw={600} onClick={() => navigateToPage('academic-team')}>
-              Academic Team
+            <Anchor c="white" fw={600} onClick={() => navigateToPage('apply')}>
+              Apply
             </Anchor>
-            <Anchor c="white" fw={600} onClick={() => navigateToPage('fellowship')}>
-              Fellowship
+            <Anchor c="white" fw={600} onClick={() => navigateToPage('about')}>
+              About ADMI
+            </Anchor>
+            <Anchor c="white" fw={600} onClick={() => navigateToPage('accreditation')}>
+              Accreditation
             </Anchor>
             <Anchor c="white" fw={600} onClick={() => navigateToPage('academic-pathways')}>
               Academic Pathways
             </Anchor>
-            <Anchor c="white" fw={600} onClick={() => navigateToPage('media-archive')}>
-              Media
+            <Anchor c="white" fw={600} onClick={() => navigateToPage('fellowship')}>
+              Fellowship
+            </Anchor>
+            <Anchor c="white" fw={600} onClick={() => navigateToPage('work-with-us')}>
+              Work With Us
+            </Anchor>
+            <Anchor c="white" fw={600} onClick={() => navigateToPage('frequently-asked-questions')}>
+              FAQs
             </Anchor>
           </Stack>
 
@@ -156,8 +165,20 @@ export default function Footer({ bgColor }: Props) {
                 <Anchor c="white" fw={600} onClick={() => navigateToPage('student-portal')}>
                   Student Portal
                 </Anchor>
+                <Anchor c="white" fw={600} onClick={() => navigateToPage('student-support')}>
+                  Student Support
+                </Anchor>
+                <Anchor c="white" fw={600} onClick={() => navigateToPage('financial-planning')}>
+                  Fees & Financial Planning
+                </Anchor>
                 <Anchor c="white" fw={600} onClick={() => navigateToPage('accommodation')}>
                   Accommodation
+                </Anchor>
+                <Anchor c="white" fw={600} onClick={() => navigateToPage('student-showcase')}>
+                  Student Showcase
+                </Anchor>
+                <Anchor c="white" fw={600} onClick={() => navigateToPage('student-life')}>
+                  Student Life
                 </Anchor>
               </Stack>
             </div>

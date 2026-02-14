@@ -2,14 +2,7 @@ import React, { useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Box, Card } from '@mantine/core'
-import {
-  IconCheck,
-  IconMail,
-  IconPhone,
-  IconCalendar,
-  IconBrandWhatsapp,
-  IconArrowRight
-} from '@tabler/icons-react'
+import { IconMail, IconPhone, IconCalendar, IconBrandWhatsapp, IconArrowRight } from '@tabler/icons-react'
 
 import { GoogleAnalyticsTag } from '@/components/shared'
 import { Paragraph, Title } from '@/components/ui'
@@ -27,7 +20,7 @@ const NEXT_STEPS = [
   {
     icon: IconMail,
     title: 'Check your inbox',
-    description: 'You\'ll receive a confirmation email with programme details shortly.'
+    description: "You'll receive a confirmation email with programme details shortly."
   },
   {
     icon: IconPhone,
@@ -125,7 +118,11 @@ export default function EnquiryThanksPage() {
 
           <Box className="relative z-10 w-full px-4">
             {/* Success Card */}
-            <Card className="m-auto mt-[120px] flex w-full max-w-[640px] flex-col items-center p-6 sm:p-10" withBorder radius={12}>
+            <Card
+              className="m-auto mt-[120px] flex w-full max-w-[640px] flex-col items-center p-6 sm:p-10"
+              withBorder
+              radius={12}
+            >
               <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-green-100">
                 <Image fetchPriority="high" src={successIcon.src} alt="Success" width={40} height={40} />
               </div>
@@ -136,9 +133,7 @@ export default function EnquiryThanksPage() {
 
               {/* What Happens Next */}
               <div className="mt-8 w-full">
-                <h3 className="mb-4 text-center font-nexa text-lg font-semibold text-gray-900">
-                  What Happens Next
-                </h3>
+                <h3 className="mb-4 text-center font-nexa text-lg font-semibold text-gray-900">What Happens Next</h3>
                 <div className="space-y-4">
                   {NEXT_STEPS.map((step, index) => (
                     <div key={index} className="flex items-start gap-4 rounded-lg bg-gray-50 p-4">
@@ -168,9 +163,7 @@ export default function EnquiryThanksPage() {
 
               {/* Explore Links */}
               <div className="mt-8 w-full border-t border-gray-200 pt-6">
-                <p className="mb-3 text-center text-sm font-medium text-gray-500">
-                  Explore while you wait
-                </p>
+                <p className="mb-3 text-center text-sm font-medium text-gray-500">Explore while you wait</p>
                 <div className="grid grid-cols-2 gap-2">
                   {EXPLORE_LINKS.map((link) => (
                     <Link

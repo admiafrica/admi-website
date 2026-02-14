@@ -28,7 +28,7 @@ export default function ProgramSection({
   bgColor = 'bg-white',
   accentColor,
   accentBg,
-  courses,
+  courses
 }: ProgramSectionProps) {
   if (courses.length === 0) return null
 
@@ -41,17 +41,12 @@ export default function ProgramSection({
           style={{ backgroundColor: iconBgColor }}
           aria-hidden="true"
         >
-          <span
-            className="font-nexa text-[22px] font-bold"
-            style={{ color: iconTextColor }}
-          >
+          <span className="font-nexa text-[22px] font-bold" style={{ color: iconTextColor }}>
             {iconLetter}
           </span>
         </div>
         <div className="flex flex-col">
-          <h2 className="font-nexa text-2xl font-bold text-[#171717]">
-            {title}
-          </h2>
+          <h2 className="font-nexa text-2xl font-bold text-[#171717]">{title}</h2>
           <p className="font-proxima text-sm text-[#999]">{meta}</p>
         </div>
       </div>
