@@ -29,7 +29,6 @@ export function MainLayout({ children, minimizeFooter = false, minimizeHeader = 
         className={`fixed left-0 right-0 top-0 z-50 flex h-[81px] items-center justify-between px-5 transition-transform duration-300 ${
           pinned ? 'translate-y-0' : '-translate-y-full'
         } ${mode === 'dark' ? 'bg-black' : 'bg-white'}`}
-        style={{ borderBottom: 'none' }}
       >
         <NavBar mode={mode} isMinimal={minimizeHeader} />
       </header>

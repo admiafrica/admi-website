@@ -42,6 +42,7 @@ const programs: ProgramCard[] = [
     href: '/courses/professional-certificates',
     image: '/images/homepage/professional-students.jpg',
     imageAlt: 'ADMI professional certificate student working on a video project',
+    badge: 'SKILLS UPGRADE',
     bg: 'bg-[#0A3D3D]',
     priceColor: 'text-[#08F6CF]/50',
     buttonText: 'text-[#0A0A0A]',

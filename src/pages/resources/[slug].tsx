@@ -6,7 +6,7 @@ import { FAQSchema } from '@/components/seo/FAQSchema'
 import { VideoObjectSchema } from '@/components/seo/VideoObjectSchema'
 import ArticleLayout, {
   extractPlainText,
-  calculateReadingTime,
+  calculateReadingTime
 } from '@/components/articles/ArticleLayout'
 
 export default function ResourceArticlePage({
@@ -14,7 +14,7 @@ export default function ResourceArticlePage({
   slug,
   relatedArticles = [],
   faqItems = [],
-  hasVideo = false,
+  hasVideo = false
 }: {
   article: any
   slug: string
@@ -131,7 +131,7 @@ export async function getServerSideProps(context: any) {
     }
 
     return {
-      props: { article, slug, relatedArticles, faqItems, hasVideo },
+      props: { article, slug, relatedArticles, faqItems, hasVideo }
     }
   } catch (error) {
     console.error('Error fetching resource:', error)

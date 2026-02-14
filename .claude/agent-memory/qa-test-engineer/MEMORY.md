@@ -28,3 +28,15 @@
 - FAQ accordions lack proper ARIA (no aria-controls, no id on panels, no role attributes)
 - Image placeholders shipped without alt text
 - `#08F6CF` (teal) on white background fails WCAG AA contrast
+
+## Code Quality Audit (2026-02-14)
+
+- **TypeScript (`tsc --noEmit`):** PASSES cleanly -- zero type errors
+- **ESLint (`next lint`):** FAILS -- 20 errors + 6 warnings across 5 files
+  - Dominant issue: `comma-dangle` (17 of 20 errors) in ArticleLayout, news/[slug], resources/[slug]
+  - 1 unused variable (`slug`) in ArticleLayout line 417
+  - 6 warnings for `<img>` instead of `next/image` in alumni, impact-alumni-success, ArticleLayout
+- **Build (`next build`):** PASSES after clearing `.next` cache
+  - Stale `.next` cache can cause `MODULE_NOT_FOUND` for webpack chunks
+  - Two pages exceed 128 kB data threshold: `/courses` (160 kB), `/` (207 kB)
+- **Build uses hybrid routing:** Pages Router (main site) + App Router (media-archive, admin, sitemaps)

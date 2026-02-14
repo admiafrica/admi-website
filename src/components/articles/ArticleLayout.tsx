@@ -10,7 +10,7 @@ import {
   IconBrandLinkedin,
   IconBrandWhatsapp,
   IconLink,
-  IconChevronRight,
+  IconChevronRight
 } from '@tabler/icons-react'
 
 import { ensureProtocol } from '@/utils'
@@ -80,7 +80,7 @@ function formatDate(dateStr?: string): string {
   return new Date(dateStr).toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'long',
-    day: 'numeric',
+    day: 'numeric'
   })
 }
 
@@ -92,7 +92,7 @@ function formatDate(dateStr?: string): string {
 function ArticleHero({
   title,
   coverImageUrl,
-  breadcrumbSegments,
+  breadcrumbSegments
 }: {
   title: string
   coverImageUrl: string
@@ -112,7 +112,7 @@ function ArticleHero({
         className="absolute inset-0"
         style={{
           background:
-            'linear-gradient(to bottom, #0A1A18CC 0%, #0A1A1844 100%)',
+            'linear-gradient(to bottom, #0A1A18CC 0%, #0A1A1844 100%)'
         }}
       />
 
@@ -162,7 +162,7 @@ function ArticleHero({
 function ArticleMetaBar({
   date,
   category,
-  readingTime,
+  readingTime
 }: {
   date: string
   category: string
@@ -171,7 +171,7 @@ function ArticleMetaBar({
   const items = [
     { icon: IconCalendar, label: date },
     { icon: IconTag, label: category },
-    { icon: IconClock, label: `${readingTime} min read` },
+    { icon: IconClock, label: `${readingTime} min read` }
   ].filter((item) => item.label)
 
   return (
@@ -255,26 +255,26 @@ function ShareCard({ title, summary }: { title: string; summary: string }) {
       icon: IconBrandFacebook,
       label: 'Facebook',
       onClick: () => handleShare('facebook'),
-      color: '#1877F2',
+      color: '#1877F2'
     },
     {
       icon: IconBrandLinkedin,
       label: 'LinkedIn',
       onClick: () => handleShare('linkedin'),
-      color: '#0A66C2',
+      color: '#0A66C2'
     },
     {
       icon: IconBrandWhatsapp,
       label: 'WhatsApp',
       onClick: () => handleShare('whatsapp'),
-      color: '#25D366',
+      color: '#25D366'
     },
     {
       icon: IconLink,
       label: copied ? 'Copied!' : 'Copy Link',
       onClick: handleCopyLink,
-      color: '#888',
-    },
+      color: '#888'
+    }
   ]
 
   return (
@@ -301,7 +301,7 @@ function ShareCard({ title, summary }: { title: string; summary: string }) {
 /** Related Articles sidebar card */
 function RelatedArticlesSidebar({
   articles,
-  section,
+  section
 }: {
   articles: RelatedArticleEntry[]
   section: 'news' | 'resources'
@@ -414,12 +414,11 @@ function NewsletterCTA() {
 
 export default function ArticleLayout({
   article,
-  slug,
   relatedArticles = [],
   section,
   backLabel,
   backHref,
-  seoSchemas,
+  seoSchemas
 }: ArticleLayoutProps) {
   if (!article) {
     return (
@@ -446,7 +445,7 @@ export default function ArticleLayout({
     ...(category && category !== backLabel
       ? [{ label: category }]
       : []),
-    { label: article.title },
+    { label: article.title }
   ]
 
   return (

@@ -7,7 +7,7 @@ import ArticleLayout from '@/components/articles/ArticleLayout'
 export default function NewsArticlePage({
   article,
   slug,
-  relatedArticles = [],
+  relatedArticles = []
 }: {
   article: any
   slug: string
@@ -91,7 +91,7 @@ export async function getServerSideProps(context: any) {
     }
 
     return {
-      props: { article, slug, relatedArticles },
+      props: { article, slug, relatedArticles }
     }
   } catch (error) {
     console.error('Error fetching article:', error)

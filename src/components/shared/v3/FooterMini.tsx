@@ -1,5 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 
 import { IconCopyright } from '@tabler/icons-react'
 import IconLogoWhite from '@/assets/logo-light.svg'
@@ -63,8 +64,10 @@ export default function FooterMini() {
               2025 All Rights Reserved. <b>ADMI Africa</b>
             </p>
           </div>
-          <div className="cursor-pointer text-admiShamrok md:pl-4 md:pr-32">
-            <p>Privacy Policy | Terms & Conditions</p>
+          <div className="text-admiShamrok md:pl-4 md:pr-32">
+            <Link href="/privacy-policy" className="cursor-pointer text-admiShamrok no-underline">
+              Privacy Policy | Terms & Conditions
+            </Link>
           </div>
           <Image width={95} src={IconLogoWhite} alt="logo" />
         </div>

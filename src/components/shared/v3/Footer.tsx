@@ -61,7 +61,7 @@ export default function Footer({ bgColor }: Props) {
   }
 
   return (
-    <div className={`relative w-full ${bgColor ? `bg-[${bgColor}]` : 'bg-[#FFF7F5]'} font-proxima`}>
+    <div className="relative w-full bg-[#FFF7F5] font-proxima" style={bgColor ? { backgroundColor: bgColor } : undefined}>
       {/* Floating Card */}
       <div className="w-full pt-48 sm:pt-36">
         <div className="absolute left-1/2 top-[6vh] z-10 h-fit w-full max-w-screen-lg -translate-x-1/2 transform justify-center px-4 sm:top-[8vh] md:h-[7.125rem] 2xl:px-0">
@@ -245,8 +245,14 @@ export default function Footer({ bgColor }: Props) {
               2025 All Rights Reserved. <b>ADMI Africa</b>
             </p>
           </div>
-          <div className="grow cursor-pointer text-admiShamrok md:pl-4">
-            <p onClick={() => navigateToPage('privacy-policy')}>Privacy Policy | Terms & Conditions</p>
+          <div className="grow text-admiShamrok md:pl-4">
+            <button
+              type="button"
+              className="cursor-pointer border-none bg-transparent p-0 text-admiShamrok"
+              onClick={() => navigateToPage('privacy-policy')}
+            >
+              Privacy Policy | Terms & Conditions
+            </button>
           </div>
           <Image width={95} src={IconLogoWhite} alt="logo" />
         </div>
