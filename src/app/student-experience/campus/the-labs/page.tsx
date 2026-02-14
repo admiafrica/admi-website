@@ -8,17 +8,17 @@ export default function StudentExperienceLabsPage() {
     <MainLayout footerBgColor="white">
       <PageSEO title="Student Experience: The Labs" description="Specialized labs and production technology at ADMI." />
 
-      <Box className="bg-[#0A0A0A] px-4 py-16 text-white xl:px-0">
+      <Box className="bg-admi-black px-4 py-16 text-white xl:px-0">
         <Box className="mx-auto w-full max-w-screen-xl">
           <p className="font-nexa text-[14px] uppercase tracking-[0.15em] text-[#B7D8CF]">/student-experience/campus/the-labs</p>
-          <h1 className="pt-4 font-fraunces text-[46px] font-bold">The Labs</h1>
+          <h1 className="pt-4 font-proxima text-[46px] font-bold">The Labs</h1>
           <p className="max-w-[820px] pt-4 font-nexa text-[18px] text-white/85">Hands-on environments for editing, VFX, sound design, animation, and cross-disciplinary production workflows.</p>
         </Box>
       </Box>
 
       <Box className="mx-auto w-full max-w-screen-xl px-4 py-14 xl:px-0">
         <Box className="rounded-xl border border-[#E8E8E8] bg-white p-6">
-          <h2 className="font-fraunces text-[34px] font-bold text-[#171717]">Lab Capabilities</h2>
+          <h2 className="font-proxima text-[34px] font-bold text-[#171717]">Lab Capabilities</h2>
           <ul className="pt-4 font-nexa text-[15px] leading-[1.7] text-[#555]">
             <li>Creative software pipelines across audio, video, motion, and design.</li>
             <li>Project collaboration with tutor support and peer review cycles.</li>

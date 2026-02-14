@@ -27,7 +27,7 @@ export default function ProgramDetails({ details, learningOutcomes }: ProgramDet
 
         {/* Learning Outcomes - Full Width Card */}
         {learningOutcomes.length > 0 && (
-          <div className="mt-4 rounded-xl bg-[#BA2E36] p-8">
+          <div className="mt-4 rounded-xl bg-brand-red p-8">
             <h3 className="mb-6 font-nexa text-sm font-black uppercase tracking-wider text-white">Learning Outcomes</h3>
             <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2">
               {learningOutcomes.map((outcome, index) => (
@@ -36,7 +36,7 @@ export default function ProgramDetails({ details, learningOutcomes }: ProgramDet
                   className="flex items-start gap-3 font-proxima text-base leading-relaxed text-white"
                 >
                   <svg
-                    className="mt-1 h-4 w-4 flex-shrink-0 text-[#08F6CF]"
+                    className="mt-1 h-4 w-4 flex-shrink-0 text-secondary"
                     fill="currentColor"
                     viewBox="0 0 20 20"
                     aria-hidden="true"

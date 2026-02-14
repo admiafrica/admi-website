@@ -150,7 +150,7 @@ function ArticleHero({
         </nav>
 
         {/* Title */}
-        <h1 className="max-w-[800px] font-fraunces text-[28px] font-bold leading-[1.15] text-white md:text-[44px]">
+        <h1 className="max-w-[800px] font-proxima text-[28px] font-bold leading-[1.15] text-white md:text-[44px]">
           {title}
         </h1>
       </div>
@@ -199,7 +199,7 @@ function AuthorCard({ author }: { author: string }) {
       </span>
       <div className="mt-3 flex items-center gap-3">
         {/* Avatar placeholder */}
-        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#BA2E36] font-proxima text-sm font-bold text-white">
+        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-red font-proxima text-sm font-bold text-white">
           {author
             .split(' ')
             .map((w) => w[0])
@@ -288,7 +288,7 @@ function ShareCard({ title, summary }: { title: string; summary: string }) {
             key={item.label}
             onClick={item.onClick}
             aria-label={`Share on ${item.label}`}
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-[#E8E8E8] text-[#555] transition-colors hover:border-[#BA2E36] hover:text-[#BA2E36]"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-[#E8E8E8] text-[#555] transition-colors hover:border-brand-red hover:text-brand-red"
           >
             <item.icon size={18} />
           </button>
@@ -310,7 +310,7 @@ function RelatedArticlesSidebar({
 
   return (
     <div className="rounded-2xl border border-[#E8E8E8] p-6">
-      <h3 className="mb-4 font-fraunces text-[20px] font-bold text-[#171717]">
+      <h3 className="mb-4 font-proxima text-[20px] font-bold text-[#171717]">
         Related Articles
       </h3>
 
@@ -340,11 +340,11 @@ function RelatedArticlesSidebar({
                 )}
                 <div className="min-w-0">
                   {articleCategory && (
-                    <span className="font-proxima text-xs font-bold uppercase text-[#BA2E36]">
+                    <span className="font-proxima text-xs font-bold uppercase text-brand-red">
                       {articleCategory}
                     </span>
                   )}
-                  <p className="mt-1 font-proxima text-[15px] font-semibold leading-snug text-[#171717] transition-colors group-hover:text-[#BA2E36]">
+                  <p className="mt-1 font-proxima text-[15px] font-semibold leading-snug text-[#171717] transition-colors group-hover:text-brand-red">
                     {articleTitle}
                   </p>
                 </div>
@@ -374,14 +374,14 @@ function NewsletterCTA() {
   }
 
   return (
-    <section className="w-full bg-[#0A0A0A]">
+    <section className="w-full bg-admi-black">
       <div className="flex flex-col items-start justify-between gap-8 px-6 py-14 md:flex-row md:items-center md:px-20 md:py-[60px]">
         {/* Left side */}
         <div>
           <span className="font-proxima text-[13px] font-bold uppercase tracking-[1.2px] text-white/65">
             Stay Updated
           </span>
-          <h2 className="mt-3 max-w-[500px] font-fraunces text-[24px] font-bold leading-[1.25] text-white md:text-[28px]">
+          <h2 className="mt-3 max-w-[500px] font-proxima text-[24px] font-bold leading-[1.25] text-white md:text-[28px]">
             Get the latest ADMI news in your inbox
           </h2>
         </div>
@@ -394,11 +394,11 @@ function NewsletterCTA() {
             placeholder="Enter your email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full rounded-lg border border-[#444] bg-transparent px-5 py-3.5 font-proxima text-sm text-white placeholder:text-white/40 focus:border-[#BA2E36] focus:outline-none sm:w-[280px]"
+            className="w-full rounded-lg border border-[#444] bg-transparent px-5 py-3.5 font-proxima text-sm text-white placeholder:text-white/40 focus:border-brand-red focus:outline-none sm:w-[280px]"
           />
           <button
             type="submit"
-            className="rounded-lg bg-[#BA2E36] px-6 py-3.5 font-proxima text-sm font-semibold text-white transition-colors hover:bg-[#a32830]"
+            className="rounded-lg bg-brand-red px-6 py-3.5 font-proxima text-sm font-semibold text-white transition-colors hover:bg-[#a32830]"
           >
             Subscribe
           </button>

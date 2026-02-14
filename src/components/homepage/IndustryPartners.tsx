@@ -2,7 +2,7 @@ const PARTNERS = ['NTV Kenya', 'Ogilvy', 'Safaricom', 'KBC', 'Showmax', 'Nairobi
 
 export default function IndustryPartners() {
   return (
-    <section className="w-full bg-[#0A0A0A]">
+    <section className="w-full bg-admi-black">
       <div className="mx-auto max-w-[1280px] px-6 py-10 md:px-8 md:py-12">
       {/* Header */}
       <p className="text-center font-proxima text-[15px] tracking-wider text-[#666]">

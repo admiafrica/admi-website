@@ -74,9 +74,9 @@ const PROGRAM_CONFIG: Record<
 > = {
   Diploma: {
     iconLetter: 'D',
-    iconBgColor: '#BA2E36',
+    iconBgColor: '#C1272D',
     iconTextColor: '#FFFFFF',
-    accentColor: '#BA2E36',
+    accentColor: '#C1272D',
     accentBg: '#FFF0F0',
     bgColor: 'bg-white',
     meta: '18 months  •  In-person  •  EU-Accredited via Woolf  •  From KES 15,000/month',
@@ -85,7 +85,7 @@ const PROGRAM_CONFIG: Record<
   'Professional Certificate': {
     iconLetter: 'P',
     iconBgColor: '#0A3D3D',
-    iconTextColor: '#08F6CF',
+    iconTextColor: '#8EBFB0',
     accentColor: '#0A3D3D',
     accentBg: '#EEF9F7',
     bgColor: 'bg-[#f9f9f9]',
@@ -95,8 +95,8 @@ const PROGRAM_CONFIG: Record<
   'Foundation Certificate': {
     iconLetter: 'F',
     iconBgColor: '#3A1F0B',
-    iconTextColor: '#F76335',
-    accentColor: '#F76335',
+    iconTextColor: '#EF7B2E',
+    accentColor: '#EF7B2E',
     accentBg: '#FFF8F0',
     bgColor: 'bg-white',
     meta: '3 months  •  In-person  •  ADMI Certified  •  From KES 5,000/month',
@@ -105,7 +105,7 @@ const PROGRAM_CONFIG: Record<
   'Rubika Programs': {
     iconLetter: 'R',
     iconBgColor: '#1a1a4e',
-    iconTextColor: '#08F6CF',
+    iconTextColor: '#8EBFB0',
     accentColor: '#1a1a4e',
     accentBg: '#EEF0FF',
     bgColor: 'bg-[#f9f9f9]',
@@ -336,18 +336,18 @@ export default function CoursesPage({
                 <>
                   Showing <span className="font-bold text-[#171717]">{totalResults}</span> result
                   {totalResults !== 1 ? 's' : ''} for{' '}
-                  <span className="font-bold text-[#BA2E36]">&ldquo;{searchQuery}&rdquo;</span>
+                  <span className="font-bold text-brand-red">&ldquo;{searchQuery}&rdquo;</span>
                 </>
               ) : (
                 <>
-                  No results found for <span className="font-bold text-[#BA2E36]">&ldquo;{searchQuery}&rdquo;</span>
+                  No results found for <span className="font-bold text-brand-red">&ldquo;{searchQuery}&rdquo;</span>
                 </>
               )}
             </p>
             <button
               type="button"
               onClick={handleClearSearch}
-              className="font-proxima text-sm font-semibold text-[#BA2E36] underline-offset-2 hover:underline"
+              className="font-proxima text-sm font-semibold text-brand-red underline-offset-2 hover:underline"
             >
               Clear search
             </button>
@@ -391,7 +391,7 @@ export default function CoursesPage({
                   setIsSearching(true)
                   router.push(`/courses?q=${encodeURIComponent(term)}`, undefined, { shallow: true })
                 }}
-                className="rounded-full border border-[#e0e0e0] bg-white px-4 py-2 font-proxima text-sm text-[#666] transition-colors hover:border-[#BA2E36] hover:text-[#BA2E36]"
+                className="rounded-full border border-[#e0e0e0] bg-white px-4 py-2 font-proxima text-sm text-[#666] transition-colors hover:border-brand-red hover:text-brand-red"
               >
                 {term}
               </button>

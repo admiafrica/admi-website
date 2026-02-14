@@ -2,13 +2,12 @@
  * Accreditation Page Types
  */
 
-import type { Icon } from '@tabler/icons-react'
-
-export interface Accreditation {
+/** CMS shape: icon stored as string ID, resolved at render time via getIcon() */
+export interface AccreditationCMS {
   title: string
   subtitle: string
   description: string
-  Icon: Icon
+  icon: string
   borderColor: string
   accentColor: string
   iconBg: string
@@ -16,16 +15,27 @@ export interface Accreditation {
   tags: string[]
 }
 
-export interface QualityStandard {
+/** CMS shape: icon stored as string ID */
+export interface QualityStandardCMS {
   title: string
   description: string
-  Icon: Icon
+  icon: string
   iconColor: string
 }
 
-export interface AccreditationBenefit {
+/** CMS shape: icon stored as string ID */
+export interface AccreditationBenefitCMS {
   title: string
   description: string
-  Icon: Icon
+  icon: string
   iconColor: string
+}
+
+/** Full page data shape returned by the /api/v3/accreditation endpoint */
+export interface AccreditationPageData {
+  accreditations: AccreditationCMS[]
+  qualityStandards: QualityStandardCMS[]
+  benefits: AccreditationBenefitCMS[]
+  seoTitle: string
+  seoDescription: string
 }

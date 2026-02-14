@@ -14,7 +14,7 @@ export default function CoursesHero({ searchQuery, onSearchChange, onSearch }: C
   }
 
   return (
-    <section aria-labelledby="courses-hero-heading" className="w-full bg-[#002A23] px-4 py-12 md:px-20 md:py-20">
+    <section aria-labelledby="courses-hero-heading" className="w-full bg-admi-green px-4 py-12 md:px-20 md:py-20">
       <div className="mx-auto flex max-w-[900px] flex-col items-center">
         {/* Heading */}
         <h1 id="courses-hero-heading" className="text-center font-nexa text-4xl font-black text-white md:text-5xl">
@@ -46,7 +46,7 @@ export default function CoursesHero({ searchQuery, onSearchChange, onSearch }: C
             <button
               type="button"
               onClick={onSearch}
-              className="shrink-0 rounded-lg bg-[#BA2E36] px-8 py-3.5 font-proxima text-sm font-bold text-white transition-colors hover:bg-[#a52830] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#BA2E36] focus-visible:ring-offset-2"
+              className="shrink-0 rounded-lg bg-brand-red px-8 py-3.5 font-proxima text-sm font-bold text-white transition-colors hover:bg-[#a52830] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-red focus-visible:ring-offset-2"
             >
               Search
             </button>

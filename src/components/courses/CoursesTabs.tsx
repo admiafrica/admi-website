@@ -80,9 +80,9 @@ export default function CoursesTabs({ activeTab, onTabChange, tabs }: CoursesTab
               tabIndex={isActive ? 0 : -1}
               onClick={() => onTabChange(tab)}
               onKeyDown={(e) => handleKeyDown(e, index)}
-              className={`shrink-0 whitespace-nowrap border-0 px-6 py-4 font-proxima text-sm outline-none transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#BA2E36] ${
+              className={`shrink-0 whitespace-nowrap border-0 px-6 py-4 font-proxima text-sm outline-none transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-brand-red ${
                 isActive
-                  ? 'border-b-[3px] border-b-[#BA2E36] font-bold text-[#BA2E36]'
+                  ? 'border-b-[3px] border-b-brand-red font-bold text-brand-red'
                   : 'border-b-[3px] border-b-transparent font-normal text-[#666] hover:text-[#333]'
               } `}
             >

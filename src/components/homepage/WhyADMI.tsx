@@ -11,32 +11,32 @@ interface Benefit {
 const benefits: Benefit[] = [
   {
     icon: IconAward,
-    iconColor: 'text-[#BA2E36]',
-    iconBg: 'bg-[#BA2E36]/10',
+    iconColor: 'text-brand-red',
+    iconBg: 'bg-brand-red/10',
     title: 'Internationally Accredited',
     description:
       'Earn EU-accredited credits through Woolf University. TVETA Kenya registered. Recognised by employers and institutions worldwide.'
   },
   {
     icon: IconBriefcase,
-    iconColor: 'text-[#08F6CF]',
-    iconBg: 'bg-[#08F6CF]/10',
+    iconColor: 'text-secondary',
+    iconBg: 'bg-secondary/10',
     title: 'Internship Placement',
     description:
       'Every diploma student completes a mandatory industry placement. 88% of graduates are employed within 6 months.'
   },
   {
     icon: IconUsers,
-    iconColor: 'text-[#F76335]',
-    iconBg: 'bg-[#F76335]/10',
+    iconColor: 'text-brand-orange',
+    iconBg: 'bg-brand-orange/10',
     title: 'Expert Faculty',
     description:
       'Learn from practising professionals from Safaricom, NMG, Standard Group and Kenya\u2019s leading creative studios.'
   },
   {
     icon: IconWallet,
-    iconColor: 'text-[#BA2E36]',
-    iconBg: 'bg-[#BA2E36]/10',
+    iconColor: 'text-brand-red',
+    iconBg: 'bg-brand-red/10',
     title: 'Affordable Fees',
     description:
       'Pay per semester with flexible instalments. Diploma programmes from KES 15,000/month. No hidden costs.'

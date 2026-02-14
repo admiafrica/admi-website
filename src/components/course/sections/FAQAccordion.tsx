@@ -28,7 +28,7 @@ export default function FAQAccordion({ faqs }: FAQAccordionProps) {
                 aria-expanded={openIndex === index}
               >
                 <span className="font-proxima text-base font-bold text-[#171717]">{faq.question}</span>
-                <span className="mt-1 flex-shrink-0 text-[#BA2E36]" aria-hidden="true">
+                <span className="mt-1 flex-shrink-0 text-brand-red" aria-hidden="true">
                   {openIndex === index ? '−' : '+'}
                 </span>
               </button>

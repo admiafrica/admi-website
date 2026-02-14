@@ -26,3 +26,18 @@ export interface NetworkBenefit {
   title: string
   desc: string
 }
+
+/** CMS-shaped network benefit where icon is a string ID instead of a component */
+export interface NetworkBenefitCMS {
+  icon: string
+  title: string
+  desc: string
+}
+
+/** Shape of data returned by getStaticProps for the alumni page */
+export interface AlumniPageData {
+  stats: AlumniStat[]
+  featuredAlumni: FeaturedAlumni[]
+  companyRows: CompanyRow[]
+  networkBenefits: NetworkBenefitCMS[]
+}

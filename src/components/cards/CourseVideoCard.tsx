@@ -50,7 +50,7 @@ export default function CourseVideoCard(props: Props) {
           </Group>
         )}
       </Card.Section>
-      <Card.Section className="bg-[#F76335] px-6 py-4 text-white">
+      <Card.Section className="bg-brand-orange px-6 py-4 text-white">
         <div className="flex">
           <IconExclamationCircle size={24} />
           <div className="font-proxima">

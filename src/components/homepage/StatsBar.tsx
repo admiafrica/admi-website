@@ -7,7 +7,7 @@ const STATS = [
 
 export default function StatsBar() {
   return (
-    <section className="w-full bg-[#1a1a2e]">
+    <section className="w-full bg-admi-blue">
       {/* Desktop Layout */}
       <div className="mx-auto hidden max-w-[1280px] items-center justify-around px-8 py-10 md:flex">
         {STATS.map((stat, index) => (

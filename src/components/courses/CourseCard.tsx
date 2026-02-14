@@ -19,7 +19,7 @@ export function CourseCard({
   duration,
   deliveryMode,
   imageUrl,
-  accentColor = '#BA2E36',
+  accentColor = '#C1272D',
   accentBg = '#FFF0F0'
 }: CourseCardProps) {
   return (

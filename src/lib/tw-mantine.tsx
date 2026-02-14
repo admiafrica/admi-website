@@ -207,7 +207,7 @@ export const Button = React.forwardRef<any, AnyProps>(function Button(
           ? 'border border-gray-400 bg-white text-gray-900'
           : color === 'red'
             ? 'bg-red-600 text-white'
-            : 'bg-[#F76335] text-white'
+            : 'bg-brand-orange text-white'
   return (
     <Element
       ref={ref}
@@ -463,7 +463,7 @@ export const AspectRatio = ({ ratio = 16 / 9, className, children, ...rest }: An
 
 export const Progress = ({ className, value = 0, ...rest }: AnyProps) => (
   <div className={cx('h-2 w-full overflow-hidden rounded-full bg-gray-200', className)} {...rest}>
-    <div className="h-full bg-[#F76335]" style={{ width: `${Math.max(0, Math.min(100, Number(value) || 0))}%` }} />
+    <div className="h-full bg-brand-orange" style={{ width: `${Math.max(0, Math.min(100, Number(value) || 0))}%` }} />
   </div>
 )
 

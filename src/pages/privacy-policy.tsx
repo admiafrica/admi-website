@@ -54,10 +54,10 @@ export default function PrivacyPolicyPage() {
         <section className="bg-gradient-to-br from-[#0F2E2A] via-[#0A1F1D] to-[#091110] px-4 py-20 text-center text-white xl:px-20">
           <div className="mx-auto w-full max-w-screen-xl">
             <div className="flex items-center justify-center gap-2.5">
-              <span className="h-[3px] w-8 bg-[#08F6CF]" />
-              <span className="font-proxima text-[13px] font-semibold uppercase tracking-[2px] text-[#08F6CF]">LEGAL</span>
+              <span className="h-[3px] w-8 bg-secondary" />
+              <span className="font-proxima text-[13px] font-semibold uppercase tracking-[2px] text-secondary">LEGAL</span>
             </div>
-            <h1 className="mt-5 font-fraunces text-[48px] font-bold">Privacy Policy</h1>
+            <h1 className="mt-5 font-proxima text-[48px] font-bold">Privacy Policy</h1>
             <p className="mt-3 font-proxima text-[16px] text-[#B7D8CF]">Last updated: February 2026</p>
           </div>
         </section>
@@ -67,7 +67,7 @@ export default function PrivacyPolicyPage() {
           <div className="mx-auto max-w-[960px] space-y-10">
             {SECTIONS.map((section) => (
               <article key={section.title}>
-                <h2 className="font-fraunces text-[24px] font-bold text-[#0A0A0A]">{section.title}</h2>
+                <h2 className="font-proxima text-[24px] font-bold text-admi-black">{section.title}</h2>
                 <p className="mt-3 font-proxima text-[15px] leading-[1.7] text-[#555]">{section.body}</p>
               </article>
             ))}

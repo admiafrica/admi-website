@@ -17,7 +17,7 @@ const BADGES = [
 
 export default function AccreditationTrust() {
   return (
-    <section className="w-full border-y border-[#e8e0d8] bg-[#f7f5f2]">
+    <section className="w-full border-y border-[#e8e0d8] bg-warm">
       <div className="mx-auto max-w-[1280px] px-6 py-12 md:px-8 md:py-[60px]">
         {/* Header */}
         <div className="mx-auto mb-12 flex max-w-[800px] flex-col items-center text-center">

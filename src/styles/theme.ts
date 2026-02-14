@@ -53,11 +53,11 @@ export const proximaNovaFont = localFont({
 
 export const defaultTheme = createTheme({
   colors: {
-    admiDarkOrange: createColorScale('#BA2E36'),
-    admiShamrok: createColorScale('#08F6CF'),
-    admiRed: createColorScale('#F60834'),
-    admiOrangeLight: createColorScale('#F76335'),
-    admiOrangeDark: createColorScale('#BD2D00')
+    admiDarkOrange: createColorScale('#C1272D'),
+    admiShamrok: createColorScale('#8EBFB0'),
+    admiRed: createColorScale('#C1272D'),
+    admiOrangeLight: createColorScale('#EF7B2E'),
+    admiOrangeDark: createColorScale('#922834')
   },
   primaryColor: 'admiDarkOrange'
 })

@@ -31,7 +31,7 @@ export default function AlumniStories({ stories }: Props) {
               </div>
               <div className="flex flex-1 flex-col p-6">
                 <h4 className="mb-2 font-bold text-gray-900">{story.name}</h4>
-                <p className="mb-4 font-proxima font-semibold text-[#BA2E36]">{story.role}</p>
+                <p className="mb-4 font-proxima font-semibold text-brand-red">{story.role}</p>
                 <p className="flex-1 font-proxima italic text-gray-600">&ldquo;{story.story}&rdquo;</p>
               </div>
             </div>

@@ -45,17 +45,17 @@ export default function EventsPage({ currentEvents, upcomingEvents, pastEvents }
         <div className="border-y border-[#E8E8E8] bg-white">
           <div className="mx-auto flex w-full max-w-screen-xl items-center justify-around px-4 py-6 xl:px-0">
             <div className="text-center">
-              <p className="font-fraunces text-[34px] font-bold text-[#171717]">{currentEvents.length || 6}</p>
+              <p className="font-proxima text-[34px] font-bold text-[#171717]">{currentEvents.length || 6}</p>
               <p className="font-nexa text-[14px] text-[#666]">Current Events</p>
             </div>
             <div className="h-[44px] w-px bg-[#DADADA]" />
             <div className="text-center">
-              <p className="font-fraunces text-[34px] font-bold text-[#171717]">{upcomingEvents.length || 12}</p>
+              <p className="font-proxima text-[34px] font-bold text-[#171717]">{upcomingEvents.length || 12}</p>
               <p className="font-nexa text-[14px] text-[#666]">Upcoming Events</p>
             </div>
             <div className="h-[44px] w-px bg-[#DADADA]" />
             <div className="text-center">
-              <p className="font-fraunces text-[34px] font-bold text-[#171717]">{pastEvents.length || 34}</p>
+              <p className="font-proxima text-[34px] font-bold text-[#171717]">{pastEvents.length || 34}</p>
               <p className="font-nexa text-[14px] text-[#666]">Past Events</p>
             </div>
           </div>
@@ -67,7 +67,7 @@ export default function EventsPage({ currentEvents, upcomingEvents, pastEvents }
               <a
                 key={tab}
                 href={tab}
-                className={`px-4 py-4 font-nexa text-[14px] font-bold ${idx === 0 ? 'border-b-[3px] border-[#BA2E36] text-[#171717]' : 'text-[#666]'}`}
+                className={`px-4 py-4 font-nexa text-[14px] font-bold ${idx === 0 ? 'border-b-[3px] border-brand-red text-[#171717]' : 'text-[#666]'}`}
               >
                 {tab}
               </a>

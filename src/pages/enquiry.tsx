@@ -37,12 +37,12 @@ const SIDEBAR_CARDS: SidebarCard[] = [
   },
   {
     icon: IconDownload,
-    iconBg: '#F76335',
+    iconBg: '#EF7B2E',
     title: 'Download Prospectus',
     desc: 'Get our detailed programme prospectus with course outlines, fees, and intake dates.',
     link: '/resources',
     linkText: 'Get Prospectus (PDF)',
-    linkColor: '#F76335',
+    linkColor: '#EF7B2E',
     external: false
   }
 ]
@@ -64,10 +64,10 @@ export default function EnquiryPage() {
         <section className="bg-gradient-to-br from-[#0F2E2A] via-[#0A1F1D] to-[#091110] px-4 py-20 text-center text-white xl:px-20">
           <div className="mx-auto w-full max-w-screen-xl">
             <div className="flex items-center justify-center gap-2.5">
-              <span className="h-[3px] w-8 bg-[#08F6CF]" />
-              <span className="font-proxima text-[13px] font-semibold uppercase tracking-[2px] text-[#08F6CF]">ENQUIRE NOW</span>
+              <span className="h-[3px] w-8 bg-secondary" />
+              <span className="font-proxima text-[13px] font-semibold uppercase tracking-[2px] text-secondary">ENQUIRE NOW</span>
             </div>
-            <h1 className="mt-5 font-fraunces text-[48px] font-bold">Start Your Creative Journey</h1>
+            <h1 className="mt-5 font-proxima text-[48px] font-bold">Start Your Creative Journey</h1>
             <p className="mx-auto mt-4 max-w-[600px] font-proxima text-[18px] leading-[1.6] text-white/80">
               Fill out the form below and our admissions team will get back to you within 24 hours.
             </p>
@@ -92,7 +92,7 @@ export default function EnquiryPage() {
                   >
                     <card.icon size={22} className="text-white" />
                   </div>
-                  <h3 className="mt-4 font-proxima text-[18px] font-bold text-[#0A0A0A]">{card.title}</h3>
+                  <h3 className="mt-4 font-proxima text-[18px] font-bold text-admi-black">{card.title}</h3>
                   <p className="mt-2 font-proxima text-[14px] leading-[1.6] text-[#666]">{card.desc}</p>
                   <Link
                     href={card.link}

@@ -25,8 +25,26 @@ export interface WorkBenefit {
   description: string
 }
 
+/** CMS shape: icon stored as string ID, resolved at render time */
+export interface WorkBenefitCMS {
+  icon: string
+  title: string
+  description: string
+}
+
 export interface TeamMember {
   name: string
   role: string
   image: string
+}
+
+/** Full page data shape returned by the /api/v3/work-with-us endpoint */
+export interface WorkWithUsPageData {
+  faculty: FacultyMember[]
+  openings: JobOpening[]
+  benefits: WorkBenefitCMS[]
+  teamMembers: TeamMember[]
+  seoTitle: string
+  seoDescription: string
+  seoKeywords: string
 }

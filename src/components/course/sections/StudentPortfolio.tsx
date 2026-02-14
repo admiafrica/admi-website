@@ -42,7 +42,7 @@ export default function StudentPortfolio({ items }: Props) {
                     href={item.projectUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-4 inline-block font-proxima font-bold text-[#BA2E36] hover:underline"
+                    className="mt-4 inline-block font-proxima font-bold text-brand-red hover:underline"
                   >
                     View Project →
                   </a>

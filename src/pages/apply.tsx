@@ -128,7 +128,7 @@ export default function ApplyPage() {
             {/* Left content */}
             <div className="flex-1">
               <p className="font-nexa text-[14px] uppercase tracking-[0.15em] text-[#B7D8CF]">/apply</p>
-              <h1 className="mt-4 font-fraunces text-[40px] font-bold leading-[1.1] text-white md:text-[52px]">
+              <h1 className="mt-4 font-proxima text-[40px] font-bold leading-[1.1] text-white md:text-[52px]">
                 Start Your Application
               </h1>
               <p className="mt-5 max-w-[560px] font-nexa text-[17px] leading-[1.65] text-white/80">
@@ -158,7 +158,7 @@ export default function ApplyPage() {
           <div className="mx-auto flex w-full max-w-screen-xl flex-col gap-12 px-6 md:px-8 lg:flex-row lg:gap-16">
             {/* Left column -- Form */}
             <div className="flex-1">
-              <h2 className="font-fraunces text-[28px] font-bold text-[#171717] md:text-[32px]">
+              <h2 className="font-proxima text-[28px] font-bold text-[#171717] md:text-[32px]">
                 Application Form
               </h2>
               <p className="mt-3 max-w-[540px] font-nexa text-[16px] leading-[1.6] text-[#555]">
@@ -169,7 +169,7 @@ export default function ApplyPage() {
                 /* Success state */
                 <div className="mt-10 rounded-xl border border-green-200 bg-green-50 p-8 text-center">
                   <IconCircleCheck size={48} className="mx-auto text-green-600" />
-                  <h3 className="mt-4 font-fraunces text-[24px] font-bold text-[#171717]">
+                  <h3 className="mt-4 font-proxima text-[24px] font-bold text-[#171717]">
                     Application Submitted
                   </h3>
                   <p className="mt-2 font-nexa text-[16px] text-[#555]">
@@ -194,7 +194,7 @@ export default function ApplyPage() {
                         required
                         value={formData.firstName}
                         onChange={(e) => updateField('firstName', e.currentTarget.value)}
-                        className="h-[48px] rounded-lg border border-[#D9D9D9] px-3 font-nexa text-[14px] text-[#171717] focus:border-[#BA2E36] focus:outline-none"
+                        className="h-[48px] rounded-lg border border-[#D9D9D9] px-3 font-nexa text-[14px] text-[#171717] focus:border-brand-red focus:outline-none"
                       />
                     </label>
                     <label className="flex flex-col">
@@ -205,7 +205,7 @@ export default function ApplyPage() {
                         required
                         value={formData.lastName}
                         onChange={(e) => updateField('lastName', e.currentTarget.value)}
-                        className="h-[48px] rounded-lg border border-[#D9D9D9] px-3 font-nexa text-[14px] text-[#171717] focus:border-[#BA2E36] focus:outline-none"
+                        className="h-[48px] rounded-lg border border-[#D9D9D9] px-3 font-nexa text-[14px] text-[#171717] focus:border-brand-red focus:outline-none"
                       />
                     </label>
                   </div>
@@ -220,12 +220,12 @@ export default function ApplyPage() {
                         required
                         value={formData.email}
                         onChange={(e) => updateField('email', e.currentTarget.value)}
-                        className="h-[48px] rounded-lg border border-[#D9D9D9] px-3 font-nexa text-[14px] text-[#171717] focus:border-[#BA2E36] focus:outline-none"
+                        className="h-[48px] rounded-lg border border-[#D9D9D9] px-3 font-nexa text-[14px] text-[#171717] focus:border-brand-red focus:outline-none"
                       />
                     </label>
                     <label className="flex flex-col">
                       <span className="mb-1.5 font-nexa text-[14px] font-semibold text-[#333]">Phone Number *</span>
-                      <div className="flex h-[48px] rounded-lg border border-[#D9D9D9] focus-within:border-[#BA2E36]">
+                      <div className="flex h-[48px] rounded-lg border border-[#D9D9D9] focus-within:border-brand-red">
                         <span className="flex items-center border-r border-[#E8E8E8] px-3 font-nexa text-[14px] text-[#555]">+254</span>
                         <input
                           type="tel"
@@ -250,7 +250,7 @@ export default function ApplyPage() {
                         required
                         value={formData.programme}
                         onChange={(e) => updateField('programme', e.currentTarget.value)}
-                        className="h-[48px] rounded-lg border border-[#D9D9D9] bg-white px-3 font-nexa text-[14px] text-[#171717] focus:border-[#BA2E36] focus:outline-none"
+                        className="h-[48px] rounded-lg border border-[#D9D9D9] bg-white px-3 font-nexa text-[14px] text-[#171717] focus:border-brand-red focus:outline-none"
                       >
                         <option value="">Select a programme</option>
                         {PROGRAMME_OPTIONS.map((option) => (
@@ -266,7 +266,7 @@ export default function ApplyPage() {
                         required
                         value={formData.intake}
                         onChange={(e) => updateField('intake', e.currentTarget.value)}
-                        className="h-[48px] rounded-lg border border-[#D9D9D9] bg-white px-3 font-nexa text-[14px] text-[#171717] focus:border-[#BA2E36] focus:outline-none"
+                        className="h-[48px] rounded-lg border border-[#D9D9D9] bg-white px-3 font-nexa text-[14px] text-[#171717] focus:border-brand-red focus:outline-none"
                       >
                         <option value="">Select an intake</option>
                         {INTAKE_OPTIONS.map((option) => (
@@ -287,7 +287,7 @@ export default function ApplyPage() {
                         rows={4}
                         value={formData.additionalInfo}
                         onChange={(e) => updateField('additionalInfo', e.currentTarget.value)}
-                        className="rounded-lg border border-[#D9D9D9] px-3 py-2.5 font-nexa text-[14px] text-[#171717] focus:border-[#BA2E36] focus:outline-none"
+                        className="rounded-lg border border-[#D9D9D9] px-3 py-2.5 font-nexa text-[14px] text-[#171717] focus:border-brand-red focus:outline-none"
                       />
                     </label>
                   </div>
@@ -299,15 +299,15 @@ export default function ApplyPage() {
                         type="checkbox"
                         checked={formData.consent}
                         onChange={(e) => updateField('consent', e.currentTarget.checked)}
-                        className="mt-0.5 h-4 w-4 rounded border-[#D9D9D9] text-[#BA2E36] focus:ring-[#BA2E36]"
+                        className="mt-0.5 h-4 w-4 rounded border-[#D9D9D9] text-brand-red focus:ring-brand-red"
                       />
                       <span className="font-nexa text-[14px] text-[#555]">
                         I agree to the{' '}
-                        <Link href="/privacy-policy" className="text-[#BA2E36] underline hover:text-[#8B1A24]">
+                        <Link href="/privacy-policy" className="text-brand-red underline hover:text-[#8B1A24]">
                           Terms &amp; Conditions
                         </Link>{' '}
                         and{' '}
-                        <Link href="/privacy-policy" className="text-[#BA2E36] underline hover:text-[#8B1A24]">
+                        <Link href="/privacy-policy" className="text-brand-red underline hover:text-[#8B1A24]">
                           Privacy Policy
                         </Link>{' '}
                         *
@@ -319,7 +319,7 @@ export default function ApplyPage() {
                   <button
                     type="submit"
                     disabled={!isFormValid}
-                    className="mt-8 h-14 w-full rounded-lg bg-[#BA2E36] font-nexa text-[16px] font-semibold tracking-wide text-white transition hover:bg-[#a12730] disabled:cursor-not-allowed disabled:bg-[#D9D9D9] disabled:text-[#999]"
+                    className="mt-8 h-14 w-full rounded-lg bg-brand-red font-nexa text-[16px] font-semibold tracking-wide text-white transition hover:bg-[#a12730] disabled:cursor-not-allowed disabled:bg-[#D9D9D9] disabled:text-[#999]"
                   >
                     {isSubmitting ? 'Submitting...' : 'Submit Application'}
                   </button>
@@ -332,8 +332,8 @@ export default function ApplyPage() {
               {/* Key Dates card */}
               <div className="rounded-xl bg-[#F9F9F9] p-6">
                 <div className="flex items-center gap-3">
-                  <IconCalendar size={22} className="text-[#BA2E36]" />
-                  <h3 className="font-fraunces text-[20px] font-bold text-[#171717]">Key Dates</h3>
+                  <IconCalendar size={22} className="text-brand-red" />
+                  <h3 className="font-proxima text-[20px] font-bold text-[#171717]">Key Dates</h3>
                 </div>
                 <div className="mt-5 space-y-4">
                   {KEY_DATES.map((date) => (
@@ -347,7 +347,7 @@ export default function ApplyPage() {
 
               {/* Questions card */}
               <div className="rounded-xl bg-[#F9F9F9] p-6">
-                <h3 className="font-fraunces text-[20px] font-bold text-[#171717]">Questions?</h3>
+                <h3 className="font-proxima text-[20px] font-bold text-[#171717]">Questions?</h3>
                 <p className="mt-2 font-nexa text-[14px] leading-[1.6] text-[#555]">
                   Our admissions team is here to help you through every step of the application process.
                 </p>
@@ -356,14 +356,14 @@ export default function ApplyPage() {
                     href="mailto:admissions@admi.ac.ke"
                     className="flex items-center gap-3 transition-colors hover:opacity-80"
                   >
-                    <IconMail size={18} className="flex-shrink-0 text-[#BA2E36]" />
+                    <IconMail size={18} className="flex-shrink-0 text-brand-red" />
                     <span className="font-nexa text-[14px] text-[#333]">admissions@admi.ac.ke</span>
                   </a>
                   <a
                     href="tel:+254741132751"
                     className="flex items-center gap-3 transition-colors hover:opacity-80"
                   >
-                    <IconPhone size={18} className="flex-shrink-0 text-[#BA2E36]" />
+                    <IconPhone size={18} className="flex-shrink-0 text-brand-red" />
                     <span className="font-nexa text-[14px] text-[#333]">+254 741 132 751</span>
                   </a>
                   <a
@@ -372,7 +372,7 @@ export default function ApplyPage() {
                     rel="noopener noreferrer"
                     className="flex items-center gap-3 transition-colors hover:opacity-80"
                   >
-                    <IconBrandWhatsapp size={18} className="flex-shrink-0 text-[#25D366]" />
+                    <IconBrandWhatsapp size={18} className="flex-shrink-0 text-brand-whatsapp" />
                     <span className="font-nexa text-[14px] text-[#333]">WhatsApp available</span>
                   </a>
                 </div>
@@ -381,8 +381,8 @@ export default function ApplyPage() {
               {/* What You Need card */}
               <div className="rounded-xl bg-[#F9F9F9] p-6">
                 <div className="flex items-center gap-3">
-                  <IconFileText size={22} className="text-[#BA2E36]" />
-                  <h3 className="font-fraunces text-[20px] font-bold text-[#171717]">What You Need</h3>
+                  <IconFileText size={22} className="text-brand-red" />
+                  <h3 className="font-proxima text-[20px] font-bold text-[#171717]">What You Need</h3>
                 </div>
                 <p className="mt-2 font-nexa text-[14px] leading-[1.6] text-[#555]">
                   Prepare the following documents for your application:
@@ -390,7 +390,7 @@ export default function ApplyPage() {
                 <ul className="mt-4 space-y-3">
                   {REQUIREMENTS.map((req) => (
                     <li key={req} className="flex items-start gap-3">
-                      <IconCircleCheck size={18} className="mt-0.5 flex-shrink-0 text-[#08F6CF]" />
+                      <IconCircleCheck size={18} className="mt-0.5 flex-shrink-0 text-secondary" />
                       <span className="font-nexa text-[14px] text-[#333]">{req}</span>
                     </li>
                   ))}
@@ -405,10 +405,10 @@ export default function ApplyPage() {
         {/* ------------------------------------------------------------------ */}
         <section
           className="w-full"
-          style={{ background: 'linear-gradient(135deg, #BA2E36 0%, #8B1A24 100%)' }}
+          style={{ background: 'linear-gradient(135deg, #C1272D 0%, #8B1A24 100%)' }}
         >
           <div className="mx-auto flex w-full max-w-screen-xl flex-col items-center px-6 py-20 text-center md:px-8 md:py-24">
-            <h2 className="font-fraunces text-[32px] font-bold leading-[1.15] text-white md:text-[42px]">
+            <h2 className="font-proxima text-[32px] font-bold leading-[1.15] text-white md:text-[42px]">
               Ready to Start Your Journey?
             </h2>
             <p className="mt-4 max-w-[600px] font-nexa text-[17px] leading-[1.65] text-white/85">
@@ -417,7 +417,7 @@ export default function ApplyPage() {
             </p>
             <Link
               href="/resources"
-              className="mt-8 inline-flex items-center rounded-lg bg-white px-8 py-4 font-nexa text-[16px] font-semibold text-[#BA2E36] transition-all hover:bg-white/90 hover:shadow-lg"
+              className="mt-8 inline-flex items-center rounded-lg bg-white px-8 py-4 font-nexa text-[16px] font-semibold text-brand-red transition-all hover:bg-white/90 hover:shadow-lg"
             >
               Download Prospectus
             </Link>

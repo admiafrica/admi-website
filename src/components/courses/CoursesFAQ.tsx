@@ -50,7 +50,7 @@ export default function CoursesFAQ({ faqs = defaultFAQs }: CoursesFAQProps) {
     <section aria-labelledby="courses-faq-heading" className="w-full bg-[#f9f9f9] px-4 py-12 md:px-20 md:py-20">
       {/* Header */}
       <div className="mx-auto max-w-[800px] text-center">
-        <span className="font-proxima text-[13px] font-semibold uppercase tracking-[2px] text-[#BA2E36]">
+        <span className="font-proxima text-[13px] font-semibold uppercase tracking-[2px] text-brand-red">
           ADMISSIONS
         </span>
         <h2 id="courses-faq-heading" className="mt-3 font-nexa text-4xl font-black text-[#171717]">

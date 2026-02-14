@@ -48,7 +48,7 @@ export default function AlumniStories() {
       {/* Header */}
       <div className="mb-10 flex flex-col items-start gap-4 md:mb-12 md:flex-row md:items-end md:justify-between">
         <div>
-          <span className="mb-3 inline-block font-proxima text-sm font-semibold uppercase tracking-[2px] text-[#BA2E36]">
+          <span className="mb-3 inline-block font-proxima text-sm font-semibold uppercase tracking-[2px] text-brand-red">
             GRADUATE OUTCOMES
           </span>
           <h2 className="font-nexa text-[32px] font-black text-[#171717] md:text-4xl">
@@ -58,7 +58,7 @@ export default function AlumniStories() {
 
         <Link
           href="/alumni"
-          className="flex items-center gap-2 rounded-full border-[1.5px] border-[#BA2E36] px-7 py-3 font-proxima text-sm font-bold text-[#BA2E36] transition-colors hover:bg-[#BA2E36] hover:text-white"
+          className="flex items-center gap-2 rounded-full border-[1.5px] border-brand-red px-7 py-3 font-proxima text-sm font-bold text-brand-red transition-colors hover:bg-brand-red hover:text-white"
         >
           View All Stories
           <IconArrowRight size={16} />
@@ -86,7 +86,7 @@ export default function AlumniStories() {
             {/* Body */}
             <div className="flex flex-1 flex-col gap-2 px-6 py-5">
               <h3 className="font-proxima text-[17px] font-bold text-[#171717]">{person.name}</h3>
-              <span className="font-proxima text-sm text-[#BA2E36]">{person.role}</span>
+              <span className="font-proxima text-sm text-brand-red">{person.role}</span>
               <span className="font-proxima text-[13px] text-[#999]">{person.graduation}</span>
               <p className="mt-1 font-proxima text-sm italic leading-relaxed text-[#666]">
                 &ldquo;{person.quote}&rdquo;

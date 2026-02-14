@@ -67,7 +67,7 @@ export default function StudentShowcase() {
       <div className="mt-10 flex justify-center">
         <Link
           href="/student-showcase"
-          className="flex items-center gap-2 rounded-lg border-[1.5px] border-[#BA2E36] px-8 py-3.5 font-proxima text-[15px] font-semibold text-[#BA2E36] transition-colors hover:bg-[#BA2E36] hover:text-white"
+          className="flex items-center gap-2 rounded-lg border-[1.5px] border-brand-red px-8 py-3.5 font-proxima text-[15px] font-semibold text-brand-red transition-colors hover:bg-brand-red hover:text-white"
         >
           View Student Showcase
           <IconArrowRight size={16} />

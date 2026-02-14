@@ -71,9 +71,9 @@ export default function CourseTabNav({ activeTab, onTabChange }: CourseTabNavPro
                   role="tab"
                   aria-selected={isActive}
                   onClick={() => handleTabClick(tab.value)}
-                  className={`relative cursor-pointer border-0 bg-transparent py-4 transition-colors duration-200 ${isActive ? 'border-b-2 border-[#BA2E36]' : 'border-b-2 border-transparent'} `}
+                  className={`relative cursor-pointer border-0 bg-transparent py-4 transition-colors duration-200 ${isActive ? 'border-b-2 border-brand-red' : 'border-b-2 border-transparent'} `}
                 >
-                  <Text className="font-proxima" size="md" fw={isActive ? 700 : 400} c={isActive ? '#BA2E36' : '#999'}>
+                  <Text className="font-proxima" size="md" fw={isActive ? 700 : 400} c={isActive ? '#C1272D' : '#999'}>
                     {tab.label}
                   </Text>
                 </button>

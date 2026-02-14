@@ -58,7 +58,7 @@ export function VideoShowcase({
                   {/* Play Button Overlay */}
                   <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40 opacity-0 transition-opacity duration-300 hover:opacity-100">
                     <div className="rounded-full bg-white bg-opacity-95 p-4 shadow-lg">
-                      <IconPlayerPlay size={32} color="#F76335" />
+                      <IconPlayerPlay size={32} color="#EF7B2E" />
                     </div>
                   </div>
 

@@ -35,20 +35,20 @@ export default function PaymentPlan({ plan }: PaymentPlanProps) {
               <article
                 key={index}
                 className={`flex flex-col items-center gap-4 rounded-2xl p-8 shadow-md transition-shadow hover:shadow-xl ${
-                  isFirst ? 'border-2 border-[#BA2E36] bg-[#FFF5F5]' : 'border border-[#e0e0e0] bg-[#f9f9f9]'
+                  isFirst ? 'border-2 border-brand-red bg-[#FFF5F5]' : 'border border-[#e0e0e0] bg-[#f9f9f9]'
                 }`}
               >
                 {/* Badge */}
                 <span
                   className={`rounded-[20px] px-5 py-2 font-proxima text-[13px] font-bold text-white ${
-                    isFirst ? 'bg-[#BA2E36]' : 'bg-[#444444]'
+                    isFirst ? 'bg-brand-red' : 'bg-[#444444]'
                   }`}
                 >
                   {installment.label}
                 </span>
 
                 {/* Amount */}
-                <span className={`font-proxima text-4xl font-bold ${isFirst ? 'text-[#BA2E36]' : 'text-[#171717]'}`}>
+                <span className={`font-proxima text-4xl font-bold ${isFirst ? 'text-brand-red' : 'text-[#171717]'}`}>
                   {installment.amount}
                 </span>
 
@@ -68,7 +68,7 @@ export default function PaymentPlan({ plan }: PaymentPlanProps) {
         <p className="mb-6 text-center font-proxima text-sm leading-[1.5] text-[#999999]">{plan.totalPerSemester}</p>
 
         {/* Upfront Discount Banner */}
-        <div className="flex items-center justify-center gap-3 rounded-xl border-2 border-[#08F6CF] bg-[#08F6CF15] px-8 py-5">
+        <div className="flex items-center justify-center gap-3 rounded-xl border-2 border-secondary bg-[#8EBFB015] px-8 py-5">
           <span className="text-2xl">💰</span>
           <span className="font-proxima text-base font-semibold text-[#171717]">{plan.discountMessage}</span>
         </div>

@@ -2,17 +2,16 @@
  * Student Support Page Types
  */
 
-import type { Icon } from '@tabler/icons-react'
-
 export interface SupportCard {
   title: string
   desc: string
 }
 
-export interface SupportTab {
+/** CMS shape: icon stored as string ID, resolved at render time via getIcon() */
+export interface SupportTabCMS {
   key: string
   label: string
-  Icon: Icon
+  icon: string
   color: string
   title: string
   desc: string
@@ -33,4 +32,13 @@ export interface FeeCard {
 export interface HelpDesk {
   title: string
   desc: string
+}
+
+/** Full page data shape returned by the /api/v3/student-support endpoint */
+export interface StudentSupportPageData {
+  supportTabs: SupportTabCMS[]
+  feeCards: FeeCard[]
+  helpDesks: HelpDesk[]
+  seoTitle: string
+  seoDescription: string
 }

@@ -42,12 +42,12 @@ const GALLERY_ITEMS_ROW_2: GalleryItemSmall[] = [
 const PRESS_KIT_ITEMS: PressKitItem[] = [
   {
     icon: IconPhoto,
-    iconBg: 'bg-[#BA2E3615]',
-    iconColor: '#BA2E36',
+    iconBg: 'bg-[#C1272D15]',
+    iconColor: '#C1272D',
     title: 'Brand & Logos',
     description:
       'Download the official ADMI logo in PNG and SVG formats, along with brand colour palettes and usage guidelines.',
-    buttonColor: 'border-[#BA2E36] text-[#BA2E36] hover:bg-[#BA2E36] hover:text-white'
+    buttonColor: 'border-brand-red text-brand-red hover:bg-brand-red hover:text-white'
   },
   {
     icon: IconFileText,
@@ -60,11 +60,11 @@ const PRESS_KIT_ITEMS: PressKitItem[] = [
   },
   {
     icon: IconCamera,
-    iconBg: 'bg-[#F7633515]',
-    iconColor: '#F76335',
+    iconBg: 'bg-[#EF7B2E15]',
+    iconColor: '#EF7B2E',
     title: 'Hi-Res Photos',
     description: 'High-resolution campus photography, student work, and event imagery cleared for editorial use.',
-    buttonColor: 'border-[#F76335] text-[#F76335] hover:bg-[#F76335] hover:text-white'
+    buttonColor: 'border-brand-orange text-brand-orange hover:bg-brand-orange hover:text-white'
   }
 ]
 
@@ -80,13 +80,13 @@ export default function MediaArchivePage() {
       />
 
       {/* ===== HERO SECTION ===== */}
-      <div className="w-full bg-[#0A0A0A] px-4 py-20 xl:px-0">
+      <div className="w-full bg-admi-black px-4 py-20 xl:px-0">
         <div className="mx-auto w-full max-w-screen-xl">
           <div className="flex items-center gap-3">
-            <div className="h-px w-8 bg-[#08F6CF]" />
-            <p className="font-nexa text-[13px] uppercase tracking-[0.2em] text-[#08F6CF]">Media Archive</p>
+            <div className="h-px w-8 bg-secondary" />
+            <p className="font-nexa text-[13px] uppercase tracking-[0.2em] text-secondary">Media Archive</p>
           </div>
-          <h1 className="font-fraunces pt-5 text-[36px] font-bold leading-[1.15] text-white sm:text-[48px]">
+          <h1 className="font-proxima pt-5 text-[36px] font-bold leading-[1.15] text-white sm:text-[48px]">
             Photos, Videos and Press Resources
           </h1>
           <p className="max-w-2xl pt-4 font-nexa text-[17px] leading-relaxed text-white/80">
@@ -105,7 +105,7 @@ export default function MediaArchivePage() {
                 onClick={() => setActiveTab(tab)}
                 className={`whitespace-nowrap px-5 py-4 font-nexa text-[14px] font-bold transition-colors ${
                   activeTab === tab
-                    ? 'border-b-[3px] border-[#BA2E36] text-[#BA2E36]'
+                    ? 'border-b-[3px] border-brand-red text-brand-red'
                     : 'border-b-[3px] border-transparent text-[#666] hover:text-[#333]'
                 }`}
               >
@@ -137,7 +137,7 @@ export default function MediaArchivePage() {
                   <span className="inline-block rounded bg-white/15 px-3 py-1 font-nexa text-[11px] font-bold uppercase tracking-[0.15em] text-white/90 backdrop-blur-sm">
                     {item.category}
                   </span>
-                  <h3 className="font-fraunces mt-3 text-[22px] font-bold leading-tight text-white sm:text-[26px]">
+                  <h3 className="font-proxima mt-3 text-[22px] font-bold leading-tight text-white sm:text-[26px]">
                     {item.title}
                   </h3>
                 </div>
@@ -162,7 +162,7 @@ export default function MediaArchivePage() {
                 <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/60 to-transparent" />
                 {/* Content */}
                 <div className="relative z-10 w-full p-5 sm:p-6">
-                  <h3 className="font-fraunces text-[18px] font-bold leading-tight text-white sm:text-[20px]">
+                  <h3 className="font-proxima text-[18px] font-bold leading-tight text-white sm:text-[20px]">
                     {item.label}
                   </h3>
                 </div>
@@ -178,10 +178,10 @@ export default function MediaArchivePage() {
       <div className="bg-[#F9F9F9] px-4 py-16 sm:px-10 lg:px-20 lg:py-20">
         <div className="mx-auto w-full max-w-screen-xl">
           <div className="flex items-center gap-3">
-            <div className="h-px w-8 bg-[#BA2E36]" />
-            <p className="font-nexa text-[13px] uppercase tracking-[0.2em] text-[#BA2E36]">Press Kit</p>
+            <div className="h-px w-8 bg-brand-red" />
+            <p className="font-nexa text-[13px] uppercase tracking-[0.2em] text-brand-red">Press Kit</p>
           </div>
-          <h2 className="font-fraunces pt-4 text-[32px] font-bold leading-[1.15] text-[#171717] sm:text-[40px]">
+          <h2 className="font-proxima pt-4 text-[32px] font-bold leading-[1.15] text-[#171717] sm:text-[40px]">
             Download Press Resources
           </h2>
           <p className="max-w-2xl pt-3 font-nexa text-[16px] leading-relaxed text-[#555]">
@@ -201,7 +201,7 @@ export default function MediaArchivePage() {
                   <div className={`flex h-12 w-12 items-center justify-center rounded-lg ${item.iconBg}`}>
                     <Icon size={24} color={item.iconColor} stroke={1.5} />
                   </div>
-                  <h3 className="font-fraunces mt-5 text-[20px] font-bold text-[#171717]">{item.title}</h3>
+                  <h3 className="font-proxima mt-5 text-[20px] font-bold text-[#171717]">{item.title}</h3>
                   <p className="mt-2 flex-1 font-nexa text-[14px] leading-relaxed text-[#555]">{item.description}</p>
                   <button
                     className={`mt-6 flex items-center justify-center gap-2 rounded-lg border-2 px-5 py-2.5 font-nexa text-[14px] font-bold transition-colors duration-200 ${item.buttonColor}`}
@@ -224,7 +224,7 @@ export default function MediaArchivePage() {
         }}
       >
         <div className="mx-auto w-full max-w-screen-xl text-center">
-          <h2 className="font-fraunces text-[32px] font-bold text-white sm:text-[40px]">Have a Media Enquiry?</h2>
+          <h2 className="font-proxima text-[32px] font-bold text-white sm:text-[40px]">Have a Media Enquiry?</h2>
           <p className="mx-auto max-w-xl pt-4 font-nexa text-[16px] leading-relaxed text-white/70">
             For press enquiries, interview requests, or high-resolution assets, our communications team is ready to
             help.
@@ -232,7 +232,7 @@ export default function MediaArchivePage() {
           <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center rounded-lg bg-[#BA2E36] px-8 py-3 font-nexa text-[15px] font-bold text-white transition-colors duration-200 hover:bg-[#a02830]"
+              className="inline-flex items-center justify-center rounded-lg bg-brand-red px-8 py-3 font-nexa text-[15px] font-bold text-white transition-colors duration-200 hover:bg-[#a02830]"
             >
               Contact Press Team
             </Link>

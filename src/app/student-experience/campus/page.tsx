@@ -38,7 +38,7 @@ export default function StudentExperienceCampusPage() {
       <Box className="bg-[#0A1A18] px-4 py-16 text-white xl:px-0">
         <Box className="mx-auto w-full max-w-screen-xl">
           <p className="font-nexa text-[14px] uppercase tracking-[0.15em] text-[#B7D8CF]">/student-experience/campus</p>
-          <h1 className="pt-4 font-fraunces text-[48px] font-bold leading-[1.1]">Campus Experience at ADMI</h1>
+          <h1 className="pt-4 font-proxima text-[48px] font-bold leading-[1.1]">Campus Experience at ADMI</h1>
           <p className="max-w-[860px] pt-4 font-nexa text-[18px] text-white/85">
             Discover the learning spaces where creative ideas are developed into professional outcomes.
           </p>
@@ -51,7 +51,7 @@ export default function StudentExperienceCampusPage() {
             <a
               key={tab}
               href={tab}
-              className={`px-4 py-4 font-nexa text-[14px] font-bold ${idx === 0 ? 'border-b-[3px] border-[#BA2E36] text-[#171717]' : 'text-[#666]'}`}
+              className={`px-4 py-4 font-nexa text-[14px] font-bold ${idx === 0 ? 'border-b-[3px] border-brand-red text-[#171717]' : 'text-[#666]'}`}
             >
               {tab}
             </a>
@@ -65,11 +65,11 @@ export default function StudentExperienceCampusPage() {
             key={section.href}
             href={section.href}
             id={idx === 0 ? 'facilities' : idx === 1 ? 'labs' : idx === 2 ? 'studios' : 'equipment'}
-            className="rounded-xl border border-[#E8E8E8] bg-white p-6 transition hover:border-[#BA2E36]"
+            className="rounded-xl border border-[#E8E8E8] bg-white p-6 transition hover:border-brand-red"
           >
-            <h3 className="font-fraunces text-[32px] font-bold text-[#171717]">{section.title}</h3>
+            <h3 className="font-proxima text-[32px] font-bold text-[#171717]">{section.title}</h3>
             <p className="pt-2 font-nexa text-[16px] text-[#555]">{section.summary}</p>
-            <p className="pt-4 font-nexa text-[14px] font-bold text-[#BA2E36]">Explore →</p>
+            <p className="pt-4 font-nexa text-[14px] font-bold text-brand-red">Explore →</p>
           </Link>
         ))}
       </Box>

@@ -2,10 +2,9 @@
  * Student Life Page Types
  */
 
-import type { Icon } from '@tabler/icons-react'
-
-export interface HubCard {
-  icon: Icon
+/** CMS shape: icon stored as string ID, resolved at render time via getIcon() */
+export interface HubCardCMS {
+  icon: string
   title: string
   desc: string
   link: string
@@ -13,8 +12,17 @@ export interface HubCard {
   image: string
 }
 
-export interface CampusFeature {
-  icon: Icon
+/** CMS shape: icon stored as string ID */
+export interface CampusFeatureCMS {
+  icon: string
   title: string
   desc: string
+}
+
+/** Full page data shape returned by the /api/v3/student-life endpoint */
+export interface StudentLifePageData {
+  hubCards: HubCardCMS[]
+  campusFeatures: CampusFeatureCMS[]
+  seoTitle: string
+  seoDescription: string
 }

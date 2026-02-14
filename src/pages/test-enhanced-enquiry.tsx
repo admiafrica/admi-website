@@ -28,7 +28,7 @@ export default function TestEnhancedEnquiry() {
         keywords="ADMI test enquiry, enhanced form, pre-qualification, lead scoring, course enquiry"
       />
 
-      <div className="min-h-[100vh] w-full bg-[#002A23] pt-16">
+      <div className="min-h-[100vh] w-full bg-admi-green pt-16">
         {/* BACKGROUND DECORATION */}
         <div className="absolute left-[54%] top-[24vh] h-fit w-full -translate-x-1/2 transform">
           <div className="flex w-full justify-end pr-[10%]">

@@ -27,7 +27,7 @@ export default function HeroSection() {
           {/* Badge Pill */}
           <div className="mb-6 flex">
             <span className="inline-flex items-center gap-2.5 rounded-full bg-white/10 px-5 py-2.5 backdrop-blur-sm">
-              <span className="h-2 w-2 shrink-0 rounded-full bg-[#F76335]" />
+              <span className="h-2 w-2 shrink-0 rounded-full bg-brand-orange" />
               <span className="font-proxima text-sm font-medium text-white">January, May &amp; September Intakes</span>
             </span>
           </div>
@@ -48,7 +48,7 @@ export default function HeroSection() {
           <div>
             <Link
               href="/courses"
-              className="inline-flex items-center gap-2 rounded-lg bg-[#BA2E36] px-9 py-[18px] font-proxima text-[17px] font-semibold text-white transition-colors hover:bg-[#a52830]"
+              className="inline-flex items-center gap-2 rounded-lg bg-brand-red px-9 py-[18px] font-proxima text-[17px] font-semibold text-white transition-colors hover:bg-[#a52830]"
             >
               Explore Programmes
               <IconChevronRight size={20} stroke={2.5} />

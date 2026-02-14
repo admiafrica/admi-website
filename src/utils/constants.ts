@@ -151,7 +151,7 @@ export const ADMI_HOMEPAGE_SECTORS = [
   {
     title: 'Film & TV Production',
     icon: IconTripodCamera,
-    color: '#F76335'
+    color: '#EF7B2E'
   },
   {
     title: 'Video Production',
@@ -171,7 +171,7 @@ export const ADMI_HOMEPAGE_SECTORS = [
   {
     title: 'Animation & Motion Graphics',
     icon: IconTruckSpeed,
-    color: '#F76335'
+    color: '#EF7B2E'
   },
   {
     title: 'Graphic Design',
@@ -204,7 +204,7 @@ export const ADMI_ABOUT_SECTORS = [
   {
     title: 'Film & TV Production',
     icon: IconTripodCamera,
-    color: '#F76335'
+    color: '#EF7B2E'
   },
   {
     title: 'Sound Engineering',
@@ -512,7 +512,7 @@ export const ADMI_VALUES = [
     id: 'global',
     name: 'Global',
     icon: IconBrowser,
-    iconColor: '#F76335',
+    iconColor: '#EF7B2E',
     description: [
       'By joining the ADMI community, you enjoy an exceptional international education benchmarking operations and pedagogy against global standards.',
       'To ensure that your skills are globally marketable, we develop our curriculum in partnership with global industry partners and faculty recruited from leading international academic institutions. And best of all, you will learn alongside a diverse community that has hosted staff, faculty and students from over 27 different countries.'
@@ -701,7 +701,7 @@ export const ADMI_FELLOWSHIP_VALUES = [
     id: 'global',
     name: 'Why Join Our Fellowship Program?',
     icon: IconPinned,
-    iconColor: '#F76335',
+    iconColor: '#EF7B2E',
     description: [
       'As a fellow at ADMI, you will have the unique opportunity to engage in meaningful work while gaining valuable experience in the field of digital media and education.',
       'Our program is designed to foster professional growth and development, allowing you to collaborate with industry practitioners and educators who are dedicated to excellence in teaching and learning.'
@@ -767,7 +767,7 @@ export const ADMI_CAREER_VALUES = [
     id: 'global',
     name: 'Impactful Teaching',
     icon: IconEdit,
-    iconColor: '#F76335',
+    iconColor: '#EF7B2E',
     description: [
       'At ADMI, you will have the chance to shape the minds of students and make a lasting impact on their careers. Your expertise and passion for teaching can help cultivate the skills and creativity of future leaders in the digital media landscape.'
     ]
@@ -824,7 +824,7 @@ export const ADMI_FELLOWSHIPS = [
     id: 'global',
     name: 'TVETA Kenya Registration',
     icon: IconBook,
-    iconColor: '#F76335',
+    iconColor: '#EF7B2E',
     description: [
       'ADMI is registered with the Technical and Vocational Education and Training Authority (TVETA) of Kenya. This government registration ensures that our programmes meet national standards for quality technical education.',
       'As a TVETA-registered institution, our qualifications are nationally recognised, giving graduates confidence in their credentials across Kenya and East Africa.'
@@ -856,7 +856,7 @@ export const ADMI_ACADEMIC_PATHWAYS = [
     id: 'practical',
     name: 'Alignment with KNQF',
     icon: IconCheckList,
-    iconColor: '#F76335',
+    iconColor: '#EF7B2E',
     description: [
       'Our academic programs are designed to meet the standards set by the Kenya National Qualifications Framework (KNQF), which is recognized both locally and internationally. By aligning our qualifications with the KNQF, we ensure that our students can seamlessly progress through the education system, whether they choose to study in Kenya or abroad.'
     ]

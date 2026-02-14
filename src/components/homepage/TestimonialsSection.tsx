@@ -11,21 +11,21 @@ const TESTIMONIALS: Testimonial[] = [
   {
     quote:
       'ADMI gave me the skills and confidence to land my dream job in film production. The hands-on approach made all the difference.',
-    avatarColor: 'bg-[#BA2E36]',
+    avatarColor: 'bg-brand-red',
     name: 'Sarah Njeri',
     role: 'Film Production Graduate, 2024'
   },
   {
     quote:
       'The industry connections I made through ADMI opened doors I never imagined. I now work with top brands across East Africa.',
-    avatarColor: 'bg-[#08F6CF]',
+    avatarColor: 'bg-secondary',
     name: 'James Odhiambo',
     role: 'Graphic Design Graduate, 2023'
   },
   {
     quote:
       'From knowing nothing about animation to creating content for international studios \u2014 ADMI made that journey possible in just 18 months.',
-    avatarColor: 'bg-[#F76335]',
+    avatarColor: 'bg-brand-orange',
     name: 'Amina Hassan',
     role: '2D Animation Graduate, 2024'
   }
@@ -33,7 +33,7 @@ const TESTIMONIALS: Testimonial[] = [
 
 export default function TestimonialsSection() {
   return (
-    <section className="w-full bg-[#0A0A0A]">
+    <section className="w-full bg-admi-black">
       <div className="section-container section-padding">
       {/* Header */}
       <div className="mx-auto mb-12 flex flex-col items-center text-center">

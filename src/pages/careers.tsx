@@ -16,18 +16,18 @@ export default function CareersPage() {
           <div className="absolute inset-0 bg-black/60" />
           <div className="relative z-10 mx-auto flex h-full w-full max-w-screen-xl flex-col justify-end px-4 pb-14 text-white xl:px-0">
             <p className="font-nexa text-[14px] uppercase tracking-[0.15em] text-[#B7D8CF]">/careers</p>
-            <h1 className="pt-4 font-fraunces text-[52px] font-bold leading-[1.1]">Work With Us at ADMI</h1>
+            <h1 className="pt-4 font-proxima text-[52px] font-bold leading-[1.1]">Work With Us at ADMI</h1>
             <p className="max-w-[820px] pt-4 font-nexa text-[18px] text-white/85">Join a mission-driven team developing the next generation of African creative professionals.</p>
           </div>
         </section>
         <section className="bg-white py-16">
           <div className="mx-auto w-full max-w-screen-xl px-4 xl:px-0">
-            <h2 className="font-fraunces text-[40px] font-bold text-[#171717]">Open Positions</h2>
+            <h2 className="font-proxima text-[40px] font-bold text-[#171717]">Open Positions</h2>
             <div className="grid grid-cols-1 gap-4 pt-8 md:grid-cols-3">
               {openings.map((r) => (
                 <article key={r.title} className="rounded-xl border border-[#E8E8E8] bg-white p-6">
-                  <p className="font-nexa text-[12px] uppercase tracking-[0.1em] text-[#BA2E36]">{r.type}</p>
-                  <h3 className="pt-1 font-fraunces text-[30px] font-bold leading-[1.2] text-[#171717]">{r.title}</h3>
+                  <p className="font-nexa text-[12px] uppercase tracking-[0.1em] text-brand-red">{r.type}</p>
+                  <h3 className="pt-1 font-proxima text-[30px] font-bold leading-[1.2] text-[#171717]">{r.title}</h3>
                   <p className="pt-2 font-nexa text-[14px] text-[#666]">{r.location}</p>
                 </article>
               ))}

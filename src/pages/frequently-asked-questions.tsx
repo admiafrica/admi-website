@@ -3,18 +3,20 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { IconPlus, IconMinus, IconMessageCircle, IconMail } from '@tabler/icons-react'
+import type { GetStaticProps, InferGetStaticPropsType } from 'next'
 
 import { MainLayout } from '@/layouts/v3/MainLayout'
 import { PageSEO } from '@/components/shared/v3'
-import type { FaqCategory, FaqData } from '@/types/frequently-asked-questions'
+import { getEntriesCached } from '@/utils/contentful-cached'
+import type { FaqCategory, FaqItem } from '@/types/frequently-asked-questions'
 
 /* ------------------------------------------------------------------ */
-/*  Data                                                               */
+/*  Fallback data (used when Contentful is unavailable)                */
 /* ------------------------------------------------------------------ */
 
-const CATEGORIES = ['General', 'Admissions', 'Fees & Payment', 'Student Life', 'Programmes'] as const
+const CATEGORIES: FaqCategory[] = ['General', 'Admissions', 'Fees & Payment', 'Student Life', 'Programmes']
 
-const FAQ_DATA: FaqData = {
+const FALLBACK_FAQ: Record<string, FaqItem[]> = {
   General: [
     {
       q: 'What is ADMI?',
@@ -108,6 +110,39 @@ const FAQ_DATA: FaqData = {
 }
 
 /* ------------------------------------------------------------------ */
+/*  Data fetching                                                      */
+/* ------------------------------------------------------------------ */
+
+export const getStaticProps: GetStaticProps<{ faqData: Record<string, FaqItem[]> }> = async () => {
+  let faqData = FALLBACK_FAQ
+
+  try {
+    const entries = await getEntriesCached('pageFaq', 'page:faqs', 'order=fields.sortOrder')
+
+    if (entries && entries.length > 0) {
+      const grouped: Record<string, FaqItem[]> = {}
+      for (const entry of entries) {
+        const f = entry.fields
+        const category = f.category || 'General'
+        if (!grouped[category]) grouped[category] = []
+        grouped[category].push({
+          q: f.question,
+          a: f.answer
+        })
+      }
+      faqData = grouped
+    }
+  } catch (error) {
+    console.error('[FAQ] CMS fetch failed, using fallback:', error)
+  }
+
+  return {
+    props: { faqData },
+    revalidate: 300
+  }
+}
+
+/* ------------------------------------------------------------------ */
 /*  Components                                                         */
 /* ------------------------------------------------------------------ */
 
@@ -117,7 +152,7 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
   return (
     <div className="border-b border-[#e8e8e8]">
       <button onClick={() => setOpen(!open)} className="flex w-full items-center justify-between py-5 text-left">
-        <span className="font-proxima text-[16px] font-medium text-[#0A0A0A]">{question}</span>
+        <span className="font-proxima text-[16px] font-medium text-admi-black">{question}</span>
         {open ? (
           <IconMinus size={20} className="flex-shrink-0 text-[#999]" />
         ) : (
@@ -137,7 +172,7 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
 /*  Page                                                               */
 /* ------------------------------------------------------------------ */
 
-export default function FAQPage() {
+export default function FAQPage({ faqData }: InferGetStaticPropsType<typeof getStaticProps>) {
   const [activeCategory, setActiveCategory] = useState<FaqCategory>('General')
 
   return (
@@ -148,23 +183,23 @@ export default function FAQPage() {
       />
 
       <div className="w-full">
-        {/* ── Hero ── */}
+        {/* -- Hero -- */}
         <section className="bg-[#0A3D3D] px-4 py-20 text-center text-white xl:px-20">
           <div className="mx-auto w-full max-w-screen-xl">
             <div className="flex items-center justify-center gap-2.5">
-              <span className="h-[3px] w-8 bg-[#08F6CF]" />
-              <span className="font-proxima text-[13px] font-semibold uppercase tracking-[2px] text-[#08F6CF]">
+              <span className="h-[3px] w-8 bg-secondary" />
+              <span className="font-proxima text-[13px] font-semibold uppercase tracking-[2px] text-secondary">
                 FAQ
               </span>
             </div>
-            <h1 className="font-fraunces mt-5 text-[48px] font-bold">Frequently Asked Questions</h1>
+            <h1 className="font-proxima mt-5 text-[48px] font-bold">Frequently Asked Questions</h1>
             <p className="mx-auto mt-4 max-w-[600px] font-proxima text-[18px] leading-[1.6] text-white/80">
               Find answers to common questions about ADMI programmes, admissions, fees and student life.
             </p>
           </div>
         </section>
 
-        {/* ── Category Tabs ── */}
+        {/* -- Category Tabs -- */}
         <div className="border-b border-[#e8e8e8] bg-white px-4 xl:px-20">
           <div className="mx-auto flex w-full max-w-screen-xl gap-0 overflow-x-auto">
             {CATEGORIES.map((cat) => (
@@ -173,7 +208,7 @@ export default function FAQPage() {
                 onClick={() => setActiveCategory(cat)}
                 className={`whitespace-nowrap px-6 py-4 font-proxima text-[15px] transition ${
                   activeCategory === cat
-                    ? 'border-b-[3px] border-[#BA2E36] font-semibold text-[#BA2E36]'
+                    ? 'border-b-[3px] border-brand-red font-semibold text-brand-red'
                     : 'font-medium text-[#666] hover:text-[#171717]'
                 }`}
               >
@@ -183,12 +218,12 @@ export default function FAQPage() {
           </div>
         </div>
 
-        {/* ── FAQ Content ── */}
+        {/* -- FAQ Content -- */}
         <section className="bg-white px-4 py-12 xl:px-20">
           <div className="mx-auto w-full max-w-screen-xl">
             {activeCategory === 'General' ? (
               /* Show all categories when on General */
-              Object.entries(FAQ_DATA)
+              Object.entries(faqData)
                 .filter(([key]) => key === 'General' || key === 'Admissions' || key === 'Fees & Payment')
                 .map(([category, items]) => (
                   <div key={category} className="mb-12">
@@ -197,14 +232,14 @@ export default function FAQPage() {
                         className="h-[3px] w-6"
                         style={{
                           backgroundColor:
-                            category === 'General' ? '#08F6CF' : category === 'Admissions' ? '#BA2E36' : '#F76335'
+                            category === 'General' ? '#8EBFB0' : category === 'Admissions' ? '#C1272D' : '#EF7B2E'
                         }}
                       />
                       <span className="font-proxima text-[13px] font-bold uppercase tracking-[2px] text-[#0A3D3D]">
                         {category.toUpperCase()}
                       </span>
                     </div>
-                    {items.map((item) => (
+                    {items.map((item: FaqItem) => (
                       <FAQItem key={item.q} question={item.q} answer={item.a} />
                     ))}
                   </div>
@@ -212,12 +247,12 @@ export default function FAQPage() {
             ) : (
               <div>
                 <div className="mb-4 flex items-center gap-2.5">
-                  <span className="h-[3px] w-6 bg-[#BA2E36]" />
+                  <span className="h-[3px] w-6 bg-brand-red" />
                   <span className="font-proxima text-[13px] font-bold uppercase tracking-[2px] text-[#0A3D3D]">
                     {activeCategory.toUpperCase()}
                   </span>
                 </div>
-                {FAQ_DATA[activeCategory].map((item) => (
+                {(faqData[activeCategory] || []).map((item: FaqItem) => (
                   <FAQItem key={item.q} question={item.q} answer={item.a} />
                 ))}
               </div>
@@ -225,10 +260,10 @@ export default function FAQPage() {
           </div>
         </section>
 
-        {/* ── CTA ── */}
+        {/* -- CTA -- */}
         <section className="bg-[#F9F9F9] px-4 py-16 text-center xl:px-20">
           <div className="mx-auto w-full max-w-screen-xl">
-            <h2 className="font-fraunces text-[32px] font-bold text-[#0A0A0A]">Still have questions?</h2>
+            <h2 className="font-proxima text-[32px] font-bold text-admi-black">Still have questions?</h2>
             <p className="mt-2 font-proxima text-[16px] text-[#666]">
               Talk to our admissions team &mdash; we are happy to help.
             </p>
@@ -236,7 +271,7 @@ export default function FAQPage() {
               <Link
                 href="https://wa.me/254741132751"
                 target="_blank"
-                className="inline-flex items-center gap-2 rounded-[10px] bg-[#25D366] px-7 py-3.5 font-proxima text-[15px] font-semibold text-white transition hover:bg-[#1da851]"
+                className="inline-flex items-center gap-2 rounded-[10px] bg-brand-whatsapp px-7 py-3.5 font-proxima text-[15px] font-semibold text-white transition hover:bg-[#1da851]"
               >
                 <IconMessageCircle size={18} /> WhatsApp Us
               </Link>

@@ -18,7 +18,7 @@ export default function IndustryTrends({ trends }: Props) {
         <div className="grid gap-8 border-t border-gray-800 pt-12 md:grid-cols-3">
           {trends.map((trend, index) => (
             <div key={index} className="group">
-              <p className="mb-2 origin-left font-proxima text-5xl font-bold text-[#08F6CF] transition-transform duration-300 group-hover:scale-110 md:text-6xl">
+              <p className="mb-2 origin-left font-proxima text-5xl font-bold text-secondary transition-transform duration-300 group-hover:scale-110 md:text-6xl">
                 {trend.stat}
               </p>
               <h4 className="mb-3 text-xl font-bold text-white">{trend.label}</h4>

@@ -29,7 +29,7 @@ export function StudentExperienceLayout({
 }: StudentExperienceLayoutProps) {
   return (
     <MainLayout footerBgColor={footerBgColor}>
-      <Box className="bg-[#002A23] text-white">
+      <Box className="bg-admi-green text-white">
         <Box className="mx-auto max-w-screen-xl px-4 py-16 2xl:px-0">
           <p className="text-xs uppercase tracking-[0.3em] text-admiShamrok">{heroKicker}</p>
           <Title label={heroTitle} color="#F1FE37" size="48px" className="pt-2" />

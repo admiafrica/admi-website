@@ -10,7 +10,7 @@ export default function QuickFactsBar({ facts }: QuickFactsBarProps) {
           {facts.map((fact, index) => (
             <div key={`fact-${index}`} className="flex items-center gap-4">
               <div className="flex flex-col items-center text-center">
-                <span className="font-proxima text-xl font-bold text-[#BA2E36] md:text-2xl">{fact.value}</span>
+                <span className="font-proxima text-xl font-bold text-brand-red md:text-2xl">{fact.value}</span>
                 <span className="font-proxima text-[13px] font-medium text-[#555555]">{fact.label}</span>
               </div>
               {/* Divider - hidden on last item */}

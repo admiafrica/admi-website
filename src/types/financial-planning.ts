@@ -30,7 +30,28 @@ export interface Scholarship {
   Icon: Icon
 }
 
+/** CMS shape: icon stored as string ID, resolved at render time */
+export interface ScholarshipCMS {
+  title: string
+  description: string
+  coverage: string
+  bgColor: string
+  iconColor: string
+  icon: string
+}
+
 export interface FinancialFaqItem {
   q: string
   a: string
+}
+
+/** Full page data shape returned by the /api/v3/financial-planning endpoint */
+export interface FinancialPlanningPageData {
+  feeCards: FeeCard[]
+  paymentPlans: PaymentPlan[]
+  scholarships: ScholarshipCMS[]
+  faqItems: FinancialFaqItem[]
+  seoTitle: string
+  seoDescription: string
+  seoKeywords: string
 }

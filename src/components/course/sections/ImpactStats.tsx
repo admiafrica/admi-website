@@ -11,7 +11,7 @@ export default function ImpactStats({ stats }: ImpactStatsProps) {
         <div className="grid grid-cols-2 gap-5 sm:grid-cols-3 md:grid-cols-5">
           {stats.map((stat, index) => (
             <div key={`stat-${index}`} className="flex flex-col items-center text-center">
-              <span className="font-proxima text-3xl font-bold text-[#08F6CF] md:text-[44px]">{stat.value}</span>
+              <span className="font-proxima text-3xl font-bold text-secondary md:text-[44px]">{stat.value}</span>
               <span className="mt-1 font-proxima text-[13px] text-[#999999]">{stat.label}</span>
             </div>
           ))}

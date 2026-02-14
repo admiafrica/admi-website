@@ -4,7 +4,7 @@ export function CoursesFinalCTA() {
   return (
     <section
       aria-labelledby="courses-cta-heading"
-      className="w-full bg-gradient-to-br from-[#002A23] via-[#0A3D3D] to-[#0A0A0A] px-4 py-12 md:px-20 md:py-20"
+      className="w-full bg-gradient-to-br from-[#002A23] via-[#0A3D3D] to-admi-black px-4 py-12 md:px-20 md:py-20"
     >
       <div className="mx-auto flex max-w-[900px] flex-col items-center">
         {/* Title */}
@@ -25,14 +25,14 @@ export function CoursesFinalCTA() {
         <div className="mt-8 flex flex-col gap-4 sm:flex-row md:mt-10">
           <Link
             href="/contact"
-            className="font-proxima rounded-lg bg-[#08F6CF] px-9 py-4 text-center text-base font-bold text-[#002A23] transition hover:opacity-90"
+            className="font-proxima rounded-lg bg-secondary px-9 py-4 text-center text-base font-bold text-[#002A23] transition hover:opacity-90"
           >
             Request Prospectus
           </Link>
 
           <Link
             href="/contact"
-            className="font-proxima rounded-lg bg-[#25D366] px-9 py-4 text-center text-base font-bold text-white transition hover:opacity-90"
+            className="font-proxima rounded-lg bg-brand-whatsapp px-9 py-4 text-center text-base font-bold text-white transition hover:opacity-90"
           >
             Chat with Admissions
           </Link>

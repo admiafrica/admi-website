@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import type { InferGetStaticPropsType } from 'next'
 
 import { MainLayout } from '@/layouts/v3/MainLayout'
 import { PageSEO } from '@/components/shared/v3'
@@ -16,21 +17,21 @@ import type {
 } from '@/types/our-impact'
 
 /* ------------------------------------------------------------------ */
-/*  Data                                                               */
+/*  Fallback Data                                                      */
 /* ------------------------------------------------------------------ */
 
-const HERO_STATS: HeroStat[] = [
-  { value: '4,500+', label: 'Students & Alumni', color: '#08F6CF' },
+const FALLBACK_HERO_STATS: HeroStat[] = [
+  { value: '4,500+', label: 'Students & Alumni', color: '#8EBFB0' },
   { value: '88%', label: 'Employment Rate', color: '#ffffff' },
-  { value: '3x', label: 'Income Growth by Year 3', color: '#F76335' },
-  { value: '15+', label: 'Countries Reached', color: '#BA2E36' }
+  { value: '3x', label: 'Income Growth by Year 3', color: '#EF7B2E' },
+  { value: '15+', label: 'Countries Reached', color: '#C1272D' }
 ]
 
-const INCOME_YEAR_CARDS: IncomeYearCard[] = [
+const FALLBACK_INCOME_YEAR_CARDS: IncomeYearCard[] = [
   {
     badge: 'Year 1 \u2014 The Hustle',
     badgeBg: '#FFF0F0',
-    badgeColor: '#BA2E36',
+    badgeColor: '#C1272D',
     value: 'KES 10-20K',
     valueColor: '#171717',
     subtitle: 'monthly',
@@ -43,7 +44,7 @@ const INCOME_YEAR_CARDS: IncomeYearCard[] = [
   {
     badge: 'Year 2 \u2014 Building Momentum',
     badgeBg: '#FFF8F0',
-    badgeColor: '#F76335',
+    badgeColor: '#EF7B2E',
     value: 'KES 25-50K',
     valueColor: '#171717',
     subtitle: 'monthly',
@@ -55,66 +56,66 @@ const INCOME_YEAR_CARDS: IncomeYearCard[] = [
   {
     badge: 'Year 3 \u2014 Breaking Through',
     badgeBg: 'rgba(255,255,255,0.12)',
-    badgeColor: '#08F6CF',
+    badgeColor: '#8EBFB0',
     value: 'KES 50-100K+',
     valueColor: '#ffffff',
     subtitle: 'monthly',
-    subtitleColor: '#08F6CF',
+    subtitleColor: '#8EBFB0',
     description: 'Industry leaders, business owners, and in-demand professionals. 65-230% above industry benchmarks.',
     descColor: '#cccccc',
     bgColor: '#0A3D3D'
   }
 ]
 
-const PROGRAMME_OUTCOMES_ROW1: ProgrammeOutcome[] = [
+const FALLBACK_PROGRAMME_OUTCOMES_ROW1: ProgrammeOutcome[] = [
   {
     name: 'Film & TV Production',
     value: 'KES 80-90K+',
-    color: '#08F6CF',
+    color: '#8EBFB0',
     barWidth: '75%',
     note: '85% employed within 6 months'
   },
   {
     name: 'Music Production',
     value: 'KES 80-100K+',
-    color: '#F76335',
+    color: '#EF7B2E',
     barWidth: '80%',
     note: 'Highest earning potential among all programmes'
   },
   {
     name: 'Multimedia',
     value: 'KES 80-120K+',
-    color: '#BA2E36',
+    color: '#C1272D',
     barWidth: '85%',
     note: 'Most versatile career options'
   }
 ]
 
-const PROGRAMME_OUTCOMES_ROW2: ProgrammeOutcome[] = [
+const FALLBACK_PROGRAMME_OUTCOMES_ROW2: ProgrammeOutcome[] = [
   {
     name: 'Sound Engineering',
     value: 'KES 60-80K+',
-    color: '#08F6CF',
+    color: '#8EBFB0',
     barWidth: '65%',
     note: 'High demand in live events and studios'
   },
   {
     name: 'Graphic Design',
     value: 'KES 50-70K+',
-    color: '#F76335',
+    color: '#EF7B2E',
     barWidth: '55%',
     note: 'Strong freelance and agency demand'
   },
   {
     name: 'Animation',
     value: 'KES 50-70K+',
-    color: '#BA2E36',
+    color: '#C1272D',
     barWidth: '55%',
     note: 'Growing international remote opportunities'
   }
 ]
 
-const BENCHMARK_CARDS: BenchmarkCard[] = [
+const FALLBACK_BENCHMARK_CARDS: BenchmarkCard[] = [
   {
     value: 'KES 24-30K',
     valueColor: 'rgba(255,255,255,0.6)',
@@ -126,7 +127,7 @@ const BENCHMARK_CARDS: BenchmarkCard[] = [
   },
   {
     value: 'KES 50-100K+',
-    valueColor: '#BA2E36',
+    valueColor: '#C1272D',
     label: 'ADMI Graduate Reality',
     labelColor: '#171717',
     description: 'Year 3 median monthly earnings',
@@ -135,35 +136,35 @@ const BENCHMARK_CARDS: BenchmarkCard[] = [
   }
 ]
 
-const CAREER_PATHS: CareerPathCard[] = [
+const FALLBACK_CAREER_PATHS: CareerPathCard[] = [
   {
     percentage: '70%',
-    percentColor: '#08F6CF',
+    percentColor: '#8EBFB0',
     label: 'Choose Freelance',
     labelColor: '#ffffff',
     bgColor: '#0A3D3D',
     timeline: [
-      { dotColor: '#08F6CF', text: 'Year 1: KES 15-25K \u2014 Building client base', textColor: '#cccccc' },
-      { dotColor: '#08F6CF', text: 'Year 2: KES 30-50K \u2014 Repeat clients, referrals', textColor: '#cccccc' },
-      { dotColor: '#08F6CF', text: 'Year 3+: KES 60-120K \u2014 Industry leader', textColor: '#ffffff' }
+      { dotColor: '#8EBFB0', text: 'Year 1: KES 15-25K \u2014 Building client base', textColor: '#cccccc' },
+      { dotColor: '#8EBFB0', text: 'Year 2: KES 30-50K \u2014 Repeat clients, referrals', textColor: '#cccccc' },
+      { dotColor: '#8EBFB0', text: 'Year 3+: KES 60-120K \u2014 Industry leader', textColor: '#ffffff' }
     ]
   },
   {
     percentage: '30%',
-    percentColor: '#BA2E36',
+    percentColor: '#C1272D',
     label: 'Choose Employment',
     labelColor: '#171717',
     bgColor: '#ffffff',
     borderColor: '#E8E8E8',
     timeline: [
-      { dotColor: '#BA2E36', text: 'Year 1: KES 20-30K \u2014 Junior creative roles', textColor: '#666666' },
-      { dotColor: '#BA2E36', text: 'Year 2: KES 35-55K \u2014 Mid-level positions', textColor: '#666666' },
-      { dotColor: '#BA2E36', text: 'Year 3+: KES 50-90K \u2014 Senior / Lead roles', textColor: '#171717' }
+      { dotColor: '#C1272D', text: 'Year 1: KES 20-30K \u2014 Junior creative roles', textColor: '#666666' },
+      { dotColor: '#C1272D', text: 'Year 2: KES 35-55K \u2014 Mid-level positions', textColor: '#666666' },
+      { dotColor: '#C1272D', text: 'Year 3+: KES 50-90K \u2014 Senior / Lead roles', textColor: '#171717' }
     ]
   }
 ]
 
-const COMPANY_PILLS_ROW1: CompanyPill[] = [
+const FALLBACK_COMPANY_PILLS_ROW1: CompanyPill[] = [
   { name: 'NTV Kenya' },
   { name: 'Ogilvy Africa' },
   { name: 'MSC Cruises' },
@@ -172,7 +173,7 @@ const COMPANY_PILLS_ROW1: CompanyPill[] = [
   { name: 'Nation Media' }
 ]
 
-const COMPANY_PILLS_ROW2: CompanyPill[] = [
+const FALLBACK_COMPANY_PILLS_ROW2: CompanyPill[] = [
   { name: 'WPP Scangroup' },
   { name: 'Showmax' },
   { name: 'Citizen TV' },
@@ -181,13 +182,13 @@ const COMPANY_PILLS_ROW2: CompanyPill[] = [
   { name: 'Tubidy Studios' }
 ]
 
-const ALUMNI_STORIES: AlumniStory[] = [
+const FALLBACK_ALUMNI_STORIES: AlumniStory[] = [
   {
     image:
       'https://images.unsplash.com/photo-1615453261261-77494754424e?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&w=400&h=220&q=80',
     name: 'Grace Muthoni',
     role: 'Senior Editor, NTV Kenya',
-    roleColor: '#08F6CF',
+    roleColor: '#8EBFB0',
     quote:
       '"ADMI gave me the technical skills and industry connections that launched my career in broadcast journalism."',
     meta: 'Film Production Diploma, Class of 2022'
@@ -197,7 +198,7 @@ const ALUMNI_STORIES: AlumniStory[] = [
       'https://images.unsplash.com/photo-1622295023825-6e319464b810?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&w=400&h=220&q=80',
     name: 'David Kimani',
     role: 'Creative Director, Ogilvy Africa',
-    roleColor: '#F76335',
+    roleColor: '#EF7B2E',
     quote:
       '"The hands-on approach at ADMI prepared me for real agency life. Within 3 years, I was leading creative campaigns for major brands."',
     meta: 'Graphic Design Diploma, Class of 2021'
@@ -207,21 +208,21 @@ const ALUMNI_STORIES: AlumniStory[] = [
       'https://images.unsplash.com/photo-1685634115415-4fd59062a34e?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&w=400&h=220&q=80',
     name: 'Wanjiku Njeri',
     role: 'Sound Engineer, Ogopa DJs',
-    roleColor: '#BA2E36',
+    roleColor: '#C1272D',
     quote:
       '"From student projects to mixing tracks for top Kenyan artists. ADMI\'s studio facilities and mentorship made all the difference."',
     meta: 'Sound Engineering Diploma, Class of 2023'
   }
 ]
 
-const AWARD_ROWS: AwardRow[] = [
+const FALLBACK_AWARD_ROWS: AwardRow[] = [
   {
     bgColor: '#f9f9f9',
     imageUrl:
       'https://images.unsplash.com/photo-1642104744809-14b986179927?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&w=560&h=380&q=80',
     imageSide: 'left',
     badge: 'STUDENT FILM AWARD',
-    badgeColor: '#BA2E36',
+    badgeColor: '#C1272D',
     badgeBg: '#FFF0F0',
     title: 'Kalasha International Film Awards',
     titleColor: '#171717',
@@ -239,7 +240,7 @@ const AWARD_ROWS: AwardRow[] = [
       'https://images.unsplash.com/photo-1713453450934-ffa72b233597?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&w=560&h=400&q=80',
     imageSide: 'right',
     badge: 'TOP 10 SME IN KENYA',
-    badgeColor: '#08F6CF',
+    badgeColor: '#8EBFB0',
     badgeBg: 'rgba(255,255,255,0.08)',
     title: 'Recognised Among Kenya\u2019s Top Businesses',
     titleColor: '#ffffff',
@@ -258,7 +259,7 @@ const AWARD_ROWS: AwardRow[] = [
       'https://images.unsplash.com/photo-1599840448769-f4ac7aac8d8b?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&w=560&h=380&q=80',
     imageSide: 'left',
     badge: 'ALUMNI ACHIEVEMENT',
-    badgeColor: '#08F6CF',
+    badgeColor: '#8EBFB0',
     badgeBg: 'rgba(255,255,255,0.08)',
     title: 'Alumni Leading the Creative Industry',
     titleColor: '#ffffff',
@@ -266,31 +267,90 @@ const AWARD_ROWS: AwardRow[] = [
       'From Senior Editors at NTV to Creative Directors at Ogilvy Africa, ADMI alumni are winning industry awards and leading creative teams across the continent.',
     descColor: '#cccccc',
     tags: [
-      { text: 'Loeries Africa Winners', textColor: '#08F6CF', bgColor: 'rgba(255,255,255,0.08)' },
-      { text: 'International Commissions', textColor: '#08F6CF', bgColor: 'rgba(255,255,255,0.08)' },
-      { text: 'Company Founders', textColor: '#08F6CF', bgColor: 'rgba(255,255,255,0.08)' }
+      { text: 'Loeries Africa Winners', textColor: '#8EBFB0', bgColor: 'rgba(255,255,255,0.08)' },
+      { text: 'International Commissions', textColor: '#8EBFB0', bgColor: 'rgba(255,255,255,0.08)' },
+      { text: 'Company Founders', textColor: '#8EBFB0', bgColor: 'rgba(255,255,255,0.08)' }
     ]
   }
 ]
 
-const METHODOLOGY_STATS: MethodologyStat[] = [
+const FALLBACK_METHODOLOGY_STATS: MethodologyStat[] = [
   { value: '700+', label: 'Emails Sent', description: 'Across all six diploma programmes' },
   { value: '110', label: 'Phone Follow-ups', description: 'Personal calls for deeper insights' },
   { value: '43', label: 'Detailed Responses', description: 'With verified income data' },
   { value: '8', label: 'Employer Insights', description: 'Industry partner hiring feedback' }
 ]
 
-const CTA_BOTTOM_STATS: CtaBottomStat[] = [
+const FALLBACK_CTA_BOTTOM_STATS: CtaBottomStat[] = [
   { value: '4.8/5', label: 'Student Satisfaction' },
   { value: '500+', label: 'Industry Partners' },
   { value: 'Since 2011', label: 'Shaping Creative Careers' }
 ]
 
 /* ------------------------------------------------------------------ */
+/*  getStaticProps                                                     */
+/* ------------------------------------------------------------------ */
+
+export async function getStaticProps() {
+  let data = null
+
+  try {
+    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
+    const res = await fetch(`${baseUrl}/api/v3/impact`)
+    if (res.ok) {
+      data = await res.json()
+    }
+  } catch (err) {
+    console.error('[Impact Page] Failed to fetch API data:', err)
+  }
+
+  // Split combined arrays back into display rows
+  const programmeOutcomes: ProgrammeOutcome[] = data?.programmeOutcomes || [
+    ...FALLBACK_PROGRAMME_OUTCOMES_ROW1,
+    ...FALLBACK_PROGRAMME_OUTCOMES_ROW2
+  ]
+  const companyPills: CompanyPill[] = data?.companyPills || [
+    ...FALLBACK_COMPANY_PILLS_ROW1,
+    ...FALLBACK_COMPANY_PILLS_ROW2
+  ]
+
+  return {
+    props: {
+      heroStats: (data?.heroStats as HeroStat[]) || FALLBACK_HERO_STATS,
+      incomeYearCards: (data?.incomeYearCards as IncomeYearCard[]) || FALLBACK_INCOME_YEAR_CARDS,
+      programmeOutcomesRow1: programmeOutcomes.slice(0, 3) as ProgrammeOutcome[],
+      programmeOutcomesRow2: programmeOutcomes.slice(3) as ProgrammeOutcome[],
+      benchmarkCards: (data?.benchmarkCards as BenchmarkCard[]) || FALLBACK_BENCHMARK_CARDS,
+      careerPaths: (data?.careerPaths as CareerPathCard[]) || FALLBACK_CAREER_PATHS,
+      companyPillsRow1: companyPills.slice(0, 6) as CompanyPill[],
+      companyPillsRow2: companyPills.slice(6) as CompanyPill[],
+      alumniStories: (data?.alumniStories as AlumniStory[]) || FALLBACK_ALUMNI_STORIES,
+      awardRows: (data?.awardRows as AwardRow[]) || FALLBACK_AWARD_ROWS,
+      methodologyStats: (data?.methodologyStats as MethodologyStat[]) || FALLBACK_METHODOLOGY_STATS,
+      ctaBottomStats: (data?.ctaBottomStats as CtaBottomStat[]) || FALLBACK_CTA_BOTTOM_STATS
+    },
+    revalidate: 300
+  }
+}
+
+/* ------------------------------------------------------------------ */
 /*  Page                                                               */
 /* ------------------------------------------------------------------ */
 
-export default function ImpactAlumniSuccessPage() {
+export default function ImpactAlumniSuccessPage({
+  heroStats: HERO_STATS,
+  incomeYearCards: INCOME_YEAR_CARDS,
+  programmeOutcomesRow1: PROGRAMME_OUTCOMES_ROW1,
+  programmeOutcomesRow2: PROGRAMME_OUTCOMES_ROW2,
+  benchmarkCards: BENCHMARK_CARDS,
+  careerPaths: CAREER_PATHS,
+  companyPillsRow1: COMPANY_PILLS_ROW1,
+  companyPillsRow2: COMPANY_PILLS_ROW2,
+  alumniStories: ALUMNI_STORIES,
+  awardRows: AWARD_ROWS,
+  methodologyStats: METHODOLOGY_STATS,
+  ctaBottomStats: CTA_BOTTOM_STATS
+}: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <MainLayout footerBgColor="#1a1a1a">
       <PageSEO
@@ -303,11 +363,11 @@ export default function ImpactAlumniSuccessPage() {
         {/* ============================================================ */}
         {/*  1. HERO                                                      */}
         {/* ============================================================ */}
-        <section className="w-full bg-[#0A0A0A]">
+        <section className="w-full bg-admi-black">
           <div className="section-container">
             <div className="flex flex-col items-center gap-12 pb-20 pt-28 text-center md:pb-20 md:pt-[100px]">
-              <p className="section-label text-[#08F6CF]">OUR IMPACT</p>
-              <h1 className="font-fraunces mx-auto max-w-[900px] text-[36px] font-bold leading-[1.15] text-white md:text-[52px]">
+              <p className="section-label text-secondary">OUR IMPACT</p>
+              <h1 className="font-proxima mx-auto max-w-[900px] text-[36px] font-bold leading-[1.15] text-white md:text-[52px]">
                 Transforming Lives Through Creative Education
               </h1>
               <p className="mx-auto max-w-[640px] font-proxima text-[18px] leading-[1.7] text-[#999999]">
@@ -319,7 +379,7 @@ export default function ImpactAlumniSuccessPage() {
               <div className="flex flex-wrap items-center justify-center gap-10 md:gap-16">
                 {HERO_STATS.map((stat) => (
                   <div key={stat.label} className="flex flex-col items-center gap-1">
-                    <span className="font-fraunces text-[40px] font-bold md:text-[56px]" style={{ color: stat.color }}>
+                    <span className="font-proxima text-[40px] font-bold md:text-[56px]" style={{ color: stat.color }}>
                       {stat.value}
                     </span>
                     <span className="font-proxima text-[14px] font-semibold text-[#999999]">{stat.label}</span>
@@ -336,8 +396,8 @@ export default function ImpactAlumniSuccessPage() {
         <section className="w-full bg-white">
           <div className="section-container section-padding">
             <div className="mx-auto max-w-[720px] text-center">
-              <p className="section-label text-[#BA2E36]">GRADUATE EARNINGS</p>
-              <h2 className="font-fraunces text-[32px] font-bold leading-[1.15] text-[#171717] md:text-[40px]">
+              <p className="section-label text-brand-red">GRADUATE EARNINGS</p>
+              <h2 className="font-proxima text-[32px] font-bold leading-[1.15] text-[#171717] md:text-[40px]">
                 The 3-Year Income Journey
               </h2>
               <p className="mt-3 font-proxima text-[16px] leading-[1.6] text-[#666666]">
@@ -362,7 +422,7 @@ export default function ImpactAlumniSuccessPage() {
                   </span>
 
                   {/* Value */}
-                  <span className="font-fraunces text-[36px] font-bold" style={{ color: card.valueColor }}>
+                  <span className="font-proxima text-[36px] font-bold" style={{ color: card.valueColor }}>
                     {card.value}
                   </span>
 
@@ -387,11 +447,11 @@ export default function ImpactAlumniSuccessPage() {
         {/* ============================================================ */}
         {/*  3. PROGRAMME OUTCOMES                                        */}
         {/* ============================================================ */}
-        <section className="w-full bg-[#0A0A0A]">
+        <section className="w-full bg-admi-black">
           <div className="section-container section-padding">
             <div className="mx-auto max-w-[720px] text-center">
-              <p className="section-label text-[#08F6CF]">PROGRAMME OUTCOMES</p>
-              <h2 className="font-fraunces text-[32px] font-bold leading-[1.15] text-white md:text-[40px]">
+              <p className="section-label text-secondary">PROGRAMME OUTCOMES</p>
+              <h2 className="font-proxima text-[32px] font-bold leading-[1.15] text-white md:text-[40px]">
                 Earnings by Programme
               </h2>
               <p className="mx-auto mt-3 max-w-[500px] font-proxima text-[16px] leading-[1.6] text-[#999999]">
@@ -407,7 +467,7 @@ export default function ImpactAlumniSuccessPage() {
                   className="flex flex-col gap-3 rounded-2xl border border-[#333333] bg-[#1a1a1a] p-7"
                 >
                   <span className="font-proxima text-[14px] font-bold text-[#999999]">{prog.name}</span>
-                  <span className="font-fraunces text-[32px] font-bold" style={{ color: prog.color }}>
+                  <span className="font-proxima text-[32px] font-bold" style={{ color: prog.color }}>
                     {prog.value}
                   </span>
                   {/* Progress bar */}
@@ -427,7 +487,7 @@ export default function ImpactAlumniSuccessPage() {
                   className="flex flex-col gap-3 rounded-2xl border border-[#333333] bg-[#1a1a1a] p-7"
                 >
                   <span className="font-proxima text-[14px] font-bold text-[#999999]">{prog.name}</span>
-                  <span className="font-fraunces text-[32px] font-bold" style={{ color: prog.color }}>
+                  <span className="font-proxima text-[32px] font-bold" style={{ color: prog.color }}>
                     {prog.value}
                   </span>
                   <div className="h-1.5 w-full rounded-sm bg-[#333333]">
@@ -443,7 +503,7 @@ export default function ImpactAlumniSuccessPage() {
         {/* ============================================================ */}
         {/*  4. INDUSTRY BENCHMARK                                        */}
         {/* ============================================================ */}
-        <section className="w-full bg-[#BA2E36]">
+        <section className="w-full bg-brand-red">
           <div className="section-container section-padding">
             <div className="flex flex-col items-center gap-10 md:flex-row md:items-center md:gap-[60px]">
               {/* Left */}
@@ -451,7 +511,7 @@ export default function ImpactAlumniSuccessPage() {
                 <p className="font-proxima text-[13px] font-bold uppercase tracking-[2px] text-white/80">
                   INDUSTRY COMPARISON
                 </p>
-                <h2 className="font-fraunces max-w-[480px] text-[30px] font-bold leading-[1.2] text-white md:text-[36px]">
+                <h2 className="font-proxima max-w-[480px] text-[30px] font-bold leading-[1.2] text-white md:text-[36px]">
                   ADMI Graduates Earn 65-230% Above Industry Benchmarks
                 </h2>
                 <p className="max-w-[440px] font-proxima text-[15px] leading-[1.7] text-white/80">
@@ -469,7 +529,7 @@ export default function ImpactAlumniSuccessPage() {
                     style={{ backgroundColor: card.bgColor }}
                   >
                     <span
-                      className="font-fraunces text-[28px] font-bold md:text-[32px]"
+                      className="font-proxima text-[28px] font-bold md:text-[32px]"
                       style={{ color: card.valueColor }}
                     >
                       {card.value}
@@ -496,7 +556,7 @@ export default function ImpactAlumniSuccessPage() {
           <div className="section-container section-padding">
             <div className="mx-auto max-w-[720px] text-center">
               <p className="section-label text-[#0A3D3D]">CAREER PATHS</p>
-              <h2 className="font-fraunces text-[32px] font-bold leading-[1.15] text-[#171717] md:text-[40px]">
+              <h2 className="font-proxima text-[32px] font-bold leading-[1.15] text-[#171717] md:text-[40px]">
                 Freelance vs Employment
               </h2>
               <p className="mx-auto mt-3 max-w-[560px] font-proxima text-[16px] leading-[1.6] text-[#666666]">
@@ -517,7 +577,7 @@ export default function ImpactAlumniSuccessPage() {
                 >
                   {/* Badge row */}
                   <div className="flex items-center gap-2">
-                    <span className="font-fraunces text-[40px] font-bold" style={{ color: path.percentColor }}>
+                    <span className="font-proxima text-[40px] font-bold" style={{ color: path.percentColor }}>
                       {path.percentage}
                     </span>
                     <span className="font-proxima text-[18px] font-bold" style={{ color: path.labelColor }}>
@@ -551,8 +611,8 @@ export default function ImpactAlumniSuccessPage() {
         <section className="w-full bg-white">
           <div className="section-container section-padding">
             <div className="mx-auto max-w-[720px] text-center">
-              <p className="section-label text-[#BA2E36]">WHERE ALUMNI WORK</p>
-              <h2 className="font-fraunces text-[32px] font-bold leading-[1.15] text-[#171717] md:text-[40px]">
+              <p className="section-label text-brand-red">WHERE ALUMNI WORK</p>
+              <h2 className="font-proxima text-[32px] font-bold leading-[1.15] text-[#171717] md:text-[40px]">
                 500+ Industry Partners Hire Our Graduates
               </h2>
             </div>
@@ -587,11 +647,11 @@ export default function ImpactAlumniSuccessPage() {
         {/* ============================================================ */}
         {/*  7. ALUMNI STORIES                                            */}
         {/* ============================================================ */}
-        <section className="w-full bg-[#0A0A0A]">
+        <section className="w-full bg-admi-black">
           <div className="section-container section-padding">
             <div className="mx-auto max-w-[720px] text-center">
-              <p className="section-label text-[#08F6CF]">SUCCESS STORIES</p>
-              <h2 className="font-fraunces text-[32px] font-bold leading-[1.15] text-white md:text-[40px]">
+              <p className="section-label text-secondary">SUCCESS STORIES</p>
+              <h2 className="font-proxima text-[32px] font-bold leading-[1.15] text-white md:text-[40px]">
                 Faces Behind the Numbers
               </h2>
             </div>
@@ -606,7 +666,7 @@ export default function ImpactAlumniSuccessPage() {
 
                   {/* Body */}
                   <div className="flex flex-col gap-3 p-6">
-                    <h3 className="font-fraunces text-[20px] font-bold text-white">{story.name}</h3>
+                    <h3 className="font-proxima text-[20px] font-bold text-white">{story.name}</h3>
                     <span className="font-proxima text-[13px] font-semibold" style={{ color: story.roleColor }}>
                       {story.role}
                     </span>
@@ -625,8 +685,8 @@ export default function ImpactAlumniSuccessPage() {
         <section className="w-full bg-white">
           <div className="section-container section-padding">
             <div className="mx-auto max-w-[800px] text-center">
-              <p className="section-label text-[#BA2E36]">AWARDS &amp; RECOGNITION</p>
-              <h2 className="font-fraunces text-[32px] font-bold leading-[1.15] text-[#171717] md:text-[40px]">
+              <p className="section-label text-brand-red">AWARDS &amp; RECOGNITION</p>
+              <h2 className="font-proxima text-[32px] font-bold leading-[1.15] text-[#171717] md:text-[40px]">
                 Award-Winning Institution, Award-Winning Students
               </h2>
               <p className="mx-auto mt-3 max-w-[620px] font-proxima text-[16px] leading-[1.6] text-[#666666]">
@@ -654,7 +714,7 @@ export default function ImpactAlumniSuccessPage() {
                     </span>
 
                     <h3
-                      className="font-fraunces text-[24px] font-bold md:text-[28px]"
+                      className="font-proxima text-[24px] font-bold md:text-[28px]"
                       style={{ color: row.titleColor }}
                     >
                       {row.title}
@@ -688,7 +748,7 @@ export default function ImpactAlumniSuccessPage() {
                       <div className="flex gap-8">
                         {row.stats.map((stat) => (
                           <div key={stat.value} className="flex flex-col gap-0.5">
-                            <span className="font-fraunces text-[24px] font-bold text-[#08F6CF]">{stat.value}</span>
+                            <span className="font-proxima text-[24px] font-bold text-secondary">{stat.value}</span>
                             <span className="font-proxima text-[12px] text-[#999999]">{stat.label}</span>
                           </div>
                         ))}
@@ -728,7 +788,7 @@ export default function ImpactAlumniSuccessPage() {
           <div className="section-container section-padding">
             <div className="mx-auto max-w-[720px] text-center">
               <p className="section-label text-[#0A3D3D]">OUR DATA</p>
-              <h2 className="font-fraunces text-[30px] font-bold leading-[1.15] text-[#171717] md:text-[36px]">
+              <h2 className="font-proxima text-[30px] font-bold leading-[1.15] text-[#171717] md:text-[36px]">
                 Survey Methodology
               </h2>
               <p className="mx-auto mt-3 max-w-[520px] font-proxima text-[15px] leading-[1.6] text-[#666666]">
@@ -740,7 +800,7 @@ export default function ImpactAlumniSuccessPage() {
             <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-4">
               {METHODOLOGY_STATS.map((stat) => (
                 <div key={stat.label} className="flex flex-col items-center gap-3 rounded-2xl bg-white p-8 text-center">
-                  <span className="font-fraunces text-[40px] font-bold text-[#0A3D3D]">{stat.value}</span>
+                  <span className="font-proxima text-[40px] font-bold text-[#0A3D3D]">{stat.value}</span>
                   <span className="font-proxima text-[14px] font-bold text-[#171717]">{stat.label}</span>
                   <span className="font-proxima text-[13px] text-[#666666]">{stat.description}</span>
                 </div>
@@ -755,7 +815,7 @@ export default function ImpactAlumniSuccessPage() {
         <section className="w-full bg-[#0A3D3D]">
           <div className="section-container section-padding">
             <div className="flex flex-col items-center gap-8 text-center">
-              <h2 className="font-fraunces text-[36px] font-bold leading-[1.15] text-white md:text-[44px]">
+              <h2 className="font-proxima text-[36px] font-bold leading-[1.15] text-white md:text-[44px]">
                 Be Part of the Impact
               </h2>
               <p className="mx-auto max-w-[560px] font-proxima text-[18px] leading-[1.7] text-[#cccccc]">
@@ -767,7 +827,7 @@ export default function ImpactAlumniSuccessPage() {
               <div className="flex flex-wrap items-center justify-center gap-4">
                 <Link
                   href="/courses"
-                  className="inline-flex items-center rounded-lg bg-[#08F6CF] px-9 py-4 font-proxima text-[16px] font-bold text-[#0A0A0A] transition-opacity hover:opacity-90"
+                  className="inline-flex items-center rounded-lg bg-secondary px-9 py-4 font-proxima text-[16px] font-bold text-admi-black transition-opacity hover:opacity-90"
                 >
                   Explore Programmes
                 </Link>
@@ -783,7 +843,7 @@ export default function ImpactAlumniSuccessPage() {
               <div className="mt-4 flex flex-wrap items-center justify-center gap-10 md:gap-12">
                 {CTA_BOTTOM_STATS.map((stat) => (
                   <div key={stat.label} className="flex flex-col items-center gap-1">
-                    <span className="font-fraunces text-[28px] font-bold text-[#08F6CF]">{stat.value}</span>
+                    <span className="font-proxima text-[28px] font-bold text-secondary">{stat.value}</span>
                     <span className="font-proxima text-[13px] text-[#999999]">{stat.label}</span>
                   </div>
                 ))}

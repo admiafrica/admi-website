@@ -27,7 +27,7 @@ export default function CurriculumOverview({ semesters }: CurriculumOverviewProp
               key={semester.number}
               className="rounded-xl bg-[#2a2a2a] p-6 shadow-md transition-shadow hover:shadow-lg md:p-7"
             >
-              <span className="mb-2 inline-block font-proxima text-[13px] font-bold text-[#08F6CF]">
+              <span className="mb-2 inline-block font-proxima text-[13px] font-bold text-secondary">
                 Semester {semester.number}
               </span>
               <h3 className="mb-2 font-proxima text-[17px] font-bold text-white">{semester.title}</h3>

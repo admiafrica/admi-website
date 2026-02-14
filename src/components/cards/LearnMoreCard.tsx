@@ -114,7 +114,7 @@ export default function LearnMoreCard() {
                 />
               </Box>
               <Box className="flex flex-row" h={'100%'} w={'100%'}>
-                <Box className="flex w-[32%] items-center justify-center rounded-xl" bg={'#F76335'} h={'4em'} mr={16}>
+                <Box className="flex w-[32%] items-center justify-center rounded-xl" bg={'#EF7B2E'} h={'4em'} mr={16}>
                   <IconTrophy width={40} height={40} />
                 </Box>
                 <Box className="flex w-[64%] items-center justify-center rounded-xl" bg={'admiShamrok'} h={'4em'}>

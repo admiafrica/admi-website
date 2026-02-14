@@ -11,7 +11,7 @@ export default function WhatsAppCTA({ courseName = 'Film Production Diploma' }: 
   const whatsappUrl = `https://wa.me/${ADMI_WHATSAPP_NUMBER}?text=${encodedMessage}`
 
   return (
-    <section className="w-full bg-[#25D366] px-4 py-16 md:px-20" aria-label="WhatsApp contact">
+    <section className="w-full bg-brand-whatsapp px-4 py-16 md:px-20" aria-label="WhatsApp contact">
       <div className="mx-auto flex max-w-screen-xl flex-col items-center text-center">
         <IconBrandWhatsapp size={48} color="white" aria-hidden="true" />
 
@@ -31,7 +31,7 @@ export default function WhatsAppCTA({ courseName = 'Film Production Diploma' }: 
           size="lg"
           mt={24}
           radius="md"
-          className="bg-white font-proxima font-bold text-[#25D366] transition-opacity hover:opacity-90"
+          className="bg-white font-proxima font-bold text-brand-whatsapp transition-opacity hover:opacity-90"
           leftSection={<IconBrandWhatsapp size={20} color="#25D366" />}
           onClick={() => {
             trackWhatsAppClick(ADMI_WHATSAPP_NUMBER, `Course Page - ${courseName}`)

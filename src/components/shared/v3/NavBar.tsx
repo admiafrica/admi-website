@@ -199,7 +199,7 @@ export default function NavBar({ mode, isMinimal = false }: Props) {
           <button
             type="button"
             onClick={() => router.push('/enquiry')}
-            className="hidden h-11 cursor-pointer items-center justify-center rounded-[8px] border-none bg-[#BA2E36] px-6 font-proxima text-[15px] font-semibold text-white antialiased transition-colors hover:bg-[#a02630] lg:inline-flex"
+            className="hidden h-11 cursor-pointer items-center justify-center rounded-[8px] border-none bg-brand-red px-6 font-proxima text-[15px] font-semibold text-white antialiased transition-colors hover:bg-[#a02630] lg:inline-flex"
           >
             Apply
           </button>
@@ -219,7 +219,7 @@ export default function NavBar({ mode, isMinimal = false }: Props) {
             <button
               type="button"
               onClick={() => router.push('/enquiry')}
-              className="inline-flex h-10 cursor-pointer items-center justify-center rounded-[8px] border-none bg-[#BA2E36] px-5 font-proxima text-[14px] font-semibold text-white antialiased transition-colors hover:bg-[#a02630]"
+              className="inline-flex h-10 cursor-pointer items-center justify-center rounded-[8px] border-none bg-brand-red px-5 font-proxima text-[14px] font-semibold text-white antialiased transition-colors hover:bg-[#a02630]"
             >
               Apply
             </button>

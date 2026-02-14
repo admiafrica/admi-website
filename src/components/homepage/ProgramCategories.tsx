@@ -28,9 +28,9 @@ const programs: ProgramCard[] = [
     image: '/images/homepage/diploma-students.jpg',
     imageAlt: 'ADMI diploma students collaborating in a creative studio',
     badge: 'EU-ACCREDITED',
-    bg: 'bg-[#BA2E36]',
+    bg: 'bg-brand-red',
     priceColor: 'text-white/50',
-    buttonText: 'text-[#BA2E36]',
+    buttonText: 'text-brand-red',
     buttonBg: 'bg-white'
   },
   {
@@ -44,9 +44,9 @@ const programs: ProgramCard[] = [
     imageAlt: 'ADMI professional certificate student working on a video project',
     badge: 'SKILLS UPGRADE',
     bg: 'bg-[#0A3D3D]',
-    priceColor: 'text-[#08F6CF]/50',
-    buttonText: 'text-[#0A0A0A]',
-    buttonBg: 'bg-[#08F6CF]'
+    priceColor: 'text-secondary/50',
+    buttonText: 'text-admi-black',
+    buttonBg: 'bg-secondary'
   },
   {
     title: 'Foundation Certificates',
@@ -59,9 +59,9 @@ const programs: ProgramCard[] = [
     imageAlt: 'ADMI foundation certificate students discovering creative skills',
     badge: 'BEGINNERS WELCOME',
     bg: 'bg-[#3A1F0B]',
-    priceColor: 'text-[#F76335]/50',
+    priceColor: 'text-brand-orange/50',
     buttonText: 'text-white',
-    buttonBg: 'bg-[#F76335]'
+    buttonBg: 'bg-brand-orange'
   }
 ]
 

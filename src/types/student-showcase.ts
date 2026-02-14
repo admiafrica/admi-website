@@ -28,3 +28,12 @@ export interface StudentVoice {
   name: string
   discipline: string
 }
+
+/** Full page data shape returned by the /api/v3/student-showcase endpoint */
+export interface StudentShowcasePageData {
+  featuredProjects: FeaturedProject[]
+  disciplineSections: DisciplineSection[]
+  studentVoices: StudentVoice[]
+  seoTitle: string
+  seoDescription: string
+}

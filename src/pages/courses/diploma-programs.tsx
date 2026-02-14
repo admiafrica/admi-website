@@ -18,7 +18,7 @@ const diplomaPrograms = [
     title: 'Graphic Design',
     description: 'Branding, UI/UX design, illustration & print media',
     fee: '68,000 KES/sem',
-    feeColor: '#08F6CF',
+    feeColor: '#8EBFB0',
     duration: '2 Years + Internship',
     slug: 'graphic-design-diploma'
   },
@@ -26,7 +26,7 @@ const diplomaPrograms = [
     title: 'Digital Content Creation',
     description: 'Video production, social media, podcasting & digital storytelling',
     fee: '68,000 KES/sem',
-    feeColor: '#08F6CF',
+    feeColor: '#8EBFB0',
     duration: '2 Years + Internship',
     slug: 'digital-content-creation-diploma'
   },
@@ -162,13 +162,13 @@ export default function DiplomaCoursesPage() {
             <div className="flex flex-wrap items-center gap-4">
               <Link
                 href="/enquiry"
-                className="inline-flex items-center rounded-lg bg-[#BA2E36] px-8 py-3 font-proxima text-[17px] font-semibold text-white transition-colors hover:bg-[#a02830]"
+                className="inline-flex items-center rounded-lg bg-brand-red px-8 py-3 font-proxima text-[17px] font-semibold text-white transition-colors hover:bg-[#a02830]"
               >
                 Apply Now
               </Link>
               <Link
                 href="/enquiry"
-                className="inline-flex items-center rounded-lg border-2 border-solid border-[#BA2E36] bg-[#FFF0F0] px-8 py-3 font-proxima text-[17px] font-medium text-[#BA2E36] transition-colors hover:bg-[#BA2E36] hover:text-white"
+                className="inline-flex items-center rounded-lg border-2 border-solid border-brand-red bg-[#FFF0F0] px-8 py-3 font-proxima text-[17px] font-medium text-brand-red transition-colors hover:bg-brand-red hover:text-white"
               >
                 Enquire Now
               </Link>
@@ -177,7 +177,7 @@ export default function DiplomaCoursesPage() {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => trackWhatsAppClick(ADMI_WHATSAPP_NUMBER, 'Diploma Programs Hero')}
-                className="inline-flex items-center gap-2 rounded-lg bg-[#25D366] px-8 py-3 font-proxima text-[17px] font-medium text-white transition-colors hover:bg-[#1da851]"
+                className="inline-flex items-center gap-2 rounded-lg bg-brand-whatsapp px-8 py-3 font-proxima text-[17px] font-medium text-white transition-colors hover:bg-[#1da851]"
               >
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
@@ -191,7 +191,7 @@ export default function DiplomaCoursesPage() {
             className="hidden w-full max-w-[500px] overflow-hidden rounded-2xl bg-[#f0f0f0] lg:block"
             style={{ aspectRatio: '4/3' }}
           >
-            <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-[#BA2E36] to-[#E85A4F] text-white">
+            <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-brand-red to-[#E85A4F] text-white">
               <span className="font-proxima text-lg font-medium opacity-60">Hero Image</span>
             </div>
           </div>
@@ -221,7 +221,7 @@ export default function DiplomaCoursesPage() {
       <section className="w-full bg-white px-4 py-20 md:px-20">
         <div className="mx-auto max-w-screen-xl">
           <div className="mb-12">
-            <span className="mb-3 inline-block font-proxima text-[13px] font-bold uppercase tracking-[3px] text-[#BA2E36]">
+            <span className="mb-3 inline-block font-proxima text-[13px] font-bold uppercase tracking-[3px] text-brand-red">
               DIPLOMA PROGRAMS
             </span>
             <h2 className="mb-3 font-nexa text-3xl font-semibold tracking-tight text-[#171717] md:text-[42px]">
@@ -260,7 +260,7 @@ export default function DiplomaCoursesPage() {
                   </div>
                   <Link
                     href={`/courses/${program.slug}`}
-                    className="mt-1 font-proxima text-[14px] font-semibold text-[#BA2E36] hover:underline"
+                    className="mt-1 font-proxima text-[14px] font-semibold text-brand-red hover:underline"
                   >
                     View Program &rarr;
                   </Link>
@@ -275,7 +275,7 @@ export default function DiplomaCoursesPage() {
       <section className="w-full bg-[#f9f9f9] px-4 py-20 md:px-20">
         <div className="mx-auto max-w-screen-xl">
           <div className="mb-12 text-center">
-            <span className="mb-3 inline-block font-proxima text-[13px] font-bold uppercase tracking-[3px] text-[#BA2E36]">
+            <span className="mb-3 inline-block font-proxima text-[13px] font-bold uppercase tracking-[3px] text-brand-red">
               WHY CHOOSE AN ADMI DIPLOMA
             </span>
             <h2 className="mb-3 font-nexa text-3xl font-semibold tracking-tight text-[#171717] md:text-[42px]">
@@ -294,7 +294,7 @@ export default function DiplomaCoursesPage() {
                 className="rounded-2xl border border-[#eeeeee] bg-white p-8 shadow-md transition-shadow hover:shadow-xl"
               >
                 {adv.badge && (
-                  <span className="mb-4 inline-block rounded-md bg-[#FFF0EE] px-3 py-1 font-proxima text-[11px] font-bold uppercase tracking-[2px] text-[#BA2E36]">
+                  <span className="mb-4 inline-block rounded-md bg-[#FFF0EE] px-3 py-1 font-proxima text-[11px] font-bold uppercase tracking-[2px] text-brand-red">
                     {adv.badge}
                   </span>
                 )}
@@ -309,7 +309,7 @@ export default function DiplomaCoursesPage() {
                         height="16"
                         viewBox="0 0 24 24"
                         fill="none"
-                        stroke="#BA2E36"
+                        stroke="#C1272D"
                         strokeWidth="2.5"
                       >
                         <polyline points="20,6 9,17 4,12" />
@@ -328,7 +328,7 @@ export default function DiplomaCoursesPage() {
       <section className="w-full bg-white px-4 py-20 md:px-20">
         <div className="mx-auto max-w-screen-xl">
           <div className="mb-12">
-            <span className="mb-3 inline-block font-proxima text-[13px] font-bold uppercase tracking-[3px] text-[#08F6CF]">
+            <span className="mb-3 inline-block font-proxima text-[13px] font-bold uppercase tracking-[3px] text-secondary">
               DIPLOMA vs CERTIFICATE
             </span>
             <h2 className="mb-3 font-nexa text-3xl font-semibold tracking-tight text-[#171717] md:text-[42px]">
@@ -341,12 +341,12 @@ export default function DiplomaCoursesPage() {
 
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             {/* Diploma Card */}
-            <div className="rounded-2xl border-2 border-[#BA2E36] bg-white p-8 shadow-md transition-shadow hover:shadow-xl">
-              <span className="mb-4 inline-block rounded-md bg-[#FFF0EE] px-3 py-1 font-proxima text-[11px] font-bold uppercase tracking-[2px] text-[#BA2E36]">
+            <div className="rounded-2xl border-2 border-brand-red bg-white p-8 shadow-md transition-shadow hover:shadow-xl">
+              <span className="mb-4 inline-block rounded-md bg-[#FFF0EE] px-3 py-1 font-proxima text-[11px] font-bold uppercase tracking-[2px] text-brand-red">
                 RECOMMENDED
               </span>
               <h3 className="mb-2 font-proxima text-[24px] font-bold text-[#171717]">Diploma Program</h3>
-              <p className="mb-6 font-proxima text-[18px] font-medium text-[#BA2E36]">From 68,000 KES/semester</p>
+              <p className="mb-6 font-proxima text-[18px] font-medium text-brand-red">From 68,000 KES/semester</p>
               <ul className="mb-8 space-y-4">
                 {diplomaFeatures.map((feature, i) => (
                   <li key={i} className="flex items-start gap-3">
@@ -356,7 +356,7 @@ export default function DiplomaCoursesPage() {
                       height="18"
                       viewBox="0 0 24 24"
                       fill="none"
-                      stroke="#BA2E36"
+                      stroke="#C1272D"
                       strokeWidth="2.5"
                     >
                       <polyline points="20,6 9,17 4,12" />
@@ -367,7 +367,7 @@ export default function DiplomaCoursesPage() {
               </ul>
               <Link
                 href="/enquiry"
-                className="inline-flex w-full items-center justify-center rounded-xl bg-[#BA2E36] px-8 py-4 font-proxima text-[16px] font-semibold text-white transition-colors hover:bg-[#a02830]"
+                className="inline-flex w-full items-center justify-center rounded-xl bg-brand-red px-8 py-4 font-proxima text-[16px] font-semibold text-white transition-colors hover:bg-[#a02830]"
               >
                 Apply for Diploma
               </Link>
@@ -410,7 +410,7 @@ export default function DiplomaCoursesPage() {
       <section className="w-full bg-[#f9f9f9] px-4 py-20 md:px-20">
         <div className="mx-auto max-w-screen-xl">
           <div className="mb-12">
-            <span className="mb-3 inline-block font-proxima text-[13px] font-bold uppercase tracking-[3px] text-[#BA2E36]">
+            <span className="mb-3 inline-block font-proxima text-[13px] font-bold uppercase tracking-[3px] text-brand-red">
               SEMESTER PAYMENT PLAN
             </span>
             <h2 className="font-nexa text-3xl font-semibold tracking-tight text-[#171717] md:text-[42px]">
@@ -423,25 +423,25 @@ export default function DiplomaCoursesPage() {
               {
                 title: '1st Installment',
                 pct: '50%',
-                color: '#BA2E36',
+                color: '#C1272D',
                 desc: 'Due at registration (e.g. 50,000 KES for 100K semester)'
               },
               {
                 title: '2nd Installment',
                 pct: '30%',
-                color: '#BA2E36',
+                color: '#C1272D',
                 desc: 'Due mid-semester (e.g. 30,000 KES for 100K semester)'
               },
               {
                 title: '3rd Installment',
                 pct: '20%',
-                color: '#F76335',
+                color: '#EF7B2E',
                 desc: 'Due before exams (e.g. 20,000 KES for 100K semester)'
               }
             ].map((plan, i) => (
               <div
                 key={i}
-                className={`rounded-2xl border p-8 shadow-md transition-shadow hover:shadow-xl ${i === 0 ? 'border-[#BA2E36] bg-[#FFF8F6]' : 'border-[#eeeeee] bg-white'}`}
+                className={`rounded-2xl border p-8 shadow-md transition-shadow hover:shadow-xl ${i === 0 ? 'border-brand-red bg-[#FFF8F6]' : 'border-[#eeeeee] bg-white'}`}
               >
                 <h3 className="mb-3 font-proxima text-[20px] font-bold text-[#171717]">{plan.title}</h3>
                 <p className="mb-3 font-proxima text-[36px] font-bold tracking-tight" style={{ color: plan.color }}>
@@ -467,7 +467,7 @@ export default function DiplomaCoursesPage() {
       <section className="w-full bg-[#1a1a1a] px-4 py-20 md:px-20">
         <div className="mx-auto max-w-screen-xl">
           <div className="mb-12">
-            <span className="mb-3 inline-block font-proxima text-[13px] font-bold uppercase tracking-[3px] text-[#08F6CF]">
+            <span className="mb-3 inline-block font-proxima text-[13px] font-bold uppercase tracking-[3px] text-secondary">
               SUCCESS STORIES
             </span>
             <h2 className="font-nexa text-3xl font-semibold tracking-tight text-white md:text-[42px]">
@@ -485,7 +485,7 @@ export default function DiplomaCoursesPage() {
                 </blockquote>
                 <div className="flex items-center gap-3">
                   <div
-                    className={`h-10 w-10 flex-shrink-0 rounded-full ${i === 0 ? 'bg-[#BA2E36]' : 'bg-[#08F6CF]'}`}
+                    className={`h-10 w-10 flex-shrink-0 rounded-full ${i === 0 ? 'bg-brand-red' : 'bg-secondary'}`}
                   />
                   <div>
                     <p className="font-proxima text-[15px] font-semibold text-white">{t.name}</p>
@@ -499,7 +499,7 @@ export default function DiplomaCoursesPage() {
       </section>
 
       {/* Final CTA */}
-      <section className="w-full bg-gradient-to-br from-[#BA2E36] to-[#E85A4F] px-4 py-20 md:px-20">
+      <section className="w-full bg-gradient-to-br from-brand-red to-[#E85A4F] px-4 py-20 md:px-20">
         <div className="mx-auto flex max-w-[800px] flex-col items-center text-center">
           <h2 className="mb-4 font-nexa text-3xl font-bold tracking-tight text-white md:text-[48px] md:leading-[1.1]">
             Start Your High-Impact Diploma Journey
@@ -511,7 +511,7 @@ export default function DiplomaCoursesPage() {
           <div className="flex flex-wrap items-center justify-center gap-4">
             <Link
               href="/enquiry"
-              className="inline-flex items-center rounded-lg bg-white px-8 py-3 font-proxima text-[17px] font-bold text-[#BA2E36] transition-colors hover:bg-gray-100"
+              className="inline-flex items-center rounded-lg bg-white px-8 py-3 font-proxima text-[17px] font-bold text-brand-red transition-colors hover:bg-gray-100"
             >
               Apply Now
             </Link>
@@ -526,7 +526,7 @@ export default function DiplomaCoursesPage() {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => trackWhatsAppClick(ADMI_WHATSAPP_NUMBER, 'Diploma Programs CTA')}
-              className="inline-flex items-center gap-2 rounded-lg bg-[#25D366] px-8 py-3 font-proxima text-[17px] font-medium text-white transition-colors hover:bg-[#1da851]"
+              className="inline-flex items-center gap-2 rounded-lg bg-brand-whatsapp px-8 py-3 font-proxima text-[17px] font-medium text-white transition-colors hover:bg-[#1da851]"
             >
               <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
@@ -544,7 +544,7 @@ export default function DiplomaCoursesPage() {
       <section className="w-full bg-white px-4 py-20 md:px-20">
         <div className="mx-auto max-w-screen-xl">
           <div className="mb-12">
-            <span className="mb-3 inline-block font-proxima text-[13px] font-bold uppercase tracking-[3px] text-[#BA2E36]">
+            <span className="mb-3 inline-block font-proxima text-[13px] font-bold uppercase tracking-[3px] text-brand-red">
               FREQUENTLY ASKED QUESTIONS
             </span>
             <h2 className="font-nexa text-3xl font-semibold tracking-tight text-[#171717] md:text-[42px]">
@@ -561,7 +561,7 @@ export default function DiplomaCoursesPage() {
                   aria-expanded={openFaq === i}
                 >
                   <span className="font-proxima text-[17px] font-bold text-[#171717]">{faq.question}</span>
-                  <span className="mt-1 flex-shrink-0 text-[#BA2E36]" aria-hidden="true">
+                  <span className="mt-1 flex-shrink-0 text-brand-red" aria-hidden="true">
                     {openFaq === i ? '\u2212' : '+'}
                   </span>
                 </button>

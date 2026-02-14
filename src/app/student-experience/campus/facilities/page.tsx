@@ -13,7 +13,7 @@ export default function StudentExperienceFacilitiesPage() {
           <Box className="absolute inset-0 bg-black/55" />
           <Box className="relative z-10 mx-auto flex h-full w-full max-w-screen-xl flex-col justify-end px-4 pb-14 text-white xl:px-0">
             <p className="font-nexa text-[14px] uppercase tracking-[0.15em] text-[#B7D8CF]">/student-experience/campus/facilities</p>
-            <h1 className="pt-4 font-fraunces text-[48px] font-bold leading-[1.1]">Campus Facilities</h1>
+            <h1 className="pt-4 font-proxima text-[48px] font-bold leading-[1.1]">Campus Facilities</h1>
             <p className="max-w-[840px] pt-4 font-nexa text-[18px] text-white/85">Purpose-built spaces for studio work, collaborative projects, and creative experimentation.</p>
           </Box>
         </Box>
@@ -21,7 +21,7 @@ export default function StudentExperienceFacilitiesPage() {
         <Box className="mx-auto grid w-full max-w-screen-xl grid-cols-1 gap-5 px-4 py-14 md:grid-cols-2 xl:px-0">
           {['Studios Section', 'Labs Section', 'Equipment Section', 'The Space Section'].map((item) => (
             <Box key={item} className="rounded-xl border border-[#E8E8E8] bg-white p-6">
-              <h3 className="font-fraunces text-[30px] font-bold text-[#171717]">{item}</h3>
+              <h3 className="font-proxima text-[30px] font-bold text-[#171717]">{item}</h3>
               <p className="pt-2 font-nexa text-[15px] text-[#555]">Detailed operational overview and student usage patterns for this facility area.</p>
             </Box>
           ))}

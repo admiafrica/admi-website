@@ -10,7 +10,7 @@ interface DegreeRouteProps {
 }
 
 export default function DegreeRoute({ steps }: DegreeRouteProps) {
-  const colors = ['#BA2E36', '#171717', '#08F6CF']
+  const colors = ['#C1272D', '#171717', '#8EBFB0']
 
   return (
     <section className="w-full bg-[#f9f9f9] px-4 py-20 md:px-20">
@@ -30,9 +30,9 @@ export default function DegreeRoute({ steps }: DegreeRouteProps) {
         <div className="flex flex-col items-center justify-center gap-4 md:flex-row md:gap-0">
           {steps.map((step, index) => {
             const bg = colors[index] || step.color
-            const textColor = bg === '#08F6CF' ? 'text-[#171717]' : 'text-white'
+            const textColor = bg === '#8EBFB0' ? 'text-[#171717]' : 'text-white'
             const subtitleColor =
-              bg === '#BA2E36' ? 'text-white/80' : bg === '#08F6CF' ? 'text-[#333333]' : 'text-[#999999]'
+              bg === '#C1272D' ? 'text-white/80' : bg === '#8EBFB0' ? 'text-[#333333]' : 'text-[#999999]'
 
             return (
               <div key={step.step} className="flex w-full flex-col items-center md:w-auto md:flex-row">
@@ -49,13 +49,13 @@ export default function DegreeRoute({ steps }: DegreeRouteProps) {
                 {index < steps.length - 1 && (
                   <>
                     <span
-                      className="hidden px-3 font-['Inter'] text-[28px] font-bold text-[#BA2E36] md:block"
+                      className="hidden px-3 font-['Inter'] text-[28px] font-bold text-brand-red md:block"
                       aria-hidden="true"
                     >
                       →
                     </span>
                     <span
-                      className="block w-full py-2 text-center text-2xl text-[#BA2E36] md:hidden"
+                      className="block w-full py-2 text-center text-2xl text-brand-red md:hidden"
                       aria-hidden="true"
                     >
                       ↓

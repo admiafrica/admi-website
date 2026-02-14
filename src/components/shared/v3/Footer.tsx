@@ -97,7 +97,7 @@ export default function Footer({ bgColor }: Props) {
         </div>
       </div>
 
-      <div className="w-full bg-[#002A23] pb-8 pt-36">
+      <div className="w-full bg-admi-green pb-8 pt-36">
         {/* Main 3-column grid */}
         <div className="mx-auto grid w-full max-w-screen-xl grid-cols-1 gap-10 px-4 text-white md:grid-cols-3 md:gap-8">
           {/* Column 1: Get in Touch */}
@@ -135,7 +135,7 @@ export default function Footer({ bgColor }: Props) {
               <Image width={24} height={24} src={IconCall} alt="whatsapp" className="mt-0.5 shrink-0" />
               <div>
                 <span className="font-bold">WhatsApp: </span>
-                <WhatsAppLinkPlain trackingLocation="footer_v3" className="font-bold text-[#08F6CF]">
+                <WhatsAppLinkPlain trackingLocation="footer_v3" className="font-bold text-secondary">
                   (+254) 741 132 751
                 </WhatsAppLinkPlain>
               </div>

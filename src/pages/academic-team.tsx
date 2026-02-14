@@ -20,7 +20,7 @@ export default function AcademicTeamPage() {
       />
       <div className="w-full">
         {/* HEADER */}
-        <Box className="relative z-0 h-[16em] w-full bg-[#002A23]">
+        <Box className="relative z-0 h-[16em] w-full bg-admi-green">
           {/* BACKGROUND IMAGES */}
           <div className="absolute left-[62%] top-[60px] z-0 h-fit w-full -translate-x-1/2 transform">
             <div className="flex w-full justify-end pr-[10%]">

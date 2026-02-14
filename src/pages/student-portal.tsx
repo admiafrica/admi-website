@@ -22,11 +22,11 @@ export default function StudentPortalPage() {
           <div className="w-full max-w-[440px] rounded-2xl bg-white p-10 shadow-lg">
             {/* Logo */}
             <div className="flex flex-col items-center gap-6">
-              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[#BA2E36]">
-                <span className="font-fraunces text-[32px] font-bold text-white">A</span>
+              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-brand-red">
+                <span className="font-proxima text-[32px] font-bold text-white">A</span>
               </div>
               <div className="text-center">
-                <h1 className="font-fraunces text-[32px] font-bold text-[#0A0A0A]">Student Portal</h1>
+                <h1 className="font-proxima text-[32px] font-bold text-admi-black">Student Portal</h1>
                 <p className="mt-1 font-proxima text-[16px] text-[#666]">Access your courses, grades and resources</p>
               </div>
             </div>
@@ -38,7 +38,7 @@ export default function StudentPortalPage() {
                 <input
                   type="text"
                   placeholder="Enter your username"
-                  className="mt-2 w-full rounded-lg border border-[#d0d0d0] px-4 py-3.5 font-proxima text-[14px] text-[#333] outline-none transition focus:border-[#BA2E36]"
+                  className="mt-2 w-full rounded-lg border border-[#d0d0d0] px-4 py-3.5 font-proxima text-[14px] text-[#333] outline-none transition focus:border-brand-red"
                 />
               </div>
               <div>
@@ -46,7 +46,7 @@ export default function StudentPortalPage() {
                 <input
                   type="password"
                   placeholder="Enter your password"
-                  className="mt-2 w-full rounded-lg border border-[#d0d0d0] px-4 py-3.5 font-proxima text-[14px] text-[#333] outline-none transition focus:border-[#BA2E36]"
+                  className="mt-2 w-full rounded-lg border border-[#d0d0d0] px-4 py-3.5 font-proxima text-[14px] text-[#333] outline-none transition focus:border-brand-red"
                 />
               </div>
             </div>
@@ -55,14 +55,14 @@ export default function StudentPortalPage() {
             <Link
               href="https://portal.admi.ac.ke"
               target="_blank"
-              className="mt-6 flex w-full items-center justify-center rounded-[10px] bg-[#BA2E36] py-4 font-proxima text-[16px] font-semibold text-white transition hover:bg-[#a02730]"
+              className="mt-6 flex w-full items-center justify-center rounded-[10px] bg-brand-red py-4 font-proxima text-[16px] font-semibold text-white transition hover:bg-[#a02730]"
             >
               Login
             </Link>
 
             {/* Forgot Password */}
             <p className="mt-4 text-center">
-              <Link href="#" className="font-proxima text-[14px] font-medium text-[#BA2E36]">
+              <Link href="#" className="font-proxima text-[14px] font-medium text-brand-red">
                 Forgot password?
               </Link>
             </p>

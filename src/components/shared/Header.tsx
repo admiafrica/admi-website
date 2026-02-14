@@ -97,5 +97,5 @@ const menuItemStyle: React.CSSProperties = {
   cursor: 'pointer',
   fontWeight: 'bold',
   fontSize: 18,
-  color: '#BA2E36'
+  color: '#C1272D'
 }

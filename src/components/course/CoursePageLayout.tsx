@@ -346,7 +346,7 @@ export default function CoursePageLayout({ course, slug }: Props) {
                 step: step.step,
                 title: step.title,
                 subtitle: step.description,
-                color: step.step === 1 ? '#BA2E36' : step.step === 2 ? '#171717' : '#08F6CF'
+                color: step.step === 1 ? '#C1272D' : step.step === 2 ? '#171717' : '#8EBFB0'
               }))}
             />
 

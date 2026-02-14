@@ -3,39 +3,39 @@ import { IconArrowRight, IconArrowDown } from '@tabler/icons-react'
 const STEPS = [
   {
     number: '1',
-    circleBg: 'bg-[#BA2E36]',
+    circleBg: 'bg-brand-red',
     numberColor: 'text-white',
     title: 'ADMI Diploma',
     detail: '18 months of intensive hands-on training with industry mentors',
     pill: '18 Months',
-    pillText: 'text-[#BA2E36]',
-    pillBg: 'bg-[#BA2E36]/[0.12]'
+    pillText: 'text-brand-red',
+    pillBg: 'bg-brand-red/[0.12]'
   },
   {
     number: '2',
-    circleBg: 'bg-[#08F6CF]',
-    numberColor: 'text-[#0A0A0A]',
+    circleBg: 'bg-secondary',
+    numberColor: 'text-admi-black',
     title: 'Woolf EU Credits',
     detail: 'Your diploma credits transfer via ECTS to European-standard degree programs',
     pill: 'Automatic Transfer',
-    pillText: 'text-[#08F6CF]',
-    pillBg: 'bg-[#08F6CF]/[0.12]'
+    pillText: 'text-secondary',
+    pillBg: 'bg-secondary/[0.12]'
   },
   {
     number: '3',
-    circleBg: 'bg-[#F76335]',
+    circleBg: 'bg-brand-orange',
     numberColor: 'text-white',
     title: "Bachelor's Degree",
     detail: 'Complete your degree in just 1 more year \u2014 study while working full-time',
     pill: '1 Year While Working',
-    pillText: 'text-[#F76335]',
-    pillBg: 'bg-[#F76335]/[0.12]'
+    pillText: 'text-brand-orange',
+    pillBg: 'bg-brand-orange/[0.12]'
   }
 ] as const
 
 export default function DegreePathway() {
   return (
-    <section className="w-full bg-[#0A0A0A]">
+    <section className="w-full bg-admi-black">
       <div className="mx-auto max-w-[1280px] px-6 py-16 md:px-8 md:py-20">
         {/* Header */}
         <div className="mx-auto mb-14 flex max-w-[750px] flex-col items-center text-center">
@@ -77,7 +77,7 @@ export default function DegreePathway() {
               {/* Arrow (not after last item) */}
               {index < STEPS.length - 1 && (
                 <div className="flex shrink-0 items-center px-2">
-                  <IconArrowRight size={32} className="text-[#08F6CF]" stroke={2} />
+                  <IconArrowRight size={32} className="text-secondary" stroke={2} />
                 </div>
               )}
             </div>
@@ -114,7 +114,7 @@ export default function DegreePathway() {
               {/* Down Arrow (not after last item) */}
               {index < STEPS.length - 1 && (
                 <div className="flex items-center py-2">
-                  <IconArrowDown size={32} className="text-[#08F6CF]" stroke={2} />
+                  <IconArrowDown size={32} className="text-secondary" stroke={2} />
                 </div>
               )}
             </div>

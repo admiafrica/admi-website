@@ -15,17 +15,17 @@ interface EventCard {
 const EVENTS: EventCard[] = [
   {
     badge: 'NOW ENROLLING',
-    badgeClasses: 'text-white bg-[#BA2E36]',
+    badgeClasses: 'text-white bg-brand-red',
     title: 'May 2026 Intake',
     detail: 'Diploma & Certificate programmes. Early bird discount available until March 31st.',
     buttonLabel: 'Apply for May',
-    buttonClasses: 'text-white bg-[#BA2E36] hover:bg-[#a52830]',
+    buttonClasses: 'text-white bg-brand-red hover:bg-[#a52830]',
     href: '/courses',
     cardBg: 'bg-[#FFF0F0]'
   },
   {
     badge: 'COMING SOON',
-    badgeClasses: 'text-[#08F6CF] bg-[#0A3D3D]',
+    badgeClasses: 'text-secondary bg-[#0A3D3D]',
     title: 'September 2026 Intake',
     detail: 'All programmes available. Flexible payment plans from KES 15,000/month for diplomas.',
     buttonLabel: 'Register Interest',
@@ -35,12 +35,12 @@ const EVENTS: EventCard[] = [
   },
   {
     badge: 'VISIT US',
-    badgeClasses: 'text-white bg-[#F76335]',
+    badgeClasses: 'text-white bg-brand-orange',
     title: 'Open Days',
     detail:
       'Visit our Nairobi campus, tour the studios and labs, meet faculty and current students, and see graduate work. Families welcome.',
     buttonLabel: 'Book Your Visit',
-    buttonClasses: 'text-[#F76335] border-[1.5px] border-[#F76335] bg-transparent hover:bg-[#F76335]/5',
+    buttonClasses: 'text-brand-orange border-[1.5px] border-brand-orange bg-transparent hover:bg-brand-orange/5',
     href: '/contact',
     cardBg: 'bg-[#FFF8F0]'
   }

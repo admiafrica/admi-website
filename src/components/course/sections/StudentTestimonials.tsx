@@ -26,7 +26,7 @@ export default function StudentTestimonials({ testimonials }: StudentTestimonial
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {testimonials.map((testimonial, index) => {
             const isAlumni = testimonial.type === 'alumni'
-            const avatarColors = ['bg-[#BA2E36]', 'bg-[#08F6CF]', 'bg-[#F76335]']
+            const avatarColors = ['bg-brand-red', 'bg-secondary', 'bg-brand-orange']
             return (
               <article
                 key={index}
@@ -35,7 +35,7 @@ export default function StudentTestimonials({ testimonials }: StudentTestimonial
                 {/* Badge */}
                 <span
                   className={`w-fit rounded-xl px-3 py-1 font-proxima text-[11px] font-bold uppercase ${
-                    isAlumni ? 'bg-[#BA2E36] text-white' : 'bg-[#08F6CF] text-[#171717]'
+                    isAlumni ? 'bg-brand-red text-white' : 'bg-secondary text-[#171717]'
                   }`}
                 >
                   {isAlumni ? 'Alumni' : 'Current Student'}

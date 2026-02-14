@@ -51,7 +51,7 @@ const STEP_LABELS = ['Course Interest', 'Program Details', 'Contact Info']
 const INPUT_CLASS =
   'h-[44px] w-full rounded-[8px] border border-[#BCC5D0] bg-[#F7F8FA] px-3 text-[14px] text-[#1F2937] placeholder:text-[#6F7E90] outline-none'
 
-const RADIO_CLASS = 'h-4 w-4 border-[#8896A8] text-[#BA2E36] focus:ring-[#BA2E36]'
+const RADIO_CLASS = 'h-4 w-4 border-[#8896A8] text-brand-red focus:ring-brand-red'
 
 export default function EnhancedEnquiryForm() {
   const router = useRouter()
@@ -162,6 +162,19 @@ export default function EnhancedEnquiryForm() {
   }
 
   const isEmailValid = (email: string) => /^\S+@\S+$/.test(email)
+
+  const isStepComplete = (step: number): boolean => {
+    if (step === 0) return !!(values.courseName && values.studyTimeline)
+    if (step === 1) return !!(values.programType && values.careerGoals && values.experienceLevel)
+    return false
+  }
+
+  const canAccessStep = (step: number): boolean => {
+    if (step === 0) return true
+    if (step === 1) return isStepComplete(0)
+    if (step === 2) return isStepComplete(0) && isStepComplete(1)
+    return false
+  }
 
   const validateCurrentStep = (): boolean => {
     if (activeStep === 0) return !!(values.courseName && values.studyTimeline)
@@ -415,10 +428,13 @@ export default function EnhancedEnquiryForm() {
             <button
               key={label}
               type="button"
-              onClick={() => setActiveStep(index)}
+              onClick={() => {
+                if (canAccessStep(index)) setActiveStep(index)
+              }}
+              disabled={!canAccessStep(index)}
               className={`rounded-full px-4 py-2 text-xs font-semibold ${
                 activeStep === index ? 'bg-[#0A3D3D] text-white' : 'bg-[#EEF1F4] text-[#555]'
-              }`}
+              } ${!canAccessStep(index) ? 'cursor-not-allowed opacity-60' : ''}`}
             >
               {index + 1}. {label}
             </button>
@@ -623,7 +639,7 @@ export default function EnhancedEnquiryForm() {
                 <span>Phone Number</span>
                 <IconAsterisk size={6} className="text-admiRed" />
               </div>
-              <p className="pb-1 text-xs text-[#6B7280] sm:text-sm">Kenya mobile number (without country code)</p>
+              <p className="pb-1 text-xs text-muted sm:text-sm">Kenya mobile number (without country code)</p>
               <div className="flex gap-2">
                 <div className="w-24 sm:w-28">
                   <PhoneInput
@@ -693,7 +709,7 @@ export default function EnhancedEnquiryForm() {
             <button
               type="submit"
               disabled={isSubmitting || !validateCurrentStep()}
-              className="order-1 inline-flex w-full items-center justify-center rounded-md bg-[#BA2E36] px-5 py-3 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:opacity-60 sm:order-2 sm:w-auto"
+              className="order-1 inline-flex w-full items-center justify-center rounded-md bg-brand-red px-5 py-3 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:opacity-60 sm:order-2 sm:w-auto"
             >
               {isSubmitting ? 'Submitting...' : 'Submit Enquiry'}
             </button>

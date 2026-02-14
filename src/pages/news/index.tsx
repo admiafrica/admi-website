@@ -43,10 +43,10 @@ export default function NewsPage({ news, featuredNews }: NewsPageProps) {
           <div className="mx-auto flex w-full max-w-screen-xl flex-col gap-10 lg:flex-row lg:items-center">
             {/* Left: Featured Article Text */}
             <div className="flex-1">
-              <span className="inline-block rounded bg-[#BA2E36] px-3 py-1 text-[11px] font-bold uppercase tracking-widest text-white">
+              <span className="inline-block rounded bg-brand-red px-3 py-1 text-[11px] font-bold uppercase tracking-widest text-white">
                 LATEST STORY
               </span>
-              <h1 className="mt-5 font-fraunces text-[36px] font-bold leading-[1.15] text-white sm:text-[44px]">
+              <h1 className="mt-5 font-proxima text-[36px] font-bold leading-[1.15] text-white sm:text-[44px]">
                 {featuredFields?.title || 'Inside ADMI\'s New XR Lab: How Extended Reality Is Transforming Creative Education'}
               </h1>
               <p className="mt-4 text-[15px] leading-[1.7] text-white/70">
@@ -55,7 +55,7 @@ export default function NewsPage({ news, featuredNews }: NewsPageProps) {
               {featuredNews && (
                 <Link
                   href={`/news/${featuredFields?.slug || ''}`}
-                  className="mt-6 inline-flex items-center gap-2 text-[15px] font-bold text-[#08F6CF] hover:underline"
+                  className="mt-6 inline-flex items-center gap-2 text-[15px] font-bold text-secondary hover:underline"
                 >
                   Read Full Story <IconArrowRight size={16} />
                 </Link>
@@ -85,7 +85,7 @@ export default function NewsPage({ news, featuredNews }: NewsPageProps) {
                 onClick={() => setActiveCategory(cat)}
                 className={`whitespace-nowrap px-5 py-4 text-[14px] font-bold transition-colors ${
                   activeCategory === cat
-                    ? 'border-b-[3px] border-[#BA2E36] text-[#BA2E36]'
+                    ? 'border-b-[3px] border-brand-red text-brand-red'
                     : 'text-[#666] hover:text-[#333]'
                 }`}
               >
@@ -97,10 +97,10 @@ export default function NewsPage({ news, featuredNews }: NewsPageProps) {
 
         {/* Latest Articles Header */}
         <div className="mx-auto w-full max-w-screen-xl px-4 pt-14 xl:px-0">
-          <p className="text-[13px] font-bold uppercase tracking-[0.2em] text-[#BA2E36]">
+          <p className="text-[13px] font-bold uppercase tracking-[0.2em] text-brand-red">
             FEATURED ARTICLES
           </p>
-          <h2 className="mt-2 font-fraunces text-[36px] font-bold text-[#171717]">
+          <h2 className="mt-2 font-proxima text-[36px] font-bold text-[#171717]">
             Latest Articles
           </h2>
         </div>
@@ -131,7 +131,7 @@ export default function NewsPage({ news, featuredNews }: NewsPageProps) {
             <p className="text-[13px] font-bold uppercase tracking-[0.2em] text-[#B7D8CF]">
               NEWSLETTER
             </p>
-            <h2 className="mt-3 font-fraunces text-[32px] font-bold text-white sm:text-[36px]">
+            <h2 className="mt-3 font-proxima text-[32px] font-bold text-white sm:text-[36px]">
               Get the latest ADMI news in your inbox
             </h2>
             <p className="mt-3 max-w-[500px] text-[15px] text-white/60">
@@ -141,9 +141,9 @@ export default function NewsPage({ news, featuredNews }: NewsPageProps) {
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="flex-1 rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-[14px] text-white placeholder:text-white/40 focus:border-[#08F6CF] focus:outline-none"
+                className="flex-1 rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-[14px] text-white placeholder:text-white/40 focus:border-secondary focus:outline-none"
               />
-              <button className="rounded-lg bg-[#BA2E36] px-6 py-3 text-[14px] font-bold text-white transition-colors hover:bg-[#9a2530]">
+              <button className="rounded-lg bg-brand-red px-6 py-3 text-[14px] font-bold text-white transition-colors hover:bg-[#9a2530]">
                 Subscribe
               </button>
             </div>

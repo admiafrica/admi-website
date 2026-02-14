@@ -103,7 +103,7 @@ export default function EnquiryThanksPage() {
       <PageSEO title="Enquiry Submitted" />
       <Box className="relative w-full">
         <GoogleAnalyticsTag analyticsId={process.env.NEXT_PUBLIC_ADMI_GTM_ID as string} />
-        <div className="min-h-[100vh] w-full bg-[#002A23] pb-16 pt-16">
+        <div className="min-h-[100vh] w-full bg-admi-green pb-16 pt-16">
           {/* BACKGROUND IMAGES */}
           <div className="absolute left-[54%] top-[24vh] h-fit w-full -translate-x-1/2 transform">
             <div className="flex w-full justify-end pr-[10%]">
@@ -137,7 +137,7 @@ export default function EnquiryThanksPage() {
                 <div className="space-y-4">
                   {NEXT_STEPS.map((step, index) => (
                     <div key={index} className="flex items-start gap-4 rounded-lg bg-gray-50 p-4">
-                      <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-[#002A23]">
+                      <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-admi-green">
                         <step.icon size={20} color="white" />
                       </div>
                       <div>
@@ -155,7 +155,7 @@ export default function EnquiryThanksPage() {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => trackWhatsAppClick(ADMI_WHATSAPP_NUMBER, 'thank_you_page')}
-                className="mt-6 flex w-full items-center justify-center gap-2 rounded-lg bg-[#25D366] px-6 py-3 font-semibold text-white transition-colors hover:bg-[#1da851]"
+                className="mt-6 flex w-full items-center justify-center gap-2 rounded-lg bg-brand-whatsapp px-6 py-3 font-semibold text-white transition-colors hover:bg-[#1da851]"
               >
                 <IconBrandWhatsapp size={22} />
                 Chat with Admissions on WhatsApp
@@ -169,7 +169,7 @@ export default function EnquiryThanksPage() {
                     <Link
                       key={link.href}
                       href={link.href}
-                      className="flex items-center justify-between rounded-lg border border-gray-200 px-4 py-3 text-sm font-medium text-gray-700 transition-colors hover:border-[#BA2E36] hover:text-[#BA2E36]"
+                      className="flex items-center justify-between rounded-lg border border-gray-200 px-4 py-3 text-sm font-medium text-gray-700 transition-colors hover:border-brand-red hover:text-brand-red"
                     >
                       {link.label}
                       <IconArrowRight size={14} />

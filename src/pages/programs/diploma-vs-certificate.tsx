@@ -41,7 +41,7 @@ export default function DiplomaVsCertificatePage() {
         url="/programs/diploma-vs-certificate"
       />
 
-      <Box className="bg-[#002A23] py-20">
+      <Box className="bg-admi-green py-20">
         <Container size="lg">
           <Stack align="center" gap="md">
             <Badge size="xl" color="orange" variant="filled">

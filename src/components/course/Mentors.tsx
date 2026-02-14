@@ -17,7 +17,7 @@ export default function CourseMentors(props: Props) {
   if (!showMentors) return
 
   return (
-    <Group bg={'#F76335'} py={32}>
+    <Group bg={'#EF7B2E'} py={32}>
       <div className="mx-auto w-full max-w-screen-xl px-4">
         <div>
           <Title size={isMobile ? '24px' : '32px'} label="Course Leader & Mentor" color="white" className="py-4" />

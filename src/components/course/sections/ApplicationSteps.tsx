@@ -18,7 +18,7 @@ export default function ApplicationSteps({ steps }: ApplicationStepsProps) {
               className="flex flex-col items-center gap-3 rounded-2xl border border-[#eeeeee] bg-white p-7 text-center shadow-md transition-shadow hover:shadow-xl md:w-[380px]"
             >
               {/* Red circle with step number */}
-              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#BA2E36]" aria-hidden="true">
+              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-brand-red" aria-hidden="true">
                 <span className="font-proxima text-xl font-bold text-white">{item.step}</span>
               </div>
 

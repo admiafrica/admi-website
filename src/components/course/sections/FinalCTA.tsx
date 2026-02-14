@@ -11,7 +11,7 @@ export default function FinalCTA({ courseName = 'Film Production' }: FinalCTAPro
 
   return (
     <section
-      className="w-full bg-gradient-to-br from-[#BA2E36] to-[#E85A4F] px-4 py-20 md:px-20"
+      className="w-full bg-gradient-to-br from-brand-red to-[#E85A4F] px-4 py-20 md:px-20"
       aria-label="Call to action"
     >
       <div className="mx-auto flex max-w-screen-xl flex-col items-center text-center">
@@ -26,7 +26,7 @@ export default function FinalCTA({ courseName = 'Film Production' }: FinalCTAPro
         <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
           <Link
             href="/enquiry"
-            className="inline-flex items-center rounded-lg bg-white px-8 py-3 font-proxima text-[17px] font-bold text-[#BA2E36] transition-colors hover:bg-gray-100"
+            className="inline-flex items-center rounded-lg bg-white px-8 py-3 font-proxima text-[17px] font-bold text-brand-red transition-colors hover:bg-gray-100"
           >
             Apply Now
           </Link>

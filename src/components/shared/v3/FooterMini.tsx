@@ -44,7 +44,7 @@ export default function FooterMini() {
   return (
     <div className="relative w-full bg-[#FFF7F5] font-proxima">
       <hr className="border-t border-green-500/20" />
-      <div className="flex w-full bg-[#002A23] pb-8">
+      <div className="flex w-full bg-admi-green pb-8">
         <div className="md:pt-auto mx-auto flex w-full max-w-screen-xl flex-col items-center px-4 pt-8 md:flex-row">
           <div className="flex-start grow">
             {/* Social icons: hidden on small screens, shown on xs+ */}

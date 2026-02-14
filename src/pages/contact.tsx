@@ -60,10 +60,10 @@ export default function ContactPage() {
         <section className="bg-[#0A3D3D] px-4 py-20 text-center text-white xl:px-20">
           <div className="mx-auto w-full max-w-screen-xl">
             <div className="flex items-center justify-center gap-3">
-              <span className="h-0.5 w-8 bg-[#08F6CF]" />
-              <span className="font-proxima text-[13px] font-semibold uppercase tracking-[2px] text-[#08F6CF]">CONTACT</span>
+              <span className="h-0.5 w-8 bg-secondary" />
+              <span className="font-proxima text-[13px] font-semibold uppercase tracking-[2px] text-secondary">CONTACT</span>
             </div>
-            <h1 className="mt-5 font-fraunces text-[48px] font-bold">Get In Touch With ADMI</h1>
+            <h1 className="mt-5 font-proxima text-[48px] font-bold">Get In Touch With ADMI</h1>
             <p className="mx-auto mt-4 max-w-[600px] font-proxima text-[18px] leading-[1.6] text-white/80">
               Have a question about our programmes, admissions, or campus? We are here to help.
             </p>
@@ -75,7 +75,7 @@ export default function ContactPage() {
           <div className="mx-auto flex w-full max-w-screen-xl flex-col lg:flex-row">
             {/* Form Side */}
             <div className="flex-1 px-4 py-16 lg:px-20 lg:py-16">
-              <h2 className="font-fraunces text-[32px] font-bold text-[#171717]">Send Us a Message</h2>
+              <h2 className="font-proxima text-[32px] font-bold text-[#171717]">Send Us a Message</h2>
               <p className="mt-2 font-proxima text-[15px] leading-[1.6] text-[#666]">
                 Fill out the form below and our admissions team will get back to you within 24 hours.
               </p>
@@ -86,7 +86,7 @@ export default function ContactPage() {
 
             {/* Info Side */}
             <div className="w-full bg-[#F9F9F9] px-4 py-16 lg:w-[420px] lg:px-12 lg:py-16">
-              <h2 className="font-fraunces text-[24px] font-bold text-[#171717]">Contact Information</h2>
+              <h2 className="font-proxima text-[24px] font-bold text-[#171717]">Contact Information</h2>
               <div className="mt-6 space-y-6">
                 {CONTACT_INFO.map((info) => (
                   <div key={info.label} className="flex gap-4">
@@ -105,7 +105,7 @@ export default function ContactPage() {
         </section>
 
         {/* ── WhatsApp Bar ── */}
-        <section className="bg-[#25D366]">
+        <section className="bg-brand-whatsapp">
           <div className="mx-auto flex w-full max-w-screen-xl items-center justify-center gap-4 px-4 py-5 xl:px-20">
             <IconBrandWhatsapp size={20} className="text-white" />
             <p className="font-proxima text-[15px] font-semibold text-white">
@@ -114,7 +114,7 @@ export default function ContactPage() {
             <Link
               href="https://wa.me/254741132751"
               target="_blank"
-              className="rounded-full bg-white px-6 py-2.5 font-proxima text-[14px] font-bold text-[#25D366] transition hover:bg-white/90"
+              className="rounded-full bg-white px-6 py-2.5 font-proxima text-[14px] font-bold text-brand-whatsapp transition hover:bg-white/90"
             >
               Start Chat
             </Link>
@@ -124,7 +124,7 @@ export default function ContactPage() {
         {/* ── Map Section ── */}
         <section className="bg-[#F9F9F9] px-4 py-16 xl:px-20">
           <div className="mx-auto w-full max-w-screen-xl">
-            <h2 className="text-center font-fraunces text-[32px] font-bold text-[#171717]">Find Us</h2>
+            <h2 className="text-center font-proxima text-[32px] font-bold text-[#171717]">Find Us</h2>
             <div className="relative mt-8 h-[400px] overflow-hidden rounded-2xl">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.8174!2d36.8219!3d-1.2864!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMcKwMTcnMTEuMCJTIDM2wrA0OScxOC44IkU!5e0!3m2!1sen!2ske!4v1!5m2!1sen!2ske"

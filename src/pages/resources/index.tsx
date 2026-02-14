@@ -199,7 +199,7 @@ export default function ResourcesPage({ initialResources, initialFeatured, initi
               <p className="font-proxima text-[14px] font-bold uppercase tracking-[0.1em] text-[#B7D8CF]">
                 /guides
               </p>
-              <h1 className="mt-4 font-fraunces text-[36px] font-bold leading-[1.15] text-white sm:text-[46px]">
+              <h1 className="mt-4 font-proxima text-[36px] font-bold leading-[1.15] text-white sm:text-[46px]">
                 {featuredFields?.title ||
                   'How Hybrid Creative Education Is Reshaping Media Careers in Africa'}
               </h1>
@@ -210,7 +210,7 @@ export default function ResourcesPage({ initialResources, initialFeatured, initi
               </p>
               <a
                 href="#resources"
-                className="mt-4 inline-block font-proxima text-[14px] font-bold text-[#08F6CF] hover:underline"
+                className="mt-4 inline-block font-proxima text-[14px] font-bold text-secondary hover:underline"
               >
                 Explore Guides &rarr;
               </a>
@@ -290,7 +290,7 @@ export default function ResourcesPage({ initialResources, initialFeatured, initi
                   <select
                     value={filters[key]}
                     onChange={(e) => setFilters((prev) => ({ ...prev, [key]: e.target.value }))}
-                    className="appearance-none rounded-lg border border-[#d0d0d0] bg-white py-2.5 pl-4 pr-8 font-proxima text-[13px] font-medium text-[#333] outline-none focus:border-[#BA2E36]"
+                    className="appearance-none rounded-lg border border-[#d0d0d0] bg-white py-2.5 pl-4 pr-8 font-proxima text-[13px] font-medium text-[#333] outline-none focus:border-brand-red"
                   >
                     <option value="">{label}</option>
                     {options.map((opt) => (
@@ -308,7 +308,7 @@ export default function ResourcesPage({ initialResources, initialFeatured, initi
               {hasActiveFilters && (
                 <button
                   onClick={clearFilters}
-                  className="flex items-center gap-1 px-4 py-2 font-proxima text-[13px] font-medium text-[#BA2E36] hover:underline"
+                  className="flex items-center gap-1 px-4 py-2 font-proxima text-[13px] font-medium text-brand-red hover:underline"
                 >
                   <IconX size={14} /> Clear All
                 </button>
@@ -319,10 +319,10 @@ export default function ResourcesPage({ initialResources, initialFeatured, initi
 
         {/* Featured Guides Header */}
         <div className="mx-auto w-full max-w-screen-xl px-4 pt-14 xl:px-0">
-          <p className="font-proxima text-[13px] font-bold uppercase tracking-[0.2em] text-[#BA2E36]">
+          <p className="font-proxima text-[13px] font-bold uppercase tracking-[0.2em] text-brand-red">
             {isSearchMode ? 'SEARCH RESULTS' : 'POPULAR RIGHT NOW'}
           </p>
-          <h2 className="mt-2 font-fraunces text-[36px] font-bold text-[#171717]">
+          <h2 className="mt-2 font-proxima text-[36px] font-bold text-[#171717]">
             {isSearchMode
               ? `Guides matching "${buildSearchTerm()}"`
               : 'Featured Guides for Creative Learners'}
@@ -345,7 +345,7 @@ export default function ResourcesPage({ initialResources, initialFeatured, initi
               ))
           ) : (
             <div className="col-span-full py-12 text-center">
-              <h3 className="mb-2 font-fraunces text-xl font-semibold text-[#555]">
+              <h3 className="mb-2 font-proxima text-xl font-semibold text-[#555]">
                 {hasActiveFilters ? 'No matching resources' : 'No resources available'}
               </h3>
               <p className="font-proxima text-[15px] text-[#888]">
@@ -356,7 +356,7 @@ export default function ResourcesPage({ initialResources, initialFeatured, initi
               {hasActiveFilters && (
                 <button
                   onClick={clearFilters}
-                  className="mt-4 font-proxima text-[14px] font-semibold text-[#BA2E36] hover:underline"
+                  className="mt-4 font-proxima text-[14px] font-semibold text-brand-red hover:underline"
                 >
                   Clear all filters
                 </button>
@@ -375,8 +375,8 @@ export default function ResourcesPage({ initialResources, initialFeatured, initi
                   onClick={() => handlePageChange(page)}
                   className={`h-10 w-10 rounded-lg font-proxima text-[14px] font-bold transition-colors ${
                     currentPage === page
-                      ? 'bg-[#BA2E36] text-white'
-                      : 'border border-[#E8E8E8] bg-white text-[#333] hover:border-[#BA2E36]'
+                      ? 'bg-brand-red text-white'
+                      : 'border border-[#E8E8E8] bg-white text-[#333] hover:border-brand-red'
                   }`}
                 >
                   {page}
@@ -389,14 +389,14 @@ export default function ResourcesPage({ initialResources, initialFeatured, initi
         {/* Toolkit Collections */}
         <div className="bg-[#F9F9F9] px-4 py-16 xl:px-0">
           <div className="mx-auto w-full max-w-screen-xl">
-            <h2 className="font-fraunces text-[38px] font-bold text-[#171717]">
+            <h2 className="font-proxima text-[38px] font-bold text-[#171717]">
               Hybrid Toolkit Collections
             </h2>
             <div className="grid grid-cols-2 gap-3 pt-6 md:grid-cols-4">
               {[
-                { label: 'Production Toolkit', color: 'text-[#BA2E36]' },
+                { label: 'Production Toolkit', color: 'text-brand-red' },
                 { label: 'Portfolio Guide', color: 'text-[#0A3D3D]' },
-                { label: 'Industry Toolkit', color: 'text-[#BA2E36]' },
+                { label: 'Industry Toolkit', color: 'text-brand-red' },
                 { label: 'Career Playbook', color: 'text-[#0A3D3D]' }
               ].map((item) => (
                 <span

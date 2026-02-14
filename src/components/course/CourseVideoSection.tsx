@@ -133,7 +133,7 @@ export function CourseVideoSection({ course, slug }: CourseVideoSectionProps) {
                   </Title>
 
                   <Group mb="md">
-                    <IconEye size={20} color="#F76335" />
+                    <IconEye size={20} color="#EF7B2E" />
                     <div>
                       <Text fw={500}>{videoStats.views}</Text>
                       <Text size="xs" c="dimmed">
@@ -143,7 +143,7 @@ export function CourseVideoSection({ course, slug }: CourseVideoSectionProps) {
                   </Group>
 
                   <Group mb="md">
-                    <IconClock size={20} color="#F76335" />
+                    <IconClock size={20} color="#EF7B2E" />
                     <div>
                       <Text fw={500}>{videoStats.duration}</Text>
                       <Text size="xs" c="dimmed">
@@ -153,7 +153,7 @@ export function CourseVideoSection({ course, slug }: CourseVideoSectionProps) {
                   </Group>
 
                   <Group mb="md">
-                    <IconUsers size={20} color="#F76335" />
+                    <IconUsers size={20} color="#EF7B2E" />
                     <div>
                       <Text fw={500}>{videoStats.students}</Text>
                       <Text size="xs" c="dimmed">
@@ -163,7 +163,7 @@ export function CourseVideoSection({ course, slug }: CourseVideoSectionProps) {
                   </Group>
 
                   <Group mb="md">
-                    <IconTrendingUp size={20} color="#F76335" />
+                    <IconTrendingUp size={20} color="#EF7B2E" />
                     <div>
                       <Text fw={500}>{videoStats.completion}</Text>
                       <Text size="xs" c="dimmed">
@@ -237,7 +237,7 @@ export function CourseVideoSection({ course, slug }: CourseVideoSectionProps) {
                         {/* Play Button Overlay */}
                         <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30 opacity-0 transition-opacity duration-300 hover:opacity-100">
                           <div className="rounded-full bg-white bg-opacity-90 p-3">
-                            <IconPlayerPlay size={24} color="#F76335" />
+                            <IconPlayerPlay size={24} color="#EF7B2E" />
                           </div>
                         </div>
 

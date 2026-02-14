@@ -46,7 +46,7 @@ export default function CareerOutcomes({ careers, stats }: CareerOutcomesProps) 
         <div className="flex flex-col items-center justify-around gap-8 border-t border-gray-700 pt-12 md:flex-row">
           {displayStats.map((stat, index) => (
             <div key={index} className="text-center">
-              <p className="font-proxima text-5xl font-bold text-[#08F6CF]">{stat.value}</p>
+              <p className="font-proxima text-5xl font-bold text-secondary">{stat.value}</p>
               <p className="mt-1 font-proxima text-sm text-[#999999]">{stat.label}</p>
             </div>
           ))}
