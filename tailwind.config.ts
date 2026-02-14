@@ -18,6 +18,7 @@ const config: Config = {
       fontFamily: {
         nexa: ['var(--font-nexa)'],
         proxima: ['var(--font-proxima)'],
+        fraunces: ['"Fraunces Variable"', 'Georgia', 'serif'],
       },
     },
   },

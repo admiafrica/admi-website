@@ -1,54 +1,20 @@
-import Image from 'next/image'
 import { ensureProtocol } from '@/utils'
-import { Box, Card } from '@mantine/core'
-import { useRouter } from 'next/router'
-
-import { MainLayout } from '@/layouts/v3/MainLayout'
-import { PageSEO, SocialShare } from '@/components/shared/v3'
+import { PageSEO } from '@/components/shared/v3'
 import { EducationalResourceSchema } from '@/components/seo/ArticleSchema'
 import { BreadcrumbSchema } from '@/components/seo/BreadcrumbSchema'
 import { FAQSchema } from '@/components/seo/FAQSchema'
 import { VideoObjectSchema } from '@/components/seo/VideoObjectSchema'
-import { Button, Paragraph, ParagraphContentful } from '@/components/ui'
-import { ArticleMetadata, RelatedArticles } from '@/components/articles/ArticleMetadata'
-import { useIsMobile } from '@/hooks/useIsMobile'
-
-import IconBgImageYellow from '@/assets/icons/ellipse-yellow.svg'
-import IconBgImageRed from '@/assets/icons/ellipse-red.svg'
-
-// Helper: Extract plain text from Contentful rich text
-function extractPlainText(richText: any): string {
-  if (!richText || !richText.content) return ''
-  const text: string[] = []
-
-  const walkContent = (nodes: any[]) => {
-    nodes.forEach((node) => {
-      if (node.nodeType === 'text' && node.value) {
-        text.push(node.value)
-      } else if (node.content) {
-        walkContent(node.content)
-      }
-    })
-  }
-
-  walkContent(richText.content)
-  return text.join(' ')
-}
-
-// Helper: Calculate reading time (200 words per minute)
-function calculateReadingTime(richText: any): number {
-  const plainText = extractPlainText(richText)
-  if (!plainText) return 0
-  const wordCount = plainText.trim().split(/\s+/).length
-  return Math.ceil(wordCount / 200)
-}
+import ArticleLayout, {
+  extractPlainText,
+  calculateReadingTime,
+} from '@/components/articles/ArticleLayout'
 
 export default function ResourceArticlePage({
   article,
   slug,
   relatedArticles = [],
   faqItems = [],
-  hasVideo = false
+  hasVideo = false,
 }: {
   article: any
   slug: string
@@ -56,121 +22,72 @@ export default function ResourceArticlePage({
   faqItems?: any[]
   hasVideo?: boolean
 }) {
-  const isMobile = useIsMobile()
-  const router = useRouter()
-
-  // Calculate article metrics
   const readingTime = calculateReadingTime(article?.body)
   const wordCount = extractPlainText(article?.body).trim().split(/\s+/).length
   const tagKeywords = article?.tags?.join(', ') || ''
 
-  const navigateToResources = () => {
-    router.push('/resources')
-  }
-
   return (
-    <MainLayout footerBgColor="white">
-      {article && (
-        <>
-          <PageSEO
-            title={`${article.title} - Resources | ADMI Kenya`}
-            description={article.summary || article.excerpt}
-            keywords={`${article.category}, ${tagKeywords}, ADMI, Kenya, career guide`}
-            url={`/resources/${slug}`}
-            image={`https://${article.coverImage?.fields.file.url}`}
-          />
-          <BreadcrumbSchema title={article.title} slug={slug} category={article.category} />
-          {faqItems.length > 0 && <FAQSchema questions={faqItems} />}
-          {hasVideo && (
-            <VideoObjectSchema
-              title={`${article.title} - Video Guide`}
-              description={article.summary || `Video guide: ${article.title}`}
-              thumbnailUrl={ensureProtocol(article.coverImage?.fields.file.url)}
-              uploadDate={article.publishDate || article.sys?.createdAt}
-              duration="PT3M00S"
-              embedUrl={`https://admi.africa/resources/${slug}`}
+    <ArticleLayout
+      article={article}
+      slug={slug}
+      relatedArticles={relatedArticles}
+      section="resources"
+      backLabel="Guides"
+      backHref="/resources"
+      seoSchemas={
+        article ? (
+          <>
+            <PageSEO
+              title={`${article.title} - Resources | ADMI Kenya`}
+              description={article.summary || article.excerpt}
+              keywords={`${article.category || 'Resources'}, ${tagKeywords}, ADMI, Kenya, career guide`}
+              url={`/resources/${slug}`}
+              image={
+                article.coverImage?.fields?.file?.url
+                  ? ensureProtocol(article.coverImage.fields.file.url)
+                  : undefined
+              }
             />
-          )}
-          <EducationalResourceSchema
-            title={article.title}
-            description={
-              article.summary || article.excerpt || 'Educational resource from Africa Digital Media Institute'
-            }
-            image={ensureProtocol(article.coverImage?.fields.file.url)}
-            publishedDate={article.publishDate || article.sys?.createdAt}
-            modifiedDate={article.sys?.updatedAt}
-            url={`https://admi.africa/resources/${slug}`}
-            category={article.category || 'Educational Resources'}
-            tags={article.tags || []}
-            readingTime={readingTime}
-            wordCount={wordCount}
-          />
-        </>
-      )}
-      <div className="h-[16em] w-full bg-[#002A23]">
-        {/* BACKGROUND IMAGES */}
-        <div className="absolute left-[62%] top-[20vh] z-0 h-fit w-full -translate-x-1/2 transform">
-          <div className="flex w-full justify-end pr-[10%]">
-            <Image src={IconBgImageYellow} alt={'background image'} />
-          </div>
-        </div>
-
-        <div className="absolute left-1/2 top-[5vh] z-0 h-fit w-full -translate-x-1/2 transform">
-          <div className="flex w-full">
-            <Image src={IconBgImageRed} alt={'background image'} />
-          </div>
-        </div>
-        <div className="relative z-10 mx-auto w-full max-w-screen-xl px-4 pt-24 2xl:px-0">
-          <Box className="w-fit">
-            <Button label="Back to Resources" size="lg" onClick={navigateToResources} />
-          </Box>
-        </div>
-      </div>
-      <Box className="relative h-full w-full" bg={'white'}>
-        <Box className="mx-auto flex h-full w-full max-w-screen-xl flex-col-reverse px-4 py-4 sm:flex-row sm:py-16 xl:px-0">
-          <Box className="h-full sm:w-[200px]">
-            <SocialShare item={article} />
-          </Box>
-          {article && (
-            <Card className="mb-6 min-h-[80vh] w-full sm:ml-8" withBorder>
-              <Box className="relative" h={isMobile ? '200px' : '540px'}>
-                <Image
-                  src={ensureProtocol(article.coverImage.fields.file.url)}
-                  alt={article.title}
-                  style={{ borderRadius: 8 }}
-                  fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
-                />
-              </Box>
-
-              {/* Article Metadata: Author, Date, Category, Tags */}
-              <ArticleMetadata
-                tags={article.tags}
-                readingTime={readingTime}
-                publishedDate={article.publishDate || article.sys?.createdAt}
-                modifiedDate={article.sys?.updatedAt}
-                category={article.category}
-                author="ADMI Editorial Team"
+            <BreadcrumbSchema
+              title={article.title}
+              slug={slug}
+              category={article.category || 'Educational Resources'}
+            />
+            {faqItems.length > 0 && <FAQSchema questions={faqItems} />}
+            {hasVideo && (
+              <VideoObjectSchema
+                title={`${article.title} - Video Guide`}
+                description={
+                  article.summary || `Video guide: ${article.title}`
+                }
+                thumbnailUrl={ensureProtocol(
+                  article.coverImage?.fields?.file?.url
+                )}
+                uploadDate={article.publishDate || article.sys?.createdAt}
+                duration="PT3M00S"
+                embedUrl={`https://admi.africa/resources/${slug}`}
               />
-
-              <Paragraph fontFamily="font-nexa" fontWeight={400} size="26px" className="py-6">
-                {article.title}
-              </Paragraph>
-              <ParagraphContentful fontFamily="font-nexa">{article.body}</ParagraphContentful>
-
-              {/* Related Articles Widget */}
-              {relatedArticles.length > 0 && (
-                <RelatedArticles
-                  currentArticleId={article.sys?.id}
-                  currentArticleTags={article.tags || []}
-                  articles={relatedArticles}
-                />
-              )}
-            </Card>
-          )}
-        </Box>
-      </Box>
-    </MainLayout>
+            )}
+            <EducationalResourceSchema
+              title={article.title}
+              description={
+                article.summary ||
+                article.excerpt ||
+                'Educational resource from Africa Digital Media Institute'
+              }
+              image={ensureProtocol(article.coverImage?.fields?.file?.url)}
+              publishedDate={article.publishDate || article.sys?.createdAt}
+              modifiedDate={article.sys?.updatedAt}
+              url={`https://admi.africa/resources/${slug}`}
+              category={article.category || 'Educational Resources'}
+              tags={article.tags || []}
+              readingTime={readingTime}
+              wordCount={wordCount}
+            />
+          </>
+        ) : undefined
+      }
+    />
   )
 }
 
@@ -179,16 +96,16 @@ export async function getServerSideProps(context: any) {
   const baseUrl = `http://${context.req.headers.host}`
 
   try {
-    // Fetch main article
-    const response = await fetch(`${baseUrl}/api/v3/resource-details?slug=${slug}`)
+    const response = await fetch(
+      `${baseUrl}/api/v3/resource-details?slug=${slug}`
+    )
     if (!response.ok) throw new Error('Failed to fetch article')
 
     const data = await response.json()
-    const article = data.fields
+    const article = { ...data.fields, sys: data.sys }
 
-    // Fetch related articles based on tags and category
     const relatedResponse = await fetch(
-      `${baseUrl}/api/v3/related-articles?tags=${encodeURIComponent((article.tags || []).join(','))}&category=${encodeURIComponent(article.category || '')}&excludeId=${data.sys.id}&limit=3`
+      `${baseUrl}/api/v3/related-articles?tags=${encodeURIComponent((article.tags || []).join(','))}&category=${encodeURIComponent(article.category || '')}&excludeId=${data.sys?.id || ''}&limit=3`
     )
 
     let relatedArticles = []
@@ -197,12 +114,12 @@ export async function getServerSideProps(context: any) {
       relatedArticles = relatedData.items || []
     }
 
-    // Extract FAQ data from article body if it's a How-To article
     let faqItems: any[] = []
-    let hasVideo: boolean = false
+    let hasVideo = false
 
     try {
-      const { extractFAQFromArticle, isHowToArticle, hasVideoEmbed } = await import('@/utils/faq-schema-helper')
+      const { extractFAQFromArticle, isHowToArticle, hasVideoEmbed } =
+        await import('@/utils/faq-schema-helper')
 
       if (isHowToArticle(article)) {
         faqItems = extractFAQFromArticle(article.body, article.title)
@@ -211,17 +128,13 @@ export async function getServerSideProps(context: any) {
       hasVideo = hasVideoEmbed(article.body)
     } catch (schemaError) {
       console.error('Error extracting schema data:', schemaError)
-      // Continue without FAQ schema if extraction fails
     }
 
     return {
-      props: { article, slug, relatedArticles, faqItems, hasVideo }
+      props: { article, slug, relatedArticles, faqItems, hasVideo },
     }
   } catch (error) {
     console.error('Error fetching resource:', error)
-
-    return {
-      notFound: true // Show 404 page if article is not found
-    }
+    return { notFound: true }
   }
 }

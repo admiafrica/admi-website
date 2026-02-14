@@ -105,6 +105,75 @@ body {
   }
 }
 
+/* ------------------------------------------------------------------ */
+/*  Article prose -- rich-text body inside ArticleLayout               */
+/* ------------------------------------------------------------------ */
+.article-prose {
+  font-size: 16px;
+  color: #3f3f3f;
+  line-height: 1.75;
+}
+.article-prose h2,
+.article-prose h3,
+.article-prose h4 {
+  font-family: 'Fraunces Variable', Georgia, serif;
+  font-weight: 700;
+  color: #171717;
+  margin-top: 2em;
+  margin-bottom: 0.75em;
+}
+.article-prose h2 {
+  font-size: 26px;
+}
+.article-prose h3 {
+  font-size: 22px;
+}
+.article-prose h4 {
+  font-size: 18px;
+}
+.article-prose p {
+  margin-bottom: 1.25em;
+}
+.article-prose ul,
+.article-prose ol {
+  padding-left: 1.5em;
+  margin-bottom: 1.25em;
+}
+.article-prose li {
+  margin-bottom: 0.5em;
+}
+.article-prose a {
+  color: #ba2e36;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.article-prose a:hover {
+  color: #a32830;
+}
+.article-prose blockquote {
+  background: #f9f9f9;
+  border-radius: 12px;
+  padding: 24px 32px;
+  border-left: 4px solid #ba2e36;
+  font-style: italic;
+  margin: 1.5em 0;
+  color: #3f3f3f;
+}
+.article-prose blockquote p:last-child {
+  margin-bottom: 0;
+}
+.article-prose img {
+  border-radius: 12px;
+  max-width: 100%;
+  height: auto;
+  margin: 1.5em 0;
+}
+.article-prose hr {
+  border: none;
+  border-top: 1px solid #e8e8e8;
+  margin: 2em 0;
+}
+
 .mantine-Input-input {
   border: none !important;
   background: transparent !important;

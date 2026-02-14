@@ -120,7 +120,7 @@ export default function NavBar({ mode, isMinimal = false }: Props) {
             </Text>
           </Menu.Target>
           <Menu.Dropdown>
-            <Menu.Item onClick={() => navigateToPage('resources')}>Resources</Menu.Item>
+            <Menu.Item onClick={() => navigateToPage('resources')}>Guides</Menu.Item>
             <Menu.Item onClick={() => navigateToPage('news')}>News</Menu.Item>
             <Menu.Item onClick={() => navigateToPage('events')}>Events</Menu.Item>
             <Menu.Item onClick={() => navigateToPage('media-archive')}>Media Archive</Menu.Item>
@@ -133,7 +133,7 @@ export default function NavBar({ mode, isMinimal = false }: Props) {
 
   const getMenuMobile = (mode: string) => {
     return (
-      <div className="flex w-fit items-center">
+      <div className="flex w-fit items-center gap-3">
         <Group c={mode == 'dark' ? 'white' : 'black'}>
           <Menu trigger="hover" openDelay={100} closeDelay={400}>
             <Menu.Target>
@@ -243,7 +243,7 @@ export default function NavBar({ mode, isMinimal = false }: Props) {
                 Work With Us
               </Menu.Item>
               <Menu.Item style={menuItemStyle} className="cursor-pointer" onClick={() => navigateToPage('resources')}>
-                Resources
+                Guides
               </Menu.Item>
               <Menu.Item
                 style={{ ...menuItemStyle, paddingLeft: '2rem' }}
@@ -276,6 +276,15 @@ export default function NavBar({ mode, isMinimal = false }: Props) {
             </Menu.Dropdown>
           </Menu>
         </Group>
+        {!hiddenCTA && (
+          <button
+            type="button"
+            onClick={() => navigateToPage('enquiry')}
+            className="rounded-md bg-[#BA2E36] px-4 py-2 font-nexa text-[13px] font-bold text-white transition hover:bg-[#a02630]"
+          >
+            Apply
+          </button>
+        )}
       </div>
     )
   }
@@ -310,7 +319,22 @@ export default function NavBar({ mode, isMinimal = false }: Props) {
             )}
           </Link>
           <div className="grow"></div>
-          {isSmallScreen ? getMenuMobile(mode) : getMenuWideScreen(mode)}
+          {isSmallScreen ? (
+            getMenuMobile(mode)
+          ) : (
+            <div className="flex items-center gap-4">
+              {getMenuWideScreen(mode)}
+              {!hiddenCTA && (
+                <button
+                  type="button"
+                  onClick={() => navigateToPage('enquiry')}
+                  className="rounded-md bg-[#BA2E36] px-5 py-2.5 font-nexa text-[14px] font-bold text-white transition hover:bg-[#a02630]"
+                >
+                  Apply
+                </button>
+              )}
+            </div>
+          )}
         </div>
       </Group>
     </div>
