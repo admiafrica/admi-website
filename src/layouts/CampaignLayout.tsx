@@ -1,8 +1,5 @@
 import Head from 'next/head'
 
-import { AppShell, rem } from '@mantine/core'
-import { useHeadroom } from '@mantine/hooks'
-
 import { Footer } from '@/components/shared'
 
 type LayoutProps = {
@@ -11,7 +8,6 @@ type LayoutProps = {
 }
 
 export function CampaignLayout({ children }: LayoutProps) {
-  const pinned = useHeadroom({ fixedAt: 120 })
   return (
     <>
       <Head>
@@ -19,19 +15,12 @@ export function CampaignLayout({ children }: LayoutProps) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <AppShell header={{ height: 81, collapsed: !pinned, offset: false }} padding="md">
-        <AppShell.Main pt={`calc(${rem(60)} + var(--mantine-spacing-md))`}>{children}</AppShell.Main>
-        <AppShell.Footer style={footerStyle} pos="relative">
+      <div>
+        <main>{children}</main>
+        <footer className="relative flex justify-between bg-white p-5">
           <Footer />
-        </AppShell.Footer>
-      </AppShell>
+        </footer>
+      </div>
     </>
   )
-}
-
-const footerStyle: React.CSSProperties = {
-  backgroundColor: 'white',
-  display: 'flex',
-  justifyContent: 'space-between',
-  padding: '20px'
 }

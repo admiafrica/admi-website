@@ -1,10 +1,9 @@
 'use client'
 
-import { AppShell, rem } from '@mantine/core'
-import { useHeadroom } from '@mantine/hooks'
 import { useEffect } from 'react'
 
 import { Footer, FooterMini, NavBar } from '@/components/shared/v3'
+import { useHeadroom } from '@/hooks/useHeadroom'
 import { nexaFont, proximaNovaFont } from '@/styles/theme'
 import { captureUTMsFromURL } from '@/utils/utm-tracking'
 
@@ -26,27 +25,18 @@ export function MainLayout({ children, minimizeFooter = false, minimizeHeader = 
 
   return (
     <div className={`${proximaNovaFont.variable} ${nexaFont.variable}`}>
-      <AppShell header={{ height: 81, collapsed: !pinned, offset: false }} padding="md">
-        <AppShell.Header style={headerStyle} bg={mode == 'dark' ? 'black' : 'white'}>
-          <NavBar mode={mode} isMinimal={minimizeHeader} />
-        </AppShell.Header>
+      <header
+        className={`fixed left-0 right-0 top-0 z-50 flex h-[81px] items-center justify-between px-5 transition-transform duration-300 ${
+          pinned ? 'translate-y-0' : '-translate-y-full'
+        } ${mode === 'dark' ? 'bg-black' : 'bg-white'}`}
+        style={{ borderBottom: 'none' }}
+      >
+        <NavBar mode={mode} isMinimal={minimizeHeader} />
+      </header>
 
-        <AppShell.Main pt={`calc(${rem(60)} + var(--mantine-spacing-md))`} p={0}>
-          {children}
-        </AppShell.Main>
-        <AppShell.Footer pos="relative" withBorder={false}>
-          {minimizeFooter ? <FooterMini /> : <Footer bgColor={footerBgColor} />}
-        </AppShell.Footer>
-      </AppShell>
+      <main className="pt-[81px]">{children}</main>
+
+      <footer className="relative">{minimizeFooter ? <FooterMini /> : <Footer bgColor={footerBgColor} />}</footer>
     </div>
   )
-}
-
-const headerStyle: React.CSSProperties = {
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'space-between',
-  padding: '0 20px',
-  margin: 0,
-  borderBottom: 'none'
 }

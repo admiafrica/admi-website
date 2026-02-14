@@ -1,7 +1,6 @@
-import { AppShell, rem } from '@mantine/core'
-import { useHeadroom } from '@mantine/hooks'
 import { useEffect } from 'react'
 import { Footer, Header } from '../components/shared'
+import { useHeadroom } from '@/hooks/useHeadroom'
 import { captureUTMsFromURL } from '@/utils/utm-tracking'
 
 type LayoutProps = {
@@ -17,31 +16,20 @@ export function MainLayout({ children }: LayoutProps) {
   }, [])
 
   return (
-    <AppShell header={{ height: 81, collapsed: !pinned, offset: false }} padding="md">
-      <AppShell.Header style={headerStyle}>
+    <div>
+      <header
+        className={`fixed left-0 right-0 top-0 z-50 flex h-[81px] items-center justify-between border-b border-[#dee2e6] bg-white px-5 transition-transform duration-300 ${
+          pinned ? 'translate-y-0' : '-translate-y-full'
+        }`}
+      >
         <Header />
-      </AppShell.Header>
+      </header>
 
-      <AppShell.Main pt={`calc(${rem(60)} + var(--mantine-spacing-md))`}>{children}</AppShell.Main>
-      <AppShell.Footer style={footerStyle} pos="relative">
+      <main className="pt-[81px]">{children}</main>
+
+      <footer className="relative flex justify-between bg-white p-5">
         <Footer />
-      </AppShell.Footer>
-    </AppShell>
+      </footer>
+    </div>
   )
-}
-
-const headerStyle: React.CSSProperties = {
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'space-between',
-  padding: '0 20px',
-  backgroundColor: 'white',
-  borderBottom: '1px solid #dee2e6'
-}
-
-const footerStyle: React.CSSProperties = {
-  backgroundColor: 'white',
-  display: 'flex',
-  justifyContent: 'space-between',
-  padding: '20px'
 }

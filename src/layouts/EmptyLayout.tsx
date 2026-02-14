@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import { AppShell } from '@mantine/core'
 import styles from '@/assets/css/main.module.css'
 
 type LayoutProps = {
@@ -15,13 +14,7 @@ export function EmptyLayout({ children, client }: LayoutProps) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      {client === 'craydel' ? (
-        <main className={styles['campaign-main']}>{children}</main>
-      ) : (
-        <AppShell>
-          <AppShell.Main>{children}</AppShell.Main>
-        </AppShell>
-      )}
+      {client === 'craydel' ? <main className={styles['campaign-main']}>{children}</main> : <main>{children}</main>}
     </>
   )
 }

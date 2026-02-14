@@ -3,12 +3,10 @@
 import React from 'react'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
-import { Group, Text, Anchor, Stack, Divider } from '@mantine/core'
-import { useMediaQuery } from '@mantine/hooks'
 
 import { CourseEnrollCard } from '@/components/cards'
 import { SOCIAL_LINKS } from '@/utils'
-import { WhatsAppLink } from '@/components/shared/WhatsAppLink'
+import { WhatsAppLinkPlain } from '@/components/shared/WhatsAppLink'
 
 import { IconCopyright } from '@tabler/icons-react'
 import IconLogoWhite from '@/assets/logo-light.svg'
@@ -26,30 +24,29 @@ import { Title } from '@/components/ui'
 
 const SocialIcons = React.memo(() => {
   return (
-    <Group justify="center" mt={32} h={48}>
-      <Anchor href={SOCIAL_LINKS.TIKTOK} c="white" target="_blank">
+    <div className="mt-8 flex h-12 items-center justify-center gap-4">
+      <a href={SOCIAL_LINKS.TIKTOK} className="text-white" target="_blank" rel="noopener noreferrer">
         <Image width={32} src={IconTikTok} alt={SOCIAL_LINKS.TIKTOK} />
-      </Anchor>
-      <Anchor href={SOCIAL_LINKS.YOUTUBE} c="white" target="_blank">
+      </a>
+      <a href={SOCIAL_LINKS.YOUTUBE} className="text-white" target="_blank" rel="noopener noreferrer">
         <Image width={36} src={IconYouTube} alt={SOCIAL_LINKS.YOUTUBE} />
-      </Anchor>
-      <Anchor href={SOCIAL_LINKS.LINKEDIN} c="white" target="_blank">
+      </a>
+      <a href={SOCIAL_LINKS.LINKEDIN} className="text-white" target="_blank" rel="noopener noreferrer">
         <Image width={32} src={IconLinkedIn} alt={SOCIAL_LINKS.LINKEDIN} />
-      </Anchor>
-      <Anchor href={SOCIAL_LINKS.INSTAGRAM} c="white" target="_blank">
+      </a>
+      <a href={SOCIAL_LINKS.INSTAGRAM} className="text-white" target="_blank" rel="noopener noreferrer">
         <Image width={44} src={IconInstagram} alt={SOCIAL_LINKS.INSTAGRAM} />
-      </Anchor>
-      <Anchor href={SOCIAL_LINKS.X} c="white" target="_blank">
+      </a>
+      <a href={SOCIAL_LINKS.X} className="text-white" target="_blank" rel="noopener noreferrer">
         <Image width={32} height={32} src={IconX} alt={SOCIAL_LINKS.X} />
-      </Anchor>
-      <Anchor href={SOCIAL_LINKS.FACEBOOK} c="white" target="_blank">
+      </a>
+      <a href={SOCIAL_LINKS.FACEBOOK} className="text-white" target="_blank" rel="noopener noreferrer">
         <Image width={32} src={IconFacebook} alt={SOCIAL_LINKS.FACEBOOK} />
-      </Anchor>
-    </Group>
+      </a>
+    </div>
   )
 })
 
-// Assign a display name
 SocialIcons.displayName = 'SocialIcons'
 
 type Props = {
@@ -58,7 +55,6 @@ type Props = {
 
 export default function Footer({ bgColor }: Props) {
   const router = useRouter()
-  const isMobile = useMediaQuery('(max-width: 480px)')
 
   const navigateToPage = (pagePath: string) => {
     router.push(`/${pagePath}`)
@@ -73,133 +69,187 @@ export default function Footer({ bgColor }: Props) {
         </div>
       </div>
       <div className="w-full bg-[#002A23] pb-8 pt-36">
-        <Group className="mx-auto w-full max-w-screen-xl flex-col text-white md:flex-row" align="top">
-          <Stack className="grow" h="100%">
-            <Stack className="px-4">
+        <div className="mx-auto flex w-full max-w-screen-xl flex-col items-start text-white md:flex-row">
+          <div className="flex h-full grow flex-col">
+            <div className="flex flex-col px-4">
               <Title size={'1.4em'} label="Get in Touch" color="admiShamrok" />
               <div className="flex flex-row md:flex-col">
-                <Text p={0}>Caxton House, 3rd Floor</Text>
-                <Text>25, Kenyatta Avenue.</Text>
+                <p>Caxton House, 3rd Floor</p>
+                <p>25, Kenyatta Avenue.</p>
               </div>
               <div className="flex flex-row md:flex-col">
-                <Text>P. O. Box 35447 - 00100</Text>
-                <Text>Nairobi, Kenya.</Text>
+                <p>P. O. Box 35447 - 00100</p>
+                <p>Nairobi, Kenya.</p>
               </div>
-            </Stack>
-            <Group gap={4} className="px-4 md:mt-[8em]">
+            </div>
+            <div className="mt-0 flex items-center gap-1 px-4 md:mt-[8em]">
               <Image width={24} height={24} src={IconMail} alt="email" />
-              <Text fw="bold" ml={10}>
-                Email:
-              </Text>
-              <Text>info@admi.africa</Text>
-            </Group>
+              <span className="ml-2.5 font-bold">Email:</span>
+              <span>info@admi.africa</span>
+            </div>
 
-            <Group gap={4} className="px-4">
+            <div className="flex items-center gap-1 px-4">
               <Image width={24} height={24} src={IconCall} alt="phone" />
-              <Text fw="bold" ml={10}>
-                Phone:
-              </Text>
-              <Text>(+254) 706 349 696,</Text>
+              <span className="ml-2.5 font-bold">Phone:</span>
+              <span>(+254) 706 349 696,</span>
               <div className="ml-[5.8em] sm:ml-1">
-                <Text>(+254) 711 486 581</Text>
+                <span>(+254) 711 486 581</span>
               </div>
-            </Group>
+            </div>
 
-            <Group gap={4} className="px-4">
+            <div className="flex items-center gap-1 px-4">
               <Image width={24} height={24} src={IconCall} alt="whatsapp" />
-              <Text fw="bold" ml={10}>
-                WhatsApp:
-              </Text>
-              <WhatsAppLink trackingLocation="footer_v3" c="admiShamrok" fw="bold">
+              <span className="ml-2.5 font-bold">WhatsApp:</span>
+              <WhatsAppLinkPlain trackingLocation="footer_v3" className="font-bold text-[#08F6CF]">
                 (+254) 741 132 751
-              </WhatsAppLink>
-            </Group>
+              </WhatsAppLinkPlain>
+            </div>
 
-            <Group gap={4} className="px-4">
+            <div className="flex items-center gap-1 px-4">
               <Image width={24} src={IconStopWatch} alt="hours active" />
-              <Text fw="bold" ml={10}>
-                Hours:
-              </Text>
-              <Text>Mon-Fri 8:00am - 5:00pm /</Text>
+              <span className="ml-2.5 font-bold">Hours:</span>
+              <span>Mon-Fri 8:00am - 5:00pm /</span>
               <div className="ml-[5.6em] sm:ml-1">
-                <Text>Sat: 8:00am to 2:00pm</Text>
+                <span>Sat: 8:00am to 2:00pm</span>
               </div>
-            </Group>
-          </Stack>
+            </div>
+          </div>
 
           {/* Quick Links and Social Media */}
-          <Stack className="grow pl-4">
+          <div className="flex grow flex-col pl-4">
             <Title size={'1.4em'} label="Quick Links" color="admiShamrok" />
-            <Anchor c="white" fw={600} onClick={() => navigateToPage('enquiry')}>
+            <button
+              type="button"
+              className="cursor-pointer border-none bg-transparent p-0 text-left font-semibold text-white hover:underline"
+              onClick={() => navigateToPage('enquiry')}
+            >
               Enquire Now
-            </Anchor>
-            <Anchor c="white" fw={600} onClick={() => navigateToPage('apply')}>
+            </button>
+            <button
+              type="button"
+              className="cursor-pointer border-none bg-transparent p-0 text-left font-semibold text-white hover:underline"
+              onClick={() => navigateToPage('apply')}
+            >
               Apply
-            </Anchor>
-            <Anchor c="white" fw={600} onClick={() => navigateToPage('about')}>
+            </button>
+            <button
+              type="button"
+              className="cursor-pointer border-none bg-transparent p-0 text-left font-semibold text-white hover:underline"
+              onClick={() => navigateToPage('about')}
+            >
               About ADMI
-            </Anchor>
-            <Anchor c="white" fw={600} onClick={() => navigateToPage('accreditation')}>
+            </button>
+            <button
+              type="button"
+              className="cursor-pointer border-none bg-transparent p-0 text-left font-semibold text-white hover:underline"
+              onClick={() => navigateToPage('accreditation')}
+            >
               Accreditation
-            </Anchor>
-            <Anchor c="white" fw={600} onClick={() => navigateToPage('academic-pathways')}>
+            </button>
+            <button
+              type="button"
+              className="cursor-pointer border-none bg-transparent p-0 text-left font-semibold text-white hover:underline"
+              onClick={() => navigateToPage('academic-pathways')}
+            >
               Academic Pathways
-            </Anchor>
-            <Anchor c="white" fw={600} onClick={() => navigateToPage('fellowship')}>
+            </button>
+            <button
+              type="button"
+              className="cursor-pointer border-none bg-transparent p-0 text-left font-semibold text-white hover:underline"
+              onClick={() => navigateToPage('fellowship')}
+            >
               Fellowship
-            </Anchor>
-            <Anchor c="white" fw={600} onClick={() => navigateToPage('work-with-us')}>
+            </button>
+            <button
+              type="button"
+              className="cursor-pointer border-none bg-transparent p-0 text-left font-semibold text-white hover:underline"
+              onClick={() => navigateToPage('work-with-us')}
+            >
               Work With Us
-            </Anchor>
-            <Anchor c="white" fw={600} onClick={() => navigateToPage('frequently-asked-questions')}>
+            </button>
+            <button
+              type="button"
+              className="cursor-pointer border-none bg-transparent p-0 text-left font-semibold text-white hover:underline"
+              onClick={() => navigateToPage('frequently-asked-questions')}
+            >
               FAQs
-            </Anchor>
-          </Stack>
+            </button>
+          </div>
 
           {/* Student Corner */}
           <div className="mr-4 flex flex-col">
             <div className="flex w-full">
-              <div className="grow"></div>
-              <Stack>
+              <div className="grow" />
+              <div className="flex flex-col">
                 <Title size={'1.4em'} label="Student Corner" color="admiShamrok" />
-                <Anchor c="white" fw={600} onClick={() => navigateToPage('student-portal')}>
+                <button
+                  type="button"
+                  className="cursor-pointer border-none bg-transparent p-0 text-left font-semibold text-white hover:underline"
+                  onClick={() => navigateToPage('student-portal')}
+                >
                   Student Portal
-                </Anchor>
-                <Anchor c="white" fw={600} onClick={() => navigateToPage('student-support')}>
+                </button>
+                <button
+                  type="button"
+                  className="cursor-pointer border-none bg-transparent p-0 text-left font-semibold text-white hover:underline"
+                  onClick={() => navigateToPage('student-support')}
+                >
                   Student Support
-                </Anchor>
-                <Anchor c="white" fw={600} onClick={() => navigateToPage('financial-planning')}>
+                </button>
+                <button
+                  type="button"
+                  className="cursor-pointer border-none bg-transparent p-0 text-left font-semibold text-white hover:underline"
+                  onClick={() => navigateToPage('financial-planning')}
+                >
                   Fees & Financial Planning
-                </Anchor>
-                <Anchor c="white" fw={600} onClick={() => navigateToPage('accommodation')}>
+                </button>
+                <button
+                  type="button"
+                  className="cursor-pointer border-none bg-transparent p-0 text-left font-semibold text-white hover:underline"
+                  onClick={() => navigateToPage('accommodation')}
+                >
                   Accommodation
-                </Anchor>
-                <Anchor c="white" fw={600} onClick={() => navigateToPage('student-showcase')}>
+                </button>
+                <button
+                  type="button"
+                  className="cursor-pointer border-none bg-transparent p-0 text-left font-semibold text-white hover:underline"
+                  onClick={() => navigateToPage('student-showcase')}
+                >
                   Student Showcase
-                </Anchor>
-                <Anchor c="white" fw={600} onClick={() => navigateToPage('student-life')}>
+                </button>
+                <button
+                  type="button"
+                  className="cursor-pointer border-none bg-transparent p-0 text-left font-semibold text-white hover:underline"
+                  onClick={() => navigateToPage('student-life')}
+                >
                   Student Life
-                </Anchor>
-              </Stack>
+                </button>
+              </div>
             </div>
-            <div className="grow"> </div>
-            {!isMobile && <SocialIcons />}
+            <div className="grow" />
+            {/* Social icons: hidden on small screens, shown on xs+ */}
+            <div className="hidden xs:block">
+              <SocialIcons />
+            </div>
           </div>
-        </Group>
-        {isMobile && <SocialIcons />}
-        <Divider mt={48} size={0.5} opacity="20%" />
-        <Group className="md:pt-auto mx-auto w-full max-w-screen-xl flex-col px-4 pt-8 md:flex-row" gap={2}>
+        </div>
+        {/* Social icons: shown on small screens only */}
+        <div className="xs:hidden">
+          <SocialIcons />
+        </div>
+        <hr className="mt-12 border-t border-white/20" />
+        <div className="md:pt-auto mx-auto flex w-full max-w-screen-xl flex-col items-center gap-0.5 px-4 pt-8 md:flex-row">
           <IconCopyright className="text-white" />
           <div className="text-white">
-            <Text>
+            <p>
               2025 All Rights Reserved. <b>ADMI Africa</b>
-            </Text>
+            </p>
           </div>
           <div className="grow cursor-pointer text-admiShamrok md:pl-4">
-            <Text onClick={() => navigateToPage('privacy-policy')}>Privacy Policy | Terms & Conditions</Text>
+            <p onClick={() => navigateToPage('privacy-policy')}>Privacy Policy | Terms & Conditions</p>
           </div>
           <Image width={95} src={IconLogoWhite} alt="logo" />
-        </Group>
+        </div>
       </div>
 
       <Ribbon />
