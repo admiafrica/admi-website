@@ -61,7 +61,7 @@ export default function FooterMini() {
           <div className="flex text-white">
             <IconCopyright className="mr-2 text-white" />
             <p>
-              2025 All Rights Reserved. <b>ADMI Africa</b>
+              2026 All Rights Reserved. <b>ADMI Africa</b>
             </p>
           </div>
           <div className="text-admiShamrok md:pl-4 md:pr-32">
