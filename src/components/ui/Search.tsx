@@ -1,3 +1,5 @@
+'use client'
+
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import { Autocomplete, Box } from '@mantine/core'

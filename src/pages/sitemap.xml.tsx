@@ -15,8 +15,11 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
     '/careers',
     '/contact',
     '/student-support',
+    '/student-showcase',
+    '/student-life',
     '/frequently-asked-questions',
-    '/news-events',
+    '/news',
+    '/events',
     '/resources',
     '/sanara',
     '/privacy-policy'

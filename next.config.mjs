@@ -320,16 +320,6 @@ const nextConfig = {
         permanent: true,
       },
       {
-        source: '/news',
-        destination: '/resources',
-        permanent: true,
-      },
-      {
-        source: '/news/:slug',
-        destination: '/resources/:slug',
-        permanent: true,
-      },
-      {
         source: '/admissions',
         destination: '/enquiry',
         permanent: true,
@@ -377,6 +367,16 @@ const nextConfig = {
       {
         source: '/programs/:slug',
         destination: '/courses/:slug',
+        permanent: true,
+      },
+      {
+        source: '/impact-alumni-success',
+        destination: '/our-alumni',
+        permanent: true,
+      },
+      {
+        source: '/events/open-campus-day',
+        destination: '/events',
         permanent: true,
       },
       {

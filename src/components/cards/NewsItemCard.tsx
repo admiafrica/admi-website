@@ -39,12 +39,12 @@ export default function NewsItemCard({ item, isEvent = false }: Props) {
     const category = item.fields.category?.trim()
 
     if (category === 'News') {
-      router.push(`/news-events/news/${item.fields.slug}`)
+      router.push(`/news/${item.fields.slug}`)
     } else if (category === 'Resources') {
       router.push(`/resources/${item.fields.slug}`)
     } else if (category === 'news' || category === 'News & Events') {
       // Handle variations in category naming
-      router.push(`/news-events/news/${item.fields.slug}`)
+      router.push(`/news/${item.fields.slug}`)
     } else if (category === 'resources' || category === 'Resource') {
       // Handle variations in category naming
       router.push(`/resources/${item.fields.slug}`)
@@ -57,7 +57,7 @@ export default function NewsItemCard({ item, isEvent = false }: Props) {
 
       // Default to news if uncertain
       console.log('Defaulting to news route for:', item.fields.title)
-      router.push(`/news-events/news/${item.fields.slug}`)
+      router.push(`/news/${item.fields.slug}`)
     }
   }
 

@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useRef, useState } from 'react'
 import { Carousel } from '@mantine/carousel'
 import { Card, Box, Divider } from '@mantine/core'

@@ -1,3 +1,5 @@
+'use client'
+
 import { ActionIcon } from '@mantine/core'
 import { ensureProtocol } from '@/utils'
 import { IconMaximize, IconPlayerPause, IconPlayerSkipForward } from '@tabler/icons-react'

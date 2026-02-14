@@ -1,3 +1,5 @@
+'use client'
+
 import { useState, useEffect } from 'react'
 import { Group, Text, Menu } from '@mantine/core'
 import Link from 'next/link'
@@ -105,8 +107,16 @@ export default function NavBar({ mode, isMinimal = false }: Props) {
 
         <Menu trigger="hover" openDelay={100} closeDelay={400}>
           <Menu.Target>
-            <Text style={menuItemStyle} className="cursor-pointer" onClick={() => navigateToPage('news-events')}>
-              News & Events
+            <Text style={menuItemStyle} className="cursor-pointer" onClick={() => navigateToPage('news')}>
+              News
+            </Text>
+          </Menu.Target>
+        </Menu>
+
+        <Menu trigger="hover" openDelay={100} closeDelay={400}>
+          <Menu.Target>
+            <Text style={menuItemStyle} className="cursor-pointer" onClick={() => navigateToPage('events')}>
+              Events
             </Text>
           </Menu.Target>
         </Menu>
@@ -184,8 +194,11 @@ export default function NavBar({ mode, isMinimal = false }: Props) {
               <Menu.Item style={menuItemStyle} onClick={() => navigateToPage('resources')}>
                 Resources
               </Menu.Item>
-              <Menu.Item style={menuItemStyle} className="cursor-pointer" onClick={() => navigateToPage('news-events')}>
-                News & Events
+              <Menu.Item style={menuItemStyle} className="cursor-pointer" onClick={() => navigateToPage('news')}>
+                News
+              </Menu.Item>
+              <Menu.Item style={menuItemStyle} className="cursor-pointer" onClick={() => navigateToPage('events')}>
+                Events
               </Menu.Item>
               {/* <Menu.Item
                 style={menuItemStyle}

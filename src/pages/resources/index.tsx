@@ -1,23 +1,14 @@
-import Image from 'next/image'
-import { Box, Pagination, LoadingOverlay } from '@mantine/core'
+import { Box, Pagination } from '@mantine/core'
 import { useState, useEffect, useCallback } from 'react'
 import { useRouter } from 'next/router'
 
 import { PageSEO } from '@/components/shared/v3'
 import { MainLayout } from '@/layouts/v3/MainLayout'
 import { AnnouncementCard, NewsItemCard } from '@/components/cards'
-// import { SearchDropdown } from '@/components/ui'
-import dynamic from 'next/dynamic'
-
-const SearchDropdown = dynamic(() => import('@/components/ui').then((mod) => mod.SearchDropdown), {
-  ssr: false
-})
-import { IContentfulEntry } from '@/types'
 import { InstitutionalFAQSchema } from '@/components/seo/InstitutionalFAQSchema'
+import { IContentfulEntry } from '@/types'
 
 import ImageNews from '@/assets/images/featured-news.svg'
-import IconBgImageYellow from '@/assets/icons/ellipse-yellow.svg'
-import IconBgImageRed from '@/assets/icons/ellipse-red.svg'
 
 interface PaginationData {
   page: number
@@ -41,7 +32,6 @@ export default function ResourcesPage({ initialResources, initialFeatured, initi
   const [pagination, setPagination] = useState(initialPagination)
   const [loading, setLoading] = useState(false)
 
-  // Use router query for initial page and preview mode
   const pageFromUrl = parseInt(router.query.page as string) || 1
   const isPreview = router.query.preview === 'true'
   const [currentPage, setCurrentPage] = useState(pageFromUrl)
@@ -53,13 +43,9 @@ export default function ResourcesPage({ initialResources, initialFeatured, initi
         const previewParam = isPreview ? '&preview=true' : ''
         const response = await fetch(`/api/v3/resources?page=${page}&limit=9${previewParam}`)
         const data = await response.json()
-
         setResources(data.resources || [])
         setPagination(data.pagination)
         setCurrentPage(page)
-
-        // Scroll to top of resources section
-        document.getElementById('resources-section')?.scrollIntoView({ behavior: 'smooth' })
       } catch (error) {
         console.error('Error fetching page:', error)
       }
@@ -68,7 +54,6 @@ export default function ResourcesPage({ initialResources, initialFeatured, initi
     [isPreview]
   )
 
-  // Handle URL changes (back/forward navigation)
   useEffect(() => {
     const page = parseInt(router.query.page as string) || 1
     if (page !== currentPage) {
@@ -77,135 +62,118 @@ export default function ResourcesPage({ initialResources, initialFeatured, initi
   }, [router.query.page, currentPage, fetchPage])
 
   const handlePageChange = (page: number) => {
-    // Simply update the URL, let useEffect handle the actual fetching
     router.push(`/resources?page=${page}`, undefined, { shallow: true })
   }
+
   return (
     <MainLayout footerBgColor="white">
       <PageSEO
         title="Resources"
-        description="Access valuable resources for creative media and technology professionals. Industry insights, career guidance, tutorials, and educational content from ADMI experts and industry leaders."
-        keywords="creative media resources, digital media tutorials, industry insights, career guidance, educational content, ADMI resources, professional development, creative industry news"
+        description="Featured resources, guides, and insights for hybrid creative learners at ADMI."
+        keywords="ADMI resources, creative education resources, hybrid learning guides, industry insights"
       />
-
-      {/* Academic FAQ Schema for resources page */}
       <InstitutionalFAQSchema faqType="academic" />
-      <Box className="w-full overflow-x-hidden">
-        <div className="relative h-[16em] w-full overflow-hidden bg-[#002A23]">
-          {/* BACKGROUND IMAGES */}
-          <div className="absolute left-[62%] top-[20vh] z-0 h-fit w-fit -translate-x-1/2 transform">
-            <div className="flex justify-end">
-              <Image src={IconBgImageYellow} alt={'background image'} />
-            </div>
-          </div>
 
-          <div className="absolute left-1/2 top-[5vh] z-0 h-fit w-fit -translate-x-1/2 transform">
-            <div className="flex">
-              <Image src={IconBgImageRed} alt={'background image'} />
-            </div>
-          </div>
-          <div className="relative z-10 mx-auto w-full max-w-screen-lg px-4 pt-24 2xl:px-0">
-            <SearchDropdown
-              destination="resources"
-              items={[]} // Remove heavy data load - search will be handled separately
-              buttonLabel="Search"
-              placeholder="Search for Resource"
-            />
-          </div>
-        </div>
-
-        <Box className="relative w-full" bg={'#F5FFFD'} id="resources-section">
+      <Box className="w-full">
+        <Box className="bg-[#0F2E2A] px-4 py-16 text-white xl:px-0">
           <Box className="mx-auto w-full max-w-screen-xl">
-            {/* PREVIEW MODE INDICATOR */}
-            {isPreview && (
-              <Box className="mx-4 mt-4 border-l-4 border-orange-500 bg-orange-100 p-4 text-orange-700 xl:mx-0">
-                <div className="flex">
-                  <div className="flex-shrink-0">
-                    <svg className="h-5 w-5 text-orange-500" viewBox="0 0 20 20" fill="currentColor">
-                      <path
-                        fillRule="evenodd"
-                        d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                  </div>
-                  <div className="ml-3">
-                    <p className="text-sm">
-                      <strong>Preview Mode:</strong> You are viewing draft articles that are not yet published.
-                    </p>
-                  </div>
-                </div>
-              </Box>
-            )}
+            <p className="font-nexa text-[14px] uppercase tracking-[0.15em] text-[#B7D8CF]">/resources</p>
+            <h1 className="pt-4 font-fraunces text-[46px] font-bold leading-[1.15]">
+              Featured Resources for Hybrid Learners
+            </h1>
+            <p className="pt-4 font-nexa text-[18px] text-white/80">
+              Explore practical toolkits, career guides, and learning resources built for creative students.
+            </p>
 
-            {/* HEADLINE */}
-            <Box className="w-full px-4 py-16 xl:px-0">
-              {featured && (
-                <AnnouncementCard
-                  destination="resources"
-                  announcement={featured.fields}
-                  bgColor="#E43B07"
-                  image={ImageNews}
-                  textColor="white"
-                  arrowColor="white"
-                  ribbonColor="admiShamrok"
-                  featured
-                />
-              )}
+            <Box className="mt-8 flex flex-wrap gap-2">
+              <span className="rounded-full border border-white/30 px-3 py-1 text-[13px]">Industry: All</span>
+              <span className="rounded-full border border-white/30 px-3 py-1 text-[13px]">Course: All</span>
+              <span className="rounded-full border border-white/30 px-3 py-1 text-[13px]">Topic: All</span>
             </Box>
+          </Box>
+        </Box>
 
-            {/* RESOURCES */}
-            <Box className="relative mx-auto w-full max-w-screen-xl px-4 xl:px-0">
-              <LoadingOverlay visible={loading} />
+        <Box className="border-y border-[#E8E8E8] bg-white">
+          <Box className="mx-auto flex w-full max-w-screen-xl items-center justify-around px-4 py-6 xl:px-0">
+            <Box className="text-center">
+              <p className="font-fraunces text-[34px] font-bold text-[#171717]">120+</p>
+              <p className="font-nexa text-[14px] text-[#666]">Learning Resources</p>
+            </Box>
+            <Box className="h-[44px] w-px bg-[#DADADA]" />
+            <Box className="text-center">
+              <p className="font-fraunces text-[34px] font-bold text-[#171717]">26</p>
+              <p className="font-nexa text-[14px] text-[#666]">Hybrid Learning Guides</p>
+            </Box>
+            <Box className="h-[44px] w-px bg-[#DADADA]" />
+            <Box className="text-center">
+              <p className="font-fraunces text-[34px] font-bold text-[#171717]">Weekly</p>
+              <p className="font-nexa text-[14px] text-[#666]">Fresh Resources</p>
+            </Box>
+          </Box>
+        </Box>
 
-              {/* Resources Grid */}
-              <Box className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                {resources && resources.length > 0 ? (
-                  resources
-                    .filter((article) => article?.fields)
-                    .map((article) => (
-                      <Box key={article.sys.id} className="mb-10 h-[400px]">
-                        <NewsItemCard item={article} />
-                      </Box>
-                    ))
-                ) : (
-                  <Box className="col-span-full py-12 text-center">
-                    <h3 className="mb-2 text-xl font-semibold text-gray-600">No resources available</h3>
-                    <p className="text-gray-500">
-                      {loading ? 'Loading resources...' : 'Check back later for new resources.'}
-                    </p>
-                  </Box>
-                )}
-              </Box>
+        <Box className="border-b border-[#E8E8E8] bg-white">
+          <Box className="mx-auto flex w-full max-w-screen-xl items-center gap-2 px-4 xl:px-0">
+            {['#industry', '#course', '#topic', '#format'].map((tab, idx) => (
+              <span
+                key={tab}
+                className={`px-4 py-4 font-nexa text-[14px] font-bold ${idx === 0 ? 'border-b-[3px] border-[#BA2E36] text-[#171717]' : 'text-[#666]'}`}
+              >
+                {tab}
+              </span>
+            ))}
+          </Box>
+        </Box>
 
-              {/* Pagination */}
-              {pagination.totalPages > 1 && (
-                <Box className="flex justify-center py-12">
-                  <Pagination
-                    value={currentPage}
-                    onChange={handlePageChange}
-                    total={pagination.totalPages}
-                    size="lg"
-                    radius="md"
-                    withEdges
-                    classNames={{
-                      control: 'hover:bg-admiDarkOrange hover:text-white transition-colors',
-                      dots: 'text-gray-400'
-                    }}
-                  />
+        <Box className="mx-auto w-full max-w-screen-xl px-4 py-16 xl:px-0">
+          {featured && (
+            <AnnouncementCard
+              destination="resources"
+              announcement={featured.fields}
+              bgColor="#0A3D3D"
+              textColor="white"
+              arrowColor="white"
+              image={ImageNews}
+              featured
+            />
+          )}
+        </Box>
+
+        <Box className="mx-auto grid w-full max-w-screen-xl grid-cols-1 gap-6 px-4 pb-6 sm:grid-cols-2 lg:grid-cols-3 xl:px-0">
+          {resources && resources.length > 0 ? (
+            resources
+              .filter((article) => article?.fields)
+              .map((article) => (
+                <Box key={article.sys.id} className="mb-6 h-[400px]">
+                  <NewsItemCard item={article} />
                 </Box>
-              )}
+              ))
+          ) : (
+            <Box className="col-span-full py-12 text-center">
+              <h3 className="mb-2 text-xl font-semibold text-gray-600">No resources available</h3>
+              <p className="text-gray-500">{loading ? 'Loading resources...' : 'Check back later for new resources.'}</p>
+            </Box>
+          )}
+        </Box>
 
-              {/* Pagination Info */}
-              {pagination.totalPages > 1 && (
-                <Box className="pb-8 text-center text-gray-600">
-                  <span>
-                    Showing {(currentPage - 1) * pagination.limit + 1} -{' '}
-                    {Math.min(currentPage * pagination.limit, pagination.totalCount)} of {pagination.totalCount}{' '}
-                    resources
-                  </span>
-                </Box>
-              )}
+        {pagination.totalPages > 1 && (
+          <Box className="flex justify-center pb-16 pt-8">
+            <Pagination value={currentPage} onChange={handlePageChange} total={pagination.totalPages} size="lg" withEdges />
+          </Box>
+        )}
+
+        <Box className="bg-[#F9F9F9] px-4 py-16 xl:px-0">
+          <Box className="mx-auto w-full max-w-screen-xl">
+            <h2 className="font-fraunces text-[38px] font-bold text-[#171717]">Hybrid Toolkit Collections</h2>
+            <Box className="grid grid-cols-2 gap-3 pt-6 md:grid-cols-4">
+              {['Production Toolkit', 'Hybrid Lab Guide', 'Industry Briefs', 'Student Playbook'].map((item, idx) => (
+                <span
+                  key={item}
+                  className={`rounded-md border border-[#E8E8E8] bg-white px-4 py-2 font-nexa text-[13px] font-bold ${idx % 2 === 0 ? 'text-[#BA2E36]' : 'text-[#444]'}`}
+                >
+                  {item}
+                </span>
+              ))}
             </Box>
           </Box>
         </Box>
@@ -218,74 +186,39 @@ export async function getServerSideProps(context: any) {
   try {
     const page = parseInt(context.query.page as string) || 1
     const limit = 9
+    const isPreview = context.query.preview === 'true'
 
-    // Use localhost for server-side requests
-    const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:3000'
-    const previewQuery = context.query.preview === 'true' ? '&preview=true' : ''
-    const apiUrl = `${baseUrl}/api/v3/resources?page=${page}&limit=${limit}${previewQuery}`
+    const previewParam = isPreview ? '&preview=true' : ''
 
-    // Fetch paginated resources
-    const paginatedRes = await fetch(apiUrl)
+    const [resourcesRes, featuredRes] = await Promise.all([
+      fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v3/resources?page=${page}&limit=${limit}${previewParam}`),
+      fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v3/resources?featured=true&limit=1${previewParam}`)
+    ])
 
-    if (!paginatedRes.ok) throw new Error('Failed to fetch paginated resources')
-
-    const paginatedData = await paginatedRes.json()
-
-    // Handle both array response (old API) and object response (new API)
-    let resources, pagination
-    if (Array.isArray(paginatedData)) {
-      // Old API format - returns array directly
-      // Need to manually paginate the array
-      const start = (page - 1) * limit
-      const end = start + limit
-      resources = paginatedData.slice(start, end)
-
-      pagination = {
-        page: page,
-        limit: limit,
-        totalCount: paginatedData.length,
-        totalPages: Math.ceil(paginatedData.length / limit),
-        hasNext: paginatedData.length > page * limit,
-        hasPrev: page > 1
-      }
-    } else {
-      // New API format - returns { resources, pagination }
-      resources = paginatedData.resources || []
-      pagination = paginatedData.pagination || {}
+    if (!resourcesRes.ok || !featuredRes.ok) {
+      throw new Error('Failed to fetch resources data')
     }
 
-    // Fetch only featured resource separately to avoid loading all data
-    const featuredPreviewQuery = context.query.preview === 'true' ? '&preview=true' : ''
-    const featuredRes = await fetch(`${baseUrl}/api/v3/resources?page=1&limit=50${featuredPreviewQuery}`)
-
-    if (!featuredRes.ok) throw new Error('Failed to fetch featured resource')
-
+    const resourcesData = await resourcesRes.json()
     const featuredData = await featuredRes.json()
 
-    // Handle both response formats for featured resources too
-    const featuredResources = Array.isArray(featuredData) ? featuredData : featuredData.resources || []
+    const resources = resourcesData.resources || []
+    const featured = featuredData.resources?.[0] || resources.find((item: any) => item?.fields?.featured) || null
 
-    // Find featured resource from the small subset
-    const featured = featuredResources.find((article: IContentfulEntry) => article?.fields?.featured) || null
-
-    // Clean up resources to remove any undefined values
-    const cleanResources = (resources || []).filter((resource: any) => resource && resource.fields)
-
-    // Ensure pagination object has no undefined values
-    const cleanPagination = {
-      page: pagination?.page || page,
-      limit: pagination?.limit || limit,
-      totalCount: pagination?.totalCount || 0,
-      totalPages: pagination?.totalPages || 0,
-      hasNext: pagination?.hasNext || false,
-      hasPrev: pagination?.hasPrev || false
-    }
+    const filteredResources = resources.filter((item: IContentfulEntry) => item?.sys?.id !== featured?.sys?.id)
 
     return {
       props: {
-        initialResources: cleanResources,
+        initialResources: filteredResources,
         initialFeatured: featured,
-        initialPagination: cleanPagination
+        initialPagination: resourcesData.pagination || {
+          page,
+          limit,
+          totalCount: filteredResources.length,
+          totalPages: 1,
+          hasNext: false,
+          hasPrev: false
+        }
       }
     }
   } catch (error) {
@@ -298,7 +231,7 @@ export async function getServerSideProps(context: any) {
           page: 1,
           limit: 9,
           totalCount: 0,
-          totalPages: 0,
+          totalPages: 1,
           hasNext: false,
           hasPrev: false
         }

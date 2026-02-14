@@ -1,12 +1,12 @@
 export async function getServerSideProps() {
   return {
     redirect: {
-      destination: '/news',
+      destination: '/student-experience/campus',
       permanent: true
     }
   }
 }
 
-export default function LegacyNewsEventsRedirect() {
+export default function LegacyCampusRedirect() {
   return null
 }

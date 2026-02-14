@@ -84,7 +84,7 @@ export async function GET() {
                   : `${baseUrl}/logo.png`
 
               return `  <url>
-    <loc>${baseUrl}/news-events/news/${slug}</loc>
+    <loc>${baseUrl}/news/${slug}</loc>
     <lastmod>${lastModified}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>

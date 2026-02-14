@@ -119,13 +119,13 @@ export default function EnhancedEnquiryForm() {
 
     // Timeline scoring (0-5 points)
     switch (values.studyTimeline) {
-      case 'january-2026':
+      case 'may-2026':
         score += 5
         break
-      case 'may-2026':
+      case 'september-2026':
         score += 4
         break
-      case 'september-2026':
+      case 'january-2027':
         score += 3
         break
       case 'researching':
@@ -540,6 +540,14 @@ export default function EnhancedEnquiryForm() {
         </Text>
       </div>
 
+      <form onSubmit={form.onSubmit((values) => handleSubmit(values))}>
+        {/* Hidden UTM fields */}
+        <input {...form.getInputProps('utm_source')} type="hidden" />
+        <input {...form.getInputProps('utm_medium')} type="hidden" />
+        <input {...form.getInputProps('utm_campaign')} type="hidden" />
+        <input {...form.getInputProps('utm_term')} type="hidden" />
+        <input {...form.getInputProps('utm_content')} type="hidden" />
+
       <Stepper
         active={activeStep}
         onStepClick={setActiveStep}
@@ -595,17 +603,8 @@ export default function EnhancedEnquiryForm() {
               <Radio.Group {...form.getInputProps('studyTimeline')}>
                 <Stack gap="xs">
                   <Radio
-                    value="january-2026"
-                    label="January 2026 intake (immediate)"
-                    size="sm"
-                    styles={{
-                      label: { fontSize: '13px' },
-                      radio: { width: '16px', height: '16px' }
-                    }}
-                  />
-                  <Radio
                     value="may-2026"
-                    label="May 2026 intake (planning ahead)"
+                    label="May 2026 intake (next intake)"
                     size="sm"
                     styles={{
                       label: { fontSize: '13px' },
@@ -614,7 +613,16 @@ export default function EnhancedEnquiryForm() {
                   />
                   <Radio
                     value="september-2026"
-                    label="September 2026 intake (future planning)"
+                    label="September 2026 intake"
+                    size="sm"
+                    styles={{
+                      label: { fontSize: '13px' },
+                      radio: { width: '16px', height: '16px' }
+                    }}
+                  />
+                  <Radio
+                    value="january-2027"
+                    label="January 2027 intake"
                     size="sm"
                     styles={{
                       label: { fontSize: '13px' },
@@ -810,14 +818,6 @@ export default function EnhancedEnquiryForm() {
           </div>
         </Stepper.Step>
       </Stepper>
-
-      <form onSubmit={form.onSubmit((values) => handleSubmit(values))}>
-        {/* Hidden UTM fields */}
-        <input {...form.getInputProps('utm_source')} type="hidden" />
-        <input {...form.getInputProps('utm_medium')} type="hidden" />
-        <input {...form.getInputProps('utm_campaign')} type="hidden" />
-        <input {...form.getInputProps('utm_term')} type="hidden" />
-        <input {...form.getInputProps('utm_content')} type="hidden" />
 
         <Group justify="space-between" mt="xl" className="flex-col gap-3 sm:flex-row sm:gap-0">
           {activeStep > 0 && (

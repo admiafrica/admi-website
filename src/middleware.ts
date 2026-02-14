@@ -91,7 +91,8 @@ function detectSpam(request: NextRequest): { isSpam: boolean; reason: string } {
   const isLegitimateContent =
     url.pathname.startsWith('/courses/') ||
     url.pathname.startsWith('/watch/') ||
-    url.pathname.startsWith('/news-events/') ||
+    url.pathname.startsWith('/news/') ||
+    url.pathname.startsWith('/events/') ||
     url.pathname.startsWith('/resources/') ||
     url.pathname.startsWith('/api/') ||
     url.pathname.endsWith('.xml') || // Allow all XML files (sitemaps)

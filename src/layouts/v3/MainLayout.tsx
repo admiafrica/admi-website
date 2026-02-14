@@ -1,3 +1,5 @@
+'use client'
+
 import { AppShell, rem } from '@mantine/core'
 import { useHeadroom } from '@mantine/hooks'
 import { useEffect } from 'react'
