@@ -1,8 +1,8 @@
 import localFont from 'next/font/local'
 
-import { createTheme } from '@/lib/tw-mantine'
-
 const createColorScale = (hex: string) => Array.from({ length: 10 }, () => hex)
+
+const createTheme = (theme: Record<string, any>) => theme
 
 // Import your fonts with optimized loading
 export const nexaFont = localFont({

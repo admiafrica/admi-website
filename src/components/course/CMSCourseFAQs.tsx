@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import { Accordion, Container, Title, Text, Group, Loader, Alert } from '@/lib/tw-mantine'
 import { IconChevronDown, IconAlertCircle } from '@tabler/icons-react'
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer'
 import { ICourseFAQ, IFAQResponse } from '@/types'
@@ -43,6 +42,7 @@ export function CMSCourseFAQs({ courseSlug }: CMSCourseFAQsProps) {
   const [faqs, setFaqs] = useState<ICourseFAQ[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+  const [openFaq, setOpenFaq] = useState<string | null>(null)
 
   useEffect(() => {
     const fetchFAQs = async () => {
@@ -95,24 +95,26 @@ export function CMSCourseFAQs({ courseSlug }: CMSCourseFAQsProps) {
 
   if (loading) {
     return (
-      <Container size="lg" py="xl">
+      <div className="mx-auto w-full max-w-5xl px-4 py-8">
         <div className="text-center">
-          <Loader size="lg" />
-          <Text mt="md" c="dimmed">
-            Loading course FAQs...
-          </Text>
+          <div className="mx-auto h-8 w-8 animate-spin rounded-full border-2 border-gray-300 border-t-gray-700" />
+          <p className="mt-4 text-gray-500">Loading course FAQs...</p>
         </div>
-      </Container>
+      </div>
     )
   }
 
   if (error) {
     return (
-      <Container size="lg" py="xl">
-        <Alert icon={<IconAlertCircle size={16} />} title="Unable to load FAQs" color="red" variant="light">
+      <div className="mx-auto w-full max-w-5xl px-4 py-8">
+        <div className="rounded-lg border border-amber-300 bg-amber-50 p-4 text-amber-900">
+          <div className="mb-1 flex items-center gap-2 font-semibold">
+            <IconAlertCircle size={16} />
+            Unable to load FAQs
+          </div>
           {error}
-        </Alert>
-      </Container>
+        </div>
+      </div>
     )
   }
 
@@ -136,7 +138,7 @@ export function CMSCourseFAQs({ courseSlug }: CMSCourseFAQsProps) {
   }
 
   return (
-    <Container size="lg" py="xl">
+    <div className="mx-auto w-full max-w-5xl px-4 py-8">
       {/* FAQ Structured Data */}
       {filteredFAQs.length > 0 && (
         <script
@@ -147,67 +149,50 @@ export function CMSCourseFAQs({ courseSlug }: CMSCourseFAQsProps) {
       )}
 
       <div className="mb-8 text-center">
-        <Title order={2} size="h1" mb="md">
-          Frequently Asked Questions
-        </Title>
-        <Text size="lg" c="dimmed" maw={600} mx="auto">
+        <h2 className="mb-4 text-4xl font-semibold text-gray-900">Frequently Asked Questions</h2>
+        <p className="mx-auto max-w-[600px] text-lg text-gray-500">
           Get answers to common questions about this course, admission requirements, career prospects, and student
           support services.
-        </Text>
+        </p>
       </div>
 
       {/* FAQ Accordion */}
-      <Accordion
-        variant="separated"
-        radius="md"
-        chevron={<IconChevronDown size={16} />}
-        styles={{
-          chevron: {
-            '&[data-rotate="true"]': {
-              transform: 'rotate(180deg)'
-            }
-          },
-          item: {
-            border: '1px solid #e9ecef',
-            '&[data-active="true"]': {
-              borderColor: '#228be6'
-            }
-          },
-          control: {
-            padding: '1rem 1.5rem',
-            '&:hover': {
-              backgroundColor: '#f8f9fa'
-            }
-          },
-          content: {
-            padding: '1rem 1.5rem',
-            paddingTop: 0
-          }
-        }}
-      >
-        {filteredFAQs.map((faq, index) => (
-          <Accordion.Item key={index} value={`faq-${index}`}>
-            <Accordion.Control>
-              <Group justify="space-between" wrap="nowrap">
-                <div>
-                  <Text fw={500} size="md">
-                    {faq.question}
-                  </Text>
+      <div className="space-y-2">
+        {filteredFAQs.map((faq, index) => {
+          const value = `faq-${index}`
+          const isOpen = openFaq === value
+          return (
+            <div key={index} className="rounded-lg border border-gray-200">
+              <button
+                type="button"
+                onClick={() => setOpenFaq(isOpen ? null : value)}
+                className="flex w-full items-center justify-between px-6 py-4 text-left font-medium hover:bg-gray-50"
+              >
+                <div className="flex w-full flex-wrap flex-nowrap justify-between">
+                  <div>
+                    <p className="font-medium text-gray-700">{faq.question}</p>
+                  </div>
                 </div>
-              </Group>
-            </Accordion.Control>
-            <Accordion.Panel>
-              {faq.isRichText ? (
-                <div className="text-sm leading-relaxed" dangerouslySetInnerHTML={{ __html: faq.answer }} />
-              ) : (
-                <Text size="sm" lh={1.6}>
-                  {faq.answer}
-                </Text>
+                <IconChevronDown
+                  size={16}
+                  className={`ml-2 flex-shrink-0 transition-transform ${isOpen ? 'rotate-180' : ''}`}
+                />
+              </button>
+              {isOpen && (
+                <div className="border-t border-gray-200 px-6 py-4">
+                  {faq.isRichText ? (
+                    <div className="text-sm leading-relaxed" dangerouslySetInnerHTML={{ __html: faq.answer }} />
+                  ) : (
+                    <p className="text-sm text-gray-700" style={{ lineHeight: 1.6 }}>
+                      {faq.answer}
+                    </p>
+                  )}
+                </div>
               )}
-            </Accordion.Panel>
-          </Accordion.Item>
-        ))}
-      </Accordion>
-    </Container>
+            </div>
+          )
+        })}
+      </div>
+    </div>
   )
 }

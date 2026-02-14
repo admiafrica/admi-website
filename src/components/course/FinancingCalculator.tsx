@@ -1,22 +1,9 @@
 import { useState } from 'react'
-import { Paper, Stack, Group, SimpleGrid, Text, ThemeIcon, Slider, Badge, Button } from '@/lib/tw-mantine'
+import Link from 'next/link'
 import { IconCurrencyDollar, IconBrandWhatsapp } from '@tabler/icons-react'
 import { trackWhatsAppClick, ADMI_WHATSAPP_NUMBER } from '@/utils/whatsapp-attribution'
 
 const DIPLOMA_TOTAL_COST = 450000
-const SLIDER_MARKS = {
-  monthly: [
-    { value: 10000, label: '10K' },
-    { value: 25000, label: '25K' },
-    { value: 50000, label: '50K' }
-  ],
-  duration: [
-    { value: 3, label: '3mo' },
-    { value: 12, label: '12mo' },
-    { value: 24, label: '24mo' },
-    { value: 36, label: '36mo' }
-  ]
-}
 
 /**
  * Interactive Financing Calculator
@@ -29,143 +16,126 @@ export function FinancingCalculator() {
   const totalPaid = monthlyPayment * paymentMonths
 
   return (
-    <Paper
-      shadow="md"
-      p="xl"
-      mb="xl"
-      radius="md"
-      className="border border-green-300 bg-gradient-to-br from-green-50 to-white"
-    >
-      <Stack gap="lg">
-        <Group gap="sm">
-          <ThemeIcon size="lg" color="green" variant="light">
+    <div className="mb-6 rounded-xl border border-green-300 bg-white bg-gradient-to-br from-green-50 to-white p-8 shadow-md">
+      <div className="flex flex-col gap-6">
+        <div className="flex flex-wrap gap-2">
+          <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-green-100">
             <IconCurrencyDollar size={24} />
-          </ThemeIcon>
+          </span>
           <div>
-            <Text size="xl" fw={700} c="#2f9e44">
+            <p className="text-xl font-bold text-gray-700" style={{ color: '#2f9e44' }}>
               Flexible Payment Plans
-            </Text>
-            <Text size="sm" c="dimmed">
+            </p>
+            <p className="text-sm text-gray-500">
               Standard Diploma: {DIPLOMA_TOTAL_COST.toLocaleString()} KES total (4 semesters + internship)
-            </Text>
+            </p>
           </div>
-        </Group>
+        </div>
 
-        <SimpleGrid cols={{ base: 1, sm: 2 }} spacing="xl">
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
           {/* Controls */}
-          <Stack gap="md">
+          <div className="flex flex-col gap-4">
             <div>
-              <Text size="sm" fw={500} mb="xs">
-                Monthly Payment Amount
-              </Text>
-              <Group gap="xs">
-                <Text size="2xl" fw={700} c="green">
+              <p className="mb-1 text-sm font-medium text-gray-700">Monthly Payment Amount</p>
+              <div className="flex flex-wrap gap-1">
+                <p className="text-2xl font-bold text-gray-700" style={{ color: 'green' }}>
                   {monthlyPayment.toLocaleString()} KES
-                </Text>
-                <Text size="sm" c="dimmed">
-                  per month
-                </Text>
-              </Group>
-              <Slider
+                </p>
+                <p className="text-sm text-gray-500">per month</p>
+              </div>
+              <input
+                type="range"
+                className="mt-4 w-full"
                 value={monthlyPayment}
-                onChange={setMonthlyPayment}
+                onChange={(e) => setMonthlyPayment(Number(e.target.value))}
                 min={10000}
                 max={50000}
                 step={1000}
-                marks={SLIDER_MARKS.monthly}
-                color="green"
-                mt="md"
               />
+              <div className="mt-1 flex justify-between text-xs text-gray-500">
+                <span>10K</span>
+                <span>25K</span>
+                <span>50K</span>
+              </div>
             </div>
 
             <div>
-              <Text size="sm" fw={500} mb="xs">
-                Payment Period
-              </Text>
-              <Group gap="xs">
-                <Text size="2xl" fw={700} c="green">
+              <p className="mb-1 text-sm font-medium text-gray-700">Payment Period</p>
+              <div className="flex flex-wrap gap-1">
+                <p className="text-2xl font-bold text-gray-700" style={{ color: 'green' }}>
                   {paymentMonths}
-                </Text>
-                <Text size="sm" c="dimmed">
-                  months
-                </Text>
-              </Group>
-              <Slider
+                </p>
+                <p className="text-sm text-gray-500">months</p>
+              </div>
+              <input
+                type="range"
+                className="mt-4 w-full"
                 value={paymentMonths}
-                onChange={setPaymentMonths}
+                onChange={(e) => setPaymentMonths(Number(e.target.value))}
                 min={3}
                 max={36}
                 step={3}
-                marks={SLIDER_MARKS.duration}
-                color="green"
-                mt="md"
               />
+              <div className="mt-1 flex justify-between text-xs text-gray-500">
+                <span>3mo</span>
+                <span>12mo</span>
+                <span>24mo</span>
+                <span>36mo</span>
+              </div>
             </div>
-          </Stack>
+          </div>
 
           {/* Summary */}
-          <Paper p="lg" bg="#f1f3f5" radius="md">
-            <Stack gap="sm">
-              <Text size="sm" c="dimmed" fw={500}>
-                YOUR INVESTMENT BREAKDOWN
-              </Text>
+          <div className="rounded-xl bg-[#f1f3f5] p-6">
+            <div className="flex flex-col gap-2">
+              <p className="text-sm font-medium text-gray-500">YOUR INVESTMENT BREAKDOWN</p>
 
               <div>
-                <Text size="xs" c="dimmed">
-                  Total Program Cost
-                </Text>
-                <Text size="lg" fw={700}>
-                  {DIPLOMA_TOTAL_COST.toLocaleString()} KES
-                </Text>
+                <p className="text-xs text-gray-500">Total Program Cost</p>
+                <p className="text-lg font-bold text-gray-700">{DIPLOMA_TOTAL_COST.toLocaleString()} KES</p>
               </div>
 
               <div>
-                <Text size="xs" c="dimmed">
-                  You Pay Per Month
-                </Text>
-                <Text size="xl" fw={700} c="green">
+                <p className="text-xs text-gray-500">You Pay Per Month</p>
+                <p className="text-xl font-bold text-gray-700" style={{ color: 'green' }}>
                   {monthlyPayment.toLocaleString()} KES
-                </Text>
+                </p>
               </div>
 
               <div>
-                <Text size="xs" c="dimmed">
-                  Total Paid Over Time
-                </Text>
-                <Text size="lg" fw={700}>
-                  {totalPaid.toLocaleString()} KES
-                </Text>
+                <p className="text-xs text-gray-500">Total Paid Over Time</p>
+                <p className="text-lg font-bold text-gray-700">{totalPaid.toLocaleString()} KES</p>
               </div>
 
-              <Badge size="lg" color="green" variant="light" fullWidth mt="sm">
+              <span className="mt-2 inline-flex w-full items-center justify-center rounded-full bg-green-100 px-3 py-1 text-sm font-semibold uppercase tracking-wide text-green-800">
                 Payback Period: 6 months after graduation
-              </Badge>
+              </span>
 
-              <Text size="xs" c="dimmed" ta="center" mt="xs">
-                Based on 75K KES avg. starting salary
-              </Text>
-            </Stack>
-          </Paper>
-        </SimpleGrid>
+              <p className="mt-1 text-center text-xs text-gray-500">Based on 75K KES avg. starting salary</p>
+            </div>
+          </div>
+        </div>
 
-        <Group justify="center" gap="sm" mt="md">
-          <Button component="a" href="/apply" color="green" leftSection={<IconCurrencyDollar size={18} />}>
+        <div className="mt-4 flex flex-wrap justify-center gap-2">
+          <Link
+            href="/apply"
+            className="inline-flex items-center gap-2 rounded-lg bg-green-600 px-4 py-2 font-medium text-white transition"
+          >
+            <IconCurrencyDollar size={18} />
             Apply with Payment Plan
-          </Button>
+          </Link>
 
-          <Button
-            component="a"
+          <a
             href={`https://wa.me/${ADMI_WHATSAPP_NUMBER}?text=Hi, I need help understanding payment options for diploma programs`}
-            variant="outline"
-            color="green"
-            leftSection={<IconBrandWhatsapp size={18} />}
+            className="inline-flex items-center gap-2 rounded-lg border border-green-600 bg-white px-4 py-2 font-medium text-green-700 transition"
             onClick={() => trackWhatsAppClick('courses_financing', 'Financing Calculator')}
             target="_blank"
           >
+            <IconBrandWhatsapp size={18} />
             Discuss Financing Options
-          </Button>
-        </Group>
-      </Stack>
-    </Paper>
+          </a>
+        </div>
+      </div>
+    </div>
   )
 }

@@ -1,6 +1,5 @@
 import React from 'react'
 import { ensureProtocol } from '@/utils'
-import { Box, Card, Pill } from '@/lib/tw-mantine'
 import { Paragraph, Title } from '../ui'
 import { motion } from 'framer-motion'
 
@@ -37,11 +36,9 @@ export default function AnnouncementCard(props: Props) {
   }
 
   return (
-    <Card
-      className="mx-auto w-full max-w-screen-xl cursor-pointer"
-      bg={props.bgColor || 'white'}
-      p={0}
-      style={{ borderRadius: 8 }}
+    <div
+      className="mx-auto w-full max-w-screen-xl cursor-pointer rounded-xl border border-gray-200 bg-white shadow-sm"
+      style={{ backgroundColor: props.bgColor || 'white', borderRadius: 8, padding: 0 }}
       onClick={handleCardClick}
     >
       <motion.div
@@ -57,21 +54,18 @@ export default function AnnouncementCard(props: Props) {
             }}
             transition={{ duration: 0.3 }}
           >
-            <Box className="h-full w-full" bg={props.ribbonColor}></Box>
+            <div className="h-full w-full" style={{ backgroundColor: props.ribbonColor }}></div>
           </motion.div>
         )}
-        <Box className="flex h-fit w-full flex-col-reverse px-6 py-4 sm:h-[420px] sm:flex-row">
-          <Box className="flex grow flex-col pt-4 hover:w-[42%] sm:w-[44%] sm:pr-4 sm:pt-0">
+        <div className="flex h-fit w-full flex-col-reverse px-6 py-4 sm:h-[420px] sm:flex-row">
+          <div className="flex grow flex-col pt-4 hover:w-[42%] sm:w-[44%] sm:pr-4 sm:pt-0">
             {props.featured && (
-              <Pill
-                size="md"
-                className="mb-4 w-fit font-nexa font-black"
-                bg={'white'}
-                style={{ border: '2px solid rgba(0, 0, 0, 0.14)' }}
-                h={28}
+              <span
+                className="mb-4 inline-flex w-fit items-center rounded-full border border-gray-300 px-3 py-1 font-nexa text-xs font-black"
+                style={{ border: '2px solid rgba(0, 0, 0, 0.14)', backgroundColor: 'white', height: 28 }}
               >
                 Featured
-              </Pill>
+              </span>
             )}
             {props.title && <Title label={props.title} color="black" />}
 
@@ -107,7 +101,7 @@ export default function AnnouncementCard(props: Props) {
             >
               <IconArrowTipRight width={48} height={48} color={props.arrowColor} />
             </motion.div>
-          </Box>
+          </div>
           {/* Image Container with Hover Effect */}
           {isMobile ? (
             <div className="relative mx-auto flex h-[180px] w-full sm:h-full">
@@ -161,8 +155,8 @@ export default function AnnouncementCard(props: Props) {
               )}
             </motion.div>
           )}
-        </Box>
+        </div>
       </motion.div>
-    </Card>
+    </div>
   )
 }

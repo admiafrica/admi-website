@@ -1,4 +1,3 @@
-import { Card, Group, TextInput } from '@/lib/tw-mantine'
 import { useForm } from '@/lib/tw-mantine-form'
 import { Button, Paragraph, Title } from '../ui'
 import { IconAsterisk } from '@tabler/icons-react'
@@ -23,7 +22,10 @@ export default function JoinForm() {
   }
 
   return (
-    <Card className="relative h-full w-full bg-white p-4 sm:p-8" radius="md">
+    <div
+      className="relative h-full w-full rounded-xl border border-gray-200 bg-white p-4 shadow-sm sm:p-8"
+      style={{ borderRadius: '0.375rem' }}
+    >
       {/* Background Image */}
       <Image
         src={ImageJoinNetworkBackground}
@@ -49,35 +51,40 @@ export default function JoinForm() {
         <Title label="Join the ADMI" color="white" />
         <Title label="Alumni Network" color="#F1FE37" />
         <Paragraph className="text-white">
-          If you haven’t already, we invite you to register with us and become an active member of the ADMI alumni
+          If you haven't already, we invite you to register with us and become an active member of the ADMI alumni
           community.
         </Paragraph>
       </div>
       <div className="relative mb-8">
         <Paragraph className="text-white">Alumni Registration Form</Paragraph>
       </div>
-      <Card withBorder bg={'black'} p={12} radius={'md'}>
+      <div
+        className="rounded-xl border border-gray-200 shadow-sm"
+        style={{ backgroundColor: 'black', padding: 12, borderRadius: '0.375rem' }}
+      >
         <Title label="Alumni Network" color="white" size="20px" />
         <Paragraph className="py-2 text-white">Subscribe to our alumni network and stay updated.</Paragraph>S
         <form onSubmit={handleSubmit}>
-          <TextInput
-            my={16}
+          <div
+            style={{ marginTop: 16, marginBottom: 16 }}
             className="border-1 rounded-lg border-solid border-gray-200 py-2"
-            label={
-              <div className="flex pl-2">
-                <Title label="Email Address" color="white" size="1.4em" />
-                <IconAsterisk size={8} className="mt-1.5 text-admiRed" />
-              </div>
-            }
-            placeholder="your@email.com"
-            key={form.key('email')}
-            {...form.getInputProps('email')}
-          />
-          <Group justify="flex-end" mt="2em" className="w-full">
+          >
+            <div className="flex pl-2">
+              <Title label="Email Address" color="white" size="1.4em" />
+              <IconAsterisk size={8} className="mt-1.5 text-admiRed" />
+            </div>
+            <input
+              className="h-11 w-full rounded-lg border border-gray-300 bg-[#f8fafc] px-3"
+              placeholder="your@email.com"
+              key={form.key('email')}
+              {...form.getInputProps('email')}
+            />
+          </div>
+          <div className="flex w-full flex-wrap justify-end" style={{ marginTop: '2em' }}>
             <Button size="lg" backgroundColor="admiRed" label="Subscribe" type="submit" />
-          </Group>
+          </div>
         </form>
-      </Card>
-    </Card>
+      </div>
+    </div>
   )
 }

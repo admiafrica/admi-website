@@ -1,5 +1,4 @@
 import React from 'react'
-import { Box, Card } from '@/lib/tw-mantine'
 
 type Props = {
   children: any
@@ -8,10 +7,10 @@ type Props = {
 
 export default function PlainCard({ children, bg = '#FEFFF5' }: Props) {
   return (
-    <Card className="z-10 h-full w-full px-4" withBorder>
-      <Box className="flex h-full w-full flex-col p-4 sm:p-8" bg={bg}>
+    <div className="z-10 h-full w-full rounded-xl border border-gray-200 bg-white px-4 shadow-sm">
+      <div className="flex h-full w-full flex-col p-4 sm:p-8" style={{ backgroundColor: bg }}>
         {children}
-      </Box>
-    </Card>
+      </div>
+    </div>
   )
 }

@@ -1,192 +1,55 @@
-import React from 'react'
-import { Container, Title, Text, Button, Grid, Card, List, Accordion } from '@/lib/tw-mantine'
-import PageSEO from '../../components/shared/v3/PageSEO'
+import CourseCityTemplate from '@/components/course/CourseCityTemplate'
 
-const GraphicDesignNairobiPage = () => {
-  const courseSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'Course',
-    name: 'Graphic Design Course in Nairobi',
-    description:
-      'Professional Graphic Design training in nairobi, Kenya. Learn industry-relevant skills with 90% job placement rate.',
-    provider: {
-      '@type': 'EducationalOrganization',
-      name: 'Africa Digital Media Institute',
-      sameAs: 'https://admi.ac.ke'
-    },
-    hasCourseInstance: {
-      '@type': 'CourseInstance',
-      courseMode: 'on-site',
-      location: {
-        '@type': 'Place',
-        name: 'ADMI Nairobi Campus',
-        address: {
-          '@type': 'PostalAddress',
-          streetAddress: '25 Kenyatta Avenue, 3rd Floor, Caxton House',
-          addressLocality: 'Nairobi',
-          addressCountry: 'Kenya'
-        }
-      }
-    },
-    offers: {
-      '@type': 'Offer',
-      description: 'Visit https://admi.africa/student-support#fees for current fee structure',
-      priceCurrency: 'KES'
-    }
-  }
-
+export default function GraphicDesignNairobiPage() {
   return (
-    <>
-      <PageSEO
-        title="Kenya's Most Sought-After Graphic Design Course - ADMI Nairobi"
-        description="Industry's best-kept secret: ADMI's revolutionary Graphic Design program in Nairobi. Learn from star teachers like Brian Omolo. Over 90% employment rate. State-of-the-art facilities."
-        canonical="https://admi.ac.ke/courses/graphic-design-nairobi"
-        keywords="best graphic design course kenya, graphic design nairobi, brian omolo admi, top graphic design school kenya, graphic design diploma nairobi, digital art kenya, admi"
-      />
-
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(courseSchema)
-        }}
-      />
-
-      <Container size="lg" py="xl">
-        <Title order={1} ta="center" mb="md">
-          Kenya&apos;s Most Sought-After Graphic Design Course
-        </Title>
-
-        <Text size="lg" ta="center" mb="xl" c="dimmed">
-          The industry&apos;s best-kept secret: Revolutionary Graphic Design program with star teachers like Brian
-          Omolo. Over 90% employment rate
-        </Text>
-
-        <Grid>
-          <Grid.Col span={{ base: 12, md: 8 }}>
-            <Card shadow="sm" padding="lg" radius="md" withBorder>
-              <Title order={2} mb="md">
-                Why ADMI is Kenya&apos;s Best-Kept Secret for Graphic Design
-              </Title>
-
-              <List spacing="sm" size="sm">
-                <List.Item>
-                  🎆 <strong>Star Faculty:</strong> Learn from industry legends like Brian Omolo, revolutionizing
-                  digital art & murals across Nairobi
-                </List.Item>
-                <List.Item>
-                  📈 <strong>Outstanding Results:</strong> Over 90% employment rate - the highest in Kenya
-                </List.Item>
-                <List.Item>
-                  🏆 <strong>Industry Recognition:</strong> Most sought-after course among creative professionals
-                </List.Item>
-                <List.Item>
-                  ✨ <strong>Cutting-Edge Equipment:</strong> State-of-the-art design labs and professional-grade
-                  software
-                </List.Item>
-                <List.Item>
-                  🎨 <strong>Revolutionary Techniques:</strong> Master digital art, murals, and contemporary design
-                  methods
-                </List.Item>
-                <List.Item>
-                  🌐 <strong>Industry Connections:</strong> Direct access to Kenya&apos;s top design studios and
-                  agencies
-                </List.Item>
-                <List.Item>
-                  💼 <strong>Guaranteed Success:</strong> Comprehensive career support with proven track record
-                </List.Item>
-              </List>
-
-              <Card mt="md" shadow="sm" padding="md" radius="md" withBorder>
-                <Text fw={500} mb="sm">
-                  📚 Complete Course Information
-                </Text>
-                <Text size="sm" mb="md">
-                  Get detailed curriculum, admission requirements, and enrollment information for our Graphic Design
-                  program.
-                </Text>
-                <Button component="a" href="/courses/graphic-design-diploma" variant="light" fullWidth>
-                  View Full Graphic Design Course Details
-                </Button>
-              </Card>
-            </Card>
-
-            <Card shadow="sm" padding="lg" radius="md" withBorder mt="md">
-              <Title order={3} mb="md">
-                Frequently Asked Questions - Nairobi Students
-              </Title>
-              <Accordion>
-                <Accordion.Item key={0} value={'faq-0'}>
-                  <Accordion.Control>How does Nairobi's tech boom impact graphic design students?</Accordion.Control>
-                  <Accordion.Panel>
-                    <Text size="sm">
-                      Nairobi's tech boom offers graphic design students unique opportunities to engage with
-                      cutting-edge digital design trends and work alongside leading tech companies and startups, making
-                      it an ideal environment for learning and innovation.
-                    </Text>
-                  </Accordion.Panel>
-                </Accordion.Item>
-                <Accordion.Item key={1} value={'faq-1'}>
-                  <Accordion.Control>
-                    Are there opportunities for graphic designers in Nairobi's advertising agencies?
-                  </Accordion.Control>
-                  <Accordion.Panel>
-                    <Text size="sm">
-                      Absolutely. Nairobi's dynamic advertising scene is on the lookout for skilled graphic designers
-                      with fresh ideas, especially those proficient in digital-first design and motion graphics, to
-                      cater to an increasingly digital marketplace.
-                    </Text>
-                  </Accordion.Panel>
-                </Accordion.Item>
-              </Accordion>
-            </Card>
-          </Grid.Col>
-
-          <Grid.Col span={{ base: 12, md: 4 }}>
-            <Card shadow="sm" padding="lg" radius="md" withBorder>
-              <Title order={3} mb="md">
-                Course Details
-              </Title>
-
-              <Text mb="sm">
-                <strong>Duration:</strong> 15 months
-              </Text>
-              <Text mb="sm">
-                <strong>Fee:</strong> <a href="https://admi.africa/student-support#fees">View current fees</a>
-              </Text>
-              <Text mb="sm">
-                <strong>Location:</strong> ADMI Nairobi Campus
-              </Text>
-              <Button component="a" href="/enquiry" fullWidth mt="md" color="blue">
-                Apply Now
-              </Button>
-            </Card>
-          </Grid.Col>
-        </Grid>
-
-        <Title order={2} mt="xl" mb="md">
-          Graphic Design Job Market in nairobi
-        </Title>
-
-        <Text>
-          nairobi is a growing hub for creative industries in Kenya. As Kenya&apos;s capital, the ADMI offers excellent
-          opportunities for Graphic Design graduates. The creative sector in Nairobi is expanding rapidly, creating
-          numerous job opportunities for skilled professionals.
-        </Text>
-        <Card mt="xl" shadow="sm" padding="lg" radius="md" withBorder>
-          <Title order={3} mb="md">
-            🎯 Ready to Start Your Graphic Design Journey?
-          </Title>
-          <Text mb="md">
-            Take the next step towards your creative career. Explore our comprehensive Graphic Design program with
-            detailed curriculum, career outcomes, and admission process.
-          </Text>
-          <Button component="a" href="/courses/graphic-design-diploma" size="lg" fullWidth>
-            Explore Full Graphic Design Program Details
-          </Button>
-        </Card>
-      </Container>
-    </>
+    <CourseCityTemplate
+      seo={{
+        title: "Kenya's Most Sought-After Graphic Design Course - ADMI Nairobi",
+        description:
+          "Industry's best-kept secret: ADMI's revolutionary Graphic Design program in Nairobi. Learn from star teachers like Brian Omolo. Over 90% employment rate. State-of-the-art facilities.",
+        canonical: 'https://admi.ac.ke/courses/graphic-design-nairobi',
+        keywords:
+          'best graphic design course kenya, graphic design nairobi, brian omolo admi, top graphic design school kenya, graphic design diploma nairobi, digital art kenya, admi'
+      }}
+      courseName="Graphic Design"
+      city="Nairobi"
+      pageTitle="Kenya's Most Sought-After Graphic Design Course"
+      subtitle="The industry's best-kept secret: Revolutionary Graphic Design program with star teachers like Brian Omolo. Over 90% employment rate"
+      whyTitle="Why ADMI is Kenya's Best-Kept Secret for Graphic Design"
+      highlights={[
+        '🎆 <strong>Star Faculty:</strong> Learn from industry legends like Brian Omolo, revolutionizing digital art & murals across Nairobi',
+        '📈 <strong>Outstanding Results:</strong> Over 90% employment rate - the highest in Kenya',
+        '🏆 <strong>Industry Recognition:</strong> Most sought-after course among creative professionals',
+        '✨ <strong>Cutting-Edge Equipment:</strong> State-of-the-art design labs and professional-grade software',
+        '🎨 <strong>Revolutionary Techniques:</strong> Master digital art, murals, and contemporary design methods',
+        "🌐 <strong>Industry Connections:</strong> Direct access to Kenya's top design studios and agencies",
+        '💼 <strong>Guaranteed Success:</strong> Comprehensive career support with proven track record'
+      ]}
+      courseLink="/courses/graphic-design-diploma"
+      courseLinkText="View Full Graphic Design Course Details"
+      faqs={[
+        {
+          question: "How does Nairobi's tech boom impact graphic design students?",
+          answer:
+            "Nairobi's tech boom offers graphic design students unique opportunities to engage with cutting-edge digital design trends and work alongside leading tech companies and startups, making it an ideal environment for learning and innovation."
+        },
+        {
+          question: "Are there opportunities for graphic designers in Nairobi's advertising agencies?",
+          answer:
+            "Absolutely. Nairobi's dynamic advertising scene is on the lookout for skilled graphic designers with fresh ideas, especially those proficient in digital-first design and motion graphics, to cater to an increasingly digital marketplace."
+        }
+      ]}
+      details={[
+        { label: 'Duration', value: '15 months' },
+        { label: 'Fee', value: 'View current fees', href: 'https://admi.africa/student-support#fees' },
+        { label: 'Location', value: 'ADMI Nairobi Campus' }
+      ]}
+      jobMarketTitle="Graphic Design Job Market in nairobi"
+      jobMarketText="nairobi is a growing hub for creative industries in Kenya. As Kenya's capital, the ADMI offers excellent opportunities for Graphic Design graduates. The creative sector in Nairobi is expanding rapidly, creating numerous job opportunities for skilled professionals."
+      ctaTitle="🎯 Ready to Start Your Graphic Design Journey?"
+      ctaText="Take the next step towards your creative career. Explore our comprehensive Graphic Design program with detailed curriculum, career outcomes, and admission process."
+      ctaButtonText="Explore Full Graphic Design Program Details"
+      ctaButtonHref="/courses/graphic-design-diploma"
+    />
   )
 }
-
-export default GraphicDesignNairobiPage

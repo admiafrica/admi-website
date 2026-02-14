@@ -1,6 +1,5 @@
 import React from 'react'
 import clsx from 'clsx' // merge classes dynamically
-import { Text } from '@/lib/tw-mantine'
 
 type Props = {
   children: React.ReactNode
@@ -19,9 +18,9 @@ const Paragraph: React.FC<Props> = ({
 }) => {
   return (
     <div className={clsx(fontFamily, className)}>
-      <Text size={size} fw={fontWeight}>
+      <p className="text-gray-700" style={{ fontSize: size, fontWeight }}>
         {children}
-      </Text>
+      </p>
     </div>
   )
 }

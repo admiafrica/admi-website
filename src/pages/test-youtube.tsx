@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Container, Title, Text, Button, Card, Code, Alert } from '@/lib/tw-mantine'
+import Link from 'next/link'
 import { IconCheck, IconX, IconLoader } from '@tabler/icons-react'
 
 // Simple test page to verify YouTube API integration
@@ -112,162 +112,151 @@ export default function TestYouTubePage() {
   }
 
   return (
-    <Container size="md" py="xl">
-      <Title order={1} mb="xl" ta="center">
-        YouTube API Integration Test
-      </Title>
+    <div className="mx-auto w-full max-w-4xl px-4 py-8">
+      <h1 className="mb-8 text-center text-4xl font-semibold text-gray-900">YouTube API Integration Test</h1>
 
-      <Card shadow="sm" padding="lg" radius="md" withBorder mb="xl">
+      <div className="mb-8 rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
         <div className="mb-4 flex items-center gap-3">
           {status === 'loading' && <IconLoader className="animate-spin" />}
           {status === 'success' && <IconCheck color="green" />}
           {status === 'error' && <IconX color="red" />}
 
-          <Title order={3}>
+          <h3 className="text-2xl font-semibold text-gray-900">
             {status === 'loading' && 'Testing YouTube API...'}
             {status === 'success' && 'YouTube API Working!'}
             {status === 'error' && 'YouTube API Error'}
-          </Title>
+          </h3>
         </div>
 
         {status === 'error' && (
-          <Alert color="red" mb="md">
-            <Text fw={500}>Error Details:</Text>
-            <Text size="sm">{error}</Text>
-          </Alert>
+          <div className="mb-4 rounded-lg border border-amber-300 bg-amber-50 p-4 text-amber-900">
+            <p className="font-medium text-gray-700">Error Details:</p>
+            <p className="text-sm text-gray-700">{error}</p>
+          </div>
         )}
 
         {status === 'success' && result && (
           <div>
-            <Alert color="green" mb="md">
-              <Text fw={500}>✅ YouTube API is working correctly!</Text>
-            </Alert>
+            <div className="mb-4 rounded-lg border border-amber-300 bg-amber-50 p-4 text-amber-900">
+              <p className="font-medium text-gray-700">✅ YouTube API is working correctly!</p>
+            </div>
 
-            <Title order={4} mb="md">
+            <h4 className="mb-4 text-xl font-semibold text-gray-900">
               Search Results for "ADMI" ({result.searchResults.length} found):
-            </Title>
+            </h4>
             {result.searchResults.map((channel: any, index: number) => (
-              <Card key={channel.snippet.channelId} withBorder p="md" mb="sm">
-                <Text fw={500}>
+              <div
+                key={channel.snippet.channelId}
+                className="mb-2 rounded-xl border border-gray-200 bg-white p-4 shadow-sm"
+              >
+                <p className="font-medium text-gray-700">
                   {index + 1}. {channel.snippet.title}
-                </Text>
-                <Text size="sm" c="dimmed">
-                  Channel ID: {channel.snippet.channelId}
-                </Text>
-                <Text size="sm">{channel.snippet.description.substring(0, 100)}...</Text>
+                </p>
+                <p className="text-sm text-gray-500">Channel ID: {channel.snippet.channelId}</p>
+                <p className="text-sm text-gray-700">{channel.snippet.description.substring(0, 100)}...</p>
                 {channel.snippet.channelId === result.actualChannelId && (
-                  <Text size="sm" c="green" fw={500}>
-                    ← Using this channel
-                  </Text>
+                  <p className="text-sm font-medium text-green-600">← Using this channel</p>
                 )}
-              </Card>
+              </div>
             ))}
 
             {result.channel && (
               <>
-                <Title order={4} mb="md">
-                  Channel Information:
-                </Title>
-                <Card withBorder p="md" mb="md">
-                  <Text>
+                <h4 className="mb-4 text-xl font-semibold text-gray-900">Channel Information:</h4>
+                <div className="mb-4 rounded-xl border border-gray-200 bg-white p-4 shadow-sm">
+                  <p className="text-gray-700">
                     <strong>Name:</strong> {result.channel.snippet.title}
-                  </Text>
-                  <Text>
+                  </p>
+                  <p className="text-gray-700">
                     <strong>Subscribers:</strong> {result.channel.statistics?.subscriberCount || 'N/A'}
-                  </Text>
-                  <Text>
+                  </p>
+                  <p className="text-gray-700">
                     <strong>Total Videos:</strong> {result.channel.statistics?.videoCount || 'N/A'}
-                  </Text>
-                  <Text>
+                  </p>
+                  <p className="text-gray-700">
                     <strong>Total Views:</strong> {result.channel.statistics?.viewCount || 'N/A'}
-                  </Text>
-                </Card>
+                  </p>
+                </div>
               </>
             )}
 
-            <Title order={4} mb="md">
-              Videos from Channel ({result.videos.length}):
-            </Title>
+            <h4 className="mb-4 text-xl font-semibold text-gray-900">Videos from Channel ({result.videos.length}):</h4>
             {result.videos.length > 0 ? (
               result.videos.map((video: any, index: number) => (
-                <Card key={video.id.videoId} withBorder p="md" mb="sm">
-                  <Text fw={500}>
+                <div key={video.id.videoId} className="mb-2 rounded-xl border border-gray-200 bg-white p-4 shadow-sm">
+                  <p className="font-medium text-gray-700">
                     {index + 1}. {video.snippet.title}
-                  </Text>
-                  <Text size="sm" c="dimmed">
+                  </p>
+                  <p className="text-sm text-gray-500">
                     Channel: {video.snippet.channelTitle} (ID: {video.snippet.channelId})
-                  </Text>
-                  <Text size="sm" c="dimmed">
+                  </p>
+                  <p className="text-sm text-gray-500">
                     Published: {new Date(video.snippet.publishedAt).toLocaleDateString()}
-                  </Text>
+                  </p>
                   {video.snippet.channelId !== result.channelId && (
-                    <Text size="sm" c="red" fw={500}>
-                      ⚠️ This video is NOT from the target channel!
-                    </Text>
+                    <p className="text-sm font-medium text-red-600">⚠️ This video is NOT from the target channel!</p>
                   )}
-                </Card>
+                </div>
               ))
             ) : (
-              <Text c="orange">No videos found for this channel</Text>
+              <p className="text-orange-600">No videos found for this channel</p>
             )}
 
-            <Title order={4} mb="md">
-              Debug Information:
-            </Title>
-            <Code block>
+            <h4 className="mb-4 text-xl font-semibold text-gray-900">Debug Information:</h4>
+            <code className="block rounded bg-gray-100 px-1.5 py-0.5 font-mono text-sm">
               API Key: {result.apiKey}
               {'\n'}Target Channel ID: {result.channelId}
               {'\n'}Channel Found: {result.channelFound ? 'Yes' : 'No'}
               {'\n'}Videos Found: {result.videosFound}
               {'\n'}Environment: {process.env.NODE_ENV}
-            </Code>
+            </code>
 
             {result.channelFound && result.channel && (
-              <Alert color="green" mt="md">
-                <Text fw={500}>✅ Channel Verified: {result.channel.snippet.title}</Text>
-                <Text size="sm">This is the correct ADMI channel</Text>
-              </Alert>
+              <div className="mt-4 rounded-lg border border-amber-300 bg-amber-50 p-4 text-amber-900">
+                <p className="font-medium text-gray-700">✅ Channel Verified: {result.channel.snippet.title}</p>
+                <p className="text-sm text-gray-700">This is the correct ADMI channel</p>
+              </div>
             )}
 
             {!result.channelFound && (
-              <Alert color="red" mt="md">
-                <Text fw={500}>❌ Channel Not Found</Text>
-                <Text size="sm">The channel ID might be incorrect</Text>
-              </Alert>
+              <div className="mt-4 rounded-lg border border-amber-300 bg-amber-50 p-4 text-amber-900">
+                <p className="font-medium text-gray-700">❌ Channel Not Found</p>
+                <p className="text-sm text-gray-700">The channel ID might be incorrect</p>
+              </div>
             )}
           </div>
         )}
 
         <div className="mt-6 flex gap-3">
-          <Button onClick={testYouTubeAPI} loading={status === 'loading'}>
-            Test Again
-          </Button>
-          <Button variant="outline" component="a" href="/media-archive/videos">
+          <button
+            className="inline-flex items-center gap-2 rounded-lg bg-brand-orange px-4 py-2 font-medium text-white transition"
+            onClick={testYouTubeAPI}
+            disabled={status === 'loading'}
+          >
+            {status === 'loading' ? 'Testing...' : 'Test Again'}
+          </button>
+          <a
+            href="/media-archive/videos"
+            className="inline-flex items-center gap-2 rounded-lg border border-gray-400 bg-white px-4 py-2 font-medium text-gray-900 transition"
+          >
             Go to Video Gallery
-          </Button>
-          <Button variant="outline" component="a" href="/courses/film-and-television-production-diploma">
+          </a>
+          <Link
+            href="/courses/film-and-television-production-diploma"
+            className="inline-flex items-center gap-2 rounded-lg border border-gray-400 bg-white px-4 py-2 font-medium text-gray-900 transition"
+          >
             Test Course Page
-          </Button>
+          </Link>
         </div>
-      </Card>
+      </div>
 
-      <Card shadow="sm" padding="lg" radius="md" withBorder bg="gray.0">
-        <Title order={4} mb="md">
-          Troubleshooting Tips:
-        </Title>
-        <Text size="sm" mb="xs">
-          • Make sure NEXT_PUBLIC_YOUTUBE_API_KEY is set in your .env file
-        </Text>
-        <Text size="sm" mb="xs">
-          • Verify the API key has YouTube Data API v3 enabled
-        </Text>
-        <Text size="sm" mb="xs">
-          • Check that the API key allows requests from localhost:3000
-        </Text>
-        <Text size="sm" mb="xs">
-          • Ensure the channel ID is correct for ADMI's YouTube channel
-        </Text>
-      </Card>
-    </Container>
+      <div className="rounded-xl border border-gray-200 bg-gray-50 p-6 shadow-sm">
+        <h4 className="mb-4 text-xl font-semibold text-gray-900">Troubleshooting Tips:</h4>
+        <p className="mb-1 text-sm text-gray-700">• Make sure NEXT_PUBLIC_YOUTUBE_API_KEY is set in your .env file</p>
+        <p className="mb-1 text-sm text-gray-700">• Verify the API key has YouTube Data API v3 enabled</p>
+        <p className="mb-1 text-sm text-gray-700">• Check that the API key allows requests from localhost:3000</p>
+        <p className="mb-1 text-sm text-gray-700">• Ensure the channel ID is correct for ADMI's YouTube channel</p>
+      </div>
+    </div>
   )
 }

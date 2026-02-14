@@ -1,5 +1,3 @@
-import { Button as MantineButton, Text } from '@/lib/tw-mantine'
-
 type Props = {
   label: string
   size: string
@@ -15,22 +13,23 @@ export default function Button(props: Props) {
 
   return (
     <div className="w-full">
-      <MantineButton
-        size={size}
-        bg={backgroundColor || 'admiRed'}
-        radius={6}
-        w={'100%'}
+      <button
+        className="inline-flex w-full items-center justify-center gap-2 rounded-lg px-4 py-2 font-medium transition"
+        style={{
+          backgroundColor: backgroundColor || 'admiRed',
+          borderRadius: 6
+        }}
         onClick={onClick}
         type={type}
         disabled={disabled}
-        {...rest} // any other props
+        {...rest}
       >
         <div className="font-nexa">
-          <Text size={size} fw={900} c={color}>
+          <p className="text-gray-700" style={{ fontSize: size, fontWeight: 900, color }}>
             {label}
-          </Text>
+          </p>
         </div>
-      </MantineButton>
+      </button>
     </div>
   )
 }

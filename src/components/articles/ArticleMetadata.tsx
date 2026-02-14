@@ -1,5 +1,4 @@
 import React, { useMemo } from 'react'
-import { Box, Badge, Group, Stack, Text, Card, SimpleGrid } from '@/lib/tw-mantine'
 
 interface ArticleMetadataProps {
   tags?: string[]
@@ -30,52 +29,38 @@ export function ArticleMetadata({
     : null
 
   return (
-    <Stack gap="md" mb="xl">
+    <div className="mb-8 flex flex-col gap-4">
       {/* Publishing info */}
-      <Group gap="md">
-        {author && (
-          <Text size="sm" c="dimmed">
-            By {author}
-          </Text>
-        )}
-        {formattedDate && (
-          <Text size="sm" c="dimmed">
-            {formattedDate}
-          </Text>
-        )}
-        {readingTime > 0 && (
-          <Text size="sm" c="dimmed">
-            {readingTime} min read
-          </Text>
-        )}
-      </Group>
+      <div className="flex flex-wrap gap-4">
+        {author && <p className="text-sm text-gray-500">By {author}</p>}
+        {formattedDate && <p className="text-sm text-gray-500">{formattedDate}</p>}
+        {readingTime > 0 && <p className="text-sm text-gray-500">{readingTime} min read</p>}
+      </div>
 
       {/* Category badge */}
       {category && (
-        <Group gap="xs">
-          <Badge variant="light" size="lg">
+        <div className="flex flex-wrap gap-1">
+          <span className="inline-flex items-center rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-gray-800">
             {category}
-          </Badge>
-        </Group>
+          </span>
+        </div>
       )}
 
       {/* Tags */}
       {tags.length > 0 && (
-        <Group gap="xs">
+        <div className="flex flex-wrap gap-1">
           {tags.map((tag) => (
-            <Badge
+            <a
               key={tag}
-              variant="outline"
-              component="a"
               href={`/resources?tag=${encodeURIComponent(tag)}`}
-              style={{ cursor: 'pointer' }}
+              className="inline-flex cursor-pointer items-center rounded-full border border-gray-300 bg-white px-3 py-1 text-xs font-semibold uppercase tracking-wide text-gray-800 hover:bg-gray-50"
             >
               {tag}
-            </Badge>
+            </a>
           ))}
-        </Group>
+        </div>
       )}
-    </Stack>
+    </div>
   )
 }
 
@@ -123,21 +108,18 @@ export function RelatedArticles({ currentArticleTags = [], currentArticleId, art
   if (scoredArticles.length === 0) return null
 
   return (
-    <Box mt="xl" pt="xl" style={{ borderTop: '1px solid var(--mantine-color-gray-3)' }}>
-      <Text fw={600} size="lg" mb="md">
+    <div className="mt-8 pt-8" style={{ borderTop: '1px solid var(--mantine-color-gray-3)' }}>
+      <p className="mb-4 text-lg text-gray-700" style={{ fontWeight: 600 }}>
         Related Articles
-      </Text>
+      </p>
 
-      <SimpleGrid cols={{ base: 1, sm: 2, md: 3 }} spacing="md">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
         {scoredArticles.map((article) => (
-          <Card
+          <a
             key={article.id}
-            component="a"
             href={`/resources/${article.slug}`}
-            p="md"
-            radius="md"
-            className="h-full transition-shadow hover:shadow-md"
-            style={{ cursor: 'pointer', textDecoration: 'none' }}
+            className="h-full rounded-xl border border-gray-200 bg-white p-4 shadow-sm transition-shadow hover:shadow-md"
+            style={{ cursor: 'pointer', textDecoration: 'none', borderRadius: '0.375rem' }}
           >
             {article.coverImage && (
               <div
@@ -152,27 +134,35 @@ export function RelatedArticles({ currentArticleTags = [], currentArticleId, art
               />
             )}
 
-            <Text fw={600} size="sm" lineClamp={2} className="mb-2">
+            <p
+              className="mb-2 text-sm text-gray-700"
+              style={{
+                fontWeight: 600,
+                display: '-webkit-box',
+                WebkitLineClamp: 2,
+                WebkitBoxOrient: 'vertical',
+                overflow: 'hidden'
+              }}
+            >
               {article.title}
-            </Text>
+            </p>
 
-            <Text size="xs" c="dimmed" lineClamp={2} mb="md">
+            <p
+              className="mb-4 text-xs text-gray-500"
+              style={{ display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}
+            >
               {article.summary}
-            </Text>
+            </p>
 
-            <Group gap="xs" justify="space-between">
-              <Group gap="xs">
-                {article.readingTime && (
-                  <Text size="xs" c="dimmed">
-                    {article.readingTime} min
-                  </Text>
-                )}
-              </Group>
-            </Group>
-          </Card>
+            <div className="flex flex-wrap justify-between gap-1">
+              <div className="flex flex-wrap gap-1">
+                {article.readingTime && <p className="text-xs text-gray-500">{article.readingTime} min</p>}
+              </div>
+            </div>
+          </a>
         ))}
-      </SimpleGrid>
-    </Box>
+      </div>
+    </div>
   )
 }
 

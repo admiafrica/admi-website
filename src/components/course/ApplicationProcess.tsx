@@ -1,4 +1,3 @@
-import { Text } from '@/lib/tw-mantine'
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer'
 import { CollapsibleContent } from '../shared/v3'
 import { useIsMobile } from '@/hooks/useIsMobile'
@@ -19,10 +18,10 @@ export default function CourseApplicationProcess({ processes }: Props) {
           <Title size={isMobile ? '24px' : '32px'} label="Application Process" color="black" className="mt-4" />
         </div>
         <div className="font-proxima">
-          <Text size="1.2em" fw={500}>
+          <p className="font-medium text-gray-700" style={{ fontSize: '1.2em' }}>
             The application process is straightforward and designed to guide you step-by-step, from submitting your
             documents to securing your spot in our creative programs.
-          </Text>
+          </p>
         </div>
         {processes.map((process, index) => (
           <CollapsibleContent

@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Container, Title, Card, Text, Group, Badge, Table, Loader, Alert, Button } from '@/lib/tw-mantine'
 
 interface SpamLog {
   timestamp: string
@@ -58,123 +57,121 @@ export default function SpamMonitorPage() {
 
   if (loading) {
     return (
-      <Container size="xl" py="xl">
-        <Group justify="center">
-          <Loader size="lg" />
-          <Text>Loading spam monitor data...</Text>
-        </Group>
-      </Container>
+      <div className="mx-auto w-full max-w-6xl px-4 py-8">
+        <div className="flex items-center justify-center gap-4">
+          <div className="h-5 w-5 animate-spin rounded-full border-2 border-gray-300 border-t-gray-700" />
+          <p className="text-gray-700">Loading spam monitor data...</p>
+        </div>
+      </div>
     )
   }
 
   if (error) {
     return (
-      <Container size="xl" py="xl">
-        <Alert color="red" title="Error">
+      <div className="mx-auto w-full max-w-6xl px-4 py-8">
+        <div className="rounded-lg border border-amber-300 bg-amber-50 p-4 text-amber-900">
+          <div className="mb-1 font-semibold">Error</div>
           {error}
-        </Alert>
-        <Button onClick={fetchData} mt="md">
+        </div>
+        <button
+          className="mt-4 inline-flex items-center gap-2 rounded-lg bg-brand-orange px-4 py-2 font-medium text-white transition"
+          onClick={fetchData}
+        >
           Retry
-        </Button>
-      </Container>
+        </button>
+      </div>
     )
   }
 
   return (
-    <Container size="xl" py="xl">
-      <Title order={1} mb="xl">
-        Spam Monitor Dashboard
-      </Title>
+    <div className="mx-auto w-full max-w-6xl px-4 py-8">
+      <h1 className="mb-8 text-4xl font-semibold text-gray-900">Spam Monitor Dashboard</h1>
 
       {stats && (
-        <Group mb="xl" grow>
-          <Card shadow="sm" padding="lg" radius="md" withBorder>
-            <Text size="sm" c="dimmed">
-              Total Spam Attempts
-            </Text>
-            <Text fw={500} size="xl">
-              {stats.totalAttempts}
-            </Text>
-          </Card>
+        <div className="mb-8 grid flex-1 grid-cols-1 gap-4 md:grid-cols-3">
+          <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+            <p className="text-sm text-gray-500">Total Spam Attempts</p>
+            <p className="text-xl font-medium text-gray-700">{stats.totalAttempts}</p>
+          </div>
 
-          <Card shadow="sm" padding="lg" radius="md" withBorder>
-            <Text size="sm" c="dimmed">
-              Unique IPs
-            </Text>
-            <Text fw={500} size="xl">
-              {stats.uniqueIPs}
-            </Text>
-          </Card>
+          <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+            <p className="text-sm text-gray-500">Unique IPs</p>
+            <p className="text-xl font-medium text-gray-700">{stats.uniqueIPs}</p>
+          </div>
 
-          <Card shadow="sm" padding="lg" radius="md" withBorder>
-            <Text size="sm" c="dimmed">
-              Recent Attempts
-            </Text>
-            <Text fw={500} size="xl">
-              {stats.recentAttempts}
-            </Text>
-          </Card>
-        </Group>
+          <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+            <p className="text-sm text-gray-500">Recent Attempts</p>
+            <p className="text-xl font-medium text-gray-700">{stats.recentAttempts}</p>
+          </div>
+        </div>
       )}
 
       {stats?.topReasons && stats.topReasons.length > 0 && (
-        <Card shadow="sm" padding="lg" radius="md" withBorder mb="xl">
-          <Title order={3} mb="md">
-            Top Spam Reasons
-          </Title>
-          <Group gap="xs">
+        <div className="mb-8 rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+          <h3 className="mb-4 text-2xl font-semibold text-gray-900">Top Spam Reasons</h3>
+          <div className="flex flex-wrap gap-1">
             {stats.topReasons.map((reason, index) => (
-              <Badge key={index} variant="light" size="lg">
+              <span
+                key={index}
+                className="inline-flex items-center rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-gray-800"
+              >
                 {reason.reason} ({reason.count})
-              </Badge>
+              </span>
             ))}
-          </Group>
-        </Card>
+          </div>
+        </div>
       )}
 
-      <Card shadow="sm" padding="lg" radius="md" withBorder>
-        <Group justify="space-between" mb="md">
-          <Title order={3}>Recent Spam Attempts</Title>
-          <Button onClick={fetchData} variant="light" size="sm">
+      <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+        <div className="mb-4 flex flex-wrap justify-between">
+          <h3 className="text-2xl font-semibold text-gray-900">Recent Spam Attempts</h3>
+          <button
+            className="inline-flex items-center gap-2 rounded-lg bg-gray-100 px-4 py-2 text-sm font-medium text-gray-900 transition"
+            onClick={fetchData}
+          >
             Refresh
-          </Button>
-        </Group>
+          </button>
+        </div>
 
         {logs.length > 0 ? (
-          <Table.ScrollContainer minWidth={800}>
-            <Table striped highlightOnHover>
-              <Table.Thead>
-                <Table.Tr>
-                  <Table.Th>Timestamp</Table.Th>
-                  <Table.Th>IP Address</Table.Th>
-                  <Table.Th>URL</Table.Th>
-                  <Table.Th>Reason</Table.Th>
-                  <Table.Th>User Agent</Table.Th>
-                </Table.Tr>
-              </Table.Thead>
-              <Table.Tbody>
+          <div className="w-full overflow-auto" style={{ minWidth: 800 }}>
+            <table className="w-full border-collapse">
+              <thead>
+                <tr>
+                  <th className="border border-gray-200 p-3 text-left">Timestamp</th>
+                  <th className="border border-gray-200 p-3 text-left">IP Address</th>
+                  <th className="border border-gray-200 p-3 text-left">URL</th>
+                  <th className="border border-gray-200 p-3 text-left">Reason</th>
+                  <th className="border border-gray-200 p-3 text-left">User Agent</th>
+                </tr>
+              </thead>
+              <tbody>
                 {logs.map((log, index) => (
-                  <Table.Tr key={index}>
-                    <Table.Td>{new Date(log.timestamp).toLocaleString()}</Table.Td>
-                    <Table.Td>{log.ip}</Table.Td>
-                    <Table.Td style={{ maxWidth: 300, overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                  <tr key={index}>
+                    <td className="border border-gray-200 p-3 align-top">{new Date(log.timestamp).toLocaleString()}</td>
+                    <td className="border border-gray-200 p-3 align-top">{log.ip}</td>
+                    <td
+                      className="border border-gray-200 p-3 align-top"
+                      style={{ maxWidth: 300, overflow: 'hidden', textOverflow: 'ellipsis' }}
+                    >
                       {log.url}
-                    </Table.Td>
-                    <Table.Td>{log.reason}</Table.Td>
-                    <Table.Td style={{ maxWidth: 200, overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                    </td>
+                    <td className="border border-gray-200 p-3 align-top">{log.reason}</td>
+                    <td
+                      className="border border-gray-200 p-3 align-top"
+                      style={{ maxWidth: 200, overflow: 'hidden', textOverflow: 'ellipsis' }}
+                    >
                       {log.userAgent}
-                    </Table.Td>
-                  </Table.Tr>
+                    </td>
+                  </tr>
                 ))}
-              </Table.Tbody>
-            </Table>
-          </Table.ScrollContainer>
+              </tbody>
+            </table>
+          </div>
         ) : (
-          <Text c="dimmed" ta="center" py="xl">
-            No spam attempts recorded yet
-          </Text>
+          <p className="py-8 text-center text-gray-500">No spam attempts recorded yet</p>
         )}
-      </Card>
-    </Container>
+      </div>
+    </div>
   )
 }

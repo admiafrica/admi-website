@@ -1,4 +1,4 @@
-"use client"
+'use client'
 
 import React from 'react'
 
@@ -12,10 +12,14 @@ export const Carousel = ({ className, children, ...rest }: AnyProps) => (
   </div>
 )
 
-Carousel.Slide = ({ className, children, ...rest }: AnyProps) => (
-  <div className={cx('min-w-[280px] flex-shrink-0 snap-start', className)} {...rest}>
-    {children}
-  </div>
-)
+function CarouselSlide({ className, children, ...rest }: AnyProps) {
+  return (
+    <div className={cx('min-w-[280px] flex-shrink-0 snap-start', className)} {...rest}>
+      {children}
+    </div>
+  )
+}
+
+Carousel.Slide = CarouselSlide
 
 export default Carousel

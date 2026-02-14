@@ -1,4 +1,3 @@
-import { Group } from '@/lib/tw-mantine'
 import { CollapsibleContent } from '../shared/v3'
 import { getAssetDetails, ensureProtocol } from '@/utils'
 import Image from 'next/image'
@@ -17,7 +16,7 @@ export default function CourseMentors(props: Props) {
   if (!showMentors) return
 
   return (
-    <Group bg={'#EF7B2E'} py={32}>
+    <div className="flex flex-wrap" style={{ backgroundColor: '#EF7B2E', paddingTop: 32, paddingBottom: 32 }}>
       <div className="mx-auto w-full max-w-screen-xl px-4">
         <div>
           <Title size={isMobile ? '24px' : '32px'} label="Course Leader & Mentor" color="white" className="py-4" />
@@ -43,6 +42,6 @@ export default function CourseMentors(props: Props) {
           ))}
         </div>
       </div>
-    </Group>
+    </div>
   )
 }

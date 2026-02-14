@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Box, Card } from '@/lib/tw-mantine'
 import { IconMail, IconPhone, IconCalendar, IconBrandWhatsapp, IconArrowRight } from '@tabler/icons-react'
 
 import { GoogleAnalyticsTag } from '@/components/shared'
@@ -101,7 +100,7 @@ export default function EnquiryThanksPage() {
   return (
     <MainLayout footerBgColor="#002A23" minimizeFooter>
       <PageSEO title="Enquiry Submitted" />
-      <Box className="relative w-full">
+      <div className="relative w-full">
         <GoogleAnalyticsTag analyticsId={process.env.NEXT_PUBLIC_ADMI_GTM_ID as string} />
         <div className="min-h-[100vh] w-full bg-admi-green pb-16 pt-16">
           {/* BACKGROUND IMAGES */}
@@ -116,13 +115,9 @@ export default function EnquiryThanksPage() {
             </div>
           </div>
 
-          <Box className="relative z-10 w-full px-4">
+          <div className="relative z-10 w-full px-4">
             {/* Success Card */}
-            <Card
-              className="m-auto mt-[120px] flex w-full max-w-[640px] flex-col items-center p-6 sm:p-10"
-              withBorder
-              radius={12}
-            >
+            <div className="m-auto mt-[120px] flex w-full max-w-[640px] flex-col items-center rounded-xl border border-gray-200 bg-white p-6 shadow-sm sm:p-10">
               <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-green-100">
                 <Image fetchPriority="high" src={successIcon.src} alt="Success" width={40} height={40} />
               </div>
@@ -177,10 +172,10 @@ export default function EnquiryThanksPage() {
                   ))}
                 </div>
               </div>
-            </Card>
-          </Box>
+            </div>
+          </div>
         </div>
-      </Box>
+      </div>
     </MainLayout>
   )
 }

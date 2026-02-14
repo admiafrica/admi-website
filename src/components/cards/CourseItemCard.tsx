@@ -1,5 +1,4 @@
 import Image from 'next/image'
-import { Box, Card } from '@/lib/tw-mantine'
 import { Title } from '@/components/ui'
 import { getAssetDetails, ensureProtocol } from '@/utils'
 import { useRouter } from 'next/router'
@@ -21,19 +20,15 @@ export default function CourseItemCard({ course }: Props) {
   }
 
   return (
-    <Card
-      shadow="sm"
-      padding="lg"
-      radius="md"
-      withBorder
-      w={300}
-      className="hover:border-1 h-full cursor-pointer hover:border-solid hover:border-admiRed"
+    <div
+      className="hover:border-1 h-full cursor-pointer rounded-xl border border-gray-200 bg-white shadow-sm hover:border-solid hover:border-admiRed"
+      style={{ width: 300 }}
       onClick={handleCourseClick}
     >
       <motion.div
         whileHover="hover" // Shared hover animation key
       >
-        <Card.Section>
+        <div>
           <Image
             width={300}
             height={169}
@@ -44,11 +39,11 @@ export default function CourseItemCard({ course }: Props) {
             }
             alt={course.fields.name}
           />
-        </Card.Section>
-        <Box className="flex h-[70px]">
-          <Box className="grow pt-4">
+        </div>
+        <div className="flex h-[70px]">
+          <div className="grow pt-4">
             <Title label={course.fields.name} size="18px" color="black" />
-          </Box>
+          </div>
           {/* Arrow Icon with Animation */}
           <motion.div
             className="my-auto mt-2 flex h-full"
@@ -64,8 +59,8 @@ export default function CourseItemCard({ course }: Props) {
           >
             <IconArrowTipRight width={36} height={36} color={'#F60834'} />
           </motion.div>
-        </Box>
+        </div>
       </motion.div>
-    </Card>
+    </div>
   )
 }

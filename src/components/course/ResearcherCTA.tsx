@@ -1,4 +1,4 @@
-import { Paper, Group, Stack, Text, Button } from '@/lib/tw-mantine'
+import Link from 'next/link'
 import { IconChartBar } from '@tabler/icons-react'
 
 /**
@@ -7,33 +7,31 @@ import { IconChartBar } from '@tabler/icons-react'
  */
 export function ResearcherCTA() {
   return (
-    <Paper shadow="xs" p="lg" mb="xl" radius="md" className="border border-blue-200 bg-blue-50">
-      <Group justify="space-between" wrap="wrap" gap="md">
-        <Stack gap="xs" style={{ flex: '1 1 300px' }}>
-          <Group gap="xs">
+    <div className="mb-6 rounded-xl border border-blue-200 bg-blue-50 bg-white p-6 shadow-sm">
+      <div className="flex flex-wrap justify-between gap-4">
+        <div className="flex flex-col gap-1" style={{ flex: '1 1 300px' }}>
+          <div className="flex flex-wrap gap-1">
             <IconChartBar size={20} color="#1971c2" />
-            <Text size="lg" fw={600} c="#1971c2">
+            <p className="text-lg font-semibold text-gray-700" style={{ color: '#1971c2' }}>
               Not sure which program is right for you?
-            </Text>
-          </Group>
-          <Text size="sm" c="dimmed">
+            </p>
+          </div>
+          <p className="text-sm text-gray-500">
             Dive deep into price-to-value comparisons • Calculate lifetime earnings • Understand career trajectory
             differences
-          </Text>
-        </Stack>
+          </p>
+        </div>
 
-        <Group gap="sm" style={{ flex: '0 0 auto' }}>
-          <Button
-            component="a"
+        <div className="flex flex-wrap gap-2" style={{ flex: '0 0 auto' }}>
+          <Link
             href="/programs/diploma-vs-certificate"
-            variant="light"
-            color="blue"
-            leftSection={<IconChartBar size={18} />}
+            className="inline-flex items-center gap-2 rounded-lg bg-blue-100 px-4 py-2 font-medium text-blue-900 transition"
           >
+            <IconChartBar size={18} />
             Compare Programs
-          </Button>
-        </Group>
-      </Group>
-    </Paper>
+          </Link>
+        </div>
+      </div>
+    </div>
   )
 }

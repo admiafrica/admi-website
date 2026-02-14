@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import { Alert, Box, Text, TextInput, Textarea, Select } from '@/lib/tw-mantine'
 import { useForm } from '@/lib/tw-mantine-form'
 import { Button, Paragraph, Title } from '../ui'
 import PhoneInput from 'react-phone-input-2'
@@ -160,115 +159,122 @@ export default function ContactForm() {
       </div>
 
       {alert && (
-        <Alert
-          color={alert.type === 'success' ? '#339900' : '#ff9966'}
-          title={<Paragraph fontWeight={900}>{alert.type === 'success' ? 'Success' : 'Error'}</Paragraph>}
-          mb={20}
+        <div
+          className="rounded-lg border border-amber-300 bg-amber-50 p-4 text-amber-900"
+          style={{ marginBottom: 20, borderColor: alert.type === 'success' ? '#339900' : '#ff9966' }}
         >
+          <div className="mb-1 font-semibold">
+            <Paragraph fontWeight={900}>{alert.type === 'success' ? 'Success' : 'Error'}</Paragraph>
+          </div>
           <Paragraph>{alert.message}</Paragraph>
-        </Alert>
+        </div>
       )}
 
       <form onSubmit={form.onSubmit((values) => handleSubmit(values))}>
         {/* Name Fields */}
-        <Box className="flex flex-col gap-4 sm:flex-row">
-          <TextInput
-            className="flex-1"
-            label={
-              <div className="flex pl-2">
-                <Title label="First Name" color="black" size="1.4em" />
-                <IconAsterisk size={8} className="mt-1.5 text-admiRed" />
-              </div>
-            }
-            placeholder="Enter your first name"
-            key={form.key('firstName')}
-            {...form.getInputProps('firstName')}
-          />
-          <TextInput
-            className="flex-1"
-            label={
-              <div className="flex pl-2">
-                <Title label="Last Name" color="black" size="1.4em" />
-                <IconAsterisk size={8} className="mt-1.5 text-admiRed" />
-              </div>
-            }
-            placeholder="Enter your last name"
-            key={form.key('lastName')}
-            {...form.getInputProps('lastName')}
-          />
-        </Box>
-
-        {/* Email */}
-        <TextInput
-          my={16}
-          label={
+        <div className="flex flex-col gap-4 sm:flex-row">
+          <div className="flex-1">
             <div className="flex pl-2">
-              <Title label="Email Address" color="black" size="1.4em" />
+              <Title label="First Name" color="black" size="1.4em" />
               <IconAsterisk size={8} className="mt-1.5 text-admiRed" />
             </div>
-          }
-          placeholder="your@email.com"
-          key={form.key('email')}
-          {...form.getInputProps('email')}
-        />
+            <input
+              className="h-11 w-full rounded-lg border border-gray-300 bg-[#f8fafc] px-3"
+              placeholder="Enter your first name"
+              key={form.key('firstName')}
+              {...form.getInputProps('firstName')}
+            />
+          </div>
+          <div className="flex-1">
+            <div className="flex pl-2">
+              <Title label="Last Name" color="black" size="1.4em" />
+              <IconAsterisk size={8} className="mt-1.5 text-admiRed" />
+            </div>
+            <input
+              className="h-11 w-full rounded-lg border border-gray-300 bg-[#f8fafc] px-3"
+              placeholder="Enter your last name"
+              key={form.key('lastName')}
+              {...form.getInputProps('lastName')}
+            />
+          </div>
+        </div>
+
+        {/* Email */}
+        <div style={{ marginTop: 16, marginBottom: 16 }}>
+          <div className="flex pl-2">
+            <Title label="Email Address" color="black" size="1.4em" />
+            <IconAsterisk size={8} className="mt-1.5 text-admiRed" />
+          </div>
+          <input
+            className="h-11 w-full rounded-lg border border-gray-300 bg-[#f8fafc] px-3"
+            placeholder="your@email.com"
+            key={form.key('email')}
+            {...form.getInputProps('email')}
+          />
+        </div>
 
         {/* Phone */}
-        <Box my={16}>
+        <div style={{ marginTop: 16, marginBottom: 16 }}>
           <div className="flex pl-2">
             <Title label="Phone Number" color="black" size="1.4em" />
-            <Text className="ml-2 text-sm text-gray-500">(Optional)</Text>
+            <p className="ml-2 text-sm text-gray-500 text-gray-700">(Optional)</p>
           </div>
-          <Box className="flex items-center gap-2 rounded-lg border border-gray-200 p-2">
+          <div className="flex items-center gap-2 rounded-lg border border-gray-200 p-2">
             <PhoneInput
               country={'ke'}
               value={countryCode}
               onChange={(value) => setCountryCode(value)}
               inputProps={{ readOnly: true }}
             />
-            <TextInput
-              className="grow"
+            <input
+              className="h-11 w-full grow rounded-lg border border-gray-300 bg-[#f8fafc] px-3"
               placeholder="Enter phone number"
               key={form.key('phone')}
               type="tel"
               {...form.getInputProps('phone')}
             />
-          </Box>
-        </Box>
+          </div>
+        </div>
 
         {/* Subject */}
-        <Select
-          my={16}
-          label={
-            <div className="flex pl-2">
-              <Title label="Subject" color="black" size="1.4em" />
-              <IconAsterisk size={8} className="mt-1.5 text-admiRed" />
-            </div>
-          }
-          placeholder="Select a subject"
-          data={subjectOptions}
-          key={form.key('subject')}
-          {...form.getInputProps('subject')}
-        />
+        <div style={{ marginTop: 16, marginBottom: 16 }}>
+          <div className="flex pl-2">
+            <Title label="Subject" color="black" size="1.4em" />
+            <IconAsterisk size={8} className="mt-1.5 text-admiRed" />
+          </div>
+          <select
+            className="h-11 w-full rounded-lg border border-gray-300 bg-white px-3 text-gray-900"
+            key={form.key('subject')}
+            {...form.getInputProps('subject')}
+            onChange={(e) => form.getInputProps('subject').onChange(e.target.value)}
+          >
+            <option value="">Select a subject</option>
+            {subjectOptions.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
+        </div>
 
         {/* Message */}
-        <Textarea
-          my={16}
-          label={
-            <div className="flex pl-2">
-              <Title label="Message" color="black" size="1.4em" />
-              <IconAsterisk size={8} className="mt-1.5 text-admiRed" />
-            </div>
-          }
-          placeholder="Tell us how we can help you..."
-          minRows={4}
-          maxRows={8}
-          key={form.key('message')}
-          {...form.getInputProps('message')}
-        />
+        <div style={{ marginTop: 16, marginBottom: 16 }}>
+          <div className="flex pl-2">
+            <Title label="Message" color="black" size="1.4em" />
+            <IconAsterisk size={8} className="mt-1.5 text-admiRed" />
+          </div>
+          <textarea
+            className="w-full rounded-lg border border-gray-300 bg-[#f8fafc] px-3 py-2"
+            placeholder="Tell us how we can help you..."
+            rows={4}
+            key={form.key('message')}
+            {...form.getInputProps('message')}
+          />
+        </div>
 
         {/* Submit Button */}
-        <Box className="flex justify-end" mt="2em">
-          <Box className="w-full sm:w-[200px]">
+        <div className="flex justify-end" style={{ marginTop: '2em' }}>
+          <div className="w-full sm:w-[200px]">
             <Button
               size="lg"
               backgroundColor="admiRed"
@@ -276,8 +282,8 @@ export default function ContactForm() {
               type="submit"
               disabled={isSubmitting}
             />
-          </Box>
-        </Box>
+          </div>
+        </div>
       </form>
     </div>
   )

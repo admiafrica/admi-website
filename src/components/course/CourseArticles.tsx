@@ -1,5 +1,4 @@
 import React from 'react'
-import { Box, Card, SimpleGrid, Text, Badge, Group } from '@/lib/tw-mantine'
 import Link from 'next/link'
 
 interface CourseArticleProps {
@@ -29,23 +28,18 @@ export function CourseArticles({ courseName, articles = [] }: CourseArticlesProp
   if (!articles || articles.length === 0) return null
 
   return (
-    <Box mt="xl" pt="xl" pb="xl" style={{ borderTop: '1px solid var(--mantine-color-gray-3)' }}>
-      <Text fw={700} size="xl" mb="md">
-        Learn More: Related Articles & Guides
-      </Text>
+    <div className="mt-6 pb-8 pt-8" style={{ borderTop: '1px solid #dee2e6' }}>
+      <p className="mb-4 text-xl font-bold text-gray-700">Learn More: Related Articles & Guides</p>
 
-      <Text c="dimmed" mb="lg" size="sm">
+      <p className="mb-6 text-sm text-gray-500">
         Deepen your understanding of {courseName} with these complementary resources
-      </Text>
+      </p>
 
-      <SimpleGrid cols={{ base: 1, sm: 2, md: 3 }} spacing="md">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
         {articles.map((article) => (
           <Link key={article.id} href={`/resources/${article.slug}`} style={{ textDecoration: 'none' }}>
-            <Card
-              component="a"
-              p="md"
-              radius="md"
-              className="h-full transition-shadow hover:shadow-md"
+            <div
+              className="h-full rounded-xl border border-gray-200 bg-white p-4 shadow-sm transition-shadow hover:shadow-md"
               style={{ cursor: 'pointer' }}
             >
               {article.coverImage && (
@@ -61,43 +55,38 @@ export function CourseArticles({ courseName, articles = [] }: CourseArticlesProp
                 />
               )}
 
-              <Text fw={600} size="sm" lineClamp={2} className="mb-2">
-                {article.title}
-              </Text>
+              <p className="mb-2 line-clamp-2 text-sm font-semibold text-gray-700">{article.title}</p>
 
-              <Text size="xs" c="dimmed" lineClamp={2} mb="md">
-                {article.summary}
-              </Text>
+              <p className="mb-4 line-clamp-2 text-xs text-gray-500">{article.summary}</p>
 
-              <Group gap="xs" justify="space-between">
-                <Group gap="xs">
-                  {article.readingTime && (
-                    <Text size="xs" c="dimmed">
-                      {article.readingTime} min read
-                    </Text>
-                  )}
-                </Group>
-              </Group>
+              <div className="flex flex-wrap justify-between gap-1">
+                <div className="flex flex-wrap gap-1">
+                  {article.readingTime && <p className="text-xs text-gray-500">{article.readingTime} min read</p>}
+                </div>
+              </div>
 
               {article.tags && article.tags.length > 0 && (
-                <Group gap={4} mt="md">
+                <div className="mt-4 flex flex-wrap gap-1">
                   {article.tags.slice(0, 2).map((tag) => (
-                    <Badge key={tag} size="xs" variant="light">
+                    <span
+                      key={tag}
+                      className="inline-flex items-center rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-gray-800"
+                    >
                       {tag}
-                    </Badge>
+                    </span>
                   ))}
                   {article.tags.length > 2 && (
-                    <Badge size="xs" variant="light">
+                    <span className="inline-flex items-center rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-gray-800">
                       +{article.tags.length - 2}
-                    </Badge>
+                    </span>
                   )}
-                </Group>
+                </div>
               )}
-            </Card>
+            </div>
           </Link>
         ))}
-      </SimpleGrid>
-    </Box>
+      </div>
+    </div>
   )
 }
 

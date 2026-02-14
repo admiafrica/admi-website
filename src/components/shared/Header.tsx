@@ -1,4 +1,3 @@
-import { Group, Button, Text, Menu } from '@/lib/tw-mantine'
 import Link from 'next/link'
 import logo from '@/assets/logo-main.svg'
 import Image from 'next/image'
@@ -10,81 +9,121 @@ export default function CampaignHeader() {
 
   const getMenuWideScreen = () => {
     return (
-      <Group className="mx-auto">
-        <Menu trigger="hover" openDelay={100} closeDelay={400}>
-          <Menu.Target>
-            <Text style={menuItemStyle}>Home</Text>
-          </Menu.Target>
-        </Menu>
+      <div className="mx-auto flex flex-wrap">
+        <div>
+          <p className="text-gray-700" style={menuItemStyle}>
+            Home
+          </p>
+        </div>
 
-        <Menu trigger="hover" openDelay={100} closeDelay={400}>
-          <Menu.Target>
-            <Text style={menuItemStyle}>Courses</Text>
-          </Menu.Target>
-        </Menu>
+        <div>
+          <p className="text-gray-700" style={menuItemStyle}>
+            Courses
+          </p>
+        </div>
 
-        <Menu trigger="hover" openDelay={100} closeDelay={400}>
-          <Menu.Target>
-            <Text style={menuItemStyle}>Resources</Text>
-          </Menu.Target>
-        </Menu>
+        <div>
+          <p className="text-gray-700" style={menuItemStyle}>
+            Resources
+          </p>
+        </div>
 
-        <Menu trigger="hover" openDelay={100} closeDelay={400}>
-          <Menu.Target>
-            <Text style={menuItemStyle}>News</Text>
-          </Menu.Target>
-        </Menu>
+        <div>
+          <p className="text-gray-700" style={menuItemStyle}>
+            News
+          </p>
+        </div>
 
-        <Menu trigger="hover" openDelay={100} closeDelay={400}>
-          <Menu.Target>
-            <Text style={menuItemStyle}>Events</Text>
-          </Menu.Target>
-        </Menu>
+        <div>
+          <p className="text-gray-700" style={menuItemStyle}>
+            Events
+          </p>
+        </div>
 
-        <Menu trigger="hover" openDelay={100} closeDelay={400}>
-          <Menu.Target>
-            <Text style={menuItemStyle}>About</Text>
-          </Menu.Target>
-        </Menu>
-      </Group>
+        <div>
+          <p className="text-gray-700" style={menuItemStyle}>
+            About
+          </p>
+        </div>
+      </div>
     )
   }
 
   const getMenuMobile = () => {
     return (
-      <Group className="ml-auto w-fit pr-6">
-        <Menu trigger="hover" openDelay={100} closeDelay={400}>
-          <Menu.Target>
-            <IconMenu />
-          </Menu.Target>
+      <div className="ml-auto flex w-fit flex-wrap pr-6">
+        <div>
+          <IconMenu />
+        </div>
 
-          <Menu.Dropdown style={menuDrawer}>
-            <Menu.Item style={menuItemStyle}>Home</Menu.Item>
-            <Menu.Item style={menuItemStyle}>Courses</Menu.Item>
-            <Menu.Item style={menuItemStyle}>Student Support</Menu.Item>
-            <Menu.Item style={menuItemStyle}>Resources</Menu.Item>
-            <Menu.Item style={menuItemStyle}>News</Menu.Item>
-            <Menu.Item style={menuItemStyle}>Events</Menu.Item>
-            <Menu.Item style={menuItemStyle}>About</Menu.Item>
-          </Menu.Dropdown>
-        </Menu>
-      </Group>
+        <div className="rounded-lg border border-gray-200 bg-white p-1 shadow-md" style={menuDrawer}>
+          <button
+            type="button"
+            className="block w-full rounded px-3 py-2 text-left hover:bg-gray-100"
+            style={menuItemStyle}
+          >
+            Home
+          </button>
+          <button
+            type="button"
+            className="block w-full rounded px-3 py-2 text-left hover:bg-gray-100"
+            style={menuItemStyle}
+          >
+            Courses
+          </button>
+          <button
+            type="button"
+            className="block w-full rounded px-3 py-2 text-left hover:bg-gray-100"
+            style={menuItemStyle}
+          >
+            Student Support
+          </button>
+          <button
+            type="button"
+            className="block w-full rounded px-3 py-2 text-left hover:bg-gray-100"
+            style={menuItemStyle}
+          >
+            Resources
+          </button>
+          <button
+            type="button"
+            className="block w-full rounded px-3 py-2 text-left hover:bg-gray-100"
+            style={menuItemStyle}
+          >
+            News
+          </button>
+          <button
+            type="button"
+            className="block w-full rounded px-3 py-2 text-left hover:bg-gray-100"
+            style={menuItemStyle}
+          >
+            Events
+          </button>
+          <button
+            type="button"
+            className="block w-full rounded px-3 py-2 text-left hover:bg-gray-100"
+            style={menuItemStyle}
+          >
+            About
+          </button>
+        </div>
+      </div>
     )
   }
 
   return (
-    <Group className="w-full px-4">
-      <Group className="flex grow flex-row-reverse md:flex-row">
+    <div className="flex w-full flex-wrap px-4">
+      <div className="flex grow flex-row-reverse flex-wrap md:flex-row">
         <Link href="/" style={{ textDecoration: 'none' }}>
           <Image src={logo} width={80} alt="Africa Digital Media Institute" />
         </Link>
         {isMobile ? getMenuMobile() : getMenuWideScreen()}
-      </Group>
+      </div>
       {/* Enquire Button */}
-      <Button variant="primary" size="lg" color="admi-orange">
+      <button className="inline-flex items-center gap-2 rounded-lg bg-brand-orange px-4 py-2 font-medium text-white transition">
         Enquire
-      </Button>
-    </Group>
+      </button>
+    </div>
   )
 }
 

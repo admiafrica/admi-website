@@ -1,5 +1,4 @@
 import Image from 'next/image'
-import { Card, Text, NumberFormatter, Divider } from '@/lib/tw-mantine'
 
 import { Button, Paragraph, Title } from '../ui'
 
@@ -22,21 +21,27 @@ export default function CourseEnquiryCard(props: Props) {
     router.push('/enquiry')
   }
 
+  const formatNumber = (value: number) => {
+    return new Intl.NumberFormat('en-US', { useGrouping: true }).format(value)
+  }
+
   return (
-    <Card
-      className="mx-auto mt-16 h-fit w-[92vw] justify-center shadow-lg md:h-[7.125rem] md:w-full"
-      bg={'black'}
-      radius={6}
+    <div
+      className="mx-auto mt-16 h-fit w-[92vw] justify-center rounded-xl border border-gray-200 shadow-lg md:h-[7.125rem] md:w-full"
+      style={{ backgroundColor: 'black', borderRadius: 6 }}
     >
       <div className="my-auto flex w-full flex-col p-2 text-white md:flex-row md:p-4">
         <div className="my-auto flex w-full flex-col items-center pt-3 md:flex-row">
           <div className="mb-4 mr-8 w-fit text-center font-nexa md:text-left">
-            <Text size="25px" fw={900} c={'admiShamrok'} pb={8}>
+            <p
+              className="text-gray-700"
+              style={{ fontSize: '25px', fontWeight: 900, color: 'var(--admi-shamrok, #08F6CF)', paddingBottom: 8 }}
+            >
               Earn your course
-            </Text>
-            <Text size="25px" fw={900}>
+            </p>
+            <p className="text-gray-700" style={{ fontSize: '25px', fontWeight: 900, color: 'inherit' }}>
               {props.programType.fields.name.toLowerCase()} today!
-            </Text>
+            </p>
           </div>
           {isMobile ? (
             <div className="my-auto flex grow md:flex-row">
@@ -47,11 +52,21 @@ export default function CourseEnquiryCard(props: Props) {
                     Credit Hours
                   </Paragraph>
                   <Paragraph size={isMobile ? '14px' : '16px'} fontWeight={900} fontFamily="font-nexa">
-                    <NumberFormatter prefix="Hrs " value={props.creditHours} thousandSeparator />
+                    Hrs {formatNumber(props.creditHours)}
                   </Paragraph>
                 </div>
               </div>
-              <Divider orientation="vertical" size={1} opacity="30%" mx={8} />
+              <hr
+                className="border-gray-200"
+                style={{
+                  borderColor: 'rgba(255,255,255,0.3)',
+                  marginLeft: 8,
+                  marginRight: 8,
+                  height: 'auto',
+                  borderLeftWidth: 1,
+                  borderTopWidth: 0
+                }}
+              />
               <div className="flex sm:w-1/3 sm:justify-center">
                 <Image width={32} height={32} src={IconCurrency} alt="email" />
                 <div className="pl-4 text-left md:text-left">
@@ -64,28 +79,54 @@ export default function CourseEnquiryCard(props: Props) {
             </div>
           ) : (
             <div className="my-auto flex grow md:flex-row">
-              <Divider orientation="vertical" size={1} opacity="30%" mx={8} />
+              <hr
+                className="border-gray-200"
+                style={{
+                  borderColor: 'rgba(255,255,255,0.3)',
+                  marginLeft: 8,
+                  marginRight: 8,
+                  height: 'auto',
+                  borderLeftWidth: 1,
+                  borderTopWidth: 0
+                }}
+              />
               <div className="flex sm:w-1/3 sm:justify-center">
                 <Image width={32} height={32} src={IconHourglass} alt="email" />
                 <div className="px-4 text-left md:text-left">
-                  <Text size="16px" fw={100} pb={8}>
+                  <p
+                    className="text-gray-700"
+                    style={{ fontSize: '16px', fontWeight: 100, paddingBottom: 8, color: 'inherit' }}
+                  >
                     Credit Hours
-                  </Text>
-                  <Text size="16px" fw={900}>
-                    <NumberFormatter prefix="Hrs " value={props.creditHours} thousandSeparator />
-                  </Text>
+                  </p>
+                  <p className="text-gray-700" style={{ fontSize: '16px', fontWeight: 900, color: 'inherit' }}>
+                    Hrs {formatNumber(props.creditHours)}
+                  </p>
                 </div>
               </div>
-              <Divider orientation="vertical" size={1} opacity="30%" mx={8} />
+              <hr
+                className="border-gray-200"
+                style={{
+                  borderColor: 'rgba(255,255,255,0.3)',
+                  marginLeft: 8,
+                  marginRight: 8,
+                  height: 'auto',
+                  borderLeftWidth: 1,
+                  borderTopWidth: 0
+                }}
+              />
               <div className="flex sm:w-1/3 sm:justify-center">
                 <Image width={32} height={32} src={IconCurrency} alt="email" />
                 <div className="px-4 text-left md:text-left">
-                  <Text size="16px" fw={100} pb={8}>
+                  <p
+                    className="text-gray-700"
+                    style={{ fontSize: '16px', fontWeight: 100, paddingBottom: 8, color: 'inherit' }}
+                  >
                     Tuition Fees
-                  </Text>
-                  <Text size="16px" fw={900}>
+                  </p>
+                  <p className="text-gray-700" style={{ fontSize: '16px', fontWeight: 900, color: 'inherit' }}>
                     {props.tuitionFees}
-                  </Text>
+                  </p>
                 </div>
               </div>
             </div>
@@ -95,6 +136,6 @@ export default function CourseEnquiryCard(props: Props) {
           <Button size="xl" backgroundColor="admiRed" label="Enquire Today" onClick={handleEnquiry} />
         </div>
       </div>
-    </Card>
+    </div>
   )
 }

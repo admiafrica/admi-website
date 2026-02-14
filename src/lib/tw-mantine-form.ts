@@ -1,4 +1,4 @@
-"use client"
+'use client'
 
 import type { FormEvent } from 'react'
 import { useMemo, useState } from 'react'
@@ -49,24 +49,22 @@ export function useForm<T extends Record<string, any>>(config: FormConfig<T>) {
       value: (values[name] ?? '') as any,
       onChange: (event: any) => {
         const target = event?.target
-        const nextValue = target?.type === 'checkbox' ? Boolean(target.checked) : target?.value ?? event
+        const nextValue = target?.type === 'checkbox' ? Boolean(target.checked) : (target?.value ?? event)
         setValues((prev) => ({ ...prev, [name]: nextValue }))
       },
       onBlur: () => validateField(name, values[name]),
-      error: errors[name],
+      error: errors[name]
     }),
-    onSubmit:
-      (handler: (vals: T) => void | Promise<void>) =>
-      async (event?: FormEvent) => {
-        event?.preventDefault?.()
-        if (!validateAll()) return
-        await handler(values)
-      },
+    onSubmit: (handler: (vals: T) => void | Promise<void>) => async (event?: FormEvent) => {
+      event?.preventDefault?.()
+      if (!validateAll()) return
+      await handler(values)
+    },
     key: (name: keyof T) => String(name),
     reset: () => {
       setValues(config.initialValues)
       setErrors({})
     },
-    isValid: useMemo(() => Object.values(errors).every((v) => !v), [errors]),
+    isValid: useMemo(() => Object.values(errors).every((v) => !v), [errors])
   }
 }

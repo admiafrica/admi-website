@@ -1,10 +1,9 @@
 'use client'
 
-import { Anchor, type AnchorProps } from '@/lib/tw-mantine'
 import { trackWhatsAppClick } from '@/utils/utm-tracking'
 import { ADMI_WHATSAPP_NUMBER } from '@/utils/whatsapp-attribution'
 
-interface WhatsAppLinkProps extends Omit<AnchorProps, 'href' | 'onClick'> {
+interface WhatsAppLinkProps extends Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'href' | 'onClick'> {
   /** Phone number without + prefix (e.g., "254741132751") */
   phoneNumber?: string
   /** Location identifier for tracking (e.g., "footer", "contact_page", "form") */
@@ -13,6 +12,10 @@ interface WhatsAppLinkProps extends Omit<AnchorProps, 'href' | 'onClick'> {
   children: React.ReactNode
   /** Custom class name */
   className?: string
+  /** Color shorthand (kept for backward compat, applied via style) */
+  c?: string
+  /** Font weight shorthand (kept for backward compat, applied via style) */
+  fw?: string | number
 }
 
 /**
@@ -24,6 +27,8 @@ export function WhatsAppLink({
   trackingLocation = 'unknown',
   children,
   className,
+  c,
+  fw,
   ...props
 }: WhatsAppLinkProps) {
   const handleClick = () => {
@@ -32,16 +37,17 @@ export function WhatsAppLink({
   }
 
   return (
-    <Anchor
+    <a
       href={`https://wa.me/${phoneNumber}`}
       target="_blank"
       rel="noopener noreferrer"
       onClick={handleClick}
-      className={className}
+      className={`text-blue-700 hover:underline ${className || ''}`}
+      style={{ color: c, fontWeight: fw }}
       {...props}
     >
       {children}
-    </Anchor>
+    </a>
   )
 }
 
@@ -54,7 +60,7 @@ export function WhatsAppLinkPlain({
   children,
   className,
   ...props
-}: Omit<WhatsAppLinkProps, keyof AnchorProps> & React.AnchorHTMLAttributes<HTMLAnchorElement>) {
+}: Omit<WhatsAppLinkProps, 'c' | 'fw'> & React.AnchorHTMLAttributes<HTMLAnchorElement>) {
   const handleClick = () => {
     trackWhatsAppClick(phoneNumber, trackingLocation)
   }

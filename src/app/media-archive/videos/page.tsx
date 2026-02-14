@@ -3,30 +3,6 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import Image from 'next/image'
 import {
-  Container,
-  Title,
-  Text,
-  Grid,
-  Card,
-  Group,
-  Button,
-  TextInput,
-  Select,
-  Badge,
-  Loader,
-  Center,
-  Box,
-  Modal,
-  AspectRatio,
-  Tabs,
-  ScrollArea,
-  Divider,
-  Stack,
-  Breadcrumbs,
-  Anchor,
-  MantineProvider
-} from '@/lib/tw-mantine'
-import {
   IconSearch,
   IconPlayerPlay,
   IconExternalLink,
@@ -37,9 +13,6 @@ import {
 } from '@tabler/icons-react'
 import Link from 'next/link'
 import { MainLayout } from '@/layouts/v3/MainLayout'
-
-// We'll need to adapt this for App Router - for now using client-side data loading
-// In a full implementation, this would use proper App Router data fetching
 
 // Helper function to format large numbers
 const formatLargeNumber = (num: string): string => {
@@ -73,7 +46,7 @@ interface YouTubeVideo {
 }
 
 export default function VideoGallery() {
-  // State for video data - in full implementation this would come from server-side data
+  // State for video data
   const [allVideosList, setAllVideosList] = useState<any[]>([])
   const [filteredVideos, setFilteredVideos] = useState<any[]>([])
   const [displayedVideos, setDisplayedVideos] = useState<YouTubeVideo[]>([])
@@ -89,6 +62,9 @@ export default function VideoGallery() {
   const [selectedVideo, setSelectedVideo] = useState<YouTubeVideo | null>(null)
   const [modalOpened, setModalOpened] = useState(false)
 
+  // Tabs state for modal
+  const [activeTab, setActiveTab] = useState<'description' | 'related'>('description')
+
   // Videos currently visible to user (for performance)
   const visibleVideos = displayedVideos.slice(0, displayCount)
 
@@ -96,11 +72,9 @@ export default function VideoGallery() {
   const getRelatedVideos = (currentVideo: YouTubeVideo): YouTubeVideo[] => {
     if (!currentVideo) return []
 
-    // Find videos with similar tags or from same category using displayed videos (full data)
     const related = displayedVideos.filter((video) => {
       if (video.id === currentVideo.id) return false
 
-      // Check for common tags (only if both videos have tags)
       const commonTags =
         currentVideo.tags && video.tags
           ? currentVideo.tags.filter((tag: string) =>
@@ -108,7 +82,6 @@ export default function VideoGallery() {
             )
           : []
 
-      // Check for similar titles (common keywords)
       const currentWords = currentVideo.title.toLowerCase().split(' ')
       const videoWords = video.title.toLowerCase().split(' ')
       const commonWords = currentWords.filter((word) => word.length > 3 && videoWords.includes(word))
@@ -116,7 +89,7 @@ export default function VideoGallery() {
       return commonTags.length > 0 || commonWords.length > 1
     })
 
-    return related.slice(0, 6) // Return top 6 related videos
+    return related.slice(0, 6)
   }
 
   // Simple category filters
@@ -145,7 +118,6 @@ export default function VideoGallery() {
     const loadVideos = async () => {
       try {
         setLoading(true)
-        // Try to use the existing API endpoint from Pages Router
         const response = await fetch('/api/admi-videos')
 
         if (!response.ok) {
@@ -160,12 +132,10 @@ export default function VideoGallery() {
           setDisplayedVideos(data.videos.slice(0, 12))
           setChannelInfo(data.channelInfo)
         } else {
-          // Fallback: Set a message for when API works but returns no videos
           setError('No videos available at this time. Please check back later.')
         }
       } catch (err) {
         console.error('Error loading videos:', err)
-        // Provide a more informative error message
         setError(
           'Videos are temporarily unavailable. The video service may be updating. Please try again later or visit our YouTube channel directly.'
         )
@@ -181,7 +151,6 @@ export default function VideoGallery() {
   useEffect(() => {
     let filtered = allVideosList
 
-    // Apply search filter to ALL videos
     if (searchQuery.trim()) {
       filtered = filtered.filter(
         (video) =>
@@ -190,22 +159,16 @@ export default function VideoGallery() {
       )
     }
 
-    // Apply category filter - would use actual categorization logic
     if (selectedCategory && selectedCategory !== 'all') {
-      // This would use the actual manual categorization from utils
       filtered = filtered
     }
 
-    // Apply course filter - would use actual categorization logic
     if (selectedCourse && selectedCourse !== 'all') {
-      // This would use the actual manual categorization from utils
       filtered = filtered
     }
 
     setFilteredVideos(filtered)
     setDisplayedVideos(filtered.slice(0, 12))
-
-    // Reset display count when filters change for better UX
     setDisplayCount(12)
   }, [allVideosList, searchQuery, selectedCategory, selectedCourse])
 
@@ -224,7 +187,6 @@ export default function VideoGallery() {
       }
     }
 
-    // Only enable infinite scroll on mobile
     if (window.innerWidth <= 768) {
       window.addEventListener('scroll', handleScroll)
       return () => window.removeEventListener('scroll', handleScroll)
@@ -233,6 +195,7 @@ export default function VideoGallery() {
 
   const handleVideoClick = (video: YouTubeVideo) => {
     setSelectedVideo(video)
+    setActiveTab('description')
     setModalOpened(true)
   }
 
@@ -244,7 +207,6 @@ export default function VideoGallery() {
   const refreshVideos = async () => {
     setLoading(true)
     try {
-      // Refresh by reloading the page to get fresh server-side data
       window.location.reload()
     } catch (error) {
       console.error('Error refreshing videos:', error)
@@ -254,455 +216,482 @@ export default function VideoGallery() {
   }
 
   return (
-    <MantineProvider>
-      <MainLayout>
-        <Container size="xl" py="xl">
-          {/* Breadcrumbs */}
-          <Breadcrumbs mb="xl">
-            <Link href="/media-archive" passHref legacyBehavior>
-              <Anchor>Media Archive</Anchor>
-            </Link>
-            <Anchor>Videos</Anchor>
-          </Breadcrumbs>
+    <MainLayout>
+      <div className="mx-auto max-w-7xl px-4 py-8">
+        {/* Breadcrumbs */}
+        <nav className="mb-8 flex items-center gap-2 text-sm text-gray-500">
+          <Link href="/media-archive" className="text-blue-700 hover:underline">
+            Media Archive
+          </Link>
+          <span>/</span>
+          <span>Videos</span>
+        </nav>
 
-          {/* Header Section */}
-          <Box ta="center" mb="xl">
-            <Title order={1} size="h1" mb="md">
-              ADMI Video Gallery
-            </Title>
-            <Text size="lg" c="dimmed" maw={600} mx="auto">
-              Discover the ADMI experience through our video collection featuring student work, facility tours, success
-              stories, and insights into creative media education.
-            </Text>
-          </Box>
+        {/* Header Section */}
+        <div className="mb-8 text-center">
+          <h1 className="mb-4 font-semibold text-gray-900" style={{ fontSize: '2.125rem' }}>
+            ADMI Video Gallery
+          </h1>
+          <p className="mx-auto max-w-[600px] text-lg text-gray-500">
+            Discover the ADMI experience through our video collection featuring student work, facility tours, success
+            stories, and insights into creative media education.
+          </p>
+        </div>
 
-          {/* Stats and CTA */}
-          <Card shadow="sm" padding="lg" radius="md" withBorder mb="xl" bg="gray.0">
-            <Group justify="space-between" align="center">
-              <div>
-                <Group gap="xl">
-                  <div>
-                    <Text fw={700} size="xl" c="red">
-                      {channelInfo?.videoCount ? formatLargeNumber(channelInfo.videoCount) : `${allVideosList.length}+`}
-                    </Text>
-                    <Text size="sm" c="dimmed">
-                      Videos
-                    </Text>
-                  </div>
-                  <div>
-                    <Text fw={700} size="xl" c="blue">
-                      {channelInfo?.viewCount ? formatLargeNumber(channelInfo.viewCount) : '10M+'}
-                    </Text>
-                    <Text size="sm" c="dimmed">
-                      Total Views
-                    </Text>
-                  </div>
-                  <div>
-                    <Text fw={700} size="xl" c="green">
-                      {channelInfo?.subscriberCount ? formatLargeNumber(channelInfo.subscriberCount) : '4K+'}
-                    </Text>
-                    <Text size="sm" c="dimmed">
-                      Subscribers
-                    </Text>
-                  </div>
-                </Group>
+        {/* Stats and CTA */}
+        <div className="mb-8 rounded-xl border border-gray-200 bg-gray-50 p-6 shadow-sm">
+          <div className="flex flex-wrap items-center justify-between gap-4">
+            <div>
+              <div className="flex flex-wrap items-center gap-6">
+                <div>
+                  <p className="text-xl font-bold text-red-600">
+                    {channelInfo?.videoCount ? formatLargeNumber(channelInfo.videoCount) : `${allVideosList.length}+`}
+                  </p>
+                  <p className="text-sm text-gray-500">Videos</p>
+                </div>
+                <div>
+                  <p className="text-xl font-bold text-blue-600">
+                    {channelInfo?.viewCount ? formatLargeNumber(channelInfo.viewCount) : '10M+'}
+                  </p>
+                  <p className="text-sm text-gray-500">Total Views</p>
+                </div>
+                <div>
+                  <p className="text-xl font-bold text-green-600">
+                    {channelInfo?.subscriberCount ? formatLargeNumber(channelInfo.subscriberCount) : '4K+'}
+                  </p>
+                  <p className="text-sm text-gray-500">Subscribers</p>
+                </div>
               </div>
-              <Group>
-                <Button
-                  variant="outline"
-                  color="red"
-                  leftSection={<IconExternalLink size={16} />}
-                  component="a"
-                  href="https://www.youtube.com/@ADMIafrica/"
-                  target="_blank"
-                >
-                  Visit YouTube Channel
-                </Button>
-                <Button color="blue" component="a" href="/enquiry">
-                  Enquire Now
-                </Button>
-              </Group>
-            </Group>
-          </Card>
+            </div>
+            <div className="flex flex-wrap items-center gap-4">
+              <a
+                href="https://www.youtube.com/@ADMIafrica/"
+                target="_blank"
+                className="inline-flex items-center gap-2 rounded-lg border border-red-400 bg-white px-4 py-2 font-medium text-red-600 transition hover:bg-red-50"
+              >
+                <IconExternalLink size={16} /> Visit YouTube Channel
+              </a>
+              <Link
+                href="/enquiry"
+                className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2 font-medium text-white transition hover:bg-blue-700"
+              >
+                Enquire Now
+              </Link>
+            </div>
+          </div>
+        </div>
 
-          {/* Search and Filter Controls */}
-          <Card shadow="sm" padding="lg" radius="md" withBorder mb="xl">
-            <Group justify="space-between" align="end" wrap="wrap" gap="md">
-              <TextInput
+        {/* Search and Filter Controls */}
+        <div className="mb-8 rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+          <div className="flex flex-wrap items-end justify-between gap-4">
+            <div className="relative" style={{ flex: 1, minWidth: 250 }}>
+              <div className="pointer-events-none absolute inset-y-0 left-3 flex items-center">
+                <IconSearch size={16} className="text-gray-400" />
+              </div>
+              <input
+                type="text"
                 placeholder="Search videos..."
-                leftSection={<IconSearch size={16} />}
+                className="h-11 w-full rounded-lg border border-gray-300 bg-white pl-10 pr-3 text-gray-900"
                 value={searchQuery}
-                onChange={(event: any) => setSearchQuery(event.currentTarget.value)}
-                style={{ flex: 1, minWidth: 250 }}
-                size="md"
+                onChange={(event) => setSearchQuery(event.currentTarget.value)}
               />
-              <Select
-                placeholder="Category"
-                data={categories}
-                value={selectedCategory}
-                onChange={setSelectedCategory}
-                w={180}
-                size="md"
-                clearable
-              />
-              <Select
-                placeholder="Course"
-                data={courses}
-                value={selectedCourse}
-                onChange={setSelectedCourse}
-                w={180}
-                size="md"
-                clearable
-              />
-              <Button variant="light" onClick={refreshVideos} loading={loading} size="md">
-                Refresh
-              </Button>
-            </Group>
-          </Card>
+            </div>
+            <select
+              className="h-11 w-[180px] rounded-lg border border-gray-300 bg-white px-3 text-gray-900"
+              value={selectedCategory || 'all'}
+              onChange={(e) => setSelectedCategory(e.target.value)}
+            >
+              {categories.map((cat) => (
+                <option key={cat.value} value={cat.value}>
+                  {cat.label}
+                </option>
+              ))}
+            </select>
+            <select
+              className="h-11 w-[180px] rounded-lg border border-gray-300 bg-white px-3 text-gray-900"
+              value={selectedCourse || 'all'}
+              onChange={(e) => setSelectedCourse(e.target.value)}
+            >
+              {courses.map((course) => (
+                <option key={course.value} value={course.value}>
+                  {course.label}
+                </option>
+              ))}
+            </select>
+            <button
+              className="inline-flex items-center gap-2 rounded-lg bg-gray-100 px-4 py-2 font-medium text-gray-900 transition hover:bg-gray-200"
+              onClick={refreshVideos}
+            >
+              Refresh
+            </button>
+          </div>
+        </div>
 
-          {/* Results Info */}
-          <Group justify="space-between" mb="md">
-            <Text c="dimmed">
-              Showing {Math.min(displayCount, filteredVideos.length)} of {filteredVideos.length} videos
-              {searchQuery && ` for "${searchQuery}"`}
-              {selectedCategory &&
-                selectedCategory !== 'all' &&
-                ` in ${categories.find((c) => c.value === selectedCategory)?.label}`}
-            </Text>
-            {filteredVideos.length > displayCount && (
-              <Text size="sm" c="blue">
-                {filteredVideos.length - displayCount} more available
-              </Text>
-            )}
-          </Group>
+        {/* Results Info */}
+        <div className="mb-4 flex flex-wrap items-center justify-between">
+          <p className="text-gray-500">
+            Showing {Math.min(displayCount, filteredVideos.length)} of {filteredVideos.length} videos
+            {searchQuery && ` for "${searchQuery}"`}
+            {selectedCategory &&
+              selectedCategory !== 'all' &&
+              ` in ${categories.find((c) => c.value === selectedCategory)?.label}`}
+          </p>
+          {filteredVideos.length > displayCount && (
+            <p className="text-sm text-blue-600">{filteredVideos.length - displayCount} more available</p>
+          )}
+        </div>
 
-          {/* Video Grid */}
-          {loading ? (
-            <Center py="xl">
-              <div style={{ textAlign: 'center' }}>
-                <Loader size="lg" mb="md" />
-                <Text>Loading ADMI videos...</Text>
-              </div>
-            </Center>
-          ) : error ? (
-            <Center py="xl">
-              <div style={{ textAlign: 'center' }}>
-                <Text size="lg" fw={500} mb="xs" c="red">
-                  Failed to load videos
-                </Text>
-                <Text c="dimmed" mb="md">
-                  {error}
-                </Text>
-                <Button variant="light" onClick={() => window.location.reload()}>
-                  Try Again
-                </Button>
-              </div>
-            </Center>
-          ) : filteredVideos.length === 0 ? (
-            <Center py="xl">
-              <div style={{ textAlign: 'center' }}>
-                <Text size="lg" fw={500} mb="xs">
-                  No videos found
-                </Text>
-                <Text c="dimmed" mb="md">
-                  Try adjusting your search terms or category filter
-                </Text>
-                <Button
-                  variant="light"
-                  onClick={() => {
-                    setSearchQuery('')
-                    setSelectedCategory('all')
-                  }}
-                >
-                  Clear Filters
-                </Button>
-              </div>
-            </Center>
-          ) : (
-            <>
-              <Grid>
-                {visibleVideos.map((video) => (
-                  <Grid.Col key={video.id} span={{ base: 12, sm: 6, md: 4 }}>
-                    <Card
-                      shadow="sm"
-                      padding="lg"
-                      radius="md"
-                      withBorder
-                      className="h-full cursor-pointer transition-shadow hover:shadow-lg"
-                      onClick={() => handleVideoClick(video)}
-                    >
-                      <Card.Section>
-                        <div className="relative aspect-video w-full overflow-hidden bg-gray-100">
-                          <Image
-                            src={video.thumbnail.medium || video.thumbnail.default}
-                            alt={video.title}
-                            fill
-                            className="object-cover transition-transform duration-300 hover:scale-105"
-                          />
+        {/* Video Grid */}
+        {loading ? (
+          <div className="flex items-center justify-center py-8">
+            <div className="text-center">
+              <div className="mb-4 h-8 w-8 animate-spin rounded-full border-2 border-gray-300 border-t-gray-700" />
+              <p className="text-gray-700">Loading ADMI videos...</p>
+            </div>
+          </div>
+        ) : error ? (
+          <div className="flex items-center justify-center py-8">
+            <div className="text-center">
+              <p className="mb-1 text-lg font-medium text-red-600">Failed to load videos</p>
+              <p className="mb-4 text-gray-500">{error}</p>
+              <button
+                className="inline-flex items-center gap-2 rounded-lg bg-gray-100 px-4 py-2 font-medium text-gray-900 transition hover:bg-gray-200"
+                onClick={() => window.location.reload()}
+              >
+                Try Again
+              </button>
+            </div>
+          </div>
+        ) : filteredVideos.length === 0 ? (
+          <div className="flex items-center justify-center py-8">
+            <div className="text-center">
+              <p className="mb-1 text-lg font-medium text-gray-900">No videos found</p>
+              <p className="mb-4 text-gray-500">Try adjusting your search terms or category filter</p>
+              <button
+                className="inline-flex items-center gap-2 rounded-lg bg-gray-100 px-4 py-2 font-medium text-gray-900 transition hover:bg-gray-200"
+                onClick={() => {
+                  setSearchQuery('')
+                  setSelectedCategory('all')
+                }}
+              >
+                Clear Filters
+              </button>
+            </div>
+          </div>
+        ) : (
+          <>
+            <div className="flex flex-wrap">
+              {visibleVideos.map((video) => (
+                <div key={video.id} className="w-full p-2 sm:w-1/2 md:w-4/12">
+                  <div
+                    className="h-full cursor-pointer rounded-xl border border-gray-200 bg-white p-6 shadow-sm transition-shadow hover:shadow-lg"
+                    onClick={() => handleVideoClick(video)}
+                  >
+                    <div>
+                      <div className="relative aspect-video w-full overflow-hidden bg-gray-100">
+                        <Image
+                          src={video.thumbnail.medium || video.thumbnail.default}
+                          alt={video.title}
+                          fill
+                          className="object-cover transition-transform duration-300 hover:scale-105"
+                        />
 
-                          {/* Play Button Overlay */}
-                          <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30 opacity-0 transition-opacity duration-300 hover:opacity-100">
-                            <div className="rounded-full bg-white bg-opacity-90 p-4">
-                              <IconPlayerPlay size={32} style={{ color: '#EF7B2E' }} />
-                            </div>
-                          </div>
-
-                          {/* Duration Badge */}
-                          <div className="absolute bottom-2 right-2 rounded bg-black bg-opacity-70 px-2 py-1 text-xs text-white">
-                            {video.duration}
-                          </div>
-
-                          {/* YouTube Badge */}
-                          <div className="absolute left-2 top-2">
-                            <Badge color="red" variant="filled" size="xs">
-                              YouTube
-                            </Badge>
+                        {/* Play Button Overlay */}
+                        <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30 opacity-0 transition-opacity duration-300 hover:opacity-100">
+                          <div className="rounded-full bg-white bg-opacity-90 p-4">
+                            <IconPlayerPlay size={32} style={{ color: '#EF7B2E' }} />
                           </div>
                         </div>
-                      </Card.Section>
 
-                      <div className="flex h-full flex-col">
-                        <Title order={5} mt="md" lineClamp={2} className="flex-grow">
-                          {video.title}
-                        </Title>
+                        {/* Duration Badge */}
+                        <div className="absolute bottom-2 right-2 rounded bg-black bg-opacity-70 px-2 py-1 text-xs text-white">
+                          {video.duration}
+                        </div>
 
-                        <Text size="sm" c="dimmed" lineClamp={3} mt="xs" className="flex-grow">
-                          {video.description}
-                        </Text>
-
-                        <Group justify="space-between" mt="md" align="center">
-                          <Group gap="xs">
-                            <Group gap={4}>
-                              <IconEye size={14} style={{ color: '#666' }} />
-                              <Text size="xs" c="dimmed">
-                                {video.viewCount}
-                              </Text>
-                            </Group>
-                            <Group gap={4}>
-                              <IconClock size={14} style={{ color: '#666' }} />
-                              <Text size="xs" c="dimmed">
-                                {video.duration}
-                              </Text>
-                            </Group>
-                          </Group>
-
-                          <Button size="xs" variant="light" color="red" leftSection={<IconPlayerPlay size={12} />}>
-                            Watch
-                          </Button>
-                        </Group>
+                        {/* YouTube Badge */}
+                        <div className="absolute left-2 top-2">
+                          <span className="inline-flex items-center rounded-full bg-red-600 px-3 py-1 text-xs font-semibold text-white">
+                            YouTube
+                          </span>
+                        </div>
                       </div>
-                    </Card>
-                  </Grid.Col>
-                ))}
-              </Grid>
+                    </div>
 
-              {/* Load More Button */}
-              {filteredVideos.length > displayCount && (
-                <Center mt="xl">
-                  <Button
-                    size="lg"
-                    variant="outline"
-                    onClick={loadMoreVideos}
-                    leftSection={<IconPlayerPlay size={16} />}
-                  >
-                    Load More Videos ({filteredVideos.length - displayCount} remaining)
-                  </Button>
-                </Center>
-              )}
+                    <div className="flex h-full flex-col">
+                      <h5
+                        className="mt-4 flex-grow font-semibold text-gray-900"
+                        style={{
+                          display: '-webkit-box',
+                          WebkitLineClamp: 2,
+                          WebkitBoxOrient: 'vertical',
+                          overflow: 'hidden'
+                        }}
+                      >
+                        {video.title}
+                      </h5>
 
-              {/* SEO: Hidden video list for search engines */}
-              <div style={{ display: 'none' }} className="seo-video-catalog">
-                <h2>Complete ADMI Video Catalog</h2>
-                {allVideosList.map((video) => (
-                  <div key={`seo-${video.id}`} className="seo-video-item">
-                    <h3>{video.title}</h3>
-                    <p>{video.description}</p>
-                    <span>Duration: {video.duration}</span>
-                    <span>Views: {video.viewCount}</span>
-                    <span>Channel: {video.channelTitle}</span>
-                    <span>
-                      Published:{' '}
-                      {new Date(video.publishedAt).toLocaleDateString('en-KE', {
-                        timeZone: 'Africa/Nairobi',
-                        year: 'numeric',
-                        month: '2-digit',
-                        day: '2-digit'
-                      })}
-                    </span>
-                    {video.tags && video.tags.length > 0 && <span>Tags: {video.tags.join(', ')}</span>}
+                      <p
+                        className="mt-1 flex-grow text-sm text-gray-500"
+                        style={{
+                          display: '-webkit-box',
+                          WebkitLineClamp: 3,
+                          WebkitBoxOrient: 'vertical',
+                          overflow: 'hidden'
+                        }}
+                      >
+                        {video.description}
+                      </p>
+
+                      <div className="mt-4 flex items-center justify-between">
+                        <div className="flex flex-wrap items-center gap-2">
+                          <div className="flex items-center gap-1">
+                            <IconEye size={14} style={{ color: '#666' }} />
+                            <p className="text-xs text-gray-500">{video.viewCount}</p>
+                          </div>
+                          <div className="flex items-center gap-1">
+                            <IconClock size={14} style={{ color: '#666' }} />
+                            <p className="text-xs text-gray-500">{video.duration}</p>
+                          </div>
+                        </div>
+
+                        <button className="inline-flex items-center gap-2 rounded-lg bg-red-50 px-3 py-1 text-xs font-medium text-red-600 transition hover:bg-red-100">
+                          <IconPlayerPlay size={12} /> Watch
+                        </button>
+                      </div>
+                    </div>
                   </div>
-                ))}
-              </div>
-            </>
-          )}
+                </div>
+              ))}
+            </div>
 
-          {/* Call to Action */}
-          <Card shadow="sm" padding="lg" radius="md" withBorder mt="xl" bg="red.0">
-            <Group justify="space-between" align="center">
-              <div>
-                <Title order={3}>Ready to Create Your Own Content?</Title>
-                <Text c="dimmed" mt="xs">
-                  Join ADMI and learn to create professional videos, animations, and digital content
-                </Text>
-              </div>
-              <Group>
-                <Button variant="outline" color="blue" component="a" href="/courses">
-                  View Courses
-                </Button>
-                <Button color="red" component="a" href="/enquiry">
-                  Apply Today
-                </Button>
-              </Group>
-            </Group>
-          </Card>
-
-          {/* Video Modal */}
-          <Modal opened={modalOpened} onClose={closeModal} size="xl" title={null} padding={0} radius="md" centered>
-            {selectedVideo && (
-              <div>
-                {/* Video Player */}
-                <AspectRatio ratio={16 / 9}>
-                  <iframe
-                    src={`https://www.youtube.com/embed/${selectedVideo.id}?autoplay=1&rel=0`}
-                    title={selectedVideo.title}
-                    style={{ border: 'none' }}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  />
-                </AspectRatio>
-
-                {/* Video Details */}
-                <Box p="lg">
-                  <Title order={3} mb="sm">
-                    {selectedVideo.title}
-                  </Title>
-
-                  <Group mb="md" gap="lg">
-                    <Group gap={4}>
-                      <IconEye size={16} style={{ color: '#666' }} />
-                      <Text size="sm" c="dimmed">
-                        {selectedVideo.viewCount} views
-                      </Text>
-                    </Group>
-                    <Group gap={4}>
-                      <IconClock size={16} style={{ color: '#666' }} />
-                      <Text size="sm" c="dimmed">
-                        {selectedVideo.duration}
-                      </Text>
-                    </Group>
-                    <Group gap={4}>
-                      <IconCalendar size={16} style={{ color: '#666' }} />
-                      <Text size="sm" c="dimmed">
-                        {new Date(selectedVideo.publishedAt).toLocaleDateString('en-KE', {
-                          timeZone: 'Africa/Nairobi',
-                          year: 'numeric',
-                          month: 'long',
-                          day: 'numeric'
-                        })}
-                      </Text>
-                    </Group>
-                  </Group>
-
-                  <Tabs defaultValue="description">
-                    <Tabs.List>
-                      <Tabs.Tab value="description">Description</Tabs.Tab>
-                      <Tabs.Tab value="related">Related Videos</Tabs.Tab>
-                    </Tabs.List>
-
-                    <Tabs.Panel value="description" pt="md">
-                      <ScrollArea h={200}>
-                        <Text size="sm" style={{ whiteSpace: 'pre-wrap' }}>
-                          {selectedVideo.description}
-                        </Text>
-
-                        {selectedVideo.tags && selectedVideo.tags.length > 0 && (
-                          <Box mt="md">
-                            <Group gap="xs">
-                              <IconTag size={14} />
-                              <Text size="xs" fw={500}>
-                                Tags:
-                              </Text>
-                            </Group>
-                            <Group gap="xs" mt="xs">
-                              {selectedVideo.tags.slice(0, 10).map((tag, index) => (
-                                <Badge key={index} size="xs" variant="light">
-                                  {tag}
-                                </Badge>
-                              ))}
-                            </Group>
-                          </Box>
-                        )}
-                      </ScrollArea>
-                    </Tabs.Panel>
-
-                    <Tabs.Panel value="related" pt="md">
-                      <ScrollArea h={300}>
-                        <Stack gap="sm">
-                          {getRelatedVideos(selectedVideo).map((relatedVideo) => (
-                            <Card
-                              key={relatedVideo.id}
-                              padding="sm"
-                              radius="md"
-                              withBorder
-                              style={{ cursor: 'pointer' }}
-                              onClick={() => {
-                                setSelectedVideo(relatedVideo)
-                              }}
-                            >
-                              <Group gap="sm">
-                                <Image
-                                  src={relatedVideo.thumbnail.medium}
-                                  alt={relatedVideo.title}
-                                  width={80}
-                                  height={60}
-                                  style={{ objectFit: 'cover', borderRadius: 4 }}
-                                />
-                                <div style={{ flex: 1 }}>
-                                  <Text size="sm" fw={500} lineClamp={2}>
-                                    {relatedVideo.title}
-                                  </Text>
-                                  <Group gap="xs" mt={4}>
-                                    <Text size="xs" c="dimmed">
-                                      {relatedVideo.viewCount} views
-                                    </Text>
-                                    <Text size="xs" c="dimmed">
-                                      •
-                                    </Text>
-                                    <Text size="xs" c="dimmed">
-                                      {relatedVideo.duration}
-                                    </Text>
-                                  </Group>
-                                </div>
-                              </Group>
-                            </Card>
-                          ))}
-                        </Stack>
-                      </ScrollArea>
-                    </Tabs.Panel>
-                  </Tabs>
-
-                  <Divider my="md" />
-
-                  <Group justify="space-between">
-                    <Button
-                      variant="light"
-                      leftSection={<IconExternalLink size={16} />}
-                      component="a"
-                      href={`https://www.youtube.com/watch?v=${selectedVideo.id}`}
-                      target="_blank"
-                    >
-                      Watch on YouTube
-                    </Button>
-                    <Button variant="outline" onClick={closeModal}>
-                      Close
-                    </Button>
-                  </Group>
-                </Box>
+            {/* Load More Button */}
+            {filteredVideos.length > displayCount && (
+              <div className="mt-8 flex items-center justify-center">
+                <button
+                  className="inline-flex items-center gap-2 rounded-lg border border-gray-400 bg-white px-6 py-3 font-medium text-gray-900 transition hover:bg-gray-50"
+                  onClick={loadMoreVideos}
+                >
+                  <IconPlayerPlay size={16} /> Load More Videos ({filteredVideos.length - displayCount} remaining)
+                </button>
               </div>
             )}
-          </Modal>
-        </Container>
-      </MainLayout>
-    </MantineProvider>
+
+            {/* SEO: Hidden video list for search engines */}
+            <div style={{ display: 'none' }} className="seo-video-catalog">
+              <h2>Complete ADMI Video Catalog</h2>
+              {allVideosList.map((video) => (
+                <div key={`seo-${video.id}`} className="seo-video-item">
+                  <h3>{video.title}</h3>
+                  <p>{video.description}</p>
+                  <span>Duration: {video.duration}</span>
+                  <span>Views: {video.viewCount}</span>
+                  <span>Channel: {video.channelTitle}</span>
+                  <span>
+                    Published:{' '}
+                    {new Date(video.publishedAt).toLocaleDateString('en-KE', {
+                      timeZone: 'Africa/Nairobi',
+                      year: 'numeric',
+                      month: '2-digit',
+                      day: '2-digit'
+                    })}
+                  </span>
+                  {video.tags && video.tags.length > 0 && <span>Tags: {video.tags.join(', ')}</span>}
+                </div>
+              ))}
+            </div>
+          </>
+        )}
+
+        {/* Call to Action */}
+        <div className="mt-8 rounded-xl border border-gray-200 bg-red-50 p-6 shadow-sm">
+          <div className="flex flex-wrap items-center justify-between gap-4">
+            <div>
+              <h3 className="font-semibold text-gray-900">Ready to Create Your Own Content?</h3>
+              <p className="mt-1 text-gray-500">
+                Join ADMI and learn to create professional videos, animations, and digital content
+              </p>
+            </div>
+            <div className="flex flex-wrap items-center gap-4">
+              <Link
+                href="/courses"
+                className="inline-flex items-center gap-2 rounded-lg border border-blue-400 bg-white px-4 py-2 font-medium text-blue-600 transition hover:bg-blue-50"
+              >
+                View Courses
+              </Link>
+              <Link
+                href="/enquiry"
+                className="inline-flex items-center gap-2 rounded-lg bg-red-600 px-4 py-2 font-medium text-white transition hover:bg-red-700"
+              >
+                Apply Today
+              </Link>
+            </div>
+          </div>
+        </div>
+
+        {/* Video Modal */}
+        {modalOpened && selectedVideo && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50" onClick={closeModal}>
+            <div
+              className="relative mx-4 max-h-[90vh] w-full max-w-4xl overflow-y-auto rounded-xl bg-white shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Video Player */}
+              <div className="relative aspect-video">
+                <iframe
+                  src={`https://www.youtube.com/embed/${selectedVideo.id}?autoplay=1&rel=0`}
+                  title={selectedVideo.title}
+                  style={{ border: 'none', width: '100%', height: '100%' }}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </div>
+
+              {/* Video Details */}
+              <div className="p-6">
+                <h3 className="mb-2 font-semibold text-gray-900">{selectedVideo.title}</h3>
+
+                <div className="mb-4 flex flex-wrap items-center gap-6">
+                  <div className="flex items-center gap-1">
+                    <IconEye size={16} style={{ color: '#666' }} />
+                    <p className="text-sm text-gray-500">{selectedVideo.viewCount} views</p>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <IconClock size={16} style={{ color: '#666' }} />
+                    <p className="text-sm text-gray-500">{selectedVideo.duration}</p>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <IconCalendar size={16} style={{ color: '#666' }} />
+                    <p className="text-sm text-gray-500">
+                      {new Date(selectedVideo.publishedAt).toLocaleDateString('en-KE', {
+                        timeZone: 'Africa/Nairobi',
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                      })}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Tabs */}
+                <div>
+                  <div className="flex border-b border-gray-200">
+                    <button
+                      className={`px-4 py-2 text-sm font-medium transition ${
+                        activeTab === 'description'
+                          ? 'border-b-2 border-blue-600 text-blue-600'
+                          : 'text-gray-500 hover:text-gray-700'
+                      }`}
+                      onClick={() => setActiveTab('description')}
+                    >
+                      Description
+                    </button>
+                    <button
+                      className={`px-4 py-2 text-sm font-medium transition ${
+                        activeTab === 'related'
+                          ? 'border-b-2 border-blue-600 text-blue-600'
+                          : 'text-gray-500 hover:text-gray-700'
+                      }`}
+                      onClick={() => setActiveTab('related')}
+                    >
+                      Related Videos
+                    </button>
+                  </div>
+
+                  {activeTab === 'description' && (
+                    <div className="overflow-y-auto pt-4" style={{ maxHeight: 200 }}>
+                      <p className="text-sm text-gray-700" style={{ whiteSpace: 'pre-wrap' }}>
+                        {selectedVideo.description}
+                      </p>
+
+                      {selectedVideo.tags && selectedVideo.tags.length > 0 && (
+                        <div className="mt-4">
+                          <div className="flex items-center gap-2">
+                            <IconTag size={14} />
+                            <p className="text-xs font-medium text-gray-700">Tags:</p>
+                          </div>
+                          <div className="mt-1 flex flex-wrap items-center gap-2">
+                            {selectedVideo.tags.slice(0, 10).map((tag, index) => (
+                              <span
+                                key={index}
+                                className="inline-flex items-center rounded-full bg-blue-100 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-blue-800"
+                              >
+                                {tag}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  )}
+
+                  {activeTab === 'related' && (
+                    <div className="overflow-y-auto pt-4" style={{ maxHeight: 300 }}>
+                      <div className="flex flex-col gap-3">
+                        {getRelatedVideos(selectedVideo).map((relatedVideo) => (
+                          <div
+                            key={relatedVideo.id}
+                            className="cursor-pointer rounded-xl border border-gray-200 bg-white p-3 shadow-sm transition-shadow hover:shadow-md"
+                            onClick={() => {
+                              setSelectedVideo(relatedVideo)
+                              setActiveTab('description')
+                            }}
+                          >
+                            <div className="flex items-center gap-3">
+                              <Image
+                                src={relatedVideo.thumbnail.medium}
+                                alt={relatedVideo.title}
+                                width={80}
+                                height={60}
+                                style={{ objectFit: 'cover', borderRadius: 4 }}
+                              />
+                              <div style={{ flex: 1 }}>
+                                <p
+                                  className="text-sm font-medium text-gray-700"
+                                  style={{
+                                    display: '-webkit-box',
+                                    WebkitLineClamp: 2,
+                                    WebkitBoxOrient: 'vertical',
+                                    overflow: 'hidden'
+                                  }}
+                                >
+                                  {relatedVideo.title}
+                                </p>
+                                <div className="mt-1 flex items-center gap-2">
+                                  <p className="text-xs text-gray-500">{relatedVideo.viewCount} views</p>
+                                  <p className="text-xs text-gray-500">&bull;</p>
+                                  <p className="text-xs text-gray-500">{relatedVideo.duration}</p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                <hr className="my-4 border-gray-200" />
+
+                <div className="flex flex-wrap items-center justify-between gap-4">
+                  <a
+                    href={`https://www.youtube.com/watch?v=${selectedVideo.id}`}
+                    target="_blank"
+                    className="inline-flex items-center gap-2 rounded-lg bg-gray-100 px-4 py-2 font-medium text-gray-900 transition hover:bg-gray-200"
+                  >
+                    <IconExternalLink size={16} /> Watch on YouTube
+                  </a>
+                  <button
+                    className="inline-flex items-center gap-2 rounded-lg border border-gray-400 bg-white px-4 py-2 font-medium text-gray-900 transition hover:bg-gray-50"
+                    onClick={closeModal}
+                  >
+                    Close
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    </MainLayout>
   )
 }

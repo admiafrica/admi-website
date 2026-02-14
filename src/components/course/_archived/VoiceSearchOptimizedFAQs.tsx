@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import { Accordion, Container, Title, Text, Group, Loader, Alert, Badge } from '@/lib/tw-mantine'
 import { IconChevronDown, IconAlertCircle, IconMicrophone } from '@tabler/icons-react'
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer'
 import { ICourseFAQ, IFAQResponse } from '@/types'
@@ -53,6 +52,7 @@ export function VoiceSearchOptimizedFAQs({
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [voiceSearchOptimizedFAQs, setVoiceSearchOptimizedFAQs] = useState<any[]>([])
+  const [openFaq, setOpenFaq] = useState<string | null>(null)
 
   useEffect(() => {
     const fetchFAQs = async () => {
@@ -115,24 +115,26 @@ export function VoiceSearchOptimizedFAQs({
 
   if (loading) {
     return (
-      <Container size="lg" py="xl">
+      <div className="mx-auto w-full max-w-5xl px-4 py-8">
         <div className="text-center">
-          <Loader size="lg" />
-          <Text mt="md" c="dimmed">
-            Loading course FAQs...
-          </Text>
+          <div className="mx-auto h-8 w-8 animate-spin rounded-full border-2 border-gray-300 border-t-gray-700" />
+          <p className="mt-4 text-gray-500">Loading course FAQs...</p>
         </div>
-      </Container>
+      </div>
     )
   }
 
   if (error) {
     return (
-      <Container size="lg" py="xl">
-        <Alert icon={<IconAlertCircle size={16} />} title="Unable to load FAQs" color="red" variant="light">
+      <div className="mx-auto w-full max-w-5xl px-4 py-8">
+        <div className="rounded-lg border border-amber-300 bg-amber-50 p-4 text-amber-900">
+          <div className="mb-1 flex items-center gap-2 font-semibold">
+            <IconAlertCircle size={16} />
+            Unable to load FAQs
+          </div>
           {error}
-        </Alert>
-      </Container>
+        </div>
+      </div>
     )
   }
 
@@ -152,121 +154,101 @@ export function VoiceSearchOptimizedFAQs({
         />
       )}
 
-      <Container size="lg" py="xl">
+      <div className="mx-auto w-full max-w-5xl px-4 py-8">
         <div className="mb-8 text-center">
-          <Group justify="center" mb="md">
-            <Title order={2} size="h1">
-              Frequently Asked Questions
-            </Title>
+          <div className="mb-4 flex flex-wrap justify-center gap-2">
+            <h2 className="text-4xl font-semibold text-gray-900">Frequently Asked Questions</h2>
             {enableVoiceSearchIndicators && (
-              <Badge variant="light" color="blue" leftSection={<IconMicrophone size={12} />} size="sm">
+              <span className="inline-flex items-center rounded-full bg-blue-100 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-blue-800">
+                <IconMicrophone size={12} className="mr-1" />
                 Voice Search Optimized
-              </Badge>
+              </span>
             )}
-          </Group>
-          <Text size="lg" c="dimmed" maw={600} mx="auto">
+          </div>
+          <p className="mx-auto max-w-[600px] text-lg text-gray-500">
             Get answers to common questions about {courseName || 'this course'}, admission requirements, career
             prospects, and student support services. These FAQs are optimized for voice search and AI assistants.
-          </Text>
+          </p>
         </div>
 
         {/* FAQ Accordion */}
-        <Accordion
-          variant="separated"
-          radius="md"
-          chevron={<IconChevronDown size={16} />}
-          styles={{
-            chevron: {
-              '&[data-rotate="true"]': {
-                transform: 'rotate(180deg)'
-              }
-            },
-            item: {
-              border: '1px solid #e9ecef',
-              '&[data-active="true"]': {
-                borderColor: '#228be6'
-              }
-            },
-            control: {
-              padding: '1rem 1.5rem',
-              '&:hover': {
-                backgroundColor: '#f8f9fa'
-              }
-            },
-            content: {
-              padding: '1rem 1.5rem',
-              paddingTop: 0
-            }
-          }}
-        >
-          {formattedFAQs.map((faq, index) => (
-            <Accordion.Item key={index} value={`faq-${index}`}>
-              <Accordion.Control>
-                <Group justify="space-between" wrap="nowrap">
-                  <div>
-                    <Text fw={500} size="md">
-                      {faq.question}
-                    </Text>
-                    {enableVoiceSearchIndicators && faq.voiceSearchOptimized && (
-                      <Group gap="xs" mt="xs">
-                        <Badge size="xs" variant="dot" color="green">
-                          Voice Search Ready
-                        </Badge>
-                        {faq.keywords && (
-                          <Text size="xs" c="dimmed">
-                            Keywords: {faq.keywords}
-                          </Text>
-                        )}
-                      </Group>
+        <div className="space-y-2">
+          {formattedFAQs.map((faq, index) => {
+            const value = `faq-${index}`
+            const isOpen = openFaq === value
+            return (
+              <div key={index} className="rounded-lg border border-gray-200">
+                <button
+                  type="button"
+                  onClick={() => setOpenFaq(isOpen ? null : value)}
+                  className="flex w-full items-center justify-between px-6 py-4 text-left font-medium hover:bg-gray-50"
+                >
+                  <div className="flex w-full flex-wrap flex-nowrap justify-between">
+                    <div>
+                      <p className="font-medium text-gray-700">{faq.question}</p>
+                      {enableVoiceSearchIndicators && faq.voiceSearchOptimized && (
+                        <div className="mt-1 flex flex-wrap gap-1">
+                          <span className="inline-flex items-center rounded-full bg-green-100 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-green-800">
+                            Voice Search Ready
+                          </span>
+                          {faq.keywords && <p className="text-xs text-gray-500">Keywords: {faq.keywords}</p>}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                  <IconChevronDown
+                    size={16}
+                    className={`ml-2 flex-shrink-0 transition-transform ${isOpen ? 'rotate-180' : ''}`}
+                  />
+                </button>
+                {isOpen && (
+                  <div className="border-t border-gray-200 px-6 py-4">
+                    {faq.isRichText ? (
+                      <div className="text-sm leading-relaxed" dangerouslySetInnerHTML={{ __html: faq.answer }} />
+                    ) : (
+                      <p className="text-sm text-gray-700" style={{ lineHeight: 1.6 }}>
+                        {faq.answer}
+                      </p>
                     )}
-                  </div>
-                </Group>
-              </Accordion.Control>
-              <Accordion.Panel>
-                {faq.isRichText ? (
-                  <div className="text-sm leading-relaxed" dangerouslySetInnerHTML={{ __html: faq.answer }} />
-                ) : (
-                  <Text size="sm" lh={1.6}>
-                    {faq.answer}
-                  </Text>
-                )}
 
-                {/* Show voice search variations for debugging/development */}
-                {enableVoiceSearchIndicators && faq.voiceSearchVariations && faq.voiceSearchVariations.length > 0 && (
-                  <div className="mt-4 rounded-md bg-gray-50 p-3">
-                    <Text size="xs" fw={500} c="dimmed" mb="xs">
-                      Voice Search Variations:
-                    </Text>
-                    <ul className="space-y-1 text-xs text-gray-600">
-                      {faq.voiceSearchVariations.map((variation: string, vIndex: number) => (
-                        <li key={vIndex}>&ldquo;{variation}&rdquo;</li>
-                      ))}
-                    </ul>
+                    {/* Show voice search variations for debugging/development */}
+                    {enableVoiceSearchIndicators &&
+                      faq.voiceSearchVariations &&
+                      faq.voiceSearchVariations.length > 0 && (
+                        <div className="mt-4 rounded-md bg-gray-50 p-3">
+                          <p className="mb-1 text-xs font-medium text-gray-500">Voice Search Variations:</p>
+                          <ul className="space-y-1 text-xs text-gray-600">
+                            {faq.voiceSearchVariations.map((variation: string, vIndex: number) => (
+                              <li key={vIndex}>&ldquo;{variation}&rdquo;</li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
                   </div>
                 )}
-              </Accordion.Panel>
-            </Accordion.Item>
-          ))}
-        </Accordion>
+              </div>
+            )
+          })}
+        </div>
 
         {/* Voice Search Help Section */}
         {enableVoiceSearchIndicators && (
           <div className="mt-8 rounded-lg bg-blue-50 p-4">
-            <Group align="start" gap="md">
+            <div className="flex flex-wrap items-start gap-4">
               <IconMicrophone size={20} className="mt-1 text-blue-600" />
               <div>
-                <Text fw={500} size="sm" c="blue.7" mb="xs">
+                <p className="mb-1 text-sm font-medium text-gray-700" style={{ color: '#1864ab' }}>
                   Voice Search Tip
-                </Text>
-                <Text size="sm" c="blue.6">
+                </p>
+                <p className="text-sm text-gray-700" style={{ color: '#1971c2' }}>
                   You can ask voice assistants questions like &ldquo;How do I apply to ADMI?&rdquo; or &ldquo;What are
                   the requirements for film school in Kenya?&rdquo; to get instant answers.
-                </Text>
+                </p>
               </div>
-            </Group>
+            </div>
           </div>
         )}
-      </Container>
+      </div>
     </>
   )
 }

@@ -1,4 +1,3 @@
-import { Paper, Group, Stack, Badge, Text, Button } from '@/lib/tw-mantine'
 import { IconClock } from '@tabler/icons-react'
 
 /**
@@ -7,37 +6,35 @@ import { IconClock } from '@tabler/icons-react'
  */
 export function LongTermPlannerCTA() {
   return (
-    <Paper shadow="xs" p="lg" mb="xl" radius="md" className="border border-teal-200 bg-teal-50">
-      <Group justify="space-between" wrap="wrap" gap="md">
-        <Stack gap="xs" style={{ flex: '1 1 300px' }}>
-          <Group gap="xs">
+    <div className="mb-6 rounded-xl border border-teal-200 bg-teal-50 bg-white p-6 shadow-sm">
+      <div className="flex flex-wrap justify-between gap-4">
+        <div className="flex flex-col gap-1" style={{ flex: '1 1 300px' }}>
+          <div className="flex flex-wrap gap-1">
             <IconClock size={20} color="#087f5b" />
-            <Badge size="md" color="teal" variant="filled">
+            <span className="inline-flex items-center rounded-full bg-teal-600 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-white">
               Next Intake: March 2026
-            </Badge>
-          </Group>
+            </span>
+          </div>
 
-          <Text size="lg" fw={600} c="#087f5b">
+          <p className="text-lg font-semibold text-gray-700" style={{ color: '#087f5b' }}>
             Planning ahead? Drive your future with our Career Assessment
-          </Text>
+          </p>
 
-          <Text size="sm" c="dimmed">
+          <p className="text-sm text-gray-500">
             Capture personalized recommendations • Discover financing options • Secure early bird discounts
-          </Text>
-        </Stack>
+          </p>
+        </div>
 
-        <Group gap="sm" style={{ flex: '0 0 auto' }}>
-          <Button
-            component="a"
+        <div className="flex flex-wrap gap-2" style={{ flex: '0 0 auto' }}>
+          <a
             href="/career-assessment"
-            variant="light"
-            color="teal"
-            leftSection={<IconClock size={18} />}
+            className="inline-flex items-center gap-2 rounded-lg bg-teal-100 px-4 py-2 font-medium text-teal-900 transition"
           >
+            <IconClock size={18} />
             Take Quiz (2 min)
-          </Button>
-        </Group>
-      </Group>
-    </Paper>
+          </a>
+        </div>
+      </div>
+    </div>
   )
 }

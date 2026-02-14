@@ -5,7 +5,6 @@ import { MainLayout } from '@/layouts/v3/MainLayout'
 import { PageSEO } from '@/components/shared/v3'
 import { VideoSchema, BreadcrumbSchema } from '@/components/shared/StructuredData'
 import { VideoPlayer } from '@/components/shared/v3'
-import { Button, Container, Title, Text, Card, Group, Badge } from '@/lib/tw-mantine'
 import { IconArrowLeft, IconPlayerPlay } from '@tabler/icons-react'
 import Link from 'next/link'
 
@@ -23,9 +22,9 @@ export default function VideoWatchPage({ course, slug }: VideoWatchPageProps) {
   if (!hasValidVideo) {
     return (
       <MainLayout>
-        <Container size="lg" py="xl">
-          <Text>Video not found</Text>
-        </Container>
+        <div className="mx-auto w-full max-w-5xl px-4 py-8">
+          <p className="text-gray-700">Video not found</p>
+        </div>
       </MainLayout>
     )
   }
@@ -84,83 +83,84 @@ export default function VideoWatchPage({ course, slug }: VideoWatchPageProps) {
       {/* Breadcrumb Schema */}
       <BreadcrumbSchema items={breadcrumbItems} />
 
-      <Container size="lg" py="xl">
+      <div className="mx-auto w-full max-w-5xl px-4 py-8">
         {/* Back to Course Button */}
-        <Group mb="lg">
-          <Button
-            component={Link}
+        <div className="mb-6 flex flex-wrap">
+          <Link
             href={`/courses/${slug}`}
-            variant="subtle"
-            leftSection={<IconArrowLeft size={16} />}
-            size="sm"
+            className="inline-flex items-center gap-2 rounded-lg bg-transparent px-4 py-2 font-medium text-gray-900 transition"
           >
+            <IconArrowLeft size={16} />
             Back to Course
-          </Button>
-        </Group>
+          </Link>
+        </div>
 
         {/* Video Player Section */}
-        <Card shadow="sm" padding="lg" radius="md" withBorder mb="xl">
-          <Card.Section>
+        <div className="mb-8 rounded-xl border border-gray-200 bg-white shadow-sm">
+          <div>
             <div className="relative aspect-video w-full">
               <VideoPlayer
                 videoUrl={course.resolvedVideo?.fields?.file?.url || course.courseVideo?.fields?.file?.url}
                 showControls={true}
               />
             </div>
-          </Card.Section>
+          </div>
 
-          <Group justify="space-between" mt="md" mb="xs">
-            <Title order={2} size="h3">
-              {videoTitle}
-            </Title>
-            <Badge color="blue" variant="light">
+          <div className="flex flex-wrap items-start justify-between px-4 pb-1 pt-4">
+            <h2 className="text-3xl font-semibold text-gray-900">{videoTitle}</h2>
+            <span className="inline-flex items-center rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-gray-800">
               {course.awardLevel || 'Course'}
-            </Badge>
-          </Group>
+            </span>
+          </div>
 
-          <Text size="sm" c="dimmed" mb="md">
-            {videoDescription}
-          </Text>
+          <p className="mb-4 px-4 text-sm text-gray-500">{videoDescription}</p>
 
-          <Group>
-            <Button
-              component={Link}
+          <div className="flex flex-wrap px-4 pb-4">
+            <Link
               href={`/courses/${slug}`}
-              leftSection={<IconPlayerPlay size={16} />}
-              variant="filled"
-              color="red"
+              className="inline-flex items-center gap-2 rounded-lg bg-red-600 px-4 py-2 font-medium text-white transition"
             >
+              <IconPlayerPlay size={16} />
               Learn More About This Course
-            </Button>
-          </Group>
-        </Card>
+            </Link>
+          </div>
+        </div>
 
         {/* Course Information */}
-        <Card shadow="sm" padding="lg" radius="md" withBorder>
-          <Title order={3} mb="md">
-            About {course.name}
-          </Title>
+        <div className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm">
+          <h3 className="mb-4 text-2xl font-semibold text-gray-900">About {course.name}</h3>
 
-          <Group mb="md">
+          <div className="mb-4 flex flex-wrap gap-2">
             {course.programType?.fields?.duration && (
-              <Badge variant="outline">Duration: {course.programType.fields.duration}</Badge>
+              <span className="inline-flex items-center rounded-full border border-gray-400 bg-white px-3 py-1 text-xs font-semibold uppercase tracking-wide text-gray-900">
+                Duration: {course.programType.fields.duration}
+              </span>
             )}
             {course.programType?.fields?.deliveryMode && (
-              <Badge variant="outline">Mode: {course.programType.fields.deliveryMode}</Badge>
+              <span className="inline-flex items-center rounded-full border border-gray-400 bg-white px-3 py-1 text-xs font-semibold uppercase tracking-wide text-gray-900">
+                Mode: {course.programType.fields.deliveryMode}
+              </span>
             )}
-            {course.creditHours && <Badge variant="outline">Credits: {course.creditHours}</Badge>}
-          </Group>
+            {course.creditHours && (
+              <span className="inline-flex items-center rounded-full border border-gray-400 bg-white px-3 py-1 text-xs font-semibold uppercase tracking-wide text-gray-900">
+                Credits: {course.creditHours}
+              </span>
+            )}
+          </div>
 
-          <Text mb="md">
+          <p className="mb-4 text-gray-700">
             {course.aboutTheCourse?.content?.[0]?.content?.[0]?.value ||
               `Discover the exciting world of ${course.name} with ADMI's comprehensive program designed to prepare you for a successful career in the creative media industry.`}
-          </Text>
+          </p>
 
-          <Button component={Link} href={`/courses/${slug}`} variant="outline" fullWidth>
+          <Link
+            href={`/courses/${slug}`}
+            className="inline-flex w-full items-center justify-center gap-2 rounded-lg border border-gray-400 bg-white px-4 py-2 font-medium text-gray-900 transition"
+          >
             View Full Course Details
-          </Button>
-        </Card>
-      </Container>
+          </Link>
+        </div>
+      </div>
     </MainLayout>
   )
 }

@@ -1,4 +1,4 @@
-import { Paper, Stack, SimpleGrid, Text, Group, Button } from '@/lib/tw-mantine'
+import Link from 'next/link'
 import { IconBrandWhatsapp } from '@tabler/icons-react'
 import { trackWhatsAppClick, ADMI_WHATSAPP_NUMBER } from '@/utils/whatsapp-attribution'
 import { FAQ_DATA } from '@/data/faq-data'
@@ -10,68 +10,64 @@ import { FAQ_DATA } from '@/data/faq-data'
 export function FAQSection() {
   return (
     <div className="mx-auto w-full max-w-screen-xl px-4 pb-20 pt-12 2xl:px-0">
-      <Paper shadow="sm" p="xl" radius="md" className="border border-gray-200">
-        <Stack gap="xl">
+      <div className="rounded-xl border border-gray-200 bg-white p-8 shadow-sm">
+        <div className="flex flex-col gap-8">
           <div>
-            <Text size="2xl" fw={700} c="#002A23" mb="xs">
+            <p className="mb-1 text-2xl font-bold text-gray-700" style={{ color: '#002A23' }}>
               Common Questions About Diploma Programs
-            </Text>
-            <Text size="md" c="dimmed">
+            </p>
+            <p className="text-gray-500">
               We understand you have questions. Here are answers to help you make the right decision.
-            </Text>
+            </p>
           </div>
 
-          <SimpleGrid cols={{ base: 1, md: 2 }} spacing="xl">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
             {FAQ_DATA.map((category) => (
-              <Stack key={category.title} gap="md">
-                <Text size="lg" fw={600} c={category.color}>
+              <div key={category.title} className="flex flex-col gap-4">
+                <p className="text-lg font-semibold text-gray-700" style={{ color: category.color }}>
                   {category.title}
-                </Text>
+                </p>
 
                 {category.items.map((item) => (
                   <div key={item.question}>
-                    <Text size="sm" fw={600} mb={4}>
-                      {item.question}
-                    </Text>
-                    <Text size="sm" c="dimmed">
-                      {item.answer}
-                    </Text>
+                    <p className="mb-1 text-sm font-semibold text-gray-700">{item.question}</p>
+                    <p className="text-sm text-gray-500">{item.answer}</p>
                   </div>
                 ))}
-              </Stack>
+              </div>
             ))}
-          </SimpleGrid>
+          </div>
 
-          <Paper p="lg" bg="#f8f9fa" radius="md" mt="lg">
-            <Group justify="space-between" wrap="wrap" gap="md">
-              <Stack gap={4} style={{ flex: '1 1 300px' }}>
-                <Text size="lg" fw={600}>
-                  Still have questions?
-                </Text>
-                <Text size="sm" c="dimmed">
+          <div className="mt-6 rounded-xl bg-[#f8f9fa] p-6">
+            <div className="flex flex-wrap justify-between gap-4">
+              <div className="flex flex-col gap-1" style={{ flex: '1 1 300px' }}>
+                <p className="text-lg font-semibold text-gray-700">Still have questions?</p>
+                <p className="text-sm text-gray-500">
                   Our admissions team is here to help you make the best decision for your future.
-                </Text>
-              </Stack>
+                </p>
+              </div>
 
-              <Group gap="sm">
-                <Button
-                  component="a"
+              <div className="flex flex-wrap gap-2">
+                <a
                   href={`https://wa.me/${ADMI_WHATSAPP_NUMBER}?text=Hi, I have questions about diploma programs`}
-                  color="green"
-                  leftSection={<IconBrandWhatsapp size={18} />}
+                  className="inline-flex items-center gap-2 rounded-lg bg-green-600 px-4 py-2 font-medium text-white transition"
                   onClick={() => trackWhatsAppClick('courses_faq', 'FAQ Section')}
                   target="_blank"
                 >
+                  <IconBrandWhatsapp size={18} />
                   Chat on WhatsApp
-                </Button>
-                <Button component="a" href="/contact" variant="outline" color="gray">
+                </a>
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center gap-2 rounded-lg border border-gray-400 bg-white px-4 py-2 font-medium text-gray-900 transition"
+                >
                   Schedule a Call
-                </Button>
-              </Group>
-            </Group>
-          </Paper>
-        </Stack>
-      </Paper>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }

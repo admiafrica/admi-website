@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { Group, Text, Anchor, Stack, Title } from '@/lib/tw-mantine'
+import Link from 'next/link'
 import { useMediaQuery } from '@/lib/tw-mantine-hooks'
 import {
   IconBrandFacebook,
@@ -17,71 +17,106 @@ export default function CustomFooter() {
   const isMobile = useMediaQuery('(max-width: 480px)')
 
   return (
-    <Group className="mx-auto w-full max-w-screen-xl flex-col md:flex-row">
-      <Stack style={sectionStyle} gap={4} h={isMobile ? 'fit-content' : '100%'}>
-        <Title order={3}>Get in Touch</Title>
-        <Text p={0}>Caxton House, 3rd Floor 25, Kenyatta Avenue.</Text>
-        <Text>P. O. Box 35447 - 00100 Nairobi, Kenya.</Text>
+    <div className="mx-auto flex w-full max-w-screen-xl flex-col flex-wrap md:flex-row">
+      <div className="flex flex-col gap-1" style={sectionStyle}>
+        <h3 className="text-2xl font-semibold text-gray-900">Get in Touch</h3>
+        <p className="text-gray-700">Caxton House, 3rd Floor 25, Kenyatta Avenue.</p>
+        <p className="text-gray-700">P. O. Box 35447 - 00100 Nairobi, Kenya.</p>
 
-        <Text pt={20}>Email: info@admi.ac.ke</Text>
-        <Text>Phone: (+254) 706 349 696, (+254) 741 132 751</Text>
+        <p className="text-gray-700" style={{ paddingTop: 20 }}>
+          Email: info@admi.ac.ke
+        </p>
+        <p className="text-gray-700">Phone: (+254) 706 349 696, (+254) 741 132 751</p>
         <WhatsAppLink trackingLocation="footer_legacy" c="green" fw="bold">
           WhatsApp: (+254) 741 132 751
         </WhatsAppLink>
-        <Text>Hours: Mon-Fri 8:00am - 5:00pm / Sat: 8:00am to 2:00pm</Text>
+        <p className="text-gray-700">Hours: Mon-Fri 8:00am - 5:00pm / Sat: 8:00am to 2:00pm</p>
 
         <Image width={isMobile ? 80 : 140} src={LogoIcon} alt="logo" />
-      </Stack>
+      </div>
 
       {/* Quick Links and Social Media */}
-      <Stack style={sectionStyle} gap={4} h={isMobile ? 'fit-content' : '100%'}>
-        <Title order={3}>Quick Links</Title>
-        <Anchor href="/contact-us" fw={'bold'}>
+      <div className="flex flex-col gap-1" style={sectionStyle}>
+        <h3 className="text-2xl font-semibold text-gray-900">Quick Links</h3>
+        <a href="/contact-us" className="text-blue-700 hover:underline" style={{ fontWeight: 'bold' }}>
           Contact Us
-        </Anchor>
-        <Anchor href="/about/academic-team" fw={'bold'}>
+        </a>
+        <a href="/about/academic-team" className="text-blue-700 hover:underline" style={{ fontWeight: 'bold' }}>
           Academic Team
-        </Anchor>
-        <Anchor href="/fellowship" fw={'bold'}>
+        </a>
+        <Link href="/fellowship" className="text-blue-700 hover:underline" style={{ fontWeight: 'bold' }}>
           Fellowship
-        </Anchor>
-        <Anchor href="/privacy-policy" fw={'bold'}>
+        </Link>
+        <Link href="/privacy-policy" className="text-blue-700 hover:underline" style={{ fontWeight: 'bold' }}>
           Privacy Policy
-        </Anchor>
+        </Link>
 
-        <Group mt={isMobile ? '1em' : '4em'}>
-          <Anchor href={SOCIAL_LINKS.INSTAGRAM} target="_blank" c={'dark'}>
+        <div className="flex flex-wrap" style={{ marginTop: isMobile ? '1em' : '4em' }}>
+          <a
+            href={SOCIAL_LINKS.INSTAGRAM}
+            target="_blank"
+            className="text-blue-700 hover:underline"
+            style={{ color: 'dark' }}
+          >
             <IconBrandInstagram size={36} />
-          </Anchor>
-          <Anchor href={SOCIAL_LINKS.LINKEDIN} target="_blank" c={'dark'}>
+          </a>
+          <a
+            href={SOCIAL_LINKS.LINKEDIN}
+            target="_blank"
+            className="text-blue-700 hover:underline"
+            style={{ color: 'dark' }}
+          >
             <IconBrandLinkedin size={36} />
-          </Anchor>
-          <Anchor href={SOCIAL_LINKS.FACEBOOK} target="_blank" c={'dark'}>
+          </a>
+          <a
+            href={SOCIAL_LINKS.FACEBOOK}
+            target="_blank"
+            className="text-blue-700 hover:underline"
+            style={{ color: 'dark' }}
+          >
             <IconBrandFacebook size={36} />
-          </Anchor>
-          <Anchor href={SOCIAL_LINKS.TIKTOK} target="_blank" c={'dark'}>
+          </a>
+          <a
+            href={SOCIAL_LINKS.TIKTOK}
+            target="_blank"
+            className="text-blue-700 hover:underline"
+            style={{ color: 'dark' }}
+          >
             <IconBrandTiktok size={36} />
-          </Anchor>
-          <Anchor href={SOCIAL_LINKS.YOUTUBE} target="_blank" c={'dark'}>
+          </a>
+          <a
+            href={SOCIAL_LINKS.YOUTUBE}
+            target="_blank"
+            className="text-blue-700 hover:underline"
+            style={{ color: 'dark' }}
+          >
             <IconBrandYoutube size={36} />
-          </Anchor>
-          <Anchor href={SOCIAL_LINKS.X} target="_blank" c={'dark'}>
+          </a>
+          <a href={SOCIAL_LINKS.X} target="_blank" className="text-blue-700 hover:underline" style={{ color: 'dark' }}>
             <IconBrandX size={36} />
-          </Anchor>
-        </Group>
-      </Stack>
+          </a>
+        </div>
+      </div>
 
       {/* Student Corner */}
-      <Stack style={sectionStyle} gap={4} h={isMobile ? 'fit-content' : '100%'}>
-        <Title order={3}>Student Corner</Title>
-        <Anchor href="https://admi.africa/student-portal" fw={'bold'}>
+      <div className="flex flex-col gap-1" style={sectionStyle}>
+        <h3 className="text-2xl font-semibold text-gray-900">Student Corner</h3>
+        <a
+          href="https://admi.africa/student-portal"
+          className="text-blue-700 hover:underline"
+          style={{ fontWeight: 'bold' }}
+        >
           Student Portal
-        </Anchor>
-        <Anchor href="https://admi.africa/accommodation" fw={'bold'}>
+        </a>
+        <a
+          href="https://admi.africa/accommodation"
+          className="text-blue-700 hover:underline"
+          style={{ fontWeight: 'bold' }}
+        >
           Accommodation
-        </Anchor>
-      </Stack>
-    </Group>
+        </a>
+      </div>
+    </div>
   )
 }
 

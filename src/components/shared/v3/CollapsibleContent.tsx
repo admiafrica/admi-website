@@ -1,6 +1,5 @@
 import React from 'react'
 import Image from 'next/image'
-import { Group, Collapse, Card, Box } from '@/lib/tw-mantine'
 import { useDisclosure } from '@/lib/tw-mantine-hooks'
 
 import IconArrowLeft from '@/assets/icons/arrow-left.svg'
@@ -23,19 +22,22 @@ export default function CollapsibleContent({ icon, title, subTitle, content, isP
   const [opened, { toggle }] = useDisclosure(false)
 
   return (
-    <Card shadow="md" className="mt-8 w-full" mx="auto" p={isProfile ? 0 : 24}>
-      <Group>
-        <Box onClick={toggle} className="flex w-full cursor-pointer items-center">
+    <div
+      className="mx-auto mt-8 w-full rounded-xl border border-gray-200 bg-white shadow-sm"
+      style={{ padding: isProfile ? 0 : 24 }}
+    >
+      <div className="flex flex-wrap">
+        <div onClick={toggle} className="flex w-full cursor-pointer items-center">
           {icon && icon}
           <div className="grow">
-            <Box className="flex w-full items-center pb-1 pl-2 sm:pl-4">
+            <div className="flex w-full items-center pb-1 pl-2 sm:pl-4">
               <Title size={isMobile ? '1.1em' : '1.4em'} label={title} color="black" className="mt-1 sm:mt-auto" />
               {isProfile && (
                 <a href={profileLink || '#'} target="_blank">
                   <Image width={20} height={20} src={IconLinkedIn} alt="linkedin profile" style={{ marginLeft: 8 }} />
                 </a>
               )}
-            </Box>
+            </div>
             {subTitle ? (
               <Paragraph size={isMobile ? '1em' : '1.1em'} fontFamily="font-nexa" className="pl-2 sm:pl-4">
                 {subTitle}
@@ -63,12 +65,10 @@ export default function CollapsibleContent({ icon, title, subTitle, content, isP
               />
             )}
           </div>
-        </Box>
-      </Group>
+        </div>
+      </div>
 
-      <Collapse in={opened}>
-        <div className="w-full bg-[#FEFFF5] p-4 font-proxima">{content}</div>
-      </Collapse>
-    </Card>
+      {opened && <div className="w-full bg-[#FEFFF5] p-4 font-proxima">{content}</div>}
+    </div>
   )
 }

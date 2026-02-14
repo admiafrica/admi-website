@@ -1,4 +1,3 @@
-import { Paper, SimpleGrid, Stack, Text, ThemeIcon } from '@/lib/tw-mantine'
 import { IconWorld, IconAward, IconShieldCheck, IconUsers } from '@tabler/icons-react'
 
 const TRUST_BADGES = [
@@ -34,26 +33,22 @@ const TRUST_BADGES = [
  */
 export function TrustBadges() {
   return (
-    <Paper shadow="xs" p="lg" mb="xl" radius="md" className="border border-gray-200 bg-white">
-      <Text size="lg" fw={600} ta="center" mb="lg" c="#002A23">
+    <div className="mb-6 rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+      <p className="mb-6 text-center text-lg font-semibold text-gray-700" style={{ color: '#002A23' }}>
         Globally Recognized, Value-Driven Education
-      </Text>
+      </p>
 
-      <SimpleGrid cols={{ base: 2, sm: 4 }} spacing="lg">
+      <div className="grid grid-cols-2 gap-6 sm:grid-cols-4">
         {TRUST_BADGES.map((badge) => (
-          <Stack key={badge.title} gap="xs" align="center">
-            <ThemeIcon size={48} color={badge.color} variant="light" radius="xl">
+          <div key={badge.title} className="flex flex-col items-center gap-1">
+            <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-gray-100">
               <badge.icon size={28} />
-            </ThemeIcon>
-            <Text size="sm" fw={600} ta="center">
-              {badge.title}
-            </Text>
-            <Text size="xs" c="dimmed" ta="center">
-              {badge.description}
-            </Text>
-          </Stack>
+            </span>
+            <p className="text-center text-sm font-semibold text-gray-700">{badge.title}</p>
+            <p className="text-center text-xs text-gray-500">{badge.description}</p>
+          </div>
         ))}
-      </SimpleGrid>
-    </Paper>
+      </div>
+    </div>
   )
 }

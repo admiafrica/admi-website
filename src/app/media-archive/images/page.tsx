@@ -1,25 +1,6 @@
 'use client'
 
-import {
-  Container,
-  Title,
-  SimpleGrid,
-  Card,
-  Text,
-  Group,
-  Badge,
-  Stack,
-  TextInput,
-  Select,
-  Image,
-  Button,
-  Breadcrumbs,
-  Anchor,
-  MantineProvider,
-  Loader,
-  Alert
-} from '@/lib/tw-mantine'
-import { IconSearch, IconCalendar, IconCamera, IconPhoto, IconAlertCircle } from '@tabler/icons-react'
+import { IconCalendar, IconCamera, IconPhoto, IconAlertCircle } from '@tabler/icons-react'
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { MainLayout } from '@/layouts/v3/MainLayout'
@@ -94,134 +75,134 @@ export default function ImagesPage() {
   })
 
   return (
-    <MantineProvider>
-      <MainLayout>
-        <Container size="xl" py={80}>
-          <Stack gap={40}>
-            <Breadcrumbs mb={20}>
-              <Link href="/media-archive" passHref legacyBehavior>
-                <Anchor>Media Archive</Anchor>
-              </Link>
-              <Anchor>Images</Anchor>
-            </Breadcrumbs>
+    <MainLayout>
+      <div className="mx-auto w-full max-w-6xl px-4 py-20">
+        <div className="flex flex-col gap-10">
+          <nav className="mb-5 flex flex-wrap items-center gap-2 text-sm text-gray-600">
+            <Link href="/media-archive" className="text-blue-700 hover:underline">
+              Media Archive
+            </Link>
+            <span>/</span>
+            <span className="text-blue-700">Images</span>
+          </nav>
 
-            <div>
-              <Title order={1} size={40} fw={700} ta="center" mb={16}>
-                Photo Gallery
-              </Title>
-              <Text ta="center" size="lg" c="dimmed" maw={600} mx="auto">
-                Browse through our collection of photos from ADMI events and activities
-              </Text>
-            </div>
+          <div>
+            <h1 className="mb-4 text-center text-4xl font-semibold text-gray-900" style={{ fontSize: 40 }}>
+              Photo Gallery
+            </h1>
+            <p className="mx-auto max-w-xl text-center text-lg text-gray-500">
+              Browse through our collection of photos from ADMI events and activities
+            </p>
+          </div>
 
-            {!loading && !error && (
-              <Group gap="md" mb={20}>
-                <TextInput
-                  placeholder="Search albums..."
-                  leftSection={<IconSearch size={18} />}
-                  value={searchQuery}
-                  onChange={(e: any) => setSearchQuery(e.target.value)}
-                  style={{ flex: 1 }}
-                />
-                <Select
-                  placeholder="Category"
-                  data={categories}
-                  value={selectedCategory}
-                  onChange={(value: string | null) => setSelectedCategory(value || 'All')}
-                  w={200}
-                />
-              </Group>
-            )}
-
-            {loading && (
-              <Stack align="center" py={60}>
-                <Loader size="lg" />
-                <Text c="dimmed">Loading albums from media archive...</Text>
-              </Stack>
-            )}
-
-            {error && (
-              <Alert icon={<IconAlertCircle size={16} />} title="Unable to load albums" color="red" mb={20}>
-                {error}
-              </Alert>
-            )}
-
-            {!loading && !error && (
-              <SimpleGrid cols={{ base: 1, sm: 2, md: 3, lg: 4 }} spacing="lg">
-                {filteredItems.map((album) => (
-                  <Link key={album.id} href={`/media-archive/images/${album.slug}`} style={{ textDecoration: 'none' }}>
-                    <Card shadow="sm" padding="lg" radius="md" withBorder style={{ cursor: 'pointer' }}>
-                      <Card.Section>
-                        <div style={{ position: 'relative' }}>
-                          <Image
-                            src={album.thumbnail}
-                            alt={album.title}
-                            height={200}
-                            fallbackSrc="https://via.placeholder.com/400x300/E9ECEF/6C757D?text=No+Image"
-                          />
-                          <Badge
-                            color="blue"
-                            variant="filled"
-                            style={{
-                              position: 'absolute',
-                              top: 8,
-                              right: 8
-                            }}
-                            leftSection={<IconPhoto size={12} />}
-                          >
-                            {album.imageCount} photos
-                          </Badge>
-                        </div>
-                      </Card.Section>
-
-                      <Stack gap="xs" mt="md">
-                        <Text fw={500} lineClamp={2}>
-                          {album.title}
-                        </Text>
-
-                        <Badge color="blue" variant="light" size="sm">
-                          {album.category} Album
-                        </Badge>
-
-                        <Group gap="xs" wrap="wrap">
-                          <Group gap={4}>
-                            <IconCalendar size={14} />
-                            <Text size="xs" c="dimmed">
-                              {new Date(album.date).toLocaleDateString('en-US', {
-                                month: 'short',
-                                day: 'numeric',
-                                year: 'numeric'
-                              })}
-                            </Text>
-                          </Group>
-                          <Group gap={4}>
-                            <IconCamera size={14} />
-                            <Text size="xs" c="dimmed">
-                              {album.photographer}
-                            </Text>
-                          </Group>
-                        </Group>
-                      </Stack>
-                    </Card>
-                  </Link>
+          {!loading && !error && (
+            <div className="mb-5 flex flex-wrap gap-4">
+              <input
+                className="h-11 flex-1 rounded-lg border border-gray-300 bg-[#f8fafc] px-3"
+                placeholder="Search albums..."
+                value={searchQuery}
+                onChange={(e: any) => setSearchQuery(e.target.value)}
+              />
+              <select
+                className="h-11 w-[200px] rounded-lg border border-gray-300 bg-white px-3 text-gray-900"
+                value={selectedCategory}
+                onChange={(e) => setSelectedCategory(e.target.value)}
+              >
+                {categories.map((cat) => (
+                  <option key={cat} value={cat}>
+                    {cat}
+                  </option>
                 ))}
-              </SimpleGrid>
-            )}
+              </select>
+            </div>
+          )}
 
-            {!loading && !error && filteredItems.length === 0 && (
-              <Text ta="center" c="dimmed" py={60}>
-                {albums.length === 0 ? 'No albums found in media archive' : 'No albums match your search criteria'}
-              </Text>
-            )}
+          {loading && (
+            <div className="flex flex-col items-center py-16">
+              <div className="h-8 w-8 animate-spin rounded-full border-2 border-gray-300 border-t-gray-700" />
+              <p className="mt-4 text-gray-500">Loading albums from media archive...</p>
+            </div>
+          )}
 
-            <Group justify="center" mt={40}>
-              <Button variant="outline" size="md">
-                Load More Images
-              </Button>
-            </Group>
-          </Stack>
-        </Container>
-      </MainLayout>
-    </MantineProvider>
+          {error && (
+            <div className="mb-5 rounded-lg border border-amber-300 bg-amber-50 p-4 text-amber-900">
+              <div className="mb-1 flex items-center gap-2 font-semibold">
+                <IconAlertCircle size={16} /> Unable to load albums
+              </div>
+              {error}
+            </div>
+          )}
+
+          {!loading && !error && (
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+              {filteredItems.map((album) => (
+                <Link key={album.id} href={`/media-archive/images/${album.slug}`} style={{ textDecoration: 'none' }}>
+                  <div className="rounded-xl border border-gray-200 bg-white shadow-sm" style={{ cursor: 'pointer' }}>
+                    <div>
+                      <div style={{ position: 'relative' }}>
+                        <img
+                          className="h-auto w-full"
+                          src={album.thumbnail}
+                          alt={album.title}
+                          style={{ height: 200, objectFit: 'cover' }}
+                          onError={(e) => {
+                            ;(e.target as HTMLImageElement).src =
+                              'https://via.placeholder.com/400x300/E9ECEF/6C757D?text=No+Image'
+                          }}
+                        />
+                        <span
+                          className="inline-flex items-center rounded-full bg-gray-900 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-white"
+                          style={{ position: 'absolute', top: 8, right: 8 }}
+                        >
+                          <IconPhoto size={12} className="mr-1" />
+                          {album.imageCount} photos
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className="mt-4 flex flex-col gap-1 px-4 pb-4">
+                      <p className="line-clamp-2 font-medium text-gray-700">{album.title}</p>
+
+                      <span className="inline-flex w-fit items-center rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-gray-800">
+                        {album.category} Album
+                      </span>
+
+                      <div className="flex flex-wrap gap-3">
+                        <div className="flex items-center gap-1">
+                          <IconCalendar size={14} />
+                          <span className="text-xs text-gray-500">
+                            {new Date(album.date).toLocaleDateString('en-US', {
+                              month: 'short',
+                              day: 'numeric',
+                              year: 'numeric'
+                            })}
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <IconCamera size={14} />
+                          <span className="text-xs text-gray-500">{album.photographer}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          )}
+
+          {!loading && !error && filteredItems.length === 0 && (
+            <p className="py-16 text-center text-gray-500">
+              {albums.length === 0 ? 'No albums found in media archive' : 'No albums match your search criteria'}
+            </p>
+          )}
+
+          <div className="mt-10 flex justify-center">
+            <button className="inline-flex items-center gap-2 rounded-lg border border-gray-400 bg-white px-4 py-2 font-medium text-gray-900 transition">
+              Load More Images
+            </button>
+          </div>
+        </div>
+      </div>
+    </MainLayout>
   )
 }

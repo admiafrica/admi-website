@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { Container, Title, Button, Card, Text, TextInput, Code, Alert } from '@/lib/tw-mantine'
 
 export default function DebugChannelPage() {
   const [channelId, setChannelId] = useState('UCyAYiT5XYUcOaOlzn32qROA')
@@ -97,149 +96,150 @@ export default function DebugChannelPage() {
   }
 
   return (
-    <Container size="md" py="xl">
-      <Title order={1} mb="xl">
-        Debug ADMI Channel ID
-      </Title>
+    <div className="mx-auto w-full max-w-4xl px-4 py-8">
+      <h1 className="mb-8 text-4xl font-semibold text-gray-900">Debug ADMI Channel ID</h1>
 
-      <Card shadow="sm" padding="lg" radius="md" withBorder mb="xl">
-        <Title order={3} mb="md">
-          Test Channel ID
-        </Title>
-        <TextInput
-          label="Channel ID to test"
+      <div className="mb-8 rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+        <h3 className="mb-4 text-2xl font-semibold text-gray-900">Test Channel ID</h3>
+        <input
+          className="mb-4 h-11 w-full rounded-lg border border-gray-300 bg-[#f8fafc] px-3"
           value={channelId}
           onChange={(e: any) => setChannelId(e.target.value)}
-          mb="md"
         />
-        <Button onClick={testChannelId} loading={loading}>
-          Test Channel ID
-        </Button>
-      </Card>
+        <button
+          className="inline-flex items-center gap-2 rounded-lg bg-brand-orange px-4 py-2 font-medium text-white transition"
+          onClick={testChannelId}
+          disabled={loading}
+        >
+          {loading ? 'Testing...' : 'Test Channel ID'}
+        </button>
+      </div>
 
       {result && (
         <div>
           {result.error ? (
-            <Alert color="red" mb="md">
-              <Text fw={500}>Error: {result.error}</Text>
-            </Alert>
+            <div className="mb-4 rounded-lg border border-amber-300 bg-amber-50 p-4 text-amber-900">
+              <p className="font-medium text-gray-700">Error: {result.error}</p>
+            </div>
           ) : (
             <div>
-              <Card shadow="sm" padding="lg" radius="md" withBorder mb="md">
-                <Title order={4} mb="md">
-                  Channel Test Results
-                </Title>
-                <Text>
+              <div className="mb-4 rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+                <h4 className="mb-4 text-xl font-semibold text-gray-900">Channel Test Results</h4>
+                <p className="text-gray-700">
                   <strong>Channel Found:</strong> {result.channelFound ? 'Yes' : 'No'}
-                </Text>
-                <Text>
+                </p>
+                <p className="text-gray-700">
                   <strong>Videos Found:</strong> {result.videosFound}
-                </Text>
-                <Text>
+                </p>
+                <p className="text-gray-700">
                   <strong>Search Results:</strong> {result.searchFound}
-                </Text>
+                </p>
 
                 {result.channelFound && result.channelData.items[0] && (
                   <div>
-                    <Text mt="md">
+                    <p className="mt-4 text-gray-700">
                       <strong>Channel Name:</strong> {result.channelData.items[0].snippet.title}
-                    </Text>
-                    <Text>
+                    </p>
+                    <p className="text-gray-700">
                       <strong>Description:</strong> {result.channelData.items[0].snippet.description.substring(0, 100)}
                       ...
-                    </Text>
-                    <Text>
+                    </p>
+                    <p className="text-gray-700">
                       <strong>Subscribers:</strong> {result.channelData.items[0].statistics?.subscriberCount || 'N/A'}
-                    </Text>
-                    <Text>
+                    </p>
+                    <p className="text-gray-700">
                       <strong>Videos:</strong> {result.channelData.items[0].statistics?.videoCount || 'N/A'}
-                    </Text>
+                    </p>
                   </div>
                 )}
-              </Card>
+              </div>
 
               {result.videosFound > 0 && (
-                <Card shadow="sm" padding="lg" radius="md" withBorder mb="md">
-                  <Title order={4} mb="md">
-                    Videos from This Channel
-                  </Title>
+                <div className="mb-4 rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+                  <h4 className="mb-4 text-xl font-semibold text-gray-900">Videos from This Channel</h4>
                   {result.videosData.items.map((video: any, index: number) => (
                     <div key={video.id.videoId} style={{ marginBottom: '8px' }}>
-                      <Text fw={500}>
+                      <p className="font-medium text-gray-700">
                         {index + 1}. {video.snippet.title}
-                      </Text>
-                      <Text size="sm" c="dimmed">
-                        Channel: {video.snippet.channelTitle}
-                      </Text>
-                      <Text size="sm" c="dimmed">
+                      </p>
+                      <p className="text-sm text-gray-500">Channel: {video.snippet.channelTitle}</p>
+                      <p className="text-sm text-gray-500">
                         Published: {new Date(video.snippet.publishedAt).toLocaleDateString()}
-                      </Text>
+                      </p>
                     </div>
                   ))}
-                </Card>
+                </div>
               )}
 
               {result.searchFound > 0 && (
-                <Card shadow="sm" padding="lg" radius="md" withBorder mb="md">
-                  <Title order={4} mb="md">
-                    ADMI Channels Found in Search
-                  </Title>
+                <div className="mb-4 rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+                  <h4 className="mb-4 text-xl font-semibold text-gray-900">ADMI Channels Found in Search</h4>
                   {result.searchData.items.map((channel: any, index: number) => (
                     <div key={channel.snippet.channelId} style={{ marginBottom: '8px' }}>
-                      <Text fw={500}>
+                      <p className="font-medium text-gray-700">
                         {index + 1}. {channel.snippet.title}
-                      </Text>
-                      <Text size="sm" c="dimmed">
-                        ID: {channel.snippet.channelId}
-                      </Text>
-                      <Text size="sm">{channel.snippet.description.substring(0, 100)}...</Text>
+                      </p>
+                      <p className="text-sm text-gray-500">ID: {channel.snippet.channelId}</p>
+                      <p className="text-sm text-gray-700">{channel.snippet.description.substring(0, 100)}...</p>
                       {channel.snippet.channelId === channelId && (
-                        <Text size="sm" c="green" fw={500}>
-                          ✅ This matches the test channel ID!
-                        </Text>
+                        <p className="text-sm font-medium text-green-600">✅ This matches the test channel ID!</p>
                       )}
                     </div>
                   ))}
-                </Card>
+                </div>
               )}
 
-              <Card shadow="sm" padding="lg" radius="md" withBorder>
-                <Title order={4} mb="md">
-                  Raw API Responses
-                </Title>
-                <Code block style={{ fontSize: '12px', maxHeight: '300px', overflow: 'auto' }}>
+              <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+                <h4 className="mb-4 text-xl font-semibold text-gray-900">Raw API Responses</h4>
+                <code
+                  className="block rounded bg-gray-100 px-1.5 py-0.5 font-mono text-sm"
+                  style={{ fontSize: '12px', maxHeight: '300px', overflow: 'auto' }}
+                >
                   {JSON.stringify(result, null, 2)}
-                </Code>
-              </Card>
+                </code>
+              </div>
             </div>
           )}
         </div>
       )}
 
-      <Card shadow="sm" padding="lg" radius="md" withBorder mt="xl" bg="gray.0">
-        <Title order={4} mb="md">
-          Channel IDs to Test
-        </Title>
+      <div className="mt-8 rounded-xl border border-gray-200 bg-gray-50 p-6 shadow-sm">
+        <h4 className="mb-4 text-xl font-semibold text-gray-900">Channel IDs to Test</h4>
         <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginBottom: '16px' }}>
-          <Button size="xs" variant="light" onClick={() => setChannelId('UCyAYiT5XYUcOaOlzn32qROA')}>
+          <button
+            className="inline-flex items-center gap-2 rounded-lg bg-gray-100 px-4 py-2 text-sm font-medium text-gray-900 transition"
+            onClick={() => setChannelId('UCyAYiT5XYUcOaOlzn32qROA')}
+          >
             UCyAYiT5XYUcOaOlzn32qROA (Current)
-          </Button>
-          <Button size="xs" variant="light" onClick={() => setChannelId('UC_x5XG1OV2P6uZZ5FSM9Ttw')}>
+          </button>
+          <button
+            className="inline-flex items-center gap-2 rounded-lg bg-gray-100 px-4 py-2 text-sm font-medium text-gray-900 transition"
+            onClick={() => setChannelId('UC_x5XG1OV2P6uZZ5FSM9Ttw')}
+          >
             UC_x5XG1OV2P6uZZ5FSM9Ttw (Old)
-          </Button>
-          <Button size="xs" variant="light" onClick={() => setChannelId('UCxxxxxxxxxxxxxxxxxxxxxx')}>
+          </button>
+          <button
+            className="inline-flex items-center gap-2 rounded-lg bg-gray-100 px-4 py-2 text-sm font-medium text-gray-900 transition"
+            onClick={() => setChannelId('UCxxxxxxxxxxxxxxxxxxxxxx')}
+          >
             Invalid ID (Test)
-          </Button>
+          </button>
         </div>
         <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-          <Button size="xs" variant="light" onClick={() => setChannelId('UC-9-kyTW8ZkZNDHQJ6FgpwQ')}>
+          <button
+            className="inline-flex items-center gap-2 rounded-lg bg-gray-100 px-4 py-2 text-sm font-medium text-gray-900 transition"
+            onClick={() => setChannelId('UC-9-kyTW8ZkZNDHQJ6FgpwQ')}
+          >
             UC-9-kyTW8ZkZNDHQJ6FgpwQ (Music)
-          </Button>
-          <Button size="xs" variant="light" onClick={() => setChannelId('UCuAXFkgsw1L7xaCfnd5JJOw')}>
+          </button>
+          <button
+            className="inline-flex items-center gap-2 rounded-lg bg-gray-100 px-4 py-2 text-sm font-medium text-gray-900 transition"
+            onClick={() => setChannelId('UCuAXFkgsw1L7xaCfnd5JJOw')}
+          >
             UCuAXFkgsw1L7xaCfnd5JJOw (Random)
-          </Button>
+          </button>
         </div>
-      </Card>
-    </Container>
+      </div>
+    </div>
   )
 }

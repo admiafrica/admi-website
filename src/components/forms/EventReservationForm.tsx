@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { Alert, Box, Text, TextInput } from '@/lib/tw-mantine'
 import { useForm } from '@/lib/tw-mantine-form'
 import { Button, Paragraph, Title } from '../ui'
 import PhoneInput from 'react-phone-input-2'
@@ -67,57 +66,65 @@ export default function EventReservationForm({ close }: Props) {
         <Title label="Make Reservation" color="black" />
       </div>
       <div className="mb-8 font-proxima">
-        <Text fw={600}>Kindly provide the details below</Text>
+        <p className="text-gray-700" style={{ fontWeight: 600 }}>
+          Kindly provide the details below
+        </p>
       </div>
       <form onSubmit={form.onSubmit((values) => handleSubmit(values))}>
-        <TextInput
-          my={16}
-          px={8}
+        <div
+          style={{ marginTop: 16, marginBottom: 16, paddingLeft: 8, paddingRight: 8 }}
           className="border-1 rounded-lg border-solid border-gray-200 py-2"
-          label={
-            <div className="flex pl-2">
-              <Title label="Email Address" color="black" size="1.4em" />
-              <IconAsterisk size={8} className="mt-1.5 text-admiRed" />
-            </div>
-          }
-          placeholder="your@email.com"
-          key={form.key('email')}
-          {...form.getInputProps('email')}
-        />
-        <TextInput
-          my={16}
-          px={8}
+        >
+          <div className="flex pl-2">
+            <Title label="Email Address" color="black" size="1.4em" />
+            <IconAsterisk size={8} className="mt-1.5 text-admiRed" />
+          </div>
+          <input
+            className="h-11 w-full rounded-lg border border-gray-300 bg-[#f8fafc] px-3"
+            placeholder="your@email.com"
+            key={form.key('email')}
+            {...form.getInputProps('email')}
+          />
+        </div>
+        <div
+          style={{ marginTop: 16, marginBottom: 16, paddingLeft: 8, paddingRight: 8 }}
           className="border-1 rounded-lg border-solid border-gray-200 py-2"
-          label={
-            <div className="flex pl-2">
-              <Title label="First Name" color="black" size="1.4em" />
-              <IconAsterisk size={8} className="mt-1.5 text-admiRed" />
-            </div>
-          }
-          placeholder="Enter first name"
-          key={form.key('firstName')}
-          {...form.getInputProps('firstName')}
-        />
-        <TextInput
-          my={16}
-          px={8}
+        >
+          <div className="flex pl-2">
+            <Title label="First Name" color="black" size="1.4em" />
+            <IconAsterisk size={8} className="mt-1.5 text-admiRed" />
+          </div>
+          <input
+            className="h-11 w-full rounded-lg border border-gray-300 bg-[#f8fafc] px-3"
+            placeholder="Enter first name"
+            key={form.key('firstName')}
+            {...form.getInputProps('firstName')}
+          />
+        </div>
+        <div
+          style={{ marginTop: 16, marginBottom: 16, paddingLeft: 8, paddingRight: 8 }}
           className="border-1 rounded-lg border-solid border-gray-200 py-2"
-          label={
-            <div className="flex pl-2">
-              <Title label="Last Name" color="black" size="1.4em" />
-              <IconAsterisk size={8} className="mt-1.5 text-admiRed" />
-            </div>
-          }
-          placeholder="Enter last name"
-          key={form.key('lastName')}
-          {...form.getInputProps('lastName')}
-        />
-        <Box my={16} className="border-1 rounded-lg border-solid border-gray-200 px-2 py-2">
+        >
+          <div className="flex pl-2">
+            <Title label="Last Name" color="black" size="1.4em" />
+            <IconAsterisk size={8} className="mt-1.5 text-admiRed" />
+          </div>
+          <input
+            className="h-11 w-full rounded-lg border border-gray-300 bg-[#f8fafc] px-3"
+            placeholder="Enter last name"
+            key={form.key('lastName')}
+            {...form.getInputProps('lastName')}
+          />
+        </div>
+        <div
+          style={{ marginTop: 16, marginBottom: 16 }}
+          className="border-1 rounded-lg border-solid border-gray-200 px-2 py-2"
+        >
           <div className="flex pl-2">
             <Title label="Phone Number" color="black" size="1.4em" />
             <IconAsterisk size={8} className="mt-1.5 text-admiRed" />
           </div>
-          <Box className="flex">
+          <div className="flex">
             <PhoneInput
               country={'ke'}
               value={countryCode}
@@ -141,32 +148,34 @@ export default function EventReservationForm({ close }: Props) {
               }}
               inputProps={{ readOnly: true }}
             />
-            <TextInput
-              className="grow"
+            <input
+              className="h-11 w-full grow rounded-lg border border-gray-300 bg-[#f8fafc] px-3"
               placeholder="Enter phone"
               key={form.key('phone')}
               type="number"
               {...form.getInputProps('phone')}
             />
-          </Box>
-        </Box>
-        <Box className="flex-end flex justify-between" mt="2em">
-          <Box className="w-fit sm:w-[160px]">
+          </div>
+        </div>
+        <div className="flex-end flex justify-between" style={{ marginTop: '2em' }}>
+          <div className="w-fit sm:w-[160px]">
             <Button size="lg" backgroundColor="white" label="Cancel" color="admiRed" onClick={close} />
-          </Box>
-          <Box className="w-fit sm:w-[160px]">
+          </div>
+          <div className="w-fit sm:w-[160px]">
             <Button size="lg" backgroundColor="admiRed" label="Submit" type="submit" />
-          </Box>
-        </Box>
+          </div>
+        </div>
       </form>
       {alert && (
-        <Alert
-          color={alert.type === 'success' ? '#339900' : '#ff9966'}
-          title={<Paragraph fontWeight={900}>{alert.type === 'success' ? 'Success' : 'Error'}</Paragraph>}
-          my={8}
+        <div
+          className="rounded-lg border border-amber-300 bg-amber-50 p-4 text-amber-900"
+          style={{ marginTop: 8, marginBottom: 8, borderColor: alert.type === 'success' ? '#339900' : '#ff9966' }}
         >
+          <div className="mb-1 font-semibold">
+            <Paragraph fontWeight={900}>{alert.type === 'success' ? 'Success' : 'Error'}</Paragraph>
+          </div>
           <Paragraph>{alert.message}</Paragraph>
-        </Alert>
+        </div>
       )}
     </div>
   )

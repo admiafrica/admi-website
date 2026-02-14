@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useCallback, useEffect, useState } from 'react'
-import { Alert, Box, Group, Select, Text, TextInput } from '@/lib/tw-mantine'
 import { useForm } from '@/lib/tw-mantine-form'
 import { Button, Paragraph, Title } from '../ui'
 import PhoneInput from 'react-phone-input-2'
@@ -178,7 +177,9 @@ export default function EnquiryForm() {
         <Title label="Enquiry Form" color="black" />
       </div>
       <div className="mb-8 font-proxima">
-        <Text fw={600}>Kindly provide the details below</Text>
+        <p className="text-gray-700" style={{ fontWeight: 600 }}>
+          Kindly provide the details below
+        </p>
       </div>
       <form onSubmit={form.onSubmit((values) => handleSubmit(values))}>
         {/* Hidden UTM fields */}
@@ -188,22 +189,26 @@ export default function EnquiryForm() {
         <input {...form.getInputProps('utm_term')} type="hidden" />
         <input {...form.getInputProps('utm_content')} type="hidden" />
 
-        <Select
-          label={
-            <div className="flex pl-2">
-              <Title label="Select Course" color="black" size="1.4em" />
-              <IconAsterisk size={8} className="mt-1.5 text-admiRed" />
-            </div>
-          }
-          className="border-1 rounded-lg border-solid border-gray-200 py-2"
-          placeholder="Select a course you're interested in"
-          searchable
-          nothingFoundMessage="No options"
-          data={courses.map((course) => course.fields.name)}
-          {...form.getInputProps('courseName')}
-        />
+        <div>
+          <div className="flex pl-2">
+            <Title label="Select Course" color="black" size="1.4em" />
+            <IconAsterisk size={8} className="mt-1.5 text-admiRed" />
+          </div>
+          <select
+            className="border-1 h-11 w-full rounded-lg border border-solid border-gray-200 border-gray-300 bg-white px-3 py-2 text-gray-900"
+            {...form.getInputProps('courseName')}
+            onChange={(e) => form.getInputProps('courseName').onChange(e.target.value)}
+          >
+            <option value="">Select a course you&apos;re interested in</option>
+            {courses.map((course) => (
+              <option key={course.fields.name} value={course.fields.name}>
+                {course.fields.name}
+              </option>
+            ))}
+          </select>
+        </div>
         <div className="my-4 font-proxima">
-          <Text size="1.1em">
+          <p className="text-gray-700" style={{ fontSize: '1.1em' }}>
             Curious about our courses and the benefits they offer? Explore the details and discover what you could gain
             by visiting our{' '}
             <span>
@@ -211,56 +216,62 @@ export default function EnquiryForm() {
                 <span className="font-bold text-admiShamrok brightness-90">Courses page</span>
               </Link>
             </span>
-          </Text>
+          </p>
         </div>
-        <TextInput
-          my={16}
-          px={8}
+        <div
+          style={{ marginTop: 16, marginBottom: 16, paddingLeft: 8, paddingRight: 8 }}
           className="border-1 rounded-lg border-solid border-gray-200 py-2"
-          label={
-            <div className="flex pl-2">
-              <Title label="Email Address" color="black" size="1.4em" />
-              <IconAsterisk size={8} className="mt-1.5 text-admiRed" />
-            </div>
-          }
-          placeholder="your@email.com"
-          key={form.key('email')}
-          {...form.getInputProps('email')}
-        />
-        <TextInput
-          my={16}
-          px={8}
+        >
+          <div className="flex pl-2">
+            <Title label="Email Address" color="black" size="1.4em" />
+            <IconAsterisk size={8} className="mt-1.5 text-admiRed" />
+          </div>
+          <input
+            className="h-11 w-full rounded-lg border border-gray-300 bg-[#f8fafc] px-3"
+            placeholder="your@email.com"
+            key={form.key('email')}
+            {...form.getInputProps('email')}
+          />
+        </div>
+        <div
+          style={{ marginTop: 16, marginBottom: 16, paddingLeft: 8, paddingRight: 8 }}
           className="border-1 rounded-lg border-solid border-gray-200 py-2"
-          label={
-            <div className="flex pl-2">
-              <Title label="First Name" color="black" size="1.4em" />
-              <IconAsterisk size={8} className="mt-1.5 text-admiRed" />
-            </div>
-          }
-          placeholder="Enter first name"
-          key={form.key('firstName')}
-          {...form.getInputProps('firstName')}
-        />
-        <TextInput
-          my={16}
-          px={8}
+        >
+          <div className="flex pl-2">
+            <Title label="First Name" color="black" size="1.4em" />
+            <IconAsterisk size={8} className="mt-1.5 text-admiRed" />
+          </div>
+          <input
+            className="h-11 w-full rounded-lg border border-gray-300 bg-[#f8fafc] px-3"
+            placeholder="Enter first name"
+            key={form.key('firstName')}
+            {...form.getInputProps('firstName')}
+          />
+        </div>
+        <div
+          style={{ marginTop: 16, marginBottom: 16, paddingLeft: 8, paddingRight: 8 }}
           className="border-1 rounded-lg border-solid border-gray-200 py-2"
-          label={
-            <div className="flex pl-2">
-              <Title label="Last Name" color="black" size="1.4em" />
-              <IconAsterisk size={8} className="mt-1.5 text-admiRed" />
-            </div>
-          }
-          placeholder="Enter last name"
-          key={form.key('lastName')}
-          {...form.getInputProps('lastName')}
-        />
-        <Box my={16} className="border-1 rounded-lg border-solid border-gray-200 px-2 py-2">
+        >
+          <div className="flex pl-2">
+            <Title label="Last Name" color="black" size="1.4em" />
+            <IconAsterisk size={8} className="mt-1.5 text-admiRed" />
+          </div>
+          <input
+            className="h-11 w-full rounded-lg border border-gray-300 bg-[#f8fafc] px-3"
+            placeholder="Enter last name"
+            key={form.key('lastName')}
+            {...form.getInputProps('lastName')}
+          />
+        </div>
+        <div
+          style={{ marginTop: 16, marginBottom: 16 }}
+          className="border-1 rounded-lg border-solid border-gray-200 px-2 py-2"
+        >
           <div className="flex pl-2">
             <Title label="Phone Number" color="black" size="1.4em" />
             <IconAsterisk size={8} className="mt-1.5 text-admiRed" />
           </div>
-          <Box className="flex">
+          <div className="flex">
             <PhoneInput
               country={'ke'}
               value={countryCode}
@@ -284,25 +295,27 @@ export default function EnquiryForm() {
               }}
               inputProps={{ readOnly: true }}
             />
-            <TextInput
-              className="grow"
+            <input
+              className="h-11 w-full grow rounded-lg border border-gray-300 bg-[#f8fafc] px-3"
               placeholder="Enter phone"
               key={form.key('phone')}
               type="number"
               {...form.getInputProps('phone')}
             />
-          </Box>
-        </Box>
-        <Group justify="flex-end" mt="2em" className="w-full">
+          </div>
+        </div>
+        <div className="flex w-full flex-wrap justify-end" style={{ marginTop: '2em' }}>
           <Button size="lg" backgroundColor="admiRed" label="Submit" type="submit" />
-        </Group>
+        </div>
       </form>
       {alert && (
-        <Alert
-          color={alert.type === 'success' ? '#339900' : '#ff9966'}
-          title={<Paragraph fontWeight={900}>{alert.type === 'success' ? 'Success' : 'Error'}</Paragraph>}
-          my={8}
+        <div
+          className="rounded-lg border border-amber-300 bg-amber-50 p-4 text-amber-900"
+          style={{ marginTop: 8, marginBottom: 8, borderColor: alert.type === 'success' ? '#339900' : '#ff9966' }}
         >
+          <div className="mb-1 font-semibold">
+            <Paragraph fontWeight={900}>{alert.type === 'success' ? 'Success' : 'Error'}</Paragraph>
+          </div>
           <Paragraph className="text-sm leading-relaxed">{alert.message}</Paragraph>
           {alert.message.includes('already with us') && (
             <div className="mt-3 space-y-2">
@@ -327,7 +340,7 @@ export default function EnquiryForm() {
               </div>
             </div>
           )}
-        </Alert>
+        </div>
       )}
     </div>
   )

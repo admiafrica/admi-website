@@ -1,5 +1,4 @@
 import Image from 'next/image'
-import { Box, Card } from '@/lib/tw-mantine'
 import { Paragraph } from '@/components/ui'
 import { useRouter } from 'next/router'
 import { motion } from 'framer-motion'
@@ -66,15 +65,11 @@ export default function NewsItemCard({ item, isEvent = false }: Props) {
       className="h-full"
       whileHover="hover" // Shared hover animation key
     >
-      <Card
-        shadow="sm"
-        padding="lg"
-        radius="md"
-        withBorder
-        className="hover:border-1 h-full cursor-pointer hover:border-solid hover:border-admiRed"
+      <div
+        className="hover:border-1 h-full cursor-pointer rounded-xl border border-gray-200 bg-white shadow-sm hover:border-solid hover:border-admiRed"
         onClick={handleCardClick}
       >
-        <Card.Section className={isEvent ? 'relative h-[80%] overflow-hidden' : 'relative h-[50%] overflow-hidden'}>
+        <div className={isEvent ? 'relative h-[80%] overflow-hidden' : 'relative h-[50%] overflow-hidden'}>
           <motion.div
             className="relative h-full w-full"
             variants={{
@@ -95,9 +90,9 @@ export default function NewsItemCard({ item, isEvent = false }: Props) {
               style={{ objectFit: 'cover' }}
             />
           </motion.div>
-        </Card.Section>
-        <Box className="flex">
-          <Box className="grow pt-4">
+        </div>
+        <div className="flex">
+          <div className="grow pt-4">
             <Paragraph fontFamily="font-nexa" fontWeight={400} size="20px" className="line-clamp-3 h-[60px] pb-4">
               {item.fields.title}
             </Paragraph>
@@ -124,9 +119,9 @@ export default function NewsItemCard({ item, isEvent = false }: Props) {
             >
               <IconArrowTipRight width={36} height={36} color={'#F60834'} />
             </motion.div>
-          </Box>
-        </Box>
-      </Card>
+          </div>
+        </div>
+      </div>
     </motion.div>
   )
 }

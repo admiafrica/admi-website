@@ -1,6 +1,5 @@
 import Image from 'next/image'
 import { ensureProtocol } from '@/utils'
-import { Badge, Box, Group } from '@/lib/tw-mantine'
 import { CourseSummaryCard } from '../cards'
 
 import IconAward from '@/assets/icons/Award'
@@ -62,9 +61,9 @@ export default function CourseHero(props: Props) {
             isCampaign={props.isCampaign}
           />
           {props.isCampaign && (
-            <Box className="relative w-full max-w-[480px] sm:top-[-120px] sm:ml-2">
+            <div className="relative w-full max-w-[480px] sm:top-[-120px] sm:ml-2">
               <EnquiryForm />
-            </Box>
+            </div>
           )}
         </div>
       </div>
@@ -72,21 +71,21 @@ export default function CourseHero(props: Props) {
       {/* Content Section */}
       <div className="relative z-10 mx-auto w-full max-w-screen-xl pt-[15vh] text-white">
         <div className="md:w-1/2">
-          <Badge
-            h={36}
-            mb={8}
+          <span
+            className="mb-2 inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-wide"
             style={{
-              backgroundColor: 'rgba(255, 255, 255, 0.07)', // Adjust the color and opacity
-              backdropFilter: 'blur(4px)' // Optional: adds a blur effect
+              height: 36,
+              backgroundColor: 'rgba(255, 255, 255, 0.07)',
+              backdropFilter: 'blur(4px)'
             }}
           >
-            <Group m={8}>
+            <div className="m-2 flex flex-wrap">
               <IconAward color="white" width={28} height={28} />
               <Paragraph size="sm" fontFamily="font-nexa" fontWeight={900}>
                 {props.programType.fields.name}
               </Paragraph>
-            </Group>
-          </Badge>
+            </div>
+          </span>
 
           <Title size={isMobile ? '32px' : '60px'} label={remainingName} color="white" />
 

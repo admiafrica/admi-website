@@ -1,6 +1,5 @@
 import React from 'react'
 import Image from 'next/image'
-import { Avatar, Box, Card, Rating, ScrollArea } from '@/lib/tw-mantine'
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer'
 
 import { getAssetDetails, ensureProtocol } from '@/utils'
@@ -17,10 +16,14 @@ type Props = {
 
 export default function UserTestimonialCard(props: Props) {
   return (
-    <Card className="mb-16 mr-4 h-fit w-full max-w-[360px]" withBorder>
-      <Rating value={5} fractions={2} color="admiRed" readOnly className="pb-2 pl-2" />
-      <Card.Section>
-        <ScrollArea h={'12em'} offsetScrollbars>
+    <div className="mb-16 mr-4 h-fit w-full max-w-[360px] rounded-xl border border-gray-200 bg-white shadow-sm">
+      <div className="inline-flex gap-1 pb-2 pl-2 text-amber-400">
+        {Array.from({ length: 5 }).map((_, i) => (
+          <span key={i}>{i < 5 ? '\u2605' : '\u2606'}</span>
+        ))}
+      </div>
+      <div>
+        <div className="overflow-auto" style={{ height: '12em' }}>
           <div
             className="mt-1 h-full px-6 font-proxima text-[18px] text-gray-600"
             dangerouslySetInnerHTML={{
@@ -31,47 +34,40 @@ export default function UserTestimonialCard(props: Props) {
               )
             }}
           ></div>
-        </ScrollArea>
-      </Card.Section>
+        </div>
+      </div>
       <div className="mt-8 flex px-2">
         {props.testimonial.fields.authorImage ? (
-          <Avatar
+          <img
+            className="h-14 w-14 rounded-full object-cover"
             src={ensureProtocol(
               getAssetDetails(props.assets, props.testimonial.fields.authorImage.sys.id)?.fields.file.url
             )}
-            variant="transparent"
-            size={56}
+            alt=""
           />
         ) : (
-          <Avatar
+          <img
+            className="h-14 w-14 rounded-full object-cover"
             src={ensureProtocol(getAssetDetails(props.assets, props.testimonial.fields.image.sys.id)?.fields.file.url)}
-            variant="transparent"
-            size={56}
+            alt=""
           />
         )}
 
         <div className="flex w-full px-4">
           <div className="flex grow flex-col">
             {props.testimonial.fields.authorName ? (
-              <Box className="my-auto w-full">
+              <div className="my-auto w-full">
                 <Title label={props.testimonial.fields.authorName} size="18px" color="black" />
                 <Paragraph size="16px">{props.testimonial.fields.authorRole}</Paragraph>
-              </Box>
+              </div>
             ) : (
-              <Box className="my-auto w-full">
+              <div className="my-auto w-full">
                 <Title label={props.testimonial.fields.fullName} size="18px" color="black" />
                 <Paragraph size="16px" className="pt-2 text-gray-500">
                   {props.testimonial.fields.role}
                 </Paragraph>
-              </Box>
+              </div>
             )}
-            {/* {props.testimonial.fields.authorName ? (
-              <Paragraph size="16px">{props.testimonial.fields.authorRole}</Paragraph>
-            ) : (
-              <Paragraph size="16px" className="pt-2 text-gray-500">
-                {props.testimonial.fields.role}
-              </Paragraph>
-            )} */}
           </div>
 
           <div className="flex items-center justify-center">
@@ -79,6 +75,6 @@ export default function UserTestimonialCard(props: Props) {
           </div>
         </div>
       </div>
-    </Card>
+    </div>
   )
 }

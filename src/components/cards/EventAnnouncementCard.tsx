@@ -1,5 +1,4 @@
 import React from 'react'
-import { Anchor, Box, Card, Divider, Pill } from '@/lib/tw-mantine'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 
@@ -26,32 +25,27 @@ export default function EventAnnouncementCard(props: Props) {
   const googleMapsUrl = `https://www.google.com/maps?q=${props.announcement.locationAddress?.lat},${props.announcement.locationAddress?.lon}`
 
   return (
-    <Card
-      className="mx-auto mb-4 w-full max-w-screen-xl cursor-pointer"
-      bg={props.bgColor || 'white'}
-      style={{ borderRadius: 8 }}
-      withBorder
+    <div
+      className="mx-auto mb-4 w-full max-w-screen-xl cursor-pointer rounded-xl border border-gray-200 bg-white shadow-sm"
+      style={{ backgroundColor: props.bgColor || 'white', borderRadius: 8 }}
     >
       <motion.div
         className="flex h-full w-full flex-col sm:flex-row"
         whileHover="hover" // Shared hover animation key
       >
-        <Box className="flex h-fit w-full grow flex-col-reverse px-0 sm:h-[480px] sm:flex-row sm:px-4">
-          <Box className="flex flex-col pt-4 sm:w-[70%] sm:pr-4 sm:pt-0">
+        <div className="flex h-fit w-full grow flex-col-reverse px-0 sm:h-[480px] sm:flex-row sm:px-4">
+          <div className="flex flex-col pt-4 sm:w-[70%] sm:pr-4 sm:pt-0">
             {props.featured && (
-              <Pill
-                size="md"
-                className="mb-4 w-fit font-nexa font-black"
-                bg={'white'}
-                style={{ border: '2px solid rgba(0, 0, 0, 0.14)' }}
-                h={28}
+              <span
+                className="mb-4 inline-flex w-fit items-center rounded-full border border-gray-300 px-3 py-1 font-nexa text-xs font-black"
+                style={{ border: '2px solid rgba(0, 0, 0, 0.14)', backgroundColor: 'white', height: 28 }}
               >
                 Featured
-              </Pill>
+              </span>
             )}
-            <Box className="flex w-full flex-col">
-              <Box className="flex w-full flex-row">
-                <Box className={'relative my-auto h-[120px] w-[200px]'}>
+            <div className="flex w-full flex-col">
+              <div className="flex w-full flex-row">
+                <div className="relative my-auto" style={{ height: 120, width: 200 }}>
                   <Image
                     fill
                     sizes="200px"
@@ -59,16 +53,28 @@ export default function EventAnnouncementCard(props: Props) {
                     alt={props.announcement.title}
                     style={{ objectFit: 'contain' }}
                   />
-                </Box>
-                <Divider color="admiRed" size={2} orientation="vertical" mx={isMobile ? 12 : 24} my={'auto'} h={80} />
+                </div>
+                <hr
+                  className="border-gray-200"
+                  style={{
+                    borderColor: 'var(--admi-red, #C1272D)',
+                    borderLeftWidth: 2,
+                    borderTopWidth: 0,
+                    marginLeft: isMobile ? 12 : 24,
+                    marginRight: isMobile ? 12 : 24,
+                    marginTop: 'auto',
+                    marginBottom: 'auto',
+                    height: 80
+                  }}
+                />
                 <Title
                   label={props.announcement.title}
                   color="black"
                   size={isMobile ? '18px' : '24px'}
                   className="my-auto w-fit"
                 />
-              </Box>
-              <Box className="flex w-full">
+              </div>
+              <div className="flex w-full">
                 <ParagraphContentful
                   fontFamily="font-nexa"
                   fontWeight={400}
@@ -76,10 +82,15 @@ export default function EventAnnouncementCard(props: Props) {
                 >
                   {props.announcement.description}
                 </ParagraphContentful>
-              </Box>
+              </div>
               {props.announcement.locationAddress?.lat ? (
-                <Anchor href={googleMapsUrl} target="_blank" rel="noopener noreferrer">
-                  <Box className="flex w-full">
+                <a
+                  href={googleMapsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-700 hover:underline"
+                >
+                  <div className="flex w-full">
                     <Image src={IconLocation} height={24} width={24} alt="location" className="mr-2 mt-1" />
                     <Paragraph
                       size="18px"
@@ -89,10 +100,10 @@ export default function EventAnnouncementCard(props: Props) {
                     >
                       <strong>Location:</strong> {props.announcement.locationName}
                     </Paragraph>
-                  </Box>
-                </Anchor>
+                  </div>
+                </a>
               ) : (
-                <Box className="flex w-full">
+                <div className="flex w-full">
                   <Image src={IconLocation} height={24} width={24} alt="location" className="mr-2 mt-1" />
                   <Paragraph
                     size="18px"
@@ -102,9 +113,9 @@ export default function EventAnnouncementCard(props: Props) {
                   >
                     <strong>Location:</strong> {props.announcement.locationName}
                   </Paragraph>
-                </Box>
+                </div>
               )}
-              <Box className="flex w-full">
+              <div className="flex w-full">
                 <Image src={IconCall} height={24} width={24} alt="location" className="mr-2 mt-1" />
                 <Paragraph
                   size="18px"
@@ -114,8 +125,8 @@ export default function EventAnnouncementCard(props: Props) {
                 >
                   <strong>Date:</strong> {formatDate(props.announcement.date)}
                 </Paragraph>
-              </Box>
-              <Box className="flex w-full">
+              </div>
+              <div className="flex w-full">
                 <Image src={IconStopwatch} height={24} width={24} alt="location" className="mr-2 mt-1" />
                 <Paragraph
                   size="18px"
@@ -125,11 +136,11 @@ export default function EventAnnouncementCard(props: Props) {
                 >
                   <strong>Time:</strong> {props.announcement.time}
                 </Paragraph>
-              </Box>
-            </Box>
-          </Box>
-          <Box className="w-full sm:w-[30%]">
-            <Box className="relative mb-4 flex h-[300px] w-full flex-col sm:h-[80%]">
+              </div>
+            </div>
+          </div>
+          <div className="w-full sm:w-[30%]">
+            <div className="relative mb-4 flex h-[300px] w-full flex-col sm:h-[80%]">
               {props.announcement.flyer ? (
                 <Image
                   fill
@@ -149,15 +160,15 @@ export default function EventAnnouncementCard(props: Props) {
                   style={{ objectFit: 'cover', borderRadius: 8 }}
                 />
               )}
-            </Box>
+            </div>
             {props.announcement.link && (
-              <Anchor href={props.announcement.link} target="_blank">
+              <a href={props.announcement.link} target="_blank" className="text-blue-700 hover:underline">
                 <Button size="lg" backgroundColor="admiRed" label={props.announcement.cta} />
-              </Anchor>
+              </a>
             )}
-          </Box>
-        </Box>
+          </div>
+        </div>
       </motion.div>
-    </Card>
+    </div>
   )
 }
