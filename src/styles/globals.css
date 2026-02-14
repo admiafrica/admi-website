@@ -7,35 +7,35 @@
   --foreground: #171717;
 
   /* Brand colours (from Brand Book) */
-  --brand-red: #C1272D;
-  --brand-sage: #8EBFB0;
-  --brand-yellow: #D9DC5B;
-  --brand-orange: #EF7B2E;
+  --brand-red: #c1272d;
+  --brand-sage: #8ebfb0;
+  --brand-yellow: #d9dc5b;
+  --brand-orange: #ef7b2e;
   --brand-maroon: #922834;
-  --brand-whatsapp: #25D366;
-  --brand-teal: #8EBFB0; /* legacy alias → sage */
+  --brand-whatsapp: #25d366;
+  --brand-teal: #8ebfb0; /* legacy alias → sage */
 
   /* Semantic colors */
-  --primary: #C1272D;
-  --primary-hover: #A32025;
-  --secondary: #8EBFB0;
+  --primary: #c1272d;
+  --primary-hover: #a32025;
+  --secondary: #8ebfb0;
 
   /* Backgrounds */
-  --bg-dark: #0A0A0A;
-  --bg-admi-green: #002A23;
+  --bg-dark: #0a0a0a;
+  --bg-admi-green: #002a23;
   --bg-dark-blue: #1a1a2e;
   --bg-warm: #f7f5f2;
   --bg-card-dark: #111111;
 
   /* Text */
-  --text-white: #FFFFFF;
-  --text-dark: #0A0A0A;
-  --text-muted: #6B7280;
-  --text-muted-light: #9CA3AF;
+  --text-white: #ffffff;
+  --text-dark: #0a0a0a;
+  --text-muted: #6b7280;
+  --text-muted-light: #9ca3af;
 
   /* Borders */
-  --border-light: #E5E7EB;
-  --border-dark: #2A2A2A;
+  --border-light: #e5e7eb;
+  --border-dark: #2a2a2a;
 
   /* Spacing (8pt scale) */
   --space-xs: 4px;
@@ -92,6 +92,9 @@ h6 {
 
 html,
 body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
   overflow-x: clip;
 }
 
@@ -216,6 +219,13 @@ body {
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
   }
 }
 

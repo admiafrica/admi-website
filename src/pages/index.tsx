@@ -8,11 +8,14 @@ import HeroSection from '@/components/homepage/HeroSection'
 import StatsBar from '@/components/homepage/StatsBar'
 import AccreditationTrust from '@/components/homepage/AccreditationTrust'
 import ProgramCategories from '@/components/homepage/ProgramCategories'
+import FeaturedCourses from '@/components/homepage/FeaturedCourses'
 import DegreePathway from '@/components/homepage/DegreePathway'
+import HowYoullLearn from '@/components/homepage/HowYoullLearn'
 import WhyADMI from '@/components/homepage/WhyADMI'
 import StudentShowcase from '@/components/homepage/StudentShowcase'
 import AlumniStories from '@/components/homepage/AlumniStories'
 import EventsIntakes from '@/components/homepage/EventsIntakes'
+import QuickQuestions from '@/components/homepage/QuickQuestions'
 import IndustryPartners from '@/components/homepage/IndustryPartners'
 import TestimonialsSection from '@/components/homepage/TestimonialsSection'
 import FinalCTA from '@/components/homepage/FinalCTA'
@@ -134,11 +137,14 @@ export default function HomePage({ content }: HomePageProps) {
       <HeroSection />
       <StatsBar />
       <AccreditationTrust />
+      <DegreePathway />
       <ProgramCategories />
+      <FeaturedCourses />
+      <HowYoullLearn />
       <WhyADMI />
       <StudentShowcase />
-      <DegreePathway />
       <AlumniStories />
+      <QuickQuestions />
       <IndustryPartners />
       <EventsIntakes />
       <TestimonialsSection />

@@ -4,7 +4,6 @@ import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import { CourseEnrollCard } from '@/components/cards'
 import { SOCIAL_LINKS } from '@/utils'
 import { WhatsAppLinkPlain } from '@/components/shared/WhatsAppLink'
 
@@ -20,7 +19,6 @@ import IconMail from '@/assets/icons/mail.svg'
 import IconCall from '@/assets/icons/call.svg'
 import IconStopWatch from '@/assets/icons/stop-watch.svg'
 import Ribbon from './Ribbon'
-import { Title } from '@/components/ui'
 
 const QUICK_LINKS = [
   { label: 'Enquire Now', href: 'enquiry' },
@@ -90,19 +88,12 @@ export default function Footer({ bgColor }: Props) {
       className="relative w-full bg-[#FFF7F5] font-proxima"
       style={bgColor ? { backgroundColor: bgColor } : undefined}
     >
-      {/* Floating Card */}
-      <div className="w-full pt-48 sm:pt-36">
-        <div className="absolute left-1/2 top-[6vh] z-10 h-fit w-full max-w-screen-lg -translate-x-1/2 transform justify-center px-4 sm:top-[8vh] md:h-[7.125rem] 2xl:px-0">
-          <CourseEnrollCard />
-        </div>
-      </div>
-
-      <div className="w-full bg-admi-green pb-8 pt-36">
+      <div className="w-full bg-admi-green pb-8 pt-12">
         {/* Main 3-column grid */}
         <div className="mx-auto grid w-full max-w-screen-xl grid-cols-1 gap-10 px-4 text-white md:grid-cols-3 md:gap-8">
           {/* Column 1: Get in Touch */}
           <div className="flex flex-col gap-4">
-            <Title size={'1.4em'} label="Get in Touch" color="admiShamrok" />
+            <h3 className="font-nexa text-[1.4em] font-black text-white">Get in Touch</h3>
 
             <div>
               <p>Caxton House, 3rd Floor</p>
@@ -154,7 +145,7 @@ export default function Footer({ bgColor }: Props) {
 
           {/* Column 2: Quick Links */}
           <div className="flex flex-col gap-2">
-            <Title size={'1.4em'} label="Quick Links" color="admiShamrok" />
+            <h3 className="font-nexa text-[1.4em] font-black text-white">Quick Links</h3>
             {QUICK_LINKS.map((link) => (
               <FooterLink key={link.href} href={link.href} label={link.label} />
             ))}
@@ -162,7 +153,7 @@ export default function Footer({ bgColor }: Props) {
 
           {/* Column 3: Student Corner + Social Icons */}
           <div className="flex flex-col gap-2">
-            <Title size={'1.4em'} label="Student Corner" color="admiShamrok" />
+            <h3 className="font-nexa text-[1.4em] font-black text-white">Student Corner</h3>
             {STUDENT_LINKS.map((link) => (
               <FooterLink key={link.href} href={link.href} label={link.label} />
             ))}
