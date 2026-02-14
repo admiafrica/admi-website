@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 
 /**
- * Custom hook replacing @mantine/hooks useMediaQuery.
+ * Custom hook replacing @/lib/tw-mantine-hooks useMediaQuery.
  * Returns false during SSR for hydration safety.
  */
 export function useMediaQuery(query: string): boolean {

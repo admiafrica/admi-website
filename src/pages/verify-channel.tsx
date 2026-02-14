@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Container, Title, Card, Text, Button, Alert, Loader } from '@mantine/core'
+import { Container, Title, Card, Text, Button, Alert, Loader } from '@/lib/tw-mantine'
 
 export default function VerifyChannelPage() {
   const [result, setResult] = useState<any>(null)

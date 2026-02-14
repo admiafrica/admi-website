@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/router'
 import { useState } from 'react'
-import { Autocomplete, Box } from '@mantine/core'
+import { Autocomplete, Box } from '@/lib/tw-mantine'
 
 import { Button, Paragraph } from '@/components/ui'
 import { useIsMobile } from '@/hooks/useIsMobile'
@@ -54,7 +54,7 @@ export default function SearchDropdown({ items, buttonLabel, placeholder, destin
                 marginTop: 16
               }
             }}
-            renderOption={(value) => (
+            renderOption={(value: any) => (
               <Paragraph size="16px" className="py-1">
                 {value.option.value}
               </Paragraph>

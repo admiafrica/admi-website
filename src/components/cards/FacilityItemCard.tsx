@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { Box, Card } from '@mantine/core'
+import { Box, Card } from '@/lib/tw-mantine'
 import { Paragraph, Title } from '@/components/ui'
 
 type Props = {

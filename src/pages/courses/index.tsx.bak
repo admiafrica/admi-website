@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { Box, Text, Select } from '@mantine/core'
+import { Box, Text, Select } from '@/lib/tw-mantine'
 
 import { MainLayout } from '@/layouts/v3/MainLayout'
 import { Paragraph, Title, SearchDropdown } from '@/components/ui'

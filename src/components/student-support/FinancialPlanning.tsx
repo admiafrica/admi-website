@@ -1,4 +1,4 @@
-import { Anchor, Box, Accordion } from '@mantine/core'
+import { Anchor, Box, Accordion } from '@/lib/tw-mantine'
 import { ensureProtocol } from '@/utils'
 
 import { Paragraph, Title } from '../ui'

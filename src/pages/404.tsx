@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 import { MainLayout } from '@/layouts/v3/MainLayout'
 import { PageSEO } from '@/components/shared/v3'
 import { Button, Paragraph, Title } from '@/components/ui'
-import { Box } from '@mantine/core'
+import { Box } from '@/lib/tw-mantine'
 
 export default function Custom404() {
   const router = useRouter()

@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Container, Title, Card, Text, Group, Badge, Table, Loader, Alert, Button } from '@mantine/core'
+import { Container, Title, Card, Text, Group, Badge, Table, Loader, Alert, Button } from '@/lib/tw-mantine'
 
 interface SpamLog {
   timestamp: string

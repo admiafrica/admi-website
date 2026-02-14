@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
-import { Container, Title, Text, Card, Group, Button, Badge } from '@mantine/core'
-import { Carousel } from '@mantine/carousel'
+import { Container, Title, Text, Card, Group, Button, Badge } from '@/lib/tw-mantine'
+import { Carousel } from '@/lib/tw-mantine-carousel'
 import { IconPlayerPlay, IconExternalLink, IconEye } from '@tabler/icons-react'
 import Autoplay from 'embla-carousel-autoplay'
 import Image from 'next/image'

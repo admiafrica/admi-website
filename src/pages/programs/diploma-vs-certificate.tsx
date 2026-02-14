@@ -15,7 +15,7 @@ import {
   List,
   Box,
   Divider
-} from '@mantine/core'
+} from '@/lib/tw-mantine'
 import {
   IconSchool,
   IconCertificate,

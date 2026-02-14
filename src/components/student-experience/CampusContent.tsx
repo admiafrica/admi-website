@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { Box } from '@mantine/core'
+import { Box } from '@/lib/tw-mantine'
 import { StudentExperienceLayout } from './StudentExperienceLayout'
 
 export function CampusContent() {

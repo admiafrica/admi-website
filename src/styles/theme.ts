@@ -1,8 +1,8 @@
 import localFont from 'next/font/local'
 
-import { createTheme } from '@mantine/core'
+import { createTheme } from '@/lib/tw-mantine'
 
-import { generateColors } from '@mantine/colors-generator'
+const createColorScale = (hex: string) => Array.from({ length: 10 }, () => hex)
 
 // Import your fonts with optimized loading
 export const nexaFont = localFont({
@@ -53,11 +53,11 @@ export const proximaNovaFont = localFont({
 
 export const defaultTheme = createTheme({
   colors: {
-    admiDarkOrange: generateColors('#BA2E36'),
-    admiShamrok: generateColors('#08F6CF'),
-    admiRed: generateColors('#F60834'),
-    admiOrangeLight: generateColors('#F76335'),
-    admiOrangeDark: generateColors('#BD2D00')
+    admiDarkOrange: createColorScale('#BA2E36'),
+    admiShamrok: createColorScale('#08F6CF'),
+    admiRed: createColorScale('#F60834'),
+    admiOrangeLight: createColorScale('#F76335'),
+    admiOrangeDark: createColorScale('#BD2D00')
   },
   primaryColor: 'admiDarkOrange'
 })

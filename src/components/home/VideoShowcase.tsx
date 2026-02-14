@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Title, Text, Grid, Card, Group, Button, Badge } from '@mantine/core'
+import { Container, Title, Text, Grid, Card, Group, Button, Badge } from '@/lib/tw-mantine'
 import { IconPlayerPlay, IconEye, IconExternalLink } from '@tabler/icons-react'
 import { YouTubeVideo, getYouTubeWatchUrl } from '@/utils/youtube-api'
 import Image from 'next/image'

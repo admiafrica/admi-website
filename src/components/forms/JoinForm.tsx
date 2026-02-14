@@ -1,5 +1,5 @@
-import { Card, Group, TextInput } from '@mantine/core'
-import { useForm } from '@mantine/form'
+import { Card, Group, TextInput } from '@/lib/tw-mantine'
+import { useForm } from '@/lib/tw-mantine-form'
 import { Button, Paragraph, Title } from '../ui'
 import { IconAsterisk } from '@tabler/icons-react'
 

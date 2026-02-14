@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react'
-import { Box, Badge, Group, Stack, Text, Card, SimpleGrid } from '@mantine/core'
+import { Box, Badge, Group, Stack, Text, Card, SimpleGrid } from '@/lib/tw-mantine'
 
 interface ArticleMetadataProps {
   tags?: string[]

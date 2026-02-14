@@ -1,5 +1,5 @@
 import { Html, Head, Main, NextScript } from 'next/document'
-import { ColorSchemeScript } from '@mantine/core'
+import { ColorSchemeScript } from '@/lib/tw-mantine'
 
 export default function Document() {
   const gtmId = process.env.NEXT_PUBLIC_ADMI_GTM_ID

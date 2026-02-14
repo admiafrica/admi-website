@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, Image, Text, Button, Group } from '@mantine/core'
+import { Card, Image, Text, Button, Group } from '@/lib/tw-mantine'
 import { IconCheck, IconExclamationCircle, IconPlayerPlay } from '@tabler/icons-react'
 import Link from 'next/link'
 

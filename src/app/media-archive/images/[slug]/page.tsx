@@ -17,12 +17,11 @@ import {
   MantineProvider,
   Loader,
   Alert
-} from '@mantine/core'
+} from '@/lib/tw-mantine'
 import { IconDownload, IconCalendar, IconCamera, IconArrowLeft, IconAlertCircle } from '@tabler/icons-react'
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { MainLayout } from '@/layouts/v3/MainLayout'
-import '@mantine/core/styles.css'
 
 interface AlbumImage {
   id: string

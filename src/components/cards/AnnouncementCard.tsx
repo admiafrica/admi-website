@@ -1,6 +1,6 @@
 import React from 'react'
 import { ensureProtocol } from '@/utils'
-import { Box, Card, Pill } from '@mantine/core'
+import { Box, Card, Pill } from '@/lib/tw-mantine'
 import { Paragraph, Title } from '../ui'
 import { motion } from 'framer-motion'
 

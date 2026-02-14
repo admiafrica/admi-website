@@ -1,4 +1,4 @@
-import { Paper, Group, Stack, Badge, Text, Button } from '@mantine/core'
+import { Paper, Group, Stack, Badge, Text, Button } from '@/lib/tw-mantine'
 import { IconClock } from '@tabler/icons-react'
 
 /**

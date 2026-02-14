@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { Card, Text, NumberFormatter, Divider } from '@mantine/core'
+import { Card, Text, NumberFormatter, Divider } from '@/lib/tw-mantine'
 
 import { Button, Paragraph, Title } from '../ui'
 

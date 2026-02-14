@@ -1,4 +1,4 @@
-import { Anchor, Box } from '@mantine/core'
+import { Anchor, Box } from '@/lib/tw-mantine'
 import { Paragraph, Title } from '../ui'
 import { CollapsibleContent } from '../shared/v3'
 

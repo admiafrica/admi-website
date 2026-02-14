@@ -1,4 +1,4 @@
-import { Card, Text } from '@mantine/core'
+import { Card, Text } from '@/lib/tw-mantine'
 import { Button } from '../ui'
 
 export default function CourseEnrollCard() {

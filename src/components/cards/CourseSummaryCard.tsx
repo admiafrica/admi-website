@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { Box, Card, Text } from '@mantine/core'
+import { Box, Card, Text } from '@/lib/tw-mantine'
 import { Button, Paragraph } from '../ui'
 
 import IconAward from '@/assets/icons/Award'

@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from 'react'
 
 /**
- * Custom hook replacing @mantine/hooks useHeadroom.
+ * Custom hook replacing @/lib/tw-mantine-hooks useHeadroom.
  * Returns true (pinned/visible) when:
  *   - scroll position is less than fixedAt
  *   - user is scrolling up

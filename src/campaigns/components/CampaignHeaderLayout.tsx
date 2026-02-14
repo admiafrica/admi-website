@@ -1,4 +1,4 @@
-import { AppShell } from '@mantine/core'
+import { AppShell } from '@/lib/tw-mantine'
 
 type Props = {
   children: React.ReactNode

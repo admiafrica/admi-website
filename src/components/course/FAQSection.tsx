@@ -1,4 +1,4 @@
-import { Paper, Stack, SimpleGrid, Text, Group, Button } from '@mantine/core'
+import { Paper, Stack, SimpleGrid, Text, Group, Button } from '@/lib/tw-mantine'
 import { IconBrandWhatsapp } from '@tabler/icons-react'
 import { trackWhatsAppClick, ADMI_WHATSAPP_NUMBER } from '@/utils/whatsapp-attribution'
 import { FAQ_DATA } from '@/data/faq-data'

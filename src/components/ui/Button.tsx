@@ -1,4 +1,4 @@
-import { Button as MantineButton, Text } from '@mantine/core'
+import { Button as MantineButton, Text } from '@/lib/tw-mantine'
 
 type Props = {
   label: string

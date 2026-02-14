@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Container, Title, Text, Button, Card, Code, Alert } from '@mantine/core'
+import { Container, Title, Text, Button, Card, Code, Alert } from '@/lib/tw-mantine'
 import { IconCheck, IconX, IconLoader } from '@tabler/icons-react'
 
 // Simple test page to verify YouTube API integration

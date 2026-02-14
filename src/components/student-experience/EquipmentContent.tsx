@@ -1,6 +1,6 @@
 'use client'
 
-import { Box } from '@mantine/core'
+import { Box } from '@/lib/tw-mantine'
 import { StudentExperienceLayout } from './StudentExperienceLayout'
 import { FacilityItemCard } from '@/components/cards'
 import { ADMI_FACILITIES } from '@/utils'

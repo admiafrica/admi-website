@@ -287,6 +287,78 @@ export async function getHomepageHeroCached(): Promise<any | null> {
 }
 
 /**
+ * Fetch a singleton page entry by content type ID with caching.
+ * Returns the resolved fields of the first entry, or null if none exist.
+ *
+ * Used for CMS-managed pages (accommodation, about, alumni, etc.)
+ */
+export async function getPageCached(contentTypeId: string, cacheKey: string): Promise<any | null> {
+  const result = await getCached(
+    cacheKey,
+    async () => {
+      const response = await axiosContentfulClient.get<IContentfulResponse>(
+        `/spaces/${spaceId}/environments/${environment}/entries?access_token=${accessToken}&content_type=${contentTypeId}&include=10&limit=1`
+      )
+      const data = response.data
+
+      if (!data.items || data.items.length === 0) {
+        return null
+      }
+
+      const mainItem = data.items[0]
+      const assets = data.includes?.Asset || []
+      const entries = data.includes?.Entry || []
+
+      // Resolve references and rewrite asset URLs
+      const resolved = {
+        ...mainItem,
+        fields: resolveReferences(mainItem.fields, entries, assets),
+        assets
+      }
+      return rewriteAssetUrlsInObject(resolved)
+    },
+    { duration: CACHE_DURATIONS.pages, useS3: USE_S3_CACHE }
+  )
+
+  return result.data
+}
+
+/**
+ * Fetch multiple entries of a content type with caching.
+ * Used for shared types like teamMember, alumniProfile, etc.
+ */
+export async function getEntriesCached(
+  contentTypeId: string,
+  cacheKey: string,
+  query?: string
+): Promise<any[]> {
+  const result = await getCached(
+    cacheKey,
+    async () => {
+      const extra = query ? `&${query}` : ''
+      const response = await axiosContentfulClient.get<IContentfulResponse>(
+        `/spaces/${spaceId}/environments/${environment}/entries?access_token=${accessToken}&content_type=${contentTypeId}&include=2${extra}`
+      )
+      const data = response.data
+      const items = data.items || []
+      const assets = data.includes?.Asset || []
+      const entries = data.includes?.Entry || []
+
+      const resolvedItems = items.map((item: any) => ({
+        ...item,
+        fields: resolveReferences(item.fields, entries, assets),
+        assets
+      }))
+
+      return rewriteAssetUrlsInObject(resolvedItems)
+    },
+    { duration: CACHE_DURATIONS.pages, useS3: USE_S3_CACHE }
+  )
+
+  return result.data
+}
+
+/**
  * Health check for the caching system
  */
 export async function getCacheHealth(): Promise<{

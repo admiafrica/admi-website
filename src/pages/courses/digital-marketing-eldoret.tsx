@@ -1,5 +1,5 @@
 import React from 'react'
-import { Title, Text, Button, Grid, Card, List, Accordion } from '@mantine/core'
+import { Title, Text, Button, Grid, Card, List, Accordion } from '@/lib/tw-mantine'
 import { MainLayout } from '@/layouts/v3/MainLayout'
 import PageSEO from '../../components/shared/v3/PageSEO'
 

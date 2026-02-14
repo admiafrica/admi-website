@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Card } from '@mantine/core'
+import { Box, Card } from '@/lib/tw-mantine'
 
 import { Paragraph } from '../ui'
 import IconAttach from '@/assets/icons/Attach'

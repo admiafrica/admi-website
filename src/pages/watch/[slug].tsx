@@ -5,7 +5,7 @@ import { MainLayout } from '@/layouts/v3/MainLayout'
 import { PageSEO } from '@/components/shared/v3'
 import { VideoSchema, BreadcrumbSchema } from '@/components/shared/StructuredData'
 import { VideoPlayer } from '@/components/shared/v3'
-import { Button, Container, Title, Text, Card, Group, Badge } from '@mantine/core'
+import { Button, Container, Title, Text, Card, Group, Badge } from '@/lib/tw-mantine'
 import { IconArrowLeft, IconPlayerPlay } from '@tabler/icons-react'
 import Link from 'next/link'
 

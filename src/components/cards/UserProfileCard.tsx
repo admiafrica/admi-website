@@ -1,6 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
-import { Avatar, Box, Card } from '@mantine/core'
+import { Avatar, Box, Card } from '@/lib/tw-mantine'
 
 import IconLinkedIn from '@/assets/icons/linkedin-blue.svg'
 import { Paragraph, Title } from '../ui'

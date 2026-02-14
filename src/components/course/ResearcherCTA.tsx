@@ -1,4 +1,4 @@
-import { Paper, Group, Stack, Text, Button } from '@mantine/core'
+import { Paper, Group, Stack, Text, Button } from '@/lib/tw-mantine'
 import { IconChartBar } from '@tabler/icons-react'
 
 /**

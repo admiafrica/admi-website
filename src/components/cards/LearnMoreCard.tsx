@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { Box, Divider, Text } from '@mantine/core'
+import { Box, Divider, Text } from '@/lib/tw-mantine'
 import { Button, Paragraph, Title } from '@/components/ui'
 import { useRouter } from 'next/router'
 

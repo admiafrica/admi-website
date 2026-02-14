@@ -15,7 +15,7 @@ import {
 } from './components'
 import styles from '@/assets/css/main.module.css'
 import { useRouter } from 'next/router'
-import { Skeleton } from '@mantine/core'
+import { Skeleton } from '@/lib/tw-mantine'
 import { getCourseFormUrl, ensureProtocol } from '@/utils'
 
 export function CampaignsPage() {

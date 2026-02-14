@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-import { Box } from '@mantine/core'
+import { Box } from '@/lib/tw-mantine'
 
 import { MainLayout } from '@/layouts/v3/MainLayout'
 import { Paragraph, Title } from '@/components/ui'

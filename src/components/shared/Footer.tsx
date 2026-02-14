@@ -1,6 +1,6 @@
 import Image from 'next/image'
-import { Group, Text, Anchor, Stack, Title } from '@mantine/core'
-import { useMediaQuery } from '@mantine/hooks'
+import { Group, Text, Anchor, Stack, Title } from '@/lib/tw-mantine'
+import { useMediaQuery } from '@/lib/tw-mantine-hooks'
 import {
   IconBrandFacebook,
   IconBrandLinkedin,

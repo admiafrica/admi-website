@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Accordion, Container, Title, Text, Group, Loader, Alert } from '@mantine/core'
+import { Accordion, Container, Title, Text, Group, Loader, Alert } from '@/lib/tw-mantine'
 import { IconChevronDown, IconAlertCircle } from '@tabler/icons-react'
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer'
 import { ICourseFAQ, IFAQResponse } from '@/types'

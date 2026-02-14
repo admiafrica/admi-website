@@ -1,5 +1,5 @@
 import React from 'react'
-import { Anchor, Box, Card, Divider, Pill } from '@mantine/core'
+import { Anchor, Box, Card, Divider, Pill } from '@/lib/tw-mantine'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 

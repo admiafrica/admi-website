@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Title, Text, Card, Grid, List, Badge, Group } from '@mantine/core'
+import { Container, Title, Text, Card, Grid, List, Badge, Group } from '@/lib/tw-mantine'
 import PageSEO from '../../components/shared/v3/PageSEO'
 
 const GraphicDesignerCareerGuide = () => {

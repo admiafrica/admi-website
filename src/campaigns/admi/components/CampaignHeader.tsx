@@ -1,5 +1,5 @@
 import styles from '@/assets/css/main.module.css'
-import { Affix, Group } from '@mantine/core'
+import { Affix, Group } from '@/lib/tw-mantine'
 import logo from '@/assets/logo-main.svg'
 import { getCourseFormUrl } from '@/utils'
 import Image from 'next/image'

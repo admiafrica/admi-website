@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Title, Text, Button, Grid, Card, List, Accordion } from '@mantine/core'
+import { Container, Title, Text, Button, Grid, Card, List, Accordion } from '@/lib/tw-mantine'
 import PageSEO from '../../components/shared/v3/PageSEO'
 
 const SoundEngineeringMombasaPage = () => {

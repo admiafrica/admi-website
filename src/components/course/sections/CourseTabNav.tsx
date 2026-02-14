@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { Text } from '@mantine/core'
+import { Text } from '@/lib/tw-mantine'
 
 type TabValue = 'overview' | 'deep-dive'
 

@@ -25,7 +25,7 @@ import {
   Breadcrumbs,
   Anchor,
   MantineProvider
-} from '@mantine/core'
+} from '@/lib/tw-mantine'
 import {
   IconSearch,
   IconPlayerPlay,
@@ -37,7 +37,6 @@ import {
 } from '@tabler/icons-react'
 import Link from 'next/link'
 import { MainLayout } from '@/layouts/v3/MainLayout'
-import '@mantine/core/styles.css'
 
 // We'll need to adapt this for App Router - for now using client-side data loading
 // In a full implementation, this would use proper App Router data fetching
@@ -333,7 +332,7 @@ export default function VideoGallery() {
                 placeholder="Search videos..."
                 leftSection={<IconSearch size={16} />}
                 value={searchQuery}
-                onChange={(event) => setSearchQuery(event.currentTarget.value)}
+                onChange={(event: any) => setSearchQuery(event.currentTarget.value)}
                 style={{ flex: 1, minWidth: 250 }}
                 size="md"
               />

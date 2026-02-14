@@ -1,4 +1,4 @@
-import { Box, Pill, Divider } from '@mantine/core'
+import { Box, Pill, Divider } from '@/lib/tw-mantine'
 
 import { Paragraph, Title } from '@/components/ui'
 import { getAssetDetails, ensureProtocol } from '@/utils'

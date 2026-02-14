@@ -1,4 +1,4 @@
-import { Text, Button } from '@mantine/core'
+import { Text, Button } from '@/lib/tw-mantine'
 import { IconBrandWhatsapp } from '@tabler/icons-react'
 import { trackWhatsAppClick, ADMI_WHATSAPP_NUMBER } from '@/utils/whatsapp-attribution'
 

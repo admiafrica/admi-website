@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Container, Title, Button, Card, Text, TextInput, Code, Alert } from '@mantine/core'
+import { Container, Title, Button, Card, Text, TextInput, Code, Alert } from '@/lib/tw-mantine'
 
 export default function DebugChannelPage() {
   const [channelId, setChannelId] = useState('UCyAYiT5XYUcOaOlzn32qROA')
@@ -109,7 +109,7 @@ export default function DebugChannelPage() {
         <TextInput
           label="Channel ID to test"
           value={channelId}
-          onChange={(e) => setChannelId(e.target.value)}
+          onChange={(e: any) => setChannelId(e.target.value)}
           mb="md"
         />
         <Button onClick={testChannelId} loading={loading}>

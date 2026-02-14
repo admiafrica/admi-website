@@ -18,7 +18,7 @@ import {
   MantineProvider,
   Loader,
   Alert
-} from '@mantine/core'
+} from '@/lib/tw-mantine'
 import {
   IconSearch,
   IconPlayerPlay,
@@ -32,7 +32,6 @@ import {
 import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { MainLayout } from '@/layouts/v3/MainLayout'
-import '@mantine/core/styles.css'
 
 interface AudioItem {
   id: string
@@ -226,14 +225,14 @@ export default function AudioPage() {
                   placeholder="Search audio..."
                   leftSection={<IconSearch size={18} />}
                   value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onChange={(e: any) => setSearchQuery(e.target.value)}
                   style={{ flex: 1 }}
                 />
                 <Select
                   placeholder="Category"
                   data={categories}
                   value={selectedCategory}
-                  onChange={(value) => setSelectedCategory(value || 'All')}
+                  onChange={(value: string | null) => setSelectedCategory(value || 'All')}
                   w={200}
                 />
               </Group>

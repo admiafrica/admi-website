@@ -1,4 +1,4 @@
-import { Box } from '@mantine/core'
+import { Box } from '@/lib/tw-mantine'
 import { ParagraphContentful, Title } from '../ui'
 import { CourseVideoCard } from '../cards'
 import { useIsMobile } from '@/hooks/useIsMobile'

@@ -1,4 +1,4 @@
-import { Group } from '@mantine/core'
+import { Group } from '@/lib/tw-mantine'
 import { CollapsibleContent } from '../shared/v3'
 import { getAssetDetails, ensureProtocol } from '@/utils'
 import Image from 'next/image'

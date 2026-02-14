@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Box, Card } from '@mantine/core'
+import { Box, Card } from '@/lib/tw-mantine'
 import { IconMail, IconPhone, IconCalendar, IconBrandWhatsapp, IconArrowRight } from '@tabler/icons-react'
 
 import { GoogleAnalyticsTag } from '@/components/shared'

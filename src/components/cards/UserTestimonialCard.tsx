@@ -1,6 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
-import { Avatar, Box, Card, Rating, ScrollArea } from '@mantine/core'
+import { Avatar, Box, Card, Rating, ScrollArea } from '@/lib/tw-mantine'
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer'
 
 import { getAssetDetails, ensureProtocol } from '@/utils'

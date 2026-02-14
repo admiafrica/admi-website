@@ -1,4 +1,4 @@
-import { Box } from '@mantine/core'
+import { Box } from '@/lib/tw-mantine'
 import Image from 'next/image'
 
 import { MainLayout } from '@/layouts/v3/MainLayout'

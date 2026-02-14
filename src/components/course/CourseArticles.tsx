@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Card, SimpleGrid, Text, Badge, Group } from '@mantine/core'
+import { Box, Card, SimpleGrid, Text, Badge, Group } from '@/lib/tw-mantine'
 import Link from 'next/link'
 
 interface CourseArticleProps {

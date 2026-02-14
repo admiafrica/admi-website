@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { Card, ScrollArea } from '@mantine/core'
+import { Card, ScrollArea } from '@/lib/tw-mantine'
 
 import { getAssetDetails, ensureProtocol } from '@/utils'
 import { CollapsibleContent } from '../shared/v3'

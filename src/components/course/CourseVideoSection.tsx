@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Container, Title, Text, Card, Group, Button, Badge, Grid, Box, Tabs } from '@mantine/core'
+import { Container, Title, Text, Card, Group, Button, Badge, Grid, Box, Tabs } from '@/lib/tw-mantine'
 import { IconPlayerPlay, IconEye, IconClock, IconUsers, IconTrendingUp, IconExternalLink } from '@tabler/icons-react'
 import Link from 'next/link'
 import Image from 'next/image'

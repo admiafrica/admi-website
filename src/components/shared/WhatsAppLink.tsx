@@ -1,6 +1,6 @@
 'use client'
 
-import { Anchor, type AnchorProps } from '@mantine/core'
+import { Anchor, type AnchorProps } from '@/lib/tw-mantine'
 import { trackWhatsAppClick } from '@/utils/utm-tracking'
 import { ADMI_WHATSAPP_NUMBER } from '@/utils/whatsapp-attribution'
 

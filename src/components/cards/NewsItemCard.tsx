@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { Box, Card } from '@mantine/core'
+import { Box, Card } from '@/lib/tw-mantine'
 import { Paragraph } from '@/components/ui'
 import { useRouter } from 'next/router'
 import { motion } from 'framer-motion'

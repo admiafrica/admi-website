@@ -1,15 +1,13 @@
 import '@/styles/globals.css'
 import type { AppProps } from 'next/app'
 
-import { MantineProvider } from '@mantine/core'
-import { Notifications } from '@mantine/notifications'
+import { MantineProvider } from '@/lib/tw-mantine'
+import { Notifications } from '@/lib/tw-mantine-notifications'
 import { GoogleTagManager } from '@/components/analytics/GoogleTagManager'
 import { WebVitals } from '@/components/shared/WebVitals'
 
 // mantine components
 import { defaultTheme } from '@/styles/theme'
-import '@mantine/core/styles.css'
-import '@mantine/carousel/styles.css'
 // font family
 import '@fontsource/inter/400.css'
 import '@fontsource/inter/500.css'

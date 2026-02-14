@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Text, Title, Button } from '@mantine/core'
+import { Text, Title, Button } from '@/lib/tw-mantine'
 
 export default function CourseFooter() {
   return (

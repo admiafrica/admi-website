@@ -1,8 +1,8 @@
 'use client'
 
 import React, { useRef, useState } from 'react'
-import { Carousel } from '@mantine/carousel'
-import { Card, Box, Divider } from '@mantine/core'
+import { Carousel } from '@/lib/tw-mantine-carousel'
+import { Card, Box, Divider } from '@/lib/tw-mantine'
 import Autoplay from 'embla-carousel-autoplay'
 
 import { IconPlus } from '@tabler/icons-react'

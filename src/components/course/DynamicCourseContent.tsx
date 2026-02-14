@@ -1,7 +1,7 @@
 import React from 'react'
 import { ensureProtocol } from '@/utils'
 import Image from 'next/image'
-import { Box, Grid, Loader, Text, Title } from '@mantine/core'
+import { Box, Grid, Loader, Text, Title } from '@/lib/tw-mantine'
 import { useCourseContent } from '@/hooks/useCourseContent'
 import { UserTestimonialCard } from '@/components/cards'
 

@@ -1,4 +1,4 @@
-import { Text } from '@mantine/core'
+import { Text } from '@/lib/tw-mantine'
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer'
 import { CollapsibleContent } from '../shared/v3'
 import { useIsMobile } from '@/hooks/useIsMobile'

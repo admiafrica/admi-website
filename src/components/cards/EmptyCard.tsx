@@ -1,6 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
-import { Card } from '@mantine/core'
+import { Card } from '@/lib/tw-mantine'
 
 import { Paragraph } from '../ui'
 

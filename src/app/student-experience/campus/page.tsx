@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Box } from '@mantine/core'
+import { Box } from '@/lib/tw-mantine'
 
 import { MainLayout } from '@/layouts/v3/MainLayout'
 import { PageSEO } from '@/components/shared/v3'

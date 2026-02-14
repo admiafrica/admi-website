@@ -1,4 +1,4 @@
-import { Paper, Group, Stack, Badge, Text, Button } from '@mantine/core'
+import { Paper, Group, Stack, Badge, Text, Button } from '@/lib/tw-mantine'
 import { IconSchool, IconBrandWhatsapp } from '@tabler/icons-react'
 import { Title } from '@/components/ui'
 import { trackWhatsAppClick, ADMI_WHATSAPP_NUMBER } from '@/utils/whatsapp-attribution'

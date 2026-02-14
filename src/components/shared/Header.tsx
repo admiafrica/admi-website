@@ -1,8 +1,8 @@
-import { Group, Button, Text, Menu } from '@mantine/core'
+import { Group, Button, Text, Menu } from '@/lib/tw-mantine'
 import Link from 'next/link'
 import logo from '@/assets/logo-main.svg'
 import Image from 'next/image'
-import { useMediaQuery } from '@mantine/hooks'
+import { useMediaQuery } from '@/lib/tw-mantine-hooks'
 import { IconMenu } from '@tabler/icons-react'
 
 export default function CampaignHeader() {

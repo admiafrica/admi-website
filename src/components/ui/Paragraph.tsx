@@ -1,6 +1,6 @@
 import React from 'react'
 import clsx from 'clsx' // merge classes dynamically
-import { Text } from '@mantine/core'
+import { Text } from '@/lib/tw-mantine'
 
 type Props = {
   children: React.ReactNode

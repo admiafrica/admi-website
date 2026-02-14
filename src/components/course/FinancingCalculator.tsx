@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Paper, Stack, Group, SimpleGrid, Text, ThemeIcon, Slider, Badge, Button } from '@mantine/core'
+import { Paper, Stack, Group, SimpleGrid, Text, ThemeIcon, Slider, Badge, Button } from '@/lib/tw-mantine'
 import { IconCurrencyDollar, IconBrandWhatsapp } from '@tabler/icons-react'
 import { trackWhatsAppClick, ADMI_WHATSAPP_NUMBER } from '@/utils/whatsapp-attribution'
 

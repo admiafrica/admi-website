@@ -1,4 +1,4 @@
-import { Paper, SimpleGrid, Stack, Text, ThemeIcon } from '@mantine/core'
+import { Paper, SimpleGrid, Stack, Text, ThemeIcon } from '@/lib/tw-mantine'
 import { IconWorld, IconAward, IconShieldCheck, IconUsers } from '@tabler/icons-react'
 
 const TRUST_BADGES = [

@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { Anchor, Box, Card, Group } from '@mantine/core'
+import { Anchor, Box, Card, Group } from '@/lib/tw-mantine'
 import { Button, Paragraph, Title } from '../ui'
 import { STUDENT_PORTAL_LOGIN } from '@/utils'
 

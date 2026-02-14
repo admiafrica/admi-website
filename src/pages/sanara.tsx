@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { Anchor, Box, Card } from '@mantine/core'
+import { Anchor, Box, Card } from '@/lib/tw-mantine'
 
 import { MainLayout } from '@/layouts/v3/MainLayout'
 import { PageSEO, SocialShare } from '@/components/shared/v3'

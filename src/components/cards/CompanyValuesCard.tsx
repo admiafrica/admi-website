@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Card, Tabs } from '@mantine/core'
+import { Box, Card, Tabs } from '@/lib/tw-mantine'
 import { Paragraph, Title } from '../ui'
 import { useIsMobile } from '@/hooks/useIsMobile'
 

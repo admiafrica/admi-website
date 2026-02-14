@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import { ensureProtocol } from '@/utils'
-import { Badge, Box, Group } from '@mantine/core'
+import { Badge, Box, Group } from '@/lib/tw-mantine'
 import { CourseSummaryCard } from '../cards'
 
 import IconAward from '@/assets/icons/Award'

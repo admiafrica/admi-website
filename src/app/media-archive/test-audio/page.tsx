@@ -1,6 +1,6 @@
 'use client'
 
-import { Container, Title, Card, Button, Stack } from '@mantine/core'
+import { Container, Title, Card, Button, Stack } from '@/lib/tw-mantine'
 import { useState } from 'react'
 import { MainLayout } from '@/layouts/v3/MainLayout'
 

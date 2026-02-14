@@ -1,4 +1,4 @@
-import { Text } from '@mantine/core'
+import { Text } from '@/lib/tw-mantine'
 import clsx from 'clsx'
 
 type Props = {

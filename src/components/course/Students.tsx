@@ -1,8 +1,8 @@
 import { useRef } from 'react'
 import Image from 'next/image'
 import Autoplay from 'embla-carousel-autoplay'
-import { Avatar, Box, Card, Group } from '@mantine/core'
-import { Carousel } from '@mantine/carousel'
+import { Avatar, Box, Card, Group } from '@/lib/tw-mantine'
+import { Carousel } from '@/lib/tw-mantine-carousel'
 
 import { getAssetDetails, ensureProtocol } from '@/utils'
 import { UserTestimonialCard } from '../cards'

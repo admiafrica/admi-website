@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { Alert, Box, Text, TextInput } from '@mantine/core'
-import { useForm } from '@mantine/form'
+import { Alert, Box, Text, TextInput } from '@/lib/tw-mantine'
+import { useForm } from '@/lib/tw-mantine-form'
 import { Button, Paragraph, Title } from '../ui'
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'

@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import { Box, Card, Divider } from '@mantine/core'
+import { Box, Card, Divider } from '@/lib/tw-mantine'
 import Image from 'next/image'
 
 import { Paragraph } from '@/components/ui'

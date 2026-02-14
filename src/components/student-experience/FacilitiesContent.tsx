@@ -1,7 +1,7 @@
 'use client'
 
-import { Box } from '@mantine/core'
-import { Carousel } from '@mantine/carousel'
+import { Box } from '@/lib/tw-mantine'
+import { Carousel } from '@/lib/tw-mantine-carousel'
 import Autoplay from 'embla-carousel-autoplay'
 import { StudentExperienceLayout } from './StudentExperienceLayout'
 import { FacilityItemCard } from '@/components/cards'

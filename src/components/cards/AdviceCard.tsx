@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Card } from '@mantine/core'
+import { Box, Card } from '@/lib/tw-mantine'
 
 import { Paragraph, Title } from '../ui'
 import Image from 'next/image'
