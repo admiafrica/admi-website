@@ -46,30 +46,30 @@ const paths = [
 export default function FinalCTA() {
   return (
     <section className="w-full bg-gradient-to-br from-brand-red via-[#8B1A24] to-admi-black">
-      <div className="mx-auto flex max-w-[1280px] flex-col items-center gap-10 px-6 py-16 md:px-8 md:py-[100px]">
+      <div className="mx-auto flex max-w-[1280px] flex-col items-center gap-7 px-4 py-12 md:gap-10 md:px-8 md:py-[100px]">
         {/* Title */}
-        <h2 className="max-w-[800px] text-center font-nexa text-3xl font-black text-white md:text-[44px] md:leading-[1.15]">
+        <h2 className="max-w-[800px] text-center font-nexa text-[28px] font-black text-white md:text-[44px] md:leading-[1.15]">
           What&apos;s Your Next Step?
         </h2>
 
-        <p className="max-w-[700px] text-center font-proxima text-base leading-relaxed text-white/80 md:text-lg">
+        <p className="max-w-[700px] text-center font-proxima text-[15px] leading-relaxed text-white/80 md:text-lg">
           Whether you&apos;re ready to apply or just starting to explore, there&apos;s a path for you.
         </p>
 
         {/* 4-path grid */}
-        <div className="grid w-full max-w-[900px] grid-cols-1 gap-4 sm:grid-cols-2">
+        <div className="grid w-full max-w-[900px] grid-cols-1 gap-3 sm:grid-cols-2 md:gap-4">
           {paths.map((path) => {
             const Icon = path.icon
             const inner = (
               <div
-                className={`flex flex-col items-center gap-3 rounded-xl px-8 py-8 text-center transition-all ${path.className}`}
+                className={`flex flex-col items-center gap-2.5 rounded-xl px-5 py-5 text-center transition-all md:gap-3 md:px-8 md:py-8 ${path.className}`}
               >
                 <span className="font-proxima text-xs font-bold uppercase tracking-[2px] opacity-70">{path.title}</span>
-                <span className="flex items-center gap-2 font-proxima text-lg font-bold">
+                <span className="flex items-center gap-1.5 font-proxima text-[16px] font-bold md:gap-2 md:text-lg">
                   {path.cta}
-                  <Icon size={20} stroke={2} />
+                  <Icon size={18} stroke={2} />
                 </span>
-                <span className="font-proxima text-sm opacity-60">{path.subtext}</span>
+                <span className="font-proxima text-[13px] opacity-60 md:text-sm">{path.subtext}</span>
               </div>
             )
 

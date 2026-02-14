@@ -66,18 +66,18 @@ export default function ProgramCategories() {
     <section className="section-padding bg-white">
       <div className="section-container">
         {/* Header */}
-        <div className="mx-auto mb-12 max-w-[600px] text-center">
+        <div className="mx-auto mb-8 max-w-[600px] text-center md:mb-12">
           <span className="mb-3 inline-block font-proxima text-[13px] font-bold uppercase tracking-[2px] text-[#8B1A1A]">
             OUR PROGRAMMES
           </span>
           <h2 className="font-nexa text-[32px] font-black text-[#171717] md:text-[40px]">Choose Your Programme</h2>
-          <p className="mt-4 font-proxima text-base leading-relaxed text-[#555] md:text-[17px]">
+          <p className="mt-3 font-proxima text-[15px] leading-relaxed text-[#555] md:mt-4 md:text-[17px]">
             ADMI offers three levels of study. Select the pathway that matches your goals, experience, and schedule.
           </p>
         </div>
 
         {/* Cards */}
-        <div className="flex flex-col gap-6 lg:flex-row">
+        <div className="flex flex-col gap-4 md:gap-6 lg:flex-row">
           {programs.map((program) => (
             <div key={program.title} className={`${program.bg} flex flex-1 flex-col overflow-hidden rounded-2xl`}>
               {/* Image */}
@@ -92,7 +92,7 @@ export default function ProgramCategories() {
               </div>
 
               {/* Content */}
-              <div className="flex flex-1 flex-col gap-4 p-7 pb-9">
+              <div className="flex flex-1 flex-col gap-3 p-5 pb-6 md:gap-4 md:p-7 md:pb-9">
                 <div className="flex flex-wrap gap-2">
                   {program.badge && (
                     <span className="w-fit rounded-full bg-white/15 px-3.5 py-1.5 font-proxima text-[11px] font-bold tracking-wider text-white">
@@ -104,15 +104,17 @@ export default function ProgramCategories() {
                   </span>
                 </div>
 
-                <h3 className="font-nexa text-[24px] font-black text-white md:text-[28px]">{program.title}</h3>
+                <h3 className="font-nexa text-[22px] font-black text-white md:text-[28px]">{program.title}</h3>
 
-                <p className="font-proxima text-[15px] leading-relaxed text-white/80">{program.description}</p>
+                <p className="font-proxima text-[14px] leading-relaxed text-white/80 md:text-[15px]">
+                  {program.description}
+                </p>
 
                 <span className="mt-auto font-proxima text-sm font-semibold text-white/50">{program.duration}</span>
 
                 <Link
                   href={program.href}
-                  className={`${program.buttonBg} ${program.buttonText} mt-2 flex w-fit items-center gap-2 rounded-lg px-7 py-3.5 font-proxima text-[15px] font-semibold transition-opacity hover:opacity-90`}
+                  className={`${program.buttonBg} ${program.buttonText} mt-1.5 flex h-9 w-fit items-center gap-1.5 rounded-lg px-4 font-proxima text-[13px] font-semibold transition-opacity hover:opacity-90 md:mt-2 md:h-auto md:gap-2 md:px-7 md:py-3.5 md:text-[15px]`}
                 >
                   {program.buttonLabel}
                   <IconArrowRight size={16} />
@@ -123,10 +125,10 @@ export default function ProgramCategories() {
         </div>
 
         {/* Compare link */}
-        <div className="mt-8 flex justify-center">
+        <div className="mt-6 flex justify-center md:mt-8">
           <a
             href="#compare"
-            className="inline-flex items-center gap-2 font-proxima text-[15px] font-semibold text-brand-red transition-colors hover:text-[#a52830]"
+            className="inline-flex items-center gap-1.5 font-proxima text-[14px] font-semibold text-brand-red transition-colors hover:text-[#a52830] md:gap-2 md:text-[15px]"
           >
             Browse featured programmes
             <IconArrowRight size={16} stroke={2.5} />

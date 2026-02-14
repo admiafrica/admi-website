@@ -1,6 +1,5 @@
 'use client'
 
-import { Box } from '@/lib/tw-mantine'
 import { StudentExperienceLayout } from './StudentExperienceLayout'
 import { FacilityItemCard } from '@/components/cards'
 import { ADMI_FACILITIES } from '@/utils'
@@ -28,12 +27,12 @@ export function StudiosContent() {
       sections={sections}
     >
       {studiosFacility && (
-        <Box className="w-full px-4 py-12">
-          <Box className="mx-auto w-full max-w-screen-xl">
-            <Box className="mb-8">
+        <div className="w-full px-4 py-12">
+          <div className="mx-auto w-full max-w-screen-xl">
+            <div className="mb-8">
               <FacilityItemCard facility={studiosFacility} />
-            </Box>
-            <Box className="mt-8 rounded-2xl border border-[#CBECE3] bg-white p-8">
+            </div>
+            <div className="mt-8 rounded-2xl border border-[#CBECE3] bg-white p-8">
               <Title label="Studio Features" color="#002A23" size="22px" />
               <Paragraph className="pt-4 text-[#1F2A2A]" fontFamily="font-nexa" fontWeight={400} size="17px">
                 Each studio space is designed for specific creative disciplines:
@@ -53,9 +52,9 @@ export function StudiosContent() {
                   Mentorship and real-time feedback from industry professionals
                 </li>
               </ul>
-            </Box>
-          </Box>
-        </Box>
+            </div>
+          </div>
+        </div>
       )}
     </StudentExperienceLayout>
   )

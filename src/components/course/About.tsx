@@ -1,4 +1,3 @@
-import { Box } from '@/lib/tw-mantine'
 import { ParagraphContentful, Title } from '../ui'
 import { CourseVideoCard } from '../cards'
 import { useIsMobile } from '@/hooks/useIsMobile'
@@ -23,7 +22,7 @@ export default function CourseAbout(props: Props) {
       <div className="mx-auto w-full max-w-screen-xl px-4 2xl:px-0">
         <div className="flex min-h-[600px] w-full flex-col sm:flex-row">
           {props.isCampaign && (
-            <Box className="flex w-full flex-col sm:flex-row">
+            <div className="flex w-full flex-col sm:flex-row">
               <div className="mt-24 flex flex-col sm:w-1/2 sm:pr-4 xl:w-[60%]">
                 <Title label="About this course" size={isMobile ? '24px' : '36px'} color="admiRed" />
 
@@ -31,7 +30,7 @@ export default function CourseAbout(props: Props) {
                   {props.description}
                 </ParagraphContentful>
               </div>
-            </Box>
+            </div>
           )}
           {!props.isCampaign && (
             <>

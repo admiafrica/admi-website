@@ -45,56 +45,56 @@ export default function AlumniStories() {
   return (
     <section className="section-padding bg-[#f9f9f9]">
       <div className="section-container">
-      {/* Header */}
-      <div className="mb-10 flex flex-col items-start gap-4 md:mb-12 md:flex-row md:items-end md:justify-between">
-        <div>
-          <span className="mb-3 inline-block font-proxima text-sm font-semibold uppercase tracking-[2px] text-brand-red">
-            GRADUATE OUTCOMES
-          </span>
-          <h2 className="font-nexa text-[32px] font-black text-[#171717] md:text-4xl">
-            Where Our Graduates Work Today
-          </h2>
+        {/* Header */}
+        <div className="mb-8 flex flex-col items-start gap-3 md:mb-12 md:flex-row md:items-end md:justify-between md:gap-4">
+          <div>
+            <span className="mb-3 inline-block font-proxima text-sm font-semibold uppercase tracking-[2px] text-brand-red">
+              GRADUATE OUTCOMES
+            </span>
+            <h2 className="font-nexa text-[32px] font-black text-[#171717] md:text-4xl">
+              Where Our Graduates Work Today
+            </h2>
+          </div>
+
+          <Link
+            href="/alumni"
+            className="flex h-9 items-center gap-1.5 rounded-full border-[1.5px] border-brand-red px-4 font-proxima text-[12px] font-bold text-brand-red transition-colors hover:bg-brand-red hover:text-white md:h-auto md:gap-2 md:px-7 md:py-3 md:text-sm"
+          >
+            View All Stories
+            <IconArrowRight size={16} />
+          </Link>
         </div>
 
-        <Link
-          href="/alumni"
-          className="flex items-center gap-2 rounded-full border-[1.5px] border-brand-red px-7 py-3 font-proxima text-sm font-bold text-brand-red transition-colors hover:bg-brand-red hover:text-white"
-        >
-          View All Stories
-          <IconArrowRight size={16} />
-        </Link>
-      </div>
+        {/* Alumni Cards */}
+        <div className="flex flex-col gap-6 md:flex-row">
+          {alumni.map((person) => (
+            <div
+              key={person.name}
+              className="flex flex-1 flex-col overflow-hidden rounded-2xl bg-white shadow-[0_4px_20px_rgba(0,0,0,0.05)] md:h-[380px]"
+            >
+              {/* Image */}
+              <div className="relative h-[180px] w-full bg-[#e5e5e5]">
+                <Image
+                  src={person.image}
+                  alt={person.imageAlt}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  className="object-cover"
+                />
+              </div>
 
-      {/* Alumni Cards */}
-      <div className="flex flex-col gap-6 md:flex-row">
-        {alumni.map((person) => (
-          <div
-            key={person.name}
-            className="flex flex-1 flex-col overflow-hidden rounded-2xl bg-white shadow-[0_4px_20px_rgba(0,0,0,0.05)] md:h-[380px]"
-          >
-            {/* Image */}
-            <div className="relative h-[180px] w-full bg-[#e5e5e5]">
-              <Image
-                src={person.image}
-                alt={person.imageAlt}
-                fill
-                sizes="(max-width: 768px) 100vw, 33vw"
-                className="object-cover"
-              />
+              {/* Body */}
+              <div className="flex flex-1 flex-col gap-2 px-6 py-5">
+                <h3 className="font-proxima text-[17px] font-bold text-[#171717]">{person.name}</h3>
+                <span className="font-proxima text-sm text-brand-red">{person.role}</span>
+                <span className="font-proxima text-[13px] text-[#999]">{person.graduation}</span>
+                <p className="mt-1 font-proxima text-sm italic leading-relaxed text-[#666]">
+                  &ldquo;{person.quote}&rdquo;
+                </p>
+              </div>
             </div>
-
-            {/* Body */}
-            <div className="flex flex-1 flex-col gap-2 px-6 py-5">
-              <h3 className="font-proxima text-[17px] font-bold text-[#171717]">{person.name}</h3>
-              <span className="font-proxima text-sm text-brand-red">{person.role}</span>
-              <span className="font-proxima text-[13px] text-[#999]">{person.graduation}</span>
-              <p className="mt-1 font-proxima text-sm italic leading-relaxed text-[#666]">
-                &ldquo;{person.quote}&rdquo;
-              </p>
-            </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
       </div>
     </section>
   )

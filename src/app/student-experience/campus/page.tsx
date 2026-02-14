@@ -1,6 +1,4 @@
 import Link from 'next/link'
-import { Box } from '@/lib/tw-mantine'
-
 import { MainLayout } from '@/layouts/v3/MainLayout'
 import { PageSEO } from '@/components/shared/v3'
 
@@ -35,18 +33,18 @@ export default function StudentExperienceCampusPage() {
         description="Explore ADMI campus experience, from facilities and labs to studios and equipment access."
       />
 
-      <Box className="bg-[#0A1A18] px-4 py-16 text-white xl:px-0">
-        <Box className="mx-auto w-full max-w-screen-xl">
+      <div className="bg-[#0A1A18] px-4 py-16 text-white xl:px-0">
+        <div className="mx-auto w-full max-w-screen-xl">
           <p className="font-nexa text-[14px] uppercase tracking-[0.15em] text-[#B7D8CF]">/student-experience/campus</p>
           <h1 className="pt-4 font-proxima text-[48px] font-bold leading-[1.1]">Campus Experience at ADMI</h1>
           <p className="max-w-[860px] pt-4 font-nexa text-[18px] text-white/85">
             Discover the learning spaces where creative ideas are developed into professional outcomes.
           </p>
-        </Box>
-      </Box>
+        </div>
+      </div>
 
-      <Box className="border-y border-[#E8E8E8] bg-white">
-        <Box className="mx-auto flex w-full max-w-screen-xl items-center gap-2 px-4 xl:px-0">
+      <div className="border-y border-[#E8E8E8] bg-white">
+        <div className="mx-auto flex w-full max-w-screen-xl items-center gap-2 px-4 xl:px-0">
           {['#facilities', '#labs', '#studios', '#equipment'].map((tab, idx) => (
             <a
               key={tab}
@@ -56,10 +54,10 @@ export default function StudentExperienceCampusPage() {
               {tab}
             </a>
           ))}
-        </Box>
-      </Box>
+        </div>
+      </div>
 
-      <Box className="mx-auto grid w-full max-w-screen-xl grid-cols-1 gap-5 px-4 py-14 md:grid-cols-2 xl:px-0">
+      <div className="mx-auto grid w-full max-w-screen-xl grid-cols-1 gap-5 px-4 py-14 md:grid-cols-2 xl:px-0">
         {sections.map((section, idx) => (
           <Link
             key={section.href}
@@ -72,7 +70,7 @@ export default function StudentExperienceCampusPage() {
             <p className="pt-4 font-nexa text-[14px] font-bold text-brand-red">Explore →</p>
           </Link>
         ))}
-      </Box>
+      </div>
     </MainLayout>
   )
 }

@@ -52,7 +52,7 @@ export default function QuickQuestions() {
     <section className="section-padding bg-[#f9f9f9]">
       <div className="section-container">
         {/* Header */}
-        <div className="mx-auto mb-12 max-w-[600px] text-center">
+        <div className="mx-auto mb-8 max-w-[600px] text-center md:mb-12">
           <span className="section-label-light">QUICK QUESTIONS</span>
           <h2 className="section-heading-light">Everything You Need to Know</h2>
           <p className="section-subheading-light mt-4">
@@ -61,18 +61,20 @@ export default function QuickQuestions() {
         </div>
 
         {/* Accordion */}
-        <div className="mx-auto max-w-3xl space-y-3">
+        <div className="mx-auto max-w-3xl space-y-2.5 md:space-y-3">
           {faqs.map((faq, index) => {
             const isOpen = openIndex === index
             return (
               <div key={index} className="bg-white shadow-[0_1px_6px_rgba(0,0,0,0.05)]">
                 <button
-                  className="flex w-full items-center justify-between gap-6 px-7 py-5 text-left transition-colors hover:bg-[#fafafa]"
+                  className="flex w-full items-center justify-between gap-4 px-4 py-3.5 text-left transition-colors hover:bg-[#fafafa] md:gap-6 md:px-7 md:py-5"
                   onClick={() => setOpenIndex(isOpen ? null : index)}
                   aria-expanded={isOpen}
                 >
-                  <span className="font-proxima text-[15px] font-semibold text-[#171717]">{faq.question}</span>
-                  <span className="bg-brand-red/8 flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-brand-red">
+                  <span className="font-proxima text-[14px] font-semibold text-[#171717] md:text-[15px]">
+                    {faq.question}
+                  </span>
+                  <span className="bg-brand-red/8 flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-brand-red md:h-8 md:w-8">
                     {isOpen ? <IconMinus size={16} stroke={2.5} /> : <IconPlus size={16} stroke={2.5} />}
                   </span>
                 </button>
@@ -81,8 +83,10 @@ export default function QuickQuestions() {
                   style={{ gridTemplateRows: isOpen ? '1fr' : '0fr' }}
                 >
                   <div className="overflow-hidden">
-                    <div className="px-7 pb-5">
-                      <p className="font-proxima text-[14px] leading-[1.7] text-[#333]">{faq.answer}</p>
+                    <div className="px-4 pb-3.5 md:px-7 md:pb-5">
+                      <p className="font-proxima text-[13px] leading-[1.65] text-[#333] md:text-[14px] md:leading-[1.7]">
+                        {faq.answer}
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -92,14 +96,19 @@ export default function QuickQuestions() {
         </div>
 
         {/* Bottom Banner */}
-        <div className="mx-auto mt-10 flex max-w-3xl flex-col items-center gap-4 rounded-2xl border border-[#e8e8e8] bg-white p-7 shadow-[0_1px_8px_rgba(0,0,0,0.04)] sm:flex-row sm:justify-center">
+        <div className="mx-auto mt-6 flex max-w-3xl flex-col items-center gap-3 rounded-2xl border border-[#e8e8e8] bg-white p-4 shadow-[0_1px_8px_rgba(0,0,0,0.04)] sm:mt-10 sm:flex-row sm:justify-center sm:gap-4 sm:p-7">
           <span className="font-proxima text-[14px] font-semibold text-[#171717]">Still have questions?</span>
-          <div className="flex flex-col gap-3 sm:flex-row">
-            <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="btn-whatsapp text-sm">
+          <div className="flex flex-col items-center gap-3 sm:flex-row">
+            <a
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-whatsapp !h-9 !px-4 !text-[12px]"
+            >
               <IconBrandWhatsapp size={18} />
               Chat on WhatsApp
             </a>
-            <Link href="/contact" className="btn-outline text-sm">
+            <Link href="/contact" className="btn-outline !h-9 !px-4 !text-[12px]">
               <IconPhone size={18} />
               Schedule a Call
             </Link>

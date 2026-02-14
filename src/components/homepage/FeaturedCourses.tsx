@@ -96,7 +96,7 @@ export default function FeaturedCourses() {
     <section id="compare" className="section-padding bg-[#f9f9f9]">
       <div className="section-container">
         {/* Header */}
-        <div className="mb-10 flex flex-col gap-4 md:mb-12 md:flex-row md:items-end md:justify-between">
+        <div className="mb-8 flex flex-col gap-3 md:mb-12 md:flex-row md:items-end md:justify-between md:gap-4">
           <div>
             <span className="section-label-light">FEATURED PROGRAMMES</span>
             <h2 className="section-heading-light">Find the Right Fit</h2>
@@ -126,14 +126,14 @@ export default function FeaturedCourses() {
         {/* Slider */}
         <div
           ref={scrollRef}
-          className="scrollbar-hide -mx-6 flex gap-6 overflow-x-auto px-6 pb-4 md:-mx-0 md:px-0"
+          className="scrollbar-hide -mx-4 flex gap-4 overflow-x-auto px-4 pb-3 md:-mx-0 md:gap-6 md:px-0 md:pb-4"
           style={{ scrollSnapType: 'x mandatory' }}
         >
           {FEATURED_COURSES.map((course) => (
             <Link
               key={course.slug}
               href={`/courses/${course.slug}`}
-              className="group flex w-[300px] shrink-0 flex-col overflow-hidden rounded-xl bg-white shadow-[0_2px_12px_rgba(0,0,0,0.06)] transition-shadow hover:shadow-[0_4px_24px_rgba(0,0,0,0.1)] md:w-[320px]"
+              className="group flex w-[270px] shrink-0 flex-col overflow-hidden rounded-xl bg-white shadow-[0_2px_12px_rgba(0,0,0,0.06)] transition-shadow hover:shadow-[0_4px_24px_rgba(0,0,0,0.1)] md:w-[320px]"
               style={{ scrollSnapAlign: 'start' }}
             >
               {/* Image */}
@@ -148,7 +148,7 @@ export default function FeaturedCourses() {
               </div>
 
               {/* Body */}
-              <div className="flex flex-1 flex-col gap-2.5 p-5">
+              <div className="flex flex-1 flex-col gap-2 p-4 md:gap-2.5 md:p-5">
                 {/* Tags */}
                 <div className="flex gap-2">
                   <span
@@ -165,8 +165,10 @@ export default function FeaturedCourses() {
                   </span>
                 </div>
 
-                <h3 className="font-proxima text-[15px] font-bold leading-snug text-[#171717]">{course.name}</h3>
-                <p className="line-clamp-2 font-proxima text-[13px] leading-relaxed text-[#666]">
+                <h3 className="font-proxima text-[14px] font-bold leading-snug text-[#171717] md:text-[15px]">
+                  {course.name}
+                </h3>
+                <p className="line-clamp-2 font-proxima text-[12px] leading-relaxed text-[#666] md:text-[13px]">
                   {course.description}
                 </p>
 
@@ -180,10 +182,10 @@ export default function FeaturedCourses() {
         </div>
 
         {/* View All link */}
-        <div className="mt-8 flex justify-center">
+        <div className="mt-6 flex justify-center md:mt-8">
           <Link
             href="/courses"
-            className="inline-flex items-center gap-2 rounded-lg border border-[#ddd] bg-white px-8 py-3.5 font-proxima text-[15px] font-semibold text-[#171717] transition-colors hover:border-[#aaa] hover:bg-[#f5f5f5]"
+            className="inline-flex h-9 items-center gap-1.5 rounded-lg border border-[#ddd] bg-white px-4 font-proxima text-[13px] font-semibold text-[#171717] transition-colors hover:border-[#aaa] hover:bg-[#f5f5f5] md:h-auto md:gap-2 md:px-8 md:py-3.5 md:text-[15px]"
           >
             View All Programmes
             <IconArrowRight size={16} stroke={2.5} />

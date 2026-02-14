@@ -1,6 +1,5 @@
 'use client'
 
-import { Box } from '@/lib/tw-mantine'
 import { StudentExperienceLayout } from './StudentExperienceLayout'
 import { FacilityItemCard } from '@/components/cards'
 import { ADMI_FACILITIES } from '@/utils'
@@ -28,12 +27,12 @@ export function EquipmentContent() {
       sections={sections}
     >
       {equipmentFacility && (
-        <Box className="w-full px-4 py-12">
-          <Box className="mx-auto w-full max-w-screen-xl">
-            <Box className="mb-8">
+        <div className="w-full px-4 py-12">
+          <div className="mx-auto w-full max-w-screen-xl">
+            <div className="mb-8">
               <FacilityItemCard facility={equipmentFacility} />
-            </Box>
-            <Box className="mt-8 rounded-2xl border border-[#CBECE3] bg-white p-8">
+            </div>
+            <div className="mt-8 rounded-2xl border border-[#CBECE3] bg-white p-8">
               <Title label="Available Equipment" color="#002A23" size="22px" />
               <Paragraph className="pt-4 text-[#1F2A2A]" fontFamily="font-nexa" fontWeight={400} size="17px">
                 Our comprehensive equipment inventory includes:
@@ -52,16 +51,16 @@ export function EquipmentContent() {
                 </li>
                 <li className="font-nexa text-[16px] font-semibold">VR and motion capture technology</li>
               </ul>
-              <Box className="mt-8 border-t border-[#CBECE3] pt-8">
+              <div className="mt-8 border-t border-[#CBECE3] pt-8">
                 <Title label="Progression Path" color="#002A23" size="22px" />
                 <Paragraph className="pt-4 text-[#1F2A2A]" fontFamily="font-nexa" fontWeight={400} size="17px">
                   Students progress from small-format cameras in year one to high-end professional cinema equipment as
                   they advance through the program, ensuring skill development matches equipment complexity.
                 </Paragraph>
-              </Box>
-            </Box>
-          </Box>
-        </Box>
+              </div>
+            </div>
+          </div>
+        </div>
       )}
     </StudentExperienceLayout>
   )

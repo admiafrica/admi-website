@@ -1,7 +1,6 @@
 'use client'
 
 import Link from 'next/link'
-import { Box } from '@/lib/tw-mantine'
 import { StudentExperienceLayout } from './StudentExperienceLayout'
 
 export function CampusContent() {
@@ -29,8 +28,8 @@ export function CampusContent() {
       intro="Discover the heart of creative learning at ADMI"
       sections={sections}
     >
-      <Box className="w-full px-4 py-12">
-        <Box className="mx-auto w-full max-w-screen-xl">
+      <div className="w-full px-4 py-12">
+        <div className="mx-auto w-full max-w-screen-xl">
           <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
             <Link
               href="/student-experience/campus/facilities"
@@ -54,8 +53,8 @@ export function CampusContent() {
               <p className="mt-2 text-sm text-gray-600">Professional studio spaces</p>
             </Link>
           </div>
-        </Box>
-      </Box>
+        </div>
+      </div>
     </StudentExperienceLayout>
   )
 }

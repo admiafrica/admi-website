@@ -51,17 +51,17 @@ export default function EventsIntakes() {
     <section className="w-full bg-white">
       <div className="section-container section-padding">
         {/* Header */}
-        <div className="mb-10">
+        <div className="mb-8 md:mb-10">
           <span className="section-label-light font-semibold">WHAT&apos;S ON</span>
           <h2 className="font-nexa text-3xl font-black text-[#171717] md:text-4xl">Upcoming Intakes &amp; Open Days</h2>
         </div>
 
         {/* Event Cards */}
-        <div className="flex flex-col gap-6 lg:flex-row">
+        <div className="flex flex-col gap-4 md:gap-6 lg:flex-row">
           {EVENTS.map((event) => (
             <div
               key={event.title}
-              className={`flex min-h-[240px] flex-1 flex-col gap-4 rounded-2xl p-6 md:h-[260px] md:p-8 ${event.cardBg}`}
+              className={`flex min-h-[210px] flex-1 flex-col gap-3 rounded-2xl p-5 md:h-[260px] md:gap-4 md:p-8 ${event.cardBg}`}
             >
               {/* Badge */}
               <span
@@ -71,16 +71,16 @@ export default function EventsIntakes() {
               </span>
 
               {/* Title */}
-              <h3 className="font-nexa text-2xl font-black text-[#171717] md:text-[28px]">{event.title}</h3>
+              <h3 className="font-nexa text-[22px] font-black text-[#171717] md:text-[28px]">{event.title}</h3>
 
               {/* Detail */}
-              <p className="font-proxima text-[15px] leading-relaxed text-[#666]">{event.detail}</p>
+              <p className="font-proxima text-[14px] leading-relaxed text-[#666] md:text-[15px]">{event.detail}</p>
 
               {/* Button */}
               <div className="mt-auto">
                 <Link
                   href={event.href}
-                  className={`inline-flex w-fit items-center gap-2 rounded-full px-7 py-3 font-proxima text-sm font-bold transition-colors ${event.buttonClasses}`}
+                  className={`inline-flex h-9 w-fit items-center gap-1.5 rounded-full px-4 font-proxima text-[12px] font-bold transition-colors md:h-auto md:gap-2 md:px-7 md:py-3 md:text-sm ${event.buttonClasses}`}
                 >
                   {event.buttonLabel}
                   <IconArrowRight size={16} stroke={2.5} />

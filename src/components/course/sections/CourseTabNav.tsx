@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from 'react'
-import { Text } from '@/lib/tw-mantine'
 
 type TabValue = 'overview' | 'deep-dive'
 
@@ -73,9 +72,11 @@ export default function CourseTabNav({ activeTab, onTabChange }: CourseTabNavPro
                   onClick={() => handleTabClick(tab.value)}
                   className={`relative cursor-pointer border-0 bg-transparent py-4 transition-colors duration-200 ${isActive ? 'border-b-2 border-brand-red' : 'border-b-2 border-transparent'} `}
                 >
-                  <Text className="font-proxima" size="md" fw={isActive ? 700 : 400} c={isActive ? '#C1272D' : '#999'}>
+                  <span
+                    className={`font-proxima text-base ${isActive ? 'font-bold text-brand-red' : 'font-normal text-[#999]'}`}
+                  >
                     {tab.label}
-                  </Text>
+                  </span>
                 </button>
               )
             })}
