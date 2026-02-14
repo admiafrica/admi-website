@@ -338,18 +338,18 @@ export async function getStaticProps() {
 /* ------------------------------------------------------------------ */
 
 export default function ImpactAlumniSuccessPage({
-  heroStats: HERO_STATS,
-  incomeYearCards: INCOME_YEAR_CARDS,
-  programmeOutcomesRow1: PROGRAMME_OUTCOMES_ROW1,
-  programmeOutcomesRow2: PROGRAMME_OUTCOMES_ROW2,
-  benchmarkCards: BENCHMARK_CARDS,
-  careerPaths: CAREER_PATHS,
-  companyPillsRow1: COMPANY_PILLS_ROW1,
-  companyPillsRow2: COMPANY_PILLS_ROW2,
-  alumniStories: ALUMNI_STORIES,
-  awardRows: AWARD_ROWS,
-  methodologyStats: METHODOLOGY_STATS,
-  ctaBottomStats: CTA_BOTTOM_STATS
+  heroStats: HERO_STATS = FALLBACK_HERO_STATS,
+  incomeYearCards: INCOME_YEAR_CARDS = FALLBACK_INCOME_YEAR_CARDS,
+  programmeOutcomesRow1: PROGRAMME_OUTCOMES_ROW1 = FALLBACK_PROGRAMME_OUTCOMES_ROW1,
+  programmeOutcomesRow2: PROGRAMME_OUTCOMES_ROW2 = FALLBACK_PROGRAMME_OUTCOMES_ROW2,
+  benchmarkCards: BENCHMARK_CARDS = FALLBACK_BENCHMARK_CARDS,
+  careerPaths: CAREER_PATHS = FALLBACK_CAREER_PATHS,
+  companyPillsRow1: COMPANY_PILLS_ROW1 = FALLBACK_COMPANY_PILLS_ROW1,
+  companyPillsRow2: COMPANY_PILLS_ROW2 = FALLBACK_COMPANY_PILLS_ROW2,
+  alumniStories: ALUMNI_STORIES = FALLBACK_ALUMNI_STORIES,
+  awardRows: AWARD_ROWS = FALLBACK_AWARD_ROWS,
+  methodologyStats: METHODOLOGY_STATS = FALLBACK_METHODOLOGY_STATS,
+  ctaBottomStats: CTA_BOTTOM_STATS = FALLBACK_CTA_BOTTOM_STATS
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <MainLayout footerBgColor="#1a1a1a">

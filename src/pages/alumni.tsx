@@ -130,10 +130,10 @@ export const getStaticProps: GetStaticProps<AlumniPageProps> = async () => {
 /* ------------------------------------------------------------------ */
 
 export default function AlumniPage({
-  stats: STATS,
-  featuredAlumni: FEATURED_ALUMNI,
-  companyRows: COMPANY_ROWS,
-  networkBenefits: NETWORK_BENEFITS
+  stats: STATS = FALLBACK_STATS,
+  featuredAlumni: FEATURED_ALUMNI = FALLBACK_FEATURED_ALUMNI,
+  companyRows: COMPANY_ROWS = FALLBACK_COMPANY_ROWS,
+  networkBenefits: NETWORK_BENEFITS = FALLBACK_NETWORK_BENEFITS
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <MainLayout footerBgColor="#1a1a1a">
