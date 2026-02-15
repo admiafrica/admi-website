@@ -55,12 +55,12 @@ export default function CourseTabNav({ activeTab, onTabChange }: CourseTabNavPro
       {/* Sentinel to detect when tab nav becomes stuck */}
       <div ref={sentinelRef} className="h-0 w-full" aria-hidden="true" />
       <nav
-        className={`sticky top-0 z-40 w-full border-b bg-white px-4 transition-shadow duration-300 md:px-20 ${
+        className={`sticky top-0 z-40 w-full border-b bg-white transition-shadow duration-300 ${
           isStuck ? 'border-gray-300 shadow-[0_4px_12px_rgba(0,0,0,0.1)]' : 'border-gray-200'
         }`}
         aria-label="Course content navigation"
       >
-        <div className="mx-auto max-w-screen-xl">
+        <div className="section-container">
           <div className="flex gap-8" role="tablist">
             {TABS.map((tab) => {
               const isActive = activeTab === tab.value

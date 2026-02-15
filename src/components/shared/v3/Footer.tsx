@@ -28,7 +28,7 @@ const QUICK_LINKS = [
   { label: 'Academic Pathways', href: 'academic-pathways' },
   { label: 'Fellowship', href: 'fellowship' },
   { label: 'Work With Us', href: 'work-with-us' },
-  { label: 'FAQs', href: 'frequently-asked-questions' }
+  { label: 'FAQs', href: 'faq' }
 ]
 
 const STUDENT_LINKS = [

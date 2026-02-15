@@ -18,7 +18,7 @@ const BADGES = [
 export default function AccreditationTrust() {
   return (
     <section className="w-full border-y border-[#e8e0d8] bg-warm">
-      <div className="mx-auto max-w-[1280px] px-6 py-12 md:px-8 md:py-[60px]">
+      <div className="section-container py-12 md:py-[60px]">
         {/* Header */}
         <div className="mx-auto mb-12 flex max-w-[800px] flex-col items-center text-center">
           <span className="section-label-light">Accreditation &amp; Recognition</span>
@@ -26,8 +26,8 @@ export default function AccreditationTrust() {
             Internationally Recognised Qualifications
           </h2>
           <p className="max-w-[700px] font-proxima text-base leading-relaxed text-[#666]">
-            ADMI is accredited through Woolf University (EU) and registered with TVETA Kenya. Your
-            qualification is recognised by employers and universities worldwide.
+            ADMI is accredited through Woolf University (EU) and registered with TVETA Kenya. Your qualification is
+            recognised by employers and universities worldwide.
           </p>
         </div>
 

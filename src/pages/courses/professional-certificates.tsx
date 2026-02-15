@@ -71,8 +71,8 @@ export default function ProfessionalCertificatesPage() {
       />
 
       {/* Hero Section */}
-      <section className="w-full bg-white px-4 pb-16 pt-12 md:px-20">
-        <div className="mx-auto flex max-w-screen-xl flex-col items-center gap-10 lg:flex-row lg:items-start lg:gap-16">
+      <section className="w-full bg-white pb-16 pt-12">
+        <div className="section-container flex flex-col items-center gap-10 lg:flex-row lg:items-start lg:gap-16">
           {/* Left Content */}
           <div className="flex flex-1 flex-col gap-6">
             <span className="w-fit rounded-full bg-[#E6FFFA] px-4 py-2 font-proxima text-[13px] font-semibold text-[#057A65]">
@@ -125,8 +125,8 @@ export default function ProfessionalCertificatesPage() {
       </section>
 
       {/* Stats Bar */}
-      <section className="w-full bg-white px-4 py-8 md:px-20">
-        <div className="mx-auto flex max-w-screen-xl flex-col items-center justify-around gap-8 rounded-2xl border border-[#eeeeee] bg-[#f9f9f9] px-8 py-8 shadow-md md:flex-row">
+      <section className="w-full bg-white py-8">
+        <div className="section-container flex flex-col items-center justify-around gap-8 rounded-2xl border border-[#eeeeee] bg-[#f9f9f9] px-8 py-8 shadow-md md:flex-row">
           {[
             { value: '48K', label: 'KES Total Investment' },
             { value: '6', label: 'Months Duration' },
@@ -143,8 +143,8 @@ export default function ProfessionalCertificatesPage() {
       </section>
 
       {/* Certificate Programs Grid */}
-      <section className="w-full bg-white px-4 py-20 md:px-20">
-        <div className="mx-auto max-w-screen-xl">
+      <section className="section-padding w-full bg-white">
+        <div className="section-container">
           <div className="mb-12">
             <span className="mb-3 inline-block font-proxima text-[13px] font-bold uppercase tracking-[3px] text-brand-red">
               PROFESSIONAL CERTIFICATES
@@ -220,8 +220,8 @@ export default function ProfessionalCertificatesPage() {
       </section>
 
       {/* Diploma Upsell */}
-      <section className="w-full bg-[#f9f9f9] px-4 py-20 md:px-20">
-        <div className="mx-auto max-w-screen-xl">
+      <section className="section-padding w-full bg-[#f9f9f9]">
+        <div className="section-container">
           <div className="flex flex-col gap-8 rounded-2xl border border-[#eeeeee] bg-white p-8 shadow-md transition-shadow hover:shadow-xl md:flex-row md:items-center md:p-12">
             <div className="flex-1">
               <h2 className="mb-4 font-nexa text-[32px] font-semibold leading-[1.2] text-[#171717]">
@@ -267,8 +267,8 @@ export default function ProfessionalCertificatesPage() {
       </section>
 
       {/* FAQ Section */}
-      <section className="w-full bg-white px-4 py-20 md:px-20">
-        <div className="mx-auto max-w-screen-xl">
+      <section className="section-padding w-full bg-white">
+        <div className="section-container">
           <div className="mb-12">
             <span className="mb-3 inline-block font-proxima text-[13px] font-bold uppercase tracking-[3px] text-[#057A65]">
               FREQUENTLY ASKED QUESTIONS
@@ -303,8 +303,8 @@ export default function ProfessionalCertificatesPage() {
       </section>
 
       {/* Final CTA */}
-      <section className="w-full bg-gradient-to-br from-secondary to-[#06d4b2] px-4 py-20 md:px-20">
-        <div className="mx-auto flex max-w-[700px] flex-col items-center text-center">
+      <section className="section-padding w-full bg-gradient-to-br from-secondary to-[#06d4b2]">
+        <div className="section-container flex max-w-[700px] flex-col items-center text-center">
           <h2 className="mb-4 font-nexa text-3xl font-semibold text-[#0B0B0F] md:text-[40px] md:leading-[1.1]">
             Start Building Your Skills Today
           </h2>

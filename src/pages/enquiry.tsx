@@ -1,9 +1,5 @@
 import Link from 'next/link'
-import {
-  IconBrandWhatsapp,
-  IconMapPin,
-  IconDownload
-} from '@tabler/icons-react'
+import { IconBrandWhatsapp, IconMapPin, IconDownload } from '@tabler/icons-react'
 
 import { MainLayout } from '@/layouts/v3/MainLayout'
 import { PageSEO } from '@/components/shared/v3'
@@ -61,31 +57,33 @@ export default function EnquiryPage() {
 
       <div className="w-full">
         {/* ── Hero ── */}
-        <section className="bg-gradient-to-br from-[#0F2E2A] via-[#0A1F1D] to-[#091110] px-4 py-20 text-center text-white xl:px-20">
-          <div className="mx-auto w-full max-w-screen-xl">
+        <section className="bg-gradient-to-br from-[#0F2E2A] via-[#0A1F1D] to-[#091110] py-12 text-center text-white sm:py-20">
+          <div className="section-container">
             <div className="flex items-center justify-center gap-2.5">
               <span className="h-[3px] w-8 bg-secondary" />
-              <span className="font-proxima text-[13px] font-semibold uppercase tracking-[2px] text-secondary">ENQUIRE NOW</span>
+              <span className="font-proxima text-[13px] font-semibold uppercase tracking-[2px] text-secondary">
+                ENQUIRE NOW
+              </span>
             </div>
-            <h1 className="mt-5 font-proxima text-[48px] font-bold">Start Your Creative Journey</h1>
-            <p className="mx-auto mt-4 max-w-[600px] font-proxima text-[18px] leading-[1.6] text-white/80">
+            <h1 className="mt-5 font-proxima text-3xl font-bold sm:text-[48px]">Start Your Creative Journey</h1>
+            <p className="mx-auto mt-4 max-w-[600px] font-proxima text-base leading-[1.6] text-white/80 sm:text-[18px]">
               Fill out the form below and our admissions team will get back to you within 24 hours.
             </p>
           </div>
         </section>
 
         {/* ── Form + Sidebar ── */}
-        <section className="bg-white px-4 py-16 xl:px-20">
-          <div className="mx-auto flex w-full max-w-screen-xl flex-col gap-12 lg:flex-row">
+        <section className="section-padding bg-white">
+          <div className="section-container flex flex-col gap-8 lg:flex-row lg:gap-12">
             {/* Form */}
-            <div className="flex-1">
+            <div className="min-w-0 flex-1">
               <EnhancedEnquiryForm />
             </div>
 
             {/* Sidebar */}
-            <div className="w-full space-y-5 lg:w-[420px]">
+            <div className="w-full space-y-5 lg:w-[380px]">
               {SIDEBAR_CARDS.map((card) => (
-                <article key={card.title} className="rounded-xl border border-[#e8e8e8] bg-[#F9F9F9] p-7">
+                <article key={card.title} className="rounded-xl border border-[#e8e8e8] bg-[#F9F9F9] p-5 sm:p-7">
                   <div
                     className="flex h-12 w-12 items-center justify-center rounded-xl"
                     style={{ backgroundColor: card.iconBg }}

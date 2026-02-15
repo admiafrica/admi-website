@@ -4,8 +4,8 @@ interface QuickFactsBarProps {
 
 export default function QuickFactsBar({ facts }: QuickFactsBarProps) {
   return (
-    <section className="w-full bg-[#f5f5f5] px-4 py-7 md:px-20" aria-label="Quick facts">
-      <div className="mx-auto max-w-screen-xl">
+    <section className="w-full bg-[#f5f5f5] py-7" aria-label="Quick facts">
+      <div className="section-container">
         <div className="flex flex-wrap items-center justify-around gap-4">
           {facts.map((fact, index) => (
             <div key={`fact-${index}`} className="flex items-center gap-4">

@@ -18,7 +18,7 @@ export default function StudentPortalPage() {
 
       <div className="w-full">
         {/* ── Portal Body ── */}
-        <section className="flex min-h-[700px] items-center justify-center bg-[#F3F4F6] px-4 py-16 xl:px-20">
+        <section className="flex min-h-[700px] items-center justify-center bg-[#F3F4F6] py-16">
           <div className="w-full max-w-[440px] rounded-2xl bg-white p-10 shadow-lg">
             {/* Logo */}
             <div className="flex flex-col items-center gap-6">
@@ -70,7 +70,9 @@ export default function StudentPortalPage() {
             {/* External Note */}
             <div className="mt-6 flex items-center gap-2 rounded-lg bg-[#F3F4F6] px-4 py-3">
               <IconExternalLink size={16} className="flex-shrink-0 text-[#666]" />
-              <span className="font-proxima text-[13px] text-[#666]">Portal is hosted externally at portal.admi.ac.ke</span>
+              <span className="font-proxima text-[13px] text-[#666]">
+                Portal is hosted externally at portal.admi.ac.ke
+              </span>
             </div>
           </div>
         </section>

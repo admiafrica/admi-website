@@ -107,8 +107,8 @@ export default function FoundationCertificatesPage() {
       />
 
       {/* Hero Section */}
-      <section className="w-full bg-white px-4 pb-16 pt-12 md:px-20">
-        <div className="mx-auto flex max-w-screen-xl flex-col items-center gap-10 lg:flex-row lg:items-start lg:gap-16">
+      <section className="w-full bg-white pb-16 pt-12">
+        <div className="section-container flex flex-col items-center gap-10 lg:flex-row lg:items-start lg:gap-16">
           {/* Left Content */}
           <div className="flex flex-1 flex-col gap-6">
             <span className="w-fit rounded-full bg-[#FFF3EE] px-4 py-2 font-proxima text-[13px] font-semibold text-brand-orange">
@@ -161,8 +161,8 @@ export default function FoundationCertificatesPage() {
       </section>
 
       {/* Pathway Section */}
-      <section className="w-full bg-[#f9f9f9] px-4 py-20 md:px-20">
-        <div className="mx-auto max-w-screen-xl">
+      <section className="section-padding w-full bg-[#f9f9f9]">
+        <div className="section-container">
           <div className="mb-12">
             <span className="mb-3 inline-block font-proxima text-[13px] font-bold uppercase tracking-[3px] text-brand-orange">
               YOUR GROWTH PATHWAY
@@ -209,8 +209,8 @@ export default function FoundationCertificatesPage() {
       </section>
 
       {/* Foundation Programs Grid */}
-      <section className="w-full bg-white px-4 py-20 md:px-20">
-        <div className="mx-auto max-w-screen-xl">
+      <section className="section-padding w-full bg-white">
+        <div className="section-container">
           <div className="mb-12">
             <span className="mb-3 inline-block font-proxima text-[13px] font-bold uppercase tracking-[3px] text-brand-orange">
               FOUNDATION CERTIFICATES
@@ -287,8 +287,8 @@ export default function FoundationCertificatesPage() {
       </section>
 
       {/* FAQ Section */}
-      <section className="w-full bg-[#f9f9f9] px-4 py-20 md:px-20">
-        <div className="mx-auto max-w-screen-xl">
+      <section className="section-padding w-full bg-[#f9f9f9]">
+        <div className="section-container">
           <div className="mb-12">
             <span className="mb-3 inline-block font-proxima text-[13px] font-bold uppercase tracking-[3px] text-brand-orange">
               FREQUENTLY ASKED QUESTIONS
@@ -323,8 +323,8 @@ export default function FoundationCertificatesPage() {
       </section>
 
       {/* Final CTA */}
-      <section className="w-full bg-gradient-to-br from-brand-orange to-[#FFB088] px-4 py-20 md:px-20">
-        <div className="mx-auto flex max-w-[700px] flex-col items-center text-center">
+      <section className="section-padding w-full bg-gradient-to-br from-brand-orange to-[#FFB088]">
+        <div className="section-container flex max-w-[700px] flex-col items-center text-center">
           <h2 className="mb-4 font-nexa text-3xl font-semibold text-white md:text-[40px] md:leading-[1.1]">
             Take the First Step Toward Your Creative Career
           </h2>

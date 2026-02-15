@@ -154,13 +154,13 @@ export default function AlumniPage({
           />
           <div className="absolute inset-0 bg-gradient-to-t from-admi-black/90 via-admi-black/70 to-admi-black/50" />
           <div
-            className="relative z-10 mx-auto flex h-full w-full max-w-screen-xl flex-col justify-center px-4 xl:px-20"
+            className="section-container relative z-10 flex h-full w-full flex-col justify-center"
             style={{ paddingTop: 120, paddingBottom: 80 }}
           >
             <span className="inline-flex w-fit items-center rounded-full bg-brand-red px-4 py-1.5 font-proxima text-[12px] font-bold uppercase tracking-[2px] text-white">
               OUR ALUMNI NETWORK
             </span>
-            <h1 className="font-proxima mt-6 max-w-[780px] text-[52px] font-bold leading-[1.1] tracking-tight text-white">
+            <h1 className="mt-6 max-w-[780px] font-proxima text-[52px] font-bold leading-[1.1] tracking-tight text-white">
               4,000+ Graduates Building Africa&apos;s Creative Future
             </h1>
             <p className="mt-6 max-w-[620px] font-proxima text-[18px] leading-[1.7] text-white/80">
@@ -172,7 +172,7 @@ export default function AlumniPage({
 
         {/* ── Stats Bar ── */}
         <section className="bg-admi-black">
-          <div className="mx-auto flex w-full max-w-screen-xl items-center justify-around px-4 py-8 xl:px-20">
+          <div className="section-container flex w-full items-center justify-around py-8">
             {STATS.map((s, i) => (
               <div key={s.label} className="flex items-center">
                 <div className="text-center">
@@ -186,15 +186,15 @@ export default function AlumniPage({
         </section>
 
         {/* ── Featured Alumni ── */}
-        <section className="bg-white px-4 py-20 xl:px-20">
-          <div className="mx-auto w-full max-w-screen-xl">
+        <section className="section-padding bg-white">
+          <div className="section-container">
             <div className="flex items-center gap-3">
               <span className="h-0.5 w-10 bg-brand-red" />
               <span className="font-proxima text-[13px] font-bold uppercase tracking-[3px] text-brand-red">
                 FEATURED GRADUATES
               </span>
             </div>
-            <h2 className="font-proxima mt-6 text-[40px] font-bold leading-[1.15] text-[#171717]">
+            <h2 className="mt-6 font-proxima text-[40px] font-bold leading-[1.15] text-[#171717]">
               Where Our Alumni Are Now
             </h2>
             <p className="mt-4 max-w-[640px] font-proxima text-[17px] leading-[1.7] text-[#666]">
@@ -223,15 +223,15 @@ export default function AlumniPage({
         </section>
 
         {/* ── Where Alumni Work ── */}
-        <section className="bg-[#F9F9F9] px-4 py-20 xl:px-20">
-          <div className="mx-auto w-full max-w-screen-xl text-center">
+        <section className="section-padding bg-[#F9F9F9]">
+          <div className="section-container text-center">
             <div className="flex items-center justify-center gap-3">
               <span className="h-0.5 w-10 bg-brand-red" />
               <span className="font-proxima text-[13px] font-bold uppercase tracking-[3px] text-brand-red">
                 WHERE OUR GRADUATES WORK
               </span>
             </div>
-            <h2 className="font-proxima mt-6 text-[40px] font-bold text-[#171717]">
+            <h2 className="mt-6 font-proxima text-[40px] font-bold text-[#171717]">
               Trusted by Leading Companies Across Africa
             </h2>
 
@@ -253,15 +253,15 @@ export default function AlumniPage({
         </section>
 
         {/* ── Network Benefits ── */}
-        <section className="bg-[#F9F9F9] px-4 pb-20 xl:px-20">
-          <div className="mx-auto w-full max-w-screen-xl">
+        <section className="bg-[#F9F9F9] pb-20">
+          <div className="section-container">
             <div className="flex items-center gap-3">
               <span className="h-0.5 w-10 bg-brand-red" />
               <span className="font-proxima text-[13px] font-bold uppercase tracking-[3px] text-brand-red">
                 JOIN THE NETWORK
               </span>
             </div>
-            <h2 className="font-proxima mt-6 text-[36px] font-bold text-[#171717]">What You Get as an ADMI Alumnus</h2>
+            <h2 className="mt-6 font-proxima text-[36px] font-bold text-[#171717]">What You Get as an ADMI Alumnus</h2>
 
             <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2">
               {NETWORK_BENEFITS.map((benefit) => {
@@ -271,7 +271,7 @@ export default function AlumniPage({
                     <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#C1272D1A]">
                       {Icon && <Icon size={24} className="text-brand-red" />}
                     </div>
-                    <h3 className="font-proxima mt-5 text-[22px] font-bold text-[#171717]">{benefit.title}</h3>
+                    <h3 className="mt-5 font-proxima text-[22px] font-bold text-[#171717]">{benefit.title}</h3>
                     <p className="mt-3 font-proxima text-[15px] leading-[1.7] text-[#666]">{benefit.desc}</p>
                   </article>
                 )
@@ -281,8 +281,8 @@ export default function AlumniPage({
         </section>
 
         {/* ── Alumni Testimonial ── */}
-        <section className="border-t border-[#EEEEEE] bg-white px-4 py-20 xl:px-20">
-          <div className="mx-auto flex w-full max-w-screen-xl flex-col items-center gap-12 lg:flex-row lg:items-start lg:gap-16">
+        <section className="section-padding border-t border-[#EEEEEE] bg-white">
+          <div className="section-container flex flex-col items-center gap-12 lg:flex-row lg:items-start lg:gap-16">
             <div className="w-full flex-shrink-0 overflow-hidden rounded-3xl lg:w-[400px]">
               <img
                 src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80"
@@ -293,7 +293,7 @@ export default function AlumniPage({
             </div>
             <div className="flex flex-col justify-center lg:py-8">
               <span className="font-proxima text-[80px] leading-none text-brand-red">&ldquo;</span>
-              <p className="font-proxima -mt-8 text-[22px] font-medium leading-[1.5] text-[#333]">
+              <p className="-mt-8 font-proxima text-[22px] font-medium leading-[1.5] text-[#333]">
                 ADMI did not just teach me animation &mdash; it taught me how to think as a creative entrepreneur. The
                 connections I made with faculty and classmates became my first business partners. Today, Pixel Studios
                 employs twelve people, and every one of our founding team met at ADMI.
@@ -310,11 +310,11 @@ export default function AlumniPage({
 
         {/* ── CTA ── */}
         <section
-          className="px-4 py-24 text-white xl:px-20"
+          className="py-24 text-white"
           style={{ background: 'linear-gradient(135deg, #C1272D 0%, #7A1520 50%, #3D0A10 100%)' }}
         >
-          <div className="mx-auto w-full max-w-screen-xl text-center">
-            <h2 className="font-proxima mx-auto max-w-[600px] text-[40px] font-bold leading-[1.15]">
+          <div className="section-container text-center">
+            <h2 className="mx-auto max-w-[600px] font-proxima text-[40px] font-bold leading-[1.15]">
               Are You an ADMI Graduate?
             </h2>
             <p className="mx-auto mt-4 max-w-[560px] font-proxima text-[18px] leading-[1.6] text-white/80">

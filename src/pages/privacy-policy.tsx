@@ -51,11 +51,13 @@ export default function PrivacyPolicyPage() {
 
       <div className="w-full">
         {/* ── Hero ── */}
-        <section className="bg-gradient-to-br from-[#0F2E2A] via-[#0A1F1D] to-[#091110] px-4 py-20 text-center text-white xl:px-20">
-          <div className="mx-auto w-full max-w-screen-xl">
+        <section className="section-padding bg-gradient-to-br from-[#0F2E2A] via-[#0A1F1D] to-[#091110] text-center text-white">
+          <div className="section-container">
             <div className="flex items-center justify-center gap-2.5">
               <span className="h-[3px] w-8 bg-secondary" />
-              <span className="font-proxima text-[13px] font-semibold uppercase tracking-[2px] text-secondary">LEGAL</span>
+              <span className="font-proxima text-[13px] font-semibold uppercase tracking-[2px] text-secondary">
+                LEGAL
+              </span>
             </div>
             <h1 className="mt-5 font-proxima text-[48px] font-bold">Privacy Policy</h1>
             <p className="mt-3 font-proxima text-[16px] text-[#B7D8CF]">Last updated: February 2026</p>
@@ -63,8 +65,8 @@ export default function PrivacyPolicyPage() {
         </section>
 
         {/* ── Content ── */}
-        <section className="bg-white px-4 py-16 xl:px-20">
-          <div className="mx-auto max-w-[960px] space-y-10">
+        <section className="bg-white py-16">
+          <div className="mx-auto max-w-[960px] space-y-10 px-6 md:px-8">
             {SECTIONS.map((section) => (
               <article key={section.title}>
                 <h2 className="font-proxima text-[24px] font-bold text-admi-black">{section.title}</h2>

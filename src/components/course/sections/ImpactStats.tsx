@@ -4,8 +4,8 @@ interface ImpactStatsProps {
 
 export default function ImpactStats({ stats }: ImpactStatsProps) {
   return (
-    <section className="w-full bg-[#171717] px-4 py-16 md:px-20" aria-label="ADMI impact statistics">
-      <div className="mx-auto max-w-screen-xl">
+    <section className="w-full bg-[#171717] py-16" aria-label="ADMI impact statistics">
+      <div className="section-container">
         <h2 className="mb-10 text-center font-nexa text-[28px] font-bold text-white">ADMI By The Numbers</h2>
 
         <div className="grid grid-cols-2 gap-5 sm:grid-cols-3 md:grid-cols-5">

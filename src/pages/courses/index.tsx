@@ -125,7 +125,7 @@ const getConfigKey = (programName: string): string => {
 }
 
 const TAB_OPTIONS = [
-  'All Programmes',
+  'All Courses',
   'Diploma Programmes',
   'Professional Certificates',
   'Foundation Certificates',
@@ -180,8 +180,8 @@ export default function CoursesPage({
   filterOptions: string[]
 }) {
   const router = useRouter()
-  const [activeTab, setActiveTab] = useState('All Programmes')
-  const [sortValue, setSortValue] = useState('All Programmes')
+  const [activeTab, setActiveTab] = useState('All Courses')
+  const [sortValue, setSortValue] = useState('All Courses')
   const [searchQuery, setSearchQuery] = useState('')
   const [isSearching, setIsSearching] = useState(false)
 
@@ -191,7 +191,7 @@ export default function CoursesPage({
     if (typeof q === 'string' && q.trim()) {
       setSearchQuery(q.trim())
       setIsSearching(true)
-      setActiveTab('All Programmes')
+      setActiveTab('All Courses')
     }
   }, [router.query.q])
 
@@ -249,7 +249,7 @@ export default function CoursesPage({
     let sections = programSections
 
     // Apply tab filter
-    if (activeTab !== 'All Programmes') {
+    if (activeTab !== 'All Courses') {
       sections = sections.filter((section) => section.config.tabName === activeTab)
     }
 
@@ -293,7 +293,7 @@ export default function CoursesPage({
   const handleSortChange = (value: string) => {
     setSortValue(value)
     const tabMap: Record<string, string> = {
-      'All Programmes': 'All Programmes',
+      'All Courses': 'All Courses',
       'Diploma Programmes': 'Diploma Programmes',
       'Professional Certificates': 'Professional Certificates',
       'Foundation Certificates': 'Foundation Certificates',
@@ -329,8 +329,8 @@ export default function CoursesPage({
 
       {/* Search Results Banner */}
       {isSearching && (
-        <div className="w-full bg-[#FFF8F0] px-4 py-4 md:px-20">
-          <div className="mx-auto flex max-w-[1280px] items-center justify-between">
+        <div className="w-full bg-[#FFF8F0] py-4">
+          <div className="section-container flex items-center justify-between">
             <p className="font-proxima text-sm text-[#666]">
               {totalResults > 0 ? (
                 <>
@@ -377,7 +377,7 @@ export default function CoursesPage({
 
       {/* No Results State */}
       {isSearching && totalResults === 0 && (
-        <section className="w-full bg-white px-4 py-16 text-center md:px-20 md:py-24">
+        <section className="section-padding w-full bg-white text-center">
           <p className="font-proxima text-lg text-[#999]">
             Try searching for a course name, programme type, or industry like
           </p>

@@ -1,11 +1,5 @@
 import Link from 'next/link'
-import {
-  IconMapPin,
-  IconPhone,
-  IconMail,
-  IconClock,
-  IconBrandWhatsapp
-} from '@tabler/icons-react'
+import { IconMapPin, IconPhone, IconMail, IconClock, IconBrandWhatsapp } from '@tabler/icons-react'
 
 import { MainLayout } from '@/layouts/v3/MainLayout'
 import { PageSEO } from '@/components/shared/v3'
@@ -57,11 +51,13 @@ export default function ContactPage() {
 
       <div className="w-full">
         {/* ── Hero ── */}
-        <section className="bg-[#0A3D3D] px-4 py-20 text-center text-white xl:px-20">
-          <div className="mx-auto w-full max-w-screen-xl">
+        <section className="section-padding bg-[#0A3D3D] text-center text-white">
+          <div className="section-container">
             <div className="flex items-center justify-center gap-3">
               <span className="h-0.5 w-8 bg-secondary" />
-              <span className="font-proxima text-[13px] font-semibold uppercase tracking-[2px] text-secondary">CONTACT</span>
+              <span className="font-proxima text-[13px] font-semibold uppercase tracking-[2px] text-secondary">
+                CONTACT
+              </span>
             </div>
             <h1 className="mt-5 font-proxima text-[48px] font-bold">Get In Touch With ADMI</h1>
             <p className="mx-auto mt-4 max-w-[600px] font-proxima text-[18px] leading-[1.6] text-white/80">
@@ -72,9 +68,9 @@ export default function ContactPage() {
 
         {/* ── Form + Contact Info ── */}
         <section className="bg-white">
-          <div className="mx-auto flex w-full max-w-screen-xl flex-col lg:flex-row">
+          <div className="section-container flex w-full flex-col lg:flex-row">
             {/* Form Side */}
-            <div className="flex-1 px-4 py-16 lg:px-20 lg:py-16">
+            <div className="flex-1 py-16">
               <h2 className="font-proxima text-[32px] font-bold text-[#171717]">Send Us a Message</h2>
               <p className="mt-2 font-proxima text-[15px] leading-[1.6] text-[#666]">
                 Fill out the form below and our admissions team will get back to you within 24 hours.
@@ -85,17 +81,22 @@ export default function ContactPage() {
             </div>
 
             {/* Info Side */}
-            <div className="w-full bg-[#F9F9F9] px-4 py-16 lg:w-[420px] lg:px-12 lg:py-16">
+            <div className="w-full bg-[#F9F9F9] py-16 lg:w-[420px] lg:px-6 lg:py-16">
               <h2 className="font-proxima text-[24px] font-bold text-[#171717]">Contact Information</h2>
               <div className="mt-6 space-y-6">
                 {CONTACT_INFO.map((info) => (
                   <div key={info.label} className="flex gap-4">
-                    <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full" style={{ backgroundColor: info.bg }}>
+                    <div
+                      className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full"
+                      style={{ backgroundColor: info.bg }}
+                    >
                       <info.icon size={18} className="text-[#171717]" />
                     </div>
                     <div>
                       <p className="font-proxima text-[14px] font-bold text-[#171717]">{info.label}</p>
-                      <p className="mt-1 whitespace-pre-line font-proxima text-[13px] leading-[1.6] text-[#666]">{info.value}</p>
+                      <p className="mt-1 whitespace-pre-line font-proxima text-[13px] leading-[1.6] text-[#666]">
+                        {info.value}
+                      </p>
                     </div>
                   </div>
                 ))}
@@ -106,7 +107,7 @@ export default function ContactPage() {
 
         {/* ── WhatsApp Bar ── */}
         <section className="bg-brand-whatsapp">
-          <div className="mx-auto flex w-full max-w-screen-xl items-center justify-center gap-4 px-4 py-5 xl:px-20">
+          <div className="section-container flex w-full items-center justify-center gap-4 py-5">
             <IconBrandWhatsapp size={20} className="text-white" />
             <p className="font-proxima text-[15px] font-semibold text-white">
               Prefer WhatsApp? Chat with our admissions team instantly
@@ -122,8 +123,8 @@ export default function ContactPage() {
         </section>
 
         {/* ── Map Section ── */}
-        <section className="bg-[#F9F9F9] px-4 py-16 xl:px-20">
-          <div className="mx-auto w-full max-w-screen-xl">
+        <section className="bg-[#F9F9F9] py-16">
+          <div className="section-container">
             <h2 className="text-center font-proxima text-[32px] font-bold text-[#171717]">Find Us</h2>
             <div className="relative mt-8 h-[400px] overflow-hidden rounded-2xl">
               <iframe
@@ -137,7 +138,9 @@ export default function ContactPage() {
                 title="ADMI Campus Location"
               />
               <div className="absolute bottom-10 left-10 rounded-xl bg-white/95 p-4">
-                <p className="font-proxima text-[14px] font-bold text-[#171717]">ADMI - Caxton House, Kenyatta Avenue</p>
+                <p className="font-proxima text-[14px] font-bold text-[#171717]">
+                  ADMI - Caxton House, Kenyatta Avenue
+                </p>
                 <p className="mt-1 font-proxima text-[12px] text-[#666]">Next to General Post Office, Nairobi CBD</p>
               </div>
             </div>

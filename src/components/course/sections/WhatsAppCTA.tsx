@@ -10,8 +10,8 @@ export default function WhatsAppCTA({ courseName = 'Film Production Diploma' }: 
   const whatsappUrl = `https://wa.me/${ADMI_WHATSAPP_NUMBER}?text=${encodedMessage}`
 
   return (
-    <section className="w-full bg-brand-whatsapp px-4 py-16 md:px-20" aria-label="WhatsApp contact">
-      <div className="mx-auto flex max-w-screen-xl flex-col items-center text-center">
+    <section className="w-full bg-brand-whatsapp py-16" aria-label="WhatsApp contact">
+      <div className="section-container flex flex-col items-center text-center">
         <IconBrandWhatsapp size={48} color="white" aria-hidden="true" />
 
         <h2 className="mt-4 font-nexa text-[clamp(1.5rem,3vw,2rem)] font-black text-white">
@@ -35,9 +35,7 @@ export default function WhatsAppCTA({ courseName = 'Film Production Diploma' }: 
           Chat on WhatsApp
         </a>
 
-        <p className="mt-3 font-proxima text-xs text-white/85">
-          WhatsApp: +254 741 132 751
-        </p>
+        <p className="mt-3 font-proxima text-xs text-white/85">WhatsApp: +254 741 132 751</p>
       </div>
     </section>
   )

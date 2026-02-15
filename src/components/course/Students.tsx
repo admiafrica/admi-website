@@ -33,14 +33,14 @@ export default function CourseStudents(props: Props) {
     <div className="flex flex-wrap" style={{ backgroundColor: '#BD2D00' }}>
       <div className="max-w-screen-3xl mx-auto w-full">
         {showPortfolios && (
-          <div className="mx-auto max-w-screen-xl px-4 py-12">
+          <div className="section-container py-12">
             <Title size={isMobile ? '24px' : '32px'} label="Student Portfolio & Alumni Stories" color="white" />
           </div>
         )}
 
         {/* Portfolios */}
         {showPortfolios && (
-          <div className="mx-auto h-fit w-full max-w-screen-xl px-4">
+          <div className="section-container h-fit w-full">
             <Carousel
               withControls={false}
               withIndicators={false}
@@ -126,7 +126,7 @@ export default function CourseStudents(props: Props) {
 
         {/* Testimonials */}
         {showTestimonials && (
-          <div className="mx-auto mb-8 max-w-screen-xl px-4 font-nexa text-white">
+          <div className="section-container mb-8 font-nexa text-white">
             <div className="flex flex-col items-center py-8 sm:flex-row">
               <Title
                 size={isMobile ? '24px' : '32px'}
@@ -146,7 +146,7 @@ export default function CourseStudents(props: Props) {
         )}
 
         {showTestimonials && (
-          <div className="mx-auto flex h-fit w-full max-w-screen-xl flex-col justify-start px-4 sm:flex-row">
+          <div className="section-container flex h-fit w-full flex-col justify-start sm:flex-row">
             {props.testimonials.map((testimonial, index) => (
               <div key={`testimonial-${index}`}>
                 <UserTestimonialCard user={testimonial.user} testimonial={testimonial} assets={props.assets} />

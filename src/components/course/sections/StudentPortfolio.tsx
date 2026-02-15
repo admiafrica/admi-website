@@ -10,7 +10,7 @@ export default function StudentPortfolio({ items }: Props) {
 
   return (
     <section className="section-padding bg-white">
-      <div className="mx-auto max-w-screen-xl">
+      <div className="section-container">
         <div className="mb-12 text-center md:text-left">
           <span className="section-label-light">Student Work</span>
           <h2 className="section-heading-light">Portfolio Showcase</h2>

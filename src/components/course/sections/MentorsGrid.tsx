@@ -8,8 +8,8 @@ export default function MentorsGrid({ mentors }: MentorsGridProps) {
   if (!mentors.length) return null
 
   return (
-    <section className="w-full bg-[#f9f9f9] px-4 py-20 md:px-20" aria-label="Course mentors">
-      <div className="mx-auto max-w-screen-xl">
+    <section className="section-padding w-full bg-[#f9f9f9]" aria-label="Course mentors">
+      <div className="section-container">
         <span className="section-label-light">Your Mentors</span>
         <h2 className="section-heading-light mb-4">Learn From Industry Professionals</h2>
         <p className="mb-12 max-w-2xl font-proxima text-lg leading-relaxed text-gray-600">

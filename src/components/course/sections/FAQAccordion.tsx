@@ -12,8 +12,8 @@ export default function FAQAccordion({ faqs }: FAQAccordionProps) {
   if (!faqs.length) return null
 
   return (
-    <section className="w-full bg-[#faf7f5] px-4 py-20 md:px-20" aria-label="Frequently asked questions">
-      <div className="mx-auto max-w-screen-xl">
+    <section className="section-padding w-full bg-[#faf7f5]" aria-label="Frequently asked questions">
+      <div className="section-container">
         <div className="mb-12">
           <span className="section-label-light">Frequently Asked Questions</span>
           <h2 className="section-heading-light">Got Questions? We&apos;ve Got Answers</h2>

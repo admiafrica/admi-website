@@ -57,7 +57,9 @@ export function MainLayout({ children, minimizeFooter = false, minimizeHeader = 
         </header>
       </div>
 
-      <main className={bannerVisible ? 'pt-[129px]' : 'pt-[81px]'}>{children}</main>
+      <main className={`w-full max-w-full overflow-x-hidden ${bannerVisible ? 'pt-[129px]' : 'pt-[81px]'}`}>
+        {children}
+      </main>
 
       <footer className="relative">{minimizeFooter ? <FooterMini /> : <Footer bgColor={footerBgColor} />}</footer>
     </div>

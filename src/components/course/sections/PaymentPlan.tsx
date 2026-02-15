@@ -15,8 +15,8 @@ export default function PaymentPlan({ plan }: PaymentPlanProps) {
   if (!plan.installments.length) return null
 
   return (
-    <section className="w-full bg-white px-4 py-20 md:px-20">
-      <div className="mx-auto max-w-screen-xl">
+    <section className="section-padding w-full bg-white">
+      <div className="section-container">
         {/* Header */}
         <div className="mb-12">
           <span className="section-label-light">Semester Fees &amp; Payment</span>

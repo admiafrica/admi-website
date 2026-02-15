@@ -7,7 +7,7 @@ export default function IndustryPartners({ partners }: IndustryPartnersProps) {
 
   return (
     <section className="section-padding w-full bg-white" aria-label="Industry partners">
-      <div className="mx-auto max-w-screen-xl">
+      <div className="section-container">
         <h2 className="section-heading-light text-center">Where Our Students Intern &amp; Get Hired</h2>
 
         <p className="section-subheading-light mx-auto mt-2 max-w-[600px] text-center">

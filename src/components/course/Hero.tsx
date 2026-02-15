@@ -55,6 +55,7 @@ export default function CourseHero(props: Props) {
           }
         >
           <CourseSummaryCard
+            courseName={props.name}
             programType={props.programType}
             creditHours={props.creditHours}
             awardLevel={props.awardLevel}

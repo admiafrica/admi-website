@@ -5,8 +5,8 @@ interface ProgramDetailsProps {
 
 export default function ProgramDetails({ details, learningOutcomes }: ProgramDetailsProps) {
   return (
-    <section className="w-full bg-white px-4 py-20 md:px-20" aria-label="Program details">
-      <div className="mx-auto max-w-screen-xl">
+    <section className="section-padding w-full bg-white" aria-label="Program details">
+      <div className="section-container">
         <span className="section-label-light">Course Information</span>
         <h2 className="section-heading-light mb-10">Program Details</h2>
 

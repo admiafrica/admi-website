@@ -47,9 +47,9 @@ export default function CoursesFAQ({ faqs = defaultFAQs }: CoursesFAQProps) {
   if (!faqs.length) return null
 
   return (
-    <section aria-labelledby="courses-faq-heading" className="w-full bg-[#f9f9f9] px-4 py-12 md:px-20 md:py-20">
+    <section aria-labelledby="courses-faq-heading" className="section-padding w-full bg-[#f9f9f9]">
       {/* Header */}
-      <div className="mx-auto max-w-[800px] text-center">
+      <div className="section-container max-w-[800px] text-center">
         <span className="font-proxima text-[13px] font-semibold uppercase tracking-[2px] text-brand-red">
           ADMISSIONS
         </span>
@@ -59,7 +59,7 @@ export default function CoursesFAQ({ faqs = defaultFAQs }: CoursesFAQProps) {
       </div>
 
       {/* FAQ List */}
-      <div className="mx-auto mt-12 max-w-[800px]">
+      <div className="section-container mt-12 max-w-[800px]">
         {faqs.map((faq, index) => {
           const isOpen = openIndex === index
           const isLast = index === faqs.length - 1

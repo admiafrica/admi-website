@@ -16,8 +16,8 @@ export default function RelatedResources({ resources }: Props) {
   if (!resources.length) return null
 
   return (
-    <section className="w-full bg-[#f9f9f9] px-4 py-20 md:px-20">
-      <div className="mx-auto max-w-screen-xl">
+    <section className="section-padding w-full bg-[#f9f9f9]">
+      <div className="section-container">
         {/* Header */}
         <p className="section-label-light">Blogs &amp; Resources</p>
         <h2 className="section-heading-light mt-3">Explore More About Film Production</h2>

@@ -69,7 +69,7 @@ export default function CourseHeroV2({ name, coverImage, programType, awardLevel
       <div className="absolute inset-0 bg-gradient-to-r from-[#0B0B0F] via-[#0B0B0F]/85 to-transparent" />
 
       {/* Content */}
-      <div className="relative mx-auto flex w-full max-w-screen-xl flex-col px-4 pb-16 pt-10 md:px-20 md:pb-24 md:pt-14">
+      <div className="section-container relative flex w-full flex-col pb-16 pt-10 md:pb-24 md:pt-14">
         {/* Breadcrumb */}
         <nav className="mb-6 hidden items-center gap-2 text-[13px] md:flex" aria-label="Breadcrumb">
           <Link href="/" className="font-proxima font-medium text-white/50 hover:text-white/70">

@@ -7,8 +7,8 @@ interface AboutCourseProps {
 
 export default function AboutCourse({ description, accreditation }: AboutCourseProps) {
   return (
-    <section className="w-full bg-white px-4 py-20 md:px-20">
-      <div className="mx-auto max-w-screen-xl">
+    <section className="section-padding w-full bg-white">
+      <div className="section-container">
         <div className="flex flex-col gap-12 lg:flex-row lg:items-center lg:gap-16">
           {/* Left Column - Text Content */}
           <div className="flex-1">

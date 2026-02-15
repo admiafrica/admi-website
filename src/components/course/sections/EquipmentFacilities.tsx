@@ -8,8 +8,8 @@ export default function EquipmentFacilities({ facilities }: EquipmentFacilitiesP
   if (!facilities.length) return null
 
   return (
-    <section className="w-full bg-[#f9f9f9] px-4 py-20 md:px-20" aria-label="Equipment and facilities">
-      <div className="mx-auto max-w-screen-xl">
+    <section className="section-padding w-full bg-[#f9f9f9]" aria-label="Equipment and facilities">
+      <div className="section-container">
         <span className="section-label-light">Equipment &amp; Facilities</span>
         <h2 className="section-heading-light mb-4">World-Class Tools At Your Fingertips</h2>
         <p className="mb-12 max-w-2xl font-proxima text-lg leading-relaxed text-gray-600">

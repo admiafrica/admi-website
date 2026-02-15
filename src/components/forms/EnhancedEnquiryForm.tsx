@@ -3,7 +3,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react'
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
 
-import { IconAsterisk, IconArrowRight, IconArrowLeft } from '@tabler/icons-react'
+import { IconAsterisk, IconArrowRight, IconArrowLeft, IconLock, IconCheck } from '@tabler/icons-react'
 import { getStoredUTMs, getCurrentPageInfo, trackWhatsAppClick } from '@/utils/utm-tracking'
 import { ADMI_WHATSAPP_NUMBER } from '@/utils/whatsapp-attribution'
 
@@ -49,7 +49,7 @@ const INITIAL_VALUES: FormData = {
 const STEP_LABELS = ['Course Interest', 'Program Details', 'Contact Info']
 
 const INPUT_CLASS =
-  'h-[44px] w-full rounded-[8px] border border-[#BCC5D0] bg-[#F7F8FA] px-3 text-[14px] text-[#1F2937] placeholder:text-[#6F7E90] outline-none'
+  'box-border h-[44px] w-full min-w-0 max-w-full rounded-[8px] border border-[#BCC5D0] bg-[#F7F8FA] px-3 text-[14px] text-[#1F2937] placeholder:text-[#6F7E90] outline-none'
 
 const RADIO_CLASS = 'h-4 w-4 border-[#8896A8] text-brand-red focus:ring-brand-red'
 
@@ -251,7 +251,10 @@ export default function EnhancedEnquiryForm() {
       const responseData = await response.json()
 
       if (!response.ok) {
-        setAlert({ type: 'error', message: typeof responseData.error === 'string' ? responseData.error : 'Failed to submit enquiry.' })
+        setAlert({
+          type: 'error',
+          message: typeof responseData.error === 'string' ? responseData.error : 'Failed to submit enquiry.'
+        })
         setIsSubmitting(false)
         return
       }
@@ -416,29 +419,63 @@ export default function EnhancedEnquiryForm() {
   const showStep = (step: number) => activeStep === step
 
   return (
-    <div className="mx-auto w-full max-w-4xl overflow-hidden rounded-lg bg-white p-3 sm:p-6 lg:p-8">
-      <div className="mb-6 font-nexa">
-        <h2 className="text-xl font-bold text-black sm:text-2xl">Enquiry Form</h2>
-        <p className="mt-1 text-sm text-[#666]">Help us understand your needs better with a few quick questions</p>
+    <div className="w-full">
+      <div className="mb-6">
+        <h2 className="font-proxima text-xl font-bold text-black sm:text-2xl">Enquiry Form</h2>
+        <p className="mt-1 font-proxima text-sm text-muted">
+          Help us understand your needs better with a few quick questions
+        </p>
       </div>
 
       <form onSubmit={handleSubmit}>
-        <div className="mb-6 flex flex-wrap gap-2">
-          {STEP_LABELS.map((label, index) => (
-            <button
-              key={label}
-              type="button"
-              onClick={() => {
-                if (canAccessStep(index)) setActiveStep(index)
-              }}
-              disabled={!canAccessStep(index)}
-              className={`rounded-full px-4 py-2 text-xs font-semibold ${
-                activeStep === index ? 'bg-[#0A3D3D] text-white' : 'bg-[#EEF1F4] text-[#555]'
-              } ${!canAccessStep(index) ? 'cursor-not-allowed opacity-60' : ''}`}
-            >
-              {index + 1}. {label}
-            </button>
-          ))}
+        {/* Step indicator */}
+        <div className="mb-8">
+          <div className="flex items-center gap-0">
+            {STEP_LABELS.map((label, index) => {
+              const completed = isStepComplete(index) && activeStep > index
+              const active = activeStep === index
+              const locked = !canAccessStep(index)
+
+              return (
+                <div key={label} className="flex flex-1 flex-col items-center">
+                  <div className="flex w-full items-center">
+                    {index > 0 && (
+                      <div className={`h-0.5 flex-1 ${completed || active ? 'bg-[#0A3D3D]' : 'bg-[#E5E7EB]'}`} />
+                    )}
+                    <button
+                      type="button"
+                      onClick={() => {
+                        if (!locked) setActiveStep(index)
+                      }}
+                      disabled={locked}
+                      className={`flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full text-xs font-bold transition-colors ${
+                        completed
+                          ? 'bg-[#0A3D3D] text-white'
+                          : active
+                            ? 'bg-[#0A3D3D] text-white ring-2 ring-[#0A3D3D]/30 ring-offset-2'
+                            : locked
+                              ? 'cursor-not-allowed border border-[#E5E7EB] bg-[#F3F4F6] text-[#9CA3AF]'
+                              : 'border border-[#D1D5DB] bg-white text-[#555]'
+                      }`}
+                      aria-label={`Step ${index + 1}: ${label}`}
+                    >
+                      {completed ? <IconCheck size={16} /> : locked ? <IconLock size={14} /> : index + 1}
+                    </button>
+                    {index < STEP_LABELS.length - 1 && (
+                      <div className={`h-0.5 flex-1 ${completed ? 'bg-[#0A3D3D]' : 'bg-[#E5E7EB]'}`} />
+                    )}
+                  </div>
+                  <span
+                    className={`mt-2 text-center text-[11px] font-semibold leading-tight sm:text-xs ${
+                      active ? 'text-[#0A3D3D]' : locked ? 'text-[#9CA3AF]' : 'text-[#555]'
+                    }`}
+                  >
+                    {label}
+                  </span>
+                </div>
+              )
+            })}
+          </div>
         </div>
 
         {showStep(0) && (
@@ -454,7 +491,9 @@ export default function EnhancedEnquiryForm() {
                 className={INPUT_CLASS}
                 disabled={coursesLoading}
               >
-                <option value="">{coursesLoading ? 'Loading courses...' : "Select a course you're interested in"}</option>
+                <option value="">
+                  {coursesLoading ? 'Loading courses...' : "Select a course you're interested in"}
+                </option>
                 {courseOptions.map((course) => (
                   <option key={course.value} value={course.value}>
                     {course.label}
@@ -492,7 +531,9 @@ export default function EnhancedEnquiryForm() {
         {showStep(1) && (
           <div className="space-y-5">
             <div>
-              <p className="mb-2 text-sm font-semibold text-black sm:text-base">What type of program are you looking for?</p>
+              <p className="mb-2 text-sm font-semibold text-black sm:text-base">
+                What type of program are you looking for?
+              </p>
               <div className="space-y-2 text-sm text-[#333]">
                 {[
                   ['full-time-diploma', 'Full-time Diploma (2 years)'],
@@ -566,7 +607,9 @@ export default function EnhancedEnquiryForm() {
             </div>
 
             <div>
-              <p className="mb-2 text-sm font-semibold text-black sm:text-base">Expected investment range? (Optional)</p>
+              <p className="mb-2 text-sm font-semibold text-black sm:text-base">
+                Expected investment range? (Optional)
+              </p>
               <div className="space-y-2 text-sm text-[#333]">
                 {[
                   ['under-100k', 'Under 100,000 KES'],
@@ -593,31 +636,33 @@ export default function EnhancedEnquiryForm() {
         )}
 
         {showStep(2) && (
-          <div className="space-y-4">
-            <div>
-              <div className="mb-1 flex items-center gap-1 text-sm font-semibold text-black">
-                <span>First Name</span>
-                <IconAsterisk size={6} className="text-admiRed" />
+          <div className="min-w-0 space-y-4 overflow-hidden">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+              <div>
+                <div className="mb-1 flex items-center gap-1 text-sm font-semibold text-black">
+                  <span>First Name</span>
+                  <IconAsterisk size={6} className="text-admiRed" />
+                </div>
+                <input
+                  value={values.firstName}
+                  onChange={(e) => setField('firstName', e.target.value)}
+                  placeholder="Enter first name"
+                  className={INPUT_CLASS}
+                />
               </div>
-              <input
-                value={values.firstName}
-                onChange={(e) => setField('firstName', e.target.value)}
-                placeholder="Enter first name"
-                className={INPUT_CLASS}
-              />
-            </div>
 
-            <div>
-              <div className="mb-1 flex items-center gap-1 text-sm font-semibold text-black">
-                <span>Last Name</span>
-                <IconAsterisk size={6} className="text-admiRed" />
+              <div>
+                <div className="mb-1 flex items-center gap-1 text-sm font-semibold text-black">
+                  <span>Last Name</span>
+                  <IconAsterisk size={6} className="text-admiRed" />
+                </div>
+                <input
+                  value={values.lastName}
+                  onChange={(e) => setField('lastName', e.target.value)}
+                  placeholder="Enter last name"
+                  className={INPUT_CLASS}
+                />
               </div>
-              <input
-                value={values.lastName}
-                onChange={(e) => setField('lastName', e.target.value)}
-                placeholder="Enter last name"
-                className={INPUT_CLASS}
-              />
             </div>
 
             <div>
@@ -634,39 +679,39 @@ export default function EnhancedEnquiryForm() {
               />
             </div>
 
-            <div className="rounded-lg border border-[#C8D0D9] bg-[#EEF1F4] px-3 py-3">
+            <div>
               <div className="mb-1 flex items-center gap-1 text-sm font-semibold text-black">
                 <span>Phone Number</span>
                 <IconAsterisk size={6} className="text-admiRed" />
               </div>
-              <p className="pb-1 text-xs text-muted sm:text-sm">Kenya mobile number (without country code)</p>
-              <div className="flex gap-2">
-                <div className="w-24 sm:w-28">
+              <div className="flex h-[44px] w-full min-w-0 max-w-full overflow-hidden rounded-[8px] border border-[#BCC5D0] bg-[#F7F8FA]">
+                <div className="w-[100px] flex-shrink-0">
                   <PhoneInput
                     country={'ke'}
                     value={countryCode}
                     onChange={(value) => setCountryCode(value)}
                     containerStyle={{ border: 'none', width: '100%' }}
                     inputStyle={{
-                      border: '1px solid #BCC5D0',
-                      borderRadius: '8px',
-                      fontSize: '12px',
-                      height: '40px',
+                      border: 'none',
+                      borderRadius: '8px 0 0 8px',
+                      fontSize: '13px',
+                      height: '44px',
                       width: '100%',
-                      backgroundColor: '#F7F8FA',
+                      backgroundColor: 'transparent',
                       color: '#1F2937',
-                      paddingLeft: '35px'
+                      paddingLeft: '40px'
                     }}
                     buttonStyle={{
-                      border: '1px solid #BCC5D0',
+                      border: 'none',
                       borderRadius: '8px 0 0 8px',
-                      backgroundColor: '#F7F8FA',
-                      width: '30px',
-                      height: '40px'
+                      backgroundColor: 'transparent',
+                      width: '34px',
+                      height: '44px'
                     }}
                     inputProps={{ readOnly: true }}
                   />
                 </div>
+                <div className="h-6 w-px flex-shrink-0 self-center bg-[#BCC5D0]" />
                 <input
                   value={values.phone}
                   onChange={(e) => {
@@ -676,24 +721,24 @@ export default function EnhancedEnquiryForm() {
                     setField('phone', value)
                   }}
                   placeholder="712 345 678"
-                  className="h-[40px] flex-1 rounded-[8px] border border-[#BCC5D0] bg-[#F7F8FA] px-3 text-[14px] text-[#1F2937] placeholder:text-[#6F7E90] outline-none"
+                  className="box-border h-[44px] min-w-0 flex-1 border-none bg-transparent px-3 text-[14px] text-[#1F2937] outline-none placeholder:text-[#6F7E90]"
                 />
               </div>
             </div>
           </div>
         )}
 
-        <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-between">
+        <div className="mt-8 flex flex-col-reverse gap-3 sm:flex-row sm:justify-between">
           {activeStep > 0 ? (
             <button
               type="button"
               onClick={prevStep}
-              className="order-2 inline-flex w-full items-center justify-center gap-2 rounded-md border border-[#D1D5DB] px-4 py-2.5 text-sm font-semibold text-[#333] sm:order-1 sm:w-auto"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-lg border border-[#D1D5DB] px-4 py-3 text-sm font-semibold text-[#333] sm:w-auto"
             >
               <IconArrowLeft size={14} /> Back
             </button>
           ) : (
-            <div />
+            <div className="hidden sm:block" />
           )}
 
           {activeStep < 2 ? (
@@ -701,15 +746,15 @@ export default function EnhancedEnquiryForm() {
               type="button"
               onClick={nextStep}
               disabled={!validateCurrentStep()}
-              className="order-1 inline-flex w-full items-center justify-center gap-2 rounded-md bg-[#0A3D3D] px-4 py-2.5 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:opacity-50 sm:order-2 sm:w-auto"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-[#0A3D3D] px-6 py-3 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
             >
-              Next <IconArrowRight size={14} />
+              Next Step <IconArrowRight size={14} />
             </button>
           ) : (
             <button
               type="submit"
               disabled={isSubmitting || !validateCurrentStep()}
-              className="order-1 inline-flex w-full items-center justify-center rounded-md bg-brand-red px-5 py-3 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:opacity-60 sm:order-2 sm:w-auto"
+              className="inline-flex w-full items-center justify-center rounded-lg bg-brand-red px-6 py-3 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
             >
               {isSubmitting ? 'Submitting...' : 'Submit Enquiry'}
             </button>

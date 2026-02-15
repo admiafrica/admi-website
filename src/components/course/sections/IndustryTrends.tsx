@@ -9,7 +9,7 @@ export default function IndustryTrends({ trends }: Props) {
 
   return (
     <section className="section-padding bg-[#1A1A1A] text-white">
-      <div className="mx-auto max-w-screen-xl">
+      <div className="section-container">
         <div className="mb-12">
           <span className="section-label-dark">Industry Insights</span>
           <h2 className="section-heading-dark mt-2">Why This Career Matters</h2>

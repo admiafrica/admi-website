@@ -14,8 +14,8 @@ export default function CoursesHero({ searchQuery, onSearchChange, onSearch }: C
   }
 
   return (
-    <section aria-labelledby="courses-hero-heading" className="w-full bg-admi-green px-4 py-12 md:px-20 md:py-20">
-      <div className="mx-auto flex max-w-[900px] flex-col items-center">
+    <section aria-labelledby="courses-hero-heading" className="section-padding w-full bg-admi-green">
+      <div className="section-container flex max-w-[900px] flex-col items-center">
         {/* Heading */}
         <h1 id="courses-hero-heading" className="text-center font-nexa text-4xl font-black text-white md:text-5xl">
           Explore Our Programmes

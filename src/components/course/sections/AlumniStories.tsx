@@ -10,7 +10,7 @@ export default function AlumniStories({ stories }: Props) {
 
   return (
     <section className="section-padding bg-gray-50">
-      <div className="mx-auto max-w-screen-xl">
+      <div className="section-container">
         <div className="mb-12 text-center">
           <span className="section-label-light">Success Stories</span>
           <h2 className="section-heading-light">Where Are They Now?</h2>

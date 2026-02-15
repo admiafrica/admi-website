@@ -20,8 +20,8 @@ export default function CareerOutcomes({ careers, stats }: CareerOutcomesProps) 
   const displayStats = stats.slice(0, 3)
 
   return (
-    <section className="w-full bg-[#1a1a1a] px-4 py-20 md:px-20">
-      <div className="mx-auto max-w-screen-xl">
+    <section className="section-padding w-full bg-[#1a1a1a]">
+      <div className="section-container">
         {/* Header */}
         <div className="mb-12">
           <span className="section-label-dark">Career Outcomes</span>

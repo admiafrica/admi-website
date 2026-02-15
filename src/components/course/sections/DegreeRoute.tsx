@@ -13,8 +13,8 @@ export default function DegreeRoute({ steps }: DegreeRouteProps) {
   const colors = ['#C1272D', '#171717', '#8EBFB0']
 
   return (
-    <section className="w-full bg-[#f9f9f9] px-4 py-20 md:px-20">
-      <div className="mx-auto max-w-screen-xl">
+    <section className="section-padding w-full bg-[#f9f9f9]">
+      <div className="section-container">
         {/* Header */}
         <div className="mb-10 text-center">
           <span className="section-label-light">Your Pathway to a Degree</span>

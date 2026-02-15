@@ -296,14 +296,14 @@ export default function AboutPage({
             }}
           />
           <div className="via-admi-black/73 to-admi-black/53 absolute inset-0 bg-gradient-to-t from-admi-black/90" />
-          <div className="relative z-10 mx-auto flex h-full w-full max-w-screen-xl flex-col justify-center px-4 pt-16 text-white xl:px-20">
+          <div className="section-container relative z-10 flex h-full w-full flex-col justify-center pt-16 text-white">
             <div className="flex items-center gap-3">
               <span className="h-0.5 w-10 bg-secondary" />
               <span className="font-proxima text-[13px] font-bold uppercase tracking-[3px] text-secondary">
                 ABOUT ADMI
               </span>
             </div>
-            <h1 className="font-proxima mt-6 max-w-[700px] text-[56px] font-bold leading-[1.1] tracking-tight">
+            <h1 className="mt-6 max-w-[700px] font-proxima text-[56px] font-bold leading-[1.1] tracking-tight">
               We Exist to Unlock Africa&apos;s Creative Potential
             </h1>
             <p className="mt-6 max-w-[620px] font-proxima text-[18px] leading-[1.7] text-white/80">
@@ -322,7 +322,7 @@ export default function AboutPage({
 
         {/* ── Stats Strip ── */}
         <section className="bg-[#0A3D3D]">
-          <div className="mx-auto flex w-full max-w-screen-xl items-center justify-around px-4 py-8 xl:px-20">
+          <div className="section-container flex w-full items-center justify-around py-8">
             {STATS.map((s, i) => (
               <div key={s.label} className="flex items-center">
                 <div className="text-center">
@@ -339,7 +339,7 @@ export default function AboutPage({
 
         {/* ── Our Story ── */}
         <section className="bg-white">
-          <div className="mx-auto flex w-full max-w-screen-xl flex-col lg:flex-row">
+          <div className="section-container flex w-full flex-col lg:flex-row">
             <div
               className="h-[400px] w-full bg-cover bg-center lg:h-auto lg:w-[640px]"
               style={{
@@ -354,7 +354,7 @@ export default function AboutPage({
                   OUR STORY
                 </span>
               </div>
-              <h2 className="font-proxima max-w-[600px] text-[36px] font-bold leading-[1.15] text-[#171717]">
+              <h2 className="max-w-[600px] font-proxima text-[36px] font-bold leading-[1.15] text-[#171717]">
                 From a Small Film School to East Africa&apos;s Leading Creative Institute
               </h2>
               <p className="max-w-[600px] font-proxima text-[16px] leading-[1.7] text-[#555]">
@@ -381,15 +381,15 @@ export default function AboutPage({
         </section>
 
         {/* ── Mission & Values ── */}
-        <section className="bg-[#F9F9F9] px-4 py-20 xl:px-20">
-          <div className="mx-auto w-full max-w-screen-xl text-center">
+        <section className="section-padding bg-[#F9F9F9]">
+          <div className="section-container text-center">
             <div className="flex items-center justify-center gap-3">
               <span className="h-0.5 w-10 bg-[#0A3D3D]" />
               <span className="font-proxima text-[13px] font-bold uppercase tracking-[3px] text-[#0A3D3D]">
                 MISSION AND VALUES
               </span>
             </div>
-            <h2 className="font-proxima mt-6 text-[42px] font-bold text-[#171717]">What Drives Us</h2>
+            <h2 className="mt-6 font-proxima text-[42px] font-bold text-[#171717]">What Drives Us</h2>
             <p className="mx-auto mt-4 max-w-[700px] font-proxima text-[17px] leading-[1.7] text-[#666]">
               Our mission is to equip Africa&apos;s creative talent with practical skills, industry confidence, and
               global perspective through blended learning pathways.
@@ -420,15 +420,15 @@ export default function AboutPage({
         </section>
 
         {/* ── Our Journey ── */}
-        <section className="bg-admi-black px-4 py-20 xl:px-20">
-          <div className="mx-auto w-full max-w-screen-xl text-center">
+        <section className="section-padding bg-admi-black">
+          <div className="section-container text-center">
             <div className="flex items-center justify-center gap-3">
               <span className="h-0.5 w-10 bg-secondary" />
               <span className="font-proxima text-[13px] font-bold uppercase tracking-[3px] text-secondary">
                 OUR JOURNEY
               </span>
             </div>
-            <h2 className="font-proxima mt-6 text-[42px] font-bold text-white">
+            <h2 className="mt-6 font-proxima text-[42px] font-bold text-white">
               15 Years of Building Creative Futures
             </h2>
             <div className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
@@ -457,8 +457,8 @@ export default function AboutPage({
         </section>
 
         {/* ── Leadership ── */}
-        <section className="bg-white px-4 py-20 xl:px-20">
-          <div className="mx-auto w-full max-w-screen-xl">
+        <section className="section-padding bg-white">
+          <div className="section-container">
             <div className="flex items-center gap-3">
               <span className="h-0.5 w-10 bg-brand-red" />
               <span className="font-proxima text-[13px] font-bold uppercase tracking-[3px] text-brand-red">
@@ -492,8 +492,8 @@ export default function AboutPage({
         </section>
 
         {/* ── Academic Team ── */}
-        <section className="bg-[#F9F9F9] px-4 py-20 xl:px-20">
-          <div className="mx-auto w-full max-w-screen-xl">
+        <section className="section-padding bg-[#F9F9F9]">
+          <div className="section-container">
             <div className="flex items-center gap-3">
               <span className="h-0.5 w-10 bg-[#0A3D3D]" />
               <span className="font-proxima text-[13px] font-bold uppercase tracking-[3px] text-[#0A3D3D]">
@@ -529,15 +529,15 @@ export default function AboutPage({
         </section>
 
         {/* ── Campus Facilities ── */}
-        <section className="bg-white px-4 py-20 xl:px-20">
-          <div className="mx-auto w-full max-w-screen-xl text-center">
+        <section className="section-padding bg-white">
+          <div className="section-container text-center">
             <div className="flex items-center justify-center gap-3">
               <span className="h-0.5 w-10 bg-[#0A3D3D]" />
               <span className="font-proxima text-[13px] font-bold uppercase tracking-[3px] text-[#0A3D3D]">
                 OUR CAMPUS
               </span>
             </div>
-            <h2 className="font-proxima mt-6 text-[42px] font-bold text-[#171717]">
+            <h2 className="mt-6 font-proxima text-[42px] font-bold text-[#171717]">
               World-Class Facilities in the Heart of Nairobi
             </h2>
             <p className="mx-auto mt-4 max-w-[700px] font-proxima text-[17px] leading-[1.7] text-[#666]">
@@ -582,15 +582,15 @@ export default function AboutPage({
         </section>
 
         {/* ── Partners & Accreditation ── */}
-        <section className="bg-white px-4 py-16 xl:px-20">
-          <div className="mx-auto w-full max-w-screen-xl text-center">
+        <section className="bg-white py-16">
+          <div className="section-container text-center">
             <div className="flex items-center justify-center gap-3">
               <span className="h-0.5 w-10 bg-brand-orange" />
               <span className="font-proxima text-[13px] font-bold uppercase tracking-[3px] text-brand-orange">
                 PARTNERSHIPS AND ACCREDITATION
               </span>
             </div>
-            <h2 className="font-proxima mt-6 text-[38px] font-bold text-[#171717]">
+            <h2 className="mt-6 font-proxima text-[38px] font-bold text-[#171717]">
               Globally Recognized, Locally Rooted
             </h2>
             <div className="mt-12 flex flex-wrap justify-center gap-6">
@@ -605,7 +605,7 @@ export default function AboutPage({
                   >
                     <span className="font-proxima text-[16px] font-bold text-[#171717]">{p.name.charAt(0)}</span>
                   </div>
-                  <h3 className="font-proxima mt-3 text-[18px] font-bold text-[#171717]">{p.name}</h3>
+                  <h3 className="mt-3 font-proxima text-[18px] font-bold text-[#171717]">{p.name}</h3>
                   <p className="mt-2 font-proxima text-[12px] leading-[1.6] text-[#666]">{p.desc}</p>
                 </article>
               ))}
@@ -614,9 +614,9 @@ export default function AboutPage({
         </section>
 
         {/* ── CTA ── */}
-        <section className="bg-gradient-to-br from-brand-red via-[#8B1A24] to-admi-black px-4 py-24 text-white xl:px-20">
-          <div className="mx-auto w-full max-w-screen-xl text-center">
-            <h2 className="font-proxima mx-auto max-w-[700px] text-[44px] font-bold leading-[1.15]">
+        <section className="bg-gradient-to-br from-brand-red via-[#8B1A24] to-admi-black py-24 text-white">
+          <div className="section-container text-center">
+            <h2 className="mx-auto max-w-[700px] font-proxima text-[44px] font-bold leading-[1.15]">
               Ready to Start Your Creative Journey?
             </h2>
             <p className="mx-auto mt-4 max-w-[640px] font-proxima text-[18px] leading-[1.6] text-white/80">

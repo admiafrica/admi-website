@@ -145,8 +145,8 @@ export default function DiplomaCoursesPage() {
       />
 
       {/* Hero Section */}
-      <section className="w-full bg-white px-4 pb-16 pt-12 md:px-20">
-        <div className="mx-auto flex max-w-screen-xl flex-col items-center gap-10 lg:flex-row lg:items-start lg:gap-16">
+      <section className="w-full bg-white pb-16 pt-12">
+        <div className="section-container flex flex-col items-center gap-10 lg:flex-row lg:items-start lg:gap-16">
           {/* Left Content */}
           <div className="flex flex-1 flex-col gap-6">
             <span className="w-fit rounded-full bg-[#FFF0EE] px-4 py-2 font-proxima text-[13px] font-semibold text-[#E85A4F]">
@@ -199,8 +199,8 @@ export default function DiplomaCoursesPage() {
       </section>
 
       {/* Stats Bar */}
-      <section className="w-full bg-[#1a1a1a] px-4 py-10 md:px-20">
-        <div className="mx-auto flex max-w-screen-xl flex-col items-center justify-around gap-8 md:flex-row">
+      <section className="w-full bg-[#1a1a1a] py-10">
+        <div className="section-container flex flex-col items-center justify-around gap-8 md:flex-row">
           {[
             { value: '88%', label: 'Employment Rate' },
             { value: '65K', label: 'Avg. Starting Salary (KES/mo)' },
@@ -218,8 +218,8 @@ export default function DiplomaCoursesPage() {
       </section>
 
       {/* Programs Grid */}
-      <section className="w-full bg-white px-4 py-20 md:px-20">
-        <div className="mx-auto max-w-screen-xl">
+      <section className="section-padding w-full bg-white">
+        <div className="section-container">
           <div className="mb-12">
             <span className="mb-3 inline-block font-proxima text-[13px] font-bold uppercase tracking-[3px] text-brand-red">
               DIPLOMA PROGRAMS
@@ -272,8 +272,8 @@ export default function DiplomaCoursesPage() {
       </section>
 
       {/* Diploma Advantages */}
-      <section className="w-full bg-[#f9f9f9] px-4 py-20 md:px-20">
-        <div className="mx-auto max-w-screen-xl">
+      <section className="section-padding w-full bg-[#f9f9f9]">
+        <div className="section-container">
           <div className="mb-12 text-center">
             <span className="mb-3 inline-block font-proxima text-[13px] font-bold uppercase tracking-[3px] text-brand-red">
               WHY CHOOSE AN ADMI DIPLOMA
@@ -325,8 +325,8 @@ export default function DiplomaCoursesPage() {
       </section>
 
       {/* ROI Comparison */}
-      <section className="w-full bg-white px-4 py-20 md:px-20">
-        <div className="mx-auto max-w-screen-xl">
+      <section className="section-padding w-full bg-white">
+        <div className="section-container">
           <div className="mb-12">
             <span className="mb-3 inline-block font-proxima text-[13px] font-bold uppercase tracking-[3px] text-secondary">
               DIPLOMA vs CERTIFICATE
@@ -407,8 +407,8 @@ export default function DiplomaCoursesPage() {
       </section>
 
       {/* Payment Plan */}
-      <section className="w-full bg-[#f9f9f9] px-4 py-20 md:px-20">
-        <div className="mx-auto max-w-screen-xl">
+      <section className="section-padding w-full bg-[#f9f9f9]">
+        <div className="section-container">
           <div className="mb-12">
             <span className="mb-3 inline-block font-proxima text-[13px] font-bold uppercase tracking-[3px] text-brand-red">
               SEMESTER PAYMENT PLAN
@@ -464,8 +464,8 @@ export default function DiplomaCoursesPage() {
       </section>
 
       {/* Testimonials */}
-      <section className="w-full bg-[#1a1a1a] px-4 py-20 md:px-20">
-        <div className="mx-auto max-w-screen-xl">
+      <section className="section-padding w-full bg-[#1a1a1a]">
+        <div className="section-container">
           <div className="mb-12">
             <span className="mb-3 inline-block font-proxima text-[13px] font-bold uppercase tracking-[3px] text-secondary">
               SUCCESS STORIES
@@ -499,8 +499,8 @@ export default function DiplomaCoursesPage() {
       </section>
 
       {/* Final CTA */}
-      <section className="w-full bg-gradient-to-br from-brand-red to-[#E85A4F] px-4 py-20 md:px-20">
-        <div className="mx-auto flex max-w-[800px] flex-col items-center text-center">
+      <section className="section-padding w-full bg-gradient-to-br from-brand-red to-[#E85A4F]">
+        <div className="section-container flex max-w-[800px] flex-col items-center text-center">
           <h2 className="mb-4 font-nexa text-3xl font-bold tracking-tight text-white md:text-[48px] md:leading-[1.1]">
             Start Your High-Impact Diploma Journey
           </h2>
@@ -541,8 +541,8 @@ export default function DiplomaCoursesPage() {
       </section>
 
       {/* FAQ Section */}
-      <section className="w-full bg-white px-4 py-20 md:px-20">
-        <div className="mx-auto max-w-screen-xl">
+      <section className="section-padding w-full bg-white">
+        <div className="section-container">
           <div className="mb-12">
             <span className="mb-3 inline-block font-proxima text-[13px] font-bold uppercase tracking-[3px] text-brand-red">
               FREQUENTLY ASKED QUESTIONS

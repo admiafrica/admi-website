@@ -12,7 +12,7 @@ const BADGES = [
 export default function CoursesAccreditationBar() {
   return (
     <section className="w-full bg-admi-blue">
-      <div className="flex flex-col items-center gap-4 px-4 py-4 md:flex-row md:justify-center md:gap-12 md:px-20">
+      <div className="section-container flex flex-col items-center gap-4 py-4 md:flex-row md:justify-center md:gap-12">
         {/* Badges */}
         <div className="flex flex-wrap items-center justify-center gap-6 md:gap-12">
           {BADGES.map((badge) => (

@@ -3,10 +3,8 @@ import Link from 'next/link'
 export default function CourseFooter() {
   return (
     <footer className="border-t border-gray-200 bg-gray-100 py-12">
-      <div className="mx-auto max-w-screen-xl px-4 text-center md:px-20">
-        <h3 className="mb-4 font-nexa text-2xl font-bold text-gray-900">
-          Still have questions?
-        </h3>
+      <div className="section-container text-center">
+        <h3 className="mb-4 font-nexa text-2xl font-bold text-gray-900">Still have questions?</h3>
         <p className="mx-auto mb-8 max-w-2xl font-proxima text-gray-600">
           Our admissions team is here to help you navigate your career path. Book a free consultation or visit our
           campus.

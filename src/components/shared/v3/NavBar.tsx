@@ -61,7 +61,7 @@ const NAV_ITEMS: NavItem[] = [
       { label: 'News', href: '/news' },
       { label: 'Events', href: '/events' },
       { label: 'Media Archive', href: '/media-archive' },
-      { label: 'FAQs', href: '/frequently-asked-questions' }
+      { label: 'FAQs', href: '/faq' }
     ]
   }
 ]
@@ -145,7 +145,7 @@ export default function NavBar({ mode, isMinimal = false }: Props) {
 
   useEffect(() => {
     if (pathname) {
-      const isHidden = pathname === '/enquiry' || pathname.startsWith('/campaigns')
+      const isHidden = pathname.startsWith('/campaigns')
       setHiddenCTA(isHidden)
     }
   }, [pathname])
@@ -205,16 +205,8 @@ export default function NavBar({ mode, isMinimal = false }: Props) {
           </button>
         )}
 
-        {/* Mobile nav toggle + CTA */}
+        {/* Mobile: Apply button + hamburger (far right) */}
         <div className="flex w-fit items-center gap-3 lg:hidden">
-          <button
-            type="button"
-            onClick={() => setMobileOpen(!mobileOpen)}
-            className={`cursor-pointer border-none bg-transparent p-0 ${textColorClass}`}
-            aria-label="Toggle menu"
-          >
-            {mobileOpen ? <IconX size={28} /> : <IconMenu size={28} />}
-          </button>
           {!hiddenCTA && (
             <button
               type="button"
@@ -224,6 +216,14 @@ export default function NavBar({ mode, isMinimal = false }: Props) {
               Apply Now
             </button>
           )}
+          <button
+            type="button"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className={`cursor-pointer border-none bg-transparent p-0 ${textColorClass}`}
+            aria-label="Toggle menu"
+          >
+            {mobileOpen ? <IconX size={28} /> : <IconMenu size={28} />}
+          </button>
         </div>
       </div>
 

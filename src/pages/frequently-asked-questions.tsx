@@ -184,15 +184,15 @@ export default function FAQPage({ faqData }: InferGetStaticPropsType<typeof getS
 
       <div className="w-full">
         {/* -- Hero -- */}
-        <section className="bg-[#0A3D3D] px-4 py-20 text-center text-white xl:px-20">
-          <div className="mx-auto w-full max-w-screen-xl">
+        <section className="section-padding bg-[#0A3D3D] text-center text-white">
+          <div className="section-container">
             <div className="flex items-center justify-center gap-2.5">
               <span className="h-[3px] w-8 bg-secondary" />
               <span className="font-proxima text-[13px] font-semibold uppercase tracking-[2px] text-secondary">
                 FAQ
               </span>
             </div>
-            <h1 className="font-proxima mt-5 text-[48px] font-bold">Frequently Asked Questions</h1>
+            <h1 className="mt-5 font-proxima text-[48px] font-bold">Frequently Asked Questions</h1>
             <p className="mx-auto mt-4 max-w-[600px] font-proxima text-[18px] leading-[1.6] text-white/80">
               Find answers to common questions about ADMI programmes, admissions, fees and student life.
             </p>
@@ -200,8 +200,8 @@ export default function FAQPage({ faqData }: InferGetStaticPropsType<typeof getS
         </section>
 
         {/* -- Category Tabs -- */}
-        <div className="border-b border-[#e8e8e8] bg-white px-4 xl:px-20">
-          <div className="mx-auto flex w-full max-w-screen-xl gap-0 overflow-x-auto">
+        <div className="border-b border-[#e8e8e8] bg-white">
+          <div className="section-container flex gap-0 overflow-x-auto">
             {CATEGORIES.map((cat) => (
               <button
                 key={cat}
@@ -219,8 +219,8 @@ export default function FAQPage({ faqData }: InferGetStaticPropsType<typeof getS
         </div>
 
         {/* -- FAQ Content -- */}
-        <section className="bg-white px-4 py-12 xl:px-20">
-          <div className="mx-auto w-full max-w-screen-xl">
+        <section className="bg-white py-12">
+          <div className="section-container">
             {activeCategory === 'General' ? (
               /* Show all categories when on General */
               Object.entries(faqData)
@@ -261,8 +261,8 @@ export default function FAQPage({ faqData }: InferGetStaticPropsType<typeof getS
         </section>
 
         {/* -- CTA -- */}
-        <section className="bg-[#F9F9F9] px-4 py-16 text-center xl:px-20">
-          <div className="mx-auto w-full max-w-screen-xl">
+        <section className="bg-[#F9F9F9] py-16 text-center">
+          <div className="section-container">
             <h2 className="font-proxima text-[32px] font-bold text-admi-black">Still have questions?</h2>
             <p className="mt-2 font-proxima text-[16px] text-[#666]">
               Talk to our admissions team &mdash; we are happy to help.

@@ -14,8 +14,8 @@ export default function CourseLeader({ leader }: CourseLeaderProps) {
   if (!leader?.name) return null
 
   return (
-    <section className="w-full px-4 py-20 md:px-20" style={{ backgroundColor: '#f9f9f9' }}>
-      <div className="mx-auto max-w-screen-xl">
+    <section className="section-padding w-full" style={{ backgroundColor: '#f9f9f9' }}>
+      <div className="section-container">
         <div className="flex flex-col items-center gap-10 md:flex-row md:items-start md:gap-16">
           {/* Photo */}
           <div className="flex-shrink-0">

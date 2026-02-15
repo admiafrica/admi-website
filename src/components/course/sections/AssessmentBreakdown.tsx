@@ -6,8 +6,8 @@ export default function AssessmentBreakdown({ methods }: AssessmentBreakdownProp
   if (!methods.length) return null
 
   return (
-    <section className="w-full bg-white px-4 py-20 md:px-20" aria-label="Assessment breakdown">
-      <div className="mx-auto max-w-screen-xl">
+    <section className="section-padding w-full bg-white" aria-label="Assessment breakdown">
+      <div className="section-container">
         <span className="section-label-light">Assessment</span>
         <h2 className="section-heading-light mb-4">How You&apos;ll Be Assessed</h2>
         <p className="mb-12 max-w-2xl font-proxima text-lg leading-relaxed text-gray-600">

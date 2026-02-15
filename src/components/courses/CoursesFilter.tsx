@@ -6,8 +6,8 @@ interface CoursesFilterProps {
 
 export default function CoursesFilter({ sortValue, onSortChange, sortOptions }: CoursesFilterProps) {
   return (
-    <section className="w-full bg-[#f9f9f9] px-4 py-8 md:px-20 md:py-10">
-      <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+    <section className="w-full bg-[#f9f9f9] py-8 md:py-10">
+      <div className="section-container flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
         {/* Left side - Title & Description */}
         <div className="flex flex-col gap-2">
           <h2 className="font-nexa text-[28px] font-bold text-[#171717]">Programmes</h2>

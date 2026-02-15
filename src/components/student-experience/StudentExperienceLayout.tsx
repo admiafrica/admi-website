@@ -28,7 +28,7 @@ export function StudentExperienceLayout({
   return (
     <MainLayout footerBgColor={footerBgColor}>
       <div className="bg-admi-green text-white">
-        <div className="mx-auto max-w-screen-xl px-4 py-16 2xl:px-0">
+        <div className="section-container py-16">
           <p className="text-xs uppercase tracking-[0.3em] text-admiShamrok">{heroKicker}</p>
           <Title label={heroTitle} color="#F1FE37" size="48px" className="pt-2" />
           <Paragraph className="pt-4 text-white" fontFamily="font-nexa" fontWeight={400}>
@@ -37,7 +37,7 @@ export function StudentExperienceLayout({
         </div>
       </div>
       <div className="bg-[#F5FFFD]">
-        <div className="mx-auto grid max-w-screen-xl grid-cols-1 gap-8 px-4 py-12 2xl:px-0">
+        <div className="section-container grid grid-cols-1 gap-8 py-12">
           {sections.map((section, index) => (
             <div
               key={`${section.title}-${index}`}
@@ -67,7 +67,7 @@ export function StudentExperienceLayout({
             </div>
           ))}
         </div>
-        {children && <div className="mx-auto max-w-screen-xl px-4 pb-16 2xl:px-0">{children}</div>}
+        {children && <div className="section-container pb-16">{children}</div>}
       </div>
     </MainLayout>
   )

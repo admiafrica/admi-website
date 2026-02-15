@@ -9,6 +9,7 @@ import { useRouter } from 'next/router'
 import { useIsMobile } from '@/hooks/useIsMobile'
 
 type Props = {
+  courseName?: string
   programType: any
   creditHours: number
   awardLevel: string
@@ -21,12 +22,11 @@ export default function CourseSummaryCard(props: Props) {
 
   const handleEnquiry = () => {
     const { utm_source, utm_medium, utm_campaign, utm_term, utm_content } = router.query
-    const query = utm_source ? { utm_source, utm_medium, utm_campaign, utm_term, utm_content } : undefined
+    const query: Record<string, string> = {}
+    if (props.courseName) query.course = props.courseName
+    if (utm_source) Object.assign(query, { utm_source, utm_medium, utm_campaign, utm_term, utm_content })
 
-    router.push({
-      pathname: '/enquiry',
-      query
-    })
+    router.push({ pathname: '/enquiry', query })
   }
 
   return (

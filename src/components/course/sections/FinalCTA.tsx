@@ -11,10 +11,10 @@ export default function FinalCTA({ courseName = 'Film Production' }: FinalCTAPro
 
   return (
     <section
-      className="w-full bg-gradient-to-br from-brand-red to-[#E85A4F] px-4 py-20 md:px-20"
+      className="section-padding w-full bg-gradient-to-br from-brand-red to-[#E85A4F]"
       aria-label="Call to action"
     >
-      <div className="mx-auto flex max-w-screen-xl flex-col items-center text-center">
+      <div className="section-container flex flex-col items-center text-center">
         <h2 className="font-nexa text-3xl font-bold leading-[1.3] text-white md:text-[42px]">
           Ready to Start Your {courseName} Career?
         </h2>

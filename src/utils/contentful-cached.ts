@@ -287,15 +287,71 @@ export async function getHomepageHeroCached(): Promise<any | null> {
 }
 
 /**
+ * Map from legacy per-page content type IDs to consolidated pageContent pageType values.
+ * When a page queries a content type that doesn't exist as its own type,
+ * we query the consolidated `pageContent` type filtered by `pageType` instead,
+ * and flatten the nested `content` JSON field into top-level fields.
+ */
+const PAGE_TYPE_MAP: Record<string, string> = {
+  aboutPage: 'about',
+  alumniPage: 'alumni',
+  impactPage: 'impact',
+  accreditationPage: 'accreditation',
+  workWithUsPage: 'work-with-us',
+  financialPlanningPage: 'financial-planning',
+  studentShowcasePage: 'student-showcase',
+  studentSupportPage: 'student-support',
+  studentLifePage: 'student-life',
+  fellowshipPage: 'fellowship',
+  academicPathwaysPage: 'academic-pathways',
+  accommodationPage: 'accommodation'
+}
+
+/**
  * Fetch a singleton page entry by content type ID with caching.
  * Returns the resolved fields of the first entry, or null if none exist.
  *
  * Used for CMS-managed pages (accommodation, about, alumni, etc.)
+ *
+ * Supports both:
+ * - Dedicated content types (e.g. `aboutPage` if it exists)
+ * - Consolidated `pageContent` type with `pageType` filter (fallback)
  */
 export async function getPageCached(contentTypeId: string, cacheKey: string): Promise<any | null> {
+  const pageType = PAGE_TYPE_MAP[contentTypeId]
+
   const result = await getCached(
     cacheKey,
     async () => {
+      // If this is a consolidated page type, query pageContent with pageType filter
+      if (pageType) {
+        const response = await axiosContentfulClient.get<IContentfulResponse>(
+          `/spaces/${spaceId}/environments/${environment}/entries?access_token=${accessToken}&content_type=pageContent&fields.pageType=${pageType}&include=10&limit=1`
+        )
+        const data = response.data
+
+        if (!data.items || data.items.length === 0) {
+          return null
+        }
+
+        const mainItem = data.items[0]
+        const assets = data.includes?.Asset || []
+        const entries = data.includes?.Entry || []
+
+        // Flatten: merge content JSON fields alongside seo fields
+        const rawFields = resolveReferences(mainItem.fields, entries, assets)
+        const { content, internalName: _name, pageType: _pt, ...topLevelFields } = rawFields
+        const flattenedFields = { ...topLevelFields, ...(content || {}) }
+
+        const resolved = {
+          ...mainItem,
+          fields: flattenedFields,
+          assets
+        }
+        return rewriteAssetUrlsInObject(resolved)
+      }
+
+      // Otherwise, query the dedicated content type directly
       const response = await axiosContentfulClient.get<IContentfulResponse>(
         `/spaces/${spaceId}/environments/${environment}/entries?access_token=${accessToken}&content_type=${contentTypeId}&include=10&limit=1`
       )
@@ -327,11 +383,7 @@ export async function getPageCached(contentTypeId: string, cacheKey: string): Pr
  * Fetch multiple entries of a content type with caching.
  * Used for shared types like teamMember, alumniProfile, etc.
  */
-export async function getEntriesCached(
-  contentTypeId: string,
-  cacheKey: string,
-  query?: string
-): Promise<any[]> {
+export async function getEntriesCached(contentTypeId: string, cacheKey: string, query?: string): Promise<any[]> {
   const result = await getCached(
     cacheKey,
     async () => {

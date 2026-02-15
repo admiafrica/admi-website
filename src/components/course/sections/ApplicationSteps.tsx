@@ -4,8 +4,8 @@ interface ApplicationStepsProps {
 
 export default function ApplicationSteps({ steps }: ApplicationStepsProps) {
   return (
-    <section className="w-full bg-[#f9f9f9] px-4 py-20 md:px-20" aria-label="Application steps">
-      <div className="mx-auto max-w-screen-xl">
+    <section className="section-padding w-full bg-[#f9f9f9]" aria-label="Application steps">
+      <div className="section-container">
         <div className="mb-12">
           <span className="section-label-light">How To Apply</span>
           <h2 className="section-heading-light">3 Simple Steps to Get Started</h2>

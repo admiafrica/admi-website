@@ -63,7 +63,7 @@ export default function CoursesTabs({ activeTab, onTabChange, tabs }: CoursesTab
         ref={tabsContainerRef}
         role="tablist"
         aria-label="Programme categories"
-        className="-mb-px flex justify-center overflow-x-auto px-4 md:px-20"
+        className="section-container -mb-px flex overflow-x-auto"
         style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
       >
         {tabs.map((tab, index) => {
