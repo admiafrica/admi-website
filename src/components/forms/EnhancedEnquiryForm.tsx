@@ -6,6 +6,7 @@ import 'react-phone-input-2/lib/style.css'
 import { IconAsterisk, IconArrowRight, IconArrowLeft, IconLock, IconCheck } from '@tabler/icons-react'
 import { getStoredUTMs, getCurrentPageInfo, trackWhatsAppClick } from '@/utils/utm-tracking'
 import { ADMI_WHATSAPP_NUMBER } from '@/utils/whatsapp-attribution'
+import { trackMetaEvent } from '@/utils/track-event'
 
 interface FormData {
   email: string
@@ -306,15 +307,19 @@ export default function EnhancedEnquiryForm() {
       sessionStorage.setItem('admi_conversion_data', JSON.stringify(conversionData))
 
       if (typeof window !== 'undefined') {
+        const phoneFormatted = `+${countryCode}${formattedPhone}`
+        const transactionId = storedUTMs.ga_client_id || `lead_${Date.now()}_${leadScore}`
+
         if (window.dataLayer) {
+          // Google Ads conversion
           window.dataLayer.push({
             event: 'conversion',
             send_to: 'AW-16679471170/F0GVCJjHwNQZEMKQspE-',
             value: conversionValue,
             currency: 'USD',
-            transaction_id: storedUTMs.ga_client_id || `lead_${Date.now()}_${leadScore}`,
+            transaction_id: transactionId,
             email: values.email.trim().toLowerCase(),
-            phone_number: `+${countryCode}${formattedPhone}`,
+            phone_number: phoneFormatted,
             first_name: values.firstName.trim(),
             last_name: values.lastName.trim(),
             lead_score: leadScore,
@@ -323,13 +328,15 @@ export default function EnhancedEnquiryForm() {
             study_timeline: values.studyTimeline
           })
 
+          // GA4 generate_lead with enhanced conversions + CAPI dedup
           window.dataLayer.push({
             event: 'generate_lead',
+            event_id: transactionId,
             value: conversionValue,
             currency: 'USD',
             user_data: {
               email_address: values.email.trim().toLowerCase(),
-              phone_number: `+${countryCode}${formattedPhone}`,
+              phone_number: phoneFormatted,
               address: {
                 first_name: values.firstName.trim(),
                 last_name: values.lastName.trim()
@@ -343,9 +350,9 @@ export default function EnhancedEnquiryForm() {
             send_to: 'AW-16679471170/F0GVCJjHwNQZEMKQspE-',
             value: conversionValue,
             currency: 'USD',
-            transaction_id: storedUTMs.ga_client_id || `lead_${Date.now()}_${leadScore}`,
+            transaction_id: transactionId,
             email: values.email.trim().toLowerCase(),
-            phone_number: `+${countryCode}${formattedPhone}`,
+            phone_number: phoneFormatted,
             first_name: values.firstName.trim(),
             last_name: values.lastName.trim(),
             lead_score: leadScore,
@@ -353,6 +360,14 @@ export default function EnhancedEnquiryForm() {
             study_timeline: values.studyTimeline
           })
         }
+
+        // Meta Pixel Lead (deduplication handled inside trackMetaEvent)
+        trackMetaEvent('Lead', {
+          content_name: values.courseName,
+          content_category: 'course_enquiry',
+          value: conversionValue,
+          currency: 'USD',
+        })
       }
 
       setAlert({ type: 'success', message: 'Enquiry submitted successfully! Redirecting...' })
