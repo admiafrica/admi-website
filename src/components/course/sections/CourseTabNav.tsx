@@ -35,7 +35,7 @@ export default function CourseTabNav({ activeTab, onTabChange }: CourseTabNavPro
       ([entry]) => {
         setIsStuck(!entry.isIntersecting)
       },
-      { threshold: 0 }
+      { threshold: 0, rootMargin: '-81px 0px 0px 0px' }
     )
 
     observer.observe(sentinel)
@@ -55,7 +55,7 @@ export default function CourseTabNav({ activeTab, onTabChange }: CourseTabNavPro
       {/* Sentinel to detect when tab nav becomes stuck */}
       <div ref={sentinelRef} className="h-0 w-full" aria-hidden="true" />
       <nav
-        className={`sticky top-0 z-40 w-full border-b bg-white transition-shadow duration-300 ${
+        className={`sticky top-[81px] z-40 w-full border-b bg-white transition-shadow duration-300 ${
           isStuck ? 'border-gray-300 shadow-[0_4px_12px_rgba(0,0,0,0.1)]' : 'border-gray-200'
         }`}
         aria-label="Course content navigation"

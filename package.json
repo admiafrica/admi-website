@@ -40,6 +40,7 @@
     "contentful:add-course-fields": "node scripts/contentful/add-missing-course-fields.js",
     "contentful:create-course-types": "node scripts/contentful/create-new-content-types.js",
     "contentful:setup-courses": "npm run contentful:add-course-fields && npm run contentful:create-course-types",
+    "contentful:seed-diploma": "node scripts/contentful/seed-diploma-content.js",
     "faq:setup-assistant": "node scripts/ai/assistant-faq-verification.js setup",
     "faq:verify-all": "node scripts/ai/assistant-faq-verification.js verify",
     "faq:generate": "node scripts/ai/assistant-faq-manager.js",

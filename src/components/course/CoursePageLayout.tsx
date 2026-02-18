@@ -27,7 +27,12 @@ import {
   RelatedResources,
   FinalCTA
 } from '@/components/course/sections'
+import HybridModelSection from '@/components/course/sections/HybridModelSection'
+import DiplomaExclusiveSection from '@/components/course/sections/DiplomaExclusiveSection'
+import InternshipProgram from '@/components/course/sections/InternshipProgram'
+import IndustryValidation from '@/components/course/sections/IndustryValidation'
 import { filmProductionData } from '@/data/course-page-data'
+import { getDiplomaData } from '@/data/diploma-course-data'
 import { getPlainTextFromRichText, ensureProtocol } from '@/utils'
 import { getCoursePricing } from '@/utils/course-pricing'
 
@@ -178,7 +183,7 @@ function extractListFromRichText(richText: any): string[] {
     .filter(Boolean)
 }
 
-export default function CoursePageLayout({ course, slug }: Props) {
+export default function CoursePageLayout({ course, slug, courseArticles = [] }: Props) {
   const [activeTab, setActiveTab] = useState<'overview' | 'deep-dive'>('overview')
   const { sections } = useCMSSections(slug)
   const cmsFaqs = useCMSFAQs(slug)
@@ -218,6 +223,15 @@ export default function CoursePageLayout({ course, slug }: Props) {
 
   // FAQs: prefer CMS, fall back to static
   const faqData = cmsFaqs.length > 0 ? cmsFaqs : filmProductionData.faqs
+
+  // Check if this is a diploma course (Level 6 = Diploma, or name/slug contains "diploma")
+  const isDiploma = 
+    course.awardLevel?.toLowerCase() === 'level 6' || 
+    course.name?.toLowerCase().includes('diploma') ||
+    slug?.toLowerCase().includes('diploma')
+
+  // Get diploma-specific data from mock data file
+  const diplomaData = isDiploma ? getDiplomaData(slug) : null
 
   // Career stats (shared defaults)
   const careerStats = [
@@ -331,6 +345,12 @@ export default function CoursePageLayout({ course, slug }: Props) {
             {/* AboutCourse: always visible, uses CMS aboutTheCourse rich text */}
             <AboutCourse description={renderRichText(course.aboutTheCourse)} />
 
+            {/* Diploma-specific sections: Hybrid Model, Exclusives, Internship, Industry Validation */}
+            {isDiploma && <HybridModelSection steps={diplomaData?.hybridSteps} testimonial={diplomaData?.hybridTestimonial} />}
+            {isDiploma && <DiplomaExclusiveSection courseName={safeString(course.name)} exclusives={diplomaData?.diplomaExclusives} />}
+            {isDiploma && <InternshipProgram stats={diplomaData?.internshipStats} steps={diplomaData?.internshipSteps} partners={diplomaData?.internshipPartners} stories={diplomaData?.internshipStories} />}
+            {isDiploma && <IndustryValidation quotes={diplomaData?.industryQuotes} companies={diplomaData?.hiringCompanies} />}
+
             {/* CourseLeader: hidden when no CMS data (component returns null) */}
             <CourseLeader leader={leader} />
 
@@ -383,45 +403,80 @@ export default function CoursePageLayout({ course, slug }: Props) {
 
         {activeTab === 'deep-dive' && (
           <div className="animate-fade-in-up">
-            {/* ProgramDetails: always visible with CMS learning outcomes or fallback */}
-            <ProgramDetails details={filmProductionData.programDetails} learningOutcomes={learningOutcomes} />
+            {/* ProgramDetails: CMS or diploma data or fallback */}
+            <ProgramDetails 
+              details={diplomaData?.programDetails || filmProductionData.programDetails} 
+              learningOutcomes={learningOutcomes.length > 0 ? learningOutcomes : (diplomaData?.learningOutcomes || [])} 
+            />
 
-            {/* MentorsGrid: hidden when no CMS mentors */}
-            <MentorsGrid mentors={mentors} />
+            {/* MentorsGrid: CMS mentors or diploma data fallback */}
+            <MentorsGrid 
+              mentors={mentors.length > 0 ? mentors : (diplomaData?.mentors || []).map(m => ({
+                name: m.name,
+                role: m.role,
+                specialization: m.company,
+                image: m.imageUrl as string
+              }))} 
+            />
 
-            {/* AssessmentBreakdown: hidden when no CMS data (uses static methods shape) */}
+            {/* AssessmentBreakdown: diploma data or static fallback */}
             <AssessmentBreakdown
               methods={
-                semesters.length > 0
-                  ? filmProductionData.assessmentMethods.map((a) => ({
-                      title: a.method,
-                      percentage: `${a.percentage}%`,
-                      description: a.description
-                    }))
-                  : []
+                (diplomaData?.assessmentMethods || filmProductionData.assessmentMethods).map((a) => ({
+                  title: a.method,
+                  percentage: `${a.percentage}%`,
+                  description: a.description
+                }))
               }
             />
 
-            {/* EquipmentFacilities: hidden when no CMS facilities */}
-            <EquipmentFacilities facilities={facilities} />
+            {/* EquipmentFacilities: CMS facilities or diploma data fallback */}
+            <EquipmentFacilities 
+              facilities={facilities.length > 0 ? facilities : (diplomaData?.facilities || []).map(f => ({
+                title: f.name,
+                description: f.description,
+                image: f.imageUrl as string
+              }))} 
+            />
 
-            {/* StudentPortfolio: hidden when no CMS portfolio items */}
-            <StudentPortfolio items={[]} />
+            {/* StudentPortfolio: diploma data */}
+            <StudentPortfolio items={diplomaData?.portfolioItems || []} />
 
-            {/* StudentsInAction: hidden when no CMS photos */}
-            <StudentsInAction photos={[]} />
+            {/* StudentsInAction: diploma data with field mapping */}
+            <StudentsInAction 
+              photos={(diplomaData?.activityPhotos || []).map(p => ({
+                caption: p.caption,
+                image: p.imageUrl as string,
+                videoUrl: p.videoUrl,
+                aspectRatio: p.aspectRatio
+              }))} 
+            />
 
-            {/* AlumniStories: hidden when no CMS alumni */}
-            <AlumniStories stories={alumni} />
+            {/* AlumniStories: CMS alumni or diploma data fallback */}
+            <AlumniStories stories={alumni.length > 0 ? alumni : (diplomaData?.alumniStories || [])} />
 
-            {/* IndustryPartners: hidden when no CMS partners */}
-            <IndustryPartners partners={[]} />
+            {/* IndustryPartners: diploma data with field mapping */}
+            <IndustryPartners 
+              partners={(diplomaData?.industryPartners || []).map(p => ({
+                name: p.name,
+                type: 'Industry Partner'
+              }))} 
+            />
 
-            {/* IndustryTrends: hidden when no CMS trends */}
-            <IndustryTrends trends={[]} />
+            {/* IndustryTrends: diploma data */}
+            <IndustryTrends trends={diplomaData?.industryTrends || []} />
 
-            {/* RelatedResources: hidden when no CMS resources */}
-            <RelatedResources resources={[]} />
+            {/* RelatedResources: use courseArticles from CMS (already resolved by API) */}
+            <RelatedResources 
+              courseName={safeString(course.name)}
+              resources={(courseArticles || []).slice(0, 6).map((article: any) => ({
+                category: article.topic || article.category || 'Blog',
+                title: article.title || '',
+                description: article.summary || '',
+                link: `/blog/${article.slug || ''}`,
+                image: article.coverImage || ''
+              }))} 
+            />
           </div>
         )}
       </div>

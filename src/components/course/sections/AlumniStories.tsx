@@ -25,12 +25,12 @@ export default function AlumniStories({ stories }: Props) {
               <div className="relative h-64 w-full overflow-hidden rounded-t-xl">
                 <Image src={story.imageUrl} alt={story.name} fill className="object-cover" />
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6 pt-12">
-                  <p className="max-w-[80%] font-bold text-white">{story.company}</p>
+                  <p className="max-w-[80%] font-proxima font-bold text-white">{story.company}</p>
                   <p className="font-proxima text-sm text-gray-300">Class of {story.graduationYear}</p>
                 </div>
               </div>
               <div className="flex flex-1 flex-col p-6">
-                <h4 className="mb-2 font-bold text-gray-900">{story.name}</h4>
+                <h4 className="mb-2 font-proxima font-bold text-gray-900">{story.name}</h4>
                 <p className="mb-4 font-proxima font-semibold text-brand-red">{story.role}</p>
                 <p className="flex-1 font-proxima italic text-gray-600">&ldquo;{story.story}&rdquo;</p>
               </div>

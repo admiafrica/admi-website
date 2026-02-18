@@ -26,14 +26,13 @@ export default function CareerOutcomes({ careers, stats }: CareerOutcomesProps) 
         <div className="mb-12">
           <span className="section-label-dark">Career Outcomes</span>
           <h2 className="section-heading-dark mb-4">Where Our Graduates Work</h2>
-          <p className="max-w-[800px] font-proxima text-[17px] leading-[1.6] text-[#cccccc]">
-            85% of our film production graduates secure employment within 6 months. Average starting salary: KES
-            75,000/month.
+          <p className="max-w-full font-proxima text-[17px] leading-[1.6] text-[#cccccc]">
+            85% of our film production graduates secure employment within 6 months. Average starting salary: KES 75,000/month.
           </p>
         </div>
 
         {/* Career Cards */}
-        <div className="mb-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mb-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {careers.map((career, index) => (
             <article key={index} className="rounded-xl bg-[#2a2a2a] p-6 shadow-md transition-shadow hover:shadow-lg">
               <h3 className="mb-2 font-proxima text-base font-bold text-white">{career.title}</h3>

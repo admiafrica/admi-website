@@ -92,12 +92,12 @@ export default function CourseHeroV2({ name, coverImage, programType, awardLevel
         </div>
 
         {/* Title */}
-        <h1 className="mb-5 max-w-[700px] text-3xl font-bold leading-[1.2] text-white md:text-4xl lg:text-[52px] lg:leading-[1.15]">
+        <h1 className="section-heading-dark mb-4 max-w-[80%] md:max-w-[700px] lg:text-[52px]">
           {name}
         </h1>
 
         {/* Subtitle */}
-        <p className="mb-8 max-w-[560px] font-proxima text-base leading-[1.7] text-white/70 md:text-lg">
+        <p className="section-subheading-dark mb-4 max-w-[80%] md:max-w-[560px]">
           {subtitle ||
             `Study ${name} at ADMI. Graduate with an industry-recognized qualification accredited by Woolf University with credits towards a degree.`}
         </p>

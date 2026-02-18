@@ -115,6 +115,8 @@ export interface PortfolioItem {
 export interface ActivityPhoto {
   caption: string
   imageUrl: string | StaticImageData
+  videoUrl?: string // Optional YouTube URL for video content
+  aspectRatio?: 'square' | 'portrait' | 'landscape' // For masonry variety
 }
 
 export interface AlumniStory {
