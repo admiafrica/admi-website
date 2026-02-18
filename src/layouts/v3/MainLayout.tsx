@@ -10,6 +10,7 @@ import { captureUTMsFromURL } from '@/utils/utm-tracking'
 
 const BANNER_STORAGE_KEY = 'intake-banner-dismissed'
 const BANNER_EXPIRY_DAYS = 7
+const BANNER_AUTO_DISMISS_MS = 8000 // Auto-hide after 8 seconds
 
 type LayoutProps = {
   children: React.ReactNode
@@ -36,6 +37,15 @@ export function MainLayout({ children, minimizeFooter = false, minimizeHeader = 
     }
     setBannerVisible(true)
   }, [])
+
+  // Auto-dismiss banner after a few seconds
+  useEffect(() => {
+    if (!bannerVisible) return
+    const timer = setTimeout(() => {
+      handleDismissBanner()
+    }, BANNER_AUTO_DISMISS_MS)
+    return () => clearTimeout(timer)
+  }, [bannerVisible])
 
   const handleDismissBanner = () => {
     setBannerVisible(false)
