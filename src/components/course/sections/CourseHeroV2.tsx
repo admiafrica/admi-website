@@ -2,7 +2,6 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { IconClock } from '@tabler/icons-react'
 import { ensureProtocol } from '@/utils'
 import { trackWhatsAppClick, ADMI_WHATSAPP_NUMBER } from '@/utils/whatsapp-attribution'
 import { trackCTAClick } from '@/utils/track-event'
@@ -104,10 +103,6 @@ export default function CourseHeroV2({ name, coverImage, programType, awardLevel
           <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 font-proxima text-[13px] font-semibold text-white">
             <span className="h-2 w-2 rounded-full bg-brand-red" />
             {awardLevel || 'Diploma Program'} &middot; {duration || '2 Years'} &middot; EU Accredited
-          </span>
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-500/90 px-4 py-2 font-proxima text-[12px] font-bold text-black">
-            <IconClock size={14} />
-            Early Bird: Apply by 15th April for 10% off
           </span>
         </div>
 
