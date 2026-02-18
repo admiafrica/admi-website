@@ -34,20 +34,47 @@ import InternshipProgram from '@/components/course/sections/InternshipProgram'
 import IndustryValidation from '@/components/course/sections/IndustryValidation'
 import MidPageCTA from '@/components/course/sections/MidPageCTA'
 import StickyCourseCTA from '@/components/course/sections/StickyCourseCTA'
-import { filmProductionData, CoursePageData } from '@/data/course-page-data'
+import { CoursePageData } from '@/data/course-page-data'
 import { getDiplomaData } from '@/data/diploma-course-data'
 import { getCertificateData } from '@/data/certificate-course-data'
 import { getPlainTextFromRichText, ensureProtocol } from '@/utils'
 import { getCoursePricing } from '@/utils/course-pricing'
 import { trackEvent } from '@/utils/track-event'
 
-// Unified static data lookup: diploma data > certificate data > generic fallback
+// Empty course data for slugs with no static data file — sections will hide themselves
+const EMPTY_COURSE_DATA: CoursePageData = {
+  quickFacts: [],
+  courseLeader: { name: '', role: '', bio: '', imageUrl: '', quote: '' },
+  industryQuote: { quote: '', author: '', role: '', company: '', backgroundImageUrl: '' },
+  benefits: [],
+  degreeSteps: [],
+  semesters: [],
+  paymentPlans: [],
+  impactStats: [],
+  careers: [],
+  testimonials: [],
+  learningOutcomes: [],
+  mentors: [],
+  assessmentMethods: [],
+  facilities: [],
+  portfolioItems: [],
+  activityPhotos: [],
+  alumniStories: [],
+  industryPartners: [],
+  industryTrends: [],
+  faqs: [],
+  applicationSteps: [],
+  programDetails: [],
+  resources: []
+}
+
+// Unified static data lookup: diploma data > certificate data > empty fallback
 function getStaticCourseData(slug: string): CoursePageData & { tagline?: string } {
   const diploma = getDiplomaData(slug)
   if (diploma) return diploma
   const cert = getCertificateData(slug)
   if (cert) return cert
-  return filmProductionData
+  return EMPTY_COURSE_DATA
 }
 
 type Props = {
@@ -55,6 +82,7 @@ type Props = {
   courseAssets: any[]
   slug: string
   courseArticles?: any[]
+  cmsTuitionFee?: number
 }
 
 // Sections that fetch from CMS
@@ -136,9 +164,10 @@ function useCMSFAQs(slug: string) {
           setFaqs(
             data.items.map((faq: any) => ({
               question: typeof faq.fields.question === 'string' ? faq.fields.question : '',
-              answer: typeof faq.fields.answer === 'string' 
-                ? faq.fields.answer 
-                : getPlainTextFromRichText(faq.fields.answer) || ''
+              answer:
+                typeof faq.fields.answer === 'string'
+                  ? faq.fields.answer
+                  : getPlainTextFromRichText(faq.fields.answer) || ''
             }))
           )
         }
@@ -150,7 +179,12 @@ function useCMSFAQs(slug: string) {
 }
 
 // Build quick facts dynamically from CMS course data
-function buildQuickFacts(course: any, slug: string, fallbackFacts?: { label: string; value: string; icon: string }[]) {
+function buildQuickFacts(
+  course: any,
+  slug: string,
+  fallbackFacts?: { label: string; value: string; icon: string }[],
+  cmsTuitionFee?: number
+) {
   const facts: { label: string; value: string }[] = []
 
   const duration = course.programType?.fields?.duration
@@ -174,7 +208,7 @@ function buildQuickFacts(course: any, slug: string, fallbackFacts?: { label: str
   if (course.tuitionFees) {
     facts.push({ label: 'Per Semester', value: course.tuitionFees })
   } else {
-    const pricing = getCoursePricing(slug, course.awardLevel)
+    const pricing = getCoursePricing(slug, course.awardLevel, cmsTuitionFee)
     if (pricing) {
       const formatted =
         pricing.currency === 'KES'
@@ -188,7 +222,7 @@ function buildQuickFacts(course: any, slug: string, fallbackFacts?: { label: str
     return facts
   }
 
-  return fallbackFacts || filmProductionData.quickFacts
+  return fallbackFacts || []
 }
 
 // Extract list items from Contentful rich text
@@ -208,7 +242,7 @@ function extractLearningOutcomesFromLinks(outcomes: any[]): string[] {
     .map((outcome: any) => outcome.fields.title)
 }
 
-export default function CoursePageLayout({ course, slug, courseArticles = [] }: Props) {
+export default function CoursePageLayout({ course, slug, courseArticles = [], cmsTuitionFee }: Props) {
   const [activeTab, setActiveTab] = useState<'overview' | 'deep-dive'>('overview')
   const { sections } = useCMSSections(slug)
   const cmsFaqs = useCMSFAQs(slug)
@@ -234,7 +268,7 @@ export default function CoursePageLayout({ course, slug, courseArticles = [] }: 
             percent: milestone,
             page_type: 'course',
             course_name: courseName,
-            course_slug: slug,
+            course_slug: slug
           })
         }
       }
@@ -274,13 +308,12 @@ export default function CoursePageLayout({ course, slug, courseArticles = [] }: 
   const heroSubtitle = course.subtitle || getPlainTextFromRichText(course.description, 200) || undefined
 
   // Quick facts from CMS fields
-  const quickFacts = buildQuickFacts(course, slug, staticData.quickFacts)
+  const quickFacts = buildQuickFacts(course, slug, staticData.quickFacts, cmsTuitionFee)
 
   // Learning outcomes: prefer new linked entries, fall back to RichText, then static
   const linkedLearningOutcomes = extractLearningOutcomesFromLinks(course.learningOutcomesList)
-  const cmsLearningOutcomes = linkedLearningOutcomes.length > 0 
-    ? linkedLearningOutcomes 
-    : extractListFromRichText(course.learningOutcomes)
+  const cmsLearningOutcomes =
+    linkedLearningOutcomes.length > 0 ? linkedLearningOutcomes : extractListFromRichText(course.learningOutcomes)
   const learningOutcomes = cmsLearningOutcomes.length > 0 ? cmsLearningOutcomes : staticData.learningOutcomes
 
   // Career options from CMS rich text
@@ -290,8 +323,8 @@ export default function CoursePageLayout({ course, slug, courseArticles = [] }: 
   const faqData = cmsFaqs.length > 0 ? cmsFaqs : staticData.faqs
 
   // Check if this is a diploma course (Level 6 = Diploma, or name/slug contains "diploma")
-  const isDiploma = 
-    course.awardLevel?.toLowerCase() === 'level 6' || 
+  const isDiploma =
+    course.awardLevel?.toLowerCase() === 'level 6' ||
     course.name?.toLowerCase().includes('diploma') ||
     slug?.toLowerCase().includes('diploma')
 
@@ -299,13 +332,14 @@ export default function CoursePageLayout({ course, slug, courseArticles = [] }: 
   const diplomaData = isDiploma ? getDiplomaData(slug) : null
 
   // Career stats: prefer course-specific impact stats, fall back to defaults
-  const careerStats = staticData.impactStats.length > 0
-    ? staticData.impactStats.slice(0, 3).map(s => ({ value: s.value, label: s.label }))
-    : [
-        { value: '85%', label: 'Employment Rate' },
-        { value: '75K', label: 'Avg Starting Salary (KES/mo)' },
-        { value: '500+', label: 'Employer Partners' }
-      ]
+  const careerStats =
+    staticData.impactStats.length > 0
+      ? staticData.impactStats.slice(0, 3).map((s) => ({ value: s.value, label: s.label }))
+      : [
+          { value: '85%', label: 'Employment Rate' },
+          { value: '75K', label: 'Avg Starting Salary (KES/mo)' },
+          { value: '500+', label: 'Employer Partners' }
+        ]
 
   // --- CMS section data mappings ---
   // Each maps CMS entries to the props shape the component expects.
@@ -328,7 +362,10 @@ export default function CoursePageLayout({ course, slug, courseArticles = [] }: 
 
   const facilities = (sections.facilities || []).map((f: any) => ({
     title: f.fields.name,
-    description: typeof f.fields.description === 'string' ? f.fields.description : getPlainTextFromRichText(f.fields.description) || '',
+    description:
+      typeof f.fields.description === 'string'
+        ? f.fields.description
+        : getPlainTextFromRichText(f.fields.description) || '',
     image: f.fields.image?.fields?.file?.url ? ensureProtocol(f.fields.image.fields.file.url) : ''
   }))
 
@@ -336,8 +373,14 @@ export default function CoursePageLayout({ course, slug, courseArticles = [] }: 
     ? {
         name: sections.leader[0].fields.name,
         title: sections.leader[0].fields.role,
-        bio: typeof sections.leader[0].fields.bio === 'string' ? sections.leader[0].fields.bio : getPlainTextFromRichText(sections.leader[0].fields.bio) || '',
-        quote: typeof sections.leader[0].fields.quote === 'string' ? sections.leader[0].fields.quote : getPlainTextFromRichText(sections.leader[0].fields.quote) || '',
+        bio:
+          typeof sections.leader[0].fields.bio === 'string'
+            ? sections.leader[0].fields.bio
+            : getPlainTextFromRichText(sections.leader[0].fields.bio) || '',
+        quote:
+          typeof sections.leader[0].fields.quote === 'string'
+            ? sections.leader[0].fields.quote
+            : getPlainTextFromRichText(sections.leader[0].fields.quote) || '',
         image: sections.leader[0].fields.image?.fields?.file?.url
           ? ensureProtocol(sections.leader[0].fields.image.fields.file.url)
           : ''
@@ -346,7 +389,10 @@ export default function CoursePageLayout({ course, slug, courseArticles = [] }: 
 
   const industryQuote = sections.industryQuote?.[0]
     ? {
-        quote: typeof sections.industryQuote[0].fields.quote === 'string' ? sections.industryQuote[0].fields.quote : getPlainTextFromRichText(sections.industryQuote[0].fields.quote) || '',
+        quote:
+          typeof sections.industryQuote[0].fields.quote === 'string'
+            ? sections.industryQuote[0].fields.quote
+            : getPlainTextFromRichText(sections.industryQuote[0].fields.quote) || '',
         author: sections.industryQuote[0].fields.author,
         role: `${sections.industryQuote[0].fields.role}, ${sections.industryQuote[0].fields.company}`
       }
@@ -354,7 +400,10 @@ export default function CoursePageLayout({ course, slug, courseArticles = [] }: 
 
   const benefits = (sections.benefits || []).map((b: any) => ({
     title: b.fields.title,
-    description: typeof b.fields.description === 'string' ? b.fields.description : getPlainTextFromRichText(b.fields.description) || '',
+    description:
+      typeof b.fields.description === 'string'
+        ? b.fields.description
+        : getPlainTextFromRichText(b.fields.description) || '',
     icon: b.fields.icon
   }))
 
@@ -374,7 +423,10 @@ export default function CoursePageLayout({ course, slug, courseArticles = [] }: 
   // Careers: CMS > course-specific static data > CMS rich text fallback
   const cmsCareers = (sections.careers || []).map((c: any) => ({
     title: c.fields.title,
-    description: typeof c.fields.description === 'string' ? c.fields.description : getPlainTextFromRichText(c.fields.description) || ''
+    description:
+      typeof c.fields.description === 'string'
+        ? c.fields.description
+        : getPlainTextFromRichText(c.fields.description) || ''
   }))
   const careers =
     cmsCareers.length > 0
@@ -420,42 +472,65 @@ export default function CoursePageLayout({ course, slug, courseArticles = [] }: 
             />
 
             {/* CareerOutcomes: show early to demonstrate value */}
-            <CareerOutcomes careers={careers} stats={careerStats} courseName={safeString(course.name)} />
+            {careers.length > 0 && (
+              <CareerOutcomes careers={careers} stats={careerStats} courseName={safeString(course.name)} />
+            )}
 
             {/* Diploma-specific sections: Hybrid Model, Exclusives, Industry Validation */}
-            {isDiploma && <HybridModelSection steps={diplomaData?.hybridSteps} testimonial={diplomaData?.hybridTestimonial} />}
-            {isDiploma && <DiplomaExclusiveSection courseName={safeString(course.name)} exclusives={diplomaData?.diplomaExclusives} />}
-            {isDiploma && <IndustryValidation quotes={diplomaData?.industryQuotes} companies={diplomaData?.hiringCompanies} />}
+            {isDiploma && (
+              <HybridModelSection steps={diplomaData?.hybridSteps} testimonial={diplomaData?.hybridTestimonial} />
+            )}
+            {isDiploma && (
+              <DiplomaExclusiveSection
+                courseName={safeString(course.name)}
+                exclusives={diplomaData?.diplomaExclusives}
+              />
+            )}
+            {isDiploma && (
+              <IndustryValidation quotes={diplomaData?.industryQuotes} companies={diplomaData?.hiringCompanies} />
+            )}
 
             {/* ApplicationSteps: show ease of application early */}
-            <ApplicationSteps steps={staticData.applicationSteps} courseName={safeString(course.name)} />
+            {staticData.applicationSteps.length > 0 && (
+              <ApplicationSteps steps={staticData.applicationSteps} courseName={safeString(course.name)} />
+            )}
 
             {/* PaymentPlan: CMS or course-specific static data */}
-            <PaymentPlan
-              plan={{
-                installments: paymentInstallments.length > 0
-                  ? paymentInstallments
-                  : staticData.paymentPlans.map(p => ({
-                      label: p.title,
-                      percentage: p.period,
-                      amount: p.price,
-                      description: (p.details || [])[0] || ''
-                    })),
-                totalPerSemester:
-                  'Pay upfront and receive a 10% discount on your semester fees',
-                discountMessage:
-                  'Pay your full semester upfront and save 10%'
-              }}
-            />
+            {(paymentInstallments.length > 0 || staticData.paymentPlans.length > 0) && (
+              <PaymentPlan
+                plan={{
+                  installments:
+                    paymentInstallments.length > 0
+                      ? paymentInstallments
+                      : staticData.paymentPlans.map((p) => ({
+                          label: p.title,
+                          percentage: p.period,
+                          amount: p.price,
+                          description: (p.details || [])[0] || ''
+                        })),
+                  totalPerSemester: 'Pay upfront and receive a 10% discount on your semester fees',
+                  discountMessage: 'Pay your full semester upfront and save 10%'
+                }}
+              />
+            )}
 
             {/* StudentTestimonials: CMS or course-specific static data */}
-            <StudentTestimonials testimonials={testimonials.length > 0 ? testimonials : staticData.testimonials.map(t => ({
-              name: t.name,
-              role: t.role,
-              quote: t.quote,
-              program: safeString(course.name),
-              type: (t.role.toLowerCase().includes('current') ? 'current' : 'alumni') as 'current' | 'alumni'
-            }))} courseName={safeString(course.name)} />
+            {(testimonials.length > 0 || staticData.testimonials.length > 0) && (
+              <StudentTestimonials
+                testimonials={
+                  testimonials.length > 0
+                    ? testimonials
+                    : staticData.testimonials.map((t) => ({
+                        name: t.name,
+                        role: t.role,
+                        quote: t.quote,
+                        program: safeString(course.name),
+                        type: (t.role.toLowerCase().includes('current') ? 'current' : 'alumni') as 'current' | 'alumni'
+                      }))
+                }
+                courseName={safeString(course.name)}
+              />
+            )}
 
             {/* MidPageCTA: capture mid-funnel leads with simplified form */}
             <MidPageCTA courseName={safeString(course.name)} courseSlug={slug} />
@@ -464,119 +539,165 @@ export default function CoursePageLayout({ course, slug, courseArticles = [] }: 
             <TrustBadges />
 
             {/* ImpactStats: reinforce decision after form */}
-            <ImpactStats stats={staticData.impactStats} />
+            {staticData.impactStats.length > 0 && <ImpactStats stats={staticData.impactStats} />}
 
             {/* CurriculumOverview: CMS or course-specific static data */}
-            <CurriculumOverview semesters={semesters.length > 0 ? semesters : staticData.semesters.map((s, i) => ({
-              title: s.title,
-              modules: s.modules,
-              number: i + 1
-            }))} />
+            {(semesters.length > 0 || staticData.semesters.length > 0) && (
+              <CurriculumOverview
+                semesters={
+                  semesters.length > 0
+                    ? semesters
+                    : staticData.semesters.map((s, i) => ({
+                        title: s.title,
+                        modules: s.modules,
+                        number: i + 1
+                      }))
+                }
+              />
+            )}
 
             {/* CourseLeader: CMS or course-specific static data */}
-            <CourseLeader leader={leader.name ? leader : {
-              name: staticData.courseLeader.name,
-              title: staticData.courseLeader.role,
-              bio: staticData.courseLeader.bio,
-              quote: staticData.courseLeader.quote,
-              image: staticData.courseLeader.imageUrl as string
-            }} />
+            {(leader.name || staticData.courseLeader.name) && (
+              <CourseLeader
+                leader={
+                  leader.name
+                    ? leader
+                    : {
+                        name: staticData.courseLeader.name,
+                        title: staticData.courseLeader.role,
+                        bio: staticData.courseLeader.bio,
+                        quote: staticData.courseLeader.quote,
+                        image: staticData.courseLeader.imageUrl as string
+                      }
+                }
+              />
+            )}
 
             {/* IndustryQuote: CMS or course-specific static data */}
-            <IndustryQuote
-              quote={industryQuote.quote || staticData.industryQuote.quote}
-              author={industryQuote.author || staticData.industryQuote.author}
-              role={industryQuote.role || `${staticData.industryQuote.role}, ${staticData.industryQuote.company}`}
-            />
+            {(industryQuote.quote || staticData.industryQuote.quote) && (
+              <IndustryQuote
+                quote={industryQuote.quote || staticData.industryQuote.quote}
+                author={industryQuote.author || staticData.industryQuote.author}
+                role={industryQuote.role || `${staticData.industryQuote.role}, ${staticData.industryQuote.company}`}
+              />
+            )}
 
             {/* WhyThisCourse / Benefits: CMS or course-specific static data */}
-            <WhyThisCourse benefits={benefits.length > 0 ? benefits : staticData.benefits} />
+            {(benefits.length > 0 || staticData.benefits.length > 0) && (
+              <WhyThisCourse benefits={benefits.length > 0 ? benefits : staticData.benefits} />
+            )}
 
             {/* InternshipProgram: 5th semester value - for diplomas */}
-            {isDiploma && <InternshipProgram stats={diplomaData?.internshipStats} steps={diplomaData?.internshipSteps} partners={diplomaData?.internshipPartners} stories={diplomaData?.internshipStories} />}
+            {isDiploma && (
+              <InternshipProgram
+                stats={diplomaData?.internshipStats}
+                steps={diplomaData?.internshipSteps}
+                partners={diplomaData?.internshipPartners}
+                stories={diplomaData?.internshipStories}
+              />
+            )}
 
             {/* DegreeRoute: pathway to degree */}
-            <DegreeRoute
-              steps={staticData.degreeSteps.map((step) => ({
-                step: step.step,
-                title: step.title,
-                subtitle: step.description,
-                color: step.step === 1 ? '#C1272D' : step.step === 2 ? '#171717' : '#8EBFB0'
-              }))}
-            />
+            {staticData.degreeSteps.length > 0 && (
+              <DegreeRoute
+                steps={staticData.degreeSteps.map((step) => ({
+                  step: step.step,
+                  title: step.title,
+                  subtitle: step.description,
+                  color: step.step === 1 ? '#C1272D' : step.step === 2 ? '#171717' : '#8EBFB0'
+                }))}
+              />
+            )}
 
             {/* FAQAccordion: CMS FAQs preferred, falls back to static data */}
-            <FAQAccordion faqs={faqData} courseName={safeString(course.name)} />
+            {faqData.length > 0 && <FAQAccordion faqs={faqData} courseName={safeString(course.name)} />}
           </div>
         )}
 
         {activeTab === 'deep-dive' && (
           <div className="animate-fade-in-up">
             {/* ProgramDetails: CMS or course-specific static data */}
-            <ProgramDetails
-              details={staticData.programDetails}
-              learningOutcomes={learningOutcomes}
-            />
+            {(staticData.programDetails.length > 0 || learningOutcomes.length > 0) && (
+              <ProgramDetails details={staticData.programDetails} learningOutcomes={learningOutcomes} />
+            )}
 
             {/* MentorsGrid: CMS mentors or course-specific static data */}
-            <MentorsGrid
-              mentors={mentors.length > 0 ? mentors : staticData.mentors.map(m => ({
-                name: m.name,
-                role: m.role,
-                specialization: m.company,
-                image: m.imageUrl as string
-              }))}
-            />
+            {(mentors.length > 0 || staticData.mentors.length > 0) && (
+              <MentorsGrid
+                mentors={
+                  mentors.length > 0
+                    ? mentors
+                    : staticData.mentors.map((m) => ({
+                        name: m.name,
+                        role: m.role,
+                        specialization: m.company,
+                        image: m.imageUrl as string
+                      }))
+                }
+              />
+            )}
 
             {/* AssessmentBreakdown: course-specific static data */}
-            <AssessmentBreakdown
-              methods={
-                staticData.assessmentMethods.map((a) => ({
+            {staticData.assessmentMethods.length > 0 && (
+              <AssessmentBreakdown
+                methods={staticData.assessmentMethods.map((a) => ({
                   title: a.method,
                   percentage: `${a.percentage}%`,
                   description: a.description
-                }))
-              }
-            />
+                }))}
+              />
+            )}
 
             {/* EquipmentFacilities: CMS facilities or course-specific static data */}
-            <EquipmentFacilities
-              facilities={facilities.length > 0 ? facilities : staticData.facilities.map(f => ({
-                title: f.name,
-                description: f.description,
-                image: f.imageUrl as string
-              }))}
-            />
+            {(facilities.length > 0 || staticData.facilities.length > 0) && (
+              <EquipmentFacilities
+                facilities={
+                  facilities.length > 0
+                    ? facilities
+                    : staticData.facilities.map((f) => ({
+                        title: f.name,
+                        description: f.description,
+                        image: f.imageUrl as string
+                      }))
+                }
+              />
+            )}
 
             {/* StudentPortfolio: course-specific static data */}
-            <StudentPortfolio items={staticData.portfolioItems} />
+            {staticData.portfolioItems.length > 0 && <StudentPortfolio items={staticData.portfolioItems} />}
 
             {/* StudentsInAction: course-specific static data */}
-            <StudentsInAction
-              photos={staticData.activityPhotos.map(p => ({
-                caption: p.caption,
-                image: p.imageUrl as string,
-                videoUrl: p.videoUrl,
-                aspectRatio: p.aspectRatio
-              }))}
-            />
+            {staticData.activityPhotos.length > 0 && (
+              <StudentsInAction
+                photos={staticData.activityPhotos.map((p) => ({
+                  caption: p.caption,
+                  image: p.imageUrl as string,
+                  videoUrl: p.videoUrl,
+                  aspectRatio: p.aspectRatio
+                }))}
+              />
+            )}
 
             {/* AlumniStories: CMS alumni or course-specific static data */}
-            <AlumniStories stories={alumni.length > 0 ? alumni : staticData.alumniStories} />
+            {(alumni.length > 0 || staticData.alumniStories.length > 0) && (
+              <AlumniStories stories={alumni.length > 0 ? alumni : staticData.alumniStories} />
+            )}
 
             {/* IndustryPartners: course-specific static data */}
-            <IndustryPartners
-              partners={staticData.industryPartners.map(p => ({
-                name: p.name,
-                type: 'Industry Partner'
-              }))}
-            />
+            {staticData.industryPartners.length > 0 && (
+              <IndustryPartners
+                partners={staticData.industryPartners.map((p) => ({
+                  name: p.name,
+                  type: 'Industry Partner'
+                }))}
+              />
+            )}
 
             {/* IndustryTrends: course-specific static data */}
-            <IndustryTrends trends={staticData.industryTrends} />
+            {staticData.industryTrends.length > 0 && <IndustryTrends trends={staticData.industryTrends} />}
 
             {/* RelatedResources: use courseArticles from CMS (already resolved by API) */}
-            <RelatedResources 
+            <RelatedResources
               courseName={safeString(course.name)}
               resources={(courseArticles || []).slice(0, 6).map((article: any) => ({
                 category: article.topic || article.category || 'Blog',
@@ -584,7 +705,7 @@ export default function CoursePageLayout({ course, slug, courseArticles = [] }: 
                 description: article.summary || '',
                 link: `/blog/${article.slug || ''}`,
                 image: article.coverImage || ''
-              }))} 
+              }))}
             />
           </div>
         )}

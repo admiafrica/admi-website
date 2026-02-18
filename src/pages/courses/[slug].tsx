@@ -113,8 +113,16 @@ export default function CourseDetailPage({
 
   const keywords = courseSpecificSEO?.keywords || baseKeywords.filter(Boolean).join(', ')
 
-  // Get course pricing for Facebook catalog
-  const pricing = getCoursePricing(slug, course.awardLevel)
+  // Parse tuitionFees from CMS (could be string like "145,000 KES" or number)
+  const cmsTuitionFee =
+    typeof course.tuitionFees === 'number'
+      ? course.tuitionFees
+      : typeof course.tuitionFees === 'string'
+        ? parseInt(course.tuitionFees.replace(/[^0-9]/g, ''), 10) || undefined
+        : undefined
+
+  // Get course pricing for Facebook catalog (priority: CMS > static map > default)
+  const pricing = getCoursePricing(slug, course.awardLevel, cmsTuitionFee)
 
   return (
     <MainLayout>
@@ -217,7 +225,13 @@ export default function CourseDetailPage({
         />
       )}
 
-      <CoursePageLayout course={course} courseAssets={courseAssets} slug={slug} courseArticles={courseArticles} />
+      <CoursePageLayout
+        course={course}
+        courseAssets={courseAssets}
+        slug={slug}
+        courseArticles={courseArticles}
+        cmsTuitionFee={cmsTuitionFee}
+      />
     </MainLayout>
   )
 }

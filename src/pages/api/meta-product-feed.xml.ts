@@ -1,11 +1,15 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { COURSE_PRICING, DEFAULT_PRICING } from '@/utils/course-pricing'
+import { IContentfulResponse } from '@/types'
+import axiosContentfulClient from '@/utils/axiosContentfulClient'
+import { getCoursePricing, DEFAULT_PRICING } from '@/utils/course-pricing'
+import { getPlainTextFromRichText, ensureProtocol } from '@/utils'
 
 /**
  * Meta Product Catalog Feed — /api/meta-product-feed.xml
  *
- * Returns an XML feed in Meta's required format so Business Manager
- * can ingest course "products" for Dynamic Product Ads on Instagram & Facebook.
+ * Dynamically fetches ALL published courses from Contentful and returns
+ * an XML feed in Meta's required format so Business Manager can ingest
+ * course "products" for Dynamic Product Ads on Instagram & Facebook.
  *
  * Schedule this as a "Scheduled Feed" in Commerce Manager:
  *   URL: https://admi.africa/api/meta-product-feed.xml
@@ -13,9 +17,13 @@ import { COURSE_PRICING, DEFAULT_PRICING } from '@/utils/course-pricing'
  *
  * content_ids in the feed MUST match what the Meta Pixel fires
  * via CourseViewEvent (e.g. "admi-diploma-film-and-television-production-diploma").
+ * See [slug].tsx line ~127 for the pixel format:
+ *   `admi-${awardLevel.toLowerCase().replace(' ', '-')}-${slug}`
  */
 
 const BASE_URL = 'https://admi.africa'
+const DEFAULT_INTAKES = 'January, May, September'
+const OG_FALLBACK_IMAGE = `${BASE_URL}/api/og?title=ADMI+Course&type=course`
 
 interface CatalogItem {
   id: string
@@ -32,193 +40,7 @@ interface CatalogItem {
   availability: string
 }
 
-// All courses with their catalog metadata
-const COURSES: CatalogItem[] = [
-  // ─── Diploma Programmes ───
-  {
-    id: 'admi-diploma-film-and-television-production-diploma',
-    title: 'Film & Television Production Diploma',
-    description: 'Master filmmaking, cinematography, directing, editing and post-production at Kenya\'s leading creative arts institute. 2-year diploma with industry internship. Accredited by Woolf University (EU) and TVETA Kenya.',
-    url: `${BASE_URL}/courses/film-and-television-production-diploma`,
-    imageUrl: `${BASE_URL}/api/og?title=Film+%26+Television+Production&type=diploma`,
-    price: COURSE_PRICING['film-and-television-production']?.price || DEFAULT_PRICING.DIPLOMA.price,
-    currency: 'KES',
-    category: 'Education > Higher Education > Film & TV',
-    programType: 'Diploma',
-    duration: '2 Years (5 Terms + Internship)',
-    intakes: 'May 2026, September 2026, January 2027',
-    availability: 'available for order',
-  },
-  {
-    id: 'admi-diploma-sound-engineering-diploma',
-    title: 'Sound Engineering Diploma',
-    description: 'Learn audio engineering, music production, live sound and studio recording at ADMI Nairobi. 2-year diploma with hands-on studio access and industry placement. Woolf University accredited.',
-    url: `${BASE_URL}/courses/sound-engineering-diploma`,
-    imageUrl: `${BASE_URL}/api/og?title=Sound+Engineering&type=diploma`,
-    price: COURSE_PRICING['sound-engineering']?.price || DEFAULT_PRICING.DIPLOMA.price,
-    currency: 'KES',
-    category: 'Education > Higher Education > Music & Audio',
-    programType: 'Diploma',
-    duration: '2 Years (5 Terms + Internship)',
-    intakes: 'May 2026, September 2026, January 2027',
-    availability: 'available for order',
-  },
-  {
-    id: 'admi-diploma-graphic-design-diploma',
-    title: 'Graphic Design Diploma',
-    description: 'Build a career in branding, visual communication and digital design at ADMI. 2-year diploma covering Adobe Creative Suite, typography, UI/UX and portfolio development. EU-accredited via Woolf University.',
-    url: `${BASE_URL}/courses/graphic-design-diploma`,
-    imageUrl: `${BASE_URL}/api/og?title=Graphic+Design&type=diploma`,
-    price: COURSE_PRICING['graphic-design']?.price || DEFAULT_PRICING.DIPLOMA.price,
-    currency: 'KES',
-    category: 'Education > Higher Education > Design',
-    programType: 'Diploma',
-    duration: '2 Years (5 Terms + Internship)',
-    intakes: 'May 2026, September 2026, January 2027',
-    availability: 'available for order',
-  },
-  {
-    id: 'admi-diploma-digital-content-creation-diploma',
-    title: 'Digital Content Creation Diploma',
-    description: 'Learn content strategy, social media production, video creation and digital storytelling at ADMI. 2-year diploma with real-world briefs and industry internship. Woolf University accredited.',
-    url: `${BASE_URL}/courses/digital-content-creation-diploma`,
-    imageUrl: `${BASE_URL}/api/og?title=Digital+Content+Creation&type=diploma`,
-    price: COURSE_PRICING['digital-content-creation']?.price || DEFAULT_PRICING.DIPLOMA.price,
-    currency: 'KES',
-    category: 'Education > Higher Education > Digital Media',
-    programType: 'Diploma',
-    duration: '2 Years (5 Terms + Internship)',
-    intakes: 'May 2026, September 2026, January 2027',
-    availability: 'available for order',
-  },
-  // ─── Certificate Programmes ───
-  {
-    id: 'admi-certificate-video-production-certificate',
-    title: 'Video Production Certificate',
-    description: 'Fast-track your video production skills in 6 months. Learn camera operation, lighting, editing and post-production at ADMI\'s professional studios. Pearson BTEC certified.',
-    url: `${BASE_URL}/courses/video-production-certificate`,
-    imageUrl: `${BASE_URL}/api/og?title=Video+Production&type=certificate`,
-    price: COURSE_PRICING['video-production-certificate']?.price || DEFAULT_PRICING.CERTIFICATE_PROFESSIONAL.price,
-    currency: 'KES',
-    category: 'Education > Professional Development > Video',
-    programType: 'Professional Certificate',
-    duration: '6 Months',
-    intakes: 'May 2026, September 2026, January 2027',
-    availability: 'available for order',
-  },
-  {
-    id: 'admi-certificate-digital-marketing-certificate',
-    title: 'Digital Marketing Certificate',
-    description: 'Master digital marketing, social media strategy, SEO, content marketing and analytics. Practical certificate programme at ADMI Nairobi. Pearson BTEC certified.',
-    url: `${BASE_URL}/courses/digital-marketing-certificate`,
-    imageUrl: `${BASE_URL}/api/og?title=Digital+Marketing&type=certificate`,
-    price: COURSE_PRICING['digital-marketing-certificate']?.price || DEFAULT_PRICING.CERTIFICATE_PROFESSIONAL.price,
-    currency: 'KES',
-    category: 'Education > Professional Development > Marketing',
-    programType: 'Professional Certificate',
-    duration: '1 Term',
-    intakes: 'May 2026, September 2026, January 2027',
-    availability: 'available for order',
-  },
-  {
-    id: 'admi-certificate-graphic-design-certificate',
-    title: 'Graphic Design Certificate',
-    description: 'Learn graphic design fundamentals, Adobe Creative Suite, branding and visual communication in this intensive certificate at ADMI. Pearson BTEC certified.',
-    url: `${BASE_URL}/courses/graphic-design-certificate`,
-    imageUrl: `${BASE_URL}/api/og?title=Graphic+Design&type=certificate`,
-    price: COURSE_PRICING['graphic-design-certificate']?.price || DEFAULT_PRICING.CERTIFICATE_PROFESSIONAL.price,
-    currency: 'KES',
-    category: 'Education > Professional Development > Design',
-    programType: 'Professional Certificate',
-    duration: '1 Term',
-    intakes: 'May 2026, September 2026, January 2027',
-    availability: 'available for order',
-  },
-  {
-    id: 'admi-certificate-data-analytics-and-visualisation',
-    title: 'Data Analytics & Visualisation Certificate',
-    description: 'Learn data analysis, visualisation with Tableau & Power BI, and data-driven storytelling. Practical certificate at ADMI Nairobi. Pearson BTEC certified.',
-    url: `${BASE_URL}/courses/data-analytics-and-visualisation`,
-    imageUrl: `${BASE_URL}/api/og?title=Data+Analytics&type=certificate`,
-    price: DEFAULT_PRICING.CERTIFICATE_PROFESSIONAL.price,
-    currency: 'KES',
-    category: 'Education > Professional Development > Data Science',
-    programType: 'Professional Certificate',
-    duration: '1 Term',
-    intakes: 'May 2026, September 2026, January 2027',
-    availability: 'available for order',
-  },
-  {
-    id: 'admi-certificate-multimedia-certificate',
-    title: 'Multimedia Certificate',
-    description: 'Explore photography, video, audio and graphic design in one comprehensive programme. Build a versatile creative portfolio at ADMI Nairobi. Pearson BTEC certified.',
-    url: `${BASE_URL}/courses/multimedia-certificate`,
-    imageUrl: `${BASE_URL}/api/og?title=Multimedia&type=certificate`,
-    price: COURSE_PRICING['multimedia-certificate']?.price || DEFAULT_PRICING.CERTIFICATE_FOUNDATIONAL.price,
-    currency: 'KES',
-    category: 'Education > Professional Development > Multimedia',
-    programType: 'Foundational Certificate',
-    duration: '1 Term',
-    intakes: 'May 2026, September 2026, January 2027',
-    availability: 'available for order',
-  },
-  {
-    id: 'admi-certificate-ai-adoption-digital-transformation',
-    title: 'AI Adoption & Digital Transformation Certificate',
-    description: 'Learn to implement AI tools, automate workflows and lead digital transformation in creative industries. Practical certificate at ADMI Nairobi.',
-    url: `${BASE_URL}/courses/ai-adoption-digital-transformation`,
-    imageUrl: `${BASE_URL}/api/og?title=AI+%26+Digital+Transformation&type=certificate`,
-    price: DEFAULT_PRICING.CERTIFICATE_PROFESSIONAL.price,
-    currency: 'KES',
-    category: 'Education > Professional Development > Technology',
-    programType: 'Professional Certificate',
-    duration: '1 Term',
-    intakes: 'May 2026, September 2026, January 2027',
-    availability: 'available for order',
-  },
-  {
-    id: 'admi-certificate-music-production-and-sound-engineering-certificate',
-    title: 'Music Production & Sound Engineering Certificate',
-    description: 'Learn music production, mixing, mastering and sound design in ADMI\'s professional studios. 6-month intensive certificate. Pearson BTEC certified.',
-    url: `${BASE_URL}/courses/music-production-and-sound-engineering-certificate`,
-    imageUrl: `${BASE_URL}/api/og?title=Music+Production&type=certificate`,
-    price: DEFAULT_PRICING.CERTIFICATE_PROFESSIONAL.price,
-    currency: 'KES',
-    category: 'Education > Professional Development > Music',
-    programType: 'Professional Certificate',
-    duration: '6 Months',
-    intakes: 'May 2026, September 2026, January 2027',
-    availability: 'available for order',
-  },
-  {
-    id: 'admi-certificate-photography-certificate',
-    title: 'Photography Certificate',
-    description: 'Master photography techniques, lighting, composition and post-processing at ADMI. Build a professional portfolio across commercial, editorial and documentary genres.',
-    url: `${BASE_URL}/courses/photography-certificate`,
-    imageUrl: `${BASE_URL}/api/og?title=Photography&type=certificate`,
-    price: COURSE_PRICING['photography-certificate']?.price || DEFAULT_PRICING.CERTIFICATE_FOUNDATIONAL.price,
-    currency: 'KES',
-    category: 'Education > Professional Development > Photography',
-    programType: 'Foundational Certificate',
-    duration: '1 Term',
-    intakes: 'May 2026, September 2026, January 2027',
-    availability: 'available for order',
-  },
-  {
-    id: 'admi-certificate-2d-animation-certificate-rubika',
-    title: '2D Animation Certificate (Rubika)',
-    description: 'Learn 2D animation, character design and storytelling in partnership with Rubika (France). Create your animation showreel at ADMI\'s creative labs.',
-    url: `${BASE_URL}/courses/2d-animation-certificate-rubika`,
-    imageUrl: `${BASE_URL}/api/og?title=2D+Animation+(Rubika)&type=certificate`,
-    price: COURSE_PRICING['2d-animation-certificate-rubika']?.price || DEFAULT_PRICING.CERTIFICATE_FOUNDATIONAL.price,
-    currency: 'KES',
-    category: 'Education > Professional Development > Animation',
-    programType: 'Foundational Certificate',
-    duration: '1 Term',
-    intakes: 'May 2026, September 2026, January 2027',
-    availability: 'available for order',
-  },
-]
+// ─── Helpers ────────────────────────────────────────────────────────
 
 function escapeXml(str: string): string {
   return str
@@ -229,9 +51,141 @@ function escapeXml(str: string): string {
     .replace(/'/g, '&apos;')
 }
 
-function buildXml(): string {
-  const items = COURSES.map(
-    (c) => `    <item>
+/**
+ * Parse tuitionFees from CMS. Accepts number or string like "145,000 KES" or "KES 145,000".
+ */
+function parseTuitionFees(tuitionFees: unknown): number | undefined {
+  if (typeof tuitionFees === 'number' && tuitionFees > 0) return tuitionFees
+  if (typeof tuitionFees === 'string') {
+    const parsed = parseInt(tuitionFees.replace(/[^0-9]/g, ''), 10)
+    return parsed > 0 ? parsed : undefined
+  }
+  return undefined
+}
+
+/**
+ * Resolve a Contentful asset link to its HTTPS URL using the includes.Asset array.
+ */
+function resolveAssetUrl(
+  assetLink: any,
+  assets: Array<{ sys: { id: string }; fields: { file: { url: string } } }>
+): string | undefined {
+  if (!assetLink?.sys?.id) return undefined
+  const asset = assets.find((a) => a.sys.id === assetLink.sys.id)
+  const url = asset?.fields?.file?.url
+  return url ? ensureProtocol(url) : undefined
+}
+
+/**
+ * Resolve a linked entry reference (e.g. programType) from includes.Entry.
+ */
+function resolveEntryRef(
+  entryLink: any,
+  entries: Array<{ sys: { id: string }; fields: Record<string, any> }>
+): Record<string, any> | undefined {
+  if (!entryLink?.sys?.id) return undefined
+  const entry = entries.find((e) => e.sys.id === entryLink.sys.id)
+  return entry?.fields
+}
+
+/**
+ * Derive a Google product category from the award level and course name.
+ */
+function deriveCategory(awardLevel: string, name: string): string {
+  const base = awardLevel?.toLowerCase().includes('diploma')
+    ? 'Education > Higher Education'
+    : 'Education > Professional Development'
+
+  const nameLower = name.toLowerCase()
+  if (nameLower.includes('film') || nameLower.includes('television') || nameLower.includes('video'))
+    return `${base} > Film & TV`
+  if (nameLower.includes('sound') || nameLower.includes('music') || nameLower.includes('audio'))
+    return `${base} > Music & Audio`
+  if (nameLower.includes('graphic design') || nameLower.includes('ui') || nameLower.includes('ux'))
+    return `${base} > Design`
+  if (nameLower.includes('animation')) return `${base} > Animation`
+  if (nameLower.includes('photo')) return `${base} > Photography`
+  if (nameLower.includes('marketing')) return `${base} > Marketing`
+  if (nameLower.includes('data') || nameLower.includes('analytics')) return `${base} > Data Science`
+  if (nameLower.includes('ai') || nameLower.includes('digital transformation')) return `${base} > Technology`
+  if (nameLower.includes('multimedia') || nameLower.includes('content')) return `${base} > Digital Media`
+
+  return base
+}
+
+/**
+ * Map a single Contentful course entry to a CatalogItem for the feed.
+ */
+function mapCourseToCatalogItem(entry: any, assets: any[], entries: any[]): CatalogItem | null {
+  const fields = entry.fields
+  if (!fields?.slug || !fields?.name) return null
+
+  const slug: string = fields.slug
+  const name: string = fields.name
+  const awardLevel: string = fields.awardLevel || ''
+
+  // content_id must match the Meta Pixel format: admi-{level}-{slug}
+  // See [slug].tsx: `admi-${course.awardLevel?.toLowerCase().replace(' ', '-') || 'course'}-${slug}`
+  const levelSlug = awardLevel ? awardLevel.toLowerCase().replace(' ', '-') : 'course'
+  const id = `admi-${levelSlug}-${slug}`
+
+  // Description: prefer aboutTheCourse (plain text), fall back to description (rich text)
+  let description = ''
+  if (fields.aboutTheCourse) {
+    description =
+      typeof fields.aboutTheCourse === 'string'
+        ? fields.aboutTheCourse
+        : getPlainTextFromRichText(fields.aboutTheCourse, 500)
+  } else if (fields.description) {
+    description = getPlainTextFromRichText(fields.description, 500)
+  }
+  if (!description) {
+    description = `${name} at Africa Digital Media Institute (ADMI). ${awardLevel} programme in Nairobi, Kenya.`
+  }
+
+  // Image: resolve coverImage asset, fall back to OG image
+  const imageUrl = resolveAssetUrl(fields.coverImage, assets) || OG_FALLBACK_IMAGE
+
+  // Pricing: CMS tuitionFees > static map > default by level
+  const cmsTuitionFee = parseTuitionFees(fields.tuitionFees)
+  const pricing = getCoursePricing(slug, awardLevel, cmsTuitionFee)
+  const price = pricing?.price || DEFAULT_PRICING.CERTIFICATE_PROFESSIONAL.price
+
+  // Resolve linked programType entry for duration and delivery mode
+  const programTypeFields = resolveEntryRef(fields.programType, entries)
+  const duration = programTypeFields?.duration || ''
+
+  // Program type label from award level
+  const programType = awardLevel || 'Course'
+
+  // Intakes from CMS or default
+  const intakes = fields.intakeMonths || DEFAULT_INTAKES
+
+  // Category derived from level + name
+  const category = deriveCategory(awardLevel, name)
+
+  return {
+    id,
+    title: name,
+    description,
+    url: `${BASE_URL}/courses/${slug}`,
+    imageUrl,
+    price,
+    currency: 'KES',
+    category,
+    programType,
+    duration,
+    intakes,
+    availability: 'available for order'
+  }
+}
+
+// ─── XML builder ────────────────────────────────────────────────────
+
+function buildXml(courses: CatalogItem[]): string {
+  const items = courses
+    .map(
+      (c) => `    <item>
       <g:id>${escapeXml(c.id)}</g:id>
       <g:title>${escapeXml(c.title)}</g:title>
       <g:description>${escapeXml(c.description)}</g:description>
@@ -247,7 +201,8 @@ function buildXml(): string {
       <g:custom_label_1>${escapeXml(c.duration)}</g:custom_label_1>
       <g:custom_label_2>${escapeXml(c.intakes)}</g:custom_label_2>
     </item>`
-  ).join('\n')
+    )
+    .join('\n')
 
   return `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:g="http://base.google.com/ns/1.0">
@@ -260,8 +215,55 @@ ${items}
 </rss>`
 }
 
-export default function handler(_req: NextApiRequest, res: NextApiResponse) {
-  res.setHeader('Content-Type', 'application/xml; charset=utf-8')
-  res.setHeader('Cache-Control', 'public, s-maxage=86400, stale-while-revalidate=43200')
-  res.status(200).send(buildXml())
+// ─── API handler ────────────────────────────────────────────────────
+
+export default async function handler(_req: NextApiRequest, res: NextApiResponse) {
+  const spaceId = process.env.ADMI_CONTENTFUL_SPACE_ID
+  const accessToken = process.env.ADMI_CONTENTFUL_ACCESS_TOKEN
+  const environment = process.env.ADMI_CONTENTFUL_ENVIRONMENT
+
+  if (!spaceId || !accessToken || !environment) {
+    console.error('Meta product feed: Missing Contentful environment variables')
+    res.status(500).setHeader('Content-Type', 'text/plain').send('Server configuration error')
+    return
+  }
+
+  try {
+    const response = await axiosContentfulClient.get<IContentfulResponse>(
+      `/spaces/${spaceId}/environments/${environment}/entries`,
+      {
+        params: {
+          access_token: accessToken,
+          content_type: 'course',
+          include: 2,
+          limit: 100
+        },
+        timeout: 10000
+      }
+    )
+
+    const data = response.data
+    const assets = data.includes?.Asset || []
+    const entries = data.includes?.Entry || []
+
+    const catalogItems = data.items
+      .map((entry) => mapCourseToCatalogItem(entry, assets, entries))
+      .filter((item): item is CatalogItem => item !== null)
+
+    if (catalogItems.length === 0) {
+      console.warn('Meta product feed: No courses returned from Contentful')
+    }
+
+    const xml = buildXml(catalogItems)
+
+    res.setHeader('Content-Type', 'application/xml; charset=utf-8')
+    res.setHeader('Cache-Control', 'public, s-maxage=86400, stale-while-revalidate=43200')
+    res.status(200).send(xml)
+  } catch (error) {
+    console.error('Meta product feed: Failed to fetch courses from Contentful', error)
+    res
+      .status(500)
+      .setHeader('Content-Type', 'text/plain')
+      .send('Failed to generate product feed. Please try again later.')
+  }
 }

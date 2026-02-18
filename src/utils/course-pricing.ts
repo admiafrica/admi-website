@@ -52,14 +52,25 @@ export const COURSE_PRICING: Record<string, CoursePricing> = {
 
 /**
  * Get pricing for a course by slug
+ * Priority: 1) Contentful CMS tuitionFees  2) Static COURSE_PRICING map  3) DEFAULT_PRICING by award level
  * @param courseSlug - The course slug
  * @param awardLevel - Optional award level (diploma, certificate, etc)
+ * @param contentfulPrice - Optional numeric price from Contentful CMS tuitionFees field
  */
-export function getCoursePricing(courseSlug: string, awardLevel?: string): CoursePricing | null {
+export function getCoursePricing(
+  courseSlug: string,
+  awardLevel?: string,
+  contentfulPrice?: number
+): CoursePricing | null {
+  // 1. CMS price takes precedence over all other sources
+  if (contentfulPrice && contentfulPrice > 0) {
+    return { price: contentfulPrice, currency: 'KES' }
+  }
+
   // Remove location suffix if present (e.g., "film-production-nairobi" -> "film-production")
   const baseSlug = courseSlug.replace(/-(?:nairobi|mombasa|kisumu|nakuru|eldoret)$/, '')
 
-  // Check specific pricing first
+  // 2. Check specific pricing from static map
   if (COURSE_PRICING[baseSlug]) {
     return COURSE_PRICING[baseSlug]
   }
