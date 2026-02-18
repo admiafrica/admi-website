@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { IconClock, IconCalendar, IconCheck } from '@tabler/icons-react'
 import { trackWhatsAppClick, ADMI_WHATSAPP_NUMBER } from '@/utils/whatsapp-attribution'
 
 interface FinalCTAProps {
@@ -6,7 +7,7 @@ interface FinalCTAProps {
 }
 
 export default function FinalCTA({ courseName = 'Film Production' }: FinalCTAProps) {
-  const encodedMessage = encodeURIComponent(`Hi ADMI, I'm interested in the ${courseName} Diploma`)
+  const encodedMessage = encodeURIComponent(`Hi ADMI, I'm interested in the ${courseName} Diploma for the May 2026 intake`)
   const whatsappUrl = `https://wa.me/${ADMI_WHATSAPP_NUMBER}?text=${encodedMessage}`
 
   return (
@@ -15,13 +16,31 @@ export default function FinalCTA({ courseName = 'Film Production' }: FinalCTAPro
       aria-label="Call to action"
     >
       <div className="section-container flex flex-col items-center text-center">
+        {/* Early Bird Banner */}
+        <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-amber-400 px-4 py-2 font-proxima text-[13px] font-bold text-black">
+          <IconClock size={16} />
+          Early Bird: Apply by 15th April for 10% off fees
+        </div>
+
         <h2 className="font-nexa text-3xl font-bold leading-[1.3] text-white md:text-[42px]">
           Ready to Start Your {courseName} Career?
         </h2>
 
-        <p className="mt-4 max-w-[600px] font-proxima text-lg leading-[1.6] text-white/80">
-          Our next intake is opening soon. Secure your spot today and take the first step toward a creative career.
+        <p className="mt-4 max-w-[600px] font-proxima text-lg leading-[1.6] text-white/90">
+          May 2026 intake is now open. Secure your spot today and take the first step toward a creative career.
         </p>
+
+        {/* Intake Timeline */}
+        <div className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-white/80">
+          <div className="flex items-center gap-2 font-proxima text-[14px]">
+            <IconCalendar size={16} />
+            <span>Orientation: 1st week of May</span>
+          </div>
+          <div className="flex items-center gap-2 font-proxima text-[14px]">
+            <IconCheck size={16} />
+            <span>Classes start: Mid-May 2026</span>
+          </div>
+        </div>
 
         <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
           <Link
@@ -33,8 +52,7 @@ export default function FinalCTA({ courseName = 'Film Production' }: FinalCTAPro
 
           <Link
             href="/enquiry"
-            className="inline-flex items-center rounded-lg px-8 py-3 font-proxima text-[17px] font-medium text-white transition-opacity hover:opacity-90"
-            style={{ border: '2px solid white', backgroundColor: 'rgba(255,255,255,0.15)' }}
+            className="inline-flex items-center rounded-lg border-2 border-white bg-white/15 px-8 py-3 font-proxima text-[17px] font-medium text-white transition-opacity hover:bg-white/25"
           >
             Enquire Now
           </Link>
@@ -43,8 +61,7 @@ export default function FinalCTA({ courseName = 'Film Production' }: FinalCTAPro
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-lg px-8 py-3 font-proxima text-[17px] font-bold text-white transition-opacity hover:opacity-90"
-            style={{ backgroundColor: '#25D366' }}
+            className="inline-flex items-center gap-2 rounded-lg bg-brand-whatsapp px-8 py-3 font-proxima text-[17px] font-bold text-white transition-opacity hover:opacity-90"
             onClick={() => {
               trackWhatsAppClick(ADMI_WHATSAPP_NUMBER, `Course Page Final CTA - ${courseName}`)
             }}

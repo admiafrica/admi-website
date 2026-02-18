@@ -105,11 +105,32 @@ export interface Facility {
   imageUrl: string | StaticImageData
 }
 
+export type PortfolioMediaType = 'video' | 'image' | 'audio' | 'pdf' | 'gallery'
+
+export interface PortfolioMediaItem {
+  type: 'image' | 'video' | 'audio' | 'pdf'
+  url: string
+  caption?: string
+  thumbnailUrl?: string
+}
+
 export interface PortfolioItem {
   title: string
   student: string
-  imageUrl: string | StaticImageData
-  projectUrl?: string
+  imageUrl: string | StaticImageData // Thumbnail/cover image
+  projectUrl?: string // YouTube or external link
+  description?: string
+  year?: string
+  course?: string
+  awards?: string[]
+  tools?: string[]
+  // Multi-media support
+  mediaType?: PortfolioMediaType // Primary media type
+  vimeoUrl?: string // Vimeo video
+  audioUrl?: string // Audio file (SoundCloud, MP3, etc.)
+  pdfUrl?: string // PDF document
+  galleryImages?: string[] // Image gallery
+  mediaItems?: PortfolioMediaItem[] // Mixed media collection
 }
 
 export interface ActivityPhoto {

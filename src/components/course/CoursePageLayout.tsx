@@ -25,12 +25,15 @@ import {
   IndustryPartners,
   IndustryTrends,
   RelatedResources,
-  FinalCTA
+  FinalCTA,
+  TrustBadges
 } from '@/components/course/sections'
 import HybridModelSection from '@/components/course/sections/HybridModelSection'
 import DiplomaExclusiveSection from '@/components/course/sections/DiplomaExclusiveSection'
 import InternshipProgram from '@/components/course/sections/InternshipProgram'
 import IndustryValidation from '@/components/course/sections/IndustryValidation'
+import MidPageCTA from '@/components/course/sections/MidPageCTA'
+import StickyCourseCTA from '@/components/course/sections/StickyCourseCTA'
 import { filmProductionData } from '@/data/course-page-data'
 import { getDiplomaData } from '@/data/diploma-course-data'
 import { getPlainTextFromRichText, ensureProtocol } from '@/utils'
@@ -345,41 +348,24 @@ export default function CoursePageLayout({ course, slug, courseArticles = [] }: 
 
       <CourseTabNav activeTab={activeTab} onTabChange={setActiveTab} />
 
-      <div className="bg-white">
+      <div className="overflow-x-hidden bg-white">
         {activeTab === 'overview' && (
           <div className="animate-fade-in-up">
             {/* AboutCourse: always visible, uses CMS aboutTheCourse rich text */}
             <AboutCourse description={renderRichText(course.aboutTheCourse)} />
 
-            {/* Diploma-specific sections: Hybrid Model, Exclusives, Internship, Industry Validation */}
+            {/* CareerOutcomes: show early to demonstrate value */}
+            <CareerOutcomes careers={careers} stats={careerStats} />
+
+            {/* Diploma-specific sections: Hybrid Model, Exclusives, Industry Validation */}
             {isDiploma && <HybridModelSection steps={diplomaData?.hybridSteps} testimonial={diplomaData?.hybridTestimonial} />}
             {isDiploma && <DiplomaExclusiveSection courseName={safeString(course.name)} exclusives={diplomaData?.diplomaExclusives} />}
-            {isDiploma && <InternshipProgram stats={diplomaData?.internshipStats} steps={diplomaData?.internshipSteps} partners={diplomaData?.internshipPartners} stories={diplomaData?.internshipStories} />}
             {isDiploma && <IndustryValidation quotes={diplomaData?.industryQuotes} companies={diplomaData?.hiringCompanies} />}
 
-            {/* CourseLeader: hidden when no CMS data (component returns null) */}
-            <CourseLeader leader={leader} />
+            {/* ApplicationSteps: show ease of application early */}
+            <ApplicationSteps steps={filmProductionData.applicationSteps} />
 
-            {/* IndustryQuote: hidden when no CMS data (component returns null) */}
-            <IndustryQuote quote={industryQuote.quote} author={industryQuote.author} role={industryQuote.role} />
-
-            {/* WhyThisCourse / Benefits: hidden when no CMS data */}
-            <WhyThisCourse benefits={benefits} />
-
-            {/* DegreeRoute: always visible (shared pathway for all courses) */}
-            <DegreeRoute
-              steps={filmProductionData.degreeSteps.map((step) => ({
-                step: step.step,
-                title: step.title,
-                subtitle: step.description,
-                color: step.step === 1 ? '#C1272D' : step.step === 2 ? '#171717' : '#8EBFB0'
-              }))}
-            />
-
-            {/* CurriculumOverview: hidden when no CMS semesters */}
-            <CurriculumOverview semesters={semesters} />
-
-            {/* PaymentPlan: hidden when no CMS payment plans */}
+            {/* PaymentPlan: show affordability */}
             <PaymentPlan
               plan={{
                 installments: paymentInstallments,
@@ -390,17 +376,45 @@ export default function CoursePageLayout({ course, slug, courseArticles = [] }: 
               }}
             />
 
-            {/* ImpactStats: always visible (ADMI-wide stats) */}
-            <ImpactStats stats={filmProductionData.impactStats} />
-
-            {/* StudentTestimonials: hidden when no CMS testimonials */}
+            {/* StudentTestimonials: social proof BEFORE lead capture */}
             <StudentTestimonials testimonials={testimonials} />
 
-            {/* ApplicationSteps: always visible (same process for all courses) */}
-            <ApplicationSteps steps={filmProductionData.applicationSteps} />
+            {/* MidPageCTA: capture mid-funnel leads with simplified form */}
+            <MidPageCTA courseName={safeString(course.name)} courseSlug={slug} />
 
-            {/* CareerOutcomes: hidden when no CMS careers or careerOptions */}
-            <CareerOutcomes careers={careers} stats={careerStats} />
+            {/* TrustBadges: reinforce credibility after form */}
+            <TrustBadges />
+
+            {/* ImpactStats: reinforce decision after form */}
+            <ImpactStats stats={filmProductionData.impactStats} />
+
+            {/* CurriculumOverview: what you'll learn */}
+            <CurriculumOverview semesters={semesters} />
+
+            {/* CourseLeader: hidden when no CMS data (component returns null) */}
+            <CourseLeader leader={leader} />
+
+            {/* IndustryQuote: hidden when no CMS data (component returns null) */}
+            <IndustryQuote quote={industryQuote.quote} author={industryQuote.author} role={industryQuote.role} />
+
+            {/* WhyThisCourse / Benefits: hidden when no CMS data */}
+            <WhyThisCourse benefits={benefits} />
+
+            {/* InternshipProgram: 5th semester value - for diplomas */}
+            {isDiploma && <InternshipProgram stats={diplomaData?.internshipStats} steps={diplomaData?.internshipSteps} partners={diplomaData?.internshipPartners} stories={diplomaData?.internshipStories} />}
+
+            {/* DegreeRoute: pathway to degree */}
+            <DegreeRoute
+              steps={filmProductionData.degreeSteps.map((step) => ({
+                step: step.step,
+                title: step.title,
+                subtitle: step.description,
+                color: step.step === 1 ? '#C1272D' : step.step === 2 ? '#171717' : '#8EBFB0'
+              }))}
+            />
+
+            {/* FAQAccordion: CMS FAQs preferred, falls back to static data */}
+            <FAQAccordion faqs={faqData} courseName={safeString(course.name)} />
           </div>
         )}
 
@@ -484,11 +498,11 @@ export default function CoursePageLayout({ course, slug, courseArticles = [] }: 
         )}
       </div>
 
-      {/* FAQAccordion: CMS FAQs preferred, falls back to static data - always visible before CTA */}
-      <FAQAccordion faqs={faqData} courseName={safeString(course.name)} />
-
       {/* FinalCTA: always visible */}
       <FinalCTA courseName={safeString(course.name)} />
+
+      {/* StickyCourseCTA: appears on scroll with urgency messaging */}
+      <StickyCourseCTA courseName={safeString(course.name)} courseSlug={slug} />
     </>
   )
 }

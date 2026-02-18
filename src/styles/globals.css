@@ -102,6 +102,18 @@ body {
   border-radius: 8px 0 0 8px !important;
 }
 
+/* Ensure phone input doesn't overflow container */
+.react-tel-input {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+.react-tel-input .form-control {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+
 @layer base {
   a {
     @apply no-underline;

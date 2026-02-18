@@ -1,6 +1,10 @@
+'use client'
+
 import Link from 'next/link'
 import Image from 'next/image'
+import { IconClock } from '@tabler/icons-react'
 import { ensureProtocol } from '@/utils'
+import { trackWhatsAppClick, ADMI_WHATSAPP_NUMBER } from '@/utils/whatsapp-attribution'
 
 type Props = {
   name: string
@@ -44,7 +48,8 @@ function getProgramTypeLabel(programType: any, awardLevel: string): string {
 }
 
 export default function CourseHeroV2({ name, coverImage, programType, awardLevel, duration, subtitle }: Props) {
-  const whatsappUrl = `https://wa.me/254741132751?text=${encodeURIComponent(`Hi ADMI, I'm interested in the ${name}`)}`
+  const whatsappMessage = encodeURIComponent(`Hi ADMI, I'm interested in the ${name}. Can you tell me more about the May 2026 intake?`)
+  const whatsappUrl = `https://wa.me/${ADMI_WHATSAPP_NUMBER}?text=${whatsappMessage}`
   const imageUrl = coverImage?.fields?.file?.url ? ensureProtocol(coverImage.fields.file.url) : null
   const programTypeUrl = getProgramTypeUrl(programType, awardLevel)
   const programTypeLabel = getProgramTypeLabel(programType, awardLevel)
@@ -84,10 +89,14 @@ export default function CourseHeroV2({ name, coverImage, programType, awardLevel
         </nav>
 
         {/* Badge */}
-        <div className="mb-5 flex">
+        <div className="mb-5 flex flex-wrap items-center gap-3">
           <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 font-proxima text-[13px] font-semibold text-white">
             <span className="h-2 w-2 rounded-full bg-brand-red" />
             {awardLevel || 'Diploma Program'} &middot; {duration || '2 Years'} &middot; EU Accredited
+          </span>
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-500/90 px-4 py-2 font-proxima text-[12px] font-bold text-black">
+            <IconClock size={14} />
+            Early Bird: Apply by 15th April for 10% off
           </span>
         </div>
 
@@ -97,9 +106,14 @@ export default function CourseHeroV2({ name, coverImage, programType, awardLevel
         </h1>
 
         {/* Subtitle */}
-        <p className="section-subheading-dark mb-4 max-w-[80%] md:max-w-[560px]">
+        <p className="section-subheading-dark mb-2 max-w-[80%] md:max-w-[560px]">
           {subtitle ||
             `Study ${name} at ADMI. Graduate with an industry-recognized qualification accredited by Woolf University with credits towards a degree.`}
+        </p>
+
+        {/* Intake info */}
+        <p className="mb-6 font-proxima text-[14px] text-secondary">
+          May 2026 Intake: Orientation 1st week of May &middot; Classes start mid-May
         </p>
 
         {/* CTA Buttons */}
@@ -123,6 +137,7 @@ export default function CourseHeroV2({ name, coverImage, programType, awardLevel
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => trackWhatsAppClick(ADMI_WHATSAPP_NUMBER, `Course Hero - ${name}`)}
             className="inline-flex items-center gap-2.5 rounded-lg bg-brand-whatsapp px-7 py-[18px] font-proxima text-[17px] font-medium text-white transition hover:bg-[#20bd5a]"
           >
             <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
