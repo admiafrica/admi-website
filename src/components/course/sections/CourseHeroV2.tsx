@@ -149,10 +149,10 @@ export default function CourseHeroV2({ name, coverImage, programType, awardLevel
           </Link>
           <Link
             href="/enquiry"
-            onClick={() => trackCTAClick('prospectus', 'hero', name)}
-            className="inline-flex items-center rounded-lg border-2 border-solid border-white bg-transparent px-9 py-[18px] font-proxima text-[17px] font-medium text-white transition hover:bg-white/10"
+            onClick={() => trackCTAClick('enquiry', 'hero', name)}
+            className="hidden items-center rounded-lg border-2 border-solid border-white bg-transparent px-9 py-[18px] font-proxima text-[17px] font-medium text-white transition hover:bg-white/10 md:inline-flex"
           >
-            Request Prospectus
+            Enquire
           </Link>
           <a
             href={whatsappUrl}
