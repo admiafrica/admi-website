@@ -304,13 +304,17 @@ export default function CoursePageLayout({ course, slug, courseArticles = [] }: 
     description: (p.fields.details || [])[0] || ''
   }))
 
+  // Careers: CMS sections.careers > diplomaData.careers > cmsCareerOptions fallback
+  const cmsCareers = (sections.careers || []).map((c: any) => ({
+    title: c.fields.title,
+    description: c.fields.description
+  }))
   const careers =
-    (sections.careers || []).length > 0
-      ? (sections.careers || []).map((c: any) => ({
-          title: c.fields.title,
-          description: c.fields.description
-        }))
-      : cmsCareerOptions.map((opt) => ({ title: opt, description: '' }))
+    cmsCareers.length > 0
+      ? cmsCareers
+      : diplomaData?.careers && diplomaData.careers.length > 0
+        ? diplomaData.careers
+        : cmsCareerOptions.map((opt) => ({ title: opt, description: '' }))
 
   const alumni = (sections.alumni || []).map((a: any) => ({
     name: a.fields.name,

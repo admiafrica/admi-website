@@ -14,7 +14,11 @@ interface CareerOutcomesProps {
 }
 
 export default function CareerOutcomes({ careers, stats }: CareerOutcomesProps) {
-  if (!careers.length) return null
+  // Filter out careers without both title and description
+  const validCareers = careers.filter(c => c.title && c.description)
+  
+  // Hide section if fewer than 3 valid careers
+  if (validCareers.length < 3) return null
 
   // Use only the first 3 stats for the stats row
   const displayStats = stats.slice(0, 3)
@@ -33,7 +37,7 @@ export default function CareerOutcomes({ careers, stats }: CareerOutcomesProps) 
 
         {/* Career Cards */}
         <div className="mb-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {careers.map((career, index) => (
+          {validCareers.map((career, index) => (
             <article key={index} className="rounded-xl bg-[#2a2a2a] p-6 shadow-md transition-shadow hover:shadow-lg">
               <h3 className="mb-2 font-proxima text-base font-bold text-white">{career.title}</h3>
               <p className="font-proxima text-sm leading-[1.5] text-[#999999]">{career.description}</p>
