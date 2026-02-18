@@ -1,6 +1,14 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
+
+/**
+ * Generate a unique event ID for deduplication between
+ * browser-side Meta Pixel and server-side CAPI (via sGTM).
+ */
+function generateEventId(): string {
+  return `${Date.now()}_${Math.random().toString(36).slice(2, 9)}`
+}
 
 interface MetaPixelEventsProps {
   eventName: 'ViewContent' | 'AddToCart' | 'InitiateCheckout' | 'Lead' | 'CompleteRegistration'
@@ -19,36 +27,48 @@ interface MetaPixelEventsProps {
 }
 
 /**
- * Meta Pixel Event Tracking Component
+ * Meta Pixel Event Tracking Component (with sGTM CAPI deduplication)
  *
- * Automatically fires Meta Pixel events for remarketing and conversion tracking.
- * Use this component on course pages to track user interactions for:
- * - Dynamic Product Ads (DPA)
- * - Custom Audiences
- * - Conversion optimization
+ * Fires the event via both:
+ * 1. Browser-side fbq() — for immediate pixel tracking
+ * 2. dataLayer push — so sGTM can forward to Meta CAPI server-side
  *
- * @see https://developers.facebook.com/docs/meta-pixel/reference
+ * Both events share the same event_id so Meta deduplicates them.
+ *
+ * @see https://developers.facebook.com/docs/marketing-api/conversions-api/deduplicate-pixel-and-server-events
  */
 export function MetaPixelEvents({ eventName, eventData }: MetaPixelEventsProps) {
+  const firedRef = useRef(false)
+
   useEffect(() => {
-    // Check if Meta Pixel (fbq) is loaded via GTM
-    if (typeof window !== 'undefined' && (window as any).fbq) {
-      const fbq = (window as any).fbq
+    if (firedRef.current) return
+    firedRef.current = true
 
-      // Fire the event
-      fbq('track', eventName, eventData)
+    if (typeof window === 'undefined') return
 
-      console.log(`[Meta Pixel] ${eventName} event fired:`, eventData)
-    } else {
-      console.warn('[Meta Pixel] fbq not found - ensure Meta Pixel is loaded via GTM')
+    const eventId = generateEventId()
+
+    // 1. Browser-side pixel with event_id for deduplication
+    if (typeof window.fbq === 'function') {
+      window.fbq('track', eventName, eventData, { eventID: eventId })
     }
+
+    // 2. Push to dataLayer so sGTM can forward to Meta CAPI
+    window.dataLayer = window.dataLayer || []
+    window.dataLayer.push({
+      event: `meta_${eventName.toLowerCase()}`,
+      meta_event_name: eventName,
+      meta_event_id: eventId,
+      ...eventData,
+    })
   }, [eventName, eventData])
 
-  return null // This component doesn't render anything
+  return null
 }
 
 /**
- * Course View Event - Use on course detail pages
+ * Course View Event — fires on course detail pages.
+ * Provides product data for Meta Dynamic Product Ads (DPA) on Instagram.
  */
 export function CourseViewEvent({
   courseId,
@@ -80,7 +100,7 @@ export function CourseViewEvent({
 }
 
 /**
- * Enquiry Form Event - Use when user submits enquiry
+ * Enquiry Form Event — fires when user submits enquiry.
  */
 export function EnquiryEvent({
   courseId,
@@ -108,7 +128,7 @@ export function EnquiryEvent({
 }
 
 /**
- * Application Started Event - Use when user clicks "Apply Now"
+ * Application Started Event — fires when user clicks "Apply Now".
  */
 export function ApplicationStartedEvent({
   courseId,

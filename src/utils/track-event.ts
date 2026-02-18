@@ -28,10 +28,25 @@ export function trackCTAClick(
 }
 
 /**
- * Fire Meta Pixel event (if pixel is loaded).
+ * Fire Meta Pixel event with sGTM CAPI deduplication.
+ * Sends via both browser fbq() and dataLayer (for server-side forwarding).
  */
 export function trackMetaEvent(eventName: string, params: Record<string, any> = {}) {
-  if (typeof window !== 'undefined' && typeof window.fbq === 'function') {
-    window.fbq('track', eventName, params)
+  if (typeof window === 'undefined') return
+
+  const eventId = `${Date.now()}_${Math.random().toString(36).slice(2, 9)}`
+
+  // Browser-side pixel with deduplication event_id
+  if (typeof window.fbq === 'function') {
+    window.fbq('track', eventName, params, { eventID: eventId })
   }
+
+  // Push to dataLayer so sGTM forwards to Meta CAPI
+  window.dataLayer = window.dataLayer || []
+  window.dataLayer.push({
+    event: `meta_${eventName.toLowerCase()}`,
+    meta_event_name: eventName,
+    meta_event_id: eventId,
+    ...params,
+  })
 }

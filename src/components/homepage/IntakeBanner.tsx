@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { IconX } from '@tabler/icons-react'
+import { useEffect, useState } from 'react'
 import { trackCTAClick } from '@/utils/track-event'
 
 interface IntakeBannerProps {
@@ -8,10 +9,26 @@ interface IntakeBannerProps {
 }
 
 export default function IntakeBanner({ visible, onDismiss }: IntakeBannerProps) {
+  const [show, setShow] = useState(false)
+
+  useEffect(() => {
+    if (visible) {
+      // Small delay to trigger entrance animation
+      const t = setTimeout(() => setShow(true), 50)
+      return () => clearTimeout(t)
+    } else {
+      setShow(false)
+    }
+  }, [visible])
+
   if (!visible) return null
 
   return (
-    <div className="relative flex h-[48px] items-center justify-center bg-admi-black px-4">
+    <div
+      className={`relative flex h-[48px] items-center justify-center bg-admi-black px-4 transition-all duration-500 ${
+        show ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'
+      }`}
+    >
       <div className="flex items-center gap-3">
         <span className="h-2 w-2 shrink-0 animate-pulse rounded-full bg-brand-orange" />
         <span className="font-proxima text-sm text-white">
