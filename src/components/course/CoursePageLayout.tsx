@@ -121,8 +121,10 @@ function useCMSFAQs(slug: string) {
         if (data.items?.length > 0) {
           setFaqs(
             data.items.map((faq: any) => ({
-              question: faq.fields.question,
-              answer: faq.fields.answer
+              question: typeof faq.fields.question === 'string' ? faq.fields.question : '',
+              answer: typeof faq.fields.answer === 'string' 
+                ? faq.fields.answer 
+                : getPlainTextFromRichText(faq.fields.answer) || ''
             }))
           )
         }
@@ -247,7 +249,7 @@ export default function CoursePageLayout({ course, slug, courseArticles = [] }: 
   const testimonials = (sections.testimonials || []).map((t: any) => ({
     name: t.fields.name,
     role: t.fields.role,
-    quote: t.fields.quote,
+    quote: typeof t.fields.quote === 'string' ? t.fields.quote : getPlainTextFromRichText(t.fields.quote) || '',
     program: safeString(course.name),
     type: (t.fields.role?.toLowerCase().includes('current') ? 'current' : 'alumni') as 'current' | 'alumni'
   }))
@@ -261,7 +263,7 @@ export default function CoursePageLayout({ course, slug, courseArticles = [] }: 
 
   const facilities = (sections.facilities || []).map((f: any) => ({
     title: f.fields.name,
-    description: f.fields.description,
+    description: typeof f.fields.description === 'string' ? f.fields.description : getPlainTextFromRichText(f.fields.description) || '',
     image: f.fields.image?.fields?.file?.url ? ensureProtocol(f.fields.image.fields.file.url) : ''
   }))
 
@@ -269,8 +271,8 @@ export default function CoursePageLayout({ course, slug, courseArticles = [] }: 
     ? {
         name: sections.leader[0].fields.name,
         title: sections.leader[0].fields.role,
-        bio: sections.leader[0].fields.bio,
-        quote: sections.leader[0].fields.quote,
+        bio: typeof sections.leader[0].fields.bio === 'string' ? sections.leader[0].fields.bio : getPlainTextFromRichText(sections.leader[0].fields.bio) || '',
+        quote: typeof sections.leader[0].fields.quote === 'string' ? sections.leader[0].fields.quote : getPlainTextFromRichText(sections.leader[0].fields.quote) || '',
         image: sections.leader[0].fields.image?.fields?.file?.url
           ? ensureProtocol(sections.leader[0].fields.image.fields.file.url)
           : ''
@@ -279,7 +281,7 @@ export default function CoursePageLayout({ course, slug, courseArticles = [] }: 
 
   const industryQuote = sections.industryQuote?.[0]
     ? {
-        quote: sections.industryQuote[0].fields.quote,
+        quote: typeof sections.industryQuote[0].fields.quote === 'string' ? sections.industryQuote[0].fields.quote : getPlainTextFromRichText(sections.industryQuote[0].fields.quote) || '',
         author: sections.industryQuote[0].fields.author,
         role: `${sections.industryQuote[0].fields.role}, ${sections.industryQuote[0].fields.company}`
       }
@@ -287,7 +289,7 @@ export default function CoursePageLayout({ course, slug, courseArticles = [] }: 
 
   const benefits = (sections.benefits || []).map((b: any) => ({
     title: b.fields.title,
-    description: b.fields.description,
+    description: typeof b.fields.description === 'string' ? b.fields.description : getPlainTextFromRichText(b.fields.description) || '',
     icon: b.fields.icon
   }))
 
@@ -307,7 +309,7 @@ export default function CoursePageLayout({ course, slug, courseArticles = [] }: 
   // Careers: CMS sections.careers > diplomaData.careers > cmsCareerOptions fallback
   const cmsCareers = (sections.careers || []).map((c: any) => ({
     title: c.fields.title,
-    description: c.fields.description
+    description: typeof c.fields.description === 'string' ? c.fields.description : getPlainTextFromRichText(c.fields.description) || ''
   }))
   const careers =
     cmsCareers.length > 0
@@ -320,7 +322,7 @@ export default function CoursePageLayout({ course, slug, courseArticles = [] }: 
     name: a.fields.name,
     role: a.fields.role,
     company: a.fields.company,
-    story: a.fields.story,
+    story: typeof a.fields.story === 'string' ? a.fields.story : getPlainTextFromRichText(a.fields.story) || '',
     imageUrl: a.fields.image?.fields?.file?.url
       ? ensureProtocol(a.fields.image.fields.file.url)
       : '/placeholder/alumni.jpg',

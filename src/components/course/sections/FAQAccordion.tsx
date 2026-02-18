@@ -47,12 +47,12 @@ export default function FAQAccordion({ faqs, courseName }: FAQAccordionProps) {
               return (
                 <div 
                   key={`faq-${index}`} 
-                  className={`overflow-hidden rounded-xl border transition-all duration-200 ${
-                    isOpen ? 'border-brand-red/20 bg-brand-red/5' : 'border-gray-200 bg-[#faf7f5] hover:border-gray-300'
+                  className={`overflow-hidden rounded-xl transition-all duration-200 ${
+                    isOpen ? 'bg-[#faf7f5] shadow-sm' : 'bg-[#faf7f5] hover:bg-[#f5f0ec]'
                   }`}
                 >
                   <button
-                    className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left"
+                    className="flex w-full items-center justify-between gap-4 border-0 bg-transparent px-6 py-5 text-left outline-none"
                     onClick={() => setOpenIndex(isOpen ? null : index)}
                     aria-expanded={isOpen}
                   >
