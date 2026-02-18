@@ -35,7 +35,7 @@ export default function DegreeRoute({ steps }: DegreeRouteProps) {
               bg === '#C1272D' ? 'text-white/80' : bg === '#8EBFB0' ? 'text-[#333333]' : 'text-[#999999]'
 
             return (
-              <div key={step.step} className="flex w-full flex-col items-center md:w-auto md:flex-row">
+              <div key={step.step} className="flex w-full max-w-[320px] flex-col items-center md:max-w-none md:w-auto md:flex-row">
                 {/* Step Card */}
                 <div
                   className={`flex w-full flex-col items-center justify-center rounded-xl p-6 text-center md:w-[240px] ${textColor}`}
@@ -49,13 +49,13 @@ export default function DegreeRoute({ steps }: DegreeRouteProps) {
                 {index < steps.length - 1 && (
                   <>
                     <span
-                      className="hidden px-3 font-['Inter'] text-[28px] font-bold text-brand-red md:block"
+                      className="hidden px-3 font-proxima text-[28px] font-bold text-brand-red md:block"
                       aria-hidden="true"
                     >
                       →
                     </span>
                     <span
-                      className="block w-full py-2 text-center text-2xl text-brand-red md:hidden"
+                      className="block w-full py-2 text-center font-proxima text-2xl text-brand-red md:hidden"
                       aria-hidden="true"
                     >
                       ↓

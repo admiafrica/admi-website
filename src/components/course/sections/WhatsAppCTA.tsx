@@ -5,7 +5,7 @@ interface WhatsAppCTAProps {
   courseName?: string
 }
 
-export default function WhatsAppCTA({ courseName = 'Film Production Diploma' }: WhatsAppCTAProps) {
+export default function WhatsAppCTA({ courseName = 'this programme' }: WhatsAppCTAProps) {
   const encodedMessage = encodeURIComponent(`Hi ADMI, I'm interested in the ${courseName}`)
   const whatsappUrl = `https://wa.me/${ADMI_WHATSAPP_NUMBER}?text=${encodedMessage}`
 

@@ -43,7 +43,7 @@ export function MainLayout({ children, minimizeFooter = false, minimizeHeader = 
   }
 
   return (
-    <div className={`${proximaNovaFont.variable} ${nexaFont.variable} w-full overflow-x-hidden`}>
+    <div className={`${proximaNovaFont.variable} ${nexaFont.variable} w-full overflow-x-clip`}>
       <div
         className={`fixed left-0 right-0 top-0 z-50 transition-transform duration-300 ${
           pinned ? 'translate-y-0' : '-translate-y-full'
@@ -57,7 +57,7 @@ export function MainLayout({ children, minimizeFooter = false, minimizeHeader = 
         </header>
       </div>
 
-      <main className={`w-full max-w-full overflow-x-hidden ${bannerVisible ? 'pt-[129px]' : 'pt-[81px]'}`}>
+      <main className={`w-full max-w-full overflow-x-clip ${bannerVisible ? 'pt-[129px]' : 'pt-[81px]'}`}>
         {children}
       </main>
 

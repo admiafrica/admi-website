@@ -1,6 +1,10 @@
+'use client'
+
 import Link from 'next/link'
 import Image from 'next/image'
 import { ensureProtocol } from '@/utils'
+import { trackWhatsAppClick, ADMI_WHATSAPP_NUMBER } from '@/utils/whatsapp-attribution'
+import { trackCTAClick } from '@/utils/track-event'
 
 type Props = {
   name: string
@@ -43,11 +47,32 @@ function getProgramTypeLabel(programType: any, awardLevel: string): string {
   return 'Programs'
 }
 
+// Map program type to expected salary range
+function getSalaryRange(programType: any, awardLevel: string): string {
+  const category = getProgramCategory(programType, awardLevel)
+  if (category === 'diploma') return '60K - 120K'
+  if (category === 'professional') return '35K - 60K'
+  if (category === 'foundation') return '25K - 50K'
+  return '40K - 80K'
+}
+
+// Map program type to duration
+function getDuration(programType: any, awardLevel: string, passedDuration?: string): string {
+  const category = getProgramCategory(programType, awardLevel)
+  if (category === 'diploma') return '2 Years'
+  if (category === 'professional') return passedDuration || '4-6 Months'
+  if (category === 'foundation') return passedDuration || '4-6 Months'
+  return passedDuration || '6 Months'
+}
+
 export default function CourseHeroV2({ name, coverImage, programType, awardLevel, duration, subtitle }: Props) {
-  const whatsappUrl = `https://wa.me/254741132751?text=${encodeURIComponent(`Hi ADMI, I'm interested in the ${name}`)}`
+  const whatsappMessage = encodeURIComponent(`Hi ADMI, I'm interested in the ${name}. Can you tell me more about the May 2026 intake?`)
+  const whatsappUrl = `https://wa.me/${ADMI_WHATSAPP_NUMBER}?text=${whatsappMessage}`
   const imageUrl = coverImage?.fields?.file?.url ? ensureProtocol(coverImage.fields.file.url) : null
   const programTypeUrl = getProgramTypeUrl(programType, awardLevel)
   const programTypeLabel = getProgramTypeLabel(programType, awardLevel)
+  const salaryRange = getSalaryRange(programType, awardLevel)
+  const displayDuration = getDuration(programType, awardLevel, duration)
 
   return (
     <section className="relative w-full overflow-hidden bg-[#1a1a1a]">
@@ -84,28 +109,37 @@ export default function CourseHeroV2({ name, coverImage, programType, awardLevel
         </nav>
 
         {/* Badge */}
-        <div className="mb-5 flex">
+        <div className="mb-5 flex flex-wrap items-center gap-3">
           <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 font-proxima text-[13px] font-semibold text-white">
             <span className="h-2 w-2 rounded-full bg-brand-red" />
-            {awardLevel || 'Diploma Program'} &middot; {duration || '2 Years'} &middot; EU Accredited
+            {awardLevel || 'Diploma Program'} &middot; {displayDuration} &middot; EU Accredited
           </span>
         </div>
 
         {/* Title */}
-        <h1 className="mb-5 max-w-[700px] text-3xl font-bold leading-[1.2] text-white md:text-4xl lg:text-[52px] lg:leading-[1.15]">
+        <h1 className="section-heading-dark mb-4 max-w-[80%] md:max-w-[700px] lg:text-[52px]">
           {name}
         </h1>
 
         {/* Subtitle */}
-        <p className="mb-8 max-w-[560px] font-proxima text-base leading-[1.7] text-white/70 md:text-lg">
+        <p className="section-subheading-dark mb-4 max-w-[80%] md:max-w-[560px]">
           {subtitle ||
             `Study ${name} at ADMI. Graduate with an industry-recognized qualification accredited by Woolf University with credits towards a degree.`}
+        </p>
+
+        {/* Salary Range */}
+        <p className="mb-6 flex items-center gap-2 font-proxima text-[15px] font-medium text-white/80 md:text-[16px]">
+          <svg className="h-5 w-5 text-[#22c55e]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <span>Graduates earn <span className="font-bold text-[#22c55e]">{salaryRange} KES/month</span></span>
         </p>
 
         {/* CTA Buttons */}
         <div className="flex flex-wrap items-center gap-3">
           <Link
             href="/enquiry"
+            onClick={() => trackCTAClick('apply', 'hero', name)}
             className="inline-flex items-center gap-2.5 rounded-lg bg-brand-red px-9 py-[18px] font-proxima text-[17px] font-semibold text-white transition hover:bg-[#a52830]"
           >
             Apply Now
@@ -115,14 +149,16 @@ export default function CourseHeroV2({ name, coverImage, programType, awardLevel
           </Link>
           <Link
             href="/enquiry"
+            onClick={() => trackCTAClick('prospectus', 'hero', name)}
             className="inline-flex items-center rounded-lg border-2 border-solid border-white bg-transparent px-9 py-[18px] font-proxima text-[17px] font-medium text-white transition hover:bg-white/10"
           >
-            Enquire Now
+            Request Prospectus
           </Link>
           <a
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => trackWhatsAppClick(ADMI_WHATSAPP_NUMBER, `Course Hero - ${name}`)}
             className="inline-flex items-center gap-2.5 rounded-lg bg-brand-whatsapp px-7 py-[18px] font-proxima text-[17px] font-medium text-white transition hover:bg-[#20bd5a]"
           >
             <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">

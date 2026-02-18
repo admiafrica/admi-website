@@ -105,16 +105,39 @@ export interface Facility {
   imageUrl: string | StaticImageData
 }
 
+export type PortfolioMediaType = 'video' | 'image' | 'audio' | 'pdf' | 'gallery'
+
+export interface PortfolioMediaItem {
+  type: 'image' | 'video' | 'audio' | 'pdf'
+  url: string
+  caption?: string
+  thumbnailUrl?: string
+}
+
 export interface PortfolioItem {
   title: string
   student: string
-  imageUrl: string | StaticImageData
-  projectUrl?: string
+  imageUrl: string | StaticImageData // Thumbnail/cover image
+  projectUrl?: string // YouTube or external link
+  description?: string
+  year?: string
+  course?: string
+  awards?: string[]
+  tools?: string[]
+  // Multi-media support
+  mediaType?: PortfolioMediaType // Primary media type
+  vimeoUrl?: string // Vimeo video
+  audioUrl?: string // Audio file (SoundCloud, MP3, etc.)
+  pdfUrl?: string // PDF document
+  galleryImages?: string[] // Image gallery
+  mediaItems?: PortfolioMediaItem[] // Mixed media collection
 }
 
 export interface ActivityPhoto {
   caption: string
   imageUrl: string | StaticImageData
+  videoUrl?: string // Optional YouTube URL for video content
+  aspectRatio?: 'square' | 'portrait' | 'landscape' // For masonry variety
 }
 
 export interface AlumniStory {
@@ -176,7 +199,7 @@ export const filmProductionData: CoursePageData = {
   quickFacts: [
     { label: 'Duration', value: '2 Years', icon: 'schedule' },
     { label: 'Award Level', value: 'Diploma', icon: 'school' },
-    { label: 'Intakes', value: 'Feb, May, Aug', icon: 'calendar_month' },
+    { label: 'Intakes', value: 'Jan, May, Sept', icon: 'calendar_month' },
     { label: 'Online + Campus Bootcamps', value: 'Hybrid', icon: 'group' },
     { label: 'Per Semester', value: '100K KES', icon: 'payments' }
   ],
@@ -368,7 +391,7 @@ export const filmProductionData: CoursePageData = {
     {
       question: 'When are the next intake dates?',
       answer:
-        'We have three intakes per year: February, May, and August. Applications are accepted on a rolling basis, but we recommend applying at least 4 weeks before your preferred start date.'
+        'We have three intakes per year: January, May, and September. Applications are accepted on a rolling basis, but we recommend applying at least 4 weeks before your preferred start date.'
     },
     {
       question: 'Can I work while studying?',
@@ -377,20 +400,20 @@ export const filmProductionData: CoursePageData = {
     }
   ],
   careers: [
-    { title: 'Film Director', description: 'Lead creative vision for films, TV shows, commercials & music videos' },
-    { title: 'Cinematographer', description: 'Craft stunning visuals as Director of Photography for productions' },
+    { title: 'Film Director', description: 'Lead creative vision for films, TV shows, commercials & music videos', salary: 'KES 80K–250K/mo' },
+    { title: 'Cinematographer', description: 'Craft stunning visuals as Director of Photography for productions', salary: 'KES 60K–180K/mo' },
     {
       title: 'Film Editor',
-      description: 'Shape narratives in post-production using Avid, Premiere Pro & DaVinci Resolve'
+      description: 'Shape narratives in post-production using Avid, Premiere Pro & DaVinci Resolve',
+      salary: 'KES 50K–150K/mo'
     },
-    { title: 'Producer', description: 'Manage budgets, schedules & teams to bring productions to life' }
+    { title: 'Producer', description: 'Manage budgets, schedules & teams to bring productions to life', salary: 'KES 70K–200K/mo' }
   ],
   programDetails: [
     { label: 'Awarding Body', value: 'Woolf University / TVET CDACC' },
     { label: 'Level', value: 'Level 5 Diploma' },
     { label: 'Credits', value: '240 Credits' },
     { label: 'Duration', value: '2 Years (4 Semesters)' },
-    { label: 'Campus', value: 'Nairobi, CBD' },
     { label: 'Intakes', value: 'January, May, September' }
   ],
   learningOutcomes: [
@@ -469,19 +492,19 @@ export const filmProductionData: CoursePageData = {
       graduationYear: '2020'
     },
     {
-      name: 'Alicia Keys',
+      name: 'Grace Njoki',
       role: 'Editor',
       company: 'Citizen TV',
       story: 'I got hired straight out of my internship.',
-      imageUrl: '/placeholder/alicia.jpg',
+      imageUrl: '/placeholder/grace.jpg',
       graduationYear: '2021'
     },
     {
-      name: 'Bob Marley',
-      role: 'Sound',
+      name: 'David Kimani',
+      role: 'Sound Designer',
       company: 'Freelance',
       story: 'ADMI gave me the network I needed to succeed.',
-      imageUrl: '/placeholder/bob.jpg',
+      imageUrl: '/placeholder/david.jpg',
       graduationYear: '2019'
     }
   ],

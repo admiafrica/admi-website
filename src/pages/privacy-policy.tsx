@@ -16,23 +16,27 @@ const SECTIONS: PolicySection[] = [
     body: 'The information we collect is used to process admissions applications, communicate with prospective and current students, improve our educational services, send relevant updates about programmes and events, and comply with applicable legal and regulatory requirements.'
   },
   {
-    title: '3. Cookies',
+    title: '3. Enquiry Form Submissions',
+    body: 'When you submit an enquiry form on our website, your contact details (name, email, phone number) and course preferences are stored securely in our CRM system. An admissions advisor will contact you within 24-48 hours to provide programme information and answer your questions. Your details may be used to send you relevant course updates, intake reminders, and scholarship opportunities. You can opt out of marketing communications at any time by contacting us directly.'
+  },
+  {
+    title: '4. Cookies',
     body: 'Our website uses cookies to enhance your browsing experience, analyse site traffic, and personalise content. You may manage your cookie preferences through your browser settings. By continuing to use our website, you consent to the use of cookies as described in this policy.'
   },
   {
-    title: '4. Third-Party Services',
+    title: '5. Third-Party Services',
     body: 'We may share your information with trusted third-party service providers who assist us in operating our website, conducting business, or serving our students. These parties are contractually obligated to keep your information confidential and use it only for the purposes specified.'
   },
   {
-    title: '5. Data Security',
+    title: '6. Data Security',
     body: 'We implement appropriate technical and organisational measures to protect your personal data against unauthorised access, alteration, disclosure, or destruction. However, no method of transmission over the internet is entirely secure, and we cannot guarantee absolute security.'
   },
   {
-    title: '6. Your Rights',
+    title: '7. Your Rights',
     body: 'You have the right to access, correct, or delete your personal data held by ADMI. You may also request restrictions on processing or object to processing in certain circumstances. To exercise these rights, please contact our data protection officer using the details provided below.'
   },
   {
-    title: '7. Contact',
+    title: '8. Contact',
     body: 'If you have any questions about this Privacy Policy or wish to exercise your data protection rights, please contact us at admissions@admi.ac.ke or call +254 741 132 751. You may also visit our campus at ADMI, Nairobi, Kenya.'
   }
 ]

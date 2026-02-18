@@ -25,11 +25,29 @@ import {
   IndustryPartners,
   IndustryTrends,
   RelatedResources,
-  FinalCTA
+  FinalCTA,
+  TrustBadges
 } from '@/components/course/sections'
-import { filmProductionData } from '@/data/course-page-data'
+import HybridModelSection from '@/components/course/sections/HybridModelSection'
+import DiplomaExclusiveSection from '@/components/course/sections/DiplomaExclusiveSection'
+import InternshipProgram from '@/components/course/sections/InternshipProgram'
+import IndustryValidation from '@/components/course/sections/IndustryValidation'
+import MidPageCTA from '@/components/course/sections/MidPageCTA'
+import StickyCourseCTA from '@/components/course/sections/StickyCourseCTA'
+import { filmProductionData, CoursePageData } from '@/data/course-page-data'
+import { getDiplomaData } from '@/data/diploma-course-data'
+import { getCertificateData } from '@/data/certificate-course-data'
 import { getPlainTextFromRichText, ensureProtocol } from '@/utils'
 import { getCoursePricing } from '@/utils/course-pricing'
+
+// Unified static data lookup: diploma data > certificate data > generic fallback
+function getStaticCourseData(slug: string): CoursePageData & { tagline?: string } {
+  const diploma = getDiplomaData(slug)
+  if (diploma) return diploma
+  const cert = getCertificateData(slug)
+  if (cert) return cert
+  return filmProductionData
+}
 
 type Props = {
   course: any
@@ -116,8 +134,10 @@ function useCMSFAQs(slug: string) {
         if (data.items?.length > 0) {
           setFaqs(
             data.items.map((faq: any) => ({
-              question: faq.fields.question,
-              answer: faq.fields.answer
+              question: typeof faq.fields.question === 'string' ? faq.fields.question : '',
+              answer: typeof faq.fields.answer === 'string' 
+                ? faq.fields.answer 
+                : getPlainTextFromRichText(faq.fields.answer) || ''
             }))
           )
         }
@@ -129,7 +149,7 @@ function useCMSFAQs(slug: string) {
 }
 
 // Build quick facts dynamically from CMS course data
-function buildQuickFacts(course: any, slug: string) {
+function buildQuickFacts(course: any, slug: string, fallbackFacts?: { label: string; value: string; icon: string }[]) {
   const facts: { label: string; value: string }[] = []
 
   const duration = course.programType?.fields?.duration
@@ -167,7 +187,7 @@ function buildQuickFacts(course: any, slug: string) {
     return facts
   }
 
-  return filmProductionData.quickFacts
+  return fallbackFacts || filmProductionData.quickFacts
 }
 
 // Extract list items from Contentful rich text
@@ -178,10 +198,22 @@ function extractListFromRichText(richText: any): string[] {
     .filter(Boolean)
 }
 
-export default function CoursePageLayout({ course, slug }: Props) {
+// Extract learning outcomes from new Array<Link> field
+function extractLearningOutcomesFromLinks(outcomes: any[]): string[] {
+  if (!outcomes || !Array.isArray(outcomes)) return []
+  return outcomes
+    .filter((outcome: any) => outcome?.fields?.title)
+    .sort((a: any, b: any) => (a.fields.order || 0) - (b.fields.order || 0))
+    .map((outcome: any) => outcome.fields.title)
+}
+
+export default function CoursePageLayout({ course, slug, courseArticles = [] }: Props) {
   const [activeTab, setActiveTab] = useState<'overview' | 'deep-dive'>('overview')
   const { sections } = useCMSSections(slug)
   const cmsFaqs = useCMSFAQs(slug)
+
+  // Unified static data: course-specific mock data with fallback chain
+  const staticData = getStaticCourseData(slug)
 
   const renderRichText = (richText: any) => {
     if (!richText) return null
@@ -207,24 +239,38 @@ export default function CoursePageLayout({ course, slug }: Props) {
   const heroSubtitle = course.subtitle || getPlainTextFromRichText(course.description, 200) || undefined
 
   // Quick facts from CMS fields
-  const quickFacts = buildQuickFacts(course, slug)
+  const quickFacts = buildQuickFacts(course, slug, staticData.quickFacts)
 
-  // Learning outcomes from CMS
-  const cmsLearningOutcomes = extractListFromRichText(course.learningOutcomes)
-  const learningOutcomes = cmsLearningOutcomes.length > 0 ? cmsLearningOutcomes : filmProductionData.learningOutcomes
+  // Learning outcomes: prefer new linked entries, fall back to RichText, then static
+  const linkedLearningOutcomes = extractLearningOutcomesFromLinks(course.learningOutcomesList)
+  const cmsLearningOutcomes = linkedLearningOutcomes.length > 0 
+    ? linkedLearningOutcomes 
+    : extractListFromRichText(course.learningOutcomes)
+  const learningOutcomes = cmsLearningOutcomes.length > 0 ? cmsLearningOutcomes : staticData.learningOutcomes
 
   // Career options from CMS rich text
   const cmsCareerOptions = extractListFromRichText(course.careerOptions)
 
-  // FAQs: prefer CMS, fall back to static
-  const faqData = cmsFaqs.length > 0 ? cmsFaqs : filmProductionData.faqs
+  // FAQs: prefer CMS, fall back to course-specific static
+  const faqData = cmsFaqs.length > 0 ? cmsFaqs : staticData.faqs
 
-  // Career stats (shared defaults)
-  const careerStats = [
-    { value: '85%', label: 'Employment Rate' },
-    { value: '75K', label: 'Avg Starting Salary (KES/mo)' },
-    { value: '500+', label: 'Employer Partners' }
-  ]
+  // Check if this is a diploma course (Level 6 = Diploma, or name/slug contains "diploma")
+  const isDiploma = 
+    course.awardLevel?.toLowerCase() === 'level 6' || 
+    course.name?.toLowerCase().includes('diploma') ||
+    slug?.toLowerCase().includes('diploma')
+
+  // Get diploma-specific data from mock data file
+  const diplomaData = isDiploma ? getDiplomaData(slug) : null
+
+  // Career stats: prefer course-specific impact stats, fall back to defaults
+  const careerStats = staticData.impactStats.length > 0
+    ? staticData.impactStats.slice(0, 3).map(s => ({ value: s.value, label: s.label }))
+    : [
+        { value: '85%', label: 'Employment Rate' },
+        { value: '75K', label: 'Avg Starting Salary (KES/mo)' },
+        { value: '500+', label: 'Employer Partners' }
+      ]
 
   // --- CMS section data mappings ---
   // Each maps CMS entries to the props shape the component expects.
@@ -233,7 +279,7 @@ export default function CoursePageLayout({ course, slug }: Props) {
   const testimonials = (sections.testimonials || []).map((t: any) => ({
     name: t.fields.name,
     role: t.fields.role,
-    quote: t.fields.quote,
+    quote: typeof t.fields.quote === 'string' ? t.fields.quote : getPlainTextFromRichText(t.fields.quote) || '',
     program: safeString(course.name),
     type: (t.fields.role?.toLowerCase().includes('current') ? 'current' : 'alumni') as 'current' | 'alumni'
   }))
@@ -247,7 +293,7 @@ export default function CoursePageLayout({ course, slug }: Props) {
 
   const facilities = (sections.facilities || []).map((f: any) => ({
     title: f.fields.name,
-    description: f.fields.description,
+    description: typeof f.fields.description === 'string' ? f.fields.description : getPlainTextFromRichText(f.fields.description) || '',
     image: f.fields.image?.fields?.file?.url ? ensureProtocol(f.fields.image.fields.file.url) : ''
   }))
 
@@ -255,8 +301,8 @@ export default function CoursePageLayout({ course, slug }: Props) {
     ? {
         name: sections.leader[0].fields.name,
         title: sections.leader[0].fields.role,
-        bio: sections.leader[0].fields.bio,
-        quote: sections.leader[0].fields.quote,
+        bio: typeof sections.leader[0].fields.bio === 'string' ? sections.leader[0].fields.bio : getPlainTextFromRichText(sections.leader[0].fields.bio) || '',
+        quote: typeof sections.leader[0].fields.quote === 'string' ? sections.leader[0].fields.quote : getPlainTextFromRichText(sections.leader[0].fields.quote) || '',
         image: sections.leader[0].fields.image?.fields?.file?.url
           ? ensureProtocol(sections.leader[0].fields.image.fields.file.url)
           : ''
@@ -265,7 +311,7 @@ export default function CoursePageLayout({ course, slug }: Props) {
 
   const industryQuote = sections.industryQuote?.[0]
     ? {
-        quote: sections.industryQuote[0].fields.quote,
+        quote: typeof sections.industryQuote[0].fields.quote === 'string' ? sections.industryQuote[0].fields.quote : getPlainTextFromRichText(sections.industryQuote[0].fields.quote) || '',
         author: sections.industryQuote[0].fields.author,
         role: `${sections.industryQuote[0].fields.role}, ${sections.industryQuote[0].fields.company}`
       }
@@ -273,7 +319,7 @@ export default function CoursePageLayout({ course, slug }: Props) {
 
   const benefits = (sections.benefits || []).map((b: any) => ({
     title: b.fields.title,
-    description: b.fields.description,
+    description: typeof b.fields.description === 'string' ? b.fields.description : getPlainTextFromRichText(b.fields.description) || '',
     icon: b.fields.icon
   }))
 
@@ -290,19 +336,23 @@ export default function CoursePageLayout({ course, slug }: Props) {
     description: (p.fields.details || [])[0] || ''
   }))
 
+  // Careers: CMS > course-specific static data > CMS rich text fallback
+  const cmsCareers = (sections.careers || []).map((c: any) => ({
+    title: c.fields.title,
+    description: typeof c.fields.description === 'string' ? c.fields.description : getPlainTextFromRichText(c.fields.description) || ''
+  }))
   const careers =
-    (sections.careers || []).length > 0
-      ? (sections.careers || []).map((c: any) => ({
-          title: c.fields.title,
-          description: c.fields.description
-        }))
-      : cmsCareerOptions.map((opt) => ({ title: opt, description: '' }))
+    cmsCareers.length > 0
+      ? cmsCareers
+      : staticData.careers.length > 0
+        ? staticData.careers
+        : cmsCareerOptions.map((opt) => ({ title: opt, description: '' }))
 
   const alumni = (sections.alumni || []).map((a: any) => ({
     name: a.fields.name,
     role: a.fields.role,
     company: a.fields.company,
-    story: a.fields.story,
+    story: typeof a.fields.story === 'string' ? a.fields.story : getPlainTextFromRichText(a.fields.story) || '',
     imageUrl: a.fields.image?.fields?.file?.url
       ? ensureProtocol(a.fields.image.fields.file.url)
       : '/placeholder/alumni.jpg',
@@ -329,20 +379,90 @@ export default function CoursePageLayout({ course, slug }: Props) {
         {activeTab === 'overview' && (
           <div className="animate-fade-in-up">
             {/* AboutCourse: always visible, uses CMS aboutTheCourse rich text */}
-            <AboutCourse description={renderRichText(course.aboutTheCourse)} />
+            <AboutCourse
+              description={renderRichText(course.aboutTheCourse)}
+              heading={course.tagline || (staticData as any).tagline || undefined}
+            />
 
-            {/* CourseLeader: hidden when no CMS data (component returns null) */}
-            <CourseLeader leader={leader} />
+            {/* CareerOutcomes: show early to demonstrate value */}
+            <CareerOutcomes careers={careers} stats={careerStats} courseName={safeString(course.name)} />
 
-            {/* IndustryQuote: hidden when no CMS data (component returns null) */}
-            <IndustryQuote quote={industryQuote.quote} author={industryQuote.author} role={industryQuote.role} />
+            {/* Diploma-specific sections: Hybrid Model, Exclusives, Industry Validation */}
+            {isDiploma && <HybridModelSection steps={diplomaData?.hybridSteps} testimonial={diplomaData?.hybridTestimonial} />}
+            {isDiploma && <DiplomaExclusiveSection courseName={safeString(course.name)} exclusives={diplomaData?.diplomaExclusives} />}
+            {isDiploma && <IndustryValidation quotes={diplomaData?.industryQuotes} companies={diplomaData?.hiringCompanies} />}
 
-            {/* WhyThisCourse / Benefits: hidden when no CMS data */}
-            <WhyThisCourse benefits={benefits} />
+            {/* ApplicationSteps: show ease of application early */}
+            <ApplicationSteps steps={staticData.applicationSteps} />
 
-            {/* DegreeRoute: always visible (shared pathway for all courses) */}
+            {/* PaymentPlan: CMS or course-specific static data */}
+            <PaymentPlan
+              plan={{
+                installments: paymentInstallments.length > 0
+                  ? paymentInstallments
+                  : staticData.paymentPlans.map(p => ({
+                      label: p.title,
+                      percentage: p.period,
+                      amount: p.price,
+                      description: (p.details || [])[0] || ''
+                    })),
+                totalPerSemester:
+                  'Pay upfront and receive a 10% discount on your semester fees',
+                discountMessage:
+                  'Pay your full semester upfront and save 10%'
+              }}
+            />
+
+            {/* StudentTestimonials: CMS or course-specific static data */}
+            <StudentTestimonials testimonials={testimonials.length > 0 ? testimonials : staticData.testimonials.map(t => ({
+              name: t.name,
+              role: t.role,
+              quote: t.quote,
+              program: safeString(course.name),
+              type: (t.role.toLowerCase().includes('current') ? 'current' : 'alumni') as 'current' | 'alumni'
+            }))} />
+
+            {/* MidPageCTA: capture mid-funnel leads with simplified form */}
+            <MidPageCTA courseName={safeString(course.name)} courseSlug={slug} />
+
+            {/* TrustBadges: reinforce credibility after form */}
+            <TrustBadges />
+
+            {/* ImpactStats: reinforce decision after form */}
+            <ImpactStats stats={staticData.impactStats} />
+
+            {/* CurriculumOverview: CMS or course-specific static data */}
+            <CurriculumOverview semesters={semesters.length > 0 ? semesters : staticData.semesters.map((s, i) => ({
+              title: s.title,
+              modules: s.modules,
+              number: i + 1
+            }))} />
+
+            {/* CourseLeader: CMS or course-specific static data */}
+            <CourseLeader leader={leader.name ? leader : {
+              name: staticData.courseLeader.name,
+              title: staticData.courseLeader.role,
+              bio: staticData.courseLeader.bio,
+              quote: staticData.courseLeader.quote,
+              image: staticData.courseLeader.imageUrl as string
+            }} />
+
+            {/* IndustryQuote: CMS or course-specific static data */}
+            <IndustryQuote
+              quote={industryQuote.quote || staticData.industryQuote.quote}
+              author={industryQuote.author || staticData.industryQuote.author}
+              role={industryQuote.role || `${staticData.industryQuote.role}, ${staticData.industryQuote.company}`}
+            />
+
+            {/* WhyThisCourse / Benefits: CMS or course-specific static data */}
+            <WhyThisCourse benefits={benefits.length > 0 ? benefits : staticData.benefits} />
+
+            {/* InternshipProgram: 5th semester value - for diplomas */}
+            {isDiploma && <InternshipProgram stats={diplomaData?.internshipStats} steps={diplomaData?.internshipSteps} partners={diplomaData?.internshipPartners} stories={diplomaData?.internshipStories} />}
+
+            {/* DegreeRoute: pathway to degree */}
             <DegreeRoute
-              steps={filmProductionData.degreeSteps.map((step) => ({
+              steps={staticData.degreeSteps.map((step) => ({
                 step: step.step,
                 title: step.title,
                 subtitle: step.description,
@@ -350,84 +470,96 @@ export default function CoursePageLayout({ course, slug }: Props) {
               }))}
             />
 
-            {/* CurriculumOverview: hidden when no CMS semesters */}
-            <CurriculumOverview semesters={semesters} />
-
-            {/* PaymentPlan: hidden when no CMS payment plans */}
-            <PaymentPlan
-              plan={{
-                installments: paymentInstallments,
-                totalPerSemester:
-                  'Semester fees: KES 68,000 – 145,000 depending on program. Pay upfront and receive a 10% discount',
-                discountMessage:
-                  "Pay your full semester upfront and save 10% — that's KES 90,000 instead of KES 100,000"
-              }}
-            />
-
-            {/* ImpactStats: always visible (ADMI-wide stats) */}
-            <ImpactStats stats={filmProductionData.impactStats} />
-
-            {/* StudentTestimonials: hidden when no CMS testimonials */}
-            <StudentTestimonials testimonials={testimonials} />
-
-            {/* ApplicationSteps: always visible (same process for all courses) */}
-            <ApplicationSteps steps={filmProductionData.applicationSteps} />
-
             {/* FAQAccordion: CMS FAQs preferred, falls back to static data */}
-            <FAQAccordion faqs={faqData} />
-
-            {/* CareerOutcomes: hidden when no CMS careers or careerOptions */}
-            <CareerOutcomes careers={careers} stats={careerStats} />
+            <FAQAccordion faqs={faqData} courseName={safeString(course.name)} />
           </div>
         )}
 
         {activeTab === 'deep-dive' && (
           <div className="animate-fade-in-up">
-            {/* ProgramDetails: always visible with CMS learning outcomes or fallback */}
-            <ProgramDetails details={filmProductionData.programDetails} learningOutcomes={learningOutcomes} />
+            {/* ProgramDetails: CMS or course-specific static data */}
+            <ProgramDetails
+              details={staticData.programDetails}
+              learningOutcomes={learningOutcomes}
+            />
 
-            {/* MentorsGrid: hidden when no CMS mentors */}
-            <MentorsGrid mentors={mentors} />
+            {/* MentorsGrid: CMS mentors or course-specific static data */}
+            <MentorsGrid
+              mentors={mentors.length > 0 ? mentors : staticData.mentors.map(m => ({
+                name: m.name,
+                role: m.role,
+                specialization: m.company,
+                image: m.imageUrl as string
+              }))}
+            />
 
-            {/* AssessmentBreakdown: hidden when no CMS data (uses static methods shape) */}
+            {/* AssessmentBreakdown: course-specific static data */}
             <AssessmentBreakdown
               methods={
-                semesters.length > 0
-                  ? filmProductionData.assessmentMethods.map((a) => ({
-                      title: a.method,
-                      percentage: `${a.percentage}%`,
-                      description: a.description
-                    }))
-                  : []
+                staticData.assessmentMethods.map((a) => ({
+                  title: a.method,
+                  percentage: `${a.percentage}%`,
+                  description: a.description
+                }))
               }
             />
 
-            {/* EquipmentFacilities: hidden when no CMS facilities */}
-            <EquipmentFacilities facilities={facilities} />
+            {/* EquipmentFacilities: CMS facilities or course-specific static data */}
+            <EquipmentFacilities
+              facilities={facilities.length > 0 ? facilities : staticData.facilities.map(f => ({
+                title: f.name,
+                description: f.description,
+                image: f.imageUrl as string
+              }))}
+            />
 
-            {/* StudentPortfolio: hidden when no CMS portfolio items */}
-            <StudentPortfolio items={[]} />
+            {/* StudentPortfolio: course-specific static data */}
+            <StudentPortfolio items={staticData.portfolioItems} />
 
-            {/* StudentsInAction: hidden when no CMS photos */}
-            <StudentsInAction photos={[]} />
+            {/* StudentsInAction: course-specific static data */}
+            <StudentsInAction
+              photos={staticData.activityPhotos.map(p => ({
+                caption: p.caption,
+                image: p.imageUrl as string,
+                videoUrl: p.videoUrl,
+                aspectRatio: p.aspectRatio
+              }))}
+            />
 
-            {/* AlumniStories: hidden when no CMS alumni */}
-            <AlumniStories stories={alumni} />
+            {/* AlumniStories: CMS alumni or course-specific static data */}
+            <AlumniStories stories={alumni.length > 0 ? alumni : staticData.alumniStories} />
 
-            {/* IndustryPartners: hidden when no CMS partners */}
-            <IndustryPartners partners={[]} />
+            {/* IndustryPartners: course-specific static data */}
+            <IndustryPartners
+              partners={staticData.industryPartners.map(p => ({
+                name: p.name,
+                type: 'Industry Partner'
+              }))}
+            />
 
-            {/* IndustryTrends: hidden when no CMS trends */}
-            <IndustryTrends trends={[]} />
+            {/* IndustryTrends: course-specific static data */}
+            <IndustryTrends trends={staticData.industryTrends} />
 
-            {/* RelatedResources: hidden when no CMS resources */}
-            <RelatedResources resources={[]} />
+            {/* RelatedResources: use courseArticles from CMS (already resolved by API) */}
+            <RelatedResources 
+              courseName={safeString(course.name)}
+              resources={(courseArticles || []).slice(0, 6).map((article: any) => ({
+                category: article.topic || article.category || 'Blog',
+                title: article.title || '',
+                description: article.summary || '',
+                link: `/blog/${article.slug || ''}`,
+                image: article.coverImage || ''
+              }))} 
+            />
           </div>
         )}
       </div>
 
       {/* FinalCTA: always visible */}
       <FinalCTA courseName={safeString(course.name)} />
+
+      {/* StickyCourseCTA: appears on scroll with urgency messaging */}
+      <StickyCourseCTA courseName={safeString(course.name)} courseSlug={slug} />
     </>
   )
 }

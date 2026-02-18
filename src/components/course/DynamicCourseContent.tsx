@@ -57,13 +57,13 @@ export default function DynamicCourseContent({ courseSlug, courseName }: Dynamic
         </section>
       )}
 
-      {/* Student Reviews Section */}
+      {/* Alumni Testimonials Section */}
       {hasReviews && (
         <section>
           <div className="mb-8">
-            <h2 className="mb-4 text-3xl font-bold font-semibold text-gray-800 text-gray-900">Student Reviews</h2>
+            <h2 className="mb-4 text-3xl font-bold font-semibold text-gray-800 text-gray-900">Alumni Stories</h2>
             <p className="text-lg text-gray-600 text-gray-700">
-              Detailed feedback from {courseName} alumni about their learning experience
+              Hear from {courseName} graduates about their learning experience
             </p>
           </div>
 
@@ -74,22 +74,22 @@ export default function DynamicCourseContent({ courseSlug, courseName }: Dynamic
                   <div
                     className="mb-4 text-gray-700"
                     dangerouslySetInnerHTML={{
-                      __html: review.fields.description
+                      __html: review.fields.testimonial
                     }}
                   />
                   <div className="flex items-center space-x-3">
-                    {review.fields.authorImage && (
+                    {review.fields.image && (
                       <Image
-                        src={ensureProtocol(review.fields.authorImage.fields.file.url)}
-                        alt={review.fields.authorName}
+                        src={ensureProtocol(review.fields.image.fields.file.url)}
+                        alt={review.fields.fullName}
                         width={48}
                         height={48}
                         className="h-12 w-12 rounded-full object-cover"
                       />
                     )}
                     <div>
-                      <p className="font-semibold text-gray-700 text-gray-800">{review.fields.authorName}</p>
-                      <p className="text-sm text-gray-600 text-gray-700">{review.fields.authorRole}</p>
+                      <p className="font-semibold text-gray-700 text-gray-800">{review.fields.fullName}</p>
+                      <p className="text-sm text-gray-600 text-gray-700">{review.fields.role}</p>
                     </div>
                   </div>
                 </div>
