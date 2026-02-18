@@ -40,7 +40,7 @@ interface HomePageProps {
   heroContent: any
 }
 
-export default function HomePage({ content }: HomePageProps) {
+export default function HomePage({ content, courses }: HomePageProps) {
   return (
     <MainLayout footerBgColor="#0A0A0A">
       <PageSEO
@@ -139,7 +139,7 @@ export default function HomePage({ content }: HomePageProps) {
       <AccreditationTrust />
       <DegreePathway />
       <ProgramCategories />
-      <FeaturedCourses />
+      <FeaturedCourses courses={courses} />
       <HowYoullLearn />
       <WhyADMI />
       <StudentShowcase />

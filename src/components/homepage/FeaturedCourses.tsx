@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef } from 'react'
+import { useRef, useMemo } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { IconArrowRight, IconChevronLeft, IconChevronRight } from '@tabler/icons-react'
@@ -16,7 +16,36 @@ interface FeaturedCourse {
   imageUrl: string
 }
 
-const FEATURED_COURSES: FeaturedCourse[] = [
+// Program level styling
+const LEVEL_STYLES: Record<string, { color: string; bg: string; label: string }> = {
+  diploma: { color: '#C1272D', bg: '#FFF0F0', label: 'Diploma' },
+  'professional certificate': { color: '#0A3D3D', bg: '#EEF9F7', label: 'Professional' },
+  'foundation certificate': { color: '#EF7B2E', bg: '#FFF8F0', label: 'Foundation' },
+  'rubika programs': { color: '#1a1a4e', bg: '#EEF0FF', label: 'Rubika' }
+}
+
+// Get level style based on program type
+const getLevelStyle = (programTypeName: string) => {
+  const lower = programTypeName.toLowerCase()
+  if (lower.includes('diploma')) return LEVEL_STYLES['diploma']
+  if (lower.includes('professional')) return LEVEL_STYLES['professional certificate']
+  if (lower.includes('foundation')) return LEVEL_STYLES['foundation certificate']
+  if (lower.includes('rubika')) return LEVEL_STYLES['rubika programs']
+  return LEVEL_STYLES['diploma'] // default
+}
+
+// Extract plain text from Contentful rich text
+const getPlainTextFromRichText = (richText: any, maxLength = 120): string => {
+  if (!richText?.content) return ''
+  const text = richText.content
+    .map((block: any) => block.content?.map((node: any) => node.value || '').join('') || '')
+    .join(' ')
+    .trim()
+  return text.length > maxLength ? text.slice(0, maxLength) + '...' : text
+}
+
+// Fallback courses for when CMS data is unavailable
+const FALLBACK_COURSES: FeaturedCourse[] = [
   {
     name: 'Film & TV Production Diploma',
     slug: 'film-tv-production-diploma',
@@ -79,7 +108,55 @@ const FEATURED_COURSES: FeaturedCourse[] = [
   }
 ]
 
-export default function FeaturedCourses() {
+interface FeaturedCoursesProps {
+  courses?: any[]
+}
+
+export default function FeaturedCourses({ courses }: FeaturedCoursesProps) {
+  // Transform CMS courses to display format
+  const displayCourses = useMemo((): FeaturedCourse[] => {
+    if (!courses || courses.length === 0) return FALLBACK_COURSES
+
+    // Sort courses: diplomas first, then professional, then foundation
+    const sortedCourses = [...courses].sort((a, b) => {
+      const aType = a.fields?.programType?.fields?.name?.toLowerCase() || ''
+      const bType = b.fields?.programType?.fields?.name?.toLowerCase() || ''
+
+      const order = (type: string) => {
+        if (type.includes('diploma')) return 1
+        if (type.includes('professional')) return 2
+        if (type.includes('foundation')) return 3
+        return 4
+      }
+
+      return order(aType) - order(bType)
+    })
+
+    // Take first 6 courses
+    return sortedCourses.slice(0, 6).map((course) => {
+      const programType = course.fields?.programType?.fields?.name || 'Diploma'
+      const levelStyle = getLevelStyle(programType)
+
+      // Get image URL
+      let imageUrl = '/images/homepage/diploma-students.jpg'
+      if (course.fields?.coverImage?.fields?.file?.url) {
+        imageUrl = course.fields.coverImage.fields.file.url.startsWith('http')
+          ? course.fields.coverImage.fields.file.url
+          : `https:${course.fields.coverImage.fields.file.url}`
+      }
+
+      return {
+        name: course.fields?.name || 'Course',
+        slug: course.fields?.slug || '',
+        description: getPlainTextFromRichText(course.fields?.description) || '',
+        duration: course.fields?.programType?.fields?.duration || '18 months',
+        level: levelStyle.label,
+        levelColor: levelStyle.color,
+        levelBg: levelStyle.bg,
+        imageUrl
+      }
+    })
+  }, [courses])
   const scrollRef = useRef<HTMLDivElement>(null)
 
   const scroll = (direction: 'left' | 'right') => {
@@ -129,7 +206,7 @@ export default function FeaturedCourses() {
           className="scrollbar-hide -mx-4 flex gap-4 overflow-x-auto px-4 pb-3 md:-mx-0 md:gap-6 md:px-0 md:pb-4"
           style={{ scrollSnapType: 'x mandatory' }}
         >
-          {FEATURED_COURSES.map((course) => (
+          {displayCourses.map((course) => (
             <Link
               key={course.slug}
               href={`/courses/${course.slug}`}
