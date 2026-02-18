@@ -49,7 +49,7 @@ const DEFAULT_STEPS: HybridStep[] = [
 const DEFAULT_TESTIMONIAL = {
   quote: "The bootcamps were game-changing. I could study theory at my own pace online, but the two weeks on campus with real equipment and industry mentors is where everything clicked.",
   name: 'James Mwangi',
-  program: 'Film Production Diploma, Class of 2025'
+  program: 'Diploma Programme, Class of 2025'
 }
 
 export default function HybridModelSection({ steps = DEFAULT_STEPS, testimonial = DEFAULT_TESTIMONIAL }: Props) {

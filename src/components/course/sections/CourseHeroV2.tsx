@@ -106,14 +106,9 @@ export default function CourseHeroV2({ name, coverImage, programType, awardLevel
         </h1>
 
         {/* Subtitle */}
-        <p className="section-subheading-dark mb-2 max-w-[80%] md:max-w-[560px]">
+        <p className="section-subheading-dark mb-6 max-w-[80%] md:max-w-[560px]">
           {subtitle ||
             `Study ${name} at ADMI. Graduate with an industry-recognized qualification accredited by Woolf University with credits towards a degree.`}
-        </p>
-
-        {/* Intake info */}
-        <p className="mb-6 font-proxima text-[14px] text-secondary">
-          May 2026 Intake: Orientation 1st week of May &middot; Classes start mid-May
         </p>
 
         {/* CTA Buttons */}

@@ -56,6 +56,7 @@ export interface IndustryQuoteItem {
 }
 
 export interface DiplomaPageData extends CoursePageData {
+  tagline: string
   // Diploma-specific sections
   hybridSteps: HybridStep[]
   hybridTestimonial: {
@@ -150,6 +151,7 @@ const SHARED_INTERNSHIP_STEPS = [
 // ============ FILM & TELEVISION PRODUCTION DIPLOMA ============
 
 export const filmProductionDiplomaData: DiplomaPageData = {
+  tagline: 'Tell Stories That Move The World',
   // Quick Facts
   quickFacts: [
     { label: 'Duration', value: '2 Years', icon: 'schedule' },
@@ -324,12 +326,12 @@ export const filmProductionDiplomaData: DiplomaPageData = {
 
   // Career Outcomes
   careers: [
-    { title: 'Film Director', description: 'Lead creative vision for films, TV shows, commercials & music videos' },
-    { title: 'Cinematographer', description: 'Craft stunning visuals as Director of Photography' },
-    { title: 'Film Editor', description: 'Shape narratives using Avid, Premiere Pro & DaVinci Resolve' },
-    { title: 'Producer', description: 'Manage budgets, schedules & teams to bring productions to life' },
-    { title: 'Sound Designer', description: 'Create immersive audio experiences for film and TV' },
-    { title: 'Colorist', description: 'Grade footage to create cinematic looks and moods' }
+    { title: 'Film Director', description: 'Lead creative vision for films, TV shows, commercials & music videos', salary: 'KES 80K–250K/mo' },
+    { title: 'Cinematographer', description: 'Craft stunning visuals as Director of Photography', salary: 'KES 60K–180K/mo' },
+    { title: 'Film Editor', description: 'Shape narratives using Avid, Premiere Pro & DaVinci Resolve', salary: 'KES 50K–150K/mo' },
+    { title: 'Producer', description: 'Manage budgets, schedules & teams to bring productions to life', salary: 'KES 70K–200K/mo' },
+    { title: 'Sound Designer', description: 'Create immersive audio experiences for film and TV', salary: 'KES 45K–120K/mo' },
+    { title: 'Colorist', description: 'Grade footage to create cinematic looks and moods', salary: 'KES 55K–160K/mo' }
   ],
 
   // Program Details
@@ -338,7 +340,6 @@ export const filmProductionDiplomaData: DiplomaPageData = {
     { label: 'Level', value: 'Level 6 Diploma' },
     { label: 'Credits', value: '240 Credits' },
     { label: 'Duration', value: '2 Years (5 Semesters)' },
-    { label: 'Campus', value: 'Nairobi CBD' },
     { label: 'Intakes', value: 'January, May, September' }
   ],
 
@@ -532,6 +533,7 @@ export const filmProductionDiplomaData: DiplomaPageData = {
 // ============ SOUND ENGINEERING DIPLOMA ============
 
 export const soundEngineeringDiplomaData: DiplomaPageData = {
+  tagline: 'Shape The Sound of Africa',
   quickFacts: [
     { label: 'Duration', value: '2 Years', icon: 'schedule' },
     { label: 'Award Level', value: 'Level 6 Diploma', icon: 'school' },
@@ -655,12 +657,12 @@ export const soundEngineeringDiplomaData: DiplomaPageData = {
   ],
 
   careers: [
-    { title: 'Recording Engineer', description: 'Record artists in professional studio environments' },
-    { title: 'Mix Engineer', description: 'Create polished mixes for music releases' },
-    { title: 'Mastering Engineer', description: 'Finalize audio for distribution platforms' },
-    { title: 'Live Sound Engineer', description: 'Mix audio for concerts, events, and broadcasts' },
-    { title: 'Podcast Producer', description: 'Record and produce podcast content' },
-    { title: 'Audio for Film', description: 'Design sound for film and television' }
+    { title: 'Recording Engineer', description: 'Record artists in professional studio environments', salary: 'KES 50K–150K/mo' },
+    { title: 'Mix Engineer', description: 'Create polished mixes for music releases', salary: 'KES 60K–180K/mo' },
+    { title: 'Mastering Engineer', description: 'Finalize audio for distribution platforms', salary: 'KES 55K–160K/mo' },
+    { title: 'Live Sound Engineer', description: 'Mix audio for concerts, events, and broadcasts', salary: 'KES 40K–120K/mo' },
+    { title: 'Podcast Producer', description: 'Record and produce podcast content', salary: 'KES 50K–150K/mo' },
+    { title: 'Audio for Film', description: 'Design sound for film and television', salary: 'KES 45K–130K/mo' }
   ],
 
   programDetails: [
@@ -668,7 +670,6 @@ export const soundEngineeringDiplomaData: DiplomaPageData = {
     { label: 'Level', value: 'Level 6 Diploma' },
     { label: 'Credits', value: '240 Credits' },
     { label: 'Duration', value: '2 Years (5 Semesters)' },
-    { label: 'Campus', value: 'Nairobi CBD' },
     { label: 'Certification', value: 'Avid Pro Tools Certified' }
   ],
 
@@ -815,6 +816,7 @@ export const soundEngineeringDiplomaData: DiplomaPageData = {
 // ============ GRAPHIC DESIGN DIPLOMA ============
 
 export const graphicDesignDiplomaData: DiplomaPageData = {
+  tagline: 'Design The Future of African Brands',
   quickFacts: [
     { label: 'Duration', value: '2 Years', icon: 'schedule' },
     { label: 'Award Level', value: 'Level 6 Diploma', icon: 'school' },
@@ -896,19 +898,18 @@ export const graphicDesignDiplomaData: DiplomaPageData = {
   ],
 
   careers: [
-    { title: 'Graphic Designer', description: 'Create visual content for brands and publications' },
-    { title: 'Brand Designer', description: 'Develop brand identities and style guides' },
-    { title: 'UI Designer', description: 'Design user interfaces for apps and websites' },
-    { title: 'Motion Designer', description: 'Create animated graphics and video content' },
-    { title: 'Art Director', description: 'Lead creative vision for campaigns and projects' }
+    { title: 'Graphic Designer', description: 'Create visual content for brands and publications', salary: 'KES 50K–150K/mo' },
+    { title: 'Brand Designer', description: 'Develop brand identities and style guides', salary: 'KES 50K–150K/mo' },
+    { title: 'UI/UX Designer', description: 'Design user interfaces for apps and websites', salary: 'KES 60K–200K/mo' },
+    { title: 'Motion Graphics Designer', description: 'Create animated graphics and video content', salary: 'KES 55K–170K/mo' },
+    { title: 'Art Director', description: 'Lead creative vision for campaigns and projects', salary: 'KES 80K–250K/mo' }
   ],
 
   programDetails: [
     { label: 'Awarding Body', value: 'Woolf University / TVET CDACC' },
     { label: 'Level', value: 'Level 6 Diploma' },
     { label: 'Credits', value: '240 Credits' },
-    { label: 'Duration', value: '2 Years (5 Semesters)' },
-    { label: 'Campus', value: 'Nairobi CBD' }
+    { label: 'Duration', value: '2 Years (5 Semesters)' }
   ],
 
   learningOutcomes: [
@@ -1072,6 +1073,7 @@ export const graphicDesignDiplomaData: DiplomaPageData = {
 // ============ DIGITAL CONTENT CREATION DIPLOMA ============
 
 export const digitalContentDiplomaData: DiplomaPageData = {
+  tagline: 'Create Content That Drives Culture',
   quickFacts: [
     { label: 'Duration', value: '2 Years', icon: 'schedule' },
     { label: 'Award Level', value: 'Level 6 Diploma', icon: 'school' },
@@ -1153,19 +1155,18 @@ export const digitalContentDiplomaData: DiplomaPageData = {
   ],
 
   careers: [
-    { title: 'Content Creator', description: 'Build and monetize your personal brand' },
-    { title: 'Social Media Manager', description: 'Manage brand accounts and strategies' },
-    { title: 'Video Producer', description: 'Create video content for brands' },
-    { title: 'Podcast Host/Producer', description: 'Create and grow podcast shows' },
-    { title: 'Digital Marketing Specialist', description: 'Execute content-led marketing campaigns' }
+    { title: 'Content Strategist', description: 'Build and monetize your personal brand', salary: 'KES 50K–150K/mo' },
+    { title: 'Social Media Manager', description: 'Manage brand accounts and strategies', salary: 'KES 40K–120K/mo' },
+    { title: 'YouTuber/Creator', description: 'Create video content for brands and audiences', salary: 'KES 30K–500K/mo' },
+    { title: 'Brand Partnerships Manager', description: 'Create and grow podcast shows and brand deals', salary: 'KES 60K–180K/mo' },
+    { title: 'Digital Marketing Specialist', description: 'Execute content-led marketing campaigns', salary: 'KES 50K–150K/mo' }
   ],
 
   programDetails: [
     { label: 'Awarding Body', value: 'Woolf University / TVET CDACC' },
     { label: 'Level', value: 'Level 6 Diploma' },
     { label: 'Credits', value: '240 Credits' },
-    { label: 'Duration', value: '2 Years (5 Semesters)' },
-    { label: 'Campus', value: 'Nairobi CBD' }
+    { label: 'Duration', value: '2 Years (5 Semesters)' }
   ],
 
   learningOutcomes: [

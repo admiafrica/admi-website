@@ -6,7 +6,7 @@ interface FinalCTAProps {
   courseName?: string
 }
 
-export default function FinalCTA({ courseName = 'Film Production' }: FinalCTAProps) {
+export default function FinalCTA({ courseName = 'Creative Arts' }: FinalCTAProps) {
   const encodedMessage = encodeURIComponent(`Hi ADMI, I'm interested in the ${courseName} Diploma for the May 2026 intake`)
   const whatsappUrl = `https://wa.me/${ADMI_WHATSAPP_NUMBER}?text=${encodedMessage}`
 

@@ -3,17 +3,19 @@ import { ReactNode } from 'react'
 interface AboutCourseProps {
   description: ReactNode
   accreditation?: string
+  heading?: string
+  label?: string
 }
 
-export default function AboutCourse({ description, accreditation }: AboutCourseProps) {
+export default function AboutCourse({ description, accreditation, heading, label }: AboutCourseProps) {
   return (
     <section className="section-padding w-full bg-white">
       <div className="section-container">
         <div className="flex flex-col gap-12 lg:flex-row lg:items-center lg:gap-16">
           {/* Left Column - Text Content */}
           <div className="flex-1">
-            <span className="section-label-light">About This Course</span>
-            <h2 className="section-heading-light mb-6 lg:text-5xl">Tell Stories That Move The World</h2>
+            <span className="section-label-light">{label || 'About This Programme'}</span>
+            <h2 className="section-heading-light mb-6 lg:text-5xl">{heading || 'Your Creative Career Starts Here'}</h2>
             <div className="mb-6 font-proxima text-lg leading-relaxed text-gray-700">{description}</div>
             {accreditation && (
               <p className="rounded-lg border-l-4 border-admiDarkOrange bg-gray-50 p-4 font-proxima text-base leading-relaxed text-gray-600">
