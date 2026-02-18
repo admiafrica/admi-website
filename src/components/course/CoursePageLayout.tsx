@@ -397,9 +397,6 @@ export default function CoursePageLayout({ course, slug, courseArticles = [] }: 
             {/* ApplicationSteps: always visible (same process for all courses) */}
             <ApplicationSteps steps={filmProductionData.applicationSteps} />
 
-            {/* FAQAccordion: CMS FAQs preferred, falls back to static data */}
-            <FAQAccordion faqs={faqData} />
-
             {/* CareerOutcomes: hidden when no CMS careers or careerOptions */}
             <CareerOutcomes careers={careers} stats={careerStats} />
           </div>
@@ -484,6 +481,9 @@ export default function CoursePageLayout({ course, slug, courseArticles = [] }: 
           </div>
         )}
       </div>
+
+      {/* FAQAccordion: CMS FAQs preferred, falls back to static data - always visible before CTA */}
+      <FAQAccordion faqs={faqData} courseName={safeString(course.name)} />
 
       {/* FinalCTA: always visible */}
       <FinalCTA courseName={safeString(course.name)} />
