@@ -397,8 +397,11 @@ export default function EnhancedEnquiryForm() {
       })
     }
 
+    const courseFromQuery = typeof router.query.course === 'string' ? router.query.course : ''
+
     setValues((prev) => ({
       ...prev,
+      ...(courseFromQuery && { courseName: courseFromQuery }),
       utm_source: utmFromStorage.utm_source || 'direct',
       utm_medium: utmFromStorage.utm_medium || 'none',
       utm_campaign: utmFromStorage.utm_campaign || 'organic',
