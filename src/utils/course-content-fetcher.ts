@@ -37,26 +37,27 @@ export async function getCourseTestimonials(courseSlug: string, limit: number = 
 }
 
 /**
- * Get student reviews for a specific course
+ * Get alumni testimonials for a specific course
  * @param courseSlug - The course slug to filter by
- * @param limit - Maximum number of reviews to fetch
+ * @param limit - Maximum number of alumni testimonials to fetch
  */
 export async function getCourseStudentReviews(courseSlug: string, limit: number = 6) {
   try {
     const response = await axiosContentfulClient.get('/entries', {
       params: {
-        content_type: 'studentReview',
-        'fields.relatedCourse.sys.contentType.sys.id': 'course',
-        'fields.relatedCourse.fields.slug': courseSlug,
+        content_type: 'testimonial',
+        'fields.testimonialType': 'alumni',
+        'fields.relatedCourses.sys.contentType.sys.id': 'course',
+        'fields.relatedCourses.fields.slug': courseSlug,
         limit,
         include: 2,
-        order: '-fields.graduationYear,-sys.createdAt'
+        order: '-sys.createdAt'
       }
     })
 
     return response.data.items
   } catch (error) {
-    console.error(`Error fetching student reviews for course ${courseSlug}:`, error)
+    console.error(`Error fetching alumni testimonials for course ${courseSlug}:`, error)
     return []
   }
 }
@@ -142,23 +143,24 @@ export async function getTestimonialsByCategory(category: string, limit: number 
 }
 
 /**
- * Get recent student reviews across all courses (for homepage/general use)
- * @param limit - Maximum number of reviews to fetch
+ * Get recent alumni testimonials across all courses (for homepage/general use)
+ * @param limit - Maximum number of alumni testimonials to fetch
  */
 export async function getRecentStudentReviews(limit: number = 6) {
   try {
     const response = await axiosContentfulClient.get('/entries', {
       params: {
-        content_type: 'studentReview',
+        content_type: 'testimonial',
+        'fields.testimonialType': 'alumni',
         limit,
         include: 2,
-        order: '-fields.graduationYear,-sys.createdAt'
+        order: '-sys.createdAt'
       }
     })
 
     return response.data.items
   } catch (error) {
-    console.error('Error fetching recent student reviews:', error)
+    console.error('Error fetching recent alumni testimonials:', error)
     return []
   }
 }

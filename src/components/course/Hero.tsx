@@ -1,6 +1,5 @@
 import Image from 'next/image'
 import { ensureProtocol } from '@/utils'
-import { Badge, Box, Group } from '@mantine/core'
 import { CourseSummaryCard } from '../cards'
 
 import IconAward from '@/assets/icons/Award'
@@ -20,12 +19,12 @@ type Props = {
 export default function CourseHero(props: Props) {
   const isMobile = useIsMobile()
   const words = props.name.trim().split(' ')
-  // Remove last word
-  const lastWord = words.pop()
+  // Take last two words for the highlighted line (e.g., "Production Diploma")
+  const highlightedWords = words.length > 2 ? words.splice(-2).join(' ') : words.pop() || ''
   const remainingName = words.join(' ')
 
   return (
-    <div className="relative h-[56vh] w-full px-4 sm:h-[50vh]">
+    <div className="relative h-[56vh] w-full sm:h-[50vh]">
       {/* Background Image */}
       <Image
         src={ensureProtocol(props.coverImage.fields.file.url)}
@@ -47,50 +46,51 @@ export default function CourseHero(props: Props) {
       ></div>
 
       {/* Floating Card */}
-      <div className={props.isCampaign ? 'w-full px-1 sm:w-full' : 'w-full px-1'}>
+      <div className="w-full">
         <div
           className={
             props.isCampaign
-              ? 'absolute left-1/2 top-[400px] z-20 flex w-full max-w-screen-xl -translate-x-1/2 transform flex-col px-4 sm:top-[45vh] sm:flex-row xl:px-0'
-              : 'absolute left-1/2 top-[400px] z-20 flex w-full max-w-screen-xl -translate-x-1/2 transform px-4 sm:top-[45vh] xl:px-0'
+              ? 'section-container absolute left-1/2 top-[400px] z-20 flex w-full -translate-x-1/2 transform flex-col sm:top-[45vh] sm:flex-row'
+              : 'section-container absolute left-1/2 top-[400px] z-20 flex w-full -translate-x-1/2 transform sm:top-[45vh]'
           }
         >
           <CourseSummaryCard
+            courseName={props.name}
             programType={props.programType}
             creditHours={props.creditHours}
             awardLevel={props.awardLevel}
             isCampaign={props.isCampaign}
           />
           {props.isCampaign && (
-            <Box className="relative w-full max-w-[480px] sm:top-[-120px] sm:ml-2">
+            <div className="relative w-full max-w-[480px] sm:top-[-120px] sm:ml-2">
               <EnquiryForm />
-            </Box>
+            </div>
           )}
         </div>
       </div>
 
       {/* Content Section */}
-      <div className="relative z-10 mx-auto w-full max-w-screen-xl pt-[15vh] text-white">
-        <div className="md:w-1/2">
-          <Badge
-            h={36}
-            mb={8}
+      <div className="section-container relative z-10 pt-[15vh] text-white">
+        <div className="max-w-[80%] md:max-w-[50%]">
+          <span
+            className="mb-2 inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-wide"
             style={{
-              backgroundColor: 'rgba(255, 255, 255, 0.07)', // Adjust the color and opacity
-              backdropFilter: 'blur(4px)' // Optional: adds a blur effect
+              height: 36,
+              backgroundColor: 'rgba(255, 255, 255, 0.07)',
+              backdropFilter: 'blur(4px)'
             }}
           >
-            <Group m={8}>
+            <div className="m-2 flex flex-wrap">
               <IconAward color="white" width={28} height={28} />
               <Paragraph size="sm" fontFamily="font-nexa" fontWeight={900}>
                 {props.programType.fields.name}
               </Paragraph>
-            </Group>
-          </Badge>
+            </div>
+          </span>
 
           <Title size={isMobile ? '32px' : '60px'} label={remainingName} color="white" />
 
-          <Title size={isMobile ? '32px' : '60px'} label={lastWord || 'Certificate'} color="#F1FE38" />
+          <Title size={isMobile ? '32px' : '60px'} label={highlightedWords || 'Certificate'} color="#F1FE38" />
         </div>
       </div>
     </div>

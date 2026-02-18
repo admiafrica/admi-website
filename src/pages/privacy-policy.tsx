@@ -1,249 +1,84 @@
-import Image from 'next/image'
-import { Box, Divider } from '@mantine/core'
-
 import { MainLayout } from '@/layouts/v3/MainLayout'
-import { Paragraph, Title } from '@/components/ui'
 import { PageSEO } from '@/components/shared/v3'
+import type { PolicySection } from '@/types/privacy-policy'
 
-import ImageSupportLanding from '@/assets/images/student-support-landing.png'
+/* ------------------------------------------------------------------ */
+/*  Data                                                               */
+/* ------------------------------------------------------------------ */
+
+const SECTIONS: PolicySection[] = [
+  {
+    title: '1. Data Collection',
+    body: 'We collect personal information that you voluntarily provide when you apply for admission, enquire about our programmes, or interact with our website. This includes your name, email address, phone number, academic records, and other relevant details necessary to process your application and provide our services.'
+  },
+  {
+    title: '2. Use of Information',
+    body: 'The information we collect is used to process admissions applications, communicate with prospective and current students, improve our educational services, send relevant updates about programmes and events, and comply with applicable legal and regulatory requirements.'
+  },
+  {
+    title: '3. Enquiry Form Submissions',
+    body: 'When you submit an enquiry form on our website, your contact details (name, email, phone number) and course preferences are stored securely in our CRM system. An admissions advisor will contact you within 24-48 hours to provide programme information and answer your questions. Your details may be used to send you relevant course updates, intake reminders, and scholarship opportunities. You can opt out of marketing communications at any time by contacting us directly.'
+  },
+  {
+    title: '4. Cookies',
+    body: 'Our website uses cookies to enhance your browsing experience, analyse site traffic, and personalise content. You may manage your cookie preferences through your browser settings. By continuing to use our website, you consent to the use of cookies as described in this policy.'
+  },
+  {
+    title: '5. Third-Party Services',
+    body: 'We may share your information with trusted third-party service providers who assist us in operating our website, conducting business, or serving our students. These parties are contractually obligated to keep your information confidential and use it only for the purposes specified.'
+  },
+  {
+    title: '6. Data Security',
+    body: 'We implement appropriate technical and organisational measures to protect your personal data against unauthorised access, alteration, disclosure, or destruction. However, no method of transmission over the internet is entirely secure, and we cannot guarantee absolute security.'
+  },
+  {
+    title: '7. Your Rights',
+    body: 'You have the right to access, correct, or delete your personal data held by ADMI. You may also request restrictions on processing or object to processing in certain circumstances. To exercise these rights, please contact our data protection officer using the details provided below.'
+  },
+  {
+    title: '8. Contact',
+    body: 'If you have any questions about this Privacy Policy or wish to exercise your data protection rights, please contact us at admissions@admi.ac.ke or call +254 741 132 751. You may also visit our campus at ADMI, Nairobi, Kenya.'
+  }
+]
+
+/* ------------------------------------------------------------------ */
+/*  Page                                                               */
+/* ------------------------------------------------------------------ */
 
 export default function PrivacyPolicyPage() {
   return (
-    <MainLayout footerBgColor="#002A23">
+    <MainLayout footerBgColor="#1a1a1a">
       <PageSEO
-        title="Privacy Policy"
-        description="Read ADMI's privacy policy to understand how we collect, use, and protect your personal information. Learn about your rights and our commitment to data protection."
-        keywords="ADMI privacy policy, data protection, personal information, privacy rights, data security, information collection, student privacy"
+        title="Privacy Policy | ADMI"
+        description="How ADMI collects, uses, and protects personal information."
       />
+
       <div className="w-full">
-        {/* HEADER */}
-        <Box className="relative w-full">
-          <Image
-            src={ImageSupportLanding}
-            placeholder="empty"
-            alt="Student Support Banner"
-            fill
-            priority
-            className="absolute inset-0 z-0"
-            style={{ objectFit: 'cover', objectPosition: '50% 50%' }}
-          />
-          <Box className="" bg={'#F5FFFD'}></Box>
-          {/* Radial Gradient Overlay */}
-          <div
-            className="z-5 absolute inset-0"
-            style={{
-              background: 'linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0, 42, 35, 1) 100%)'
-            }}
-          ></div>
-          <Box className="relative z-10 mx-auto flex h-[40vh] w-full max-w-screen-xl flex-row px-4 sm:flex-row 2xl:px-0">
-            <Box className="mt-[8vh] flex flex-col sm:w-1/2">
-              Í
-              <Title label="Privacy Policy" color="admiShamrok" size="48px" />
-            </Box>
-          </Box>
-        </Box>
-        {/* POLICY POINTS */}
-        <Box className="relative z-10 w-full bg-[#002A23] py-8">
-          <Box className="mx-auto flex w-full max-w-screen-xl flex-col">
-            <Box className="w-full px-4 text-white 2xl:px-0 2xl:pr-4">
-              <Box>
-                <Title label="Introduction" color="#F1FE37" />
-              </Box>
-              <Paragraph className="py-4" fontFamily="font-nexa">
-                At Africa Digital Media Institute (ADMI), we value your privacy and are committed to safeguarding your
-                personal data. This Privacy Policy outlines how we collect, use, store, and protect your information in
-                compliance with the Data Protection Act, 2019, and other relevant data protection laws. By engaging with
-                our services, you consent to the practices described in this policy.
-              </Paragraph>
-            </Box>
+        {/* ── Hero ── */}
+        <section className="section-padding bg-gradient-to-br from-[#0F2E2A] via-[#0A1F1D] to-[#091110] text-center text-white">
+          <div className="section-container">
+            <div className="flex items-center justify-center gap-2.5">
+              <span className="h-[3px] w-8 bg-secondary" />
+              <span className="font-proxima text-[13px] font-semibold uppercase tracking-[2px] text-secondary">
+                LEGAL
+              </span>
+            </div>
+            <h1 className="mt-5 font-proxima text-[48px] font-bold">Privacy Policy</h1>
+            <p className="mt-3 font-proxima text-[16px] text-[#B7D8CF]">Last updated: February 2026</p>
+          </div>
+        </section>
 
-            <Box className="w-full px-4 text-white 2xl:px-0 2xl:pr-4">
-              <Box>
-                <Title label="Information We Collect" color="#F1FE37" />
-              </Box>
-              <Paragraph>We may collect the following types of personal data:</Paragraph>
-              <ul>
-                <li>
-                  <Paragraph className="py-4" fontFamily="font-nexa">
-                    Personal Identification Information: Name, email address, phone number, and other contact details.
-                  </Paragraph>
-                </li>
-                <li>
-                  <Paragraph className="py-4" fontFamily="font-nexa">
-                    Academic Information: Enrollment details, academic records, and examination results.
-                  </Paragraph>
-                </li>
-                <li>
-                  <Paragraph className="py-4" fontFamily="font-nexa">
-                    Financial Information: Payment details, financial aid applications, and scholarship information.
-                  </Paragraph>
-                </li>
-                <li>
-                  <Paragraph className="py-4" fontFamily="font-nexa">
-                    Demographic Information: Age, gender, nationality, and other relevant demographic data.
-                  </Paragraph>
-                </li>
-              </ul>
-            </Box>
-
-            <Box className="w-full px-4 text-white 2xl:px-0 2xl:pr-4">
-              <Box>
-                <Title label="Purpose of Data Collection" color="#F1FE37" />
-              </Box>
-              <Paragraph>We collect your personal data for the following purposes:</Paragraph>
-              <ul>
-                <li>
-                  <Paragraph className="py-4" fontFamily="font-nexa">
-                    To provide educational services and support.
-                  </Paragraph>
-                </li>
-                <li>
-                  <Paragraph className="py-4" fontFamily="font-nexa">
-                    To manage your enrollment and academic progress.
-                  </Paragraph>
-                </li>
-                <li>
-                  <Paragraph className="py-4" fontFamily="font-nexa">
-                    To process financial transactions and provide financial aid.
-                  </Paragraph>
-                </li>
-                <li>
-                  <Paragraph className="py-4" fontFamily="font-nexa">
-                    To communicate important information regarding your studies and campus activities.
-                  </Paragraph>
-                </li>
-                <li>
-                  <Paragraph className="py-4" fontFamily="font-nexa">
-                    To comply with legal obligations and regulatory requirements.
-                  </Paragraph>
-                </li>
-              </ul>
-            </Box>
-
-            <Box className="w-full px-4 text-white 2xl:px-0 2xl:pr-4">
-              <Box>
-                <Title label="Data Security" color="#F1FE37" />
-              </Box>
-              <Paragraph>
-                ADMI takes the security of your personal data seriously. We implement appropriate technical and
-                organizational measures to protect your information from unauthorized access, disclosure, alteration, or
-                destruction. This includes:
-              </Paragraph>
-              <ul>
-                <li>
-                  <Paragraph className="py-4" fontFamily="font-nexa">
-                    Secure storage of data in encrypted databases.
-                  </Paragraph>
-                </li>
-                <li>
-                  <Paragraph className="py-4" fontFamily="font-nexa">
-                    Restricted access to personal data only to authorized personnel who require it for their roles.
-                  </Paragraph>
-                </li>
-                <li>
-                  <Paragraph className="py-4" fontFamily="font-nexa">
-                    Regular security assessments to identify and mitigate potential risks.
-                  </Paragraph>
-                </li>
-              </ul>
-            </Box>
-
-            <Box className="w-full px-4 text-white 2xl:px-0 2xl:pr-4">
-              <Box>
-                <Title label="Data Retention" color="#F1FE37" />
-              </Box>
-              <Paragraph className="py-4" fontFamily="font-nexa">
-                We will retain your personal data only for as long as necessary to fulfill the purposes outlined in this
-                policy or as required by law. Once your data is no longer needed, we will securely delete or anonymize
-                it to prevent unauthorized access.
-              </Paragraph>
-            </Box>
-            <Box className="w-full px-4 text-white 2xl:px-0 2xl:pr-4">
-              <Box>
-                <Title label="Sharing Your Information" color="#F1FE37" />
-              </Box>
-              <Paragraph className="py-4" fontFamily="font-nexa">
-                We do not sell, trade, or otherwise transfer your personal data to outside parties without your explicit
-                consent, except as required by law or to trusted third parties who assist us in operating our website,
-                conducting our business, or servicing you, so long as those parties agree to keep this information
-                confidential.
-              </Paragraph>
-            </Box>
-            <Box className="w-full px-4 text-white 2xl:px-0 2xl:pr-4">
-              <Box>
-                <Title label="Your Rights" color="#F1FE37" />
-              </Box>
-              <Paragraph>You have the following rights regarding your personal data:</Paragraph>
-              <ul>
-                <li>
-                  <Paragraph className="py-4" fontFamily="font-nexa">
-                    The right to access your personal data.
-                  </Paragraph>
-                </li>
-                <li>
-                  <Paragraph className="py-4" fontFamily="font-nexa">
-                    The right to request correction of inaccurate or incomplete data.
-                  </Paragraph>
-                </li>
-                <li>
-                  <Paragraph className="py-4" fontFamily="font-nexa">
-                    The right to request deletion of your personal data under certain circumstances.
-                  </Paragraph>
-                </li>
-                <li>
-                  <Paragraph className="py-4" fontFamily="font-nexa">
-                    The right to restrict or object to the processing of your personal data.
-                  </Paragraph>
-                </li>
-                <li>
-                  <Paragraph className="py-4" fontFamily="font-nexa">
-                    The right to data portability.
-                  </Paragraph>
-                </li>
-              </ul>
-
-              <Paragraph className="py-4" fontFamily="font-nexa">
-                To exercise any of these rights, please contact our Data Protection Officer.
-              </Paragraph>
-            </Box>
-
-            <Box className="w-full px-4 text-white 2xl:px-0 2xl:pr-4">
-              <Box>
-                <Title label="Changes to This Privacy Policy" color="#F1FE37" />
-              </Box>
-              <Paragraph className="py-4" fontFamily="font-nexa">
-                We may update this Privacy Policy from time to time to reflect changes in our practices or for other
-                operational, legal, or regulatory reasons. We will notify you of any significant changes and encourage
-                you to review this policy periodically.
-              </Paragraph>
-            </Box>
-            <Box className="w-full px-4 text-white 2xl:px-0 2xl:pr-4">
-              <Box>
-                <Title label="Contact Us" color="#F1FE37" />
-              </Box>
-              <Paragraph className="py-4" fontFamily="font-nexa">
-                If you have any questions or concerns about this Privacy Policy or our data practices, please contact us
-                at:
-              </Paragraph>
-
-              <Paragraph className="py-4" fontFamily="font-nexa" fontWeight={900}>
-                Africa Digital Media Institute (ADMI)
-              </Paragraph>
-              <Paragraph className="py-4" fontFamily="font-nexa">
-                Email: info@admi.ac.ke
-              </Paragraph>
-              <Paragraph className="py-4" fontFamily="font-nexa">
-                Phone: +254 (0) 706 349696
-              </Paragraph>
-
-              <Paragraph className="py-4" fontFamily="font-nexa">
-                Your privacy is important to us, and we are committed to protecting your personal data while providing
-                you with an exceptional educational experience.
-              </Paragraph>
-            </Box>
-          </Box>
-          <Divider mt={24} c={'admiShamrok'} opacity={'20%'} />
-        </Box>
+        {/* ── Content ── */}
+        <section className="bg-white py-16">
+          <div className="mx-auto max-w-[960px] space-y-10 px-6 md:px-8">
+            {SECTIONS.map((section) => (
+              <article key={section.title}>
+                <h2 className="font-proxima text-[24px] font-bold text-admi-black">{section.title}</h2>
+                <p className="mt-3 font-proxima text-[15px] leading-[1.7] text-[#555]">{section.body}</p>
+              </article>
+            ))}
+          </div>
+        </section>
       </div>
     </MainLayout>
   )

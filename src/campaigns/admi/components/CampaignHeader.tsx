@@ -1,5 +1,4 @@
 import styles from '@/assets/css/main.module.css'
-import { Affix, Group } from '@mantine/core'
 import logo from '@/assets/logo-main.svg'
 import { getCourseFormUrl } from '@/utils'
 import Image from 'next/image'
@@ -9,10 +8,10 @@ import { CampaignHeaderLayout } from '@/campaigns/components'
 export default function CampaignHeader() {
   return (
     <CampaignHeaderLayout>
-      <Group style={headerContentStyle}>
+      <div style={headerContentStyle} className="flex flex-wrap">
         <Image src={logo} width={80} alt="Africa Digital Media Institute" />
 
-        <Affix position={{ right: 10 }}>
+        <>
           <a
             href={getCourseFormUrl()}
             className={`${styles['btn']} ${styles['btn-primary']} ${styles['btn-floating']} ${styles['pulse']}`}
@@ -20,8 +19,8 @@ export default function CampaignHeader() {
           >
             Get a call back
           </a>
-        </Affix>
-      </Group>
+        </>
+      </div>
     </CampaignHeaderLayout>
   )
 }

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import { Container, Title, Text, Card, Group, Button, Badge, Grid, Box, Tabs } from '@mantine/core'
 import { IconPlayerPlay, IconEye, IconClock, IconUsers, IconTrendingUp, IconExternalLink } from '@tabler/icons-react'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -62,297 +61,287 @@ export function CourseVideoSection({ course, slug }: CourseVideoSectionProps) {
   }
 
   return (
-    <Container size="xl" py="xl">
-      <Title order={2} ta="center" mb="xl" c="dark">
-        Course Videos & Preview
-      </Title>
+    <div className="mx-auto w-full max-w-6xl px-4 py-8">
+      <h2 className="mb-6 text-center text-3xl font-semibold text-gray-900">Course Videos & Preview</h2>
 
-      <Tabs value={activeTab} onChange={setActiveTab} variant="outline" radius="md">
-        <Tabs.List grow mb="xl">
+      {/* Tabs */}
+      <div>
+        <div className="mb-4 flex gap-2 border-b border-gray-200">
           {hasMainVideo && (
-            <Tabs.Tab value="preview" leftSection={<IconPlayerPlay size={16} />}>
-              Course Preview
-            </Tabs.Tab>
+            <button
+              type="button"
+              onClick={() => setActiveTab('preview')}
+              className={`rounded-t-md px-4 py-2 ${activeTab === 'preview' ? 'border-b-2 border-gray-900 font-semibold' : 'text-gray-500'}`}
+            >
+              <span className="inline-flex items-center gap-1">
+                <IconPlayerPlay size={16} /> Course Preview
+              </span>
+            </button>
           )}
-          <Tabs.Tab value="related" leftSection={<IconEye size={16} />}>
-            Related Videos {loading ? '(Loading...)' : `(${relatedVideos.length})`}
-          </Tabs.Tab>
-          <Tabs.Tab value="info" leftSection={<IconTrendingUp size={16} />}>
-            Video Insights
-          </Tabs.Tab>
-        </Tabs.List>
+          <button
+            type="button"
+            onClick={() => setActiveTab('related')}
+            className={`rounded-t-md px-4 py-2 ${activeTab === 'related' ? 'border-b-2 border-gray-900 font-semibold' : 'text-gray-500'}`}
+          >
+            <span className="inline-flex items-center gap-1">
+              <IconEye size={16} /> Related Videos {loading ? '(Loading...)' : `(${relatedVideos.length})`}
+            </span>
+          </button>
+          <button
+            type="button"
+            onClick={() => setActiveTab('info')}
+            className={`rounded-t-md px-4 py-2 ${activeTab === 'info' ? 'border-b-2 border-gray-900 font-semibold' : 'text-gray-500'}`}
+          >
+            <span className="inline-flex items-center gap-1">
+              <IconTrendingUp size={16} /> Video Insights
+            </span>
+          </button>
+        </div>
 
         {/* Main Course Preview Tab */}
-        {hasMainVideo && (
-          <Tabs.Panel value="preview">
-            <Grid>
-              <Grid.Col span={{ base: 12, md: 8 }}>
-                <Card shadow="sm" padding="lg" radius="md" withBorder>
-                  <Card.Section>
-                    <div className="relative aspect-video w-full">
-                      <VideoPlayer videoUrl={course.courseVideo.fields.file.url} showControls={true} />
-                    </div>
-                  </Card.Section>
+        {activeTab === 'preview' && hasMainVideo && (
+          <div className="flex flex-wrap">
+            <div className="w-full md:w-8/12">
+              <div className="rounded-xl border border-gray-200 bg-white shadow-sm">
+                <div>
+                  <div className="relative aspect-video w-full">
+                    <VideoPlayer videoUrl={course.courseVideo.fields.file.url} showControls={true} />
+                  </div>
+                </div>
 
-                  <Group justify="space-between" mt="md" mb="xs">
+                <div className="p-6">
+                  <div className="mb-1 mt-4 flex flex-wrap justify-between">
                     <div>
-                      <Title order={3} size="h4">
-                        {course.name} - Course Preview
-                      </Title>
-                      <Text size="sm" c="dimmed">
+                      <h4 className="text-xl font-semibold text-gray-900">{course.name} - Course Preview</h4>
+                      <p className="text-sm text-gray-500">
                         Get an inside look at what you&apos;ll learn in this {course.awardLevel || 'course'}
-                      </Text>
+                      </p>
                     </div>
-                    <Badge color="blue" variant="light">
+                    <span className="inline-flex items-center rounded-full bg-blue-100 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-blue-800">
                       {course.awardLevel || 'Course'}
-                    </Badge>
-                  </Group>
+                    </span>
+                  </div>
 
-                  <Group mt="md">
-                    <Button
-                      component={Link}
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    <Link
                       href={`/watch/${slug}`}
-                      leftSection={<IconPlayerPlay size={16} />}
-                      variant="filled"
-                      color="red"
-                      size="md"
+                      className="inline-flex items-center gap-2 rounded-lg bg-red-600 px-4 py-2 font-medium text-white transition"
                     >
+                      <IconPlayerPlay size={16} />
                       Watch Full Video
-                    </Button>
-                    <Button component={Link} href="/enquiry" variant="outline" color="blue" size="md">
+                    </Link>
+                    <Link
+                      href="/enquiry"
+                      className="inline-flex items-center gap-2 rounded-lg border border-blue-400 bg-white px-4 py-2 font-medium text-blue-900 transition"
+                    >
                       Apply Now
-                    </Button>
-                  </Group>
-                </Card>
-              </Grid.Col>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-              <Grid.Col span={{ base: 12, md: 4 }}>
-                <Card shadow="sm" padding="lg" radius="md" withBorder h="100%">
-                  <Title order={4} mb="md">
-                    Video Stats
-                  </Title>
+            <div className="mt-4 w-full md:mt-0 md:w-4/12 md:pl-4">
+              <div className="h-full rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+                <h4 className="mb-4 text-xl font-semibold text-gray-900">Video Stats</h4>
 
-                  <Group mb="md">
-                    <IconEye size={20} color="#F76335" />
-                    <div>
-                      <Text fw={500}>{videoStats.views}</Text>
-                      <Text size="xs" c="dimmed">
-                        Total Views
-                      </Text>
-                    </div>
-                  </Group>
+                <div className="mb-4 flex flex-wrap gap-2">
+                  <IconEye size={20} color="#EF7B2E" />
+                  <div>
+                    <p className="font-medium text-gray-700">{videoStats.views}</p>
+                    <p className="text-xs text-gray-500">Total Views</p>
+                  </div>
+                </div>
 
-                  <Group mb="md">
-                    <IconClock size={20} color="#F76335" />
-                    <div>
-                      <Text fw={500}>{videoStats.duration}</Text>
-                      <Text size="xs" c="dimmed">
-                        Duration
-                      </Text>
-                    </div>
-                  </Group>
+                <div className="mb-4 flex flex-wrap gap-2">
+                  <IconClock size={20} color="#EF7B2E" />
+                  <div>
+                    <p className="font-medium text-gray-700">{videoStats.duration}</p>
+                    <p className="text-xs text-gray-500">Duration</p>
+                  </div>
+                </div>
 
-                  <Group mb="md">
-                    <IconUsers size={20} color="#F76335" />
-                    <div>
-                      <Text fw={500}>{videoStats.students}</Text>
-                      <Text size="xs" c="dimmed">
-                        Students Enrolled
-                      </Text>
-                    </div>
-                  </Group>
+                <div className="mb-4 flex flex-wrap gap-2">
+                  <IconUsers size={20} color="#EF7B2E" />
+                  <div>
+                    <p className="font-medium text-gray-700">{videoStats.students}</p>
+                    <p className="text-xs text-gray-500">Students Enrolled</p>
+                  </div>
+                </div>
 
-                  <Group mb="md">
-                    <IconTrendingUp size={20} color="#F76335" />
-                    <div>
-                      <Text fw={500}>{videoStats.completion}</Text>
-                      <Text size="xs" c="dimmed">
-                        Completion Rate
-                      </Text>
-                    </div>
-                  </Group>
+                <div className="mb-4 flex flex-wrap gap-2">
+                  <IconTrendingUp size={20} color="#EF7B2E" />
+                  <div>
+                    <p className="font-medium text-gray-700">{videoStats.completion}</p>
+                    <p className="text-xs text-gray-500">Completion Rate</p>
+                  </div>
+                </div>
 
-                  <Box mt="xl">
-                    <Text size="sm" fw={500} mb="xs">
-                      What you&apos;ll see in this video:
-                    </Text>
-                    <Text size="sm" c="dimmed">
-                      • Course curriculum overview
-                      <br />
-                      • Facilities and equipment tour
-                      <br />
-                      • Student projects showcase
-                      <br />
-                      • Career opportunities
-                      <br />• Application process
-                    </Text>
-                  </Box>
-                </Card>
-              </Grid.Col>
-            </Grid>
-          </Tabs.Panel>
+                <div className="mt-8">
+                  <p className="mb-1 text-sm font-medium text-gray-700">What you&apos;ll see in this video:</p>
+                  <p className="text-sm text-gray-500">
+                    • Course curriculum overview
+                    <br />
+                    • Facilities and equipment tour
+                    <br />
+                    • Student projects showcase
+                    <br />
+                    • Career opportunities
+                    <br />• Application process
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         )}
 
         {/* Related Videos Tab */}
-        <Tabs.Panel value="related">
-          {loading ? (
-            <div className="py-8 text-center">
-              <Text>Loading related videos...</Text>
-            </div>
-          ) : error ? (
-            <div className="py-8 text-center">
-              <Text c="red" mb="md">
-                {error}
-              </Text>
-              <Button variant="light" onClick={() => window.location.reload()}>
-                Try Again
-              </Button>
-            </div>
-          ) : relatedVideos.length === 0 ? (
-            <div className="py-8 text-center">
-              <Text c="dimmed">No related videos found for this course.</Text>
-            </div>
-          ) : (
-            <Grid>
-              {relatedVideos.map((video) => (
-                <Grid.Col key={video.id} span={{ base: 12, sm: 6, md: 4 }}>
-                  <Card
-                    shadow="sm"
-                    padding="lg"
-                    radius="md"
-                    withBorder
-                    className="cursor-pointer transition-shadow hover:shadow-lg"
-                    onClick={() => window.open(getYouTubeWatchUrl(video.id), '_blank')}
-                  >
-                    <Card.Section>
-                      <div className="relative aspect-video w-full overflow-hidden bg-gray-100">
-                        <Image
-                          src={video.thumbnail.medium || video.thumbnail.default}
-                          alt={video.title}
-                          fill
-                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                          className="object-cover transition-transform duration-300 hover:scale-105"
-                        />
+        {activeTab === 'related' && (
+          <div>
+            {loading ? (
+              <div className="py-8 text-center">
+                <p className="text-gray-700">Loading related videos...</p>
+              </div>
+            ) : error ? (
+              <div className="py-8 text-center">
+                <p className="mb-4 text-red-600">{error}</p>
+                <button
+                  className="inline-flex items-center gap-2 rounded-lg bg-gray-100 px-4 py-2 font-medium text-gray-900 transition"
+                  onClick={() => window.location.reload()}
+                >
+                  Try Again
+                </button>
+              </div>
+            ) : relatedVideos.length === 0 ? (
+              <div className="py-8 text-center">
+                <p className="text-gray-500">No related videos found for this course.</p>
+              </div>
+            ) : (
+              <div className="flex flex-wrap">
+                {relatedVideos.map((video) => (
+                  <div key={video.id} className="w-full p-2 sm:w-1/2 md:w-4/12">
+                    <div
+                      className="cursor-pointer rounded-xl border border-gray-200 bg-white shadow-sm transition-shadow hover:shadow-lg"
+                      onClick={() => window.open(getYouTubeWatchUrl(video.id), '_blank')}
+                    >
+                      <div>
+                        <div className="relative aspect-video w-full overflow-hidden bg-gray-100">
+                          <Image
+                            src={video.thumbnail.medium || video.thumbnail.default}
+                            alt={video.title}
+                            fill
+                            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                            className="object-cover transition-transform duration-300 hover:scale-105"
+                          />
 
-                        {/* Play Button Overlay */}
-                        <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30 opacity-0 transition-opacity duration-300 hover:opacity-100">
-                          <div className="rounded-full bg-white bg-opacity-90 p-3">
-                            <IconPlayerPlay size={24} color="#F76335" />
+                          {/* Play Button Overlay */}
+                          <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30 opacity-0 transition-opacity duration-300 hover:opacity-100">
+                            <div className="rounded-full bg-white bg-opacity-90 p-3">
+                              <IconPlayerPlay size={24} color="#EF7B2E" />
+                            </div>
+                          </div>
+
+                          {/* Duration Badge */}
+                          <div className="absolute bottom-2 right-2 rounded bg-black bg-opacity-70 px-2 py-1 text-xs text-white">
+                            {video.duration}
+                          </div>
+
+                          {/* YouTube Badge */}
+                          <div className="absolute left-2 top-2">
+                            <span className="inline-flex items-center rounded-full bg-red-600 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-white">
+                              YouTube
+                            </span>
                           </div>
                         </div>
+                      </div>
 
-                        {/* Duration Badge */}
-                        <div className="absolute bottom-2 right-2 rounded bg-black bg-opacity-70 px-2 py-1 text-xs text-white">
-                          {video.duration}
-                        </div>
+                      <div className="p-4">
+                        <h5 className="mt-4 line-clamp-2 text-lg font-semibold text-gray-900">{video.title}</h5>
+                        <p className="mt-1 line-clamp-2 text-sm text-gray-500">{video.description}</p>
 
-                        {/* YouTube Badge */}
-                        <div className="absolute left-2 top-2">
-                          <Badge color="red" variant="filled" size="xs">
-                            YouTube
-                          </Badge>
+                        <div className="mt-4 flex flex-wrap justify-between">
+                          <div className="flex flex-wrap gap-1">
+                            <IconEye size={14} color="#666" />
+                            <p className="text-xs text-gray-500">{video.viewCount}</p>
+                          </div>
+                          <button className="inline-flex items-center gap-2 rounded-lg bg-red-100 px-3 py-1 text-xs font-medium text-red-900 transition">
+                            <IconPlayerPlay size={12} />
+                            Watch
+                          </button>
                         </div>
                       </div>
-                    </Card.Section>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
 
-                    <Title order={5} mt="md" lineClamp={2}>
-                      {video.title}
-                    </Title>
-                    <Text size="sm" c="dimmed" lineClamp={2} mt="xs">
-                      {video.description}
-                    </Text>
-
-                    <Group justify="space-between" mt="md">
-                      <Group gap="xs">
-                        <IconEye size={14} color="#666" />
-                        <Text size="xs" c="dimmed">
-                          {video.viewCount}
-                        </Text>
-                      </Group>
-                      <Button size="xs" variant="light" color="red" leftSection={<IconPlayerPlay size={12} />}>
-                        Watch
-                      </Button>
-                    </Group>
-                  </Card>
-                </Grid.Col>
-              ))}
-            </Grid>
-          )}
-
-          {/* View More Videos CTA */}
-          <Group justify="center" mt="xl">
-            <Button
-              variant="outline"
-              color="red"
-              size="md"
-              leftSection={<IconExternalLink size={16} />}
-              component="a"
-              href="/media-archive/videos"
-            >
-              View All Videos
-            </Button>
-            <Button
-              color="red"
-              size="md"
-              component="a"
-              href="https://www.youtube.com/@ADMIafrica/"
-              target="_blank"
-              leftSection={<IconExternalLink size={16} />}
-            >
-              Visit YouTube Channel
-            </Button>
-          </Group>
-        </Tabs.Panel>
+            {/* View More Videos CTA */}
+            <div className="mt-8 flex flex-wrap justify-center gap-2">
+              <a
+                href="/media-archive/videos"
+                className="inline-flex items-center gap-2 rounded-lg border border-red-400 bg-white px-4 py-2 font-medium text-red-900 transition"
+              >
+                <IconExternalLink size={16} />
+                View All Videos
+              </a>
+              <a
+                href="https://www.youtube.com/@ADMIafrica/"
+                target="_blank"
+                className="inline-flex items-center gap-2 rounded-lg bg-red-600 px-4 py-2 font-medium text-white transition"
+              >
+                <IconExternalLink size={16} />
+                Visit YouTube Channel
+              </a>
+            </div>
+          </div>
+        )}
 
         {/* Video Insights Tab */}
-        <Tabs.Panel value="info">
-          <Grid>
-            <Grid.Col span={{ base: 12, md: 6 }}>
-              <Card shadow="sm" padding="lg" radius="md" withBorder>
-                <Title order={4} mb="md">
-                  Why Watch Our Course Videos?
-                </Title>
-                <Text mb="md">
+        {activeTab === 'info' && (
+          <div className="flex flex-wrap">
+            <div className="w-full p-2 md:w-1/2">
+              <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+                <h4 className="mb-4 text-xl font-semibold text-gray-900">Why Watch Our Course Videos?</h4>
+                <p className="mb-4 text-gray-700">
                   Our course preview videos give you an authentic look into the ADMI experience. See real students
                   working with industry-standard equipment and learn from experienced instructors.
-                </Text>
-                <Text size="sm" c="dimmed">
+                </p>
+                <p className="text-sm text-gray-500">
                   • Real classroom footage
                   <br />
                   • Student project showcases
                   <br />
                   • Industry-standard equipment demos
                   <br />• Career outcome testimonials
-                </Text>
-              </Card>
-            </Grid.Col>
+                </p>
+              </div>
+            </div>
 
-            <Grid.Col span={{ base: 12, md: 6 }}>
-              <Card shadow="sm" padding="lg" radius="md" withBorder>
-                <Title order={4} mb="md">
-                  Video Production Quality
-                </Title>
-                <Text mb="md">
+            <div className="w-full p-2 md:w-1/2">
+              <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+                <h4 className="mb-4 text-xl font-semibold text-gray-900">Video Production Quality</h4>
+                <p className="mb-4 text-gray-700">
                   All our videos are produced by our own Film & TV Production students and faculty, showcasing the
                   quality of education you&apos;ll receive.
-                </Text>
-                <Group mt="md">
-                  <Badge variant="light" color="green">
+                </p>
+                <div className="mt-4 flex flex-wrap gap-2">
+                  <span className="inline-flex items-center rounded-full bg-green-100 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-green-800">
                     4K Quality
-                  </Badge>
-                  <Badge variant="light" color="blue">
+                  </span>
+                  <span className="inline-flex items-center rounded-full bg-blue-100 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-blue-800">
                     Student Produced
-                  </Badge>
-                  <Badge variant="light" color="orange">
+                  </span>
+                  <span className="inline-flex items-center rounded-full bg-orange-100 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-orange-800">
                     Industry Standard
-                  </Badge>
-                </Group>
-              </Card>
-            </Grid.Col>
-          </Grid>
-        </Tabs.Panel>
-      </Tabs>
-    </Container>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
   )
 }
 

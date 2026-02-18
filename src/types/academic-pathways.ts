@@ -80,3 +80,43 @@ export interface AcademicPathwaysResponse {
     Entry?: AcademicPathwaysPartner[]
   }
 }
+
+/* ------------------------------------------------------------------ */
+/*  Phase 6 CMS Page Data Types                                        */
+/* ------------------------------------------------------------------ */
+
+export interface PathwayStep {
+  step: number
+  duration: string
+  title: string
+  description: string
+  credits: string
+  price: string | null
+  certification: string
+  borderColor: string
+  bgColor: string
+}
+
+/** CMS shape: icon stored as string ID, resolved at render time via getIcon() */
+export interface ArticulationCardCMS {
+  icon: string
+  iconColor: string
+  iconBg: string
+  title: string
+  description: string
+}
+
+export interface CreditCard {
+  value: string
+  valueColor: string
+  description: string
+}
+
+/** Full page data shape returned by the /api/v3/academic-pathways endpoint */
+export interface AcademicPathwaysPageData {
+  pathwaySteps: PathwayStep[]
+  articulationCards: ArticulationCardCMS[]
+  creditCards: CreditCard[]
+  seoTitle: string
+  seoDescription: string
+}

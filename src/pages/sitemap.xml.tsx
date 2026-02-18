@@ -12,15 +12,27 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
     '',
     '/about',
     '/courses',
-    '/careers',
+    '/academic-pathways',
+    '/accreditation',
+    '/accommodation',
+    '/apply',
     '/contact',
-    '/student-support',
+    '/enquiry',
+    '/events',
+    '/fellowship',
+    '/financial-planning',
     '/frequently-asked-questions',
-    '/news-events',
-    '/resources',
-    '/sanara',
+    '/our-impact',
+    '/media-archive',
+    '/news',
+    '/our-alumni',
     '/privacy-policy',
-    '/terms-and-conditions'
+    '/resources',
+    '/student-life',
+    '/student-portal',
+    '/student-showcase',
+    '/student-support',
+    '/work-with-us'
   ]
 
   // Location-based course pages

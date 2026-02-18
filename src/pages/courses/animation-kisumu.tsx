@@ -1,188 +1,56 @@
-import React from 'react'
-import { Container, Title, Text, Button, Grid, Card, List, Accordion } from '@mantine/core'
-import PageSEO from '../../components/shared/v3/PageSEO'
+import CourseCityTemplate from '@/components/course/CourseCityTemplate'
 
-const AnimationKisumuPage = () => {
-  const courseSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'Course',
-    name: 'Animation Course in Western',
-    description:
-      'Professional Animation training in kisumu, Kenya. Learn industry-relevant skills with 90% job placement rate.',
-    provider: {
-      '@type': 'EducationalOrganization',
-      name: 'Africa Digital Media Institute',
-      sameAs: 'https://admi.ac.ke'
-    },
-    hasCourseInstance: {
-      '@type': 'CourseInstance',
-      courseMode: 'on-site',
-      location: {
-        '@type': 'Place',
-        name: 'ADMI Nairobi Campus',
-        address: {
-          '@type': 'PostalAddress',
-          streetAddress: '25 Kenyatta Avenue, 3rd Floor, Caxton House',
-          addressLocality: 'Nairobi',
-          addressCountry: 'Kenya'
-        }
-      }
-    },
-    offers: {
-      '@type': 'Offer',
-      description: 'Visit https://admi.africa/student-support#fees for current fee structure',
-      priceCurrency: 'KES'
-    }
-  }
-
+export default function AnimationKisumuPage() {
   return (
-    <>
-      <PageSEO
-        title="Animation Course in Western - ADMI"
-        description="Best Animation course in kisumu, Kenya. Professional training with industry experts, modern facilities, and guaranteed job placement support."
-        canonical="https://admi.ac.ke/courses/animation-kisumu"
-        keywords="animation, kisumu, course, training, kenya, admi"
-      />
-
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(courseSchema)
-        }}
-      />
-
-      <Container size="lg" py="xl">
-        <Title order={1} ta="center" mb="md">
-          Animation Course in Western
-        </Title>
-
-        <Text size="lg" ta="center" mb="xl" c="dimmed">
-          In Kisumu, the burgeoning tech hub of Western Kenya, animation professionals have a unique edge due to
-          emerging tech and creative sectors with lower competition. The presence of Lake Region media, agricultural
-          tech firms, and international NGOs opens doors for animation in advertising, educational content, and digital
-          storytelling, making Kisumu an ideal place for budding animators.
-        </Text>
-
-        <Grid>
-          <Grid.Col span={{ base: 12, md: 8 }}>
-            <Card shadow="sm" padding="lg" radius="md" withBorder>
-              <Title order={2} mb="md">
-                Why Choose Animation in kisumu?
-              </Title>
-
-              <List spacing="sm" size="sm">
-                <List.Item>Industry-relevant curriculum designed for Kenya&apos;s market</List.Item>
-                <List.Item>Experienced instructors with real-world experience</List.Item>
-                <List.Item>State-of-the-art facilities and equipment at our Nairobi campus</List.Item>
-                <List.Item>90% job placement rate across Kenya</List.Item>
-                <List.Item>Flexible payment plans available</List.Item>
-                <List.Item>Career support and internship opportunities</List.Item>
-                <List.Item>Accessible to students from kisumu and surrounding areas</List.Item>
-              </List>
-
-              <Card mt="md" shadow="sm" padding="md" radius="md" withBorder>
-                <Text fw={500} mb="sm">
-                  📚 Complete Course Information
-                </Text>
-                <Text size="sm" mb="md">
-                  Get detailed curriculum, admission requirements, and enrollment information for our Animation program.
-                </Text>
-                <Button component="a" href="/courses/animation-and-motion-graphics-diploma" variant="light" fullWidth>
-                  View Full Animation Course Details
-                </Button>
-              </Card>
-            </Card>
-
-            <Card shadow="sm" padding="lg" radius="md" withBorder mt="md">
-              <Title order={3} mb="md">
-                Frequently Asked Questions - Kisumu Students
-              </Title>
-              <Accordion>
-                <Accordion.Item key={0} value={'faq-0'}>
-                  <Accordion.Control>
-                    How does Kisumu's emerging tech hub status benefit animation students?
-                  </Accordion.Control>
-                  <Accordion.Panel>
-                    <Text size="sm">
-                      Kisumu's position as an emerging tech hub means animation students have first-hand access to
-                      innovative projects from agricultural tech firms and international NGOs. This unique environment
-                      fosters practical learning and networking opportunities with startups seeking fresh, creative
-                      content.
-                    </Text>
-                  </Accordion.Panel>
-                </Accordion.Item>
-                <Accordion.Item key={1} value={'faq-1'}>
-                  <Accordion.Control>Are there local companies in Kisumu that hire animators?</Accordion.Control>
-                  <Accordion.Panel>
-                    <Text size="sm">
-                      Yes, in Kisumu, animators find opportunities within Lake Region media companies, advertising
-                      agencies, and tech startups, particularly those focusing on agricultural technology. These
-                      employers are often in search of talent skilled in 2D/3D animation, motion graphics, and VFX to
-                      bring their digital content to life.
-                    </Text>
-                  </Accordion.Panel>
-                </Accordion.Item>
-              </Accordion>
-            </Card>
-          </Grid.Col>
-
-          <Grid.Col span={{ base: 12, md: 4 }}>
-            <Card shadow="sm" padding="lg" radius="md" withBorder>
-              <Title order={3} mb="md">
-                Course Details
-              </Title>
-
-              <Text mb="sm">
-                <strong>Duration:</strong> 18 months
-              </Text>
-              <Text mb="sm">
-                <strong>Level:</strong> Diploma
-              </Text>
-              <Text mb="sm">
-                <strong>Fee:</strong>{' '}
-                <a href="https://admi.africa/student-support#fees" target="_blank">
-                  View current fees
-                </a>
-              </Text>
-              <Text mb="sm">
-                <strong>Location:</strong> ADMI Nairobi Campus
-              </Text>
-              <Text mb="sm">
-                <strong>Campus:</strong> 25 Kenyatta Avenue, Nairobi
-              </Text>
-
-              <Button component="a" href="/enquiry" fullWidth mt="md" color="blue">
-                Apply Now
-              </Button>
-            </Card>
-          </Grid.Col>
-        </Grid>
-
-        <Title order={2} mt="xl" mb="md">
-          Animation Opportunities in kisumu
-        </Title>
-
-        <Text>
-          kisumu is an important center in Western with growing opportunities in Kenya&apos;s creative and digital
-          industries. ADMI&apos;s Animation program prepares you for the expanding job market. Students from kisumu are
-          welcome to join our comprehensive programs at our Nairobi campus located at 25 Kenyatta Avenue.
-        </Text>
-
-        <Card mt="xl" shadow="sm" padding="lg" radius="md" withBorder>
-          <Title order={3} mb="md">
-            🎯 Ready to Start Your Animation Journey?
-          </Title>
-          <Text mb="md">
-            Take the next step towards your creative career. Explore our comprehensive Animation program with detailed
-            curriculum, career outcomes, and admission process.
-          </Text>
-          <Button component="a" href="/courses/animation-and-motion-graphics-diploma" size="lg" fullWidth>
-            Explore Full Animation Program Details
-          </Button>
-        </Card>
-      </Container>
-    </>
+    <CourseCityTemplate
+      seo={{
+        title: 'Animation Course in Western - ADMI',
+        description:
+          'Best Animation course in kisumu, Kenya. Professional training with industry experts, modern facilities, and guaranteed job placement support.',
+        canonical: 'https://admi.ac.ke/courses/animation-kisumu',
+        keywords: 'animation, kisumu, course, training, kenya, admi'
+      }}
+      courseName="Animation"
+      city="Kisumu"
+      pageTitle="Animation Course in Western"
+      subtitle="In Kisumu, the burgeoning tech hub of Western Kenya, animation professionals have a unique edge due to emerging tech and creative sectors with lower competition. The presence of Lake Region media, agricultural tech firms, and international NGOs opens doors for animation in advertising, educational content, and digital storytelling, making Kisumu an ideal place for budding animators."
+      whyTitle="Why Choose Animation in kisumu?"
+      highlights={[
+        "Industry-relevant curriculum designed for Kenya's market",
+        'Experienced instructors with real-world experience',
+        'State-of-the-art facilities and equipment at our Nairobi campus',
+        '90% job placement rate across Kenya',
+        'Flexible payment plans available',
+        'Career support and internship opportunities',
+        'Accessible to students from kisumu and surrounding areas'
+      ]}
+      courseLink="/courses/animation-and-motion-graphics-diploma"
+      courseLinkText="View Full Animation Course Details"
+      faqs={[
+        {
+          question: "How does Kisumu's emerging tech hub status benefit animation students?",
+          answer:
+            "Kisumu's position as an emerging tech hub means animation students have first-hand access to innovative projects from agricultural tech firms and international NGOs. This unique environment fosters practical learning and networking opportunities with startups seeking fresh, creative content."
+        },
+        {
+          question: 'Are there local companies in Kisumu that hire animators?',
+          answer:
+            'Yes, in Kisumu, animators find opportunities within Lake Region media companies, advertising agencies, and tech startups, particularly those focusing on agricultural technology. These employers are often in search of talent skilled in 2D/3D animation, motion graphics, and VFX to bring their digital content to life.'
+        }
+      ]}
+      details={[
+        { label: 'Duration', value: '18 months' },
+        { label: 'Level', value: 'Diploma' },
+        { label: 'Fee', value: 'View current fees', href: 'https://admi.africa/student-support#fees' },
+        { label: 'Location', value: 'ADMI Nairobi Campus' },
+        { label: 'Campus', value: '25 Kenyatta Avenue, Nairobi' }
+      ]}
+      jobMarketTitle="Animation Opportunities in kisumu"
+      jobMarketText="kisumu is an important center in Western with growing opportunities in Kenya's creative and digital industries. ADMI's Animation program prepares you for the expanding job market. Students from kisumu are welcome to join our comprehensive programs at our Nairobi campus located at 25 Kenyatta Avenue."
+      ctaTitle="🎯 Ready to Start Your Animation Journey?"
+      ctaText="Take the next step towards your creative career. Explore our comprehensive Animation program with detailed curriculum, career outcomes, and admission process."
+      ctaButtonText="Explore Full Animation Program Details"
+      ctaButtonHref="/courses/animation-and-motion-graphics-diploma"
+    />
   )
 }
-
-export default AnimationKisumuPage

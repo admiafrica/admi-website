@@ -5,7 +5,7 @@ export default function Document() {
 
   return (
     <Html lang="en">
-      <Head>{/* GTM script moved to _app.tsx using next/script */}</Head>
+      <Head />
       <body className="antialiased">
         {/* Google Tag Manager (noscript) */}
         {gtmId && (

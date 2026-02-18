@@ -1,87 +1,100 @@
-import { MainLayout } from '@/layouts/v3/MainLayout'
 import { ensureProtocol } from '@/utils'
 import { PageSEO } from '@/components/shared/v3'
-import { ArticleSchema, BreadcrumbSchema } from '@/components/shared/StructuredData'
+import { BlogPostSchema } from '@/components/seo/ArticleSchema'
+import { BreadcrumbSchema } from '@/components/seo/BreadcrumbSchema'
+import ArticleLayout from '@/components/articles/ArticleLayout'
 
-export default function NewsDetailPage({ article, slug }: { article: any; slug: string }) {
-  // Handle case where article is undefined
-  if (!article) {
-    return (
-      <MainLayout>
-        <PageSEO title="Article Not Found" />
-        <div>Article not found</div>
-      </MainLayout>
-    )
-  }
-
-  // Extract plain text from the rich text content for description
-  const getPlainTextFromRichText = (richText: any) => {
-    if (!richText || !richText.content) return ''
-
-    return (
-      richText.content
-        .map((block: any) => block.content?.map((content: any) => content.value).join(' '))
-        .join(' ')
-        .substring(0, 200) + '...'
-    )
-  }
-
-  const description = getPlainTextFromRichText(article.content) || 'Read the latest news from ADMI'
-  const articleBody = getPlainTextFromRichText(article.content) || ''
-
-  // Format the date
-  const formatDate = (dateString: string) => {
-    if (!dateString) return ''
-    return new Date(dateString).toISOString()
-  }
+export default function NewsArticlePage({
+  article,
+  slug,
+  relatedArticles = []
+}: {
+  article: any
+  slug: string
+  relatedArticles?: any[]
+}) {
+  const tagKeywords = article?.tags?.join(', ') || ''
 
   return (
-    <MainLayout>
-      <PageSEO
-        title={article.title || 'News Article'}
-        image={
-          article.featuredImage?.fields?.file?.url ? ensureProtocol(article.featuredImage.fields.file.url) : undefined
-        }
-        url={`/news/${slug}`}
-        description={description}
-      />
-
-      {/* Structured Data */}
-      <ArticleSchema
-        headline={article.title || 'News Article'}
-        description={description}
-        image={
-          article.featuredImage?.fields?.file?.url ? ensureProtocol(article.featuredImage.fields.file.url) : undefined
-        }
-        url={`${process.env.NEXT_PUBLIC_API_BASE_URL || 'https://admi.africa'}/news/${slug}`}
-        datePublished={formatDate(article.publishDate || article.sys?.createdAt)}
-        dateModified={formatDate(article.sys?.updatedAt)}
-        author={
-          article.author
-            ? {
-                name: article.author.fields?.name || 'ADMI Staff',
-                url: article.author.fields?.profileUrl
+    <ArticleLayout
+      article={article}
+      slug={slug}
+      relatedArticles={relatedArticles}
+      section="news"
+      backLabel="News"
+      backHref="/news"
+      seoSchemas={
+        article ? (
+          <>
+            <PageSEO
+              title={`${article.title} - News | ADMI Kenya`}
+              description={article.summary || article.excerpt}
+              keywords={`${article.category || 'News'}, ${tagKeywords}, ADMI, Kenya`}
+              url={`/news/${slug}`}
+              image={
+                article.coverImage?.fields?.file?.url
+                  ? ensureProtocol(article.coverImage.fields.file.url)
+                  : undefined
               }
-            : undefined
-        }
-        keywords={article.tags?.map((tag: any) => tag.fields?.name) || []}
-        articleSection="News"
-        articleBody={articleBody}
-      />
-
-      <BreadcrumbSchema
-        items={[
-          { name: 'Home', url: process.env.NEXT_PUBLIC_API_BASE_URL || 'https://admi.africa' },
-          { name: 'News', url: `${process.env.NEXT_PUBLIC_API_BASE_URL || 'https://admi.africa'}/news` },
-          {
-            name: article.title || 'News Article',
-            url: `${process.env.NEXT_PUBLIC_API_BASE_URL || 'https://admi.africa'}/news/${slug}`
-          }
-        ]}
-      />
-
-      {/* Rest of your component */}
-      {/* ... */}
-    </MainLayout>
+            />
+            <BreadcrumbSchema
+              title={article.title}
+              slug={slug}
+              category={article.category || 'News'}
+            />
+            <BlogPostSchema
+              title={article.title}
+              description={
+                article.summary ||
+                article.excerpt ||
+                'Latest news from Africa Digital Media Institute'
+              }
+              image={
+                article.coverImage?.fields?.file?.url
+                  ? ensureProtocol(article.coverImage.fields.file.url)
+                  : undefined
+              }
+              publishedDate={article.publishDate || article.sys?.createdAt}
+              modifiedDate={article.sys?.updatedAt}
+              url={`https://admi.africa/news/${slug}`}
+              category={article.category || 'News'}
+              tags={article.tags || ['ADMI', 'News']}
+            />
+          </>
+        ) : undefined
+      }
+    />
   )
+}
+
+export async function getServerSideProps(context: any) {
+  const { slug } = context.params
+  const baseUrl = `http://${context.req.headers.host}`
+
+  try {
+    const response = await fetch(`${baseUrl}/api/v3/news-details?slug=${slug}`)
+    if (!response.ok) {
+      return { notFound: true }
+    }
+
+    const data = await response.json()
+    const article = { ...data.fields, sys: data.sys }
+
+    const relatedResponse = await fetch(
+      `${baseUrl}/api/v3/related-articles?tags=${encodeURIComponent((article.tags || []).join(','))}&category=${encodeURIComponent(article.category || 'News')}&excludeId=${data.sys?.id || ''}&limit=3`
+    )
+
+    let relatedArticles = []
+    if (relatedResponse.ok) {
+      const relatedData = await relatedResponse.json()
+      relatedArticles = relatedData.items || []
+    }
+
+    return {
+      props: { article, slug, relatedArticles }
+    }
+  } catch (error) {
+    console.error('Error fetching article:', error)
+    return { notFound: true }
+  }
 }

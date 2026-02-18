@@ -57,13 +57,13 @@ export function EducationalOrganizationSchema({ includePrograms = true }: Educat
     accreditedBy: [
       {
         '@type': 'Organization',
-        name: 'Pearson Assured',
-        url: 'https://www.pearson.com'
+        name: 'Woolf University',
+        url: 'https://woolf.university'
       },
       {
         '@type': 'Organization',
-        name: 'Woolf University',
-        url: 'https://woolf.university'
+        name: 'TVETA Kenya',
+        url: 'https://www.tveta.go.ke'
       }
     ],
 

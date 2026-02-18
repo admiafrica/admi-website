@@ -1,197 +1,151 @@
-import { Box, Card } from '@mantine/core'
-import Image from 'next/image'
+import Link from 'next/link'
+import { IconMapPin, IconPhone, IconMail, IconClock, IconBrandWhatsapp } from '@tabler/icons-react'
 
 import { MainLayout } from '@/layouts/v3/MainLayout'
-import { ContactForm } from '@/components/forms'
-import { Title, Paragraph } from '@/components/ui'
 import { PageSEO } from '@/components/shared/v3'
-import { useIsMobile } from '@/hooks/useIsMobile'
-import { InstitutionalFAQSchema } from '@/components/seo/InstitutionalFAQSchema'
-import { WhatsAppLinkPlain } from '@/components/shared/WhatsAppLink'
+import { ContactForm } from '@/components/forms'
+import type { ContactInfo } from '@/types/contact'
 
-import IconBgImageYellow from '@/assets/icons/ellipse-yellow.svg'
-import IconBgImageRed from '@/assets/icons/ellipse-red.svg'
-import { IconMail, IconPhone, IconMapPin, IconClock, IconBrandWhatsapp } from '@tabler/icons-react'
+/* ------------------------------------------------------------------ */
+/*  Data                                                               */
+/* ------------------------------------------------------------------ */
+
+const CONTACT_INFO: ContactInfo[] = [
+  {
+    icon: IconMapPin,
+    label: 'Campus Address',
+    value: 'Caxton House, 3rd Floor\nKenyatta Avenue, Nairobi CBD\nKenya',
+    bg: '#EEF9F7'
+  },
+  {
+    icon: IconPhone,
+    label: 'Phone',
+    value: '+254 (0) 20 2626 883\n+254 722 123 456',
+    bg: '#FFF0F0'
+  },
+  {
+    icon: IconMail,
+    label: 'Email',
+    value: 'admissions@admi.ac.ke\ninfo@admi.ac.ke',
+    bg: '#FFF8F0'
+  },
+  {
+    icon: IconClock,
+    label: 'Office Hours',
+    value: 'Monday - Friday: 8:00 AM - 5:00 PM\nSaturday: 9:00 AM - 1:00 PM',
+    bg: '#EEF0FF'
+  }
+]
+
+/* ------------------------------------------------------------------ */
+/*  Page                                                               */
+/* ------------------------------------------------------------------ */
 
 export default function ContactPage() {
-  const isMobile = useIsMobile()
-
   return (
-    <MainLayout minimizeFooter minimizeHeader footerBgColor="#002A23">
+    <MainLayout minimizeFooter footerBgColor="#1a1a1a">
       <PageSEO
-        title="Contact Us"
-        description="Get in touch with Africa Digital Media Institute (ADMI). Contact our team for inquiries about courses, admissions, partnerships, or general information. We're here to help you start your creative journey."
-        keywords="contact ADMI, get in touch, ADMI contact information, course inquiries, admissions contact, ADMI Nairobi, creative media institute contact"
+        title="Contact Us | ADMI"
+        description="Get in touch with ADMI admissions and support teams. Visit us in Nairobi, call, email, or WhatsApp."
       />
 
-      {/* General FAQ Schema for contact page */}
-      <InstitutionalFAQSchema faqType="general" />
-      <div className="min-h-[100vh] w-full bg-[#002A23] pt-16">
-        {/* BACKGROUND IMAGES */}
-        <div className="absolute left-[54%] top-[24vh] h-fit w-full -translate-x-1/2 transform">
-          <div className="flex w-full justify-end pr-[10%]">
-            <Image src={IconBgImageYellow} alt={'background image'} />
+      <div className="w-full">
+        {/* ── Hero ── */}
+        <section className="section-padding bg-[#0A3D3D] text-center text-white">
+          <div className="section-container">
+            <div className="flex items-center justify-center gap-3">
+              <span className="h-0.5 w-8 bg-secondary" />
+              <span className="font-proxima text-[13px] font-semibold uppercase tracking-[2px] text-secondary">
+                CONTACT
+              </span>
+            </div>
+            <h1 className="mt-5 font-proxima text-[48px] font-bold">Get In Touch With ADMI</h1>
+            <p className="mx-auto mt-4 max-w-[600px] font-proxima text-[18px] leading-[1.6] text-white/80">
+              Have a question about our programmes, admissions, or campus? We are here to help.
+            </p>
           </div>
-        </div>
+        </section>
 
-        <div className="absolute left-[50%] top-[20vh] h-fit w-full -translate-x-1/2 transform">
-          <div className="flex w-full">
-            <Image src={IconBgImageRed} alt={'background image'} />
-          </div>
-        </div>
+        {/* ── Form + Contact Info ── */}
+        <section className="bg-white">
+          <div className="section-container flex w-full flex-col lg:flex-row">
+            {/* Form Side */}
+            <div className="flex-1 py-16">
+              <h2 className="font-proxima text-[32px] font-bold text-[#171717]">Send Us a Message</h2>
+              <p className="mt-2 font-proxima text-[15px] leading-[1.6] text-[#666]">
+                Fill out the form below and our admissions team will get back to you within 24 hours.
+              </p>
+              <div className="mt-8">
+                <ContactForm />
+              </div>
+            </div>
 
-        <div className="relative z-10 mx-auto flex w-full max-w-screen-xl flex-col px-4 lg:flex-row 2xl:px-0">
-          {/* Left Side - Contact Information */}
-          <div className="lg:w-1/2 lg:pr-8">
-            <Box mb={6}>
-              <Title label="Get in Touch" color="#F1FE38" size={isMobile ? '30px' : '48px'} />
-            </Box>
-            <Box mb={4}>
-              <Title label="with ADMI" color="white" size={isMobile ? '30px' : '48px'} />
-            </Box>
-            <Box mb={8}>
-              <Paragraph className="text-white">
-                We&apos;re here to help you with any questions about our programs, admissions, or services. Reach out to
-                us and we&apos;ll get back to you as soon as possible.
-              </Paragraph>
-            </Box>
-
-            {/* Contact Information Cards */}
-            <div className="space-y-4">
-              {/* Address */}
-              <Card className="border border-white/20 bg-white/10 backdrop-blur-sm" p="lg">
-                <div className="flex items-start space-x-4">
-                  <div className="flex-shrink-0">
-                    <IconMapPin size={24} className="text-[#01C6A5]" />
-                  </div>
-                  <div>
-                    <Title label="Visit Us" color="black" size="18px" />
-                    <Paragraph className="mt-1 text-black">
-                      25 Caxton House 3rd Floor
-                      <br />
-                      Kenyatta Avenue
-                      <br />
-                      P.O. Box 35447-00100
-                      <br />
-                      Nairobi, Kenya
-                    </Paragraph>
-                  </div>
-                </div>
-              </Card>
-
-              {/* Email */}
-              <Card className="border border-white/20 bg-white/10 backdrop-blur-sm" p="lg">
-                <div className="flex items-start space-x-4">
-                  <div className="flex-shrink-0">
-                    <IconMail size={24} className="text-[#01C6A5]" />
-                  </div>
-                  <div>
-                    <Title label="Email Us" color="black" size="18px" />
-                    <Paragraph className="mt-1 text-black">
-                      General Inquiries:{' '}
-                      <a href="mailto:info@admi.africa" className="text-[#01C6A5] hover:underline">
-                        info@admi.africa
-                      </a>
-                      <br />
-                      Admissions:{' '}
-                      <a href="mailto:admissions@admi.africa" className="text-[#01C6A5] hover:underline">
-                        admissions@admi.africa
-                      </a>
-                    </Paragraph>
-                  </div>
-                </div>
-              </Card>
-
-              {/* Phone & WhatsApp */}
-              <Card className="border border-white/20 bg-white/10 backdrop-blur-sm" p="lg">
-                <div className="flex items-start space-x-4">
-                  <div className="flex-shrink-0">
-                    <IconPhone size={24} className="text-[#01C6A5]" />
-                  </div>
-                  <div>
-                    <Title label="Call or WhatsApp" color="black" size="18px" />
-                    <Paragraph className="mt-1 text-black">
-                      <a href="tel:+254741132751" className="text-[#01C6A5] hover:underline">
-                        +254 741 132 751
-                      </a>
-                    </Paragraph>
-                    <div className="mt-2 flex items-center">
-                      <IconBrandWhatsapp size={20} className="mr-2 text-green-400" />
-                      <WhatsAppLinkPlain trackingLocation="contact_page" className="text-green-400 hover:underline">
-                        WhatsApp Us
-                      </WhatsAppLinkPlain>
+            {/* Info Side */}
+            <div className="w-full bg-[#F9F9F9] py-16 lg:w-[420px] lg:px-6 lg:py-16">
+              <h2 className="font-proxima text-[24px] font-bold text-[#171717]">Contact Information</h2>
+              <div className="mt-6 space-y-6">
+                {CONTACT_INFO.map((info) => (
+                  <div key={info.label} className="flex gap-4">
+                    <div
+                      className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full"
+                      style={{ backgroundColor: info.bg }}
+                    >
+                      <info.icon size={18} className="text-[#171717]" />
+                    </div>
+                    <div>
+                      <p className="font-proxima text-[14px] font-bold text-[#171717]">{info.label}</p>
+                      <p className="mt-1 whitespace-pre-line font-proxima text-[13px] leading-[1.6] text-[#666]">
+                        {info.value}
+                      </p>
                     </div>
                   </div>
-                </div>
-              </Card>
-
-              {/* Office Hours */}
-              <Card className="border border-white/20 bg-white/10 backdrop-blur-sm" p="lg">
-                <div className="flex items-start space-x-4">
-                  <div className="flex-shrink-0">
-                    <IconClock size={24} className="text-[#01C6A5]" />
-                  </div>
-                  <div>
-                    <Title label="Office Hours" color="black" size="18px" />
-                    <Paragraph className="mt-1 text-black">
-                      Monday - Friday: 8:00 AM - 5:00 PM
-                      <br />
-                      Saturday: 9:00 AM - 1:00 PM
-                      <br />
-                      Sunday: Closed
-                    </Paragraph>
-                  </div>
-                </div>
-              </Card>
-            </div>
-
-            {/* Social Media Links */}
-            <Box mt={8}>
-              <Title label="Follow Us" color="white" size="18px" />
-              <div className="mt-3 flex space-x-4">
-                <a
-                  href="https://www.facebook.com/ADMIafrica"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[#01C6A5] transition-colors hover:text-[#F1FE38]"
-                >
-                  Facebook
-                </a>
-                <a
-                  href="https://twitter.com/ADMIafrica"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[#01C6A5] transition-colors hover:text-[#F1FE38]"
-                >
-                  Twitter
-                </a>
-                <a
-                  href="https://www.instagram.com/ADMIafrica"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[#01C6A5] transition-colors hover:text-[#F1FE38]"
-                >
-                  Instagram
-                </a>
-                <a
-                  href="https://www.linkedin.com/company/ADMIafrica"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[#01C6A5] transition-colors hover:text-[#F1FE38]"
-                >
-                  LinkedIn
-                </a>
+                ))}
               </div>
-            </Box>
-          </div>
-
-          {/* Right Side - Contact Form */}
-          <div className="lg:w-1/2 lg:pl-8">
-            <div className="mx-auto max-w-xl py-12">
-              <ContactForm />
             </div>
           </div>
-        </div>
+        </section>
+
+        {/* ── WhatsApp Bar ── */}
+        <section className="bg-brand-whatsapp">
+          <div className="section-container flex w-full items-center justify-center gap-4 py-5">
+            <IconBrandWhatsapp size={20} className="text-white" />
+            <p className="font-proxima text-[15px] font-semibold text-white">
+              Prefer WhatsApp? Chat with our admissions team instantly
+            </p>
+            <Link
+              href="https://wa.me/254741132751"
+              target="_blank"
+              className="rounded-full bg-white px-6 py-2.5 font-proxima text-[14px] font-bold text-brand-whatsapp transition hover:bg-white/90"
+            >
+              Start Chat
+            </Link>
+          </div>
+        </section>
+
+        {/* ── Map Section ── */}
+        <section className="bg-[#F9F9F9] py-16">
+          <div className="section-container">
+            <h2 className="text-center font-proxima text-[32px] font-bold text-[#171717]">Find Us</h2>
+            <div className="relative mt-8 h-[400px] overflow-hidden rounded-2xl">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.8174!2d36.8219!3d-1.2864!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMcKwMTcnMTEuMCJTIDM2wrA0OScxOC44IkU!5e0!3m2!1sen!2ske!4v1!5m2!1sen!2ske"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="ADMI Campus Location"
+              />
+              <div className="absolute bottom-10 left-10 rounded-xl bg-white/95 p-4">
+                <p className="font-proxima text-[14px] font-bold text-[#171717]">
+                  ADMI - Caxton House, Kenyatta Avenue
+                </p>
+                <p className="mt-1 font-proxima text-[12px] text-[#666]">Next to General Post Office, Nairobi CBD</p>
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
     </MainLayout>
   )

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import { Container, Title, Card, Text, Button, Alert, Loader } from '@mantine/core'
 
 export default function VerifyChannelPage() {
   const [result, setResult] = useState<any>(null)
@@ -40,7 +39,7 @@ export default function VerifyChannelPage() {
         `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${CHANNEL_ID}&maxResults=5&order=date&type=video&key=${API_KEY}`
       )
 
-      let videos = []
+      let videos: any[] = []
       if (videosResponse.ok) {
         const videosData = await videosResponse.json()
         videos = videosData.items || []
@@ -75,112 +74,101 @@ export default function VerifyChannelPage() {
   }
 
   return (
-    <Container size="md" py="xl">
-      <Title order={1} mb="xl" ta="center">
-        Verify ADMI YouTube Channel ID
-      </Title>
+    <div className="mx-auto w-full max-w-4xl px-4 py-8">
+      <h1 className="mb-8 text-center text-4xl font-semibold text-gray-900">Verify ADMI YouTube Channel ID</h1>
 
       {loading ? (
-        <Card shadow="sm" padding="lg" radius="md" withBorder>
+        <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
           <div style={{ textAlign: 'center' }}>
-            <Loader size="lg" mb="md" />
-            <Text>Verifying channel ID: UCqLmokG6Req2pHn2p7D8WZQ</Text>
+            <div className="mb-4 inline-block h-8 w-8 animate-spin rounded-full border-2 border-gray-300 border-t-gray-700" />
+            <p className="text-gray-700">Verifying channel ID: UCqLmokG6Req2pHn2p7D8WZQ</p>
           </div>
-        </Card>
+        </div>
       ) : result?.success ? (
         <div>
-          <Alert color={result.isLikelyADMI ? 'green' : 'orange'} mb="md">
-            <Text fw={500}>
+          <div
+            className={`mb-4 rounded-lg border p-4 ${result.isLikelyADMI ? 'border-green-300 bg-green-50 text-green-900' : 'border-amber-300 bg-amber-50 text-amber-900'}`}
+          >
+            <p className="font-medium text-gray-700">
               {result.isLikelyADMI ? '✅ This looks like the ADMI channel!' : '⚠️ This might not be the ADMI channel'}
-            </Text>
-          </Alert>
+            </p>
+          </div>
 
-          <Card shadow="sm" padding="lg" radius="md" withBorder mb="md">
-            <Title order={3} mb="md">
-              Channel Information
-            </Title>
-            <Text>
+          <div className="mb-4 rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+            <h3 className="mb-4 text-2xl font-semibold text-gray-900">Channel Information</h3>
+            <p className="text-gray-700">
               <strong>Channel Name:</strong> {result.channel.snippet.title}
-            </Text>
-            <Text>
+            </p>
+            <p className="text-gray-700">
               <strong>Channel ID:</strong> {result.channelId}
-            </Text>
-            <Text>
+            </p>
+            <p className="text-gray-700">
               <strong>Subscribers:</strong> {result.channel.statistics.subscriberCount?.toLocaleString() || 'Hidden'}
-            </Text>
-            <Text>
+            </p>
+            <p className="text-gray-700">
               <strong>Total Videos:</strong> {result.channel.statistics.videoCount?.toLocaleString() || 'Unknown'}
-            </Text>
-            <Text>
+            </p>
+            <p className="text-gray-700">
               <strong>Total Views:</strong> {result.channel.statistics.viewCount?.toLocaleString() || 'Unknown'}
-            </Text>
-            <Text>
+            </p>
+            <p className="text-gray-700">
               <strong>Created:</strong> {new Date(result.channel.snippet.publishedAt).toLocaleDateString()}
-            </Text>
+            </p>
 
-            <Title order={4} mt="md" mb="xs">
-              Description:
-            </Title>
-            <Text size="sm" style={{ whiteSpace: 'pre-wrap' }}>
+            <h4 className="mb-1 mt-4 text-xl font-semibold text-gray-900">Description:</h4>
+            <p className="text-sm text-gray-700" style={{ whiteSpace: 'pre-wrap' }}>
               {result.channel.snippet.description.substring(0, 300)}
               {result.channel.snippet.description.length > 300 && '...'}
-            </Text>
-          </Card>
+            </p>
+          </div>
 
-          <Card shadow="sm" padding="lg" radius="md" withBorder mb="md">
-            <Title order={3} mb="md">
-              Recent Videos ({result.videos.length})
-            </Title>
+          <div className="mb-4 rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+            <h3 className="mb-4 text-2xl font-semibold text-gray-900">Recent Videos ({result.videos.length})</h3>
             {result.videos.length > 0 ? (
               result.videos.map((video: any, index: number) => (
                 <div
                   key={video.id.videoId}
                   style={{ marginBottom: '12px', paddingBottom: '12px', borderBottom: '1px solid #eee' }}
                 >
-                  <Text fw={500}>
+                  <p className="font-medium text-gray-700">
                     {index + 1}. {video.snippet.title}
-                  </Text>
-                  <Text size="sm" c="dimmed">
+                  </p>
+                  <p className="text-sm text-gray-500">
                     Published: {new Date(video.snippet.publishedAt).toLocaleDateString()}
-                  </Text>
-                  <Text size="sm" c="dimmed">
-                    Channel: {video.snippet.channelTitle}
-                  </Text>
+                  </p>
+                  <p className="text-sm text-gray-500">Channel: {video.snippet.channelTitle}</p>
                 </div>
               ))
             ) : (
-              <Text c="dimmed">No recent videos found</Text>
+              <p className="text-gray-500">No recent videos found</p>
             )}
-          </Card>
+          </div>
 
-          <Card shadow="sm" padding="lg" radius="md" withBorder>
-            <Title order={3} mb="md">
-              Verification Checklist
-            </Title>
+          <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+            <h3 className="mb-4 text-2xl font-semibold text-gray-900">Verification Checklist</h3>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-              <Text size="sm">
+              <p className="text-sm text-gray-700">
                 {result.channel.snippet.title.toLowerCase().includes('admi') ? '✅' : '❌'} Channel name contains "ADMI"
-              </Text>
-              <Text size="sm">
+              </p>
+              <p className="text-sm text-gray-700">
                 {result.channel.snippet.title.toLowerCase().includes('africa') ? '✅' : '❌'} Channel name contains
                 "Africa"
-              </Text>
-              <Text size="sm">
+              </p>
+              <p className="text-sm text-gray-700">
                 {result.channel.snippet.description.toLowerCase().includes('digital media') ? '✅' : '❌'} Description
                 mentions "digital media"
-              </Text>
-              <Text size="sm">{result.videos.length > 0 ? '✅' : '❌'} Has recent videos</Text>
-              <Text size="sm">
+              </p>
+              <p className="text-sm text-gray-700">{result.videos.length > 0 ? '✅' : '❌'} Has recent videos</p>
+              <p className="text-sm text-gray-700">
                 {parseInt(result.channel.statistics.subscriberCount) > 100 ? '✅' : '❌'} Has reasonable subscriber
                 count
-              </Text>
+              </p>
             </div>
-          </Card>
+          </div>
 
           <div style={{ marginTop: '24px', textAlign: 'center' }}>
-            <Button
-              color={result.isLikelyADMI ? 'green' : 'orange'}
-              size="lg"
+            <button
+              className={`inline-flex items-center gap-2 rounded-lg px-6 py-3 font-medium text-white transition ${result.isLikelyADMI ? 'bg-green-600' : 'bg-orange-500'}`}
               onClick={() => {
                 if (result.isLikelyADMI) {
                   alert('✅ This appears to be the correct ADMI channel! You can use this channel ID.')
@@ -190,37 +178,33 @@ export default function VerifyChannelPage() {
               }}
             >
               {result.isLikelyADMI ? 'Confirm This Channel' : 'Need Different Channel'}
-            </Button>
+            </button>
           </div>
         </div>
       ) : (
-        <Alert color="red">
-          <Text fw={500}>❌ Error verifying channel</Text>
-          <Text size="sm">{result?.error}</Text>
-          <Button variant="light" mt="md" onClick={verifyChannel}>
+        <div className="rounded-lg border border-amber-300 bg-amber-50 p-4 text-amber-900">
+          <div className="mb-1 font-semibold">Error</div>
+          <p className="font-medium text-gray-700">❌ Error verifying channel</p>
+          <p className="text-sm text-gray-700">{result?.error}</p>
+          <button
+            className="mt-4 inline-flex items-center gap-2 rounded-lg bg-gray-100 px-4 py-2 font-medium text-gray-900 transition"
+            onClick={verifyChannel}
+          >
             Try Again
-          </Button>
-        </Alert>
+          </button>
+        </div>
       )}
 
-      <Card shadow="sm" padding="lg" radius="md" withBorder mt="xl" bg="gray.0">
-        <Title order={4} mb="md">
-          How to Find the Correct Channel ID
-        </Title>
-        <Text size="sm" mb="xs">
+      <div className="mt-8 rounded-xl border border-gray-200 bg-gray-50 p-6 shadow-sm">
+        <h4 className="mb-4 text-xl font-semibold text-gray-900">How to Find the Correct Channel ID</h4>
+        <p className="mb-1 text-sm text-gray-700">
           1. Go to the ADMI YouTube channel: https://www.youtube.com/@ADMIafrica
-        </Text>
-        <Text size="sm" mb="xs">
-          2. Right-click and "View page source"
-        </Text>
-        <Text size="sm" mb="xs">
-          3. Search for "channelId" or "externalId"
-        </Text>
-        <Text size="sm" mb="xs">
-          4. Copy the ID that starts with "UC"
-        </Text>
-        <Text size="sm">5. Test it here to verify it's correct</Text>
-      </Card>
-    </Container>
+        </p>
+        <p className="mb-1 text-sm text-gray-700">2. Right-click and "View page source"</p>
+        <p className="mb-1 text-sm text-gray-700">3. Search for "channelId" or "externalId"</p>
+        <p className="mb-1 text-sm text-gray-700">4. Copy the ID that starts with "UC"</p>
+        <p className="text-sm text-gray-700">5. Test it here to verify it's correct</p>
+      </div>
+    </div>
   )
 }

@@ -11,7 +11,7 @@ export const GENERAL_DIPLOMA_FAQS = [
     category: 'General Information',
     question: 'Are ADMI diplomas recognized internationally?',
     answer:
-      'Yes, ADMI diplomas are internationally recognized. We have Pearson Assured status and partnership with Woolf University for accreditation. Our diplomas are recognized across Africa and internationally, with credit transfer opportunities to European universities under ECTS.'
+      'Yes, ADMI diplomas are internationally recognized. We are accredited through Woolf University (EU) and registered with TVETA Kenya. Our diplomas are recognized across Africa and internationally, with credit transfer opportunities to European universities under ECTS.'
   },
   {
     category: 'Admission Requirements',

@@ -1,679 +1,856 @@
-import React from 'react'
-import { Box, Grid } from '@mantine/core'
-import { useRouter } from 'next/router'
+import Link from 'next/link'
+import type { InferGetStaticPropsType } from 'next'
+
 import { MainLayout } from '@/layouts/v3/MainLayout'
-import { Paragraph, Title, Button } from '@/components/ui'
 import { PageSEO } from '@/components/shared/v3'
-import { useIsMobile } from '@/hooks/useIsMobile'
+import type {
+  HeroStat,
+  IncomeYearCard,
+  ProgrammeOutcome,
+  BenchmarkCard,
+  CareerPathCard,
+  CompanyPill,
+  AlumniStory,
+  AwardRow,
+  MethodologyStat,
+  CtaBottomStat
+} from '@/types/our-impact'
 
-export default function ImpactAlumniSuccessPage() {
-  const router = useRouter()
-  const isMobile = useIsMobile()
+/* ------------------------------------------------------------------ */
+/*  Fallback Data                                                      */
+/* ------------------------------------------------------------------ */
 
+const FALLBACK_HERO_STATS: HeroStat[] = [
+  { value: '4,500+', label: 'Students & Alumni', color: '#8EBFB0' },
+  { value: '88%', label: 'Employment Rate', color: '#ffffff' },
+  { value: '3x', label: 'Income Growth by Year 3', color: '#EF7B2E' },
+  { value: '15+', label: 'Countries Reached', color: '#C1272D' }
+]
+
+const FALLBACK_INCOME_YEAR_CARDS: IncomeYearCard[] = [
+  {
+    badge: 'Year 1 \u2014 The Hustle',
+    badgeBg: '#FFF0F0',
+    badgeColor: '#C1272D',
+    value: 'KES 10-20K',
+    valueColor: '#171717',
+    subtitle: 'monthly',
+    subtitleColor: '#999999',
+    description:
+      'Building portfolios, taking on freelance gigs, and gaining real-world experience. The foundation years.',
+    descColor: '#666666',
+    bgColor: '#f9f9f9'
+  },
+  {
+    badge: 'Year 2 \u2014 Building Momentum',
+    badgeBg: '#FFF8F0',
+    badgeColor: '#EF7B2E',
+    value: 'KES 25-50K',
+    valueColor: '#171717',
+    subtitle: 'monthly',
+    subtitleColor: '#999999',
+    description: 'Reputation growing, clients returning, and specialisation kicking in. Income doubles.',
+    descColor: '#666666',
+    bgColor: '#f9f9f9'
+  },
+  {
+    badge: 'Year 3 \u2014 Breaking Through',
+    badgeBg: 'rgba(255,255,255,0.12)',
+    badgeColor: '#8EBFB0',
+    value: 'KES 50-100K+',
+    valueColor: '#ffffff',
+    subtitle: 'monthly',
+    subtitleColor: '#8EBFB0',
+    description: 'Industry leaders, business owners, and in-demand professionals. 65-230% above industry benchmarks.',
+    descColor: '#cccccc',
+    bgColor: '#0A3D3D'
+  }
+]
+
+const FALLBACK_PROGRAMME_OUTCOMES_ROW1: ProgrammeOutcome[] = [
+  {
+    name: 'Film & TV Production',
+    value: 'KES 80-90K+',
+    color: '#8EBFB0',
+    barWidth: '75%',
+    note: '85% employed within 6 months'
+  },
+  {
+    name: 'Music Production',
+    value: 'KES 80-100K+',
+    color: '#EF7B2E',
+    barWidth: '80%',
+    note: 'Highest earning potential among all programmes'
+  },
+  {
+    name: 'Multimedia',
+    value: 'KES 80-120K+',
+    color: '#C1272D',
+    barWidth: '85%',
+    note: 'Most versatile career options'
+  }
+]
+
+const FALLBACK_PROGRAMME_OUTCOMES_ROW2: ProgrammeOutcome[] = [
+  {
+    name: 'Sound Engineering',
+    value: 'KES 60-80K+',
+    color: '#8EBFB0',
+    barWidth: '65%',
+    note: 'High demand in live events and studios'
+  },
+  {
+    name: 'Graphic Design',
+    value: 'KES 50-70K+',
+    color: '#EF7B2E',
+    barWidth: '55%',
+    note: 'Strong freelance and agency demand'
+  },
+  {
+    name: 'Animation',
+    value: 'KES 50-70K+',
+    color: '#C1272D',
+    barWidth: '55%',
+    note: 'Growing international remote opportunities'
+  }
+]
+
+const FALLBACK_BENCHMARK_CARDS: BenchmarkCard[] = [
+  {
+    value: 'KES 24-30K',
+    valueColor: 'rgba(255,255,255,0.6)',
+    label: 'Industry Benchmark',
+    labelColor: 'rgba(255,255,255,0.8)',
+    description: 'Typical creative industry salary in Kenya',
+    descColor: 'rgba(255,255,255,0.6)',
+    bgColor: 'rgba(255,255,255,0.15)'
+  },
+  {
+    value: 'KES 50-100K+',
+    valueColor: '#C1272D',
+    label: 'ADMI Graduate Reality',
+    labelColor: '#171717',
+    description: 'Year 3 median monthly earnings',
+    descColor: '#666666',
+    bgColor: '#ffffff'
+  }
+]
+
+const FALLBACK_CAREER_PATHS: CareerPathCard[] = [
+  {
+    percentage: '70%',
+    percentColor: '#8EBFB0',
+    label: 'Choose Freelance',
+    labelColor: '#ffffff',
+    bgColor: '#0A3D3D',
+    timeline: [
+      { dotColor: '#8EBFB0', text: 'Year 1: KES 15-25K \u2014 Building client base', textColor: '#cccccc' },
+      { dotColor: '#8EBFB0', text: 'Year 2: KES 30-50K \u2014 Repeat clients, referrals', textColor: '#cccccc' },
+      { dotColor: '#8EBFB0', text: 'Year 3+: KES 60-120K \u2014 Industry leader', textColor: '#ffffff' }
+    ]
+  },
+  {
+    percentage: '30%',
+    percentColor: '#C1272D',
+    label: 'Choose Employment',
+    labelColor: '#171717',
+    bgColor: '#ffffff',
+    borderColor: '#E8E8E8',
+    timeline: [
+      { dotColor: '#C1272D', text: 'Year 1: KES 20-30K \u2014 Junior creative roles', textColor: '#666666' },
+      { dotColor: '#C1272D', text: 'Year 2: KES 35-55K \u2014 Mid-level positions', textColor: '#666666' },
+      { dotColor: '#C1272D', text: 'Year 3+: KES 50-90K \u2014 Senior / Lead roles', textColor: '#171717' }
+    ]
+  }
+]
+
+const FALLBACK_COMPANY_PILLS_ROW1: CompanyPill[] = [
+  { name: 'NTV Kenya' },
+  { name: 'Ogilvy Africa' },
+  { name: 'MSC Cruises' },
+  { name: 'Safaricom' },
+  { name: 'Ogopa DJs' },
+  { name: 'Nation Media' }
+]
+
+const FALLBACK_COMPANY_PILLS_ROW2: CompanyPill[] = [
+  { name: 'WPP Scangroup' },
+  { name: 'Showmax' },
+  { name: 'Citizen TV' },
+  { name: 'Weza Tele' },
+  { name: 'Netflix Africa' },
+  { name: 'Tubidy Studios' }
+]
+
+const FALLBACK_ALUMNI_STORIES: AlumniStory[] = [
+  {
+    image:
+      'https://images.unsplash.com/photo-1615453261261-77494754424e?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&w=400&h=220&q=80',
+    name: 'Grace Muthoni',
+    role: 'Senior Editor, NTV Kenya',
+    roleColor: '#8EBFB0',
+    quote:
+      '"ADMI gave me the technical skills and industry connections that launched my career in broadcast journalism."',
+    meta: 'Film Production Diploma, Class of 2022'
+  },
+  {
+    image:
+      'https://images.unsplash.com/photo-1622295023825-6e319464b810?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&w=400&h=220&q=80',
+    name: 'David Kimani',
+    role: 'Creative Director, Ogilvy Africa',
+    roleColor: '#EF7B2E',
+    quote:
+      '"The hands-on approach at ADMI prepared me for real agency life. Within 3 years, I was leading creative campaigns for major brands."',
+    meta: 'Graphic Design Diploma, Class of 2021'
+  },
+  {
+    image:
+      'https://images.unsplash.com/photo-1685634115415-4fd59062a34e?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&w=400&h=220&q=80',
+    name: 'Wanjiku Njeri',
+    role: 'Sound Engineer, Ogopa DJs',
+    roleColor: '#C1272D',
+    quote:
+      '"From student projects to mixing tracks for top Kenyan artists. ADMI\'s studio facilities and mentorship made all the difference."',
+    meta: 'Sound Engineering Diploma, Class of 2023'
+  }
+]
+
+const FALLBACK_AWARD_ROWS: AwardRow[] = [
+  {
+    bgColor: '#f9f9f9',
+    imageUrl:
+      'https://images.unsplash.com/photo-1642104744809-14b986179927?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&w=560&h=380&q=80',
+    imageSide: 'left',
+    badge: 'STUDENT FILM AWARD',
+    badgeColor: '#C1272D',
+    badgeBg: '#FFF0F0',
+    title: 'Kalasha International Film Awards',
+    titleColor: '#171717',
+    description:
+      'ADMI film students have won multiple Kalasha Awards for Best Student Film, Best Cinematography, and Best Short Documentary. Competing against entries from across Africa, our students consistently prove they can hold their own on the continental stage.',
+    descColor: '#666666',
+    tags: [
+      { text: 'Best Student Film 2023', textColor: '#171717', bgColor: '#ffffff', borderColor: '#E8E8E8' },
+      { text: 'Best Cinematography 2024', textColor: '#171717', bgColor: '#ffffff', borderColor: '#E8E8E8' }
+    ]
+  },
+  {
+    bgColor: '#0A0A0A',
+    imageUrl:
+      'https://images.unsplash.com/photo-1713453450934-ffa72b233597?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&w=560&h=400&q=80',
+    imageSide: 'right',
+    badge: 'TOP 10 SME IN KENYA',
+    badgeColor: '#8EBFB0',
+    badgeBg: 'rgba(255,255,255,0.08)',
+    title: 'Recognised Among Kenya\u2019s Top Businesses',
+    titleColor: '#ffffff',
+    description:
+      'ADMI was named among Kenya\u2019s Top 10 SMEs \u2014 a testament to our impact on the creative economy. From a single campus in 2011 to shaping 4,500+ careers, we\u2019ve proven that investing in creative education delivers measurable returns.',
+    descColor: '#cccccc',
+    tags: [],
+    stats: [
+      { value: 'Top 10', label: 'SME in Kenya' },
+      { value: 'EU Accredited', label: 'Via Woolf University' }
+    ]
+  },
+  {
+    bgColor: '#0A3D3D',
+    imageUrl:
+      'https://images.unsplash.com/photo-1599840448769-f4ac7aac8d8b?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&w=560&h=380&q=80',
+    imageSide: 'left',
+    badge: 'ALUMNI ACHIEVEMENT',
+    badgeColor: '#8EBFB0',
+    badgeBg: 'rgba(255,255,255,0.08)',
+    title: 'Alumni Leading the Creative Industry',
+    titleColor: '#ffffff',
+    description:
+      'From Senior Editors at NTV to Creative Directors at Ogilvy Africa, ADMI alumni are winning industry awards and leading creative teams across the continent.',
+    descColor: '#cccccc',
+    tags: [
+      { text: 'Loeries Africa Winners', textColor: '#8EBFB0', bgColor: 'rgba(255,255,255,0.08)' },
+      { text: 'International Commissions', textColor: '#8EBFB0', bgColor: 'rgba(255,255,255,0.08)' },
+      { text: 'Company Founders', textColor: '#8EBFB0', bgColor: 'rgba(255,255,255,0.08)' }
+    ]
+  }
+]
+
+const FALLBACK_METHODOLOGY_STATS: MethodologyStat[] = [
+  { value: '700+', label: 'Emails Sent', description: 'Across all six diploma programmes' },
+  { value: '110', label: 'Phone Follow-ups', description: 'Personal calls for deeper insights' },
+  { value: '43', label: 'Detailed Responses', description: 'With verified income data' },
+  { value: '8', label: 'Employer Insights', description: 'Industry partner hiring feedback' }
+]
+
+const FALLBACK_CTA_BOTTOM_STATS: CtaBottomStat[] = [
+  { value: '4.8/5', label: 'Student Satisfaction' },
+  { value: '500+', label: 'Industry Partners' },
+  { value: 'Since 2011', label: 'Shaping Creative Careers' }
+]
+
+/* ------------------------------------------------------------------ */
+/*  getStaticProps                                                     */
+/* ------------------------------------------------------------------ */
+
+export async function getStaticProps() {
+  let data = null
+
+  try {
+    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
+    const res = await fetch(`${baseUrl}/api/v3/impact`)
+    if (res.ok) {
+      data = await res.json()
+    }
+  } catch (err) {
+    console.error('[Impact Page] Failed to fetch API data:', err)
+  }
+
+  // Split combined arrays back into display rows
+  const programmeOutcomes: ProgrammeOutcome[] = data?.programmeOutcomes || [
+    ...FALLBACK_PROGRAMME_OUTCOMES_ROW1,
+    ...FALLBACK_PROGRAMME_OUTCOMES_ROW2
+  ]
+  const companyPills: CompanyPill[] = data?.companyPills || [
+    ...FALLBACK_COMPANY_PILLS_ROW1,
+    ...FALLBACK_COMPANY_PILLS_ROW2
+  ]
+
+  return {
+    props: {
+      heroStats: (data?.heroStats as HeroStat[]) || FALLBACK_HERO_STATS,
+      incomeYearCards: (data?.incomeYearCards as IncomeYearCard[]) || FALLBACK_INCOME_YEAR_CARDS,
+      programmeOutcomesRow1: programmeOutcomes.slice(0, 3) as ProgrammeOutcome[],
+      programmeOutcomesRow2: programmeOutcomes.slice(3) as ProgrammeOutcome[],
+      benchmarkCards: (data?.benchmarkCards as BenchmarkCard[]) || FALLBACK_BENCHMARK_CARDS,
+      careerPaths: (data?.careerPaths as CareerPathCard[]) || FALLBACK_CAREER_PATHS,
+      companyPillsRow1: companyPills.slice(0, 6) as CompanyPill[],
+      companyPillsRow2: companyPills.slice(6) as CompanyPill[],
+      alumniStories: (data?.alumniStories as AlumniStory[]) || FALLBACK_ALUMNI_STORIES,
+      awardRows: (data?.awardRows as AwardRow[]) || FALLBACK_AWARD_ROWS,
+      methodologyStats: (data?.methodologyStats as MethodologyStat[]) || FALLBACK_METHODOLOGY_STATS,
+      ctaBottomStats: (data?.ctaBottomStats as CtaBottomStat[]) || FALLBACK_CTA_BOTTOM_STATS
+    },
+    revalidate: 300
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/*  Page                                                               */
+/* ------------------------------------------------------------------ */
+
+export default function ImpactAlumniSuccessPage({
+  heroStats: HERO_STATS = FALLBACK_HERO_STATS,
+  incomeYearCards: INCOME_YEAR_CARDS = FALLBACK_INCOME_YEAR_CARDS,
+  programmeOutcomesRow1: PROGRAMME_OUTCOMES_ROW1 = FALLBACK_PROGRAMME_OUTCOMES_ROW1,
+  programmeOutcomesRow2: PROGRAMME_OUTCOMES_ROW2 = FALLBACK_PROGRAMME_OUTCOMES_ROW2,
+  benchmarkCards: BENCHMARK_CARDS = FALLBACK_BENCHMARK_CARDS,
+  careerPaths: CAREER_PATHS = FALLBACK_CAREER_PATHS,
+  companyPillsRow1: COMPANY_PILLS_ROW1 = FALLBACK_COMPANY_PILLS_ROW1,
+  companyPillsRow2: COMPANY_PILLS_ROW2 = FALLBACK_COMPANY_PILLS_ROW2,
+  alumniStories: ALUMNI_STORIES = FALLBACK_ALUMNI_STORIES,
+  awardRows: AWARD_ROWS = FALLBACK_AWARD_ROWS,
+  methodologyStats: METHODOLOGY_STATS = FALLBACK_METHODOLOGY_STATS,
+  ctaBottomStats: CTA_BOTTOM_STATS = FALLBACK_CTA_BOTTOM_STATS
+}: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
-    <MainLayout footerBgColor="white">
+    <MainLayout footerBgColor="#1a1a1a">
       <PageSEO
-        title="Impact & Alumni Success | ADMI - From KES 10K to KES 100K+ Monthly Income"
-        description="Discover how ADMI graduates achieve 3x income growth by Year 3. 70% launch successful freelance careers earning KES 50K+ monthly. Real alumni income progression data from our 2024 survey."
+        title="Our Impact | ADMI - Transforming Lives Through Creative Education"
+        description="Discover how ADMI graduates achieve 3x income growth by Year 3. 88% employment rate, 4,500+ alumni across 15+ countries. Real income data from our 2025 alumni survey."
         keywords="ADMI alumni success, income growth, career outcomes, graduate salaries Kenya, creative careers income, freelance success, ADMI impact, alumni earnings, graduate employment rates"
       />
 
       <div className="w-full">
-        {/* HERO SECTION - 60% White space */}
-        <Box className="mb-8 w-full py-16 md:mb-12 md:py-24" bg="#002A23">
-          <Box className="mx-auto max-w-4xl px-6 text-center md:px-8">
-            <Title
-              label="Real Stories of Creative Success"
-              color="#F1FE37"
-              size={isMobile ? '32px' : '44px'}
-              className="mb-8 leading-tight"
-            />
-            <Paragraph
-              className="mx-auto max-w-2xl leading-relaxed text-white"
-              fontFamily="font-nexa"
-              size={isMobile ? '16px' : '18px'}
-            >
-              In August 2025, we surveyed over 700 ADMI alumni to understand their career journeys. What we discovered
-              tells a powerful story of transformation through creative education.
-            </Paragraph>
+        {/* ============================================================ */}
+        {/*  1. HERO                                                      */}
+        {/* ============================================================ */}
+        <section className="w-full bg-admi-black">
+          <div className="section-container">
+            <div className="flex flex-col items-center gap-12 pb-20 pt-28 text-center md:pb-20 md:pt-[100px]">
+              <p className="section-label text-secondary">OUR IMPACT</p>
+              <h1 className="font-proxima mx-auto max-w-[900px] text-[36px] font-bold leading-[1.15] text-white md:text-[52px]">
+                Transforming Lives Through Creative Education
+              </h1>
+              <p className="mx-auto max-w-[640px] font-proxima text-[18px] leading-[1.7] text-[#999999]">
+                Since 2011, ADMI has been shaping East Africa&rsquo;s creative economy. Here&rsquo;s the measurable
+                difference our graduates are making.
+              </p>
 
-            <Box className="mt-12 flex justify-center">
-              <Box className="w-auto">
-                <Button
-                  size="md"
-                  backgroundColor="#01C6A5"
-                  label="Read Their Stories"
-                  onClick={() => {
-                    document.getElementById('stories-section')?.scrollIntoView({ behavior: 'smooth' })
+              {/* Hero stats */}
+              <div className="flex flex-wrap items-center justify-center gap-10 md:gap-16">
+                {HERO_STATS.map((stat) => (
+                  <div key={stat.label} className="flex flex-col items-center gap-1">
+                    <span className="font-proxima text-[40px] font-bold md:text-[56px]" style={{ color: stat.color }}>
+                      {stat.value}
+                    </span>
+                    <span className="font-proxima text-[14px] font-semibold text-[#999999]">{stat.label}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ============================================================ */}
+        {/*  2. INCOME JOURNEY                                            */}
+        {/* ============================================================ */}
+        <section className="w-full bg-white">
+          <div className="section-container section-padding">
+            <div className="mx-auto max-w-[720px] text-center">
+              <p className="section-label text-brand-red">GRADUATE EARNINGS</p>
+              <h2 className="font-proxima text-[32px] font-bold leading-[1.15] text-[#171717] md:text-[40px]">
+                The 3-Year Income Journey
+              </h2>
+              <p className="mt-3 font-proxima text-[16px] leading-[1.6] text-[#666666]">
+                Based on our August 2025 alumni survey of 700+ graduates, here&rsquo;s how ADMI alumni earnings grow
+                over time.
+              </p>
+            </div>
+
+            <div className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-3">
+              {INCOME_YEAR_CARDS.map((card) => (
+                <div
+                  key={card.badge}
+                  className="flex flex-col items-center gap-5 rounded-2xl p-9"
+                  style={{ backgroundColor: card.bgColor }}
+                >
+                  {/* Badge */}
+                  <span
+                    className="rounded-full px-5 py-2 font-proxima text-[12px] font-bold"
+                    style={{ backgroundColor: card.badgeBg, color: card.badgeColor }}
+                  >
+                    {card.badge}
+                  </span>
+
+                  {/* Value */}
+                  <span className="font-proxima text-[36px] font-bold" style={{ color: card.valueColor }}>
+                    {card.value}
+                  </span>
+
+                  {/* Subtitle */}
+                  <span className="font-proxima text-[14px]" style={{ color: card.subtitleColor }}>
+                    {card.subtitle}
+                  </span>
+
+                  {/* Description */}
+                  <p
+                    className="max-w-[300px] text-center font-proxima text-[14px] leading-[1.6]"
+                    style={{ color: card.descColor }}
+                  >
+                    {card.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ============================================================ */}
+        {/*  3. PROGRAMME OUTCOMES                                        */}
+        {/* ============================================================ */}
+        <section className="w-full bg-admi-black">
+          <div className="section-container section-padding">
+            <div className="mx-auto max-w-[720px] text-center">
+              <p className="section-label text-secondary">PROGRAMME OUTCOMES</p>
+              <h2 className="font-proxima text-[32px] font-bold leading-[1.15] text-white md:text-[40px]">
+                Earnings by Programme
+              </h2>
+              <p className="mx-auto mt-3 max-w-[500px] font-proxima text-[16px] leading-[1.6] text-[#999999]">
+                Year 3+ median monthly earnings by programme, based on alumni survey data.
+              </p>
+            </div>
+
+            {/* Row 1 */}
+            <div className="mt-10 grid grid-cols-1 gap-5 md:grid-cols-3">
+              {PROGRAMME_OUTCOMES_ROW1.map((prog) => (
+                <div
+                  key={prog.name}
+                  className="flex flex-col gap-3 rounded-2xl border border-[#333333] bg-[#1a1a1a] p-7"
+                >
+                  <span className="font-proxima text-[14px] font-bold text-[#999999]">{prog.name}</span>
+                  <span className="font-proxima text-[32px] font-bold" style={{ color: prog.color }}>
+                    {prog.value}
+                  </span>
+                  {/* Progress bar */}
+                  <div className="h-1.5 w-full rounded-sm bg-[#333333]">
+                    <div className="h-full rounded-sm" style={{ backgroundColor: prog.color, width: prog.barWidth }} />
+                  </div>
+                  <span className="font-proxima text-[12px] text-[#666666]">{prog.note}</span>
+                </div>
+              ))}
+            </div>
+
+            {/* Row 2 */}
+            <div className="mt-5 grid grid-cols-1 gap-5 md:grid-cols-3">
+              {PROGRAMME_OUTCOMES_ROW2.map((prog) => (
+                <div
+                  key={prog.name}
+                  className="flex flex-col gap-3 rounded-2xl border border-[#333333] bg-[#1a1a1a] p-7"
+                >
+                  <span className="font-proxima text-[14px] font-bold text-[#999999]">{prog.name}</span>
+                  <span className="font-proxima text-[32px] font-bold" style={{ color: prog.color }}>
+                    {prog.value}
+                  </span>
+                  <div className="h-1.5 w-full rounded-sm bg-[#333333]">
+                    <div className="h-full rounded-sm" style={{ backgroundColor: prog.color, width: prog.barWidth }} />
+                  </div>
+                  <span className="font-proxima text-[12px] text-[#666666]">{prog.note}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ============================================================ */}
+        {/*  4. INDUSTRY BENCHMARK                                        */}
+        {/* ============================================================ */}
+        <section className="w-full bg-brand-red">
+          <div className="section-container section-padding">
+            <div className="flex flex-col items-center gap-10 md:flex-row md:items-center md:gap-[60px]">
+              {/* Left */}
+              <div className="flex flex-col gap-5 md:max-w-[500px]">
+                <p className="font-proxima text-[13px] font-bold uppercase tracking-[2px] text-white/80">
+                  INDUSTRY COMPARISON
+                </p>
+                <h2 className="font-proxima max-w-[480px] text-[30px] font-bold leading-[1.2] text-white md:text-[36px]">
+                  ADMI Graduates Earn 65-230% Above Industry Benchmarks
+                </h2>
+                <p className="max-w-[440px] font-proxima text-[15px] leading-[1.7] text-white/80">
+                  The Kenya creative industry benchmark for success is KES 24-30K monthly. ADMI graduates consistently
+                  surpass this, with Year 3 median earnings of KES 50-100K+.
+                </p>
+              </div>
+
+              {/* Right -- Benchmark cards */}
+              <div className="flex w-full flex-1 flex-col gap-6">
+                {BENCHMARK_CARDS.map((card) => (
+                  <div
+                    key={card.label}
+                    className="flex items-center gap-6 rounded-2xl p-8"
+                    style={{ backgroundColor: card.bgColor }}
+                  >
+                    <span
+                      className="font-proxima text-[28px] font-bold md:text-[32px]"
+                      style={{ color: card.valueColor }}
+                    >
+                      {card.value}
+                    </span>
+                    <div className="flex flex-col gap-1">
+                      <span className="font-proxima text-[16px] font-bold" style={{ color: card.labelColor }}>
+                        {card.label}
+                      </span>
+                      <span className="font-proxima text-[13px]" style={{ color: card.descColor }}>
+                        {card.description}
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ============================================================ */}
+        {/*  5. CAREER PATHS                                              */}
+        {/* ============================================================ */}
+        <section className="w-full bg-[#f9f9f9]">
+          <div className="section-container section-padding">
+            <div className="mx-auto max-w-[720px] text-center">
+              <p className="section-label text-[#0A3D3D]">CAREER PATHS</p>
+              <h2 className="font-proxima text-[32px] font-bold leading-[1.15] text-[#171717] md:text-[40px]">
+                Freelance vs Employment
+              </h2>
+              <p className="mx-auto mt-3 max-w-[560px] font-proxima text-[16px] leading-[1.6] text-[#666666]">
+                70% of ADMI graduates choose the freelance path, building their own creative businesses and client
+                bases.
+              </p>
+            </div>
+
+            <div className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2">
+              {CAREER_PATHS.map((path) => (
+                <div
+                  key={path.label}
+                  className="flex flex-col gap-6 rounded-2xl p-10"
+                  style={{
+                    backgroundColor: path.bgColor,
+                    border: path.borderColor ? `1px solid ${path.borderColor}` : undefined
                   }}
-                />
-              </Box>
-            </Box>
-          </Box>
-        </Box>
+                >
+                  {/* Badge row */}
+                  <div className="flex items-center gap-2">
+                    <span className="font-proxima text-[40px] font-bold" style={{ color: path.percentColor }}>
+                      {path.percentage}
+                    </span>
+                    <span className="font-proxima text-[18px] font-bold" style={{ color: path.labelColor }}>
+                      {path.label}
+                    </span>
+                  </div>
 
-        {/* THE REALITY OF CREATIVE CAREERS - 30% Accent */}
-        <Box id="stories-section" className="mb-8 w-full py-16 md:mb-12 md:py-20" bg="#F0F9FF">
-          <Box className="mx-auto max-w-4xl px-6 md:px-8">
-            <Title
-              label="The Reality Behind the Numbers"
-              color="#002A23"
-              size={isMobile ? '28px' : '36px'}
-              className="mb-12 text-center"
-            />
+                  {/* Timeline */}
+                  <div className="flex flex-col gap-4">
+                    {path.timeline.map((item) => (
+                      <div key={item.text} className="flex items-center gap-4">
+                        <span
+                          className="h-2.5 w-2.5 flex-shrink-0 rounded-full"
+                          style={{ backgroundColor: item.dotColor }}
+                        />
+                        <span className="font-proxima text-[14px]" style={{ color: item.textColor }}>
+                          {item.text}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
 
-            <Box className="mb-16 space-y-8">
-              <Paragraph
-                fontFamily="font-nexa"
-                className="leading-relaxed text-gray-700"
-                size={isMobile ? '16px' : '18px'}
-              >
-                Our survey reached over 700 ADMI alumni across six programs: Film & TV, Sound Engineering, Music
-                Production, Graphic Design, Multimedia, and Animation. Of the 43 detailed responses we received, a clear
-                pattern emerged that challenges conventional expectations about creative careers.
-              </Paragraph>
+        {/* ============================================================ */}
+        {/*  6. WHERE ALUMNI WORK                                         */}
+        {/* ============================================================ */}
+        <section className="w-full bg-white">
+          <div className="section-container section-padding">
+            <div className="mx-auto max-w-[720px] text-center">
+              <p className="section-label text-brand-red">WHERE ALUMNI WORK</p>
+              <h2 className="font-proxima text-[32px] font-bold leading-[1.15] text-[#171717] md:text-[40px]">
+                500+ Industry Partners Hire Our Graduates
+              </h2>
+            </div>
 
-              <Paragraph
-                fontFamily="font-nexa"
-                className="leading-relaxed text-gray-700"
-                size={isMobile ? '16px' : '18px'}
-              >
-                <strong>The first year is tough.</strong> Nearly every graduate we spoke to described their first year
-                as financially challenging, with many earning under KES 20,000 per month. But those who persisted tell a
-                different story by their third year.
-              </Paragraph>
-            </Box>
-
-            <Grid gutter={isMobile ? 'lg' : 'xl'} className="mb-16">
-              <Grid.Col span={{ base: 12, md: 4 }}>
-                <Box className="h-full rounded-2xl border border-gray-200 bg-white p-8 shadow-lg">
-                  <Paragraph
-                    size={isMobile ? '40px' : '48px'}
-                    fontFamily="font-nexa"
-                    className="mb-4 font-bold text-[#01C6A5]"
+            <div className="mt-10 flex flex-col items-center gap-3">
+              {/* Row 1 */}
+              <div className="flex flex-wrap justify-center gap-3">
+                {COMPANY_PILLS_ROW1.map((pill) => (
+                  <span
+                    key={pill.name}
+                    className="rounded-xl bg-[#f9f9f9] px-8 py-4 font-proxima text-[15px] font-bold text-[#171717]"
                   >
-                    3x
-                  </Paragraph>
-                  <Title label="Income Growth" color="#002A23" size={isMobile ? '18px' : '20px'} className="mb-4" />
-                  <Paragraph className="leading-relaxed text-gray-600" size={isMobile ? '14px' : '16px'}>
-                    The average income multiplier achieved by determined graduates between Year 1 and Year 3. This isn't
-                    a promise—it's what actually happened.
-                  </Paragraph>
-                </Box>
-              </Grid.Col>
-
-              <Grid.Col span={{ base: 12, md: 4 }}>
-                <Box className="h-full rounded-2xl border border-gray-200 bg-white p-8 shadow-lg">
-                  <Paragraph
-                    size={isMobile ? '40px' : '48px'}
-                    fontFamily="font-nexa"
-                    className="mb-4 font-bold text-[#F60834]"
+                    {pill.name}
+                  </span>
+                ))}
+              </div>
+              {/* Row 2 */}
+              <div className="flex flex-wrap justify-center gap-3">
+                {COMPANY_PILLS_ROW2.map((pill) => (
+                  <span
+                    key={pill.name}
+                    className="rounded-xl bg-[#f9f9f9] px-8 py-4 font-proxima text-[15px] font-bold text-[#171717]"
                   >
-                    70%
-                  </Paragraph>
-                  <Title label="Choose Freelance" color="#002A23" size={isMobile ? '18px' : '20px'} className="mb-4" />
-                  <Paragraph className="leading-relaxed text-gray-600" size={isMobile ? '14px' : '16px'}>
-                    Most alumni became independent freelancers rather than traditional employees. The creative economy
-                    rewards entrepreneurship.
-                  </Paragraph>
-                </Box>
-              </Grid.Col>
+                    {pill.name}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
 
-              <Grid.Col span={{ base: 12, md: 4 }}>
-                <Box className="h-full rounded-2xl border border-gray-200 bg-white p-8 shadow-lg">
-                  <Paragraph
-                    size={isMobile ? '36px' : '40px'}
-                    fontFamily="font-nexa"
-                    className="mb-4 font-bold text-[#F76335]"
-                  >
-                    KES 50K+
-                  </Paragraph>
-                  <Title label="Year 3 Median" color="#002A23" size={isMobile ? '18px' : '20px'} className="mb-4" />
-                  <Paragraph className="leading-relaxed text-gray-600" size={isMobile ? '14px' : '16px'}>
-                    Monthly earnings achieved by successful graduates who stayed in their field. Some earn significantly
-                    more.
-                  </Paragraph>
-                </Box>
-              </Grid.Col>
-            </Grid>
-          </Box>
-        </Box>
+        {/* ============================================================ */}
+        {/*  7. ALUMNI STORIES                                            */}
+        {/* ============================================================ */}
+        <section className="w-full bg-admi-black">
+          <div className="section-container section-padding">
+            <div className="mx-auto max-w-[720px] text-center">
+              <p className="section-label text-secondary">SUCCESS STORIES</p>
+              <h2 className="font-proxima text-[32px] font-bold leading-[1.15] text-white md:text-[40px]">
+                Faces Behind the Numbers
+              </h2>
+            </div>
 
-        {/* INCOME JOURNEY STORY - 60% White space */}
-        <Box className="mb-8 w-full py-16 md:mb-12 md:py-20" bg="white">
-          <Box className="mx-auto max-w-4xl px-6 md:px-8">
-            <Title
-              label="The Three-Year Journey"
-              color="#002A23"
-              size={isMobile ? '28px' : '36px'}
-              className="mb-12 text-center"
-            />
+            <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-3">
+              {ALUMNI_STORIES.map((story) => (
+                <div key={story.name} className="overflow-hidden rounded-2xl bg-[#1a1a1a]">
+                  {/* Image */}
+                  <div className="h-[220px] w-full overflow-hidden">
+                    <img src={story.image} alt={story.name} className="h-full w-full object-cover" />
+                  </div>
 
-            <Box className="mb-16 text-center">
-              <Paragraph
-                fontFamily="font-nexa"
-                className="mx-auto max-w-2xl leading-relaxed text-gray-700"
-                size={isMobile ? '16px' : '18px'}
-              >
-                Alumni described a consistent pattern across all six programs. The journey isn't easy, but those who
-                persist see dramatic improvements.
-              </Paragraph>
-            </Box>
+                  {/* Body */}
+                  <div className="flex flex-col gap-3 p-6">
+                    <h3 className="font-proxima text-[20px] font-bold text-white">{story.name}</h3>
+                    <span className="font-proxima text-[13px] font-semibold" style={{ color: story.roleColor }}>
+                      {story.role}
+                    </span>
+                    <p className="font-proxima text-[14px] leading-[1.6] text-[#cccccc]">{story.quote}</p>
+                    <span className="font-proxima text-[12px] text-[#666666]">{story.meta}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
 
-            {/* Simple Timeline - Desktop */}
-            {!isMobile && (
-              <Box className="relative">
-                <Box className="absolute left-1/2 top-0 h-full w-1 -translate-x-1/2 transform bg-gray-300"></Box>
+        {/* ============================================================ */}
+        {/*  8. AWARDS & RECOGNITION                                      */}
+        {/* ============================================================ */}
+        <section className="w-full bg-white">
+          <div className="section-container section-padding">
+            <div className="mx-auto max-w-[800px] text-center">
+              <p className="section-label text-brand-red">AWARDS &amp; RECOGNITION</p>
+              <h2 className="font-proxima text-[32px] font-bold leading-[1.15] text-[#171717] md:text-[40px]">
+                Award-Winning Institution, Award-Winning Students
+              </h2>
+              <p className="mx-auto mt-3 max-w-[620px] font-proxima text-[16px] leading-[1.6] text-[#666666]">
+                Recognised among Kenya&rsquo;s Top 10 SMEs and celebrated for excellence in creative education. Our
+                students consistently win national and international competitions.
+              </p>
+            </div>
 
-                <Box className="mb-16 flex items-center">
-                  <Box className="w-1/2 pr-8 text-right">
-                    <Box className="rounded-lg bg-white p-6 shadow-md">
-                      <Title label="Year 1: The Struggle" color="black" size="20px" className="mb-3" />
-                      <Paragraph fontFamily="font-nexa" className="mb-4 text-gray-600">
-                        "The first year is difficult, with many earning under KES 20,000/month. Unpaid internships are
-                        common. Some graduates essentially had zero income while building portfolios."
-                      </Paragraph>
-                      <Paragraph className="font-semibold text-[#01C6A5]">KES 10-20K typical range</Paragraph>
-                    </Box>
-                  </Box>
-                  <Box className="absolute left-1/2 h-4 w-4 -translate-x-1/2 transform rounded-full bg-[#01C6A5]"></Box>
-                  <Box className="w-1/2 pl-8"></Box>
-                </Box>
+            <div className="mt-12 flex flex-col gap-12">
+              {AWARD_ROWS.map((row) => {
+                const imageBlock = (
+                  <div className="h-[280px] flex-shrink-0 overflow-hidden md:h-auto md:w-[44%]">
+                    <img src={row.imageUrl} alt={row.title} className="h-full w-full object-cover" />
+                  </div>
+                )
 
-                <Box className="mb-16 flex items-center">
-                  <Box className="w-1/2 pr-8"></Box>
-                  <Box className="absolute left-1/2 h-4 w-4 -translate-x-1/2 transform rounded-full bg-[#F76335]"></Box>
-                  <Box className="w-1/2 pl-8">
-                    <Box className="rounded-lg bg-white p-6 shadow-md">
-                      <Title label="Year 2: Building Momentum" color="black" size="20px" className="mb-3" />
-                      <Paragraph fontFamily="font-nexa" className="mb-4 text-gray-600">
-                        "By the second year, many who switched to freelance saw incomes rise to ~KES 50K/month by taking
-                        on multiple projects. A competent creative tends to command somewhere in the KES 20–50K range."
-                      </Paragraph>
-                      <Paragraph className="font-semibold text-[#F76335]">KES 25-50K typical range</Paragraph>
-                    </Box>
-                  </Box>
-                </Box>
-
-                <Box className="flex items-center">
-                  <Box className="w-1/2 pr-8 text-right">
-                    <Box className="rounded-lg bg-white p-6 shadow-md">
-                      <Title label="Year 3: Breaking Through" color="black" size="20px" className="mb-3" />
-                      <Paragraph fontFamily="font-nexa" className="mb-4 text-gray-600">
-                        "By Year 3, determined graduates earn KES 50,000–100,000/month, often through freelancing. Many
-                        alumni achieve substantially higher earnings, with some top performers greatly exceeding that
-                        benchmark."
-                      </Paragraph>
-                      <Paragraph className="font-semibold text-[#F60834]">KES 50-100K+ typical range</Paragraph>
-                    </Box>
-                  </Box>
-                  <Box className="absolute left-1/2 h-4 w-4 -translate-x-1/2 transform rounded-full bg-[#F60834]"></Box>
-                  <Box className="w-1/2 pl-8"></Box>
-                </Box>
-              </Box>
-            )}
-
-            {/* Simple Timeline - Mobile */}
-            {isMobile && (
-              <Box className="space-y-8">
-                <Box className="rounded-lg border-l-4 border-[#01C6A5] bg-white p-6">
-                  <Title label="Year 1: The Struggle" color="black" size="18px" className="mb-3" />
-                  <Paragraph fontFamily="font-nexa" className="mb-4 text-gray-600">
-                    The first year is difficult, with many earning under KES 20,000/month.
-                  </Paragraph>
-                  <Paragraph className="font-semibold text-[#01C6A5]">KES 10-20K</Paragraph>
-                </Box>
-
-                <Box className="rounded-lg border-l-4 border-[#F76335] bg-white p-6">
-                  <Title label="Year 2: Building Momentum" color="black" size="18px" className="mb-3" />
-                  <Paragraph fontFamily="font-nexa" className="mb-4 text-gray-600">
-                    Incomes start to climb as graduates build client networks.
-                  </Paragraph>
-                  <Paragraph className="font-semibold text-[#F76335]">KES 25-50K</Paragraph>
-                </Box>
-
-                <Box className="rounded-lg border-l-4 border-[#F60834] bg-white p-6">
-                  <Title label="Year 3: Breaking Through" color="black" size="18px" className="mb-3" />
-                  <Paragraph fontFamily="font-nexa" className="mb-4 text-gray-600">
-                    Determined graduates achieve substantial earnings through established practices.
-                  </Paragraph>
-                  <Paragraph className="font-semibold text-[#F60834]">KES 50-100K+</Paragraph>
-                </Box>
-              </Box>
-            )}
-          </Box>
-        </Box>
-
-        {/* REAL ALUMNI VOICES - 30% Accent */}
-        <Box id="career-pathways" className="mb-8 w-full py-16 md:mb-12 md:py-20" bg="#F0F9FF">
-          <Box className="mx-auto max-w-4xl px-6 md:px-8">
-            <Title
-              label="What Our Graduates Actually Do"
-              color="#002A23"
-              size={isMobile ? '28px' : '36px'}
-              className="mb-12 text-center"
-            />
-
-            <Box className="mb-16 text-center">
-              <Paragraph
-                fontFamily="font-nexa"
-                className="mx-auto max-w-2xl leading-relaxed text-gray-700"
-                size={isMobile ? '16px' : '18px'}
-              >
-                The creative industry rewards different approaches. Our survey revealed that{' '}
-                <strong>freelancing dominates</strong>
-                (~70%), offering higher income than entry jobs but requiring business and soft skills.
-              </Paragraph>
-            </Box>
-
-            <Grid gutter={isMobile ? 'lg' : 'xl'} className="mb-16">
-              <Grid.Col span={{ base: 12, md: 6 }}>
-                <Box className="h-full rounded-2xl border border-gray-200 bg-white p-8 shadow-lg">
-                  <Paragraph
-                    size={isMobile ? '28px' : '32px'}
-                    fontFamily="font-nexa"
-                    className="mb-4 font-bold text-[#01C6A5]"
-                  >
-                    70%
-                  </Paragraph>
-                  <Title label="Freelance Path" color="#002A23" size={isMobile ? '20px' : '24px'} className="mb-6" />
-                  <Paragraph
-                    fontFamily="font-nexa"
-                    className="mb-6 leading-relaxed text-gray-600"
-                    size={isMobile ? '14px' : '16px'}
-                  >
-                    "A proactive graduate can sometimes make in a weekend wedding shoot what we'd pay them in a month as
-                    an assistant." - Industry Employer
-                  </Paragraph>
-                  <Box className="rounded-xl bg-gray-50 p-6">
-                    <Paragraph className="mb-3 font-semibold text-gray-800" size={isMobile ? '14px' : '16px'}>
-                      Typical progression:
-                    </Paragraph>
-                    <Box className="space-y-2">
-                      <Paragraph className="font-semibold text-gray-600" size={isMobile ? '13px' : '14px'}>
-                        Year 1: <span className="font-bold">KES 15-25K</span>
-                      </Paragraph>
-                      <Paragraph className="font-semibold text-gray-600" size={isMobile ? '13px' : '14px'}>
-                        Year 2: <span className="font-bold">KES 30-50K</span>
-                      </Paragraph>
-                      <Paragraph className="font-semibold text-gray-600" size={isMobile ? '13px' : '14px'}>
-                        Year 3+: <span className="font-bold">KES 60-120K</span>
-                      </Paragraph>
-                    </Box>
-                  </Box>
-                </Box>
-              </Grid.Col>
-
-              <Grid.Col span={{ base: 12, md: 6 }}>
-                <Box className="h-full rounded-2xl border border-gray-200 bg-white p-8 shadow-lg">
-                  <Paragraph
-                    size={isMobile ? '28px' : '32px'}
-                    fontFamily="font-nexa"
-                    className="mb-4 font-bold text-[#F60834]"
-                  >
-                    30%
-                  </Paragraph>
-                  <Title label="Employment Path" color="#002A23" size={isMobile ? '20px' : '24px'} className="mb-6" />
-                  <Paragraph
-                    fontFamily="font-nexa"
-                    className="mb-6 leading-relaxed text-gray-600"
-                    size={isMobile ? '14px' : '16px'}
-                  >
-                    Alumni who join established companies, agencies, or organizations, often in creative and marketing
-                    roles with steady growth opportunities.
-                  </Paragraph>
-                  <Box className="rounded-xl bg-gray-50 p-6">
-                    <Paragraph className="mb-3 font-semibold text-gray-800" size={isMobile ? '14px' : '16px'}>
-                      Typical progression:
-                    </Paragraph>
-                    <Box className="space-y-2">
-                      <Paragraph className="font-semibold text-gray-600" size={isMobile ? '13px' : '14px'}>
-                        Year 1: <span className="font-bold">KES 20-30K</span>
-                      </Paragraph>
-                      <Paragraph className="font-semibold text-gray-600" size={isMobile ? '13px' : '14px'}>
-                        Year 2: <span className="font-bold">KES 35-55K</span>
-                      </Paragraph>
-                      <Paragraph className="font-semibold text-gray-600" size={isMobile ? '13px' : '14px'}>
-                        Year 3+: <span className="font-bold">KES 50-90K</span>
-                      </Paragraph>
-                    </Box>
-                  </Box>
-                </Box>
-              </Grid.Col>
-            </Grid>
-
-            {/* Global Opportunity */}
-            <Box className="mb-16 rounded-2xl border border-gray-200 bg-gradient-to-r from-blue-100 to-green-100 p-8 shadow-lg md:p-12">
-              <Title
-                label="The Global Opportunity"
-                color="#002A23"
-                size={isMobile ? '20px' : '24px'}
-                className="mb-6"
-              />
-              <Paragraph
-                fontFamily="font-nexa"
-                className="mb-6 leading-relaxed text-gray-700"
-                size={isMobile ? '15px' : '16px'}
-              >
-                "A minority of alumni who tapped global markets earned significantly more, showing untapped potential.
-                Some Sound and Animation graduates took on remote gigs via Upwork/Fiverr, earning USD $100–200 per
-                project, which at ~KES 13K+ each is far above typical local single-project rates."
-              </Paragraph>
-              <Paragraph fontFamily="font-nexa" className="italic text-gray-600" size={isMobile ? '14px' : '15px'}>
-                — ADMI Alumni Survey Report, 2024
-              </Paragraph>
-            </Box>
-          </Box>
-        </Box>
-
-        {/* INDIVIDUAL PROGRAM STORIES - 60% White space */}
-        <Box className="mb-8 w-full py-16 md:mb-12 md:py-20" bg="white">
-          <Box className="mx-auto max-w-5xl px-6 md:px-8">
-            <Title
-              label="Success Across All Programs"
-              color="#002A23"
-              size={isMobile ? '28px' : '36px'}
-              className="mb-16 text-center"
-            />
-
-            <Grid gutter="lg">
-              <Grid.Col span={{ base: 12, md: 6 }}>
-                <Box className="h-full rounded-2xl border border-gray-200 bg-white p-8 shadow-lg">
-                  <Title label="Film & TV Production" color="#01C6A5" size="20px" className="mb-3" />
-                  <Paragraph fontFamily="font-nexa" className="mb-3 text-sm text-gray-600">
-                    "Film & TV alumni commonly create their own opportunities. Many gravitated to freelance
-                    videography/editing or launched small production businesses soon after graduation."
-                  </Paragraph>
-                  <Paragraph className="text-sm font-semibold">Common earnings by Year 3: KES 80-90K+</Paragraph>
-                </Box>
-              </Grid.Col>
-
-              <Grid.Col span={{ base: 12, md: 6 }}>
-                <Box className="h-full rounded-2xl border border-gray-200 bg-white p-8 shadow-lg">
-                  <Title label="Sound Engineering" color="#F76335" size="20px" className="mb-3" />
-                  <Paragraph fontFamily="font-nexa" className="mb-3 text-sm text-gray-600">
-                    "Event audio engineering emerged as highly lucrative. Graduates reported rates of KES 5–10K per day
-                    for providing sound setup/mixing at events, and up to KES 30K for large one-off events."
-                  </Paragraph>
-                  <Paragraph className="text-sm font-semibold">Common earnings by Year 3: KES 60-80K+</Paragraph>
-                </Box>
-              </Grid.Col>
-
-              <Grid.Col span={{ base: 12, md: 6 }}>
-                <Box className="h-full rounded-2xl border border-gray-200 bg-white p-8 shadow-lg">
-                  <Title label="Music Production" color="#F60834" size="20px" className="mb-3" />
-                  <Paragraph fontFamily="font-nexa" className="mb-3 text-sm text-gray-600">
-                    "A number of enterprising alumni broke into the KES 80K–100K+ tier by Year 3 by producing for
-                    well-known artists, getting corporate jingle contracts, or running their own small labels."
-                  </Paragraph>
-                  <Paragraph className="text-sm font-semibold">Common earnings by Year 3: KES 80-100K+</Paragraph>
-                </Box>
-              </Grid.Col>
-
-              <Grid.Col span={{ base: 12, md: 6 }}>
-                <Box className="h-full rounded-2xl border border-gray-200 bg-white p-8 shadow-lg">
-                  <Title label="Graphic Design" color="#01C6A5" size="20px" className="mb-3" />
-                  <Paragraph fontFamily="font-nexa" className="mb-3 text-sm text-gray-600">
-                    "Seasoned freelancers by Year 3 often leveraged long-term contracts and retainers to stabilize
-                    income. Several mentioned locking in regular corporate clients on retainer."
-                  </Paragraph>
-                  <Paragraph className="text-sm font-semibold">Common earnings by Year 3: KES 50-70K+</Paragraph>
-                </Box>
-              </Grid.Col>
-
-              <Grid.Col span={{ base: 12, md: 6 }}>
-                <Box className="h-full rounded-2xl border border-gray-200 bg-white p-8 shadow-lg">
-                  <Title label="Multimedia" color="#F76335" size="20px" className="mb-3" />
-                  <Paragraph fontFamily="font-nexa" className="mb-3 text-sm text-gray-600">
-                    "A successful multimedia professional in Year 3 might be making KES 80K–120K per month. This
-                    typically comes from ongoing retainers, frequent sponsored deals, and consultative roles."
-                  </Paragraph>
-                  <Paragraph className="text-sm font-semibold">Common earnings by Year 3: KES 80-120K+</Paragraph>
-                </Box>
-              </Grid.Col>
-
-              <Grid.Col span={{ base: 12, md: 6 }}>
-                <Box className="h-full rounded-2xl border border-gray-200 bg-white p-8 shadow-lg">
-                  <Title label="Animation" color="#F60834" size="20px" className="mb-3" />
-                  <Paragraph fontFamily="font-nexa" className="mb-3 text-sm text-gray-600">
-                    "Those who secured retainer contracts with companies saw big improvements. High-demand freelancers
-                    who built a name could charge KES 8K–10K per day on short gigs."
-                  </Paragraph>
-                  <Paragraph className="text-sm font-semibold">Common earnings by Year 3: KES 50-70K+</Paragraph>
-                </Box>
-              </Grid.Col>
-            </Grid>
-          </Box>
-        </Box>
-
-        {/* COMPETITIVE CONTEXT - 30% Accent */}
-        <Box className="mb-8 w-full py-16 md:mb-12 md:py-20" bg="#F0F9FF">
-          <Box className="mx-auto max-w-4xl px-6 md:px-8">
-            <Title
-              label="Leading the Industry in Graduate Outcomes"
-              color="#002A23"
-              size={isMobile ? '28px' : '36px'}
-              className="mb-12 text-center"
-            />
-
-            <Box className="mb-16 rounded-2xl border border-gray-200 bg-white p-8 shadow-lg md:p-12">
-              <Paragraph fontFamily="font-nexa" className="mb-6 text-center text-xl font-semibold text-gray-800">
-                ADMI graduates achieve earnings that surpass industry benchmarks by significant margins
-              </Paragraph>
-
-              <Grid gutter={isMobile ? 'lg' : 'xl'} className="mb-8">
-                <Grid.Col span={{ base: 12, md: 6 }}>
-                  <Box className="rounded-xl border border-gray-200 bg-gradient-to-r from-red-50 to-orange-50 p-6 text-center">
-                    <Paragraph
-                      size={isMobile ? '28px' : '32px'}
-                      fontFamily="font-nexa"
-                      className="mb-2 font-black text-[#F60834]"
+                const contentBlock = (
+                  <div className="flex flex-1 flex-col justify-center gap-5 p-8 md:p-12">
+                    {/* Badge */}
+                    <span
+                      className="w-fit rounded-full px-4 py-1.5 font-proxima text-[11px] font-bold uppercase tracking-[1.5px]"
+                      style={{ backgroundColor: row.badgeBg, color: row.badgeColor }}
                     >
-                      KSh 24-30K
-                    </Paragraph>
-                    <Paragraph className="mb-3 font-semibold text-gray-800" size={isMobile ? '16px' : '18px'}>
-                      Industry "Success" Benchmark
-                    </Paragraph>
-                    <Paragraph className="text-sm text-gray-600">
-                      What peers in skilling programs and large scholarship initiatives consider a "thriving wage" for
-                      graduates
-                    </Paragraph>
-                  </Box>
-                </Grid.Col>
+                      {row.badge}
+                    </span>
 
-                <Grid.Col span={{ base: 12, md: 6 }}>
-                  <Box className="rounded-xl border border-gray-200 bg-gradient-to-r from-green-50 to-blue-50 p-6 text-center">
-                    <Paragraph
-                      size={isMobile ? '28px' : '32px'}
-                      fontFamily="font-nexa"
-                      className="mb-2 font-black text-[#01C6A5]"
+                    <h3
+                      className="font-proxima text-[24px] font-bold md:text-[28px]"
+                      style={{ color: row.titleColor }}
                     >
-                      KSh 50-100K+
-                    </Paragraph>
-                    <Paragraph className="mb-3 font-semibold text-gray-800" size={isMobile ? '16px' : '18px'}>
-                      ADMI Graduate Reality
-                    </Paragraph>
-                    <Paragraph className="text-sm text-gray-600">
-                      What our graduates actually achieve by Year 3 - consistently exceeding industry expectations
-                    </Paragraph>
-                  </Box>
-                </Grid.Col>
-              </Grid>
+                      {row.title}
+                    </h3>
 
-              <Paragraph
-                fontFamily="font-nexa"
-                className="mb-6 leading-relaxed text-gray-700"
-                size={isMobile ? '16px' : '18px'}
-              >
-                While industry programs celebrate reaching KSh 24-30K as significant achievements for their graduates,
-                ADMI alumni routinely surpass these benchmarks by 65-230%. This isn't just success—it's transformation
-                at a scale that sets new standards for creative education outcomes in Kenya.
-              </Paragraph>
+                    <p className="font-proxima text-[15px] leading-[1.7]" style={{ color: row.descColor }}>
+                      {row.description}
+                    </p>
 
-              <Paragraph
-                fontFamily="font-nexa"
-                className="text-center italic text-gray-600"
-                size={isMobile ? '14px' : '15px'}
-              >
-                — ADMI: Setting new standards for creative career outcomes in East Africa
-              </Paragraph>
-            </Box>
-          </Box>
-        </Box>
+                    {/* Tags */}
+                    {row.tags.length > 0 && (
+                      <div className="flex flex-wrap gap-2">
+                        {row.tags.map((tag) => (
+                          <span
+                            key={tag.text}
+                            className="rounded-full px-3.5 py-1.5 font-proxima text-[12px] font-semibold"
+                            style={{
+                              backgroundColor: tag.bgColor,
+                              color: tag.textColor,
+                              border: tag.borderColor ? `1px solid ${tag.borderColor}` : undefined
+                            }}
+                          >
+                            {tag.text}
+                          </span>
+                        ))}
+                      </div>
+                    )}
 
-        {/* EMPLOYER PREFERENCE - 60% White space */}
-        <Box className="mb-8 w-full py-16 md:mb-12 md:py-20" bg="white">
-          <Box className="mx-auto max-w-4xl px-6 md:px-8">
-            <Title
-              label="What Employers Say About ADMI Graduates"
-              color="#002A23"
-              size={isMobile ? '28px' : '36px'}
-              className="mb-12 text-center"
-            />
+                    {/* Stats (for award row 2) */}
+                    {row.stats && row.stats.length > 0 && (
+                      <div className="flex gap-8">
+                        {row.stats.map((stat) => (
+                          <div key={stat.value} className="flex flex-col gap-0.5">
+                            <span className="font-proxima text-[24px] font-bold text-secondary">{stat.value}</span>
+                            <span className="font-proxima text-[12px] text-[#999999]">{stat.label}</span>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                )
 
-            <Box className="mb-16 rounded-2xl border border-gray-200 bg-gradient-to-r from-green-50 to-blue-50 p-8 shadow-lg md:p-12">
-              <Paragraph fontFamily="font-nexa" className="mb-6 text-center text-xl font-semibold text-gray-800">
-                "We have a clear preference for ADMI graduates"
-              </Paragraph>
-              <Paragraph
-                fontFamily="font-nexa"
-                className="mb-6 leading-relaxed text-gray-700"
-                size={isMobile ? '16px' : '18px'}
-              >
-                Industry employers consistently report a strong preference for hiring ADMI graduates. When we
-                interviewed 8 employers across the creative sector, they highlighted ADMI graduates' practical skills,
-                work-ready attitude, and professional approach as key differentiators.
-              </Paragraph>
-              <Paragraph
-                fontFamily="font-nexa"
-                className="mb-6 leading-relaxed text-gray-700"
-                size={isMobile ? '16px' : '18px'}
-              >
-                "ADMI graduates come to us with real-world experience and a portfolio that demonstrates their
-                capabilities. They understand client needs and can hit the ground running," reported one creative agency
-                director.
-              </Paragraph>
-              <Paragraph
-                fontFamily="font-nexa"
-                className="text-center italic text-gray-600"
-                size={isMobile ? '14px' : '15px'}
-              >
-                — Consistent feedback from industry employers, ADMI Alumni Survey 2024
-              </Paragraph>
-            </Box>
-          </Box>
-        </Box>
+                return (
+                  <div
+                    key={row.title}
+                    className="flex flex-col overflow-hidden rounded-2xl md:flex-row"
+                    style={{ backgroundColor: row.bgColor }}
+                  >
+                    {row.imageSide === 'left' ? (
+                      <>
+                        {imageBlock}
+                        {contentBlock}
+                      </>
+                    ) : (
+                      <>
+                        {contentBlock}
+                        {imageBlock}
+                      </>
+                    )}
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+        </section>
 
-        {/* METHODOLOGY & TRANSPARENCY - 30% Accent */}
-        <Box className="mb-8 w-full py-16 md:mb-12 md:py-20" bg="#F0F9FF">
-          <Box className="mx-auto max-w-4xl px-6 md:px-8">
-            <Title
-              label="How We Gathered This Data"
-              color="#002A23"
-              size={isMobile ? '28px' : '36px'}
-              className="mb-12 text-center"
-            />
+        {/* ============================================================ */}
+        {/*  9. METHODOLOGY                                               */}
+        {/* ============================================================ */}
+        <section className="w-full bg-[#f9f9f9]">
+          <div className="section-container section-padding">
+            <div className="mx-auto max-w-[720px] text-center">
+              <p className="section-label text-[#0A3D3D]">OUR DATA</p>
+              <h2 className="font-proxima text-[30px] font-bold leading-[1.15] text-[#171717] md:text-[36px]">
+                Survey Methodology
+              </h2>
+              <p className="mx-auto mt-3 max-w-[520px] font-proxima text-[15px] leading-[1.6] text-[#666666]">
+                All data on this page comes from our comprehensive August 2025 alumni survey. Here&rsquo;s how we
+                gathered it.
+              </p>
+            </div>
 
-            <Box className="mb-8">
-              <Paragraph fontFamily="font-nexa" className="mb-6 text-gray-700" size="18px">
-                In August 2025, we conducted structured phone interviews and email follow-ups with ADMI alumni. This
-                survey emphasized <strong>depth of insight over breadth</strong>—we highlight common patterns reported
-                by engaged alumni and employers.
-              </Paragraph>
-            </Box>
+            <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-4">
+              {METHODOLOGY_STATS.map((stat) => (
+                <div key={stat.label} className="flex flex-col items-center gap-3 rounded-2xl bg-white p-8 text-center">
+                  <span className="font-proxima text-[40px] font-bold text-[#0A3D3D]">{stat.value}</span>
+                  <span className="font-proxima text-[14px] font-bold text-[#171717]">{stat.label}</span>
+                  <span className="font-proxima text-[13px] text-[#666666]">{stat.description}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
 
-            <Grid gutter="lg" className="mb-8">
-              <Grid.Col span={{ base: 12, md: 3 }}>
-                <Box className="text-center">
-                  <Paragraph size="32px" fontFamily="font-nexa" className="mb-2 font-bold text-[#01C6A5]">
-                    700+
-                  </Paragraph>
-                  <Paragraph className="font-semibold">Emails Sent</Paragraph>
-                  <Paragraph className="text-sm text-gray-600">Across six programs</Paragraph>
-                </Box>
-              </Grid.Col>
+        {/* ============================================================ */}
+        {/*  10. CTA                                                      */}
+        {/* ============================================================ */}
+        <section className="w-full bg-[#0A3D3D]">
+          <div className="section-container section-padding">
+            <div className="flex flex-col items-center gap-8 text-center">
+              <h2 className="font-proxima text-[36px] font-bold leading-[1.15] text-white md:text-[44px]">
+                Be Part of the Impact
+              </h2>
+              <p className="mx-auto max-w-[560px] font-proxima text-[18px] leading-[1.7] text-[#cccccc]">
+                Join 4,500+ alumni who are shaping East Africa&rsquo;s creative economy. Your creative career starts
+                here.
+              </p>
 
-              <Grid.Col span={{ base: 12, md: 3 }}>
-                <Box className="text-center">
-                  <Paragraph size="32px" fontFamily="font-nexa" className="mb-2 font-bold text-[#F76335]">
-                    110
-                  </Paragraph>
-                  <Paragraph className="font-semibold">Phone Follow-ups</Paragraph>
-                  <Paragraph className="text-sm text-gray-600">Direct conversations</Paragraph>
-                </Box>
-              </Grid.Col>
+              {/* Buttons */}
+              <div className="flex flex-wrap items-center justify-center gap-4">
+                <Link
+                  href="/courses"
+                  className="inline-flex items-center rounded-lg bg-secondary px-9 py-4 font-proxima text-[16px] font-bold text-admi-black transition-opacity hover:opacity-90"
+                >
+                  Explore Programmes
+                </Link>
+                <Link
+                  href="/resources"
+                  className="inline-flex items-center rounded-lg border-[1.5px] border-white bg-transparent px-9 py-4 font-proxima text-[16px] font-bold text-white transition-colors hover:bg-white/10"
+                >
+                  Download Full Report
+                </Link>
+              </div>
 
-              <Grid.Col span={{ base: 12, md: 3 }}>
-                <Box className="text-center">
-                  <Paragraph size="32px" fontFamily="font-nexa" className="mb-2 font-bold text-[#F60834]">
-                    43
-                  </Paragraph>
-                  <Paragraph className="font-semibold">Detailed Responses</Paragraph>
-                  <Paragraph className="text-sm text-gray-600">With income data</Paragraph>
-                </Box>
-              </Grid.Col>
-
-              <Grid.Col span={{ base: 12, md: 3 }}>
-                <Box className="text-center">
-                  <Paragraph size="32px" fontFamily="font-nexa" className="mb-2 font-bold text-[#002A23]">
-                    8
-                  </Paragraph>
-                  <Paragraph className="font-semibold">Employer Insights</Paragraph>
-                  <Paragraph className="text-sm text-gray-600">Industry perspective</Paragraph>
-                </Box>
-              </Grid.Col>
-            </Grid>
-
-            <Box className="rounded-xl border border-gray-300 bg-gray-100 p-6 shadow-sm">
-              <Paragraph fontFamily="font-nexa" className="text-sm text-gray-700">
-                <strong>Important:</strong> Income ranges represent reported earnings from survey respondents and may
-                not reflect outcomes for all graduates. Individual results vary based on market conditions, individual
-                effort, specialization, and economic circumstances. ADMI provides training and support but cannot
-                guarantee specific income outcomes. These findings emphasize common patterns but may not capture every
-                individual experience.
-              </Paragraph>
-            </Box>
-          </Box>
-        </Box>
-
-        {/* FINAL CALL TO ACTION - 10% Accent */}
-        <Box className="w-full py-16 md:py-24" bg="#002A23">
-          <Box className="mx-auto max-w-3xl px-6 text-center md:px-8">
-            <Title
-              label="Your Creative Career Starts Here"
-              color="#F1FE37"
-              size={isMobile ? '28px' : '36px'}
-              className="mb-8"
-            />
-            <Paragraph
-              className="mx-auto mb-12 max-w-2xl leading-relaxed text-white"
-              fontFamily="font-nexa"
-              size={isMobile ? '16px' : '18px'}
-            >
-              These stories aren't promises—they're proof of what's possible. ADMI provides excellent creative training,
-              but your success depends on your determination, hustle, and willingness to build your career step by step.
-            </Paragraph>
-
-            <Box className="flex flex-col justify-center gap-4 sm:flex-row">
-              <Box className="w-auto">
-                <Button
-                  size="md"
-                  backgroundColor="#01C6A5"
-                  label="View Our Programs"
-                  onClick={() => router.push('/courses')}
-                />
-              </Box>
-              <Box className="w-auto">
-                <Button
-                  size="md"
-                  backgroundColor="#F60834"
-                  label="Start Your Application"
-                  onClick={() => router.push('/enquiry')}
-                />
-              </Box>
-            </Box>
-          </Box>
-        </Box>
+              {/* Bottom stats */}
+              <div className="mt-4 flex flex-wrap items-center justify-center gap-10 md:gap-12">
+                {CTA_BOTTOM_STATS.map((stat) => (
+                  <div key={stat.label} className="flex flex-col items-center gap-1">
+                    <span className="font-proxima text-[28px] font-bold text-secondary">{stat.value}</span>
+                    <span className="font-proxima text-[13px] text-[#999999]">{stat.label}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
     </MainLayout>
   )

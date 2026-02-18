@@ -1,5 +1,4 @@
 import React from 'react'
-import { Box, Card } from '@mantine/core'
 
 import { Paragraph } from '../ui'
 import IconAttach from '@/assets/icons/Attach'
@@ -13,8 +12,11 @@ type Props = {
 
 export default function InfoCard({ item, bgColor = '#081E1A', textColor = 'white', textWeight = 100 }: Props) {
   return (
-    <Card className="z-10 h-full w-full" bg={bgColor} withBorder>
-      <Box className="flex">
+    <div
+      className="z-10 h-full w-full rounded-xl border border-gray-200 bg-white shadow-sm"
+      style={{ backgroundColor: bgColor }}
+    >
+      <div className="flex">
         {item.icon ? (
           <item.icon width={36} height={36} color={item.iconColor || 'white'} />
         ) : (
@@ -23,11 +25,11 @@ export default function InfoCard({ item, bgColor = '#081E1A', textColor = 'white
         <Paragraph fontFamily="font-nexa" fontWeight={900} className={`my-auto w-[90%] px-4 text-${textColor}`}>
           {item.name}
         </Paragraph>
-      </Box>
+      </div>
       <Paragraph fontFamily="font-nexa" fontWeight={textWeight} className={`px-2 py-4 text-${textColor}`} size="16px">
         {item.description}
       </Paragraph>
-      <Box className="flex h-full flex-row"></Box>
-    </Card>
+      <div className="flex h-full flex-row"></div>
+    </div>
   )
 }

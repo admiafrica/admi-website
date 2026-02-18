@@ -15,7 +15,6 @@ import {
 } from './components'
 import styles from '@/assets/css/main.module.css'
 import { useRouter } from 'next/router'
-import { Skeleton } from '@mantine/core'
 import { getCourseFormUrl, ensureProtocol } from '@/utils'
 
 export function CampaignsPage() {
@@ -83,7 +82,7 @@ export function CampaignsPage() {
   return (
     <CampaignLayout client="admi">
       <CampaignHeader />
-      <Skeleton visible={loading} className={`${styles['course-banner']}`}>
+      <div className={`animate-pulse rounded-md bg-gray-200 ${styles['course-banner']}`}>
         {!loading && (
           <CampaignBanner
             status={status}
@@ -91,14 +90,14 @@ export function CampaignsPage() {
             alt={courseName}
           />
         )}
-      </Skeleton>
+      </div>
 
       {status === 1 && (
         <section id="course" className={`${styles['section-wrapper']} ${styles['pb-0']}`}>
           <div className={`${styles['wrapper']}`}>
             <div className={`${styles['layout-grid']} ${styles['layout-grid--two-col']}`}>
               {loading ? (
-                <Skeleton height={39} radius="md" className={`${styles['mb-4']}`} />
+                <div className={`animate-pulse rounded-md bg-gray-200 ${styles['mb-4']}`} style={{ height: 39 }} />
               ) : (
                 <h1 className={`${styles['section-title']}`}>{courseName}</h1>
               )}
@@ -113,10 +112,10 @@ export function CampaignsPage() {
           <div className={`${styles['wrapper']}`}>
             {loading ? (
               <div className={`${styles['course-quick-links']}`}>
-                <Skeleton className={`${styles['quick-links-skeleton']}`} radius="xl" />
-                <Skeleton className={`${styles['quick-links-skeleton']}`} radius="xl" />
-                <Skeleton className={`${styles['quick-links-skeleton']}`} radius="xl" />
-                <Skeleton className={`${styles['quick-links-skeleton']}`} radius="xl" />
+                <div className={`animate-pulse rounded-full bg-gray-200 ${styles['quick-links-skeleton']}`} />
+                <div className={`animate-pulse rounded-full bg-gray-200 ${styles['quick-links-skeleton']}`} />
+                <div className={`animate-pulse rounded-full bg-gray-200 ${styles['quick-links-skeleton']}`} />
+                <div className={`animate-pulse rounded-full bg-gray-200 ${styles['quick-links-skeleton']}`} />
               </div>
             ) : (
               <div className={`${styles['course-quick-links']}`}>
@@ -139,10 +138,16 @@ export function CampaignsPage() {
           <div className={`${styles['wrapper']}`}>
             {loading ? (
               <div>
-                <Skeleton height={31} width="50%" radius="md" className={`${styles['mb-4']}`} />
-                <Skeleton height={8} radius="xl" />
-                <Skeleton height={8} mt={6} radius="xl" />
-                <Skeleton height={8} mt={6} width="70%" radius="xl" />
+                <div
+                  className={`animate-pulse rounded-md bg-gray-200 ${styles['mb-4']}`}
+                  style={{ height: 31, width: '50%' }}
+                />
+                <div className="animate-pulse rounded-full bg-gray-200" style={{ height: 8 }} />
+                <div className="animate-pulse rounded-full bg-gray-200" style={{ height: 8, marginTop: 6 }} />
+                <div
+                  className="animate-pulse rounded-full bg-gray-200"
+                  style={{ height: 8, marginTop: 6, width: '70%' }}
+                />
               </div>
             ) : (
               <div>
@@ -162,16 +167,19 @@ export function CampaignsPage() {
           <div className={`${styles['wrapper']}`}>
             {loading ? (
               <div>
-                <Skeleton height={31} width="50%" radius="md" className={`${styles['mb-4']}`} />
+                <div
+                  className={`animate-pulse rounded-md bg-gray-200 ${styles['mb-4']}`}
+                  style={{ height: 31, width: '50%' }}
+                />
                 <div className={`${styles['reasons-to-study-grid']}`}>
-                  <Skeleton height={426} radius="md" />
-                  <Skeleton height={426} radius="md" />
-                  <Skeleton height={426} radius="md" />
+                  <div className="animate-pulse rounded-md bg-gray-200" style={{ height: 426 }} />
+                  <div className="animate-pulse rounded-md bg-gray-200" style={{ height: 426 }} />
+                  <div className="animate-pulse rounded-md bg-gray-200" style={{ height: 426 }} />
                 </div>
                 <div className={`${styles['highlights-grid']}`}>
-                  <Skeleton height={169} radius="md" />
-                  <Skeleton height={169} radius="md" />
-                  <Skeleton height={169} radius="md" />
+                  <div className="animate-pulse rounded-md bg-gray-200" style={{ height: 169 }} />
+                  <div className="animate-pulse rounded-md bg-gray-200" style={{ height: 169 }} />
+                  <div className="animate-pulse rounded-md bg-gray-200" style={{ height: 169 }} />
                 </div>
               </div>
             ) : (
@@ -196,21 +204,36 @@ export function CampaignsPage() {
           <div className={`${styles['wrapper']}`}>
             {loading ? (
               <div>
-                <Skeleton height={31} width="50%" radius="md" className={`${styles['mb-4']}`} />
-                <Skeleton height={10} width="60%" radius="md" className={`${styles['mb-8']}`} />
+                <div
+                  className={`animate-pulse rounded-md bg-gray-200 ${styles['mb-4']}`}
+                  style={{ height: 31, width: '50%' }}
+                />
+                <div
+                  className={`animate-pulse rounded-md bg-gray-200 ${styles['mb-8']}`}
+                  style={{ height: 10, width: '60%' }}
+                />
                 <div className={`${styles['layout-grid']} ${styles['layout-grid--two-col']}`}>
                   <div className={`${styles['video-wrapper']}`}>
-                    <Skeleton height={433} radius="md" className={`${styles['mb-4']}`} />
+                    <div className={`animate-pulse rounded-md bg-gray-200 ${styles['mb-4']}`} style={{ height: 433 }} />
                   </div>
                   <div>
-                    <Skeleton height={8} radius="xl" />
-                    <Skeleton height={8} mt={6} radius="xl" />
-                    <Skeleton height={8} mt={6} radius="xl" />
-                    <Skeleton height={8} mt={6} width="70%" radius="xl" />
-                    <Skeleton height={8} mt={6} radius="xl" />
-                    <Skeleton height={8} mt={6} radius="xl" />
-                    <Skeleton height={8} mt={6} width="70%" radius="xl" />
-                    <Skeleton height={8} mt={16} width="200" radius="xl" />
+                    <div className="animate-pulse rounded-full bg-gray-200" style={{ height: 8 }} />
+                    <div className="animate-pulse rounded-full bg-gray-200" style={{ height: 8, marginTop: 6 }} />
+                    <div className="animate-pulse rounded-full bg-gray-200" style={{ height: 8, marginTop: 6 }} />
+                    <div
+                      className="animate-pulse rounded-full bg-gray-200"
+                      style={{ height: 8, marginTop: 6, width: '70%' }}
+                    />
+                    <div className="animate-pulse rounded-full bg-gray-200" style={{ height: 8, marginTop: 6 }} />
+                    <div className="animate-pulse rounded-full bg-gray-200" style={{ height: 8, marginTop: 6 }} />
+                    <div
+                      className="animate-pulse rounded-full bg-gray-200"
+                      style={{ height: 8, marginTop: 6, width: '70%' }}
+                    />
+                    <div
+                      className="animate-pulse rounded-full bg-gray-200"
+                      style={{ height: 8, marginTop: 16, width: '200' }}
+                    />
                   </div>
                 </div>
               </div>
@@ -232,11 +255,14 @@ export function CampaignsPage() {
           <div className={`${styles['wrapper']}`}>
             {loading ? (
               <div>
-                <Skeleton height={31} width="50%" radius="md" className={`${styles['mb-4']}`} />
+                <div
+                  className={`animate-pulse rounded-md bg-gray-200 ${styles['mb-4']}`}
+                  style={{ height: 31, width: '50%' }}
+                />
                 <div className={`${styles['accordion']}`}>
-                  <Skeleton height={104} radius="md" />
-                  <Skeleton height={64} radius="md" />
-                  <Skeleton height={64} radius="md" />
+                  <div className="animate-pulse rounded-md bg-gray-200" style={{ height: 104 }} />
+                  <div className="animate-pulse rounded-md bg-gray-200" style={{ height: 64 }} />
+                  <div className="animate-pulse rounded-md bg-gray-200" style={{ height: 64 }} />
                 </div>
               </div>
             ) : (

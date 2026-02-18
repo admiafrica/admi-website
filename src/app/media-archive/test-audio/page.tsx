@@ -1,6 +1,5 @@
 'use client'
 
-import { Container, Title, Card, Button, Stack } from '@mantine/core'
 import { useState } from 'react'
 import { MainLayout } from '@/layouts/v3/MainLayout'
 
@@ -35,22 +34,23 @@ export default function TestAudioPage() {
 
   return (
     <MainLayout>
-      <Container size="sm" py={80}>
-        <Stack gap={20}>
-          <Title>Audio Test Page</Title>
+      <div className="mx-auto w-full max-w-2xl px-4 py-20">
+        <div className="flex flex-col gap-5">
+          <h1 className="text-4xl font-semibold text-gray-900">Audio Test Page</h1>
 
-          <Card padding="lg">
-            <Title order={3} mb={16}>
-              Simple Audio Test
-            </Title>
-            <Button onClick={testAudio}>Test Audio Playback</Button>
+          <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+            <h3 className="mb-4 text-2xl font-semibold text-gray-900">Simple Audio Test</h3>
+            <button
+              className="inline-flex items-center gap-2 rounded-lg bg-brand-orange px-4 py-2 font-medium text-white transition"
+              onClick={testAudio}
+            >
+              Test Audio Playback
+            </button>
             {isPlaying && <p>Audio is playing!</p>}
-          </Card>
+          </div>
 
-          <Card padding="lg">
-            <Title order={3} mb={16}>
-              Native HTML5 Audio
-            </Title>
+          <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+            <h3 className="mb-4 text-2xl font-semibold text-gray-900">Native HTML5 Audio</h3>
             <audio
               controls
               preload="metadata"
@@ -58,12 +58,10 @@ export default function TestAudioPage() {
             >
               Your browser does not support the audio element.
             </audio>
-          </Card>
+          </div>
 
-          <Card padding="lg">
-            <Title order={3} mb={16}>
-              WAV File Test
-            </Title>
+          <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+            <h3 className="mb-4 text-2xl font-semibold text-gray-900">WAV File Test</h3>
             <audio
               controls
               preload="metadata"
@@ -71,9 +69,9 @@ export default function TestAudioPage() {
             >
               Your browser does not support the audio element.
             </audio>
-          </Card>
-        </Stack>
-      </Container>
+          </div>
+        </div>
+      </div>
     </MainLayout>
   )
 }

@@ -25,6 +25,7 @@ export const CACHE_DURATIONS = {
   resources: 15 * 60 * 1000, // 15 minutes
   events: 30 * 60 * 1000, // 30 minutes
   faqs: 60 * 60 * 1000, // 1 hour
+  pages: 30 * 60 * 1000, // 30 minutes
   videos: 7 * 24 * 60 * 60 * 1000 // 7 days
 } as const
 

@@ -22,7 +22,7 @@ export function DiplomaEnhancedSEO({
   employmentRate = 85,
   averageSalary = 'KES 45,000 - 120,000',
   industryPartners = ['Safaricom', 'Nation Media Group', 'Standard Group', 'Royal Media Services'],
-  accreditation = 'Pearson Assured & Woolf University'
+  accreditation = 'Woolf University & TVETA Kenya'
 }: DiplomaEnhancedSEOProps) {
   const [cmsFaqs, setCmsFaqs] = useState<ICourseFAQ[]>([])
 
@@ -183,7 +183,7 @@ export function DiplomaSEOTags({
       <meta name="education.level" content="diploma" />
       <meta name="education.duration" content="2 years" />
       <meta name="education.mode" content={course.programType?.fields?.deliveryMode?.toLowerCase() || 'hybrid'} />
-      <meta name="education.accreditation" content="Pearson Assured, Woolf University" />
+      <meta name="education.accreditation" content="Woolf University, TVETA Kenya" />
       <meta name="education.employment_rate" content="85%" />
 
       {/* Geographic and market targeting */}

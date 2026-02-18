@@ -1,0 +1,1008 @@
+{
+  "generatedAt": "2026-02-15T11:01:52.827Z",
+  "count": 50,
+  "courses": [
+    {
+      "id": "animation-eldoret",
+      "file": "animation-eldoret.tsx",
+      "name": "Animation",
+      "city": "Eldoret",
+      "subtitle": "In Eldoret, the burgeoning startup ecosystem, intertwined with agricultural technology and regional media sectors, presents a fertile ground for animation professionals. The city",
+      "highlights": [
+        "Industry-relevant curriculum designed for Kenyas market",
+        "Experienced instructors with real-world experience",
+        "State-of-the-art facilities and equipment at our Nairobi campus",
+        "90% job placement rate across Kenya",
+        "Flexible payment plans available",
+        "Career support and internship opportunities",
+        "Accessible to students from eldoret and surrounding areas"
+      ],
+      "prompts": {
+        "video": "A professional cinematic shot representing Animation. The scene features students engaged in Animation activities. In Eldoret, the burgeoning startup ecosystem, intertwined with agricultural technology and regional media sectors, presents a fertile ground for animation professionals. The city. Setting is a modern professional studio with black background. Cinematic 4k, establishes shot, slow motion, professional lighting, photorealistic, 8k, highly detailed, film grain, color graded, studio black background",
+        "image": "A professional cinematic shot representing Animation. The scene features students engaged in Animation activities. In Eldoret, the burgeoning startup ecosystem, intertwined with agricultural technology and regional media sectors, presents a fertile ground for animation professionals. The city. Setting is a modern professional studio with black background. Cinematic photo, 8k, photorealistic, studio completely black background, no windows, dark minimal aesthetic, dramatic lighting, depth of field, high quality, professional photography"
+      }
+    },
+    {
+      "id": "animation-kisumu",
+      "file": "animation-kisumu.tsx",
+      "name": "Animation",
+      "city": "Kisumu",
+      "subtitle": "In Kisumu, the burgeoning tech hub of Western Kenya, animation professionals have a unique edge due to emerging tech and creative sectors with lower competition. The presence of Lake Region media, agricultural tech firms, and international NGOs opens doors for animation in advertising, educational content, and digital storytelling, making Kisumu an ideal place for budding animators.",
+      "highlights": [
+        "Industry-relevant curriculum designed for Kenyas market",
+        "Experienced instructors with real-world experience",
+        "State-of-the-art facilities and equipment at our Nairobi campus",
+        "90% job placement rate across Kenya",
+        "Flexible payment plans available",
+        "Career support and internship opportunities",
+        "Accessible to students from kisumu and surrounding areas"
+      ],
+      "prompts": {
+        "video": "A professional cinematic shot representing Animation. The scene features students engaged in Animation activities. In Kisumu, the burgeoning tech hub of Western Kenya, animation professionals have a unique edge due to emerging tech and creative sectors with lower competition. The presence of Lake Region media, agricultural tech firms, and international NGOs opens doors for animation in advertising, educational content, and digital storytelling, making Kisumu an ideal place for budding animators.. Setting is a modern professional studio with black background. Cinematic 4k, establishes shot, slow motion, professional lighting, photorealistic, 8k, highly detailed, film grain, color graded, studio black background",
+        "image": "A professional cinematic shot representing Animation. The scene features students engaged in Animation activities. In Kisumu, the burgeoning tech hub of Western Kenya, animation professionals have a unique edge due to emerging tech and creative sectors with lower competition. The presence of Lake Region media, agricultural tech firms, and international NGOs opens doors for animation in advertising, educational content, and digital storytelling, making Kisumu an ideal place for budding animators.. Setting is a modern professional studio with black background. Cinematic photo, 8k, photorealistic, studio completely black background, no windows, dark minimal aesthetic, dramatic lighting, depth of field, high quality, professional photography"
+      }
+    },
+    {
+      "id": "animation-mombasa",
+      "file": "animation-mombasa.tsx",
+      "name": "Animation",
+      "city": "Mombasa",
+      "subtitle": "In Mombasa, the animation sector is uniquely poised for growth, driven by the tourism industry",
+      "highlights": [
+        "Industry-relevant curriculum designed for Kenyas market",
+        "Experienced instructors with real-world experience",
+        "State-of-the-art facilities and equipment at our Nairobi campus",
+        "90% job placement rate across Kenya",
+        "Flexible payment plans available",
+        "Career support and internship opportunities",
+        "Accessible to students from mombasa and surrounding areas"
+      ],
+      "prompts": {
+        "video": "A professional cinematic shot representing Animation. The scene features students engaged in Animation activities. In Mombasa, the animation sector is uniquely poised for growth, driven by the tourism industry. Setting is a modern professional studio with black background. Cinematic 4k, establishes shot, slow motion, professional lighting, photorealistic, 8k, highly detailed, film grain, color graded, studio black background",
+        "image": "A professional cinematic shot representing Animation. The scene features students engaged in Animation activities. In Mombasa, the animation sector is uniquely poised for growth, driven by the tourism industry. Setting is a modern professional studio with black background. Cinematic photo, 8k, photorealistic, studio completely black background, no windows, dark minimal aesthetic, dramatic lighting, depth of field, high quality, professional photography"
+      }
+    },
+    {
+      "id": "animation-nairobi",
+      "file": "animation-nairobi.tsx",
+      "name": "Animation",
+      "city": "Nairobi",
+      "subtitle": "In Nairobi, the heart of Kenya",
+      "highlights": [
+        "Industry-relevant curriculum designed for Kenyas market",
+        "Experienced instructors with real-world experience",
+        "State-of-the-art facilities and equipment at our Nairobi campus",
+        "90% job placement rate across Kenya",
+        "Flexible payment plans available",
+        "Career support and internship opportunities",
+        "Accessible to students from nairobi and surrounding areas"
+      ],
+      "prompts": {
+        "video": "A professional cinematic shot representing Animation. The scene features students engaged in Animation activities. In Nairobi, the heart of Kenya. Setting is a modern professional studio with black background. Cinematic 4k, establishes shot, slow motion, professional lighting, photorealistic, 8k, highly detailed, film grain, color graded, studio black background",
+        "image": "A professional cinematic shot representing Animation. The scene features students engaged in Animation activities. In Nairobi, the heart of Kenya. Setting is a modern professional studio with black background. Cinematic photo, 8k, photorealistic, studio completely black background, no windows, dark minimal aesthetic, dramatic lighting, depth of field, high quality, professional photography"
+      }
+    },
+    {
+      "id": "animation-nakuru",
+      "file": "animation-nakuru.tsx",
+      "name": "Animation",
+      "city": "Nakuru",
+      "subtitle": "Nakuru offers a vibrant market for animators, uniquely benefiting from its strategic position to service both Nairobi",
+      "highlights": [
+        "Industry-relevant curriculum designed for Kenyas market",
+        "Experienced instructors with real-world experience",
+        "State-of-the-art facilities and equipment at our Nairobi campus",
+        "90% job placement rate across Kenya",
+        "Flexible payment plans available",
+        "Career support and internship opportunities",
+        "Accessible to students from nakuru and surrounding areas"
+      ],
+      "prompts": {
+        "video": "A professional cinematic shot representing Animation. The scene features students engaged in Animation activities. Nakuru offers a vibrant market for animators, uniquely benefiting from its strategic position to service both Nairobi. Setting is a modern professional studio with black background. Cinematic 4k, establishes shot, slow motion, professional lighting, photorealistic, 8k, highly detailed, film grain, color graded, studio black background",
+        "image": "A professional cinematic shot representing Animation. The scene features students engaged in Animation activities. Nakuru offers a vibrant market for animators, uniquely benefiting from its strategic position to service both Nairobi. Setting is a modern professional studio with black background. Cinematic photo, 8k, photorealistic, studio completely black background, no windows, dark minimal aesthetic, dramatic lighting, depth of field, high quality, professional photography"
+      }
+    },
+    {
+      "id": "digital-marketing-eldoret",
+      "file": "digital-marketing-eldoret.tsx",
+      "name": "Digital Marketing",
+      "city": "Eldoret",
+      "subtitle": "Eldoret",
+      "highlights": [
+        "Industry-relevant curriculum designed for Rift Valley market",
+        "Experienced instructors with real-world experience",
+        "State-of-the-art facilities and equipment",
+        "90% job placement rate in eldoret and surrounding areas",
+        "Flexible payment plans available",
+        "Career support and internship opportunities"
+      ],
+      "prompts": {
+        "video": "A professional cinematic shot representing Digital Marketing. The scene features students engaged in Digital Marketing activities. Eldoret. Setting is a modern professional studio with black background. Cinematic 4k, establishes shot, slow motion, professional lighting, photorealistic, 8k, highly detailed, film grain, color graded, studio black background",
+        "image": "A professional cinematic shot representing Digital Marketing. The scene features students engaged in Digital Marketing activities. Eldoret. Setting is a modern professional studio with black background. Cinematic photo, 8k, photorealistic, studio completely black background, no windows, dark minimal aesthetic, dramatic lighting, depth of field, high quality, professional photography"
+      }
+    },
+    {
+      "id": "digital-marketing-kisumu",
+      "file": "digital-marketing-kisumu.tsx",
+      "name": "Digital Marketing",
+      "city": "Kisumu",
+      "subtitle": "Kisumu, emerging as a vibrant tech hub in Western Kenya, offers unique opportunities for digital marketers. With a growing base of tech startups, agricultural tech firms, and international NGOs, the city",
+      "highlights": [
+        "Industry-relevant curriculum designed for Western market",
+        "Experienced instructors with real-world experience",
+        "State-of-the-art facilities and equipment",
+        "90% job placement rate in kisumu and surrounding areas",
+        "Flexible payment plans available",
+        "Career support and internship opportunities"
+      ],
+      "prompts": {
+        "video": "A professional cinematic shot representing Digital Marketing. The scene features students engaged in Digital Marketing activities. Kisumu, emerging as a vibrant tech hub in Western Kenya, offers unique opportunities for digital marketers. With a growing base of tech startups, agricultural tech firms, and international NGOs, the city. Setting is a modern professional studio with black background. Cinematic 4k, establishes shot, slow motion, professional lighting, photorealistic, 8k, highly detailed, film grain, color graded, studio black background",
+        "image": "A professional cinematic shot representing Digital Marketing. The scene features students engaged in Digital Marketing activities. Kisumu, emerging as a vibrant tech hub in Western Kenya, offers unique opportunities for digital marketers. With a growing base of tech startups, agricultural tech firms, and international NGOs, the city. Setting is a modern professional studio with black background. Cinematic photo, 8k, photorealistic, studio completely black background, no windows, dark minimal aesthetic, dramatic lighting, depth of field, high quality, professional photography"
+      }
+    },
+    {
+      "id": "digital-marketing-mombasa",
+      "file": "digital-marketing-mombasa.tsx",
+      "name": "Digital Marketing",
+      "city": "Mombasa",
+      "subtitle": "Mombasa, with its thriving tourism sector and vibrant hospitality brands, presents a fertile ground for digital marketers. The city",
+      "highlights": [
+        "Industry-relevant curriculum designed for Coast market",
+        "Experienced instructors with real-world experience",
+        "State-of-the-art facilities and equipment",
+        "90% job placement rate in mombasa and surrounding areas",
+        "Flexible payment plans available",
+        "Career support and internship opportunities"
+      ],
+      "prompts": {
+        "video": "A professional cinematic shot representing Digital Marketing. The scene features students engaged in Digital Marketing activities. Mombasa, with its thriving tourism sector and vibrant hospitality brands, presents a fertile ground for digital marketers. The city. Setting is a modern professional studio with black background. Cinematic 4k, establishes shot, slow motion, professional lighting, photorealistic, 8k, highly detailed, film grain, color graded, studio black background",
+        "image": "A professional cinematic shot representing Digital Marketing. The scene features students engaged in Digital Marketing activities. Mombasa, with its thriving tourism sector and vibrant hospitality brands, presents a fertile ground for digital marketers. The city. Setting is a modern professional studio with black background. Cinematic photo, 8k, photorealistic, studio completely black background, no windows, dark minimal aesthetic, dramatic lighting, depth of field, high quality, professional photography"
+      }
+    },
+    {
+      "id": "digital-marketing-nairobi",
+      "file": "digital-marketing-nairobi.tsx",
+      "name": "Digital Marketing",
+      "city": "Nairobi",
+      "subtitle": "Nairobi, the heart of Kenya",
+      "highlights": [
+        "Industry-relevant curriculum designed for Nairobi market",
+        "Direct networking with Safaricom",
+        "Nation Media Group professionals",
+        "Access to Kenyas largest creative job market",
+        "90% job placement rate in Nairobi and surrounding areas",
+        "Flexible payment plans available",
+        "Career support and internship opportunities"
+      ],
+      "prompts": {
+        "video": "A professional cinematic shot representing Digital Marketing. The scene features students engaged in Digital Marketing activities. Nairobi, the heart of Kenya. Setting is a modern professional studio with black background. Cinematic 4k, establishes shot, slow motion, professional lighting, photorealistic, 8k, highly detailed, film grain, color graded, studio black background",
+        "image": "A professional cinematic shot representing Digital Marketing. The scene features students engaged in Digital Marketing activities. Nairobi, the heart of Kenya. Setting is a modern professional studio with black background. Cinematic photo, 8k, photorealistic, studio completely black background, no windows, dark minimal aesthetic, dramatic lighting, depth of field, high quality, professional photography"
+      }
+    },
+    {
+      "id": "digital-marketing-nakuru",
+      "file": "digital-marketing-nakuru.tsx",
+      "name": "Digital Marketing",
+      "city": "Nakuru",
+      "subtitle": "Nakuru offers a ripe market for digital marketers, with its booming manufacturing, agriculture, and tourism sectors. Its strategic location, bridging Nairobi and Western Kenya, presents a unique advantage for those skilled in digital marketing to carve out niches in both local and regional markets. Leveraging Nakuru",
+      "highlights": [
+        "Industry-relevant curriculum designed for Rift Valley market",
+        "Experienced instructors with real-world experience",
+        "State-of-the-art facilities and equipment",
+        "90% job placement rate in nakuru and surrounding areas",
+        "Flexible payment plans available",
+        "Career support and internship opportunities"
+      ],
+      "prompts": {
+        "video": "A professional cinematic shot representing Digital Marketing. The scene features students engaged in Digital Marketing activities. Nakuru offers a ripe market for digital marketers, with its booming manufacturing, agriculture, and tourism sectors. Its strategic location, bridging Nairobi and Western Kenya, presents a unique advantage for those skilled in digital marketing to carve out niches in both local and regional markets. Leveraging Nakuru. Setting is a modern professional studio with black background. Cinematic 4k, establishes shot, slow motion, professional lighting, photorealistic, 8k, highly detailed, film grain, color graded, studio black background",
+        "image": "A professional cinematic shot representing Digital Marketing. The scene features students engaged in Digital Marketing activities. Nakuru offers a ripe market for digital marketers, with its booming manufacturing, agriculture, and tourism sectors. Its strategic location, bridging Nairobi and Western Kenya, presents a unique advantage for those skilled in digital marketing to carve out niches in both local and regional markets. Leveraging Nakuru. Setting is a modern professional studio with black background. Cinematic photo, 8k, photorealistic, studio completely black background, no windows, dark minimal aesthetic, dramatic lighting, depth of field, high quality, professional photography"
+      }
+    },
+    {
+      "id": "entertainment-business-eldoret",
+      "file": "entertainment-business-eldoret.tsx",
+      "name": "Entertainment Business",
+      "city": "Eldoret",
+      "subtitle": "Professional Entertainment Business training in eldoret with industry experts and guaranteed job placement support",
+      "highlights": [
+        "Industry-relevant curriculum designed for Kenyas market",
+        "Experienced instructors with real-world experience",
+        "State-of-the-art facilities and equipment at our Nairobi campus",
+        "90% job placement rate across Kenya",
+        "Flexible payment plans available",
+        "Career support and internship opportunities",
+        "Accessible to students from eldoret and surrounding areas"
+      ],
+      "prompts": {
+        "video": "A professional cinematic shot representing Entertainment Business. The scene features students engaged in Entertainment Business activities. Professional Entertainment Business training in eldoret with industry experts and guaranteed job placement support. Setting is a modern professional studio with black background. Cinematic 4k, establishes shot, slow motion, professional lighting, photorealistic, 8k, highly detailed, film grain, color graded, studio black background",
+        "image": "A professional cinematic shot representing Entertainment Business. The scene features students engaged in Entertainment Business activities. Professional Entertainment Business training in eldoret with industry experts and guaranteed job placement support. Setting is a modern professional studio with black background. Cinematic photo, 8k, photorealistic, studio completely black background, no windows, dark minimal aesthetic, dramatic lighting, depth of field, high quality, professional photography"
+      }
+    },
+    {
+      "id": "entertainment-business-kisumu",
+      "file": "entertainment-business-kisumu.tsx",
+      "name": "Entertainment Business",
+      "city": "Kisumu",
+      "subtitle": "Professional Entertainment Business training in kisumu with industry experts and guaranteed job placement support",
+      "highlights": [
+        "Industry-relevant curriculum designed for Kenyas market",
+        "Experienced instructors with real-world experience",
+        "State-of-the-art facilities and equipment at our Nairobi campus",
+        "90% job placement rate across Kenya",
+        "Flexible payment plans available",
+        "Career support and internship opportunities",
+        "Accessible to students from kisumu and surrounding areas"
+      ],
+      "prompts": {
+        "video": "A professional cinematic shot representing Entertainment Business. The scene features students engaged in Entertainment Business activities. Professional Entertainment Business training in kisumu with industry experts and guaranteed job placement support. Setting is a modern professional studio with black background. Cinematic 4k, establishes shot, slow motion, professional lighting, photorealistic, 8k, highly detailed, film grain, color graded, studio black background",
+        "image": "A professional cinematic shot representing Entertainment Business. The scene features students engaged in Entertainment Business activities. Professional Entertainment Business training in kisumu with industry experts and guaranteed job placement support. Setting is a modern professional studio with black background. Cinematic photo, 8k, photorealistic, studio completely black background, no windows, dark minimal aesthetic, dramatic lighting, depth of field, high quality, professional photography"
+      }
+    },
+    {
+      "id": "entertainment-business-mombasa",
+      "file": "entertainment-business-mombasa.tsx",
+      "name": "Entertainment Business",
+      "city": "Mombasa",
+      "subtitle": "Professional Entertainment Business training in mombasa with industry experts and guaranteed job placement support",
+      "highlights": [
+        "Industry-relevant curriculum designed for Kenyas market",
+        "Experienced instructors with real-world experience",
+        "State-of-the-art facilities and equipment at our Nairobi campus",
+        "90% job placement rate across Kenya",
+        "Flexible payment plans available",
+        "Career support and internship opportunities",
+        "Accessible to students from mombasa and surrounding areas"
+      ],
+      "prompts": {
+        "video": "A professional cinematic shot representing Entertainment Business. The scene features students engaged in Entertainment Business activities. Professional Entertainment Business training in mombasa with industry experts and guaranteed job placement support. Setting is a modern professional studio with black background. Cinematic 4k, establishes shot, slow motion, professional lighting, photorealistic, 8k, highly detailed, film grain, color graded, studio black background",
+        "image": "A professional cinematic shot representing Entertainment Business. The scene features students engaged in Entertainment Business activities. Professional Entertainment Business training in mombasa with industry experts and guaranteed job placement support. Setting is a modern professional studio with black background. Cinematic photo, 8k, photorealistic, studio completely black background, no windows, dark minimal aesthetic, dramatic lighting, depth of field, high quality, professional photography"
+      }
+    },
+    {
+      "id": "entertainment-business-nairobi",
+      "file": "entertainment-business-nairobi.tsx",
+      "name": "Entertainment Business",
+      "city": "Nairobi",
+      "subtitle": "Professional Entertainment Business training in nairobi with industry experts and guaranteed job placement support",
+      "highlights": [
+        "Industry-relevant curriculum designed for Kenyas market",
+        "Experienced instructors with real-world experience",
+        "State-of-the-art facilities and equipment at our Nairobi campus",
+        "90% job placement rate across Kenya",
+        "Flexible payment plans available",
+        "Career support and internship opportunities",
+        "Accessible to students from nairobi and surrounding areas"
+      ],
+      "prompts": {
+        "video": "A professional cinematic shot representing Entertainment Business. The scene features students engaged in Entertainment Business activities. Professional Entertainment Business training in nairobi with industry experts and guaranteed job placement support. Setting is a modern professional studio with black background. Cinematic 4k, establishes shot, slow motion, professional lighting, photorealistic, 8k, highly detailed, film grain, color graded, studio black background",
+        "image": "A professional cinematic shot representing Entertainment Business. The scene features students engaged in Entertainment Business activities. Professional Entertainment Business training in nairobi with industry experts and guaranteed job placement support. Setting is a modern professional studio with black background. Cinematic photo, 8k, photorealistic, studio completely black background, no windows, dark minimal aesthetic, dramatic lighting, depth of field, high quality, professional photography"
+      }
+    },
+    {
+      "id": "entertainment-business-nakuru",
+      "file": "entertainment-business-nakuru.tsx",
+      "name": "Entertainment Business",
+      "city": "Nakuru",
+      "subtitle": "Professional Entertainment Business training in nakuru with industry experts and guaranteed job placement support",
+      "highlights": [
+        "Industry-relevant curriculum designed for Kenyas market",
+        "Experienced instructors with real-world experience",
+        "State-of-the-art facilities and equipment at our Nairobi campus",
+        "90% job placement rate across Kenya",
+        "Flexible payment plans available",
+        "Career support and internship opportunities",
+        "Accessible to students from nakuru and surrounding areas"
+      ],
+      "prompts": {
+        "video": "A professional cinematic shot representing Entertainment Business. The scene features students engaged in Entertainment Business activities. Professional Entertainment Business training in nakuru with industry experts and guaranteed job placement support. Setting is a modern professional studio with black background. Cinematic 4k, establishes shot, slow motion, professional lighting, photorealistic, 8k, highly detailed, film grain, color graded, studio black background",
+        "image": "A professional cinematic shot representing Entertainment Business. The scene features students engaged in Entertainment Business activities. Professional Entertainment Business training in nakuru with industry experts and guaranteed job placement support. Setting is a modern professional studio with black background. Cinematic photo, 8k, photorealistic, studio completely black background, no windows, dark minimal aesthetic, dramatic lighting, depth of field, high quality, professional photography"
+      }
+    },
+    {
+      "id": "film-production-eldoret",
+      "file": "film-production-eldoret.tsx",
+      "name": "Film Production",
+      "city": "Eldoret",
+      "subtitle": "East Africa",
+      "highlights": [
+        "🏆 Top-rated film school in East Africa with regional recognition",
+        "🎬 All classes held at our modern Nairobi campus",
+        "⭐ Award-winning instructors with international film experience",
+        "🎥 State-of-the-art HD and digital cinema equipment in Nairobi",
+        "📈 90% job placement rate across Kenya and East Africa",
+        "🌍 Partnerships with Africas vibrant film industry",
+        "💼 Comprehensive career support and industry networking"
+      ],
+      "prompts": {
+        "video": "A professional cinematic shot representing Film Production. The scene features students engaged in Film Production activities. East Africa. Setting is a modern professional studio with black background. Cinematic 4k, establishes shot, slow motion, professional lighting, photorealistic, 8k, highly detailed, film grain, color graded, studio black background",
+        "image": "A professional cinematic shot representing Film Production. The scene features students engaged in Film Production activities. East Africa. Setting is a modern professional studio with black background. Cinematic photo, 8k, photorealistic, studio completely black background, no windows, dark minimal aesthetic, dramatic lighting, depth of field, high quality, professional photography"
+      }
+    },
+    {
+      "id": "film-production-kisumu",
+      "file": "film-production-kisumu.tsx",
+      "name": "Film Production",
+      "city": "Kisumu",
+      "subtitle": "East Africa",
+      "highlights": [
+        "🏆 Top-rated film school in East Africa with regional recognition",
+        "🎬 All classes held at our modern Nairobi campus",
+        "⭐ Award-winning instructors with international film experience",
+        "🎥 State-of-the-art HD and digital cinema equipment in Nairobi",
+        "📈 90% job placement rate across Kenya and East Africa",
+        "🌍 Partnerships with Africas vibrant film industry",
+        "💼 Comprehensive career support and industry networking"
+      ],
+      "prompts": {
+        "video": "A professional cinematic shot representing Film Production. The scene features students engaged in Film Production activities. East Africa. Setting is a modern professional studio with black background. Cinematic 4k, establishes shot, slow motion, professional lighting, photorealistic, 8k, highly detailed, film grain, color graded, studio black background",
+        "image": "A professional cinematic shot representing Film Production. The scene features students engaged in Film Production activities. East Africa. Setting is a modern professional studio with black background. Cinematic photo, 8k, photorealistic, studio completely black background, no windows, dark minimal aesthetic, dramatic lighting, depth of field, high quality, professional photography"
+      }
+    },
+    {
+      "id": "film-production-mombasa",
+      "file": "film-production-mombasa.tsx",
+      "name": "Film Production",
+      "city": "Mombasa",
+      "subtitle": "East Africa",
+      "highlights": [
+        "🏆 Top-rated film school in East Africa with regional recognition",
+        "🎬 All classes held at our modern Nairobi campus",
+        "⭐ Award-winning instructors with international film experience",
+        "🎥 State-of-the-art HD and digital cinema equipment in Nairobi",
+        "📈 90% job placement rate across Kenya and East Africa",
+        "🌍 Partnerships with Africas vibrant film industry",
+        "💼 Comprehensive career support and industry networking"
+      ],
+      "prompts": {
+        "video": "A professional cinematic shot representing Film Production. The scene features students engaged in Film Production activities. East Africa. Setting is a modern professional studio with black background. Cinematic 4k, establishes shot, slow motion, professional lighting, photorealistic, 8k, highly detailed, film grain, color graded, studio black background",
+        "image": "A professional cinematic shot representing Film Production. The scene features students engaged in Film Production activities. East Africa. Setting is a modern professional studio with black background. Cinematic photo, 8k, photorealistic, studio completely black background, no windows, dark minimal aesthetic, dramatic lighting, depth of field, high quality, professional photography"
+      }
+    },
+    {
+      "id": "film-production-nairobi",
+      "file": "film-production-nairobi.tsx",
+      "name": "Film Production",
+      "city": "Nairobi",
+      "subtitle": "Best Film Production course in Nairobi, Kenya.",
+      "highlights": [
+        "Industry-relevant curriculum designed for Kenyas market"
+      ],
+      "prompts": {
+        "video": "A professional cinematic shot representing Film Production. The scene features students engaged in Film Production activities. Best Film Production course in Nairobi, Kenya.. Setting is a modern professional studio with black background. Cinematic 4k, establishes shot, slow motion, professional lighting, photorealistic, 8k, highly detailed, film grain, color graded, studio black background",
+        "image": "A professional cinematic shot representing Film Production. The scene features students engaged in Film Production activities. Best Film Production course in Nairobi, Kenya.. Setting is a modern professional studio with black background. Cinematic photo, 8k, photorealistic, studio completely black background, no windows, dark minimal aesthetic, dramatic lighting, depth of field, high quality, professional photography"
+      }
+    },
+    {
+      "id": "film-production-nakuru",
+      "file": "film-production-nakuru.tsx",
+      "name": "Film Production",
+      "city": "Nakuru",
+      "subtitle": "East Africa",
+      "highlights": [
+        "🏆 Top-rated film school in East Africa with regional recognition",
+        "🎬 All classes held at our modern Nairobi campus",
+        "⭐ Award-winning instructors with international film experience",
+        "🎥 State-of-the-art HD and digital cinema equipment in Nairobi",
+        "📈 90% job placement rate across Kenya and East Africa",
+        "🌍 Partnerships with Africas vibrant film industry",
+        "💼 Comprehensive career support and industry networking"
+      ],
+      "prompts": {
+        "video": "A professional cinematic shot representing Film Production. The scene features students engaged in Film Production activities. East Africa. Setting is a modern professional studio with black background. Cinematic 4k, establishes shot, slow motion, professional lighting, photorealistic, 8k, highly detailed, film grain, color graded, studio black background",
+        "image": "A professional cinematic shot representing Film Production. The scene features students engaged in Film Production activities. East Africa. Setting is a modern professional studio with black background. Cinematic photo, 8k, photorealistic, studio completely black background, no windows, dark minimal aesthetic, dramatic lighting, depth of field, high quality, professional photography"
+      }
+    },
+    {
+      "id": "graphic-design-eldoret",
+      "file": "graphic-design-eldoret.tsx",
+      "name": "Graphic Design",
+      "city": "Eldoret",
+      "subtitle": "Welcoming students from Eldoret to Kenya",
+      "highlights": [
+        "🌆 <strong>Star Faculty:</strong> Learn from industry legends like Brian Omolo",
+        "revolutionizing digital art & murals across Nairobi",
+        "📈 <strong>Outstanding Results:</strong> Over 90% employment rate - the highest in Kenya",
+        "🏆 <strong>Industry Recognition:</strong> Most sought-after course among creative professionals",
+        "🎬 <strong>Nairobi Campus:</strong> All classes at our state-of-the-art Nairobi facilities",
+        "✨ <strong>Cutting-Edge Equipment:</strong> Professional-grade design labs and software",
+        "🎨 <strong>Revolutionary Techniques:</strong> Master digital art",
+        "murals",
+        "and contemporary design"
+      ],
+      "prompts": {
+        "video": "A professional cinematic shot representing Graphic Design. The scene features students engaged in Graphic Design activities. Welcoming students from Eldoret to Kenya. Setting is a modern professional studio with black background. Cinematic 4k, establishes shot, slow motion, professional lighting, photorealistic, 8k, highly detailed, film grain, color graded, studio black background",
+        "image": "A professional cinematic shot representing Graphic Design. The scene features students engaged in Graphic Design activities. Welcoming students from Eldoret to Kenya. Setting is a modern professional studio with black background. Cinematic photo, 8k, photorealistic, studio completely black background, no windows, dark minimal aesthetic, dramatic lighting, depth of field, high quality, professional photography"
+      }
+    },
+    {
+      "id": "graphic-design-kisumu",
+      "file": "graphic-design-kisumu.tsx",
+      "name": "Graphic Design",
+      "city": "Kisumu",
+      "subtitle": "Welcoming students from Kisumu to Kenya",
+      "highlights": [
+        "🌆 <strong>Star Faculty:</strong> Learn from industry legends like Brian Omolo",
+        "revolutionizing digital art & murals across Nairobi",
+        "📈 <strong>Outstanding Results:</strong> Over 90% employment rate - the highest in Kenya",
+        "🏆 <strong>Industry Recognition:</strong> Most sought-after course among creative professionals",
+        "🎬 <strong>Nairobi Campus:</strong> All classes at our state-of-the-art Nairobi facilities",
+        "✨ <strong>Cutting-Edge Equipment:</strong> Professional-grade design labs and software",
+        "🎨 <strong>Revolutionary Techniques:</strong> Master digital art",
+        "murals",
+        "and contemporary design"
+      ],
+      "prompts": {
+        "video": "A professional cinematic shot representing Graphic Design. The scene features students engaged in Graphic Design activities. Welcoming students from Kisumu to Kenya. Setting is a modern professional studio with black background. Cinematic 4k, establishes shot, slow motion, professional lighting, photorealistic, 8k, highly detailed, film grain, color graded, studio black background",
+        "image": "A professional cinematic shot representing Graphic Design. The scene features students engaged in Graphic Design activities. Welcoming students from Kisumu to Kenya. Setting is a modern professional studio with black background. Cinematic photo, 8k, photorealistic, studio completely black background, no windows, dark minimal aesthetic, dramatic lighting, depth of field, high quality, professional photography"
+      }
+    },
+    {
+      "id": "graphic-design-mombasa",
+      "file": "graphic-design-mombasa.tsx",
+      "name": "Graphic Design",
+      "city": "Mombasa",
+      "subtitle": "Welcoming students from Mombasa to Kenya",
+      "highlights": [
+        "🌆 <strong>Star Faculty:</strong> Learn from industry legends like Brian Omolo",
+        "revolutionizing digital art & murals across Nairobi",
+        "📈 <strong>Outstanding Results:</strong> Over 90% employment rate - the highest in Kenya",
+        "🏆 <strong>Industry Recognition:</strong> Most sought-after course among creative professionals",
+        "🎬 <strong>Nairobi Campus:</strong> All classes at our state-of-the-art Nairobi facilities",
+        "✨ <strong>Cutting-Edge Equipment:</strong> Professional-grade design labs and software",
+        "🎨 <strong>Revolutionary Techniques:</strong> Master digital art",
+        "murals",
+        "and contemporary design"
+      ],
+      "prompts": {
+        "video": "A professional cinematic shot representing Graphic Design. The scene features students engaged in Graphic Design activities. Welcoming students from Mombasa to Kenya. Setting is a modern professional studio with black background. Cinematic 4k, establishes shot, slow motion, professional lighting, photorealistic, 8k, highly detailed, film grain, color graded, studio black background",
+        "image": "A professional cinematic shot representing Graphic Design. The scene features students engaged in Graphic Design activities. Welcoming students from Mombasa to Kenya. Setting is a modern professional studio with black background. Cinematic photo, 8k, photorealistic, studio completely black background, no windows, dark minimal aesthetic, dramatic lighting, depth of field, high quality, professional photography"
+      }
+    },
+    {
+      "id": "graphic-design-nairobi",
+      "file": "graphic-design-nairobi.tsx",
+      "name": "Graphic Design",
+      "city": "Nairobi",
+      "subtitle": "The industry",
+      "highlights": [
+        "🎆 <strong>Star Faculty:</strong> Learn from industry legends like Brian Omolo",
+        "revolutionizing digital art & murals across Nairobi",
+        "📈 <strong>Outstanding Results:</strong> Over 90% employment rate - the highest in Kenya",
+        "🏆 <strong>Industry Recognition:</strong> Most sought-after course among creative professionals",
+        "✨ <strong>Cutting-Edge Equipment:</strong> State-of-the-art design labs and professional-grade software",
+        "🎨 <strong>Revolutionary Techniques:</strong> Master digital art",
+        "murals",
+        "and contemporary design methods",
+        "🌐 <strong>Industry Connections:</strong> Direct access to Kenyas top design studios and agencies",
+        "💼 <strong>Guaranteed Success:</strong> Comprehensive career support with proven track record"
+      ],
+      "prompts": {
+        "video": "A professional cinematic shot representing Graphic Design. The scene features students engaged in Graphic Design activities. The industry. Setting is a modern professional studio with black background. Cinematic 4k, establishes shot, slow motion, professional lighting, photorealistic, 8k, highly detailed, film grain, color graded, studio black background",
+        "image": "A professional cinematic shot representing Graphic Design. The scene features students engaged in Graphic Design activities. The industry. Setting is a modern professional studio with black background. Cinematic photo, 8k, photorealistic, studio completely black background, no windows, dark minimal aesthetic, dramatic lighting, depth of field, high quality, professional photography"
+      }
+    },
+    {
+      "id": "graphic-design-nakuru",
+      "file": "graphic-design-nakuru.tsx",
+      "name": "Graphic Design",
+      "city": "Nakuru",
+      "subtitle": "Welcoming students from Nakuru to Kenya",
+      "highlights": [
+        "🎆 <strong>Star Faculty:</strong> Learn from industry legends like Brian Omolo",
+        "revolutionizing digital art & murals across Nairobi",
+        "📈 <strong>Outstanding Results:</strong> Over 90% employment rate - the highest in Kenya",
+        "🏆 <strong>Industry Recognition:</strong> Most sought-after course among creative professionals",
+        "🎬 <strong>Nairobi Campus:</strong> All classes at our state-of-the-art Nairobi facilities",
+        "✨ <strong>Cutting-Edge Equipment:</strong> Professional-grade design labs and software",
+        "🎨 <strong>Revolutionary Techniques:</strong> Master digital art",
+        "murals",
+        "and contemporary design",
+        "💼 <strong>Guaranteed Success:</strong> Direct access to Kenyas top design studios"
+      ],
+      "prompts": {
+        "video": "A professional cinematic shot representing Graphic Design. The scene features students engaged in Graphic Design activities. Welcoming students from Nakuru to Kenya. Setting is a modern professional studio with black background. Cinematic 4k, establishes shot, slow motion, professional lighting, photorealistic, 8k, highly detailed, film grain, color graded, studio black background",
+        "image": "A professional cinematic shot representing Graphic Design. The scene features students engaged in Graphic Design activities. Welcoming students from Nakuru to Kenya. Setting is a modern professional studio with black background. Cinematic photo, 8k, photorealistic, studio completely black background, no windows, dark minimal aesthetic, dramatic lighting, depth of field, high quality, professional photography"
+      }
+    },
+    {
+      "id": "music-production-eldoret",
+      "file": "music-production-eldoret.tsx",
+      "name": "Music Production",
+      "city": "Eldoret",
+      "subtitle": "Eldoret, with its burgeoning startup ecosystem especially in agri-tech and sports, presents a unique avenue for music production students to blend digital skills with local content creation. The diverse cultures and stories within the North Rift region provide rich material for audio storytelling, beat production for local artists, and podcasting about regional developments.",
+      "highlights": [
+        "Industry-relevant curriculum designed for Kenyas market",
+        "Experienced instructors with real-world experience",
+        "State-of-the-art facilities and equipment at our Nairobi campus",
+        "90% job placement rate across Kenya",
+        "Flexible payment plans available",
+        "Career support and internship opportunities",
+        "Accessible to students from eldoret and surrounding areas"
+      ],
+      "prompts": {
+        "video": "A professional cinematic shot representing Music Production. The scene features students engaged in Music Production activities. Eldoret, with its burgeoning startup ecosystem especially in agri-tech and sports, presents a unique avenue for music production students to blend digital skills with local content creation. The diverse cultures and stories within the North Rift region provide rich material for audio storytelling, beat production for local artists, and podcasting about regional developments.. Setting is a modern professional studio with black background. Cinematic 4k, establishes shot, slow motion, professional lighting, photorealistic, 8k, highly detailed, film grain, color graded, studio black background",
+        "image": "A professional cinematic shot representing Music Production. The scene features students engaged in Music Production activities. Eldoret, with its burgeoning startup ecosystem especially in agri-tech and sports, presents a unique avenue for music production students to blend digital skills with local content creation. The diverse cultures and stories within the North Rift region provide rich material for audio storytelling, beat production for local artists, and podcasting about regional developments.. Setting is a modern professional studio with black background. Cinematic photo, 8k, photorealistic, studio completely black background, no windows, dark minimal aesthetic, dramatic lighting, depth of field, high quality, professional photography"
+      }
+    },
+    {
+      "id": "music-production-kisumu",
+      "file": "music-production-kisumu.tsx",
+      "name": "Music Production",
+      "city": "Kisumu",
+      "subtitle": "In Kisumu, the burgeoning tech and creative scene, particularly in Milimani and Mamboleo, presents a fertile ground for music production graduates. With the city",
+      "highlights": [
+        "Industry-relevant curriculum designed for Kenyas market",
+        "Experienced instructors with real-world experience",
+        "State-of-the-art facilities and equipment at our Nairobi campus",
+        "90% job placement rate across Kenya",
+        "Flexible payment plans available",
+        "Career support and internship opportunities",
+        "Accessible to students from kisumu and surrounding areas"
+      ],
+      "prompts": {
+        "video": "A professional cinematic shot representing Music Production. The scene features students engaged in Music Production activities. In Kisumu, the burgeoning tech and creative scene, particularly in Milimani and Mamboleo, presents a fertile ground for music production graduates. With the city. Setting is a modern professional studio with black background. Cinematic 4k, establishes shot, slow motion, professional lighting, photorealistic, 8k, highly detailed, film grain, color graded, studio black background",
+        "image": "A professional cinematic shot representing Music Production. The scene features students engaged in Music Production activities. In Kisumu, the burgeoning tech and creative scene, particularly in Milimani and Mamboleo, presents a fertile ground for music production graduates. With the city. Setting is a modern professional studio with black background. Cinematic photo, 8k, photorealistic, studio completely black background, no windows, dark minimal aesthetic, dramatic lighting, depth of field, high quality, professional photography"
+      }
+    },
+    {
+      "id": "music-production-mombasa",
+      "file": "music-production-mombasa.tsx",
+      "name": "Music Production",
+      "city": "Mombasa",
+      "subtitle": "Mombasa, with its flourishing tourism sector and increasing demand for digital content, presents a unique market for music production. The city",
+      "highlights": [
+        "Industry-relevant curriculum designed for Kenyas market",
+        "Experienced instructors with real-world experience",
+        "State-of-the-art facilities and equipment at our Nairobi campus",
+        "90% job placement rate across Kenya",
+        "Flexible payment plans available",
+        "Career support and internship opportunities",
+        "Accessible to students from mombasa and surrounding areas"
+      ],
+      "prompts": {
+        "video": "A professional cinematic shot representing Music Production. The scene features students engaged in Music Production activities. Mombasa, with its flourishing tourism sector and increasing demand for digital content, presents a unique market for music production. The city. Setting is a modern professional studio with black background. Cinematic 4k, establishes shot, slow motion, professional lighting, photorealistic, 8k, highly detailed, film grain, color graded, studio black background",
+        "image": "A professional cinematic shot representing Music Production. The scene features students engaged in Music Production activities. Mombasa, with its flourishing tourism sector and increasing demand for digital content, presents a unique market for music production. The city. Setting is a modern professional studio with black background. Cinematic photo, 8k, photorealistic, studio completely black background, no windows, dark minimal aesthetic, dramatic lighting, depth of field, high quality, professional photography"
+      }
+    },
+    {
+      "id": "music-production-nairobi",
+      "file": "music-production-nairobi.tsx",
+      "name": "Music Production",
+      "city": "Nairobi",
+      "subtitle": "Nairobi, as the heart of Kenya",
+      "highlights": [
+        "Industry-relevant curriculum designed for Kenyas market",
+        "Experienced instructors with real-world experience",
+        "State-of-the-art facilities and equipment at our Nairobi campus",
+        "90% job placement rate across Kenya",
+        "Flexible payment plans available",
+        "Career support and internship opportunities",
+        "Accessible to students from nairobi and surrounding areas"
+      ],
+      "prompts": {
+        "video": "A professional cinematic shot representing Music Production. The scene features students engaged in Music Production activities. Nairobi, as the heart of Kenya. Setting is a modern professional studio with black background. Cinematic 4k, establishes shot, slow motion, professional lighting, photorealistic, 8k, highly detailed, film grain, color graded, studio black background",
+        "image": "A professional cinematic shot representing Music Production. The scene features students engaged in Music Production activities. Nairobi, as the heart of Kenya. Setting is a modern professional studio with black background. Cinematic photo, 8k, photorealistic, studio completely black background, no windows, dark minimal aesthetic, dramatic lighting, depth of field, high quality, professional photography"
+      }
+    },
+    {
+      "id": "music-production-nakuru",
+      "file": "music-production-nakuru.tsx",
+      "name": "Music Production",
+      "city": "Nakuru",
+      "subtitle": "Nakuru offers a unique music-production landscape, bridging Nairobi",
+      "highlights": [
+        "Industry-relevant curriculum designed for Kenyas market",
+        "Experienced instructors with real-world experience",
+        "State-of-the-art facilities and equipment at our Nairobi campus",
+        "90% job placement rate across Kenya",
+        "Flexible payment plans available",
+        "Career support and internship opportunities",
+        "Accessible to students from nakuru and surrounding areas"
+      ],
+      "prompts": {
+        "video": "A professional cinematic shot representing Music Production. The scene features students engaged in Music Production activities. Nakuru offers a unique music-production landscape, bridging Nairobi. Setting is a modern professional studio with black background. Cinematic 4k, establishes shot, slow motion, professional lighting, photorealistic, 8k, highly detailed, film grain, color graded, studio black background",
+        "image": "A professional cinematic shot representing Music Production. The scene features students engaged in Music Production activities. Nakuru offers a unique music-production landscape, bridging Nairobi. Setting is a modern professional studio with black background. Cinematic photo, 8k, photorealistic, studio completely black background, no windows, dark minimal aesthetic, dramatic lighting, depth of field, high quality, professional photography"
+      }
+    },
+    {
+      "id": "photography-eldoret",
+      "file": "photography-eldoret.tsx",
+      "name": "Photography",
+      "city": "Eldoret",
+      "subtitle": "Eldoret, with its vibrant startup ecosystem and a strong base in agricultural technology and sports organizations, offers unique opportunities for photographers. The demand for digital skills in capturing the dynamic landscapes of agricultural innovations, sports events, and burgeoning local businesses provides a fertile ground for commercial, event, and portrait photography enthusiasts.",
+      "highlights": [
+        "Industry-relevant curriculum designed for Kenyas market",
+        "Experienced instructors with real-world experience",
+        "State-of-the-art facilities and equipment at our Nairobi campus",
+        "90% job placement rate across Kenya",
+        "Flexible payment plans available",
+        "Career support and internship opportunities",
+        "Accessible to students from eldoret and surrounding areas"
+      ],
+      "prompts": {
+        "video": "A professional cinematic shot representing Photography. The scene features students engaged in Photography activities. Eldoret, with its vibrant startup ecosystem and a strong base in agricultural technology and sports organizations, offers unique opportunities for photographers. The demand for digital skills in capturing the dynamic landscapes of agricultural innovations, sports events, and burgeoning local businesses provides a fertile ground for commercial, event, and portrait photography enthusiasts.. Setting is a modern professional studio with black background. Cinematic 4k, establishes shot, slow motion, professional lighting, photorealistic, 8k, highly detailed, film grain, color graded, studio black background",
+        "image": "A professional cinematic shot representing Photography. The scene features students engaged in Photography activities. Eldoret, with its vibrant startup ecosystem and a strong base in agricultural technology and sports organizations, offers unique opportunities for photographers. The demand for digital skills in capturing the dynamic landscapes of agricultural innovations, sports events, and burgeoning local businesses provides a fertile ground for commercial, event, and portrait photography enthusiasts.. Setting is a modern professional studio with black background. Cinematic photo, 8k, photorealistic, studio completely black background, no windows, dark minimal aesthetic, dramatic lighting, depth of field, high quality, professional photography"
+      }
+    },
+    {
+      "id": "photography-kisumu",
+      "file": "photography-kisumu.tsx",
+      "name": "Photography",
+      "city": "Kisumu",
+      "subtitle": "Kisumu, with its vibrant cultural scene and emerging tech hub status, presents a unique canvas for photographers. The city",
+      "highlights": [
+        "Industry-relevant curriculum designed for Kenyas market",
+        "Experienced instructors with real-world experience",
+        "State-of-the-art facilities and equipment at our Nairobi campus",
+        "90% job placement rate across Kenya",
+        "Flexible payment plans available",
+        "Career support and internship opportunities",
+        "Accessible to students from kisumu and surrounding areas"
+      ],
+      "prompts": {
+        "video": "A professional cinematic shot representing Photography. The scene features students engaged in Photography activities. Kisumu, with its vibrant cultural scene and emerging tech hub status, presents a unique canvas for photographers. The city. Setting is a modern professional studio with black background. Cinematic 4k, establishes shot, slow motion, professional lighting, photorealistic, 8k, highly detailed, film grain, color graded, studio black background",
+        "image": "A professional cinematic shot representing Photography. The scene features students engaged in Photography activities. Kisumu, with its vibrant cultural scene and emerging tech hub status, presents a unique canvas for photographers. The city. Setting is a modern professional studio with black background. Cinematic photo, 8k, photorealistic, studio completely black background, no windows, dark minimal aesthetic, dramatic lighting, depth of field, high quality, professional photography"
+      }
+    },
+    {
+      "id": "photography-mombasa",
+      "file": "photography-mombasa.tsx",
+      "name": "Photography",
+      "city": "Mombasa",
+      "subtitle": "Mombasa",
+      "highlights": [
+        "Industry-relevant curriculum designed for Kenyas market",
+        "Experienced instructors with real-world experience",
+        "State-of-the-art facilities and equipment at our Nairobi campus",
+        "90% job placement rate across Kenya",
+        "Flexible payment plans available",
+        "Career support and internship opportunities",
+        "Accessible to students from mombasa and surrounding areas"
+      ],
+      "prompts": {
+        "video": "A professional cinematic shot representing Photography. The scene features students engaged in Photography activities. Mombasa. Setting is a modern professional studio with black background. Cinematic 4k, establishes shot, slow motion, professional lighting, photorealistic, 8k, highly detailed, film grain, color graded, studio black background",
+        "image": "A professional cinematic shot representing Photography. The scene features students engaged in Photography activities. Mombasa. Setting is a modern professional studio with black background. Cinematic photo, 8k, photorealistic, studio completely black background, no windows, dark minimal aesthetic, dramatic lighting, depth of field, high quality, professional photography"
+      }
+    },
+    {
+      "id": "photography-nairobi",
+      "file": "photography-nairobi.tsx",
+      "name": "Photography",
+      "city": "Nairobi",
+      "subtitle": "Nairobi",
+      "highlights": [
+        "Industry-relevant curriculum designed for Kenyas market",
+        "Experienced instructors with real-world experience",
+        "State-of-the-art facilities and equipment at our Nairobi campus",
+        "90% job placement rate across Kenya",
+        "Flexible payment plans available",
+        "Career support and internship opportunities",
+        "Accessible to students from nairobi and surrounding areas"
+      ],
+      "prompts": {
+        "video": "A professional cinematic shot representing Photography. The scene features students engaged in Photography activities. Nairobi. Setting is a modern professional studio with black background. Cinematic 4k, establishes shot, slow motion, professional lighting, photorealistic, 8k, highly detailed, film grain, color graded, studio black background",
+        "image": "A professional cinematic shot representing Photography. The scene features students engaged in Photography activities. Nairobi. Setting is a modern professional studio with black background. Cinematic photo, 8k, photorealistic, studio completely black background, no windows, dark minimal aesthetic, dramatic lighting, depth of field, high quality, professional photography"
+      }
+    },
+    {
+      "id": "photography-nakuru",
+      "file": "photography-nakuru.tsx",
+      "name": "Photography",
+      "city": "Nakuru",
+      "subtitle": "Nakuru offers a vibrant opportunity for photographers with its thriving tourism sector, including the famous Lake Nakuru National Park, renowned for its flamingo population. Its strategic location also connects photographers with both Nairobi",
+      "highlights": [
+        "Industry-relevant curriculum designed for Kenyas market",
+        "Experienced instructors with real-world experience",
+        "State-of-the-art facilities and equipment at our Nairobi campus",
+        "90% job placement rate across Kenya",
+        "Flexible payment plans available",
+        "Career support and internship opportunities",
+        "Accessible to students from nakuru and surrounding areas"
+      ],
+      "prompts": {
+        "video": "A professional cinematic shot representing Photography. The scene features students engaged in Photography activities. Nakuru offers a vibrant opportunity for photographers with its thriving tourism sector, including the famous Lake Nakuru National Park, renowned for its flamingo population. Its strategic location also connects photographers with both Nairobi. Setting is a modern professional studio with black background. Cinematic 4k, establishes shot, slow motion, professional lighting, photorealistic, 8k, highly detailed, film grain, color graded, studio black background",
+        "image": "A professional cinematic shot representing Photography. The scene features students engaged in Photography activities. Nakuru offers a vibrant opportunity for photographers with its thriving tourism sector, including the famous Lake Nakuru National Park, renowned for its flamingo population. Its strategic location also connects photographers with both Nairobi. Setting is a modern professional studio with black background. Cinematic photo, 8k, photorealistic, studio completely black background, no windows, dark minimal aesthetic, dramatic lighting, depth of field, high quality, professional photography"
+      }
+    },
+    {
+      "id": "sound-engineering-eldoret",
+      "file": "sound-engineering-eldoret.tsx",
+      "name": "Sound Engineering",
+      "city": "Eldoret",
+      "subtitle": "Eldoret",
+      "highlights": [
+        "Industry-relevant curriculum designed for Kenyas market",
+        "Experienced instructors with real-world experience",
+        "State-of-the-art facilities and equipment at our Nairobi campus",
+        "90% job placement rate across Kenya",
+        "Flexible payment plans available",
+        "Career support and internship opportunities",
+        "Accessible to students from eldoret and surrounding areas"
+      ],
+      "prompts": {
+        "video": "A professional cinematic shot representing Sound Engineering. The scene features students engaged in Sound Engineering activities. Eldoret. Setting is a modern professional studio with black background. Cinematic 4k, establishes shot, slow motion, professional lighting, photorealistic, 8k, highly detailed, film grain, color graded, studio black background",
+        "image": "A professional cinematic shot representing Sound Engineering. The scene features students engaged in Sound Engineering activities. Eldoret. Setting is a modern professional studio with black background. Cinematic photo, 8k, photorealistic, studio completely black background, no windows, dark minimal aesthetic, dramatic lighting, depth of field, high quality, professional photography"
+      }
+    },
+    {
+      "id": "sound-engineering-kisumu",
+      "file": "sound-engineering-kisumu.tsx",
+      "name": "Sound Engineering",
+      "city": "Kisumu",
+      "subtitle": "Kisumu, an emerging tech hub with blossoming media and event sectors, offers unique sound-engineering prospects. Its vibrant arts scene and the rise of agricultural tech firms adopting multimedia for marketing create a demand for skilled audio professionals, setting Kisumu apart with diverse opportunities in live sound, studio recording, and immersive audio projects.",
+      "highlights": [
+        "Industry-relevant curriculum designed for Kenyas market",
+        "Experienced instructors with real-world experience",
+        "State-of-the-art facilities and equipment at our Nairobi campus",
+        "90% job placement rate across Kenya",
+        "Flexible payment plans available",
+        "Career support and internship opportunities",
+        "Accessible to students from kisumu and surrounding areas"
+      ],
+      "prompts": {
+        "video": "A professional cinematic shot representing Sound Engineering. The scene features students engaged in Sound Engineering activities. Kisumu, an emerging tech hub with blossoming media and event sectors, offers unique sound-engineering prospects. Its vibrant arts scene and the rise of agricultural tech firms adopting multimedia for marketing create a demand for skilled audio professionals, setting Kisumu apart with diverse opportunities in live sound, studio recording, and immersive audio projects.. Setting is a modern professional studio with black background. Cinematic 4k, establishes shot, slow motion, professional lighting, photorealistic, 8k, highly detailed, film grain, color graded, studio black background",
+        "image": "A professional cinematic shot representing Sound Engineering. The scene features students engaged in Sound Engineering activities. Kisumu, an emerging tech hub with blossoming media and event sectors, offers unique sound-engineering prospects. Its vibrant arts scene and the rise of agricultural tech firms adopting multimedia for marketing create a demand for skilled audio professionals, setting Kisumu apart with diverse opportunities in live sound, studio recording, and immersive audio projects.. Setting is a modern professional studio with black background. Cinematic photo, 8k, photorealistic, studio completely black background, no windows, dark minimal aesthetic, dramatic lighting, depth of field, high quality, professional photography"
+      }
+    },
+    {
+      "id": "sound-engineering-mombasa",
+      "file": "sound-engineering-mombasa.tsx",
+      "name": "Sound Engineering",
+      "city": "Mombasa",
+      "subtitle": "Mombasa",
+      "highlights": [
+        "Industry-relevant curriculum designed for Kenyas market",
+        "Experienced instructors with real-world experience",
+        "State-of-the-art facilities and equipment at our Nairobi campus",
+        "90% job placement rate across Kenya",
+        "Flexible payment plans available",
+        "Career support and internship opportunities",
+        "Accessible to students from mombasa and surrounding areas"
+      ],
+      "prompts": {
+        "video": "A professional cinematic shot representing Sound Engineering. The scene features students engaged in Sound Engineering activities. Mombasa. Setting is a modern professional studio with black background. Cinematic 4k, establishes shot, slow motion, professional lighting, photorealistic, 8k, highly detailed, film grain, color graded, studio black background",
+        "image": "A professional cinematic shot representing Sound Engineering. The scene features students engaged in Sound Engineering activities. Mombasa. Setting is a modern professional studio with black background. Cinematic photo, 8k, photorealistic, studio completely black background, no windows, dark minimal aesthetic, dramatic lighting, depth of field, high quality, professional photography"
+      }
+    },
+    {
+      "id": "sound-engineering-nairobi",
+      "file": "sound-engineering-nairobi.tsx",
+      "name": "Sound Engineering",
+      "city": "Nairobi",
+      "subtitle": "Nairobi, as Kenya",
+      "highlights": [
+        "Industry-relevant curriculum designed for Kenyas market",
+        "Experienced instructors with real-world experience",
+        "State-of-the-art facilities and equipment at our Nairobi campus",
+        "90% job placement rate across Kenya",
+        "Flexible payment plans available",
+        "Career support and internship opportunities",
+        "Accessible to students from nairobi and surrounding areas"
+      ],
+      "prompts": {
+        "video": "A professional cinematic shot representing Sound Engineering. The scene features students engaged in Sound Engineering activities. Nairobi, as Kenya. Setting is a modern professional studio with black background. Cinematic 4k, establishes shot, slow motion, professional lighting, photorealistic, 8k, highly detailed, film grain, color graded, studio black background",
+        "image": "A professional cinematic shot representing Sound Engineering. The scene features students engaged in Sound Engineering activities. Nairobi, as Kenya. Setting is a modern professional studio with black background. Cinematic photo, 8k, photorealistic, studio completely black background, no windows, dark minimal aesthetic, dramatic lighting, depth of field, high quality, professional photography"
+      }
+    },
+    {
+      "id": "sound-engineering-nakuru",
+      "file": "sound-engineering-nakuru.tsx",
+      "name": "Sound Engineering",
+      "city": "Nakuru",
+      "subtitle": "Nakuru, with its mix of manufacturing, agriculture, and tourism sectors, offers unique sound-engineering prospects, especially in immersive audio for tourism experiences, podcast engineering for local stories, and quality streaming for agricultural tutorials.",
+      "highlights": [
+        "Industry-relevant curriculum designed for Kenyas market",
+        "Experienced instructors with real-world experience",
+        "State-of-the-art facilities and equipment at our Nairobi campus",
+        "90% job placement rate across Kenya",
+        "Flexible payment plans available",
+        "Career support and internship opportunities",
+        "Accessible to students from nakuru and surrounding areas"
+      ],
+      "prompts": {
+        "video": "A professional cinematic shot representing Sound Engineering. The scene features students engaged in Sound Engineering activities. Nakuru, with its mix of manufacturing, agriculture, and tourism sectors, offers unique sound-engineering prospects, especially in immersive audio for tourism experiences, podcast engineering for local stories, and quality streaming for agricultural tutorials.. Setting is a modern professional studio with black background. Cinematic 4k, establishes shot, slow motion, professional lighting, photorealistic, 8k, highly detailed, film grain, color graded, studio black background",
+        "image": "A professional cinematic shot representing Sound Engineering. The scene features students engaged in Sound Engineering activities. Nakuru, with its mix of manufacturing, agriculture, and tourism sectors, offers unique sound-engineering prospects, especially in immersive audio for tourism experiences, podcast engineering for local stories, and quality streaming for agricultural tutorials.. Setting is a modern professional studio with black background. Cinematic photo, 8k, photorealistic, studio completely black background, no windows, dark minimal aesthetic, dramatic lighting, depth of field, high quality, professional photography"
+      }
+    },
+    {
+      "id": "ui-ux-design-eldoret",
+      "file": "ui-ux-design-eldoret.tsx",
+      "name": "Ui Ux Design",
+      "city": "Eldoret",
+      "subtitle": "Eldoret",
+      "highlights": [
+        "Industry-relevant curriculum designed for Kenyas market",
+        "Experienced instructors with real-world experience",
+        "State-of-the-art facilities and equipment at our Nairobi campus",
+        "90% job placement rate across Kenya",
+        "Flexible payment plans available",
+        "Career support and internship opportunities",
+        "Accessible to students from eldoret and surrounding areas"
+      ],
+      "prompts": {
+        "video": "A professional cinematic shot representing Ui Ux Design. The scene features students engaged in Ui Ux Design activities. Eldoret. Setting is a modern professional studio with black background. Cinematic 4k, establishes shot, slow motion, professional lighting, photorealistic, 8k, highly detailed, film grain, color graded, studio black background",
+        "image": "A professional cinematic shot representing Ui Ux Design. The scene features students engaged in Ui Ux Design activities. Eldoret. Setting is a modern professional studio with black background. Cinematic photo, 8k, photorealistic, studio completely black background, no windows, dark minimal aesthetic, dramatic lighting, depth of field, high quality, professional photography"
+      }
+    },
+    {
+      "id": "ui-ux-design-kisumu",
+      "file": "ui-ux-design-kisumu.tsx",
+      "name": "Ui Ux Design",
+      "city": "Kisumu",
+      "subtitle": "Kisumu is poised as a burgeoning tech hub in Western Kenya, with its unique positioning offering less competition and a vibrant space for UI/UX designers. With major employers including Lake Region media, agricultural tech firms, and international NGOs, there",
+      "highlights": [
+        "Industry-relevant curriculum designed for Kenyas market",
+        "Experienced instructors with real-world experience",
+        "State-of-the-art facilities and equipment at our Nairobi campus",
+        "90% job placement rate across Kenya",
+        "Flexible payment plans available",
+        "Career support and internship opportunities",
+        "Accessible to students from kisumu and surrounding areas"
+      ],
+      "prompts": {
+        "video": "A professional cinematic shot representing Ui Ux Design. The scene features students engaged in Ui Ux Design activities. Kisumu is poised as a burgeoning tech hub in Western Kenya, with its unique positioning offering less competition and a vibrant space for UI/UX designers. With major employers including Lake Region media, agricultural tech firms, and international NGOs, there. Setting is a modern professional studio with black background. Cinematic 4k, establishes shot, slow motion, professional lighting, photorealistic, 8k, highly detailed, film grain, color graded, studio black background",
+        "image": "A professional cinematic shot representing Ui Ux Design. The scene features students engaged in Ui Ux Design activities. Kisumu is poised as a burgeoning tech hub in Western Kenya, with its unique positioning offering less competition and a vibrant space for UI/UX designers. With major employers including Lake Region media, agricultural tech firms, and international NGOs, there. Setting is a modern professional studio with black background. Cinematic photo, 8k, photorealistic, studio completely black background, no windows, dark minimal aesthetic, dramatic lighting, depth of field, high quality, professional photography"
+      }
+    },
+    {
+      "id": "ui-ux-design-mombasa",
+      "file": "ui-ux-design-mombasa.tsx",
+      "name": "Ui Ux Design",
+      "city": "Mombasa",
+      "subtitle": "In Mombasa, the UI/UX Design course taps into the booming tourism and hospitality industries",
+      "highlights": [
+        "Industry-relevant curriculum designed for Kenyas market",
+        "Experienced instructors with real-world experience",
+        "State-of-the-art facilities and equipment at our Nairobi campus",
+        "90% job placement rate across Kenya",
+        "Flexible payment plans available",
+        "Career support and internship opportunities",
+        "Accessible to students from mombasa and surrounding areas"
+      ],
+      "prompts": {
+        "video": "A professional cinematic shot representing Ui Ux Design. The scene features students engaged in Ui Ux Design activities. In Mombasa, the UI/UX Design course taps into the booming tourism and hospitality industries. Setting is a modern professional studio with black background. Cinematic 4k, establishes shot, slow motion, professional lighting, photorealistic, 8k, highly detailed, film grain, color graded, studio black background",
+        "image": "A professional cinematic shot representing Ui Ux Design. The scene features students engaged in Ui Ux Design activities. In Mombasa, the UI/UX Design course taps into the booming tourism and hospitality industries. Setting is a modern professional studio with black background. Cinematic photo, 8k, photorealistic, studio completely black background, no windows, dark minimal aesthetic, dramatic lighting, depth of field, high quality, professional photography"
+      }
+    },
+    {
+      "id": "ui-ux-design-nairobi",
+      "file": "ui-ux-design-nairobi.tsx",
+      "name": "Ui Ux Design",
+      "city": "Nairobi",
+      "subtitle": "Nairobi, Kenya’s tech hub, offers unrivaled opportunities for UI/UX designers with its vibrant startup scene, particularly in Westlands and CBD. The city",
+      "highlights": [
+        "Industry-relevant curriculum designed for Kenyas market",
+        "Experienced instructors with real-world experience",
+        "State-of-the-art facilities and equipment at our Nairobi campus",
+        "90% job placement rate across Kenya",
+        "Flexible payment plans available",
+        "Career support and internship opportunities",
+        "Accessible to students from nairobi and surrounding areas"
+      ],
+      "prompts": {
+        "video": "A professional cinematic shot representing Ui Ux Design. The scene features students engaged in Ui Ux Design activities. Nairobi, Kenya’s tech hub, offers unrivaled opportunities for UI/UX designers with its vibrant startup scene, particularly in Westlands and CBD. The city. Setting is a modern professional studio with black background. Cinematic 4k, establishes shot, slow motion, professional lighting, photorealistic, 8k, highly detailed, film grain, color graded, studio black background",
+        "image": "A professional cinematic shot representing Ui Ux Design. The scene features students engaged in Ui Ux Design activities. Nairobi, Kenya’s tech hub, offers unrivaled opportunities for UI/UX designers with its vibrant startup scene, particularly in Westlands and CBD. The city. Setting is a modern professional studio with black background. Cinematic photo, 8k, photorealistic, studio completely black background, no windows, dark minimal aesthetic, dramatic lighting, depth of field, high quality, professional photography"
+      }
+    },
+    {
+      "id": "ui-ux-design-nakuru",
+      "file": "ui-ux-design-nakuru.tsx",
+      "name": "Ui Ux Design",
+      "city": "Nakuru",
+      "subtitle": "Nakuru",
+      "highlights": [
+        "Industry-relevant curriculum designed for Kenyas market",
+        "Experienced instructors with real-world experience",
+        "State-of-the-art facilities and equipment at our Nairobi campus",
+        "90% job placement rate across Kenya",
+        "Flexible payment plans available",
+        "Career support and internship opportunities",
+        "Accessible to students from nakuru and surrounding areas"
+      ],
+      "prompts": {
+        "video": "A professional cinematic shot representing Ui Ux Design. The scene features students engaged in Ui Ux Design activities. Nakuru. Setting is a modern professional studio with black background. Cinematic 4k, establishes shot, slow motion, professional lighting, photorealistic, 8k, highly detailed, film grain, color graded, studio black background",
+        "image": "A professional cinematic shot representing Ui Ux Design. The scene features students engaged in Ui Ux Design activities. Nakuru. Setting is a modern professional studio with black background. Cinematic photo, 8k, photorealistic, studio completely black background, no windows, dark minimal aesthetic, dramatic lighting, depth of field, high quality, professional photography"
+      }
+    },
+    {
+      "id": "video-game-development-eldoret",
+      "file": "video-game-development-eldoret.tsx",
+      "name": "Video Game Development",
+      "city": "Eldoret",
+      "subtitle": "Professional Video Game Development training in eldoret with industry experts and guaranteed job placement support",
+      "highlights": [
+        "Industry-relevant curriculum designed for Kenyas market",
+        "Experienced instructors with real-world experience",
+        "State-of-the-art facilities and equipment at our Nairobi campus",
+        "90% job placement rate across Kenya",
+        "Flexible payment plans available",
+        "Career support and internship opportunities",
+        "Accessible to students from eldoret and surrounding areas"
+      ],
+      "prompts": {
+        "video": "A professional cinematic shot representing Video Game Development. The scene features students engaged in Video Game Development activities. Professional Video Game Development training in eldoret with industry experts and guaranteed job placement support. Setting is a modern professional studio with black background. Cinematic 4k, establishes shot, slow motion, professional lighting, photorealistic, 8k, highly detailed, film grain, color graded, studio black background",
+        "image": "A professional cinematic shot representing Video Game Development. The scene features students engaged in Video Game Development activities. Professional Video Game Development training in eldoret with industry experts and guaranteed job placement support. Setting is a modern professional studio with black background. Cinematic photo, 8k, photorealistic, studio completely black background, no windows, dark minimal aesthetic, dramatic lighting, depth of field, high quality, professional photography"
+      }
+    },
+    {
+      "id": "video-game-development-kisumu",
+      "file": "video-game-development-kisumu.tsx",
+      "name": "Video Game Development",
+      "city": "Kisumu",
+      "subtitle": "Professional Video Game Development training in kisumu with industry experts and guaranteed job placement support",
+      "highlights": [
+        "Industry-relevant curriculum designed for Kenyas market",
+        "Experienced instructors with real-world experience",
+        "State-of-the-art facilities and equipment at our Nairobi campus",
+        "90% job placement rate across Kenya",
+        "Flexible payment plans available",
+        "Career support and internship opportunities",
+        "Accessible to students from kisumu and surrounding areas"
+      ],
+      "prompts": {
+        "video": "A professional cinematic shot representing Video Game Development. The scene features students engaged in Video Game Development activities. Professional Video Game Development training in kisumu with industry experts and guaranteed job placement support. Setting is a modern professional studio with black background. Cinematic 4k, establishes shot, slow motion, professional lighting, photorealistic, 8k, highly detailed, film grain, color graded, studio black background",
+        "image": "A professional cinematic shot representing Video Game Development. The scene features students engaged in Video Game Development activities. Professional Video Game Development training in kisumu with industry experts and guaranteed job placement support. Setting is a modern professional studio with black background. Cinematic photo, 8k, photorealistic, studio completely black background, no windows, dark minimal aesthetic, dramatic lighting, depth of field, high quality, professional photography"
+      }
+    },
+    {
+      "id": "video-game-development-mombasa",
+      "file": "video-game-development-mombasa.tsx",
+      "name": "Video Game Development",
+      "city": "Mombasa",
+      "subtitle": "Professional Video Game Development training in mombasa with industry experts and guaranteed job placement support",
+      "highlights": [
+        "Industry-relevant curriculum designed for Kenyas market",
+        "Experienced instructors with real-world experience",
+        "State-of-the-art facilities and equipment at our Nairobi campus",
+        "90% job placement rate across Kenya",
+        "Flexible payment plans available",
+        "Career support and internship opportunities",
+        "Accessible to students from mombasa and surrounding areas"
+      ],
+      "prompts": {
+        "video": "A professional cinematic shot representing Video Game Development. The scene features students engaged in Video Game Development activities. Professional Video Game Development training in mombasa with industry experts and guaranteed job placement support. Setting is a modern professional studio with black background. Cinematic 4k, establishes shot, slow motion, professional lighting, photorealistic, 8k, highly detailed, film grain, color graded, studio black background",
+        "image": "A professional cinematic shot representing Video Game Development. The scene features students engaged in Video Game Development activities. Professional Video Game Development training in mombasa with industry experts and guaranteed job placement support. Setting is a modern professional studio with black background. Cinematic photo, 8k, photorealistic, studio completely black background, no windows, dark minimal aesthetic, dramatic lighting, depth of field, high quality, professional photography"
+      }
+    },
+    {
+      "id": "video-game-development-nairobi",
+      "file": "video-game-development-nairobi.tsx",
+      "name": "Video Game Development",
+      "city": "Nairobi",
+      "subtitle": "Professional Video Game Development training in nairobi with industry experts and guaranteed job placement support",
+      "highlights": [
+        "Industry-relevant curriculum designed for Kenyas market",
+        "Experienced instructors with real-world experience",
+        "State-of-the-art facilities and equipment at our Nairobi campus",
+        "90% job placement rate across Kenya",
+        "Flexible payment plans available",
+        "Career support and internship opportunities",
+        "Accessible to students from nairobi and surrounding areas"
+      ],
+      "prompts": {
+        "video": "A professional cinematic shot representing Video Game Development. The scene features students engaged in Video Game Development activities. Professional Video Game Development training in nairobi with industry experts and guaranteed job placement support. Setting is a modern professional studio with black background. Cinematic 4k, establishes shot, slow motion, professional lighting, photorealistic, 8k, highly detailed, film grain, color graded, studio black background",
+        "image": "A professional cinematic shot representing Video Game Development. The scene features students engaged in Video Game Development activities. Professional Video Game Development training in nairobi with industry experts and guaranteed job placement support. Setting is a modern professional studio with black background. Cinematic photo, 8k, photorealistic, studio completely black background, no windows, dark minimal aesthetic, dramatic lighting, depth of field, high quality, professional photography"
+      }
+    },
+    {
+      "id": "video-game-development-nakuru",
+      "file": "video-game-development-nakuru.tsx",
+      "name": "Video Game Development",
+      "city": "Nakuru",
+      "subtitle": "Professional Video Game Development training in nakuru with industry experts and guaranteed job placement support",
+      "highlights": [
+        "Industry-relevant curriculum designed for Kenyas market",
+        "Experienced instructors with real-world experience",
+        "State-of-the-art facilities and equipment at our Nairobi campus",
+        "90% job placement rate across Kenya",
+        "Flexible payment plans available",
+        "Career support and internship opportunities",
+        "Accessible to students from nakuru and surrounding areas"
+      ],
+      "prompts": {
+        "video": "A professional cinematic shot representing Video Game Development. The scene features students engaged in Video Game Development activities. Professional Video Game Development training in nakuru with industry experts and guaranteed job placement support. Setting is a modern professional studio with black background. Cinematic 4k, establishes shot, slow motion, professional lighting, photorealistic, 8k, highly detailed, film grain, color graded, studio black background",
+        "image": "A professional cinematic shot representing Video Game Development. The scene features students engaged in Video Game Development activities. Professional Video Game Development training in nakuru with industry experts and guaranteed job placement support. Setting is a modern professional studio with black background. Cinematic photo, 8k, photorealistic, studio completely black background, no windows, dark minimal aesthetic, dramatic lighting, depth of field, high quality, professional photography"
+      }
+    }
+  ]
+}

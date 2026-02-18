@@ -1,5 +1,6 @@
+'use client'
+
 import React from 'react'
-import { Box, Card, Divider } from '@mantine/core'
 import Image from 'next/image'
 
 import { Paragraph } from '@/components/ui'
@@ -48,42 +49,42 @@ export default function SocialShare({ item }: Props) {
   }
 
   return (
-    <Box className="sticky top-[100px] flex flex-col sm:w-[200px]">
-      <Box className="flex pb-6">
+    <div className="sticky top-[100px] flex flex-col sm:w-[200px]">
+      <div className="flex pb-6">
         <Image src={IconShare} alt="share" width={32} height={32} />
         <Paragraph className="my-auto" fontFamily="font-nexa">
           Share on:
         </Paragraph>
-      </Box>
-      <Card className="flex w-full flex-col" shadow="lg">
-        <Box className="flex cursor-pointer py-4" onClick={() => handleShare('facebook')}>
+      </div>
+      <div className="flex w-full flex-col rounded-xl border border-gray-200 bg-white shadow-sm">
+        <div className="flex cursor-pointer py-4" onClick={() => handleShare('facebook')}>
           <Image src={IconFacebook} alt="facebook" width={24} height={24} />
           <Paragraph fontFamily="font-nexa" size="16px" className="my-auto ml-2">
             Facebook
           </Paragraph>
-        </Box>
-        <Divider />
-        <Box className="flex cursor-pointer py-4" onClick={() => handleShare('linkedin')}>
+        </div>
+        <hr className="border-gray-200" />
+        <div className="flex cursor-pointer py-4" onClick={() => handleShare('linkedin')}>
           <Image src={IconLinkedIn} alt="linkedin" width={24} height={24} />
           <Paragraph fontFamily="font-nexa" size="16px" className="my-auto ml-2">
             LinkedIn
           </Paragraph>
-        </Box>
-        <Divider />
-        <Box className="flex cursor-pointer py-4" onClick={() => handleShare('whatsapp')}>
+        </div>
+        <hr className="border-gray-200" />
+        <div className="flex cursor-pointer py-4" onClick={() => handleShare('whatsapp')}>
           <Image src={IconWhatsapp} alt="whatsapp" width={24} height={24} />
           <Paragraph fontFamily="font-nexa" size="16px" className="my-auto ml-2">
             WhatsApp
           </Paragraph>
-        </Box>
-        <Divider />
-        <Box className="flex cursor-pointer py-4" onClick={handleCopyLink}>
+        </div>
+        <hr className="border-gray-200" />
+        <div className="flex cursor-pointer py-4" onClick={handleCopyLink}>
           <Image src={IconCopyContent} alt="copy link" width={24} height={24} />
           <Paragraph fontFamily="font-nexa" size="16px" className="my-auto ml-2">
             Copy Link
           </Paragraph>
-        </Box>
-      </Card>
-    </Box>
+        </div>
+      </div>
+    </div>
   )
 }

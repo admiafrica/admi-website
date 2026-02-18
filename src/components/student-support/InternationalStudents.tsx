@@ -1,10 +1,9 @@
-import { Anchor, Box } from '@mantine/core'
 import { Paragraph, Title } from '../ui'
 import { CollapsibleContent } from '../shared/v3'
 
 export default function InternationalStudents() {
   return (
-    <Box className="w-full">
+    <div className="w-full">
       <CollapsibleContent
         key={'finance-plan-1'}
         title="How to Apply"
@@ -20,7 +19,7 @@ export default function InternationalStudents() {
         key={'finance-plan-2'}
         title="Visa Requirements"
         content={
-          <Box className="w-full">
+          <div className="w-full">
             <Paragraph className="mb-6">
               In order to study at ADMI, students are required to ensure they have the correct legal documentation,
               inclusive of visa requirements. For international students, this includes obtaining the relevant student
@@ -51,17 +50,27 @@ export default function InternationalStudents() {
               <li>
                 <Paragraph className="py-1">
                   International students can apply to one of ADMI&apos;s programmes online:{' '}
-                  <Anchor href="https://admi.africa/student-support" target="_blank" fw={900}>
+                  <a
+                    href="https://admi.africa/student-support"
+                    target="_blank"
+                    className="text-blue-700 hover:underline"
+                    style={{ fontWeight: 900 }}
+                  >
                     ADMI Application Form
-                  </Anchor>
+                  </a>
                 </Paragraph>
               </li>
               <li>
                 <Paragraph className="py-1">
                   Prior to applying to ADMI, please familiarise yourself with our international fee policies:{' '}
-                  <Anchor href="https://admi.africa/student-support" target="_blank" fw={900}>
+                  <a
+                    href="https://admi.africa/student-support"
+                    target="_blank"
+                    className="text-blue-700 hover:underline"
+                    style={{ fontWeight: 900 }}
+                  >
                     Fees structures
-                  </Anchor>
+                  </a>
                 </Paragraph>
               </li>
             </ul>
@@ -79,7 +88,7 @@ export default function InternationalStudents() {
               <li>
                 <Paragraph className="py-1">
                   They will also receive a letter of support or a cover letter, addressed to the Director of
-                  Immigration, indicating the name and duration of the course to be studied – both new and renewal
+                  Immigration, indicating the name and duration of the course to be studied -- both new and renewal
                   applications.
                 </Paragraph>
               </li>
@@ -101,13 +110,23 @@ export default function InternationalStudents() {
               <li>
                 <Paragraph className="py-1">
                   Register at{' '}
-                  <Anchor href="https://immigration.ecitizen.go.ke/" target="_blank" fw={900}>
+                  <a
+                    href="https://immigration.ecitizen.go.ke/"
+                    target="_blank"
+                    className="text-blue-700 hover:underline"
+                    style={{ fontWeight: 900 }}
+                  >
                     https://immigration.ecitizen.go.ke
-                  </Anchor>
+                  </a>
                   , then log in at{' '}
-                  <Anchor href="https://fns.immigration.go.ke/" target="_blank" fw={900}>
+                  <a
+                    href="https://fns.immigration.go.ke/"
+                    target="_blank"
+                    className="text-blue-700 hover:underline"
+                    style={{ fontWeight: 900 }}
+                  >
                     https://fns.immigration.go.ke
-                  </Anchor>{' '}
+                  </a>{' '}
                   and complete the application form (titled Form 30).
                 </Paragraph>
               </li>
@@ -126,17 +145,27 @@ export default function InternationalStudents() {
               <li>
                 <Paragraph className="py-1">
                   Print and fill out all details on Form 30 (student pass application form) from the following website:
-                  <Anchor href="https://immigration.go.ke/work-permits-passes/students-pass/" target="_blank" fw={900}>
+                  <a
+                    href="https://immigration.go.ke/work-permits-passes/students-pass/"
+                    target="_blank"
+                    className="text-blue-700 hover:underline"
+                    style={{ fontWeight: 900 }}
+                  >
                     students-pass
-                  </Anchor>
+                  </a>
                 </Paragraph>
               </li>
               <li>
                 <Paragraph className="py-1">
                   Your completed form should then be scanned and emailed to ADMI at{' '}
-                  <Anchor href="mailto:info@admi.ac.ke" target="_blank" fw={900}>
+                  <a
+                    href="mailto:info@admi.ac.ke"
+                    target="_blank"
+                    className="text-blue-700 hover:underline"
+                    style={{ fontWeight: 900 }}
+                  >
                     info@admi.ac.ke
-                  </Anchor>
+                  </a>
                   , to be signed and stamped by our Principal or Head of Academics.
                 </Paragraph>
               </li>
@@ -152,61 +181,61 @@ export default function InternationalStudents() {
             <ul>
               <li>
                 <Paragraph className="py-1">
-                  Signed commitment letter from the sponsor – both new and renewal cases
+                  Signed commitment letter from the sponsor -- both new and renewal cases
                 </Paragraph>
               </li>
               <li>
                 <Paragraph className="py-1">
-                  National passport copy of the sponsor – both new and renewal cases
+                  National passport copy of the sponsor -- both new and renewal cases
                 </Paragraph>
               </li>
               <li>
                 <Paragraph className="py-1">
-                  Proof of funds for self-sponsored students – both new and renewal cases
+                  Proof of funds for self-sponsored students -- both new and renewal cases
                 </Paragraph>
               </li>
               <li>
                 <Paragraph className="py-1">
-                  For minors, consent letter from the parent – both new and renewal cases
+                  For minors, consent letter from the parent -- both new and renewal cases
                 </Paragraph>
               </li>
               <li>
                 <Paragraph className="py-1">
-                  Copy of parent’s national passport and copy of birth certificate of the minor should be attached as
-                  proof of relationship (for minors) – both new and renewal cases
+                  Copy of parent's national passport and copy of birth certificate of the minor should be attached as
+                  proof of relationship (for minors) -- both new and renewal cases
                 </Paragraph>
               </li>
               <li>
                 <Paragraph className="py-1">
-                  Copy of a valid national passport – both new and renewal cases (the bio-data page)
+                  Copy of a valid national passport -- both new and renewal cases (the bio-data page)
                 </Paragraph>
               </li>
               <li>
                 <Paragraph className="py-1">
-                  Current immigration status for the pupil/student – both new and renewal cases (If already in the
+                  Current immigration status for the pupil/student -- both new and renewal cases (If already in the
                   country)
                 </Paragraph>
               </li>
               <li>
                 <Paragraph className="py-1">
-                  Two recent passport-size colour photos – both new and renewal cases
+                  Two recent passport-size colour photos -- both new and renewal cases
                 </Paragraph>
               </li>
               <li>
                 <Paragraph className="py-1">
                   Duly certified copies of basic academic certificates for those joining Tertiary Institutions and
-                  Universities – new cases only
+                  Universities -- new cases only
                 </Paragraph>
               </li>
               <li>
                 <Paragraph className="py-1">
                   Documents in foreign languages should be translated into English by either the Embassy, Public Notary,
-                  or authorized /recognized institution – both new and renewal cases
+                  or authorized /recognized institution -- both new and renewal cases
                 </Paragraph>
               </li>
               <li>
                 <Paragraph className="py-1">
-                  Copy of the school’s/college registration certificate from the Ministry of Education – new cases only
+                  Copy of the school's/college registration certificate from the Ministry of Education -- new cases only
                 </Paragraph>
               </li>
             </ul>
@@ -269,9 +298,14 @@ export default function InternationalStudents() {
               P.O Box 30191,000100 Nairobi <br />
               Tel: +254-20-2222022, +254-20-2217544, +254-20-2218833
               <br /> Email;{' '}
-              <Anchor href="mailto:dis@immigration.go.ke" target="_blank" fw={900}>
+              <a
+                href="mailto:dis@immigration.go.ke"
+                target="_blank"
+                className="text-blue-700 hover:underline"
+                style={{ fontWeight: 900 }}
+              >
                 dis@immigration.go.ke
-              </Anchor>
+              </a>
             </Paragraph>
 
             <Paragraph className="py-1">
@@ -294,28 +328,43 @@ export default function InternationalStudents() {
             </ul>
             <Paragraph className="py-1">
               For more information, please visit{' '}
-              <Anchor href="https://immigration.go.ke/work-permits-passes/students-pass/" target="_blank" fw={900}>
+              <a
+                href="https://immigration.go.ke/work-permits-passes/students-pass/"
+                target="_blank"
+                className="text-blue-700 hover:underline"
+                style={{ fontWeight: 900 }}
+              >
                 https://immigration.go.ke/work-permits-passes/students-pass
-              </Anchor>
+              </a>
             </Paragraph>
-          </Box>
+          </div>
         }
       />
       <CollapsibleContent
         key={'finance-plan-3'}
         title="Accommodation"
         content={
-          <Box>
+          <div>
             <Paragraph>
               ADMI has partnered with Qwetu and Qejani, private providers of modern student accommodation. Please book
               your room through their websites:{' '}
-              <Anchor href="https://qwetu.co.ke/" target="_blank" fw={900}>
+              <a
+                href="https://qwetu.co.ke/"
+                target="_blank"
+                className="text-blue-700 hover:underline"
+                style={{ fontWeight: 900 }}
+              >
                 https://qwetu.co.ke
-              </Anchor>{' '}
+              </a>{' '}
               or{' '}
-              <Anchor href="https://qejani.co.ke/ " target="_blank" fw={900}>
+              <a
+                href="https://qejani.co.ke/ "
+                target="_blank"
+                className="text-blue-700 hover:underline"
+                style={{ fontWeight: 900 }}
+              >
                 https://qejani.co.ke
-              </Anchor>{' '}
+              </a>{' '}
               . Qwetu and Qejani are a new kind of student living experience, designed with you in mind. Both are the
               number one choice for student accommodation. Living with Qwetu or Qejani residences offers safe, secure
               and comfortable student housing with a vibrant community, near campus. Some facilities offered include
@@ -325,7 +374,7 @@ export default function InternationalStudents() {
             <Paragraph fontWeight={900} className="mt-8">
               Use the Referral Code: STU-0016368
             </Paragraph>
-          </Box>
+          </div>
         }
       />
       <CollapsibleContent
@@ -349,6 +398,6 @@ export default function InternationalStudents() {
           </Paragraph>
         }
       />
-    </Box>
+    </div>
   )
 }

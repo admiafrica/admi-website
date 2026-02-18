@@ -10,9 +10,13 @@
  */
 
 import type { UTMData } from './utm-tracking'
+import { trackWhatsAppClick as trackWhatsAppClickFromUTM } from './utm-tracking'
 
 // ADMI WhatsApp number (from footer)
 export const ADMI_WHATSAPP_NUMBER = '254741132751'
+
+// Re-export trackWhatsAppClick for convenience
+export const trackWhatsAppClick = trackWhatsAppClickFromUTM
 
 /**
  * Clean and normalize phone number for matching

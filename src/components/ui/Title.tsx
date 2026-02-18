@@ -1,4 +1,3 @@
-import { Text } from '@mantine/core'
 import clsx from 'clsx'
 
 type Props = {
@@ -12,9 +11,9 @@ type Props = {
 export default function Title({ label, size, color = 'admiRed', className = '' }: Props) {
   return (
     <div className={clsx('w-fit font-nexa', className)}>
-      <Text size={size ? size : '2em'} fw={900} c={color}>
+      <p className="text-gray-700" style={{ fontSize: size ? size : '2em', fontWeight: 900, color }}>
         {label}
-      </Text>
+      </p>
     </div>
   )
 }

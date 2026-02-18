@@ -1,4 +1,3 @@
-import { Anchor, Box, Accordion } from '@mantine/core'
 import { ensureProtocol } from '@/utils'
 
 import { Paragraph, Title } from '../ui'
@@ -7,11 +6,13 @@ import { useCallback, useEffect, useState } from 'react'
 import { IContentfulEntry } from '@/types'
 import { CMSFAQSchema } from '@/components/shared/StructuredData'
 
+const SHOW_INTERNATIONAL_FEES = false
+
 const FEE_FAQS = [
   {
     question: 'What is the ADMI fee structure for 2026?',
     answer:
-      'For the most current and accurate fee information for all ADMI programs, please visit our official student support page at https://admi.africa/student-support#fees. This page contains up-to-date fee structures for both East African and International students, payment plans, and course-specific costs.'
+      'For the most current and accurate fee information for all ADMI programs, please visit our official student support page at https://admi.africa/student-support. This page contains up-to-date fee structures for both East African and International students, payment plans, and course-specific costs.'
   },
   {
     question: 'How long are ADMI diploma programs?',
@@ -80,7 +81,7 @@ export default function FinancialPlanning() {
   }, [fetchFeeStructure])
 
   return (
-    <Box className="w-full" id="fees">
+    <div className="w-full" id="fees">
       {/* Add FAQ Schema for fee-related questions */}
       <CMSFAQSchema faqs={FEE_FAQS} />
 
@@ -88,7 +89,7 @@ export default function FinancialPlanning() {
         key={'finance-plan-1'}
         title="ADMI Fee Structure 2026"
         content={
-          <Box>
+          <div>
             {/* Downloadable fee structures */}
             <Title label="Official Fee Structure Documents" color="black" size="18px" className="mb-4" />
             <Paragraph className="mb-6 text-gray-700">
@@ -107,50 +108,52 @@ export default function FinancialPlanning() {
               <ul>
                 {kenyanFees.map((fee) => (
                   <li key={fee.fields.name}>
-                    <Box
+                    <div
                       className="my-4 cursor-pointer rounded-lg border-l-4 border-admiDarkOrange bg-gray-50 p-4 hover:bg-gray-100"
                       onClick={() => handleDocumentDownload(fee.fields.document.fields.file)}
                     >
                       <Paragraph className="text-admiDarkOrange" fontWeight={900}>
-                        📄 {fee.fields.displayName}
+                        {fee.fields.displayName}
                       </Paragraph>
                       <Paragraph className="text-sm text-gray-600">
                         Click to download complete fee structure with semester breakdown
                       </Paragraph>
-                    </Box>
+                    </div>
                   </li>
                 ))}
               </ul>
             </div>
 
-            <div>
-              <Title label="International Students" color="black" size="16px" />
-              <ul>
-                {intlFees.map((fee) => (
-                  <li key={fee.fields.name}>
-                    <Box
-                      className="my-4 cursor-pointer rounded-lg border-l-4 border-admiDarkOrange bg-gray-50 p-4 hover:bg-gray-100"
-                      onClick={() => handleDocumentDownload(fee.fields.document.fields.file)}
-                    >
-                      <Paragraph className="text-admiDarkOrange" fontWeight={900}>
-                        📄 {fee.fields.displayName}
-                      </Paragraph>
-                      <Paragraph className="text-sm text-gray-600">
-                        Click to download complete fee structure with semester breakdown
-                      </Paragraph>
-                    </Box>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </Box>
+            {SHOW_INTERNATIONAL_FEES && (
+              <div>
+                <Title label="International Students" color="black" size="16px" />
+                <ul>
+                  {intlFees.map((fee) => (
+                    <li key={fee.fields.name}>
+                      <div
+                        className="my-4 cursor-pointer rounded-lg border-l-4 border-admiDarkOrange bg-gray-50 p-4 hover:bg-gray-100"
+                        onClick={() => handleDocumentDownload(fee.fields.document.fields.file)}
+                      >
+                        <Paragraph className="text-admiDarkOrange" fontWeight={900}>
+                          {fee.fields.displayName}
+                        </Paragraph>
+                        <Paragraph className="text-sm text-gray-600">
+                          Click to download complete fee structure with semester breakdown
+                        </Paragraph>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
         }
       />
       <CollapsibleContent
         key={'finance-plan-2'}
         title="Payment Options & Methods"
         content={
-          <Box>
+          <div>
             {/* Payment Plans */}
             <Title label="Flexible Payment Plans" color="black" size="20px" className="mb-4" />
 
@@ -232,7 +235,7 @@ export default function FinancialPlanning() {
               NB: During payment in the bank, the person paying should ensure that the Full Names of the student is
               captured with the payment details.
             </Paragraph>
-          </Box>
+          </div>
         }
       />
       <CollapsibleContent
@@ -248,32 +251,32 @@ export default function FinancialPlanning() {
         key={'finance-plan-4'}
         title="Contact Finance Office"
         content={
-          <Box>
+          <div>
             <Paragraph>
               You can reach out to our finance office anytime during working hours Monday - Friday for any assistance.
             </Paragraph>
             <ul>
               <li>
-                <Anchor href="mailto:fee@admi.ac.ke" target="_blank">
+                <a href="mailto:fee@admi.ac.ke" target="_blank" className="text-blue-700 hover:underline">
                   <Paragraph className="mt-6" fontWeight={900}>
                     Email: fee@admi.ac.ke
                   </Paragraph>
-                </Anchor>
+                </a>
               </li>
               <li>
-                <Anchor href="tel:+254770370691" target="_blank">
+                <a href="tel:+254770370691" target="_blank" className="text-blue-700 hover:underline">
                   <Paragraph className="mt-6" fontWeight={900}>
                     Call: +254 770370691
                   </Paragraph>
-                </Anchor>
+                </a>
               </li>
             </ul>
-          </Box>
+          </div>
         }
       />
 
       {/* FAQ Section for SEO */}
-      <Box className="mt-8">
+      <div className="mt-8">
         <Title
           label="Frequently Asked Questions About ADMI Fees"
           color="black"
@@ -281,34 +284,34 @@ export default function FinancialPlanning() {
           className="mb-6 text-center"
         />
 
-        <Accordion variant="separated" radius="lg" chevronPosition="right" className="mb-8">
+        <div className="mb-8">
           {FEE_FAQS.map((faq, index) => (
-            <Accordion.Item
-              key={index}
-              value={`faq-${index}`}
-              className="border border-gray-200 bg-white shadow-sm transition-shadow duration-200 hover:shadow-md"
-            >
-              <Accordion.Control className="hover:bg-gray-50">
-                <div className="flex items-center gap-3">
-                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-admiDarkOrange text-sm font-bold text-white">
-                    {index + 1}
+            <div key={index} className="mb-2 rounded-lg border border-gray-200">
+              <div className="border border-gray-200 bg-white shadow-sm transition-shadow duration-200 hover:shadow-md">
+                <details className="group">
+                  <summary className="w-full cursor-pointer list-none px-4 py-3 text-left font-medium hover:bg-gray-50 [&::-webkit-details-marker]:hidden">
+                    <div className="flex items-center gap-3">
+                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-admiDarkOrange text-sm font-bold text-white">
+                        {index + 1}
+                      </div>
+                      <Paragraph fontWeight={700} className="text-gray-900" size="16px">
+                        {faq.question}
+                      </Paragraph>
+                    </div>
+                  </summary>
+                  <div className="border-t border-gray-200 px-4 py-3">
+                    <div className="flex items-start gap-3 pt-2">
+                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gray-100 text-sm font-bold text-gray-600">
+                        A
+                      </div>
+                      <Paragraph className="leading-relaxed text-gray-700">{faq.answer}</Paragraph>
+                    </div>
                   </div>
-                  <Paragraph fontWeight={700} className="text-gray-900" size="16px">
-                    {faq.question}
-                  </Paragraph>
-                </div>
-              </Accordion.Control>
-              <Accordion.Panel>
-                <div className="flex items-start gap-3 pt-2">
-                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gray-100 text-sm font-bold text-gray-600">
-                    A
-                  </div>
-                  <Paragraph className="leading-relaxed text-gray-700">{faq.answer}</Paragraph>
-                </div>
-              </Accordion.Panel>
-            </Accordion.Item>
+                </details>
+              </div>
+            </div>
           ))}
-        </Accordion>
+        </div>
 
         {/* Call to action */}
         <div className="mt-8 rounded-xl bg-gradient-to-r from-admiDarkOrange to-orange-600 p-8 text-center text-white">
@@ -318,33 +321,31 @@ export default function FinancialPlanning() {
           </Paragraph>
           <div className="flex flex-col items-center justify-center gap-6 sm:flex-row">
             <div className="rounded-lg bg-white px-6 py-4 shadow-lg transition-shadow hover:shadow-xl">
-              <Anchor
+              <a
                 href="mailto:fee@admi.ac.ke"
                 target="_blank"
                 className="text-lg font-bold text-admiDarkOrange no-underline"
               >
                 <div className="flex items-center gap-3">
-                  <span className="text-2xl">📧</span>
                   <span>Email Finance Team</span>
                 </div>
-              </Anchor>
+              </a>
             </div>
 
             <div className="rounded-lg bg-white px-6 py-4 shadow-lg transition-shadow hover:shadow-xl">
-              <Anchor
+              <a
                 href="tel:+254770370691"
                 target="_blank"
                 className="text-lg font-bold text-admiDarkOrange no-underline"
               >
                 <div className="flex items-center gap-3">
-                  <span className="text-2xl">📞</span>
                   <span>Call +254 770 370 691</span>
                 </div>
-              </Anchor>
+              </a>
             </div>
           </div>
         </div>
-      </Box>
-    </Box>
+      </div>
+    </div>
   )
 }

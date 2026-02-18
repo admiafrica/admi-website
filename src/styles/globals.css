@@ -5,6 +5,57 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
+  /* Brand colours (from Brand Book) */
+  --brand-red: #c1272d;
+  --brand-sage: #8ebfb0;
+  --brand-yellow: #d9dc5b;
+  --brand-orange: #ef7b2e;
+  --brand-maroon: #922834;
+  --brand-whatsapp: #25d366;
+  --brand-teal: #8ebfb0; /* legacy alias → sage */
+
+  /* Semantic colors */
+  --primary: #c1272d;
+  --primary-hover: #a32025;
+  --secondary: #8ebfb0;
+
+  /* Backgrounds */
+  --bg-dark: #0a0a0a;
+  --bg-admi-green: #002a23;
+  --bg-dark-blue: #1a1a2e;
+  --bg-warm: #f7f5f2;
+  --bg-card-dark: #111111;
+
+  /* Text */
+  --text-white: #ffffff;
+  --text-dark: #0a0a0a;
+  --text-muted: #6b7280;
+  --text-muted-light: #9ca3af;
+
+  /* Borders */
+  --border-light: #e5e7eb;
+  --border-dark: #2a2a2a;
+
+  /* Spacing (8pt scale) */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 12px;
+  --space-lg: 16px;
+  --space-xl: 24px;
+  --space-2xl: 32px;
+  --space-3xl: 48px;
+  --space-4xl: 64px;
+  --space-5xl: 80px;
+  --space-6xl: 100px;
+
+  /* Border radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 24px;
+  --radius-pill: 100px;
 }
 
 html {
@@ -15,16 +66,52 @@ html {
 body {
   color: var(--foreground);
   background: #ffffff;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family:
+    var(--font-proxima),
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family:
+    var(--font-proxima),
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    sans-serif;
 }
 
 html,
 body {
-  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: clip;
 }
 
 .react-tel-input .selected-flag {
   border-radius: 8px 0 0 8px !important;
+}
+
+/* Ensure phone input doesn't overflow container */
+.react-tel-input {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+.react-tel-input .form-control {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
 }
 
 @layer base {
@@ -33,10 +120,194 @@ body {
   }
 }
 
+@layer components {
+  /* Section label - uppercase text above headings (matches Pencil Overline component) */
+  .section-label {
+    @apply mb-3 inline-block font-proxima text-xs font-bold uppercase tracking-[2px];
+  }
+  .section-label-light {
+    @apply section-label text-brand-red;
+  }
+  .section-label-dark {
+    @apply section-label text-brand-teal;
+  }
+
+  /* Section heading - h2 section titles (matches Pencil SectionHeader title) */
+  .section-heading {
+    @apply font-proxima text-3xl font-bold leading-[1.15] md:text-[42px];
+  }
+  .section-heading-light {
+    @apply section-heading text-[#0A0A0A];
+  }
+  .section-heading-dark {
+    @apply section-heading text-white;
+  }
+
+  /* Section subheading - descriptive text below headings (matches Pencil SectionHeader subtitle) */
+  .section-subheading {
+    @apply font-proxima text-[17px] leading-[1.6];
+  }
+  .section-subheading-light {
+    @apply section-subheading text-muted;
+  }
+  .section-subheading-dark {
+    @apply section-subheading text-muted-light;
+  }
+
+  /* Section padding - standardized section spacing (vertical only, bg goes full-bleed) */
+  .section-padding {
+    @apply py-16 md:py-20;
+  }
+
+  /* Section container - boxed content width */
+  .section-container {
+    @apply mx-auto max-w-[1280px] px-6 md:px-8;
+  }
+
+  /* Button variants (matches Pencil Button components) */
+  .btn {
+    @apply inline-flex items-center justify-center rounded-md font-proxima text-base font-semibold transition-colors;
+    height: 48px;
+    padding: 0 24px;
+  }
+  .btn-primary {
+    @apply btn bg-brand-red text-white hover:bg-primary-hover;
+  }
+  .btn-secondary {
+    @apply btn bg-admi-green text-white hover:opacity-90;
+  }
+  .btn-outline {
+    @apply btn border border-divider-light bg-transparent text-[#0A0A0A] hover:bg-gray-50;
+  }
+  .btn-outline-dark {
+    @apply btn border border-white/20 bg-transparent text-white hover:border-white/40;
+  }
+  .btn-ghost {
+    @apply btn bg-transparent text-brand-red hover:bg-brand-red/5;
+  }
+  .btn-whatsapp {
+    @apply btn gap-2 bg-brand-whatsapp text-white hover:opacity-90;
+  }
+  .btn-orange {
+    @apply btn bg-brand-orange text-white hover:opacity-90;
+  }
+
+  /* Badge variants (matches Pencil Badge components) */
+  .badge {
+    @apply inline-flex items-center justify-center rounded-pill font-proxima text-[13px] font-semibold tracking-[0.5px];
+    height: 32px;
+    padding: 0 16px;
+  }
+  .badge-teal {
+    @apply badge bg-brand-teal/10 text-brand-teal;
+  }
+  .badge-red {
+    @apply badge bg-brand-red/10 text-brand-red;
+  }
+  .badge-orange {
+    @apply badge bg-brand-orange/10 text-brand-orange;
+  }
+  .badge-dark {
+    @apply badge bg-admi-green text-white;
+  }
+  .badge-outline {
+    @apply badge border border-divider-light text-muted;
+  }
+  .badge-accreditation {
+    @apply inline-flex items-center justify-center gap-2 rounded-md bg-warm font-proxima text-[13px] font-bold tracking-[0.3px] text-[#0A0A0A];
+    height: 36px;
+    padding: 0 20px;
+  }
+
+  /* Card base (matches Pencil Card components) */
+  .card-light {
+    @apply rounded-lg border border-divider-light bg-white;
+  }
+  .card-dark {
+    @apply rounded-lg border border-divider-dark bg-card-dark;
+  }
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/*  Article prose -- rich-text body inside ArticleLayout               */
+/* ------------------------------------------------------------------ */
+.article-prose {
+  font-size: 16px;
+  color: #3f3f3f;
+  line-height: 1.75;
+}
+.article-prose h2,
+.article-prose h3,
+.article-prose h4 {
+  font-family: 'Fraunces Variable', Georgia, serif;
+  font-weight: 700;
+  color: #171717;
+  margin-top: 2em;
+  margin-bottom: 0.75em;
+}
+.article-prose h2 {
+  font-size: 26px;
+}
+.article-prose h3 {
+  font-size: 22px;
+}
+.article-prose h4 {
+  font-size: 18px;
+}
+.article-prose p {
+  margin-bottom: 1.25em;
+}
+.article-prose ul,
+.article-prose ol {
+  padding-left: 1.5em;
+  margin-bottom: 1.25em;
+}
+.article-prose li {
+  margin-bottom: 0.5em;
+}
+.article-prose a {
+  color: #c1272d;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.article-prose a:hover {
+  color: #a32830;
+}
+.article-prose blockquote {
+  background: #f9f9f9;
+  border-radius: 12px;
+  padding: 24px 32px;
+  border-left: 4px solid #c1272d;
+  font-style: italic;
+  margin: 1.5em 0;
+  color: #3f3f3f;
+}
+.article-prose blockquote p:last-child {
+  margin-bottom: 0;
+}
+.article-prose img {
+  border-radius: 12px;
+  max-width: 100%;
+  height: auto;
+  margin: 1.5em 0;
+}
+.article-prose hr {
+  border: none;
+  border-top: 1px solid #e8e8e8;
+  margin: 2em 0;
 }
 
 .mantine-Input-input {

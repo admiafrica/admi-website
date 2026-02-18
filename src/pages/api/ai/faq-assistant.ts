@@ -55,7 +55,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
 ADMI CONTEXT:
 - Africa Digital Media Institute is Kenya's leading creative education institution
-- Pearson-assured programs with international recognition
+- Woolf University accredited and TVETA Kenya registered programs with international recognition
 - Located in Nairobi with state-of-the-art facilities
 - Strong industry connections and high employment rates
 - Focus on practical, hands-on learning

@@ -1,7 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
-import { Group, Text, Anchor, Divider } from '@mantine/core'
-import { useMediaQuery } from '@mantine/hooks'
+import Link from 'next/link'
 
 import { IconCopyright } from '@tabler/icons-react'
 import IconLogoWhite from '@/assets/logo-light.svg'
@@ -16,50 +15,59 @@ import Ribbon from './Ribbon'
 
 const SocialIcons = React.memo(() => {
   return (
-    <Group justify="left" h={48}>
-      <Anchor href={SOCIAL_LINKS.TIKTOK} c="white" target="_blank">
+    <div className="flex h-12 items-center gap-4">
+      <a href={SOCIAL_LINKS.TIKTOK} className="text-white" target="_blank" rel="noopener noreferrer">
         <Image width={32} src={IconTikTok} alt={SOCIAL_LINKS.TIKTOK} />
-      </Anchor>
-      <Anchor href={SOCIAL_LINKS.YOUTUBE} c="white" target="_blank">
+      </a>
+      <a href={SOCIAL_LINKS.YOUTUBE} className="text-white" target="_blank" rel="noopener noreferrer">
         <Image width={36} src={IconYouTube} alt={SOCIAL_LINKS.YOUTUBE} />
-      </Anchor>
-      <Anchor href={SOCIAL_LINKS.LINKEDIN} c="white" target="_blank">
+      </a>
+      <a href={SOCIAL_LINKS.LINKEDIN} className="text-white" target="_blank" rel="noopener noreferrer">
         <Image width={32} src={IconLinkedIn} alt={SOCIAL_LINKS.LINKEDIN} />
-      </Anchor>
-      <Anchor href={SOCIAL_LINKS.INSTAGRAM} c="white" target="_blank">
+      </a>
+      <a href={SOCIAL_LINKS.INSTAGRAM} className="text-white" target="_blank" rel="noopener noreferrer">
         <Image width={44} src={IconInstagram} alt={SOCIAL_LINKS.INSTAGRAM} />
-      </Anchor>
-      <Anchor href={SOCIAL_LINKS.X} c="white" target="_blank">
+      </a>
+      <a href={SOCIAL_LINKS.X} className="text-white" target="_blank" rel="noopener noreferrer">
         <Image width={32} height={32} src={IconX} alt={SOCIAL_LINKS.X} />
-      </Anchor>
-      <Anchor href={SOCIAL_LINKS.FACEBOOK} c="white" target="_blank">
+      </a>
+      <a href={SOCIAL_LINKS.FACEBOOK} className="text-white" target="_blank" rel="noopener noreferrer">
         <Image width={32} src={IconFacebook} alt={SOCIAL_LINKS.FACEBOOK} />
-      </Anchor>
-    </Group>
+      </a>
+    </div>
   )
 })
 
-// Assign a display name
 SocialIcons.displayName = 'SocialIcons'
 
 export default function FooterMini() {
-  const isMobile = useMediaQuery('(max-width: 480px)')
-
   return (
     <div className="relative w-full bg-[#FFF7F5] font-proxima">
-      <Divider size={0.5} opacity="20%" color="green" />
-      <div className="flex w-full bg-[#002A23] pb-8">
+      <hr className="border-t border-green-500/20" />
+      <div className="flex w-full bg-admi-green pb-8">
         <div className="md:pt-auto mx-auto flex w-full max-w-screen-xl flex-col items-center px-4 pt-8 md:flex-row">
-          <div className="flex-start grow">{!isMobile && <SocialIcons />}</div>
-          <div className="grow">{isMobile && <SocialIcons />}</div>
+          <div className="flex-start grow">
+            {/* Social icons: hidden on small screens, shown on xs+ */}
+            <div className="hidden xs:block">
+              <SocialIcons />
+            </div>
+          </div>
+          <div className="grow">
+            {/* Social icons: shown on small screens only */}
+            <div className="xs:hidden">
+              <SocialIcons />
+            </div>
+          </div>
           <div className="flex text-white">
             <IconCopyright className="mr-2 text-white" />
-            <Text>
-              2025 All Rights Reserved. <b>ADMI Africa</b>
-            </Text>
+            <p>
+              2026 All Rights Reserved. <b>ADMI Africa</b>
+            </p>
           </div>
-          <div className="cursor-pointer text-admiShamrok md:pl-4 md:pr-32">
-            <Text>Privacy Policy | Terms & Conditions</Text>
+          <div className="text-admiShamrok md:pl-4 md:pr-32">
+            <Link href="/privacy-policy" className="cursor-pointer text-admiShamrok no-underline">
+              Privacy Policy | Terms & Conditions
+            </Link>
           </div>
           <Image width={95} src={IconLogoWhite} alt="logo" />
         </div>

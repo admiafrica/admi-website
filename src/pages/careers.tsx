@@ -1,137 +1,39 @@
-import Image from 'next/image'
-import { Box, Divider, Modal } from '@mantine/core'
-import { useDisclosure } from '@mantine/hooks'
-
 import { MainLayout } from '@/layouts/v3/MainLayout'
-import { Paragraph, Title } from '@/components/ui'
 import { PageSEO } from '@/components/shared/v3'
-import { InfoCard, LearnMoreCard, PlainCard } from '@/components/cards'
-import { ADMI_CAREER_VALUES } from '@/utils'
 
-import IconAudioPhoneAlt from '@/assets/icons/audio-phone-alt.svg'
-import ImageCareersLanding from '@/assets/images/careers-landing.png'
-import { useIsMobile } from '@/hooks/useIsMobile'
+const openings = [
+  { title: 'Creative Media Lecturer', type: 'Full-time', location: 'Nairobi Campus' },
+  { title: 'Student Success Advisor', type: 'Full-time', location: 'Nairobi Campus' },
+  { title: 'Studio Operations Assistant', type: 'Contract', location: 'Hybrid + Campus' }
+]
 
 export default function CareersPage() {
-  const isMobile = useIsMobile()
-  const [opened, { open, close }] = useDisclosure(false)
-
-  const howToApply = {
-    title: 'How to Apply',
-    description:
-      'If you are interested in joining our faculty or would like to express your interest in teaching a specific course, we encourage you to reach out to us. Please send your CV and a brief cover letter outlining your teaching philosophy and the courses you wish to teach to apply@admi.ac.ke.'
-  }
-
-  const openVacancies = {
-    title: 'Open Vacancies',
-    description:
-      'We regularly post open faculty positions on our website. Be sure to check back frequently for the latest opportunities to join our team. If you are passionate about education and have the skills to inspire students, we want to hear from you!',
-    subtext:
-      'Join us at ADMI and be part of a transformative educational experience that empowers students to excel in the ever-evolving world of digital media. Your expertise could be the key to unlocking their potential!'
-  }
-
   return (
     <MainLayout footerBgColor="white">
-      <PageSEO
-        title="Work With Us"
-        description="Join ADMI's dynamic team of educators and industry professionals. Explore career opportunities at Africa's premier creative media and technology training institution. Apply to inspire the next generation."
-        keywords="ADMI careers, work at ADMI, faculty positions, educator jobs Kenya, creative media jobs, digital media instructor, academic careers, teaching opportunities"
-      />
-      <Modal radius="lg" opened={opened} onClose={close} size={'72rem'}>
-        <LearnMoreCard />
-      </Modal>
+      <PageSEO title="Careers" description="Work with ADMI and help shape creative education." />
       <div className="w-full">
-        {/* HEADER */}
-        <Box className="relative w-full" onClick={open}>
-          <Image
-            src={ImageCareersLanding}
-            placeholder="empty"
-            alt="Fellowship Banner"
-            fill
-            priority
-            sizes="100vw"
-            className="absolute inset-0 z-0"
-            style={{ objectFit: 'cover' }}
-          />
-          {/* Radial Gradient Overlay */}
-          <div
-            className="z-5 absolute inset-0"
-            style={{
-              background: 'linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0, 42, 35, 1) 100%)'
-            }}
-          ></div>
-          <Box className="relative z-10 mx-auto flex w-full max-w-screen-xl flex-row px-4 sm:h-[50vh] sm:flex-row 2xl:px-0">
-            <Box className="mt-[20vh] flex w-full flex-col">
-              <Box className="flex grow">
-                <Title label="Work With" color="#F1FE37" size={isMobile ? '32px' : '64px'} />
-                <Box className="px-1"></Box>
-                <Title label="Us" color="admiShamrok" size={isMobile ? '32px' : '64px'} />
-              </Box>
-              <Box className="flex w-full flex-col pt-12 sm:h-[180px] sm:flex-row">
-                <Paragraph fontFamily="font-nexa" className="my-auto pr-6 text-white sm:w-1/2">
-                  At Africa Digital Media Institute (ADMI), we believe that exceptional faculty are the cornerstone of
-                  an outstanding educational experience. We are always on the lookout for passionate and skilled
-                  educators who are eager to inspire and empower the next generation of digital media professionals.
-                </Paragraph>
-                <Divider
-                  orientation={isMobile ? 'horizontal' : 'vertical'}
-                  size={2}
-                  color="#E43B07"
-                  my={isMobile ? 16 : 0}
-                />
-                <Paragraph fontFamily="font-nexa" className="my-auto text-white sm:w-1/2 sm:pl-6">
-                  Whether you are an experienced instructor or a talented industry practitioner, we invite you to
-                  explore the opportunity to join our dynamic team.
-                </Paragraph>
-              </Box>
-            </Box>
-          </Box>
-        </Box>
-        {/* WORK */}
-        <Box className="relative z-10 w-full bg-[#002A23] pb-48 pt-8">
-          <Box className="mx-auto flex w-full max-w-screen-xl flex-col">
-            <Box className="w-full px-4 py-6 text-white xl:px-0 xl:pr-4">
-              <Title label="Why Work at ADMI?" color="white" />
-            </Box>
-            <Box className="flex w-full flex-col justify-between px-4 sm:flex-row sm:px-0">
-              {ADMI_CAREER_VALUES.map((support, index) => (
-                <Box key={`support-${index}`} p={8}>
-                  <InfoCard item={support} />
-                </Box>
-              ))}
-            </Box>
-          </Box>
-        </Box>
-        {/* Floating Card */}
-        <div className="relative w-full px-4 2xl:px-0">
-          <div className="absolute left-1/2 top-[-16vh] z-10 w-full max-w-screen-xl -translate-x-1/2 transform px-4 sm:top-[-8vh] 2xl:px-0">
-            <PlainCard>
-              <Title label={howToApply.title} size="20px" color="black" />
-              <Paragraph className="py-6" fontFamily="font-nexa">
-                {howToApply.description}
-              </Paragraph>
-            </PlainCard>
+        <section className="relative h-[540px] overflow-hidden bg-[url('https://images.unsplash.com/photo-1516005492235-7a8d3a652dca?auto=format&fit=crop&w=1920&q=80')] bg-cover bg-center">
+          <div className="absolute inset-0 bg-black/60" />
+          <div className="relative z-10 mx-auto flex h-full w-full max-w-screen-xl flex-col justify-end px-4 pb-14 text-white xl:px-0">
+            <p className="font-nexa text-[14px] uppercase tracking-[0.15em] text-[#B7D8CF]">/careers</p>
+            <h1 className="pt-4 font-proxima text-[52px] font-bold leading-[1.1]">Work With Us at ADMI</h1>
+            <p className="max-w-[820px] pt-4 font-nexa text-[18px] text-white/85">Join a mission-driven team developing the next generation of African creative professionals.</p>
           </div>
-        </div>
-        {/* VACANCIES */}
-        <Box className="mx-auto w-full max-w-screen-xl px-4 pb-8 pt-72 sm:pt-56 xl:px-0">
-          <PlainCard bg="#F5FAFF">
-            <Box className="flex h-full w-full flex-col-reverse sm:flex-row">
-              <Box className="grow">
-                <Title label={openVacancies.title} size="20px" color="black" />
-                <Paragraph className="py-6" fontFamily="font-nexa">
-                  {openVacancies.description}
-                </Paragraph>
-                <Paragraph className="py-6" fontFamily="font-nexa">
-                  {openVacancies.subtext}
-                </Paragraph>
-              </Box>
-              <Box className="relative flex items-center justify-center sm:w-[30%]">
-                <Image src={IconAudioPhoneAlt} alt="vacancies-image" width={120} height={120} />
-              </Box>
-            </Box>
-          </PlainCard>
-        </Box>
+        </section>
+        <section className="bg-white py-16">
+          <div className="mx-auto w-full max-w-screen-xl px-4 xl:px-0">
+            <h2 className="font-proxima text-[40px] font-bold text-[#171717]">Open Positions</h2>
+            <div className="grid grid-cols-1 gap-4 pt-8 md:grid-cols-3">
+              {openings.map((r) => (
+                <article key={r.title} className="rounded-xl border border-[#E8E8E8] bg-white p-6">
+                  <p className="font-nexa text-[12px] uppercase tracking-[0.1em] text-brand-red">{r.type}</p>
+                  <h3 className="pt-1 font-proxima text-[30px] font-bold leading-[1.2] text-[#171717]">{r.title}</h3>
+                  <p className="pt-2 font-nexa text-[14px] text-[#666]">{r.location}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
       </div>
     </MainLayout>
   )

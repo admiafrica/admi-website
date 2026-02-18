@@ -1,8 +1,7 @@
 import { useRef } from 'react'
 import Image from 'next/image'
 import Autoplay from 'embla-carousel-autoplay'
-import { Avatar, Box, Card, Group } from '@mantine/core'
-import { Carousel } from '@mantine/carousel'
+import { Carousel } from '@/lib/tw-mantine-carousel'
 
 import { getAssetDetails, ensureProtocol } from '@/utils'
 import { UserTestimonialCard } from '../cards'
@@ -31,17 +30,17 @@ export default function CourseStudents(props: Props) {
   const enableCarousel = props.portfolios.length >= 3
 
   return (
-    <Group bg={'#BD2D00'}>
+    <div className="flex flex-wrap" style={{ backgroundColor: '#BD2D00' }}>
       <div className="max-w-screen-3xl mx-auto w-full">
         {showPortfolios && (
-          <div className="mx-auto max-w-screen-xl px-4 py-12">
+          <div className="section-container py-12">
             <Title size={isMobile ? '24px' : '32px'} label="Student Portfolio & Alumni Stories" color="white" />
           </div>
         )}
 
         {/* Portfolios */}
         {showPortfolios && (
-          <div className="mx-auto h-fit w-full max-w-screen-xl px-4">
+          <div className="section-container h-fit w-full">
             <Carousel
               withControls={false}
               withIndicators={false}
@@ -61,8 +60,8 @@ export default function CourseStudents(props: Props) {
               {props.portfolios.map((portfolio) => {
                 return (
                   <Carousel.Slide key={portfolio.fields.studentName}>
-                    <Card>
-                      <Card.Section>
+                    <div className="rounded-xl border border-gray-200 bg-white shadow-sm">
+                      <div>
                         {portfolio.fields.assets ? (
                           <Carousel
                             plugins={[portfolioAutoplay.current]}
@@ -96,16 +95,18 @@ export default function CourseStudents(props: Props) {
                             {portfolio.fields.bio}
                           </ParagraphContentful>
                         )}
-                      </Card.Section>
-                      <Card.Section>
-                        <Group py={16} bg={'#871F00'} c={'white'}>
-                          <Avatar
+                      </div>
+                      <div>
+                        <div
+                          className="flex flex-wrap items-center"
+                          style={{ paddingTop: 16, paddingBottom: 16, backgroundColor: '#871F00', color: 'white' }}
+                        >
+                          <img
                             src={ensureProtocol(
                               getAssetDetails(props.assets, portfolio.fields.profilePicture.sys.id)?.fields.file.url
                             )}
-                            variant="transparent"
-                            size={48}
-                            ml={16}
+                            alt=""
+                            className="ml-4 h-12 w-12 rounded-full object-cover"
                           />
                           <div className="flex grow flex-col">
                             <Paragraph fontFamily="font-nexa" fontWeight={900}>
@@ -113,9 +114,9 @@ export default function CourseStudents(props: Props) {
                             </Paragraph>
                             <Paragraph>{portfolio.fields.professionalTitle}</Paragraph>
                           </div>
-                        </Group>
-                      </Card.Section>
-                    </Card>
+                        </div>
+                      </div>
+                    </div>
                   </Carousel.Slide>
                 )
               })}
@@ -125,7 +126,7 @@ export default function CourseStudents(props: Props) {
 
         {/* Testimonials */}
         {showTestimonials && (
-          <div className="mx-auto mb-8 max-w-screen-xl px-4 font-nexa text-white">
+          <div className="section-container mb-8 font-nexa text-white">
             <div className="flex flex-col items-center py-8 sm:flex-row">
               <Title
                 size={isMobile ? '24px' : '32px'}
@@ -145,15 +146,15 @@ export default function CourseStudents(props: Props) {
         )}
 
         {showTestimonials && (
-          <div className="mx-auto flex h-fit w-full max-w-screen-xl flex-col justify-start px-4 sm:flex-row">
+          <div className="section-container flex h-fit w-full flex-col justify-start sm:flex-row">
             {props.testimonials.map((testimonial, index) => (
-              <Box key={`testimonial-${index}`}>
+              <div key={`testimonial-${index}`}>
                 <UserTestimonialCard user={testimonial.user} testimonial={testimonial} assets={props.assets} />
-              </Box>
+              </div>
             ))}
           </div>
         )}
       </div>
-    </Group>
+    </div>
   )
 }

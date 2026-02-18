@@ -1,212 +1,290 @@
-import React from 'react'
-import { Container, Title, Accordion, Text } from '@mantine/core'
+'use client'
+
+import { useState } from 'react'
+import Link from 'next/link'
+import { IconPlus, IconMinus, IconMessageCircle, IconMail } from '@tabler/icons-react'
+import type { GetStaticProps, InferGetStaticPropsType } from 'next'
+
 import { MainLayout } from '@/layouts/v3/MainLayout'
 import { PageSEO } from '@/components/shared/v3'
+import { getEntriesCached } from '@/utils/contentful-cached'
+import type { FaqCategory, FaqItem } from '@/types/frequently-asked-questions'
 
-const FAQPage = () => {
-  const faqSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: [
-      {
-        '@type': 'Question',
-        name: 'What job opportunities are available for ADMI graduates?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'ADMI graduates have a variety of job opportunities available across different creative industries, including graphic design, film production, digital marketing, and music production. Our strong industry partnerships and a robust job placement rate in Kenya ensure our students have access to employment opportunities such as graphic designers, film editors, digital marketers, and music producers.'
-        }
-      },
-      {
-        '@type': 'Question',
-        name: 'What are the salary prospects for ADMI graduates in Kenya?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'The salary prospects for ADMI graduates vary depending on the specific field. For instance, graphic designers in Kenya can expect competitive salaries that align with industry standards. Similarly, digital marketing and music production professionals have lucrative salary prospects, reflecting the growing demand for skilled professionals in these areas.'
-        }
-      },
-      {
-        '@type': 'Question',
-        name: 'What are the admission requirements for ADMI courses?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: "Admission requirements at ADMI vary depending on the course. Generally, applicants should have completed high school with good grades. Specific courses like Film Production and Sound Engineering may have additional requirements. Please visit our website or contact our admissions office for detailed information on each course's requirements."
-        }
-      },
-      {
-        '@type': 'Question',
-        name: 'How much does it cost to study a course at ADMI?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'The fees for courses at ADMI vary. For instance, the music production course has specific fees that cover tuition and materials. We offer flexible payment plans, including installment options, to make education accessible to everyone. Contact our finance office for detailed fee structures and payment plans.'
-        }
-      },
-      {
-        '@type': 'Question',
-        name: 'What is the duration of ADMI courses?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'The duration of courses at ADMI varies. For example, our graphic design course typically lasts for a specified period that allows students to gain comprehensive skills. For detailed information on the duration of specific courses, please refer to the course descriptions on our website.'
-        }
-      },
-      {
-        '@type': 'Question',
-        name: 'Is ADMI accredited and recognized internationally?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Yes, ADMI is accredited by Pearson, which ensures that our qualifications are recognized globally. This accreditation affirms that our curriculum meets international standards, providing our students with a competitive edge in the global job market.'
-        }
-      },
-      {
-        '@type': 'Question',
-        name: 'Where is ADMI located in Nairobi?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'ADMI is centrally located in Nairobi, making it easily accessible to students from all parts of the city. Our campus is well-equipped with modern facilities to provide a conducive learning environment for all our programs.'
-        }
-      },
-      {
-        '@type': 'Question',
-        name: 'Does ADMI offer scholarships or financial aid?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Yes, ADMI offers scholarships and financial aid to deserving students based on merit and need. We strive to support talented individuals to achieve their academic goals. Visit our website or contact our admissions office for more information on how to apply for scholarships.'
-        }
+/* ------------------------------------------------------------------ */
+/*  Fallback data (used when Contentful is unavailable)                */
+/* ------------------------------------------------------------------ */
+
+const CATEGORIES: FaqCategory[] = ['General', 'Admissions', 'Fees & Payment', 'Student Life', 'Programmes']
+
+const FALLBACK_FAQ: Record<string, FaqItem[]> = {
+  General: [
+    {
+      q: 'What is ADMI?',
+      a: 'ADMI (Africa Digital Media Institute) is East Africa\u2019s leading creative media and technology institute. Founded in 2011, we offer accredited diploma programmes, professional certificates, and foundation certificates in film, animation, design, music production, gaming, and more.'
+    },
+    {
+      q: 'Where is ADMI located?',
+      a: 'Our campus is located at Caxton House, 3rd Floor, Kenyatta Avenue in Nairobi CBD, Kenya. We\u2019re right next to the General Post Office \u2014 very accessible by public transport.'
+    },
+    {
+      q: 'Is ADMI accredited?',
+      a: 'Yes. ADMI is registered with TVETA Kenya, offers EU-accredited credits through Woolf University (ECTS), and our professional certificates are Pearson BTEC certified.'
+    },
+    {
+      q: 'What intakes are available?',
+      a: 'We have three intake windows per year: January, May, and September. The next available intakes are May 2026 and September 2026.'
+    }
+  ],
+  Admissions: [
+    {
+      q: 'What are the entry requirements?',
+      a: 'Requirements vary by programme level. Diploma programmes generally require a KCSE certificate (C- and above) or equivalent. Professional certificates require at least a KCSE certificate. Foundation certificates are open to anyone 16+ with a passion for creative media.'
+    },
+    {
+      q: 'How do I apply?',
+      a: 'You can apply online through our website by visiting the Apply page, or by contacting our admissions team via WhatsApp at +254 741 132 751. The application process takes about 10 minutes.'
+    },
+    {
+      q: 'Can international students apply?',
+      a: 'Absolutely. We welcome students from across Africa and beyond. International students may need a student visa \u2014 our admissions team can guide you through the process and provide supporting documentation.'
+    },
+    {
+      q: 'What documents do I need?',
+      a: 'You\u2019ll need a copy of your national ID or passport, academic certificates (KCSE or equivalent), and a recent passport-size photo. Some programmes may also require a portfolio or creative work samples.'
+    }
+  ],
+  'Fees & Payment': [
+    {
+      q: 'How much are the tuition fees?',
+      a: 'Fees vary by programme. Diploma programmes start from KES 15,000/month (18 months), professional certificates from KES 8,500/month (6 months), and foundation certificates from KES 5,000/month (3 months). Visit our Financial Planning page for detailed breakdowns.'
+    },
+    {
+      q: 'Are payment plans available?',
+      a: 'Yes. We offer flexible monthly payment plans for all programmes. You can spread your fees across the duration of your programme with no interest or hidden charges.'
+    },
+    {
+      q: 'Are there scholarships?',
+      a: 'Yes, ADMI offers merit-based and need-based scholarships. We also partner with organisations like Google.org and GOYN for sponsored training opportunities. Contact admissions to learn about current scholarship windows.'
+    },
+    {
+      q: 'What is the refund policy?',
+      a: 'ADMI has a structured refund policy. Full refunds are available within the first week of classes. After that, refunds are prorated based on the time enrolled. Contact our finance team for specific details.'
+    }
+  ],
+  'Student Life': [
+    {
+      q: 'What facilities does ADMI have?',
+      a: 'Our campus features professional film and music studios, Mac and PC labs with industry-standard software, an equipment vault with cameras and audio gear, collaborative creative spaces, and a resource library.'
+    },
+    {
+      q: 'Is there student support available?',
+      a: 'Yes. ADMI provides academic advising, wellness resources, career coaching, accessibility services, and psycho-social support. We also have dedicated student support staff available during office hours.'
+    },
+    {
+      q: 'Are there events and networking opportunities?',
+      a: 'Regularly. We host student showcases, film screenings, hackathons, industry guest talks, and networking events that connect students with professionals in creative industries across Africa.'
+    },
+    {
+      q: 'Does ADMI offer accommodation?',
+      a: 'While ADMI doesn\u2019t have on-campus housing, we help students find affordable accommodation options near the campus. Our student support team can guide you through finding suitable housing in Nairobi.'
+    }
+  ],
+  Programmes: [
+    {
+      q: 'What programmes does ADMI offer?',
+      a: 'We offer diploma programmes (18 months) in Film Production, Music Production, and Animation; professional certificates (6 months) in Graphic Design, Digital Marketing, Sound Engineering, UI/UX Design, and more; plus foundation certificates (3 months) for beginners.'
+    },
+    {
+      q: 'Is online learning available?',
+      a: 'Yes. Many of our programmes include a hybrid delivery model combining on-campus studio sessions with online learning components. This provides flexibility while ensuring hands-on practical experience.'
+    },
+    {
+      q: 'Do programmes include practical projects?',
+      a: 'Absolutely. ADMI\u2019s learning model is project-based. Students work on real industry briefs, build portfolios, and complete capstone projects. Many students leave with professional-quality work they can show employers.'
+    },
+    {
+      q: 'Can I transfer credits to other universities?',
+      a: 'Our diploma programmes offer EU-accredited ECTS credits through Woolf University, which can be recognised by universities worldwide. Contact admissions for specific credit transfer guidance.'
+    }
+  ]
+}
+
+/* ------------------------------------------------------------------ */
+/*  Data fetching                                                      */
+/* ------------------------------------------------------------------ */
+
+export const getStaticProps: GetStaticProps<{ faqData: Record<string, FaqItem[]> }> = async () => {
+  let faqData = FALLBACK_FAQ
+
+  try {
+    const entries = await getEntriesCached('pageFaq', 'page:faqs', 'order=fields.sortOrder')
+
+    if (entries && entries.length > 0) {
+      const grouped: Record<string, FaqItem[]> = {}
+      for (const entry of entries) {
+        const f = entry.fields
+        const category = f.category || 'General'
+        if (!grouped[category]) grouped[category] = []
+        grouped[category].push({
+          q: f.question,
+          a: f.answer
+        })
       }
-    ]
+      faqData = grouped
+    }
+  } catch (error) {
+    console.error('[FAQ] CMS fetch failed, using fallback:', error)
   }
 
+  return {
+    props: { faqData },
+    revalidate: 300
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/*  Components                                                         */
+/* ------------------------------------------------------------------ */
+
+function FAQItem({ question, answer }: { question: string; answer: string }) {
+  const [open, setOpen] = useState(false)
+
   return (
-    <MainLayout>
-      <PageSEO
-        title="Frequently Asked Questions - ADMI"
-        description="Get answers to common questions about ADMI courses, fees, admission requirements, and career prospects in Kenya's leading digital media institute."
-        canonical="https://admi.ac.ke/frequently-asked-questions"
-        keywords="admi faq, digital media institute questions, course fees, admission requirements"
-      />
-
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(faqSchema)
-        }}
-      />
-
-      <Container size="lg" py="xl">
-        <Title order={1} ta="center" mb="xl">
-          Frequently Asked Questions
-        </Title>
-
-        <Text size="lg" ta="center" mb="xl" c="dimmed">
-          Everything you need to know about ADMI courses, fees, and admission
-        </Text>
-
-        <Accordion variant="separated">
-          <Accordion.Item key="Why choose ADMI?" value="Why choose ADMI?">
-            <Accordion.Control>
-              <Text fw={500}>Why choose ADMI for creative media training?</Text>
-            </Accordion.Control>
-            <Accordion.Panel>
-              <Text>
-                ADMI is Kenya&apos;s leading creative media and technology training institution with 90% job placement
-                rate. We offer practical, industry-standard courses in Film & TV, Music, Animation, Gaming, Graphic
-                Design, and Digital Marketing with modern equipment, experienced instructors, and strong industry
-                connections.
-              </Text>
-            </Accordion.Panel>
-          </Accordion.Item>
-
-          <Accordion.Item key="How much does ADMI cost?" value="How much does ADMI cost?">
-            <Accordion.Control>
-              <Text fw={500}>How much does ADMI cost?</Text>
-            </Accordion.Control>
-            <Accordion.Panel>
-              <Text>
-                ADMI course fees vary by program and intake. For the most current fee structure, please visit{' '}
-                <a href="https://admi.africa/student-support#fees" target="_blank">
-                  https://admi.africa/student-support#fees
-                </a>{' '}
-                to download the official fee schedule. We offer flexible payment plans and scholarship opportunities.
-              </Text>
-            </Accordion.Panel>
-          </Accordion.Item>
-
-          <Accordion.Item key="What are ADMI admission requirements?" value="What are ADMI admission requirements?">
-            <Accordion.Control>
-              <Text fw={500}>What are ADMI admission requirements?</Text>
-            </Accordion.Control>
-            <Accordion.Panel>
-              <Text>
-                ADMI admission requires KCSE mean grade D+ or equivalent, passion for creative media, and basic computer
-                literacy. No prior experience needed - we teach from basics to professional level.
-              </Text>
-            </Accordion.Panel>
-          </Accordion.Item>
-
-          <Accordion.Item
-            key="Which ADMI course has the best job prospects?"
-            value="Which ADMI course has the best job prospects?"
-          >
-            <Accordion.Control>
-              <Text fw={500}>Which ADMI course has the best job prospects?</Text>
-            </Accordion.Control>
-            <Accordion.Panel>
-              <Text>
-                All ADMI diploma programs have exceptional job placement rates of 85-90%. Our Graphic Design Diploma,
-                Film & TV Production Diploma, Animation & Motion Graphics Diploma, Music Production Diploma, and Sound
-                Engineering Diploma are all highly sought after in Kenya's rapidly growing creative economy, with
-                graduates working at leading companies like Nation Media Group, Royal Media Services, and Safaricom.
-              </Text>
-            </Accordion.Panel>
-          </Accordion.Item>
-
-          <Accordion.Item key="Where is ADMI located?" value="Where is ADMI located?">
-            <Accordion.Control>
-              <Text fw={500}>Where is ADMI located?</Text>
-            </Accordion.Control>
-            <Accordion.Panel>
-              <Text>ADMI is located at 25 Kenyatta Avenue, 3rd Floor, Caxton House, Nairobi, Kenya.</Text>
-            </Accordion.Panel>
-          </Accordion.Item>
-
-          <Accordion.Item key="Does ADMI offer online courses?" value="Does ADMI offer online courses?">
-            <Accordion.Control>
-              <Text fw={500}>Does ADMI offer online courses?</Text>
-            </Accordion.Control>
-            <Accordion.Panel>
-              <Text>
-                Yes, ADMI offers hybrid learning with online and in-person components. Digital Marketing and Graphic
-                Design have strong online options, while Film Production requires more hands-on training.
-              </Text>
-            </Accordion.Panel>
-          </Accordion.Item>
-
-          <Accordion.Item key="How long do ADMI courses take?" value="How long do ADMI courses take?">
-            <Accordion.Control>
-              <Text fw={500}>How long do ADMI courses take?</Text>
-            </Accordion.Control>
-            <Accordion.Panel>
-              <Text>
-                ADMI diploma programs are 12-18 months. Certificate courses are 3-6 months. We offer flexible scheduling
-                including evening and weekend classes for working professionals.
-              </Text>
-            </Accordion.Panel>
-          </Accordion.Item>
-
-          <Accordion.Item key="What equipment does ADMI provide?" value="What equipment does ADMI provide?">
-            <Accordion.Control>
-              <Text fw={500}>What equipment does ADMI provide?</Text>
-            </Accordion.Control>
-            <Accordion.Panel>
-              <Text>
-                ADMI provides state-of-the-art equipment including professional cameras, editing suites, recording
-                studios, design computers with latest software, and industry-standard tools for hands-on learning.
-              </Text>
-            </Accordion.Panel>
-          </Accordion.Item>
-        </Accordion>
-      </Container>
-    </MainLayout>
+    <div className="border-b border-[#e8e8e8]">
+      <button onClick={() => setOpen(!open)} className="flex w-full items-center justify-between py-5 text-left">
+        <span className="font-proxima text-[16px] font-medium text-admi-black">{question}</span>
+        {open ? (
+          <IconMinus size={20} className="flex-shrink-0 text-[#999]" />
+        ) : (
+          <IconPlus size={20} className="flex-shrink-0 text-[#999]" />
+        )}
+      </button>
+      {open && (
+        <div className="pb-5">
+          <p className="font-proxima text-[15px] leading-[1.7] text-[#555]">{answer}</p>
+        </div>
+      )}
+    </div>
   )
 }
 
-export default FAQPage
+/* ------------------------------------------------------------------ */
+/*  Page                                                               */
+/* ------------------------------------------------------------------ */
+
+export default function FAQPage({ faqData }: InferGetStaticPropsType<typeof getStaticProps>) {
+  const [activeCategory, setActiveCategory] = useState<FaqCategory>('General')
+
+  return (
+    <MainLayout footerBgColor="#1a1a1a">
+      <PageSEO
+        title="Frequently Asked Questions | ADMI"
+        description="Find answers to common questions about ADMI programmes, admissions, fees, student life, and more."
+      />
+
+      <div className="w-full">
+        {/* -- Hero -- */}
+        <section className="section-padding bg-[#0A3D3D] text-center text-white">
+          <div className="section-container">
+            <div className="flex items-center justify-center gap-2.5">
+              <span className="h-[3px] w-8 bg-secondary" />
+              <span className="font-proxima text-[13px] font-semibold uppercase tracking-[2px] text-secondary">
+                FAQ
+              </span>
+            </div>
+            <h1 className="mt-5 font-proxima text-[48px] font-bold">Frequently Asked Questions</h1>
+            <p className="mx-auto mt-4 max-w-[600px] font-proxima text-[18px] leading-[1.6] text-white/80">
+              Find answers to common questions about ADMI programmes, admissions, fees and student life.
+            </p>
+          </div>
+        </section>
+
+        {/* -- Category Tabs -- */}
+        <div className="border-b border-[#e8e8e8] bg-white">
+          <div className="section-container flex gap-0 overflow-x-auto">
+            {CATEGORIES.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setActiveCategory(cat)}
+                className={`whitespace-nowrap px-6 py-4 font-proxima text-[15px] transition ${
+                  activeCategory === cat
+                    ? 'border-b-[3px] border-brand-red font-semibold text-brand-red'
+                    : 'font-medium text-[#666] hover:text-[#171717]'
+                }`}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* -- FAQ Content -- */}
+        <section className="bg-white py-12">
+          <div className="section-container">
+            {activeCategory === 'General' ? (
+              /* Show all categories when on General */
+              Object.entries(faqData)
+                .filter(([key]) => key === 'General' || key === 'Admissions' || key === 'Fees & Payment')
+                .map(([category, items]) => (
+                  <div key={category} className="mb-12">
+                    <div className="mb-4 flex items-center gap-2.5">
+                      <span
+                        className="h-[3px] w-6"
+                        style={{
+                          backgroundColor:
+                            category === 'General' ? '#8EBFB0' : category === 'Admissions' ? '#C1272D' : '#EF7B2E'
+                        }}
+                      />
+                      <span className="font-proxima text-[13px] font-bold uppercase tracking-[2px] text-[#0A3D3D]">
+                        {category.toUpperCase()}
+                      </span>
+                    </div>
+                    {items.map((item: FaqItem) => (
+                      <FAQItem key={item.q} question={item.q} answer={item.a} />
+                    ))}
+                  </div>
+                ))
+            ) : (
+              <div>
+                <div className="mb-4 flex items-center gap-2.5">
+                  <span className="h-[3px] w-6 bg-brand-red" />
+                  <span className="font-proxima text-[13px] font-bold uppercase tracking-[2px] text-[#0A3D3D]">
+                    {activeCategory.toUpperCase()}
+                  </span>
+                </div>
+                {(faqData[activeCategory] || []).map((item: FaqItem) => (
+                  <FAQItem key={item.q} question={item.q} answer={item.a} />
+                ))}
+              </div>
+            )}
+          </div>
+        </section>
+
+        {/* -- CTA -- */}
+        <section className="bg-[#F9F9F9] py-16 text-center">
+          <div className="section-container">
+            <h2 className="font-proxima text-[32px] font-bold text-admi-black">Still have questions?</h2>
+            <p className="mt-2 font-proxima text-[16px] text-[#666]">
+              Talk to our admissions team &mdash; we are happy to help.
+            </p>
+            <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
+              <Link
+                href="https://wa.me/254741132751"
+                target="_blank"
+                className="inline-flex items-center gap-2 rounded-[10px] bg-brand-whatsapp px-7 py-3.5 font-proxima text-[15px] font-semibold text-white transition hover:bg-[#1da851]"
+              >
+                <IconMessageCircle size={18} /> WhatsApp Us
+              </Link>
+              <Link
+                href="mailto:admissions@admi.ac.ke"
+                className="inline-flex items-center gap-2 rounded-[10px] bg-[#0A3D3D] px-7 py-3.5 font-proxima text-[15px] font-semibold text-white transition hover:bg-[#072e2e]"
+              >
+                <IconMail size={18} /> Email Us
+              </Link>
+            </div>
+          </div>
+        </section>
+      </div>
+    </MainLayout>
+  )
+}

@@ -1,5 +1,4 @@
 import Image from 'next/image'
-import { Box, Card } from '@mantine/core'
 import { ParagraphContentful, Title } from '@/components/ui'
 import { getAssetDetails, ensureProtocol } from '@/utils'
 import { useRouter } from 'next/router'
@@ -21,11 +20,10 @@ export default function CourseListItemCard({ course }: Props) {
   }
 
   return (
-    <Card
-      className="hover:border-1 my-4 h-[100px] w-full cursor-pointer shadow-lg hover:border-solid hover:border-admiRed sm:h-[16vh]"
-      withBorder
+    <div
+      className="hover:border-1 my-4 h-[100px] w-full cursor-pointer rounded-xl border border-gray-200 bg-white shadow-lg hover:border-solid hover:border-admiRed sm:h-[16vh]"
       key={course.sys.id}
-      p={0}
+      style={{ padding: 0 }}
       onClick={handleCourseClick}
     >
       {/* Card container */}
@@ -59,15 +57,15 @@ export default function CourseListItemCard({ course }: Props) {
         </motion.div>
 
         {/* Content Section */}
-        <Box className="flex w-1/2 grow sm:w-full">
-          <Box className="flex w-[92%] flex-col px-4 pt-6">
+        <div className="flex w-1/2 grow sm:w-full">
+          <div className="flex w-[92%] flex-col px-4 pt-6">
             <Title label={course.fields.name} size={isMobile ? '16px' : '20px'} color="black" />
             {!isMobile && (
               <ParagraphContentful className="line-clamp-[2] text-gray-500">
                 {course.fields.description}
               </ParagraphContentful>
             )}
-          </Box>
+          </div>
 
           {/* Arrow Icon with Animation */}
           <motion.div
@@ -84,8 +82,8 @@ export default function CourseListItemCard({ course }: Props) {
           >
             <IconArrowTipRight width={36} height={36} color={'#F60834'} />
           </motion.div>
-        </Box>
+        </div>
       </motion.div>
-    </Card>
+    </div>
   )
 }

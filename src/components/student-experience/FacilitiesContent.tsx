@@ -1,7 +1,6 @@
 'use client'
 
-import { Box } from '@mantine/core'
-import { Carousel } from '@mantine/carousel'
+import { Carousel } from '@/lib/tw-mantine-carousel'
 import Autoplay from 'embla-carousel-autoplay'
 import { StudentExperienceLayout } from './StudentExperienceLayout'
 import { FacilityItemCard } from '@/components/cards'
@@ -27,9 +26,9 @@ export function FacilitiesContent() {
       intro="Discover the world-class facilities that make ADMI a premier creative media training institution. Each space is designed with industry standards and hands-on learning in mind."
       sections={sections}
     >
-      <Box className="w-full px-4 py-12">
-        <Box className="mx-auto w-full max-w-screen-xl">
-          <Box className="w-full">
+      <div className="w-full px-4 py-12">
+        <div className="mx-auto w-full max-w-screen-xl">
+          <div className="w-full">
             <Carousel
               slideSize={600}
               height={360}
@@ -49,9 +48,9 @@ export function FacilitiesContent() {
                 </Carousel.Slide>
               ))}
             </Carousel>
-          </Box>
-        </Box>
-      </Box>
+          </div>
+        </div>
+      </div>
     </StudentExperienceLayout>
   )
 }

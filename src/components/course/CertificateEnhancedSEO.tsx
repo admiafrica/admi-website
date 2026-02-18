@@ -21,7 +21,7 @@ export function CertificateEnhancedSEO({
   employmentRate = 75,
   averageSalary = 'KES 25,000 - 80,000',
   industryPartners = ['Safaricom', 'Nation Media Group', 'Standard Group', 'Royal Media Services'],
-  accreditation = 'Pearson Assured'
+  accreditation = 'TVETA Kenya'
 }: CertificateEnhancedSEOProps) {
   const [cmsFaqs, setCmsFaqs] = useState<ICourseFAQ[]>([])
 

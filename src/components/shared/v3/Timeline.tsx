@@ -1,6 +1,7 @@
+'use client'
+
 import React, { useRef, useState } from 'react'
-import { Carousel } from '@mantine/carousel'
-import { Card, Box, Divider } from '@mantine/core'
+import { Carousel } from '@/lib/tw-mantine-carousel'
 import Autoplay from 'embla-carousel-autoplay'
 
 import { IconPlus } from '@tabler/icons-react'
@@ -20,9 +21,9 @@ export default function Timeline({ data }: Props) {
     setActiveYear(value)
   }
   return (
-    <Box className="w-full">
+    <div className="w-full">
       {isMobile ? (
-        <Box className="w-full">
+        <div className="w-full">
           <Carousel
             slideSize={600}
             height={360}
@@ -37,36 +38,36 @@ export default function Timeline({ data }: Props) {
           >
             {data.map((item: any) => (
               <Carousel.Slide key={item.year}>
-                <Box className="flex w-full flex-col py-6">
-                  <Box className="w-full sm:w-[240px]">
+                <div className="flex w-full flex-col py-6">
+                  <div className="w-full sm:w-[240px]">
                     <Paragraph fontFamily="font-nexa py-2" size="76px">
                       {item.year}
                     </Paragraph>
-                  </Box>
-                  <Box className="flex w-full flex-col">
+                  </div>
+                  <div className="flex w-full flex-col">
                     {item.achievements.map((item: string, index: number) => (
-                      <Box className="flex w-full py-2" key={`achievement-${index}`}>
+                      <div className="flex w-full py-2" key={`achievement-${index}`}>
                         <IconPlus className="my-auto mr-2 rounded-full bg-admiShamrok" size={14} />
                         <Paragraph className="my-auto w-full">{item}</Paragraph>
-                      </Box>
+                      </div>
                     ))}
-                  </Box>
-                </Box>
+                  </div>
+                </div>
               </Carousel.Slide>
             ))}
           </Carousel>
-        </Box>
+        </div>
       ) : (
-        <Box className="relative flex w-full flex-col">
-          <Box className="absolute top-[22px] z-0 mx-auto w-full px-6">
-            <Divider color="admiShamrok" />
-          </Box>
-          <Box className="z-10 flex w-full">
+        <div className="relative flex w-full flex-col">
+          <div className="absolute top-[22px] z-0 mx-auto w-full px-6">
+            <hr className="border-gray-200" style={{ borderColor: 'admiShamrok' }} />
+          </div>
+          <div className="z-10 flex w-full">
             {data.map((item: any) => (
-              <Card
+              <div
                 key={item.year}
-                className="mx-auto cursor-pointer"
-                bg={activeYear.year == item.year ? 'admiRed' : 'admiShamrok'}
+                className="mx-auto cursor-pointer rounded-xl border border-gray-200 bg-white shadow-sm"
+                style={{ backgroundColor: activeYear.year == item.year ? 'admiRed' : 'admiShamrok' }}
                 onClick={() => handleYearSelected(item)}
               >
                 <Paragraph
@@ -77,26 +78,26 @@ export default function Timeline({ data }: Props) {
                 >
                   {item.year}
                 </Paragraph>
-              </Card>
+              </div>
             ))}
-          </Box>
-          <Box className="flex w-full py-6">
-            <Box className="w-[20%] w-[240px]">
+          </div>
+          <div className="flex w-full py-6">
+            <div className="w-[20%] w-[240px]">
               <Paragraph fontFamily="font-nexa py-2" size="76px">
                 {activeYear.year}
               </Paragraph>
-            </Box>
-            <Box className="flex w-[80%] flex-col">
+            </div>
+            <div className="flex w-[80%] flex-col">
               {activeYear.achievements.map((item: string, index: number) => (
-                <Box className="flex w-full py-2" key={`achievement-${index}`}>
+                <div className="flex w-full py-2" key={`achievement-${index}`}>
                   <IconPlus className="my-auto mr-2 rounded-full bg-admiShamrok" size={14} />
                   <Paragraph className="my-auto">{item}</Paragraph>
-                </Box>
+                </div>
               ))}
-            </Box>
-          </Box>
-        </Box>
+            </div>
+          </div>
+        </div>
       )}
-    </Box>
+    </div>
   )
 }

@@ -1,7 +1,6 @@
 import React from 'react'
 import { ensureProtocol } from '@/utils'
 import Image from 'next/image'
-import { Box, Grid, Loader, Text, Title } from '@mantine/core'
 import { useCourseContent } from '@/hooks/useCourseContent'
 import { UserTestimonialCard } from '@/components/cards'
 
@@ -19,9 +18,9 @@ export default function DynamicCourseContent({ courseSlug, courseName }: Dynamic
 
   if (loading) {
     return (
-      <Box className="flex justify-center py-8">
-        <Loader size="lg" />
-      </Box>
+      <div className="flex justify-center py-8">
+        <div className="h-8 w-8 animate-spin rounded-full border-2 border-gray-300 border-t-gray-700" />
+      </div>
     )
   }
 
@@ -31,93 +30,89 @@ export default function DynamicCourseContent({ courseSlug, courseName }: Dynamic
   }
 
   return (
-    <Box className="space-y-12">
+    <div className="space-y-12">
       {/* Course Testimonials Section */}
       {hasTestimonials && (
         <section>
-          <Box className="mb-8">
-            <Title order={2} className="mb-4 text-3xl font-bold text-gray-800">
+          <div className="mb-8">
+            <h2 className="mb-4 text-3xl font-bold font-semibold text-gray-800 text-gray-900">
               What {courseName} Students Say
-            </Title>
-            <Text className="text-lg text-gray-600">
+            </h2>
+            <p className="text-lg text-gray-600 text-gray-700">
               Hear from graduates who transformed their careers through our {courseName} program
-            </Text>
-          </Box>
+            </p>
+          </div>
 
-          <Grid>
+          <div className="flex flex-wrap">
             {content.testimonials.map((testimonial) => (
-              <Grid.Col key={testimonial.sys.id} span={{ base: 12, md: 6, lg: 4 }}>
+              <div key={testimonial.sys.id} className="w-full md:w-1/2 lg:w-4/12">
                 <UserTestimonialCard
                   user={testimonial}
                   testimonial={testimonial}
                   assets={[]} // Include assets if needed
                 />
-              </Grid.Col>
+              </div>
             ))}
-          </Grid>
+          </div>
         </section>
       )}
 
-      {/* Student Reviews Section */}
+      {/* Alumni Testimonials Section */}
       {hasReviews && (
         <section>
-          <Box className="mb-8">
-            <Title order={2} className="mb-4 text-3xl font-bold text-gray-800">
-              Student Reviews
-            </Title>
-            <Text className="text-lg text-gray-600">
-              Detailed feedback from {courseName} alumni about their learning experience
-            </Text>
-          </Box>
+          <div className="mb-8">
+            <h2 className="mb-4 text-3xl font-bold font-semibold text-gray-800 text-gray-900">Alumni Stories</h2>
+            <p className="text-lg text-gray-600 text-gray-700">
+              Hear from {courseName} graduates about their learning experience
+            </p>
+          </div>
 
-          <Grid>
+          <div className="flex flex-wrap">
             {content.studentReviews.map((review) => (
-              <Grid.Col key={review.sys.id} span={{ base: 12, md: 6 }}>
-                <Box className="rounded-lg border bg-white p-6 shadow-sm">
+              <div key={review.sys.id} className="w-full md:w-1/2">
+                <div className="rounded-lg border bg-white p-6 shadow-sm">
                   <div
                     className="mb-4 text-gray-700"
                     dangerouslySetInnerHTML={{
-                      __html: review.fields.description
+                      __html: review.fields.testimonial
                     }}
                   />
-                  <Box className="flex items-center space-x-3">
-                    {review.fields.authorImage && (
+                  <div className="flex items-center space-x-3">
+                    {review.fields.image && (
                       <Image
-                        src={ensureProtocol(review.fields.authorImage.fields.file.url)}
-                        alt={review.fields.authorName}
+                        src={ensureProtocol(review.fields.image.fields.file.url)}
+                        alt={review.fields.fullName}
                         width={48}
                         height={48}
                         className="h-12 w-12 rounded-full object-cover"
                       />
                     )}
                     <div>
-                      <Text className="font-semibold text-gray-800">{review.fields.authorName}</Text>
-                      <Text className="text-sm text-gray-600">{review.fields.authorRole}</Text>
+                      <p className="font-semibold text-gray-700 text-gray-800">{review.fields.fullName}</p>
+                      <p className="text-sm text-gray-600 text-gray-700">{review.fields.role}</p>
                     </div>
-                  </Box>
-                </Box>
-              </Grid.Col>
+                  </div>
+                </div>
+              </div>
             ))}
-          </Grid>
+          </div>
         </section>
       )}
 
       {/* Student Portfolios Section */}
       {hasPortfolios && (
         <section>
-          <Box className="mb-8">
-            <Title order={2} className="mb-4 text-3xl font-bold text-gray-800">
-              Student Work Showcase
-            </Title>
-            <Text className="text-lg text-gray-600">
+          <div className="mb-8">
+            <h2 className="mb-4 text-3xl font-bold font-semibold text-gray-800 text-gray-900">Student Work Showcase</h2>
+            <p className="text-lg text-gray-600 text-gray-700">
               Explore creative projects and professional work from {courseName} graduates
-            </Text>
-          </Box>
+            </p>
+          </div>
 
-          <Grid>
+          <div className="flex flex-wrap">
             {content.studentPortfolios.map((portfolio) => (
-              <Grid.Col key={portfolio.sys.id} span={{ base: 12, md: 6, lg: 4 }}>
-                <Box className="overflow-hidden rounded-lg border bg-white shadow-sm">
+              <div key={portfolio.sys.id} className="w-full md:w-1/2 lg:w-4/12">
+                <div className="overflow-hidden rounded-lg border bg-white shadow-sm">
                   {portfolio.fields.profilePicture && (
                     <Image
                       src={ensureProtocol(portfolio.fields.profilePicture.fields.file.url)}
@@ -127,11 +122,11 @@ export default function DynamicCourseContent({ courseSlug, courseName }: Dynamic
                       className="h-48 w-full object-cover"
                     />
                   )}
-                  <Box className="p-6">
-                    <Title order={3} className="mb-2 text-xl font-bold text-gray-800">
+                  <div className="p-6">
+                    <h3 className="mb-2 text-2xl text-xl font-bold font-semibold text-gray-800 text-gray-900">
                       {portfolio.fields.studentName}
-                    </Title>
-                    <Text className="mb-3 font-medium text-admiRed">{portfolio.fields.professionalTitle}</Text>
+                    </h3>
+                    <p className="mb-3 font-medium text-admiRed text-gray-700">{portfolio.fields.professionalTitle}</p>
                     {portfolio.fields.bio && (
                       <div
                         className="text-sm text-gray-600"
@@ -140,23 +135,21 @@ export default function DynamicCourseContent({ courseSlug, courseName }: Dynamic
                         }}
                       />
                     )}
-                  </Box>
-                </Box>
-              </Grid.Col>
+                  </div>
+                </div>
+              </div>
             ))}
-          </Grid>
+          </div>
         </section>
       )}
 
       {/* Fallback message if no content */}
       {!hasTestimonials && !hasReviews && !hasPortfolios && (
-        <Box className="py-12 text-center">
-          <Text className="text-gray-500">
-            Student testimonials and portfolios will be displayed here once available.
-          </Text>
-        </Box>
+        <div className="py-12 text-center">
+          <p className="text-gray-500">Student testimonials and portfolios will be displayed here once available.</p>
+        </div>
       )}
-    </Box>
+    </div>
   )
 }
 
@@ -179,19 +172,17 @@ export function CourseTestimonialsSection({
 
   return (
     <section className="py-12">
-      <Box className="mb-8 text-center">
-        <Title order={2} className="mb-4 text-3xl font-bold text-gray-800">
-          {title}
-        </Title>
-      </Box>
+      <div className="mb-8 text-center">
+        <h2 className="mb-4 text-3xl font-bold font-semibold text-gray-800 text-gray-900">{title}</h2>
+      </div>
 
-      <Grid>
+      <div className="flex flex-wrap">
         {content.testimonials.map((testimonial) => (
-          <Grid.Col key={testimonial.sys.id} span={{ base: 12, md: 6, lg: 4 }}>
+          <div key={testimonial.sys.id} className="w-full md:w-1/2 lg:w-4/12">
             <UserTestimonialCard user={testimonial} testimonial={testimonial} assets={[]} />
-          </Grid.Col>
+          </div>
         ))}
-      </Grid>
+      </div>
     </section>
   )
 }

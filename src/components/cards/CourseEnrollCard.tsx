@@ -1,4 +1,3 @@
-import { Card, Text } from '@mantine/core'
 import { Button } from '../ui'
 
 export default function CourseEnrollCard() {
@@ -19,24 +18,27 @@ export default function CourseEnrollCard() {
   }
 
   return (
-    <Card className="z-10 h-fit w-full max-w-screen-xl justify-center md:h-[7.125rem]" bg={'admiShamrok'} radius={6}>
+    <div
+      className="z-10 h-fit w-full max-w-screen-xl justify-center rounded-xl border border-gray-200 bg-white shadow-sm md:h-[7.125rem]"
+      style={{ backgroundColor: 'var(--admi-shamrok, #08F6CF)', borderRadius: 6 }}
+    >
       <div className="my-auto flex w-full flex-col p-2 md:flex-row md:p-4">
         <div className="grow pt-3">
           <div className="mb-4 text-center font-nexa md:text-left">
-            <Text size="25px" fw={900}>
+            <p className="text-gray-700" style={{ fontSize: '25px', fontWeight: 900, color: 'inherit' }}>
               Ready to Get Started?
-            </Text>
+            </p>
           </div>
           <div className="text-center md:text-left">
-            <Text size="1.1em" fw={600}>
+            <p className="text-gray-700" style={{ fontSize: '1.1em', fontWeight: 600, color: 'inherit' }}>
               Immerse yourself in a curriculum crafted to cultivate your unique artistic style.
-            </Text>
+            </p>
           </div>
         </div>
         <div className="md:py-auto mx-auto py-4">
           <Button size="xl" backgroundColor="admiRed" label="Enroll Today with ADMI" onClick={handleEnquiry} />
         </div>
       </div>
-    </Card>
+    </div>
   )
 }

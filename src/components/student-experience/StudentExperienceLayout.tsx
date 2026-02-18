@@ -1,6 +1,4 @@
 import { ReactNode } from 'react'
-import { Box } from '@mantine/core'
-
 import { MainLayout } from '@/layouts/v3/MainLayout'
 import { Paragraph, Title } from '@/components/ui'
 
@@ -29,19 +27,19 @@ export function StudentExperienceLayout({
 }: StudentExperienceLayoutProps) {
   return (
     <MainLayout footerBgColor={footerBgColor}>
-      <Box className="bg-[#002A23] text-white">
-        <Box className="mx-auto max-w-screen-xl px-4 py-16 2xl:px-0">
+      <div className="bg-admi-green text-white">
+        <div className="section-container py-16">
           <p className="text-xs uppercase tracking-[0.3em] text-admiShamrok">{heroKicker}</p>
           <Title label={heroTitle} color="#F1FE37" size="48px" className="pt-2" />
           <Paragraph className="pt-4 text-white" fontFamily="font-nexa" fontWeight={400}>
             {intro}
           </Paragraph>
-        </Box>
-      </Box>
-      <Box className="bg-[#F5FFFD]">
-        <Box className="mx-auto grid max-w-screen-xl grid-cols-1 gap-8 px-4 py-12 2xl:px-0">
+        </div>
+      </div>
+      <div className="bg-[#F5FFFD]">
+        <div className="section-container grid grid-cols-1 gap-8 py-12">
           {sections.map((section, index) => (
-            <Box
+            <div
               key={`${section.title}-${index}`}
               className="rounded-2xl border border-[#CBECE3] bg-white p-6 shadow-sm md:p-8"
             >
@@ -66,11 +64,11 @@ export function StudentExperienceLayout({
                   ))}
                 </ul>
               )}
-            </Box>
+            </div>
           ))}
-        </Box>
-        {children && <Box className="mx-auto max-w-screen-xl px-4 pb-16 2xl:px-0">{children}</Box>}
-      </Box>
+        </div>
+        {children && <div className="section-container pb-16">{children}</div>}
+      </div>
     </MainLayout>
   )
 }

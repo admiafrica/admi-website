@@ -1,5 +1,4 @@
 import Image from 'next/image'
-import { Box, Card } from '@mantine/core'
 import { useRouter } from 'next/router'
 
 import { Title } from '@/components/ui'
@@ -7,7 +6,6 @@ import { Title } from '@/components/ui'
 type Props = {
   sector: any
   textColor?: string
-  withBorder?: boolean
   bgColor?: string
   defaultBorder?: boolean
   width?: number
@@ -17,7 +15,6 @@ type Props = {
 export default function SectorItemCard({
   sector,
   textColor = 'black',
-  withBorder = false,
   bgColor = 'none',
   defaultBorder = true,
   width = 160,
@@ -32,21 +29,20 @@ export default function SectorItemCard({
   }
 
   return (
-    <Card
-      padding="lg"
-      radius="md"
-      withBorder={withBorder}
-      w={width}
-      h={height}
-      className="h-full cursor-pointer"
+    <div
+      className="h-full cursor-pointer rounded-xl border border-gray-200 bg-white shadow-sm"
+      style={{
+        width,
+        height,
+        backgroundColor: bgColor,
+        border: defaultBorder ? '1px solid rgba(233, 233, 233, 1)' : '1px solid rgba(255, 255, 255, 0.1)'
+      }}
       onClick={handleCourseClick}
-      bg={bgColor}
-      bd={defaultBorder ? '1px solid rgba(233, 233, 233, 1)' : '1px solid rgba(255, 255, 255, 0.1)'}
     >
       {sector.icon ? (
-        <Box className="flex w-full items-center justify-center">
+        <div className="flex w-full items-center justify-center">
           <sector.icon width={48} height={48} color={sector.color} />
-        </Box>
+        </div>
       ) : (
         <Image
           width={64}
@@ -56,11 +52,11 @@ export default function SectorItemCard({
           style={{ margin: 'auto' }}
         />
       )}
-      <Box className="flex h-[60px] w-full">
-        <Box className="mx-auto w-fit pt-6 text-center">
+      <div className="flex h-[60px] w-full">
+        <div className="mx-auto w-fit pt-6 text-center">
           <Title label={sector.title} size="14px" color={textColor} />
-        </Box>
-      </Box>
-    </Card>
+        </div>
+      </div>
+    </div>
   )
 }

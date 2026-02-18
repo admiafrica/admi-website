@@ -1,5 +1,4 @@
 import Image from 'next/image'
-import { Card, ScrollArea } from '@mantine/core'
 
 import { getAssetDetails, ensureProtocol } from '@/utils'
 import { CollapsibleContent } from '../shared/v3'
@@ -48,9 +47,8 @@ export default function CourseDetails(props: Props) {
         </div>
         <div className="relative z-20 flex flex-col justify-between sm:flex-row sm:flex-wrap">
           {props.benefits.map((benefit) => (
-            <Card
-              shadow="md"
-              className={props.benefits.length > 3 ? 'mb-8 sm:w-[48%] lg:w-[24%]' : 'mb-8 sm:w-[30%]'}
+            <div
+              className={`rounded-xl border border-gray-200 bg-white shadow-md ${props.benefits.length > 3 ? 'mb-8 sm:w-[48%] lg:w-[24%]' : 'mb-8 sm:w-[30%]'}`}
               key={benefit.sys.id}
             >
               <div className="flex px-4 pt-4">
@@ -64,10 +62,10 @@ export default function CourseDetails(props: Props) {
                   {benefit.fields.title}
                 </Paragraph>
               </div>
-              <ScrollArea h={isMobile ? 'fit-content' : '14em'} offsetScrollbars>
+              <div className="overflow-auto" style={{ height: isMobile ? 'fit-content' : '14em' }}>
                 <ParagraphContentful className="px-4 text-gray-500">{benefit.fields.text}</ParagraphContentful>
-              </ScrollArea>
-            </Card>
+              </div>
+            </div>
           ))}
         </div>
 

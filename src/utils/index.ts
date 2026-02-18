@@ -2,7 +2,27 @@ import { format } from 'date-fns'
 import { IContentfulAsset, IContentfulEntry } from '@/types'
 
 export * from './constants'
-export { ensureProtocol } from './asset-rewriter'
+
+/**
+ * Ensure asset URL has proper protocol
+ * Handles both protocol-relative URLs (//domain.com) and absolute URLs (https://domain.com)
+ */
+export function ensureProtocol(url: string | undefined): string {
+  if (!url) return ''
+
+  // If already has protocol, return as-is
+  if (url.startsWith('http://') || url.startsWith('https://')) {
+    return url
+  }
+
+  // If protocol-relative, add https:
+  if (url.startsWith('//')) {
+    return `https:${url}`
+  }
+
+  // Otherwise return as-is (might be relative path)
+  return url
+}
 
 export const getCourseFormUrl = () => {
   return 'https://airtable.com/app0kRJindIHzHTM2/pagmXFb9WKJbimfFa/form'
@@ -56,4 +76,23 @@ export const resolveReferences = (
 
 export function formatDate(dateString: string): string {
   return format(new Date(dateString), 'EEEE, do MMMM, yyyy')
+}
+
+/**
+ * Extract plain text from Contentful rich text field
+ * @param richText - Contentful rich text object
+ * @param maxLength - Optional max length (appends '...' if truncated)
+ */
+export function getPlainTextFromRichText(richText: any, maxLength?: number): string {
+  if (!richText || !richText.content) return ''
+
+  const text = richText.content
+    .map((block: any) => block.content?.map((content: any) => content.value).join(' '))
+    .join(' ')
+
+  if (maxLength && text.length > maxLength) {
+    return text.substring(0, maxLength) + '...'
+  }
+
+  return text
 }

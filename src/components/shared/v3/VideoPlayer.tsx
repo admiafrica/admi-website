@@ -1,4 +1,5 @@
-import { ActionIcon } from '@mantine/core'
+'use client'
+
 import { ensureProtocol } from '@/utils'
 import { IconMaximize, IconPlayerPause, IconPlayerSkipForward } from '@tabler/icons-react'
 import React, { useState, useRef } from 'react'
@@ -75,9 +76,12 @@ const VideoPlayer = ({ videoUrl, showControls = false }: Props) => {
       {/* Always visible play button when not playing */}
       {!isPlaying && (
         <div className="border-1 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform cursor-pointer rounded-full border-solid border-white bg-none p-4 shadow-lg">
-          <ActionIcon onClick={handlePlayPause} className="my-auto rounded-full text-white" radius="xl" bg="none">
+          <button
+            onClick={handlePlayPause}
+            className="my-auto inline-flex h-10 w-10 items-center justify-center rounded-full text-white"
+          >
             <IconPlayerSkipForward size={24} />
-          </ActionIcon>
+          </button>
         </div>
       )}
 
@@ -86,9 +90,12 @@ const VideoPlayer = ({ videoUrl, showControls = false }: Props) => {
         <>
           {/* Pause Button */}
           <div className="border-1 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform cursor-pointer rounded-full border-solid border-white bg-none p-4 shadow-lg">
-            <ActionIcon onClick={handlePlayPause} className="my-auto rounded-full text-white" radius="xl" bg="none">
+            <button
+              onClick={handlePlayPause}
+              className="my-auto inline-flex h-10 w-10 items-center justify-center rounded-full text-white"
+            >
               <IconPlayerPause size={24} />
-            </ActionIcon>
+            </button>
           </div>
 
           {/* Fullscreen Button */}

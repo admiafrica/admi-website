@@ -3,8 +3,6 @@ import { useEffect } from 'react'
 import { MainLayout } from '@/layouts/v3/MainLayout'
 import { PageSEO } from '@/components/shared/v3'
 import { Button, Paragraph, Title } from '@/components/ui'
-import { Box } from '@mantine/core'
-
 export default function Custom404() {
   const router = useRouter()
 
@@ -39,7 +37,7 @@ export default function Custom404() {
       />
 
       <div className="flex min-h-[60vh] items-center justify-center bg-[#F5FFFD]">
-        <Box className="mx-auto max-w-2xl px-4 py-16 text-center">
+        <div className="mx-auto max-w-2xl px-4 py-16 text-center">
           <div className="mb-8">
             <Title label="404" size="72px" color="#002A23" className="mb-4 font-bold" />
             <Title label="Page Not Found" size="32px" color="#002A23" className="mb-6" />
@@ -58,7 +56,7 @@ export default function Custom404() {
             </div>
           </div>
 
-          <Box className="mt-12 border-t border-gray-200 pt-8">
+          <div className="mt-12 border-t border-gray-200 pt-8">
             <Paragraph className="text-sm text-gray-500" fontFamily="font-nexa">
               Looking for something specific? Try our{' '}
               <span className="cursor-pointer text-admiRed hover:underline" onClick={() => router.push('/courses')}>
@@ -70,8 +68,8 @@ export default function Custom404() {
               </span>{' '}
               for assistance.
             </Paragraph>
-          </Box>
-        </Box>
+          </div>
+        </div>
       </div>
     </MainLayout>
   )

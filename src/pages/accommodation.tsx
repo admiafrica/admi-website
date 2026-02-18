@@ -1,263 +1,383 @@
-import Image from 'next/image'
-import { Anchor, Box, Card, Divider, Modal } from '@mantine/core'
-import { useDisclosure } from '@mantine/hooks'
+import Link from 'next/link'
+import { IconMapPin } from '@tabler/icons-react'
+import type { GetStaticProps, InferGetStaticPropsType } from 'next'
 
 import { MainLayout } from '@/layouts/v3/MainLayout'
-import { Paragraph, Title } from '@/components/ui'
 import { PageSEO } from '@/components/shared/v3'
-import { LearnMoreCard } from '@/components/cards'
-import { ADMI_ACCOMMODATION_FEATURES } from '@/utils'
-import { useIsMobile } from '@/hooks/useIsMobile'
+import { getIcon } from '@/utils/icon-map'
+import { getPageCached } from '@/utils/contentful-cached'
+import type { AccommodationPageData, Residence, BookingStep, AmenityCMS } from '@/types/accommodation'
 
-import IconQwetu from '@/assets/icons/qwetu-residence.svg'
-import IconQwetuLight from '@/assets/icons/qwetu-residence-light.svg'
-import IconQejani from '@/assets/icons/qejani-residence.svg'
-import IconQejaniLight from '@/assets/icons/qejani-residence-light.svg'
-import ImageCommunityBg from '@/assets/images/community-bg.png'
-import ImageAccommodationLanding from '@/assets/images/accommodation-landing.png'
-import IconArrowTipRight from '@/assets/icons/ArrowTipRight'
-import IconBgImageYellow from '@/assets/icons/ellipse-yellow.svg'
-import IconBgImageRed from '@/assets/icons/ellipse-red.svg'
+/* ------------------------------------------------------------------ */
+/*  Fallback data (used when Contentful is unavailable)                */
+/* ------------------------------------------------------------------ */
 
-import IconBgEllipseA from '@/assets/icons/ellipse-11.svg'
-import IconBgEllipseB from '@/assets/icons/ellipse-13.svg'
-import IconBgEllipseC from '@/assets/icons/ellipse-14.svg'
+const FALLBACK: AccommodationPageData = {
+  heroTitle: 'Student Accommodation',
+  heroDescription:
+    'Comfortable living options near campus to help you focus on what matters most \u2014 your creative education.',
+  heroImage:
+    'https://images.unsplash.com/photo-1758874573194-a98be0ed3ff5?auto=format&fit=crop&w=1920&q=80',
+  residences: [
+    {
+      name: 'Qwetu',
+      price: 'From KES 25,000/month',
+      description:
+        'Purpose-built student living with modern furnished rooms, high-speed WiFi, study lounges, a gym, and 24/7 security. Multiple locations across Nairobi with shuttle services.',
+      image: 'https://images.unsplash.com/photo-1555854877-bab0e564b8d5?auto=format&fit=crop&w=800&q=80',
+      link: 'https://www.qwetu.com'
+    },
+    {
+      name: 'Qejani',
+      price: 'From KES 18,000/month',
+      description:
+        'Contemporary co-living spaces designed for students and young professionals. Fully furnished studios and shared apartments with communal kitchens and social areas.',
+      image: 'https://images.unsplash.com/photo-1649800292011-6a92542f08ce?auto=format&fit=crop&w=800&q=80',
+      link: 'https://www.qejani.com'
+    },
+    {
+      name: 'YWCA Parklands',
+      price: 'From KES 10,000/month',
+      description:
+        'Safe, well-managed accommodation for female students in Parklands. Walking distance to public transport with meals included.',
+      image: 'https://images.unsplash.com/photo-1759889392274-246af1a984ba?auto=format&fit=crop&w=800&q=80'
+    },
+    {
+      name: 'Private Hostels Network',
+      price: 'From KES 8,000/month',
+      description:
+        'ADMI partners with vetted private hostels across Nairobi to offer affordable, quality housing options near campus.',
+      image: 'https://images.unsplash.com/photo-1758874573194-a98be0ed3ff5?auto=format&fit=crop&w=800&q=80'
+    }
+  ],
+  amenities: [
+    { label: 'High-Speed WiFi', icon: 'wifi' },
+    { label: 'Daily Meals Available', icon: 'tools-kitchen-2' },
+    { label: 'Quiet Study Spaces', icon: 'book' },
+    { label: '24/7 Security', icon: 'shield' },
+    { label: 'Laundry Facilities', icon: 'wash' },
+    { label: 'Common Social Areas', icon: 'users' }
+  ],
+  bookingSteps: [
+    {
+      number: '1',
+      title: 'Apply to ADMI',
+      description:
+        'Submit your application to your chosen programme at ADMI. Accommodation support is available to all admitted students.'
+    },
+    {
+      number: '2',
+      title: 'Choose Your Residence',
+      description: 'Browse available options and select the residence that fits your needs, budget, and lifestyle.'
+    },
+    {
+      number: '3',
+      title: 'Secure Your Room',
+      description: 'Pay your deposit and move in before classes begin. Our team will help you settle in.'
+    }
+  ],
+  neighborhoodHighlights: [
+    'Walking distance to public transport',
+    'Restaurants and cafes nearby',
+    'Shopping malls within reach'
+  ],
+  ctaTitle: 'Ready to Find Your Home Away From Home?',
+  ctaDescription:
+    'Secure your spot in one of our partner residences and start your ADMI journey with comfort and convenience.',
+  ctaButtonText: 'Enquire About Accommodation',
+  ctaButtonUrl: '/contact',
+  seoTitle: 'Student Accommodation',
+  seoDescription:
+    'Comfortable living options near ADMI campus in Nairobi. Explore partner residences, included amenities, and how to book your student accommodation.',
+  seoKeywords:
+    'ADMI accommodation, student housing Nairobi, student residences Kenya, ADMI campus housing, affordable student accommodation'
+}
 
-export default function AccommodationPage() {
-  const isMobile = useIsMobile()
-  const [opened, { open, close }] = useDisclosure(false)
+/* ------------------------------------------------------------------ */
+/*  Data fetching                                                      */
+/* ------------------------------------------------------------------ */
 
+export const getStaticProps: GetStaticProps<{ page: AccommodationPageData }> = async () => {
+  let page = FALLBACK
+
+  try {
+    const entry = await getPageCached('accommodationPage', 'page:accommodation')
+    if (entry?.fields) {
+      const f = entry.fields
+      page = {
+        heroTitle: f.heroTitle || FALLBACK.heroTitle,
+        heroDescription: f.heroDescription || FALLBACK.heroDescription,
+        heroImage: f.heroImage || FALLBACK.heroImage,
+        residences: f.residences || FALLBACK.residences,
+        amenities: f.amenities || FALLBACK.amenities,
+        bookingSteps: f.bookingSteps || FALLBACK.bookingSteps,
+        neighborhoodHighlights: f.neighborhoodHighlights || FALLBACK.neighborhoodHighlights,
+        ctaTitle: f.ctaTitle || FALLBACK.ctaTitle,
+        ctaDescription: f.ctaDescription || FALLBACK.ctaDescription,
+        ctaButtonText: f.ctaButtonText || FALLBACK.ctaButtonText,
+        ctaButtonUrl: f.ctaButtonUrl || FALLBACK.ctaButtonUrl,
+        seoTitle: f.seoTitle || FALLBACK.seoTitle,
+        seoDescription: f.seoDescription || FALLBACK.seoDescription,
+        seoKeywords: f.seoKeywords || FALLBACK.seoKeywords
+      }
+    }
+  } catch (error) {
+    console.error('[Accommodation] CMS fetch failed, using fallback:', error)
+  }
+
+  return {
+    props: { page },
+    revalidate: 300 // ISR: revalidate every 5 minutes
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/*  Page                                                               */
+/* ------------------------------------------------------------------ */
+
+export default function AccommodationPage({ page }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
-    <MainLayout footerBgColor="#F5FFFD">
-      <PageSEO
-        title="Accommodation"
-        description="Find comfortable student accommodation near ADMI through our partnerships with Qwetu and Qejani. Modern, safe, and vibrant living spaces designed for student success in Nairobi, Kenya."
-        keywords="ADMI accommodation, student housing Nairobi, Qwetu residences, Qejani accommodation, student living Kenya, campus housing, student apartments"
-      />
-      <Modal radius="lg" opened={opened} onClose={close} size={'72rem'}>
-        <LearnMoreCard />
-      </Modal>
+    <MainLayout footerBgColor="#1a1a1a">
+      <PageSEO title={page.seoTitle} description={page.seoDescription} keywords={page.seoKeywords} />
+
       <div className="w-full">
-        {/* HEADER */}
-        <Box className="relative w-full cursor-pointer" bg={'blue'} onClick={open}>
-          <Image
-            src={ImageAccommodationLanding}
-            placeholder="empty"
-            alt="Fellowship Banner"
-            fill
-            priority
-            sizes="100vw"
-            className="absolute inset-0 z-0"
-            style={{ objectFit: 'cover' }}
-          />
-          {/* Radial Gradient Overlay */}
+        {/* ============================================================ */}
+        {/*  1. HERO                                                      */}
+        {/* ============================================================ */}
+        <section className="relative h-[480px] w-full overflow-hidden">
+          {/* Background image */}
           <div
-            className="z-5 absolute inset-0"
-            style={{
-              background: 'linear-gradient(to bottom, rgba(0,0,0,0.3) 20%, rgba(246, 8, 52, 1) 100%)'
-            }}
-          ></div>
-          <Box className="relative z-10 mx-auto flex h-[50vh] w-full max-w-screen-xl flex-row px-4 sm:flex-row 2xl:px-0">
-            <Box className="mt-[12vh] flex w-full flex-col">
-              <Title label="Accommodation" color="#F1FE37" size={isMobile ? '36px' : '64px'} />
-              <Box className="grow"></Box>
-              <Box className="flex w-full flex-col pt-12 sm:h-[180px] sm:flex-row sm:pb-12 sm:pt-0">
-                <Paragraph fontFamily="font-nexa" className="my-auto pr-4 text-white sm:w-[50%]">
-                  At Africa Digital Media Institute (ADMI), we understand that finding the right accommodation is
-                  essential for your academic success and overall well-being.
-                </Paragraph>
-                <Divider
-                  orientation={isMobile ? 'horizontal' : 'vertical'}
-                  size={2}
-                  color="admiShamrok"
-                  my={isMobile ? 16 : 0}
-                />
-                <Paragraph fontFamily="font-nexa" className="my-auto text-white sm:w-[50%] sm:pl-4">
-                  That’s why we have partnered with Qwetu and Qejani, two leading providers of modern student
-                  accommodation, to offer you a comfortable and vibrant living experience close to campus. We believe
-                  that a supportive living environment plays a crucial role in your educational journey, and we are here
-                  to ensure you have the best options available.
-                </Paragraph>
-              </Box>
-            </Box>
-          </Box>
-        </Box>
-        {/* Floating Card */}
-        <div className="w-full px-4 2xl:px-0">
-          <div className="absolute left-1/2 top-[600px] z-10 w-full max-w-screen-xl -translate-x-1/2 transform px-4 sm:top-[60vh] 2xl:px-0">
-            <Card radius={8}>
-              <Card.Section>
-                <Box bg={'#36030D'} className="px-6">
-                  <Title label="Your Home Away from Home" color="white" />
-                </Box>
-                <Box className="flex w-full flex-col p-6 sm:flex-row" bg={'#840018'}>
-                  <Box className="sm:w-[60%]">
-                    <Paragraph fontFamily="font-nexa" fontWeight={400} size="24px" className="text-white">
-                      Qwetu and Qejani are designed with you in mind, providing a new kind of student living experience
-                      that prioritizes safety, comfort, and community.
-                    </Paragraph>
-                    <Paragraph fontFamily="font-nexa" className="py-4 text-white">
-                      Both options are the number one choice for student accommodation, offering a range of amenities
-                      that cater to your needs as a student. Living in these residences means you can focus on your
-                      studies while enjoying a fulfilling student life.
-                    </Paragraph>
-                  </Box>
-                  <Box className="flex flex-col items-end sm:w-[40%]">
-                    <Card bg={'white'} radius={8} my={4} w={300} className="flex items-center">
-                      <Image src={IconQwetu} alt="Qwetu Residences" width={150} height={70} />
-                    </Card>
-                    <Card bg={'white'} radius={8} my={4} w={300} className="flex items-center">
-                      <Image src={IconQejani} alt="Qejani Residences" width={150} height={70} />
-                    </Card>
-                  </Box>
-                </Box>
-              </Card.Section>
-            </Card>
-          </div>
-        </div>
-        <Box className="h-[230px] w-full sm:h-[90px]" bg={'rgba(246, 8, 52, 1)'}>
-          {' '}
-        </Box>
-        {/* FEATURES */}
-        <Box className="relative w-full">
-          {/* BACKGROUND IMAGES */}
-          <div className="absolute left-[54%] top-[24vh] h-fit w-full -translate-x-1/2 transform">
-            <div className="flex w-full justify-end pr-[10%]">
-              <Image src={IconBgImageYellow} alt={'background image'} />
-            </div>
-          </div>
+            className="absolute inset-0 bg-cover bg-center"
+            style={{ backgroundImage: `url('${page.heroImage}')` }}
+          />
+          {/* Dark overlay */}
+          <div className="bg-admi-black/73 absolute inset-0" />
 
-          <div className="absolute left-[50%] top-[20vh] h-fit w-full -translate-x-1/2 transform">
-            <div className="flex w-full">
-              <Image src={IconBgImageRed} alt={'background image'} />
-            </div>
-          </div>
-          <Box className="relative mx-auto w-full max-w-screen-xl px-4 pb-8 2xl:px-0">
-            <Box className="w-full pt-[600px] sm:pt-80">
-              <div className="mx-auto my-8 w-fit text-center">
-                <Title label="Key Features of Qwetu and Qejani Accommodation" size="24px" color="black" />
+          {/* Content */}
+          <div className="section-container relative z-10 flex h-full flex-col justify-center">
+            <div className="max-w-[700px]">
+              <div className="flex items-center gap-3">
+                <span className="font-proxima text-[13px] font-bold uppercase tracking-[3px] text-secondary">
+                  Accommodation
+                </span>
+                <span className="h-[3px] w-10 bg-secondary" />
               </div>
-            </Box>
 
-            <div className="relative z-20 flex flex-row flex-wrap justify-between">
-              {ADMI_ACCOMMODATION_FEATURES.map((dept, index) => (
-                <Card shadow="md" className="mb-8 w-[49%] sm:w-[30%]" key={`dept-${index}`} radius={8}>
-                  <div className="flex pt-4 sm:px-4">
-                    {/* <dept.icon width={48} height={48} /> */}
-                    <Image src={dept.icon} alt={dept.title} width={48} height={48} />
-                    <Paragraph
-                      fontFamily="font-nexa"
-                      fontWeight={900}
-                      className="my-auto sm:pl-4"
-                      size={isMobile ? '14px' : '18px'}
-                    >
-                      {dept.title}
-                    </Paragraph>
+              <h1 className="mt-5 font-proxima text-[40px] font-bold leading-[1.1] text-white md:text-[52px]">
+                {page.heroTitle}
+              </h1>
+
+              <p className="mt-5 max-w-[560px] font-proxima text-[18px] leading-[1.6] text-white/80">
+                {page.heroDescription}
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* ============================================================ */}
+        {/*  2. PARTNER RESIDENCES                                        */}
+        {/* ============================================================ */}
+        <section className="w-full bg-white">
+          <div className="section-container section-padding">
+            <div className="mx-auto max-w-[720px] text-center">
+              <div className="flex items-center justify-center gap-3">
+                <span className="h-[3px] w-10 bg-brand-red" />
+                <span className="font-proxima text-[13px] font-bold uppercase tracking-[3px] text-brand-red">
+                  Partner Residences
+                </span>
+                <span className="h-[3px] w-10 bg-brand-red" />
+              </div>
+
+              <h2 className="mt-4 font-proxima text-[36px] font-bold leading-[1.15] text-admi-black md:text-[42px]">
+                Your Home Away From Home
+              </h2>
+            </div>
+
+            <div className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2">
+              {page.residences.map((residence: Residence) => (
+                <div
+                  key={residence.name}
+                  className="group flex flex-col overflow-hidden rounded-2xl border border-[#E5E5E5] bg-white transition-shadow hover:shadow-lg"
+                >
+                  {/* Image */}
+                  <div className="h-[260px] overflow-hidden">
+                    <div
+                      className="h-full w-full bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
+                      style={{ backgroundImage: `url('${residence.image}')` }}
+                    />
                   </div>
-                  <Paragraph className="py-6" fontFamily="font-nexa" size={isMobile ? '14px' : '18px'}>
-                    {dept.description}
-                  </Paragraph>
-                </Card>
+
+                  {/* Body */}
+                  <div className="flex flex-1 flex-col gap-4 p-7">
+                    <h3 className="font-proxima text-[24px] font-bold text-admi-black">{residence.name}</h3>
+                    <p className="font-proxima text-[16px] font-semibold text-brand-red">{residence.price}</p>
+                    <p className="font-proxima text-[14px] leading-[1.7] text-[#555]">{residence.description}</p>
+                    {residence.link && (
+                      <a
+                        href={residence.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-auto inline-flex items-center font-proxima text-[14px] font-semibold text-brand-red no-underline hover:underline"
+                      >
+                        Visit Website &rarr;
+                      </a>
+                    )}
+                  </div>
+                </div>
               ))}
             </div>
-          </Box>
-        </Box>
-      </div>
-      {/* BOOKING */}
-      <Box className="w-full" bg={'#F5FFFD'}>
-        <Box className="mx-auto w-full max-w-screen-xl px-4 py-6">
-          <Box className="w-full">
-            <div className="mx-auto my-8 w-fit text-center">
-              <Title label="How to Book Your Accommodation" size="24px" color="black" />
+          </div>
+        </section>
+
+        {/* ============================================================ */}
+        {/*  3. WHAT'S INCLUDED                                           */}
+        {/* ============================================================ */}
+        <section className="w-full bg-[#F9F9F9]">
+          <div className="section-container section-padding">
+            <div className="mx-auto max-w-[720px] text-center">
+              <div className="flex items-center justify-center gap-3">
+                <span className="h-[3px] w-10 bg-[#0A3D3D]" />
+                <span className="font-proxima text-[13px] font-bold uppercase tracking-[3px] text-[#0A3D3D]">
+                  What&apos;s Included
+                </span>
+                <span className="h-[3px] w-10 bg-[#0A3D3D]" />
+              </div>
+
+              <h2 className="mt-4 font-proxima text-[36px] font-bold leading-[1.15] text-admi-black md:text-[42px]">
+                Everything You Need
+              </h2>
             </div>
-            <div className="mx-auto mb-8 w-full max-w-screen-xl">
-              <Paragraph fontFamily="font-nexa text-center" className="py-4">
-                We encourage you to take the next step in securing your accommodation at Qwetu or Qejani. Booking your
-                room is simple and straightforward. Visit their respective websites to explore available options and
-                find the perfect fit for your needs:
-              </Paragraph>
-              <Box className="mx-auto flex w-fit flex-col sm:flex-row">
-                <Anchor href="https://qwetu.co.ke/" target="_blank">
-                  <Card
-                    className="flex h-[128px] w-[340px] flex-col items-center sm:mr-4"
-                    bg={'#E9530E'}
-                    mb={isMobile ? 16 : 0}
+
+            <div className="mx-auto mt-12 grid max-w-[960px] grid-cols-2 gap-6 sm:grid-cols-3">
+              {page.amenities.map((amenity: AmenityCMS) => {
+                const Icon = getIcon(amenity.icon)
+                return (
+                  <div
+                    key={amenity.label}
+                    className="flex flex-col items-center gap-3 rounded-xl bg-white p-7 text-center transition-shadow hover:shadow-md"
                   >
-                    <Image src={IconQwetuLight} alt="Qwetu Residences" width={150} height={80} />
-                    <Box className="mx-auto flex">
-                      <Paragraph className="my-auto text-white">Book with Qwetu</Paragraph>
-                      <IconArrowTipRight color="white" />
-                    </Box>
-                  </Card>
-                </Anchor>
-                <Anchor href="https://qejani.co.ke/" target="_blank">
-                  <Card className="flex h-[128px] w-[340px] flex-col items-center sm:ml-4" bg={'#542883'}>
-                    <Image src={IconQejaniLight} alt="Qejani Residences" width={150} height={80} />
-                    <Box className="mx-auto flex">
-                      <Paragraph className="my-auto text-white">Book with Qejani</Paragraph>
-                      <IconArrowTipRight color="white" />
-                    </Box>
-                  </Card>
-                </Anchor>
-              </Box>
-              <Paragraph fontFamily="font-nexa" className="py-4 text-center">
-                When booking, be sure to use the <strong>Referral Code: STU-0016368</strong> to enjoy exclusive benefits
-                and offers tailored for ADMI students.
-              </Paragraph>
+                    {Icon && <Icon size={32} className="text-[#0A3D3D]" strokeWidth={1.5} />}
+                    <span className="font-proxima text-[15px] font-semibold text-admi-black">{amenity.label}</span>
+                  </div>
+                )
+              })}
             </div>
-          </Box>
-        </Box>
-      </Box>
-      {/* COMMUNITY */}
-      <Box bg={'#F5FFFD'}>
-        <Box className="mx-auto w-full max-w-screen-xl px-4 py-6">
-          <Card className="w-full" bg={'#F1FE37'} radius={8}>
-            <Card.Section className="w-full">
-              <Box className="flex w-full flex-col sm:flex-row">
-                <Box className="grow p-6 sm:p-16">
-                  <Title label="Community and Support" color="black" size={isMobile ? '32px' : '48px'} />
-                  <Paragraph fontFamily="font-nexa" fontWeight={400} size="24px" className="pt-6">
-                    Qwetu or Qejani means becoming part of a vibrant community of fellow students from diverse
-                    backgrounds.
-                  </Paragraph>
-                  <Paragraph fontFamily="font-nexa" className="py-6">
-                    Engage in social events, workshops, and activities that foster connections and friendships that can
-                    last a lifetime. The supportive environment encourages collaboration, networking, and personal
-                    growth, allowing you to make the most of your time at ADMI.
-                  </Paragraph>
-                  <Paragraph fontFamily="font-nexa" className="py-6">
-                    At ADMI, we are committed to supporting your journey as a student, and we believe that finding the
-                    right accommodation is a crucial step in that process. With Qwetu and Qejani, you’ll find a
-                    welcoming community that enhances your educational experience and helps you thrive both academically
-                    and personally. Embrace the opportunity to live in a space that inspires you to achieve your goals
-                    and enjoy your university life to the fullest!
-                  </Paragraph>
-                </Box>
-                <Box className="relative my-auto items-end sm:w-[50%]">
-                  {/* BACKGROUND IMAGES */}
-                  <div className="absolute left-[1/2] top-[400px] z-10 ml-[54%] h-fit w-full -translate-x-1/2 transform">
-                    <div className="flex w-full justify-end">
-                      <Image src={IconBgEllipseC} alt="background image" />
-                    </div>
+          </div>
+        </section>
+
+        {/* ============================================================ */}
+        {/*  4. NEIGHBORHOOD                                              */}
+        {/* ============================================================ */}
+        <section className="w-full bg-white">
+          <div className="section-container section-padding">
+            <div className="flex flex-col items-center gap-12 md:flex-row md:gap-16">
+              {/* Image */}
+              <div className="w-full flex-shrink-0 md:w-[560px]">
+                <div
+                  className="h-[340px] w-full rounded-xl bg-cover bg-center"
+                  style={{
+                    backgroundImage:
+                      "url('https://images.unsplash.com/photo-1669333490889-194e8f46a766?auto=format&fit=crop&w=1200&q=80')"
+                  }}
+                />
+              </div>
+
+              {/* Content */}
+              <div className="flex flex-col gap-5">
+                <div className="flex items-center gap-3">
+                  <span className="h-[3px] w-10 bg-brand-orange" />
+                  <span className="font-proxima text-[13px] font-bold uppercase tracking-[3px] text-brand-orange">
+                    The Neighbourhood
+                  </span>
+                </div>
+
+                <h2 className="font-proxima text-[32px] font-bold leading-[1.2] text-admi-black">
+                  Heart of Nairobi CBD
+                </h2>
+
+                <p className="max-w-[440px] font-proxima text-[15px] leading-[1.7] text-[#555]">
+                  ADMI&apos;s Caxton House campus is centrally located in Nairobi, with easy access to public transport,
+                  restaurants, shopping, and entertainment. Partner residences are just a short commute away.
+                </p>
+
+                <ul className="flex flex-col gap-3">
+                  {page.neighborhoodHighlights.map((item: string) => (
+                    <li key={item} className="flex items-center gap-3">
+                      <IconMapPin size={16} className="flex-shrink-0 text-brand-orange" />
+                      <span className="font-proxima text-[14px] text-[#333]">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ============================================================ */}
+        {/*  5. HOW TO BOOK                                               */}
+        {/* ============================================================ */}
+        <section className="w-full bg-[#F9F9F9]">
+          <div className="section-container section-padding">
+            <div className="mx-auto max-w-[720px] text-center">
+              <div className="flex items-center justify-center gap-3">
+                <span className="h-[3px] w-10 bg-secondary" />
+                <span className="font-proxima text-[13px] font-bold uppercase tracking-[3px] text-[#0A3D3D]">
+                  How to Book
+                </span>
+                <span className="h-[3px] w-10 bg-secondary" />
+              </div>
+
+              <h2 className="mt-4 font-proxima text-[36px] font-bold leading-[1.15] text-admi-black md:text-[42px]">
+                Three Simple Steps
+              </h2>
+            </div>
+
+            <div className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-3">
+              {page.bookingSteps.map((step: BookingStep) => (
+                <div
+                  key={step.number}
+                  className="flex flex-col items-center gap-4 rounded-xl bg-white p-8 text-center transition-shadow hover:shadow-md"
+                >
+                  {/* Number badge */}
+                  <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#0A3D3D]">
+                    <span className="font-proxima text-[24px] font-bold text-secondary">{step.number}</span>
                   </div>
 
-                  <div className="absolute left-1/2 z-0 h-fit w-full -translate-x-1/2 transform pl-16">
-                    <div className="flex w-full">
-                      <Image src={IconBgEllipseA} alt="background image" />
-                    </div>
-                  </div>
-                  <div className="absolute left-1/2 top-[200px] z-10 h-fit w-full -translate-x-1/2 transform pl-8">
-                    <div className="flex w-full">
-                      <Image src={IconBgEllipseB} alt="background image" />
-                    </div>
-                  </div>
-                  <Image src={ImageCommunityBg} alt="community and support" className="relative" />
-                </Box>
-              </Box>
-            </Card.Section>
-          </Card>
-        </Box>
-      </Box>
+                  <h3 className="font-proxima text-[20px] font-bold text-admi-black">{step.title}</h3>
+
+                  <p className="max-w-[260px] font-proxima text-[14px] leading-[1.6] text-[#666]">
+                    {step.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ============================================================ */}
+        {/*  6. FINAL CTA                                                 */}
+        {/* ============================================================ */}
+        <section className="w-full bg-[#0A3D3D]">
+          <div className="section-container section-padding text-center">
+            <h2 className="mx-auto max-w-[700px] font-proxima text-[36px] font-bold leading-[1.2] text-white md:text-[40px]">
+              {page.ctaTitle}
+            </h2>
+
+            <p className="mx-auto mt-4 max-w-[600px] font-proxima text-[18px] leading-[1.6] text-white/80">
+              {page.ctaDescription}
+            </p>
+
+            <div className="mt-8">
+              <Link
+                href={page.ctaButtonUrl}
+                className="inline-flex items-center rounded-lg bg-secondary px-10 py-4 font-proxima text-[16px] font-semibold text-[#0A3D3D] transition-opacity hover:opacity-90"
+              >
+                {page.ctaButtonText}
+              </Link>
+            </div>
+          </div>
+        </section>
+      </div>
     </MainLayout>
   )
 }

@@ -1,12 +1,11 @@
+'use client'
+
 import React from 'react'
 import Image from 'next/image'
-import { useRouter } from 'next/navigation'
-import { Group, Text, Anchor, Stack, Divider } from '@mantine/core'
-import { useMediaQuery } from '@mantine/hooks'
+import Link from 'next/link'
 
-import { CourseEnrollCard } from '@/components/cards'
 import { SOCIAL_LINKS } from '@/utils'
-import { WhatsAppLink } from '@/components/shared/WhatsAppLink'
+import { WhatsAppLinkPlain } from '@/components/shared/WhatsAppLink'
 
 import { IconCopyright } from '@tabler/icons-react'
 import IconLogoWhite from '@/assets/logo-light.svg'
@@ -20,163 +19,166 @@ import IconMail from '@/assets/icons/mail.svg'
 import IconCall from '@/assets/icons/call.svg'
 import IconStopWatch from '@/assets/icons/stop-watch.svg'
 import Ribbon from './Ribbon'
-import { Title } from '@/components/ui'
+
+const QUICK_LINKS = [
+  { label: 'Enquire Now', href: 'enquiry' },
+  { label: 'Apply', href: 'apply' },
+  { label: 'About ADMI', href: 'about' },
+  { label: 'Accreditation', href: 'accreditation' },
+  { label: 'Academic Pathways', href: 'academic-pathways' },
+  { label: 'Fellowship', href: 'fellowship' },
+  { label: 'Work With Us', href: 'work-with-us' },
+  { label: 'FAQs', href: 'faq' }
+]
+
+const STUDENT_LINKS = [
+  { label: 'Student Portal', href: 'student-portal' },
+  { label: 'Student Support', href: 'student-support' },
+  { label: 'Fees & Financial Planning', href: 'financial-planning' },
+  { label: 'Accommodation', href: 'accommodation' },
+  { label: 'Student Showcase', href: 'student-showcase' },
+  { label: 'Student Life', href: 'student-life' }
+]
 
 const SocialIcons = React.memo(() => {
   return (
-    <Group justify="center" mt={32} h={48}>
-      <Anchor href={SOCIAL_LINKS.TIKTOK} c="white" target="_blank">
-        <Image width={32} src={IconTikTok} alt={SOCIAL_LINKS.TIKTOK} />
-      </Anchor>
-      <Anchor href={SOCIAL_LINKS.YOUTUBE} c="white" target="_blank">
-        <Image width={36} src={IconYouTube} alt={SOCIAL_LINKS.YOUTUBE} />
-      </Anchor>
-      <Anchor href={SOCIAL_LINKS.LINKEDIN} c="white" target="_blank">
-        <Image width={32} src={IconLinkedIn} alt={SOCIAL_LINKS.LINKEDIN} />
-      </Anchor>
-      <Anchor href={SOCIAL_LINKS.INSTAGRAM} c="white" target="_blank">
-        <Image width={44} src={IconInstagram} alt={SOCIAL_LINKS.INSTAGRAM} />
-      </Anchor>
-      <Anchor href={SOCIAL_LINKS.X} c="white" target="_blank">
-        <Image width={32} height={32} src={IconX} alt={SOCIAL_LINKS.X} />
-      </Anchor>
-      <Anchor href={SOCIAL_LINKS.FACEBOOK} c="white" target="_blank">
-        <Image width={32} src={IconFacebook} alt={SOCIAL_LINKS.FACEBOOK} />
-      </Anchor>
-    </Group>
+    <div className="flex h-12 flex-wrap items-center justify-center gap-3 sm:gap-4">
+      <a href={SOCIAL_LINKS.TIKTOK} className="text-white" target="_blank" rel="noopener noreferrer">
+        <Image width={28} height={28} src={IconTikTok} alt="TikTok" className="sm:h-8 sm:w-8" />
+      </a>
+      <a href={SOCIAL_LINKS.YOUTUBE} className="text-white" target="_blank" rel="noopener noreferrer">
+        <Image width={32} height={32} src={IconYouTube} alt="YouTube" className="sm:h-9 sm:w-9" />
+      </a>
+      <a href={SOCIAL_LINKS.LINKEDIN} className="text-white" target="_blank" rel="noopener noreferrer">
+        <Image width={28} height={28} src={IconLinkedIn} alt="LinkedIn" className="sm:h-8 sm:w-8" />
+      </a>
+      <a href={SOCIAL_LINKS.INSTAGRAM} className="text-white" target="_blank" rel="noopener noreferrer">
+        <Image width={36} height={36} src={IconInstagram} alt="Instagram" className="sm:h-11 sm:w-11" />
+      </a>
+      <a href={SOCIAL_LINKS.X} className="text-white" target="_blank" rel="noopener noreferrer">
+        <Image width={28} height={28} src={IconX} alt="X" className="sm:h-8 sm:w-8" />
+      </a>
+      <a href={SOCIAL_LINKS.FACEBOOK} className="text-white" target="_blank" rel="noopener noreferrer">
+        <Image width={28} height={28} src={IconFacebook} alt="Facebook" className="sm:h-8 sm:w-8" />
+      </a>
+    </div>
   )
 })
 
-// Assign a display name
 SocialIcons.displayName = 'SocialIcons'
+
+function FooterLink({ href, label }: { href: string; label: string }) {
+  return (
+    <Link
+      href={`/${href}`}
+      className="border-none bg-transparent p-0 text-left font-semibold text-white no-underline hover:underline"
+    >
+      {label}
+    </Link>
+  )
+}
 
 type Props = {
   bgColor?: string
 }
 
 export default function Footer({ bgColor }: Props) {
-  const router = useRouter()
-  const isMobile = useMediaQuery('(max-width: 480px)')
-
-  const navigateToPage = (pagePath: string) => {
-    router.push(`/${pagePath}`)
-  }
-
   return (
-    <div className={`relative w-full ${bgColor ? `bg-[${bgColor}]` : 'bg-[#FFF7F5]'} font-proxima`}>
-      {/* Floating Card */}
-      <div className="w-full pt-48 sm:pt-36">
-        <div className="absolute left-1/2 top-[6vh] z-10 h-fit w-full max-w-screen-lg -translate-x-1/2 transform justify-center px-4 sm:top-[8vh] md:h-[7.125rem] 2xl:px-0">
-          <CourseEnrollCard />
-        </div>
-      </div>
-      <div className="w-full bg-[#002A23] pb-8 pt-36">
-        <Group className="mx-auto w-full max-w-screen-xl flex-col text-white md:flex-row" align="top">
-          <Stack className="grow" h="100%">
-            <Stack className="px-4">
-              <Title size={'1.4em'} label="Get in Touch" color="admiShamrok" />
-              <div className="flex flex-row md:flex-col">
-                <Text p={0}>Caxton House, 3rd Floor</Text>
-                <Text>25, Kenyatta Avenue.</Text>
-              </div>
-              <div className="flex flex-row md:flex-col">
-                <Text>P. O. Box 35447 - 00100</Text>
-                <Text>Nairobi, Kenya.</Text>
-              </div>
-            </Stack>
-            <Group gap={4} className="px-4 md:mt-[8em]">
-              <Image width={24} height={24} src={IconMail} alt="email" />
-              <Text fw="bold" ml={10}>
-                Email:
-              </Text>
-              <Text>info@admi.africa</Text>
-            </Group>
+    <div
+      className="relative w-full bg-[#FFF7F5] font-proxima"
+      style={bgColor ? { backgroundColor: bgColor } : undefined}
+    >
+      <div className="w-full bg-admi-green pb-8 pt-12">
+        {/* Main 3-column grid */}
+        <div className="mx-auto grid w-full max-w-screen-xl grid-cols-1 gap-10 px-4 text-white md:grid-cols-3 md:gap-8">
+          {/* Column 1: Get in Touch */}
+          <div className="flex flex-col gap-4">
+            <h3 className="font-nexa text-[1.4em] font-black text-white">Get in Touch</h3>
 
-            <Group gap={4} className="px-4">
-              <Image width={24} height={24} src={IconCall} alt="phone" />
-              <Text fw="bold" ml={10}>
-                Phone:
-              </Text>
-              <Text>(+254) 706 349 696,</Text>
-              <div className="ml-[5.8em] sm:ml-1">
-                <Text>(+254) 711 486 581</Text>
-              </div>
-            </Group>
-
-            <Group gap={4} className="px-4">
-              <Image width={24} height={24} src={IconCall} alt="whatsapp" />
-              <Text fw="bold" ml={10}>
-                WhatsApp:
-              </Text>
-              <WhatsAppLink trackingLocation="footer_v3" c="admiShamrok" fw="bold">
-                (+254) 741 132 751
-              </WhatsAppLink>
-            </Group>
-
-            <Group gap={4} className="px-4">
-              <Image width={24} src={IconStopWatch} alt="hours active" />
-              <Text fw="bold" ml={10}>
-                Hours:
-              </Text>
-              <Text>Mon-Fri 8:00am - 5:00pm /</Text>
-              <div className="ml-[5.6em] sm:ml-1">
-                <Text>Sat: 8:00am to 2:00pm</Text>
-              </div>
-            </Group>
-          </Stack>
-
-          {/* Quick Links and Social Media */}
-          <Stack className="grow pl-4">
-            <Title size={'1.4em'} label="Quick Links" color="admiShamrok" />
-            <Anchor c="white" fw={600} href="https://africadigitalmedia.ed-space.net/onlineenquiry.cfm" target="_blank">
-              Contact Us
-            </Anchor>
-            <Anchor c="white" fw={600} onClick={() => navigateToPage('academic-team')}>
-              Academic Team
-            </Anchor>
-            <Anchor c="white" fw={600} onClick={() => navigateToPage('fellowship')}>
-              Fellowship
-            </Anchor>
-            <Anchor c="white" fw={600} onClick={() => navigateToPage('academic-pathways')}>
-              Academic Pathways
-            </Anchor>
-            <Anchor c="white" fw={600} onClick={() => navigateToPage('media-archive')}>
-              Media
-            </Anchor>
-          </Stack>
-
-          {/* Student Corner */}
-          <div className="mr-4 flex flex-col">
-            <div className="flex w-full">
-              <div className="grow"></div>
-              <Stack>
-                <Title size={'1.4em'} label="Student Corner" color="admiShamrok" />
-                <Anchor c="white" fw={600} onClick={() => navigateToPage('student-portal')}>
-                  Student Portal
-                </Anchor>
-                <Anchor c="white" fw={600} onClick={() => navigateToPage('accommodation')}>
-                  Accommodation
-                </Anchor>
-              </Stack>
+            <div>
+              <p>Caxton House, 3rd Floor</p>
+              <p>25, Kenyatta Avenue.</p>
             </div>
-            <div className="grow"> </div>
-            {!isMobile && <SocialIcons />}
+            <div>
+              <p>P. O. Box 35447 - 00100</p>
+              <p>Nairobi, Kenya.</p>
+            </div>
+
+            <div className="flex items-start gap-2">
+              <Image width={24} height={24} src={IconMail} alt="email" className="mt-0.5 shrink-0" />
+              <div>
+                <span className="font-bold">Email: </span>
+                <span>info@admi.africa</span>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-2">
+              <Image width={24} height={24} src={IconCall} alt="phone" className="mt-0.5 shrink-0" />
+              <div>
+                <span className="font-bold">Phone: </span>
+                <span>(+254) 706 349 696,</span>
+                <br className="sm:hidden" />
+                <span className="sm:ml-1">(+254) 711 486 581</span>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-2">
+              <Image width={24} height={24} src={IconCall} alt="whatsapp" className="mt-0.5 shrink-0" />
+              <div>
+                <span className="font-bold">WhatsApp: </span>
+                <WhatsAppLinkPlain trackingLocation="footer_v3" className="font-bold text-secondary">
+                  (+254) 741 132 751
+                </WhatsAppLinkPlain>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-2">
+              <Image width={24} height={24} src={IconStopWatch} alt="hours" className="mt-0.5 shrink-0" />
+              <div>
+                <span className="font-bold">Hours: </span>
+                <span>Mon-Fri 8:00am - 5:00pm</span>
+                <br className="sm:hidden" />
+                <span className="sm:ml-1">/ Sat: 8:00am to 2:00pm</span>
+              </div>
+            </div>
           </div>
-        </Group>
-        {isMobile && <SocialIcons />}
-        <Divider mt={48} size={0.5} opacity="20%" />
-        <Group className="md:pt-auto mx-auto w-full max-w-screen-xl flex-col px-4 pt-8 md:flex-row" gap={2}>
-          <IconCopyright className="text-white" />
-          <div className="text-white">
-            <Text>
-              2025 All Rights Reserved. <b>ADMI Africa</b>
-            </Text>
+
+          {/* Column 2: Quick Links */}
+          <div className="flex flex-col gap-2">
+            <h3 className="font-nexa text-[1.4em] font-black text-white">Quick Links</h3>
+            {QUICK_LINKS.map((link) => (
+              <FooterLink key={link.href} href={link.href} label={link.label} />
+            ))}
           </div>
-          <div className="grow cursor-pointer text-admiShamrok md:pl-4">
-            <Text onClick={() => navigateToPage('privacy-policy')}>Privacy Policy | Terms & Conditions</Text>
+
+          {/* Column 3: Student Corner + Social Icons */}
+          <div className="flex flex-col gap-2">
+            <h3 className="font-nexa text-[1.4em] font-black text-white">Student Corner</h3>
+            {STUDENT_LINKS.map((link) => (
+              <FooterLink key={link.href} href={link.href} label={link.label} />
+            ))}
+            <div className="mt-6">
+              <SocialIcons />
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom bar */}
+        <hr className="mx-4 mt-12 border-t border-white/20" />
+        <div className="mx-auto flex w-full max-w-screen-xl flex-col items-center gap-2 px-4 pt-8 text-center md:flex-row md:text-left">
+          <div className="flex items-center gap-1 text-white">
+            <IconCopyright size={16} />
+            <span>
+              2026 All Rights Reserved. <b>ADMI Africa</b>
+            </span>
+          </div>
+          <div className="grow md:pl-4">
+            <Link href="/privacy-policy" className="cursor-pointer text-admiShamrok no-underline hover:underline">
+              Privacy Policy | Terms & Conditions
+            </Link>
           </div>
           <Image width={95} src={IconLogoWhite} alt="logo" />
-        </Group>
+        </div>
       </div>
 
       <Ribbon />

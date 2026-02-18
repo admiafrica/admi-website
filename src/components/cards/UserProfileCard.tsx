@@ -1,6 +1,5 @@
 import React from 'react'
 import Image from 'next/image'
-import { Avatar, Box, Card } from '@mantine/core'
 
 import IconLinkedIn from '@/assets/icons/linkedin-blue.svg'
 import { Paragraph, Title } from '../ui'
@@ -20,17 +19,12 @@ export default function UserProfileCard(props: Props) {
   }
 
   return (
-    <Card
-      shadow="sm"
-      padding="lg"
-      radius="md"
-      withBorder
-      className="border-1 border-grey-500 border-solid shadow-md"
-      w={isMobile ? '160px' : '240px'}
-      h={isMobile ? '220px' : '240px'}
+    <div
+      className="border-1 border-grey-500 rounded-xl border-solid bg-white shadow-md"
+      style={{ width: isMobile ? '160px' : '240px', height: isMobile ? '220px' : '240px' }}
     >
-      <Card.Section>
-        <Box className="relative grow" h={isMobile ? '150px' : '170px'}>
+      <div>
+        <div className="relative grow" style={{ height: isMobile ? '150px' : '170px' }}>
           {props.user.image ? (
             <Image
               fill
@@ -41,13 +35,16 @@ export default function UserProfileCard(props: Props) {
               priority
             />
           ) : (
-            <Avatar color="admiRed" w={'100%'} h={'100%'} radius={0} size={72}>
+            <div
+              className="flex items-center justify-center bg-gray-200 text-2xl"
+              style={{ width: '100%', height: '100%' }}
+            >
               {getInitials(props.user.name)}
-            </Avatar>
+            </div>
           )}
-        </Box>
-      </Card.Section>
-      <Card.Section className={isMobile ? 'px-2' : 'px-4'}>
+        </div>
+      </div>
+      <div className={isMobile ? 'px-2' : 'px-4'}>
         <div className="flex flex-col py-2">
           <div className="pb-2">
             <Title size={isMobile ? '14px' : '16px'} label={props.user.name} color="black" />
@@ -63,7 +60,7 @@ export default function UserProfileCard(props: Props) {
             )}
           </div>
         </div>
-      </Card.Section>
-    </Card>
+      </div>
+    </div>
   )
 }

@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
-import { Container, Title, Text, Card, Group, Button, Badge } from '@mantine/core'
-import { Carousel } from '@mantine/carousel'
+import Link from 'next/link'
+import { Carousel } from '@/lib/tw-mantine-carousel'
 import { IconPlayerPlay, IconExternalLink, IconEye } from '@tabler/icons-react'
 import Autoplay from 'embla-carousel-autoplay'
 import Image from 'next/image'
@@ -51,55 +51,49 @@ export function RelatedVideosCarousel({
     switch (type) {
       case 'youtube':
         return (
-          <Badge color="red" variant="light" size="xs">
+          <span className="inline-flex items-center rounded-full bg-red-100 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-red-800">
             YouTube
-          </Badge>
+          </span>
         )
       case 'internal':
         return (
-          <Badge color="blue" variant="light" size="xs">
+          <span className="inline-flex items-center rounded-full bg-blue-100 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-blue-800">
             ADMI
-          </Badge>
+          </span>
         )
       case 'vimeo':
         return (
-          <Badge color="cyan" variant="light" size="xs">
+          <span className="inline-flex items-center rounded-full bg-cyan-100 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-cyan-800">
             Vimeo
-          </Badge>
+          </span>
         )
       default:
         return (
-          <Badge color="gray" variant="light" size="xs">
+          <span className="inline-flex items-center rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-gray-800">
             Video
-          </Badge>
+          </span>
         )
     }
   }
 
   return (
-    <Container size="xl" py="xl">
-      <Group justify="space-between" mb="xl">
+    <div className="mx-auto w-full max-w-6xl px-4 py-8">
+      <div className="mb-6 flex flex-wrap justify-between">
         <div>
-          <Title order={2} c="dark">
-            {title}
-          </Title>
+          <h2 className="text-3xl font-semibold text-gray-900">{title}</h2>
           {courseCategory && (
-            <Text size="sm" c="dimmed" mt="xs">
-              Explore more {courseCategory} content and student showcases
-            </Text>
+            <p className="mt-1 text-sm text-gray-500">Explore more {courseCategory} content and student showcases</p>
           )}
         </div>
-        <Button
-          variant="outline"
-          color="red"
-          rightSection={<IconExternalLink size={16} />}
-          component="a"
+        <a
           href="https://www.youtube.com/@ADMIafrica/"
           target="_blank"
+          className="inline-flex items-center gap-2 rounded-lg border border-red-400 bg-white px-4 py-2 font-medium text-red-900 transition"
         >
           View All on YouTube
-        </Button>
-      </Group>
+          <IconExternalLink size={16} />
+        </a>
+      </div>
 
       <Carousel
         slideSize={{ base: '100%', sm: '50%', md: '33.333333%' }}
@@ -113,15 +107,11 @@ export function RelatedVideosCarousel({
       >
         {videos.map((video) => (
           <Carousel.Slide key={video.id}>
-            <Card
-              shadow="sm"
-              padding="lg"
-              radius="md"
-              withBorder
-              className="h-full cursor-pointer transition-shadow hover:shadow-lg"
+            <div
+              className="h-full cursor-pointer rounded-xl border border-gray-200 bg-white shadow-sm transition-shadow hover:shadow-lg"
               onClick={() => handleVideoClick(video)}
             >
-              <Card.Section>
+              <div>
                 <div className="relative aspect-video w-full overflow-hidden bg-gray-100">
                   <Image
                     src={video.thumbnail}
@@ -134,7 +124,7 @@ export function RelatedVideosCarousel({
                   {/* Play Button Overlay */}
                   <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30 opacity-0 transition-opacity duration-300 hover:opacity-100">
                     <div className="rounded-full bg-white bg-opacity-90 p-3">
-                      <IconPlayerPlay size={24} color="#F76335" />
+                      <IconPlayerPlay size={24} color="#EF7B2E" />
                     </div>
                   </div>
 
@@ -148,64 +138,65 @@ export function RelatedVideosCarousel({
                     </div>
                   )}
                 </div>
-              </Card.Section>
+              </div>
 
-              <div className="flex h-full flex-col">
-                <Title order={5} mt="md" lineClamp={2} className="flex-grow">
-                  {video.title}
-                </Title>
+              <div className="flex h-full flex-col p-4">
+                <h5 className="mt-4 line-clamp-2 flex-grow text-lg font-semibold text-gray-900">{video.title}</h5>
 
-                <Text size="sm" c="dimmed" lineClamp={3} mt="xs" className="flex-grow">
-                  {video.description}
-                </Text>
+                <p className="mt-1 line-clamp-3 flex-grow text-sm text-gray-500">{video.description}</p>
 
-                <Group justify="space-between" mt="md" align="center">
-                  <Group gap="xs">
+                <div className="mt-4 flex flex-wrap items-center justify-between">
+                  <div className="flex flex-wrap gap-1">
                     {video.views && (
-                      <Group gap={4}>
+                      <div className="flex flex-wrap gap-1">
                         <IconEye size={14} color="#666" />
-                        <Text size="xs" c="dimmed">
-                          {video.views}
-                        </Text>
-                      </Group>
+                        <p className="text-xs text-gray-500">{video.views}</p>
+                      </div>
                     )}
                     {video.category && (
-                      <Badge variant="dot" color="gray" size="xs">
+                      <span className="inline-flex items-center rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-gray-800">
                         {video.category}
-                      </Badge>
+                      </span>
                     )}
-                  </Group>
+                  </div>
 
-                  <Button size="xs" variant="light" color="red" leftSection={<IconPlayerPlay size={12} />}>
+                  <button className="inline-flex items-center gap-2 rounded-lg bg-red-100 px-3 py-1 text-xs font-medium text-red-900 transition">
+                    <IconPlayerPlay size={12} />
                     Watch
-                  </Button>
-                </Group>
+                  </button>
+                </div>
               </div>
-            </Card>
+            </div>
           </Carousel.Slide>
         ))}
       </Carousel>
 
       {/* Call to Action */}
-      <Card shadow="sm" padding="lg" radius="md" withBorder mt="xl" bg="gray.0">
-        <Group justify="space-between" align="center">
+      <div className="mt-8 rounded-xl border border-gray-200 bg-gray-50 p-6 shadow-sm">
+        <div className="flex flex-wrap items-center justify-between">
           <div>
-            <Title order={4}>Want to create videos like these?</Title>
-            <Text size="sm" c="dimmed" mt="xs">
+            <h4 className="text-xl font-semibold text-gray-900">Want to create videos like these?</h4>
+            <p className="mt-1 text-sm text-gray-500">
               Join our Film & TV Production program and learn from industry professionals
-            </Text>
+            </p>
           </div>
-          <Group>
-            <Button variant="outline" color="blue" component="a" href="/enquiry">
+          <div className="flex flex-wrap gap-2">
+            <Link
+              href="/enquiry"
+              className="inline-flex items-center gap-2 rounded-lg border border-blue-400 bg-white px-4 py-2 font-medium text-blue-900 transition"
+            >
               Learn More
-            </Button>
-            <Button color="red" component="a" href="/courses/film-and-television-production-diploma">
+            </Link>
+            <Link
+              href="/courses/film-and-television-production-diploma"
+              className="inline-flex items-center gap-2 rounded-lg bg-red-600 px-4 py-2 font-medium text-white transition"
+            >
               View Course
-            </Button>
-          </Group>
-        </Group>
-      </Card>
-    </Container>
+            </Link>
+          </div>
+        </div>
+      </div>
+    </div>
   )
 }
 

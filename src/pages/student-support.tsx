@@ -1,429 +1,410 @@
-import { useCallback, useEffect, useState, useRef } from 'react'
-import Image from 'next/image'
-import { Box, Card } from '@mantine/core'
-import { Carousel } from '@mantine/carousel'
-import Autoplay from 'embla-carousel-autoplay'
+'use client'
+
+import { useState } from 'react'
+import Link from 'next/link'
+import { IconArrowRight, IconBrandWhatsapp, IconDownload } from '@tabler/icons-react'
+import type { GetStaticProps, InferGetStaticPropsType } from 'next'
 
 import { MainLayout } from '@/layouts/v3/MainLayout'
-import { Paragraph, Title } from '@/components/ui'
 import { PageSEO } from '@/components/shared/v3'
-import { AdviceCard, ClipCard, UserProfileCard, UserTestimonialCard } from '@/components/cards'
-import { InstitutionalFAQSchema } from '@/components/seo/InstitutionalFAQSchema'
-import { EnhancedTestimonialSchema } from '@/components/seo/EnhancedTestimonialSchema'
-import {
-  ADMI_ACADEMIC_TEAM_MINIMAL,
-  ADMI_CAREER_ADVICE,
-  ADMI_STUDENT_COUNCIL,
-  ADMI_STUDENT_SUPPORT,
-  CALENDAR_DOWNLOAD_LINK,
-  CALENDAR_DOWNLOAD_NAME,
-  ensureProtocol
-} from '@/utils'
+import { getIcon } from '@/utils/icon-map'
+import { getPageCached } from '@/utils/contentful-cached'
+import type { StudentSupportPageData, SupportTabCMS, FeeCard, HelpDesk } from '@/types/student-support'
 
-import { IconDownload } from '@tabler/icons-react'
-import IconSpinner from '@/assets/icons/Spinner'
-import IconUsersGroup from '@/assets/icons/UsersGroup'
-import IconDashboardTabs from '@/assets/icons/DashboardTabs'
-import IconCalendarCheck from '@/assets/icons/CalendarCheck'
-import ImageCalendar from '@/assets/images/calendar.svg'
-import ImageSupportLanding from '@/assets/images/student-support-landing.png'
-import { FinancialPlanning, InternationalStudents } from '@/components/student-support'
+/* ------------------------------------------------------------------ */
+/*  Fallback data (used when Contentful is unavailable)                */
+/* ------------------------------------------------------------------ */
 
-export default function StudentSupportPage() {
-  const [content, setContent] = useState<any>()
-  const autoplaySupport = useRef(Autoplay({ delay: 4000 }))
-  const autoplayTestimonials = useRef(Autoplay({ delay: 4000 }))
-  const autoplayFacilities = useRef(Autoplay({ delay: 4000 }))
-
-  const fetchContent = useCallback(async () => {
-    try {
-      const response = await fetch('/api/v3/homepage')
-      const data = await response.json()
-      setContent(data[0])
-    } catch (error) {
-      console.log('Error fetching courses:', error)
+const FALLBACK: StudentSupportPageData = {
+  supportTabs: [
+    {
+      key: 'academic',
+      label: 'Academic',
+      icon: 'school',
+      color: '#0A3D3D',
+      title: 'Academic Advising',
+      desc: 'Advisors help plan online and on-campus modules, deadlines, and interventions.',
+      cards: [
+        {
+          title: 'Module Planning',
+          desc: 'Get personalised guidance on selecting modules that align with your goals.'
+        },
+        {
+          title: 'Progress Tracking',
+          desc: 'Regular check-ins to monitor your academic progress and address challenges early.'
+        },
+        { title: 'Study Skills', desc: 'Workshops on time management, note-taking, research methods, and exam prep.' }
+      ]
+    },
+    {
+      key: 'wellness',
+      label: 'Wellness',
+      icon: 'heart-handshake',
+      color: '#C1272D',
+      title: 'Wellness Support',
+      desc: 'Counselling and wellbeing support available virtually and on campus.',
+      cards: [
+        {
+          title: 'Counselling',
+          desc: 'Private sessions with certified counsellors for personal and academic challenges.'
+        },
+        { title: 'Peer Support', desc: 'Student-led support groups and mentoring programmes for community wellbeing.' },
+        { title: 'Crisis Support', desc: 'Immediate support and referral pathways for urgent wellbeing concerns.' }
+      ]
+    },
+    {
+      key: 'career',
+      label: 'Career',
+      icon: 'briefcase',
+      color: '#EF7B2E',
+      title: 'Career Services',
+      desc: 'Career coaching across virtual sessions, portfolio reviews, and campus showcases.',
+      cards: [
+        {
+          title: 'Portfolio Reviews',
+          desc: 'One-on-one sessions with industry professionals to strengthen your portfolio.'
+        },
+        { title: 'Interview Prep', desc: 'Mock interviews, CV workshops, and employer introduction sessions.' },
+        {
+          title: 'Internship Matching',
+          desc: 'Direct connections to internship opportunities with creative industry partners.'
+        }
+      ]
+    },
+    {
+      key: 'financial',
+      label: 'Financial Aid',
+      icon: 'cash',
+      color: '#8EBFB0',
+      title: 'Funding & Financial Aid',
+      desc: 'Flexible funding guidance for blended schedules and staged tuition.',
+      cards: [
+        {
+          title: 'Payment Plans',
+          desc: 'Spread your fees across the duration of your programme with no interest charges.'
+        },
+        {
+          title: 'Scholarships',
+          desc: 'Merit-based and need-based scholarship opportunities for qualifying students.'
+        },
+        {
+          title: 'Financial Counselling',
+          desc: 'One-on-one sessions to plan your education finances and explore aid options.'
+        }
+      ]
+    },
+    {
+      key: 'learning',
+      label: 'Learning',
+      icon: 'book',
+      color: '#0A3D3D',
+      title: 'Learning Support',
+      desc: 'Tutoring, software support, and study coaching for hybrid coursework.',
+      cards: [
+        { title: 'Tutoring', desc: 'Peer tutoring and faculty office hours for additional academic support.' },
+        {
+          title: 'Software Training',
+          desc: 'Workshops on industry-standard tools: Adobe Suite, DaVinci Resolve, and more.'
+        },
+        { title: 'Study Coaching', desc: 'Personalised coaching to develop effective study habits and techniques.' }
+      ]
+    },
+    {
+      key: 'accessibility',
+      label: 'Accessibility',
+      icon: 'accessible',
+      color: '#C1272D',
+      title: 'Accessibility Support',
+      desc: 'Inclusive accommodations and assistive support for online and campus delivery.',
+      cards: [
+        {
+          title: 'Accommodations',
+          desc: 'Tailored learning accommodations for students with disabilities or learning differences.'
+        },
+        {
+          title: 'Assistive Tech',
+          desc: 'Access to assistive technologies and adaptive equipment in labs and studios.'
+        },
+        { title: 'Inclusive Design', desc: 'All learning materials designed with accessibility standards in mind.' }
+      ]
     }
-  }, [])
-
-  const handleCalendarDownload = async () => {
-    try {
-      const response = await fetch(CALENDAR_DOWNLOAD_LINK)
-      if (!response.ok) throw new Error('Failed to fetch file')
-
-      const blob = await response.blob()
-      const link = document.createElement('a')
-
-      link.href = URL.createObjectURL(blob)
-      link.download = CALENDAR_DOWNLOAD_NAME
-      document.body.appendChild(link)
-      link.click()
-      document.body.removeChild(link)
-      URL.revokeObjectURL(link.href)
-    } catch (error) {
-      console.error('Download failed:', error)
+  ],
+  feeCards: [
+    {
+      badge: 'DIPLOMA',
+      badgeBg: '#FFF0F0',
+      badgeColor: '#C1272D',
+      title: 'Diploma Programmes',
+      price: 'From KES 15,000/month',
+      priceColor: '#C1272D',
+      details: '18 months \u2022 In-person\nEU-accredited via Woolf University\nFlexible payment plans available',
+      btnBg: '#C1272D'
+    },
+    {
+      badge: 'PROFESSIONAL',
+      badgeBg: '#EEF9F7',
+      badgeColor: '#0A3D3D',
+      title: 'Professional Certificates',
+      price: 'From KES 8,500/month',
+      priceColor: '#0A3D3D',
+      details: '6 months \u2022 In-person / Online\nADMI & Woolf accredited\nInstalment options available',
+      btnBg: '#0A3D3D'
+    },
+    {
+      badge: 'FOUNDATION',
+      badgeBg: '#FFF8F0',
+      badgeColor: '#EF7B2E',
+      title: 'Foundation Certificates',
+      price: 'From KES 5,000/month',
+      priceColor: '#EF7B2E',
+      details: '3 months \u2022 In-person\nADMI Certified\nPay-as-you-go option',
+      btnBg: '#EF7B2E'
+    },
+    {
+      badge: 'RUBIKA',
+      badgeBg: '#EEF0FF',
+      badgeColor: '#1a1a4e',
+      title: 'Rubika Programmes',
+      price: 'Contact for pricing',
+      priceColor: '#1a1a4e',
+      details: '1\u20132 years \u2022 In-person\nRubika International accredited\nScholarship options available',
+      btnBg: '#1a1a4e'
     }
+  ],
+  helpDesks: [
+    { title: 'Student Desk', desc: 'Walk in: Mon-Fri, 8:00-5:00\nEmail: support@admi.ac.ke' },
+    {
+      title: 'Counselling Office',
+      desc: 'Private sessions with certified counsellors.\nBook via portal in under 2 minutes.'
+    },
+    { title: 'Career Office', desc: 'CV clinic, interview prep, and internship matching with industry partners.' }
+  ],
+  seoTitle: 'Student Support | ADMI',
+  seoDescription: 'Academic, financial, wellness, and career support designed for learner success at ADMI.'
+}
+
+/* ------------------------------------------------------------------ */
+/*  Data fetching                                                      */
+/* ------------------------------------------------------------------ */
+
+export const getStaticProps: GetStaticProps<{ page: StudentSupportPageData }> = async () => {
+  let page = FALLBACK
+
+  try {
+    const entry = await getPageCached('studentSupportPage', 'page:student-support')
+    if (entry?.fields) {
+      const f = entry.fields
+      page = {
+        supportTabs: f.supportTabs || FALLBACK.supportTabs,
+        feeCards: f.feeCards || FALLBACK.feeCards,
+        helpDesks: f.helpDesks || FALLBACK.helpDesks,
+        seoTitle: f.seoTitle || FALLBACK.seoTitle,
+        seoDescription: f.seoDescription || FALLBACK.seoDescription
+      }
+    }
+  } catch (error) {
+    console.error('[Student Support] CMS fetch failed, using fallback:', error)
   }
 
-  useEffect(() => {
-    fetchContent()
-  }, [fetchContent])
+  return {
+    props: { page },
+    revalidate: 300
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/*  Page                                                               */
+/* ------------------------------------------------------------------ */
+
+export default function StudentSupportPage({ page }: InferGetStaticPropsType<typeof getStaticProps>) {
+  const [activeTab, setActiveTab] = useState('academic')
+  const currentTab = page.supportTabs.find((t: SupportTabCMS) => t.key === activeTab)!
 
   return (
-    <MainLayout footerBgColor="white">
-      <PageSEO title="Student Support" />
+    <MainLayout footerBgColor="#1a1a1a">
+      <PageSEO title={page.seoTitle} description={page.seoDescription} />
 
-      {/* Career FAQ Schema for student support page */}
-      <InstitutionalFAQSchema faqType="career" />
-
-      {/* Enhanced testimonial schemas for student support testimonials */}
-      {content &&
-        content.fields.testimonials?.map((testimonial: any, index: number) => (
-          <EnhancedTestimonialSchema
-            key={`student-support-testimonial-${index}`}
-            author={{
-              name: testimonial.user?.fields?.name || 'ADMI Graduate',
-              image: testimonial.user?.fields?.profileImage?.fields?.file?.url
-                ? ensureProtocol(testimonial.user.fields.profileImage.fields.file.url)
-                : undefined,
-              jobTitle: testimonial.user?.fields?.jobTitle,
-              worksFor: testimonial.user?.fields?.workplace,
-              program: testimonial.user?.fields?.program || 'Creative Media Program',
-              location: 'Nairobi, Kenya'
-            }}
-            reviewBody={testimonial.quote || testimonial.testimonial}
-            reviewRating={5}
-            datePublished={testimonial.sys?.createdAt || new Date().toISOString()}
-            programCompleted={{
-              name: testimonial.user?.fields?.program || 'Creative Media Diploma',
-              duration: '2 years',
-              graduationYear: testimonial.user?.fields?.graduationYear || '2023'
-            }}
-            careerOutcome={{
-              employmentStatus: 'employed',
-              timeToEmployment: '2 months after graduation',
-              industryRole: testimonial.user?.fields?.jobTitle || 'Creative Professional',
-              companyType: 'Media & Entertainment'
-            }}
-            skillsGained={[
-              'Professional Portfolio Development',
-              'Industry Networking',
-              'Career Planning',
-              'Interview Skills'
-            ]}
-            recommendationScore={10}
-            wouldRecommend={true}
-            verifiedGraduate={true}
-          />
-        ))}
       <div className="w-full">
-        {/* HEADER */}
-        <Box className="relative w-full" bg={'blue'}>
-          <Image
-            src={ImageSupportLanding}
-            placeholder="empty"
-            alt="Student Support Banner"
-            fill
-            priority
-            className="absolute inset-0 z-0"
-            style={{ objectFit: 'cover', objectPosition: '50% 20%' }}
-          />
-          {/* Radial Gradient Overlay */}
-          <div
-            className="z-5 absolute inset-0"
-            style={{
-              background: 'linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0, 42, 35, 1) 100%)'
-            }}
-          ></div>
-          <Box className="relative z-10 mx-auto flex h-[500px] w-full max-w-screen-xl flex-row px-4 sm:flex-row 2xl:px-0">
-            <Box className="mt-[120px] flex flex-col sm:w-1/2">
-              <Title label="ADMI Student" color="white" size="48px" />
-              <Title label="Support" color="admiShamrok" size="48px" />
-              <Paragraph fontFamily="font-nexa" className="py-6 text-white">
-                We are deeply committed to providing you with comprehensive support that ensures your academic and
-                personal success
-              </Paragraph>
-              <Box className="flex w-fit cursor-pointer items-center pt-12" onClick={handleCalendarDownload}>
-                <IconCalendarCheck color="white" />
-                <Box>
-                  <Paragraph size="16px" fontFamily="font-nexa" fontWeight={100} className="text-white">
-                    Academic Calendar
-                  </Paragraph>
-                  <Paragraph fontFamily="font-nexa" fontWeight={900} className="text-white">
-                    Download Calendar
-                  </Paragraph>
-                </Box>
-              </Box>
-            </Box>
-          </Box>
-        </Box>
-        {/* STUDENT SUPPORT */}
-        <Box className="relative z-10 w-full bg-[#002A23] py-8">
-          <Box className="mx-auto flex w-full max-w-screen-xl flex-col sm:flex-row">
-            <Box className="px-4 text-white sm:w-[50%] 2xl:px-0 2xl:pr-4">
-              <Box>
-                <Title label="Welcome to Student Support" color="#F1FE37" />
-              </Box>
-              <Paragraph className="py-4" fontFamily="font-nexa" fontWeight={900}>
-                At Africa Digital Media Institute (ADMI), we are deeply committed to providing you with comprehensive
-                support that ensures your academic and personal success. Our dedicated Student Affairs team works
-                tirelessly to create a nurturing environment where you can thrive and reach your full potential.
-              </Paragraph>
+        {/* -- Hero -- */}
+        <section className="section-padding bg-gradient-to-br from-[#0F2E2A] via-[#0A1F1D] to-[#091110]">
+          <div className="section-container flex w-full flex-col items-center gap-12 lg:flex-row lg:justify-between">
+            <div className="max-w-[640px]">
+              <p className="font-proxima text-[12px] font-bold uppercase tracking-[3px] text-secondary">
+                STUDENT SUPPORT
+              </p>
+              <h1 className="mt-6 font-proxima text-[44px] font-bold leading-[1.12] text-white">
+                Your Success Is Our Priority &mdash; Academic, Financial &amp; Personal Support
+              </h1>
+              <p className="mt-6 max-w-[540px] font-proxima text-[16px] leading-[1.7] text-white/80">
+                From academic advising to fee planning, wellness resources to career coaching &mdash; ADMI&rsquo;s
+                support teams are here for every step of your journey.
+              </p>
+              <div className="mt-7 flex flex-wrap items-center gap-4">
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center gap-2 rounded-[10px] bg-brand-red px-7 py-3.5 font-proxima text-[15px] font-bold text-white transition hover:bg-[#a02730]"
+                >
+                  Book an Advisor <IconArrowRight size={18} />
+                </Link>
+                <Link
+                  href="https://wa.me/254741132751"
+                  target="_blank"
+                  className="inline-flex items-center gap-2 rounded-[10px] border border-white/50 px-7 py-3.5 font-proxima text-[15px] font-bold text-white transition hover:bg-white/10"
+                >
+                  <IconBrandWhatsapp size={18} /> Contact Support Desk
+                </Link>
+              </div>
+            </div>
+            <div
+              className="h-[400px] w-full max-w-[500px] rounded-2xl bg-cover bg-center"
+              style={{
+                backgroundImage:
+                  "url('https://images.unsplash.com/photo-1648301033733-44554c74ec50?auto=format&fit=crop&w=1080&q=80')"
+              }}
+            />
+          </div>
+        </section>
 
-              <Paragraph className="py-4" fontFamily="font-nexa" fontWeight={100}>
-                We understand that pursuing an education is not just about attending classes and completing assignments;
-                it&apos;s about fostering a holistic experience that encompasses your personal growth, professional
-                development, and well-being. That&apos;s why we have designed our support services to cater to your
-                diverse needs, ensuring that you feel valued and empowered throughout your journey at ADMI.
-              </Paragraph>
-            </Box>
-            <Box className="sm:w-[50%]">
-              <Carousel
-                slideSize={300}
-                height={400}
-                slideGap="md"
-                loop
-                withControls={false}
-                align="start"
-                slidesToScroll={1}
-                plugins={[autoplaySupport.current]}
-                onMouseEnter={autoplaySupport.current.stop}
-                onMouseLeave={autoplaySupport.current.reset}
-              >
-                {ADMI_STUDENT_SUPPORT.map((support, index) => (
-                  <Carousel.Slide key={`support-${index}`}>
-                    <ClipCard support={support} />
-                  </Carousel.Slide>
+        {/* -- Fee Structures -- */}
+        <section className="section-padding bg-white">
+          <div className="section-container">
+            <p className="font-proxima text-[12px] font-bold uppercase tracking-[3px] text-brand-red">FEE STRUCTURES</p>
+            <h2 className="mt-4 font-proxima text-[36px] font-bold text-[#171717]">
+              Download Fee Structures by Programme
+            </h2>
+            <p className="mt-3 max-w-[700px] font-proxima text-[16px] leading-[1.6] text-[#666]">
+              Get detailed fee breakdowns, payment plans, and financing options for each programme type.
+            </p>
+            <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+              {page.feeCards.map((card: FeeCard) => (
+                <article key={card.title} className="flex flex-col rounded-2xl border border-[#E8E8E8] bg-white p-7">
+                  <span
+                    className="inline-block self-start rounded-lg px-3.5 py-2 font-proxima text-[12px] font-bold"
+                    style={{ backgroundColor: card.badgeBg, color: card.badgeColor }}
+                  >
+                    {card.badge}
+                  </span>
+                  <h3 className="mt-5 font-proxima text-[22px] font-bold text-[#171717]">{card.title}</h3>
+                  <p className="mt-2 font-proxima text-[14px] font-bold" style={{ color: card.priceColor }}>
+                    {card.price}
+                  </p>
+                  <p className="mt-4 whitespace-pre-line font-proxima text-[13px] leading-[1.7] text-[#666]">
+                    {card.details}
+                  </p>
+                  <Link
+                    href="/financial-planning"
+                    className="mt-6 flex items-center justify-center gap-2 rounded-lg py-3 font-proxima text-[14px] font-bold text-white transition hover:opacity-90"
+                    style={{ backgroundColor: card.btnBg }}
+                  >
+                    <IconDownload size={16} /> Download Fees
+                  </Link>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* -- Support Services Hub -- */}
+        <section className="section-padding bg-[#F9F9F9]">
+          <div className="section-container">
+            <div className="text-center">
+              <p className="font-proxima text-[12px] font-bold uppercase tracking-[3px] text-brand-red">
+                HOW WE SUPPORT YOU
+              </p>
+              <h2 className="mt-3 font-proxima text-[36px] font-bold text-[#171717]">
+                Dedicated Support for Every Aspect of Student Life
+              </h2>
+              <p className="mx-auto mt-3 max-w-[700px] font-proxima text-[16px] leading-[1.6] text-[#666]">
+                Each support area has a dedicated team and resources. Click through to explore what&rsquo;s available.
+              </p>
+            </div>
+
+            <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
+              {page.supportTabs.map((tab: SupportTabCMS) => {
+                const TabIcon = getIcon(tab.icon)
+                return (
+                  <button
+                    key={tab.key}
+                    onClick={() => setActiveTab(tab.key)}
+                    className={`flex flex-col items-center gap-2 rounded-2xl border p-5 transition ${
+                      activeTab === tab.key
+                        ? 'border-brand-red bg-white shadow-md'
+                        : 'border-[#E8E8E8] bg-white hover:border-[#ccc]'
+                    }`}
+                  >
+                    {TabIcon && <TabIcon size={24} style={{ color: tab.color }} />}
+                    <span
+                      className={`font-proxima text-[13px] font-bold ${activeTab === tab.key ? 'text-brand-red' : 'text-[#555]'}`}
+                    >
+                      {tab.label}
+                    </span>
+                  </button>
+                )
+              })}
+            </div>
+
+            {/* Active Tab Panel */}
+            <div className="mt-8 rounded-2xl bg-white p-8">
+              <h3 className="font-proxima text-[28px] font-bold text-[#171717]">{currentTab.title}</h3>
+              <p className="mt-2 font-proxima text-[15px] leading-[1.6] text-[#555]">{currentTab.desc}</p>
+              <div className="mt-6 grid grid-cols-1 gap-5 md:grid-cols-3">
+                {currentTab.cards.map((card) => (
+                  <article key={card.title} className="rounded-xl border border-[#E8E8E8] bg-white p-5">
+                    <h4 className="font-proxima text-[18px] font-bold text-[#171717]">{card.title}</h4>
+                    <p className="mt-2 font-proxima text-[14px] leading-[1.6] text-[#555]">{card.desc}</p>
+                  </article>
                 ))}
-              </Carousel>
-            </Box>
-          </Box>
-        </Box>
-        {/* ACADEMIC CALENDAR */}
-        <Box className="relative z-10 flex w-full flex-col px-4 py-8 sm:flex-row" bg={'#F5FFFD'}>
-          <Box className="relative h-[240px] sm:h-[600px] sm:w-[50%]">
-            <Image fill sizes="(max-width: 768px) 100vw, 400px" src={ImageCalendar} alt="about course" />
-          </Box>
-          <Box className="sm:w-[50%]">
-            <Box className="pt-12">
-              <Title label="Academic Calendar" color="admiRed" />
-            </Box>
-            <Box className="font-nexa sm:w-[70%]">
-              <Paragraph className="py-4" fontFamily="font-nexa" fontWeight={900}>
-                Our Academic Calendar outlines important dates and deadlines for each academic term, ensuring that you
-                stay informed and organized throughout your studies.
-              </Paragraph>
-
-              <Paragraph className="py-4" fontFamily="font-nexa" fontWeight={100}>
-                Key dates include the start and end of each semester, examination periods, holidays, and registration
-                deadlines. This structured timeline helps you manage your academic responsibilities effectively and plan
-                your schedule accordingly.
-              </Paragraph>
-            </Box>
-            <Box className="mt-6 flex w-fit cursor-pointer" onClick={handleCalendarDownload}>
-              <IconDownload color="#F60934" size={32} />{' '}
-              <Paragraph fontFamily="font-nexa" fontWeight={900} className="my-auto px-2 text-admiRed">
-                Download Calendar
-              </Paragraph>
-            </Box>
-          </Box>
-        </Box>
-        {/* ACADEMIC SUPPORT */}
-        <Box className="mx-auto w-full max-w-screen-xl pb-8">
-          <Box className="mt-20 w-full">
-            <div className="mx-auto my-8 w-fit">
-              <Title label="Academic Support" size="24px" color="black" />
+              </div>
             </div>
-            <div className="mx-auto mb-8 w-fit max-w-screen-md text-center">
-              <Paragraph fontFamily="font-nexa" className="py-4">
-                Our academic support program offers you additional assistance to help you excel in your studies. This
-                includes:
-              </Paragraph>
-            </div>
-          </Box>
+          </div>
+        </section>
 
-          <Box className="flex h-fit w-full flex-col justify-between px-4 py-6 sm:h-[28vh] sm:flex-row sm:px-0">
-            <Card
-              className="flex flex-col items-center justify-between text-center sm:w-[30%]"
-              shadow="xl"
-              withBorder
-              py={32}
-              mb={8}
-            >
-              <Title label="Tutoring sessions" size="20px" color="black" className="mx-auto" />
-              <IconSpinner width={64} height={64} color="#F60934" />
-              <Paragraph>with experienced faculty members</Paragraph>
-            </Card>
-            <Card
-              className="flex flex-col items-center justify-between text-center sm:w-[30%]"
-              shadow="xl"
-              withBorder
-              py={32}
-              mb={8}
-            >
-              <Title label="Study groups" size="20px" color="black" className="mx-auto" />
-              <IconUsersGroup width={64} height={64} color="#01C6A5" />
-              <Paragraph>and peer-to-peer learning opportunities</Paragraph>
-            </Card>
-            <Card
-              className="flex flex-col items-center justify-between text-center sm:w-[30%]"
-              shadow="xl"
-              withBorder
-              py={32}
-              mb={8}
-            >
-              <Title label="Academic advising" size="20px" color="black" className="mx-auto" />
-              <IconDashboardTabs width={72} height={72} color="#B9C601" />
-              <Paragraph>to help you stay on track with your studies</Paragraph>
-            </Card>
-          </Box>
-
-          <Box className="w-full">
-            <div className="mx-auto my-8 w-fit max-w-screen-md text-center">
-              <Paragraph fontFamily="font-nexa" className="py-4">
-                We also provide support for students with special needs or learning difficulties, ensuring that everyone
-                has access to the resources they need to succeed.
-              </Paragraph>
-            </div>
-          </Box>
-        </Box>
-        {/* FINANCIAL PLANNING */}
-        <Box className="w-full py-8" bg={'#F76335'}>
-          <Box className="mx-auto flex w-full max-w-screen-xl flex-col px-4 sm:flex-row 2xl:px-0">
-            <Box className="flex flex-row flex-col sm:w-[40%] sm:pr-4">
-              <Title label="Financial Planning" color="white" />
-              <Title
-                label="Understanding financial planning is crucial for students at ADMI."
-                color="white"
-                size="24px"
-              />
-              <Paragraph fontFamily="font-nexa" className="py-4 text-white">
-                Our financial planning workshops equip you with the knowledge to make informed decisions about your
-                education financing, helping you navigate your financial commitments while pursuing your academic goals.
-              </Paragraph>
-            </Box>
-            <Box className="sm:w-[60%]">
-              <FinancialPlanning />
-            </Box>
-          </Box>
-        </Box>
-        {/* INTERNATIONAL STUDENTS */}
-        <Box className="w-full py-8" bg={'#E43B07'}>
-          <Box className="mx-auto flex w-full max-w-screen-xl flex-col px-4 sm:flex-row 2xl:px-0">
-            <Box className="flex flex-row flex-col sm:w-[40%] sm:pr-4">
-              <Title label="International Students" color="white" />
-              <Paragraph fontFamily="font-nexa" className="py-4 text-white">
-                ADMI welcomes international students from around the globe, providing a supportive environment that
-                embraces diversity and fosters cultural exchange.
-              </Paragraph>
-              <Paragraph fontFamily="font-nexa" className="py-4 text-white">
-                Our dedicated International Student Support team assists with your transition to studying in Kenya,
-                offering guidance on visa applications, accommodation, and integration into campus life. We aim to
-                ensure that every international student feels at home and has access to the resources they need to
-                succeed academically and socially.
-              </Paragraph>
-            </Box>
-            <Box className="sm:w-[60%]">
-              <InternationalStudents />
-            </Box>
-          </Box>
-        </Box>
-        {/* COUNSELING AND CAREER */}
-        <Box className="w-full py-8" bg={'#F5FFFD'}>
-          <Box className="mx-auto w-full">
-            <Carousel
-              slideSize={600}
-              height={400}
-              slideGap="md"
-              loop
-              align="start"
-              slidesToScroll={1}
-              withControls={false}
-              plugins={[autoplayFacilities.current]}
-              onMouseEnter={autoplayFacilities.current.stop}
-              onMouseLeave={autoplayFacilities.current.reset}
-            >
-              {ADMI_CAREER_ADVICE.map((advice) => (
-                <Carousel.Slide key={advice.title}>
-                  <AdviceCard advice={advice} hasList />
-                </Carousel.Slide>
+        {/* -- Get Help Fast -- */}
+        <section className="section-padding bg-white">
+          <div className="section-container">
+            <p className="font-proxima text-[13px] font-bold uppercase tracking-[1.2px] text-brand-red">HELP DESK</p>
+            <h2 className="mt-2 font-proxima text-[38px] font-bold text-[#171717]">Get Help Fast</h2>
+            <p className="mt-2.5 max-w-[780px] font-proxima text-[17px] leading-[1.6] text-[#555]">
+              Choose the channel that works best for your situation. Our team will direct you to the right office
+              immediately.
+            </p>
+            <div className="mt-10 grid grid-cols-1 gap-5 md:grid-cols-3">
+              {page.helpDesks.map((desk: HelpDesk) => (
+                <article key={desk.title} className="rounded-xl bg-[#F9F9F9] p-6">
+                  <h3 className="font-proxima text-[28px] font-bold text-[#171717]">{desk.title}</h3>
+                  <p className="mt-2.5 whitespace-pre-line font-proxima text-[15px] leading-[1.6] text-[#666]">
+                    {desk.desc}
+                  </p>
+                </article>
               ))}
-              {ADMI_CAREER_ADVICE.map((advice) => (
-                <Carousel.Slide key={`${advice.title}-2`}>
-                  <AdviceCard advice={advice} hasList />
-                </Carousel.Slide>
-              ))}
-            </Carousel>
-          </Box>
+            </div>
+          </div>
+        </section>
 
-          <Box className="mx-auto w-full max-w-screen-xl px-4 2xl:px-0">
-            <Box className="flex w-full flex-col py-8 sm:flex-row">
-              <Box className="sm:w-[30%]">
-                <Title label="Testimonials" color="black" />
-              </Box>
-              <Box className="sm:w-[70%]">
-                <Paragraph fontFamily="font-nexa" className="pt-4">
-                  Discover how ADMI has transformed the careers of our students through their own stories of success and
-                  growth. Hear firsthand how our hands-on training and industry connections have helped them achieve
-                  their creative dreams.
-                </Paragraph>
-              </Box>
-            </Box>
-            <Box className="w-full">
-              <Carousel
-                slideSize={360}
-                slideGap="md"
-                loop
-                align="start"
-                slidesToScroll={1}
-                withControls={false}
-                plugins={[autoplayTestimonials.current]}
-                onMouseEnter={autoplayTestimonials.current.stop}
-                onMouseLeave={autoplayTestimonials.current.reset}
+        {/* -- CTA -- */}
+        <section className="bg-gradient-to-br from-brand-red via-[#8E2028] to-[#1A1A1A] py-24 text-center text-white">
+          <div className="section-container">
+            <h2 className="font-proxima text-[44px] font-bold">Need Support Right Now?</h2>
+            <p className="mx-auto mt-4 max-w-[860px] font-proxima text-[18px] leading-[1.6] text-white/80">
+              Connect with advisors online or on campus for immediate academic, wellbeing, and admin support.
+            </p>
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-2 rounded-lg bg-white px-7 py-3.5 font-proxima text-[15px] font-bold text-admi-black transition hover:bg-white/90"
               >
-                {content &&
-                  content.fields.testimonials.map((testimonial: any, index: number) => (
-                    <Carousel.Slide key={`testimonial-${index}`}>
-                      <UserTestimonialCard user={testimonial.user} testimonial={testimonial} assets={content.assets} />
-                    </Carousel.Slide>
-                  ))}
-              </Carousel>
-            </Box>
-          </Box>
-        </Box>
-        {/* STUDENT COUNCIL */}
-        <Box className="w-full bg-admiRed px-4 py-8">
-          <Box className="mx-auto w-full max-w-screen-xl">
-            <Box className="flex w-full flex-row pb-4">
-              <Box className="w-full">
-                <Title label="Student Council" color="white" />
-              </Box>
-            </Box>
-            <Box className="flex w-full flex-wrap">
-              {ADMI_STUDENT_COUNCIL.map((member, index) => (
-                <div className="mb-4 mr-4" key={`member-${index}`}>
-                  <UserProfileCard user={member} />
-                </div>
-              ))}
-            </Box>
-          </Box>
-        </Box>
-        {/* ACADEMIC TEAM */}
-        <Box className="w-full px-4 py-8">
-          <Box className="mx-auto w-full max-w-screen-xl">
-            <Box className="flex w-full flex-row pb-4">
-              <Box className="w-full">
-                <Title label="Academic Team" color="black" />
-              </Box>
-            </Box>
-            <Box className="flex w-full flex-wrap">
-              {ADMI_ACADEMIC_TEAM_MINIMAL.map((member, index) => (
-                <div className="mb-4 mr-4" key={`academic-member-${index}`}>
-                  <UserProfileCard user={member} />
-                </div>
-              ))}
-            </Box>
-          </Box>
-        </Box>
+                Book an Advisor <IconArrowRight size={18} />
+              </Link>
+              <Link
+                href="https://wa.me/254741132751"
+                target="_blank"
+                className="inline-flex items-center gap-2 rounded-lg border border-white/40 px-7 py-3.5 font-proxima text-[15px] font-bold text-white transition hover:bg-white hover:text-admi-black"
+              >
+                <IconBrandWhatsapp size={18} /> WhatsApp Support
+              </Link>
+            </div>
+          </div>
+        </section>
       </div>
     </MainLayout>
   )

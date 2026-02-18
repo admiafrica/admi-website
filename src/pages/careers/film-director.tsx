@@ -1,5 +1,4 @@
 import React from 'react'
-import { Container, Title, Text, Card, Grid, List, Badge, Group } from '@mantine/core'
 import PageSEO from '../../components/shared/v3/PageSEO'
 
 const FilmDirectorCareerGuide = () => {
@@ -41,86 +40,70 @@ const FilmDirectorCareerGuide = () => {
         }}
       />
 
-      <Container size="lg" py="xl">
-        <Title order={1} ta="center" mb="md">
-          Film Director Career Guide Kenya 2025
-        </Title>
+      <div className="mx-auto w-full max-w-5xl px-4 py-8">
+        <h1 className="mb-4 text-center text-4xl font-semibold text-gray-900">Film Director Career Guide Kenya 2025</h1>
 
-        <Text size="lg" ta="center" mb="xl" c="dimmed">
+        <p className="mb-8 text-center text-lg text-gray-500">
           Everything you need to know about building a successful Film Director career in Kenya
-        </Text>
+        </p>
 
-        <Grid>
-          <Grid.Col span={{ base: 12, md: 8 }}>
-            <Card shadow="sm" padding="lg" radius="md" withBorder mb="md">
-              <Title order={2} mb="md">
-                Job Market Overview
-              </Title>
-              <Text>
+        <div className="flex flex-wrap">
+          <div className="w-full md:w-8/12">
+            <div className="mb-4 rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+              <h2 className="mb-4 text-3xl font-semibold text-gray-900">Job Market Overview</h2>
+              <p className="text-gray-700">
                 Growing industry with increased demand for local content creators and film professionals in Kenya and
                 East Africa.
-              </Text>
-            </Card>
+              </p>
+            </div>
 
-            <Card shadow="sm" padding="lg" radius="md" withBorder mb="md">
-              <Title order={2} mb="md">
-                Required Skills
-              </Title>
-              <Group gap="xs" mb="md">
-                <Badge key="Cinematography" variant="light" color="blue">
+            <div className="mb-4 rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+              <h2 className="mb-4 text-3xl font-semibold text-gray-900">Required Skills</h2>
+              <div className="mb-4 flex flex-wrap gap-1">
+                <span className="inline-flex items-center rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-gray-800">
                   Cinematography
-                </Badge>
-                <Badge key="Editing" variant="light" color="blue">
+                </span>
+                <span className="inline-flex items-center rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-gray-800">
                   Editing
-                </Badge>
-                <Badge key="Storytelling" variant="light" color="blue">
+                </span>
+                <span className="inline-flex items-center rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-gray-800">
                   Storytelling
-                </Badge>
-                <Badge key="Project Management" variant="light" color="blue">
+                </span>
+                <span className="inline-flex items-center rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-gray-800">
                   Project Management
-                </Badge>
-              </Group>
-            </Card>
+                </span>
+              </div>
+            </div>
 
-            <Card shadow="sm" padding="lg" radius="md" withBorder>
-              <Title order={2} mb="md">
-                How to Start Your Career
-              </Title>
-              <List spacing="sm">
-                <List.Item>Enroll in ADMI&apos;s Film Production Diploma program</List.Item>
-                <List.Item>Build a strong portfolio during your studies</List.Item>
-                <List.Item>Complete internships with industry partners</List.Item>
-                <List.Item>Network with professionals in the field</List.Item>
-                <List.Item>Stay updated with industry trends and tools</List.Item>
-              </List>
-            </Card>
-          </Grid.Col>
+            <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+              <h2 className="mb-4 text-3xl font-semibold text-gray-900">How to Start Your Career</h2>
+              <ul className="list-disc pl-5">
+                <li>Enroll in ADMI&apos;s Film Production Diploma program</li>
+                <li>Build a strong portfolio during your studies</li>
+                <li>Complete internships with industry partners</li>
+                <li>Network with professionals in the field</li>
+                <li>Stay updated with industry trends and tools</li>
+              </ul>
+            </div>
+          </div>
 
-          <Grid.Col span={{ base: 12, md: 4 }}>
-            <Card shadow="sm" padding="lg" radius="md" withBorder mb="md">
-              <Title order={3} mb="md">
-                Salary Range
-              </Title>
-              <Text size="xl" fw={700} color="blue">
-                Competitive salary based on experience
-              </Text>
-              <Text size="sm" c="dimmed">
-                per month in Kenya
-              </Text>
-            </Card>
+          <div className="w-full md:w-4/12 md:pl-4">
+            <div className="mb-4 rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+              <h3 className="mb-4 text-2xl font-semibold text-gray-900">Salary Range</h3>
+              <p className="text-xl font-bold text-gray-700">Competitive salary based on experience</p>
+              <p className="text-sm text-gray-500">per month in Kenya</p>
+            </div>
 
-            <Card shadow="sm" padding="lg" radius="md" withBorder>
-              <Title order={3} mb="md">
-                Recommended Course
-              </Title>
-              <Text mb="sm">Film Production Diploma</Text>
-              <Text size="sm" c="dimmed">
+            <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+              <h3 className="mb-4 text-2xl font-semibold text-gray-900">Recommended Course</h3>
+              <p className="mb-2 text-gray-700">Film Production Diploma</p>
+              <p className="text-sm text-gray-500">
                 Get industry-relevant training and guaranteed job placement support
-              </Text>
-            </Card>
-          </Grid.Col>
-        </Grid>
-      </Container>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
     </>
   )
 }

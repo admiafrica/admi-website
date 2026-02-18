@@ -1,5 +1,4 @@
 import React from 'react'
-import { Container, Title, Text, Grid, Card, Group, Button, Badge } from '@mantine/core'
 import { IconPlayerPlay, IconEye, IconExternalLink } from '@tabler/icons-react'
 import { YouTubeVideo, getYouTubeWatchUrl } from '@/utils/youtube-api'
 import Image from 'next/image'
@@ -24,28 +23,22 @@ export function VideoShowcase({
   }
 
   return (
-    <Container size="xl" py="xl">
+    <div className="mx-auto w-full max-w-6xl px-4 py-8">
       <div className="mb-12 text-center">
-        <Title order={2} size="h1" mb="md">
-          {title}
-        </Title>
-        <Text size="lg" c="dimmed" maw={600} mx="auto">
+        <h2 className="mb-4 text-3xl font-semibold text-gray-900">{title}</h2>
+        <p className="mx-auto text-lg text-gray-500" style={{ maxWidth: 600 }}>
           {subtitle}
-        </Text>
+        </p>
       </div>
 
-      <Grid>
+      <div className="flex flex-wrap gap-4">
         {displayVideos.map((video) => (
-          <Grid.Col key={video.id} span={{ base: 12, sm: 6, md: 4 }}>
-            <Card
-              shadow="sm"
-              padding="lg"
-              radius="md"
-              withBorder
-              className="h-full cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+          <div key={video.id} className="w-full sm:w-1/2 md:w-4/12">
+            <div
+              className="h-full cursor-pointer rounded-xl border border-gray-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
               onClick={() => window.open(getYouTubeWatchUrl(video.id), '_blank')}
             >
-              <Card.Section>
+              <div>
                 <div className="relative aspect-video w-full overflow-hidden bg-gray-100">
                   <Image
                     src={video.thumbnail.high || video.thumbnail.medium || video.thumbnail.default}
@@ -58,7 +51,7 @@ export function VideoShowcase({
                   {/* Play Button Overlay */}
                   <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40 opacity-0 transition-opacity duration-300 hover:opacity-100">
                     <div className="rounded-full bg-white bg-opacity-95 p-4 shadow-lg">
-                      <IconPlayerPlay size={32} color="#F76335" />
+                      <IconPlayerPlay size={32} color="#EF7B2E" />
                     </div>
                   </div>
 
@@ -69,102 +62,109 @@ export function VideoShowcase({
 
                   {/* YouTube Badge */}
                   <div className="absolute left-3 top-3">
-                    <Badge color="red" variant="filled" size="sm">
+                    <span className="inline-flex items-center rounded-full bg-red-600 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-white">
                       YouTube
-                    </Badge>
+                    </span>
                   </div>
                 </div>
-              </Card.Section>
-
-              <div className="flex h-full flex-col pt-4">
-                <Title order={4} lineClamp={2} className="mb-2 flex-grow">
-                  {video.title}
-                </Title>
-
-                <Text size="sm" c="dimmed" lineClamp={3} className="mb-4 flex-grow">
-                  {video.description}
-                </Text>
-
-                <Group justify="space-between" align="center" mt="auto">
-                  <Group gap="xs">
-                    <IconEye size={16} color="#666" />
-                    <Text size="sm" c="dimmed" fw={500}>
-                      {video.viewCount} views
-                    </Text>
-                  </Group>
-
-                  <Button size="sm" variant="light" color="red" leftSection={<IconPlayerPlay size={16} />}>
-                    Watch Now
-                  </Button>
-                </Group>
               </div>
-            </Card>
-          </Grid.Col>
+
+              <div className="flex h-full flex-col px-4 pb-4 pt-4">
+                <h4
+                  className="mb-2 flex-grow text-xl font-semibold text-gray-900"
+                  style={{
+                    display: '-webkit-box',
+                    WebkitLineClamp: 2,
+                    WebkitBoxOrient: 'vertical',
+                    overflow: 'hidden'
+                  }}
+                >
+                  {video.title}
+                </h4>
+
+                <p
+                  className="mb-4 flex-grow text-sm text-gray-500"
+                  style={{
+                    display: '-webkit-box',
+                    WebkitLineClamp: 3,
+                    WebkitBoxOrient: 'vertical',
+                    overflow: 'hidden'
+                  }}
+                >
+                  {video.description}
+                </p>
+
+                <div className="mt-auto flex flex-wrap items-center justify-between gap-2">
+                  <div className="flex flex-wrap items-center gap-1">
+                    <IconEye size={16} color="#666" />
+                    <p className="text-sm text-gray-500" style={{ fontWeight: 500 }}>
+                      {video.viewCount} views
+                    </p>
+                  </div>
+
+                  <button className="inline-flex items-center gap-2 rounded-lg bg-gray-100 px-4 py-2 text-sm font-medium text-gray-900 transition">
+                    <IconPlayerPlay size={16} />
+                    Watch Now
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
         ))}
-      </Grid>
+      </div>
 
       {/* Call to Action */}
-      <Group justify="center" mt="xl" gap="md">
-        <Button
-          variant="outline"
-          color="red"
-          size="lg"
-          leftSection={<IconExternalLink size={20} />}
-          component="a"
+      <div className="mt-8 flex flex-wrap justify-center gap-4">
+        <a
           href="/media-archive/videos"
+          className="inline-flex items-center gap-2 rounded-lg border border-gray-400 bg-white px-4 py-2 font-medium text-gray-900 transition"
         >
+          <IconExternalLink size={20} />
           View All Videos
-        </Button>
-        <Button
-          color="red"
-          size="lg"
-          leftSection={<IconExternalLink size={20} />}
-          component="a"
+        </a>
+        <a
           href="https://www.youtube.com/@ADMIafrica/"
           target="_blank"
+          className="inline-flex items-center gap-2 rounded-lg bg-red-600 px-4 py-2 font-medium text-white transition"
         >
+          <IconExternalLink size={20} />
           Subscribe on YouTube
-        </Button>
-      </Group>
+        </a>
+      </div>
 
       {/* Stats Section */}
-      <Card shadow="sm" padding="lg" radius="md" withBorder mt="xl" bg="gray.0">
-        <Group justify="center" gap="xl">
+      <div
+        className="mt-8 rounded-xl border border-gray-200 bg-white p-6 shadow-sm"
+        style={{ backgroundColor: '#f9fafb' }}
+      >
+        <div className="flex flex-wrap justify-center gap-8">
           <div className="text-center">
-            <Text fw={700} size="xl" c="red">
+            <p className="text-xl text-gray-700" style={{ fontWeight: 700, color: 'red' }}>
               50+
-            </Text>
-            <Text size="sm" c="dimmed">
-              Videos
-            </Text>
+            </p>
+            <p className="text-sm text-gray-500">Videos</p>
           </div>
           <div className="text-center">
-            <Text fw={700} size="xl" c="blue">
+            <p className="text-xl text-gray-700" style={{ fontWeight: 700, color: 'blue' }}>
               100K+
-            </Text>
-            <Text size="sm" c="dimmed">
-              Total Views
-            </Text>
+            </p>
+            <p className="text-sm text-gray-500">Total Views</p>
           </div>
           <div className="text-center">
-            <Text fw={700} size="xl" c="green">
+            <p className="text-xl text-gray-700" style={{ fontWeight: 700, color: 'green' }}>
               500+
-            </Text>
-            <Text size="sm" c="dimmed">
-              Subscribers
-            </Text>
+            </p>
+            <p className="text-sm text-gray-500">Subscribers</p>
           </div>
           <div className="text-center">
-            <Text fw={700} size="xl" c="orange">
+            <p className="text-xl text-gray-700" style={{ fontWeight: 700, color: 'orange' }}>
               Weekly
-            </Text>
-            <Text size="sm" c="dimmed">
-              New Content
-            </Text>
+            </p>
+            <p className="text-sm text-gray-500">New Content</p>
           </div>
-        </Group>
-      </Card>
-    </Container>
+        </div>
+      </div>
+    </div>
   )
 }
 

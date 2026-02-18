@@ -1,10 +1,8 @@
-import { AppShell } from '@mantine/core'
-
 type Props = {
   children: React.ReactNode
 }
 export default function CampaignHeaderLayout({ children }: Props) {
-  return <AppShell.Header style={headerStyle}>{children}</AppShell.Header>
+  return <header style={headerStyle}>{children}</header>
 }
 
 const headerStyle: React.CSSProperties = {

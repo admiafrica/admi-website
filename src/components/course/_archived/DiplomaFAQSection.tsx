@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { Accordion, Badge, Container, Title, Text, Group, Button } from '@mantine/core'
 import { IconChevronDown, IconSchool, IconBriefcase, IconCertificate } from '@tabler/icons-react'
 import {
   GENERAL_DIPLOMA_FAQS,
@@ -18,6 +17,7 @@ interface DiplomaFAQSectionProps {
 
 export function DiplomaFAQSection({ programType, showGeneralFAQs = true, maxFAQs = 10 }: DiplomaFAQSectionProps) {
   const [activeCategory, setActiveCategory] = useState<string>('all')
+  const [openFaq, setOpenFaq] = useState<string | null>(null)
 
   // Get program-specific FAQs
   const getProgramFAQs = () => {
@@ -79,133 +79,131 @@ export function DiplomaFAQSection({ programType, showGeneralFAQs = true, maxFAQs
     }
   }
 
+  const getCategoryButtonClass = (category: string, isActive: boolean) => {
+    if (isActive) {
+      return 'inline-flex items-center gap-2 rounded-lg px-4 py-2 font-medium transition bg-gray-900 text-white'
+    }
+    return 'inline-flex items-center gap-2 rounded-lg px-4 py-2 font-medium transition border border-gray-400 bg-white text-gray-900'
+  }
+
   return (
-    <Container size="lg" py="xl">
+    <div className="mx-auto w-full max-w-5xl px-4 py-8">
       <div className="mb-8 text-center">
-        <Title order={2} size="h1" mb="md">
-          Frequently Asked Questions
-        </Title>
-        <Text size="lg" c="dimmed" maw={600} mx="auto">
+        <h2 className="mb-4 text-4xl font-semibold text-gray-900">Frequently Asked Questions</h2>
+        <p className="mx-auto max-w-[600px] text-lg text-gray-500">
           Get answers to common questions about our diploma programs, admission requirements, career prospects, and
           student support services.
-        </Text>
+        </p>
       </div>
 
       {/* Category Filter */}
-      <Group justify="center" mb="xl" gap="xs">
+      <div className="mb-6 flex flex-wrap justify-center gap-1">
         {categories.map((category) => (
-          <Button
+          <button
             key={category}
-            variant={activeCategory === category ? 'filled' : 'outline'}
-            size="sm"
+            className={getCategoryButtonClass(category, activeCategory === category)}
             onClick={() => setActiveCategory(category)}
-            leftSection={getCategoryIcon(category)}
-            color={getCategoryColor(category)}
           >
+            {getCategoryIcon(category)}
             {category === 'all' ? 'All Questions' : category}
-          </Button>
+          </button>
         ))}
-      </Group>
+      </div>
 
       {/* FAQ Accordion */}
-      <Accordion
-        variant="separated"
-        radius="md"
-        chevron={<IconChevronDown size={16} />}
-        styles={{
-          chevron: {
-            '&[data-rotate="true"]': {
-              transform: 'rotate(180deg)'
-            }
-          },
-          item: {
-            border: '1px solid #e9ecef',
-            '&[data-active="true"]': {
-              borderColor: '#228be6'
-            }
-          },
-          control: {
-            padding: '1rem 1.5rem',
-            '&:hover': {
-              backgroundColor: '#f8f9fa'
-            }
-          },
-          content: {
-            padding: '1rem 1.5rem',
-            paddingTop: 0
-          }
-        }}
-      >
-        {filteredFAQs.map((faq, index) => (
-          <Accordion.Item key={index} value={`faq-${index}`}>
-            <Accordion.Control>
-              <Group justify="space-between" wrap="nowrap">
-                <div>
-                  <Text fw={500} size="md">
-                    {faq.question}
-                  </Text>
-                  <Badge size="xs" variant="light" color={getCategoryColor(faq.category)} mt={4}>
-                    {faq.category}
-                  </Badge>
+      <div className="space-y-2">
+        {filteredFAQs.map((faq, index) => {
+          const value = `faq-${index}`
+          const isOpen = openFaq === value
+          return (
+            <div key={index} className="rounded-lg border border-gray-200">
+              <button
+                type="button"
+                onClick={() => setOpenFaq(isOpen ? null : value)}
+                className="flex w-full items-center justify-between px-6 py-4 text-left font-medium hover:bg-gray-50"
+              >
+                <div className="flex w-full flex-wrap flex-nowrap justify-between">
+                  <div>
+                    <p className="font-medium text-gray-700">{faq.question}</p>
+                    <span
+                      className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-wide bg-${getCategoryColor(faq.category)}-100 text-${getCategoryColor(faq.category)}-800 mt-1`}
+                    >
+                      {faq.category}
+                    </span>
+                  </div>
                 </div>
-              </Group>
-            </Accordion.Control>
-            <Accordion.Panel>
-              <Text size="sm" lh={1.6}>
-                {faq.answer}
-              </Text>
-            </Accordion.Panel>
-          </Accordion.Item>
-        ))}
-      </Accordion>
+                <IconChevronDown
+                  size={16}
+                  className={`ml-2 flex-shrink-0 transition-transform ${isOpen ? 'rotate-180' : ''}`}
+                />
+              </button>
+              {isOpen && (
+                <div className="border-t border-gray-200 px-6 py-4">
+                  <p className="text-sm text-gray-700" style={{ lineHeight: 1.6 }}>
+                    {faq.answer}
+                  </p>
+                </div>
+              )}
+            </div>
+          )
+        })}
+      </div>
 
       {/* Call to Action */}
       <div className="mt-12 rounded-lg bg-gray-50 p-8 text-center">
-        <Title order={3} mb="md">
-          Still Have Questions?
-        </Title>
-        <Text mb="lg" c="dimmed">
+        <h3 className="mb-4 text-2xl font-semibold text-gray-900">Still Have Questions?</h3>
+        <p className="mb-6 text-gray-500">
           Our admissions team is here to help you make the right choice for your career.
-        </Text>
-        <Group justify="center" gap="md">
-          <Button size="lg" variant="filled">
+        </p>
+        <div className="flex flex-wrap justify-center gap-4">
+          <button className="inline-flex items-center gap-2 rounded-lg bg-brand-orange px-6 py-3 font-medium text-white transition">
             Contact Admissions
-          </Button>
-          <Button size="lg" variant="outline">
+          </button>
+          <button className="inline-flex items-center gap-2 rounded-lg border border-gray-400 bg-white px-6 py-3 font-medium text-gray-900 transition">
             Download Brochure
-          </Button>
-        </Group>
+          </button>
+        </div>
       </div>
-    </Container>
+    </div>
   )
 }
 
 // Simplified FAQ component for course pages
 export function CourseFAQs({ faqs, programType }: { faqs: any[]; programType?: string }) {
+  const [openFaq, setOpenFaq] = useState<string | null>(null)
+
   if (!faqs || faqs.length === 0) {
     // Show default diploma FAQs if no course-specific FAQs
     return <DiplomaFAQSection programType={programType as any} showGeneralFAQs={true} maxFAQs={8} />
   }
 
   return (
-    <Container size="lg" py="xl">
-      <Title order={2} ta="center" mb="xl">
-        Course FAQs
-      </Title>
-      <Accordion variant="separated" radius="md">
-        {faqs.map((faq, index) => (
-          <Accordion.Item key={index} value={`course-faq-${index}`}>
-            <Accordion.Control>
-              <Text fw={500}>{faq.fields?.question || faq.question}</Text>
-            </Accordion.Control>
-            <Accordion.Panel>
-              <Text size="sm" lh={1.6}>
-                {faq.fields?.answer || faq.answer}
-              </Text>
-            </Accordion.Panel>
-          </Accordion.Item>
-        ))}
-      </Accordion>
-    </Container>
+    <div className="mx-auto w-full max-w-5xl px-4 py-8">
+      <h2 className="mb-6 text-center text-3xl font-semibold text-gray-900">Course FAQs</h2>
+      <div className="space-y-2">
+        {faqs.map((faq, index) => {
+          const value = `course-faq-${index}`
+          const isOpen = openFaq === value
+          return (
+            <div key={index} className="rounded-lg border border-gray-200">
+              <button
+                type="button"
+                onClick={() => setOpenFaq(isOpen ? null : value)}
+                className="w-full px-4 py-3 text-left font-medium"
+              >
+                <p className="font-medium text-gray-700">{faq.fields?.question || faq.question}</p>
+              </button>
+              {isOpen && (
+                <div className="border-t border-gray-200 px-4 py-3">
+                  <p className="text-sm text-gray-700" style={{ lineHeight: 1.6 }}>
+                    {faq.fields?.answer || faq.answer}
+                  </p>
+                </div>
+              )}
+            </div>
+          )
+        })}
+      </div>
+    </div>
   )
 }

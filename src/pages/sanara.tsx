@@ -1,5 +1,4 @@
 import Image from 'next/image'
-import { Anchor, Box, Card } from '@mantine/core'
 
 import { MainLayout } from '@/layouts/v3/MainLayout'
 import { PageSEO, SocialShare } from '@/components/shared/v3'
@@ -25,13 +24,13 @@ export default function NewsArticlePage() {
         keywords="Sanara animation program, 2D animation training Kenya, animation course, creative careers, Mastercard Foundation, HEVA fund, animation skills, digital arts Kenya"
         image={ImageSanaraLanding}
       />
-      <Box className="w-full">
-        <Box className="mx-auto flex w-full max-w-screen-xl flex-col-reverse px-4 py-4 sm:flex-row sm:py-16 xl:px-0">
-          <Box className="sm:w-[200px]">
+      <div className="w-full">
+        <div className="mx-auto flex w-full max-w-screen-xl flex-col-reverse px-4 py-4 sm:flex-row sm:py-16 xl:px-0">
+          <div className="sm:w-[200px]">
             <SocialShare item={article} />
-          </Box>
-          <Card className="mb-6 min-h-[80vh] w-full sm:ml-8" withBorder>
-            <Box className="relative" h={isMobile ? '200px' : '500px'}>
+          </div>
+          <div className="mb-6 min-h-[80vh] w-full rounded-xl border border-gray-200 bg-white shadow-sm sm:ml-8">
+            <div className="relative" style={{ height: isMobile ? '200px' : '500px' }}>
               <Image
                 src={ImageSanaraLanding}
                 alt={'sanara'}
@@ -39,7 +38,7 @@ export default function NewsArticlePage() {
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
-            </Box>
+            </div>
             <Paragraph fontFamily="font-nexa" fontWeight={400} size="26px" className="py-6">
               ADMI-Sanara Animation Program
             </Paragraph>
@@ -69,12 +68,20 @@ export default function NewsArticlePage() {
 
             <Paragraph className="py-1">
               Learn more at{' '}
-              <Anchor href="http://hevafund.com/sanara" target="_blank" fw={900}>
+              <a
+                href="http://hevafund.com/sanara"
+                target="_blank"
+                className="text-blue-700 hover:underline"
+                style={{ fontWeight: 900 }}
+              >
                 hevafund.com/sanara
-              </Anchor>
+              </a>
             </Paragraph>
 
-            <Box className="relative mx-auto" h={isMobile ? '200px' : '800px'} w={isMobile ? '100%' : '800px'}>
+            <div
+              className="relative mx-auto"
+              style={{ height: isMobile ? '200px' : '800px', width: isMobile ? '100%' : '800px' }}
+            >
               <Image
                 src="https://cdn.admi.africa/media/sites/2/2025/02/20125057/Animation-Gaming-3.png"
                 alt={'sanara-poster'}
@@ -83,7 +90,7 @@ export default function NewsArticlePage() {
                 priority
                 sizes="(max-width: 768px) 100vw, 800px"
               />
-            </Box>
+            </div>
 
             <Paragraph fontFamily="font-nexa" fontWeight={900} size="20px" className="py-6">
               Why Choose This Program?
@@ -93,7 +100,7 @@ export default function NewsArticlePage() {
               This 18-month program equips you with expert-led training in 2D Animation, ensuring you gain the skills
               and experience needed to thrive in the industry.
             </Paragraph>
-            <Box className="flex flex-col">
+            <div className="flex flex-col">
               <Paragraph className="py-1">🔹 Master storytelling, character design, and motion graphics</Paragraph>
               <Paragraph className="py-1">🔹 Work on real-world projects to build a strong portfolio</Paragraph>
               <Paragraph className="py-1">🔹 Guaranteed internship to gain hands-on industry experience</Paragraph>
@@ -103,56 +110,70 @@ export default function NewsArticlePage() {
               <Paragraph className="py-1">
                 🔹 Join a thriving creative community and network with industry professionals
               </Paragraph>
-            </Box>
+            </div>
             <Paragraph className="py-1">
               Learn more about the{' '}
-              <Anchor href="https://admi.africa/courses/2d-animation-certificate-rubika" target="_blank" fw={900}>
+              <a
+                href="https://admi.africa/courses/2d-animation-certificate-rubika"
+                target="_blank"
+                className="text-blue-700 hover:underline"
+                style={{ fontWeight: 900 }}
+              >
                 2D Animation Program here.
-              </Anchor>
+              </a>
             </Paragraph>
 
             <Paragraph fontFamily="font-nexa" fontWeight={900} size="20px" className="py-6">
               Who can apply?
             </Paragraph>
 
-            <Box className="flex flex-col">
+            <div className="flex flex-col">
               <Paragraph className="py-1">✅ Young women and men aged 18-24</Paragraph>
               <Paragraph className="py-1">✅ Minimum qualification: KCSE C (plain) or equivalent</Paragraph>
               <Paragraph className="py-1">✅ Passionate about 2D Animation</Paragraph>
               <Paragraph className="py-1">
                 ✅ Ready to learn from industry experts and build a future in digital arts
               </Paragraph>
-            </Box>
+            </div>
 
             <Paragraph fontFamily="font-nexa" fontWeight={900} size="20px" className="py-6">
               How to Apply?
             </Paragraph>
 
-            <Box className="flex flex-col">
+            <div className="flex flex-col">
               <Paragraph className="py-1">📌 Step 1: Contact us on WhatsApp for more information to apply</Paragraph>
               <Paragraph className="py-1">📌 Step 2: Submit a short 2 – 3 min video statement of interest</Paragraph>
               <Paragraph className="py-1">📌 Step 3: Wait for the selection team to review your application</Paragraph>
               <Paragraph className="pt-6">
-                🛑 <strong>Deadline to Apply: March 4</strong> – Don’t miss this opportunity!
+                🛑 <strong>Deadline to Apply: March 4</strong> – Don't miss this opportunity!
               </Paragraph>
 
-              <Box className="w-[200px] py-4">
-                <Anchor href="https://tinyurl.com/admi-application-form" target="_blank">
+              <div className="w-[200px] py-4">
+                <a
+                  href="https://tinyurl.com/admi-application-form"
+                  target="_blank"
+                  className="text-blue-700 hover:underline"
+                >
                   <Button size="lg" backgroundColor="admiRed" label="Apply" />
-                </Anchor>
-              </Box>
+                </a>
+              </div>
 
               <Paragraph className="pt-6">
                 📢 WhatsApp us at{' '}
-                <Anchor href="tel:+254706349696" target="_blank" fw={900}>
+                <a
+                  href="tel:+254706349696"
+                  target="_blank"
+                  className="text-blue-700 hover:underline"
+                  style={{ fontWeight: 900 }}
+                >
                   +254 706 349696
-                </Anchor>{' '}
+                </a>{' '}
                 for more details!
               </Paragraph>
-            </Box>
-          </Card>
-        </Box>
-      </Box>
+            </div>
+          </div>
+        </div>
+      </div>
     </MainLayout>
   )
 }

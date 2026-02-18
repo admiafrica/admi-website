@@ -1,5 +1,4 @@
 import React from 'react'
-import { Box, Card } from '@mantine/core'
 
 import { Paragraph, Title } from '../ui'
 import Image from 'next/image'
@@ -11,12 +10,12 @@ type Props = {
 
 export default function AdviceCard(props: Props) {
   return (
-    <Card className="z-10 mx-4 h-full w-[680px]" withBorder>
-      <Box className="flex h-full flex-row">
-        <Box className="flex w-[60%] flex-col pr-2">
+    <div className="z-10 mx-4 h-full w-[680px] rounded-xl border border-gray-200 bg-white shadow-sm">
+      <div className="flex h-full flex-row">
+        <div className="flex w-[60%] flex-col pr-2">
           <Title label={props.advice.title} color="black" size="24px" />
           {props.hasList ? (
-            <Box className="pt-8">
+            <div className="pt-8">
               {props.advice.description.map((item: any, index: number) => {
                 if (item.type == 'paragraph') {
                   return <Paragraph key={`advice-${index}`}>{item.content}</Paragraph>
@@ -34,12 +33,12 @@ export default function AdviceCard(props: Props) {
                   )
                 }
               })}
-            </Box>
+            </div>
           ) : (
             <Paragraph size="16px">{props.advice.description}</Paragraph>
           )}
-        </Box>
-        <Box className="relative flex h-[100%] w-[40%]">
+        </div>
+        <div className="relative flex h-[100%] w-[40%]">
           <Image
             src={
               props.advice.image || 'https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png'
@@ -49,8 +48,8 @@ export default function AdviceCard(props: Props) {
             sizes="(max-width: 768px) 100vw, 40vw"
             style={{ borderRadius: 8, objectFit: 'cover' }}
           />
-        </Box>
-      </Box>
-    </Card>
+        </div>
+      </div>
+    </div>
   )
 }

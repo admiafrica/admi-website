@@ -1,109 +1,110 @@
-import { Box } from '@mantine/core'
-import Image from 'next/image'
+import Link from 'next/link'
+import { IconBrandWhatsapp, IconMapPin, IconDownload } from '@tabler/icons-react'
 
 import { MainLayout } from '@/layouts/v3/MainLayout'
-import EnhancedEnquiryForm from '@/components/forms/EnhancedEnquiryForm'
-import { Title } from '@/components/ui'
 import { PageSEO } from '@/components/shared/v3'
-import { useIsMobile } from '@/hooks/useIsMobile'
-import { InstitutionalFAQSchema } from '@/components/seo/InstitutionalFAQSchema'
+import EnhancedEnquiryForm from '@/components/forms/EnhancedEnquiryForm'
+import type { SidebarCard } from '@/types/enquiry'
 
-import ImageEnquiry1 from '@/assets/images/enquiry-1.png'
-import ImageEnquiry2 from '@/assets/images/enquiry-2.png'
-import ImageEnquiry3 from '@/assets/images/enquiry-3.png'
+/* ------------------------------------------------------------------ */
+/*  Data                                                               */
+/* ------------------------------------------------------------------ */
 
-import IconTrophy from '@/assets/icons/Trophy'
-import IconDoorkey from '@/assets/icons/DoorKey'
-import IconShootingStar from '@/assets/icons/ShootingStar'
-import IconLightbulbOn from '@/assets/icons/LightbulbOn'
-import IconHat from '@/assets/icons/Hat'
+const SIDEBAR_CARDS: SidebarCard[] = [
+  {
+    icon: IconBrandWhatsapp,
+    iconBg: '#25D366',
+    title: 'Talk to Admissions',
+    desc: 'Chat with our team on WhatsApp for quick answers about programmes and admissions.',
+    link: 'https://wa.me/254741132751',
+    linkText: '+254 741 132 751',
+    linkColor: '#25D366',
+    external: true
+  },
+  {
+    icon: IconMapPin,
+    iconBg: '#0A3D3D',
+    title: 'Visit Campus',
+    desc: 'Book a campus tour to see our studios, labs, and facilities. Experience ADMI first-hand.',
+    link: '/contact',
+    linkText: 'Schedule a Visit',
+    linkColor: '#0A3D3D',
+    external: false
+  },
+  {
+    icon: IconDownload,
+    iconBg: '#EF7B2E',
+    title: 'Download Prospectus',
+    desc: 'Get our detailed programme prospectus with course outlines, fees, and intake dates.',
+    link: '/resources',
+    linkText: 'Get Prospectus (PDF)',
+    linkColor: '#EF7B2E',
+    external: false
+  }
+]
 
-import IconBgImageYellow from '@/assets/icons/ellipse-yellow.svg'
-import IconBgImageRed from '@/assets/icons/ellipse-red.svg'
+/* ------------------------------------------------------------------ */
+/*  Page                                                               */
+/* ------------------------------------------------------------------ */
 
 export default function EnquiryPage() {
-  const isMobile = useIsMobile()
-
   return (
-    <MainLayout minimizeFooter minimizeHeader footerBgColor="#002A23">
+    <MainLayout minimizeFooter footerBgColor="#1a1a1a">
       <PageSEO
-        title="Enquiry"
-        description="Enquire about ADMI courses and programs. Get detailed information about our creative media and technology training programs. Contact our admissions team for personalized guidance."
-        keywords="ADMI enquiry, course information, admissions enquiry, program details, course consultation, apply to ADMI, student enquiry, course guidance"
+        title="Enquire Now | ADMI"
+        description="Start your creative journey at ADMI. Fill out our enquiry form and our admissions team will get back to you within 24 hours."
       />
 
-      {/* Admissions FAQ Schema for enquiry page */}
-      <InstitutionalFAQSchema faqType="admissions" />
-      <div className="min-h-[100vh] w-full bg-[#002A23] pt-16">
-        {/* BACKGROUND IMAGES */}
-        <div className="absolute left-[54%] top-[24vh] h-fit w-full -translate-x-1/2 transform">
-          <div className="flex w-full justify-end pr-[10%]">
-            <Image src={IconBgImageYellow} alt={'background image'} />
+      <div className="w-full">
+        {/* ── Hero ── */}
+        <section className="bg-gradient-to-br from-[#0F2E2A] via-[#0A1F1D] to-[#091110] py-12 text-center text-white sm:py-20">
+          <div className="section-container">
+            <div className="flex items-center justify-center gap-2.5">
+              <span className="h-[3px] w-8 bg-secondary" />
+              <span className="font-proxima text-[13px] font-semibold uppercase tracking-[2px] text-secondary">
+                ENQUIRE NOW
+              </span>
+            </div>
+            <h1 className="mt-5 font-proxima text-3xl font-bold sm:text-[48px]">Start Your Creative Journey</h1>
+            <p className="mx-auto mt-4 max-w-[600px] font-proxima text-base leading-[1.6] text-white/80 sm:text-[18px]">
+              Fill out the form below and our admissions team will get back to you within 24 hours.
+            </p>
           </div>
-        </div>
+        </section>
 
-        <div className="absolute left-[50%] top-[20vh] h-fit w-full -translate-x-1/2 transform">
-          <div className="flex w-full">
-            <Image src={IconBgImageRed} alt={'background image'} />
-          </div>
-        </div>
-        <div className="relative z-10 mx-auto flex w-full max-w-screen-xl flex-col px-4 sm:flex-row 2xl:px-0">
-          <div className="sm:w-1/2">
-            <Box mb={4}>
-              <Title label="Take the first steps" color="#F1FE38" size={isMobile ? '30px' : '48px'} />
-            </Box>
-            <Box mb={4}>
-              <Title label="to building your" color="white" size={isMobile ? '30px' : '48px'} />
-            </Box>
-            <Box mb={4}>
-              <Title label="career with ADMI" color="white" size={isMobile ? '30px' : '48px'} />
-            </Box>
-            {!isMobile && (
-              <Box className="flex flex-row">
-                <Box className="flex w-full max-w-[300px] flex-col px-2">
-                  <Image width={280} src={ImageEnquiry2} alt="about course" objectFit="cover" className="mb-8" />
-                  <Box
-                    className="mb-8 flex h-[12vh] w-full items-center justify-between rounded-xl px-[8%]"
-                    bg={'admiShamrok'}
-                  >
-                    <IconLightbulbOn width={54} height={54} color="white" />
-                    <IconHat width={44} height={44} color="white" />
-                    <IconShootingStar width={54} height={54} color="white" />
-                  </Box>
-                  <Image width={280} src={ImageEnquiry3} alt="about course" objectFit="cover" />
-                </Box>
-                <Box className="flex w-1/2 flex-col px-2">
-                  <Box className="pb-4">
-                    <Image
-                      src={ImageEnquiry1}
-                      alt="about course"
-                      objectFit="cover"
-                      style={{ width: '90%', height: '100%' }}
-                    />
-                  </Box>
-                  <Box className="flex flex-row justify-between" h={'100%'} w={'90%'}>
-                    <Box
-                      className="flex w-[32%] items-center justify-center rounded-xl"
-                      bg={'#F1FE37'}
-                      h={'8em'}
-                      mr={16}
-                    >
-                      <IconTrophy width={40} height={40} />
-                    </Box>
-                    <Box className="flex w-[64%] items-center justify-center rounded-xl" bg={'admiRed'} h={'8em'}>
-                      <IconDoorkey width={48} height={48} color="white" />
-                    </Box>
-                  </Box>
-                </Box>
-              </Box>
-            )}
-          </div>
-          <div className="sm:w-1/2">
-            <div className="mx-auto max-w-xl py-12">
+        {/* ── Form + Sidebar ── */}
+        <section className="section-padding bg-white">
+          <div className="section-container flex flex-col gap-8 lg:flex-row lg:gap-12">
+            {/* Form */}
+            <div className="min-w-0 flex-1">
               <EnhancedEnquiryForm />
             </div>
+
+            {/* Sidebar */}
+            <div className="w-full space-y-5 lg:w-[380px]">
+              {SIDEBAR_CARDS.map((card) => (
+                <article key={card.title} className="rounded-xl border border-[#e8e8e8] bg-[#F9F9F9] p-5 sm:p-7">
+                  <div
+                    className="flex h-12 w-12 items-center justify-center rounded-xl"
+                    style={{ backgroundColor: card.iconBg }}
+                  >
+                    <card.icon size={22} className="text-white" />
+                  </div>
+                  <h3 className="mt-4 font-proxima text-[18px] font-bold text-admi-black">{card.title}</h3>
+                  <p className="mt-2 font-proxima text-[14px] leading-[1.6] text-[#666]">{card.desc}</p>
+                  <Link
+                    href={card.link}
+                    target={card.external ? '_blank' : undefined}
+                    className="mt-3 inline-block font-proxima text-[14px] font-semibold"
+                    style={{ color: card.linkColor }}
+                  >
+                    {card.linkText}
+                  </Link>
+                </article>
+              ))}
+            </div>
           </div>
-        </div>
+        </section>
       </div>
     </MainLayout>
   )

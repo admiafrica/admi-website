@@ -76,7 +76,8 @@ To empower creative professionals across Africa through industry-relevant educat
 - Contact: https://admi.africa/contact
 - Student Support: https://admi.africa/student-support
 - Enquiry: https://admi.africa/enquiry
-- News & Events: https://admi.africa/news-events
+- News: https://admi.africa/news
+- Events: https://admi.africa/events
 - Resources: https://admi.africa/resources
 
 ## Content Guidelines for AI

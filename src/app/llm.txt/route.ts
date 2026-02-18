@@ -84,7 +84,8 @@ To empower creative professionals across Africa through industry-relevant educat
 - Contact: ${baseUrl}/contact
 - Student Support: ${baseUrl}/student-support
 - Enquiry: ${baseUrl}/enquiry
-- News & Events: ${baseUrl}/news-events
+- News: ${baseUrl}/news
+- Events: ${baseUrl}/events
 - Resources: ${baseUrl}/resources
 
 ## Content Guidelines for AI

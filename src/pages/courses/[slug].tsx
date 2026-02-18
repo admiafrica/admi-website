@@ -1,17 +1,7 @@
 import { MainLayout } from '@/layouts/v3/MainLayout'
-import { ensureProtocol } from '@/utils'
+import { ensureProtocol, getPlainTextFromRichText } from '@/utils'
 import { extractCourseTopic } from '@/utils/course-topic-mapper'
-import {
-  CourseAbout,
-  CourseApplicationProcess,
-  CourseDetails,
-  CourseHero,
-  CourseMentors,
-  CourseStudents,
-  CourseArticles
-} from '@/components/course'
-import { CMSCourseFAQs } from '@/components/course/CMSCourseFAQs'
-// import { CourseVideoSection } from '@/components/course/CourseVideoSection'
+import CoursePageLayout from '@/components/course/CoursePageLayout'
 import { PageSEO } from '@/components/shared/v3'
 import { CourseSchema, BreadcrumbSchema, VideoSchema } from '@/components/shared/StructuredData'
 import { DiplomaEnhancedSEO } from '@/components/course/DiplomaEnhancedSEO'
@@ -21,13 +11,6 @@ import { CMSCourseFAQSchemaWrapper } from '@/components/course/CMSCourseFAQSchem
 import { YouTubeVideo } from '@/utils/youtube-api'
 import { generateCourseSpecificMeta } from '@/utils/course-specific-seo'
 import { getCoursePricing } from '@/utils/course-pricing'
-
-// New conversion-focused components
-import IntakeBanner from '@/components/course/IntakeBanner'
-import PaymentCalculator from '@/components/course/PaymentCalculator'
-import GraduateOutcomes from '@/components/course/GraduateOutcomes'
-import CertificateUpgrade from '@/components/course/CertificateUpgrade'
-import ProgramComparison from '@/components/course/ProgramComparison'
 
 export default function CourseDetailPage({
   course,
@@ -40,23 +23,11 @@ export default function CourseDetailPage({
   slug: string
   courseArticles?: any[]
 }) {
-  // Extract rich text content for description
-  const getPlainTextFromRichText = (richText: any) => {
-    if (!richText || !richText.content) return ''
-
-    return (
-      richText.content
-        .map((block: any) => block.content?.map((content: any) => content.value).join(' '))
-        .join(' ')
-        .substring(0, 160) + '...'
-    )
-  }
-
   // Create comprehensive course description for SEO with enrollment focus
   const baseDescription = course.description
-    ? getPlainTextFromRichText(course.description)
+    ? getPlainTextFromRichText(course.description, 160)
     : course.aboutTheCourse
-      ? getPlainTextFromRichText(course.aboutTheCourse)
+      ? getPlainTextFromRichText(course.aboutTheCourse, 160)
       : `${course.name} - ${course.programType?.fields?.duration || ''} ${course.programType?.fields?.deliveryMode || ''} course at ADMI. ${course.awardLevel || ''} level program.`
 
   // Check if this is a diploma program (moved before usage)
@@ -124,6 +95,7 @@ export default function CourseDetailPage({
     'distance learning',
     'African students',
     'pan-African education',
+    'global certification',
     ...enrollmentKeywords,
     ...(isDiploma
       ? [
@@ -167,7 +139,7 @@ export default function CourseDetailPage({
           employmentRate={85}
           averageSalary="KES 45,000 - 120,000"
           industryPartners={['Safaricom', 'Nation Media Group', 'Standard Group', 'Royal Media Services']}
-          accreditation="Pearson Assured & Woolf University"
+          accreditation="Woolf University & TVETA Kenya"
         />
       ) : course.awardLevel?.toLowerCase().includes('certificate') ? (
         /* Enhanced Certificate Structured Data */
@@ -177,7 +149,7 @@ export default function CourseDetailPage({
           employmentRate={75}
           averageSalary="KES 25,000 - 80,000"
           industryPartners={['Safaricom', 'Nation Media Group', 'Standard Group', 'Royal Media Services']}
-          accreditation="Pearson Assured"
+          accreditation="TVETA Kenya"
         />
       ) : (
         /* Basic Course Structured Data with FAQ Schema */
@@ -236,7 +208,7 @@ export default function CourseDetailPage({
           // Swap: embedUrl (watch page) becomes primary, direct video file becomes secondary
           contentUrl={ensureProtocol(course.courseVideo.fields.file.url)}
           embedUrl={`${process.env.NEXT_PUBLIC_API_BASE_URL || 'https://admi.africa'}/watch/${slug}`}
-          uploadDate={course.sys?.updatedAt || new Date().toISOString()}
+          uploadDate={course.sys?.updatedAt || `${new Date().getFullYear()}-01-01T00:00:00.000Z`}
           duration="PT2M30S"
           publisher={{
             name: 'Africa Digital Media Institute',
@@ -245,91 +217,7 @@ export default function CourseDetailPage({
         />
       )}
 
-      {/* NEW: Intake Banner with Deadline Countdown - Shows at top of page */}
-      <IntakeBanner
-        intakeDate="May 19, 2026"
-        earlyBirdDeadline="April 15, 2026"
-        earlyBirdDiscount={10}
-        isDiploma={isDiploma}
-      />
-
-      <CourseHero
-        name={course.name}
-        coverImage={course.coverImage}
-        programType={course.programType}
-        awardLevel={course.awardLevel}
-        creditHours={course.creditHours}
-      />
-      <CourseAbout
-        description={course.aboutTheCourse}
-        intakes={course.intakes}
-        courseVideo={course.courseVideo}
-        educationalLevel={course.educationalLevel}
-        courseSlug={slug}
-      />
-
-      {/* NEW: Graduate Outcomes - Employment stats, salary ranges, employer logos */}
-      <GraduateOutcomes
-        isDiploma={isDiploma}
-        employmentRate={isDiploma ? 85 : 75}
-        averageSalaryRange={isDiploma ? 'KES 45,000 - 120,000' : 'KES 25,000 - 80,000'}
-        timeToEmployment={isDiploma ? '3-6 months' : '1-3 months'}
-      />
-
-      <CourseDetails
-        benefits={course.courseBenefits || []}
-        assets={courseAssets || []}
-        programType={course.programType}
-        creditHours={course.creditHours}
-        tuitionFees={course.tuitionFees}
-        courseDescription={course.description}
-        careerOptions={course.careerOptions}
-        learningOutcomes={course.learningOutcomes}
-      />
-
-      {/* NEW: Payment Calculator - 50/30/20 split, 10% upfront discount */}
-      <div className="mx-auto w-full max-w-screen-xl px-4 py-8">
-        <PaymentCalculator
-          tuitionFees={course.tuitionFees || (isDiploma ? 'KES 100,000' : 'KES 48,000')}
-          isDiploma={isDiploma}
-          totalSemesters={isDiploma ? 4 : 1}
-        />
-      </div>
-
-      <CourseMentors mentors={course.courseLeadersMentors} assets={courseAssets || []} />
-      <CourseStudents
-        portfolios={course.studentPortfolio || []}
-        assets={courseAssets}
-        testimonials={course.studentReviews || []}
-        totalHistoricalEnrollment={course.totalHistoricalEnrollment}
-      />
-
-      {/* NEW: Certificate-to-Diploma Upsell - Only shows on certificate pages */}
-      {!isDiploma && (
-        <div className="mx-auto w-full max-w-screen-xl px-4 py-8">
-          <CertificateUpgrade certificateName={course.name} certificateFee={48000} diplomaFee={100000} />
-        </div>
-      )}
-
-      {/* NEW: Program Comparison Table - Helps undecided visitors */}
-      <ProgramComparison
-        certificateSlug={isDiploma ? slug.replace('diploma', 'certificate') : slug}
-        diplomaSlug={isDiploma ? slug : slug.replace('certificate', 'diploma')}
-      />
-
-      <CourseApplicationProcess processes={course.applicationProcesses || []} />
-
-      {/* Related Articles Section - Improves Engagement */}
-      {courseArticles && courseArticles.length > 0 && (
-        <div className="mx-auto w-full max-w-screen-xl px-4 py-16 xl:px-0">
-          <CourseArticles courseName={course.name} courseTags={course.tags || []} articles={courseArticles} />
-        </div>
-      )}
-
-      {/* Enhanced Video Section with YouTube Integration - Temporarily disabled */}
-      {/* <CourseVideoSection course={course} slug={slug} youtubeVideos={youtubeVideos} /> */}
-
-      <CMSCourseFAQs courseSlug={slug} />
+      <CoursePageLayout course={course} courseAssets={courseAssets} slug={slug} courseArticles={courseArticles} />
     </MainLayout>
   )
 }

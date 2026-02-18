@@ -1,5 +1,4 @@
 import React from 'react'
-import { Card, Image, Text, Button, Group } from '@mantine/core'
 import { IconCheck, IconExclamationCircle, IconPlayerPlay } from '@tabler/icons-react'
 import Link from 'next/link'
 
@@ -15,49 +14,51 @@ type Props = {
 
 export default function CourseVideoCard(props: Props) {
   return (
-    <Card shadow="sm" padding="lg" radius="md" withBorder className="max-w-[600px] sm:w-full">
-      <Card.Section>
+    <div className="max-w-[600px] rounded-xl border border-gray-200 bg-white shadow-sm sm:w-full">
+      <div>
         {props.courseVideo ? (
           <VideoPlayer videoUrl={props.courseVideo.fields.file.url} />
         ) : (
-          <Image
+          <img
+            className="h-auto w-full"
             src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png"
             alt="about course"
           />
         )}
-      </Card.Section>
-      <Card.Section className="px-6">
+      </div>
+      <div className="px-6">
         <div className="flex py-4">
           <IconCheck size={24} className="text-admiRed" />
           <div className="font-proxima">
-            <Text pl={16}>Intakes: {props.intakes}</Text>
+            <p className="text-gray-700" style={{ paddingLeft: 16 }}>
+              Intakes: {props.intakes}
+            </p>
           </div>
         </div>
 
         {/* Watch Full Video Button */}
         {props.courseVideo && props.courseSlug && (
-          <Group justify="center" pb="md">
-            <Button
-              component={Link}
+          <div className="flex flex-wrap justify-center" style={{ paddingBottom: '1rem' }}>
+            <Link
               href={`/watch/${props.courseSlug}`}
-              leftSection={<IconPlayerPlay size={16} />}
-              variant="outline"
-              color="red"
-              size="sm"
+              className="inline-flex items-center gap-2 rounded-lg border border-gray-400 bg-white px-4 py-2 font-medium text-gray-900 transition"
             >
+              <IconPlayerPlay size={16} />
               Watch Full Video
-            </Button>
-          </Group>
+            </Link>
+          </div>
         )}
-      </Card.Section>
-      <Card.Section className="bg-[#F76335] px-6 py-4 text-white">
+      </div>
+      <div className="bg-brand-orange px-6 py-4 text-white">
         <div className="flex">
           <IconExclamationCircle size={24} />
           <div className="font-proxima">
-            <Text pl={16}>Venue: {props.venue || 'Caxton House, Nairobi'}</Text>
+            <p className="text-gray-700" style={{ paddingLeft: 16, color: 'inherit' }}>
+              Venue: {props.venue || 'Caxton House, Nairobi'}
+            </p>
           </div>
         </div>
-      </Card.Section>
-    </Card>
+      </div>
+    </div>
   )
 }

@@ -1,129 +1,236 @@
-import Image from 'next/image'
-import { Box, Card, Divider, Modal } from '@mantine/core'
-import { useDisclosure } from '@mantine/hooks'
+import Link from 'next/link'
+import { IconCircleCheckFilled, IconArrowRight } from '@tabler/icons-react'
+import type { GetStaticProps, InferGetStaticPropsType } from 'next'
 
 import { MainLayout } from '@/layouts/v3/MainLayout'
-import { Paragraph, Title } from '@/components/ui'
 import { PageSEO } from '@/components/shared/v3'
-import { CompanyValuesCard, LearnMoreCard } from '@/components/cards'
-import { ADMI_FELLOWSHIP_VALUES, ADMI_FELLOWSHIP_DEPARTMENTS } from '@/utils'
-import { useIsMobile } from '@/hooks/useIsMobile'
+import { getIcon } from '@/utils/icon-map'
+import { getPageCached } from '@/utils/contentful-cached'
+import type { FellowshipPageData, FellowshipBenefitCMS, ApplicationStep } from '@/types/fellowship'
 
-import ImageFellowshipLanding from '@/assets/images/fellowship-landing.png'
-import IconBgImageYellow from '@/assets/icons/ellipse-yellow.svg'
-import IconBgImageOrange from '@/assets/icons/ellipse-orange-full.svg'
+/* ------------------------------------------------------------------ */
+/*  Fallback data (used when Contentful is unavailable)                */
+/* ------------------------------------------------------------------ */
 
-export default function FellowshipPage() {
-  const isMobile = useIsMobile()
-  const [opened, { open, close }] = useDisclosure(false)
+const FALLBACK: FellowshipPageData = {
+  benefits: [
+    { icon: 'users', iconColor: '#0A3D3D', title: 'Mentorship', description: 'One-on-one guidance from industry leaders and seasoned creative professionals throughout the programme.' },
+    { icon: 'cash', iconColor: '#C1272D', title: 'Funding', description: 'Financial support for creative projects, equipment, and professional development opportunities.' },
+    { icon: 'network', iconColor: '#EF7B2E', title: 'Industry Access', description: 'Exclusive access to industry events, studio visits, networking opportunities, and potential internships.' },
+    { icon: 'layout-grid', iconColor: '#8EBFB0', title: 'Portfolio Development', description: 'Structured support to build an industry-standard portfolio that showcases your unique creative vision.' }
+  ],
+  eligibilityCriteria: [
+    'Graduate of any ADMI diploma or professional certificate programme',
+    'Strong creative portfolio demonstrating technical skill and originality',
+    'Demonstrated leadership potential and commitment to the creative industries',
+    'Clear vision for a creative project or venture to develop during the fellowship',
+    'Available to commit to the full 12-month programme'
+  ],
+  applicationSteps: [
+    { number: '1', bgColor: '#EF7B2E', title: 'Submit Application', description: 'Complete the online application form with your personal details, creative statement, and project proposal.' },
+    { number: '2', bgColor: '#0A3D3D', title: 'Portfolio Review', description: 'Our panel of industry experts and faculty members review your portfolio and creative body of work.' },
+    { number: '3', bgColor: '#C1272D', title: 'Interview', description: 'Shortlisted candidates are invited for a personal interview to discuss their vision, goals, and fellowship plans.' }
+  ],
+  seoTitle: 'Fellowship',
+  seoDescription: 'The ADMI Fellowship is a 12-month programme for outstanding graduates, offering mentorship, funding, industry access, and portfolio development to nurture Africa\'s next creative leaders.'
+}
 
+/* ------------------------------------------------------------------ */
+/*  Data fetching                                                      */
+/* ------------------------------------------------------------------ */
+
+export const getStaticProps: GetStaticProps<{ page: FellowshipPageData }> = async () => {
+  let page = FALLBACK
+
+  try {
+    const entry = await getPageCached('fellowshipPage', 'page:fellowship')
+    if (entry?.fields) {
+      const f = entry.fields
+      page = {
+        benefits: f.benefits || FALLBACK.benefits,
+        eligibilityCriteria: f.eligibilityCriteria || FALLBACK.eligibilityCriteria,
+        applicationSteps: f.applicationSteps || FALLBACK.applicationSteps,
+        seoTitle: f.seoTitle || FALLBACK.seoTitle,
+        seoDescription: f.seoDescription || FALLBACK.seoDescription
+      }
+    }
+  } catch (error) {
+    console.error('[Fellowship] CMS fetch failed, using fallback:', error)
+  }
+
+  return {
+    props: { page },
+    revalidate: 300
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/*  Page                                                               */
+/* ------------------------------------------------------------------ */
+
+export default function FellowshipPage({ page }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
-    <MainLayout footerBgColor="white">
+    <MainLayout footerBgColor="#1a1a1a">
       <PageSEO
-        title="Fellowship"
-        description="Discover fellowship opportunities at ADMI for passionate individuals from diverse backgrounds. Join our vibrant academic community and contribute to creative media and technology education across various departments."
-        keywords="ADMI fellowship, fellowship opportunities, academic fellowship, international graduates, teaching fellowship, research opportunities, creative media fellowship"
+        title={page.seoTitle}
+        description={page.seoDescription}
+        keywords="ADMI fellowship, creative fellowship Kenya, mentorship programme, creative leaders Africa, ADMI graduates, fellowship application"
       />
-      <Modal radius="lg" opened={opened} onClose={close} size={'72rem'}>
-        <LearnMoreCard />
-      </Modal>
+
       <div className="w-full">
-        {/* HEADER */}
-        <Box className="relative w-full" onClick={open}>
-          <Image
-            src={ImageFellowshipLanding}
-            placeholder="empty"
-            alt="Fellowship Banner"
-            fill
-            priority
-            sizes="100vw"
-            className="absolute inset-0 z-0"
-            style={{ objectFit: 'cover' }}
-          />
-          {/* Radial Gradient Overlay */}
-          <div
-            className="z-5 absolute inset-0"
-            style={{
-              background: 'linear-gradient(to bottom, rgba(0,0,0,0.3) 50%, rgba(9, 113, 96, 1) 100%)'
-            }}
-          ></div>
-          <Box className="relative z-10 mx-auto flex h-[50vh] w-full max-w-screen-xl flex-row px-4 sm:flex-row 2xl:px-0">
-            <Box className="mt-[12vh] flex w-full flex-col">
-              <Title label="Fellowship" color="admiShamrok" size={isMobile ? '36px' : '64px'} />
-              <Title label="Opportunities" color="#F1FE37" size={isMobile ? '36px' : '64px'} />
-              <Box className="grow"></Box>
-              <Box className="flex w-full flex-col pt-12 sm:h-[180px] sm:flex-row">
-                <Paragraph fontFamily="font-nexa" className="my my-auto text-white sm:w-1/2 sm:pr-6">
-                  At Africa Digital Media Institute (ADMI), we are excited to offer fellowship opportunities that
-                  empower individuals from diverse backgrounds, including international graduates, to contribute to our
-                  vibrant academic community.
-                </Paragraph>
-                <Divider
-                  orientation={isMobile ? 'horizontal' : 'vertical'}
-                  size={2}
-                  color="#F5FFFD"
-                  my={isMobile ? 16 : 0}
-                  opacity={'20%'}
-                  h={isMobile ? '' : '100%'}
-                />
-                <Paragraph fontFamily="font-nexa" className="my-auto text-white sm:w-1/2 sm:pl-6">
-                  Our fellowship program is designed to attract passionate individuals who are eager to share their
-                  knowledge and skills across various departments.
-                </Paragraph>
-              </Box>
-            </Box>
-          </Box>
-        </Box>
-        {/* Floating Card */}
-        <div className="w-full px-4 2xl:px-0">
-          <div className="absolute left-1/2 top-[640px] z-10 w-full max-w-screen-xl -translate-x-1/2 transform px-4 sm:top-[640px] 2xl:px-0">
-            <CompanyValuesCard values={ADMI_FELLOWSHIP_VALUES} showRightIcons={false} />
+        {/* ============================================================ */}
+        {/*  1. HERO                                                      */}
+        {/* ============================================================ */}
+        <section
+          className="relative w-full overflow-hidden"
+          style={{ background: 'linear-gradient(180deg, #0A3D3D 0%, #061E1E 100%)' }}
+        >
+          <div className="section-container flex min-h-[420px] flex-col justify-center py-20 pt-28 md:py-24 md:pt-36">
+            <div className="mb-5 flex items-center gap-3">
+              <span className="block h-[3px] w-10 bg-secondary" />
+              <span className="font-proxima text-[13px] font-bold uppercase tracking-[3px] text-secondary">Fellowship</span>
+            </div>
+            <h1 className="max-w-[700px] font-proxima text-[36px] font-bold leading-[1.15] text-white md:text-[48px]">
+              ADMI Fellowship Programme
+            </h1>
+            <p className="mt-5 max-w-[650px] font-proxima text-[17px] leading-[1.6] text-white/80 md:text-[18px]">
+              Nurturing emerging creative leaders through mentorship, funding, and industry access.
+            </p>
           </div>
-        </div>
-        <Box className="h-[400px] w-full sm:h-[200px]" bg={'#097160'}>
-          {' '}
-        </Box>
-        {/* ACADEMIC CONTRIBUTION */}
-        <Box className="relative w-full">
-          {/* BACKGROUND IMAGES */}
-          <div className="absolute left-[54%] top-[24vh] h-fit w-full -translate-x-1/2 transform">
-            <div className="flex w-full justify-end pr-[10%]">
-              <Image src={IconBgImageYellow} alt={'background image'} />
+        </section>
+
+        {/* ============================================================ */}
+        {/*  2. WHAT IS THE FELLOWSHIP                                     */}
+        {/* ============================================================ */}
+        <section className="w-full bg-white">
+          <div className="section-container section-padding">
+            <div className="flex flex-col items-center gap-12 md:flex-row md:gap-16">
+              <div className="flex-1">
+                <div className="mb-4 flex items-center gap-3">
+                  <span className="block h-[3px] w-10 bg-brand-red" />
+                  <span className="font-proxima text-[13px] font-bold uppercase tracking-[3px] text-brand-red">About the Programme</span>
+                </div>
+                <h2 className="font-proxima text-[30px] font-bold leading-[1.15] text-admi-black md:text-[36px]">
+                  What is the ADMI Fellowship?
+                </h2>
+                <p className="mt-6 max-w-[520px] font-proxima text-[16px] leading-[1.7] text-[#555]">
+                  The ADMI Fellowship is a 12-month programme designed for exceptional graduates who demonstrate outstanding creative talent and leadership potential. Fellows receive dedicated mentorship from industry leaders, funding support for creative projects, privileged access to industry networks, and structured portfolio development.
+                </p>
+                <p className="mt-4 max-w-[520px] font-proxima text-[16px] leading-[1.7] text-[#555]">
+                  This programme is our commitment to nurturing the next generation of creative leaders who will shape Africa&apos;s creative industries.
+                </p>
+              </div>
+              <div className="w-full flex-shrink-0 md:w-[480px]">
+                <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-[#0A3D3D]/10">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="https://images.unsplash.com/photo-1537861295351-76bb831ece99?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=1080"
+                    alt="Creative professionals collaborating in a studio environment"
+                    className="absolute inset-0 h-full w-full object-cover"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
             </div>
           </div>
+        </section>
 
-          <div className="absolute left-[60vw] top-[280px] h-fit w-full -translate-x-1/2 transform">
-            <div className="flex w-full">
-              <Image src={IconBgImageOrange} alt={'background image'} />
+        {/* ============================================================ */}
+        {/*  3. PROGRAMME BENEFITS                                         */}
+        {/* ============================================================ */}
+        <section className="w-full bg-[#F5F5F5]">
+          <div className="section-container section-padding">
+            <div className="mb-4 flex items-center gap-3">
+              <span className="block h-[3px] w-10 bg-secondary" />
+              <span className="font-proxima text-[13px] font-bold uppercase tracking-[3px] text-[#0A3D3D]">Programme Benefits</span>
             </div>
-          </div>
-          <Box className="relative mx-auto w-full max-w-screen-xl px-4 pb-8 pt-96 lg:pt-64 xl:pt-32 2xl:px-0">
-            <Box className="w-full">
-              <div className="my-8 w-fit">
-                <Title label="Areas of Contribution" size="24px" color="black" />
-              </div>
-              <div className="mb-8 w-full max-w-screen-md">
-                <Paragraph fontFamily="font-nexa" className="py-4">
-                  Fellows at ADMI can serve in various departments, including but not limited to:
-                </Paragraph>
-              </div>
-            </Box>
-
-            <div className="relative z-20 flex flex-wrap justify-between sm:flex-row">
-              {ADMI_FELLOWSHIP_DEPARTMENTS.map((dept, index) => (
-                <Card shadow="md" className="mb-8 w-[48%] sm:w-[24%]" key={`dept-${index}`}>
-                  <div className="flex flex-col pt-4 sm:flex-row sm:px-4">
-                    <dept.icon width={48} height={48} color={dept.iconColor} />
-                    <Title size={isMobile ? '14px' : '18px'} label={dept.name} color="black" className="sm:pl-2" />
+            <h2 className="font-proxima text-[30px] font-bold leading-[1.15] text-admi-black md:text-[36px]">
+              What Fellows Receive
+            </h2>
+            <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-4">
+              {page.benefits.map((benefit: FellowshipBenefitCMS) => {
+                const Icon = getIcon(benefit.icon)
+                return (
+                  <div key={benefit.title} className="flex flex-col rounded-xl bg-white p-7 transition-shadow hover:shadow-md">
+                    {Icon && <Icon size={28} style={{ color: benefit.iconColor }} stroke={1.5} />}
+                    <h3 className="mt-4 font-proxima text-[18px] font-bold text-admi-black">{benefit.title}</h3>
+                    <p className="mt-3 font-proxima text-[14px] leading-[1.6] text-[#555]">{benefit.description}</p>
                   </div>
-                  <Paragraph className="py-6 sm:px-4" fontFamily="font-nexa" size={isMobile ? '16px' : '18px'}>
-                    {dept.description}
-                  </Paragraph>
-                </Card>
+                )
+              })}
+            </div>
+          </div>
+        </section>
+
+        {/* ============================================================ */}
+        {/*  4. ELIGIBILITY                                                */}
+        {/* ============================================================ */}
+        <section className="w-full bg-white">
+          <div className="section-container section-padding">
+            <div className="mb-4 flex items-center gap-3">
+              <span className="block h-[3px] w-10 bg-brand-red" />
+              <span className="font-proxima text-[13px] font-bold uppercase tracking-[3px] text-brand-red">Eligibility</span>
+            </div>
+            <h2 className="font-proxima text-[30px] font-bold leading-[1.15] text-admi-black md:text-[36px]">Who Can Apply</h2>
+            <p className="mt-6 max-w-[700px] font-proxima text-[16px] leading-[1.6] text-[#555]">
+              The fellowship is open to outstanding ADMI graduates who meet the following criteria:
+            </p>
+            <ul className="mt-8 space-y-4 pl-2">
+              {page.eligibilityCriteria.map((criterion: string) => (
+                <li key={criterion} className="flex items-start gap-4">
+                  <IconCircleCheckFilled size={22} className="mt-0.5 flex-shrink-0 text-secondary" />
+                  <span className="font-proxima text-[15px] leading-[1.5] text-[#333]">{criterion}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
+        {/* ============================================================ */}
+        {/*  5. HOW TO APPLY                                               */}
+        {/* ============================================================ */}
+        <section className="w-full bg-[#F5F5F5]">
+          <div className="section-container section-padding">
+            <div className="mb-4 flex items-center gap-3">
+              <span className="block h-[3px] w-10 bg-brand-orange" />
+              <span className="font-proxima text-[13px] font-bold uppercase tracking-[3px] text-brand-orange">Application Process</span>
+            </div>
+            <h2 className="font-proxima text-[30px] font-bold leading-[1.15] text-admi-black md:text-[36px]">How to Apply</h2>
+            <div className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-3">
+              {page.applicationSteps.map((step: ApplicationStep) => (
+                <div key={step.number} className="flex flex-col rounded-xl bg-white p-8 transition-shadow hover:shadow-md">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full" style={{ backgroundColor: step.bgColor }}>
+                    <span className="font-proxima text-[20px] font-bold text-white">{step.number}</span>
+                  </div>
+                  <h3 className="mt-4 font-proxima text-[20px] font-bold text-admi-black">{step.title}</h3>
+                  <p className="mt-3 font-proxima text-[14px] leading-[1.6] text-[#555]">{step.description}</p>
+                </div>
               ))}
             </div>
-          </Box>
-        </Box>
+          </div>
+        </section>
+
+        {/* ============================================================ */}
+        {/*  6. CTA                                                        */}
+        {/* ============================================================ */}
+        <section className="w-full" style={{ background: 'linear-gradient(180deg, #0A3D3D 0%, #061E1E 100%)' }}>
+          <div className="section-container section-padding text-center">
+            <h2 className="font-proxima text-[30px] font-bold leading-[1.15] text-white md:text-[36px]">
+              Applications Open for 2026 Cohort
+            </h2>
+            <p className="mx-auto mt-4 max-w-[540px] font-proxima text-[16px] leading-[1.6] text-white/80">
+              Take the next step in your creative career. Apply for the ADMI Fellowship today.
+            </p>
+            <div className="mt-8">
+              <Link
+                href="/apply"
+                className="inline-flex items-center gap-2 rounded-lg bg-secondary px-8 py-3.5 font-proxima text-[16px] font-semibold text-[#0A3D3D] transition-opacity hover:opacity-90"
+              >
+                Apply for Fellowship <IconArrowRight size={18} />
+              </Link>
+            </div>
+          </div>
+        </section>
       </div>
     </MainLayout>
   )
