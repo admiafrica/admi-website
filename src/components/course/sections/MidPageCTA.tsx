@@ -110,7 +110,8 @@ export default function MidPageCTA({ courseName, courseSlug }: MidPageCTAProps) 
       // Full conversion tracking
       if (typeof window !== 'undefined') {
         const formattedPhone = `+${countryCode}${cleanPhone}`
-        
+        const transactionId = storedUTMs.ga_client_id || `lead_${Date.now()}_${leadScore}`
+
         if (window.dataLayer) {
           // Google Ads conversion
           window.dataLayer.push({
@@ -118,7 +119,7 @@ export default function MidPageCTA({ courseName, courseSlug }: MidPageCTAProps) 
             send_to: 'AW-16679471170/F0GVCJjHwNQZEMKQspE-',
             value: conversionValue,
             currency: 'USD',
-            transaction_id: storedUTMs.ga_client_id || `lead_${Date.now()}_${leadScore}`,
+            transaction_id: transactionId,
             email: formData.email.trim().toLowerCase(),
             phone_number: formattedPhone,
             first_name: formData.firstName.trim(),
@@ -130,9 +131,10 @@ export default function MidPageCTA({ courseName, courseSlug }: MidPageCTAProps) 
             form_location: 'mid_page_cta'
           })
 
-          // GA4 generate_lead event with enhanced conversions data
+          // GA4 generate_lead event with enhanced conversions + CAPI dedup data
           window.dataLayer.push({
             event: 'generate_lead',
+            event_id: transactionId,
             value: conversionValue,
             currency: 'USD',
             user_data: {
@@ -152,7 +154,7 @@ export default function MidPageCTA({ courseName, courseSlug }: MidPageCTAProps) 
             send_to: 'AW-16679471170/F0GVCJjHwNQZEMKQspE-',
             value: conversionValue,
             currency: 'USD',
-            transaction_id: storedUTMs.ga_client_id || `lead_${Date.now()}_${leadScore}`,
+            transaction_id: transactionId,
             email: formData.email.trim().toLowerCase(),
             phone_number: formattedPhone,
             first_name: formData.firstName.trim(),
@@ -163,9 +165,11 @@ export default function MidPageCTA({ courseName, courseSlug }: MidPageCTAProps) 
           })
         }
 
-        // Meta Pixel Lead event
+        // Meta Pixel Lead event (deduplication handled inside trackMetaEvent)
         trackMetaEvent('Lead', {
           content_name: courseName,
+          content_ids: [`admi-course-${courseSlug}`],
+          content_type: 'product',
           content_category: 'course_enquiry',
           value: conversionValue,
           currency: 'USD',
