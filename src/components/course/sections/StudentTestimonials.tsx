@@ -1,3 +1,6 @@
+import Link from 'next/link'
+import { trackCTAClick } from '@/utils/track-event'
+
 interface Testimonial {
   quote: string
   name: string
@@ -8,9 +11,10 @@ interface Testimonial {
 
 interface StudentTestimonialsProps {
   testimonials: Testimonial[]
+  courseName?: string
 }
 
-export default function StudentTestimonials({ testimonials }: StudentTestimonialsProps) {
+export default function StudentTestimonials({ testimonials, courseName }: StudentTestimonialsProps) {
   if (!testimonials.length) return null
 
   return (
@@ -62,6 +66,18 @@ export default function StudentTestimonials({ testimonials }: StudentTestimonial
               </article>
             )
           })}
+        </div>
+
+        {/* Inline CTA */}
+        <div className="mt-10 flex flex-col items-center gap-3 text-center">
+          <p className="font-proxima text-base text-[#555555]">Join our community of creative professionals</p>
+          <Link
+            href="/enquiry"
+            onClick={() => trackCTAClick('prospectus', 'testimonials', courseName)}
+            className="inline-block rounded-lg border-2 border-brand-red px-8 py-3 font-proxima text-sm font-bold text-brand-red transition-colors hover:bg-brand-red hover:text-white"
+          >
+            Request Prospectus
+          </Link>
         </div>
       </div>
     </section>

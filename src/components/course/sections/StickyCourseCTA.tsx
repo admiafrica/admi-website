@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { IconX, IconClock } from '@tabler/icons-react'
+import { trackCTAClick } from '@/utils/track-event'
 
 interface StickyCourseCTAProps {
   courseName: string
@@ -43,6 +44,7 @@ export default function StickyCourseCTA({ courseName, courseSlug }: StickyCourse
             </p>
             <Link
               href={`/enquiry?course=${encodeURIComponent(courseSlug)}`}
+              onClick={() => trackCTAClick('apply', 'sticky_banner', courseName)}
               className="ml-2 inline-flex items-center rounded bg-black px-3 py-1 font-proxima text-[12px] font-bold text-white transition hover:bg-gray-800"
             >
               Apply Now

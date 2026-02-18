@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { IconX } from '@tabler/icons-react'
+import { trackCTAClick } from '@/utils/track-event'
 
 interface IntakeBannerProps {
   visible: boolean
@@ -19,6 +20,7 @@ export default function IntakeBanner({ visible, onDismiss }: IntakeBannerProps) 
         </span>
         <Link
           href="/courses"
+          onClick={() => trackCTAClick('apply', 'intake_banner')}
           className="ml-1 font-proxima text-sm font-bold text-brand-orange underline underline-offset-2 transition-colors hover:text-white"
         >
           Apply Now

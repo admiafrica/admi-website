@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { IconClock, IconCalendar, IconCheck } from '@tabler/icons-react'
 import { trackWhatsAppClick, ADMI_WHATSAPP_NUMBER } from '@/utils/whatsapp-attribution'
+import { trackCTAClick } from '@/utils/track-event'
 
 interface FinalCTAProps {
   courseName?: string
@@ -45,6 +46,7 @@ export default function FinalCTA({ courseName = 'Creative Arts' }: FinalCTAProps
         <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
           <Link
             href="/enquiry"
+            onClick={() => trackCTAClick('apply', 'final_cta', courseName)}
             className="inline-flex items-center rounded-lg bg-white px-8 py-3 font-proxima text-[17px] font-bold text-brand-red transition-colors hover:bg-gray-100"
           >
             Apply Now
@@ -52,9 +54,10 @@ export default function FinalCTA({ courseName = 'Creative Arts' }: FinalCTAProps
 
           <Link
             href="/enquiry"
+            onClick={() => trackCTAClick('prospectus', 'final_cta', courseName)}
             className="inline-flex items-center rounded-lg border-2 border-white bg-white/15 px-8 py-3 font-proxima text-[17px] font-medium text-white transition-opacity hover:bg-white/25"
           >
-            Enquire Now
+            Request Prospectus
           </Link>
 
           <a

@@ -8,6 +8,7 @@ declare global {
     ) => void
     dataLayer: any[]
     va?: (event: string, name: string, data?: any) => void
+    fbq?: (...args: any[]) => void
   }
 }
 

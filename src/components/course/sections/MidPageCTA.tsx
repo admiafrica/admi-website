@@ -5,6 +5,7 @@ import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
 import { IconCheck, IconLoader2 } from '@tabler/icons-react'
 import { getStoredUTMs, getCurrentPageInfo } from '@/utils/utm-tracking'
+import { trackMetaEvent } from '@/utils/track-event'
 
 interface MidPageCTAProps {
   courseName: string
@@ -161,6 +162,14 @@ export default function MidPageCTA({ courseName, courseSlug }: MidPageCTAProps) 
             study_timeline: formData.intake
           })
         }
+
+        // Meta Pixel Lead event
+        trackMetaEvent('Lead', {
+          content_name: courseName,
+          content_category: 'course_enquiry',
+          value: conversionValue,
+          currency: 'USD',
+        })
       }
 
       setSubmitted(true)
