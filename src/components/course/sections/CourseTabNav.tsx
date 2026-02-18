@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { useHeadroom } from '@/hooks/useHeadroom'
 
 type TabValue = 'overview' | 'deep-dive'
 
@@ -15,6 +16,7 @@ const TABS: { value: TabValue; label: string; hash: string }[] = [
 export default function CourseTabNav({ activeTab, onTabChange }: CourseTabNavProps) {
   const [isStuck, setIsStuck] = useState(false)
   const sentinelRef = useRef<HTMLDivElement>(null)
+  const headerPinned = useHeadroom({ fixedAt: 120 })
 
   useEffect(() => {
     const hash = window.location.hash
@@ -35,12 +37,12 @@ export default function CourseTabNav({ activeTab, onTabChange }: CourseTabNavPro
       ([entry]) => {
         setIsStuck(!entry.isIntersecting)
       },
-      { threshold: 0, rootMargin: '-81px 0px 0px 0px' }
+      { threshold: 0, rootMargin: headerPinned ? '-81px 0px 0px 0px' : '0px' }
     )
 
     observer.observe(sentinel)
     return () => observer.disconnect()
-  }, [])
+  }, [headerPinned])
 
   const handleTabClick = (tab: TabValue) => {
     const selected = TABS.find((t) => t.value === tab)
@@ -55,9 +57,10 @@ export default function CourseTabNav({ activeTab, onTabChange }: CourseTabNavPro
       {/* Sentinel to detect when tab nav becomes stuck */}
       <div ref={sentinelRef} className="h-0 w-full" aria-hidden="true" />
       <nav
-        className={`sticky top-[81px] z-40 w-full border-b bg-white transition-shadow duration-300 ${
+        className={`sticky z-40 w-full border-b bg-white transition-all duration-300 ${
           isStuck ? 'border-gray-300 shadow-[0_4px_12px_rgba(0,0,0,0.1)]' : 'border-gray-200'
         }`}
+        style={{ top: headerPinned ? '81px' : '0px' }}
         aria-label="Course content navigation"
       >
         <div className="section-container">
