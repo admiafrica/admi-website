@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import {
   CourseHeroV2,
   QuickFactsBar,
@@ -39,6 +39,7 @@ import { getDiplomaData } from '@/data/diploma-course-data'
 import { getCertificateData } from '@/data/certificate-course-data'
 import { getPlainTextFromRichText, ensureProtocol } from '@/utils'
 import { getCoursePricing } from '@/utils/course-pricing'
+import { trackEvent } from '@/utils/track-event'
 
 // Unified static data lookup: diploma data > certificate data > generic fallback
 function getStaticCourseData(slug: string): CoursePageData & { tagline?: string } {
@@ -211,6 +212,40 @@ export default function CoursePageLayout({ course, slug, courseArticles = [] }: 
   const [activeTab, setActiveTab] = useState<'overview' | 'deep-dive'>('overview')
   const { sections } = useCMSSections(slug)
   const cmsFaqs = useCMSFAQs(slug)
+
+  // --- Scroll depth tracking ---
+  const firedMilestones = useRef<Set<number>>(new Set())
+
+  useEffect(() => {
+    const milestones = [25, 50, 75, 100]
+    const courseName = course?.name || slug
+
+    const handleScroll = () => {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop
+      const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight
+      if (docHeight <= 0) return
+
+      const percent = Math.round((scrollTop / docHeight) * 100)
+
+      for (const milestone of milestones) {
+        if (percent >= milestone && !firedMilestones.current.has(milestone)) {
+          firedMilestones.current.add(milestone)
+          trackEvent('scroll_depth', {
+            percent: milestone,
+            page_type: 'course',
+            course_name: courseName,
+            course_slug: slug,
+          })
+        }
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [slug, course?.name])
 
   // Unified static data: course-specific mock data with fallback chain
   const staticData = getStaticCourseData(slug)
@@ -393,7 +428,7 @@ export default function CoursePageLayout({ course, slug, courseArticles = [] }: 
             {isDiploma && <IndustryValidation quotes={diplomaData?.industryQuotes} companies={diplomaData?.hiringCompanies} />}
 
             {/* ApplicationSteps: show ease of application early */}
-            <ApplicationSteps steps={staticData.applicationSteps} />
+            <ApplicationSteps steps={staticData.applicationSteps} courseName={safeString(course.name)} />
 
             {/* PaymentPlan: CMS or course-specific static data */}
             <PaymentPlan
@@ -420,7 +455,7 @@ export default function CoursePageLayout({ course, slug, courseArticles = [] }: 
               quote: t.quote,
               program: safeString(course.name),
               type: (t.role.toLowerCase().includes('current') ? 'current' : 'alumni') as 'current' | 'alumni'
-            }))} />
+            }))} courseName={safeString(course.name)} />
 
             {/* MidPageCTA: capture mid-funnel leads with simplified form */}
             <MidPageCTA courseName={safeString(course.name)} courseSlug={slug} />

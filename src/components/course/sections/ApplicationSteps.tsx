@@ -1,8 +1,12 @@
+import Link from 'next/link'
+import { trackCTAClick } from '@/utils/track-event'
+
 interface ApplicationStepsProps {
   steps: { step: number; title: string; description: string }[]
+  courseName?: string
 }
 
-export default function ApplicationSteps({ steps }: ApplicationStepsProps) {
+export default function ApplicationSteps({ steps, courseName }: ApplicationStepsProps) {
   return (
     <section className="section-padding w-full bg-[#f9f9f9]" aria-label="Application steps">
       <div className="section-container">
@@ -27,6 +31,17 @@ export default function ApplicationSteps({ steps }: ApplicationStepsProps) {
               <p className="font-proxima text-[15px] leading-[1.6] text-[#666666]">{item.description}</p>
             </article>
           ))}
+        </div>
+
+        {/* Inline CTA */}
+        <div className="mt-10 flex justify-center">
+          <Link
+            href="/enquiry"
+            onClick={() => trackCTAClick('apply', 'application_steps', courseName)}
+            className="inline-block rounded-lg bg-brand-red px-8 py-3 font-proxima text-sm font-bold text-white transition-opacity hover:opacity-90"
+          >
+            Get Started Today
+          </Link>
         </div>
       </div>
     </section>

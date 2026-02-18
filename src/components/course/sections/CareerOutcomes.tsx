@@ -1,3 +1,6 @@
+import Link from 'next/link'
+import { trackCTAClick } from '@/utils/track-event'
+
 interface Career {
   title: string
   description: string
@@ -58,6 +61,18 @@ export default function CareerOutcomes({ careers, stats, courseName }: CareerOut
               <p className="mt-1 font-proxima text-sm text-[#999999]">{stat.label}</p>
             </div>
           ))}
+        </div>
+
+        {/* Inline CTA */}
+        <div className="mt-12 flex flex-col items-center gap-4 text-center">
+          <p className="font-proxima text-lg text-[#cccccc]">Start Your Creative Career</p>
+          <Link
+            href="/enquiry"
+            onClick={() => trackCTAClick('apply', 'career_outcomes', courseName)}
+            className="inline-block rounded-lg bg-brand-red px-8 py-3 font-proxima text-sm font-bold text-white transition-opacity hover:opacity-90"
+          >
+            Apply Now
+          </Link>
         </div>
       </div>
     </section>

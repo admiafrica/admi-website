@@ -77,6 +77,9 @@
     "ads:comprehensive": "node scripts/analytics/comprehensive-campaign-analysis.js",
     "ads:utm-audit": "node scripts/analytics/utm-tracking-audit.js",
     "ads:test-utm": "node scripts/tests/test-utm-tracking.js",
+    "ads:export-applicants": "node scripts/google-ads/export-applicants-for-google.js",
+    "ads:sync-conversions": "node scripts/google-ads/sync-enhanced-conversions.js",
+    "ads:upload-audience": "node scripts/google-ads/upload-customer-match.js",
     "academic-pathways:setup": "node scripts/contentful/create-academic-pathways.js",
     "academic-pathways:setup-entries": "node scripts/contentful/setup-academic-pathways-entries.js",
     "academic-pathways:setup-simple": "node scripts/contentful/setup-academic-pathways-simple.js",
@@ -88,7 +91,10 @@
     "assets:migrate": "node scripts/migrate-assets-to-s3.js",
     "assets:migrate-create": "node scripts/migrate-assets-to-s3.js --create-bucket",
     "assets:migrate-dry": "node scripts/migrate-assets-to-s3.js --dry-run",
-    "assets:migrate-test": "node scripts/migrate-assets-to-s3.js --dry-run --limit=5"
+    "assets:migrate-test": "node scripts/migrate-assets-to-s3.js --dry-run --limit=5",
+    "setup:reengagement-fields": "node scripts/setup-brevo-reengagement-fields.js",
+    "flag:contacts-needing-attribution": "node scripts/flag-contacts-needing-attribution.js",
+    "flag:contacts-dry-run": "node scripts/flag-contacts-needing-attribution.js --dry-run"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.857.0",

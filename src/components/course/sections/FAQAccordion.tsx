@@ -27,17 +27,6 @@ export default function FAQAccordion({ faqs, courseName }: FAQAccordionProps) {
             <p className="font-proxima text-[17px] leading-[1.6] text-[#666666]">
               Find answers to the most frequently asked questions about admissions, curriculum, fees, and career outcomes.
             </p>
-            <div className="mt-8 flex items-center gap-4">
-              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-brand-red/10">
-                <svg className="h-6 w-6 text-brand-red" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-              </div>
-              <div>
-                <p className="font-proxima text-sm font-bold text-[#171717]">Still have questions?</p>
-                <a href="/contact" className="font-proxima text-sm text-brand-red hover:underline">Talk to an advisor →</a>
-              </div>
-            </div>
           </div>
 
           {/* Right Column - Accordion */}
