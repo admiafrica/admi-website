@@ -2,6 +2,7 @@ import { useRouter } from 'next/router'
 import { useEffect, useState, useMemo } from 'react'
 
 import { MainLayout } from '@/layouts/v3/MainLayout'
+import { getCoursesCached, getProgramsCached } from '@/utils/contentful-cached'
 import { PageSEO } from '@/components/shared/v3'
 import CoursesHero from '@/components/courses/CoursesHero'
 import CoursesAccreditationBar from '@/components/courses/CoursesAccreditationBar'
@@ -408,15 +409,9 @@ export default function CoursesPage({
 
 export async function getStaticProps() {
   try {
-    const [programsRes, coursesRes] = await Promise.all([
-      fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v3/course-programs`),
-      fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v3/courses`)
-    ])
-
-    if (!programsRes.ok || !coursesRes.ok) throw new Error('Failed to fetch data')
-
-    const programs = await programsRes.json()
-    const courses = await coursesRes.json()
+    // Use direct Contentful calls instead of HTTP fetch
+    // This ensures data is available at build time without relying on NEXT_PUBLIC_API_BASE_URL
+    const [programs, courses] = await Promise.all([getProgramsCached(), getCoursesCached()])
 
     // Sort programs to prioritize diplomas first
     const sortedPrograms = programs.sort((a: any, b: any) => {
