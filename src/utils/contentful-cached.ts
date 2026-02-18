@@ -87,6 +87,37 @@ export async function getCoursesCached(): Promise<any[]> {
 }
 
 /**
+ * Fetch all programs (course categories) with caching
+ */
+export async function getProgramsCached(): Promise<any[]> {
+  const result = await getCached(
+    'programs',
+    async () => {
+      const response = await axiosContentfulClient.get<IContentfulResponse>(
+        `/spaces/${spaceId}/environments/${environment}/entries?access_token=${accessToken}&content_type=program&include=1`
+      )
+      const data = response.data
+      const programItems = data.items
+      const assets = data.includes?.Asset || []
+      const entries = data.includes?.Entry || []
+
+      // Resolve references in the main item
+      const resolvedPrograms = programItems.map((program: any) => ({
+        ...program,
+        fields: resolveReferences(program.fields, entries, assets),
+        assets
+      }))
+
+      // Rewrite Contentful asset URLs to S3/CloudFront
+      return rewriteAssetUrlsInObject(resolvedPrograms)
+    },
+    { duration: CACHE_DURATIONS.courses, useS3: USE_S3_CACHE }
+  )
+
+  return result.data
+}
+
+/**
  * Fetch news articles with caching
  */
 export async function getNewsCached(): Promise<any[]> {
