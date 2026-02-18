@@ -35,8 +35,8 @@ import IndustryValidation from '@/components/course/sections/IndustryValidation'
 import MidPageCTA from '@/components/course/sections/MidPageCTA'
 import StickyCourseCTA from '@/components/course/sections/StickyCourseCTA'
 import { filmProductionData, CoursePageData } from '@/data/course-page-data'
-import { getDiplomaData, DiplomaPageData } from '@/data/diploma-course-data'
-import { getCertificateData, CertificatePageData } from '@/data/certificate-course-data'
+import { getDiplomaData } from '@/data/diploma-course-data'
+import { getCertificateData } from '@/data/certificate-course-data'
 import { getPlainTextFromRichText, ensureProtocol } from '@/utils'
 import { getCoursePricing } from '@/utils/course-pricing'
 
@@ -198,6 +198,15 @@ function extractListFromRichText(richText: any): string[] {
     .filter(Boolean)
 }
 
+// Extract learning outcomes from new Array<Link> field
+function extractLearningOutcomesFromLinks(outcomes: any[]): string[] {
+  if (!outcomes || !Array.isArray(outcomes)) return []
+  return outcomes
+    .filter((outcome: any) => outcome?.fields?.title)
+    .sort((a: any, b: any) => (a.fields.order || 0) - (b.fields.order || 0))
+    .map((outcome: any) => outcome.fields.title)
+}
+
 export default function CoursePageLayout({ course, slug, courseArticles = [] }: Props) {
   const [activeTab, setActiveTab] = useState<'overview' | 'deep-dive'>('overview')
   const { sections } = useCMSSections(slug)
@@ -232,8 +241,11 @@ export default function CoursePageLayout({ course, slug, courseArticles = [] }: 
   // Quick facts from CMS fields
   const quickFacts = buildQuickFacts(course, slug, staticData.quickFacts)
 
-  // Learning outcomes from CMS
-  const cmsLearningOutcomes = extractListFromRichText(course.learningOutcomes)
+  // Learning outcomes: prefer new linked entries, fall back to RichText, then static
+  const linkedLearningOutcomes = extractLearningOutcomesFromLinks(course.learningOutcomesList)
+  const cmsLearningOutcomes = linkedLearningOutcomes.length > 0 
+    ? linkedLearningOutcomes 
+    : extractListFromRichText(course.learningOutcomes)
   const learningOutcomes = cmsLearningOutcomes.length > 0 ? cmsLearningOutcomes : staticData.learningOutcomes
 
   // Career options from CMS rich text

@@ -2005,3 +2005,600 @@ const musicProductionData: CertificatePageData = {
     { title: 'Understanding Mixing vs Mastering', category: 'Guide', imageUrl: '/placeholder/blog-music3.jpg', link: '/blog/mixing-vs-mastering' },
   ],
 }
+
+// =============================================================================
+// 8. PHOTOGRAPHY CERTIFICATE (Foundation · 6 months · Pearson BTEC)
+// =============================================================================
+
+const photographyData: CertificatePageData = {
+  tagline: 'Master the art and business of photography in six months — from portrait to commercial.',
+
+  quickFacts: [
+    { label: 'Duration', value: '6 Months', icon: 'schedule' },
+    { label: 'Award Level', value: 'Foundation Certificate', icon: 'school' },
+    { label: 'Intakes', value: 'Jan, May, Sept', icon: 'calendar_month' },
+    { label: 'Delivery', value: 'Hybrid (Online + Campus)', icon: 'group' },
+    { label: 'Per Term', value: 'KES 48,000', icon: 'payments' },
+  ],
+
+  courseLeader: {
+    name: 'Amina Warfa',
+    role: 'Lead Instructor, Photography',
+    bio: 'Amina is an award-winning documentary and fashion photographer with over 10 years of experience. Her work has been published in Vogue Africa, Nation Media, and exhibited at Nairobi National Museum. She specialises in portraiture and visual storytelling.',
+    imageUrl: '/placeholder/amina-warfa.jpg',
+    quote: 'Photography is not about cameras — it is about seeing. We teach you to observe light, emotion, and narrative so that every image you make carries meaning.',
+  },
+
+  industryQuote: {
+    quote: 'With the explosion of e-commerce and social media in East Africa, professional photography is in higher demand than ever. Brands need images that stop the scroll and sell the story.',
+    author: 'Osborne Macharia',
+    role: 'Commercial Photographer',
+    company: 'Osborne Macharia Studios',
+    backgroundImageUrl: '/placeholder/photography-industry-bg.jpg',
+  },
+
+  benefits: [
+    {
+      title: 'Shoot From Day One',
+      description: 'Get behind the camera immediately with guided assignments in portraiture, product, street, and event photography.',
+      icon: '📷',
+    },
+    {
+      title: 'Pearson BTEC Certified',
+      description: 'Graduate with an internationally recognised Pearson BTEC certificate that validates your professional skills.',
+      icon: '📜',
+    },
+    {
+      title: 'Professional Editing Suite',
+      description: 'Master Adobe Lightroom and Photoshop for colour grading, retouching, and compositing at industry standard.',
+      icon: '💻',
+    },
+    {
+      title: 'Portfolio-Ready Graduates',
+      description: 'Build a curated portfolio of 30+ images across multiple genres, ready for clients and agencies.',
+      icon: '🖼️',
+    },
+    {
+      title: 'Flexible Hybrid Learning',
+      description: 'Complete theory and editing coursework online, then attend practical bootcamps on campus for shoots and critiques.',
+      icon: '🔄',
+    },
+    {
+      title: 'Pathway to Professional Certificate',
+      description: 'Credits earned count towards higher ADMI certificates, saving you time and money on your creative career journey.',
+      icon: '🎓',
+    },
+  ],
+
+  degreeSteps: [
+    { step: 1, title: 'Foundation Certificate', description: '6 Months · Pearson BTEC', duration: '6 Months' },
+    { step: 2, title: 'Professional Certificate', description: 'Advanced specialisation track', duration: '6 Months' },
+    { step: 3, title: 'ADMI Diploma', description: 'Full creative diploma pathway', duration: '18 Months' },
+  ],
+
+  semesters: [
+    {
+      title: 'Term 1: Photography Fundamentals',
+      modules: [
+        'Camera Operations & Exposure (DSLR/Mirrorless)',
+        'Understanding Light: Natural & Studio Lighting',
+        'Composition & Visual Storytelling',
+        'Portrait Photography & Posing',
+        'Introduction to Adobe Lightroom & RAW Processing',
+      ],
+    },
+    {
+      title: 'Term 2: Applied Photography & Business',
+      modules: [
+        'Commercial & Product Photography',
+        'Event & Documentary Photography',
+        'Advanced Retouching & Compositing (Photoshop)',
+        'Building a Photography Business & Pricing',
+        'Portfolio Development & Exhibition Preparation',
+      ],
+    },
+  ],
+
+  paymentPlans: [
+    {
+      title: '1st Installment · 50%',
+      price: 'KES 24,000',
+      period: 'Due at Registration',
+      details: ['Secures your spot with full access to studio equipment, editing labs, and online learning platform.'],
+      isPopular: true,
+    },
+    {
+      title: '2nd Installment · 50%',
+      price: 'KES 24,000',
+      period: 'Due Mid-Term',
+      details: ['Completes your term fees. Must be settled before final portfolio review and certification.'],
+    },
+  ],
+
+  impactStats: [
+    { value: '78%', label: 'Employed Within 3 Months' },
+    { value: '30+', label: 'Portfolio Images Per Graduate' },
+    { value: '4x', label: 'Growth in Commercial Photography (Kenya)' },
+    { value: 'KES 55K', label: 'Average Starting Salary' },
+  ],
+
+  testimonials: [
+    {
+      name: 'Mercy Njeri',
+      role: 'Photography Certificate, 2025',
+      quote: 'I enrolled with a phone camera and left with a professional portfolio. The faculty pushed me to see the world differently and develop my own photographic voice.',
+      imageUrl: '/placeholder/mercy-njeri.jpg',
+    },
+    {
+      name: 'Peter Mwangi',
+      role: 'Photography Certificate, 2024',
+      quote: 'The hybrid model was ideal for me as a working professional. I studied editing at home and came in for intensive weekend shoots. Within weeks I was getting paid for event photography.',
+      imageUrl: '/placeholder/peter-mwangi.jpg',
+    },
+    {
+      name: 'Fatuma Hassan',
+      role: 'Photography Certificate, 2025',
+      quote: 'What I loved most was the business module. ADMI did not just teach me to take beautiful photos — they taught me how to turn photography into a sustainable career.',
+      imageUrl: '/placeholder/fatuma-hassan.jpg',
+    },
+  ],
+
+  applicationSteps: [
+    {
+      step: 1,
+      title: 'Submit Your Application',
+      description: 'Complete the online form and upload your ID or KCSE certificate. No prior photography experience required.',
+    },
+    {
+      step: 2,
+      title: 'Chat with Admissions',
+      description: 'Our team will reach out for a brief conversation to understand your goals and answer questions.',
+    },
+    {
+      step: 3,
+      title: 'Secure Your Place',
+      description: 'Pay the 1st installment (50%) to confirm your enrolment. Spaces are limited per intake.',
+    },
+  ],
+
+  faqs: [
+    {
+      question: 'Do I need to own a camera to enrol?',
+      answer: 'No. ADMI provides DSLR and mirrorless cameras, lenses, and lighting equipment for all practical sessions. However, having your own camera — even a smartphone — is helpful for practising between bootcamps.',
+    },
+    {
+      question: 'What genres of photography does the programme cover?',
+      answer: 'The programme covers portraiture, product and commercial photography, event photography, documentary and street photography, and introduces landscape and architectural photography through elective assignments.',
+    },
+    {
+      question: 'How does the hybrid delivery model work?',
+      answer: 'You complete theoretical modules and editing tutorials online through our learning platform. Practical shooting sessions are held during scheduled campus bootcamps at our Nairobi campus, typically 2–3 weekends per month.',
+    },
+    {
+      question: 'Is the Pearson BTEC certificate recognised by employers?',
+      answer: 'Yes. Pearson BTEC is one of the most widely recognised vocational qualifications globally. Employers in Kenya, across Africa, and internationally accept it as proof of professional competence.',
+    },
+    {
+      question: 'Can I specialise in a particular type of photography?',
+      answer: 'The programme provides a broad foundation. During Term 2, you choose a focus area for your final portfolio — whether that is fashion, product, documentary, or event photography.',
+    },
+    {
+      question: 'What career support does ADMI offer after graduation?',
+      answer: 'Graduates receive portfolio reviews, access to ADMI\'s industry network, and introductions to studios, agencies, and publications actively seeking new talent.',
+    },
+  ],
+
+  careers: [
+    { title: 'Portrait Photographer', description: 'Capture professional headshots, family sessions, and personal branding imagery for clients.', salary: 'KES 30,000 - 70,000/mo' },
+    { title: 'Commercial Photographer', description: 'Produce product, food, and brand imagery for advertising agencies and e-commerce platforms.', salary: 'KES 45,000 - 120,000/mo' },
+    { title: 'Event Photographer', description: 'Cover weddings, corporate events, and conferences for clients and media outlets.', salary: 'KES 35,000 - 80,000/mo' },
+    { title: 'Photo Editor / Retoucher', description: 'Colour-grade, retouch, and composite images for studios, publishers, and brands.', salary: 'KES 30,000 - 65,000/mo' },
+    { title: 'Visual Content Creator', description: 'Plan, shoot, and edit photography for social media, blogs, and marketing campaigns.', salary: 'KES 35,000 - 85,000/mo' },
+  ],
+
+  programDetails: [
+    { label: 'Duration', value: '6 Months (2 Terms)' },
+    { label: 'Award Level', value: 'Foundation Certificate (Pearson BTEC)' },
+    { label: 'Intakes', value: 'January, May, September' },
+    { label: 'Delivery', value: 'Hybrid (Online + Campus)' },
+  ],
+
+  learningOutcomes: [
+    'Operate DSLR and mirrorless cameras with full manual control over exposure, focus, and white balance.',
+    'Set up and manipulate both natural and studio lighting for a range of photographic genres.',
+    'Edit and retouch images professionally using Adobe Lightroom and Photoshop.',
+    'Compose and direct portrait sessions with confidence, including posing and client communication.',
+    'Produce a curated, portfolio-ready body of work demonstrating technical and creative proficiency.',
+  ],
+
+  mentors: [
+    { name: 'Amina Warfa', role: 'Documentary & Fashion Photographer', company: 'ADMI Faculty', imageUrl: '/placeholder/amina-warfa.jpg' },
+    { name: 'Kevin Ochieng', role: 'Commercial Photographer', company: 'ADMI Faculty', imageUrl: '/placeholder/kevin-ochieng.jpg' },
+    { name: 'Grace Wanjiku', role: 'Portrait & Wedding Photographer', company: 'Industry Partner', imageUrl: '/placeholder/grace-wanjiku.jpg' },
+    { name: 'Samuel Kariuki', role: 'Photo Editor', company: 'Nation Media Group', imageUrl: '/placeholder/samuel-kariuki.jpg' },
+  ],
+
+  assessmentMethods: [
+    { method: 'Practical Assignments', percentage: 55, description: 'Graded photography shoots across portrait, product, event, and documentary genres.' },
+    { method: 'Portfolio Review', percentage: 20, description: 'Curated final portfolio assessed by faculty and industry guest reviewers.' },
+    { method: 'Editing Projects', percentage: 15, description: 'Lightroom and Photoshop retouching and colour-grading assignments.' },
+    { method: 'Attendance & Participation', percentage: 10, description: 'Active engagement in bootcamps, online discussions, and critique sessions.' },
+  ],
+
+  facilities: [
+    { name: 'Photography Studio', description: 'Fully equipped studio with backdrops, continuous and strobe lighting, and tethered shooting stations.', imageUrl: '/placeholder/photo-studio.jpg' },
+    { name: 'Editing Lab', description: 'iMac workstations with calibrated monitors, Adobe Creative Cloud, and Capture One Pro.', imageUrl: '/placeholder/photo-edit-lab.jpg' },
+    { name: 'Equipment Store', description: 'DSLR and mirrorless camera bodies, prime and zoom lenses, reflectors, flash units, and tripods for checkout.', imageUrl: '/placeholder/photo-equip.jpg' },
+    { name: 'Gallery Space', description: 'On-campus exhibition wall for student work showcases and end-of-term portfolio exhibitions.', imageUrl: '/placeholder/photo-gallery.jpg' },
+  ],
+
+  portfolioItems: [
+    { title: 'Faces of Nairobi', student: 'Mercy Njeri', imageUrl: '/placeholder/portfolio-photo1.jpg', description: 'A street portrait series capturing the diverse faces and stories of Nairobi\'s residents.' },
+    { title: 'Artisan Coffee Collection', student: 'Peter Mwangi', imageUrl: '/placeholder/portfolio-photo2.jpg', description: 'Product photography series for a Kenyan speciality coffee brand.' },
+    { title: 'Maasai Market After Hours', student: 'Group Project', imageUrl: '/placeholder/portfolio-photo3.jpg', description: 'Documentary photo essay exploring the Maasai Market beyond its tourist facade.' },
+  ],
+
+  activityPhotos: [
+    { caption: 'Golden hour portrait session at Uhuru Gardens', imageUrl: '/placeholder/photo-activity1.jpg' },
+    { caption: 'Studio lighting workshop with guest photographer', imageUrl: '/placeholder/photo-activity2.jpg' },
+    { caption: 'Product photography bootcamp', imageUrl: '/placeholder/photo-activity3.jpg' },
+    { caption: 'End-of-term portfolio exhibition', imageUrl: '/placeholder/photo-activity4.jpg' },
+  ],
+
+  alumniStories: [
+    {
+      name: 'Mercy Njeri',
+      role: 'Portrait Photographer',
+      company: 'Freelance',
+      story: 'I went from borrowing a friend\'s camera to running my own portrait studio in Westlands. The foundation I got at ADMI — especially in lighting and client management — made it possible.',
+      imageUrl: '/placeholder/mercy-njeri.jpg',
+      graduationYear: '2025',
+    },
+    {
+      name: 'Peter Mwangi',
+      role: 'Commercial Photographer',
+      company: 'Ogilvy Africa',
+      story: 'The product photography skills I gained at ADMI landed me an internship at an agency that turned into a full-time role. I now shoot campaigns for multinational brands.',
+      imageUrl: '/placeholder/peter-mwangi.jpg',
+      graduationYear: '2024',
+    },
+    {
+      name: 'Fatuma Hassan',
+      role: 'Event Photographer',
+      company: 'Mahali Events',
+      story: 'Covering events was my passion but I lacked the technical confidence. ADMI gave me the skills in low-light shooting and fast editing that I needed to go professional.',
+      imageUrl: '/placeholder/fatuma-hassan.jpg',
+      graduationYear: '2025',
+    },
+  ],
+
+  industryPartners: [
+    { name: 'Canon', logoUrl: '/placeholder/canon.png' },
+    { name: 'Nikon', logoUrl: '/placeholder/nikon.png' },
+    { name: 'Adobe', logoUrl: '/placeholder/adobe.png' },
+    { name: 'Nation Media Group', logoUrl: '/placeholder/nmg.png' },
+    { name: 'Capture One', logoUrl: '/placeholder/capture-one.png' },
+    { name: 'Sigma', logoUrl: '/placeholder/sigma.png' },
+  ],
+
+  industryTrends: [
+    { stat: '5x', label: 'Growth in E-Commerce Photography', description: 'With the rapid expansion of online retail in Kenya, the demand for professional product photography has increased fivefold in recent years.' },
+    { stat: 'KES 12B', label: 'Advertising Spend (Kenya)', description: 'Kenya\'s advertising industry invests billions annually, with photography-driven content a critical component of visual campaigns.' },
+    { stat: '60%', label: 'Brands Investing More in Visual Content', description: 'A growing majority of Kenyan brands report increasing their budgets for professional photography and visual marketing.' },
+  ],
+
+  resources: [
+    { title: 'How to Build a Photography Portfolio That Gets Clients', category: 'Career', imageUrl: '/placeholder/blog-photo1.jpg', link: '/blog/photography-portfolio-guide' },
+    { title: 'Lighting Techniques Every Beginner Should Know', category: 'Guide', imageUrl: '/placeholder/blog-photo2.jpg', link: '/blog/beginner-lighting-techniques' },
+    { title: 'Freelance Photography Pricing in Kenya', category: 'Business', imageUrl: '/placeholder/blog-photo3.jpg', link: '/blog/freelance-photography-pricing-kenya' },
+  ],
+}
+
+// =============================================================================
+// 9. 2D ANIMATION CERTIFICATE – RUBIKA (Foundation · 6 months · Pearson BTEC)
+// =============================================================================
+
+const animationData: CertificatePageData = {
+  tagline: 'Learn to create compelling 2D animations — from character design to final production — with Rubika-accredited training.',
+
+  quickFacts: [
+    { label: 'Duration', value: '6 Months', icon: 'schedule' },
+    { label: 'Award Level', value: 'Foundation Certificate', icon: 'school' },
+    { label: 'Intakes', value: 'Jan, May, Sept', icon: 'calendar_month' },
+    { label: 'Delivery', value: 'Hybrid (Online + Campus)', icon: 'group' },
+    { label: 'Per Term', value: 'KES 93,100', icon: 'payments' },
+  ],
+
+  courseLeader: {
+    name: 'Daniel Ndegwa',
+    role: 'Lead Instructor, 2D Animation',
+    bio: 'Daniel is a seasoned animator and illustrator with 12 years of experience in the African animation industry. He has worked on award-winning animated series for Kukua, Triggerfish, and international studios. He holds a Rubika animation certification and brings global studio discipline to the classroom.',
+    imageUrl: '/placeholder/daniel-ndegwa.jpg',
+    quote: 'Animation is storytelling at its purest. Every line you draw, every frame you time — it all serves the story. We train you to think like an animator, not just draw like one.',
+  },
+
+  industryQuote: {
+    quote: 'Africa is the next frontier for animation. With a young, creative population and growing demand for local content, the continent needs thousands of trained animators over the next decade.',
+    author: 'Ng\'endo Mukii',
+    role: 'Animator & Filmmaker',
+    company: 'Ng\'endo Studios',
+    backgroundImageUrl: '/placeholder/animation-industry-bg.jpg',
+  },
+
+  benefits: [
+    {
+      title: 'Rubika-Accredited Curriculum',
+      description: 'Study a curriculum designed in partnership with Rubika, one of the world\'s top-ranked animation schools based in France.',
+      icon: '🏆',
+    },
+    {
+      title: 'Pearson BTEC Certified',
+      description: 'Graduate with an internationally recognised Pearson BTEC certificate that validates your animation skills to employers worldwide.',
+      icon: '📜',
+    },
+    {
+      title: 'Industry-Standard Tools',
+      description: 'Master Toon Boom Harmony, Adobe Animate, Photoshop, and After Effects — the software used by professional studios.',
+      icon: '💻',
+    },
+    {
+      title: 'Original Animation Reel',
+      description: 'Complete the programme with a professional demo reel featuring your own animated short film and character work.',
+      icon: '🎬',
+    },
+    {
+      title: 'Flexible Hybrid Learning',
+      description: 'Complete drawing and theory modules online, then attend intensive campus bootcamps for animation labs and group projects.',
+      icon: '🔄',
+    },
+    {
+      title: 'Pathway to Professional Certificate',
+      description: 'Credits earned feed directly into advanced ADMI animation programmes, accelerating your journey to a full qualification.',
+      icon: '🎓',
+    },
+  ],
+
+  degreeSteps: [
+    { step: 1, title: 'Foundation Certificate', description: '6 Months · Pearson BTEC', duration: '6 Months' },
+    { step: 2, title: 'Professional Certificate', description: 'Advanced 2D & motion design', duration: '6 Months' },
+    { step: 3, title: 'ADMI Diploma', description: 'Full animation diploma pathway', duration: '18 Months' },
+  ],
+
+  semesters: [
+    {
+      title: 'Term 1: Drawing & Animation Fundamentals',
+      modules: [
+        'Drawing for Animation: Anatomy, Proportion & Expression',
+        'Principles of Animation (Squash, Stretch, Timing, Spacing)',
+        'Character Design & Development',
+        'Storyboarding & Visual Narratives',
+        'Introduction to Toon Boom Harmony',
+      ],
+    },
+    {
+      title: 'Term 2: Production & Post-Production',
+      modules: [
+        'Digital Animation Techniques (Adobe Animate)',
+        'Background Design & Layout',
+        'Lip Sync, Dialogue & Acting for Animation',
+        'Compositing & Effects (After Effects)',
+        'Animated Short Film Production & Demo Reel',
+      ],
+    },
+  ],
+
+  paymentPlans: [
+    {
+      title: '1st Installment · 50%',
+      price: 'KES 46,550',
+      period: 'Due at Registration',
+      details: ['Secures your spot with full access to animation labs, drawing tablets, software licences, and online learning platform.'],
+      isPopular: true,
+    },
+    {
+      title: '2nd Installment · 50%',
+      price: 'KES 46,550',
+      period: 'Due Mid-Term',
+      details: ['Completes your term fees. Must be settled before final film screening and certification.'],
+    },
+  ],
+
+  impactStats: [
+    { value: '85%', label: 'Employed Within 6 Months' },
+    { value: '200+', label: 'Animation Seconds Produced Per Student' },
+    { value: '10x', label: 'Growth in African Animation Industry' },
+    { value: 'KES 70K', label: 'Average Starting Salary' },
+  ],
+
+  testimonials: [
+    {
+      name: 'Aisha Mohamed',
+      role: '2D Animation Certificate, 2025',
+      quote: 'I had always drawn characters in my notebooks but never knew how to bring them to life. The Rubika curriculum at ADMI gave me the technical discipline to turn my passion into a real career.',
+      imageUrl: '/placeholder/aisha-mohamed.jpg',
+    },
+    {
+      name: 'Brian Odhiambo',
+      role: '2D Animation Certificate, 2024',
+      quote: 'Learning Toon Boom Harmony was a game-changer. Within months I was producing animation that looked like it came from a professional studio. The faculty standards are incredibly high.',
+      imageUrl: '/placeholder/brian-odhiambo.jpg',
+    },
+    {
+      name: 'Cynthia Muthoni',
+      role: '2D Animation Certificate, 2025',
+      quote: 'My animated short from ADMI was selected for the Nairobi Film Festival. That kind of exposure would not have been possible without the production pipeline training we received.',
+      imageUrl: '/placeholder/cynthia-muthoni.jpg',
+    },
+  ],
+
+  applicationSteps: [
+    {
+      step: 1,
+      title: 'Submit Your Application',
+      description: 'Complete the online form and upload your ID or KCSE certificate. A basic drawing sample is welcome but not required.',
+    },
+    {
+      step: 2,
+      title: 'Chat with Admissions',
+      description: 'Our team will reach out for a brief conversation to understand your animation goals and answer your questions.',
+    },
+    {
+      step: 3,
+      title: 'Secure Your Place',
+      description: 'Pay the 1st installment (50%) to confirm your enrolment. Spaces are limited to ensure quality studio time.',
+    },
+  ],
+
+  faqs: [
+    {
+      question: 'Do I need to know how to draw to join this programme?',
+      answer: 'Basic drawing ability is helpful but not mandatory. Term 1 includes intensive drawing fundamentals designed to bring all students to a working level for animation.',
+    },
+    {
+      question: 'What makes the Rubika curriculum different?',
+      answer: 'Rubika is one of the top-ranked animation schools globally, based in France. Their curriculum emphasises classical animation principles, professional pipeline workflows, and creative storytelling — giving ADMI graduates a world-class foundation.',
+    },
+    {
+      question: 'What software will I learn?',
+      answer: 'You will work with Toon Boom Harmony (the industry standard for 2D animation), Adobe Animate, Adobe Photoshop for character and background art, and Adobe After Effects for compositing and effects.',
+    },
+    {
+      question: 'How does the hybrid delivery model work?',
+      answer: 'Drawing and theory modules are completed online through our learning platform. Animation labs, group projects, and critiques are held during scheduled campus bootcamps at our Nairobi campus, typically 2–3 weekends per month.',
+    },
+    {
+      question: 'Can I work in animation studios after this certificate?',
+      answer: 'Yes. Graduates have secured roles at studios including Kukua, Fatboy Animations, and international remote teams. Your demo reel is the key hiring tool, and we ensure it meets professional standards.',
+    },
+    {
+      question: 'Is there a pathway to a longer qualification?',
+      answer: 'Absolutely. Credits from this Foundation Certificate transfer into the ADMI Professional Certificate in Animation and subsequently into the full Diploma programme, allowing you to deepen your skills progressively.',
+    },
+  ],
+
+  careers: [
+    { title: '2D Animator', description: 'Create character animation, effects, and motion sequences for studios and production houses.', salary: 'KES 40,000 - 100,000/mo' },
+    { title: 'Character Designer', description: 'Design original characters and style guides for animated series, games, and children\'s media.', salary: 'KES 35,000 - 85,000/mo' },
+    { title: 'Storyboard Artist', description: 'Visualise scripts and narratives through sequential storyboard panels for animation and film.', salary: 'KES 30,000 - 75,000/mo' },
+    { title: 'Motion Graphics Designer', description: 'Create animated graphics, title sequences, and explainer videos for agencies and brands.', salary: 'KES 40,000 - 110,000/mo' },
+    { title: 'Compositing Artist', description: 'Assemble animated elements, backgrounds, and effects into final polished scenes using After Effects.', salary: 'KES 35,000 - 90,000/mo' },
+  ],
+
+  programDetails: [
+    { label: 'Duration', value: '6 Months (2 Terms)' },
+    { label: 'Award Level', value: 'Foundation Certificate (Pearson BTEC)' },
+    { label: 'Intakes', value: 'January, May, September' },
+    { label: 'Delivery', value: 'Hybrid (Online + Campus)' },
+  ],
+
+  learningOutcomes: [
+    'Apply the 12 principles of animation to produce fluid, expressive 2D character movement.',
+    'Design original characters with consistent proportions, expressions, and turnaround sheets.',
+    'Create professional storyboards that effectively communicate narrative, pacing, and camera direction.',
+    'Animate scenes using Toon Boom Harmony and Adobe Animate with clean line work and proper timing.',
+    'Produce a complete animated short film from concept through storyboard, animation, compositing, and sound.',
+  ],
+
+  mentors: [
+    { name: 'Daniel Ndegwa', role: 'Animator & Illustrator', company: 'ADMI Faculty', imageUrl: '/placeholder/daniel-ndegwa.jpg' },
+    { name: 'Sarah Kinuthia', role: 'Character Designer', company: 'Kukua Education', imageUrl: '/placeholder/sarah-kinuthia.jpg' },
+    { name: 'James Kinyanjui', role: 'Storyboard Artist', company: 'Triggerfish Animation', imageUrl: '/placeholder/james-kinyanjui.jpg' },
+    { name: 'Halima Adan', role: 'Compositing Artist', company: 'Fatboy Animations', imageUrl: '/placeholder/halima-adan.jpg' },
+  ],
+
+  assessmentMethods: [
+    { method: 'Animation Projects', percentage: 50, description: 'Character walks, acting scenes, lip sync exercises, and final animated short film.' },
+    { method: 'Drawing & Design Portfolio', percentage: 20, description: 'Character sheets, expression studies, storyboards, and background designs.' },
+    { method: 'Production Pipeline Tasks', percentage: 20, description: 'Scene planning, asset organisation, compositing, and export workflows.' },
+    { method: 'Attendance & Participation', percentage: 10, description: 'Active engagement in bootcamps, online critiques, and collaborative production sessions.' },
+  ],
+
+  facilities: [
+    { name: 'Animation Lab', description: 'Workstations equipped with Wacom Cintiq tablets, Toon Boom Harmony, and Adobe Creative Cloud.', imageUrl: '/placeholder/animation-lab.jpg' },
+    { name: 'Drawing Studio', description: 'Dedicated space for figure drawing, character design sessions, and storyboarding with light tables.', imageUrl: '/placeholder/drawing-studio.jpg' },
+    { name: 'Screening Room', description: 'Theatre-style room for animation dailies, critiques, and end-of-term film screenings.', imageUrl: '/placeholder/animation-screening.jpg' },
+    { name: 'Resource Library', description: 'Reference books on animation history, art anatomy, colour theory, and industry publications.', imageUrl: '/placeholder/animation-library.jpg' },
+  ],
+
+  portfolioItems: [
+    { title: 'The Water Bearer', student: 'Aisha Mohamed', imageUrl: '/placeholder/portfolio-anim1.jpg', description: 'A 2-minute animated short about a young girl\'s journey to fetch water, blending Kenyan folklore with modern storytelling.' },
+    { title: 'Nairobi Nightlife', student: 'Brian Odhiambo', imageUrl: '/placeholder/portfolio-anim2.jpg', description: 'A stylised character animation loop set against Nairobi\'s colourful nightlife, showcasing walk cycles and expression.' },
+    { title: 'Toto Tales: The Hare', student: 'Group Project', imageUrl: '/placeholder/portfolio-anim3.jpg', description: 'A collaborative animated pilot episode adapting the classic East African hare trickster tale for children.' },
+  ],
+
+  activityPhotos: [
+    { caption: 'Life drawing session with a live model', imageUrl: '/placeholder/anim-activity1.jpg' },
+    { caption: 'Toon Boom Harmony workshop in the animation lab', imageUrl: '/placeholder/anim-activity2.jpg' },
+    { caption: 'Group storyboarding and pitch session', imageUrl: '/placeholder/anim-activity3.jpg' },
+    { caption: 'End-of-term animated short film screening', imageUrl: '/placeholder/anim-activity4.jpg' },
+  ],
+
+  alumniStories: [
+    {
+      name: 'Aisha Mohamed',
+      role: '2D Animator',
+      company: 'Kukua Education',
+      story: 'ADMI gave me the Rubika-level training that studios look for. I now animate characters for an educational platform reaching millions of African children. This is exactly the career I dreamed of.',
+      imageUrl: '/placeholder/aisha-mohamed.jpg',
+      graduationYear: '2025',
+    },
+    {
+      name: 'Brian Odhiambo',
+      role: 'Freelance Animator',
+      company: 'Self-Employed',
+      story: 'My demo reel from ADMI got me remote animation contracts with studios in Nigeria and South Africa before I even graduated. The quality of training is truly international.',
+      imageUrl: '/placeholder/brian-odhiambo.jpg',
+      graduationYear: '2024',
+    },
+    {
+      name: 'Cynthia Muthoni',
+      role: 'Motion Graphics Designer',
+      company: 'WPP Scangroup',
+      story: 'I combined my animation skills with motion graphics and now I create animated brand content for some of Kenya\'s largest advertisers. ADMI\'s After Effects training was the key differentiator.',
+      imageUrl: '/placeholder/cynthia-muthoni.jpg',
+      graduationYear: '2025',
+    },
+  ],
+
+  industryPartners: [
+    { name: 'Rubika', logoUrl: '/placeholder/rubika.png' },
+    { name: 'Toon Boom', logoUrl: '/placeholder/toon-boom.png' },
+    { name: 'Adobe', logoUrl: '/placeholder/adobe.png' },
+    { name: 'Kukua', logoUrl: '/placeholder/kukua.png' },
+    { name: 'Triggerfish Animation', logoUrl: '/placeholder/triggerfish.png' },
+    { name: 'Fatboy Animations', logoUrl: '/placeholder/fatboy.png' },
+    { name: 'Wacom', logoUrl: '/placeholder/wacom.png' },
+  ],
+
+  industryTrends: [
+    { stat: '10x', label: 'Growth in African Animation', description: 'The African animation industry has seen explosive growth, with countries like Kenya, Nigeria, and South Africa emerging as major production hubs.' },
+    { stat: '$150M+', label: 'Investment in African Content', description: 'Global streaming platforms and investors have poured over $150 million into African animated content in recent years, creating unprecedented demand for trained animators.' },
+    { stat: '50K+', label: 'Animators Needed by 2030', description: 'Industry projections estimate that Africa will need over 50,000 new animation professionals in the next five years to meet growing content demand.' },
+  ],
+
+  resources: [
+    { title: 'How to Break Into the African Animation Industry', category: 'Career', imageUrl: '/placeholder/blog-anim1.jpg', link: '/blog/break-into-african-animation' },
+    { title: 'Building a Demo Reel That Gets You Hired', category: 'Guide', imageUrl: '/placeholder/blog-anim2.jpg', link: '/blog/animation-demo-reel-guide' },
+    { title: 'The Rise of Kenyan Animation Studios', category: 'Industry', imageUrl: '/placeholder/blog-anim3.jpg', link: '/blog/kenyan-animation-studios' },
+  ],
+}
+
+// =============================================================================
+// EXPORT MAP
+// =============================================================================
+
+const certificateCourseData: Record<string, CertificatePageData> = {
+  'video-production-certificate': videoProductionData,
+  'digital-marketing-certificate': digitalMarketingData,
+  'graphic-design-certificate': graphicDesignData,
+  'data-analytics-and-visualisation': dataAnalyticsData,
+  'multimedia-certificate': multimediaData,
+  'ai-adoption-digital-transformation': aiAdoptionData,
+  'music-production-and-sound-engineering-certificate': musicProductionData,
+  'photography-certificate': photographyData,
+  '2d-animation-certificate-rubika': animationData,
+}
+
+export function getCertificateData(slug: string): CertificatePageData | null {
+  return certificateCourseData[slug] || null
+}
