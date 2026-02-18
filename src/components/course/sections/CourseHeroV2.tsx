@@ -56,6 +56,15 @@ function getSalaryRange(programType: any, awardLevel: string): string {
   return '40K - 80K'
 }
 
+// Map program type to duration
+function getDuration(programType: any, awardLevel: string, passedDuration?: string): string {
+  const category = getProgramCategory(programType, awardLevel)
+  if (category === 'diploma') return '2 Years'
+  if (category === 'professional') return passedDuration || '4-6 Months'
+  if (category === 'foundation') return passedDuration || '4-6 Months'
+  return passedDuration || '6 Months'
+}
+
 export default function CourseHeroV2({ name, coverImage, programType, awardLevel, duration, subtitle }: Props) {
   const whatsappMessage = encodeURIComponent(`Hi ADMI, I'm interested in the ${name}. Can you tell me more about the May 2026 intake?`)
   const whatsappUrl = `https://wa.me/${ADMI_WHATSAPP_NUMBER}?text=${whatsappMessage}`
@@ -63,6 +72,7 @@ export default function CourseHeroV2({ name, coverImage, programType, awardLevel
   const programTypeUrl = getProgramTypeUrl(programType, awardLevel)
   const programTypeLabel = getProgramTypeLabel(programType, awardLevel)
   const salaryRange = getSalaryRange(programType, awardLevel)
+  const displayDuration = getDuration(programType, awardLevel, duration)
 
   return (
     <section className="relative w-full overflow-hidden bg-[#1a1a1a]">
@@ -102,7 +112,7 @@ export default function CourseHeroV2({ name, coverImage, programType, awardLevel
         <div className="mb-5 flex flex-wrap items-center gap-3">
           <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 font-proxima text-[13px] font-semibold text-white">
             <span className="h-2 w-2 rounded-full bg-brand-red" />
-            {awardLevel || 'Diploma Program'} &middot; {duration || '2 Years'} &middot; EU Accredited
+            {awardLevel || 'Diploma Program'} &middot; {displayDuration} &middot; EU Accredited
           </span>
         </div>
 
