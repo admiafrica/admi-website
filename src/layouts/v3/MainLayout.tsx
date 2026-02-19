@@ -21,7 +21,7 @@ type LayoutProps = {
 
 export function MainLayout({ children, minimizeFooter = false, minimizeHeader = false, footerBgColor }: LayoutProps) {
   const pinned = useHeadroom({ fixedAt: 120 })
-  const mode = 'dark'
+  const mode = 'light'
   const [bannerVisible, setBannerVisible] = useState(false)
 
   // Capture UTM parameters + check banner dismiss state on mount
@@ -60,9 +60,7 @@ export function MainLayout({ children, minimizeFooter = false, minimizeHeader = 
         }`}
       >
         <IntakeBanner visible={bannerVisible} onDismiss={handleDismissBanner} />
-        <header
-          className={`flex h-[81px] items-center justify-between px-5 ${mode === 'dark' ? 'bg-black' : 'bg-white'}`}
-        >
+        <header className="flex h-[81px] items-center justify-between bg-white px-5">
           <NavBar mode={mode} isMinimal={minimizeHeader} />
         </header>
       </div>

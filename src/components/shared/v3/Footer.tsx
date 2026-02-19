@@ -8,7 +8,6 @@ import { SOCIAL_LINKS } from '@/utils'
 import { WhatsAppLinkPlain } from '@/components/shared/WhatsAppLink'
 
 import { IconCopyright } from '@tabler/icons-react'
-import IconLogoWhite from '@/assets/logo-light.svg'
 import IconYouTube from '@/assets/icons/youtube.svg'
 import IconInstagram from '@/assets/icons/instagram.svg'
 import IconFacebook from '@/assets/icons/facebook.svg'
@@ -42,7 +41,7 @@ const STUDENT_LINKS = [
 
 const SocialIcons = React.memo(() => {
   return (
-    <div className="flex h-12 flex-wrap items-center justify-center gap-3 sm:gap-4">
+    <div className="flex h-12 flex-wrap items-center gap-3 sm:gap-4">
       <a href={SOCIAL_LINKS.TIKTOK} className="text-white" target="_blank" rel="noopener noreferrer">
         <Image width={28} height={28} src={IconTikTok} alt="TikTok" className="sm:h-8 sm:w-8" />
       </a>
@@ -90,10 +89,10 @@ export default function Footer({ bgColor }: Props) {
     >
       <div className="w-full bg-admi-green pb-8 pt-12">
         {/* Main 3-column grid */}
-        <div className="mx-auto grid w-full max-w-screen-xl grid-cols-1 gap-10 px-4 text-white md:grid-cols-3 md:gap-8">
+        <div className="mx-auto grid w-full max-w-screen-xl grid-cols-1 gap-10 px-4 text-white sm:px-8 md:grid-cols-3 md:gap-12 lg:px-4">
           {/* Column 1: Get in Touch */}
-          <div className="flex flex-col gap-4">
-            <h3 className="font-nexa text-[1.4em] font-black text-white">Get in Touch</h3>
+          <div className="flex flex-col gap-3">
+            <h3 className="mb-1 font-nexa text-[1.4em] font-black text-white">Get in Touch</h3>
 
             <div>
               <p>Caxton House, 3rd Floor</p>
@@ -144,40 +143,37 @@ export default function Footer({ bgColor }: Props) {
           </div>
 
           {/* Column 2: Quick Links */}
-          <div className="flex flex-col gap-2">
-            <h3 className="font-nexa text-[1.4em] font-black text-white">Quick Links</h3>
+          <div className="flex flex-col gap-3">
+            <h3 className="mb-1 font-nexa text-[1.4em] font-black text-white">Quick Links</h3>
             {QUICK_LINKS.map((link) => (
               <FooterLink key={link.href} href={link.href} label={link.label} />
             ))}
           </div>
 
           {/* Column 3: Student Corner + Social Icons */}
-          <div className="flex flex-col gap-2">
-            <h3 className="font-nexa text-[1.4em] font-black text-white">Student Corner</h3>
+          <div className="flex flex-col gap-3">
+            <h3 className="mb-1 font-nexa text-[1.4em] font-black text-white">Student Corner</h3>
             {STUDENT_LINKS.map((link) => (
               <FooterLink key={link.href} href={link.href} label={link.label} />
             ))}
-            <div className="mt-6">
+            <div className="mt-4">
               <SocialIcons />
             </div>
           </div>
         </div>
 
         {/* Bottom bar */}
-        <hr className="mx-4 mt-12 border-t border-white/20" />
-        <div className="mx-auto flex w-full max-w-screen-xl flex-col items-center gap-2 px-4 pt-8 text-center md:flex-row md:text-left">
-          <div className="flex items-center gap-1 text-white">
+        <hr className="mx-auto mt-12 max-w-screen-xl border-t border-white/20 sm:mx-8 lg:mx-auto" />
+        <div className="mx-auto flex w-full max-w-screen-xl flex-col items-center gap-3 px-4 pt-8 text-center sm:px-8 md:flex-row md:justify-between md:text-left lg:px-4">
+          <div className="flex items-center gap-1.5 text-white">
             <IconCopyright size={16} />
             <span>
               2026 All Rights Reserved. <b>ADMI Africa</b>
             </span>
           </div>
-          <div className="grow md:pl-4">
-            <Link href="/privacy-policy" className="cursor-pointer text-admiShamrok no-underline hover:underline">
-              Privacy Policy | Terms & Conditions
-            </Link>
-          </div>
-          <Image width={95} src={IconLogoWhite} alt="logo" />
+          <Link href="/privacy-policy" className="cursor-pointer text-admiShamrok no-underline hover:underline">
+            Privacy Policy | Terms & Conditions
+          </Link>
         </div>
       </div>
 
