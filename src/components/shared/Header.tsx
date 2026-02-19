@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import logo from '@/assets/logo-main.svg'
+import logo from '@/assets/logo-2015.svg'
 import Image from 'next/image'
 import { useMediaQuery } from '@/lib/tw-mantine-hooks'
 import { IconMenu } from '@tabler/icons-react'

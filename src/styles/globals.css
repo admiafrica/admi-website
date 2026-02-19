@@ -219,6 +219,17 @@ body {
     padding: 0 20px;
   }
 
+  /* Form input - standard form field styling */
+  .form-input {
+    @apply box-border h-11 w-full min-w-0 max-w-full rounded-lg border border-divider-light bg-[#f9fafb] px-3 text-sm text-foreground outline-none placeholder:text-muted;
+  }
+  .form-select {
+    @apply form-input bg-white;
+  }
+  .form-textarea {
+    @apply box-border w-full min-w-0 max-w-full rounded-lg border border-divider-light bg-[#f9fafb] px-3 py-2 text-sm text-foreground outline-none placeholder:text-muted;
+  }
+
   /* Card base (matches Pencil Card components) */
   .card-light {
     @apply rounded-lg border border-divider-light bg-white;

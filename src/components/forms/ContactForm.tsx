@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import { useForm } from '@/lib/tw-mantine-form'
-import { Button, Paragraph, Title } from '../ui'
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
 import { IconAsterisk } from '@tabler/icons-react'
@@ -152,46 +151,38 @@ export default function ContactForm() {
   }
 
   return (
-    <div className="w-full rounded-lg bg-white p-4 sm:p-8">
-      <div className="mb-6 font-nexa">
-        <Title label="Contact Us" color="black" size="32px" />
-        <Paragraph className="mt-2 text-gray-600">Get in touch with us. We&apos;d love to hear from you!</Paragraph>
-      </div>
-
+    <div className="w-full max-w-full overflow-hidden">
       {alert && (
         <div
-          className="rounded-lg border border-amber-300 bg-amber-50 p-4 text-amber-900"
-          style={{ marginBottom: 20, borderColor: alert.type === 'success' ? '#339900' : '#ff9966' }}
+          className={`mb-5 rounded-lg border p-4 ${alert.type === 'success' ? 'border-green-300 bg-green-50 text-green-900' : 'border-amber-300 bg-amber-50 text-amber-900'}`}
         >
-          <div className="mb-1 font-semibold">
-            <Paragraph fontWeight={900}>{alert.type === 'success' ? 'Success' : 'Error'}</Paragraph>
-          </div>
-          <Paragraph>{alert.message}</Paragraph>
+          <p className="mb-1 font-semibold">{alert.type === 'success' ? 'Success' : 'Error'}</p>
+          <p className="text-sm">{alert.message}</p>
         </div>
       )}
 
-      <form onSubmit={form.onSubmit((values) => handleSubmit(values))}>
+      <form onSubmit={form.onSubmit((values) => handleSubmit(values))} className="max-w-full">
         {/* Name Fields */}
         <div className="flex flex-col gap-4 sm:flex-row">
-          <div className="flex-1">
-            <div className="flex pl-2">
-              <Title label="First Name" color="black" size="1.4em" />
-              <IconAsterisk size={8} className="mt-1.5 text-admiRed" />
-            </div>
+          <div className="min-w-0 flex-1">
+            <label className="mb-1 flex items-center gap-1 text-sm font-semibold text-foreground">
+              First Name
+              <IconAsterisk size={6} className="text-brand-red" />
+            </label>
             <input
-              className="h-11 w-full rounded-lg border border-gray-300 bg-[#f8fafc] px-3"
+              className="form-input"
               placeholder="Enter your first name"
               key={form.key('firstName')}
               {...form.getInputProps('firstName')}
             />
           </div>
-          <div className="flex-1">
-            <div className="flex pl-2">
-              <Title label="Last Name" color="black" size="1.4em" />
-              <IconAsterisk size={8} className="mt-1.5 text-admiRed" />
-            </div>
+          <div className="min-w-0 flex-1">
+            <label className="mb-1 flex items-center gap-1 text-sm font-semibold text-foreground">
+              Last Name
+              <IconAsterisk size={6} className="text-brand-red" />
+            </label>
             <input
-              className="h-11 w-full rounded-lg border border-gray-300 bg-[#f8fafc] px-3"
+              className="form-input"
               placeholder="Enter your last name"
               key={form.key('lastName')}
               {...form.getInputProps('lastName')}
@@ -200,13 +191,13 @@ export default function ContactForm() {
         </div>
 
         {/* Email */}
-        <div style={{ marginTop: 16, marginBottom: 16 }}>
-          <div className="flex pl-2">
-            <Title label="Email Address" color="black" size="1.4em" />
-            <IconAsterisk size={8} className="mt-1.5 text-admiRed" />
-          </div>
+        <div className="mt-4">
+          <label className="mb-1 flex items-center gap-1 text-sm font-semibold text-foreground">
+            Email Address
+            <IconAsterisk size={6} className="text-brand-red" />
+          </label>
           <input
-            className="h-11 w-full rounded-lg border border-gray-300 bg-[#f8fafc] px-3"
+            className="form-input"
             placeholder="your@email.com"
             key={form.key('email')}
             {...form.getInputProps('email')}
@@ -214,20 +205,22 @@ export default function ContactForm() {
         </div>
 
         {/* Phone */}
-        <div style={{ marginTop: 16, marginBottom: 16 }}>
-          <div className="flex pl-2">
-            <Title label="Phone Number" color="black" size="1.4em" />
-            <p className="ml-2 text-sm text-gray-500 text-gray-700">(Optional)</p>
-          </div>
-          <div className="flex items-center gap-2 rounded-lg border border-gray-200 p-2">
-            <PhoneInput
-              country={'ke'}
-              value={countryCode}
-              onChange={(value) => setCountryCode(value)}
-              inputProps={{ readOnly: true }}
-            />
+        <div className="mt-4">
+          <label className="mb-1 flex items-center gap-1 text-sm font-semibold text-foreground">
+            Phone Number
+            <span className="font-normal text-muted">(Optional)</span>
+          </label>
+          <div className="flex w-full items-center gap-2 overflow-hidden rounded-lg border border-divider-light bg-[#f9fafb] px-3 sm:gap-3">
+            <div className="shrink-0">
+              <PhoneInput
+                country={'ke'}
+                value={countryCode}
+                onChange={(value) => setCountryCode(value)}
+                inputProps={{ readOnly: true }}
+              />
+            </div>
             <input
-              className="h-11 w-full grow rounded-lg border border-gray-300 bg-[#f8fafc] px-3"
+              className="h-11 min-w-0 flex-1 border-0 bg-transparent text-sm text-foreground outline-none placeholder:text-muted"
               placeholder="Enter phone number"
               key={form.key('phone')}
               type="tel"
@@ -237,13 +230,13 @@ export default function ContactForm() {
         </div>
 
         {/* Subject */}
-        <div style={{ marginTop: 16, marginBottom: 16 }}>
-          <div className="flex pl-2">
-            <Title label="Subject" color="black" size="1.4em" />
-            <IconAsterisk size={8} className="mt-1.5 text-admiRed" />
-          </div>
+        <div className="mt-4">
+          <label className="mb-1 flex items-center gap-1 text-sm font-semibold text-foreground">
+            Subject
+            <IconAsterisk size={6} className="text-brand-red" />
+          </label>
           <select
-            className="h-11 w-full rounded-lg border border-gray-300 bg-white px-3 text-gray-900"
+            className="form-select"
             key={form.key('subject')}
             {...form.getInputProps('subject')}
             onChange={(e) => form.getInputProps('subject').onChange(e.target.value)}
@@ -258,13 +251,13 @@ export default function ContactForm() {
         </div>
 
         {/* Message */}
-        <div style={{ marginTop: 16, marginBottom: 16 }}>
-          <div className="flex pl-2">
-            <Title label="Message" color="black" size="1.4em" />
-            <IconAsterisk size={8} className="mt-1.5 text-admiRed" />
-          </div>
+        <div className="mt-4">
+          <label className="mb-1 flex items-center gap-1 text-sm font-semibold text-foreground">
+            Message
+            <IconAsterisk size={6} className="text-brand-red" />
+          </label>
           <textarea
-            className="w-full rounded-lg border border-gray-300 bg-[#f8fafc] px-3 py-2"
+            className="form-textarea"
             placeholder="Tell us how we can help you..."
             rows={4}
             key={form.key('message')}
@@ -273,16 +266,10 @@ export default function ContactForm() {
         </div>
 
         {/* Submit Button */}
-        <div className="flex justify-end" style={{ marginTop: '2em' }}>
-          <div className="w-full sm:w-[200px]">
-            <Button
-              size="lg"
-              backgroundColor="admiRed"
-              label={isSubmitting ? 'Sending...' : 'Send Message'}
-              type="submit"
-              disabled={isSubmitting}
-            />
-          </div>
+        <div className="mt-6 flex justify-end">
+          <button type="submit" disabled={isSubmitting} className="btn-primary w-full sm:w-auto">
+            {isSubmitting ? 'Sending...' : 'Send Message'}
+          </button>
         </div>
       </form>
     </div>

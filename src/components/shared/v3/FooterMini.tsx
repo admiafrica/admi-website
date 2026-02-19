@@ -3,7 +3,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import { IconCopyright } from '@tabler/icons-react'
-import IconLogoWhite from '@/assets/logo-light.svg'
 import IconYouTube from '@/assets/icons/youtube.svg'
 import IconInstagram from '@/assets/icons/instagram.svg'
 import IconFacebook from '@/assets/icons/facebook.svg'
@@ -69,7 +68,6 @@ export default function FooterMini() {
               Privacy Policy | Terms & Conditions
             </Link>
           </div>
-          <Image width={95} src={IconLogoWhite} alt="logo" />
         </div>
       </div>
 

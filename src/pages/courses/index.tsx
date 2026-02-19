@@ -71,6 +71,8 @@ const PROGRAM_CONFIG: Record<
     bgColor: string
     meta: string
     tabName: string
+    viewAllHref?: string
+    viewAllLabel?: string
   }
 > = {
   Diploma: {
@@ -81,7 +83,9 @@ const PROGRAM_CONFIG: Record<
     accentBg: '#FFF0F0',
     bgColor: 'bg-white',
     meta: '18 months  •  In-person  •  EU-Accredited via Woolf  •  From KES 15,000/month',
-    tabName: 'Diploma Programmes'
+    tabName: 'Diploma Programmes',
+    viewAllHref: '/courses/diploma-programs',
+    viewAllLabel: 'View all diploma courses'
   },
   'Professional Certificate': {
     iconLetter: 'P',
@@ -91,7 +95,9 @@ const PROGRAM_CONFIG: Record<
     accentBg: '#EEF9F7',
     bgColor: 'bg-[#f9f9f9]',
     meta: '6 months  •  In-person / Online  •  From KES 8,500/month',
-    tabName: 'Professional Certificates'
+    tabName: 'Professional Certificates',
+    viewAllHref: '/courses/professional-certificates',
+    viewAllLabel: 'View all professional certificates'
   },
   'Foundation Certificate': {
     iconLetter: 'F',
@@ -101,7 +107,9 @@ const PROGRAM_CONFIG: Record<
     accentBg: '#FFF8F0',
     bgColor: 'bg-white',
     meta: '3 months  •  In-person  •  ADMI Certified  •  From KES 5,000/month',
-    tabName: 'Foundation Certificates'
+    tabName: 'Foundation Certificates',
+    viewAllHref: '/courses/foundation-certificates',
+    viewAllLabel: 'View all foundation certificates'
   },
   'Rubika Programs': {
     iconLetter: 'R',
@@ -372,6 +380,8 @@ export default function CoursesPage({
           bgColor={section.config.bgColor}
           accentColor={section.config.accentColor}
           accentBg={section.config.accentBg}
+          viewAllHref={section.config.viewAllHref}
+          viewAllLabel={section.config.viewAllLabel}
           courses={section.courses}
         />
       ))}

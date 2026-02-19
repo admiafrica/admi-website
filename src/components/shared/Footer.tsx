@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import Link from 'next/link'
 import { useMediaQuery } from '@/lib/tw-mantine-hooks'
 import {
@@ -11,7 +10,6 @@ import {
 } from '@tabler/icons-react'
 import { SOCIAL_LINKS } from '@/utils'
 import { WhatsAppLink } from '@/components/shared/WhatsAppLink'
-import LogoIcon from '../../assets/logo.svg'
 
 export default function CustomFooter() {
   const isMobile = useMediaQuery('(max-width: 480px)')
@@ -31,8 +29,6 @@ export default function CustomFooter() {
           WhatsApp: (+254) 741 132 751
         </WhatsAppLink>
         <p className="text-gray-700">Hours: Mon-Fri 8:00am - 5:00pm / Sat: 8:00am to 2:00pm</p>
-
-        <Image width={isMobile ? 80 : 140} src={LogoIcon} alt="logo" />
       </div>
 
       {/* Quick Links and Social Media */}

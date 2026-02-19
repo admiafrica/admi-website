@@ -7,7 +7,7 @@ import { useRouter, usePathname } from 'next/navigation'
 import { Button } from '@/components/ui'
 
 import { IconMenu, IconX } from '@tabler/icons-react'
-import IconLogoLight from '@/assets/logo-light.svg'
+import IconLogoLight from '@/assets/logo-2015.svg'
 
 // ---------- Data ----------
 type NavItem = {
@@ -162,7 +162,7 @@ export default function NavBar({ mode, isMinimal = false }: Props) {
       <div className="mx-auto w-full max-w-screen-xl px-4">
         <div className="flex items-center py-2 font-nexa">
           <Link href="/" style={{ textDecoration: 'none' }}>
-            {mode === 'dark' && <Image src={IconLogoLight} width={80} alt="Africa Digital Media Institute" priority />}
+            <Image src={IconLogoLight} width={80} alt="Africa Digital Media Institute" priority />
           </Link>
           <div className="grow" />
           {!hiddenCTA && (
@@ -179,9 +179,7 @@ export default function NavBar({ mode, isMinimal = false }: Props) {
     <div className="mx-auto w-full max-w-screen-xl px-4">
       <div className="flex w-full items-center py-2 font-nexa">
         <Link href="/" style={{ textDecoration: 'none' }}>
-          {mode === 'dark' && (
-            <Image src={IconLogoLight} width={80} height={60} alt="Africa Digital Media Institute" priority />
-          )}
+          <Image src={IconLogoLight} width={80} height={60} alt="Africa Digital Media Institute" priority />
         </Link>
         <div className="grow" />
 
