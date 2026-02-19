@@ -1,3 +1,5 @@
+import Link from 'next/link'
+import { IconChevronRight } from '@tabler/icons-react'
 import { CourseCard } from './CourseCard'
 
 interface ProgramSectionProps {
@@ -9,6 +11,8 @@ interface ProgramSectionProps {
   bgColor?: string
   accentColor: string
   accentBg: string
+  viewAllHref?: string
+  viewAllLabel?: string
   courses: Array<{
     name: string
     slug: string
@@ -28,6 +32,8 @@ export default function ProgramSection({
   bgColor = 'bg-white',
   accentColor,
   accentBg,
+  viewAllHref,
+  viewAllLabel,
   courses
 }: ProgramSectionProps) {
   if (courses.length === 0) return null
@@ -46,8 +52,20 @@ export default function ProgramSection({
               {iconLetter}
             </span>
           </div>
-          <div className="flex flex-col">
-            <h2 className="font-nexa text-2xl font-bold text-[#171717]">{title}</h2>
+          <div className="flex min-w-0 flex-1 flex-col">
+            <div className="flex items-center justify-between">
+              <h2 className="font-nexa text-2xl font-bold text-[#171717]">{title}</h2>
+              {viewAllHref && (
+                <Link
+                  href={viewAllHref}
+                  className="hidden items-center gap-1 font-proxima text-sm font-semibold no-underline transition-colors hover:underline sm:flex"
+                  style={{ color: accentColor }}
+                >
+                  {viewAllLabel || 'View all'}
+                  <IconChevronRight size={16} />
+                </Link>
+              )}
+            </div>
             <p className="font-proxima text-sm text-[#999]">{meta}</p>
           </div>
         </div>
