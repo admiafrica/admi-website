@@ -79,7 +79,7 @@ export default function ContactPage() {
             </div>
 
             {/* Info Side */}
-            <div className="w-full rounded-xl bg-[#f9fafb] p-6 lg:w-[400px] lg:flex-shrink-0 lg:p-8">
+            <div className="w-full rounded-xl bg-[#f9fafb] p-6 lg:w-[380px] lg:flex-shrink-0 lg:p-8">
               <h2 className="section-subheading text-foreground">Contact Information</h2>
               <div className="mt-6 space-y-6">
                 {CONTACT_INFO.map((info) => (
@@ -134,7 +134,6 @@ export default function ContactPage() {
             </Link>
           </div>
         </section>
-
       </div>
     </MainLayout>
   )

@@ -6,7 +6,7 @@ import ImageEnquiry1 from '../../assets/images/learn-more-1.svg'
 import ImageEnquiry2 from '@/assets/images/learn-more-2.svg'
 import ImageEnquiry3 from '@/assets/images/learn-more-3.svg'
 
-import IconLogo from '@/assets/logo-dark.svg'
+import IconLogo from '@/assets/logo.svg'
 import IconTrophy from '@/assets/icons/Trophy'
 import IconDoorkey from '@/assets/icons/DoorKey'
 import IconShootingStar from '@/assets/icons/ShootingStar'
