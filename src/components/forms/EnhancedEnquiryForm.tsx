@@ -50,7 +50,7 @@ const INITIAL_VALUES: FormData = {
 const STEP_LABELS = ['Course Interest', 'Program Details', 'Contact Info']
 
 const INPUT_CLASS =
-  'box-border h-[44px] w-full min-w-0 max-w-full rounded-[8px] border border-[#BCC5D0] bg-[#F7F8FA] px-3 text-[14px] text-[#1F2937] placeholder:text-[#6F7E90] outline-none'
+  'box-border h-[44px] w-full min-w-0 max-w-full rounded-[8px] border border-[#BCC5D0] bg-[#F7F8FA] px-3 font-proxima text-[14px] text-[#1F2937] placeholder:text-[#6F7E90] outline-none'
 
 const RADIO_CLASS = 'h-4 w-4 border-[#8896A8] text-brand-red focus:ring-brand-red'
 
@@ -437,10 +437,10 @@ export default function EnhancedEnquiryForm() {
   const showStep = (step: number) => activeStep === step
 
   return (
-    <div className="w-full">
+    <div className="w-full font-proxima">
       <div className="mb-6">
-        <h2 className="font-proxima text-xl font-bold text-black sm:text-2xl">Enquiry Form</h2>
-        <p className="mt-1 font-proxima text-sm text-muted">
+        <h2 className="text-xl font-bold text-black sm:text-2xl">Enquiry Form</h2>
+        <p className="mt-1 text-sm text-muted">
           Help us understand your needs better with a few quick questions
         </p>
       </div>

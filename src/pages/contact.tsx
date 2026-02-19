@@ -51,14 +51,14 @@ export default function ContactPage() {
 
       <div className="w-full overflow-x-hidden">
         {/* ── Hero ── */}
-        <section className="section-padding bg-[#0A3D3D] text-center text-white">
-          <div className="section-container">
-            <div className="flex items-center justify-center gap-3">
+        <section className="bg-[#0A3D3D] text-center text-white">
+          <div className="section-container pb-16 pt-10 md:pb-24 md:pt-14">
+            <div className="mb-5 flex items-center justify-center gap-3">
               <span className="h-0.5 w-8 bg-secondary" />
               <span className="section-label text-secondary">CONTACT</span>
             </div>
-            <h1 className="section-heading-light mt-5">Get In Touch With ADMI</h1>
-            <p className="mx-auto mt-4 max-w-[600px] text-lg leading-relaxed text-white/80">
+            <h1 className="section-heading-dark mb-4">Get In Touch With ADMI</h1>
+            <p className="section-subheading-dark mx-auto max-w-[600px]">
               Have a question about our programmes, admissions, or campus? We are here to help.
             </p>
           </div>
