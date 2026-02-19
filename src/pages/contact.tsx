@@ -65,10 +65,10 @@ export default function ContactPage() {
         </section>
 
         {/* ── Form + Contact Info ── */}
-        <section className="overflow-x-hidden bg-white">
-          <div className="section-container flex flex-col lg:flex-row lg:gap-0">
+        <section className="section-padding overflow-x-hidden bg-white">
+          <div className="section-container flex flex-col lg:flex-row lg:gap-12">
             {/* Form Side */}
-            <div className="min-w-0 flex-1 py-12 lg:py-16 lg:pr-12">
+            <div className="min-w-0 flex-1">
               <h2 className="section-subheading text-foreground">Send Us a Message</h2>
               <p className="mt-2 text-muted">
                 Fill out the form below and our admissions team will get back to you within 24 hours.
@@ -79,7 +79,7 @@ export default function ContactPage() {
             </div>
 
             {/* Info Side */}
-            <div className="w-full bg-[#f9fafb] p-6 lg:w-[400px] lg:flex-shrink-0 lg:p-10">
+            <div className="w-full rounded-xl bg-[#f9fafb] p-6 lg:w-[400px] lg:flex-shrink-0 lg:p-8">
               <h2 className="section-subheading text-foreground">Contact Information</h2>
               <div className="mt-6 space-y-6">
                 {CONTACT_INFO.map((info) => (
