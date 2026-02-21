@@ -226,7 +226,7 @@ export default function StudentSupportPage({ page }: InferGetStaticPropsType<typ
 
       <div className="w-full">
         {/* -- Hero -- */}
-        <section className="section-padding bg-gradient-to-br from-[#0F2E2A] via-[#0A1F1D] to-[#091110]">
+        <section className="bg-gradient-to-br from-[#0F2E2A] via-[#0A1F1D] to-[#091110] pb-16 pt-28 md:pb-20 md:pt-36">
           <div className="section-container flex w-full flex-col items-center gap-12 lg:flex-row lg:justify-between">
             <div className="max-w-[640px]">
               <p className="font-proxima text-[12px] font-bold uppercase tracking-[3px] text-secondary">

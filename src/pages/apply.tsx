@@ -124,7 +124,7 @@ export default function ApplyPage() {
           className="relative w-full overflow-hidden"
           style={{ background: 'linear-gradient(160deg, #0F2E2A 0%, #091110 100%)' }}
         >
-          <div className="section-container flex flex-col gap-12 pb-16 pt-10 md:flex-row md:items-center md:gap-16 md:pb-24 md:pt-14">
+          <div className="section-container flex flex-col gap-12 pb-16 pt-28 md:flex-row md:items-center md:gap-16 md:pb-24 md:pt-36">
             {/* Left content */}
             <div className="flex-1">
               <div className="mb-5 flex items-center gap-3">

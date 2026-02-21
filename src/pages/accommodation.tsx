@@ -147,14 +147,14 @@ export default function AccommodationPage({ page }: InferGetStaticPropsType<type
         <section className="relative h-[420px] w-full overflow-hidden md:h-[480px]">
           {/* Background image */}
           <div
-            className="absolute inset-0 bg-cover bg-center"
+            className="absolute inset-0 bg-cover bg-top"
             style={{ backgroundImage: `url('${page.heroImage}')` }}
           />
           {/* Dark overlay */}
           <div className="bg-admi-black/73 absolute inset-0" />
 
           {/* Content */}
-          <div className="section-container relative z-10 flex h-full flex-col justify-center">
+          <div className="section-container relative z-10 flex h-full flex-col justify-center pt-20">
             <div className="max-w-[700px]">
               <div className="flex items-center gap-3">
                 <span className="font-proxima text-[13px] font-bold uppercase tracking-[3px] text-secondary">

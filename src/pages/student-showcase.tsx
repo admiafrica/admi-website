@@ -206,7 +206,7 @@ export default function StudentShowcasePage({ page }: InferGetStaticPropsType<ty
 
       <div className="w-full">
         {/* -- Hero -- */}
-        <section className="section-padding bg-gradient-to-br from-[#0A1A18] via-[#050D0C] to-admi-black">
+        <section className="bg-gradient-to-br from-[#0A1A18] via-[#050D0C] to-admi-black pb-16 pt-28 md:pb-20 md:pt-36">
           <div className="section-container flex w-full flex-col items-center gap-10 lg:flex-row lg:justify-between">
             {/* Left */}
             <div className="max-w-[640px]">

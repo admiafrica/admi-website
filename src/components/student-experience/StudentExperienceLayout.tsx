@@ -26,9 +26,9 @@ export function StudentExperienceLayout({
   children
 }: StudentExperienceLayoutProps) {
   return (
-    <MainLayout footerBgColor={footerBgColor}>
+    <MainLayout footerBgColor={footerBgColor} heroOverlap>
       <div className="bg-admi-green text-white">
-        <div className="section-container py-16">
+        <div className="section-container pb-16 pt-28 md:pt-32">
           <p className="text-xs uppercase tracking-[0.3em] text-admiShamrok">{heroKicker}</p>
           <Title label={heroTitle} color="#F1FE37" size="48px" className="pt-2" />
           <Paragraph className="pt-4 text-white" fontFamily="font-nexa" fontWeight={400}>

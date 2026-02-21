@@ -50,7 +50,7 @@ export default function ProfessionalCertificatesPage({ profCourses = [] }: { pro
       <div className="font-proxima">
         {/* Hero Section */}
         <section className="w-full bg-white">
-          <div className="section-container flex flex-col items-center gap-5 pb-16 pt-10 md:pb-24 md:pt-14 lg:flex-row lg:items-center lg:gap-10">
+          <div className="section-container flex flex-col items-center gap-5 pb-16 pt-28 md:pb-24 md:pt-36 lg:flex-row lg:items-center lg:gap-10">
             {/* Left Content */}
             <div className="flex flex-1 flex-col">
               <span className="mb-5 w-fit rounded-full bg-[#EEF9F7] px-4 py-1.5 text-[12px] font-semibold text-[#057A65]">

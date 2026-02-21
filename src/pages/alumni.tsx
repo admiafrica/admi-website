@@ -146,14 +146,14 @@ export default function AlumniPage({
         {/* ── Hero ── */}
         <section className="relative h-[480px] overflow-hidden md:h-[520px]">
           <div
-            className="absolute inset-0 bg-cover bg-center"
+            className="absolute inset-0 bg-cover bg-top"
             style={{
               backgroundImage:
                 "url('https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&w=1920&q=80')"
             }}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-admi-black/90 via-admi-black/70 to-admi-black/50" />
-          <div className="section-container relative z-10 flex h-full flex-col justify-end pb-10 pt-10 md:justify-center md:pb-20 md:pt-[120px]">
+          <div className="section-container relative z-10 flex h-full flex-col justify-end pb-10 pt-28 md:justify-center md:pb-20 md:pt-[120px]">
             <span className="inline-flex w-fit items-center rounded-full bg-brand-red px-4 py-1.5 font-proxima text-[12px] font-bold uppercase tracking-[2px] text-white">
               OUR ALUMNI NETWORK
             </span>

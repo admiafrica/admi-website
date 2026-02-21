@@ -53,13 +53,13 @@ export default function StudentExperienceCampusPage() {
   }
 
   return (
-    <MainLayout footerBgColor="white">
+    <MainLayout footerBgColor="white" heroOverlap>
       <PageSEO
         title="Student Experience: Campus"
         description="Explore ADMI campus experience, from facilities and labs to studios and equipment access."
       />
 
-      <div className="bg-[#0A1A18] px-4 py-16 text-white xl:px-0">
+      <div className="bg-[#0A1A18] px-4 pb-16 pt-28 text-white md:pt-32 xl:px-0">
         <div className="mx-auto w-full max-w-screen-xl">
           <p className="font-nexa text-[14px] uppercase tracking-[0.15em] text-[#B7D8CF]">/student-experience/campus</p>
           <h1 className="pt-4 font-proxima text-[48px] font-bold leading-[1.1]">Campus Experience at ADMI</h1>

@@ -3,10 +3,10 @@ import { PageSEO } from '@/components/shared/v3'
 
 export default function StudentExperienceLabsPage() {
   return (
-    <MainLayout footerBgColor="white">
+    <MainLayout footerBgColor="white" heroOverlap>
       <PageSEO title="Student Experience: The Labs" description="Specialized labs and production technology at ADMI." />
 
-      <div className="bg-admi-black px-4 py-16 text-white xl:px-0">
+      <div className="bg-admi-black px-4 pb-16 pt-28 text-white md:pt-32 xl:px-0">
         <div className="mx-auto w-full max-w-screen-xl">
           <p className="font-nexa text-[14px] uppercase tracking-[0.15em] text-[#B7D8CF]">
             /student-experience/campus/the-labs

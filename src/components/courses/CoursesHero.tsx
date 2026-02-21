@@ -14,7 +14,7 @@ export default function CoursesHero({ searchQuery, onSearchChange, onSearch }: C
   }
 
   return (
-    <section aria-labelledby="courses-hero-heading" className="section-padding w-full bg-admi-green">
+    <section aria-labelledby="courses-hero-heading" className="w-full bg-admi-green pb-16 pt-28 md:pb-20 md:pt-36">
       <div className="section-container flex max-w-[900px] flex-col items-center">
         {/* Heading */}
         <h1 id="courses-hero-heading" className="text-center font-nexa text-4xl font-black text-white md:text-5xl">

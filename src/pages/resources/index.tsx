@@ -189,7 +189,7 @@ export default function ResourcesPage({ initialResources, initialFeatured, initi
       <div className="w-full">
         {/* Hero with Featured Resource */}
         <div
-          className="py-16"
+          className="pb-16 pt-28 md:pt-32"
           style={{
             background: 'linear-gradient(142deg, #0F2E2A 0%, #0A1F1D 55%, #091110 100%)'
           }}

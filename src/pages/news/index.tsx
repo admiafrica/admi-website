@@ -66,7 +66,7 @@ export default function NewsPage({ news, featuredNews }: NewsPageProps) {
       <div className="w-full">
         {/* Featured Article Hero */}
         <div
-          className="relative py-16"
+          className="relative pb-16 pt-28 md:pt-32"
           style={{
             background: 'linear-gradient(142deg, #0F2E2A 0%, #0A1F1D 55%, #091110 100%)'
           }}

@@ -106,7 +106,7 @@ export default function StudentLifePage({ page }: InferGetStaticPropsType<typeof
         {/* -- Hero -- */}
         <section className="relative h-[420px] overflow-hidden md:h-[520px]">
           <div
-            className="absolute inset-0 bg-cover bg-center"
+            className="absolute inset-0 bg-cover bg-top"
             style={{
               backgroundImage:
                 "url('https://images.unsplash.com/photo-1669508595978-9db290965da3?auto=format&fit=crop&w=1920&q=80')"

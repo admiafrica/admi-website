@@ -3,7 +3,7 @@ import { PageSEO } from '@/components/shared/v3'
 
 export default function StudentExperienceFacilitiesPage() {
   return (
-    <MainLayout footerBgColor="white">
+    <MainLayout footerBgColor="white" heroOverlap>
       <PageSEO title="Student Experience: Facilities" description="Campus facilities and learning spaces at ADMI." />
 
       <div className="bg-white">
