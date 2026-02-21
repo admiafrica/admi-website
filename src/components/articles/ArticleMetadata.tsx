@@ -108,7 +108,7 @@ export function RelatedArticles({ currentArticleTags = [], currentArticleId, art
   if (scoredArticles.length === 0) return null
 
   return (
-    <div className="mt-8 pt-8" style={{ borderTop: '1px solid var(--mantine-color-gray-3)' }}>
+    <div className="mt-8 pt-8" style={{ borderTop: '1px solid var(--border-light)' }}>
       <p className="mb-4 text-lg text-gray-700" style={{ fontWeight: 600 }}>
         Related Articles
       </p>

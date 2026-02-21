@@ -1,7 +1,6 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { Badge, Group, Paper, Text } from '@mantine/core'
 import { IconCalendar, IconClock, IconSparkles } from '@tabler/icons-react'
 
 type Props = {
@@ -47,10 +46,8 @@ export default function IntakeBanner({
   }, [intakeDate, earlyBirdDeadline])
 
   return (
-    <Paper
-      className="w-full"
-      py="md"
-      px="lg"
+    <div
+      className="w-full px-6 py-4"
       style={{
         background: isEarlyBird
           ? 'linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)'
@@ -61,73 +58,51 @@ export default function IntakeBanner({
       <div className="mx-auto max-w-screen-xl">
         <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
           {/* Left: Intake Info */}
-          <Group gap="md">
+          <div className="flex items-center gap-3">
             <IconCalendar size={24} color="#00D9A5" />
             <div>
-              <Text size="sm" c="dimmed">
-                Next Intake
-              </Text>
-              <Text size="lg" fw={700} c="white">
-                {intakeDate}
-              </Text>
+              <p className="text-sm text-gray-400">Next Intake</p>
+              <p className="text-lg font-bold text-white">{intakeDate}</p>
             </div>
-          </Group>
+          </div>
 
           {/* Center: Countdown */}
           <div className="flex items-center gap-4">
             <div className="text-center">
-              <Text size="xl" fw={900} c="#F1FE38">
-                {timeLeft.days}
-              </Text>
-              <Text size="xs" c="dimmed">
-                Days
-              </Text>
+              <p className="text-xl font-black text-[#F1FE38]">{timeLeft.days}</p>
+              <p className="text-xs text-gray-400">Days</p>
             </div>
-            <Text size="xl" c="dimmed">
-              :
-            </Text>
+            <span className="text-xl text-gray-400">:</span>
             <div className="text-center">
-              <Text size="xl" fw={900} c="#F1FE38">
-                {timeLeft.hours}
-              </Text>
-              <Text size="xs" c="dimmed">
-                Hours
-              </Text>
+              <p className="text-xl font-black text-[#F1FE38]">{timeLeft.hours}</p>
+              <p className="text-xs text-gray-400">Hours</p>
             </div>
-            <Text size="xl" c="dimmed">
-              :
-            </Text>
+            <span className="text-xl text-gray-400">:</span>
             <div className="text-center">
-              <Text size="xl" fw={900} c="#F1FE38">
-                {timeLeft.minutes}
-              </Text>
-              <Text size="xs" c="dimmed">
-                Mins
-              </Text>
+              <p className="text-xl font-black text-[#F1FE38]">{timeLeft.minutes}</p>
+              <p className="text-xs text-gray-400">Mins</p>
             </div>
           </div>
 
           {/* Right: Early Bird or CTA */}
           {isEarlyBird && isDiploma ? (
-            <Badge
-              size="lg"
-              variant="gradient"
-              gradient={{ from: '#F1FE38', to: '#00D9A5', deg: 90 }}
-              leftSection={<IconSparkles size={16} />}
-              style={{ color: '#000' }}
+            <span
+              className="inline-flex items-center gap-1.5 rounded-full px-4 py-1.5 text-sm font-semibold text-black"
+              style={{ background: 'linear-gradient(90deg, #F1FE38, #00D9A5)' }}
             >
+              <IconSparkles size={16} />
               Early Bird: {earlyBirdDiscount}% OFF until {earlyBirdDeadline}
-            </Badge>
+            </span>
           ) : (
-            <Group gap="xs">
+            <div className="flex items-center gap-2">
               <IconClock size={20} color="#FF6B6B" />
-              <Text size="sm" c="white" fw={500}>
+              <span className="text-sm font-medium text-white">
                 {timeLeft.days < 30 ? 'Limited spots remaining!' : 'Secure your spot today'}
-              </Text>
-            </Group>
+              </span>
+            </div>
           )}
         </div>
       </div>
-    </Paper>
+    </div>
   )
 }

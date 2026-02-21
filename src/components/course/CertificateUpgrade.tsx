@@ -1,7 +1,6 @@
 'use client'
 
 import { useRouter } from 'next/router'
-import { Badge, Button, Card, Group, List, NumberFormatter, Stack, Text, ThemeIcon } from '@mantine/core'
 import { IconArrowRight, IconCheck, IconRocket, IconSparkles } from '@tabler/icons-react'
 
 type Props = {
@@ -9,6 +8,10 @@ type Props = {
   certificateFee?: number // e.g., 48000
   diplomaName?: string
   diplomaFee?: number // e.g., 100000 per semester
+}
+
+function formatKES(value: number): string {
+  return 'KES ' + value.toLocaleString('en-KE')
 }
 
 export default function CertificateUpgrade({
@@ -42,10 +45,8 @@ export default function CertificateUpgrade({
   ]
 
   return (
-    <Card
-      className="overflow-hidden"
-      radius="lg"
-      p={0}
+    <div
+      className="overflow-hidden rounded-xl"
       style={{
         background: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)',
         border: '2px solid #F1FE38'
@@ -54,106 +55,79 @@ export default function CertificateUpgrade({
       <div className="flex flex-col md:flex-row">
         {/* Left: Content */}
         <div className="flex-1 p-6 md:p-8">
-          <Stack gap="lg">
+          <div className="flex flex-col gap-5">
             {/* Header */}
-            <Group gap="sm">
-              <ThemeIcon size="lg" radius="md" color="yellow">
+            <div className="flex items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-yellow-400 text-gray-900">
                 <IconRocket size={20} />
-              </ThemeIcon>
-              <Badge size="lg" color="yellow" variant="filled">
+              </div>
+              <span className="rounded-full bg-yellow-400 px-4 py-1.5 text-sm font-semibold text-gray-900">
                 Upgrade Path Available
-              </Badge>
-            </Group>
+              </span>
+            </div>
 
             <div>
-              <Text size="xl" fw={900} c="white" className="font-nexa">
-                Ready for More? Upgrade to Diploma
-              </Text>
-              <Text size="sm" c="dimmed" mt="xs">
+              <h3 className="font-nexa text-xl font-black text-white">Ready for More? Upgrade to Diploma</h3>
+              <p className="mt-1 text-sm text-gray-400">
                 Take your {certificateName} skills to the next level with our 2-year diploma program
-              </Text>
+              </p>
             </div>
 
             {/* Benefits List */}
-            <List
-              spacing="sm"
-              icon={
-                <ThemeIcon size="sm" radius="xl" color="teal">
-                  <IconCheck size={12} />
-                </ThemeIcon>
-              }
-            >
+            <ul className="flex flex-col gap-2.5">
               {upgradeAdvantages.map((advantage, index) => (
-                <List.Item key={index}>
-                  <Text size="sm" c="white">
-                    {advantage}
-                  </Text>
-                </List.Item>
+                <li key={index} className="flex items-start gap-2.5">
+                  <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-teal-500 text-white">
+                    <IconCheck size={12} />
+                  </span>
+                  <span className="text-sm text-white">{advantage}</span>
+                </li>
               ))}
-            </List>
+            </ul>
 
             {/* CTA */}
-            <Button
-              size="lg"
-              color="yellow"
-              rightSection={<IconArrowRight size={18} />}
+            <button
               onClick={handleLearnMore}
-              className="w-fit"
-              style={{ color: '#000' }}
+              className="inline-flex w-fit items-center gap-2 rounded-md bg-yellow-400 px-6 py-3 text-sm font-semibold text-gray-900 transition-colors hover:bg-yellow-300"
             >
               Explore Diploma Program
-            </Button>
-          </Stack>
+              <IconArrowRight size={18} />
+            </button>
+          </div>
         </div>
 
         {/* Right: Comparison Card */}
         <div className="bg-white/5 p-6 md:w-80 md:p-8">
-          <Stack gap="md">
-            <Text size="sm" c="dimmed" fw={500}>
-              Investment Comparison
-            </Text>
+          <div className="flex flex-col gap-4">
+            <p className="text-sm font-medium text-gray-400">Investment Comparison</p>
 
             {/* Certificate */}
-            <Card bg="dark.6" p="md" radius="sm">
-              <Text size="xs" c="dimmed">
-                Certificate (4 months)
-              </Text>
-              <Text size="lg" fw={700} c="white">
-                <NumberFormatter prefix="KES " value={certificateFee} thousandSeparator />
-              </Text>
-              <Text size="xs" c="dimmed">
-                One-time investment
-              </Text>
-            </Card>
+            <div className="rounded-md bg-gray-800 p-4">
+              <p className="text-xs text-gray-400">Certificate (4 months)</p>
+              <p className="text-lg font-bold text-white">{formatKES(certificateFee)}</p>
+              <p className="text-xs text-gray-400">One-time investment</p>
+            </div>
 
             {/* Arrow */}
-            <Group justify="center">
+            <div className="flex justify-center">
               <IconSparkles size={24} color="#F1FE38" />
-            </Group>
+            </div>
 
             {/* Diploma */}
-            <Card bg="teal.9" p="md" radius="sm" className="border-2 border-[#00D9A5]">
-              <Text size="xs" c="teal.2">
-                Diploma (2 years)
-              </Text>
-              <Text size="lg" fw={700} c="white">
-                <NumberFormatter prefix="KES " value={diplomaFee * 4} thousandSeparator />
-              </Text>
-              <Text size="xs" c="teal.3">
-                <NumberFormatter prefix="KES " value={diplomaFee} thousandSeparator /> × 4 semesters
-              </Text>
-              <Badge size="sm" color="yellow" mt="sm" style={{ color: '#000' }}>
+            <div className="rounded-md border-2 border-[#00D9A5] bg-teal-900 p-4">
+              <p className="text-xs text-teal-300">Diploma (2 years)</p>
+              <p className="text-lg font-bold text-white">{formatKES(diplomaFee * 4)}</p>
+              <p className="text-xs text-teal-400">{formatKES(diplomaFee)} x 4 semesters</p>
+              <span className="mt-2 inline-block rounded-full bg-yellow-400 px-3 py-1 text-xs font-semibold text-gray-900">
                 Your KES 48K credited!
-              </Badge>
-            </Card>
+              </span>
+            </div>
 
             {/* Upgrade Deadline */}
-            <Text size="xs" c="dimmed" ta="center">
-              Upgrade within 6 months of certificate completion
-            </Text>
-          </Stack>
+            <p className="text-center text-xs text-gray-400">Upgrade within 6 months of certificate completion</p>
+          </div>
         </div>
       </div>
-    </Card>
+    </div>
   )
 }
