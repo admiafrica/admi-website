@@ -159,7 +159,7 @@ export default function Footer({ bgColor }: Props) {
     >
       <div className="w-full bg-admi-green pb-8 pt-12">
         {/* Main 4-column grid */}
-        <div className="mx-auto grid w-full max-w-screen-xl grid-cols-1 gap-10 px-4 text-white sm:px-8 md:grid-cols-2 md:gap-12 lg:grid-cols-4 lg:px-4">
+        <div className="section-container grid grid-cols-1 gap-10 text-white md:grid-cols-2 md:gap-12 lg:grid-cols-4">
           {/* Column 1: Get in Touch */}
           <div className="flex flex-col gap-3">
             <h3 className="mb-1 font-nexa text-[1.4em] font-black text-white">Get in Touch</h3>
@@ -238,8 +238,8 @@ export default function Footer({ bgColor }: Props) {
         </div>
 
         {/* Bottom bar */}
-        <hr className="mx-auto mt-12 max-w-screen-xl border-t border-white/20 sm:mx-8 lg:mx-auto" />
-        <div className="mx-auto flex w-full max-w-screen-xl flex-col items-center gap-3 px-4 pt-8 text-center sm:px-8 md:flex-row md:justify-between md:text-left lg:px-4">
+        <hr className="section-container mt-12 border-t border-white/20" />
+        <div className="section-container flex flex-col items-center gap-3 pt-8 text-center md:flex-row md:justify-between md:text-left">
           <div className="flex items-center gap-1.5 text-white">
             <IconCopyright size={16} />
             <span>
