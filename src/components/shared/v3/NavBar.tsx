@@ -8,6 +8,7 @@ import { Button } from '@/components/ui'
 
 import { IconMenu, IconX } from '@tabler/icons-react'
 import IconLogoLight from '@/assets/logo-2015.svg'
+import IconLogoDark from '/public/logo/ADMI (White)logo-01.png'
 
 // ---------- Data ----------
 type NavItem = {
@@ -156,13 +157,21 @@ export default function NavBar({ mode, isMinimal = false }: Props) {
   }, [pathname])
 
   const textColorClass = mode === 'dark' ? 'text-white' : 'text-black'
+  const logoSrc = mode === 'dark' ? IconLogoDark : IconLogoLight
 
   if (isMinimal) {
     return (
       <div className="mx-auto w-full max-w-screen-xl px-4">
         <div className="flex items-center py-2 font-nexa">
-          <Link href="/" style={{ textDecoration: 'none' }}>
-            <Image src={IconLogoLight} width={80} alt="Africa Digital Media Institute" priority />
+          <Link href="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', height: '100%' }}>
+            <Image
+              src={logoSrc}
+              width={90}
+              height={0}
+              style={{ width: 90, height: 'auto' }}
+              alt="Africa Digital Media Institute"
+              priority
+            />
           </Link>
           <div className="grow" />
           {!hiddenCTA && (
@@ -178,8 +187,15 @@ export default function NavBar({ mode, isMinimal = false }: Props) {
   return (
     <div className="mx-auto w-full max-w-screen-xl px-4">
       <div className="flex w-full items-center py-2 font-nexa">
-        <Link href="/" style={{ textDecoration: 'none' }}>
-          <Image src={IconLogoLight} width={80} height={60} alt="Africa Digital Media Institute" priority />
+        <Link href="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', height: '100%' }}>
+          <Image
+            src={logoSrc}
+            width={90}
+            height={0}
+            style={{ width: 90, height: 'auto' }}
+            alt="Africa Digital Media Institute"
+            priority
+          />
         </Link>
         <div className="grow" />
 
@@ -227,7 +243,7 @@ export default function NavBar({ mode, isMinimal = false }: Props) {
 
       {/* Mobile dropdown menu */}
       {mobileOpen && (
-        <div className="border-t border-white/10 bg-black pb-4 lg:hidden">
+        <div className="fixed left-0 right-0 top-[81px] z-50 max-h-[calc(100vh-81px)] overflow-y-auto border-t border-white/10 bg-gray-900 pb-4 font-proxima lg:hidden">
           {NAV_ITEMS.map((item) => (
             <div key={item.label}>
               <button
@@ -240,7 +256,7 @@ export default function NavBar({ mode, isMinimal = false }: Props) {
                     setMobileOpen(false)
                   }
                 }}
-                className="w-full cursor-pointer border-none bg-transparent px-4 py-3 text-left text-lg font-bold text-white"
+                className="w-full cursor-pointer border-none bg-transparent px-4 py-3 text-left font-proxima text-lg font-bold text-white"
               >
                 {item.label}
               </button>
@@ -251,7 +267,7 @@ export default function NavBar({ mode, isMinimal = false }: Props) {
                       key={child.href}
                       href={child.href}
                       onClick={() => setMobileOpen(false)}
-                      className="block py-2 pl-8 text-base text-white/80 no-underline hover:text-white"
+                      className="block py-2 pl-8 font-proxima text-base text-white/80 no-underline hover:text-white"
                     >
                       {child.label}
                     </Link>

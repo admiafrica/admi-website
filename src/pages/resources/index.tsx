@@ -189,19 +189,16 @@ export default function ResourcesPage({ initialResources, initialFeatured, initi
       <div className="w-full">
         {/* Hero with Featured Resource */}
         <div
-          className="px-4 py-16 xl:px-0"
+          className="py-16"
           style={{
             background: 'linear-gradient(142deg, #0F2E2A 0%, #0A1F1D 55%, #091110 100%)'
           }}
         >
-          <div className="mx-auto flex w-full max-w-screen-xl flex-col gap-10 lg:flex-row lg:items-center">
+          <div className="section-container flex flex-col gap-10 lg:flex-row lg:items-center">
             <div className="flex-1">
-              <p className="font-proxima text-[14px] font-bold uppercase tracking-[0.1em] text-[#B7D8CF]">
-                /guides
-              </p>
+              <p className="font-proxima text-[14px] font-bold uppercase tracking-[0.1em] text-[#B7D8CF]">/guides</p>
               <h1 className="mt-4 font-proxima text-[36px] font-bold leading-[1.15] text-white sm:text-[46px]">
-                {featuredFields?.title ||
-                  'How Hybrid Creative Education Is Reshaping Media Careers in Africa'}
+                {featuredFields?.title || 'How Hybrid Creative Education Is Reshaping Media Careers in Africa'}
               </h1>
               <p className="mt-4 font-proxima text-[16px] leading-[1.7] text-white/70">
                 {featuredFields?.summary ||
@@ -231,8 +228,8 @@ export default function ResourcesPage({ initialResources, initialFeatured, initi
         </div>
 
         {/* Filter & Search Section */}
-        <div className="border-b border-[#E8E8E8] bg-white px-4 py-5 xl:px-0" id="resources">
-          <div className="mx-auto w-full max-w-screen-xl">
+        <div className="border-b border-[#E8E8E8] bg-white py-5" id="resources">
+          <div className="section-container">
             {/* Search bar + result count */}
             <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
               <p className="font-proxima text-[14px] font-semibold text-[#444]">
@@ -318,19 +315,17 @@ export default function ResourcesPage({ initialResources, initialFeatured, initi
         </div>
 
         {/* Featured Guides Header */}
-        <div className="mx-auto w-full max-w-screen-xl px-4 pt-14 xl:px-0">
+        <div className="section-container pt-14">
           <p className="font-proxima text-[13px] font-bold uppercase tracking-[0.2em] text-brand-red">
             {isSearchMode ? 'SEARCH RESULTS' : 'POPULAR RIGHT NOW'}
           </p>
           <h2 className="mt-2 font-proxima text-[36px] font-bold text-[#171717]">
-            {isSearchMode
-              ? `Guides matching "${buildSearchTerm()}"`
-              : 'Featured Guides for Creative Learners'}
+            {isSearchMode ? `Guides matching "${buildSearchTerm()}"` : 'Featured Guides for Creative Learners'}
           </h2>
         </div>
 
         {/* Resources Grid */}
-        <div className="mx-auto grid w-full max-w-screen-xl grid-cols-1 gap-6 px-4 py-10 sm:grid-cols-2 lg:grid-cols-3 xl:px-0">
+        <div className="section-container grid grid-cols-1 gap-6 py-10 sm:grid-cols-2 lg:grid-cols-3">
           {loading ? (
             <div className="col-span-full py-12 text-center">
               <p className="font-proxima text-[15px] text-[#888]">Searching guides...</p>
@@ -349,9 +344,7 @@ export default function ResourcesPage({ initialResources, initialFeatured, initi
                 {hasActiveFilters ? 'No matching resources' : 'No resources available'}
               </h3>
               <p className="font-proxima text-[15px] text-[#888]">
-                {hasActiveFilters
-                  ? 'Try adjusting your search or filters.'
-                  : 'Check back later for new resources.'}
+                {hasActiveFilters ? 'Try adjusting your search or filters.' : 'Check back later for new resources.'}
               </p>
               {hasActiveFilters && (
                 <button
@@ -367,31 +360,27 @@ export default function ResourcesPage({ initialResources, initialFeatured, initi
 
         {/* Pagination — only show when NOT in search mode */}
         {!isSearchMode && pagination.totalPages > 1 && (
-          <div className="flex justify-center gap-2 pb-16 pt-4">
-            {Array.from({ length: Math.min(pagination.totalPages, 10) }, (_, i) => i + 1).map(
-              (page) => (
-                <button
-                  key={page}
-                  onClick={() => handlePageChange(page)}
-                  className={`h-10 w-10 rounded-lg font-proxima text-[14px] font-bold transition-colors ${
-                    currentPage === page
-                      ? 'bg-brand-red text-white'
-                      : 'border border-[#E8E8E8] bg-white text-[#333] hover:border-brand-red'
-                  }`}
-                >
-                  {page}
-                </button>
-              )
-            )}
+          <div className="section-container flex justify-center gap-2 pb-16 pt-4">
+            {Array.from({ length: Math.min(pagination.totalPages, 10) }, (_, i) => i + 1).map((page) => (
+              <button
+                key={page}
+                onClick={() => handlePageChange(page)}
+                className={`h-10 w-10 rounded-lg font-proxima text-[14px] font-bold transition-colors ${
+                  currentPage === page
+                    ? 'bg-brand-red text-white'
+                    : 'border border-[#E8E8E8] bg-white text-[#333] hover:border-brand-red'
+                }`}
+              >
+                {page}
+              </button>
+            ))}
           </div>
         )}
 
         {/* Toolkit Collections */}
-        <div className="bg-[#F9F9F9] px-4 py-16 xl:px-0">
-          <div className="mx-auto w-full max-w-screen-xl">
-            <h2 className="font-proxima text-[38px] font-bold text-[#171717]">
-              Hybrid Toolkit Collections
-            </h2>
+        <div className="bg-[#F9F9F9] py-16">
+          <div className="section-container">
+            <h2 className="font-proxima text-[38px] font-bold text-[#171717]">Hybrid Toolkit Collections</h2>
             <div className="grid grid-cols-2 gap-3 pt-6 md:grid-cols-4">
               {[
                 { label: 'Production Toolkit', color: 'text-brand-red' },
@@ -423,12 +412,8 @@ export async function getServerSideProps(context: any) {
     const previewParam = isPreview ? '&preview=true' : ''
 
     const [resourcesRes, featuredRes] = await Promise.all([
-      fetch(
-        `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v3/resources?page=${page}&limit=${limit}${previewParam}`
-      ),
-      fetch(
-        `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v3/resources?featured=true&limit=1${previewParam}`
-      )
+      fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v3/resources?page=${page}&limit=${limit}${previewParam}`),
+      fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v3/resources?featured=true&limit=1${previewParam}`)
     ])
 
     if (!resourcesRes.ok || !featuredRes.ok) {
@@ -439,14 +424,9 @@ export async function getServerSideProps(context: any) {
     const featuredData = await featuredRes.json()
 
     const resources = resourcesData.resources || []
-    const featured =
-      featuredData.resources?.[0] ||
-      resources.find((item: any) => item?.fields?.featured) ||
-      null
+    const featured = featuredData.resources?.[0] || resources.find((item: any) => item?.fields?.featured) || null
 
-    const filteredResources = resources.filter(
-      (item: IContentfulEntry) => item?.sys?.id !== featured?.sys?.id
-    )
+    const filteredResources = resources.filter((item: IContentfulEntry) => item?.sys?.id !== featured?.sys?.id)
 
     return {
       props: {

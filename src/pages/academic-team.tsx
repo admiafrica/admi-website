@@ -31,13 +31,13 @@ export default function AcademicTeamPage() {
               <Image src={IconBgImageRed} alt={'background image'} priority />
             </div>
           </div>
-          <div className="relative z-10 mx-auto w-full max-w-screen-lg px-4 pt-24 2xl:px-0">
+          <div className="section-container relative z-10 pt-24">
             <Title label="Academic Team" size="48px" color="white" className="mx-auto" />
           </div>
         </div>
         {/* ACADEMIC TEAM */}
-        <div className="relative z-10 w-full bg-[#F5FFFD] px-4 py-8">
-          <div className="mx-auto w-full max-w-screen-xl">
+        <div className="relative z-10 w-full bg-[#F5FFFD] py-8">
+          <div className="section-container">
             <div className="flex w-full flex-wrap">
               {ADMI_ACADEMIC_TEAM.map((member, index) => (
                 <div className="mb-4 mr-4" key={`academic-member-${index}`}>
@@ -48,8 +48,8 @@ export default function AcademicTeamPage() {
           </div>
         </div>
         {/* ACADEMIC MENTORS */}
-        <div className="relative z-10 w-full bg-[#F5FFFD] px-4 py-8">
-          <div className="mx-auto w-full max-w-screen-xl">
+        <div className="relative z-10 w-full bg-[#F5FFFD] py-8">
+          <div className="section-container">
             <Title label="Mentors" size="32px" color="black" />
             <div className="flex w-full flex-wrap pt-12">
               {ADMI_ACADEMIC_MENTORS.map((member, index) => (

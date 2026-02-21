@@ -99,75 +99,54 @@ function ArticleHero({
   breadcrumbSegments: { label: string; href?: string }[]
 }) {
   return (
-    <section className="relative h-[300px] w-full overflow-hidden md:h-[480px]">
-      {/* Background image */}
-      <img
-        src={coverImageUrl}
-        alt={title}
-        className="absolute inset-0 h-full w-full object-cover"
-      />
+    <section className="w-full bg-[#0A1A18]">
+      <div className="mx-auto max-w-6xl">
+        {/* Background image - 16:9 aspect ratio container */}
+        <div className="relative aspect-video overflow-hidden">
+          <img src={coverImageUrl} alt={title} className="absolute inset-0 h-full w-full object-cover object-center" />
 
-      {/* Gradient overlay */}
-      <div
-        className="absolute inset-0"
-        style={{
-          background:
-            'linear-gradient(to bottom, #0A1A18CC 0%, #0A1A1844 100%)'
-        }}
-      />
+          {/* Gradient overlay */}
+          <div
+            className="absolute inset-0"
+            style={{
+              background: 'linear-gradient(to bottom, #0A1A18CC 0%, #0A1A1844 100%)'
+            }}
+          />
 
-      {/* Content positioned at bottom-left */}
-      <div className="absolute bottom-0 left-0 right-0 px-6 pb-10 md:px-20 md:pb-14">
-        {/* Breadcrumb */}
-        <nav
-          aria-label="Breadcrumb"
-          className="mb-4 flex flex-wrap items-center gap-1.5 font-proxima text-sm"
-        >
-          {breadcrumbSegments.map((seg, i) => {
-            const isLast = i === breadcrumbSegments.length - 1
-            return (
-              <React.Fragment key={i}>
-                {i > 0 && (
-                  <IconChevronRight
-                    size={14}
-                    className="text-white/40"
-                    aria-hidden
-                  />
-                )}
-                {isLast ? (
-                  <span className="text-white">{seg.label}</span>
-                ) : (
-                  <Link
-                    href={seg.href || '#'}
-                    className="text-white/70 transition-colors hover:text-white"
-                  >
-                    {seg.label}
-                  </Link>
-                )}
-              </React.Fragment>
-            )
-          })}
-        </nav>
+          {/* Content positioned at bottom-left */}
+          <div className="absolute bottom-0 left-0 right-0 px-6 pb-10 md:px-12 md:pb-14">
+            {/* Breadcrumb */}
+            <nav aria-label="Breadcrumb" className="mb-4 flex flex-wrap items-center gap-1.5 font-proxima text-sm">
+              {breadcrumbSegments.map((seg, i) => {
+                const isLast = i === breadcrumbSegments.length - 1
+                return (
+                  <React.Fragment key={i}>
+                    {i > 0 && <IconChevronRight size={14} className="text-white/40" aria-hidden />}
+                    {isLast ? (
+                      <span className="text-white">{seg.label}</span>
+                    ) : (
+                      <Link href={seg.href || '#'} className="text-white/70 transition-colors hover:text-white">
+                        {seg.label}
+                      </Link>
+                    )}
+                  </React.Fragment>
+                )
+              })}
+            </nav>
 
-        {/* Title */}
-        <h1 className="max-w-[800px] font-proxima text-[28px] font-bold leading-[1.15] text-white md:text-[44px]">
-          {title}
-        </h1>
+            {/* Title */}
+            <h1 className="max-w-[800px] font-proxima text-[28px] font-bold leading-[1.15] text-white md:text-[44px]">
+              {title}
+            </h1>
+          </div>
+        </div>
       </div>
     </section>
   )
 }
 
 /** Section 2 -- Article Meta bar */
-function ArticleMetaBar({
-  date,
-  category,
-  readingTime
-}: {
-  date: string
-  category: string
-  readingTime: number
-}) {
+function ArticleMetaBar({ date, category, readingTime }: { date: string; category: string; readingTime: number }) {
   const items = [
     { icon: IconCalendar, label: date },
     { icon: IconTag, label: category },
@@ -176,15 +155,15 @@ function ArticleMetaBar({
 
   return (
     <div className="w-full bg-[#F9F9F9]">
-      <div className="flex flex-wrap items-center gap-6 px-6 py-5 md:gap-8 md:px-20">
-        {items.map((item, i) => (
-          <div key={i} className="flex items-center gap-2">
-            <item.icon size={18} className="text-[#888]" aria-hidden />
-            <span className="font-proxima text-sm text-[#555]">
-              {item.label}
-            </span>
-          </div>
-        ))}
+      <div className="mx-auto max-w-6xl">
+        <div className="flex flex-wrap items-center gap-6 px-6 py-5 md:gap-8 md:px-12">
+          {items.map((item, i) => (
+            <div key={i} className="flex items-center gap-2">
+              <item.icon size={18} className="text-[#888]" aria-hidden />
+              <span className="font-proxima text-sm text-[#555]">{item.label}</span>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   )
@@ -194,9 +173,7 @@ function ArticleMetaBar({
 function AuthorCard({ author }: { author: string }) {
   return (
     <div className="rounded-2xl bg-[#F9F9F9] p-6">
-      <span className="font-proxima text-xs font-bold uppercase tracking-[0.8px] text-[#888]">
-        Written by
-      </span>
+      <span className="font-proxima text-xs font-bold uppercase tracking-[0.8px] text-[#888]">Written by</span>
       <div className="mt-3 flex items-center gap-3">
         {/* Avatar placeholder */}
         <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-red font-proxima text-sm font-bold text-white">
@@ -207,9 +184,7 @@ function AuthorCard({ author }: { author: string }) {
             .slice(0, 2)}
         </div>
         <div>
-          <p className="font-proxima text-[15px] font-semibold text-[#171717]">
-            {author}
-          </p>
+          <p className="font-proxima text-[15px] font-semibold text-[#171717]">{author}</p>
           <p className="font-proxima text-xs text-[#888]">ADMI Editorial</p>
         </div>
       </div>
@@ -279,9 +254,7 @@ function ShareCard({ title, summary }: { title: string; summary: string }) {
 
   return (
     <div className="rounded-2xl border border-[#E8E8E8] p-6">
-      <p className="mb-4 font-proxima text-[15px] font-bold text-[#171717]">
-        Share This Article
-      </p>
+      <p className="mb-4 font-proxima text-[15px] font-bold text-[#171717]">Share This Article</p>
       <div className="flex items-center gap-3">
         {socialItems.map((item) => (
           <button
@@ -310,9 +283,7 @@ function RelatedArticlesSidebar({
 
   return (
     <div className="rounded-2xl border border-[#E8E8E8] p-6">
-      <h3 className="mb-4 font-proxima text-[20px] font-bold text-[#171717]">
-        Related Articles
-      </h3>
+      <h3 className="mb-4 font-proxima text-[20px] font-bold text-[#171717]">Related Articles</h3>
 
       <div className="flex flex-col">
         {articles.slice(0, 4).map((entry, i) => {
@@ -320,17 +291,18 @@ function RelatedArticlesSidebar({
           const articleSlug = a.slug
           const articleTitle = a.title
           const articleCategory = a.category || ''
-          const imageUrl = a.coverImage?.fields?.file?.url
-            ? ensureProtocol(a.coverImage.fields.file.url)
-            : ''
+          // Handle both nested Contentful format and direct URL string from API
+          const imageUrl =
+            typeof a.coverImage === 'string'
+              ? a.coverImage
+              : a.coverImage?.fields?.file?.url
+                ? ensureProtocol(a.coverImage.fields.file.url)
+                : ''
 
           return (
             <React.Fragment key={articleSlug || i}>
               {i > 0 && <div className="my-3 h-px bg-[#F0F0F0]" />}
-              <Link
-                href={`/${section}/${articleSlug}`}
-                className="group flex items-start gap-3"
-              >
+              <Link href={`/${section}/${articleSlug}`} className="group flex items-center gap-3">
                 {imageUrl && (
                   <img
                     src={imageUrl}
@@ -340,9 +312,7 @@ function RelatedArticlesSidebar({
                 )}
                 <div className="min-w-0">
                   {articleCategory && (
-                    <span className="font-proxima text-xs font-bold uppercase text-brand-red">
-                      {articleCategory}
-                    </span>
+                    <span className="font-proxima text-xs font-bold uppercase text-brand-red">{articleCategory}</span>
                   )}
                   <p className="mt-1 font-proxima text-[15px] font-semibold leading-snug text-[#171717] transition-colors group-hover:text-brand-red">
                     {articleTitle}
@@ -424,27 +394,21 @@ export default function ArticleLayout({
     return (
       <MainLayout footerBgColor="white">
         <div className="flex h-[80vh] w-full items-center justify-center">
-          <p className="font-proxima text-2xl text-[#555]">
-            Article not found.
-          </p>
+          <p className="font-proxima text-2xl text-[#555]">Article not found.</p>
         </div>
       </MainLayout>
     )
   }
 
   const readingTime = calculateReadingTime(article?.body)
-  const coverImageUrl = article.coverImage?.fields?.file?.url
-    ? ensureProtocol(article.coverImage.fields.file.url)
-    : ''
+  const coverImageUrl = article.coverImage?.fields?.file?.url ? ensureProtocol(article.coverImage.fields.file.url) : ''
   const publishDate = article.publishDate || article.sys?.createdAt
   const category = article.category || backLabel
 
   // Breadcrumb segments
   const breadcrumbSegments = [
     { label: backLabel, href: backHref },
-    ...(category && category !== backLabel
-      ? [{ label: category }]
-      : []),
+    ...(category && category !== backLabel ? [{ label: category }] : []),
     { label: article.title }
   ]
 
@@ -454,44 +418,30 @@ export default function ArticleLayout({
       {seoSchemas}
 
       {/* 1. Article Hero */}
-      <ArticleHero
-        title={article.title}
-        coverImageUrl={coverImageUrl}
-        breadcrumbSegments={breadcrumbSegments}
-      />
+      <ArticleHero title={article.title} coverImageUrl={coverImageUrl} breadcrumbSegments={breadcrumbSegments} />
 
       {/* 2. Article Meta Bar */}
-      <ArticleMetaBar
-        date={formatDate(publishDate)}
-        category={category}
-        readingTime={readingTime}
-      />
+      <ArticleMetaBar date={formatDate(publishDate)} category={category} readingTime={readingTime} />
 
       {/* 3. Article Content -- two-column layout */}
       <div className="w-full bg-white">
-        <div className="flex flex-col gap-8 px-6 py-10 md:flex-row md:gap-[60px] md:px-20 md:py-14">
-          {/* Left column -- article body */}
-          <article className="min-w-0 flex-1">
-            {/* Rich text content with custom prose styling */}
-            <div className="article-prose">
-              <ParagraphContentful fontFamily="font-proxima">
-                {article.body}
-              </ParagraphContentful>
-            </div>
-          </article>
+        <div className="mx-auto max-w-6xl">
+          <div className="flex flex-col gap-8 px-6 py-10 md:flex-row md:gap-[60px] md:px-12 md:py-14">
+            {/* Left column -- article body */}
+            <article className="min-w-0 flex-1">
+              {/* Rich text content with custom prose styling */}
+              <div className="article-prose">
+                <ParagraphContentful fontFamily="font-proxima">{article.body}</ParagraphContentful>
+              </div>
+            </article>
 
-          {/* Right column -- sidebar */}
-          <aside className="flex w-full shrink-0 flex-col gap-6 md:w-[340px]">
-            <AuthorCard author="ADMI Editorial Team" />
-            <ShareCard
-              title={article.title}
-              summary={article.summary || article.excerpt || ''}
-            />
-            <RelatedArticlesSidebar
-              articles={relatedArticles}
-              section={section}
-            />
-          </aside>
+            {/* Right column -- sidebar */}
+            <aside className="flex w-full shrink-0 flex-col gap-6 md:w-[340px]">
+              <AuthorCard author="ADMI Editorial Team" />
+              <ShareCard title={article.title} summary={article.summary || article.excerpt || ''} />
+              <RelatedArticlesSidebar articles={relatedArticles} section={section} />
+            </aside>
+          </div>
         </div>
       </div>
 

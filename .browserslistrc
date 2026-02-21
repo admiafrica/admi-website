@@ -1,0 +1,3 @@
+# Target modern browsers to avoid unnecessary polyfills
+# Saves ~12 KiB of legacy JS (Array.prototype.at, flat, flatMap, Object.fromEntries, etc.)
+defaults and fully supports es6-module

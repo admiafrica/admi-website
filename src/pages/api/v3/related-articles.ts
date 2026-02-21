@@ -17,7 +17,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       }
 
       // Build query parameters with higher include to resolve asset references
-      const query = `/spaces/${spaceId}/environments/${environment}/entries?access_token=${accessToken}&content_type=article&fields.category=Resources&include=10`
+      // Support both News and Resources categories based on the category parameter
+      const categoryFilter = category ? `&fields.category=${encodeURIComponent(String(category))}` : ''
+      const query = `/spaces/${spaceId}/environments/${environment}/entries?access_token=${accessToken}&content_type=article${categoryFilter}&include=10`
 
       const response = await axiosContentfulClient.get<IContentfulResponse>(query)
       const data = response.data
