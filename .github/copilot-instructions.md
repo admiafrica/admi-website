@@ -213,7 +213,7 @@ GOOGLE_ADS_DEVELOPER_TOKEN=
 ### AWS Amplify
 
 - **Config**: `amplify.yml` (builds frontend + deploys serverless functions)
-- **Branches**: `staging` → staging environment, `main` → production
+- **Branches**: `dev` → development, `staging` → staging environment, `main` → production
 - **Build phases**:
   1. Backend: Deploy Lambda functions (`infrastructure/serverless/blog-generation/`)
   2. Frontend: Generate media files → Next.js build
@@ -222,35 +222,32 @@ GOOGLE_ADS_DEVELOPER_TOKEN=
 
 **🚨 MANDATORY RULES FOR AI AGENTS:**
 
-1. **NEVER push directly to `main` branch** - This is production and requires human approval
-2. **ALWAYS push to `staging` branch only** - All changes go to staging first
-3. **Production deploys require Pull Requests** - Create PR from staging → main after testing
+1. **NEVER push directly to `main` or `staging` branches** - These require promotion via PRs
+2. **ALWAYS push to `dev` branch first** - All changes start in dev
+3. **Promotion flow**: `dev` → `staging` → `main` (via Pull Requests)
 4. **Wait for human confirmation** - Do not merge PRs without explicit user approval
 
 **REQUIRED DEPLOYMENT PROCESS:**
 
 ```bash
-# 1. ALWAYS work on staging branch
-git checkout staging
-git pull origin staging
+# 1. ALWAYS work on dev branch
+git checkout dev
+git pull origin dev
 
 # 2. Make changes and test locally
 npm run type-check
 npm run build
 
-# 3. Commit and push to staging ONLY
+# 3. Commit and push to dev ONLY
 git add -A
 git commit -m "feat: description"
-git push origin staging
+git push origin dev
 
-# 4. Wait for staging deployment and testing
-# Visit https://staging.admi.africa
-# Verify changes work correctly
-# Run any necessary validation scripts
+# 4. When ready for staging, create PR: dev → staging
+gh pr create --base staging --head dev --title "Stage: description" --body "Ready for staging"
 
-# 5. After testing, create a Pull Request (NOT direct push)
-# Go to GitHub and create PR: staging → main
-# OR use GitHub CLI:
+# 5. After staging testing, create PR: staging → main
+# Visit https://staging.admi.africa to verify
 gh pr create --base main --head staging --title "Deploy: description" --body "Tested on staging"
 
 # 6. Wait for human approval before merging
@@ -260,12 +257,13 @@ gh pr create --base main --head staging --title "Deploy: description" --body "Te
 **❌ FORBIDDEN ACTIONS FOR AI AGENTS:**
 
 - `git push origin main` - NEVER do this
-- `git checkout main && git merge staging && git push` - NEVER do this
+- `git push origin staging` - NEVER do this (use PR from dev)
+- `git checkout main && git merge` - NEVER do this
 - Merging PRs without explicit user instruction
 
 **✅ ALLOWED ACTIONS FOR AI AGENTS:**
 
-- `git push origin staging` - Always allowed
+- `git push origin dev` - Always allowed
 - Creating Pull Requests - Always allowed
 - Suggesting PR creation - Always allowed
 
