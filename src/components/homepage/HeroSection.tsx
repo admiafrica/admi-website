@@ -7,7 +7,7 @@ const HERO_IMAGE_URL =
 
 export default function HeroSection() {
   return (
-    <section className="relative w-full overflow-hidden bg-[#0B0B0F]">
+    <section className="relative -mt-[81px] w-full overflow-hidden bg-[#0B0B0F]">
       {/* Background Image */}
       <Image
         src={HERO_IMAGE_URL}
@@ -21,9 +21,9 @@ export default function HeroSection() {
       {/* Gradient Overlay - dark at bottom, lighter at top */}
       <div className="absolute inset-0 bg-gradient-to-t from-[rgba(11,11,15,0.85)] via-[rgba(11,11,15,0.5)] to-[rgba(11,11,15,0.2)]" />
 
-      {/* Content */}
-      <div className="relative mx-auto flex min-h-[420px] w-full max-w-[1280px] items-end px-4 pb-10 pt-24 md:h-[660px] md:items-center md:px-8 md:pb-0 md:pt-[100px]">
-        <div className="flex w-full max-w-[700px] flex-col pr-2 sm:pr-0">
+      {/* Content - centered on mobile, left-aligned on desktop */}
+      <div className="relative flex min-h-[460px] flex-col justify-center px-6 pb-10 pt-[100px] md:min-h-[600px] md:px-12 md:pb-8 md:pt-[110px] lg:px-20">
+        <div className="flex flex-col md:max-w-2xl">
           {/* Badge Pills */}
           <div className="mb-4 flex flex-col items-start gap-2 sm:flex-row sm:flex-wrap md:mb-6 md:gap-3">
             <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3.5 py-1.5 backdrop-blur-sm md:gap-2.5 md:px-5 md:py-2.5">
@@ -39,15 +39,14 @@ export default function HeroSection() {
           </div>
 
           {/* Title */}
-          <h1 className="mb-4 max-w-[95%] break-words font-nexa text-[28px] font-black leading-[1.15] tracking-tight text-white sm:max-w-[650px] sm:text-4xl md:mb-6 md:text-5xl">
+          <h1 className="mb-4 font-nexa text-[28px] font-black leading-[1.15] tracking-tight text-white sm:text-4xl md:mb-6 md:text-5xl">
             Study Creative Arts &amp; Technology at East Africa&apos;s Leading Institute
           </h1>
 
           {/* Description */}
-          <p className="mb-6 max-w-[95%] break-words font-proxima text-[15px] leading-relaxed text-white/80 sm:max-w-[560px] md:mb-8 md:text-lg">
-            Africa Digital Media Institute (ADMI) offers accredited diploma and certificate programmes in Film, Design,
-            Music Production, Animation, and more. Study through our flexible hybrid model &mdash; online sessions
-            combined with hands-on campus practicals &mdash; with industry-standard facilities and expert faculty.
+          <p className="mb-6 font-proxima text-[15px] leading-relaxed text-white/80 md:mb-8 md:text-lg">
+            Study through our flexible hybrid model. Online sessions combined with hands-on campus practicals,
+            industry-standard facilities and expert faculty.
           </p>
 
           {/* CTA Buttons */}
