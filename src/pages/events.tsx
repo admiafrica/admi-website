@@ -30,8 +30,8 @@ export default function EventsPage({ currentEvents, upcomingEvents, pastEvents }
       <InstitutionalFAQSchema faqType="general" />
 
       <div className="w-full">
-        <div className="bg-[#0F2E2A] px-4 py-16 text-white xl:px-0">
-          <div className="mx-auto w-full max-w-screen-xl">
+        <div className="bg-[#0F2E2A] py-16 text-white">
+          <div className="section-container">
             <Paragraph className="uppercase tracking-[0.15em] text-[#B7D8CF]" fontFamily="font-nexa" size="14px">
               /events
             </Paragraph>
@@ -43,7 +43,7 @@ export default function EventsPage({ currentEvents, upcomingEvents, pastEvents }
         </div>
 
         <div className="border-y border-[#E8E8E8] bg-white">
-          <div className="mx-auto flex w-full max-w-screen-xl items-center justify-around px-4 py-6 xl:px-0">
+          <div className="section-container flex items-center justify-around py-6">
             <div className="text-center">
               <p className="font-proxima text-[34px] font-bold text-[#171717]">{currentEvents.length || 6}</p>
               <p className="font-nexa text-[14px] text-[#666]">Current Events</p>
@@ -62,7 +62,7 @@ export default function EventsPage({ currentEvents, upcomingEvents, pastEvents }
         </div>
 
         <div className="border-b border-[#E8E8E8] bg-white">
-          <div className="mx-auto flex w-full max-w-screen-xl items-center gap-2 px-4 xl:px-0">
+          <div className="section-container flex items-center gap-2">
             {['#current-events', '#upcoming-events', '#past-events'].map((tab, idx) => (
               <a
                 key={tab}
@@ -75,7 +75,7 @@ export default function EventsPage({ currentEvents, upcomingEvents, pastEvents }
           </div>
         </div>
 
-        <div id="current-events" className="mx-auto w-full max-w-screen-xl px-4 py-12 xl:px-0">
+        <div id="current-events" className="section-container py-12">
           <Title label="Happening Now" color="black" size="32px" />
           <div className="pt-6">
             {currentEvents.length === 0 ? (
@@ -89,7 +89,7 @@ export default function EventsPage({ currentEvents, upcomingEvents, pastEvents }
         </div>
 
         <div id="upcoming-events" className="bg-[#F9F9F9]">
-          <div className="mx-auto w-full max-w-screen-xl px-4 py-12 xl:px-0">
+          <div className="section-container py-12">
             <Title label="Upcoming Events" color="black" size="32px" />
             <div className="pt-6">
               {upcomingEvents.length === 0 ? (
@@ -103,13 +103,15 @@ export default function EventsPage({ currentEvents, upcomingEvents, pastEvents }
           </div>
         </div>
 
-        <div id="past-events" className="mx-auto w-full max-w-screen-xl px-4 py-12 xl:px-0">
+        <div id="past-events" className="section-container py-12">
           <Title label="Past Events" color="black" size="32px" />
           <div className="pt-6">
             {pastEvents.length === 0 ? (
               <Paragraph>No past events available.</Paragraph>
             ) : (
-              pastEvents.map((event) => <EventAnnouncementCard key={event.sys.id} announcement={event.fields} bgColor="white" />)
+              pastEvents.map((event) => (
+                <EventAnnouncementCard key={event.sys.id} announcement={event.fields} bgColor="white" />
+              ))
             )}
           </div>
         </div>

@@ -184,16 +184,14 @@ export default function FAQPage({ faqData }: InferGetStaticPropsType<typeof getS
 
       <div className="w-full">
         {/* -- Hero -- */}
-        <section className="section-padding bg-[#0A3D3D] text-center text-white">
-          <div className="section-container">
-            <div className="flex items-center justify-center gap-2.5">
-              <span className="h-[3px] w-8 bg-secondary" />
-              <span className="font-proxima text-[13px] font-semibold uppercase tracking-[2px] text-secondary">
-                FAQ
-              </span>
+        <section className="bg-[#0A3D3D] text-center text-white">
+          <div className="section-container pb-16 pt-10 md:pb-24 md:pt-14">
+            <div className="mb-5 flex items-center justify-center gap-3">
+              <span className="h-0.5 w-8 bg-secondary" />
+              <span className="section-label text-secondary">FAQ</span>
             </div>
-            <h1 className="mt-5 font-proxima text-[48px] font-bold">Frequently Asked Questions</h1>
-            <p className="mx-auto mt-4 max-w-[600px] font-proxima text-[18px] leading-[1.6] text-white/80">
+            <h1 className="section-heading-dark mb-4">Frequently Asked Questions</h1>
+            <p className="section-subheading-dark mx-auto max-w-[600px]">
               Find answers to common questions about ADMI programmes, admissions, fees and student life.
             </p>
           </div>

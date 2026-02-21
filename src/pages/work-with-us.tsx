@@ -1,22 +1,12 @@
 import Link from 'next/link'
-import {
-  IconArrowRight,
-  IconMapPin,
-  IconClock
-} from '@tabler/icons-react'
+import { IconArrowRight, IconMapPin, IconClock } from '@tabler/icons-react'
 import type { GetStaticProps, InferGetStaticPropsType } from 'next'
 
 import { MainLayout } from '@/layouts/v3/MainLayout'
 import { PageSEO } from '@/components/shared/v3'
 import { getIcon } from '@/utils/icon-map'
 import { getPageCached } from '@/utils/contentful-cached'
-import type {
-  FacultyMember,
-  JobOpening,
-  WorkBenefitCMS,
-  TeamMember,
-  WorkWithUsPageData
-} from '@/types/work-with-us'
+import type { FacultyMember, JobOpening, WorkBenefitCMS, TeamMember, WorkWithUsPageData } from '@/types/work-with-us'
 
 /* ------------------------------------------------------------------ */
 /*  Fallback data (used when Contentful is unavailable)                */
@@ -60,16 +50,14 @@ const FALLBACK: WorkWithUsPageData = {
       type: 'Full-time / Contract',
       location: 'Nairobi',
       posted: 'Posted Jan 2026',
-      description:
-        'Teach motion design principles using After Effects, Cinema 4D, and emerging real-time tools.'
+      description: 'Teach motion design principles using After Effects, Cinema 4D, and emerging real-time tools.'
     },
     {
       title: 'Graphic Design Instructor',
       type: 'Full-time',
       location: 'Hybrid',
       posted: 'Posted Feb 2026',
-      description:
-        'Guide learners through brand identity, editorial layout, and digital illustration projects.'
+      description: 'Guide learners through brand identity, editorial layout, and digital illustration projects.'
     },
     {
       title: 'Sound Engineering Lab Technician',
@@ -103,10 +91,26 @@ const FALLBACK: WorkWithUsPageData = {
     }
   ],
   teamMembers: [
-    { name: 'Angela Ndegwa', role: 'Director of Admissions', image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=600&q=80' },
-    { name: 'David Ochieng', role: 'Head of Student Affairs', image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=600&q=80' },
-    { name: 'Fatima Hassan', role: 'HR & People Lead', image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=600&q=80' },
-    { name: 'Brian Kiplagat', role: 'Operations Manager', image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=600&q=80' }
+    {
+      name: 'Angela Ndegwa',
+      role: 'Director of Admissions',
+      image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=600&q=80'
+    },
+    {
+      name: 'David Ochieng',
+      role: 'Head of Student Affairs',
+      image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=600&q=80'
+    },
+    {
+      name: 'Fatima Hassan',
+      role: 'HR & People Lead',
+      image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=600&q=80'
+    },
+    {
+      name: 'Brian Kiplagat',
+      role: 'Operations Manager',
+      image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=600&q=80'
+    }
   ],
   seoTitle: 'Work With Us',
   seoDescription:
@@ -155,11 +159,7 @@ export default function WorkWithUsPage({ page }: InferGetStaticPropsType<typeof 
 
   return (
     <MainLayout footerBgColor="#1a1a1a">
-      <PageSEO
-        title={page.seoTitle}
-        description={page.seoDescription}
-        keywords={page.seoKeywords}
-      />
+      <PageSEO title={page.seoTitle} description={page.seoDescription} keywords={page.seoKeywords} />
 
       <div className="w-full">
         {/* ============================================================ */}
@@ -167,7 +167,7 @@ export default function WorkWithUsPage({ page }: InferGetStaticPropsType<typeof 
         {/* ============================================================ */}
         <div className="relative min-h-[520px] overflow-hidden bg-[url('https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1920&q=80')] bg-cover bg-center md:min-h-[580px]">
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/60 to-black/40" />
-          <div className="relative z-10 mx-auto flex h-full min-h-[520px] w-full max-w-screen-xl flex-col justify-end px-4 pb-14 md:min-h-[580px] xl:px-0">
+          <div className="section-container relative z-10 flex h-full min-h-[520px] flex-col justify-end pb-14 md:min-h-[580px]">
             <span className="mb-5 inline-block w-fit rounded-full bg-brand-red px-4 py-1.5 font-nexa text-[12px] font-bold uppercase tracking-[0.15em] text-white">
               Careers at ADMI
             </span>
@@ -175,8 +175,8 @@ export default function WorkWithUsPage({ page }: InferGetStaticPropsType<typeof 
               Shape the Future of Creative Education in Africa
             </h1>
             <p className="max-w-[680px] pt-4 font-nexa text-[16px] leading-relaxed text-white/70 md:text-[18px]">
-              Join an award-winning faculty of industry professionals, filmmakers, designers, and
-              musicians who are training Africa&apos;s next generation of creative talent.
+              Join an award-winning faculty of industry professionals, filmmakers, designers, and musicians who are
+              training Africa&apos;s next generation of creative talent.
             </p>
             <a
               href="#open-positions"
@@ -192,7 +192,7 @@ export default function WorkWithUsPage({ page }: InferGetStaticPropsType<typeof 
         {/* 2. FACULTY AWARDS                                            */}
         {/* ============================================================ */}
         <div className="bg-[#F9F9F9] py-16 md:py-20">
-          <div className="mx-auto w-full max-w-screen-xl px-4 xl:px-0">
+          <div className="section-container">
             <p className="font-nexa text-[12px] font-bold uppercase tracking-[0.18em] text-brand-red">
               Award-Winning Faculty
             </p>
@@ -200,9 +200,8 @@ export default function WorkWithUsPage({ page }: InferGetStaticPropsType<typeof 
               Our Educators Are Industry Leaders
             </h2>
             <p className="max-w-[720px] pt-3 font-nexa text-[16px] leading-relaxed text-[#555] md:text-[17px]">
-              ADMI faculty members are practising professionals who have shaped Kenya&apos;s
-              creative industries. They bring real-world expertise into every classroom,
-              studio session, and critique.
+              ADMI faculty members are practising professionals who have shaped Kenya&apos;s creative industries. They
+              bring real-world expertise into every classroom, studio session, and critique.
             </p>
 
             <div className="grid grid-cols-1 gap-6 pt-10 md:grid-cols-3">
@@ -216,15 +215,11 @@ export default function WorkWithUsPage({ page }: InferGetStaticPropsType<typeof 
                     style={{ backgroundImage: `url(${member.image})` }}
                   />
                   <div className="p-6">
-                    <h3 className="font-proxima text-[22px] font-bold text-[#171717]">
-                      {member.name}
-                    </h3>
+                    <h3 className="font-proxima text-[22px] font-bold text-[#171717]">{member.name}</h3>
                     <p className="pt-1 font-nexa text-[13px] font-bold uppercase tracking-[0.08em] text-brand-red">
                       {member.title}
                     </p>
-                    <p className="pt-3 font-nexa text-[15px] leading-relaxed text-[#555]">
-                      {member.description}
-                    </p>
+                    <p className="pt-3 font-nexa text-[15px] leading-relaxed text-[#555]">{member.description}</p>
                   </div>
                 </div>
               ))}
@@ -236,10 +231,8 @@ export default function WorkWithUsPage({ page }: InferGetStaticPropsType<typeof 
         {/* 3. OPEN POSITIONS                                            */}
         {/* ============================================================ */}
         <div id="open-positions" className="bg-white py-16 md:py-20">
-          <div className="mx-auto w-full max-w-screen-xl px-4 xl:px-0">
-            <p className="font-nexa text-[12px] font-bold uppercase tracking-[0.18em] text-brand-red">
-              Open Positions
-            </p>
+          <div className="section-container">
+            <p className="font-nexa text-[12px] font-bold uppercase tracking-[0.18em] text-brand-red">Open Positions</p>
             <div className="flex flex-wrap items-center gap-3 pt-3">
               <h2 className="font-proxima text-[34px] font-bold leading-[1.15] text-[#171717] md:text-[40px]">
                 Join Our Team
@@ -289,7 +282,7 @@ export default function WorkWithUsPage({ page }: InferGetStaticPropsType<typeof 
         {/* 4. WHY ADMI                                                  */}
         {/* ============================================================ */}
         <div className="bg-admi-black py-16 md:py-20">
-          <div className="mx-auto w-full max-w-screen-xl px-4 xl:px-0">
+          <div className="section-container">
             <p className="font-nexa text-[12px] font-bold uppercase tracking-[0.18em] text-brand-red">
               Why Work With Us
             </p>
@@ -297,9 +290,8 @@ export default function WorkWithUsPage({ page }: InferGetStaticPropsType<typeof 
               More Than a Workplace
             </h2>
             <p className="max-w-[680px] pt-3 font-nexa text-[16px] leading-relaxed text-white/70 md:text-[17px]">
-              At ADMI, you don&apos;t just teach &mdash; you create. Our environment is built for
-              collaboration, innovation, and meaningful impact on the next generation of African
-              creatives.
+              At ADMI, you don&apos;t just teach &mdash; you create. Our environment is built for collaboration,
+              innovation, and meaningful impact on the next generation of African creatives.
             </p>
 
             <div className="grid grid-cols-1 gap-5 pt-10 md:grid-cols-2">
@@ -313,12 +305,8 @@ export default function WorkWithUsPage({ page }: InferGetStaticPropsType<typeof 
                     <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-brand-red/15">
                       {Icon && <Icon size={24} stroke={1.8} className="text-brand-red" />}
                     </div>
-                    <h3 className="font-proxima text-[22px] font-bold text-white">
-                      {benefit.title}
-                    </h3>
-                    <p className="pt-2 font-nexa text-[15px] leading-relaxed text-white/70">
-                      {benefit.description}
-                    </p>
+                    <h3 className="font-proxima text-[22px] font-bold text-white">{benefit.title}</h3>
+                    <p className="pt-2 font-nexa text-[15px] leading-relaxed text-white/70">{benefit.description}</p>
                   </div>
                 )
               })}
@@ -330,10 +318,8 @@ export default function WorkWithUsPage({ page }: InferGetStaticPropsType<typeof 
         {/* 5. MEET THE TEAM                                             */}
         {/* ============================================================ */}
         <div className="bg-white py-16 md:py-20">
-          <div className="mx-auto w-full max-w-screen-xl px-4 xl:px-0">
-            <p className="font-nexa text-[12px] font-bold uppercase tracking-[0.18em] text-brand-red">
-              Meet the Team
-            </p>
+          <div className="section-container">
+            <p className="font-nexa text-[12px] font-bold uppercase tracking-[0.18em] text-brand-red">Meet the Team</p>
             <h2 className="pt-3 font-proxima text-[34px] font-bold leading-[1.15] text-[#171717] md:text-[40px]">
               The People Behind ADMI
             </h2>
@@ -348,9 +334,7 @@ export default function WorkWithUsPage({ page }: InferGetStaticPropsType<typeof 
                   <h3 className="pt-4 font-proxima text-[18px] font-bold text-[#171717] md:text-[20px]">
                     {member.name}
                   </h3>
-                  <p className="pt-1 font-nexa text-[13px] text-[#666] md:text-[14px]">
-                    {member.role}
-                  </p>
+                  <p className="pt-1 font-nexa text-[13px] text-[#666] md:text-[14px]">{member.role}</p>
                 </div>
               ))}
             </div>
@@ -360,14 +344,14 @@ export default function WorkWithUsPage({ page }: InferGetStaticPropsType<typeof 
         {/* ============================================================ */}
         {/* 6. CTA                                                       */}
         {/* ============================================================ */}
-        <div className="bg-gradient-to-r from-brand-red to-[#5A0F16] px-4 py-16 text-white md:py-20 xl:px-0">
-          <div className="mx-auto w-full max-w-screen-xl text-center">
+        <div className="bg-gradient-to-r from-brand-red to-[#5A0F16] py-16 text-white md:py-20">
+          <div className="section-container text-center">
             <h2 className="font-proxima text-[36px] font-bold leading-[1.15] md:text-[44px]">
               Don&apos;t See Your Role?
             </h2>
             <p className="mx-auto max-w-[640px] pt-4 font-nexa text-[16px] leading-relaxed text-white/85 md:text-[18px]">
-              We&apos;re always looking for exceptional educators and creative professionals.
-              Send us your CV and tell us how you&apos;d contribute to the ADMI experience.
+              We&apos;re always looking for exceptional educators and creative professionals. Send us your CV and tell
+              us how you&apos;d contribute to the ADMI experience.
             </p>
             <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
               <a

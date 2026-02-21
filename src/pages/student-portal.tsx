@@ -18,7 +18,7 @@ export default function StudentPortalPage() {
 
       <div className="w-full">
         {/* ── Portal Body ── */}
-        <section className="flex min-h-[700px] items-center justify-center bg-[#F3F4F6] py-16">
+        <section className="flex min-h-[700px] items-center justify-center bg-[#F3F4F6] px-6 py-16 md:px-8">
           <div className="w-full max-w-[440px] rounded-2xl bg-white p-10 shadow-lg">
             {/* Logo */}
             <div className="flex flex-col items-center gap-6">

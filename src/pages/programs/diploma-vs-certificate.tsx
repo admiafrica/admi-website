@@ -26,18 +26,17 @@ export default function DiplomaVsCertificatePage() {
         url="/programs/diploma-vs-certificate"
       />
 
-      <div className="bg-admi-green py-20">
-        <div className="mx-auto max-w-5xl px-4">
-          <div className="flex flex-col items-center gap-4">
-            <span className="inline-flex items-center rounded-full bg-orange-500 px-4 py-2 text-sm font-semibold text-white">
-              Choose Your Path
-            </span>
-            <h1 className="text-center text-[48px] font-semibold text-white">Diploma vs Certificate Programs</h1>
-            <p className="max-w-[700px] text-center text-xl text-white/80">
-              Discover which program aligns with your career goals, budget, and timeline. Compare side-by-side to make
-              an informed decision.
-            </p>
+      <div className="bg-admi-green text-center text-white">
+        <div className="section-container pb-16 pt-10 md:pb-24 md:pt-14">
+          <div className="mb-5 flex items-center justify-center gap-3">
+            <span className="h-0.5 w-8 bg-secondary" />
+            <span className="section-label text-secondary">CHOOSE YOUR PATH</span>
           </div>
+          <h1 className="section-heading-dark mb-4">Diploma vs Certificate Programmes</h1>
+          <p className="section-subheading-dark mx-auto max-w-[700px]">
+            Discover which programme aligns with your career goals, budget, and timeline. Compare side-by-side to make
+            an informed decision.
+          </p>
         </div>
       </div>
 

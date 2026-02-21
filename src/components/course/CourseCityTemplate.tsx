@@ -96,7 +96,7 @@ export default function CourseCityTemplate({
 
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(courseSchema) }} />
 
-      <div className="mx-auto max-w-5xl px-4 py-8">
+      <div className="mx-auto max-w-5xl px-6 py-8 md:px-8">
         <h1 className="mb-4 text-center text-4xl font-semibold text-gray-900">{pageTitle}</h1>
 
         <p className="mb-8 text-center text-lg text-gray-500">{subtitle}</p>

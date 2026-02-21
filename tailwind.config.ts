@@ -46,7 +46,6 @@ const config: Config = {
       fontFamily: {
         nexa: ['var(--font-nexa)'],
         proxima: ['var(--font-proxima)', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
-        fraunces: ['"Fraunces Variable"', 'Georgia', 'serif']
       },
       borderRadius: {
         sm: '4px',

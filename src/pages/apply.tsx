@@ -124,14 +124,17 @@ export default function ApplyPage() {
           className="relative w-full overflow-hidden"
           style={{ background: 'linear-gradient(160deg, #0F2E2A 0%, #091110 100%)' }}
         >
-          <div className="mx-auto flex w-full max-w-screen-xl flex-col gap-12 px-6 pb-20 pt-32 md:flex-row md:items-center md:gap-16 md:px-8 md:pb-24 md:pt-40">
+          <div className="section-container flex flex-col gap-12 pb-16 pt-10 md:flex-row md:items-center md:gap-16 md:pb-24 md:pt-14">
             {/* Left content */}
             <div className="flex-1">
-              <p className="font-nexa text-[14px] uppercase tracking-[0.15em] text-[#B7D8CF]">/apply</p>
-              <h1 className="mt-4 font-proxima text-[40px] font-bold leading-[1.1] text-white md:text-[52px]">
+              <div className="mb-5 flex items-center gap-3">
+                <span className="h-0.5 w-8 bg-secondary" />
+                <span className="section-label text-[#B7D8CF]">APPLY</span>
+              </div>
+              <h1 className="section-heading-dark mb-4 lg:text-[52px]">
                 Start Your Application
               </h1>
-              <p className="mt-5 max-w-[560px] font-nexa text-[17px] leading-[1.65] text-white/80">
+              <p className="section-subheading-dark max-w-[560px]">
                 Apply for January, May, or September intakes across Diploma, Professional Certificate,
                 and Foundation programmes.
               </p>
@@ -143,7 +146,7 @@ export default function ApplyPage() {
                 {HERO_CHECKLIST.map((item) => (
                   <li key={item} className="flex items-start gap-3">
                     <IconCircleCheck size={22} className="mt-0.5 flex-shrink-0 text-[#B7D8CF]" />
-                    <span className="font-nexa text-[16px] leading-[1.5] text-white/90">{item}</span>
+                    <span className="font-proxima text-[16px] leading-[1.5] text-white/90">{item}</span>
                   </li>
                 ))}
               </ul>

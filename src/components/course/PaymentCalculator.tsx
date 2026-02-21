@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import { Card, Group, NumberFormatter, SegmentedControl, Stack, Text, ThemeIcon, Tooltip } from '@mantine/core'
 import { IconCalculator, IconCheck, IconInfoCircle, IconPercentage } from '@tabler/icons-react'
 
 type Props = {
@@ -10,8 +9,12 @@ type Props = {
   totalSemesters?: number
 }
 
+function formatKES(value: number): string {
+  return 'KES ' + value.toLocaleString('en-KE')
+}
+
 export default function PaymentCalculator({ tuitionFees, isDiploma = true, totalSemesters = 4 }: Props) {
-  const [paymentOption, setPaymentOption] = useState<string>('installment')
+  const [paymentOption, setPaymentOption] = useState<'upfront' | 'installment'>('installment')
 
   // Extract numeric value from tuition string
   const extractAmount = (str: string): number => {
@@ -40,155 +43,120 @@ export default function PaymentCalculator({ tuitionFees, isDiploma = true, total
     }
   }
 
-  const currentPlan = paymentOption === 'upfront' ? plans.upfront : plans.installment
+  const currentPlan = plans[paymentOption]
 
   // Calculate monthly equivalent for marketing
   const monthlyEquivalent = Math.ceil(semesterFee / 4)
 
   return (
-    <Card shadow="md" radius="md" p="xl" className="border-2 border-[#00D9A5]">
-      <Stack gap="lg">
+    <div className="rounded-lg border-2 border-[#00D9A5] bg-white p-6 shadow-md">
+      <div className="flex flex-col gap-5">
         {/* Header */}
-        <Group justify="space-between" align="flex-start">
-          <Group gap="sm">
-            <ThemeIcon size="lg" radius="md" color="teal">
+        <div className="flex items-start justify-between">
+          <div className="flex items-center gap-3">
+            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-teal-100 text-teal-600">
               <IconCalculator size={20} />
-            </ThemeIcon>
-            <div>
-              <Text fw={700} size="lg">
-                Payment Options
-              </Text>
-              <Text size="sm" c="dimmed">
-                Flexible plans to suit your budget
-              </Text>
             </div>
-          </Group>
-          <Tooltip label="50/30/20 split across the semester">
-            <ThemeIcon variant="light" color="gray" radius="xl">
+            <div>
+              <p className="text-lg font-bold">Payment Options</p>
+              <p className="text-sm text-gray-500">Flexible plans to suit your budget</p>
+            </div>
+          </div>
+          <div className="group relative">
+            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-100 text-gray-400">
               <IconInfoCircle size={16} />
-            </ThemeIcon>
-          </Tooltip>
-        </Group>
+            </div>
+            <div className="absolute right-0 top-full z-10 mt-1 hidden w-48 rounded-md bg-gray-900 px-3 py-2 text-xs text-white shadow-lg group-hover:block">
+              50/30/20 split across the semester
+            </div>
+          </div>
+        </div>
 
         {/* Payment Toggle */}
-        <SegmentedControl
-          value={paymentOption}
-          onChange={setPaymentOption}
-          fullWidth
-          data={[
-            {
-              label: (
-                <Group gap={4} justify="center">
-                  <IconPercentage size={16} />
-                  <span>Pay Upfront (Save 10%)</span>
-                </Group>
-              ),
-              value: 'upfront'
-            },
-            {
-              label: (
-                <Group gap={4} justify="center">
-                  <IconCalculator size={16} />
-                  <span>Installment Plan</span>
-                </Group>
-              ),
-              value: 'installment'
-            }
-          ]}
-          color="teal"
-        />
+        <div className="flex w-full rounded-lg bg-gray-100 p-1">
+          <button
+            type="button"
+            onClick={() => setPaymentOption('upfront')}
+            className={`flex flex-1 items-center justify-center gap-1 rounded-md px-3 py-2.5 text-sm font-medium transition-colors ${
+              paymentOption === 'upfront' ? 'bg-teal-600 text-white shadow-sm' : 'text-gray-600 hover:text-gray-900'
+            }`}
+          >
+            <IconPercentage size={16} />
+            <span>Pay Upfront (Save 10%)</span>
+          </button>
+          <button
+            type="button"
+            onClick={() => setPaymentOption('installment')}
+            className={`flex flex-1 items-center justify-center gap-1 rounded-md px-3 py-2.5 text-sm font-medium transition-colors ${
+              paymentOption === 'installment' ? 'bg-teal-600 text-white shadow-sm' : 'text-gray-600 hover:text-gray-900'
+            }`}
+          >
+            <IconCalculator size={16} />
+            <span>Installment Plan</span>
+          </button>
+        </div>
 
         {/* Semester Fee Display */}
-        <Card bg="gray.0" p="md" radius="sm">
-          <Group justify="space-between">
-            <Text size="sm" c="dimmed">
-              Semester Tuition Fee
-            </Text>
-            <Text size="xl" fw={900}>
-              <NumberFormatter prefix="KES " value={semesterFee} thousandSeparator />
-            </Text>
-          </Group>
-          {isDiploma && (
-            <Text size="xs" c="dimmed" mt={4}>
-              ~ <NumberFormatter prefix="KES " value={monthlyEquivalent} thousandSeparator /> per month
-            </Text>
-          )}
-        </Card>
+        <div className="rounded-md bg-gray-50 p-4">
+          <div className="flex items-center justify-between">
+            <span className="text-sm text-gray-500">Semester Tuition Fee</span>
+            <span className="text-xl font-black">{formatKES(semesterFee)}</span>
+          </div>
+          {isDiploma && <p className="mt-1 text-xs text-gray-500">~ {formatKES(monthlyEquivalent)} per month</p>}
+        </div>
 
         {/* Payment Breakdown */}
-        <Stack gap="xs">
-          <Text fw={600} size="sm">
-            Payment Schedule:
-          </Text>
+        <div className="flex flex-col gap-2">
+          <p className="text-sm font-semibold">Payment Schedule:</p>
           {currentPlan.payments.map((payment, index) => (
-            <Group key={index} justify="space-between" className="rounded-md bg-gray-50 p-3">
-              <Group gap="sm">
-                <ThemeIcon size="sm" radius="xl" color="teal" variant="light">
+            <div key={index} className="flex items-center justify-between rounded-md bg-gray-50 p-3">
+              <div className="flex items-center gap-3">
+                <div className="flex h-5 w-5 items-center justify-center rounded-full bg-teal-100 text-teal-600">
                   <IconCheck size={12} />
-                </ThemeIcon>
-                <div>
-                  <Text size="sm" fw={500}>
-                    {payment.label}
-                  </Text>
-                  <Text size="xs" c="dimmed">
-                    {payment.due}
-                  </Text>
                 </div>
-              </Group>
-              <Text fw={700}>
-                <NumberFormatter prefix="KES " value={payment.amount} thousandSeparator />
-              </Text>
-            </Group>
+                <div>
+                  <p className="text-sm font-medium">{payment.label}</p>
+                  <p className="text-xs text-gray-500">{payment.due}</p>
+                </div>
+              </div>
+              <span className="font-bold">{formatKES(payment.amount)}</span>
+            </div>
           ))}
-        </Stack>
+        </div>
 
         {/* Total */}
-        <Card bg={paymentOption === 'upfront' ? 'teal.0' : 'gray.1'} p="md" radius="sm">
-          <Group justify="space-between">
+        <div className={`rounded-md p-4 ${paymentOption === 'upfront' ? 'bg-teal-50' : 'bg-gray-100'}`}>
+          <div className="flex items-center justify-between">
             <div>
-              <Text size="sm" fw={500}>
-                Semester Total
-              </Text>
+              <p className="text-sm font-medium">Semester Total</p>
               {currentPlan.savings > 0 && (
-                <Text size="xs" c="teal" fw={600}>
-                  You save <NumberFormatter prefix="KES " value={currentPlan.savings} thousandSeparator />!
-                </Text>
+                <p className="text-xs font-semibold text-teal-600">You save {formatKES(currentPlan.savings)}!</p>
               )}
             </div>
-            <Text size="xl" fw={900} c={paymentOption === 'upfront' ? 'teal' : undefined}>
-              <NumberFormatter prefix="KES " value={currentPlan.total} thousandSeparator />
-            </Text>
-          </Group>
-        </Card>
+            <span className={`text-xl font-black ${paymentOption === 'upfront' ? 'text-teal-600' : ''}`}>
+              {formatKES(currentPlan.total)}
+            </span>
+          </div>
+        </div>
 
         {/* Diploma Total Investment */}
         {isDiploma && (
-          <Card bg="dark" p="md" radius="sm">
-            <Group justify="space-between">
+          <div className="rounded-md bg-gray-900 p-4">
+            <div className="flex items-center justify-between">
               <div>
-                <Text size="sm" c="white">
-                  Total Diploma Investment
-                </Text>
-                <Text size="xs" c="dimmed">
-                  {totalSemesters} semesters (2 years)
-                </Text>
+                <p className="text-sm text-white">Total Diploma Investment</p>
+                <p className="text-xs text-gray-400">{totalSemesters} semesters (2 years)</p>
               </div>
               <div className="text-right">
-                <Text size="lg" fw={900} c="#F1FE38">
-                  <NumberFormatter prefix="KES " value={currentPlan.total * totalSemesters} thousandSeparator />
-                </Text>
+                <p className="text-lg font-black text-[#F1FE38]">{formatKES(currentPlan.total * totalSemesters)}</p>
                 {paymentOption === 'upfront' && (
-                  <Text size="xs" c="teal">
-                    Save{' '}
-                    <NumberFormatter prefix="KES " value={currentPlan.savings * totalSemesters} thousandSeparator />{' '}
-                    total
-                  </Text>
+                  <p className="text-xs text-teal-400">Save {formatKES(currentPlan.savings * totalSemesters)} total</p>
                 )}
               </div>
-            </Group>
-          </Card>
+            </div>
+          </div>
         )}
-      </Stack>
-    </Card>
+      </div>
+    </div>
   )
 }

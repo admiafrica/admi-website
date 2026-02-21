@@ -118,6 +118,14 @@ body {
   a {
     @apply no-underline;
   }
+  input,
+  textarea,
+  select,
+  button {
+    border: none;
+    outline: none;
+    background: none;
+  }
 }
 
 @layer components {
@@ -221,13 +229,19 @@ body {
 
   /* Form input - standard form field styling */
   .form-input {
-    @apply box-border h-11 w-full min-w-0 max-w-full rounded-lg border border-divider-light bg-[#f9fafb] px-3 text-sm text-foreground outline-none placeholder:text-muted;
+    @apply box-border h-11 w-full min-w-0 max-w-full rounded-lg border border-divider-light bg-[#f9fafb] px-3 text-sm text-foreground outline-none placeholder:text-muted focus:border-brand-red;
+  }
+  .form-input-dark {
+    @apply box-border h-11 w-full min-w-0 max-w-full rounded-lg border border-white/20 bg-transparent px-3 text-sm text-white outline-none placeholder:text-white/40 focus:border-brand-red;
   }
   .form-select {
     @apply form-input bg-white;
   }
   .form-textarea {
-    @apply box-border w-full min-w-0 max-w-full rounded-lg border border-divider-light bg-[#f9fafb] px-3 py-2 text-sm text-foreground outline-none placeholder:text-muted;
+    @apply box-border w-full min-w-0 max-w-full rounded-lg border border-divider-light bg-[#f9fafb] px-3 py-2 text-sm text-foreground outline-none placeholder:text-muted focus:border-brand-red;
+  }
+  .form-textarea-dark {
+    @apply box-border w-full min-w-0 max-w-full rounded-lg border border-white/20 bg-transparent px-3 py-2 text-sm text-white outline-none placeholder:text-white/40 focus:border-brand-red;
   }
 
   /* Card base (matches Pencil Card components) */
@@ -263,7 +277,6 @@ body {
 .article-prose h2,
 .article-prose h3,
 .article-prose h4 {
-  font-family: 'Fraunces Variable', Georgia, serif;
   font-weight: 700;
   color: #171717;
   margin-top: 2em;
@@ -319,9 +332,4 @@ body {
   border: none;
   border-top: 1px solid #e8e8e8;
   margin: 2em 0;
-}
-
-.mantine-Input-input {
-  border: none !important;
-  background: transparent !important;
 }

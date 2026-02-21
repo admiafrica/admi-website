@@ -296,17 +296,15 @@ export default function AboutPage({
             }}
           />
           <div className="via-admi-black/73 to-admi-black/53 absolute inset-0 bg-gradient-to-t from-admi-black/90" />
-          <div className="section-container relative z-10 flex h-full w-full flex-col justify-center pt-16 text-white">
-            <div className="flex items-center gap-3">
+          <div className="section-container relative z-10 flex h-full w-full flex-col justify-center pb-16 pt-10 text-white">
+            <div className="mb-5 flex items-center gap-3">
               <span className="h-0.5 w-10 bg-secondary" />
-              <span className="font-proxima text-[13px] font-bold uppercase tracking-[3px] text-secondary">
-                ABOUT ADMI
-              </span>
+              <span className="section-label text-secondary">ABOUT ADMI</span>
             </div>
-            <h1 className="mt-6 max-w-[700px] font-proxima text-[56px] font-bold leading-[1.1] tracking-tight">
+            <h1 className="section-heading-dark mb-4 max-w-[700px] lg:text-[52px]">
               We Exist to Unlock Africa&apos;s Creative Potential
             </h1>
-            <p className="mt-6 max-w-[620px] font-proxima text-[18px] leading-[1.7] text-white/80">
+            <p className="section-subheading-dark mb-6 max-w-[620px]">
               Since 2011, ADMI has pioneered creative media and technology education in East Africa. We have graduated
               4,500+ professionals, partnered with 500+ industry leaders, and built a proven model that delivers
               real-world outcomes.

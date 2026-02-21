@@ -115,11 +115,14 @@ export default function StudentLifePage({ page }: InferGetStaticPropsType<typeof
           <div className="absolute inset-0 bg-gradient-to-r from-[#0A1A18]/85 to-[#0A1A18]/40" />
           <div className="section-container relative z-10 flex h-full w-full items-end pb-16">
             <div className="max-w-[800px]">
-              <p className="font-proxima text-[14px] font-bold tracking-[1px] text-[#B7D8CF]">/student-life</p>
-              <h1 className="mt-5 font-proxima text-[52px] font-bold leading-[1.14] text-white">
+              <div className="mb-5 flex items-center gap-3">
+                <span className="h-0.5 w-8 bg-secondary" />
+                <span className="section-label text-[#B7D8CF]">STUDENT LIFE</span>
+              </div>
+              <h1 className="section-heading-dark mb-4 lg:text-[52px]">
                 Student Life at ADMI
               </h1>
-              <p className="mt-5 max-w-[700px] font-proxima text-[18px] leading-[1.6] text-white/80">
+              <p className="section-subheading-dark max-w-[700px]">
                 From creative studios to career support &mdash; everything you need to thrive as an ADMI student.
               </p>
             </div>

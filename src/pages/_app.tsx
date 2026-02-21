@@ -1,15 +1,8 @@
 import '@/styles/globals.css'
 import type { AppProps } from 'next/app'
 
-import { Notifications } from '@/lib/tw-mantine-notifications'
 import { GoogleTagManager } from '@/components/analytics/GoogleTagManager'
 import { WebVitals } from '@/components/shared/WebVitals'
-
-// font family
-import '@fontsource/inter/400.css'
-import '@fontsource/inter/500.css'
-import '@fontsource/inter/700.css'
-import '@fontsource-variable/fraunces'
 
 export default function App({ Component, pageProps }: AppProps) {
   const gtmId = process.env.NEXT_PUBLIC_ADMI_GTM_ID
@@ -22,7 +15,6 @@ export default function App({ Component, pageProps }: AppProps) {
       {/* Web Vitals Monitoring */}
       <WebVitals />
 
-      <Notifications />
       <Component {...pageProps} />
     </>
   )

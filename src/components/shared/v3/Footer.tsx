@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -41,30 +41,100 @@ const STUDENT_LINKS = [
 
 const SocialIcons = React.memo(() => {
   return (
-    <div className="flex h-12 flex-wrap items-center gap-3 sm:gap-4">
+    <div className="flex items-center gap-3.5">
       <a href={SOCIAL_LINKS.TIKTOK} className="text-white" target="_blank" rel="noopener noreferrer">
-        <Image width={28} height={28} src={IconTikTok} alt="TikTok" className="sm:h-8 sm:w-8" />
+        <Image width={28} height={28} src={IconTikTok} alt="TikTok" />
       </a>
       <a href={SOCIAL_LINKS.YOUTUBE} className="text-white" target="_blank" rel="noopener noreferrer">
-        <Image width={32} height={32} src={IconYouTube} alt="YouTube" className="sm:h-9 sm:w-9" />
+        <Image width={30} height={30} src={IconYouTube} alt="YouTube" />
       </a>
       <a href={SOCIAL_LINKS.LINKEDIN} className="text-white" target="_blank" rel="noopener noreferrer">
-        <Image width={28} height={28} src={IconLinkedIn} alt="LinkedIn" className="sm:h-8 sm:w-8" />
+        <Image width={28} height={28} src={IconLinkedIn} alt="LinkedIn" />
       </a>
       <a href={SOCIAL_LINKS.INSTAGRAM} className="text-white" target="_blank" rel="noopener noreferrer">
-        <Image width={36} height={36} src={IconInstagram} alt="Instagram" className="sm:h-11 sm:w-11" />
+        <Image width={30} height={30} src={IconInstagram} alt="Instagram" />
       </a>
       <a href={SOCIAL_LINKS.X} className="text-white" target="_blank" rel="noopener noreferrer">
-        <Image width={28} height={28} src={IconX} alt="X" className="sm:h-8 sm:w-8" />
+        <Image width={28} height={28} src={IconX} alt="X" />
       </a>
       <a href={SOCIAL_LINKS.FACEBOOK} className="text-white" target="_blank" rel="noopener noreferrer">
-        <Image width={28} height={28} src={IconFacebook} alt="Facebook" className="sm:h-8 sm:w-8" />
+        <Image width={28} height={28} src={IconFacebook} alt="Facebook" />
       </a>
     </div>
   )
 })
 
 SocialIcons.displayName = 'SocialIcons'
+
+function FooterNewsletter() {
+  const [email, setEmail] = useState('')
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
+  const [message, setMessage] = useState('')
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!email.trim()) return
+
+    setStatus('loading')
+    try {
+      const response = await fetch('/api/v3/subscribe-newsletter', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email.trim() })
+      })
+      const data = await response.json()
+
+      if (response.ok) {
+        setStatus('success')
+        setMessage("You're subscribed! Check your inbox for updates.")
+        setEmail('')
+      } else {
+        setStatus('error')
+        setMessage(data.error || 'Something went wrong. Please try again.')
+      }
+    } catch {
+      setStatus('error')
+      setMessage('Something went wrong. Please try again.')
+    }
+  }
+
+  return (
+    <div className="flex flex-col gap-3">
+      <h3 className="mb-1 font-nexa text-[1.4em] font-black text-white">Stay Updated</h3>
+      <p className="text-sm text-white/80">
+        Get the latest ADMI news, events, and stories in your inbox.
+      </p>
+
+      {status === 'success' ? (
+        <p className="text-sm font-semibold text-[#8EBFB0]">{message}</p>
+      ) : (
+        <form onSubmit={handleSubmit} className="flex flex-col gap-2">
+          <input
+            type="email"
+            required
+            placeholder="Enter your email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            disabled={status === 'loading'}
+            className="form-input-dark disabled:opacity-50"
+          />
+          <button
+            type="submit"
+            disabled={status === 'loading'}
+            className="btn-primary h-11 text-sm disabled:opacity-50"
+          >
+            {status === 'loading' ? 'Subscribing...' : 'Subscribe'}
+          </button>
+        </form>
+      )}
+      {status === 'error' && <p className="text-xs text-red-400">{message}</p>}
+
+      <div className="mt-3">
+        <SocialIcons />
+      </div>
+    </div>
+  )
+}
 
 function FooterLink({ href, label }: { href: string; label: string }) {
   return (
@@ -88,8 +158,8 @@ export default function Footer({ bgColor }: Props) {
       style={bgColor ? { backgroundColor: bgColor } : undefined}
     >
       <div className="w-full bg-admi-green pb-8 pt-12">
-        {/* Main 3-column grid */}
-        <div className="mx-auto grid w-full max-w-screen-xl grid-cols-1 gap-10 px-4 text-white sm:px-8 md:grid-cols-3 md:gap-12 lg:px-4">
+        {/* Main 4-column grid */}
+        <div className="mx-auto grid w-full max-w-screen-xl grid-cols-1 gap-10 px-4 text-white sm:px-8 md:grid-cols-2 md:gap-12 lg:grid-cols-4 lg:px-4">
           {/* Column 1: Get in Touch */}
           <div className="flex flex-col gap-3">
             <h3 className="mb-1 font-nexa text-[1.4em] font-black text-white">Get in Touch</h3>
@@ -128,6 +198,11 @@ export default function Footer({ bgColor }: Props) {
                 <WhatsAppLinkPlain trackingLocation="footer_v3" className="font-bold text-secondary">
                   (+254) 741 132 751
                 </WhatsAppLinkPlain>
+                ,
+                <br className="sm:hidden" />
+                <WhatsAppLinkPlain phoneNumber="254711486581" trackingLocation="footer_v3" className="font-bold text-secondary sm:ml-1">
+                  (+254) 711 486 581
+                </WhatsAppLinkPlain>
               </div>
             </div>
 
@@ -150,16 +225,16 @@ export default function Footer({ bgColor }: Props) {
             ))}
           </div>
 
-          {/* Column 3: Student Corner + Social Icons */}
+          {/* Column 3: Student Corner */}
           <div className="flex flex-col gap-3">
             <h3 className="mb-1 font-nexa text-[1.4em] font-black text-white">Student Corner</h3>
             {STUDENT_LINKS.map((link) => (
               <FooterLink key={link.href} href={link.href} label={link.label} />
             ))}
-            <div className="mt-4">
-              <SocialIcons />
-            </div>
           </div>
+
+          {/* Column 4: Stay Updated + Social Icons */}
+          <FooterNewsletter />
         </div>
 
         {/* Bottom bar */}

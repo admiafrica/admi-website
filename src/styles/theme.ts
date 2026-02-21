@@ -1,9 +1,5 @@
 import localFont from 'next/font/local'
 
-const createColorScale = (hex: string) => Array.from({ length: 10 }, () => hex)
-
-const createTheme = (theme: Record<string, any>) => theme
-
 // Import your fonts with optimized loading
 export const nexaFont = localFont({
   src: [
@@ -49,15 +45,4 @@ export const proximaNovaFont = localFont({
   variable: '--font-proxima',
   display: 'swap',
   preload: true
-})
-
-export const defaultTheme = createTheme({
-  colors: {
-    admiDarkOrange: createColorScale('#C1272D'),
-    admiShamrok: createColorScale('#8EBFB0'),
-    admiRed: createColorScale('#C1272D'),
-    admiOrangeLight: createColorScale('#EF7B2E'),
-    admiOrangeDark: createColorScale('#922834')
-  },
-  primaryColor: 'admiDarkOrange'
 })
