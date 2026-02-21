@@ -17,6 +17,36 @@ type NewsPageProps = {
 
 export default function NewsPage({ news, featuredNews }: NewsPageProps) {
   const [activeCategory, setActiveCategory] = useState('All Posts')
+  const [newsletterEmail, setNewsletterEmail] = useState('')
+  const [newsletterStatus, setNewsletterStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
+  const [newsletterMessage, setNewsletterMessage] = useState('')
+
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!newsletterEmail.trim()) return
+
+    setNewsletterStatus('loading')
+    try {
+      const response = await fetch('/api/v3/subscribe-newsletter', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: newsletterEmail.trim() })
+      })
+      const data = await response.json()
+
+      if (response.ok) {
+        setNewsletterStatus('success')
+        setNewsletterMessage("You're subscribed! Check your inbox for updates.")
+        setNewsletterEmail('')
+      } else {
+        setNewsletterStatus('error')
+        setNewsletterMessage(data.error || 'Something went wrong. Please try again.')
+      }
+    } catch {
+      setNewsletterStatus('error')
+      setNewsletterMessage('Something went wrong. Please try again.')
+    }
+  }
 
   const featuredFields = featuredNews?.fields as any
   const featuredImage =
@@ -137,16 +167,31 @@ export default function NewsPage({ news, featuredNews }: NewsPageProps) {
             <p className="mt-3 max-w-[500px] text-[15px] text-white/60">
               Subscribe to stay updated with ADMI stories, events, and industry news delivered weekly.
             </p>
-            <div className="mt-8 flex w-full max-w-[480px] flex-col gap-3 sm:flex-row">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="flex-1 rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-[14px] text-white placeholder:text-white/40 focus:border-secondary focus:outline-none"
-              />
-              <button className="rounded-lg bg-brand-red px-6 py-3 text-[14px] font-bold text-white transition-colors hover:bg-[#9a2530]">
-                Subscribe
-              </button>
-            </div>
+            {newsletterStatus === 'success' ? (
+              <p className="mt-8 text-[15px] font-semibold text-[#8EBFB0]">{newsletterMessage}</p>
+            ) : (
+              <form onSubmit={handleNewsletterSubmit} className="mt-8 flex w-full max-w-[480px] flex-col gap-3 sm:flex-row">
+                <input
+                  type="email"
+                  required
+                  placeholder="Enter your email"
+                  value={newsletterEmail}
+                  onChange={(e) => setNewsletterEmail(e.target.value)}
+                  disabled={newsletterStatus === 'loading'}
+                  className="flex-1 rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-[14px] text-white placeholder:text-white/40 focus:border-secondary focus:outline-none disabled:opacity-50"
+                />
+                <button
+                  type="submit"
+                  disabled={newsletterStatus === 'loading'}
+                  className="rounded-lg bg-brand-red px-6 py-3 text-[14px] font-bold text-white transition-colors hover:bg-[#9a2530] disabled:opacity-50"
+                >
+                  {newsletterStatus === 'loading' ? 'Subscribing...' : 'Subscribe'}
+                </button>
+              </form>
+            )}
+            {newsletterStatus === 'error' && (
+              <p className="mt-3 text-[13px] text-red-400">{newsletterMessage}</p>
+            )}
           </div>
         </div>
       </div>

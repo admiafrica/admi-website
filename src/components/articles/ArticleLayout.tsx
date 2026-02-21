@@ -330,16 +330,33 @@ function RelatedArticlesSidebar({
 /** Section 4 -- Newsletter CTA */
 function NewsletterCTA() {
   const [email, setEmail] = useState('')
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
+  const [message, setMessage] = useState('')
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Newsletter submission logic can be wired up later
-    if (email) {
-      window.open(
-        `mailto:admissions@admi.ac.ke?subject=Newsletter%20Subscription&body=Please%20add%20${encodeURIComponent(email)}%20to%20the%20newsletter`,
-        '_blank'
-      )
-      setEmail('')
+    if (!email.trim()) return
+
+    setStatus('loading')
+    try {
+      const response = await fetch('/api/v3/subscribe-newsletter', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email.trim() })
+      })
+      const data = await response.json()
+
+      if (response.ok) {
+        setStatus('success')
+        setMessage("You're subscribed! Check your inbox for updates.")
+        setEmail('')
+      } else {
+        setStatus('error')
+        setMessage(data.error || 'Something went wrong. Please try again.')
+      }
+    } catch {
+      setStatus('error')
+      setMessage('Something went wrong. Please try again.')
     }
   }
 
@@ -357,22 +374,29 @@ function NewsletterCTA() {
         </div>
 
         {/* Right side -- form */}
-        <form onSubmit={handleSubmit} className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:items-center">
-          <input
-            type="email"
-            required
-            placeholder="Enter your email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="w-full rounded-lg border border-[#444] bg-transparent px-5 py-3.5 font-proxima text-sm text-white placeholder:text-white/40 focus:border-brand-red focus:outline-none sm:w-[280px]"
-          />
-          <button
-            type="submit"
-            className="rounded-lg bg-brand-red px-6 py-3.5 font-proxima text-sm font-semibold text-white transition-colors hover:bg-[#a32830]"
-          >
-            Subscribe
-          </button>
-        </form>
+        {status === 'success' ? (
+          <p className="font-proxima text-[15px] font-semibold text-[#8EBFB0]">{message}</p>
+        ) : (
+          <form onSubmit={handleSubmit} className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:items-center">
+            <input
+              type="email"
+              required
+              placeholder="Enter your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              disabled={status === 'loading'}
+              className="form-input-dark py-3.5 disabled:opacity-50 sm:w-[280px]"
+            />
+            <button
+              type="submit"
+              disabled={status === 'loading'}
+              className="btn-primary text-sm disabled:opacity-50"
+            >
+              {status === 'loading' ? 'Subscribing...' : 'Subscribe'}
+            </button>
+          </form>
+        )}
+        {status === 'error' && <p className="font-proxima text-[13px] text-red-400">{message}</p>}
       </div>
     </section>
   )

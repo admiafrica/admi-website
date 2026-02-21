@@ -5,8 +5,6 @@ import { Notifications } from '@/lib/tw-mantine-notifications'
 import { GoogleTagManager } from '@/components/analytics/GoogleTagManager'
 import { WebVitals } from '@/components/shared/WebVitals'
 
-// font family
-import '@fontsource-variable/fraunces'
 
 export default function App({ Component, pageProps }: AppProps) {
   const gtmId = process.env.NEXT_PUBLIC_ADMI_GTM_ID
