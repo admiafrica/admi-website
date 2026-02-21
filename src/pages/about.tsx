@@ -121,7 +121,7 @@ const FALLBACK_TIMELINE: AboutTimelineEvent[] = [
 
 const FALLBACK_FOUNDERS: AboutFounder[] = [
   {
-    name: 'Laila Macharia',
+    name: 'Dr Dr Laila Macharia',
     role: 'Co-Founder and Chair',
     desc: 'Visionary leader driving ADMI\u2019s strategic growth and Pan-African expansion.',
     image: 'https://images.unsplash.com/photo-1580867398114-a567342074de?auto=format&fit=crop&w=600&q=80'
@@ -234,13 +234,25 @@ export const getStaticProps: GetStaticProps<AboutPageProps> = async () => {
     }
 
     if (teamEntries && teamEntries.length > 0) {
+      // Prefer 'photo' asset field, fall back to 'image' text URL
+      const getImageUrl = (entry: any): string => {
+        const photo = entry.fields.photo
+        if (photo?.fields?.file?.url) {
+          const url = photo.fields.file.url
+          return url.startsWith('//') ? `https:${url}` : url
+        }
+        const img = entry.fields.image
+        if (typeof img === 'string') return img
+        return ''
+      }
+
       founders = teamEntries
         .filter((e: any) => e.fields.category === 'founder')
         .map((e: any) => ({
           name: e.fields.name,
           role: e.fields.role,
           desc: e.fields.description || '',
-          image: e.fields.image || ''
+          image: getImageUrl(e)
         }))
       academic = teamEntries
         .filter((e: any) => e.fields.category === 'academic')
@@ -249,7 +261,7 @@ export const getStaticProps: GetStaticProps<AboutPageProps> = async () => {
           role: e.fields.role,
           roleColor: e.fields.roleColor || '#0A3D3D',
           desc: e.fields.description || '',
-          image: e.fields.image || ''
+          image: getImageUrl(e)
         }))
 
       if (founders.length === 0) founders = FALLBACK_FOUNDERS
@@ -357,7 +369,7 @@ export default function AboutPage({
                 From a Small Film School to East Africa&apos;s Leading Creative Institute
               </h2>
               <p className="max-w-[600px] font-proxima text-[16px] leading-[1.7] text-[#555]">
-                In 2011, co-founders Laila Macharia and Wilfred Kiumi saw a gap: Africa&apos;s booming creative economy
+                In 2011, co-founders Dr Laila Macharia and Wilfred Kiumi saw a gap: Africa&apos;s booming creative economy
                 had no institution training the next generation. They started with a handful of students and a bold
                 vision to build a world-class creative media institute in Nairobi.
               </p>
@@ -372,7 +384,7 @@ export default function AboutPage({
                   Africa.&rdquo;
                 </p>
                 <p className="mt-3 font-proxima text-[13px] font-semibold text-[#999]">
-                  &mdash; Laila Macharia, Co-Founder and Chair
+                  &mdash; Dr Laila Macharia, Co-Founder and Chair
                 </p>
               </blockquote>
             </div>
@@ -461,13 +473,13 @@ export default function AboutPage({
             <div className="flex items-center gap-3">
               <span className="h-0.5 w-10 bg-brand-red" />
               <span className="font-proxima text-[13px] font-bold uppercase tracking-[3px] text-brand-red">
-                FOUNDERS AND BOARD
+                FOUNDERS
               </span>
             </div>
             <div className="mt-6 flex flex-col justify-between gap-4 md:flex-row md:items-end">
               <h2 className="font-proxima text-[28px] font-bold text-[#171717] md:text-[42px]">The Visionaries Behind ADMI</h2>
               <p className="max-w-[320px] font-proxima text-[16px] text-[#666]">
-                The founders and board who shaped our mission.
+                The founders who shaped our mission.
               </p>
             </div>
 

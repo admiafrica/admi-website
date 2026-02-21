@@ -4,7 +4,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 // Static fallback (same data currently hardcoded in about.tsx)
 const FALLBACK_TEAM = {
   founders: [
-    { name: 'Laila Macharia', role: 'Co-Founder and Chair', description: 'Visionary leader driving ADMI\u2019s strategic growth and Pan-African expansion.', image: 'https://images.unsplash.com/photo-1580867398114-a567342074de?auto=format&fit=crop&w=600&q=80' },
+    { name: 'Dr Laila Macharia', role: 'Co-Founder and Chair', description: 'Visionary leader driving ADMI\u2019s strategic growth and Pan-African expansion.', image: 'https://images.unsplash.com/photo-1580867398114-a567342074de?auto=format&fit=crop&w=600&q=80' },
     { name: 'Wilfred Kiumi', role: 'Co-Founder', description: 'Pioneering creative education in Africa with deep industry expertise and passion.', image: 'https://images.unsplash.com/photo-1731377209672-c7606ba26c25?auto=format&fit=crop&w=600&q=80' }
   ],
   academic: [
