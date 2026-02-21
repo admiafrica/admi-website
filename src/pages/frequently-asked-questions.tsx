@@ -172,7 +172,8 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
 /*  Page                                                               */
 /* ------------------------------------------------------------------ */
 
-export default function FAQPage({ faqData }: InferGetStaticPropsType<typeof getStaticProps>) {
+export default function FAQPage({ faqData: rawFaqData }: InferGetStaticPropsType<typeof getStaticProps>) {
+  const faqData = rawFaqData || FALLBACK_FAQ
   const [activeCategory, setActiveCategory] = useState<FaqCategory>('General')
 
   return (

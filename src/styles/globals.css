@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Tailwind preflight is disabled (Mantine provides its own reset).
+   Re-add just the border defaults so `border`, `border-t`, etc. work. */
+*,
+::before,
+::after {
+  border-style: solid;
+  border-width: 0;
+  border-color: theme('borderColor.DEFAULT', currentColor);
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
