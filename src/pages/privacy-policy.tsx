@@ -63,7 +63,7 @@ export default function PrivacyPolicyPage() {
                 LEGAL
               </span>
             </div>
-            <h1 className="mt-5 font-proxima text-[48px] font-bold">Privacy Policy</h1>
+            <h1 className="mt-5 font-proxima text-[28px] font-bold md:text-[48px]">Privacy Policy</h1>
             <p className="mt-3 font-proxima text-[16px] text-[#B7D8CF]">Last updated: February 2026</p>
           </div>
         </section>

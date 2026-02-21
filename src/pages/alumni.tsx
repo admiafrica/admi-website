@@ -144,7 +144,7 @@ export default function AlumniPage({
 
       <div className="w-full">
         {/* ── Hero ── */}
-        <section className="relative h-[520px] overflow-hidden">
+        <section className="relative h-[480px] overflow-hidden md:h-[520px]">
           <div
             className="absolute inset-0 bg-cover bg-center"
             style={{
@@ -153,17 +153,14 @@ export default function AlumniPage({
             }}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-admi-black/90 via-admi-black/70 to-admi-black/50" />
-          <div
-            className="section-container relative z-10 flex h-full w-full flex-col justify-center"
-            style={{ paddingTop: 120, paddingBottom: 80 }}
-          >
+          <div className="section-container relative z-10 flex h-full flex-col justify-end pb-10 pt-10 md:justify-center md:pb-20 md:pt-[120px]">
             <span className="inline-flex w-fit items-center rounded-full bg-brand-red px-4 py-1.5 font-proxima text-[12px] font-bold uppercase tracking-[2px] text-white">
               OUR ALUMNI NETWORK
             </span>
-            <h1 className="mt-6 max-w-[780px] font-proxima text-[52px] font-bold leading-[1.1] tracking-tight text-white">
+            <h1 className="mt-6 font-proxima text-[28px] font-bold leading-[1.1] tracking-tight text-white md:text-[52px] md:max-w-[780px]">
               4,000+ Graduates Building Africa&apos;s Creative Future
             </h1>
-            <p className="mt-6 max-w-[620px] font-proxima text-[18px] leading-[1.7] text-white/80">
+            <p className="mt-4 font-proxima text-[16px] leading-[1.7] text-white/80 md:mt-6 md:max-w-[620px] md:text-[18px]">
               From Nairobi studios to global agencies, ADMI alumni are shaping the creative industries across Africa and
               beyond. Discover where our graduates are making their mark.
             </p>
@@ -172,14 +169,14 @@ export default function AlumniPage({
 
         {/* ── Stats Bar ── */}
         <section className="bg-admi-black">
-          <div className="section-container flex w-full items-center justify-around py-8">
+          <div className="section-container grid w-full grid-cols-2 gap-6 py-8 md:flex md:items-center md:justify-around md:gap-0">
             {STATS.map((s, i) => (
               <div key={s.label} className="flex items-center">
                 <div className="text-center">
-                  <p className="font-proxima text-[36px] font-bold text-brand-red">{s.value}</p>
-                  <p className="font-proxima text-[14px] text-[#FFFFFFAA]">{s.label}</p>
+                  <p className="font-proxima text-[28px] font-bold text-brand-red md:text-[36px]">{s.value}</p>
+                  <p className="font-proxima text-[12px] text-[#FFFFFFAA] md:text-[14px]">{s.label}</p>
                 </div>
-                {i < STATS.length - 1 && <div className="ml-10 h-12 w-px bg-white/20" />}
+                {i < STATS.length - 1 && <div className="ml-10 hidden h-12 w-px bg-white/20 md:block" />}
               </div>
             ))}
           </div>
@@ -194,7 +191,7 @@ export default function AlumniPage({
                 FEATURED GRADUATES
               </span>
             </div>
-            <h2 className="mt-6 font-proxima text-[40px] font-bold leading-[1.15] text-[#171717]">
+            <h2 className="mt-6 font-proxima text-[26px] font-bold leading-[1.15] text-[#171717] md:text-[40px]">
               Where Our Alumni Are Now
             </h2>
             <p className="mt-4 max-w-[640px] font-proxima text-[17px] leading-[1.7] text-[#666]">
@@ -231,7 +228,7 @@ export default function AlumniPage({
                 WHERE OUR GRADUATES WORK
               </span>
             </div>
-            <h2 className="mt-6 font-proxima text-[40px] font-bold text-[#171717]">
+            <h2 className="mt-6 font-proxima text-[26px] font-bold text-[#171717] md:text-[40px]">
               Trusted by Leading Companies Across Africa
             </h2>
 
@@ -261,7 +258,7 @@ export default function AlumniPage({
                 JOIN THE NETWORK
               </span>
             </div>
-            <h2 className="mt-6 font-proxima text-[36px] font-bold text-[#171717]">What You Get as an ADMI Alumnus</h2>
+            <h2 className="mt-6 font-proxima text-[24px] font-bold text-[#171717] md:text-[36px]">What You Get as an ADMI Alumnus</h2>
 
             <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2">
               {NETWORK_BENEFITS.map((benefit) => {
@@ -310,14 +307,14 @@ export default function AlumniPage({
 
         {/* ── CTA ── */}
         <section
-          className="py-24 text-white"
+          className="py-16 text-white md:py-24"
           style={{ background: 'linear-gradient(135deg, #C1272D 0%, #7A1520 50%, #3D0A10 100%)' }}
         >
           <div className="section-container text-center">
-            <h2 className="mx-auto max-w-[600px] font-proxima text-[40px] font-bold leading-[1.15]">
+            <h2 className="mx-auto max-w-[600px] font-proxima text-[26px] font-bold leading-[1.15] md:text-[40px]">
               Are You an ADMI Graduate?
             </h2>
-            <p className="mx-auto mt-4 max-w-[560px] font-proxima text-[18px] leading-[1.6] text-white/80">
+            <p className="mx-auto mt-4 max-w-[560px] font-proxima text-[16px] leading-[1.6] text-white/80 md:text-[18px]">
               Join 4,000+ alumni in the ADMI network. Access career support, networking events, mentorship
               opportunities, and stay connected to your creative community.
             </p>

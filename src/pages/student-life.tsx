@@ -104,7 +104,7 @@ export default function StudentLifePage({ page }: InferGetStaticPropsType<typeof
 
       <div className="w-full">
         {/* -- Hero -- */}
-        <section className="relative h-[520px] overflow-hidden">
+        <section className="relative h-[420px] overflow-hidden md:h-[520px]">
           <div
             className="absolute inset-0 bg-cover bg-center"
             style={{
@@ -113,8 +113,8 @@ export default function StudentLifePage({ page }: InferGetStaticPropsType<typeof
             }}
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#0A1A18]/85 to-[#0A1A18]/40" />
-          <div className="section-container relative z-10 flex h-full w-full items-end pb-16">
-            <div className="max-w-[800px]">
+          <div className="section-container relative z-10 flex h-full items-end pb-10 md:pb-16">
+            <div>
               <div className="mb-5 flex items-center gap-3">
                 <span className="h-0.5 w-8 bg-secondary" />
                 <span className="section-label text-[#B7D8CF]">STUDENT LIFE</span>
@@ -135,7 +135,7 @@ export default function StudentLifePage({ page }: InferGetStaticPropsType<typeof
             <p className="font-proxima text-[13px] font-bold uppercase tracking-[1.2px] text-brand-red">
               EXPLORE STUDENT LIFE
             </p>
-            <h2 className="mt-2 font-proxima text-[40px] font-bold text-[#171717]">Everything You Need to Succeed</h2>
+            <h2 className="mt-2 font-proxima text-[26px] font-bold text-[#171717] md:text-[40px]">Everything You Need to Succeed</h2>
             <p className="mt-2.5 max-w-[900px] font-proxima text-[17px] leading-[1.6] text-[#555]">
               ADMI wraps creative education with the support systems, community, and resources students need to graduate
               and launch careers.
@@ -171,7 +171,7 @@ export default function StudentLifePage({ page }: InferGetStaticPropsType<typeof
         <section className="section-padding bg-[#F9F9F9]">
           <div className="section-container">
             <p className="font-proxima text-[13px] font-bold uppercase tracking-[1.2px] text-brand-red">CAMPUS LIFE</p>
-            <h2 className="mt-2 font-proxima text-[40px] font-bold text-[#171717]">More Than a Classroom</h2>
+            <h2 className="mt-2 font-proxima text-[26px] font-bold text-[#171717] md:text-[40px]">More Than a Classroom</h2>
             <p className="mt-2.5 font-proxima text-[17px] leading-[1.6] text-[#555]">
               Life at ADMI is a blend of creative studios, collaborative projects, industry mentors, and a vibrant
               student community.
@@ -195,7 +195,7 @@ export default function StudentLifePage({ page }: InferGetStaticPropsType<typeof
         {/* -- CTA -- */}
         <section className="bg-gradient-to-br from-brand-red via-[#8E2028] to-[#1A1A1A] py-24 text-center text-white">
           <div className="section-container">
-            <h2 className="font-proxima text-[44px] font-bold">Ready to Experience ADMI?</h2>
+            <h2 className="font-proxima text-[28px] font-bold md:text-[44px]">Ready to Experience ADMI?</h2>
             <p className="mx-auto mt-4 max-w-[700px] font-proxima text-[18px] leading-[1.6] text-white/80">
               Visit campus, meet students, and see our studios in action. Book an Open Day or start your application
               today.

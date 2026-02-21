@@ -100,21 +100,21 @@ function ArticleHero({
 }) {
   return (
     <section className="w-full bg-[#0A1A18]">
-      <div className="mx-auto max-w-6xl">
-        {/* Background image - 16:9 aspect ratio container */}
-        <div className="relative aspect-video overflow-hidden">
+      <div className="section-container !px-0">
+        {/* Background image - 16:9 aspect ratio, min-height on mobile for text room */}
+        <div className="relative min-h-[360px] overflow-hidden md:aspect-video md:min-h-0">
           <img src={coverImageUrl} alt={title} className="absolute inset-0 h-full w-full object-cover object-center" />
 
-          {/* Gradient overlay */}
+          {/* Gradient overlay - stronger at bottom for text legibility */}
           <div
             className="absolute inset-0"
             style={{
-              background: 'linear-gradient(to bottom, #0A1A18CC 0%, #0A1A1844 100%)'
+              background: 'linear-gradient(to bottom, transparent 0%, #0A1A18CC 60%, #0A1A18F0 100%)'
             }}
           />
 
-          {/* Content positioned at bottom-left */}
-          <div className="absolute bottom-0 left-0 right-0 px-6 pb-10 md:px-12 md:pb-14">
+          {/* Content anchored to bottom-left */}
+          <div className="absolute bottom-0 left-0 right-0 px-6 pb-8 md:px-8 md:pb-14">
             {/* Breadcrumb */}
             <nav aria-label="Breadcrumb" className="mb-4 flex flex-wrap items-center gap-1.5 font-proxima text-sm">
               {breadcrumbSegments.map((seg, i) => {
@@ -155,8 +155,8 @@ function ArticleMetaBar({ date, category, readingTime }: { date: string; categor
 
   return (
     <div className="w-full bg-[#F9F9F9]">
-      <div className="mx-auto max-w-6xl">
-        <div className="flex flex-wrap items-center gap-6 px-6 py-5 md:gap-8 md:px-12">
+      <div className="section-container">
+        <div className="flex flex-wrap items-center gap-6 py-5 md:gap-8">
           {items.map((item, i) => (
             <div key={i} className="flex items-center gap-2">
               <item.icon size={18} className="text-[#888]" aria-hidden />
@@ -362,7 +362,7 @@ function NewsletterCTA() {
 
   return (
     <section className="w-full bg-admi-black">
-      <div className="flex flex-col items-start justify-between gap-8 px-6 py-14 md:flex-row md:items-center md:px-20 md:py-[60px]">
+      <div className="section-container flex flex-col items-start justify-between gap-8 py-14 md:flex-row md:items-center md:py-[60px]">
         {/* Left side */}
         <div>
           <span className="font-proxima text-[13px] font-bold uppercase tracking-[1.2px] text-white/65">
@@ -449,8 +449,8 @@ export default function ArticleLayout({
 
       {/* 3. Article Content -- two-column layout */}
       <div className="w-full bg-white">
-        <div className="mx-auto max-w-6xl">
-          <div className="flex flex-col gap-8 px-6 py-10 md:flex-row md:gap-[60px] md:px-12 md:py-14">
+        <div className="section-container">
+          <div className="flex flex-col gap-8 py-10 md:flex-row md:gap-[60px] md:py-14">
             {/* Left column -- article body */}
             <article className="min-w-0 flex-1">
               {/* Rich text content with custom prose styling */}

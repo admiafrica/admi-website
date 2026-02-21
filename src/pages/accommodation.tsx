@@ -144,7 +144,7 @@ export default function AccommodationPage({ page }: InferGetStaticPropsType<type
         {/* ============================================================ */}
         {/*  1. HERO                                                      */}
         {/* ============================================================ */}
-        <section className="relative h-[480px] w-full overflow-hidden">
+        <section className="relative h-[420px] w-full overflow-hidden md:h-[480px]">
           {/* Background image */}
           <div
             className="absolute inset-0 bg-cover bg-center"
@@ -163,7 +163,7 @@ export default function AccommodationPage({ page }: InferGetStaticPropsType<type
                 <span className="h-[3px] w-10 bg-secondary" />
               </div>
 
-              <h1 className="mt-5 font-proxima text-[40px] font-bold leading-[1.1] text-white md:text-[52px]">
+              <h1 className="mt-5 font-proxima text-[28px] font-bold leading-[1.1] text-white md:text-[52px]">
                 {page.heroTitle}
               </h1>
 
@@ -188,7 +188,7 @@ export default function AccommodationPage({ page }: InferGetStaticPropsType<type
                 <span className="h-[3px] w-10 bg-brand-red" />
               </div>
 
-              <h2 className="mt-4 font-proxima text-[36px] font-bold leading-[1.15] text-admi-black md:text-[42px]">
+              <h2 className="mt-4 font-proxima text-[24px] font-bold leading-[1.15] text-admi-black md:text-[42px]">
                 Your Home Away From Home
               </h2>
             </div>
@@ -243,7 +243,7 @@ export default function AccommodationPage({ page }: InferGetStaticPropsType<type
                 <span className="h-[3px] w-10 bg-[#0A3D3D]" />
               </div>
 
-              <h2 className="mt-4 font-proxima text-[36px] font-bold leading-[1.15] text-admi-black md:text-[42px]">
+              <h2 className="mt-4 font-proxima text-[24px] font-bold leading-[1.15] text-admi-black md:text-[42px]">
                 Everything You Need
               </h2>
             </div>
@@ -327,7 +327,7 @@ export default function AccommodationPage({ page }: InferGetStaticPropsType<type
                 <span className="h-[3px] w-10 bg-secondary" />
               </div>
 
-              <h2 className="mt-4 font-proxima text-[36px] font-bold leading-[1.15] text-admi-black md:text-[42px]">
+              <h2 className="mt-4 font-proxima text-[24px] font-bold leading-[1.15] text-admi-black md:text-[42px]">
                 Three Simple Steps
               </h2>
             </div>
@@ -359,7 +359,7 @@ export default function AccommodationPage({ page }: InferGetStaticPropsType<type
         {/* ============================================================ */}
         <section className="w-full bg-[#0A3D3D]">
           <div className="section-container section-padding text-center">
-            <h2 className="mx-auto max-w-[700px] font-proxima text-[36px] font-bold leading-[1.2] text-white md:text-[40px]">
+            <h2 className="mx-auto max-w-[700px] font-proxima text-[24px] font-bold leading-[1.2] text-white md:text-[40px]">
               {page.ctaTitle}
             </h2>
 

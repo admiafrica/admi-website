@@ -211,7 +211,7 @@ export default function StudentShowcasePage({ page }: InferGetStaticPropsType<ty
             {/* Left */}
             <div className="max-w-[640px]">
               <p className="font-proxima text-[14px] font-bold tracking-[1.2px] text-[#B7D8CF]">/student-showcase</p>
-              <h1 className="mt-7 font-proxima text-[44px] font-bold leading-[1.15] text-white">
+              <h1 className="mt-7 font-proxima text-[28px] font-bold leading-[1.15] text-white md:text-[44px]">
                 Hybrid Learning, Real Projects, Career-Ready Portfolios
               </h1>
               <p className="mt-7 max-w-[540px] font-proxima text-[16px] leading-[1.7] text-white/80">
@@ -285,7 +285,7 @@ export default function StudentShowcasePage({ page }: InferGetStaticPropsType<ty
               <p className="font-proxima text-[13px] font-bold uppercase tracking-[1.2px] text-brand-red">
                 HYBRID STUDENT WORK
               </p>
-              <h2 className="mt-2.5 font-proxima text-[42px] font-bold text-[#171717]">
+              <h2 className="mt-2.5 font-proxima text-[26px] font-bold text-[#171717] md:text-[42px]">
                 Featured Projects Across Online + Campus Learning
               </h2>
               <p className="mx-auto mt-2.5 max-w-[760px] font-proxima text-[17px] leading-[1.6] text-[#5C5C5C]">
@@ -353,7 +353,7 @@ export default function StudentShowcasePage({ page }: InferGetStaticPropsType<ty
               <p className="font-proxima text-[13px] font-bold uppercase tracking-[1.2px] text-brand-red">
                 STUDENT VOICES
               </p>
-              <h2 className="mx-auto mt-2.5 max-w-[900px] font-proxima text-[38px] font-bold text-white">
+              <h2 className="mx-auto mt-2.5 font-proxima text-[24px] font-bold text-white md:max-w-[900px] md:text-[38px]">
                 What Students Say About Building Their Portfolio
               </h2>
             </div>
@@ -371,10 +371,10 @@ export default function StudentShowcasePage({ page }: InferGetStaticPropsType<ty
         </section>
 
         {/* -- CTA -- */}
-        <section className="bg-gradient-to-br from-brand-red via-[#8E2028] to-[#1A1A1A] py-24 text-center text-white">
+        <section className="bg-gradient-to-br from-brand-red via-[#8E2028] to-[#1A1A1A] py-16 text-center text-white md:py-24">
           <div className="section-container">
-            <h2 className="font-proxima text-[44px] font-bold">Build Your Portfolio Through Hybrid Learning</h2>
-            <p className="mx-auto mt-4 max-w-[820px] font-proxima text-[18px] leading-[1.6] text-white/80">
+            <h2 className="font-proxima text-[28px] font-bold md:text-[44px]">Build Your Portfolio Through Hybrid Learning</h2>
+            <p className="mx-auto mt-4 max-w-[820px] font-proxima text-[16px] leading-[1.6] text-white/80 md:text-[18px]">
               Study flexibly with online learning and campus studio sessions, then graduate with industry-ready work.
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
