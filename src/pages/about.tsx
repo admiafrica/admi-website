@@ -279,7 +279,7 @@ export default function AboutPage({
   partners: PARTNERS
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
-    <MainLayout footerBgColor="#1a1a1a">
+    <MainLayout footerBgColor="#1a1a1a" heroOverlap>
       <PageSEO
         title="About ADMI | Africa Digital Media Institute"
         description="Since 2011, ADMI has pioneered creative media education in East Africa. Learn about our story, mission, leadership, campus, and accreditation."
@@ -287,16 +287,17 @@ export default function AboutPage({
 
       <div className="w-full">
         {/* ── Hero ── */}
-        <section className="relative h-[480px] overflow-hidden md:h-[620px]">
-          <div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{
-              backgroundImage:
-                "url('https://images.unsplash.com/photo-1643651577068-57d08a386760?auto=format&fit=crop&w=1920&q=80')"
-            }}
+        <section className="relative min-h-[560px] overflow-hidden md:h-[700px]">
+          <img
+            src="https://images.unsplash.com/photo-1643651577068-57d08a386760?auto=format&fit=crop&w=2560&q=85"
+            srcSet="https://images.unsplash.com/photo-1643651577068-57d08a386760?auto=format&fit=crop&w=640&q=80 640w, https://images.unsplash.com/photo-1643651577068-57d08a386760?auto=format&fit=crop&w=1200&q=80 1200w, https://images.unsplash.com/photo-1643651577068-57d08a386760?auto=format&fit=crop&w=1920&q=85 1920w, https://images.unsplash.com/photo-1643651577068-57d08a386760?auto=format&fit=crop&w=2560&q=85 2560w"
+            sizes="100vw"
+            alt="Creative student working at ADMI campus"
+            className="absolute inset-0 h-full w-full object-cover object-center"
+            loading="eager"
           />
           <div className="via-admi-black/73 to-admi-black/53 absolute inset-0 bg-gradient-to-t from-admi-black/90" />
-          <div className="section-container relative z-10 flex h-full flex-col justify-end pb-10 pt-10 text-white md:justify-center md:pb-16">
+          <div className="section-container relative z-10 flex h-full flex-col justify-end pb-10 pt-[100px] text-white md:justify-center md:pb-16 md:pt-[110px]">
             <div className="mb-5 flex items-center gap-3">
               <span className="h-0.5 w-10 bg-secondary" />
               <span className="section-label text-secondary">ABOUT ADMI</span>
@@ -309,7 +310,7 @@ export default function AboutPage({
               4,500+ professionals, partnered with 500+ industry leaders, and built a proven model that delivers
               real-world outcomes.
             </p>
-            <div className="mt-4 flex items-center gap-4 md:mt-8">
+            <div className="flex items-center gap-4 md:mt-4">
               <span className="h-2.5 w-2.5 shrink-0 rounded-full bg-brand-red" />
               <span className="font-proxima text-[13px] font-semibold text-white/60 md:text-[14px]">
                 Est. 2011 &middot; Nairobi, Kenya &middot; EU-Accredited via Woolf
