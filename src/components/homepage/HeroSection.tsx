@@ -7,7 +7,7 @@ const HERO_IMAGE_URL =
 
 export default function HeroSection() {
   return (
-    <section className="relative -mt-[81px] w-full overflow-hidden bg-[#0B0B0F]">
+    <section className="relative w-full overflow-hidden bg-[#0B0B0F]">
       {/* Background Image */}
       <Image
         src={HERO_IMAGE_URL}

@@ -125,7 +125,7 @@ export default function CourseDetailPage({
   const pricing = getCoursePricing(slug, course.awardLevel, cmsTuitionFee)
 
   return (
-    <MainLayout>
+    <MainLayout heroOverlap>
       <PageSEO
         title={course.name}
         description={courseDescription}

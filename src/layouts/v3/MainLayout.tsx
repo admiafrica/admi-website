@@ -17,9 +17,11 @@ type LayoutProps = {
   minimizeHeader?: boolean
   minimizeFooter?: boolean
   footerBgColor?: string
+  /** When true, removes top padding so hero sections can extend under the fixed header */
+  heroOverlap?: boolean
 }
 
-export function MainLayout({ children, minimizeFooter = false, minimizeHeader = false, footerBgColor }: LayoutProps) {
+export function MainLayout({ children, minimizeFooter = false, minimizeHeader = false, footerBgColor, heroOverlap = false }: LayoutProps) {
   const pinned = useHeadroom({ fixedAt: 120 })
   const [bannerVisible, setBannerVisible] = useState(false)
 
@@ -64,7 +66,7 @@ export function MainLayout({ children, minimizeFooter = false, minimizeHeader = 
         </header>
       </div>
 
-      <main className={`w-full max-w-full overflow-x-clip ${bannerVisible ? 'pt-[129px]' : 'pt-[81px]'}`}>
+      <main className={`w-full max-w-full overflow-x-clip ${heroOverlap ? '' : bannerVisible ? 'pt-[129px]' : 'pt-[81px]'}`}>
         {children}
       </main>
 
