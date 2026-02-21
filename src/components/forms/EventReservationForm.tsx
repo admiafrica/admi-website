@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import { useForm } from '@/lib/tw-mantine-form'
 import { Button, Paragraph, Title } from '../ui'
-import PhoneInput from 'react-phone-input-2'
+import dynamic from 'next/dynamic'
+const PhoneInput = dynamic(() => import('react-phone-input-2'), { ssr: false })
 import 'react-phone-input-2/lib/style.css'
 
 import { IconAsterisk } from '@tabler/icons-react'

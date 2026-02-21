@@ -1,7 +1,8 @@
 'use client'
 
 import { useState } from 'react'
-import PhoneInput from 'react-phone-input-2'
+import dynamic from 'next/dynamic'
+const PhoneInput = dynamic(() => import('react-phone-input-2'), { ssr: false })
 import 'react-phone-input-2/lib/style.css'
 import { IconCheck, IconLoader2 } from '@tabler/icons-react'
 import { getStoredUTMs, getCurrentPageInfo } from '@/utils/utm-tracking'
