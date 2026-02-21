@@ -287,7 +287,7 @@ export default function AboutPage({
 
       <div className="w-full">
         {/* ── Hero ── */}
-        <section className="relative h-[620px] overflow-hidden">
+        <section className="relative h-[480px] overflow-hidden md:h-[620px]">
           <div
             className="absolute inset-0 bg-cover bg-center"
             style={{
@@ -296,22 +296,22 @@ export default function AboutPage({
             }}
           />
           <div className="via-admi-black/73 to-admi-black/53 absolute inset-0 bg-gradient-to-t from-admi-black/90" />
-          <div className="section-container relative z-10 flex h-full w-full flex-col justify-center pb-16 pt-10 text-white">
+          <div className="section-container relative z-10 flex h-full flex-col justify-end pb-10 pt-10 text-white md:justify-center md:pb-16">
             <div className="mb-5 flex items-center gap-3">
               <span className="h-0.5 w-10 bg-secondary" />
               <span className="section-label text-secondary">ABOUT ADMI</span>
             </div>
-            <h1 className="section-heading-dark mb-4 max-w-[700px] lg:text-[52px]">
+            <h1 className="section-heading-dark mb-4 lg:text-[52px]">
               We Exist to Unlock Africa&apos;s Creative Potential
             </h1>
-            <p className="section-subheading-dark mb-6 max-w-[620px]">
+            <p className="section-subheading-dark mb-6 md:max-w-[620px]">
               Since 2011, ADMI has pioneered creative media and technology education in East Africa. We have graduated
               4,500+ professionals, partnered with 500+ industry leaders, and built a proven model that delivers
               real-world outcomes.
             </p>
-            <div className="mt-8 flex items-center gap-4">
-              <span className="h-2.5 w-2.5 rounded-full bg-brand-red" />
-              <span className="font-proxima text-[14px] font-semibold text-white/60">
+            <div className="mt-4 flex items-center gap-4 md:mt-8">
+              <span className="h-2.5 w-2.5 shrink-0 rounded-full bg-brand-red" />
+              <span className="font-proxima text-[13px] font-semibold text-white/60 md:text-[14px]">
                 Est. 2011 &middot; Nairobi, Kenya &middot; EU-Accredited via Woolf
               </span>
             </div>
@@ -320,16 +320,16 @@ export default function AboutPage({
 
         {/* ── Stats Strip ── */}
         <section className="bg-[#0A3D3D]">
-          <div className="section-container flex w-full items-center justify-around py-8">
+          <div className="section-container grid w-full grid-cols-2 gap-6 py-8 md:flex md:items-center md:justify-around md:gap-0">
             {STATS.map((s, i) => (
               <div key={s.label} className="flex items-center">
-                <div className="text-center">
-                  <p className="font-proxima text-[36px] font-bold" style={{ color: s.color }}>
+                <div className="text-center md:text-center">
+                  <p className="font-proxima text-[28px] font-bold md:text-[36px]" style={{ color: s.color }}>
                     {s.value}
                   </p>
-                  <p className="font-proxima text-[13px] font-semibold text-white/70">{s.label}</p>
+                  <p className="font-proxima text-[12px] font-semibold text-white/70 md:text-[13px]">{s.label}</p>
                 </div>
-                {i < STATS.length - 1 && <div className="ml-10 h-12 w-px bg-white/20" />}
+                {i < STATS.length - 1 && <div className="ml-10 hidden h-12 w-px bg-white/20 md:block" />}
               </div>
             ))}
           </div>
@@ -337,22 +337,22 @@ export default function AboutPage({
 
         {/* ── Our Story ── */}
         <section className="bg-white">
-          <div className="section-container flex w-full flex-col lg:flex-row">
+          <div className="flex w-full flex-col lg:flex-row lg:mx-auto lg:max-w-[1280px]">
             <div
-              className="h-[400px] w-full bg-cover bg-center lg:h-auto lg:w-[640px]"
+              className="h-[240px] w-full shrink-0 bg-cover bg-center md:h-[400px] lg:h-auto lg:w-[640px]"
               style={{
                 backgroundImage:
                   "url('https://images.unsplash.com/photo-1617814423581-2c60df4c7b67?auto=format&fit=crop&w=800&q=80')"
               }}
             />
-            <div className="flex flex-col gap-6 px-4 py-16 lg:px-16 lg:py-20">
+            <div className="min-w-0 flex flex-col gap-6 px-6 py-12 md:px-8 md:py-16 lg:px-16 lg:py-20">
               <div className="flex items-center gap-3">
                 <span className="h-0.5 w-10 bg-brand-red" />
                 <span className="font-proxima text-[13px] font-bold uppercase tracking-[3px] text-brand-red">
                   OUR STORY
                 </span>
               </div>
-              <h2 className="max-w-[600px] font-proxima text-[36px] font-bold leading-[1.15] text-[#171717]">
+              <h2 className="max-w-full font-proxima text-[26px] font-bold leading-[1.15] text-[#171717] md:max-w-[600px] md:text-[36px]">
                 From a Small Film School to East Africa&apos;s Leading Creative Institute
               </h2>
               <p className="max-w-[600px] font-proxima text-[16px] leading-[1.7] text-[#555]">
@@ -387,7 +387,7 @@ export default function AboutPage({
                 MISSION AND VALUES
               </span>
             </div>
-            <h2 className="mt-6 font-proxima text-[42px] font-bold text-[#171717]">What Drives Us</h2>
+            <h2 className="mt-6 font-proxima text-[28px] font-bold text-[#171717] md:text-[42px]">What Drives Us</h2>
             <p className="mx-auto mt-4 max-w-[700px] font-proxima text-[17px] leading-[1.7] text-[#666]">
               Our mission is to equip Africa&apos;s creative talent with practical skills, industry confidence, and
               global perspective through blended learning pathways.
@@ -426,7 +426,7 @@ export default function AboutPage({
                 OUR JOURNEY
               </span>
             </div>
-            <h2 className="mt-6 font-proxima text-[42px] font-bold text-white">
+            <h2 className="mt-6 font-proxima text-[28px] font-bold text-white md:text-[42px]">
               15 Years of Building Creative Futures
             </h2>
             <div className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
@@ -464,7 +464,7 @@ export default function AboutPage({
               </span>
             </div>
             <div className="mt-6 flex flex-col justify-between gap-4 md:flex-row md:items-end">
-              <h2 className="font-proxima text-[42px] font-bold text-[#171717]">The Visionaries Behind ADMI</h2>
+              <h2 className="font-proxima text-[28px] font-bold text-[#171717] md:text-[42px]">The Visionaries Behind ADMI</h2>
               <p className="max-w-[320px] font-proxima text-[16px] text-[#666]">
                 The founders and board who shaped our mission.
               </p>
@@ -499,7 +499,7 @@ export default function AboutPage({
               </span>
             </div>
             <div className="mt-6 flex flex-col justify-between gap-4 md:flex-row md:items-end">
-              <h2 className="font-proxima text-[38px] font-bold text-[#171717]">
+              <h2 className="font-proxima text-[26px] font-bold text-[#171717] md:text-[38px]">
                 Faculty Who Practice What They Teach
               </h2>
               <p className="max-w-[340px] font-proxima text-[15px] leading-[1.6] text-[#666]">
@@ -535,7 +535,7 @@ export default function AboutPage({
                 OUR CAMPUS
               </span>
             </div>
-            <h2 className="mt-6 font-proxima text-[42px] font-bold text-[#171717]">
+            <h2 className="mt-6 font-proxima text-[28px] font-bold text-[#171717] md:text-[42px]">
               World-Class Facilities in the Heart of Nairobi
             </h2>
             <p className="mx-auto mt-4 max-w-[700px] font-proxima text-[17px] leading-[1.7] text-[#666]">
@@ -588,7 +588,7 @@ export default function AboutPage({
                 PARTNERSHIPS AND ACCREDITATION
               </span>
             </div>
-            <h2 className="mt-6 font-proxima text-[38px] font-bold text-[#171717]">
+            <h2 className="mt-6 font-proxima text-[26px] font-bold text-[#171717] md:text-[38px]">
               Globally Recognized, Locally Rooted
             </h2>
             <div className="mt-12 flex flex-wrap justify-center gap-6">
@@ -612,12 +612,12 @@ export default function AboutPage({
         </section>
 
         {/* ── CTA ── */}
-        <section className="bg-gradient-to-br from-brand-red via-[#8B1A24] to-admi-black py-24 text-white">
+        <section className="bg-gradient-to-br from-brand-red via-[#8B1A24] to-admi-black py-16 text-white md:py-24">
           <div className="section-container text-center">
-            <h2 className="mx-auto max-w-[700px] font-proxima text-[44px] font-bold leading-[1.15]">
+            <h2 className="mx-auto max-w-[700px] font-proxima text-[28px] font-bold leading-[1.15] md:text-[44px]">
               Ready to Start Your Creative Journey?
             </h2>
-            <p className="mx-auto mt-4 max-w-[640px] font-proxima text-[18px] leading-[1.6] text-white/80">
+            <p className="mx-auto mt-4 max-w-[640px] font-proxima text-[16px] leading-[1.6] text-white/80 md:text-[18px]">
               Join 4,500+ graduates building careers in film, design, animation, music production, and gaming.
               Applications are open for January, May and September intakes.
             </p>

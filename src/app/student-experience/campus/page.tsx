@@ -1,6 +1,11 @@
+'use client'
+
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { MainLayout } from '@/layouts/v3/MainLayout'
 import { PageSEO } from '@/components/shared/v3'
+
+const tabs = ['Facilities', 'Labs', 'Studios', 'Equipment']
 
 const sections = [
   {
@@ -26,6 +31,27 @@ const sections = [
 ]
 
 export default function StudentExperienceCampusPage() {
+  const [activeTab, setActiveTab] = useState('facilities')
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash.replace('#', '')
+      if (hash && tabs.map(t => t.toLowerCase()).includes(hash)) {
+        setActiveTab(hash)
+      }
+    }
+
+    // Check initial hash
+    handleHashChange()
+    
+    window.addEventListener('hashchange', handleHashChange)
+    return () => window.removeEventListener('hashchange', handleHashChange)
+  }, [])
+
+  const handleTabClick = (tab: string) => {
+    setActiveTab(tab.toLowerCase())
+  }
+
   return (
     <MainLayout footerBgColor="white">
       <PageSEO
@@ -45,11 +71,16 @@ export default function StudentExperienceCampusPage() {
 
       <div className="border-y border-[#E8E8E8] bg-white">
         <div className="mx-auto flex w-full max-w-screen-xl items-center gap-2 px-4 xl:px-0">
-          {['#facilities', '#labs', '#studios', '#equipment'].map((tab, idx) => (
+          {tabs.map((tab) => (
             <a
               key={tab}
-              href={tab}
-              className={`px-4 py-4 font-nexa text-[14px] font-bold ${idx === 0 ? 'border-b-[3px] border-brand-red text-[#171717]' : 'text-[#666]'}`}
+              href={`#${tab.toLowerCase()}`}
+              onClick={() => handleTabClick(tab)}
+              className={`px-4 py-4 font-nexa text-[14px] font-bold transition-colors ${
+                activeTab === tab.toLowerCase() 
+                  ? 'border-b-[3px] border-brand-red text-[#171717]' 
+                  : 'border-b-[3px] border-transparent text-[#666] hover:text-[#171717]'
+              }`}
             >
               {tab}
             </a>

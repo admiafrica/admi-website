@@ -41,24 +41,24 @@ const STUDENT_LINKS = [
 
 const SocialIcons = React.memo(() => {
   return (
-    <div className="flex items-center gap-3.5">
+    <div className="flex items-center justify-center gap-4">
       <a href={SOCIAL_LINKS.TIKTOK} className="text-white" target="_blank" rel="noopener noreferrer">
-        <Image width={28} height={28} src={IconTikTok} alt="TikTok" />
+        <Image width={32} height={32} src={IconTikTok} alt="TikTok" />
       </a>
       <a href={SOCIAL_LINKS.YOUTUBE} className="text-white" target="_blank" rel="noopener noreferrer">
-        <Image width={30} height={30} src={IconYouTube} alt="YouTube" />
+        <Image width={34} height={34} src={IconYouTube} alt="YouTube" />
       </a>
       <a href={SOCIAL_LINKS.LINKEDIN} className="text-white" target="_blank" rel="noopener noreferrer">
-        <Image width={28} height={28} src={IconLinkedIn} alt="LinkedIn" />
+        <Image width={32} height={32} src={IconLinkedIn} alt="LinkedIn" />
       </a>
       <a href={SOCIAL_LINKS.INSTAGRAM} className="text-white" target="_blank" rel="noopener noreferrer">
-        <Image width={30} height={30} src={IconInstagram} alt="Instagram" />
+        <Image width={34} height={34} src={IconInstagram} alt="Instagram" />
       </a>
       <a href={SOCIAL_LINKS.X} className="text-white" target="_blank" rel="noopener noreferrer">
-        <Image width={28} height={28} src={IconX} alt="X" />
+        <Image width={32} height={32} src={IconX} alt="X" />
       </a>
       <a href={SOCIAL_LINKS.FACEBOOK} className="text-white" target="_blank" rel="noopener noreferrer">
-        <Image width={28} height={28} src={IconFacebook} alt="Facebook" />
+        <Image width={32} height={32} src={IconFacebook} alt="Facebook" />
       </a>
     </div>
   )
@@ -108,7 +108,7 @@ function FooterNewsletter() {
       {status === 'success' ? (
         <p className="text-sm font-semibold text-[#8EBFB0]">{message}</p>
       ) : (
-        <form onSubmit={handleSubmit} className="flex flex-col gap-2">
+        <form onSubmit={handleSubmit} className="flex max-w-[260px] flex-col gap-2">
           <input
             type="email"
             required
@@ -121,7 +121,7 @@ function FooterNewsletter() {
           <button
             type="submit"
             disabled={status === 'loading'}
-            className="btn-primary h-11 text-sm disabled:opacity-50"
+            className="btn-primary h-11 w-fit text-sm disabled:opacity-50"
           >
             {status === 'loading' ? 'Subscribing...' : 'Subscribe'}
           </button>
