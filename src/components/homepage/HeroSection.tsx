@@ -1,16 +1,35 @@
 import Image from 'next/image'
+import Head from 'next/head'
 import Link from 'next/link'
 import { IconChevronRight } from '@tabler/icons-react'
 
-const HERO_IMAGE_URL =
+const HERO_IMAGE_BASE =
   'https://images.ctfassets.net/qtu3mga6n6gc/6Mhj8yvqGYUNbHN9RZq6vD/4de22785a3034c1e768c12b8f11e95d7/homepage-hero-bg.png'
+
+// Use Contentful Image API directly — skips /_next/image proxy, saves a network hop
+const contentfulLoader = ({ src, width, quality }: { src: string; width: number; quality?: number }) =>
+  `${src}?fm=webp&w=${width}&q=${quality || 80}&fit=fill`
 
 export default function HeroSection() {
   return (
     <section className="relative w-full overflow-hidden bg-[#0B0B0F]">
-      {/* Background Image */}
+      {/* Preload LCP image directly from Contentful CDN — no /_next/image proxy */}
+      <Head>
+        <link
+          rel="preload"
+          as="image"
+          type="image/webp"
+          imageSrcSet={`${HERO_IMAGE_BASE}?fm=webp&w=640&q=80&fit=fill 640w, ${HERO_IMAGE_BASE}?fm=webp&w=828&q=80&fit=fill 828w, ${HERO_IMAGE_BASE}?fm=webp&w=1200&q=80&fit=fill 1200w, ${HERO_IMAGE_BASE}?fm=webp&w=1920&q=80&fit=fill 1920w`}
+          imageSizes="100vw"
+          // @ts-ignore — fetchpriority not yet in React types
+          fetchpriority="high"
+        />
+      </Head>
+
+      {/* Background Image — loaded via Contentful CDN directly */}
       <Image
-        src={HERO_IMAGE_URL}
+        loader={contentfulLoader}
+        src={HERO_IMAGE_BASE}
         alt="ADMI Campus - Students in creative media training"
         fill
         priority
