@@ -4,6 +4,7 @@ import type { GetStaticProps, InferGetStaticPropsType } from 'next'
 
 import { MainLayout } from '@/layouts/v3/MainLayout'
 import { PageSEO } from '@/components/shared/v3'
+import { TeamMemberCard } from '@/components/cards'
 import { getPageCached, getEntriesCached } from '@/utils/contentful-cached'
 import type {
   AboutStat,
@@ -90,8 +91,8 @@ const FALLBACK_TIMELINE: AboutTimelineEvent[] = [
   },
   {
     year: '2019',
-    title: '$1M+ Revenue, Rubika Partnership',
-    desc: 'Crossed $1M annual revenue, secured AFD $1M investment, and partnered with Rubika International.',
+    title: 'Rubika Partnership',
+    desc: 'Partnered with Rubika International, a leading global creative arts network for animation and gaming with funding from AFD.',
     color: '#C1272D',
     border: '#C1272D44'
   },
@@ -350,7 +351,7 @@ export default function AboutPage({
 
         {/* ── Our Story ── */}
         <section className="bg-white">
-          <div className="flex w-full flex-col lg:flex-row lg:mx-auto lg:max-w-[1280px]">
+          <div className="flex w-full flex-col lg:mx-auto lg:max-w-[1280px] lg:flex-row">
             <div
               className="h-[240px] w-full shrink-0 bg-cover bg-center md:h-[400px] lg:h-auto lg:w-[640px]"
               style={{
@@ -358,7 +359,7 @@ export default function AboutPage({
                   "url('https://images.unsplash.com/photo-1617814423581-2c60df4c7b67?auto=format&fit=crop&w=800&q=80')"
               }}
             />
-            <div className="min-w-0 flex flex-col gap-6 px-6 py-12 md:px-8 md:py-16 lg:px-16 lg:py-20">
+            <div className="flex min-w-0 flex-col gap-6 px-6 py-12 md:px-8 md:py-16 lg:px-16 lg:py-20">
               <div className="flex items-center gap-3">
                 <span className="h-0.5 w-10 bg-brand-red" />
                 <span className="font-proxima text-[13px] font-bold uppercase tracking-[3px] text-brand-red">
@@ -369,9 +370,9 @@ export default function AboutPage({
                 From a Small Film School to East Africa&apos;s Leading Creative Institute
               </h2>
               <p className="max-w-[600px] font-proxima text-[16px] leading-[1.7] text-[#555]">
-                In 2011, co-founders Dr Laila Macharia and Wilfred Kiumi saw a gap: Africa&apos;s booming creative economy
-                had no institution training the next generation. They started with a handful of students and a bold
-                vision to build a world-class creative media institute in Nairobi.
+                In 2011, co-founders Dr Laila Macharia and Wilfred Kiumi saw a gap: Africa&apos;s booming creative
+                economy had no institution training the next generation. They started with a handful of students and a
+                bold vision to build a world-class creative media institute in Nairobi.
               </p>
               <p className="max-w-[600px] font-proxima text-[16px] leading-[1.7] text-[#555]">
                 What began as JFTA (Jomo&apos;s Film and Television Academy) evolved into ADMI &mdash; Africa Digital
@@ -409,7 +410,7 @@ export default function AboutPage({
               {VALUES.map((v, index) => (
                 <article
                   key={v.title}
-                  className={`overflow-hidden rounded-2xl border border-[#e8e8e8] bg-white text-left ${
+                  className={`overflow-hidden rounded-lg border border-[#e8e8e8] bg-white text-left ${
                     index < 3 ? 'lg:col-span-2' : 'lg:col-span-3'
                   }`}
                 >
@@ -442,27 +443,69 @@ export default function AboutPage({
             <h2 className="mt-6 font-proxima text-[28px] font-bold text-white md:text-[42px]">
               15 Years of Building Creative Futures
             </h2>
-            <div className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
-              {TIMELINE.map((t) => (
-                <article
-                  key={t.year}
-                  className="rounded-2xl p-7 text-left"
-                  style={{
-                    backgroundColor: t.highlight ? '#C1272D' : '#1a1a1a',
-                    border: t.highlight ? 'none' : `1px solid ${t.border}`
-                  }}
-                >
-                  <p className="font-proxima text-[32px] font-bold" style={{ color: t.color }}>
-                    {t.year}
-                  </p>
-                  <p className="mt-3 font-proxima text-[16px] font-bold text-white">{t.title}</p>
-                  <p
-                    className={`mt-3 font-proxima text-[13px] leading-[1.6] ${t.highlight ? 'text-white/80' : 'text-[#999]'}`}
-                  >
-                    {t.desc}
-                  </p>
-                </article>
-              ))}
+
+            {/* Horizontal timeline — Monopoly-style track with pins */}
+            <div className="-mx-6 mt-12 overflow-x-auto px-6 md:mx-0 md:px-0">
+              <div className="relative min-w-[900px]">
+                {/* Horizontal spine */}
+                <div className="absolute left-0 right-0 top-1/2 h-px bg-[#2A2A2A]" />
+
+                <div className="flex">
+                  {TIMELINE.map((t, i) => {
+                    const isAbove = i % 2 === 0
+                    return (
+                      <div key={t.year} className="flex flex-1 flex-col items-center">
+                        {/* Top half */}
+                        <div className="flex h-[200px] flex-col items-center justify-end pb-3">
+                          {isAbove && (
+                            <>
+                              <p className="font-proxima text-[22px] font-bold leading-none" style={{ color: t.color }}>
+                                {t.year}
+                              </p>
+                              <p className="mt-1.5 max-w-[130px] text-center font-proxima text-[12px] font-bold leading-snug text-white">
+                                {t.title}
+                              </p>
+                              <p className="mt-1 max-w-[130px] text-center font-proxima text-[11px] leading-[1.4] text-[#9CA3AF]">
+                                {t.desc}
+                              </p>
+                              {/* Pin */}
+                              <div className="mt-2 h-4 w-px" style={{ backgroundColor: `${t.color}44` }} />
+                            </>
+                          )}
+                        </div>
+
+                        {/* Dot */}
+                        <div
+                          className="relative z-10 h-3.5 w-3.5 shrink-0 rounded-full"
+                          style={{
+                            backgroundColor: t.highlight ? '#C1272D' : t.color,
+                            boxShadow: t.highlight ? '0 0 0 4px rgba(193,39,45,0.3)' : undefined
+                          }}
+                        />
+
+                        {/* Bottom half */}
+                        <div className="flex h-[200px] flex-col items-center justify-start pt-3">
+                          {!isAbove && (
+                            <>
+                              {/* Pin */}
+                              <div className="mb-2 h-4 w-px" style={{ backgroundColor: `${t.color}44` }} />
+                              <p className="font-proxima text-[22px] font-bold leading-none" style={{ color: t.color }}>
+                                {t.year}
+                              </p>
+                              <p className="mt-1.5 max-w-[130px] text-center font-proxima text-[12px] font-bold leading-snug text-white">
+                                {t.title}
+                              </p>
+                              <p className="mt-1 max-w-[130px] text-center font-proxima text-[11px] leading-[1.4] text-[#9CA3AF]">
+                                {t.desc}
+                              </p>
+                            </>
+                          )}
+                        </div>
+                      </div>
+                    )
+                  })}
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -477,26 +520,16 @@ export default function AboutPage({
               </span>
             </div>
             <div className="mt-6 flex flex-col justify-between gap-4 md:flex-row md:items-end">
-              <h2 className="font-proxima text-[28px] font-bold text-[#171717] md:text-[42px]">The Visionaries Behind ADMI</h2>
-              <p className="max-w-[320px] font-proxima text-[16px] text-[#666]">
-                The founders who shaped our mission.
-              </p>
+              <h2 className="font-proxima text-[28px] font-bold text-[#171717] md:text-[42px]">
+                The Visionaries Behind ADMI
+              </h2>
+              <p className="max-w-[320px] font-proxima text-[16px] text-[#666]">The founders who shaped our mission.</p>
             </div>
 
             {/* Founders */}
-            <div className="mt-12 grid grid-cols-1 gap-5 md:grid-cols-2">
+            <div className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-4">
               {FOUNDERS.map((f) => (
-                <article key={f.name} className="overflow-hidden rounded-2xl border border-[#e8e8e8] bg-[#F9F9F9]">
-                  <div
-                    className="h-[240px] w-full bg-cover bg-center"
-                    style={{ backgroundImage: `url('${f.image}')` }}
-                  />
-                  <div className="px-6 py-5">
-                    <h3 className="font-proxima text-[20px] font-bold text-[#171717]">{f.name}</h3>
-                    <p className="mt-1.5 font-proxima text-[13px] font-semibold text-brand-red">{f.role}</p>
-                    <p className="mt-1.5 font-proxima text-[13px] leading-[1.6] text-[#666]">{f.desc}</p>
-                  </div>
-                </article>
+                <TeamMemberCard key={f.name} name={f.name} role={f.role} image={f.image} description={f.desc} />
               ))}
             </div>
           </div>
@@ -519,21 +552,17 @@ export default function AboutPage({
                 Our lecturers are active industry professionals &mdash; not just textbook academics.
               </p>
             </div>
-            <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
+            <div className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-4">
               {ACADEMIC_TEAM.map((a) => (
-                <article key={a.name} className="overflow-hidden rounded-2xl border border-[#e8e8e8] bg-white">
-                  <div
-                    className="h-[260px] w-full bg-cover bg-center"
-                    style={{ backgroundImage: `url('${a.image}')` }}
-                  />
-                  <div className="px-7 py-5">
-                    <h3 className="font-proxima text-[22px] font-bold text-[#171717]">{a.name}</h3>
-                    <p className="mt-1.5 font-proxima text-[13px] font-semibold" style={{ color: a.roleColor }}>
-                      {a.role}
-                    </p>
-                    <p className="mt-1.5 max-w-[340px] font-proxima text-[14px] leading-[1.6] text-[#666]">{a.desc}</p>
-                  </div>
-                </article>
+                <TeamMemberCard
+                  key={a.name}
+                  name={a.name}
+                  role={a.role}
+                  image={a.image}
+                  description={a.desc}
+                  roleColor={a.roleColor}
+                  variant="white"
+                />
               ))}
             </div>
           </div>
