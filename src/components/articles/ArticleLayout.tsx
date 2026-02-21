@@ -362,7 +362,7 @@ function NewsletterCTA() {
 
   return (
     <section className="w-full bg-admi-black">
-      <div className="flex flex-col items-start justify-between gap-8 px-6 py-14 md:flex-row md:items-center md:px-20 md:py-[60px]">
+      <div className="section-container flex flex-col items-start justify-between gap-8 py-14 md:flex-row md:items-center md:py-[60px]">
         {/* Left side */}
         <div>
           <span className="font-proxima text-[13px] font-bold uppercase tracking-[1.2px] text-white/65">
