@@ -99,7 +99,7 @@ export const getStaticProps: GetStaticProps<{ page: StudentLifePageData }> = asy
 
 export default function StudentLifePage({ page }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
-    <MainLayout footerBgColor="#1a1a1a">
+    <MainLayout footerBgColor="#1a1a1a" heroOverlap>
       <PageSEO title={page.seoTitle} description={page.seoDescription} />
 
       <div className="w-full">

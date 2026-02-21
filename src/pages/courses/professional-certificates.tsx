@@ -39,7 +39,7 @@ export default function ProfessionalCertificatesPage({ profCourses = [] }: { pro
   const [openFaq, setOpenFaq] = useState<number | null>(null)
 
   return (
-    <MainLayout>
+    <MainLayout heroOverlap>
       <PageSEO
         title="Professional Certificate Programmes - ADMI Kenya | Fast-Track Your Skills"
         description="Build professional skills in 6 months with ADMI's certificate programmes. Photography, Video Production, Digital Marketing & more. From 47,500 KES. Get hired faster."

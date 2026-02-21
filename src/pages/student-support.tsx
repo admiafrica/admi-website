@@ -221,7 +221,7 @@ export default function StudentSupportPage({ page }: InferGetStaticPropsType<typ
   const currentTab = page.supportTabs.find((t: SupportTabCMS) => t.key === activeTab)!
 
   return (
-    <MainLayout footerBgColor="#1a1a1a">
+    <MainLayout footerBgColor="#1a1a1a" heroOverlap>
       <PageSEO title={page.seoTitle} description={page.seoDescription} />
 
       <div className="w-full">

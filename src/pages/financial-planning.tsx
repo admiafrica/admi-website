@@ -200,7 +200,7 @@ export default function FinancialPlanningPage({ page }: InferGetStaticPropsType<
   const { feeCards, paymentPlans, scholarships, faqItems } = page
 
   return (
-    <MainLayout footerBgColor="#002A23">
+    <MainLayout footerBgColor="#002A23" heroOverlap>
       <PageSEO
         title={page.seoTitle}
         description={page.seoDescription}

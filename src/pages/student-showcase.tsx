@@ -201,7 +201,7 @@ export default function StudentShowcasePage({ page }: InferGetStaticPropsType<ty
   const [activeFilter, setActiveFilter] = useState('All Modes')
 
   return (
-    <MainLayout footerBgColor="#1a1a1a">
+    <MainLayout footerBgColor="#1a1a1a" heroOverlap>
       <PageSEO title={page.seoTitle} description={page.seoDescription} />
 
       <div className="w-full">

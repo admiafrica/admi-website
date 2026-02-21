@@ -352,7 +352,7 @@ export default function ImpactAlumniSuccessPage({
   ctaBottomStats: CTA_BOTTOM_STATS = FALLBACK_CTA_BOTTOM_STATS
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
-    <MainLayout footerBgColor="#1a1a1a">
+    <MainLayout footerBgColor="#1a1a1a" heroOverlap>
       <PageSEO
         title="Our Impact | ADMI - Transforming Lives Through Creative Education"
         description="Discover how ADMI graduates achieve 3x income growth by Year 3. 88% employment rate, 4,500+ alumni across 15+ countries. Real income data from our 2025 alumni survey."

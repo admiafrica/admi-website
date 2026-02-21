@@ -178,7 +178,7 @@ export default function ResourcesPage({ initialResources, initialFeatured, initi
   const featuredImage = featuredFields?.coverImage?.fields?.file?.url
 
   return (
-    <MainLayout footerBgColor="#1a1a1a">
+    <MainLayout footerBgColor="#1a1a1a" heroOverlap>
       <PageSEO
         title="Guides"
         description="Career guides, creative industry insights, and practical resources for aspiring creatives at ADMI."

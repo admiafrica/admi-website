@@ -70,7 +70,7 @@ export const getStaticProps: GetStaticProps<{ page: FellowshipPageData }> = asyn
 
 export default function FellowshipPage({ page }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
-    <MainLayout footerBgColor="#1a1a1a">
+    <MainLayout footerBgColor="#1a1a1a" heroOverlap>
       <PageSEO
         title={page.seoTitle}
         description={page.seoDescription}

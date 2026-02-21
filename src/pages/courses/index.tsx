@@ -317,7 +317,7 @@ export default function CoursesPage({
   }, [activeTab])
 
   return (
-    <MainLayout footerBgColor="#F5FFFD">
+    <MainLayout footerBgColor="#F5FFFD" heroOverlap>
       <PageSEO
         title="Courses | ADMI - Africa Digital Media Institute"
         description="Explore ADMI's comprehensive range of digital media and creative courses in Kenya. From certificate to diploma programs, find the perfect course to advance your creative career in Nairobi."

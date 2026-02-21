@@ -136,7 +136,7 @@ export default function AlumniPage({
   networkBenefits: NETWORK_BENEFITS = FALLBACK_NETWORK_BENEFITS
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
-    <MainLayout footerBgColor="#1a1a1a">
+    <MainLayout footerBgColor="#1a1a1a" heroOverlap>
       <PageSEO
         title="Our Alumni | Africa Digital Media Institute"
         description="Meet 4,000+ ADMI graduates building Africa's creative future. Discover alumni stories, career outcomes, and the network that connects creative professionals across the continent."

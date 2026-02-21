@@ -113,7 +113,7 @@ export default function DiplomaCoursesPage({ diplomaCourses = [] }: { diplomaCou
   const [openFaq, setOpenFaq] = useState<number | null>(null)
 
   return (
-    <MainLayout>
+    <MainLayout heroOverlap>
       <PageSEO
         title="Diploma Programmes - ADMI Kenya | Career Transformation in Digital Media"
         description="Launch your digital media career with ADMI's comprehensive diploma programmes. 88% graduate employment rate. Flexible payment plans from 15,000 KES/month. Study Film, Music, Design, Animation & more."

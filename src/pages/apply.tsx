@@ -109,7 +109,7 @@ export default function ApplyPage() {
     formData.consent
 
   return (
-    <MainLayout footerBgColor="#1a1a1a">
+    <MainLayout footerBgColor="#1a1a1a" heroOverlap>
       <PageSEO
         title="Apply"
         description="Apply to ADMI for January, May, or September intakes. Study Film, Music, Animation, Graphic Design and more with EU-accredited diplomas and professional certificates."

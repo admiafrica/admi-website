@@ -237,7 +237,7 @@ export default function FAQPage({ faqData }: InferGetStaticPropsType<typeof getS
       : [activeCategory].filter((c) => faqData[c]?.length)
 
   return (
-    <MainLayout footerBgColor="#002A23">
+    <MainLayout footerBgColor="#002A23" heroOverlap>
       <PageSEO
         title="FAQ | Frequently Asked Questions | ADMI"
         description="Find answers to common questions about ADMI programmes, admissions, fees, student life, and more. Get the information you need to start your creative career."

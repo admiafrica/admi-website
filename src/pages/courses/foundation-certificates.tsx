@@ -73,7 +73,7 @@ export default function FoundationCertificatesPage({
   const [openFaq, setOpenFaq] = useState<number | null>(null)
 
   return (
-    <MainLayout>
+    <MainLayout heroOverlap>
       <PageSEO
         title="Foundation Certificate Programmes - ADMI Kenya | Start Your Creative Career"
         description="Begin your creative journey with ADMI's foundation certificate programmes. No experience required. 6 months, from 48,000 KES. Creative Media, Digital Technology, Music & more."

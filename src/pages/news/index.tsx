@@ -55,7 +55,7 @@ export default function NewsPage({ news, featuredNews }: NewsPageProps) {
     featuredFields?.thumbnail?.fields?.file?.url
 
   return (
-    <MainLayout footerBgColor="#1a1a1a">
+    <MainLayout footerBgColor="#1a1a1a" heroOverlap>
       <PageSEO
         title="News & Blog"
         description="Latest ADMI news, student stories, industry insights, and campus updates."

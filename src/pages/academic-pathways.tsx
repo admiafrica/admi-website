@@ -88,7 +88,7 @@ function SectionLabel({ color, children }: { color: string; children: React.Reac
 
 export default function AcademicPathwaysPage({ page }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
-    <MainLayout footerBgColor="#1a1a1a">
+    <MainLayout footerBgColor="#1a1a1a" heroOverlap>
       <PageSEO
         title={page.seoTitle}
         description={page.seoDescription}

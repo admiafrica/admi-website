@@ -9,7 +9,7 @@ const openings = [
 
 export default function CareersPage() {
   return (
-    <MainLayout footerBgColor="white">
+    <MainLayout footerBgColor="white" heroOverlap>
       <PageSEO title="Careers" description="Work with ADMI and help shape creative education." />
       <div className="w-full">
         <section className="relative h-[540px] overflow-hidden bg-[url('https://images.unsplash.com/photo-1516005492235-7a8d3a652dca?auto=format&fit=crop&w=1920&q=80')] bg-cover bg-center">

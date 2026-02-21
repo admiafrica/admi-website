@@ -158,7 +158,7 @@ export default function WorkWithUsPage({ page }: InferGetStaticPropsType<typeof 
   const { faculty, openings, benefits, teamMembers } = page
 
   return (
-    <MainLayout footerBgColor="#1a1a1a">
+    <MainLayout footerBgColor="#1a1a1a" heroOverlap>
       <PageSEO title={page.seoTitle} description={page.seoDescription} keywords={page.seoKeywords} />
 
       <div className="w-full">
