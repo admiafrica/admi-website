@@ -444,9 +444,38 @@ export default function AboutPage({
               15 Years of Building Creative Futures
             </h2>
 
-            {/* Horizontal timeline — Monopoly-style track with pins */}
-            <div className="-mx-6 mt-12 overflow-x-auto px-6 md:mx-0 md:px-0">
-              <div className="relative min-w-[900px]">
+            {/* Mobile: vertical timeline */}
+            <div className="relative mt-12 md:hidden">
+              {/* Left spine */}
+              <div className="absolute left-[7px] top-0 h-full w-px bg-[#2A2A2A]" />
+
+              {TIMELINE.map((t) => (
+                <div key={t.year} className="relative mb-8 flex gap-5 last:mb-0">
+                  {/* Dot */}
+                  <div
+                    className="relative z-10 mt-1 h-3.5 w-3.5 shrink-0 rounded-full"
+                    style={{
+                      backgroundColor: t.highlight ? '#C1272D' : t.color,
+                      boxShadow: t.highlight ? '0 0 0 4px rgba(193,39,45,0.3)' : undefined
+                    }}
+                  />
+                  {/* Content */}
+                  <div className="text-left">
+                    <p className="font-proxima text-[22px] font-bold leading-none" style={{ color: t.color }}>
+                      {t.year}
+                    </p>
+                    <p className="mt-1.5 font-proxima text-[14px] font-bold leading-snug text-white">{t.title}</p>
+                    <p className={`mt-1 font-proxima text-[13px] leading-[1.5] ${t.highlight ? 'text-white/80' : 'text-[#9CA3AF]'}`}>
+                      {t.desc}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Desktop: horizontal Monopoly-style track with pins */}
+            <div className="mt-12 hidden md:block">
+              <div className="relative">
                 {/* Horizontal spine */}
                 <div className="absolute left-0 right-0 top-1/2 h-px bg-[#2A2A2A]" />
 
